@@ -1,0 +1,88 @@
+<div ng-switch on="isMine">
+    <div ng-switch-when="false">
+        <div class="padding-2 row" ng-hide="rating.dialogShown">
+            <div class="small-12 medium-12 large-5 columns">
+                <div class="button-group radius ratings">
+                    <button type="button" class="default button round connect-right"
+                            ng-click="showRatingDialog(1)"
+                            ng-disabled="rating.dialogShown"
+                            analytics-on analytics-event="click on thumb up" analytics-category="Other profile" analytics-label="thanks">
+                        <i class="hearthicon-appreciate"><span>{{ 'THUMB_UP' | translate }}</span></i>
+                    </button>
+                    <button type="button" class="default button round connect-left"
+                            ng-click="showRatingDialog(-1)"
+                            ng-disabled="rating.dialogShown"
+                            analytics-on analytics-event="click on thumb down" analytics-category="Other profile" analytics-label="thanks">
+                        <i class="hearthicon-hate"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="small-12 medium-12 large-7 columns" ng-show="profile.upVotes + profile.downVotes" ng-cloak>
+                <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
+            </div>
+        </div>
+        <div signed-in>
+            <form name="profileRatingForm" ng-cloak ng-show="rating.dialogShown" ng-submit="saveRating()" class="profile-rate">
+                <small class="alert-box visible alert error round connect-bottom" ng-show="rating.errors.text">{{ rating.errors.text | translate}}</small>
+                <textarea ng-class="{ 'text-input': true, 'error': rating.errors.text }" required 
+                          ng-model="rating.data.text" 
+                          placeholder="{{ feedbackPlaceholder }}"></textarea>
+                <button type="reset" class="left default button" ng-click="rating.dialogShown = false">{{ 'CANCEL' | translate }}</button>
+                <button type="submit" class="right green button">
+                    <i class="center hearthicon-appreciate" ng-cloak ng-show="rating.data.score > 0"></i>
+                    <i class="center hearthicon-hate" ng-cloak ng-show="rating.data.score < 0"></i>
+                    {{ 'SUBMIT' | translate }}</button>
+                <div class="cleaner"></div>
+                <br>
+            </form>
+        </div>
+        <div signed-out>
+            <div class="padding-2" ng-cloak ng-show="rating.dialogShown">
+                <div class="round login-prompt" translate>
+                LOG_IN_TO_POST_RATING
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-switch-when="true">
+        <div class="padding-2 row" ng-show="ratings.length > 0" ng-cloak>
+            <div class="small-12 large-7 columns">
+                <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
+            </div>
+            <div class="large-5 columns hide-for-small">
+                <div class="right">
+                    <i class="hearthicon-appreciate"></i>&nbsp;{{ profile.upVotes }}
+                    /
+                    <i class="hearthicon-hate"></i>&nbsp;{{ profile.downVotes }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div when-scrolled="loadMore('feedback')" ng-cloak class="wish-list" >
+    <div ng-show="!ratings.length" ng-cloak>
+        <div ng-cloak ng-show="!isMine" class="hr"></div>
+        <div ng-cloak ng-show="!isMine" class="padding-2">{{ 'USER_HAS_NOT_BEEN_RATED' | translate }}</div>
+        <div ng-cloak ng-show="isMine" class="padding-2">{{ 'YOU_HAVE_NOT_BEEN_RATED' | translate }}</div>
+    </div>
+    <div class="hr"></div>
+    <div ng-repeat="rating in ratings" class="wish-container">
+        <div class="rating row" ng-class="{ 'positive': rating.score > 0, 'negative': rating.score < 0 }">
+            <avatar source="rating.userFromAvatar" size="normal" class="left photo" click="go('profile', rating.userFrom)"></avatar>
+            <!-- TODO avatar for community detect -->
+            <div class="small-12 columns rating-text hyphenate" style="width:99%;">
+                <div class="right small">
+                    <time-ago from-time="rating.createdAt"></time-ago>
+                </div>
+                <a ng-href="#/profile/{{ rating.userFrom }}" ng-show="rating.userFromFullName">
+                  <i class="hearthicon-appreciate" ng-cloak ng-show="rating.score > 0"></i>
+                  <i class="hearthicon-hate" ng-cloak ng-show="rating.score < 0"></i>
+                  {{ rating.userFromFullName }}
+                </a>
+                <p ng-cloak ng-show="rating.text" style="margin-bottom:0;" ng-bind-html="rating.text | urlize"></p>
+            </div>
+        </div>
+    </div>
+</div>

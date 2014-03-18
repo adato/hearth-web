@@ -1,0 +1,37 @@
+<div class="" ng-controller="CommunityRegisterCtrl" ng-init="community.termsShown = false">
+    <div class="round login-prompt" signed-out ng-cloak translate>
+        LOG_IN_TO_CREATE_COMMUNITY
+    </div>
+    <form  signed-in name="createCommunityForm" ng-show="!sent" ng-cloak ng-submit="createCommunity($event)" class="large-11 large-centered columns" with-errors novalidate>
+        <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+        <div>
+            <input class="text-input top" type="text" name="name" required
+                   ng-model="community.name" placeholder="{{ 'COMMUNITY_NAME_INPUT_PLACEHOLDER' | translate }}"
+                   >
+        </div>
+        <div>
+            <address-autocomplete placeholders="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'"
+                                  location="community.location"
+                                  class="text-input middle"
+                                  focus="x.enabled = true"
+                                  blur="x.enabled = false"
+                                  is-required="true"
+                                  />
+        </div>
+        <div>
+            <textarea class="text-input" ng-class="{ 'middle': community.termsShown, 'bottom': !community.termsShown }" rows="6" name="description" required
+                      ng-model="community.description" placeholder="{{ 'COMMUNITY_DESCRIPTION_INPUT_PLACEHOLDER' | translate }}"
+                      ></textarea>
+        </div>
+        <a href="" ng-click="community.termsShown = true" ng-hide="community.termsShown"><i class="icon-plus"></i> {{ 'COMMUNITY_ADD_TERMS' | translate }}</a>
+        <div ng-show="community.termsShown">
+            <textarea class="text-input bottom" rows="6" name="terms" ng-model="community.terms"
+                      placeholder="{{ 'COMMUNITY_PROFILE_TERMS_OF_MEMBERSHIP' | translate }}"></textarea>
+        </div>
+        <div>
+            <button type="submit" ng-disabled="sending" class="controls primary button radius right" analytics-on analytics-event="create community form submitted" analytics-category="community" analytics-value="8">
+                {{ 'COMMUNITY_CREATE_BUTTON_CAPTION' | translate }}
+            </button>
+        </div>
+    </form>
+</div>

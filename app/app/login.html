@@ -1,0 +1,43 @@
+<div class="container login">
+    <div class="left-column small-12 large-7 columns alt-bg row">
+        <div class="large-8 large-centered medium-12 columns">
+            <form method="post" action="{{ '/login' | apiPrefix }}" name="loginForm" autocomplete="on" class="row collapse" with-errors novalidate>
+                <div class="small-12 columns">
+                    <h1>{{ 'LOGIN_TO_HEARTH' | translate }}</h1>
+                    <a ng-href="{{ '/auth/facebook' | apiPrefix }}" class="rounded primary button" style="width:100%;" ng-cloak analytics-on analytics-event="login through FB" analytics-category="Login"
+                       analytics-label="login page" analytics-value="2"><i class="left icon-facebook-sign"></i> {{ 'SIGN_UP_WITH_FACEBOOK' | translate }}</a><br><br>
+                    <a ng-href="{{ '/auth/google' | apiPrefix }}" class="rounded primary button" style="width:100%;" ng-cloak analytics-on analytics-event="login through Google" analytics-category="Login"
+                       analytics-label="login page" analytics-value="2"><i class="left icon-google-plus-sign"></i> {{ 'SIGN_UP_WITH_GOOGLE' | translate }}</a>
+                    <div class="padding-top">
+                        <span class="padding">{{ 'OR_USE_YOUR_EMAIL' | translate }}</span>  | <a class="padding" ng-href="#/forgotten-password" tabindex="-1">{{ 'FORGOTTEN_PASSWORD_LINK' | translate }}</a>
+                    </div>
+                    <br>
+                    <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+                </div>
+                <div class="small-12 columns">
+                    <input style="margin-bottom:0;" autocomplete="on" class="text-input top" type="email" name="username" 
+                           ng-model="credentials.username" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" 
+                           autocorrect="off" autocapitalize="off" 
+                           ng-required="true">
+                </div>
+                <div class="small-8 columns">
+                    <input class="text-input bottom round connect-right connect-top" autocomplete="on" 
+                           type="password" name="password" ng-model="credentials.password" 
+                           placeholder="{{ 'PASSWORD_INPUT_PLACEHOLDER' | translate }}" 
+                           ng-required="true">
+                </div>
+                <div class="small-4 columns">
+                    <button type="submit" ng-disabled="sending" class="primary button prefix round connect-left connect-top" style="width:100%;"
+                            analytics-on analytics-event="login with email" analytics-category="Login" analytics-label="login page" analytics-value="2">{{ 'LOG_IN' | translate }}</button>
+                </div>
+                <div class="small-12 columns">
+                    <div class="hr padding-v-2"></div>
+                    <h2 style="margin-top:1em;">{{ 'CREATE_NEW' | translate }}</h2> <a ng-href="#/register"
+                               analytics-on analytics-event="click on Create account link" analytics-category="registration" analytics-label="front page" analytics-value="3"
+                       class="controls button radius" style="width:100%;"> {{ 'CREATE_ACCOUNT_LINK_CAPTION' | translate }}</a>
+                </div>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>

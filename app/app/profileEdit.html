@@ -1,0 +1,48 @@
+<div class="profile-header">
+    <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
+    <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ profile.name }}</h1>
+    <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
+</div>
+
+<form name="profileAvatarForm" style="clear:both;">
+    <!-- path is prefixed with $$config.apiPath -->
+    <div file-upload-output class="">
+    </div>
+    <div
+      file-upload
+      file-upload-path="/users/{{ loggedUser._id }}/files"
+      upload-name="'avatar'"
+      on-file-upload-started="avatarUploadStarted()"
+      on-file-upload-success="avatarUploadSucceeded($event)"
+      on-file-upload-error="avatarUploadFailed()"
+      style="width:100%; position:relative;">
+         <button class="green small button file-upload cursor-pointer" type="button">
+            {{ 'CHOOSE_AVATAR_FILE' | translate}}
+         </button>
+    </div>
+</form>
+<div class="hr padding-v-1"></div>
+<form id="profileEditForm" name="profileEditForm" ng-submit="updateProfile()" with-errors novalidate>
+    <div class="alert-box visible alert error round connect-bottom" ng-show="errorsProfile.base">{{ errorsProfile.base | translate }}</div>
+
+    <input type="text" ng-model="editedProfile.name" ng-class="{ 'text-input': true, 'top': true, 'error': profileErrors.errors.name }"
+           placeholder="{{ 'YOUR_NAME' | translate }}" required>
+    <textarea ng-model="editedProfile.about" ng-class="{ 'text-input': true, 'bottom': true, 'error': profileErrors.errors.about }" rows="6"
+              placeholder="{{ 'ABOUT' | translate }}"></textarea>
+    <button type="button" ng-disabled="avatarUpload" class="default button" ng-click="cancelProfileEdit()">
+        {{ 'CANCEL' | translate }}
+    </button>
+    <button type="submit" ng-disabled="avatarUpload" class="green button right" analytics-on analytics-event="same my description"
+            analytics-category="My profile" analytics-value="5">
+        {{ 'SAVE' | translate }}
+    </button>
+</form>
+
+<div class="hr padding-v-1"></div>
+<div feature-enabled="deleteAccount" class="padding-2">
+    <a href="" class=""
+            analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0"
+            ng-click="startProfileDelete(); scrollToTop();">
+        <i class="icon-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
+    </a>
+</div>

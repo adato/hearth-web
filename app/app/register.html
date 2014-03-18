@@ -1,0 +1,56 @@
+<div class="container login">
+    <div class="left-column small-12 medium-12 large-7 columns alt-bg row">
+        <form name="registerForm" ng-show="!sent" ng-cloak ng-submit="register($event)" class="large-8 large-centered columns" with-errors novalidate>
+            <h1>{{ 'REGISTER_TO_HEARTH_TEXT' | translate }}</h1>
+            <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+            <div>
+                <input class="text-input top" type="email" name="email" ng-model="user.email" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" autocorrect="off" autocapitalize="off" ng-required="true">
+            </div>
+
+            <div>
+                <input class="text-input middle" type="text" name="name" ng-model="user.name" placeholder="{{ 'FULLNAME_INPUT_PLACEHOLDER' | translate }}" ng-required="true">
+            </div>
+
+            <div>
+                <input class="text-input bottom" type="password" name="password" ng-model="user.password" placeholder="{{ 'PASSWORD_INPUT_PLACEHOLDER' | translate }}" ng-required="true">
+            </div>
+
+            <div>
+                <button type="submit" ng-disabled="sending" class="controls primary button radius" style="width:100%;" analytics-on analytics-event="registration - email" analytics-category="registration" analytics-value="8">
+                    {{ 'CREATE_ACCOUNT_BUTTON_CAPTION' | translate }}
+                </button>
+
+                <div>
+                    <br><br>
+                    <div class="text-center">
+                        <a ng-href="{{ '/auth/facebook' | apiPrefix }}" ng-cloak analytics-on analytics-event="registration - FB" analytics-category="registration" analytics-value="8">
+                            <i class="icon-facebook-sign"></i>
+                            {{ 'USE_FACEBOOK' | translate }}
+                        </a>
+                        <span class="padding">|</span>
+
+                        <a ng-href="{{ '/auth/google' | apiPrefix }}" ng-cloak>
+                            <i class="icon-google-plus-sign" analytics-on analytics-event="registration - Google" analytics-category="registration" analytics-value="8"></i>
+                            {{ 'USE_GOOGLE' | translate }}
+                        </a>
+                        <br><br>
+
+                        <a ng-href="#/login" style="padding-left:0;">
+                            {{ 'BACK_TO_LOGIN' | translate }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form ng-show="sent" class="padding-2">
+            <h1 class="green"><i class="icon-check"></i> {{ 'OK_ACCOUNT_CREATED' | translate }}</h1>
+            <p>{{ 'OK_CHECK_YOUR_EMAIL_AND_CONFIG' | translate }}</p>
+        </form>
+    </div>
+
+    <div id="terms" class="reveal-modal" ng-controller="TermsCtrl">
+        <ng-include src="termsPath"></ng-include>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+</div>

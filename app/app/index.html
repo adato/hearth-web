@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html ng-app="hearth" class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html ng-app="hearth" class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1"/>
+    <title>HEARTH.net</title>
+    <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
+    <meta property="og:title" content="Hearth.net">
+    <meta property="og:description" content="Prostor, kde dávat znamená dostat mnohem víc">
+    <meta property="og:image" content="http://www.hearth.net/apple-touch-icon-114x114-precomposed.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="114">
+    <meta property="og:image:height" content="114">
+
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="../components/ng-tags-input/ng-tags-input.min.css">-->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144x144-precomposed.png">
+    <script src="../components/foundation/js/vendor/custom.modernizr.js"></script>
+    <!-- build:js ../javascripts/config.js -->
+    <script src="../javascripts/config.js"></script>
+    <!-- endbuild -->
+    <script>
+      if ($$config && $$config['analytics'] && $$config['analytics']['account']) {
+        document.write(
+          "<script>" +
+            "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" +
+              "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," +
+              "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" +
+            "})(window,document,'script','\/\/www.google-analytics.com\/analytics.js','ga');" +
+            "ga('create', '" + $$config['analytics']['account'] + "', '" + $$config['analytics']['path'] + "', { 'cookieDomain': 'none' });" +
+          "<\/script>"
+        );
+      }
+    </script>
+    <!--[if lte IE 8]>
+      <script>
+        var directives = [
+          'ng-include', 'ng-pluralize', 'ng-view', 'google-map', 'time-ago',
+          'feedback', 'address-autocomplete', 'set-location', 'avatar',
+          'file-upload', 'feature', 'create-ad-select',
+          'section', 'fulltext-typeahead' // html5 tags as well
+        ];
+        var idx = directives.length;
+        while (idx = idx - 1) {
+          document.createElement(directives[idx]);
+        }
+      </script>
+    <![endif]-->
+  </head>
+  <body ng-controller="BaseCtrl"
+        ng-init="init();"
+        ng-class="pageType"
+        ng-keydown="escapeKey($event)">
+    <!--[if lt IE 10]>
+      <div class="chromeframe">
+        <div class="reason">
+          <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
+          <p>In the meantime, look at some nice green woods, because our whole site is orange. We hope you'll be able to see it soon yourself.</p>
+        </div>
+        <div class="woods">
+          <a href="http://www.flickr.com/photos/zanthia/7381482708/" title="woods by Zanthia, on Flickr"><img src="http://farm8.staticflickr.com/7095/7381482708_4f3d629d6b_b.jpg" width="1024" height="680" alt="woods"></a>
+          <span>woods by Zanthia, on Flickr</span>
+        </div>
+      </div>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="../components/es5-shim/es5-shim.js"></script>
+      <script src="../components/json3/lib/json3.js"></script>
+    <![endif]-->
+
+    <section class="main-navigation" ng-show="pageType != defaultPageType" ng-include="'navigation.html'">
+    </section>
+
+    <section class="content" ng-class="{ 'left-pad' : sidebarVisible() }">
+      <!-- flash messages (error/info) -->
+      <div flash-alert class="alert-box" active-class="visible" duration="10000" ng-cloak>
+        {{ flash.message | translate }}
+      </div>
+
+      <ng-view></ng-view>
+
+      <footer></footer>
+    </section>
+
+
+    <script>
+      EMPTY_AVATAR_URL = 'data-main="/images/no-avatar.png"'.slice(11, -1);
+      EMPTY_COMMUNITY_AVATAR_URL = 'data-main="/images/no-cm-avatar.png"'.slice(11, -1);
+    </script>
+    <script>
+      document.write('__proto__' in {} ?
+        '<script src="../components/foundation/js/vendor/zepto.js"><\/script>' :
+        '<script src="../components/foundation/js/vendor/jquery.js"><\/script>'
+      );
+    </script>
+    <script src="../components/foundation/js/foundation/foundation.js"></script>
+    <script src="../components/foundation/js/foundation/foundation.reveal.js"></script>
+    <script>
+      document.write(
+        '' +
+          '<script src="https://maps.googleapis.com/maps/api/js?' +
+          ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+          'sensor=true&libraries=places"><\/script>'
+      );
+    </script>
+    <script src="../components/fastclick/lib/fastclick.js"></script>
+    <script src="../components/angular/angular.js"></script>
+    <script src="../components/angular-route/angular-route.js"></script>
+    <script src="../components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../components/angular-translate/angular-translate.js"></script>
+    <script src="../components/angular-resource/angular-resource.js"></script>
+    <script src="../components/angular-cookie/angular-cookie.js"></script>
+    <script src="../components/angular-loading-bar/src/loading-bar.js"></script>
+    <script src="../components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="../components/angular-flash/dist/angular-flash.js"></script>
+    <script src="../components/angularitics/src/angulartics.js"></script>
+    <script src="../components/angularitics/src/angulartics-ga.js"></script>
+    <script src="../components/ng-tags-input/ng-tags-input.js"></script>
+
+    <script>
+      var preferredLanguage, translations = {};
+      function defaultTranslation(args) {
+        preferredLanguage = args[0];
+        translations[preferredLanguage] = args[1];
+      }
+    </script>
+    <script src="../locales/default?callback=defaultTranslation"></script>
+    <!-- build:js ../javascripts/scripts.js -->
+    <script src="../javascripts/services.js"></script>
+    <script src="../javascripts/directives.js"></script>
+    <script src="../javascripts/controllers.js"></script>
+    <script src="../javascripts/app.js"></script>
+    <!-- endbuild -->
+
+    <script>
+      $(document).foundation();
+      $(function() { FastClick.attach(document.body) });
+    </script>
+    <!-- Crazy Egg tracking script -->
+    <script type="text/javascript">
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName("script")[0];
+      a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
+  </body>
+</html>

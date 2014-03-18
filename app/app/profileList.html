@@ -1,0 +1,64 @@
+<div when-scrolled="loadMore('ads')" ng-cloak class="wish-list">
+    <div ng-show="!ads.length">
+        <div ng-show="!isMine" class="padding-2" ng-cloak translate>USER_HAS_NO_WISHES</div>
+        <div ng-show="isMine" class="padding-2" ng-cloak translate>YOU_HAVE_NO_WISHES</div>
+        <div class="hr"></div>
+    </div>
+    <div ng-repeat="item in ads" class="wish-container hoverable"
+         ng-class="{ 
+             'expanded' : ad._id == item._id, 
+             'non-expanded' : ad._id != item._id, 
+             'wish-fade-out' : item._id == getLastAddedId() 
+         }">
+        <div
+         class="wish row" 
+         ng-click="go('detail', item._id)" 
+         >
+            <div class="small-12 columns hyphenate profile-wish-text" ng-if="!isEditingAd(item._id)">
+                <span class="small right">
+                    <time-ago from-time="item.createdAt"></time-ago>
+                    <i class="icon-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
+                </span>
+                <div>
+                    <span ng-cloak ng-show="item.type == 'need'">
+                        <strong class="need start-word" ng-show="isMine" ng-cloak> {{ 'I_WISH' | translate }}</strong> 
+                        <strong class="need start-word" ng-show="!isMine" ng-cloak> {{ 'DOES_WISH' | translate }}</strong> 
+                    </span>
+                    <span ng-cloak ng-show="item.type == 'offer'">
+                        <strong class="offer start-word" ng-show="isMine" ng-cloak> {{ 'I_GIVE' | translate }}</strong> 
+                        <strong class="offer start-word" ng-show="!isMine" ng-cloak> {{ 'DOES_GIVE' | translate }}</strong>                                 
+                    </span>
+                    <span ng-bind-html="item.name | urlize"></span>
+                </div>
+                <div ng-if="item.attachments.length" class="photo">
+                    <img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
+                </div>
+                <div class="row small wish-bottom-bar">
+                    <div class="small-6 columns">
+                        <div ng-if="item.location.name" style="margin-top:0;">
+                         {{ item.location.name }}
+                        </div>
+                        <div ng-if="!item.location.name">&nbsp;</div>
+                    </div>
+                    <div class="show-on-hover small-6 columns right text-right">
+                        <a href="" ng-click="startEditingAd($event, item);" style="margin-right:20px;" ng-show="isMine">
+                            <i class="icon-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
+                        </a>                    
+                        <a ng-click="removeAd(item)" ng-cloak ng-show="isMine">
+                            <i class="hearthicon-trash"></i> {{ 'AD_REMOVE_LABEL' | translate }}
+                        </a>
+                        <a href=""
+                           ng-click="" ng-hide="item.author._id == loggedEntity._id">
+                            <i class="hearthicon-reply"></i>&nbsp; {{ 'REPLY_BUTTON_CAPTION' | translate }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="small-12 columns padding-h-0 " ng-if="isEditingAd(item._id); ">
+                <div ng-include src="'createAd.html'">
+                </div>
+            </div>            
+            <span class="arrow" ng-show="isReplyingAd() && ad._id == item._id"></span>
+        </div>
+    </div>
+</div>

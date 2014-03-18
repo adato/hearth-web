@@ -1,0 +1,108 @@
+<div class="container fulltext profile" ng-init="">
+    <header class="right-column small-12 large-5 columns push-7">
+        <div class="hide-for-medium-down bob">
+            <p ng-bind-html="'CREATE_COMMUNITY_AND_BE_HAPPY' | translate" style="bottom:300px;" ng-if="isView('create')"></p>
+            <p ng-bind-html="'COMMUNITIES_IN_HEARTH' | translate" style="bottom:300px;" ng-if="!isView('create')"></p>
+            <img src="/images/group.svg">
+        </div>
+    </header>
+    <div class="left-column small-12 large-7 columns pull-5 alt-bg listing">
+        <div class="padding-h-2">
+            <div class="row profile-links">
+                <div class="small-3 columns left padding-h-0">
+                    <a href=""
+                       analytics-on analytics-event="show all" analytics-category="Communities" analytics-label="lists"
+                       ng-click="setView('all')" ng-class="{ 'underliner': isView('all') }"><i class="icon-globe x-large"></i><div>{{ 'COMMUNITY_ALL' | translate }}</div></a>
+                </div>
+                <div class="small-3 columns left padding-h-0">
+                    <a href=""
+                       analytics-on analytics-event="show my" analytics-category="Communities" analytics-label="lists"
+                       ng-class="{ 'underliner': isView('my') }"
+                       ng-click="setView('my')"><i class="icon-user x-large"></i><div>{{ 'COMMUNITY_MY' | translate }}</div></a>
+                </div>
+                <div class="small-3 columns left padding-h-0">
+<!--                    <a href=""
+                       analytics-on analytics-event="sort by relevance" analytics-category="Communities" analytics-label="lists"
+                       ng-class="{ 'underliner': orderBy == 'relevance' }"
+                       ng-click="setOrderBy('relevance')"><i class="icon-search x-large"></i><div>{{ 'SEARCH_LINK' | translate }}</div></a>-->
+                </div>
+                <div class="small-3 columns left padding-h-0 right">
+                    <a ng-click="setView('create')"
+                       ng-class="{ 'underliner': isView('create') }"
+                       analytics-on analytics-event="click on create community" analytics-category="Communities" analytics-label="lists"
+                       ><i class="icon-pencil x-large"></i><div>{{ 'CREATE_COMMUNITY_LINK' | translate }}</div></a>
+                </div>
+            </div>
+            <div ng-show="isView('all')">
+                <div class="row">
+                    <div class="small-12 columns padding-0 padding-v-2">
+                        <form ng-submit="init();" class="search-form">
+                            <button class="prefix primary button connect-left round padding-1" type="submit" style="width:10%; height:100%; z-index:101;" ng-click="srch.type = null;"><i class="icon-search"></i></button>
+                            <input type="text"
+                                   ng-model="query" placeholder="{{ 'TYPE_IN_WHAT_YOU_SEARCH_FOR' | translate }}"
+                                   style="width:90%;"
+                                   class="text-input round connect-right">
+                        </form>
+                    </div>
+                </div>
+                <div class="hr" style="margin:0;"></div>
+            </div>
+        </div>
+
+        <div when-scrolled="loadMoreAds()" class="wish-list" ng-if="isView('create')">
+            <div ng-include="'communityRegister.html'"></div>
+        </div>
+
+        <div when-scrolled="loadMoreAds()" class="wish-list" ng-if="!isView('create')">
+            <div ng-show="!items.length" >
+                <div translate class="padding-2" ng-show="pageType != 'my'">NOTHING_FOUND</div>
+                <div translate class="padding-2" ng-show="pageType == 'my'">MY_HEARTH_NOTHING_FOUND</div>
+                <div class="hr"></div>
+            </div>
+            <div ng-repeat="(id, item) in items" class="wish-container hoverable"
+                 >
+                <div class="wish row user"
+                     id="user{{ id}}"
+                     >
+                    <a ng-href="#/community/{{ item._id }}"><avatar source="item.avatar" size="user-search" relation="item.relation" type="item._type" class="left photo"></avatar></a>
+                    <div class="small-11 medium-10 columns wish-text hyphenate">
+                        <div class="right small" ng-if="isView('my')">
+                            <div ng-if="item.admin == loggedUser._id"><i class="icon-wrench"></i> {{ 'COMMUNITY_ADMIN' | translate }}</div>
+                            <div ng-if="item.admin != loggedUser._id"><i class="icon-bookmark"></i> {{ 'COMMUNITY_MEMBER' | translate }}</div>
+                        </div>                        
+                        <a class="name" ng-href="#/profile/{{ item._id}}" ng-show="item._type != 'Community'" ng-bind-html="item.name"></a>
+                        <a class="name" ng-href="#/community/{{ item._id}}" ng-show="item._type == 'Community'" ng-bind-html="item.name"></a><br>
+                        <div class="smaller" style="margin-bottom:5px;" ng-bind-html="item.description || item.about"></div>
+                        <div  ng-show="upVotes + downVotes > 0">
+                            {{ item.upVotes}} &nbsp; 
+                            <feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
+                            &nbsp; {{ item.downVotes}}
+                        </div>
+                        
+                        <div class="row small wish-bottom-bar">
+                            <div class="large-7 small-12 columns">
+                                <div ng-if="item.location.name" style="margin-top:0;">
+                                 {{ item.location.name }}
+                                </div>
+                            </div>
+                            <div class="small-1 columns">
+                                &nbsp;
+                            </div>
+                            <div class="large-4 small-11 columns right show-on-hover text-right">
+<!--                                <a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
+                                    <i class="icon-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
+                                </a>-->
+
+                                <a ng-href="#/community/{{ item._id }}">
+                                    <i class="hearthicon-reply"></i>&nbsp;{{ 'SHOW_PROFILE_BUTTON_CAPTION' | translate }}
+                                </a>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

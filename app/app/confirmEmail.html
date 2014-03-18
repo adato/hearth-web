@@ -1,0 +1,14 @@
+<div class="container login">
+    <div class="left-column small-12 large-7 columns alt-bg">
+        <div class="padding-2">
+            <h1>{{ 'EMAIL_CONFIRMATION_TEXT' | translate }}</h1>
+            <p ng-cloak ng-show="hashIsValid">
+                {{ 'EMAIL_CONFIRMATION_SUCCESS' | translate }}
+                <a href="#login">{{ 'LOGIN_TO_HEARTH' | translate }}</a>.
+            </p>
+            <p ng-cloak ng-show="!hashIsValid">
+                {{ 'EMAIL_CONFIRMATION_FAILURE' | translate }}
+            </p>
+        </div>
+    </div>
+</div>
