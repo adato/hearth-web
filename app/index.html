@@ -16,7 +16,7 @@
         <meta property="og:image:width" content="114">
         <meta property="og:image:height" content="114">
         <link rel="stylesheet" type="text/css" href="styles/index.css">
-        <link rel="stylesheet" href="./components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
@@ -24,7 +24,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
 
         <!-- build:js javascripts/config.js -->
-        <script src="javascripts/config.js"></script>
+        <script src="scripts/config.js"></script>
         <!-- endbuild -->
         <script>
             if ($$config && $$config['analytics'] && $$config['analytics']['account']) {
@@ -287,13 +287,31 @@
         </div>
 
 
-        <script src="components/foundation/js/vendor/jquery.js"></script>
-        <script src="components/angular/angular.js"></script>
-        <script src="components/angular-translate/angular-translate.js"></script>
-        <script src="components/angular-resource/angular-resource.js"></script>
-        <script src="components/angular-cookie/angular-cookie.js"></script>
-        <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-        <script src="components/angular-flash/dist/angular-flash.js"></script>
+      
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/json3/lib/json3.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-flash/dist/angular-flash.min.js"></script>
+        <script src="bower_components/angular-flash/dist/angular-flash.js"></script>
+        <script src="bower_components/angular-translate/angular-translate.js"></script>
+        <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+        <script src="bower_components/fastclick/lib/fastclick.js"></script>
+        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="bower_components/angularitics/src/angulartics.js"></script>
+        <script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
+        <script src="bower_components/angular-cookie/angular-cookie.js"></script>
+        <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
         <script>
                 var preferredLanguage, translations = {};
                 function defaultTranslation(args) {
