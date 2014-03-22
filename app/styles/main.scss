@@ -109,7 +109,17 @@ textarea {max-width: 100%; height: auto;}
   600
 );
 
-@font-face {
+@include font-face(
+  "SourceSansPro",
+  font-files("sourcesanspro-400.woff")
+);
+
+@include font-face(
+  "SourceSansPro",
+  font-files("sourcesanspro-700.woff")
+);
+
+/*@font-face {
   font-family: 'SourceSansPro';
   src: url('fonts/sourcesanspro-400.woff') format('woff');
   font-weight: 400;
@@ -119,7 +129,7 @@ textarea {max-width: 100%; height: auto;}
   font-family: 'SourceSansPro';
   src: url('fonts/sourcesanspro-700.woff') format('woff');
   font-weight: 700;
-}
+}*/
 
 // styles for medium screen
 // @todo separate into own file and keep dependencies

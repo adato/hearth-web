@@ -17,17 +17,17 @@
     <meta property="og:image:width" content="114">
     <meta property="og:image:height" content="114">
 
-    <link rel="stylesheet" href="../stylesheets/main.css">
-    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.min.css">
-<!--    <link rel="stylesheet" href="../components/ng-tags-input/ng-tags-input.min.css">-->
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="../bower_components/ng-tags-input/ng-tags-input.min.css">-->
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144x144-precomposed.png">
-    <script src="../components/foundation/js/vendor/custom.modernizr.js"></script>
+    <script src="../bower_components/foundation/js/vendor/custom.modernizr.js"></script>
     <!-- build:js ../javascripts/config.js -->
-    <script src="../javascripts/config.js"></script>
+    <script src="../scripts/config.js"></script>
     <!-- endbuild -->
     <script>
       if ($$config && $$config['analytics'] && $$config['analytics']['account']) {
@@ -75,8 +75,8 @@
     <![endif]-->
 
     <!--[if lt IE 9]>
-      <script src="../components/es5-shim/es5-shim.js"></script>
-      <script src="../components/json3/lib/json3.js"></script>
+      <script src="../bower_components/es5-shim/es5-shim.js"></script>
+      <script src="../bower_components/json3/lib/json3.js"></script>
     <![endif]-->
 
     <section class="main-navigation" ng-show="pageType != defaultPageType" ng-include="'navigation.html'">
@@ -100,12 +100,12 @@
     </script>
     <script>
       document.write('__proto__' in {} ?
-        '<script src="../components/foundation/js/vendor/zepto.js"><\/script>' :
-        '<script src="../components/foundation/js/vendor/jquery.js"><\/script>'
+        '<script src="../bower_components/foundation/js/vendor/zepto.js"><\/script>' :
+        '<script src="../bower_components/foundation/js/vendor/jquery.js"><\/script>'
       );
     </script>
-    <script src="../components/foundation/js/foundation/foundation.js"></script>
-    <script src="../components/foundation/js/foundation/foundation.reveal.js"></script>
+    <script src="../bower_components/foundation/js/foundation/foundation.js"></script>
+    <script src="../bower_components/foundation/js/foundation/foundation.reveal.js"></script>
     <script>
       document.write(
         '' +
@@ -114,19 +114,19 @@
           'sensor=true&libraries=places"><\/script>'
       );
     </script>
-    <script src="../components/fastclick/lib/fastclick.js"></script>
-    <script src="../components/angular/angular.js"></script>
-    <script src="../components/angular-route/angular-route.js"></script>
-    <script src="../components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="../components/angular-translate/angular-translate.js"></script>
-    <script src="../components/angular-resource/angular-resource.js"></script>
-    <script src="../components/angular-cookie/angular-cookie.js"></script>
-    <script src="../components/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="../components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-    <script src="../components/angular-flash/dist/angular-flash.js"></script>
-    <script src="../components/angularitics/src/angulartics.js"></script>
-    <script src="../components/angularitics/src/angulartics-ga.js"></script>
-    <script src="../components/ng-tags-input/ng-tags-input.js"></script>
+    <script src="../bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-translate/angular-translate.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-cookie/angular-cookie.js"></script>
+    <script src="../bower_components/angular-loading-bar/src/loading-bar.js"></script>
+    <script src="../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="../bower_components/angular-flash/dist/angular-flash.js"></script>
+    <script src="../bower_components/angularitics/src/angulartics.js"></script>
+    <script src="../bower_components/angularitics/src/angulartics-ga.js"></script>
+    <script src="../bower_components/ng-tags-input/ng-tags-input.js"></script>
 
     <script>
       var preferredLanguage, translations = {};
@@ -136,11 +136,11 @@
       }
     </script>
     <script src="../locales/default?callback=defaultTranslation"></script>
-    <!-- build:js ../javascripts/scripts.js -->
-    <script src="../javascripts/services.js"></script>
-    <script src="../javascripts/directives.js"></script>
-    <script src="../javascripts/controllers.js"></script>
-    <script src="../javascripts/app.js"></script>
+    <!-- build:js ../scripts/scripts.js -->
+    <script src="../scripts/services.js"></script>
+    <script src="../scripts/directives.js"></script>
+    <script src="../scripts/controllers/controllers.js"></script>
+    <script src="../scripts/app.js"></script>
     <!-- endbuild -->
 
     <script>
