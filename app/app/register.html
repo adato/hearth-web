@@ -23,13 +23,13 @@
                 <div>
                     <br><br>
                     <div class="text-center">
-                        <a ng-href="{{ '/auth/facebook' | apiPrefix }}" ng-cloak analytics-on analytics-event="registration - FB" analytics-category="registration" analytics-value="8">
+                        <a ng-href="{{ 'api/users/auth/facebook' | apiPrefix }}" ng-cloak analytics-on analytics-event="registration - FB" analytics-category="registration" analytics-value="8">
                             <i class="icon-facebook-sign"></i>
                             {{ 'USE_FACEBOOK' | translate }}
                         </a>
                         <span class="padding">|</span>
 
-                        <a ng-href="{{ '/auth/google' | apiPrefix }}" ng-cloak>
+                        <a ng-href="{{ 'api/users/auth/google' | apiPrefix }}" ng-cloak>
                             <i class="icon-google-plus-sign" analytics-on analytics-event="registration - Google" analytics-category="registration" analytics-value="8"></i>
                             {{ 'USE_GOOGLE' | translate }}
                         </a>
