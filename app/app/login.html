@@ -4,9 +4,9 @@
             <form method="post" action="{{ '/login' | apiPrefix }}" name="loginForm" autocomplete="on" class="row collapse" with-errors novalidate>
                 <div class="small-12 columns">
                     <h1>{{ 'LOGIN_TO_HEARTH' | translate }}</h1>
-                    <a ng-href="{{ '/auth/facebook' | apiPrefix }}" class="rounded primary button" style="width:100%;" ng-cloak analytics-on analytics-event="login through FB" analytics-category="Login"
+                    <a ng-href="{{ '/users/auth/facebook' | apiPrefix }}" class="rounded primary button" style="width:100%;" ng-cloak analytics-on analytics-event="login through FB" analytics-category="Login"
                        analytics-label="login page" analytics-value="2"><i class="left icon-facebook-sign"></i> {{ 'SIGN_UP_WITH_FACEBOOK' | translate }}</a><br><br>
-                    <a ng-href="{{ '/auth/google' | apiPrefix }}" class="rounded primary button" style="width:100%;" ng-cloak analytics-on analytics-event="login through Google" analytics-category="Login"
+                    <a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" class="rounded primary button" style="width:100%;" ng-cloak analytics-on analytics-event="login through Google" analytics-category="Login"
                        analytics-label="login page" analytics-value="2"><i class="left icon-google-plus-sign"></i> {{ 'SIGN_UP_WITH_GOOGLE' | translate }}</a>
                     <div class="padding-top">
                         <span class="padding">{{ 'OR_USE_YOUR_EMAIL' | translate }}</span>  | <a class="padding" ng-href="#/forgotten-password" tabindex="-1">{{ 'FORGOTTEN_PASSWORD_LINK' | translate }}</a>

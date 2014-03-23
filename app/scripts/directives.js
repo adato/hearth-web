@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('hearth.directives', [])
 	.directive('feature', function($feature) {
 		return {
