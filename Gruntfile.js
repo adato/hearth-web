@@ -64,6 +64,24 @@ module.exports = function(grunt) {
 				// Change this to '0.0.0.0' to access the server from outside.
 				hostname: 'localhost',
 				livereload: 35729,
+				open: true,
+				middleware: function(connect, options) {
+					var middlewares = [];
+
+					if (!Array.isArray(options.base)) {
+						options.base = [options.base];
+					}
+
+					// Setup the proxy
+					middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+					// Serve static files
+					options.base.forEach(function(base) {
+						middlewares.push(connect.static(base));
+					});
+
+					return middlewares;
+				}
 			},
 			proxies: [{
 				context: '/api', // the context of the data service
@@ -207,8 +225,8 @@ module.exports = function(grunt) {
 					src: [
 						'<%= yeoman.dist %>/scripts/{,*/}*.js',
 						'<%= yeoman.dist %>/styles/{,*/}*.css',
-						'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-						'<%= yeoman.dist %>/styles/fonts/*'
+						//'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+						//'<%= yeoman.dist %>/styles/fonts/*'
 					]
 				}
 			}
@@ -218,7 +236,10 @@ module.exports = function(grunt) {
 		// concat, minify and revision files. Creates configurations in memory so
 		// additional tasks can operate on them
 		useminPrepare: {
-			html: '<%= yeoman.app %>/index.html',
+			html: [
+				'<%= yeoman.app %>/index.html',
+				'<%= yeoman.app %>/app/index.html'
+			],
 			options: {
 				dest: '<%= yeoman.dist %>'
 			}
@@ -313,6 +334,16 @@ module.exports = function(grunt) {
 					cwd: '.tmp/images',
 					dest: '<%= yeoman.dist %>/images',
 					src: ['generated/*']
+				}, {
+					expand: true,
+					cwd: '<%= yeoman.app %>/app',
+					dest: '<%= yeoman.dist %>/app',
+					src: ['**']
+				}, {
+					expand: true,
+					cwd: '<%= yeoman.app %>/locales',
+					dest: '<%= yeoman.dist %>/locales',
+					src: ['**']
 				}]
 			},
 			styles: {
@@ -345,7 +376,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': [
-						'.tmp/styles/{,*/}*.css',
+						'.tmp\/styles/{,*/}*.css',
 						'<%= yeoman.app %>/styles/{,*/}*.css'
 					]
 				}
@@ -353,11 +384,7 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			dist: {
-				files: {
-					'<%= yeoman.dist %>/scripts/scripts.js': [
-						'<%= yeoman.dist %>/scripts/scripts.js'
-					]
-				}
+				
 			}
 		},
 		concat: {
