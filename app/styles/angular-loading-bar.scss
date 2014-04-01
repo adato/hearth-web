@@ -1,45 +1,50 @@
+@import "settings";
 
 /* Make clicks pass-through */
+
 #loading-bar,
 #loading-bar-spinner {
-  pointer-events: none;
-  -webkit-transition: 0.5s linear all;
-  -moz-transition: 0.5s linear all;
-  -o-transition: 0.5s linear all;
-  transition: 0.5s linear all;
+    pointer-events: none;
+    @include transition(0.5s linear all);
 }
 
 #loading-bar.ng-enter,
 #loading-bar.ng-leave.ng-leave-active,
 #loading-bar-spinner.ng-enter,
 #loading-bar-spinner.ng-leave.ng-leave-active {
-  opacity: 0;
+    opacity: 0;
 }
 
 #loading-bar.ng-enter.ng-enter-active,
 #loading-bar.ng-leave,
 #loading-bar-spinner.ng-enter.ng-enter-active,
 #loading-bar-spinner.ng-leave {
-  opacity: 1;
+    opacity: 1;
 }
 
 #loading-bar .bar {
-  -webkit-transition: width 500ms;
-  -moz-transition: width 500ms;
-  -o-transition: width 500ms;
-  transition: width 500ms;
+    @include transition(width 500ms);
+    background: lighten($topbar-bg, 40%);
+    position: fixed;
+    z-index: 99000;
+    top: $topbar-height - 3;
+    left: 0;
+    width: 100%;
+    height: 3px;
+}
 
-  background: #837A5C;
-  position: fixed;
-  z-index: 99000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
+#loading-bar .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    @include box-shadow(0 0 10px lighten($topbar-bg, 10%), 0 0 5px lighten($topbar-bg, 10%));
+    opacity: 1;
 }
 
 /* Fancy blur effect */
-#loading-bar .peg {
+/*#loading-bar .peg {
   display: block;
   position: absolute;
   right: 0px;
@@ -53,8 +58,8 @@
   -ms-transform: rotate(3deg) translate(0px, -4px);
   -o-transform: rotate(3deg) translate(0px, -4px);
   transform: rotate(3deg) translate(0px, -4px);
-}
+}*/
 
 #loading-bar-spinner {
-  display: none;
+    display: none;
 }

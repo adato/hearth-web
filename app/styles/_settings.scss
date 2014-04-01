@@ -1218,12 +1218,15 @@ $button-radius: $global-radius;
 
 // Background color for the top bar
 
-$topbar-bg: #fa6201;
+$topbar-bg: rgba(#fa6201, 0.4);
 
 // Height and margin
 
-$topbar-height: 5 * $grid-size;
-$topbar-margin-bottom: 15px;
+$topbar-height: 7 * $grid-size;
+$topbar-margin-bottom: 0px;
+$topbar-link-color: rgba(#fff, 0.9);
+$topbar-link-color-hover: #fff !default;
+$topbar-link-color-active: #fff !default;
 
 // Input height for top bar
 
