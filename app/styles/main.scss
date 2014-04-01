@@ -1377,7 +1377,7 @@ input[disabled].text-input {
     display:block;
     position:fixed;
     z-index:10000;
-    top:0;
+    top: $topbar-height;
     right:0;
     height:33px;
     background:$body-alt-bg;
