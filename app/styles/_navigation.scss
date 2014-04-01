@@ -1,0 +1,112 @@
+.navigation {
+    z-index: 5000;
+    background-color: $a-color;
+    @include  background($navigation-background-pattern, linear-gradient(top, lighten($a-color, 10%), $a-color));
+    &.community {
+        @include background($navigation-background-pattern, linear-gradient(top, darken($a-color, 13%), darken($a-color, 5%)));
+    }
+    text-transform: uppercase;
+    &.top-bar {
+        position: fixed;
+        z-index: 5005;
+        height: $topbar-height;
+        min-width: 100%;
+        margin-bottom: 0;
+        ul {
+            background-color: transparent;
+            margin-left: 0;
+            li {
+                background-color: transparent;
+                float: left;
+                a { 
+                 line-height: $topbar-height;
+                    background-color: transparent;
+                    display: block;
+                    color: white;
+                    padding-left: emCalc($grid-size * 1.5);
+                    padding-right: emCalc($grid-size * 1.5);
+                }
+            }
+            &.menu i {
+                font-size: x-large;
+            }
+        }
+        .user-switch {
+            // margin-bottom: emCalc(4 * $grid-size);
+            a {
+                background: inherit;
+                font-size: 15px;
+                display: inline;
+                padding-left: emCalc($grid-size / 2);
+                color: $negative-font-color;
+            }
+            img {
+                @include round;
+            }
+            .switch-menu {
+                text-align: left;
+                padding-top: emCalc($grid-size / 2);
+                ul>li a {
+                    overflow: hidden;
+                    width: 150px;
+                    white-space: nowrap;
+                    display: block;
+                    font-size: smaller;
+                    padding: 3px 5px 3px 5px;
+                    line-height: 100%;
+                    &:hover {
+                        background: darken($topbar-bg, 10%);
+                    }
+                }
+            }
+        }
+    }
+    form {
+        @include reset-box-model;
+    }
+    button {
+        @include border-radius(0);
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        border: 0 none;
+        background: none;
+        text-align: left;
+        height: $topbar-height;
+        padding-right: emCalc($grid-size * 1.5);
+    }
+    ul {
+        li {
+            line-height: $topbar-height;
+            a.link,
+            button {
+                padding-left: $grid-size * 2;
+                color: $negative-font-color;
+                display: block;
+                font-size: 18px;
+                background: none;
+                &:hover {
+                    background: rgba(darken($topbar-bg, 10%), 0.5);
+                }
+                &.active {
+                    background: rgba(darken($topbar-bg, 10%), 0.95);
+                }
+            }
+        }
+    }
+    .name {
+        @media #{$small} {
+            // margin-top: emCalc(1.5 * $grid-size);
+            margin-bottom: emCalc(1 * $grid-size);
+        }
+        text-align: center;
+        a {
+            &:hover {
+                background: transparent;
+            }
+            color: $negative-font-color;
+            font-size: emCalc(22px);
+            font-weight: bold;
+        }
+    }
+}
