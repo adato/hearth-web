@@ -11,12 +11,14 @@
     form {
         @include reset-box-model;
     }
-    .name {
-        font-size: emCalc(22px);
-        font-weight: bold;
-    }
     &.top-bar {
         min-width: 100%;
+        .title-area {
+            a {
+                font-size: emCalc(40px);
+                font-weight: bold;
+            }
+        }
         ul {
             background-color: transparent;
             li {
