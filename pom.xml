@@ -33,6 +33,21 @@
                             <workingDirectory>./</workingDirectory>
                         </configuration>
                     </execution>
+					<execution>
+                        <id>bower</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec}</executable>
+                            <arguments>
+                                <argument>${param}</argument>
+                                <argument>bower install</argument>
+                            </arguments>
+                            <workingDirectory>./</workingDirectory>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>grunt</id>
                         <phase>process-sources</phase>
@@ -43,7 +58,7 @@
                             <executable>${exec}</executable>
                             <arguments>
                                 <argument>${param}</argument>
-                                <argument>grunt dist</argument>
+                                <argument>grunt build --force</argument>
                             </arguments>
                             <workingDirectory>./</workingDirectory>
                         </configuration>
