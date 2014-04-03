@@ -15,7 +15,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			$scope.languageCode = LanguageSwitch.uses();
 			$scope.info = Info.show();
 			return $scope.checkNotifications();
-		};
+		};		
+		$scope.$on('$includeContentLoaded', function() {
+			$(document).foundation();
+		});
 		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
 			return $scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
 		});
@@ -145,5 +148,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				return ipCookie('newCommunityCreated', false);
 			}
 		};
+
+	
+
 	}
 ]);

@@ -1,8 +1,4 @@
 .navigation {
-    z-index: 5000;
-    background-color: $a-color;
-    @include background($navigation-background-pattern, linear-gradient(top, lighten($a-color, 15%) 0%, $a-color, darken($a-color, 15%) 100%));
-    text-transform: uppercase;
     @include text-shadow(0 -1px 1px rgba(black, 0.2));
     @include box-shadow(0 1px 2px rgba(black, 0.3));
     &.community {
@@ -12,11 +8,17 @@
         @include reset-box-model;
     }
     &.top-bar {
+        text-transform: uppercase;
+        @include background($navigation-background-pattern, linear-gradient(top, lighten($a-color, 15%) 0%, $a-color, darken($a-color, 15%) 100%));
         min-width: 100%;
         .title-area {
-            a {
-                font-size: emCalc(40px);
-                font-weight: bold;
+            .name {
+                a {
+                    font-size: emCalc(40px);
+                    font-weight: bold;
+                    line-height: 70px;
+                    padding-top: 0;
+                }
             }
         }
         ul {
