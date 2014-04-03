@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.topmonks</groupId>
+    <artifactId>hearth-frontend</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>war</packaging>
+
+    <build>
+        <finalName>hearth-frontend</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <id>npm</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec}</executable>
+                            <arguments>
+                                <argument>${param}</argument>
+                                <argument>npm install</argument>
+                            </arguments>
+                            <workingDirectory>./</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>grunt</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec}</executable>
+                            <arguments>
+                                <argument>${param}</argument>
+                                <argument>grunt dist</argument>
+                            </arguments>
+                            <workingDirectory>./</workingDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warSourceDirectory>${project.basedir}/web/dist</warSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>windows</id>
+            <properties>
+                <exec>cmd</exec>
+                <param>/C</param>
+            </properties>
+        </profile>
+        <profile>
+            <id>linux</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <exec>sh</exec>
+                <param>-c</param>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>weblogic-cairo</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.oracle.weblogic</groupId>
+                        <artifactId>weblogic-maven-plugin</artifactId>
+                        <version>10.3.6.0</version>
+                        <configuration>
+                            <adminurl>t3://wls01.cairo.topmonks.com:7001</adminurl>
+                            <user>weblogic</user>
+                            <password>${cairo.wl.pass}</password>
+                            <name>hearth</name>
+                            <remote>true</remote>
+                            <upload>true</upload>
+                            <targets>vcelin_cluster</targets>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>install</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>redeploy</goal>
+                                </goals>
+                                <configuration>
+                                    <source>${basedir}/target/hearth-frontend.war</source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>topmonks</id>
+            <name>TopMonks repository</name>
+            <url>http://artifactory.topmonks.com/repo</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>topmonks</id>
+            <name>TopMonks repository</name>
+            <url>http://artifactory.topmonks.com/repo</url>
+            <layout>default</layout>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
