@@ -27,5 +27,9 @@
 		"d3cloud": "~1.0.1",
 		"d3": "~3.3.3",
 		"angular-scenario": "~1.2.0"
+	},
+	"resolutions": {
+		"angular": "1.2.6",
+		"angular-mocks": "1.2.6"
 	}
 }
