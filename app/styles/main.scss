@@ -51,10 +51,13 @@
 //@import "foundation/components/tooltips";
 //@import "foundation/components/dropdown";
 
+
+@import "social_foundicons";
 // import Hearth icons font
 @import "hearth-icons";
 
 @import "angular";
+@import "social";
 
 @function emCalc($pxWidth, $base: $em-base) {
   @return $pxWidth / $base * 1em;
