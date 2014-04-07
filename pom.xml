@@ -71,7 +71,7 @@
                 <version>2.1.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <warSourceDirectory>${project.basedir}/web/dist</warSourceDirectory>
+                    <warSourceDirectory>${project.basedir}/dist</warSourceDirectory>
                 </configuration>
             </plugin>
         </plugins>
