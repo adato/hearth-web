@@ -193,7 +193,7 @@ module.exports = function(grunt) {
 		compass: {
 			options: {
 				sassDir: '<%= yeoman.app %>/styles',
-				cssDir: '.tmp/styles',
+				cssDir: '.tmp/concat/styles',
 				generatedImagesDir: '.tmp/images/generated',
 				imagesDir: '<%= yeoman.app %>/images',
 				javascriptsDir: '<%= yeoman.app %>/scripts',
@@ -238,8 +238,8 @@ module.exports = function(grunt) {
 		// additional tasks can operate on them
 		useminPrepare: {
 			html: [
-				'<%= yeoman.app %>/index.html',
-				'<%= yeoman.app %>/app/index.html'
+				'<%= yeoman.app %>/app/index.html',
+				'<%= yeoman.app %>/index.html'
 			],
 			options: {
 				dest: '<%= yeoman.dist %>'
@@ -325,10 +325,10 @@ module.exports = function(grunt) {
 						'*.{ico,png,txt}',
 						'.htaccess',
 						'*.html',
-						'views/{,*/}*.html',
+						'templates/{,*/}*.html',
 						'bower_components/**/*',
 						'images/{,*/}*.{webp}',
-						'fonts/*'
+						'fonts/*',
 					]
 				}, {
 					expand: true,
@@ -344,6 +344,11 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: '<%= yeoman.app %>/locales',
 					dest: '<%= yeoman.dist %>/locales',
+					src: ['**']
+				}, {
+					expand: true,
+					cwd: '.tmp/concat/styles',
+					dest: '<%= yeoman.dist %>/styles',
 					src: ['**']
 				}]
 			},
@@ -364,7 +369,7 @@ module.exports = function(grunt) {
 				'compass'
 			],
 			dist: [
-				'compass:dist',
+
 				'imagemin',
 				'svgmin'
 			]
@@ -439,14 +444,15 @@ module.exports = function(grunt) {
 		'bower-install',
 		'useminPrepare',
 		'concurrent:dist',
+		'compass:dist',
 		'autoprefixer',
 		'concat',
 		'ngmin',
 		'copy:dist',
-		'cdnify',
-		'cssmin',
+		//'cdnify',
+		//'cssmin',
 		'uglify',
-		'rev',
+		//'rev',
 		'usemin',
 		'htmlmin'
 	]);
