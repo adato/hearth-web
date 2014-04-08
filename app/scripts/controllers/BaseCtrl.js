@@ -3,7 +3,7 @@
 angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
 	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie) {
 		var url = encodeURI(window.location.href);
-		
+
 		$scope.breakpointForSmall = 782;
 		$scope.defaultPageType = '';
 		$scope.pageType = $scope.defaultPageType;
@@ -24,13 +24,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
 			return $scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
 		});
-
-		$scope.urls = {
-			facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
-			gplus: 'https://plus.google.com/share?url=' + url,
-			twitter: 'https://twitter.com/share?url=' + url,
-			linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
-		};
 
 		$scope.useLanguage = function(language) {
 			return LanguageSwitch.use(language).then(function() {
@@ -125,9 +118,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			}
 		};
 		
-		$scope.getUrl = function() {
-			return $scope.urls;
-		};
+		
 		$scope.setLastAddedId = function(id) {
 			$scope.lastAddedId = id;
 			return $scope.lastAddedId;

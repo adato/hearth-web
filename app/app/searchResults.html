@@ -21,11 +21,7 @@
             'non-expanded' : isReplyingAd() && ad._id != item._id,
             'wish-fade-out' : item._id == getLastAddedId() }"
          >
-        <div class="wish row"
-             id="wish{{ id }}"
-             ng-if="item.type == 'need' || item.type == 'offer'"
-             ng-click="go('detail', item._id, item.author._id)"
-             analytics-on analytics-event="click on a post" analytics-category="Marketplace">
+        <div class="wish row" id="wish{{ id }}" ng-if="item.type == 'need' || item.type == 'offer'" ng-click="go('detail', item._id, item.author._id)" analytics-on analytics-event="click on a post" analytics-category="Marketplace">
             <avatar ng-if="item.author._type == 'Community'" source="item.author.avatar" size="normal" relation="" click="go('community', item.author._id, item.author._id)" class="left photo" type="'Community'"></avatar>
             <avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>
             <!--<avatar source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo"></avatar>-->
@@ -60,6 +56,7 @@
                         &nbsp;
                     </div>
                     <div class="large-4 small-11 columns right show-on-hover text-right">
+                      
                         <a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
                             <i class="icon-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
                         </a>
@@ -67,6 +64,7 @@
                         <a href="" ng-click="" ng-hide="item.author._id == loggedEntity._id">
                             <i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
                         </a>
+                         <social url="item.url"></social>
                     </div>
                 </div>
             </div>
