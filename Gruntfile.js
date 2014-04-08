@@ -197,11 +197,11 @@ module.exports = function(grunt) {
 				generatedImagesDir: '.tmp/images/generated',
 				imagesDir: '<%= yeoman.app %>/images',
 				javascriptsDir: '<%= yeoman.app %>/scripts',
-				fontsDir: '<%= yeoman.dist %>/fonts',
+				fontsDir: '<%= yeoman.app %>/styles/fonts',
 				require: 'zurb-foundation',
-				httpImagesPath: '../images',
+				httpImagesPath: '/images',
 				httpGeneratedImagesPath: '/images/generated',
-				httpFontsPath: '../fonts',
+				httpFontsPath: '/fonts',
 				relativeAssets: false,
 				assetCacheBuster: false,
 				raw: 'Sass::Script::Number.precision = 10\n',
@@ -328,8 +328,7 @@ module.exports = function(grunt) {
 						'views/{,*/}*.html',
 						'bower_components/**/*',
 						'images/{,*/}*.{webp}',
-						'fonts/*',
-						'scripts/**/*'
+						'fonts/*'
 					]
 				}, {
 					expand: true,
@@ -447,7 +446,7 @@ module.exports = function(grunt) {
 		'cdnify',
 		'cssmin',
 		'uglify',
-		//'rev',
+		'rev',
 		'usemin',
 		'htmlmin'
 	]);

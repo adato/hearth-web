@@ -7,7 +7,7 @@ angular.module('hearth.index', ['ngResource', 'pascalprecht.translate', 'hearth.
 		$translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
 		$translateProvider.preferredLanguage(preferredLanguage);
 		$translateProvider.useStaticFilesLoader({
-			prefix: 'locales/',
+			prefix: '../locales/',
 			suffix: '/messages.json'
 		});
 		return $translateProvider.useStorage('SessionLanguageStorage');

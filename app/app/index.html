@@ -17,7 +17,9 @@
     <meta property="og:image:width" content="114">
     <meta property="og:image:height" content="114">
 
-    <link rel="stylesheet" type="text/css" href="../styles/main.css">
+    <!-- build:css({.tmp,app}) /styles/main.css -->
+         <link rel="stylesheet" type="text/css" href="../styles/main.css">
+    <!-- endbuild -->
 
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     
@@ -29,7 +31,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144x144-precomposed.png">
     <script src="../bower_components/foundation/js/vendor/custom.modernizr.js"></script>
-       <script src="../scripts/config.js"></script>
+    <!-- build:js /scripts/config.js -->
+        <script src="../scripts/config.js"></script>
+     <!-- endbuild -->
     <script>
       if ($$config && $$config['analytics'] && $$config['analytics']['account']) {
         document.write(
@@ -142,6 +146,7 @@
     </script>
     <script src="../locales/default?callback=defaultTranslation"></script>
 
+    <!-- build:js /scripts/scripts.js -->
       <script src="../scripts/services/services.js"></script>
      <script src="../scripts/services/UsersService.js"></script>
      <script src="../scripts/services/FulltextService.js"></script>
@@ -231,6 +236,7 @@
       <script src="../scripts/controllers/LoginCtrl.js"></script>
       
       <script src="../scripts/app.js"></script>
+    <!-- endbuild -->
 
     <script>
       $(document).foundation();
