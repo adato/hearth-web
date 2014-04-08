@@ -6,6 +6,9 @@ angular.module('hearth.directives').directive('social', [
 		return {
 			restrict: 'E',
 			replace: true,
+			scope: {
+				url: '='
+			},
 			templateUrl: '../templates/social.html'
 		};
 	}
