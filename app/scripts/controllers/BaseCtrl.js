@@ -2,6 +2,8 @@
 
 angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
 	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie) {
+		var url = encodeURI(window.location.href);
+
 		$scope.breakpointForSmall = 782;
 		$scope.defaultPageType = '';
 		$scope.pageType = $scope.defaultPageType;
@@ -15,13 +17,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			$scope.languageCode = LanguageSwitch.uses();
 			$scope.info = Info.show();
 			return $scope.checkNotifications();
-		};		
+		};
 		$scope.$on('$includeContentLoaded', function() {
 			$(document).foundation();
 		});
 		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
 			return $scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
 		});
+
 		$scope.useLanguage = function(language) {
 			return LanguageSwitch.use(language).then(function() {
 				return $scope.languageCode = language;
@@ -114,8 +117,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				});
 			}
 		};
+		
+		
 		$scope.setLastAddedId = function(id) {
-			return $scope.lastAddedId = id;
+			$scope.lastAddedId = id;
+			return $scope.lastAddedId;
 		};
 		$scope.getLastAddedId = function() {
 			return $scope.lastAddedId;
@@ -148,8 +154,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				return ipCookie('newCommunityCreated', false);
 			}
 		};
-
-	
 
 	}
 ]);

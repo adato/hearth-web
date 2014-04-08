@@ -204,7 +204,8 @@ module.exports = function(grunt) {
 				httpFontsPath: '../fonts',
 				relativeAssets: false,
 				assetCacheBuster: false,
-				raw: 'Sass::Script::Number.precision = 10\n'
+				raw: 'Sass::Script::Number.precision = 10\n',
+				importPath: ['app/bower_components/foundation-icons/foundation_icons_social/sass']
 			},
 			dist: {
 				options: {
@@ -385,7 +386,7 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			dist: {
-				
+
 			}
 		},
 		concat: {

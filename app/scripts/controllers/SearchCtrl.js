@@ -49,6 +49,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				return _results;
 			}
 		});
+
 		$scope.$watch('location.search().q', function(newval) {
 			if ((newval != null) && newval) {
 				$scope.srch.query = newval;
@@ -285,7 +286,19 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			if (($location.search().id != null) && $location.search().id === value._id) {
 				$scope.expandAd(value);
 			}
+			value.url = $scope.getUrl(value);
 			return $scope.items.push(value);
+		};
+
+		$scope.getUrl = function(item) {
+			var url = window.location.href + '?id=' + item._id;
+
+			return {
+				facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+				gplus: 'https://plus.google.com/share?url=' + url,
+				twitter: 'https://twitter.com/share?url=' + url,
+				linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
+			};
 		};
 		$scope.setSearchType = function(type) {
 			return $scope.srch.type = type;

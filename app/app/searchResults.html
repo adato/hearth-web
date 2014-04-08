@@ -21,11 +21,7 @@
             'non-expanded' : isReplyingAd() && ad._id != item._id,
             'wish-fade-out' : item._id == getLastAddedId() }"
          >
-        <div class="wish row"
-             id="wish{{ id }}"
-             ng-if="item.type == 'need' || item.type == 'offer'"
-             ng-click="go('detail', item._id, item.author._id)"
-             analytics-on analytics-event="click on a post" analytics-category="Marketplace">
+        <div class="wish row" id="wish{{ id }}" ng-if="item.type == 'need' || item.type == 'offer'" ng-click="go('detail', item._id, item.author._id)" analytics-on analytics-event="click on a post" analytics-category="Marketplace">
             <avatar ng-if="item.author._type == 'Community'" source="item.author.avatar" size="normal" relation="" click="go('community', item.author._id, item.author._id)" class="left photo" type="'Community'"></avatar>
             <avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>
             <!--<avatar source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo"></avatar>-->
@@ -45,8 +41,7 @@
                 </div>
                 <div class="keywords" ng-class="item.type" ng-if="item.keywords">
                     <ul>
-                        <li ng-repeat="keyword in item.keywords"><a href="" ng-class="{ 'active': keywords.indexOf(keyword) > -1 }" ng-click="searchByKeyword($event, keyword)"
-                                                                    analytics-on analytics-event="filter post keyword" analytics-category="Marketplace" analytics-label="tags">{{ keyword }}</a></li>
+                        <li ng-repeat="keyword in item.keywords"><a href="" ng-class="{ 'active': keywords.indexOf(keyword) > -1 }" ng-click="searchByKeyword($event, keyword)" analytics-on analytics-event="filter post keyword" analytics-category="Marketplace" analytics-label="tags">{{ keyword }}</a></li>
                     </ul>
                     <br style="clear:both;">
                 </div>
@@ -61,14 +56,15 @@
                         &nbsp;
                     </div>
                     <div class="large-4 small-11 columns right show-on-hover text-right">
+                      
                         <a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
                             <i class="icon-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
                         </a>
 
-                        <a href=""
-                           ng-click="" ng-hide="item.author._id == loggedEntity._id">
+                        <a href="" ng-click="" ng-hide="item.author._id == loggedEntity._id">
                             <i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
                         </a>
+                         <social url="item.url"></social>
                     </div>
                 </div>
             </div>
@@ -79,10 +75,7 @@
 
             <span class="arrow" ng-show="isReplyingAd() && ad._id == item._id"></span>
         </div>
-        <div class="wish row user"
-             id="user{{ id }}"
-             ng-if="item.type == 'user'"
-             analytics-on analytics-event="click on user's name" analytics-category="Marketplace">
+        <div class="wish row user" id="user{{ id }}" ng-if="item.type == 'user'" analytics-on analytics-event="click on user's name" analytics-category="Marketplace">
             <avatar click="go('profile', item._id, item._id)" source="item.avatar" size="user-search" relation="item.relation" class="left photo" type="item._type"></avatar>
             <div class="small-11 medium-10 columns wish-text hyphenate">
                 <a class="name" ng-href="#/profile/{{ item._id }}" ng-show="item._type != 'Community'" ng-bind-html="item.name"></a>
@@ -91,18 +84,11 @@
                 {{ item.upVotes }} &nbsp; 
                 <feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
                 &nbsp; {{ item.downVotes }}<br>
-                <div ng-switch 
-                     on="item.relation == 'followee' || item.relation == 'friend'" 
-                     ng-hide="!loggedUser._id || loggedUser._id == item._id"
-                     class="right">
-                    <a href="" ng-switch-when="true" class="small follow" 
-                       ng-click="follow(item._id, true); $event.stopPropagation()"
-                       ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" 
-                       ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
+                <div ng-switch on="item.relation == 'followee' || item.relation == 'friend'" ng-hide="!loggedUser._id || loggedUser._id == item._id" class="right">
+                    <a href="" ng-switch-when="true" class="small follow" ng-click="follow(item._id, true); $event.stopPropagation()" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
                         <i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
                     </a>
-                    <a href="" ng-switch-when="false" class="small follow" 
-                       ng-click="follow(item._id, false); $event.stopPropagation()">
+                    <a href="" ng-switch-when="false" class="small follow" ng-click="follow(item._id, false); $event.stopPropagation()">
                         <i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
                     </a>
                 </div>
