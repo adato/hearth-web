@@ -20,7 +20,8 @@
     "angular-loading-bar": "~0.0.5",
     "angular-cookie": "*",
     "ng-tags-input": "~1.1.1",
-    "foundation-icon-fonts": "zurb/foundation-icon-fonts"
+    "foundation-icon-fonts": "zurb/foundation-icon-fonts",
+	"foundation-icons": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
