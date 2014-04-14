@@ -25,7 +25,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			return languages;
 		};
 		this.uses = function() {
-			return $translate.uses();
+			return $translate.uses() || languages[1];
 		};
 		this.use = function(language) {
 			ipCookie('language', language.code, {
