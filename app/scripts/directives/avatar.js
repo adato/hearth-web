@@ -12,7 +12,7 @@ angular.module('hearth.directives').directive('avatar', [
 				'clickFn': '&click',
 				'type': '='
 			},
-			template: '<span ng-class="extraClass" ng-click="clickFn()" style="z-index:1000;"><img ng-src="{{ image.src }}" height="{{ image.px }}" width="{{ image.px }}"></span>',
+			template: '<span ng-class="extraClass" ng-click="clickFn()" ><img ng-src="{{ image.src }}" height="{{ image.px }}" width="{{ image.px }}"></span>',
 			link: function(scope, el, attrs) {
 				scope.$watch('relation', function(val) {
 					return scope.extraClass = val;
