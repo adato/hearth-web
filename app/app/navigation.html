@@ -37,9 +37,16 @@
 				<li signed-in ng-cloak ng-if="!loggedCommunity._id">
 					<a ng-href="#/communities" ng-class="{ 'link': 1, 'active': pageType == 'communities' }" id="nav-communities">{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}<span></span></a>
 				</li>
-				
-				
-				
+	            <li signed-in ng-cloak ng-if="!loggedCommunity._id">
+	            	<a ng-href="#/my" ng-class="{ 'link': 1, 'active': pageType == 'my' }" id="nav-my">{{ 'TOP_BAR_MY_HEARTH' | translate }}<span></span></a>
+	          	</li>
+				<li signed-in ng-cloak ng-if="!loggedCommunity._id">
+	              <a ng-href="#/profile/{{ user._id }}" ng-class="{ 'link': 1, 'active': pageType == 'profile' && isMine }"
+	                 analytics-on analytics-event="open my profile" analytics-category="My profile" id="nav-profile">{{ 'TOP_BAR_PROFILE' | translate }}<span></span></a>
+          		</li>
+          		<li signed-in ng-cloak ng-if="loggedCommunity._id">
+              		<a ng-href="#/community/{{ loggedCommunity._id }}" ng-class="{ 'link': 1, 'active': pageType == 'community-profile' && isMine }" analytics-on analytics-event="open profile" analytics-category="My community profile" id="nav-profile">{{ 'TOP_BAR_COMMUNITY_PROFILE' | translate }}<span></span></a>
+          		</li>				
 			</ul>
 
 			<ul class="right">
@@ -47,6 +54,7 @@
 				<li>
 					<a ng-href="#/about" ng-class="{ 'link':1, 'active': pageType == 'about' }" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">{{ 'TOP_BAR_ABOUT' | translate }}<span></span></a>
 				</li>
+
 				<!--li signed-in ng-cloak ng-if="!loggedCommunity._id">
 					<a ng-href="#/profile/{{ user._id }}" ng-class="{ 'link': 1, 'active': pageType == 'profile' && isMine }" analytics-on analytics-event="open my profile" analytics-category="My profile" id="nav-profile">{{ 'TOP_BAR_PROFILE' | translate }}<span></span></a>
 				</li-->
