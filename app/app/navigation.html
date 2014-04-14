@@ -39,13 +39,14 @@
 				</li>
 				
 				
-				<li>
-					<a ng-href="#/about" ng-class="{ 'link':1, 'active': pageType == 'about' }" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">{{ 'TOP_BAR_ABOUT' | translate }}<span></span></a>
-				</li>
+				
 			</ul>
 
 			<ul class="right">
 				<li class="divider show-for-small"></li>
+				<li>
+					<a ng-href="#/about" ng-class="{ 'link':1, 'active': pageType == 'about' }" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">{{ 'TOP_BAR_ABOUT' | translate }}<span></span></a>
+				</li>
 				<!--li signed-in ng-cloak ng-if="!loggedCommunity._id">
 					<a ng-href="#/profile/{{ user._id }}" ng-class="{ 'link': 1, 'active': pageType == 'profile' && isMine }" analytics-on analytics-event="open my profile" analytics-category="My profile" id="nav-profile">{{ 'TOP_BAR_PROFILE' | translate }}<span></span></a>
 				</li-->
