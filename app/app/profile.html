@@ -73,8 +73,8 @@
         <!-- content from partial -->
     </header>
 
-    <div class="left-column small-12 large-7 columns pull-5 alt-bg">
-        <div ng-if="isMine" ng-cloak ng-hide="isEditingAd()">
+    <div class="left-column small-12 large-7 columns pull-5 alt-bg" ng-hide="profileEditing == true">
+        <div ng-if="isMine" ng-cloak ng-hide="isEditingAd() ">
             <div class="hide-for-small padding-2" style="padding-bottom:0;">
                 <span ng-include="'createAd.html'"></span>
                 <!-- content from partial -->

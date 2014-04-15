@@ -17,7 +17,7 @@
               <div file-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()" style="width:100%; position:relative;">
                    <button class="green small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
               </div>
-          </form>
+     
         </div>
         <div class="large-4 columns">
           <label>
@@ -144,7 +144,7 @@
           </select>
         </div>
       </div>
-
+     </form>
       <div class="alert-box visible alert error round connect-bottom" ng-show="errorsProfile.base">{{ errorsProfile.base | translate }}</div>
 
     <!--
