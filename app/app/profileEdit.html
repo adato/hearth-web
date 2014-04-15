@@ -1,158 +1,168 @@
-<div class="profile-header">
-    <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
-    <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ profile.name }}</h1>
-    <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
+<div class="row">
+  <div class="large-8 columns large-centered">
+    <div class="profile-header">
+        <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
+        <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ profile.name }}</h1>
+        <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
+    </div>
+  <hr>
+
+  <form id="profileEditForm" name="profileEditForm" ng-submit="updateProfile()" with-errors novalidate>
+      <h1>{{ 'WHO' | translate }}</h1>
+      <div class="row">
+        <div class="large-4 columns">
+          <form name="profileavatarform" style="clear:both;">
+              <!-- path is prefixed with $$config.apiPath -->
+              <div file-upload-output class=""></div>
+              <div file-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()" style="width:100%; position:relative;">
+                   <button class="green small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
+              </div>
+          </form>
+        </div>
+        <div class="large-4 columns">
+          <label>
+            {{ 'NAME' | translate }}
+            <input class="text-input" type='text'>
+          </label>
+        </div>
+        <div class="large-4 columns">
+            <label>
+              {{ 'MY_WORK' | translate }}
+              <input class="text-input" type='text' name="my_work">
+            </label>
+        </div>
+      </div>
+
+      <h1>{{ 'WHERE' | translate }}</h1>
+      <div class="row">
+        <div class="large-6 columns">
+          <label>
+            {{ 'CITIES' | translate }}
+            <input  class="text-input" type='text' name="cities">
+          </label>
+        </div>
+        <div class="large-6 columns">
+          <label>
+            {{ 'MY_EMAIL' | translate }}
+            <input  class="text-input" type='email' name="my_email">
+          </label>
+        </div>
+      </div>
+
+      <h1>{{ 'CONTACTS' | translate }}</h1>
+
+      <div class="row">
+        <div class="large-4 columns">
+          <label>
+            <div class="icon-phone"></div>
+           {{ 'MY_PHONE' | translate }}
+            <input  class="text-input" type='tel' name="my_phone">
+          </label>
+        </div>
+
+         <div class="large-4 columns">
+          <label>
+            <div class="icon-facebook"></div>
+            {{ 'MY_FACEBOOK' | translate }}
+            <input  class="text-input" type='text' name="my_facebook">
+          </label>
+        </div>
+
+         <div class="large-4 columns">
+          <label>
+            <div class="icon-google-plus"></div>
+            {{ 'MY_GOOGLEPLUS' | translate }}
+            <input  class="text-input" type='text' name="my_googleplus">
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-4 columns">
+          <label>
+            <div class="icon-linkedin"></div>
+            {{ 'MY_LINKEDIN' | translate }}
+            <input  class="text-input" type='text' name="my_linkedin">
+          </label>
+        </div>
+
+        <div class="large-4 columns">
+          <label>
+            <div class="icon-globe"></div>
+            {{ 'MY_WEB' | translate }}
+            <input  class="text-input" type='text' name="my_web">
+          </label>
+        </div>
+
+        <div class="large-4 columns">
+          <label>
+            <div class="icon-twitter"></div>
+            {{ 'MY_TWITTER' | translate }}
+            <input  class="text-input" type='text' name="my_twitter">
+          </label>
+        </div>
+      </div>
+
+      <h1>{{ 'ABOUT_ME' | translate }}</h1>
+       <div class="row">
+        <div class="large-6 columns">
+          <label>
+            {{ 'MY_TELL_ABOUT' | translate }}
+            <textarea class="text-input" name="my_tell_about"></textarea>
+          </label>
+        </div>
+
+        <div class="large-6 columns">
+          <label>
+            {{ 'MY_INTERESTS' | translate }}
+            <textarea class="text-input" name="my_interests"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <label>{{ 'MY_LANGUAGES' | translate }}</label>
+      <div class="row">
+        <div class="large-2 columns">
+          <label><input type="checkbox" name="my_lang_en">{{ 'MY_LANG_EN' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" name="my_lang_de">{{ 'MY_LANG_DE' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" name="my_lang_fr">{{ 'MY_LANG_FR' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" name="my_lang_ru">{{ 'MY_LANG_RU' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" name="my_lang_es">{{ 'MY_LANG_ES' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <select>
+            <option>Lang 1</option>
+            <option>Lang 2</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="alert-box visible alert error round connect-bottom" ng-show="errorsProfile.base">{{ errorsProfile.base | translate }}</div>
+
+    <!--
+      <input type="text" ng-model="editedProfile.name" ng-class="{ 'text-input': true, 'top': true, 'error': profileErrors.errors.name }" placeholder="{{ 'YOUR_NAME' | translate }}" required>
+      <textarea ng-model="editedProfile.about" ng-class="{ 'text-input': true, 'bottom': true, 'error': profileErrors.errors.about }" rows="6" placeholder="{{ 'ABOUT' | translate }}"></textarea>
+      -->
+      <div class="row">
+        <div class="large-12 columns">
+          <hr>
+          <button type="button" ng-disabled="avatarUpload" class="default button" ng-click="cancelProfileEdit()">{{ 'CANCEL' | translate }}</button>
+          <button type="submit" ng-disabled="avatarUpload" class="green button right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5">{{ 'SAVE' | translate }}</button>
+        </div>
+      </div>
+  </form>
+
+  </div>
 </div>
 
-<div class="hr padding-v-1"></div>
-<form id="profileEditForm" name="profileEditForm" ng-submit="updateProfile()" with-errors novalidate>
-    
-    <h1>{{ 'WHO' | translate }}</h1>
-    <div class="row">
-      <div class="large-4 columns">
-        <form name="profileavatarform" style="clear:both;">
-            <!-- path is prefixed with $$config.apiPath -->
-            <div file-upload-output class=""></div>
-            <div file-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()" style="width:100%; position:relative;">
-                 <button class="green small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
-            </div>
-        </form>
-      </div>
-      <div class="large-4 columns">
-        <label>
-          {{ 'NAME' | translate }}
-          <input class="text-input" type='text'>
-        </label>
-      </div>
-      <div class="large-4 columns">
-          <label>
-            {{ 'MY_WORK' | translate }}
-            <input class="text-input" type='text' name="my_work">
-          </label>
-      </div>
-    </div>
-
-    <h1>{{ 'WHERE' | translate }}</h1>
-    <div class="row">
-      <div class="large-6 columns">
-        <label>
-          {{ 'CITIES' | translate }}
-          <input  class="text-input" type='text' name="cities">
-        </label>
-      </div>
-      <div class="large-6 columns">
-        <label>
-          {{ 'MY_EMAIL' | translate }}
-          <input  class="text-input" type='email' name="my_email">
-        </label>
-      </div>
-    </div>
-
-    <h1>{{ 'CONTACTS' | translate }}</h1>
-
-    <div class="row">
-      <div class="large-4 columns">
-        <label>
-          {{ 'MY_PHONE' | translate }}
-          <input  class="text-input" type='tel' name="my_phone">
-        </label>
-      </div>
-
-       <div class="large-4 columns">
-        <label>
-          {{ 'MY_FACEBOOK' | translate }}
-          <input  class="text-input" type='text' name="my_facebook">
-        </label>
-      </div>
-
-       <div class="large-4 columns">
-        <label>
-          {{ 'MY_GOOGLEPLUS' | translate }}
-          <input  class="text-input" type='text' name="my_googleplus">
-        </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="large-4 columns">
-        <label>
-          {{ 'MY_LINKEDIN' | translate }}
-          <input  class="text-input" type='text' name="my_linkedin">
-        </label>
-      </div>
-
-      <div class="large-4 columns">
-        <label>
-          {{ 'MY_WEB' | translate }}
-          <input  class="text-input" type='text' name="my_web">
-        </label>
-      </div>
-
-      <div class="large-4 columns">
-        <label>
-          {{ 'MY_TWITTER' | translate }}
-          <input  class="text-input" type='text' name="my_twitter">
-        </label>
-      </div>
-    </div>
-
-    <h1>{{ 'ABOUT_ME' | translate }}</h1>
-     <div class="row">
-      <div class="large-6 columns">
-        <label>
-          {{ 'MY_TELL_ABOUT' | translate }}
-          <textarea class="text-input" name="my_tell_about"></textarea>
-        </label>
-      </div>
-
-      <div class="large-6 columns">
-        <label>
-          {{ 'MY_INTERESTS' | translate }}
-          <textarea class="text-input" name="my_interests"></textarea>
-        </label>
-      </div>
-    </div>
-
-    <label>{{ 'MY_LANGUAGES' | translate }}</label>
-    <div class="row">
-      <div class="large-2 columns">
-        <label><input type="checkbox" name="my_lang_en">{{ 'MY_LANG_EN' | translate }}</label> 
-      </div>
-      <div class="large-2 columns">
-        <label><input type="checkbox" name="my_lang_de">{{ 'MY_LANG_DE' | translate }}</label> 
-      </div>
-      <div class="large-2 columns">
-        <label><input type="checkbox" name="my_lang_fr">{{ 'MY_LANG_FR' | translate }}</label> 
-      </div>
-      <div class="large-2 columns">
-        <label><input type="checkbox" name="my_lang_ru">{{ 'MY_LANG_RU' | translate }}</label> 
-      </div>
-      <div class="large-2 columns">
-        <label><input type="checkbox" name="my_lang_es">{{ 'MY_LANG_ES' | translate }}</label> 
-      </div>
-      <div class="large-2 columns">
-        <select>
-          <option>Lang 1</option>
-          <option>Lang 2</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="alert-box visible alert error round connect-bottom" ng-show="errorsProfile.base">{{ errorsProfile.base | translate }}</div>
-
-  <!--
-    <input type="text" ng-model="editedProfile.name" ng-class="{ 'text-input': true, 'top': true, 'error': profileErrors.errors.name }" placeholder="{{ 'YOUR_NAME' | translate }}" required>
-    <textarea ng-model="editedProfile.about" ng-class="{ 'text-input': true, 'bottom': true, 'error': profileErrors.errors.about }" rows="6" placeholder="{{ 'ABOUT' | translate }}"></textarea>
-    -->
-    <div class="row">
-      <div class="large-12 columns">
-        <button type="button" ng-disabled="avatarUpload" class="default button" ng-click="cancelProfileEdit()">{{ 'CANCEL' | translate }}</button>
-        <button type="submit" ng-disabled="avatarUpload" class="green button right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5">{{ 'SAVE' | translate }}</button>
-      </div>
-    </div>
-</form>
-
-<div class="hr padding-v-1"></div>
 <div feature-enabled="deleteAccount" class="padding-2">
     <a href="" class="" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
         <i class="icon-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}

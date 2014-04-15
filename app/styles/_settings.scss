@@ -1,6 +1,8 @@
 //
 // Hearth Variables
 //
+//
+$FontAwesomePath: "../fonts" !default;
 
 $grid-size: 10px;
 
@@ -23,6 +25,8 @@ $grid-background-total-columns: 144;
 $grid-background-column-width: 9px;
 $grid-background-gutter-width: 1px;
 $grid-background-baseline-height: $grid-background-column-width + $grid-background-gutter-width;
+
+
 
 //
 // Foundation Variables
