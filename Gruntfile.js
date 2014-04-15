@@ -206,7 +206,6 @@ module.exports = function(grunt) {
 				assetCacheBuster: false,
 				raw: 'Sass::Script::Number.precision = 10\n',
 				importPath: [
-					'app/bower_components/foundation-icons/foundation_icons_social/sass',
 					'app/bower_components/font-awesome/scss/'
 				]
 			},
