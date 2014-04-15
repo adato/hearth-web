@@ -206,7 +206,7 @@ module.exports = function(grunt) {
 				assetCacheBuster: false,
 				raw: 'Sass::Script::Number.precision = 10\n',
 				importPath: [
-					'app/bower_components/font-awesome/scss/'
+					'app/vendor/font-awesome/scss/'
 				]
 			},
 			dist: {
@@ -331,7 +331,7 @@ module.exports = function(grunt) {
 						'.htaccess',
 						'*.html',
 						'templates/{,*/}*.html',
-						'bower_components/**/*',
+						'vendor/**/*',
 						'images/{,*/}*.{webp}',
 						'fonts/*',
 					]
