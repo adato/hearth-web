@@ -1,0 +1,251 @@
+<div class="container profile" ng-controller="ListViewStateCtrl" >
+    <header class="right-column small-12 large-5 columns push-7 detail slide-in" ng-cloak ng-show="isReplyingAd()">
+        <span ng-include="'templates/replyToAd.html'"></span>
+        <!-- content from partial -->
+    </header>
+    
+    <header class="right-column small-12 large-5 columns push-7" ng-show="!editingCommunity && !isReplyingAd()">
+        <div class="profile-header">
+
+            <div style="display:block; width:110px; height:100px; float:left;">
+                <avatar source="community.avatar" size="large" class="left photo" type="'Community'" style="margin-right:10px;"></avatar>
+            </div>
+
+            <h1 class="username" style="display:inline-block;">{{community.name}}</h1>
+
+            <div ng-if="isMine" class="action">
+                <button type="button" class="small default button" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak translate>
+                    EDIT_COMMUNITY_PROFILE
+                </button>
+            </div>
+            <div ng-if="!isMine && communityAdmin._id != loggedUser._id" class="action">
+                <div ng-hide="isMine || !loggedUser._id || loggedCommunity._id">
+                    <button type="button" class="small default button" ng-click="follow(community._id, false)" ng-if="!membershipStatus">
+                        <i class="hearthicon-follow"></i>&nbsp; {{ 'COMMUNITY_PROFILE_APPLY_FOR_ADMISSION' | translate }}
+                    </button>
+                    <button type="button" ng-click="quitMember()" class="green button disabled" ng-if="membershipStatus == 'member'" translate>COMMUNITY_ALREADY_MEMBER</button>
+                    <div class="button disabled" ng-if="membershipStatus == 'requested'" translate>COMMUNITY_MEMBERSHIP_REQUESTED</div>
+                </div>
+            </div>
+            <div class="cleaner"></div>
+            <div class="cleaner"></div>
+        </div>
+
+        <div style="margin: 1.25em 1.25em 0;">
+            {{community.description}}
+        </div>
+
+        <div class="hr padding-v-1"></div>
+
+        <div style="margin: 1.25em 1.25em 0;">
+            <h5>{{ 'COMMUNITY_PROFILE_LOCATION' | translate }}</h5>
+            {{community.location.name}}
+        </div>
+
+        <div class="hr padding-v-1"></div>
+
+        <div class="follow-box">
+            <div>
+                <div ng-show="isMine">
+                    <h5>{{ 'COMMUNITY_PROFILE_APPLICANTS' | translate }} ({{ communityApplicants.length}})</h5>
+                    <ul>
+                        <li ng-repeat="applicant in communityApplicants">
+                            <a ng-href="#/profile/{{applicant.userId}}" title="{{applicant.userFullname}}">
+                                <avatar source="applicant.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                            </a>
+                            &nbsp;
+                            <button class="small green button" ng-click="acceptMembership(applicant.userId)" translate>COMMUNITY_MEMBER_ACCEPT</button>
+                            <button class="small red button" ng-click="rejectMembership(applicant.userId)" translate>COMMUNITY_MEMBER_REJECT</button>
+                            <br>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cleaner"></div>
+                
+                <h5>{{ 'COMMUNITY_PROFILE_MEMBERS' | translate }} ({{ communityMembers.length}})</h5>
+                <ul>
+                    <li ng-repeat="member in communityMembers">
+                        <a ng-href="#/profile/{{member.userId}}" title="{{member.userFullname}}">
+                            <avatar source="member.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a><br><small ng-show="loggedCommunity._id && isMine && loggedUser._id != member.userId"><a href="" ng-click="removeMember(member.userId)"><i class="icon-off"></i> {{ 'COMMUNITY_MEMBER_REMOVE' | translate }}</a></small>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>                
+                
+                <h5>{{ 'COMMUNITY_PROFILE_ADMIN' | translate }}</h5>
+                <ul>
+                    <li>
+                        <a ng-href="#/profile/{{communityAdmin._id}}" title="{{communityAdmin.name}}">
+                            <avatar source="communityAdmin.avatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+        </div>
+
+        <div class="hr padding-v-1"></div>
+
+        <div style="margin: 1.25em 1.25em 0;" ng-show="community.terms">
+            <h5>{{ 'COMMUNITY_PROFILE_TERMS_OF_MEMBERSHIP' | translate }}</h5>
+            {{ community.terms }}
+        </div>
+    </header>
+
+    <!-- EDIT COMMUNITY ACCOUNT -->
+    <header class="right-column small-12 large-5 columns push-7" ng-show="editingCommunity">
+        <div class="profile-header">
+            <avatar source="editCommunity.avatar" size="large" class="avatar" type="'Community'"></avatar>
+            <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ community.name}}</h1>
+        </div>
+        <form name="profileAvatarForm" style="clear:both;">
+            <!-- path is prefixed with $$config.apiPath -->
+            <div file-upload-output class="">
+            </div>
+            <div
+                file-upload
+                file-upload-path="/communities/{{ loggedCommunity._id}}/files"
+                upload-name="'avatar'"
+                on-file-upload-started="avatarUploadStarted()"
+                on-file-upload-success="avatarUploadSucceeded($event)"
+                on-file-upload-error="avatarUploadFailed()"
+                style="width:65%; position:relative;">
+                <button class="default small button file-upload cursor-pointer" type="button">
+                    {{ 'CHOOSE_AVATAR_FILE' | translate}}
+                </button>
+            </div>
+        </form>
+        <div class="hr padding-v-1"></div>
+        <form id="updateCommunityForm" name="updateCommunityForm" ng-submit="updateCommunity()" with-errors novalidate>
+            <div class="alert-box visible alert error round connect-bottom" ng-show="errorsUpdateCommunity.base">{{ errorsUpdateCommunity.base | translate }}</div>
+            <div>
+                <input class="text-input top" type="text" name="name" required
+                       ng-model="editCommunity.name" placeholder="{{ 'COMMUNITY_NAME_INPUT_PLACEHOLDER' | translate }}"
+                       >
+            </div>
+            <div>
+                <address-autocomplete placeholders="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'"
+                                      location="editCommunity.location"
+                                      class="text-input middle"
+                                      focus="x.enabled = true"
+                                      blur="x.enabled = false"
+                                      is-required="true"
+                                      />
+            </div>
+            <div>
+                <textarea class="text-input" ng-class="{'middle': editCommunity.termsShown, 'bottom': !editCommunity.termsShown }" rows="6" name="description" required
+                          ng-model="editCommunity.description" placeholder="{{ 'COMMUNITY_DESCRIPTION_INPUT_PLACEHOLDER' | translate }}"
+                          ></textarea>
+            </div>
+            <div ng-show="editCommunity.termsShown">
+                <textarea class="text-input bottom" rows="6" name="terms" ng-model="editCommunity.terms"
+                          placeholder="{{ 'COMMUNITY_PROFILE_TERMS_OF_MEMBERSHIP' | translate }}"></textarea>
+            </div>
+            <div ng-hide="editCommunity.termsShown">
+                <a href="" ng-click="editCommunity.termsShown = true"><i class="icon-plus"></i> {{ 'COMMUNITY_ADD_TERMS' | translate }}</a><br><br>
+            </div>
+            <button type="button" ng-disabled="avatarUpload" class="default button" ng-click="cancelProfileEdit()">
+                {{ 'CANCEL' | translate }}
+            </button>
+            <button type="submit" ng-disabled="avatarUpload" class="green button right" analytics-on analytics-event="save community profile"
+                    analytics-category="Community profile" analytics-value="5">
+                {{ 'SAVE' | translate }}
+            </button>
+        </form>
+    </header>
+
+    <div class="left-column small-12 large-7 columns pull-5 alt-bg">
+        <div ng-if="isMine" ng-cloak ng-hide="isEditingAd()">
+            <div class="hide-for-small padding-2" style="padding-bottom:0;">
+                <span ng-include="'templates/createAd.html'"></span>
+                <!-- content from partial -->
+            </div>
+            <div class="cleaner"></div>
+        </div>        
+        
+        
+        <div class="padding-h-2">
+            <div class="row profile-links">
+                <div class="small-4 columns">
+                    <a href="" ng-class="{ 'underliner': profilePageType == 'ads'}" ng-href="#/community/{{ community._id }}/ads">{{ 'WISHES_LINK' | translate }}</a>
+                </div>
+                <div class="small-4 columns">
+                    <a href="" ng-class="{ 'underliner': profilePageType == 'feedback'}" ng-href="#/community/{{ community._id }}/feedback" translate>{{ 'FEEDBACK_LINK' | translate }}</a>
+                </div>
+                <div class="small-4 columns">
+                </div>
+            </div>
+        </div>
+
+        <div when-scrolled="loadMore()" ng-cloak class="wish-list" ng-if="profilePageType == 'ads'">
+            <div ng-show="!posts.length">
+                <div ng-show="!isMine" class="padding-2" ng-cloak translate>COMMUNITY_HAS_NO_WISHES</div>
+                <div ng-show="isMine" class="padding-2" ng-cloak translate>YOU_HAVE_NO_WISHES</div>
+                <div class="hr"></div>
+            </div>
+            <div ng-repeat="item in posts" class="wish-container hoverable"
+                 ng-class="{
+                         'expanded' : ad._id == item._id,
+                         'non-expanded' : ad._id != item._id,
+                         'wish-fade-out' : item._id == getLastAddedId()
+                     }">
+                <div
+                    class="wish row"
+                    ng-click="go('detail', item._id)"
+                    >
+                    <div class="small-12 columns hyphenate profile-wish-text" ng-if="!isEditingAd(item._id)">
+                        <span class="small right">
+                            <time-ago from-time="item.createdAt"></time-ago>
+                            <i class="icon-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_MEMBERS' | translate }}"></i>
+                        </span>
+                        <div>
+                            <span ng-cloak ng-show="item.type == 'need'">
+                                <strong class="need start-word" ng-show="isMine" ng-cloak> {{ 'WE_NEED' | translate }}</strong>
+                                <strong class="need start-word" ng-show="!isMine" ng-cloak> {{ 'DOES_WISH' | translate }}</strong>
+                            </span>
+                            <span ng-cloak ng-show="item.type == 'offer'">
+                                <strong class="offer start-word" ng-show="isMine" ng-cloak> {{ 'WE_GIVE' | translate }}</strong>
+                                <strong class="offer start-word" ng-show="!isMine" ng-cloak> {{ 'DOES_GIVE' | translate }}</strong>
+                            </span>
+                            <span ng-bind-html="item.name | urlize"></span>
+                        </div>
+                        <div ng-if="item.attachments.length" class="photo">
+                            <img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin}}">
+                        </div>
+                        <div class="row small wish-bottom-bar">
+                            <div class="small-6 columns">
+                                <div ng-if="item.location.name" style="margin-top:0;">
+                                    {{ item.location.name}}
+                                </div>
+                                <div ng-if="!item.location.name">&nbsp;</div>
+                            </div>
+                            <div class="show-on-hover small-6 columns right text-right">
+                                <a href="" ng-click="startEditingAd($event, item);" style="margin-right:20px;" ng-show="isMine">
+                                    <i class="icon-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
+                                </a>
+                                <a ng-click="removeAd(item)" ng-cloak ng-show="isMine">
+                                    <i class="hearthicon-trash"></i> {{ 'AD_REMOVE_LABEL' | translate }}
+                                </a>
+                                <a href=""
+                                   ng-click="" ng-hide="item.author._id == loggedEntity._id">
+                                    <i class="hearthicon-reply"></i>&nbsp; {{ 'REPLY_BUTTON_CAPTION' | translate }}
+                                </a>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="small-12 columns padding-h-0 " ng-if="isEditingAd(item._id); ">
+                        <div ng-include src="'templates/createAd.html'">
+                        </div>
+                    </div>
+                    <span class="arrow" ng-show="isReplyingAd() && ad._id == item._id"></span>
+                </div>
+            </div>
+        </div>
+        <div ng-if="profilePageType == 'feedback'" ng-cloak
+             analytics-on analytics-event="click on Ratings" analytics-category="Community profile" analytics-label="lists">
+            <!-- list feedback of user -->
+            <span ng-include="'templates/profileRatings.html'"></span>
+        </div>
+
+    </div>
+</div>

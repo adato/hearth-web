@@ -1,0 +1,116 @@
+<div class="container profile" ng-controller="ListViewStateCtrl">
+    <header class="right-column small-12 large-5 columns push-7 detail slide-in" ng-cloak ng-show="isReplyingAd()">
+        <span ng-include="'templates/replyToAd.html'"></span>
+        <!-- content from partial -->
+    </header>
+
+    <header class="right-column small-12 large-5 columns push-7" ng-cloak
+            ng-show="!isReplyingAd() && !profileDeleting && !profileEditing && profile">
+        <div ng-include src="'templates/profilePane.html'"></div>
+
+        <div class="hr padding-v-1"></div>
+        <p ng-show="!rating.dialogShown" class="padding-2 hide-for-small" ng-bind-html="profile.about | urlize"></p>
+        <div class="hr" ng-show="profile.about"></div>
+
+        <div class="follow-box">
+            <div ng-show="relations.friends.length && showFollow">
+                <h5>{{ 'FRIENDS_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="friend in relations.friends">
+                        <a ng-href="#/profile/{{ friend.userId }}" title="{{ friend.userFullname }}">
+                            <avatar source="friend.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+
+            <div ng-show="relations.followees.length && isMine && showFollow">
+                <h5>{{ 'FOLLOWEES_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="followee in relations.followees">
+                        <a ng-href="#/profile/{{ followee.userId }}" title="{{ followee.userFullname }}">
+                            <avatar source="followee.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+
+            <div ng-show="relations.followers.length && isMine && showFollow">
+                <h5>{{ 'FOLLOWERS_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="follower in relations.followers">
+                        <a ng-href="#/profile/{{ follower.userId }}" title="{{ follower.userFullname }}">
+                            <avatar source="follower.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+
+            <div ng-show="relations.memberOfCommunities.length">
+                <h5>{{ 'MEMBER_OF_COMMUNITIES_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="member in relations.memberOfCommunities">
+                        <a ng-href="#/community/{{ member.userId }}" title="{{ member.userFullname }}">
+                            <avatar source="member.userAvatar" size="follow" class="left photo" type="'Community'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+        </div>
+    </header>
+
+    <header class="right-column small-12 large-12 columns" ng-cloak ng-show="profileEditing == true">
+        <span ng-include src="'templates/profileEdit.html'"></span>
+        <!-- content from partial -->
+    </header>
+
+    <header class="right-column small-12 large-5 columns push-7" ng-cloak ng-show="profileDeleting == true" style="height:100%; z-index:1000;">
+        <span ng-include src="'templates/profileDelete.html'"></span>
+        <!-- content from partial -->
+    </header>
+
+    <div class="left-column small-12 large-7 columns pull-5 alt-bg" ng-hide="profileEditing == true">
+        <div ng-if="isMine" ng-cloak ng-hide="isEditingAd() ">
+            <div class="hide-for-small padding-2" style="padding-bottom:0;">
+                <span ng-include="'templates/createAd.html'"></span>
+                <!-- content from partial -->
+            </div>
+            <div class="cleaner"></div>
+        </div>
+
+        <div class="padding-h-2">
+            <div class="row profile-links" ng-cloak>
+                <div class="small-4 columns">
+                    <a href="" ng-class="{ 'underliner': profilePageType == 'ads'}" ng-click="go('ads')" translate>WISHES_LINK</a>
+                </div>
+                <div class="small-4 columns">
+                    <a href="" ng-class="{ 'underliner': profilePageType == 'feedback'}" ng-click="go('feedback')" translate>FEEDBACK_LINK</a>
+                </div>
+                <div class="small-4 columns hide-for-medium-up">
+                    <a href="" ng-class="{ 'underliner': profilePageType == 'about'}" ng-click="go('about')" translate>ABOUT_LINK</a>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="profilePageType == 'ads'" ng-cloak ng-class="{ 'hide-for-small' : isReplyingAd() }"
+             analytics-on analytics-event="click on Activities" analytics-category="Other profile" analytics-label="lists">
+            <!-- list ads of user -->
+            <span ng-include="'templates/profileList.html'"></span>
+        </div>
+
+        <div ng-show="profilePageType == 'feedback'" ng-cloak
+             analytics-on analytics-event="click on Ratings" analytics-category="Other profile" analytics-label="lists">
+            <!-- list feedback of user -->
+            <span ng-include="'templates/profileRatings.html'" ></span>
+        </div>
+
+        <div ng-show="profilePageType == 'about'" ng-cloak>
+            <!-- show users about -->
+            <p ng-show="profile.about" class="padding-2">{{ profile.about }}</p>
+        </div>
+    </div>
+</div>
