@@ -9,14 +9,11 @@
 
 module.exports = function(grunt) {
 
-	// Load grunt tasks automatically
-	require('load-grunt-tasks')(grunt);
+	require('load-grunt-tasks')(grunt); // Load grunt tasks automatically
 
-	// Time how long tasks take. Can help when optimizing build times
-	require('time-grunt')(grunt);
+	require('time-grunt')(grunt); // Time how long tasks take. Can help when optimizing build times
 
-	// Define the configuration for all the tasks
-	grunt.initConfig({
+	grunt.initConfig({ // Define the configuration for all the tasks
 
 		// Project settings
 		yeoman: {
@@ -180,6 +177,13 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+		'bower-install-simple': {
+			options: {
+				color: true,
+				production: false,
+				directory: 'app/vendor'
+			}
+		},
 
 		// Automatically inject Bower components into the app
 		'bower-install': {
@@ -214,13 +218,11 @@ module.exports = function(grunt) {
 					generatedImagesDir: '<%= yeoman.dist %>/images/generated',
 					trace: true,
 					force: false
-					
+
 				}
 			},
 			server: {
-				options: {
-					sourcemap: true
-				}
+				options: {}
 			}
 		},
 
@@ -422,6 +424,7 @@ module.exports = function(grunt) {
 
 		grunt.task.run([
 			'clean:server',
+			'bower-install-simple',
 			'bower-install',
 			'concurrent:server',
 			'autoprefixer',
@@ -446,6 +449,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', [
 		'clean:dist',
+		'bower-install-simple',
 		'bower-install',
 		'useminPrepare',
 		'concurrent:dist',
