@@ -1571,5 +1571,9 @@ input:focus,textarea:focus {
     }
 }
 
+.container  {
+    padding-top: 70px;
+}
+
 @import "angular-loading-bar";
 @import "unsupported";

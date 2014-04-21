@@ -11,32 +11,7 @@ angular.module('hearth.directives').directive('identitySwitch', [
 				loggedCommunity: '=',
 				switchFn: '&'
 			},
-			template: '<div class="user-switch text-center" ng-if="loggedUser._id" title="{{ loggedCommunity.name || loggedUser.name }} ">\
-                <div class="switch">\
-                    <a href="" ng-click="clickAvatar()">\
-                        <avatar source="loggedEntity.avatar" size="normal" type="loggedEntity._type"></avatar>&nbsp;\
-                        <i class="icon-chevron-down" ng-show="!switchExpanded && myCommunities.length"></i>\
-                        <i class="icon-chevron-up" ng-show="switchExpanded && myCommunities.length"></i>\
-                    </a>\
-                </div>\
-                <div class="switch-menu" ng-show="switchExpanded && myCommunities.length">\
-                    <ul>\
-                        <li>\
-                            <a href="" ng-click="switchBack()" title="{{ loggedUser.name }}">\
-                                <avatar source="loggedUser.avatar" size="small" type="\'User\'"></avatar>\
-                                {{ loggedUser.name }}\
-                            </a>\
-                        </li>\
-                        <li ng-repeat="community in myCommunities">\
-                            <a href="" ng-click="switchTo(community)" title="{{ community.name }}">\
-                                <avatar source="community.avatar" size="small" type="\'Community\'"></avatar>\
-                                {{ community.name }}\
-                            </a>\
-                        </li>\
-\
-                    </ul>\
-                </div>\
-            </div>',
+			templateUrl: 'templates/identitySwitch.html',
 			link: function(scope, el, attrs) {
 				var init;
 				scope.myCommunities = [];
