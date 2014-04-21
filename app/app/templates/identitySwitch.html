@@ -1,25 +1,19 @@
-<div class="user-switch text-center" ng-if="loggedUser._id" title="{{ loggedCommunity.name || loggedUser.name }} ">
-    <div class="switch">
-        <a href="" ng-click="clickAvatar()">
-            <avatar source="loggedEntity.avatar" size="normal" type="loggedEntity._type"></avatar>&nbsp;
-            <i class="icon-chevron-down" ng-show="!switchExpanded && myCommunities.length"></i>
-            <i class="icon-chevron-up" ng-show="switchExpanded && myCommunities.length"></i>
-        </a>
-    </div>
-    <div class="switch-menu" ng-show="switchExpanded && myCommunities.length">
-        <ul>
-            <li>
-                <a href="" ng-click="switchBack()" title="{{ loggedUser.name }}">
-                    <avatar source="loggedUser.avatar" size="small" type="'User'"></avatar>
-                    {{ loggedUser.name }}
-                </a>
-            </li>
-            <li ng-repeat="community in myCommunities">
-                <a href="" ng-click="switchTo(community)" title="{{ community.name }}">
-                    <avatar source="community.avatar" size="small" type="'Community'"></avatar>
-                    {{ community.name }}
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+<li ng-class="{'has-dropdown': myCommunities.length}" >
+    <a href="">
+        <avatar source="loggedEntity.avatar" size="normal" type="loggedEntity._type"></avatar>
+    </a>
+    <ul class="dropdown" ng-if="loggedUser._id" title="{{ loggedCommunity.name || loggedUser.name }} ">
+       <li ng-show="myCommunities.length">
+            <a href="" ng-click="switchBack()" style="margin-right:30px;" title="{{ loggedUser.name }}">
+                <avatar source="loggedUser.avatar" size="small" type="'User'"></avatar>
+                {{ loggedUser.name }}
+            </a>
+        </li>
+        <li ng-repeat="community in myCommunities">
+            <a href="" ng-click="switchTo(community)" style="margin-right:30px;" title="{{ community.name }}">
+                <avatar source="community.avatar" size="small" type="'Community'"></avatar>
+                {{ community.name }}
+            </a>
+        </li>
+    </ul>  
+</li>

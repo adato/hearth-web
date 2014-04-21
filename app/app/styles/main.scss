@@ -63,6 +63,11 @@
 @import "angular";
 @import "social";
 
+meta.foundation-data-attribute-namespace {
+    font-family: false;
+}
+
+
 @function emCalc($pxWidth, $base: $em-base) {
     @return $pxWidth / $base * 1em;
 }
@@ -1322,7 +1327,7 @@ input[disabled].text-input {
 .invitation-link {
     display: block;
     position: fixed;
-    z-index: 10000;
+    z-index: 50;
     top: $topbar-height;
     right: 0;
     height: 33px;
@@ -1571,9 +1576,7 @@ input:focus,textarea:focus {
     }
 }
 
-.container  {
-    padding-top: 70px;
-}
+
 
 @import "angular-loading-bar";
 @import "unsupported";

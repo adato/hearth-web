@@ -58,14 +58,14 @@
 				<!--li signed-in ng-cloak ng-if="!loggedCommunity._id">
 					<a ng-href="#/profile/{{ user._id }}" ng-class="{ 'link': 1, 'active': pageType == 'profile' && isMine }" analytics-on analytics-event="open my profile" analytics-category="My profile" id="nav-profile">{{ 'TOP_BAR_PROFILE' | translate }}<span></span></a>
 				</li-->
-				<li class="show-for-medium-up">
-					<identity-switch logged-user="loggedUser" logged-community="loggedCommunity" switch-fn="switchIdentity(id)"></identity-switch>
-					<div ng-if="notifications.newCommunityCreated == true" class="notification new-community">
+				<identity-switch logged-user="loggedUser" logged-community="loggedCommunity" switch-fn="switchIdentity(id)"></identity-switch>
+				<li class="show-for-medium-up has-dropdown">
+					<!--div ng-if="notifications.newCommunityCreated == true" class="notification new-community">
 						<span class="arrow"></span>
 						<h5 translate>NEW_COMMUNITY_CREATED_TITLE</h5>
 						<p translate>NEW_COMMUNITY_CREATED_TEXT</p>
 						<a ng-click="dismissNotification('newCommunityCreated')" href="" translate class="close">CLOSE</a>
-					</div>
+					</div-->
 				</li>
 				<li class="show-for-small">
 					<a ng-href="#/my"  ng-class="{ 'link': 1, 'active': pageType == 'my' }" id="nav-my">{{ 'TOP_BAR_MY_HEARTH' | translate }}<span></span></a>

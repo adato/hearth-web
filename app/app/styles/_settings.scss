@@ -26,12 +26,10 @@ $grid-background-column-width: 9px;
 $grid-background-gutter-width: 1px;
 $grid-background-baseline-height: $grid-background-column-width + $grid-background-gutter-width;
 
-
-
 //
 // Foundation Variables
 //
-
+ $namespace : false;
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with brower-based text zoom or user-set defaults.
 $base-font-size: 100% !default;
