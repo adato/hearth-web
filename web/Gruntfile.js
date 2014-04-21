@@ -167,9 +167,9 @@ module.exports = function(grunt) {
 			}
 		},
 		// Automatically inject Bower components into the app
-		'bower-install': {
+		'bowerInstall': {
 			app: {
-				html: '<%= yeoman.app %>/index.html',
+				src: '<%= yeoman.app %>/index.html',
 				ignorePath: '<%= yeoman.app %>/'
 			}
 		},
@@ -209,8 +209,8 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					src: [
-						'<%= yeoman.dist %>/scripts/{,*/}*.js',
-						'<%= yeoman.dist %>/styles/{,*/}*.css',
+						'<%= yeoman.dist %>/{,*/}*.js',
+						'<%= yeoman.dist %>/{,*/}*.css',
 						//'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
 						//'<%= yeoman.dist %>/styles/fonts/*'
 					]
@@ -303,8 +303,8 @@ module.exports = function(grunt) {
 						'*.{ico,png,txt}',
 						'.htaccess',
 						'*.html',
-						'templates/{,*/}*.html',
-						'vendor/**/*',
+						//'templates/{,*/}*.html',
+						//'vendor/**/*',
 						'images/{,*/}*.{webp}',
 						'fonts/*',
 					]
@@ -315,18 +315,8 @@ module.exports = function(grunt) {
 					src: ['generated/*']
 				}, {
 					expand: true,
-					cwd: '<%= yeoman.app %>/app',
-					dest: '<%= yeoman.dist %>/app',
-					src: ['**']
-				}, {
-					expand: true,
 					cwd: '<%= yeoman.app %>/locales',
 					dest: '<%= yeoman.dist %>/locales',
-					src: ['**']
-				}, {
-					expand: true,
-					cwd: '.tmp/styles',
-					dest: '<%= yeoman.dist %>/styles',
 					src: ['**']
 				}]
 			},
@@ -353,16 +343,7 @@ module.exports = function(grunt) {
 		// By default, your `index.html`'s <!-- Usemin block --> will take care of
 		// minification. These next options are pre-configured if you do not wish
 		// to use the Usemin blocks.
-		cssmin: {
-			dist: {
-				files: {
-					'<%= yeoman.dist %>/styles/main.css': [
-						'.tmp\/concat\/styles/{,*/}*.css',
-						'<%= yeoman.app %>/styles/{,*/}*.css'
-					]
-				}
-			}
-		},
+		
 		uglify: {
 			dist: {}
 		},
@@ -388,7 +369,7 @@ module.exports = function(grunt) {
 		grunt.task.run([
 			'clean:server',
 			'bower-install-simple',
-			'bower-install',
+			'bowerInstall',
 			'concurrent:server',
 			'autoprefixer',
 			'configureProxies:server',
@@ -410,7 +391,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', [
 		'clean:dist',
 		'bower-install-simple',
-		'bower-install',
+		'bowerInstall',
 		'useminPrepare',
 		'concurrent:dist',
 		'compass:dist',
@@ -419,9 +400,9 @@ module.exports = function(grunt) {
 		'ngmin',
 		'copy:dist',
 		//'cdnify',
-		//'cssmin',
+		'cssmin',
 		'uglify',
-		//'rev',
+		'rev',
 		'usemin',
 		'htmlmin'
 	]);
