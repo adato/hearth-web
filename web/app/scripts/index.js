@@ -3,30 +3,40 @@
 var scrollToHash;
 
 angular.module('hearth.index', ['ngResource', 'pascalprecht.translate', 'hearth.services', 'hearth.filters'])
-	.config(function($translateProvider) {
-		$translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
-		$translateProvider.preferredLanguage(preferredLanguage);
-		$translateProvider.useStaticFilesLoader({
-			prefix: '../locales/',
-			suffix: '/messages.json'
-		});
-		return $translateProvider.useStorage('SessionLanguageStorage');
-	}).config(function($httpProvider, $translateProvider) {
-		return $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
-	}).controller('IndexCtrl', function($scope, $timeout, LanguageSwitch, ResponseErrors) {
-		$scope.errors = new ResponseErrors();
-		$scope.credentials = {
-			username: '',
-			password: ''
-		};
-		$scope.languages = LanguageSwitch.getLanguages();
-		$scope.languageCode = LanguageSwitch.uses();
-		return $scope.useLanguage = function(language) {
-			return LanguageSwitch.use(language).then(function() {
-				return $scope.languageCode = language;
+	.config(['$translateProvider',
+		function($translateProvider) {
+			$translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
+			$translateProvider.preferredLanguage(preferredLanguage);
+			$translateProvider.useStaticFilesLoader({
+				prefix: '../locales/',
+				suffix: '/messages.json'
 			});
-		};
-	}).directive('smoothScroll', function() {
+			return $translateProvider.useStorage('SessionLanguageStorage');
+		}
+	])
+	.config(['$httpProvider', '$translateProvider',
+		function($httpProvider, $translateProvider) {
+			return $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
+		}
+	])
+	.controller('IndexCtrl', [
+		'$scope', '$timeout', 'LanguageSwitch', 'ResponseErrors',
+		function($scope, $timeout, LanguageSwitch, ResponseErrors) {
+			$scope.errors = new ResponseErrors();
+			$scope.credentials = {
+				username: '',
+				password: ''
+			};
+			$scope.languages = LanguageSwitch.getLanguages();
+			$scope.languageCode = LanguageSwitch.uses();
+			return $scope.useLanguage = function(language) {
+				return LanguageSwitch.use(language).then(function() {
+					return $scope.languageCode = language;
+				});
+			};
+		}
+	])
+	.directive('smoothScroll', function() {
 		return {
 			link: function(scope, element, attrs) {
 				return $(element[0]).click(function(event) {
@@ -35,7 +45,8 @@ angular.module('hearth.index', ['ngResource', 'pascalprecht.translate', 'hearth.
 				});
 			}
 		};
-	}).directive('withErrors', function() {
+	})
+	.directive('withErrors', function() {
 		return {
 			restrict: 'A',
 			require: 'form',
@@ -77,19 +88,23 @@ angular.module('hearth.index', ['ngResource', 'pascalprecht.translate', 'hearth.
 				});
 			}
 		};
-	}).run(function(Auth, $window, $rootScope, $timeout) {
-		$timeout(function() {
-			return scrollToHash(window.location.hash);
-		}, 500);
-		return Auth.init(function() {
-			if (Auth.isLoggedIn()) {
-				$window.location.href = 'app/#/search';
-			}
-			if (!Auth.isLoggedIn()) {
-				return $rootScope.appLoaded = true;
-			}
-		});
-	});
+	})
+	.run([
+		'Auth', '$window', '$rootScope', '$timeout',
+		function(Auth, $window, $rootScope, $timeout) {
+			$timeout(function() {
+				return scrollToHash(window.location.hash);
+			}, 500);
+			return Auth.init(function() {
+				if (Auth.isLoggedIn()) {
+					$window.location.href = 'app/#/search';
+				}
+				if (!Auth.isLoggedIn()) {
+					return $rootScope.appLoaded = true;
+				}
+			});
+		}
+	]);
 
 scrollToHash = function(hash) {
 	var anchor, dest;

@@ -6,10 +6,12 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 module.exports = function(grunt) {
+
 	require('load-grunt-tasks')(grunt); // Load grunt tasks automatically
+
 	require('time-grunt')(grunt); // Time how long tasks take. Can help when optimizing build times
-	// Define the configuration for all the tasks
-	grunt.initConfig({
+
+	grunt.initConfig({ // Define the configuration for all the tasks
 		// Project settings
 		yeoman: {
 			// configurable paths
@@ -279,9 +281,9 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '.tmp/concat/scripts',
+					cwd: '.tmp/concat',
 					src: '*.js',
-					dest: '.tmp/concat/scripts'
+					dest: '.tmp/concat'
 				}]
 			}
 		},
@@ -343,7 +345,7 @@ module.exports = function(grunt) {
 		// By default, your `index.html`'s <!-- Usemin block --> will take care of
 		// minification. These next options are pre-configured if you do not wish
 		// to use the Usemin blocks.
-		
+
 		uglify: {
 			dist: {}
 		},
@@ -358,6 +360,7 @@ module.exports = function(grunt) {
 			}
 		}
 	});
+
 	grunt.registerTask('serve', function(target) {
 		if (target === 'dist') {
 			return grunt.task.run([
@@ -377,10 +380,12 @@ module.exports = function(grunt) {
 			'watch'
 		]);
 	});
+
 	grunt.registerTask('server', function() {
 		grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
 		grunt.task.run(['serve']);
 	});
+
 	grunt.registerTask('test', [
 		'clean:server',
 		'concurrent:test',
@@ -388,6 +393,7 @@ module.exports = function(grunt) {
 		'connect:test',
 		'karma'
 	]);
+
 	grunt.registerTask('build', [
 		'clean:dist',
 		'bower-install-simple',
