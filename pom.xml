@@ -19,6 +19,21 @@
                 <version>1.2.1</version>
                 <executions>
                     <execution>
+                        <id>install_bundler</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec}</executable>
+                            <arguments>
+                                <argument>${param}</argument>
+                                <argument>gem install bundler</argument>
+                            </arguments>
+                            <workingDirectory>./</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>gem</id>
                         <phase>process-sources</phase>
                         <goals>
