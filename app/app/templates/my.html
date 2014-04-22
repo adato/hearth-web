@@ -3,7 +3,9 @@
             ng-hide="isReplyingAd() || isCreatingAd()">
 
         <div class="invitation-link" signed-in>
-            <a href="" scroll-to="top" ng-click="page.inviteFriendsClicked = 1;"><i class="icon-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}</a>
+            <a href="" ng-click="page.inviteFriendsClicked = 1;">
+                <i class="icon-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}
+            </a>
         </div>
         <a name="top"></a>
         <invitation-form visible="page.inviteFriendsClicked" logged-user="loggedUser"></invitation-form>

@@ -4,7 +4,9 @@
             ng-hide="isReplyingAd() || isCreatingAd()">
 
         <div class="invitation-link" signed-in>
-            <a href="" scroll-to="top" ng-click="page.inviteFriendsClicked = 1;"><i class="icon-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}</a>
+            <a href="" ng-click="page.inviteFriendsClicked = 1;">
+                <i class="icon-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}
+            </a>
         </div>
         <a name="top"></a>
         <invitation-form visible="page.inviteFriendsClicked" logged-user="loggedUser"></invitation-form>
@@ -18,8 +20,7 @@
                 <h3>{{ 'POPULAR_KEYWORDS' | translate }}</h3>
                 <div class="keywords">
                     <ul class="">
-                        <li ng-repeat="keyword in allKeywords"><a ng-class="{ 'active': keywords.indexOf(keyword.term) > -1 }" ng-click="searchByKeyword($event, keyword.term)"
-                                                                  analytics-on analytics-event="filter popular" analytics-category="Marketplace" analytics-label="tags">{{ keyword.term }}</a></li>
+                        <li ng-repeat="keyword in allKeywords"><a ng-class="{ 'active': keywords.indexOf(keyword.term) > -1 }" ng-click="searchByKeyword($event, keyword.term)" analytics-on analytics-event="filter popular" analytics-category="Marketplace" analytics-label="tags">{{ keyword.term }}</a></li>
                     </ul>
                 </div>
             </div>

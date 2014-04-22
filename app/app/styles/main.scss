@@ -1314,13 +1314,11 @@ input[disabled].text-input {
     form {
         position: relative;
         padding: emCalc(2 * $grid-size);
-        z-index: 900;
         background: $body-bg;
         button[type='submit'] {
             width: 15%;
             position: absolute;
             right: 0px;
-            z-index: 101;
             padding: 0;
         }
     }

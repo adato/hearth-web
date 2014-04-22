@@ -10,26 +10,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 				'visible': '=',
 				'loggedUser': '='
 			},
-			template: '\
-      <div ng-show="status.visible && loggedUser._id">\
-        <div ng-show="!status.sentOk" class="invitation-form">\
-            <form name="sendInvitationForm" id="sendInvitationForm" ng-submit="sendInvitation()">\
-                <h4 translate>HEARTH_INVITATION</h4>\
-                <p translate>HEARTH_INVITATION_TEXT</p>\
-                <div style="position:relative;">\
-                    <div class="alert-box alert error round connect-bottom" ng-show="status.sentError">{{ status.sentError.base | translate }}</div>\
-                    <button type="submit" class="primary button prefix round connect-left" ng-disabled="status.sending"\
-                            analytics-on analytics-event="sending invitation" analytics-category="Invitations"\
-                            ><i class="icon-envelope"></i></button>\
-                    <input type="email" class="text-input round connect-right" ng-model="invitation.toEmail" style="width:85%;" required>\
-                </div>\
-                <a href="" ng-click="cancel()" translate>CANCEL</a>\
-            </form>\
-        </div>\
-        <div ng-show="status.sentOk" class="clearfix padding-2 padding-v-4 successfully-sent">\
-              {{ \'INVITATION_SENDING_SUCCESS\' | translate }}\
-        </div>\
-      </div>',
+			templateUrl: 'templates/invitationForm.html',
 			link: function(scope, el, attrs) {
 				var init;
 				init = function() {
