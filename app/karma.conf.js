@@ -4,25 +4,25 @@
 module.exports = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
-    basePath: '',
+    basePath: 'app',
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/angular-resource/angular-resource.js',
-      'app/bower_components/angular-cookies/angular-cookies.js',
-      'app/bower_components/angular-sanitize/angular-sanitize.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/scripts/config.js',
-      'app/scripts/controllers/controllers.js',
-      'app/scripts/services/services.js',
-      'app/scripts/directives/directives.js',
-      'app/scripts/*.js',
-      'app/scripts/**/*.js',
+      'vendor/angular/angular.js',
+      'vendor/angular-mocks/angular-mocks.js',
+      'vendor/angular-resource/angular-resource.js',
+      'vendor/angular-cookies/angular-cookies.js',
+      'vendor/angular-sanitize/angular-sanitize.js',
+      'vendor/angular-route/angular-route.js',
+      'scripts/config.js',
+      'scripts/controllers/controllers.js',
+      'scripts/services/services.js',
+      'scripts/directives/directives.js',
+      'scripts/*.js',
+      'scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],

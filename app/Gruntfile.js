@@ -119,7 +119,7 @@ module.exports = function(grunt) {
 					base: [
 						'.tmp',
 						'test',
-						'<%= yeoman.app %>'
+						//'<%= yeoman.app %>'
 					]
 				}
 			},
