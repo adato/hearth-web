@@ -63,30 +63,20 @@
 @import "angular";
 @import "social";
 
+@include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
+@include font-face("Signika", font-files("Signika-Semibold.woff", "Signika-Semibold.ttf", "Signika-Semibold.svg#signikasemibold"), "Signika-Semibold.eot", bold);
+@include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
+@include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold);
+
 meta.foundation-data-attribute-namespace {
     font-family: false;
 }
-
 
 @function emCalc($pxWidth, $base: $em-base) {
     @return $pxWidth / $base * 1em;
 }
 
-@mixin round($top-right: true, $bottom-right: true, $bottom-left: true, $top-left: true) {
-    @include border-radius($global-radius);
-    @if not $top-right {
-        @include border-top-right-radius(0);
-    }
-    @if not $bottom-right {
-        @include border-bottom-right-radius(0);
-    }
-    @if not $bottom-left {
-        @include border-bottom-left-radius(0);
-    }
-    @if not $top-left {
-        @include border-top-left-radius(0);
-    }
-}
+@import "mixins/round";
 
 $left-bar-width: 150px;
 $topbar-height: 70px;
@@ -121,25 +111,6 @@ textarea {
     height: auto;
 }
 
-@include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
-
-@include font-face("Signika", font-files("Signika-Semibold.woff", "Signika-Semibold.ttf", "Signika-Semibold.svg#signikasemibold"), "Signika-Semibold.eot", 600);
-
-@include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"));
-
-@include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"));
-
-/*@font-face {
-  font-family: 'SourceSansPro';
-  src: url('fonts/sourcesanspro-400.woff') format('woff');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'SourceSansPro';
-  src: url('fonts/sourcesanspro-700.woff') format('woff');
-  font-weight: 700;
-}*/
 
 // styles for medium screen
 // @todo separate into own file and keep dependencies
