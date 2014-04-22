@@ -198,6 +198,9 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					generatedImagesDir: '<%= yeoman.dist %>/images/generated',
+					httpImagesPath: 'images',
+					httpGeneratedImagesPath: 'images/generated',
+					httpFontsPath: 'fonts',
 					trace: true,
 					force: false
 				}
