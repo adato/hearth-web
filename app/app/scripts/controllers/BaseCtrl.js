@@ -2,7 +2,8 @@
 
 angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
 	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie) {
-		var url = encodeURI(window.location.href);
+		var timeout,
+			url = encodeURI(window.location.href);
 
 		$scope.breakpointForSmall = 782;
 		$scope.defaultPageType = '';
@@ -18,8 +19,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			$scope.info = Info.show();
 			return $scope.checkNotifications();
 		};
+
 		$scope.$on('$includeContentLoaded', function() {
-			$(document).foundation();
+			if (timeout) {
+				clearTimeout(timeout);
+			}
+			timeout = setTimeout(function() {
+				$(document).foundation();
+			}, 1000);
 		});
 		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
 			return $scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
@@ -117,8 +124,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				});
 			}
 		};
-		
-		
+
 		$scope.setLastAddedId = function(id) {
 			$scope.lastAddedId = id;
 			return $scope.lastAddedId;
