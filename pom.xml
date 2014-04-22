@@ -34,7 +34,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>npm</id>
+                        <id>npm-web</id>
                         <phase>process-sources</phase>
                         <goals>
                             <goal>exec</goal>
@@ -49,7 +49,7 @@
                         </configuration>
                     </execution>
                      <execution>
-                        <id>npm</id>
+                        <id>npm-app</id>
                         <phase>process-sources</phase>
                         <goals>
                             <goal>exec</goal>
