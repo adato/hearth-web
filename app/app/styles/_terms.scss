@@ -1,0 +1,52 @@
+.terms-container {
+     .terms {
+        padding: $reveal-modal-padding;
+        margin: {
+            top: 1em;
+             bottom: 1em;
+        };
+        ol {
+            margin-left: 1.25em;
+            p, dt, dd {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            li {
+                list-style-type: decimal;
+                ol li {
+                    list-style-type: lower-alpha;
+                }
+            }
+        }
+        @include border-radius($global-radius);
+        background-color: $body-alt-bg;
+        border: 1px solid $body-border-color;
+    }
+    .agreement {
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        button {
+            margin: emCalc($grid-size / 2);
+        }
+    }
+}
+
+#terms.reveal-modal {
+    top: 1em;
+    bottom: 1em;
+    padding: $reveal-modal-padding;
+    padding-right: 1.5 * $reveal-modal-padding;
+    .terms {
+        -webkit-overflow-scrolling: touch;
+        @include experimental(overflow-scrolling, auto, $webkit: false);
+        position: absolute;
+        top: $reveal-modal-padding;
+        left: $reveal-modal-padding;
+        bottom: $reveal-modal-padding;
+        right: 1.5 * $reveal-modal-padding;
+        overflow: auto;
+    }
+}
