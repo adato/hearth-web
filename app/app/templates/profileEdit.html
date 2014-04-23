@@ -6,29 +6,27 @@
         <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
     </div>
   <hr>
+  <form name="profileavatarform" style="clear:both;">
+    <!-- path is prefixed with $$config.apiPath -->
+    <div file-upload-output class=""></div>
+    <div file-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()" style="width:100%; position:relative;">
+         <button class="green small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
+    </div>
+  </form>
 
   <form id="profileEditForm" name="profileEditForm" ng-submit="updateProfile()" with-errors novalidate>
       <h1>{{ 'WHO' | translate }}</h1>
       <div class="row">
-        <div class="large-4 columns">
-          <form name="profileavatarform" style="clear:both;">
-              <!-- path is prefixed with $$config.apiPath -->
-              <div file-upload-output class=""></div>
-              <div file-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()" style="width:100%; position:relative;">
-                   <button class="green small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
-              </div>
-     
-        </div>
-        <div class="large-4 columns">
+         <div class="large-6 columns">
           <label>
             {{ 'NAME' | translate }}
-            <input class="text-input" type='text'>
+            <input ng-model="editedProfile.name" class="text-input" type='text'>
           </label>
         </div>
-        <div class="large-4 columns">
+        <div class="large-6 columns">
             <label>
               {{ 'MY_WORK' | translate }}
-              <input class="text-input" type='text' name="my_work">
+              <input ng-model="editedProfile.work"  class="text-input" type='text' name="my_work">
             </label>
         </div>
       </div>
@@ -38,13 +36,13 @@
         <div class="large-6 columns">
           <label>
             {{ 'CITIES' | translate }}
-            <input  class="text-input" type='text' name="cities">
+            <input  ng-model="editedProfile.cities" class="text-input" type='text' name="cities">
           </label>
         </div>
         <div class="large-6 columns">
           <label>
             {{ 'MY_EMAIL' | translate }}
-            <input  class="text-input" type='email' name="my_email">
+            <input  ng-model="editedProfile.email" class="text-input" type='email' name="my_email">
           </label>
         </div>
       </div>
@@ -56,7 +54,7 @@
           <label>
             <div class="icon-phone"></div>
            {{ 'MY_PHONE' | translate }}
-            <input  class="text-input" type='tel' name="my_phone">
+            <input  ng-model="editedProfile.phone" class="text-input" type='tel' name="my_phone">
           </label>
         </div>
 
@@ -64,7 +62,7 @@
           <label>
             <div class="icon-facebook"></div>
             {{ 'MY_FACEBOOK' | translate }}
-            <input  class="text-input" type='text' name="my_facebook">
+            <input  ng-model="editedProfile.facebook" class="text-input" type='text' name="my_facebook">
           </label>
         </div>
 
@@ -72,7 +70,7 @@
           <label>
             <div class="icon-google-plus"></div>
             {{ 'MY_GOOGLEPLUS' | translate }}
-            <input  class="text-input" type='text' name="my_googleplus">
+            <input ng-model="editedProfile.googleplus"  class="text-input" type='text' name="my_googleplus">
           </label>
         </div>
       </div>
@@ -82,7 +80,7 @@
           <label>
             <div class="icon-linkedin"></div>
             {{ 'MY_LINKEDIN' | translate }}
-            <input  class="text-input" type='text' name="my_linkedin">
+            <input  ng-model="editedProfile.linkedin"  class="text-input" type='text' name="my_linkedin">
           </label>
         </div>
 
@@ -90,7 +88,7 @@
           <label>
             <div class="icon-globe"></div>
             {{ 'MY_WEB' | translate }}
-            <input  class="text-input" type='text' name="my_web">
+            <input  ng-model="editedProfile.web"  class="text-input" type='text' name="my_web">
           </label>
         </div>
 
@@ -98,7 +96,7 @@
           <label>
             <div class="icon-twitter"></div>
             {{ 'MY_TWITTER' | translate }}
-            <input  class="text-input" type='text' name="my_twitter">
+            <input ng-model="editedProfile.twitter"  class="text-input" type='text' name="my_twitter">
           </label>
         </div>
       </div>
@@ -108,14 +106,14 @@
         <div class="large-6 columns">
           <label>
             {{ 'MY_TELL_ABOUT' | translate }}
-            <textarea class="text-input" name="my_tell_about"></textarea>
+            <textarea  ng-model="editedProfile.tell_about" class="text-input" name="about"></textarea>
           </label>
         </div>
 
         <div class="large-6 columns">
           <label>
             {{ 'MY_INTERESTS' | translate }}
-            <textarea class="text-input" name="my_interests"></textarea>
+            <textarea class="text-input" ng-model="editedProfile.interests" name="interests"></textarea>
           </label>
         </div>
       </div>
@@ -123,19 +121,19 @@
       <label>{{ 'MY_LANGUAGES' | translate }}</label>
       <div class="row">
         <div class="large-2 columns">
-          <label><input type="checkbox" name="my_lang_en">{{ 'MY_LANG_EN' | translate }}</label> 
+          <label><input type="checkbox" name="lang_en">{{ 'MY_LANG_EN' | translate }}</label> 
         </div>
         <div class="large-2 columns">
-          <label><input type="checkbox" name="my_lang_de">{{ 'MY_LANG_DE' | translate }}</label> 
+          <label><input type="checkbox" name="lang_de">{{ 'MY_LANG_DE' | translate }}</label> 
         </div>
         <div class="large-2 columns">
-          <label><input type="checkbox" name="my_lang_fr">{{ 'MY_LANG_FR' | translate }}</label> 
+          <label><input type="checkbox" name="lang_fr">{{ 'MY_LANG_FR' | translate }}</label> 
         </div>
         <div class="large-2 columns">
-          <label><input type="checkbox" name="my_lang_ru">{{ 'MY_LANG_RU' | translate }}</label> 
+          <label><input type="checkbox" name="lang_ru">{{ 'MY_LANG_RU' | translate }}</label> 
         </div>
         <div class="large-2 columns">
-          <label><input type="checkbox" name="my_lang_es">{{ 'MY_LANG_ES' | translate }}</label> 
+          <label><input type="checkbox" name="lang_es">{{ 'MY_LANG_ES' | translate }}</label> 
         </div>
         <div class="large-2 columns">
           <select>
@@ -144,7 +142,7 @@
           </select>
         </div>
       </div>
-     </form>
+   
       <div class="alert-box visible alert error round connect-bottom" ng-show="errorsProfile.base">{{ errorsProfile.base | translate }}</div>
 
     <!--

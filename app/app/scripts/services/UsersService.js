@@ -1,4 +1,3 @@
-
 angular.module('hearth.services').service('UsersService', [
 	'User', 'UserPosts', 'UserRatings', '$q', 'Followers', 'Friends', 'Followees', '$analytics', 'CommunityMemberships',
 	function(User, UserPosts, UserRatings, $q, UserFollowers, UserFriends, UserFollowees, $analytics, CommunityMemberships) {
