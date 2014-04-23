@@ -206,7 +206,7 @@ module.exports = function(grunt) {
 				require: 'zurb-foundation',
 				httpImagesPath: '/images',
 				httpGeneratedImagesPath: '/images/generated',
-				httpFontsPath: '/fonts',
+				httpFontsPath: 'fonts',
 				relativeAssets: false,
 				assetCacheBuster: false,
 				raw: 'Sass::Script::Number.precision = 10\n',
@@ -217,8 +217,6 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					generatedImagesDir: '<%= yeoman.dist %>/images/generated',
-					httpImagesPath: 'images',
-					httpFontsPath: 'fonts',
 					trace: true,
 					force: false
 				}
