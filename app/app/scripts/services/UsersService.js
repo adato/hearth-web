@@ -22,6 +22,9 @@ angular.module('hearth.services').service('UsersService', [
 		this.update = function(profile) {
 			var deferred = $q.defer();
 
+			console.log(profile.work);
+			debugger
+
 			profile.$edit(function(data) {
 				return deferred.resolve(data);
 			}, function(err) {

@@ -1,0 +1,16 @@
+.profile-edit {
+    h1 {
+        font-size: 2em;
+        color:$a-color;
+        font-weight: bold;
+        margin: {
+            top: 1em;
+            bottom: 0;
+        };
+        &:first-child {
+        	margin: {
+        		top:0;
+        	}
+        }
+    }
+}
