@@ -30,11 +30,7 @@
 				<li>
 					<a href="#/search" ng-class="{ 'link': 1, 'active': pageType == 'search' }" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-market">{{ 'TOP_BAR_SEARCH' | translate }}<span></span></a>
 				</li>
-			
-				<li signed-in ng-cloak ng-if="loggedCommunity._id">
-					<a ng-href="#/community/{{ loggedCommunity._id }}" ng-class="{ 'link': 1, 'active': pageType == 'community-profile' && isMine }" analytics-on analytics-event="open profile" analytics-category="My community profile" id="nav-profile">{{ 'TOP_BAR_COMMUNITY_PROFILE' | translate }}<span></span></a>
-				</li>
-				<li signed-in ng-cloak ng-if="!loggedCommunity._id">
+				<li signed-in ng-cloak>
 					<a ng-href="#/communities" ng-class="{ 'link': 1, 'active': pageType == 'communities' }" id="nav-communities">{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}<span></span></a>
 				</li>
 	            <li signed-in ng-cloak ng-if="!loggedCommunity._id">
