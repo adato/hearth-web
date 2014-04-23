@@ -117,8 +117,9 @@ module.exports = function(grunt) {
 				options: {
 					port: 9001,
 					base: [
-						'.tmp',
-						'test',
+					
+						//'.tmp',
+						//'test',
 						//'<%= yeoman.app %>'
 					]
 				}
@@ -444,7 +445,6 @@ module.exports = function(grunt) {
 		'clean:server',
 		'concurrent:test',
 		'autoprefixer',
-		'connect:test',
 		'karma'
 	]);
 
