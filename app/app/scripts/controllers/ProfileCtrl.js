@@ -195,16 +195,24 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		});
 		$scope.init = function() {
-			var _ref, _ref1;
 			$scope.limit = 15;
 			$scope.offset = 0;
 			$scope.lastQueryReturnedCount = 0;
 			$scope.ads = [];
 			$scope.ratings = [];
 			$scope.score = 0;
-			$rootScope.isMine = $routeParams.id === ((_ref = $scope.loggedUser) != null ? _ref._id : void 0) && !((_ref1 = $scope.loggedCommunity) != null ? _ref1._id : void 0);
 			return fetchUser();
 		};
+
+		function _getIsMine() {
+			var isMine = $scope.loggedUser && $routeParams.id === $scope.loggedUser._id,
+				isMineCommunity = $scope.loggedCommunity && $routeParams.id === $scope.loggedCommunity._id;
+
+			$rootScope.isMine = isMine || isMineCommunity;
+		}
+		$scope.$watch('loggedUser', _getIsMine);
+		$scope.$watch('loggedCommunity', _getIsMine);
+
 		$scope.showRatingDialog = function(score) {
 			$scope.$broadcast('cancelReplyingAd');
 			$scope.rating.errors = {};
