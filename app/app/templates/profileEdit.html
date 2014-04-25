@@ -19,13 +19,18 @@
         <span class="text">{{'PROFILE_PROGRESS' | translate:{progress:progress} }}</span>
       </span>
     </div>
+
+       <div feature-enabled="deleteAccount" class="padding-2">
+        <a href="" class="" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
+            <i class="icon-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
+        </a>
+    </div>
   </div>
 
   <div class="left-column small-12 large-7 columns pull-5 alt-bg">
    
-
   <form id="profileEditForm" name="profileEditForm" ng-submit="updateProfile()" with-errors novalidate>
-      <h1>{{ 'WHO' | translate }}</h1>
+      <h1><span class="icon-user"></span> {{ 'WHO' | translate }}</h1>
       <div class="row">
          <div class="large-6 columns">
           <label>
@@ -37,98 +42,104 @@
             <label>
               {{ 'MY_WORK' | translate }}
               <input ng-model="editedProfile.work"  class="text-input" type='text' name="my_work">
+              <em>{{'MY_WORK_EXAMPLE' | translate}}</em>
             </label>
         </div>
       </div>
 
-      <h1>{{ 'WHERE' | translate }}</h1>
+      <h1><span class="icon-compass"></span> {{ 'WHERE' | translate }}</h1>
       <div class="row">
         <div class="large-6 columns">
           <label>
-            {{ 'CITIES' | translate }}
+            {{ 'MY_PLACES' | translate }}
             <input  ng-model="editedProfile.location" class="text-input" type='text' name="location">
+           
+             <em>{{'MY_PLACES_EXAMPLE' | translate}}</em>
           </label>
         </div>
+        <div class="large-6 columns">
+          <label>
+            {{ 'MY_COUNTRY' | translate }}
+            <input  ng-model="editedProfile.country" class="text-input" type='email' name="my_email">
+          </label>
+        </div>
+      </div>
+
+      <h1><span class="icon-mobile-phone"></span> {{ 'CONTACTS' | translate }}</h1>
+      <div class="row">
         <div class="large-6 columns">
           <label>
             {{ 'MY_EMAIL' | translate }}
             <input  ng-model="editedProfile.email" class="text-input" type='email' name="my_email">
           </label>
         </div>
-      </div>
-
-      <h1>{{ 'CONTACTS' | translate }}</h1>
-
-      <div class="row">
-        <div class="large-4 columns">
+        <div class="large-6 columns">
           <label>
             <div class="icon-phone"></div>
            {{ 'MY_PHONE' | translate }}
             <input  ng-model="editedProfile.phone" class="text-input" type='tel' name="my_phone">
           </label>
         </div>
+      </div>
 
-         <div class="large-4 columns">
+     <h1><span class="icon-code-fork"></span> {{ 'MY_NETWORKS' | translate }}</h1>
+      <div class="row">
+
+         <div class="large-6 columns">
           <label>
             <div class="icon-facebook"></div>
             {{ 'MY_FACEBOOK' | translate }}
             <input  ng-model="editedProfile.facebook" class="text-input" type='text' name="my_facebook">
+            <em>{{ 'EG' | translate }} https://www.facebook.com/asociaceux</em>
           </label>
         </div>
 
-         <div class="large-4 columns">
+        <div class="large-6 columns">
+          <label>
+            <div class="icon-twitter"></div>
+            {{ 'MY_TWITTER' | translate }}
+            <input ng-model="editedProfile.twitter"  class="text-input" type='text' name="my_twitter">
+            <em>{{ 'EG' | translate }} https://twitter.com/asociaceux</em>
+          </label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <label>
+            <div class="icon-linkedin"></div>
+            {{ 'MY_LINKEDIN' | translate }}
+            <input  ng-model="editedProfile.linkedin"  class="text-input" type='text' name="my_linkedin">
+            <em>{{ 'EG' | translate }} https://www.linkedin.com/profile</em>
+          </label>
+        </div>
+
+         <div class="large-6 columns">
           <label>
             <div class="icon-google-plus"></div>
             {{ 'MY_GOOGLEPLUS' | translate }}
             <input ng-model="editedProfile.googleplus"  class="text-input" type='text' name="my_googleplus">
+            <em>{{ 'EG' | translate }} https://plus.google.com/profile</em>
           </label>
         </div>
       </div>
 
       <div class="row">
-        <div class="large-4 columns">
-          <label>
-            <div class="icon-linkedin"></div>
-            {{ 'MY_LINKEDIN' | translate }}
-            <input  ng-model="editedProfile.linkedin"  class="text-input" type='text' name="my_linkedin">
-          </label>
-        </div>
 
-        <div class="large-4 columns">
+        <div class="large-6 columns">
           <label>
             <div class="icon-globe"></div>
             {{ 'MY_WEB' | translate }}
             <input  ng-model="editedProfile.web"  class="text-input" type='text' name="my_web">
+             <em>{{ 'EG' | translate }} https://www.myweb.com</em>
           </label>
         </div>
 
-        <div class="large-4 columns">
-          <label>
-            <div class="icon-twitter"></div>
-            {{ 'MY_TWITTER' | translate }}
-            <input ng-model="editedProfile.twitter"  class="text-input" type='text' name="my_twitter">
-          </label>
-        </div>
       </div>
 
-      <h1>{{ 'ABOUT_ME' | translate }}</h1>
-       <div class="row">
-        <div class="large-6 columns">
-          <label>
-            {{ 'MY_TELL_ABOUT' | translate }}
-            <textarea  ng-model="editedProfile.tell_about" class="text-input" name="about"></textarea>
-          </label>
-        </div>
-
-        <div class="large-6 columns">
-          <label>
-            {{ 'MY_INTERESTS' | translate }}
-            <textarea class="text-input" ng-model="editedProfile.interests" name="interests"></textarea>
-          </label>
-        </div>
-      </div>
-
-      <label>{{ 'MY_LANGUAGES' | translate }}</label>
+ 
+      <h1><span class="icon-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
       <div class="row">
         <div class="large-2 columns">
           <label><input type="checkbox" name="lang_en">{{ 'MY_LANG_EN' | translate }}</label> 
@@ -152,6 +163,25 @@
           </select>
         </div>
       </div>
+
+       <h1><span class="icon-heart"></span> {{ 'ABOUT_ME' | translate }}</h1>
+       <div class="row">
+
+       <div class="large-6 columns">
+          <label>
+            {{ 'MY_INTERESTS' | translate }}
+            <textarea placeholder="{{'MY_INTERESTS_EXAMPLE' | translate}}" class="text-input" ng-model="editedProfile.interests" name="interests"></textarea>
+          </label>
+        </div>
+
+        <div class="large-6 columns">
+          <label>
+            {{ 'MY_TELL_ABOUT' | translate }}
+            <textarea placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate}}"  ng-model="editedProfile.tell_about" class="text-input" name="about"></textarea>
+          </label>
+        </div>
+        
+      </div>
    
       <div class="alert-box visible alert error round connect-bottom" ng-show="errorsProfile.base">{{ errorsProfile.base | translate }}</div>
 
@@ -167,11 +197,7 @@
         </div>
       </div>
   </form>
-    <div feature-enabled="deleteAccount" class="padding-2">
-        <a href="" class="" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
-            <i class="icon-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
-        </a>
-    </div>
+ 
   </div>
 
 
