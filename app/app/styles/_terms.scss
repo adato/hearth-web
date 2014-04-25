@@ -22,16 +22,7 @@
         background-color: $body-alt-bg;
         border: 1px solid $body-border-color;
     }
-    .agreement {
-        position: absolute;
-        bottom: 0;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        button {
-            margin: emCalc($grid-size / 2);
-        }
-    }
+   
 }
 
 #terms.reveal-modal {
