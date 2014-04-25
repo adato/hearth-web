@@ -4,6 +4,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', 'Geocoder', '$window', '$translate', '$analytics', '$q', 'ResponseErrors',
 	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, Geocoder, $window, $translate, $analytics, $q, ResponseErrors) {
 		var fetchAds, fetchRatings, fetchUser;
+		$scope.progress = 30;
 		$scope.rating = {};
 		$scope.adEditing = false;
 		$scope.expandAd(null);

@@ -19,6 +19,7 @@
 	"RATING_WAS_SAVED": "Rating was successfully saved.",
 	"PROFILE_WAS_UPDATED": "Your profile was updated. You are  like a whole new person now!",
 	"PROFILE_UPDATE_FAILED": "Unfortunately, the changes in your profile couldn't be saved at this time. Before you jump out of window, please try again.",
+	"PROFILE_PROGRESS": "Your profile is {{progress}}% complete.",
 	"AVATAR_UPLOAD_SUCCESS": "New profile picture was successfully uploaded. Wow, you look good!",
 	"AVATAR_UPLOAD_FAILED": "Profile picture upload failed. What's wrong with your picture?!",
 	"ERR_PASSWORDS_DONT_MATCH": "Don't freak out but your passwords don't match. Count to three now. We know you can fix it!",

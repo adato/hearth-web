@@ -62,6 +62,7 @@
 @import "hearth-icons";
 @import "angular";
 @import "social";
+@import "progress";
 
 @include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
 
@@ -283,37 +284,7 @@ section.more {
     color: $a-color;
 }
 
-.ratings-bar {
-    position: relative;
-    height: emCalc(2 * $grid-size);
-    line-height: emCalc(2 * $grid-size);
-    .hearthicon-appreciate {
-        color: #8ecc7c;
-        @include text-shadow(#458c50 -1px -1px, #458c50 0px -1px, #458c50 1px -1px, #458c50 -1px 0px, #458c50 1px 0px, #458c50 -1px 1px, #458c50 0px 1px, #458c50 1px 1px);
-    }
-    .hearthicon-hate {
-        color: #ff7a40;
-        @include text-shadow(#e2793a -1px -1px, #e2793a 0px -1px, #e2793a 1px -1px, #e2793a -1px 0px, #e2793a 1px 0px, #e2793a -1px 1px, #e2793a 0px 1px, #e2793a 1px 1px);
-    }
-    .ratio {
-        @include stretch(0.33em, 1.25em, 0, 1.25em);
-        height: 0.67em;
-        line-height: 1em;
-        .thumb-ups, .thumb-downs {
-            @include stretch;
-            background-repeat: repeat;
-            background-position-x: left;
-        }
-        .thumb-ups {
-            background-image: image-url("rating-appreciate.png");
-            z-index: 2;
-        }
-        .thumb-downs {
-            background-image: image-url("rating-hate.png");
-            z-index: 1;
-        }
-    }
-}
+@import "ratings-bar";
 
 .thumb-ups-color {
     color: #458c50;
@@ -436,7 +407,8 @@ p {
     display: inherit;
 }
 
-.listing, .profile {
+.listing, 
+.profile {
     .photo {
         position: relative;
     }

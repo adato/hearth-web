@@ -973,24 +973,24 @@ $button-radius: $global-radius;
 
 // Progress bar height
 
-// $progress-bar-height: emCalc(25px);
-// $progress-bar-color: transparent;
+ 	$progress-bar-height: 2em;
+	$progress-bar-color: lighten( nth($color, 3), 20%);
 
 // Border styles
 
-// $progress-bar-border-color: darken(#fff, 20%);
-// $progress-bar-border-size: 1px;
+ $progress-bar-border-color: nth($color, 1);
+ $progress-bar-border-size: 3px;
 // $progress-bar-border-style: solid;
 // $progress-bar-border-radius: $global-radius;
 
 // Margin & padding
 
-// $progress-bar-pad: emCalc(2px);
+ //$progress-bar-pad: emCalc(2px);
 // $progress-bar-margin-bottom: emCalc(10px);
 
 // Meter colors
 
-// $progress-meter-color: $primary-color;
+	$progress-meter-color: nth($color, 1);
 // $progress-meter-secondary-color: $secondary-color;
 // $progress-meter-success-color: $success-color;
 // $progress-meter-alert-color: $alert-color;

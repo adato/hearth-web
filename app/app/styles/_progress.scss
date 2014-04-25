@@ -1,0 +1,19 @@
+.progress {
+    margin: 1em;
+    overflow: hidden;
+    padding: 0;
+    .meter {
+        white-space: nowrap;
+        color: nth($color, 4);
+        @include border-radius(0 !important);
+        .text {
+            margin: {
+                margin-left: 1em;
+            };
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 1.6em;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+.ratings-bar {
+    position: relative;
+    height: emCalc(2 * $grid-size);
+    line-height: emCalc(2 * $grid-size);
+    .hearthicon-appreciate {
+        color: #8ecc7c;
+        @include text-shadow(#458c50 -1px -1px, #458c50 0px -1px, #458c50 1px -1px, #458c50 -1px 0px, #458c50 1px 0px, #458c50 -1px 1px, #458c50 0px 1px, #458c50 1px 1px);
+    }
+    .hearthicon-hate {
+        color: #ff7a40;
+        @include text-shadow(#e2793a -1px -1px, #e2793a 0px -1px, #e2793a 1px -1px, #e2793a -1px 0px, #e2793a 1px 0px, #e2793a -1px 1px, #e2793a 0px 1px, #e2793a 1px 1px);
+    }
+    .ratio {
+        @include stretch(0.33em, 1.25em, 0, 1.25em);
+        height: 0.67em;
+        line-height: 1em;
+        .thumb-ups, .thumb-downs {
+            @include stretch;
+            background-repeat: repeat;
+            background-position-x: left;
+        }
+        .thumb-ups {
+            background-image: image-url("rating-appreciate.png");
+            z-index: 2;
+        }
+        .thumb-downs {
+            background-image: image-url("rating-hate.png");
+            z-index: 1;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 <div class="row profile-edit">
   <div class="right-column small-12 large-5 columns push-7" ng-cloak>
-  <div class="profile-header">
+
+    <div class="profile-header">
         <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
         <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ profile.name }}</h1>
         <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
@@ -12,6 +13,12 @@
            <button class="green small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
       </div>
     </form>
+
+    <div class="progress radius round ">
+      <span class="meter" style="width: {{progress}}%">
+        <span class="text">{{'PROFILE_PROGRESS' | translate:{progress:progress} }}</span>
+      </span>
+    </div>
   </div>
 
   <div class="left-column small-12 large-7 columns pull-5 alt-bg">

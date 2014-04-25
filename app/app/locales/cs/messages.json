@@ -19,6 +19,7 @@
 	"RATING_WAS_SAVED": "Hodnocení bylo úspěšně uloženo. Co je doma, to se počítá.",
 	"PROFILE_WAS_UPDATED": "Změny ve vašem profilu byly uloženy. Jste teď jako úplně nový člověk!",
 	"PROFILE_UPDATE_FAILED": "Změny ve vašem profilu se bohužel nepodařilo uložit. Dřív než vyskočíte z\nokna, zkuste to prosím ještě jednou.",
+	"PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",
 	"AVATAR_UPLOAD_SUCCESS": "Nový profilový obrázek byl úspěšně nahrán. Teda, sekne vám to!",
 	"AVATAR_UPLOAD_FAILED": "Bohužel se nepodařilo nahrát profilový obrázek. Co na něm vlastně máte?!",
 	"ERR_PASSWORDS_DONT_MATCH": "Nepanikařte, ale vaše hesla se neshodují. Zkuste napočítat do tří. Víme, že to dáte!",
