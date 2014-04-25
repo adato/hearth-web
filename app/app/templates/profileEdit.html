@@ -53,7 +53,6 @@
           <label>
             {{ 'MY_PLACES' | translate }}
             <input  ng-model="editedProfile.location" class="text-input" type='text' name="location">
-           
              <em>{{'MY_PLACES_EXAMPLE' | translate}}</em>
           </label>
         </div>
@@ -62,6 +61,31 @@
             {{ 'MY_COUNTRY' | translate }}
             <input  ng-model="editedProfile.country" class="text-input" type='email' name="my_email">
           </label>
+        </div>
+      </div>
+
+       <h1><span class="icon-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
+      <div class="row">
+        <div class="large-2 columns">
+          <label><input type="checkbox" ng-model="editedProfile.user_languages.en" >{{ 'MY_LANG_EN' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" ng-model="editedProfile.user_languages.de" >{{ 'MY_LANG_DE' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" ng-model="editedProfile.user_languages.fr">{{ 'MY_LANG_FR' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" ng-model="editedProfile.user_languages.ru">{{ 'MY_LANG_RU' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <label><input type="checkbox" ng-model="editedProfile.user_languages.es">{{ 'MY_LANG_ES' | translate }}</label> 
+        </div>
+        <div class="large-2 columns">
+          <select>
+            <option>Lang 1</option>
+            <option>Lang 2</option>
+          </select>
         </div>
       </div>
 
@@ -77,7 +101,7 @@
           <label>
             <div class="icon-phone"></div>
            {{ 'MY_PHONE' | translate }}
-            <input  ng-model="editedProfile.phone" class="text-input" type='tel' name="my_phone">
+            <input  ng-model="editedProfile.phone" class="text-input" type='text' name="my_phone">
           </label>
         </div>
       </div>
@@ -131,38 +155,13 @@
           <label>
             <div class="icon-globe"></div>
             {{ 'MY_WEB' | translate }}
-            <input  ng-model="editedProfile.web"  class="text-input" type='text' name="my_web">
+            <input  ng-model="editedProfile.webs"  class="text-input" type='text' name="my_web">
              <em>{{ 'EG' | translate }} https://www.myweb.com</em>
           </label>
         </div>
 
       </div>
 
- 
-      <h1><span class="icon-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
-      <div class="row">
-        <div class="large-2 columns">
-          <label><input type="checkbox" name="lang_en">{{ 'MY_LANG_EN' | translate }}</label> 
-        </div>
-        <div class="large-2 columns">
-          <label><input type="checkbox" name="lang_de">{{ 'MY_LANG_DE' | translate }}</label> 
-        </div>
-        <div class="large-2 columns">
-          <label><input type="checkbox" name="lang_fr">{{ 'MY_LANG_FR' | translate }}</label> 
-        </div>
-        <div class="large-2 columns">
-          <label><input type="checkbox" name="lang_ru">{{ 'MY_LANG_RU' | translate }}</label> 
-        </div>
-        <div class="large-2 columns">
-          <label><input type="checkbox" name="lang_es">{{ 'MY_LANG_ES' | translate }}</label> 
-        </div>
-        <div class="large-2 columns">
-          <select>
-            <option>Lang 1</option>
-            <option>Lang 2</option>
-          </select>
-        </div>
-      </div>
 
        <h1><span class="icon-heart"></span> {{ 'ABOUT_ME' | translate }}</h1>
        <div class="row">
@@ -177,7 +176,7 @@
         <div class="large-6 columns">
           <label>
             {{ 'MY_TELL_ABOUT' | translate }}
-            <textarea placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate}}"  ng-model="editedProfile.tell_about" class="text-input" name="about"></textarea>
+            <textarea placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate}}"  ng-model="editedProfile.about" class="text-input" name="about"></textarea>
           </label>
         </div>
         

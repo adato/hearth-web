@@ -265,6 +265,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			if ($.type($scope.editedProfile.interests) === "string") {
 				$scope.editedProfile.interests = $scope.editedProfile.interests.split(',');
 			}
+				if ($.type($scope.editedProfile.webs) === "string") {
+				$scope.editedProfile.webs = $scope.editedProfile.webs.split(',');
+			}
 
 			return UsersService.update($scope.editedProfile).then(function() {
 				flash.success = 'PROFILE_WAS_UPDATED';
