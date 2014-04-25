@@ -64,8 +64,11 @@
 @import "social";
 
 @include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
+
 @include font-face("Signika", font-files("Signika-Semibold.woff", "Signika-Semibold.ttf", "Signika-Semibold.svg#signikasemibold"), "Signika-Semibold.eot", bold);
+
 @include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
+
 @include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold);
 
 meta.foundation-data-attribute-namespace {
@@ -110,7 +113,6 @@ textarea {
     max-width: 100%;
     height: auto;
 }
-
 
 // styles for medium screen
 // @todo separate into own file and keep dependencies
@@ -1078,7 +1080,7 @@ h1.green {
 }
 
 .create-ad-textarea {
-    @media #{mobile} {
+    @media mobile {
         height: emCalc(12 * $grid-size);
     }
     @media #{$small} {
@@ -1251,36 +1253,35 @@ input[disabled].text-input {
         margin-bottom: -$global-radius;
         padding-bottom: $alert-padding-bottom + emCalc($global-radius);
     }
-}
-
-.alert-box.alert-error, .alert-box.alert-success {
-    padding-top: emCalc(2 * $grid-size);
-    padding-bottom: emCalc(2 * $grid-size);
-}
-
-.alert-box.alert-error {
-    color: $alert-color;
-    background: darken($body-alt-bg, 5%);
-    border: 0px;
-    border-bottom: 1px solid lighten($alert-color, 40%);
-    &::before {
-        font-family: FontAwesome;
-        content: "\f057";
+    &.alert-error,
+    &.alert-success {
+        padding-top: emCalc(2 * $grid-size);
+        padding-bottom: emCalc(2 * $grid-size);
+    }
+    &.alert-error {
+        color: $alert-color;
+        background: darken($body-alt-bg, 5%);
+        border: 0px;
+        border-bottom: 1px solid lighten($alert-color, 40%);
+        &::before {
+            font-family: FontAwesome;
+            content: "\f057";
+        }
+    }
+    &.alert-success {
+        color: $success-color;
+        background: darken($body-alt-bg, 5%);
+        border: 0px;
+        border-bottom: 1px solid lighten(desaturate($success-color, 50%), 40%);
+        &::before {
+            font-family: FontAwesome;
+            content: "\f058";
+        }
     }
 }
 
-.alert-box.alert-success {
-    color: $success-color;
-    background: darken($body-alt-bg, 5%);
-    border: 0px;
-    border-bottom: 1px solid lighten(desaturate($success-color, 50%), 40%);
-    &::before {
-        font-family: FontAwesome;
-        content: "\f058";
-    }
-}
-
-.error small, small.error {
+.error small,
+small.error {
     @include border-radius($global-radius);
     padding-left: .75em;
     padding-right: .75em;
@@ -1332,7 +1333,7 @@ input[disabled].text-input {
     }
 }
 
-@import 'terms';
+@import "terms";
 
 hr {
     margin: $hr-margin / 2 0 $hr-margin / 2 - emCalc(1px);
@@ -1475,8 +1476,6 @@ input:focus,textarea:focus {
         color: transparent;
     }
 }
-
-
 
 @import "angular-loading-bar";
 @import "unsupported";

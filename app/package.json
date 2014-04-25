@@ -39,7 +39,8 @@
     "grunt-html2js": "^0.2.4",
     "html2js": "0.0.2",
     "karma-html2js-preprocessor": "^0.1.0",
-    "karma-ie-launcher": "^0.1.5"
+    "karma-ie-launcher": "^0.1.5",
+    "grunt-preprocess": "^4.0.0"
   },
   "engines": {
     "node": ">=0.8.0"

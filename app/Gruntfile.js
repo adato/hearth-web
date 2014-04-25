@@ -54,6 +54,19 @@ module.exports = function(grunt) {
 			}
 		},
 
+		preprocess: {
+			options: {
+				inline: true,
+				context: {
+					DEBUG: false
+				}
+			},
+			html: {
+				src: '<%= yeoman.dist %>/index.html',
+				dest: '<%= yeoman.dist %>/index.html'
+			}
+		},
+
 		// The actual grunt server settings
 		connect: {
 			options: {
@@ -117,7 +130,7 @@ module.exports = function(grunt) {
 				options: {
 					port: 9001,
 					base: [
-					
+
 						//'.tmp',
 						//'test',
 						//'<%= yeoman.app %>'
@@ -455,8 +468,9 @@ module.exports = function(grunt) {
 		'compass:dist',
 		'autoprefixer',
 		'concat',
-		'ngmin',
 		'copy:dist',
+		'preprocess',
+		'ngmin',
 		//'cdnify',
 		//'cssmin',
 		'uglify',

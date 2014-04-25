@@ -6,12 +6,14 @@ $FontAwesomePath: "../fonts" !default;
 
 $grid-size: 10px;
 
-$text-font-color: #8D8468;
-$control-font-color: #8D8468;
+$color: #ff5500, #3fc469, #8d8468, white;
+
+$text-font-color: nth($color, 3);
+$control-font-color: nth($color, 3);
 $negative-font-color: #fffff2;
 
-$primary-button-background: #3fc469;
-$primary-button-color: #fff;
+$primary-button-background: nth($color, 2);
+$primary-button-color: white;
 $primary-button-border: #2e9a4e;
 
 $profile-image-size: 96px;
@@ -19,7 +21,7 @@ $profile-image-size: 96px;
 // Compass Variables
 
 $grid-background-column-color: rgba(#faf1c2, 0);
-$grid-background-gutter-color: rgba(#0ff, 0.5);
+$grid-background-gutter-color: rgba(cyan, 0.5);
 $grid-background-baseline-color: $grid-background-gutter-color;
 $grid-background-total-columns: 144;
 $grid-background-column-width: 9px;
@@ -29,7 +31,8 @@ $grid-background-baseline-height: $grid-background-column-width + $grid-backgrou
 //
 // Foundation Variables
 //
- $namespace : false;
+$namespace: false;
+
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with brower-based text zoom or user-set defaults.
 $base-font-size: 100% !default;
@@ -52,7 +55,7 @@ $em-base: 16px !default;
 
 // Working in ems is annoying. Think in pixels by using this handy function, emCalc(#px)
 @function emCalc($pxWidth, $base: $em-base) {
-  @return $pxWidth / $base * 1em;
+    @return $pxWidth / $base * 1em;
 }
 
 // Various global styles
@@ -63,12 +66,13 @@ $left-column-background-pattern: image-url("pattern-01-white.png");
 // $default-float: left;
 
 $body-bg: #faf1c2;
-$body-alt-bg: #fffff0;
-$a-color: #ff5500;
-$body-border-color: rgb(172,163,94);
+$body-alt-bg: ivory;
+$a-color: nth($color, 1);
+$body-border-color: rgb(172, 163, 94);
 $body-font-color: $text-font-color;
-$body-font-family: 'SourceSansPro', 'Signika', 'Geneva', 'Tahoma', sans-serif;
+$body-font-family: "SourceSansPro", "Signika", "Geneva", "Tahoma", sans-serif;
 $body-font-weight: 300;
+
 // $body-font-style: normal;
 
 // Font-smoothing
@@ -80,14 +84,14 @@ $body-font-weight: 300;
 // $text-direction: ltr;
 
 // Colors
-$need-text-color: #ff5500;
+$need-text-color: nth($color, 1);;
 $offer-text-color: #50a330;
-$user-text-color: #946F5E;
-$listing-hover-text-color: #685B32;
-$listing-hover-background: #FDF9E9;
-$listing-expanded-text-color: #7F7553;
-$listing-expanded-background: #F7EDCB;
-$listing-new-background: #fff;
+$user-text-color: #946f5e;
+$listing-hover-text-color: #685b32;
+$listing-hover-background: #fdf9e9;
+$listing-expanded-text-color: #7f7553;
+$listing-expanded-background: #f7edcb;
+$listing-new-background: white;
 
 $primary-color: #e0d387;
 $secondary-color: #e9e9e9;
@@ -141,6 +145,7 @@ $mobile: "only screen and (max-width: #{$small-screen})";
 $small: "only screen and (min-width: #{$small-screen})";
 $medium: "only screen and (min-width: #{$medium-screen})";
 $large: "only screen and (min-width: #{$large-screen})";
+
 // $landscape: "only screen and (orientation: landscape)";
 // $portrait: "only screen and (orientation: portrait)";
 
@@ -173,10 +178,12 @@ $total-columns: 12;
 
 $header-font-family: inherit;
 $header-font-weight: 300;
+
 // $header-font-style: normal;
 $header-font-color: $body-font-color;
 $header-line-height: 1.5;
 $header-top-margin: 1.5 * $grid-size;
+
 // $header-bottom-margin: .5em;
 // $header-text-rendering: optimizeLegibility;
 
@@ -185,6 +192,7 @@ $header-top-margin: 1.5 * $grid-size;
 $h1-font-size: emCalc(2 * $grid-size);
 $h2-font-size: emCalc(2 * $grid-size);
 $h3-font-size: emCalc(2 * $grid-size);
+
 // $h4-font-size: emCalc(23px);
 // $h5-font-size: emCalc(18px);
 // $h6-font-size: 1em;
@@ -206,8 +214,10 @@ $h3-font-size: emCalc(2 * $grid-size);
 
 // $paragraph-font-family: inherit;
 $paragraph-font-weight: inherit;
+
 // $paragraph-font-size: 1em;
 $paragraph-line-height: $base-line-height;
+
 // $paragraph-margin-bottom: emCalc(20px);
 // $paragraph-aside-font-size: emCalc(14px);
 // $paragraph-aside-line-height: 1.35;
@@ -333,7 +343,6 @@ $hr-margin: emCalc(2 * $grid-size);
 // $input-prefix-font-color: #333;
 // $input-prefix-font-color-alt: #fff;
 
-
 $button-height: 46px;
 
 // We use this to set the base for lots of form spacing and positioning styles
@@ -343,47 +352,46 @@ $form-spacing: emCalc(16px) !default;
 $form-label-pointer: pointer !default;
 $form-label-font-size: emCalc(17px) !default;
 $form-label-font-weight: 500 !default;
-$form-label-font-color: lighten(#000, 30%) !default;
+$form-label-font-color: lighten(black, 30%) !default;
 $form-label-bottom-margin: emCalc(3px) !default;
 $input-font-family: inherit !default;
-$input-font-color: rgba(0,0,0,0.75) !default;
+$input-font-color: rgba(0, 0, 0, 0.75) !default;
 $input-font-size: emCalc(17px) !default;
-$input-bg-color: #fff !default;
-$input-focus-bg-color: darken(#fff, 2%) !default;
-$input-border-color: darken(#fff, 20%) !default;
-$input-focus-border-color: darken(#fff, 40%) !default;
+$input-bg-color: white !default;
+$input-focus-bg-color: darken(white, 2%) !default;
+$input-border-color: darken(white, 20%) !default;
+$input-focus-border-color: darken(white, 40%) !default;
 $input-border-style: solid !default;
 $input-border-width: 1px !default;
-$input-disabled-bg: #ddd !default;
-$input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !default;
+$input-disabled-bg: #dddddd !default;
+$input-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1) !default;
 $input-include-glowing-effect: true !default;
 
 // We use these to style the legends when you use them
-$legend-bg: #fff !default;
+$legend-bg: white !default;
 $legend-font-weight: bold !default;
 $legend-padding: 0 emCalc(3px) !default;
 
 // We use these to style the prefix and postfix input elements
-$input-prefix-bg: darken(#fff, 5%) !default;
-$input-prefix-border-color: darken(#fff, 20%) !default;
+$input-prefix-bg: darken(white, 5%) !default;
+$input-prefix-border-color: darken(white, 20%) !default;
 $input-prefix-border-size: 1px !default;
 $input-prefix-border-type: solid !default;
 $input-prefix-overflow: hidden !default;
-$input-prefix-font-color: #333 !default;
-$input-prefix-font-color-alt: #fff !default;
+$input-prefix-font-color: #333333 !default;
+$input-prefix-font-color-alt: white !default;
 
 // We use these to style the error states for inputs and labels
 $input-error-message-padding: emCalc(6px) emCalc(4px) !default;
-$input-error-message-top: -($form-spacing) - emCalc(5px) !default;
+$input-error-message-top: -$form-spacing - emCalc(5px) !default;
 $input-error-message-font-size: emCalc(12px) !default;
 $input-error-message-font-weight: bold !default;
-$input-error-message-font-color: #fff !default;
-$input-error-message-font-color-alt: #333 !default;
+$input-error-message-font-color: white !default;
+$input-error-message-font-color-alt: #333333 !default;
 
 // We use this to style the glowing effect of inputs when focused
 $glowing-effect-fade-time: 0.45s !default;
 $glowing-effect-color: $input-focus-border-color !default;
-
 
 $button-margin-bottom: 1px;
 
@@ -392,14 +400,18 @@ $button-margin-bottom: 1px;
 // $button-font-family: inherit;
 $button-font-color: $body-font-color;
 $button-font-color-alt: $button-font-color;
+
 // $button-font-med: emCalc(16px);
 // $button-font-tny: emCalc(11px);
 $button-font-sml: emCalc(1.67 * $grid-size);
+
 // $button-font-lrg: emCalc(20px);
 $button-font-weight: 300;
+
 // $button-font-align: center;
 
 $button-radius: $global-radius;
+
 //
 // Dropdown Button Variables
 //
@@ -1220,16 +1232,16 @@ $button-radius: $global-radius;
 
 // Background color for the top bar
 
-$topbar-bg: #fa6201;
-$topbar-bg-color:  #fa6201;
+$topbar-bg: nth($color, 1);
+$topbar-bg-color: nth($color, 1);
 
 // Height and margin
 
 $topbar-height: 7 * $grid-size;
 $topbar-margin-bottom: 0px;
-$topbar-link-color: rgba(#fff, 0.9);
-$topbar-link-color-hover: #fff !default;
-$topbar-link-color-active: #fff !default;
+$topbar-link-color: rgba(white, 0.9);
+$topbar-link-color-hover: white !default;
+$topbar-link-color-active: white !default;
 
 // Input height for top bar
 
@@ -1250,6 +1262,7 @@ $topbar-link-hover-lightness: -10% !default;
 // Top bar dropdown elements
 
 $topbar-dropdown-bg: $topbar-bg;
+
 // $topbar-dropdown-link-color: #fff;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
@@ -1270,4 +1283,5 @@ $topbar-dropdown-bg: $topbar-bg;
 
 // $topbar-transition-speed: 300ms;
 $topbar-breakpoint: $small-screen;
+
 // $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";

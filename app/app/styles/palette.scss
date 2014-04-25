@@ -1,0 +1,6 @@
+@import 'compass';
+@import 'settings';
+
+
+@import "mixins/palette";
+@include palette($color);
