@@ -15,12 +15,10 @@ module.exports = function(config) {
 			'vendor/angular-mocks/angular-mocks.js',
 			'vendor/angular-resource/angular-resource.js',
 			'vendor/angular-cookies/angular-cookies.js',
+			'vendor/angular-cookie/angular-cookie.js',
 			'vendor/angular-sanitize/angular-sanitize.js',
 			'vendor/angular-route/angular-route.js',
 			'scripts/config.js',
-			'scripts/controllers/controllers.js',
-			'scripts/services/services.js',
-			'scripts/directives/directives.js',
 			'scripts/*.js',
 			'scripts/**/*.js',
 			'templates/*.html',
@@ -53,7 +51,7 @@ module.exports = function(config) {
 		// - Safari (only Mac)
 		// - PhantomJS
 		// - IE (only Windows)
-		browsers: ['Chrome', 'IE'],
+		browsers: ['Chrome'],
 
 		// Continuous Integration mode
 		// if true, it capture browsers, run tests and exit
@@ -61,11 +59,11 @@ module.exports = function(config) {
 
 		plugins: [
 			//'karma-junit-reporter',
-      'karma-ng-html2js-preprocessor',
-      'karma-chrome-launcher',
-      //'karma-firefox-launcher',
-      //'karma-opera-launcher',
-      'karma-ie-launcher',
+			'karma-ng-html2js-preprocessor',
+			'karma-chrome-launcher',
+			//'karma-firefox-launcher',
+			//'karma-opera-launcher',
+			'karma-ie-launcher',
 			'karma-jasmine'
 		],
 	});
