@@ -1,4 +1,5 @@
 <div class="profile-header">
+    <span ng-include src="'templates/profileProgress.html'" ng-show="isMine"></span>
     <div style="display:block; width:110px; height:100px; float:left;"><avatar source="profile.avatar" size="large" class="left photo" relation="profile.relation" style="margin-right:10px;" type="'User'"></avatar></div>
     <h1 ng-show="userNameEditable != true" class="username" style="display:inline-block;" ng-cloak>
         {{ profile.name }}

@@ -6,7 +6,14 @@
 
     <header class="right-column small-12 large-5 columns push-7" ng-cloak
             ng-show="!isReplyingAd() && !profileDeleting && !profileEditing && profile">
-        <div ng-include src="'templates/profilePane.html'"></div>
+
+        <div ng-show="loggedUser._id && isMine && !profile.isMoreNotificatonDisabled" ng-click="startProfileEdit()" class="more-notification">
+            Prozraďte o sobě více.
+            <a title="Již nerozbrazovat" ng-click="disableMoreNotificaton($event)"><span class="fa fa-times"></span></a>
+         </div>
+
+
+        <div ng-include  src="'templates/profilePane.html'"></div>
 
         <div class="hr padding-v-1"></div>
         <p ng-show="!rating.dialogShown" class="padding-2 hide-for-small" ng-bind-html="profile.about | urlize"></p>
@@ -26,6 +33,7 @@
             </div>
 
             <div ng-show="relations.followees.length && isMine && showFollow">
+
                 <h5>{{ 'FOLLOWEES_LABEL' | translate }}</h5>
                 <ul>
                     <li ng-repeat="followee in relations.followees">

@@ -407,7 +407,7 @@ p {
     display: inherit;
 }
 
-.listing, 
+.listing,
 .profile {
     .photo {
         position: relative;
@@ -596,7 +596,27 @@ p {
 }
 
 .profile {
-    .profile-header, .profile-rate {
+    .more-notification {
+        text-align: center;
+        background-color: nth($color, 1);
+        color: nth($color, 4);
+        cursor: pointer;
+        padding: 2em;
+        position:relative;
+        font-weight: bold;
+        a {
+            color: lighten(nth($color, 1), 30%);
+            position: absolute;
+            right:0.5em;
+            top:0.5em;
+            &:hover {
+                 color: nth($color, 4);
+            }
+            font-size: 2em;
+        }
+    }
+    .profile-header, 
+    .profile-rate {
         @include reset-box-model;
         padding: emCalc($grid-size * 1);
         padding-bottom: 0;

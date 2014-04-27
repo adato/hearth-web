@@ -215,22 +215,38 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.$watch('loggedUser', _getIsMine);
 		$scope.$watch('loggedCommunity', _getIsMine);
 
-		$scope.$watch('editedProfile', function() {
-			$scope.progress = ProfileProgress.getProgress($scope.editedProfile, {
-				name: true,
-				work: true,
-				email: true,
-				phone: true,
-				facebook: true,
-				twitter: true,
-				googleplus: true,
-				linkedin: true,
-				interests: true,
-				about: true,
-				webs: true,
-				user_languages: true
-			});
+		var pattern = {
+			name: true,
+			work: true,
+			email: true,
+			phone: true,
+			facebook: true,
+			twitter: true,
+			googleplus: true,
+			linkedin: true,
+			interests: true,
+			about: true,
+			webs: true,
+			user_languages: true
+		};
+
+		$scope.$watch('profile', function() {
+			if (!$scope.profileEditing) {
+				$scope.progress = ProfileProgress.getProgress($scope.profile, pattern);
+			}
 		}, true);
+
+		$scope.$watch('editedProfile', function() {
+			$scope.progress = ProfileProgress.getProgress($scope.editedProfile, pattern);
+		}, true);
+
+		$scope.disableMoreNotificaton = function($event) {
+			$event.stopPropagation();
+			$scope.profile.isMoreNotificatonDisabled = true;
+			$scope.editedProfile = UsersService.clone($scope.profile);
+			$scope.editedProfile.isMoreNotificatonDisabled = true;
+			UsersService.update($scope.editedProfile);
+		},
 
 		$scope.showRatingDialog = function(score) {
 			$scope.$broadcast('cancelReplyingAd');
@@ -283,10 +299,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			if ($.type($scope.editedProfile.interests) === "string") {
 				$scope.editedProfile.interests = $scope.editedProfile.interests.split(',');
 			}
-			if ($.type($scope.editedProfile.webs) === "string") {
-				$scope.editedProfile.webs = $scope.editedProfile.webs.split(',');
-			}
-
 			return UsersService.update($scope.editedProfile).then(function() {
 				flash.success = 'PROFILE_WAS_UPDATED';
 				$scope.profileEditing = false;

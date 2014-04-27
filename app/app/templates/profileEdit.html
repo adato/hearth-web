@@ -1,10 +1,10 @@
 <div class="row profile-edit">
   <div class="right-column small-12 large-5 columns push-7" ng-cloak>
-
     <div class="profile-header">
-        <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
-        <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ profile.name }}</h1>
-        <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
+      <span ng-include src="'templates/profileProgress.html'"></span>
+      <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
+      <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ profile.name }}</h1>
+      <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
     </div>
     <form name="profileavatarform" style="clear:both;">
       <!-- path is prefixed with $$config.apiPath -->
@@ -14,16 +14,10 @@
       </div>
     </form>
 
-    <div class="progress radius round ">
-      <span class="meter" style="width: {{progress}}%">
-        <span class="text">{{'PROFILE_PROGRESS' | translate:{progress:progress} }}</span>
-      </span>
-    </div>
-
-       <div feature-enabled="deleteAccount" class="padding-2">
-        <a href="" class="" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
-            <i class="fa fa-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
-        </a>
+    <div feature-enabled="deleteAccount" class="padding-2">
+      <a href="" class="" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
+          <i class="fa fa-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
+      </a>
     </div>
   </div>
 
