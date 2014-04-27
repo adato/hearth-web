@@ -1,0 +1,14 @@
+#map-canvas {
+	position:relative;
+	margin: {
+		top: 1em;
+		bottom:1em;
+	}
+	@include border-radius;
+	height: 300px;
+	div * {
+		margin:auto;
+		padding:auto;
+	}
+	border:1px solid nth($color, 3);
+}
