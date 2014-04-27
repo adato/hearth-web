@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 				tasks: ['newer:jshint:test', 'karma']
 			},
 			compass: {
-				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+				files: ['<%= yeoman.app %>/{,*/}*.{scss,sass}'],
 				tasks: ['compass:server', 'autoprefixer']
 			},
 			gruntfile: {
@@ -215,11 +215,11 @@ module.exports = function(grunt) {
 				generatedImagesDir: '.tmp/images/generated',
 				imagesDir: '<%= yeoman.app %>/images',
 				javascriptsDir: '<%= yeoman.app %>/scripts',
-				fontsDir: '<%= yeoman.app %>/styles/fonts',
+				fontsDir: '<%= yeoman.app %>/fonts',
 				require: 'zurb-foundation',
 				httpImagesPath: '/images',
 				httpGeneratedImagesPath: '/images/generated',
-				httpFontsPath: 'fonts',
+				httpFontsPath: '../fonts',
 				relativeAssets: false,
 				assetCacheBuster: false,
 				raw: 'Sass::Script::Number.precision = 10\n',
@@ -230,6 +230,7 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					generatedImagesDir: '<%= yeoman.dist %>/images/generated',
+					outputStyle: 'compressed',
 					trace: true,
 					force: false
 				}
@@ -370,6 +371,12 @@ module.exports = function(grunt) {
 					cwd: '.tmp/styles',
 					dest: '<%= yeoman.dist %>/styles',
 					src: ['**']
+				}, {
+					expand: true,
+					dot: true,
+					cwd: '<%= yeoman.app %>/vendor/font-awesome/fonts/',
+					src: ['*.*'],
+					dest: '<%= yeoman.dist %>/fonts'
 				}]
 			},
 			styles: {
@@ -377,6 +384,12 @@ module.exports = function(grunt) {
 				cwd: '<%= yeoman.app %>/styles',
 				dest: '.tmp/styles/',
 				src: '{,*/}*.css'
+			},
+			fonts: {
+				expand: true,
+				cwd: '<%= yeoman.app %>/vendor/font-awesome/fonts/',
+				dest: '.tmp/fonts',
+				src: ['*.*']
 			}
 		},
 
@@ -421,7 +434,7 @@ module.exports = function(grunt) {
 		karma: {
 			unit: {
 				configFile: 'karma.conf.js',
-				 autoWatch: true
+				autoWatch: true
 			}
 		}
 	});
@@ -439,6 +452,7 @@ module.exports = function(grunt) {
 			'clean:server',
 			'bower-install-simple',
 			'bowerInstall',
+			'copy:fonts',
 			'concurrent:server',
 			'autoprefixer',
 			'configureProxies:server',
