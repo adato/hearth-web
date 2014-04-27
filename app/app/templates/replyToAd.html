@@ -27,11 +27,11 @@
     </div>
     <br style="clear:both;" ng-show="pageType != 'profile'">
     <span href="" ng-show="ad.location.name" ng-cloak>
-        <i class="icon-map-marker" style="display:inline-block; width:20px;"></i>
+        <i class="fa fa-map-marker" style="display:inline-block; width:20px;"></i>
         <span ng-show="ad.location.name" ng-cloak>{{ ad.location.name }}</span>
         <br>
     </span>
-    <span><i class="icon-time" style="display:inline-block; width:20px;"></i> {{ ad.createdAt | date:'dd.MM.yyyy'}}</span>
+    <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.createdAt | date:'dd.MM.yyyy'}}</span>
     <br><br>
     <div signed-out>
         <div class="round login-prompt" ng-cloak translate>

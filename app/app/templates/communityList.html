@@ -12,32 +12,32 @@
                 <div class="small-3 columns left padding-h-0">
                     <a href=""
                        analytics-on analytics-event="show all" analytics-category="Communities" analytics-label="lists"
-                       ng-click="setView('all')" ng-class="{ 'underliner': isView('all') }"><i class="icon-globe x-large"></i><div>{{ 'COMMUNITY_ALL' | translate }}</div></a>
+                       ng-click="setView('all')" ng-class="{ 'underliner': isView('all') }"><i class="fa fa-globe x-large"></i><div>{{ 'COMMUNITY_ALL' | translate }}</div></a>
                 </div>
                 <div class="small-3 columns left padding-h-0">
                     <a href=""
                        analytics-on analytics-event="show my" analytics-category="Communities" analytics-label="lists"
                        ng-class="{ 'underliner': isView('my') }"
-                       ng-click="setView('my')"><i class="icon-user x-large"></i><div>{{ 'COMMUNITY_MY' | translate }}</div></a>
+                       ng-click="setView('my')"><i class="fa fa-user x-large"></i><div>{{ 'COMMUNITY_MY' | translate }}</div></a>
                 </div>
                 <div class="small-3 columns left padding-h-0">
 <!--                    <a href=""
                        analytics-on analytics-event="sort by relevance" analytics-category="Communities" analytics-label="lists"
                        ng-class="{ 'underliner': orderBy == 'relevance' }"
-                       ng-click="setOrderBy('relevance')"><i class="icon-search x-large"></i><div>{{ 'SEARCH_LINK' | translate }}</div></a>-->
+                       ng-click="setOrderBy('relevance')"><i class="fa fa-search x-large"></i><div>{{ 'SEARCH_LINK' | translate }}</div></a>-->
                 </div>
                 <div class="small-3 columns left padding-h-0 right">
                     <a ng-click="setView('create')"
                        ng-class="{ 'underliner': isView('create') }"
                        analytics-on analytics-event="click on create community" analytics-category="Communities" analytics-label="lists"
-                       ><i class="icon-pencil x-large"></i><div>{{ 'CREATE_COMMUNITY_LINK' | translate }}</div></a>
+                       ><i class="fa fa-pencil x-large"></i><div>{{ 'CREATE_COMMUNITY_LINK' | translate }}</div></a>
                 </div>
             </div>
             <div ng-show="isView('all')">
                 <div class="row">
                     <div class="small-12 columns padding-0 padding-v-2">
                         <form ng-submit="init();" class="search-form">
-                            <button class="prefix primary button connect-left round padding-1" type="submit" style="width:10%; height:100%;" ng-click="srch.type = null;"><i class="icon-search"></i></button>
+                            <button class="prefix primary button connect-left round padding-1" type="submit" style="width:10%; height:100%;" ng-click="srch.type = null;"><i class="fa fa-search"></i></button>
                             <input type="text"
                                    ng-model="query" placeholder="{{ 'TYPE_IN_WHAT_YOU_SEARCH_FOR' | translate }}"
                                    style="width:90%;"
@@ -67,8 +67,8 @@
                     <a ng-href="#/community/{{ item._id }}"><avatar source="item.avatar" size="user-search" relation="item.relation" type="item._type" class="left photo"></avatar></a>
                     <div class="small-11 medium-10 columns wish-text hyphenate">
                         <div class="right small" ng-if="isView('my')">
-                            <div ng-if="item.admin == loggedUser._id"><i class="icon-wrench"></i> {{ 'COMMUNITY_ADMIN' | translate }}</div>
-                            <div ng-if="item.admin != loggedUser._id"><i class="icon-bookmark"></i> {{ 'COMMUNITY_MEMBER' | translate }}</div>
+                            <div ng-if="item.admin == loggedUser._id"><i class="fa fa-wrench"></i> {{ 'COMMUNITY_ADMIN' | translate }}</div>
+                            <div ng-if="item.admin != loggedUser._id"><i class="fa fa-bookmark"></i> {{ 'COMMUNITY_MEMBER' | translate }}</div>
                         </div>                        
                         <a class="name" ng-href="#/profile/{{ item._id}}" ng-show="item._type != 'Community'" ng-bind-html="item.name"></a>
                         <a class="name" ng-href="#/community/{{ item._id}}" ng-show="item._type == 'Community'" ng-bind-html="item.name"></a><br>
@@ -90,7 +90,7 @@
                             </div>
                             <div class="large-4 small-11 columns right show-on-hover text-right">
 <!--                                <a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
-                                    <i class="icon-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
+                                    <i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
                                 </a>-->
 
                                 <a ng-href="#/community/{{ item._id }}">

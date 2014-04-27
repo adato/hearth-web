@@ -34,7 +34,7 @@ angular.module('hearth.directives').directive('createAdSelect', [
 			scope: true,
 			template: '\
       <form ng-submit="refreshSearch(); a.focused = false" class="search-form">\
-        <button class="prefix primary button connect-left round padding-1" type="submit" style="width:10%; height:100%;" ng-click="srch.type = null;"><i class="icon-search"></i></button>\
+        <button class="prefix primary button connect-left round padding-1" type="submit" style="width:10%; height:100%;" ng-click="srch.type = null;"><i class="fa fa-search"></i></button>\
         <input type="text"\
                ng-click="a.focused = !a.focused"\
                ng-init="a.focused = false"\

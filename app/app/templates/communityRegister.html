@@ -23,7 +23,7 @@
                       ng-model="community.description" placeholder="{{ 'COMMUNITY_DESCRIPTION_INPUT_PLACEHOLDER' | translate }}"
                       ></textarea>
         </div>
-        <a href="" ng-click="community.termsShown = true" ng-hide="community.termsShown"><i class="icon-plus"></i> {{ 'COMMUNITY_ADD_TERMS' | translate }}</a>
+        <a href="" ng-click="community.termsShown = true" ng-hide="community.termsShown"><i class="fa fa-plus"></i> {{ 'COMMUNITY_ADD_TERMS' | translate }}</a>
         <div ng-show="community.termsShown">
             <textarea class="text-input bottom" rows="6" name="terms" ng-model="community.terms"
                       placeholder="{{ 'COMMUNITY_PROFILE_TERMS_OF_MEMBERSHIP' | translate }}"></textarea>

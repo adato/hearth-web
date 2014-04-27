@@ -29,7 +29,7 @@
                 <div class="right small">
                     <div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.createdAt"></div>
                     <div ng-if="orderBy != 'time' && orderBy != 'relevance'" ng-show="item.distance >= 0">{{ item.distance }} {{ 'KM_FROM_YOU' | translate }}</div>
-                    <i class="icon-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
+                    <i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
                 </div>
                 <a class="smaller name" ng-show="item.author._type != 'Community'" ng-href="#/profile/{{ item.author._id }}">{{ item.author.name }}</a>
                 <a class="smaller name" ng-show="item.author._type == 'Community'" ng-href="#/community/{{ item.author._id }}">{{ item.author.name }}</a> &nbsp;
@@ -58,7 +58,7 @@
                     <div class="large-4 small-11 columns right show-on-hover text-right">
                       
                         <a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
-                            <i class="icon-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
+                            <i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
                         </a>
 
                         <a href="" ng-click="" ng-hide="item.author._id == loggedEntity._id">

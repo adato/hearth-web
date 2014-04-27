@@ -67,7 +67,7 @@
                     <li ng-repeat="member in communityMembers">
                         <a ng-href="#/profile/{{member.userId}}" title="{{member.userFullname}}">
                             <avatar source="member.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
-                        </a><br><small ng-show="loggedCommunity._id && isMine && loggedUser._id != member.userId"><a href="" ng-click="removeMember(member.userId)"><i class="icon-off"></i> {{ 'COMMUNITY_MEMBER_REMOVE' | translate }}</a></small>
+                        </a><br><small ng-show="loggedCommunity._id && isMine && loggedUser._id != member.userId"><a href="" ng-click="removeMember(member.userId)"><i class="fa fa-off"></i> {{ 'COMMUNITY_MEMBER_REMOVE' | translate }}</a></small>
                     </li>
                 </ul>
                 <div class="cleaner"></div>                
@@ -142,7 +142,7 @@
                           placeholder="{{ 'COMMUNITY_PROFILE_TERMS_OF_MEMBERSHIP' | translate }}"></textarea>
             </div>
             <div ng-hide="editCommunity.termsShown">
-                <a href="" ng-click="editCommunity.termsShown = true"><i class="icon-plus"></i> {{ 'COMMUNITY_ADD_TERMS' | translate }}</a><br><br>
+                <a href="" ng-click="editCommunity.termsShown = true"><i class="fa fa-plus"></i> {{ 'COMMUNITY_ADD_TERMS' | translate }}</a><br><br>
             </div>
             <button type="button" ng-disabled="avatarUpload" class="default button" ng-click="cancelProfileEdit()">
                 {{ 'CANCEL' | translate }}
@@ -196,7 +196,7 @@
                     <div class="small-12 columns hyphenate profile-wish-text" ng-if="!isEditingAd(item._id)">
                         <span class="small right">
                             <time-ago from-time="item.createdAt"></time-ago>
-                            <i class="icon-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_MEMBERS' | translate }}"></i>
+                            <i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_MEMBERS' | translate }}"></i>
                         </span>
                         <div>
                             <span ng-cloak ng-show="item.type == 'need'">
@@ -221,7 +221,7 @@
                             </div>
                             <div class="show-on-hover small-6 columns right text-right">
                                 <a href="" ng-click="startEditingAd($event, item);" style="margin-right:20px;" ng-show="isMine">
-                                    <i class="icon-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
+                                    <i class="fa fa-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
                                 </a>
                                 <a ng-click="removeAd(item)" ng-cloak ng-show="isMine">
                                     <i class="hearthicon-trash"></i> {{ 'AD_REMOVE_LABEL' | translate }}

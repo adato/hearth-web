@@ -6,7 +6,7 @@
             <div style="position:relative;">
                 <div class="alert-box alert error round connect-bottom" ng-show="status.sentError">{{ status.sentError.base | translate }}</div>
                 <button type="submit" class="primary button prefix round connect-left" ng-disabled="status.sending" analytics-on analytics-event="sending invitation" analytics-category="Invitations">
-                    <i class="icon-envelope"></i>
+                    <i class="fa fa-envelope"></i>
                 </button>
                 <input type="email" class="text-input round connect-right" ng-model="invitation.toEmail" style="width:85%;" required>
             </div>

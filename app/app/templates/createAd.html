@@ -20,7 +20,7 @@
             class="create-ad-textarea text-input"></textarea>
         <!--<input type="text" class="text-input middle" ng-model="post.keywords" ng-list placeholder="{{ 'ADD_KEYWORDS' | translate }}" ng-show="isCreatingAd() || isEditingAd()">-->
         <div ng-show="isCreatingAd() || isEditingAd()" class="text-input middle">
-            <i class="icon-tags" style="float:left; padding:5px; padding-left:0px;"></i>
+            <i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i>
             <tags-input
                     ng-model="post.keywords"
                     placeholder="{{ 'ADD_KEYWORDS' | translate }}"
@@ -48,7 +48,7 @@
                 <a class="create-post-link"
                    ng-hide="post.attachments.length"
                    ng-click="post.attachmentsEnabled = true">
-                    <i class="icon-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+                    <i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
                 </a>
             </div>
             <div class="cleaner"></div>
@@ -71,7 +71,7 @@
                                   >
             </address-autocomplete>
             <a href="" ng-click="autodetectPosition(); x.enabled = false"
-               class="icon-map-marker"
+               class="fa fa-map-marker"
                style="position:absolute; left:20px; top:13px;;"></a>
             <div ng-show="x.enabled" class="typeahead" style="z-index:1; position:absolute; width:100%;">
                 <div><div ng-click="autodetectPosition(); x.enabled = false"><a href="" id="user-location-detect"

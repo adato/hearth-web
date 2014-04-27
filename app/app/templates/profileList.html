@@ -17,7 +17,7 @@
             <div class="small-12 columns hyphenate profile-wish-text" ng-if="!isEditingAd(item._id)">
                 <span class="small right">
                     <time-ago from-time="item.createdAt"></time-ago>
-                    <i class="icon-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
+                    <i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
                 </span>
                 <div>
                     <span ng-cloak ng-show="item.type == 'need'">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="show-on-hover small-6 columns right text-right">
                         <a href="" ng-click="startEditingAd($event, item);" style="margin-right:20px;" ng-show="isMine">
-                            <i class="icon-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
+                            <i class="fa fa-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
                         </a>                    
                         <a ng-click="removeAd(item)" ng-cloak ng-show="isMine">
                             <i class="hearthicon-trash"></i> {{ 'AD_REMOVE_LABEL' | translate }}

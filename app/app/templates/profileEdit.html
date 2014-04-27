@@ -22,7 +22,7 @@
 
        <div feature-enabled="deleteAccount" class="padding-2">
         <a href="" class="" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
-            <i class="icon-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
+            <i class="fa fa-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
         </a>
     </div>
   </div>
@@ -30,7 +30,7 @@
   <div class="left-column small-12 large-7 columns pull-5 alt-bg">
    
   <form id="profileEditForm" name="profileEditForm" ng-submit="updateProfile()" with-errors novalidate>
-      <h1><span class="icon-user"></span> {{ 'WHO' | translate }}</h1>
+      <h1><span class="fa fa-user"></span> {{ 'WHO' | translate }}</h1>
       <div class="row">
          <div class="large-6 columns">
           <label>
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <h1><span class="icon-compass"></span> {{ 'WHERE' | translate }}</h1>
+      <h1><span class="fa fa-compass"></span> {{ 'WHERE' | translate }}</h1>
       <div class="row">
         <div class="large-6 columns">
           <label>
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-       <h1><span class="icon-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
+       <h1><span class="fa fa-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
       <div class="row">
         <div class="large-2 columns">
           <label><input type="checkbox" ng-model="editedProfile.user_languages.en" >{{ 'MY_LANG_EN' | translate }}</label> 
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <h1><span class="icon-mobile-phone"></span> {{ 'CONTACTS' | translate }}</h1>
+      <h1><span class="fa fa-mobile-phone"></span> {{ 'CONTACTS' | translate }}</h1>
       <div class="row">
         <div class="large-6 columns">
           <label>
@@ -99,19 +99,19 @@
         </div>
         <div class="large-6 columns">
           <label>
-            <div class="icon-phone"></div>
+            <div class="fa fa-phone"></div>
            {{ 'MY_PHONE' | translate }}
             <input  ng-model="editedProfile.phone" class="text-input" type='text' name="my_phone">
           </label>
         </div>
       </div>
 
-     <h1><span class="icon-code-fork"></span> {{ 'MY_NETWORKS' | translate }}</h1>
+     <h1><span class="fa fa-code-fork"></span> {{ 'MY_NETWORKS' | translate }}</h1>
       <div class="row">
 
          <div class="large-6 columns">
           <label>
-            <div class="icon-facebook"></div>
+            <div class="fa fa-facebook"></div>
             {{ 'MY_FACEBOOK' | translate }}
             <input  ng-model="editedProfile.facebook" class="text-input" type='text' name="my_facebook">
             <em>{{ 'EG' | translate }} https://www.facebook.com/asociaceux</em>
@@ -120,7 +120,7 @@
 
         <div class="large-6 columns">
           <label>
-            <div class="icon-twitter"></div>
+            <div class="fa fa-twitter"></div>
             {{ 'MY_TWITTER' | translate }}
             <input ng-model="editedProfile.twitter"  class="text-input" type='text' name="my_twitter">
             <em>{{ 'EG' | translate }} https://twitter.com/asociaceux</em>
@@ -132,7 +132,7 @@
       <div class="row">
         <div class="large-6 columns">
           <label>
-            <div class="icon-linkedin"></div>
+            <div class="fa fa-linkedin"></div>
             {{ 'MY_LINKEDIN' | translate }}
             <input  ng-model="editedProfile.linkedin"  class="text-input" type='text' name="my_linkedin">
             <em>{{ 'EG' | translate }} https://www.linkedin.com/profile</em>
@@ -141,7 +141,7 @@
 
          <div class="large-6 columns">
           <label>
-            <div class="icon-google-plus"></div>
+            <div class="fa fa-google-plus"></div>
             {{ 'MY_GOOGLEPLUS' | translate }}
             <input ng-model="editedProfile.googleplus"  class="text-input" type='text' name="my_googleplus">
             <em>{{ 'EG' | translate }} https://plus.google.com/profile</em>
@@ -152,19 +152,19 @@
       <div class="row">
         <div class="large-6 columns">
           <label>
-            <div class="icon-globe"></div>
+            <div class="fa fa-globe"></div>
             {{ 'MY_WEB' | translate }}
             <div  ng-repeat="web in editedProfile.webs track by $index">
                <input  ng-model="editedProfile.webs[$index]"  class="text-input" type='text' name="my_web">
                <em>{{ 'EG' | translate }} https://www.myweb.com</em>
             </div>
-            <a ng-click="addWeb()"> <span class="icon-plus-circle"></span> Add</a>
+            <a ng-click="addWeb()"> <span class="fa fa-plus-circle"></span> Add</a>
           </label>
         </div>
       </div>
 
 
-       <h1><span class="icon-heart"></span> {{ 'ABOUT_ME' | translate }}</h1>
+       <h1><span class="fa fa-heart"></span> {{ 'ABOUT_ME' | translate }}</h1>
        <div class="row">
 
        <div class="large-6 columns">

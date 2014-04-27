@@ -4,7 +4,7 @@
 
         <div class="invitation-link" signed-in>
             <a href="" ng-click="page.inviteFriendsClicked = 1;">
-                <i class="icon-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}
+                <i class="fa fa-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}
             </a>
         </div>
         <a name="top"></a>
@@ -37,25 +37,25 @@
                     <a href=""
                        analytics-on analytics-event="sort by date" analytics-category="My Hearth" analytics-label="lists"
                        ng-class="{ 'underliner': orderBy == 'time' && !isCreatingAd() }"
-                       ng-click="setOrderBy('time')"><i class="icon-time x-large"></i><div>{{ 'NEWEST' | translate }}</div></a>
+                       ng-click="setOrderBy('time')"><i class="fa fa-clock-o x-large"></i><div>{{ 'NEWEST' | translate }}</div></a>
                 </div>
                 <div class="small-3 columns left padding-h-0">
                     <a href=""
                        analytics-on analytics-event="sort by proximity" analytics-category="My Hearth" analytics-label="lists"
                        ng-class="{ 'underliner': orderBy == 'location' && !isCreatingAd() }"
-                       ng-click="setOrderBy('location')"><i class="icon-map-marker x-large"></i><div>{{ 'NEAREST' | translate }}</div></a>
+                       ng-click="setOrderBy('location')"><i class="fa fa-map-marker x-large"></i><div>{{ 'NEAREST' | translate }}</div></a>
                 </div>
                 <div class="small-3 columns left padding-h-0">
                     <a href=""
                        analytics-on analytics-event="sort by relevance" analytics-category="My Hearth" analytics-label="lists"
                        ng-class="{ 'underliner': orderBy == 'relevance' && !isCreatingAd() }"
-                       ng-click="setOrderBy('relevance')"><i class="icon-search x-large"></i><div>{{ 'SEARCH_LINK' | translate }}</div></a>
+                       ng-click="setOrderBy('relevance')"><i class="fa fa-search x-large"></i><div>{{ 'SEARCH_LINK' | translate }}</div></a>
                 </div>
                 <div class="small-3 columns left padding-h-0">
                     <a href=""
                        analytics-on analytics-event="click on create post" analytics-category="My Hearth" analytics-label="NP"
                        ng-class="{ 'underliner': isCreatingAd() }"
-                       ng-click="startCreatingAd()"><i class="icon-pencil x-large"></i><div>{{ 'CREATE_POST' | translate }}</div></a>
+                       ng-click="startCreatingAd()"><i class="fa fa-pencil x-large"></i><div>{{ 'CREATE_POST' | translate }}</div></a>
                 </div>
             </div>
         </div>

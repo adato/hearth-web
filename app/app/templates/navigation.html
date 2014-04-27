@@ -3,12 +3,12 @@
 
 		<ul ng-show="routeParamsAdIsNotNull()">
 			<li><a onclick="window.history.go(-1)" ng-cloak class="link">
-				<i class="icon-chevron-left" style="font-size:x-large;"></i> {{ 'BACK' | translate }}
+				<i class="fa fa-chevron-left" style="font-size:x-large;"></i> {{ 'BACK' | translate }}
 			</a></li>
 		</ul>
 		<ul ng-show="!routeParamsAdIsNotNull()" class="menu">
 			<li>
-				<a href="" ng-click="sidebarVisible(!sidebarVisible())" class="link"><i class="icon-reorder"></i></a>
+				<a href="" ng-click="sidebarVisible(!sidebarVisible())" class="link"><i class="fa fa-reorder"></i></a>
 			</li>
 			<li ng-show="pageType != 'search'" ng-cloak>
 				<a ng-href="#/search" analytics-on analytics-event="marketplace" analytics-category="mobile-menu" class="link"><i class="hearthicon-market"></i></a>
@@ -77,7 +77,7 @@
 				</li>
 				<li signed-in ng-cloak>
 					<form action="{{ '/logout' | apiPrefix }}" method="post">
-						<button type="submit" analytics-on analytics-event="logout" analytics-category="Login" id="nav-logout"><span class="icon-power-off"></span></button>
+						<button type="submit" analytics-on analytics-event="logout" analytics-category="Login" id="nav-logout"><span class="fa fa-power-off"></span></button>
 					</form>
 				</li>
 			</ul>

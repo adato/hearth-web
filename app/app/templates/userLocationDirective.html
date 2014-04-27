@@ -1,10 +1,10 @@
 <div class="">
     <div ng-cloak ng-show="location && !editingLocation">
-        <a href="" ng-cloak ng-click="editLocation()" id="user-location-name"><i class="icon-edit" style="font-size:130%;"></i></a>&nbsp;{{ location.name }}
+        <a href="" ng-cloak ng-click="editLocation()" id="user-location-name"><i class="fa fa-edit" style="font-size:130%;"></i></a>&nbsp;{{ location.name }}
     </div>
     <div ng-cloak ng-show="!location || editingLocation" style="position:relative;">
             <address-autocomplete style="padding-left:40px; margin-bottom:0; position:relative;" connections="right" placeholders="'LOCATION_INPUT_PLACEHOLDER'" location="location" on-empty="emptyFocusFn()"></address-autocomplete>
-            <a href="" class="icon-map-marker" ng-click="autodetectMyLocation()"
+            <a href="" class="fa fa-map-marker" ng-click="autodetectMyLocation()"
                style="position:absolute; left:15px; top:13px;"></a>
             <div ng-show="showAutodetect" class="typeahead" style="text-align:left;">
                 <div><div ng-click="autodetectMyLocation()"><a href="" id="user-location-detect"
