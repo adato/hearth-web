@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', 'Geocoder', '$window', '$translate', '$analytics', '$q', 'ResponseErrors',
-	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, Geocoder, $window, $translate, $analytics, $q, ResponseErrors) {
+	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', 'Geocoder', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress',
+
+	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, Geocoder, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress) {
 		var fetchAds, fetchRatings, fetchUser;
-		$scope.progress = 30;
+		$scope.progress = 0;
 		$scope.rating = {};
 		$scope.adEditing = false;
 		$scope.expandAd(null);
@@ -214,6 +215,25 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.$watch('loggedUser', _getIsMine);
 		$scope.$watch('loggedCommunity', _getIsMine);
 
+		$scope.$watch('editedProfile', function() {
+			console.log('editedProfile', $scope.editedProfile);
+
+			$scope.progress = ProfileProgress.getProgress($scope.editedProfile, {
+				name: true,
+				work: true,
+				email: true,
+				phone: true,
+				facebook: true,
+				twitter: true,
+				googleplus: true,
+				linkedin: true,
+				interests: true,
+				about: true,
+				webs: true,
+				user_languages: true
+			});
+		}, true);
+
 		$scope.showRatingDialog = function(score) {
 			$scope.$broadcast('cancelReplyingAd');
 			$scope.rating.errors = {};
@@ -287,7 +307,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.profileErrors = {};
 			return $scope.profileEditing = true;
 		};
-		
+
 		$scope.cancelProfileEdit = function() {
 			$scope.avatar = $scope.profile.avatar;
 			return $scope.profileEditing = false;

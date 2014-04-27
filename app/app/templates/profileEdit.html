@@ -82,7 +82,7 @@
           <label><input type="checkbox" ng-model="editedProfile.user_languages.es">{{ 'MY_LANG_ES' | translate }}</label> 
         </div>
         <div class="large-2 columns">
-         <a data-reveal-id="myModal"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
+         <a data-reveal-id="myModal"><span class="fa fa-comments"></span> {{ 'OTHER_LANG' | translate }}</a>
          <div id="myModal" class="reveal-modal" data-reveal>
             <div><label><input type="checkbox" ng-model="editedProfile.user_languages.cs">{{ 'MY_LANG_CS' | translate }}</label></div>
             <div><label><input type="checkbox" ng-model="editedProfile.user_languages.pt">{{ 'MY_LANG_PT' | translate }}</label></div>
@@ -102,7 +102,7 @@
             {{ 'MY_EMAIL' | translate }}
             <input  ng-model="editedProfile.email" class="text-input" type='email' name="my_email">
           </label>
-           <a ng-click="showContactMail = true" ng-hide="showContactMail"><span class="fa fa-plus-circle"></span> Add</a>
+           <a ng-click="showContactMail = true" ng-hide="showContactMail"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
            <div ng-show="showContactMail">
               <label>
                 {{ 'MY_CONTACT_EMAIL' | translate }}
@@ -184,14 +184,17 @@
        <h1><span class="fa fa-heart"></span> {{ 'ABOUT_ME' | translate }}</h1>
        <div class="row">
 
-       <div class="large-6 columns">
+       <div class="large-12 columns">
           <label>
             {{ 'MY_INTERESTS' | translate }}
-            <textarea placeholder="{{'MY_INTERESTS_EXAMPLE' | translate}}" class="text-input" ng-model="editedProfile.interests" name="interests"></textarea>
+            <input class="text-input" ng-model="editedProfile.interests" name="interests">
+            <em>{{'MY_INTERESTS_EXAMPLE' | translate}}</em>
           </label>
         </div>
+      </div>
+      <div class="row">
 
-        <div class="large-6 columns">
+        <div class="large-12 columns">
           <label>
             {{ 'MY_TELL_ABOUT' | translate }}
             <textarea placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate}}"  ng-model="editedProfile.about" class="text-input" name="about"></textarea>

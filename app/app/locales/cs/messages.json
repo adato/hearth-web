@@ -292,9 +292,9 @@
 	"MY_WEB": "Web",
 	"MY_TWITTER": "Twitter",
 	"MY_TELL_ABOUT": "Povězte něco o sobě",
-	"MY_TELL_ABOUT_EXAMPLE": "Pište pouze klíčová slova oddělená čárkou. Např.: výuka dětí, péče o koně",
+	"MY_TELL_ABOUT_EXAMPLE": "Napište pár vět o tom, co vás baví, jací jste...",
 	"MY_INTERESTS": "Co vás zajímá",
-	"MY_INTERESTS_EXAMPLE": "Napište pár vět o tom, co vás baví, jací jste...",
+	"MY_INTERESTS_EXAMPLE": "Pište pouze klíčová slova oddělená čárkou. Např.: výuka dětí, péče o koně",
 	"MY_LANG_EN": "Anglicky",
 	"MY_LANG_DE": "Německy",
 	"MY_LANG_FR": "Francouzsky",
@@ -312,6 +312,8 @@
 	"MY_CONTACT_EMAIL": "Kontaktní email",
 	"MY_CONTACT_EMAIL_EXAMPLE": "Pokud pole vyplníte, pak vám právě sem budou chodit zprávy od uživatelů z Hearth",
 	"REMOVE": "Odstranit",
-	"ADD": "Přidat"
+	"ADD": "Přidat",
+
+	"OTHER_LANG": "Další jazyky"
 
 }

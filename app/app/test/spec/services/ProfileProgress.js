@@ -69,6 +69,26 @@ describe('Services: ProfileProgress', function() {
 
 		data = {
 			value1: 'abc',
+			value2: ['']
+		};
+		pattern = {
+			value1: true,
+			value2: true
+		};
+		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+
+		data = {
+			value1: 'abc',
+			value2: ['1']
+		};
+		pattern = {
+			value1: true,
+			value2: true
+		};
+		expect(ProfileProgress.getProgress(data, pattern)).toBe(100);
+
+		data = {
+			value1: 'abc',
 			value2: ['xxxx', '1111'],
 			value3: ''
 		};
@@ -78,6 +98,43 @@ describe('Services: ProfileProgress', function() {
 			value3: true,
 		};
 		expect(ProfileProgress.getProgress(data, pattern)).toBe(67);
+	}));
+
+	it('object ', inject(function(ProfileProgress) {
+		var data = {
+			value1: 'abc',
+			value2: {}
+		},
+			pattern = {
+				value1: true,
+				value2: true,
+			};
+		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+
+		data = {
+			value1: 'abc',
+			value2: {
+				prop: ''
+			}
+		},
+		pattern = {
+			value1: true,
+			value2: true
+		};
+		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+
+		data = {
+			value1: 'abc',
+			value2: {
+				prop: true
+			}
+		},
+		pattern = {
+			value1: true,
+			value2: true
+		};
+		expect(ProfileProgress.getProgress(data, pattern)).toBe(100);
+
 	}));
 
 });

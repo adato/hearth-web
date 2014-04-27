@@ -3,6 +3,7 @@
     overflow: hidden;
     padding: 0;
     .meter {
+        @include transition(width 1s);
         white-space: nowrap;
         color: nth($color, 4);
         @include border-radius(0 !important);

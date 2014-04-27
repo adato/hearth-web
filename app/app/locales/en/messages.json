@@ -311,5 +311,6 @@
 	"MY_CONTACT_EMAIL": "Contact email",
 	"MY_CONTACT_EMAIL_EXAMPLE": "--missing translation--",
 	"REMOVE": "Remove",
-	"ADD": "Add"
+	"ADD": "Add",
+	"OTHER_LANG": "Other languages"
 }
