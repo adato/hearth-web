@@ -216,8 +216,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.$watch('loggedCommunity', _getIsMine);
 
 		$scope.$watch('editedProfile', function() {
-			console.log('editedProfile', $scope.editedProfile);
-
 			$scope.progress = ProfileProgress.getProgress($scope.editedProfile, {
 				name: true,
 				work: true,

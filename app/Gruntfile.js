@@ -217,7 +217,7 @@ module.exports = function(grunt) {
 				javascriptsDir: '<%= yeoman.app %>/scripts',
 				fontsDir: '<%= yeoman.app %>/fonts',
 				require: 'zurb-foundation',
-				httpImagesPath: '/images',
+				httpImagesPath: '../images',
 				httpGeneratedImagesPath: '/images/generated',
 				httpFontsPath: '../fonts',
 				relativeAssets: false,
