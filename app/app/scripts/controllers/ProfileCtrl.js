@@ -265,7 +265,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			if ($.type($scope.editedProfile.interests) === "string") {
 				$scope.editedProfile.interests = $scope.editedProfile.interests.split(',');
 			}
-				if ($.type($scope.editedProfile.webs) === "string") {
+			if ($.type($scope.editedProfile.webs) === "string") {
 				$scope.editedProfile.webs = $scope.editedProfile.webs.split(',');
 			}
 
@@ -278,11 +278,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return $scope.errorsProfile = new ResponseErrors(res);
 			});
 		};
+		$scope.addWeb = function() {
+			$scope.editedProfile.webs.push('');
+		};
 		$scope.startProfileEdit = function() {
 			$scope.editedProfile = UsersService.clone($scope.profile);
+			$scope.editedProfile.webs = $scope.editedProfile.webs || [''];
 			$scope.profileErrors = {};
 			return $scope.profileEditing = true;
 		};
+		
 		$scope.cancelProfileEdit = function() {
 			$scope.avatar = $scope.profile.avatar;
 			return $scope.profileEditing = false;

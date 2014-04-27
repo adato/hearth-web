@@ -150,16 +150,17 @@
       </div>
 
       <div class="row">
-
         <div class="large-6 columns">
           <label>
             <div class="icon-globe"></div>
             {{ 'MY_WEB' | translate }}
-            <input  ng-model="editedProfile.webs"  class="text-input" type='text' name="my_web">
-             <em>{{ 'EG' | translate }} https://www.myweb.com</em>
+            <div  ng-repeat="web in editedProfile.webs track by $index">
+               <input  ng-model="editedProfile.webs[$index]"  class="text-input" type='text' name="my_web">
+               <em>{{ 'EG' | translate }} https://www.myweb.com</em>
+            </div>
+            <a ng-click="addWeb()"> <span class="icon-plus-circle"></span> Add</a>
           </label>
         </div>
-
       </div>
 
 
@@ -198,8 +199,5 @@
   </form>
  
   </div>
-
-
-
 </div>
 
