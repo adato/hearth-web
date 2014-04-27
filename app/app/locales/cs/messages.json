@@ -300,6 +300,18 @@
 	"MY_LANG_FR": "Francouzsky",
 	"MY_LANG_RU": "Rusky",
 	"MY_LANG_ES": "Španělsky",
+	"MY_LANG_CS": "Česky",
+	"MY_LANG_PT": "Portugalsky",
+	"MY_LANG_JA": "Japonsky",
+	"MY_LANG_TR": "Turecky",
+	"MY_LANG_IT": "Italsky",
+	"MY_LANG_UK": "Ukrajinsky",
+
 	"MY_LANGUAGES": "Jazyky, kterými mluvím",
-	"EG": "Např.:"
+	"EG": "Např.:",
+	"MY_CONTACT_EMAIL": "Kontaktní email",
+	"MY_CONTACT_EMAIL_EXAMPLE": "Pokud pole vyplníte, pak vám právě sem budou chodit zprávy od uživatelů z Hearth",
+	"REMOVE": "Odstranit",
+	"ADD": "Přidat"
+
 }

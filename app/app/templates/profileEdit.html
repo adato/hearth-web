@@ -82,10 +82,16 @@
           <label><input type="checkbox" ng-model="editedProfile.user_languages.es">{{ 'MY_LANG_ES' | translate }}</label> 
         </div>
         <div class="large-2 columns">
-          <select>
-            <option>Lang 1</option>
-            <option>Lang 2</option>
-          </select>
+         <a data-reveal-id="myModal"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
+         <div id="myModal" class="reveal-modal" data-reveal>
+            <div><label><input type="checkbox" ng-model="editedProfile.user_languages.cs">{{ 'MY_LANG_CS' | translate }}</label></div>
+            <div><label><input type="checkbox" ng-model="editedProfile.user_languages.pt">{{ 'MY_LANG_PT' | translate }}</label></div>
+            <div><label><input type="checkbox" ng-model="editedProfile.user_languages.ja">{{ 'MY_LANG_JA' | translate }}</label></div>
+            <div><label><input type="checkbox" ng-model="editedProfile.user_languages.tr">{{ 'MY_LANG_TR' | translate }}</label></div>
+            <div><label><input type="checkbox" ng-model="editedProfile.user_languages.it">{{ 'MY_LANG_IT' | translate }}</label></div>
+            <div><label><input type="checkbox" ng-model="editedProfile.user_languages.uk">{{ 'MY_LANG_UK' | translate }}</label></div>
+            <a class="close-reveal-modal">&#215;</a>
+          </div>
         </div>
       </div>
 
@@ -96,6 +102,17 @@
             {{ 'MY_EMAIL' | translate }}
             <input  ng-model="editedProfile.email" class="text-input" type='email' name="my_email">
           </label>
+           <a ng-click="showContactMail = true" ng-hide="showContactMail"><span class="fa fa-plus-circle"></span> Add</a>
+           <div ng-show="showContactMail">
+              <label>
+                {{ 'MY_CONTACT_EMAIL' | translate }}
+              <input ng-model="editedProfile.contact_email" class="text-input" type='email'>
+               <em>{{ 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
+              </label>
+              <div>
+                <a ng-click="showContactMail = false; editedProfile.contact_email =''" ><span class="fa fa-minus-circle"></span> {{ 'REMOVE' | translate }} </a>
+              </div>
+           </div>
         </div>
         <div class="large-6 columns">
           <label>
@@ -158,7 +175,7 @@
                <input  ng-model="editedProfile.webs[$index]"  class="text-input" type='text' name="my_web">
                <em>{{ 'EG' | translate }} https://www.myweb.com</em>
             </div>
-            <a ng-click="addWeb()"> <span class="fa fa-plus-circle"></span> Add</a>
+            <a ng-click="addWeb()"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
           </label>
         </div>
       </div>
