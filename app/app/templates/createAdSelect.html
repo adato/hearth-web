@@ -1,0 +1,23 @@
+<div>
+    <div ng-click="typeSwitchVisible = !typeSwitchVisible" ng-class="{ 'muted' : typeSwitchVisible }">
+        <a href="" ng-show="loggedCommunity._id && post.type == 'need'">{{ 'WE_NEED' | translate }}
+            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+        </a>
+        <a href="" ng-show="loggedCommunity._id && post.type == 'offer'">{{ 'WE_GIVE' | translate }}
+            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+        </a>
+        <a href="" ng-show="!loggedCommunity._id && post.type == 'need'">{{ 'NEED' | translate }}
+            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+        </a>
+        <a href="" ng-show="!loggedCommunity._id && post.type == 'offer'">{{ 'OFFER' | translate }}
+            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+        </a>
+    </div>
+    <div ng-show="typeSwitchVisible" ng-click="typeSwitchVisible = false">
+        <div class="hr" style=""></div>
+        <a href="" ng-click="post.type = 'need';" ng-show="loggedCommunity._id">{{ 'WE_NEED' | translate }}</a>
+        <a href="" ng-click="post.type = 'offer';" ng-show="loggedCommunity._id">{{ 'WE_GIVE' | translate }}</a>
+        <a href="" ng-click="post.type = 'need';" ng-show="!loggedCommunity._id">{{ 'NEED' | translate }}</a>
+        <a href="" ng-click="post.type = 'offer';" ng-show="!loggedCommunity._id">{{ 'OFFER' | translate }}</a>
+    </div>
+</div>
