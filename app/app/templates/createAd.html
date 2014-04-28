@@ -34,6 +34,7 @@
               </div>
               <div file-upload-output class="text-center"></div>
           </div>
+
           <div style="position:relative;" ng-show="isCreatingAd() || isEditingAd()">
               <address-autocomplete placeholders="'LOCATION_INPUT_PLACEHOLDER'" location="post.location" style="padding-left:40px; margin-bottom:0;" class="bottom" focus="x.enabled = true" blur="x.enabled = false"></address-autocomplete>
               <a href="" ng-click="autodetectPosition(); x.enabled = false" class="fa fa-map-marker" style="position:absolute; left:20px; top:13px;;"></a>
@@ -49,9 +50,9 @@
           <div class="small-12 columns left padding-h-0 create-post-links">
               <a class="create-post-link" ng-click="post.isPrivate = !post.isPrivate">
                   <i ng-class="{ 'icon-unlock-alt': !post.isPrivate, 'icon-lock': post.isPrivate }" style="margin-left:7px; margin-right:8px;"></i>
-                  <span ng-show="!post.isPrivate">{{ 'VISIBLE_FOR_ALL' | translate }}</span>
-                  <span ng-show="post.isPrivate && !loggedCommunity._id">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-                  <span ng-show="post.isPrivate && loggedCommunity._id">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+                  <span ng-show="!post.isPrivate"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
+                  <span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+                  <span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
               </a>
               <button class="primary right button" type="submit" ng-disabled="sending" translate>SUBMIT</button>
           </div>
