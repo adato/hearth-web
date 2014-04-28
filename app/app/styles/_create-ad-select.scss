@@ -1,0 +1,24 @@
+.create-ad-select {
+    a {
+        display: block;
+    }
+    .hr {
+        margin: 0;
+        margin-top: emCalc($grid-size / 2);
+        margin-bottom: emCalc($grid-size / 2);
+    }
+    .muted a {
+        opacity: .5;
+    }
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 105px;
+    padding: 5px;
+    background: transparent;
+    font-size: 17px;
+    border: 2px solid nth($color, 1);
+    border-radius: 4px;
+    z-index: 1001;
+    background: inherit;
+}

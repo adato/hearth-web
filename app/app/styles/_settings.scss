@@ -2,25 +2,22 @@
 // Hearth Variables
 //
 //
+$color: #ff5500, #3fc469, #8d8468, white, #faf1c2;
+
+$control-font-color: nth($color, 3);
+$negative-font-color: adjust-color(nth($color, 4), $blue:-13);
+$primary-button-background: nth($color, 2);
+$primary-button-color: nth($color, 4);
+$primary-button-border: darken(nth($color, 2), 20%);
+
 $FontAwesomePath: "../../fonts" !default;
 
 $grid-size: 10px;
-
-$color: #ff5500, #3fc469, #8d8468, white;
-
-$text-font-color: nth($color, 3);
-$control-font-color: nth($color, 3);
-$negative-font-color: #fffff2;
-
-$primary-button-background: nth($color, 2);
-$primary-button-color: white;
-$primary-button-border: #2e9a4e;
-
 $profile-image-size: 96px;
 
 // Compass Variables
 
-$grid-background-column-color: rgba(#faf1c2, 0);
+$grid-background-column-color: rgba(nth($color, 5), 0);
 $grid-background-gutter-color: rgba(cyan, 0.5);
 $grid-background-baseline-color: $grid-background-gutter-color;
 $grid-background-total-columns: 144;
@@ -65,11 +62,10 @@ $left-column-background-pattern: image-url("pattern-01-white.png");
 
 // $default-float: left;
 
-$body-bg: #faf1c2;
+$body-bg: nth($color, 5);
 $body-alt-bg: ivory;
-$a-color: nth($color, 1);
 $body-border-color: rgb(172, 163, 94);
-$body-font-color: $text-font-color;
+$body-font-color: nth($color, 3);
 $body-font-family: "SourceSansPro", "Signika", "Geneva", "Tahoma", sans-serif;
 $body-font-weight: 300;
 
