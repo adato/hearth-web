@@ -308,13 +308,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return $scope.errorsProfile = new ResponseErrors(res);
 			});
 		};
-		$scope.addWeb = function() {
-			$scope.editedProfile.webs.push('');
-		};
 		$scope.startProfileEdit = function() {
 			$scope.editedProfile = UsersService.clone($scope.profile);
 			$scope.editedProfile.webs = $scope.editedProfile.webs || [''];
 			$scope.profileErrors = {};
+			$scope.editedProfile.locations = [{name: ''}];
 			return $scope.profileEditing = true;
 		};
 
@@ -384,6 +382,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return $scope.$broadcast(where + 'Selected');
 			}
 		};
+
+		$scope.showMap = function(location) {
+			$('location-map').css({display:'block'});
+		}
 		return $scope.follow = function(userId, unfollow) {
 			var promise;
 			if (userId === $scope.loggedUser._id) {

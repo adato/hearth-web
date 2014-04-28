@@ -280,8 +280,6 @@
 	"MY_NETWORKS": "Sociální sítě a webové stránky",
 	"ABOUT_ME": "Více o mě",
 	"MY_PLACES": "Města kde se pohybuji",
-	"MY_COUNTRY": "Země",
-	"MY_PLACES_EXAMPLE": " Můžete zadat i více měst najednou",
 	"MY_WORK": "Moje práce/čemu se věnuji",
 	"MY_WORK_EXAMPLE": "Např.: učitelka, rozvoj občanské společnosti",
 	"MY_EMAIL": "Email",
@@ -314,6 +312,7 @@
 	"REMOVE": "Odstranit",
 	"ADD": "Přidat",
 
-	"OTHER_LANG": "Další jazyky"
+	"OTHER_LANG": "Další jazyky",
+	"MY_PLACE": "Vyberte místo"
 
 }

@@ -41,10 +41,26 @@
         </div>
       </div>
 
-      <h1><span class="fa fa-compass"></span> {{ 'WHERE' | translate }}</h1>
-      <location></location>
-      <div class="row">
-        <div class="large-6 columns">
+      <h1><span class="fa fa-map-marker"></span> {{ 'WHERE' | translate }}</h1>
+      <!--location></location-->
+
+       <div class="locations">
+        <div class="row" ng-repeat="location in editedProfile.locations track by $index">
+          <div class="large-12 columns">
+              <input placeholder="{{ 'MY_PLACE' | translate}}" ng-focus="" data-reveal-id="location-map" ng-model="editedProfile.locations[$index].name" class="text-input" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" type='text'>
+          </div>
+        </div>
+        <a ng-click="editedProfile.locations.push({name:''})"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
+
+        <div id="location-map" class="reveal-modal" data-reveal>
+            <location></location>
+            <a class="close-reveal-modal">&#215;</a>
+            <button class="right green">{{'OK' | translate}}</button>
+          </div>
+      </div>
+
+
+<!--
           <label>
             {{ 'MY_PLACES' | translate }}
             <input  ng-model="editedProfile.location" class="text-input" type='text' name="location">
@@ -57,7 +73,8 @@
             <input  ng-model="editedProfile.country" class="text-input" type='email' name="my_email">
           </label>
         </div>
-      </div>
+        -->
+      
 
        <h1><span class="fa fa-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
       <div class="row">
@@ -77,8 +94,8 @@
           <label><input type="checkbox" ng-model="editedProfile.user_languages.es">{{ 'MY_LANG_ES' | translate }}</label> 
         </div>
         <div class="large-2 columns">
-         <a data-reveal-id="myModal"><span class="fa fa-comments"></span> {{ 'OTHER_LANG' | translate }}</a>
-         <div id="myModal" class="reveal-modal" data-reveal>
+         <a data-reveal-id="other-languages"><span class="fa fa-comments"></span> {{ 'OTHER_LANG' | translate }}</a>
+         <div id="other-languages" class="reveal-modal" data-reveal>
             <div><label><input type="checkbox" ng-model="editedProfile.user_languages.cs">{{ 'MY_LANG_CS' | translate }}</label></div>
             <div><label><input type="checkbox" ng-model="editedProfile.user_languages.pt">{{ 'MY_LANG_PT' | translate }}</label></div>
             <div><label><input type="checkbox" ng-model="editedProfile.user_languages.ja">{{ 'MY_LANG_JA' | translate }}</label></div>
@@ -90,7 +107,7 @@
         </div>
       </div>
 
-      <h1><span class="fa fa-mobile-phone"></span> {{ 'CONTACTS' | translate }}</h1>
+      <h1><span class="fa fa-phone"></span> {{ 'CONTACTS' | translate }}</h1>
       <div class="row">
         <div class="large-6 columns">
           <label>
@@ -118,7 +135,7 @@
         </div>
       </div>
 
-     <h1><span class="fa fa-code-fork"></span> {{ 'MY_NETWORKS' | translate }}</h1>
+     <h1><span class="fa fa-sitemap"></span> {{ 'MY_NETWORKS' | translate }}</h1>
       <div class="row">
 
          <div class="large-6 columns">
@@ -170,7 +187,7 @@
                <input  ng-model="editedProfile.webs[$index]"  class="text-input" type='text' name="my_web">
                <em>{{ 'EG' | translate }} https://www.myweb.com</em>
             </div>
-            <a ng-click="addWeb()"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
+            <a ng-click="editedProfile.webs.push('')"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
           </label>
         </div>
       </div>

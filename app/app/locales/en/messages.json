@@ -274,14 +274,12 @@
 	"TOP_BAR_ABOUT": "About",
 
 	"WHO": "Who I am",
-	"NAME": "Fist and surname",
+	"NAME": "Firstname and surname",
 	"WHERE": "Places, where I live",
 	"CONTACTS": "Contacts",
 	"MY_NETWORKS": "Social networks and web pages",
 	"ABOUT_ME": "More about me",
 	"MY_PLACES": "Cities where I live",
-	"MY_COUNTRY": "Country",
-	"MY_PLACES_EXAMPLE": "--missing translation--",
 	"MY_WORK": "My work/What I do",
 	"MY_WORK_EXAMPLE": "--missing translation--",
 	"MY_EMAIL": "Email",
@@ -312,5 +310,7 @@
 	"MY_CONTACT_EMAIL_EXAMPLE": "--missing translation--",
 	"REMOVE": "Remove",
 	"ADD": "Add",
-	"OTHER_LANG": "Other languages"
+	"OTHER_LANG": "Other languages",
+	"MY_PLACE": "Select place"
+
 }
