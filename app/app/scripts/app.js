@@ -15,7 +15,7 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			$translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
 			$translateProvider.preferredLanguage(preferredLanguage);
 			$translateProvider.useStaticFilesLoader({
-				prefix: '../locales/',
+				prefix: 'locales/',
 				suffix: '/messages.json'
 			});
 			return $translateProvider.useStorage('SessionLanguageStorage');
