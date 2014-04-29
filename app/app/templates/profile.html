@@ -7,7 +7,7 @@
     <header class="right-column small-12 large-5 columns push-7" ng-cloak
             ng-show="!isReplyingAd() && !profileDeleting && !profileEditing && profile">
 
-        <div ng-show="loggedUser._id && isMine && !profile.isMoreNotificatonDisabled" ng-click="startProfileEdit()" class="more-notification">
+        <div ng-show="loggedUser._id && isMine && !profile.notification_disabled" ng-click="startProfileEdit()" class="more-notification">
             Prozraďte o sobě více.
             <a title="Již nerozbrazovat" ng-click="disableMoreNotificaton($event)"><span class="fa fa-times"></span></a>
          </div>

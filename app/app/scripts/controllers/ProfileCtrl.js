@@ -242,9 +242,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.disableMoreNotificaton = function($event) {
 			$event.stopPropagation();
-			$scope.profile.isMoreNotificatonDisabled = true;
+			$scope.profile.notification_disabled = true;
 			$scope.editedProfile = UsersService.clone($scope.profile);
-			$scope.editedProfile.isMoreNotificatonDisabled = true;
+			$scope.editedProfile.notification_disabled = true;
 			UsersService.update($scope.editedProfile);
 		},
 
