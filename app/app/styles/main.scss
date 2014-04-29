@@ -56,7 +56,7 @@
 //@import "foundation/components/tables";
 //@import "foundation/components/thumbs";
 //@import "foundation/components/tooltips";
-//@import "foundation/components/dropdown";
+@import "foundation/components/dropdown";
 
 @import "font-awesome";
 @import "hearth-icons";
@@ -171,6 +171,7 @@ html, body {
 
 label {
     color: $body-font-color;
+    cursor: pointer;
 }
 
 @for $i from 0 through 5 {

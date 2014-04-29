@@ -22,4 +22,24 @@
         font-size: 0.7em;
         font-style: normal;
     }
+    .languages {
+        label {
+            white-space: nowrap;
+            margin: {
+                right: 1em;
+            };
+        }
+        ul {
+            padding: 1em;
+            padding: {bottom:0;}
+            @include box-shadow(0px 0px 9px gray);
+        }
+        .f-dropdown {
+            li {
+                margin: {
+                    bottom: 1em;
+                };
+            }
+        }
+    }
 }

@@ -6,7 +6,6 @@ angular.module('hearth.directives').directive('location', function() {
 		replace: true,
 		templateUrl: 'templates/location.html',
 		link: function(scope, el, attrs) {
-			console.log(attrs.position);
 			var marker, map, searchBox, selectedPosition, selectedName,
 				element = $(el),
 				geocoder = new google.maps.Geocoder(),
