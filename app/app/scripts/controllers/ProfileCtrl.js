@@ -384,15 +384,15 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return $scope.$broadcast(where + 'Selected');
 			}
 		};
-		var editedLocationIndex;
+
 		$scope.editLocation = function(index) {
-			editedLocationIndex = index;
+			$scope.editedLocationIndex = index;
 			$('#location-map').foundation('reveal', 'open');
 		};
 
 		$scope.endLocationEdit = function(position, name) {
 			$scope.$apply(function() {
-				$scope.editedProfile.locations[editedLocationIndex] = {
+				$scope.editedProfile.locations[$scope.editedLocationIndex] = {
 					type: 'Point',
 					coordinates: position,
 					name: name

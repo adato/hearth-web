@@ -23,10 +23,15 @@ angular.module('hearth.directives').directive('location', function() {
 					});
 					searchBox = new google.maps.places.SearchBox(element.children('input')[0]);
 					google.maps.event.addListener(searchBox, 'places_changed', function() {
-						selectedName = searchBox.getPlaces()[0].formatted_address;
 						placeMarker(searchBox.getPlaces()[0].geometry.location, map);
 					});
-					moveToCurrentLocation();
+					var position = scope.editedLocationIndex !== undefined ? scope.editedProfile.locations[scope.editedLocationIndex].coordinates : undefined;
+
+					if (position) {
+						placeMarker(new google.maps.LatLng(position[1], position[0]), map);
+					} else {
+						moveToCurrentLocation();
+					}
 				},
 				moveToCurrentLocation = function() {
 					if (navigator.geolocation) {
