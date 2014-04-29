@@ -1,10 +1,7 @@
 #map-canvas {
-	position:relative;
-	@include border-radius;
 	height: 300px;
-	div * {
-		margin:auto;
-		padding:auto;
-	}
-	border:1px solid nth($color, 3);
+}
+
+.pac-container {
+    z-index: 99999 !important;
 }

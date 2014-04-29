@@ -35,14 +35,13 @@
         <div class="large-6 columns">
             <label>
               {{ 'MY_WORK' | translate }}
-              <input ng-model="editedProfile.work"  class="text-input" type='text' name="my_work">
+              <input ng-model="editedProfile.work"  class="text-input" type='te xt' name="my_work">
               <em>{{'MY_WORK_EXAMPLE' | translate}}</em>
             </label>
         </div>
       </div>
 
       <h1><span class="fa fa-map-marker"></span> {{ 'WHERE' | translate }}</h1>
-      <!--location></location-->
 
        <div class="locations">
         <div class="row" ng-repeat="location in editedProfile.locations track by $index">
@@ -52,11 +51,7 @@
         </div>
         <a ng-click="editedProfile.locations.push({name:''})"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
 
-        <div id="location-map" class="reveal-modal" data-reveal>
-            <location></location>
-            <a class="close-reveal-modal">&#215;</a>
-            <button class="right green">{{'OK' | translate}}</button>
-          </div>
+         <location></location>
       </div>
 
 

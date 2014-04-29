@@ -383,9 +383,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 		};
 
-		$scope.showMap = function(location) {
-			$('location-map').css({display:'block'});
-		}
+	
 		return $scope.follow = function(userId, unfollow) {
 			var promise;
 			if (userId === $scope.loggedUser._id) {
