@@ -44,32 +44,15 @@
       <h1><span class="fa fa-map-marker"></span> {{ 'WHERE' | translate }}</h1>
 
        <div class="locations">
+
         <div class="row" ng-repeat="location in editedProfile.locations track by $index">
           <div class="large-12 columns">
-              <input placeholder="{{ 'MY_PLACE' | translate}}" ng-focus="" data-reveal-id="location-map" ng-model="editedProfile.locations[$index].name" class="text-input" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" type='text'>
+              <input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index)"  ng-model="editedProfile.locations[$index].name" class="text-input" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" type='text'>
           </div>
         </div>
+        <location position="0,0"></location>
         <a ng-click="editedProfile.locations.push({name:''})"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
-
-         <location></location>
-      </div>
-
-
-<!--
-          <label>
-            {{ 'MY_PLACES' | translate }}
-            <input  ng-model="editedProfile.location" class="text-input" type='text' name="location">
-             <em>{{'MY_PLACES_EXAMPLE' | translate}}</em>
-          </label>
-        </div>
-        <div class="large-6 columns">
-          <label>
-            {{ 'MY_COUNTRY' | translate }}
-            <input  ng-model="editedProfile.country" class="text-input" type='email' name="my_email">
-          </label>
-        </div>
-        -->
-      
+      </div>   
 
        <h1><span class="fa fa-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
       <div class="row">

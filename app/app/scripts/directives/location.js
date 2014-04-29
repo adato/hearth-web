@@ -5,11 +5,11 @@ angular.module('hearth.directives').directive('location', function() {
 		restrict: 'E',
 		replace: true,
 		templateUrl: 'templates/location.html',
-		link: function(scope, el) {
-
-			var marker, map, searchBox,
+		link: function(scope, el, attrs) {
+			console.log(attrs.position);
+			var marker, map, searchBox, selectedPosition, selectedName,
 				element = $(el),
-
+				geocoder = new google.maps.Geocoder(),
 				initMap = function() {
 					map = new google.maps.Map(element.children('#map-canvas')[0], {
 						zoom: 6,
@@ -21,9 +21,9 @@ angular.module('hearth.directives').directive('location', function() {
 					google.maps.event.addListener(map, 'click', function(e) {
 						placeMarker(e.latLng, map);
 					});
-						console.log(element.children('#mapsearch'));
 					searchBox = new google.maps.places.SearchBox(element.children('input')[0]);
 					google.maps.event.addListener(searchBox, 'places_changed', function() {
+						selectedName = searchBox.getPlaces()[0].formatted_address;
 						placeMarker(searchBox.getPlaces()[0].geometry.location, map);
 					});
 					moveToCurrentLocation();
@@ -44,10 +44,27 @@ angular.module('hearth.directives').directive('location', function() {
 						map: map
 					});
 					map.panTo(position);
+					selectedPosition = position;
+
+					geocoder.geocode({
+						latLng: position
+					}, function(responses) {
+						if (responses && responses.length > 0) {
+							selectedName = responses[0].formatted_address;
+						}
+					});
 				};
 
 			$(document).on('opened', '#location-map[data-reveal]', function() {
 				initMap();
+			});
+
+			$('button', element).click(function() {
+				scope.endLocationEdit([
+					selectedPosition.A,
+					selectedPosition.k
+				], selectedName);
+				$('#location-map').foundation('reveal', 'close');
 			});
 
 		}

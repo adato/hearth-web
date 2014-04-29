@@ -312,7 +312,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.editedProfile = UsersService.clone($scope.profile);
 			$scope.editedProfile.webs = $scope.editedProfile.webs || [''];
 			$scope.profileErrors = {};
-			$scope.editedProfile.locations = [{name: ''}];
+			$scope.editedProfile.locations = [{
+				name: ''
+			}];
 			return $scope.profileEditing = true;
 		};
 
@@ -382,8 +384,22 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return $scope.$broadcast(where + 'Selected');
 			}
 		};
+		var editedLocationIndex;
+		$scope.editLocation = function(index) {
+			editedLocationIndex = index;
+			$('#location-map').foundation('reveal', 'open');
+		};
 
-	
+		$scope.endLocationEdit = function(position, name) {
+			$scope.$apply(function() {
+				$scope.editedProfile.locations[editedLocationIndex] = {
+					type: 'Point',
+					coordinates: position,
+					name: name
+				};
+			});
+		};
+
 		return $scope.follow = function(userId, unfollow) {
 			var promise;
 			if (userId === $scope.loggedUser._id) {
