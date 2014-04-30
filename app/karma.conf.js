@@ -11,6 +11,7 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
+			'vendor/jquery/dist/jquery.js',
 			'vendor/angular/angular.js',
 			'vendor/angular-mocks/angular-mocks.js',
 			'vendor/angular-resource/angular-resource.js',
@@ -31,7 +32,7 @@ module.exports = function(config) {
 		},
 
 		// list of files / patterns to exclude
-		exclude: [],
+		exclude: ['scripts/foundation.topbar.js'],
 
 		// web server port
 		port: 8080,

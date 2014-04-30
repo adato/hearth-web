@@ -600,20 +600,25 @@ p {
 
 .profile {
     .more-notification {
-        text-align: center;
-        background-color: nth($color, 1);
-        color: nth($color, 4);
+        background-color: darken(nth($color, 5), 5%);
+        background: linear-gradient(top,  nth($color, 5), darken(nth($color, 5), 3%));
+
         cursor: pointer;
         padding: 2em;
         position: relative;
-        font-weight: bold;
+        h1 {
+            text-align: center;
+            font-weight: bold;
+        }
+
         a {
-            color: lighten(nth($color, 1), 30%);
+            color: darken(nth($color, 5), 15%);
+            @include text-shadow(0 -1px 0 darken(nth($color, 5), 35%));
             position: absolute;
             right: 0.5em;
             top: 0.5em;
             &:hover {
-                color: nth($color, 4);
+                color: darken(nth($color, 5), 25%);
             }
             font-size: 2em;
         }

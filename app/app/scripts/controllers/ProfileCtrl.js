@@ -228,11 +228,26 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			about: true,
 			webs: true,
 			user_languages: true
-		};
+		},
+			missingItemsPattern = {
+				name: 'MISSING_NAME',
+				work: 'MISSING_WORK',
+				email: 'MISSING_EMAIL',
+				phone: 'MISSING_PHONE',
+				facebook: 'MISSING_FACEBOOK',
+				twitter: 'MISSING_TWITTER',
+				googleplus: 'MISSING_GOOGLEPLUS',
+				linkedin: 'MISSING_LINKEDIN',
+				interests: 'MISSING_INTERESTS',
+				about: 'MISSING_ABOUT',
+				webs: 'MISSING_WEBS',
+				user_languages: 'MISSING_USER_LANGUAGES'
+			};
 
 		$scope.$watch('profile', function() {
 			if (!$scope.profileEditing) {
 				$scope.progress = ProfileProgress.getProgress($scope.profile, pattern);
+				$scope.missingItems = ProfileProgress.getListOfMissing($scope.profile, missingItemsPattern);
 			}
 		}, true);
 
@@ -312,7 +327,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.editedProfile = UsersService.clone($scope.profile);
 			$scope.editedProfile.webs = $scope.editedProfile.webs || [''];
 			$scope.profileErrors = {};
-			$scope.editedProfile.locations =  $scope.editedProfile.locations || [{
+			$scope.editedProfile.locations = $scope.editedProfile.locations || [{
 				name: ''
 			}];
 			return $scope.profileEditing = true;

@@ -7,9 +7,16 @@
     <header class="right-column small-12 large-5 columns push-7" ng-cloak
             ng-show="!isReplyingAd() && !profileDeleting && !profileEditing && profile">
 
-        <div ng-show="loggedUser._id && isMine && !profile.notification_disabled" ng-click="startProfileEdit()" class="more-notification">
-            Prozraďte o sobě více.
-            <a title="Již nerozbrazovat" ng-click="disableMoreNotificaton($event)"><span class="fa fa-times"></span></a>
+        <div ng-show="loggedUser._id && isMine && !profile.notification_disabled" ng-click="startProfileEdit()" class="more-notification" ng-hide="progress==100">
+           <h1>{{'TELL_MORE_ABOUT' | translate}}</h1>
+            
+           <ul>
+                <li ng-repeat="item in missingItems">
+                    <span class="fa fa-check-circle"></span> {{ item | translate }}
+                </li>
+            </ul>
+
+            <a title="{{'DONT_SHOW_ANYMORE' | translate}}" ng-click="disableMoreNotificaton($event)"><span class="fa fa-times"></span></a>
          </div>
 
 
