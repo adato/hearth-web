@@ -150,10 +150,9 @@
           <label>
             <div class="fa fa-globe"></div>
             {{ 'MY_WEB' | translate }}
-            <div  ng-repeat="web in editedProfile.webs track by $index">
-               <input ng-model="editedProfile.webs[$index]"  class="text-input" type="url">
-               <em>{{ 'EG' | translate }} https://www.myweb.com</em>
-            </div>
+               <input ng-repeat="web in editedProfile.webs track by $index" ng-model="editedProfile.webs[$index]"  class="text-input" type="url" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}">
+
+            <div><em>{{ 'EG' | translate }} https://www.myweb.com</em></div>
             <a ng-click="editedProfile.webs.push('')"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
           </label>
         </div>
