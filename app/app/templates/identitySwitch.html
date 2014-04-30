@@ -1,6 +1,6 @@
 <li ng-class="{'has-dropdown': myCommunities.length}" >
     <a href="">
-        <avatar source="loggedEntity.avatar" size="normal" type="loggedEntity._type"></avatar>
+        {{ 'TOP_BAR_PROFILE' | translate }}
     </a>
     <ul class="dropdown" ng-if="loggedUser._id" title="{{ loggedCommunity.name || loggedUser.name }} ">
        <li ng-show="myCommunities.length">

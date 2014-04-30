@@ -97,6 +97,7 @@ $success-color: #00b043;
 // Make sure border radius matches unless we want it different.
 
 $global-radius: 8px;
+$default-border-radius: $global-radius; //compass variable
 
 // Inset shadow shiny edges and depressions.
 

@@ -88,7 +88,7 @@
 	"FORGOTTEN_PASSWORD_LINK": "Zapomněli jste heslo?",
 	"OR_USE_YOUR_EMAIL": "Nebo pomocí emailu",
 	"TOP_BAR_SEARCH": "Tržiště",
-	"TOP_BAR_PROFILE": "Můj profil",
+	"TOP_BAR_PROFILE": "Profil",
 	"TOP_BAR_SIGN_IN": "Přihlásit",
 	"TOP_BAR_SIGN_OUT": "Odhlásit",
 	"FEEDBACK": "Napište nám",
@@ -292,7 +292,7 @@
 	"MY_TELL_ABOUT": "Povězte něco o sobě",
 	"MY_TELL_ABOUT_EXAMPLE": "Napište pár vět o tom, co vás baví, jací jste...",
 	"MY_INTERESTS": "Co vás zajímá",
-	"MY_INTERESTS_EXAMPLE": "Pište pouze klíčová slova oddělená čárkou. Např.: výuka dětí, péče o koně",
+	"MY_INTERESTS_EXAMPLE": "Pište pouze klíčová slova oddělená čárkou. Např.: výuka dětí, péče o koně.",
 	"MY_LANG_EN": "Anglicky",
 	"MY_LANG_DE": "Německy",
 	"MY_LANG_FR": "Francouzsky",
@@ -308,11 +308,12 @@
 	"MY_LANGUAGES": "Jazyky, kterými mluvím",
 	"EG": "Např.:",
 	"MY_CONTACT_EMAIL": "Kontaktní email",
-	"MY_CONTACT_EMAIL_EXAMPLE": "Pokud pole vyplníte, pak vám právě sem budou chodit zprávy od uživatelů z Hearth",
+	"MY_CONTACT_EMAIL_EXAMPLE": "Pokud pole vyplníte, pak vám právě sem budou chodit zprávy od uživatelů z Hearth.",
 	"REMOVE": "Odstranit",
 	"ADD": "Přidat",
-
 	"OTHER_LANG": "Další jazyky",
-	"MY_PLACE": "Vyberte místo"
-
+	"MY_PLACE": "Vyberte místo",
+	"WRITE_US": "Napište nám",
+	"TERMS": "Podmínky používání",
+	"BLOG": "Blog"
 }

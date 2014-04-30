@@ -28,7 +28,7 @@
       <div class="row">
          <div class="large-6 columns">
           <label>
-            {{ 'NAME' | translate }}
+            {{ 'NAME' | translate }} *
             <input ng-model="editedProfile.name" class="text-input" type='text' required>
           </label>
         </div>
@@ -78,7 +78,7 @@
       <div class="row">
         <div class="large-6 columns">
           <label>
-            {{ 'MY_EMAIL' | translate }}
+            {{ 'MY_EMAIL' | translate }}  *
             <input  ng-model="editedProfile.email" class="text-input" type='email' required>
           </label>
            <a ng-click="showContactMail = true" ng-hide="showContactMail"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>

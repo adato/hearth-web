@@ -88,7 +88,7 @@
 	"FORGOTTEN_PASSWORD_LINK": "Forgot password?",
 	"OR_USE_YOUR_EMAIL": "Or use your email",
 	"TOP_BAR_SEARCH": "Marketplace",
-	"TOP_BAR_PROFILE": "My profile",
+	"TOP_BAR_PROFILE": "Profile",
 	"TOP_BAR_SIGN_IN": "Sign in",
 	"TOP_BAR_SIGN_OUT": "Sign out",
 	"FEEDBACK": "Feedback",
@@ -311,6 +311,9 @@
 	"REMOVE": "Remove",
 	"ADD": "Add",
 	"OTHER_LANG": "Other languages",
-	"MY_PLACE": "Select place"
+	"MY_PLACE": "Select place",
+	"WRITE_US": "Write us",
+	"TERMS": "Terms of use",
+	"BLOG": "Blog"
 
 }
