@@ -170,6 +170,9 @@ html, body {
         line-height: $desktop-line-height;
     }
 }
+body {
+     padding-top: 70px !important;
+}
 
 label {
     color: $body-font-color;
@@ -202,6 +205,7 @@ nav.left-pad {
 @import "navigation";
 
 .content {
+
     @media #{$small} {
         height: 100%;
         // margin-left:$left-bar-width;

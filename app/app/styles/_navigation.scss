@@ -9,6 +9,7 @@
     }
     &.top-bar {
         text-transform: uppercase;
+        position:fixed;
         //@include background($navigation-background-pattern, linear-gradient(top, lighten(nth($color, 1), 15%) 0%, nth($color, 1), darken(nth($color, 1), 15%) 100%));
         min-width: 100%;
         .title-area {
