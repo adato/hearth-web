@@ -1,7 +1,7 @@
 var $$config;
 
 $$config = {
-	apiPath: 'api',
+	apiPath: '../api',
 	features: {
 		aboutPage: false,
 		searchImage: false,
