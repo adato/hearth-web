@@ -14,9 +14,15 @@ angular.module('hearth.directives').directive('datepicker',
 					today: 'Dnes'
 				};
 				attrs.$observe('datepicker', function() {
+					var now = new Date(),
+						limit = (new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)).getTime() ;
+
 					$(element).removeData();
 					$('.datepicker-dropdown').remove()
 					$(element).fdatepicker({
+						onRender: function(date) {
+							return date.getTime() < limit ? 'disabled' : '';
+						},
 						autoclose: true,
 						weekStart: attrs.datepicker === 'en' ? 0 : 1,
 						format: attrs.datepicker === 'en' ? undefined : 'dd.mm.yyyy',
