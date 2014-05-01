@@ -329,6 +329,8 @@
 	"MISSING_ABOUT": "napište něco o sobě",
 	"MISSING_WEBS": "seznam vašich webových stránek",
 	"MISSING_USER_LANGUAGES": "informaci o jazycích, kterými mluvíte",
-	"DONT_SHOW_ANYMORE": "Již nerozbrazovat"
+	"DONT_SHOW_ANYMORE": "Již nerozbrazovat",
+
+	"TELL_WHAT": "Sdělte stručně co"
 
 }

@@ -1,24 +1,23 @@
 .create-ad-select {
-    a {
-        display: block;
-    }
-    .hr {
-        margin: 0;
-        margin-top: emCalc($grid-size / 2);
-        margin-bottom: emCalc($grid-size / 2);
-    }
-    .muted a {
-        opacity: .5;
-    }
+    line-height: 34px;
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 105px;
+    top: 0px;
+    left: 0px;
+    width: 110px;
     padding: 5px;
-    background: transparent;
+    background-color: nth($color, 4);
     font-size: 17px;
-    border: 2px solid nth($color, 1);
-    border-radius: 4px;
+    border: 1px solid $body-border-color;
+    height: 48px;
+    @include border-top-left-radius;
     z-index: 1001;
-    background: inherit;
+    padding-left: 1em;
+    .switch-dropdown {
+        width: 105px;
+        background-color: nth($color, 4);
+        border: 1px solid $body-border-color;
+        span {
+            margin: 3px;
+        }
+    }
 }

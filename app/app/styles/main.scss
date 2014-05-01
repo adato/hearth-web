@@ -1065,22 +1065,8 @@ h1.green {
     }
 }
 
-.create-ad-textarea {
-    @media mobile {
-        height: emCalc(12 * $grid-size);
-    }
-    @media #{$small} {
-        height: $profile-image-size;
-    }
-    &.focused {
-        padding-left: 130px;
-        padding-top: 16px;
-        @media #{$small} {
-            height: emCalc(15 * $grid-size);
-        }
-    }
-}
 
+@import "create-ad";
 @import "create-ad-select";
 
 .create-post-links {

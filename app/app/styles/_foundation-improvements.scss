@@ -1,8 +1,21 @@
 /** Foundation improvements */
 .top-bar-section {
-	.dropdown {
-		@include box-shadow (0 1px 2px 1px  rgba(black, 0.3));
-		@include border-bottom-radius;
-		overflow: hidden;
-	}
+    .dropdown {
+        @include box-shadow(0 1px 2px 1px rgba(black, 0.3));
+        @include border-bottom-radius;
+        overflow: hidden;
+    }
+}
+
+.f-dropdown {
+    @include border-radius;
+    @include box-shadow(0 0px 2px 1px rgba(black, 0.2));
+    overflow: hidden;
+    a {
+	    &:hover,
+	    &:focus {
+	        color: nth($color, 4) !important;
+	    }
+    	
+    }
 }

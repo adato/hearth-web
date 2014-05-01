@@ -1,23 +1,22 @@
 <div>
-    <div ng-click="typeSwitchVisible = !typeSwitchVisible" ng-class="{ 'muted' : typeSwitchVisible }">
-        <a href="" ng-show="loggedCommunity._id && post.type == 'need'">{{ 'WE_NEED' | translate }}
-            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+    <div data-dropdown="switch-dropdown">
+        <a href="" ng-show="loggedCommunity._id && post.type == 'need'">
+            {{ 'WE_NEED' | translate }}  <span class="fa fa-caret-down"></span>
         </a>
-        <a href="" ng-show="loggedCommunity._id && post.type == 'offer'">{{ 'WE_GIVE' | translate }}
-            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+        <a href="" ng-show="loggedCommunity._id && post.type == 'offer'">
+            {{ 'WE_GIVE' | translate }  <span class="fa fa-caret-down"></span>
         </a>
-        <a href="" ng-show="!loggedCommunity._id && post.type == 'need'">{{ 'NEED' | translate }}
-            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+        <a href="" ng-show="!loggedCommunity._id && post.type == 'need'">
+            {{ 'NEED' | translate }}  <span class="fa fa-caret-down"></span>
         </a>
-        <a href="" ng-show="!loggedCommunity._id && post.type == 'offer'">{{ 'OFFER' | translate }}
-            <i ng-class="{ 'fa fa-caret-down right': !typeSwitchVisible, 'fa fa-caret-up right': typeSwitchVisible }" style="margin:3px;"></i>
+        <a href="" ng-show="!loggedCommunity._id && post.type == 'offer'">
+            {{ 'OFFER' | translate }}  <span class="fa fa-caret-down"></span>
         </a>
     </div>
-    <div ng-show="typeSwitchVisible" ng-click="typeSwitchVisible = false">
-        <div class="hr" style=""></div>
-        <a href="" ng-click="post.type = 'need';" ng-show="loggedCommunity._id">{{ 'WE_NEED' | translate }}</a>
-        <a href="" ng-click="post.type = 'offer';" ng-show="loggedCommunity._id">{{ 'WE_GIVE' | translate }}</a>
-        <a href="" ng-click="post.type = 'need';" ng-show="!loggedCommunity._id">{{ 'NEED' | translate }}</a>
-        <a href="" ng-click="post.type = 'offer';" ng-show="!loggedCommunity._id">{{ 'OFFER' | translate }}</a>
-    </div>
+    <ul id="switch-dropdown" data-dropdown-content class="f-dropdown">
+        <li><a href="" ng-click="post.type = 'need';"  ng-show="loggedCommunity._id">{{ 'WE_NEED' | translate }}</a></li>
+        <li><a href="" ng-click="post.type = 'offer';" ng-show="loggedCommunity._id">{{ 'WE_GIVE' | translate }}</a></li>
+        <li><a href="" ng-click="post.type = 'need';" ng-show="!loggedCommunity._id">{{ 'NEED' | translate }}</a></li>
+        <li><a href="" ng-click="post.type = 'offer';" ng-show="!loggedCommunity._id">{{ 'OFFER' | translate }}</a></li>
+    </ul>
 </div>

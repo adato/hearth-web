@@ -328,6 +328,8 @@
 	"MISSING_ABOUT": "write sometning about yourself",
 	"MISSING_WEBS": "list of yours web pages",
 	"MISSING_USER_LANGUAGES": "information about languages you speak",
-	"DONT_SHOW_ANYMORE": "Don't show again"
+	"DONT_SHOW_ANYMORE": "Don't show again",
+
+	"TELL_WHAT": "Tell simply what"
 
 }

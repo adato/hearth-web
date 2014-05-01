@@ -8,7 +8,8 @@
           <div create-ad-select class="create-ad-select" ng-show="isCreatingAd() || isEditingAd()">
               <!-- directive -->
           </div>
-          <textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-model="post.name" name="name" required ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd(), 'error': errors.name }" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input"></textarea>
+          <input type=="text" style="padding-left: 120px" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" ng-required>
+          <textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-model="post.name" name="name" required ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd(), 'error': errors.name }" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
           <div ng-show="isCreatingAd() || isEditingAd()" class="text-input middle">
               <i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i>
               <tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" max-length="20">
