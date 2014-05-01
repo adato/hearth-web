@@ -327,9 +327,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.editedProfile = UsersService.clone($scope.profile);
 			$scope.editedProfile.webs = $scope.editedProfile.webs || [''];
 			$scope.profileErrors = {};
-			$scope.editedProfile.locations = $scope.editedProfile.locations || [{
-				name: ''
-			}];
+			if (!$scope.editedProfile.locations || $scope.editedProfile.locations.length === 0) {
+				$scope.editedProfile.locations = [{
+					name: ''
+				}];
+			}
 			return $scope.profileEditing = true;
 		};
 

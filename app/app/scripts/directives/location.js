@@ -15,7 +15,12 @@ angular.module('hearth.directives').directive('location', function() {
 						zoomControl: true,
 						mapTypeControl: false,
 						streetViewControl: false,
-						center: new google.maps.LatLng(0, 0)
+						center: new google.maps.LatLng(0, 0),
+						draggableCursor: 'crosshair',
+						zoomControlOptions: {
+							style: google.maps.ZoomControlStyle.LARGE,
+							position: google.maps.ControlPosition.LEFT_CENTER
+						},
 					});
 					google.maps.event.addListener(map, 'click', function(e) {
 						placeMarker(e.latLng, map);

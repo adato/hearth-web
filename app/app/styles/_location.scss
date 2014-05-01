@@ -5,3 +5,6 @@
 .pac-container {//google maps search field - list
     z-index: 99999 !important;
 }
+.gmnoprint img {
+    max-width: none; 
+}
