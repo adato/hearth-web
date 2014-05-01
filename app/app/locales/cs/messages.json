@@ -330,8 +330,8 @@
 	"MISSING_WEBS": "seznam vašich webových stránek",
 	"MISSING_USER_LANGUAGES": "informaci o jazycích, kterými mluvíte",
 	"DONT_SHOW_ANYMORE": "Již nerozbrazovat",
-
 	"TELL_WHAT": "Sdělte stručně co",
-	"UNLIMITED": "Doba platnosti - neomezeně."
+	"UNLIMITED": "Doba platnosti - neomezeně.",
+	"VALID_UNTIL": "Platnost do:"
 
 }

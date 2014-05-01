@@ -1,9 +1,8 @@
 'use strict';
 
-
 angular.module('hearth.controllers').controller('ListViewStateCtrl', [
-	'$scope', '$timeout', '$window', '$location',
-	function($scope, $timeout, $window, $location) {
+	'$scope', '$timeout', '$window', '$location', 'UTCdateFilter', 'dateFilter',
+	function($scope, $timeout, $window, $location, UTCdateFilter, dateFilter) {
 		$scope.isAdBeingCreated = false;
 		$scope.isAdBeingEdited = false;
 		$scope.editId = null;
@@ -60,6 +59,7 @@ angular.module('hearth.controllers').controller('ListViewStateCtrl', [
 			$scope.$broadcast('cancelCreatingAd');
 			$scope.$broadcast('cancelReplyingAd');
 			$event.stopPropagation();
+			post.date = post.date ? dateFilter(UTCdateFilter(post.date), 'dd.MM.yyyy') : undefined;
 			return $event.preventDefault();
 		};
 		$scope.$on('startEditingAd', function() {

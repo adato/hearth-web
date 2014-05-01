@@ -24,7 +24,6 @@
         <div class="wish row" id="wish{{ id }}" ng-if="item.type == 'need' || item.type == 'offer'" ng-click="go('detail', item._id, item.author._id)" analytics-on analytics-event="click on a post" analytics-category="Marketplace">
             <avatar ng-if="item.author._type == 'Community'" source="item.author.avatar" size="normal" relation="" click="go('community', item.author._id, item.author._id)" class="left photo" type="'Community'"></avatar>
             <avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>
-            <!--<avatar source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo"></avatar>-->
             <div class="small-12 columns wish-text hyphenate" style="width:99%;" ng-if="!isEditingAd(item._id)">
                 <div class="right small">
                     <div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.createdAt"></div>
@@ -47,7 +46,9 @@
                     <br style="clear:both;">
                 </div>
 
-                <div ng-show="item.date>0">Platnost do: {{item.date | date : languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}}</div>
+                <div ng-show="item.author._id == loggedEntity._id && item.date>0" class="small">
+                    {{ 'VALID_UNTIL' | translate }} {{item.date | UTCdate | date : languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}}
+                </div>
                 
                 <div class="row small wish-bottom-bar">
                     <div class="large-7 small-12 columns">

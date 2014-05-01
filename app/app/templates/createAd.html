@@ -1,9 +1,12 @@
 <div ng-controller="CreatePostCtrl" ng-init="setDefaultPost(item)">
+  
   <div class="round login-prompt" signed-out ng-cloak translate>
       LOG_IN_TO_POST_NEW_WISHES
   </div>
+
   <form ng-submit="post.save()" signed-in name="createAdForm" with-errors novalidate class="create-ad" style="margin:0; padding:0;">
       <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+
       <div style="position:relative">
           <div create-ad-select class="create-ad-select" ng-show="isCreatingAd() || isEditingAd()">
               <!-- directive -->
@@ -31,11 +34,11 @@
               <div ng-show="post.attachments.length">
                 <ul>
                   <li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
-                        <img ng-src="{{ file.origin }}" class="padding-1">
-                        <a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
-                          <i class="hearthicon-remove"></i>
-                        </a>
-                    </li>
+                      <img ng-src="{{ file.origin }}" class="padding-1">
+                      <a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+                        <i class="hearthicon-remove"></i>
+                      </a>
+                  </li>
                 </ul>
               </div>
               <div file-upload-output class="text-center"></div>
@@ -52,6 +55,7 @@
               <br>
           </div>
       </div>
+
       <div class="container" ng-show="isCreatingAd() || isEditingAd()">
           <div class="small-12 columns left padding-h-0 create-post-links">
               <a class="create-post-link" ng-click="post.isPrivate = !post.isPrivate">
@@ -63,5 +67,6 @@
               <button class="primary right button" type="submit" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
           </div>
       </div>
+
   </form>
 </div>

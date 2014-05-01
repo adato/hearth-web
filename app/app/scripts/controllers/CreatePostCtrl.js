@@ -71,21 +71,32 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			}
 		};
 
-		$scope.createPost = function(post) {
-			var deferred, eventName;
+		function dateToTimestamp(dateToFormat) {
+			var outDate,
+				dateCs = dateToFormat.match(/(^\d{2})\.(\d{2})\.(\d{4})$/),
+				dateEn = dateToFormat.match(/(^\d{2})\/(\d{2})\/(\d{4})$/),
+				zoneOffset = (new Date()).getTimezoneOffset();
 
+			if (dateCs) {
+				outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
+			} else if (dateEn) {
+				outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
+			} else {
+				console.error('Unable to parse date ' + dateToFormat);
+			}
+			return outDate + zoneOffset * 60000; // remove timezone offset
+		}
+
+		$scope.createPost = function(post) {
+			var deferred, eventName, postData;
+
+			//we need copy, because we change data and don't want to show these changes to user
+			postData = angular.copy(post);
+			postData.date = dateToTimestamp(post.date);
 			deferred = $q.defer();
 			$scope.sent = false;
 
-			var date = post.date.match(/(^\d{2})\.(\d{2})\.(\d{4})$/);
-			if (date) {
-				post.date = new Date(parseInt(date[3], 10), parseInt(date[2], 10) - 1, parseInt(date[1], 10), 0, 0, 0).getTime();
-			} else {
-				date = post.date.match(/(^\d{2})\/(\d{2})\/(\d{4})$/);
-				post.date = new Date(parseInt(date[3], 10), parseInt(date[1], 10) - 1, parseInt(date[2], 10), 0, 0, 0).getTime();
-			}
-
-			PostsService.add(post).then(function(data) {
+			PostsService.add(postData).then(function(data) {
 				if (data) {
 					$scope.sent = true;
 				}
@@ -108,7 +119,10 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 
 		return $scope.updatePost = function(post) {
 			var deferred, eventName;
-
+			console.log('updatePost');
+			//we need copy, because we change data and don't want to show these changes to user
+			post = angular.copy(post);
+			post.date = dateToTimestamp(post.date);
 			deferred = $q.defer();
 			$scope.sent = false;
 			PostsService.update(post).then(function(data) {

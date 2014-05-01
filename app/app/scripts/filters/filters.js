@@ -17,4 +17,8 @@ angular.module('hearth.filters', []).filter('urlize', function() {
 	return function(input) {
 		return $$config.apiPath + input;
 	};
+}).filter('UTCdate', function() {
+	return function(timestamp) {
+		return parseInt(timestamp, 10) - (new Date()).getTimezoneOffset() * 60000;
+	};
 });
