@@ -15,6 +15,9 @@ $FontAwesomePath: "../../fonts" !default;
 $grid-size: 10px;
 $profile-image-size: 96px;
 
+// Foundation datepicker
+$activeColor: nth($color, 1);
+
 // Compass Variables
 
 $grid-background-column-color: rgba(nth($color, 5), 0);
@@ -679,7 +682,7 @@ $button-radius: $global-radius;
 // $f-dropdown-font-size: emCalc(14px);
 // $f-dropdown-list-padding: emCalc(5px) emCalc(10px);
 // $f-dropdown-line-height: emCalc(18px);
-// $f-dropdown-list-hover-bg: #eeeeee;
+ $f-dropdown-list-hover-bg: nth($color, 1);
 // $dropdown-mobile-left: 0;
 
 // When the dropdown has custom content.

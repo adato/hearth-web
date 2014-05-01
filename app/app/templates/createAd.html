@@ -16,6 +16,8 @@
                   <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
               </tags-input>   
           </div>
+          
+          <input type="text" datepicker="{{languageCode.code}}" class="text-input middle" name="date" placeholder="Doba platnosti - neomezeně">
           <div class="text-input middle" ng-show="isCreatingAd() || isEditingAd()">
               <div file-upload upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments.enabled = true" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments.enabled = true" style="position:relative; display:inline-block; float:left; padding-left:2px;">
                   <a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
@@ -55,7 +57,7 @@
                   <span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
                   <span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
               </a>
-              <button class="primary right button" type="submit" ng-disabled="sending" translate>SUBMIT</button>
+              <button class="primary right button" type="submit" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
           </div>
       </div>
   </form>
