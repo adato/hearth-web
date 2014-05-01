@@ -29,7 +29,7 @@ angular.module('hearth.directives').directive('location', function() {
 					google.maps.event.addListener(searchBox, 'places_changed', function() {
 						placeMarker(searchBox.getPlaces()[0].geometry.location, map);
 					});
-					var position = scope.editedLocationIndex !== undefined ? scope.editedProfile.locations[scope.editedLocationIndex].coordinates : undefined;
+					var position = scope.editedLocationIndex !== undefined ? attrs.locations[scope.editedLocationIndex].coordinates : undefined;
 
 					if (position) {
 						placeMarker(new google.maps.LatLng(position[1], position[0]), map);

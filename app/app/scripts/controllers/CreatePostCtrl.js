@@ -10,6 +10,11 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		$scope.post = $scope.defaultPost;
 		$scope.$on('setDefaultPost', function($event, newitem) {
 			$scope.post = angular.copy(newitem || $scope.defaultPost);
+			if (!$scope.post.locations || $scope.post.locations.length === 0) {
+				$scope.post.locations = [{
+					name: ''
+				}];
+			}
 			$scope.post.save = function() {
 				$scope.post = this;
 				return $scope.createAd();
@@ -19,6 +24,21 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 
 		$scope.setDefaultPost = function(item) {
 			return $scope.$broadcast('setDefaultPost', item);
+		};
+
+		$scope.editLocation = function(index) {
+			$scope.editedLocationIndex = index;
+			$('#location-map').foundation('reveal', 'open');
+		};
+
+		$scope.endLocationEdit = function(position, name) {
+			$scope.$apply(function() {
+				$scope.post.locations[$scope.editedLocationIndex] = {
+					type: 'Point',
+					coordinates: position,
+					name: name
+				};
+			});
 		};
 
 		$scope.createAd = function() {

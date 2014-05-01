@@ -44,13 +44,12 @@
       <h1><span class="fa fa-map-marker"></span> {{ 'WHERE' | translate }}</h1>
 
        <div class="locations">
-
         <div class="row" ng-repeat="location in editedProfile.locations track by $index">
           <div class="large-12 columns">
               <input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index)" readonly  ng-model="editedProfile.locations[$index].name" class="text-input" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" type='text'>
           </div>
         </div>
-        <location position="0,0"></location>
+        <location position="0,0" locations="{{editedProfile.locations}}"></location>
         <a ng-click="editedProfile.locations.push({name:''})"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
       </div>   
 
