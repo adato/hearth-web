@@ -7,7 +7,7 @@
     <header class="right-column small-12 large-5 columns push-7" ng-cloak
             ng-show="!isReplyingAd() && !profileDeleting && !profileEditing && profile">
 
-        <div ng-show="loggedUser._id && isMine && !profile.notification_disabled" ng-click="startProfileEdit()" class="more-notification" ng-hide="progress==100">
+        <div ng-show="loggedUser._id && isMine && !profile.notification_disabled && progress<100" ng-click="startProfileEdit()" class="more-notification">
            <h1>{{'TELL_MORE_ABOUT' | translate}}</h1>
             
            <ul>
