@@ -5,8 +5,11 @@ angular.module('hearth.directives').directive('location', function(geo) {
 		restrict: 'E',
 		replace: true,
 		templateUrl: 'templates/location.html',
+		scope: {
+			locations: '='
+		},
 		link: function(scope, el, attrs) {
-			var marker, map, searchBox, selectedPosition, selectedName,
+			var marker, map, searchBox, selectedPosition, selectedName, position,
 				element = $(el),
 				geocoder = new google.maps.Geocoder(),
 				initMap = function() {
@@ -24,19 +27,32 @@ angular.module('hearth.directives').directive('location', function(geo) {
 					});
 					google.maps.event.addListener(map, 'click', function(e) {
 						placeMarker(e.latLng, map);
+						geo.getAddress(e.latLng).then(function(address) {
+							selectedName = address;
+							element.children('input').val(address);
+						});
 					});
 					searchBox = new google.maps.places.SearchBox(element.children('input')[0]);
 					google.maps.event.addListener(searchBox, 'places_changed', function() {
+						selectedName = searchBox.getPlaces()[0].formatted_address;
 						placeMarker(searchBox.getPlaces()[0].geometry.location, map);
 					});
 
-					var position = scope.editedLocationIndex !== undefined ? attrs.locations[scope.editedLocationIndex].coordinates : undefined;
+					if (scope.$parent.editedLocationIndex !== undefined && scope.locations[scope.$parent.editedLocationIndex].coordinates) {
+						var location = scope.locations[scope.$parent.editedLocationIndex],
+							coords = location.coordinates;
 
-					if (position) {
-						placeMarker(new google.maps.LatLng(position[1], position[0]), map);
+						position = new google.maps.LatLng(coords[1], coords[0])
+						selectedName = location.name;
+						element.children('input').val(selectedName);
+						placeMarker(position, map);
 					} else {
 						geo.getCurrentLocation().then(function(position) {
 							placeMarker(position, map);
+							geo.getAddress(position).then(function(address) {
+								selectedName = address;
+								element.children('input').val(address);
+							});
 						});
 					}
 				},
@@ -50,10 +66,6 @@ angular.module('hearth.directives').directive('location', function(geo) {
 					});
 					map.panTo(position);
 					selectedPosition = position;
-
-					geo.getAddress(position).then(function(address) {
-						selectedName = address;
-					});
 				};
 
 			$(document).on('opened', '#location-map[data-reveal]', function() {
@@ -61,7 +73,7 @@ angular.module('hearth.directives').directive('location', function(geo) {
 			});
 
 			$('button', element).click(function() {
-				scope.endLocationEdit([
+				scope.$parent.endLocationEdit([
 					selectedPosition.A,
 					selectedPosition.k
 				], selectedName);
@@ -75,6 +87,7 @@ angular.module('hearth.directives').directive('location', function(geo) {
 	function($q, $timeout) {
 		var geocoder = new google.maps.Geocoder();
 		return {
+
 			getCurrentLocation: function() {
 				var deferred = $q.defer();
 
@@ -85,6 +98,7 @@ angular.module('hearth.directives').directive('location', function(geo) {
 				}
 				return deferred.promise;
 			},
+
 			getAddress: function(position) {
 				var deferred = $q.defer();
 

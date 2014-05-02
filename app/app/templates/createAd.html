@@ -53,7 +53,7 @@
                     <input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index)" readonly  ng-model="post.locations[$index].name" class="text-input" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" type='text'>
                 </div>
               </div>
-                <location position="0,0" locations="{{post.locations}}"></location>
+                <location position="0,0" locations="post.locations"></location>
               <a ng-click="post.locations.push({name:''})"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
             </div>
            </div>
