@@ -1,24 +1,41 @@
 <div class="profile-header">
-    <span ng-include src="'templates/profileProgress.html'" ng-show="isMine"></span>
-    <div style="display:block; width:110px; height:100px; float:left;"><avatar source="profile.avatar" size="large" class="left photo" relation="profile.relation" style="margin-right:10px;" type="'User'"></avatar></div>
-    <h1 ng-show="userNameEditable != true" class="username" style="display:inline-block;" ng-cloak>
-        {{ profile.name }}
-    </h1>
-    <div ng-show="isMine" style="line-height:200%; font-size:small;">{{ loggedUser.email }}</div>
-    <div class="action">
-        <button ng-show="loggedUser._id && isMine" type="button" class="small default button" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak>
-            <i class="fa fa-user"></i> {{ 'EDIT_PROFILE' | translate }}
-        </button>
-        <div ng-switch on="profile.relation == 'followee' || profile.relation == 'friend'" ng-hide="isMine || loggedCommunity._id || !loggedUser._id">
-            <button ng-switch-when="true" type="button" class="small default button" ng-click="follow(profile._id, true)"
-                    ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl"
-                    ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
-                <i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
+    
+    <div style="display:block; width:110px; height:100px; float:left;">
+        
+        <avatar source="profile.avatar" size="large" class="left photo" relation="profile.relation" style="margin-right:10px;" type="'User'"></avatar></div>
+        
+        <h1 ng-show="userNameEditable != true" class="username" style="display:inline-block;" ng-cloak>
+            {{ profile.name }}
+        </h1>
+
+
+        <div ng-show="isMine" style="line-height:200%; font-size:small;">{{ loggedUser.email }}</div>
+        <div style="clear:both;" ng-include src="'templates/profileProgress.html'" ng-show="isMine"></div>
+
+        <div ng-show="loggedUser._id && isMine && !profile.notification_disabled && progress<100" ng-click="startProfileEdit()" class="more-notification">
+           <h1>{{'TELL_MORE_ABOUT' | translate}}</h1>
+           <ul>
+                <li ng-repeat="item in missingItems">
+                    <span class="fa fa-check-circle"></span> {{ item | translate }}
+                </li>
+            </ul>
+            <a title="{{'DONT_SHOW_ANYMORE' | translate}}" ng-click="disableMoreNotificaton($event)"><span class="fa fa-times"></span></a>
+         </div>
+        
+        <div class="action">
+            <button ng-show="loggedUser._id && isMine" type="button" class="  button primary" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak>
+                <i class="fa fa-user"></i> {{ 'EDIT_PROFILE' | translate }}
             </button>
-            <button ng-switch-when="false" type="button" class="small default button" ng-click="follow(profile._id, false)">
-                <i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
-            </button>
+            <div ng-switch on="profile.relation == 'followee' || profile.relation == 'friend'" ng-hide="isMine || loggedCommunity._id || !loggedUser._id">
+                <button ng-switch-when="true" type="button" class="small default button" ng-click="follow(profile._id, true)" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
+                    <i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
+                </button>
+                <button ng-switch-when="false" type="button" class="small default button" ng-click="follow(profile._id, false)">
+                    <i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
+                </button>
+            </div>
         </div>
+        
+        <div class="cleaner"></div>
     </div>
-    <div class="cleaner"></div>
 </div>

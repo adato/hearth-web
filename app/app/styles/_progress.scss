@@ -1,13 +1,23 @@
 .progress {
-    margin: 1em;
+    margin: {
+        top:1em;
+        bottom:1em;
+    }
     overflow: hidden;
     padding: 0;
+    @include border-radius;
     .meter {
         @include transition(width 1s);
         white-space: nowrap;
         color: nth($color, 4);
         @include border-radius(0 !important);
         .text {
+            @include text-shadow(
+                1px 1px 2px $progress-bar-border-color, 
+                -1px -1px 2px $progress-bar-border-color,
+                -1px 1px 2px $progress-bar-border-color,
+                1px -1px 2px $progress-bar-border-color
+            );
             margin: {
                 margin-left: 1em;
             };

@@ -1,22 +1,26 @@
 <div class="row profile-edit">
   <div class="right-column small-12 large-5 columns push-7" ng-cloak>
+    
     <div class="profile-header">
-      <span ng-include src="'templates/profileProgress.html'"></span>
       <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
       <h1 class="username" ng-show="userNameEditable != true" ng-cloak>{{ profile.name }}</h1>
       <div ng-show="isMine" style="line-height:200%; font-size:smaller;">{{ loggedUser.email }}</div>
     </div>
+    
+
     <form name="profileavatarform" novalidate style="clear:both;">
+      <span ng-include src="'templates/profileProgress.html'"></span>
       <!-- path is prefixed with $$config.apiPath -->
       <div file-upload-output class=""></div>
-      <div file-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()" style="width:100%; position:relative;">
-           <button class="green small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
+      <div file-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()" style="width:200px; position:relative;">
+           <button class="primary small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
       </div>
     </form>
 
+
     <div feature-enabled="deleteAccount" class="padding-2">
       <a href="" class="" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
-          <i class="fa fa-warning-sign"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
+          <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
       </a>
     </div>
   </div>
@@ -186,7 +190,7 @@
         <div class="large-12 columns">
           <hr>
           <button type="button" ng-disabled="avatarUpload" class="default button" ng-click="cancelProfileEdit()">{{ 'CANCEL' | translate }}</button>
-          <button type="submit" ng-disabled="avatarUpload || profileEditForm.$invalid" class="green button right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5" >{{ 'SAVE' | translate }}</button>
+          <button type="submit" ng-disabled="avatarUpload || profileEditForm.$invalid" class="button primary right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5" >{{ 'SAVE' | translate }}</button>
         </div>
       </div>
   </form>
