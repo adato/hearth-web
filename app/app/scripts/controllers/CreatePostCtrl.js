@@ -92,19 +92,23 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		};
 
 		function dateToTimestamp(dateToFormat) {
-			var outDate,
+			var outDate, dateCs, dateEn, zoneOffset;
+
+			if (dateToFormat) {
 				dateCs = dateToFormat.match(/(^\d{2})\.(\d{2})\.(\d{4})$/),
 				dateEn = dateToFormat.match(/(^\d{2})\/(\d{2})\/(\d{4})$/),
 				zoneOffset = (new Date()).getTimezoneOffset();
 
-			if (dateCs) {
-				outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
-			} else if (dateEn) {
-				outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
-			} else {
-				console.error('Unable to parse date ' + dateToFormat);
+				if (dateCs) {
+					outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
+				} else if (dateEn) {
+					outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
+				} else {
+					console.error('Unable to parse date ' + dateToFormat);
+				}
+				outDate = outDate + zoneOffset * 60000; // remove timezone offset
 			}
-			return outDate + zoneOffset * 60000; // remove timezone offset
+			return outDate;
 		}
 
 		$scope.createPost = function(post) {
