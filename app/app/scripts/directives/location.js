@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearth.directives').directive('location', function() {
+angular.module('hearth.directives').directive('location', function(geo) {
 	return {
 		restrict: 'E',
 		replace: true,
@@ -29,18 +29,14 @@ angular.module('hearth.directives').directive('location', function() {
 					google.maps.event.addListener(searchBox, 'places_changed', function() {
 						placeMarker(searchBox.getPlaces()[0].geometry.location, map);
 					});
+
 					var position = scope.editedLocationIndex !== undefined ? attrs.locations[scope.editedLocationIndex].coordinates : undefined;
 
 					if (position) {
 						placeMarker(new google.maps.LatLng(position[1], position[0]), map);
 					} else {
-						moveToCurrentLocation();
-					}
-				},
-				moveToCurrentLocation = function() {
-					if (navigator.geolocation) {
-						navigator.geolocation.getCurrentPosition(function(position) {
-							placeMarker(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), map);
+						geo.getCurrentLocation().then(function(position) {
+							placeMarker(position, map);
 						});
 					}
 				},
@@ -55,12 +51,8 @@ angular.module('hearth.directives').directive('location', function() {
 					map.panTo(position);
 					selectedPosition = position;
 
-					geocoder.geocode({
-						latLng: position
-					}, function(responses) {
-						if (responses && responses.length > 0) {
-							selectedName = responses[0].formatted_address;
-						}
+					geo.getAddress(position).then(function(address) {
+						selectedName = address;
 					});
 				};
 
@@ -78,4 +70,34 @@ angular.module('hearth.directives').directive('location', function() {
 
 		}
 	};
-});
+}).factory('geo', [
+	'$q', '$timeout',
+	function($q, $timeout) {
+		var geocoder = new google.maps.Geocoder();
+		return {
+			getCurrentLocation: function() {
+				var deferred = $q.defer();
+
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+						deferred.resolve(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+					});
+				}
+				return deferred.promise;
+			},
+			getAddress: function(position) {
+				var deferred = $q.defer();
+
+				geocoder.geocode({
+					latLng: position
+				}, function(responses) {
+					if (responses && responses.length > 0) {
+						deferred.resolve(responses[0].formatted_address);
+					}
+				});
+
+				return deferred.promise;
+			}
+		};
+	}
+]);
