@@ -44,19 +44,9 @@
               <div file-upload-output class="text-center"></div>
           </div>
 
-            <div class="text-input bottom" ng-show="isCreatingAd() || isEditingAd()">
+          <div class="text-input bottom" ng-show="isCreatingAd() || isEditingAd()">
 
-            <div class="locations">
-             <h3>{{'LOCATION_INPUT_PLACEHOLDER' | translate}}</h3>
-              <div class="row" ng-repeat="location in post.locations track by $index">
-                <div class="large-12 columns">
-                    <input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index)" readonly  ng-model="post.locations[$index].name" class="text-input" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" type='text'>
-                </div>
-              </div>
-                <location position="0,0" locations="post.locations"></location>
-              <a ng-click="post.locations.push({name:''})"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
-            </div>
-           </div>
+          <locations locations="post.locations"></locations>
 
           <!--div style="position:relative;" ng-show="isCreatingAd() || isEditingAd()">
               <address-autocomplete placeholders="'LOCATION_INPUT_PLACEHOLDER'" location="post.location" style="padding-left:40px; margin-bottom:0;" class="bottom" focus="x.enabled = true" blur="x.enabled = false"></address-autocomplete>

@@ -1,0 +1,16 @@
+ <div class="locations">
+    <div class="row" ng-repeat="location in locations track by $index">
+      <div class="large-12 columns">
+          <input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index)" readonly  ng-model="locations[$index].name" class="text-input" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" type='text'>
+      </div>
+    </div>
+     <a ng-click="locations.push({type: 'Point',name:'',coordinates:null})">
+    	<span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}
+    </a>
+    <div id="location-map" class="reveal-modal" data-reveal>
+		<input type="text" id="mapsearch" class="text-input top">
+		<div id="map-canvas" class="text-input bottom"/>
+		<a class="close-reveal-modal">&#215;</a>
+		<button class="right primary">{{'OK' | translate}}</button>
+	</div>
+</div>
