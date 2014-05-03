@@ -235,7 +235,9 @@ a {
     margin-top: 0;
 }
 
-header, section.content, .stream article, footer {
+header, 
+section.content, 
+.stream article, footer {
     display: block;
 }
 
@@ -276,7 +278,8 @@ section.more {
     max-width: 100%;
 }
 
-.appreciate, .hate {
+.appreciate, 
+.hate {
     color: nth($color, 1);
 }
 
@@ -433,7 +436,8 @@ p {
     .friend:before {
         background: nth($color, 1);
     }
-    .wish-text, .rating-text {
+    .wish-text, 
+    .rating-text {
         position: relative;
         margin-left: $listing-image-size * -1;
         padding-left: $listing-image-size + emCalc($grid-size * 1.5);
@@ -484,7 +488,8 @@ p {
        
         }
     }
-    .wish, .rating {
+    .wish, 
+    .rating {
         border-bottom: 1px dotted $primary-color;
         padding: 0;
         padding-top: emCalc($grid-size * 2);
@@ -644,7 +649,8 @@ p {
             float: left;
             margin-right: emCalc($grid-size);
         }
-        .action, .ratings-bar {
+        .action, 
+        .ratings-bar {
             margin-top: emCalc($margin-base);
             @media #{$small} {
                 margin-top: emCalc($margin-base, $desktop-font-size);
@@ -903,6 +909,7 @@ button,
 .button {
     @include border-radius;
     text-transform: uppercase;
+    outline:none;
     &.inactive {
         background: $body-border-color;
         padding: emCalc($grid-size * 0.8);
