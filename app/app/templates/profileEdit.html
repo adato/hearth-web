@@ -145,8 +145,14 @@
           <label>
             <div class="fa fa-globe"></div>
             {{ 'MY_WEB' | translate }}
-               <input ng-repeat="web in editedProfile.webs track by $index" ng-model="editedProfile.webs[$index]"  class="text-input" type="url" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}">
-
+              <div class="row" ng-repeat="web in editedProfile.webs track by $index">
+                 <div class="large-12 columns">
+                  <input ng-model="editedProfile.webs[$index]"  class="text-input" type="url" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}">
+                  <div class="remove">
+                    <span class="fa fa-times-circle" ng-click="editedProfile.webs.splice($index,1)"></span>
+                  </div>
+                 </div>
+              </div>
             <div><em>{{ 'EG' | translate }} https://www.myweb.com</em></div>
             <a ng-click="editedProfile.webs.push('')"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
           </label>

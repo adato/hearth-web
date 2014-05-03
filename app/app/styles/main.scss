@@ -1423,3 +1423,19 @@ textarea:focus {
 @import "angular-loading-bar";
 @import "unsupported";
 @import "profile-edit";
+
+.remove {
+    position:absolute;
+    top: 11px;
+    right: 24px;
+    color: nth($color,1);
+    cursor: pointer;
+}
+
+input + .remove {
+    @include transition (color, 1s);
+    color: nth($color,3);
+    &:hover {
+        color: nth($color,1);
+    }
+}
