@@ -189,8 +189,8 @@
       <div class="row">
         <div class="large-12 columns">
           <hr>
-          <button type="button" ng-disabled="avatarUpload" class="default button" ng-click="cancelProfileEdit()">{{ 'CANCEL' | translate }}</button>
-          <button type="submit" ng-disabled="avatarUpload || profileEditForm.$invalid" class="button primary right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5" >{{ 'SAVE' | translate }}</button>
+          <a ng-disabled="avatarUpload" class="default " ng-click="cancelProfileEdit()">{{ 'CANCEL' | translate }}</a>
+          <button type="submit" ng-disabled="avatarUpload || profileEditForm.$invalid" class=" primary right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5" >{{ 'SAVE' | translate }}</button>
         </div>
       </div>
   </form>
