@@ -1,16 +1,22 @@
 .navigation {
     @include text-shadow(0 -1px 1px rgba(black, 0.2));
-    @include box-shadow(0 1px 2px rgba(black, 0.3));
-    &.community {
-       // @include background($navigation-background-pattern, linear-gradient(top, darken(nth($color, 1), 13%), darken(nth($color, 1), 5%)));
-    }
+    @include box-shadow(0 2px 2px rgba(black, 0.3));
     form {
         @include reset-box-model;
     }
     &.top-bar {
         text-transform: uppercase;
         position:fixed;
-        //@include background($navigation-background-pattern, linear-gradient(top, lighten(nth($color, 1), 15%) 0%, nth($color, 1), darken(nth($color, 1), 15%) 100%));
+        @include background($navigation-background-pattern, linear-gradient(top, lighten(nth($color, 1), 15%) 0%, nth($color, 1), darken(nth($color, 1), 15%) 100%));
+        ul,
+         .title-area,
+         .top-bar-section  li a  {
+            background-color:transparent;
+        }
+        .top-bar-section li a:not(.button):hover {
+            background: darken(nth($color, 1), 10%) !important;
+        }
+
         min-width: 100%;
         .title-area {
             .name {
@@ -22,11 +28,19 @@
                 }
             }
         }
+        .dropdown {
+            background-color:nth($color,1);
+            //@include background( $navigation-background-pattern, darken(nth($color, 1), 8%));
+            @include background($navigation-background-pattern, linear-gradient(top, darken(nth($color, 1), 15%) 0%, darken(nth($color, 1), 5%), darken(nth($color, 1), 15%) 100%));
+            @include box-shadow(0 2px 2px rgba(black, 0.3));
+            .fa {
+                display: inline-block;
+                width: 20px;
+            }
+        }
         ul {
-            //background-color: transparent;
             li {
                 a {
-                    //background-color: transparent;
                     padding: {
                         left: 0.5em;
                         right: 0.5em;
