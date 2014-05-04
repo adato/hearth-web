@@ -7,12 +7,40 @@
     <header class="right-column small-12 large-5 columns push-7" ng-cloak
             ng-show="!isReplyingAd() && !profileDeleting && !profileEditing && profile">
 
-
-        <div ng-include  src="'templates/profilePane.html'"></div>
-
+        <div ng-include src="'templates/profilePane.html'"></div>
+         
         <div class="hr padding-v-1"></div>
-        <p ng-show="!rating.dialogShown" class="padding-2 hide-for-small" ng-bind-html="profile.about | urlize"></p>
-        <div class="hr" ng-show="profile.about"></div>
+
+        <div class="padding-2">
+            <div ng-show="!rating.dialogShown" ng-bind-html="profile.about | urlize"></div>
+             <div ng-show="profile.interests.length > 0">
+                <h1> {{ 'MY_INTERESTS' | translate }}</h1>
+                <div>{{profile.interests.join(', ')}}</div>
+            </div>
+            <div ng-show="profile.locations.length > 0">
+                <h1>{{ 'WHERE' | translate }}</h1>
+                <div ng-repeat="location in profile.locations">
+                    {{location.name}}
+                </div>
+            </div>
+
+            <div ng-show="profile.webs.length > 0">
+                <h1>{{ 'MY_WEB' | translate }}</h1>
+                <div ng-repeat="web in profile.webs">
+                    <a href="{{web}}" target="_blank">{{web}}</a>
+                </div>
+            </div>
+
+            <div>
+                <a href="{{profile.facebook}}" ng-show="profile.facebook" target="_blank"><div class="fa fa-facebook"></div></a>
+                <a href="{{profile.twitter}}" ng-show="profile.twitter" target="_blank"><div class="fa fa-twitter"></div></a>
+                <a href="{{profile.linkedin}}" ng-show="profile.linkedin" target="_blank"><div class="fa fa-linkedin"></div></a>
+                <a href="{{profile.googleplus}}" ng-show="profile.googleplus" target="_blank"><div class="fa fa-google-plus"></div></a>
+            </div>
+            
+            <div ng-show="profile.about"></div>
+        </div>
+        <hr>
 
         <div class="follow-box">
             <div ng-show="relations.friends.length && showFollow">
@@ -52,7 +80,7 @@
                 <div class="cleaner"></div>
             </div>
 
-            <div ng-show="relations.memberOfCommunities.length">
+            <div ng-show="relations.mnaberOfCommunities.length">
                 <h5>{{ 'MEMBER_OF_COMMUNITIES_LABEL' | translate }}</h5>
                 <ul>
                     <li ng-repeat="member in relations.memberOfCommunities">
