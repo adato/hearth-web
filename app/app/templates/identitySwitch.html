@@ -1,5 +1,5 @@
 <li ng-class="{'has-dropdown': myCommunities.length}" >
-    <a href="">
+    <a href="" ng-click="switchBack()" title="{{ loggedUser.name }}">
         {{ 'TOP_BAR_PROFILE' | translate }}
     </a>
     <ul class="dropdown" ng-if="loggedUser._id" title="{{ loggedCommunity.name || loggedUser.name }} ">
