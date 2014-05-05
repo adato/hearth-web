@@ -52,19 +52,17 @@
        <h1><span class="fa fa-comments"></span> {{ 'MY_LANGUAGES' | translate }}</h1>
       <div class="row languages">
         <div class="large-12 columns">
-          <label><input type="checkbox" ng-model="editedProfile.user_languages.en" >{{ 'MY_LANG_EN' | translate }}</label> 
-          <label><input type="checkbox" ng-model="editedProfile.user_languages.de" >{{ 'MY_LANG_DE' | translate }}</label> 
-          <label><input type="checkbox" ng-model="editedProfile.user_languages.fr">{{ 'MY_LANG_FR' | translate }}</label> 
-          <label><input type="checkbox" ng-model="editedProfile.user_languages.ru">{{ 'MY_LANG_RU' | translate }}</label> 
-          <label><input type="checkbox" ng-model="editedProfile.user_languages.es">{{ 'MY_LANG_ES' | translate }}</label> 
+          <label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) &gt;-1 || editedProfile.user_languages[lang]">
+            <input type="checkbox" ng-model="editedProfile.user_languages[lang]">
+            {{ 'MY_LANG_' + lang.toUpperCase() | translate }}
+          </label> 
+
           <label data-dropdown="language-drop" class="dropdown"><span class="fa fa-comments"></span> {{ 'OTHER_LANG' | translate }}</label>
           <ul id="language-drop" data-dropdown-content class="f-dropdown">
-            <li><label><input type="checkbox" ng-model="editedProfile.user_languages.cs">{{ 'MY_LANG_CS' | translate }}</label></li>
-            <li><label><input type="checkbox" ng-model="editedProfile.user_languages.pt">{{ 'MY_LANG_PT' | translate }}</label></li>
-            <li><label><input type="checkbox" ng-model="editedProfile.user_languages.ja">{{ 'MY_LANG_JA' | translate }}</label></li>
-            <li><label><input type="checkbox" ng-model="editedProfile.user_languages.tr">{{ 'MY_LANG_TR' | translate }}</label></li>
-            <li><label><input type="checkbox" ng-model="editedProfile.user_languages.it">{{ 'MY_LANG_IT' | translate }}</label></li>
-            <li><label><input type="checkbox" ng-model="editedProfile.user_languages.uk">{{ 'MY_LANG_UK' | translate }}</label></li>
+            <label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) &gt;-1 || editedProfile.user_languages[lang]">
+              <input type="checkbox" ng-model="editedProfile.user_languages[lang]">
+              {{ 'MY_LANG_' + lang.toUpperCase() | translate }}
+            </label>
           </ul>
         </div>
       </div>

@@ -28,11 +28,13 @@
             margin: {
                 right: 1em;
             };
+            display: inline-block;
         }
         ul {
             padding: 1em;
-            padding: {bottom:0;}
-            @include box-shadow(0px 0px 9px gray);
+            padding: {
+                bottom: 0;
+            };
         }
         .f-dropdown {
             li {
@@ -40,6 +42,9 @@
                     bottom: 1em;
                 };
             }
+            padding: {
+                bottom: 1em;
+            };
         }
     }
 }
