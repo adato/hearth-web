@@ -555,6 +555,9 @@ p {
         }
         &.hoverable:hover {
             .show-on-hover {
+                position:absolute;
+                bottom: 0.25em;
+                right: 0;
                 display: inherit;
             }
         }
