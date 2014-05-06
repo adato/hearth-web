@@ -7,7 +7,7 @@
 		</div>
 	  </div>
 	</div>
-	 <a ng-click="locations.push({type: 'Point',name:'',coordinates:null})">
+	 <a ng-click="locations.push({type: 'Point',name:'',coordinates:null})" ng-hide="locations.length > 0 && !locations[locations.length-1].name">
 		<span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}
 	</a>
 	<div id="location-map" class="reveal-modal xlarge" data-reveal>
