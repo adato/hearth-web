@@ -11,8 +11,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.expandAd(null);
 		$scope.routeParams = $routeParams;
 		$scope.location = $location;
-		$scope.languageListDefault = ['en', 'de', 'fr', 'ru', 'es'];
-		$scope.languageList = ['en', 'de', 'fr', 'ru', 'es', 'cs', 'pt', 'ja', 'tr', 'it', 'uk'];
+		$scope.languageListDefault = ['en', 'de', 'fr', 'ru', 'es', 'cs'];
+		$scope.languageList = ['en', 'de', 'fr', 'ru', 'es', 'pt', 'ja', 'tr', 'it', 'uk'];
 		
 		$scope.$watch('routeParams.action', function(newval) {
 			var defaultEvent, event, _ref;
