@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('locations', [
-	'geo',
-	function(geo) {
+	'geo', '$timeout',
+	function(geo, $timeout) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('locations', [
 			},
 			templateUrl: 'templates/locations.html',
 			link: function(scope, el, attrs) {
-				var marker, map, searchBox, selectedPosition, selectedName, position, editedLocationIndex,
+				var marker, map, searchBox, position, editedLocationIndex,
 					element = $(el),
 					mapElement = $('#location-map #map-canvas'),
 					inputElement = $('#location-map  input'),
@@ -39,30 +39,50 @@ angular.module('hearth.directives').directive('locations', [
 						google.maps.event.addListener(map, 'click', function(e) {
 							placeMarker(e.latLng, map);
 							geo.getAddress(e.latLng).then(function(address) {
-								selectedName = address;
+								scope.selectedName = address;
 								inputElement.val(address);
 							});
 						});
 						searchBox = new google.maps.places.SearchBox(inputElement[0]);
 						google.maps.event.addListener(searchBox, 'places_changed', function() {
-							selectedName = searchBox.getPlaces()[0].formatted_address;
+							scope.selectedName = searchBox.getPlaces()[0].formatted_address;
 							placeMarker(searchBox.getPlaces()[0].geometry.location, map);
 						});
+
+						inputElement.change(function() {
+							if (!inputElement.val()) {
+								scope.$apply(function() {
+									scope.selectedPosition = [];
+									scope.selectedName = '';
+								})
+
+								if (marker) {
+									marker.setMap(null);
+								}
+
+							}
+						})
 
 						if (editedLocationIndex !== undefined && scope.locations[editedLocationIndex].coordinates) {
 							var location = scope.locations[editedLocationIndex],
 								coords = location.coordinates;
 
-							position = new google.maps.LatLng(coords[1], coords[0])
-							selectedName = location.name;
-							inputElement.val(selectedName);
-							placeMarker(position, map);
+							scope.$apply(function() {
+								scope.position = new google.maps.LatLng(coords[1], coords[0])
+								scope.selectedName = location.name;
+							});
+							inputElement.val(scope.selectedName);
+							placeMarker(scope.position, map);
 						} else {
 							geo.getCurrentLocation().then(function(position) {
 								placeMarker(position, map);
 								geo.getAddress(position).then(function(address) {
-									selectedName = address;
+									$timeout(function() {
+										scope.selectedName = address;
+										scope.selectedPosition = position;
+									});
 									inputElement.val(address);
+
 								});
 							});
 						}
@@ -76,7 +96,7 @@ angular.module('hearth.directives').directive('locations', [
 							map: map
 						});
 						map.panTo(position);
-						selectedPosition = position;
+						scope.selectedPosition = position;
 					};
 
 				scope.editLocation = function(index) {
@@ -92,10 +112,10 @@ angular.module('hearth.directives').directive('locations', [
 					scope.$apply(function() {
 						scope.locations[editedLocationIndex] = {
 							type: 'Point',
-							name: selectedName,
+							name: scope.selectedName,
 							coordinates: [
-								selectedPosition.A,
-								selectedPosition.k
+								scope.selectedPosition.A,
+								scope.selectedPosition.k
 							]
 						};
 					})
@@ -137,7 +157,7 @@ angular.module('hearth.directives').directive('locations', [
 			 * @methodOf geo
 			 * @param {google.maps.LatLng} position position
 			 * @name getAddress
-			 * @description returns promise with postal address data 
+			 * @description returns promise with postal address data
 			 */
 			getAddress: function(position) {
 				var deferred = $q.defer();
