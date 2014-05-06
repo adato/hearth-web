@@ -143,7 +143,6 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 
 		return $scope.updatePost = function(post) {
 			var deferred, eventName;
-			console.log('updatePost');
 			//we need copy, because we change data and don't want to show these changes to user
 			post = angular.copy(post);
 			post.date = dateToTimestamp(post.date);

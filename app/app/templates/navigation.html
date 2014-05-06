@@ -1,20 +1,4 @@
 <section class="fixed">
-	<!--nav class="top-bar navigation hide-for-medium-up" 	ng-class="{ 'left-pad' : sidebarVisible(), 'community': loggedCommunity._id }" 	ng-cloak>
-
-		<ul ng-show="routeParamsAdIsNotNull()">
-			<li><a onclick="window.history.go(-1)" ng-cloak class="link">
-				<i class="fa fa-chevron-left" style="font-size:x-large;"></i> {{ 'BACK' | translate }}
-			</a></li>
-		</ul>
-		<ul ng-show="!routeParamsAdIsNotNull()" class="menu">
-			<li>
-				<a href="" ng-click="sidebarVisible(!sidebarVisible())" class="link"><i class="fa fa-reorder"></i></a>
-			</li>
-			<li ng-show="pageType != 'search'" ng-cloak>
-				<a ng-href="#/search" analytics-on analytics-event="marketplace" analytics-category="mobile-menu" class="link"><i class="hearthicon-market"></i></a>
-			</li>
-		</ul>
-	</nav-->
 
 	<nav class="top-bar navigation" ng-class="{'community': loggedCommunity._id }" ng-cloak data-topbar data-options="scrolltop:true;custom_back_text: true;back_text:&#9664;&#9664;">
 		<section class="top-bar-section">

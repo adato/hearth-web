@@ -542,6 +542,11 @@ p {
     .wish-container {
         padding-left: emCalc($grid-size * 2);
         padding-right: emCalc($grid-size * 2);
+        h2 {
+            margin:0;
+            color: nth($color, 1);
+            font-weight: bold;
+        }
         &:hover:not(.expanded) {
             background: $listing-hover-background;
             a {
