@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('hearth.controllers').controller('CreatePostCtrl', [
-	'$scope', 'Geocoder', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window',
-	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window) {
+	'$scope', 'Geocoder', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter',
+	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window,  $filter) {
 		$scope.defaultPost = {
 			type: 'offer',
-			keywords: []
+			keywords: [],
+			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, $scope.languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy')
 		};
 		$scope.post = $scope.defaultPost;
 		$scope.$on('setDefaultPost', function($event, newitem) {
