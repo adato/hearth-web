@@ -1,8 +1,8 @@
 <div class="container fulltext profile" ng-init="">
     <header class="right-column small-12 large-5 columns push-7">
         <div class="hide-for-medium-down bob">
-            <p ng-bind-html="'CREATE_COMMUNITY_AND_BE_HAPPY' | translate" style="bottom:300px;" ng-if="isView('create')"></p>
-            <p ng-bind-html="'COMMUNITIES_IN_HEARTH' | translate" style="bottom:300px;" ng-if="!isView('create')"></p>
+            <p style="bottom:300px;" ng-if="isView('create')">{{'CREATE_COMMUNITY_AND_BE_HAPPY' | translate}}</p>
+            <p style="bottom:300px;" ng-if="!isView('create')">{{'COMMUNITIES_IN_HEARTH' | translate}}</p>
             <img src="images/group.svg">
         </div>
     </header>
@@ -70,9 +70,9 @@
                             <div ng-if="item.admin == loggedUser._id"><i class="fa fa-wrench"></i> {{ 'COMMUNITY_ADMIN' | translate }}</div>
                             <div ng-if="item.admin != loggedUser._id"><i class="fa fa-bookmark"></i> {{ 'COMMUNITY_MEMBER' | translate }}</div>
                         </div>                        
-                        <a class="name" ng-href="#/profile/{{ item._id}}" ng-show="item._type != 'Community'" ng-bind-html="item.name"></a>
-                        <a class="name" ng-href="#/community/{{ item._id}}" ng-show="item._type == 'Community'" ng-bind-html="item.name"></a><br>
-                        <div class="smaller" style="margin-bottom:5px;" ng-bind-html="item.description || item.about"></div>
+                        <a class="name" ng-href="#/profile/{{ item._id}}" ng-show="item._type != 'Community'">{{item.name}}</a>
+                        <a class="name" ng-href="#/community/{{ item._id}}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
+                        <div class="smaller" style="margin-bottom:5px;">{{item.description || item.about}}</div>
                         <div  ng-show="upVotes + downVotes > 0">
                             {{ item.upVotes}} &nbsp; 
                             <feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 

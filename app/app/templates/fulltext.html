@@ -12,7 +12,7 @@
         <invitation-form visible="page.inviteFriendsClicked" logged-user="loggedUser"></invitation-form>
         
         <div class="hide-for-medium-down bob">
-            <p ng-hide="page.inviteFriendsClicked" ng-bind-html="'THIS_IS_BOB' | translate:info"></p>
+            <p ng-hide="page.inviteFriendsClicked">{{'THIS_IS_BOB' | translate:info}}</p>
             <img src="images/hitchhiking.svg">
         </div>
         <div ng-hide="page.inviteFriendsClicked">
@@ -56,7 +56,7 @@
     <header class="right-column small-12 large-5 columns push-7"
             ng-show="isCreatingAd()">
         <div class="hide-for-medium-down bob">
-            <p ng-bind-html="'CREATE_YOUR_NEW_NEED_AND_BE_HAPPY' | translate"></p>
+            <p>{{'CREATE_YOUR_NEW_NEED_AND_BE_HAPPY' | translate}}</p>
             <img src="images/hitchhiking.svg">
         </div>
     </header>

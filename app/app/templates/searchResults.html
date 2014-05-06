@@ -30,7 +30,7 @@
 				<strong ng-show="item.type == 'need'" class="need">{{ 'DOES_WISH' | translate }}</strong>
 				<strong ng-show="item.type == 'offer'" class="offer">{{ 'DOES_GIVE' | translate }}</strong>
 				<h2 ng-show="item.title">{{item.title}}</h2>
-				<div style="display:inline;" ng-bind-html="item.name | urlize "><!-- post text --></div>
+				<div style="display:inline;">{{item.name | urlize }}</div>
 				<div ng-if="item.attachments.length" class="photo">
 					<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
 				</div>
@@ -77,9 +77,8 @@
 		<div class="wish row user" id="user{{ id }}" ng-if="item.type == 'user'" analytics-on analytics-event="click on user's name" analytics-category="Marketplace">
 			<avatar click="go('profile', item._id, item._id)" source="item.avatar" size="user-search" relation="item.relation" class="left photo" type="item._type"></avatar>
 			<div class="small-11 medium-10 columns wish-text hyphenate">
-				<a class="name" ng-href="#/profile/{{ item._id }}" ng-show="item._type != 'Community'" ng-bind-html="item.name"></a>
-				<a class="name" ng-href="#/community/{{ item._id }}" ng-show="item._type == 'Community'" ng-bind-html="item.name"></a><br>
-				<!--<div class="smaller" style="margin-bottom:5px;" ng-bind-html="item.name"></div>-->
+				<a class="name" ng-href="#/profile/{{ item._id }}" ng-show="item._type != 'Community'">{{item.name}}</a>
+				<a class="name" ng-href="#/community/{{ item._id }}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
 				{{ item.upVotes }} &nbsp; 
 				<feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
 				&nbsp; {{ item.downVotes }}<br>

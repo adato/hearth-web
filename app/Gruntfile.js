@@ -73,12 +73,12 @@ module.exports = function(grunt) {
 					src: ['<%= yeoman.app %>/templates/*.html']
 				},
 				options: {
-					searchString: /\{\{\s*\'[\d\w]+\'\s*\|\s*translate\s*\}\}/g,
+					searchString: /\'([\d\w]+)\'\s*\|\s*translate/g,
 					logFile: '.tmp/results.json',
 					onMatch: function(match) {
 						var translateEn = require('./app/locales/en/messages.json'),
 							translateCs = require('./app/locales/cs/messages.json'),
-							key = match.match.match(/\{\{\s*\'([\d\w]+)\'\s*\|\s*translate\s*\}\}/)[1];
+							key = match.match.match(/\'([\d\w]+)\'\s*\|\s*translate/)[1];
 
 						if (!translateEn[key]) {
 							grunt.log.error(key + ' is missing in EN');

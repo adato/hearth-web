@@ -12,7 +12,7 @@
         <div class="hr padding-v-1"></div>
 
         <div class="padding-2">
-            <div ng-show="!rating.dialogShown" ng-bind-html="profile.about | urlize"></div>
+            <div ng-show="!rating.dialogShown">{{profile.about | urlize}}</div>
              <div ng-show="profile.interests.length > 0">
                 <h1> {{ 'MY_INTERESTS' | translate }}</h1>
                 <div>{{profile.interests.join(', ')}}</div>

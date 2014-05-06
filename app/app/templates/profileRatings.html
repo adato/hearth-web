@@ -82,7 +82,7 @@
                   <i class="hearthicon-hate" ng-cloak ng-show="rating.score < 0"></i>
                   {{ rating.userFromFullName }}
                 </a>
-                <p ng-cloak ng-show="rating.text" style="margin-bottom:0;" ng-bind-html="rating.text | urlize"></p>
+                <p ng-cloak ng-show="rating.text" style="margin-bottom:0;">{{rating.text | urlize}}</p>
             </div>
         </div>
     </div>

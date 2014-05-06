@@ -28,7 +28,7 @@
                         <strong class="offer start-word" ng-show="isMine" ng-cloak> {{ 'I_GIVE' | translate }}</strong> 
                         <strong class="offer start-word" ng-show="!isMine" ng-cloak> {{ 'DOES_GIVE' | translate }}</strong>                                 
                     </span>
-                    <span ng-bind-html="item.name | urlize"></span>
+                    <span>{{item.name | urlize}}</span>
                 </div>
                 <div ng-if="item.attachments.length" class="photo">
                     <img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
