@@ -152,7 +152,9 @@
                  </div>
               </div>
             <div><em>{{ 'EG' | translate }} https://www.myweb.com</em></div>
-            <a ng-click="editedProfile.webs.push('')"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
+            <a ng-click="editedProfile.webs.push('')" ng-hide="editedProfile.webs.length > 0 && !editedProfile.webs[editedProfile.webs.length-1]">
+              <span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}
+            </a>
           </label>
         </div>
       </div>
