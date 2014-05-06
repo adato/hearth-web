@@ -8,7 +8,6 @@
             {{ profile.name }}
         </h1>
 
-
         <div ng-show="isMine" style="line-height:200%; font-size:small;">{{ loggedUser.email }}</div>
         <div style="clear:both;" ng-include src="'templates/profileProgress.html'" ng-show="isMine"></div>
 
@@ -23,14 +22,14 @@
          </div>
         
         <div class="action">
-            <button ng-show="loggedUser._id && isMine" type="button" class="  button primary" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak>
+            <button ng-show="loggedUser._id && isMine" type="button" class="button primary" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak>
                 <i class="fa fa-user"></i> {{ 'EDIT_PROFILE' | translate }}
             </button>
             <div ng-switch on="profile.relation == 'followee' || profile.relation == 'friend'" ng-hide="isMine || loggedCommunity._id || !loggedUser._id">
-                <button ng-switch-when="true" type="button" class="small default button" ng-click="follow(profile._id, true)" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
+                <button ng-switch-when="true" type="button" class="small primary button" ng-click="follow(profile._id, true)" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
                     <i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
                 </button>
-                <button ng-switch-when="false" type="button" class="small default button" ng-click="follow(profile._id, false)">
+                <button ng-switch-when="false" type="button" class="small primary button" ng-click="follow(profile._id, false)">
                     <i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
                 </button>
             </div>

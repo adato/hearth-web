@@ -343,7 +343,7 @@ $hr-margin: emCalc(2 * $grid-size);
 // $input-prefix-font-color: #333;
 // $input-prefix-font-color-alt: #fff;
 
-$button-height: 46px;
+$button-height: 44px;
 
 // We use this to set the base for lots of form spacing and positioning styles
 $form-spacing: emCalc(16px) !default;
@@ -401,7 +401,7 @@ $button-margin-bottom: 1px;
 $button-font-color: $body-font-color;
 $button-font-color-alt: $button-font-color;
 
-// $button-font-med: emCalc(16px);
+$button-font-med: emCalc(15px);
 // $button-font-tny: emCalc(11px);
 $button-font-sml: emCalc(1.67 * $grid-size);
 
@@ -409,6 +409,8 @@ $button-font-sml: emCalc(1.67 * $grid-size);
 $button-font-weight: 300;
 $button-font-align: center;
 $button-radius: $global-radius;
+
+$button-function-factor: 30%;
 
 //
 // Dropdown Button Variables

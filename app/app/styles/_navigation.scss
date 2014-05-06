@@ -16,6 +16,7 @@
         .top-bar-section li a:not(.button):hover {
             background: darken(nth($color, 1), 10%) !important;
         }
+        z-index: 500;
 
         min-width: 100%;
         .title-area {

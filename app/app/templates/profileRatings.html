@@ -3,13 +3,13 @@
         <div class="padding-2 row" ng-hide="rating.dialogShown">
             <div class="small-12 medium-12 large-5 columns">
                 <div class="button-group radius ratings">
-                    <button type="button" class="default button round connect-right"
+                    <button type="button" class="primary button round connect-right"
                             ng-click="showRatingDialog(1)"
                             ng-disabled="rating.dialogShown"
                             analytics-on analytics-event="click on thumb up" analytics-category="Other profile" analytics-label="thanks">
                         <i class="hearthicon-appreciate"><span>{{ 'THUMB_UP' | translate }}</span></i>
                     </button>
-                    <button type="button" class="default button round connect-left"
+                    <button type="button" class="primary button round connect-left"
                             ng-click="showRatingDialog(-1)"
                             ng-disabled="rating.dialogShown"
                             analytics-on analytics-event="click on thumb down" analytics-category="Other profile" analytics-label="thanks">
@@ -27,7 +27,7 @@
                 <textarea ng-class="{ 'text-input': true, 'error': rating.errors.text }" required 
                           ng-model="rating.data.text" 
                           placeholder="{{ feedbackPlaceholder }}"></textarea>
-                <button type="reset" class="left default button" ng-click="rating.dialogShown = false">{{ 'CANCEL' | translate }}</button>
+                <button type="reset" class="left primary button" ng-click="rating.dialogShown = false">{{ 'CANCEL' | translate }}</button>
                 <button type="submit" class="right green button">
                     <i class="center hearthicon-appreciate" ng-cloak ng-show="rating.data.score > 0"></i>
                     <i class="center hearthicon-hate" ng-cloak ng-show="rating.data.score < 0"></i>
