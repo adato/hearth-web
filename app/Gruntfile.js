@@ -67,6 +67,37 @@ module.exports = function(grunt) {
 			}
 		},
 
+		ngdocs: {
+			options: {
+				/*dest: 'docs',
+				scripts: ['../app.min.js'],
+				html5Mode: true,
+				startPage: '/api',
+				title: 'My Awesome Docs',
+				image: 'path/to/my/image.png',
+				imageLink: 'http://my-domain.com',
+				titleLink: '/api',
+				bestMatch: true,
+				analytics: {
+					account: 'UA-08150815-0',
+					domainName: 'my-domain.com'
+				},
+				discussions: {
+					shortName: 'my',
+					url: 'http://my-domain.com',
+					dev: false
+				}*/
+			},
+			tutorial: {
+				src: ['content/tutorial/*.ngdoc'],
+				title: 'Tutorial'
+			},
+			api: {
+				src: ['<%= yeoman.app %>/scripts/**/*.js'],
+				title: 'API Documentation'
+			}
+		},
+
 		// The actual grunt server settings
 		connect: {
 			options: {
@@ -141,7 +172,16 @@ module.exports = function(grunt) {
 				options: {
 					base: '<%= yeoman.dist %>'
 				}
+			},
+			doc: {
+				options: {
+					port: 9001,
+					base: 'docs',
+					keepalive: true
+				},
+				server: {}
 			}
+
 		},
 
 		// Make sure code styles are up to par and there are no obvious mistakes
@@ -498,4 +538,11 @@ module.exports = function(grunt) {
 		'test',
 		'build'
 	]);
+
+	grunt.registerTask('doc', [
+		'ngdocs',
+		'connect:doc',
+
+	]);
+
 };

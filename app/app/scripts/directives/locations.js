@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name locations
+ * @description Renders fields for selecting location, and allows to select location.
+ * @restrict E
+ */
 angular.module('hearth.directives').directive('locations', [
 	'geo',
 	function(geo) {
@@ -99,12 +105,23 @@ angular.module('hearth.directives').directive('locations', [
 			}
 		}
 	}
-]).factory('geo', [
+])
+/**
+ * @ngdoc service
+ * @name geo
+ * @description google maps function wrapper
+ */
+.factory('geo', [
 	'$q', '$timeout',
 	function($q, $timeout) {
 		var geocoder = new google.maps.Geocoder();
 		return {
-
+			/**
+			 * @ngdoc function
+			 * @methodOf geo
+			 * @name getCurrentLocation
+			 * @description returns promise with data about current location
+			 */
 			getCurrentLocation: function() {
 				var deferred = $q.defer();
 
@@ -115,7 +132,13 @@ angular.module('hearth.directives').directive('locations', [
 				}
 				return deferred.promise;
 			},
-
+			/**
+			 * @ngdoc function
+			 * @methodOf geo
+			 * @param {google.maps.LatLng} position position
+			 * @name getAddress
+			 * @description returns promise with postal address data 
+			 */
 			getAddress: function(position) {
 				var deferred = $q.defer();
 
