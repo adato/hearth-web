@@ -607,6 +607,10 @@ p {
 }
 
 .profile {
+    h1 {
+        color: nth($color, 1);
+        margin-bottom:0;
+    }
     .more-notification {
         background-color: darken(nth($color, 5), 5%);
         background: linear-gradient(top, nth($color, 5), darken(nth($color, 5), 3%));
@@ -1004,6 +1008,9 @@ h1.green {
             float: left;
             background: lighten($body-border-color, 5%);
             color: $negative-font-color !important;
+            button {
+                @include box-shadow(none);
+            }
         }
         & .tag-item.selected {}
         & .tag-item span {}
