@@ -1447,3 +1447,12 @@ input + .remove {
         color: nth($color, 1);
     }
 }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+        font-family: 'FontAwesome';
+        src: url("#{$FontAwesomePath}/fontawesome-webfont.svg?v=#{$fa-version}#fontawesomeregular") format("svg") !important;
+        font-weight: normal;
+        font-style: normal;
+    }
+}
