@@ -41,7 +41,8 @@
     "karma-html2js-preprocessor": "^0.1.0",
     "karma-ie-launcher": "^0.1.5",
     "grunt-preprocess": "^4.0.0",
-    "grunt-ngdocs": "^0.2.2"
+    "grunt-ngdocs": "^0.2.2",
+    "grunt-search": "^0.1.4"
   },
   "engines": {
     "node": ">=0.8.0"

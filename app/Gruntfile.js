@@ -67,6 +67,51 @@ module.exports = function(grunt) {
 			}
 		},
 
+		search: {
+			templates: {
+				files: {
+					src: ['<%= yeoman.app %>/templates/*.html']
+				},
+				options: {
+					searchString: /\{\{\s*\'[\d\w]+\'\s*\|\s*translate\s*\}\}/g,
+					logFile: '.tmp/results.json',
+					onMatch: function(match) {
+						var translateEn = require('./app/locales/en/messages.json'),
+							translateCs = require('./app/locales/cs/messages.json'),
+							key = match.match.match(/\{\{\s*\'([\d\w]+)\'\s*\|\s*translate\s*\}\}/)[1];
+
+						if (!translateEn[key]) {
+							grunt.log.error(key + ' is missing in EN');
+						}
+						if (!translateCs[key]) {
+							grunt.log.error(key + ' is missing in CS');
+						}
+					},
+				}
+			},
+			scripts: {
+				files: {
+					src: ['<%= yeoman.app %>/scripts/**/*.js']
+				},
+				options: {
+					searchString: /\$translate\(\'(.*)\'\)/g,
+					logFile: '.tmp/results.json',
+					onMatch: function(match) {
+						var translateEn = require('./app/locales/en/messages.json'),
+							translateCs = require('./app/locales/cs/messages.json'),
+							key = match.match.match(/\$translate\(\'(.*)\'\)/)[1];
+
+						if (!translateEn[key]) {
+							grunt.log.error(key + ' is missing in EN ' + match.file + ':' + match.line );
+						}
+						if (!translateCs[key]) {
+							grunt.log.error(key + ' is missing in CS ' + match.file + ':' + match.line );
+						}
+					},
+				}
+			}
+		},
+
 		ngdocs: {
 			options: {
 				/*dest: 'docs',
@@ -492,6 +537,7 @@ module.exports = function(grunt) {
 			'clean:server',
 			'bower-install-simple',
 			'bowerInstall',
+			'search',
 			'copy:fonts',
 			'concurrent:server',
 			'autoprefixer',
@@ -517,6 +563,7 @@ module.exports = function(grunt) {
 		'clean:dist',
 		'bower-install-simple',
 		'bowerInstall',
+		'search',
 		'useminPrepare',
 		'concurrent:dist',
 		'compass:dist',
