@@ -127,7 +127,7 @@
 	"PASSWORD_RESET_TEXT": "Concentrate and close your eyes! Ready? Now please enter new password for your account.",
 	"PASSWORD_RESET_FAIL": "Password reset failed. Those passwords...",
 	"HIDE_MAP": "< Hide map",
-	"THIS_IS_BOB": "Are you new here? Get inspired by {{users}} people here.<br>\nSee, there's nothing to it! Just say THANKS.<br>",
+	"THIS_IS_BOB": "Are you new here? Get inspired by {{users}} people here.\nSee, there's nothing to it! Just say THANKS.<br>",
 	"NEAREST": "Nearest",
 	"NO_WISHES_FOUND": "no wishes so far.",
 	"KM_FROM_YOU": "km from you",
