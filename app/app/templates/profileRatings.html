@@ -1,61 +1,51 @@
-<div ng-switch on="isMine">
-    <div ng-switch-when="false">
-        <div class="padding-2 row" ng-hide="rating.dialogShown">
-            <div class="small-12 medium-12 large-5 columns">
-                <div class="button-group radius ratings">
-                    <button type="button" class="primary button round connect-right"
-                            ng-click="showRatingDialog(1)"
-                            ng-disabled="rating.dialogShown"
-                            analytics-on analytics-event="click on thumb up" analytics-category="Other profile" analytics-label="thanks">
-                        <i class="hearthicon-appreciate"><span>{{ 'THUMB_UP' | translate }}</span></i>
-                    </button>
-                    <button type="button" class="primary button round connect-left"
-                            ng-click="showRatingDialog(-1)"
-                            ng-disabled="rating.dialogShown"
-                            analytics-on analytics-event="click on thumb down" analytics-category="Other profile" analytics-label="thanks">
-                        <i class="hearthicon-hate"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="small-12 medium-12 large-7 columns" ng-show="profile.upVotes + profile.downVotes" ng-cloak>
-                <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
+<div ng-hide="isMine">
+    <div class="padding-2 row" ng-hide="rating.dialogShown">
+        <div class="small-12 medium-12 large-5 columns">
+            <div class="button-group radius ratings">
+                <button type="button" class="primary button round connect-right" ng-click="showRatingDialog(1)" ng-disabled="rating.dialogShown" analytics-on analytics-event="click on thumb up" analytics-category="Other profile" analytics-label="thanks">
+                    <i class="hearthicon-appreciate"><span>{{ 'THUMB_UP' | translate }}</span></i>
+                </button>
+                <button type="button" class="primary button round connect-left" ng-click="showRatingDialog(-1)" ng-disabled="rating.dialogShown" analytics-on analytics-event="click on thumb down" analytics-category="Other profile" analytics-label="thanks">
+                    <i class="hearthicon-hate"></i>
+                </button>
             </div>
         </div>
-        <div signed-in>
-            <form name="profileRatingForm" ng-cloak ng-show="rating.dialogShown" ng-submit="saveRating()" class="profile-rate">
-                <small class="alert-box visible alert error round connect-bottom" ng-show="rating.errors.text">{{ rating.errors.text | translate}}</small>
-                <textarea ng-class="{ 'text-input': true, 'error': rating.errors.text }" required 
-                          ng-model="rating.data.text" 
-                          placeholder="{{ feedbackPlaceholder }}"></textarea>
-                <button type="reset" class="left primary button" ng-click="rating.dialogShown = false">{{ 'CANCEL' | translate }}</button>
-                <button type="submit" class="right green button">
-                    <i class="center hearthicon-appreciate" ng-cloak ng-show="rating.data.score > 0"></i>
-                    <i class="center hearthicon-hate" ng-cloak ng-show="rating.data.score < 0"></i>
-                    {{ 'SUBMIT' | translate }}</button>
-                <div class="cleaner"></div>
-                <br>
-            </form>
+        <div class="small-12 medium-12 large-7 columns" ng-show="profile.upVotes + profile.downVotes" ng-cloak>
+            <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
         </div>
-        <div signed-out>
-            <div class="padding-2" ng-cloak ng-show="rating.dialogShown">
-                <div class="round login-prompt" translate>
-                LOG_IN_TO_POST_RATING
-                </div>
+    </div>
+    <div signed-in>
+        <form name="profileRatingForm" ng-cloak ng-show="rating.dialogShown" ng-submit="saveRating()" class="profile-rate">
+            <small class="alert-box visible alert error round connect-bottom" ng-show="rating.errors.text">{{ rating.errors.text | translate}}</small>
+            <textarea ng-class="{ 'text-input': true, 'error': rating.errors.text }" required  ng-model="rating.data.text"  placeholder="{{ feedbackPlaceholder }}"></textarea>
+            <a class="left" ng-click="rating.dialogShown = false">{{ 'CANCEL' | translate }}</a>
+            <button type="submit" class="right primary button">
+                <i class="center hearthicon-appreciate" ng-cloak ng-show="rating.data.score > 0"></i>
+                <i class="center hearthicon-hate" ng-cloak ng-show="rating.data.score < 0"></i>
+                {{ 'SUBMIT' | translate }}</button>
+            <div class="cleaner"></div>
+            <br>
+        </form>
+    </div>
+    <div signed-out>
+        <div class="padding-2" ng-cloak ng-show="rating.dialogShown">
+            <div class="round login-prompt" translate>
+            LOG_IN_TO_POST_RATING
             </div>
         </div>
     </div>
+</div>
 
-    <div ng-switch-when="true">
-        <div class="padding-2 row" ng-show="ratings.length > 0" ng-cloak>
-            <div class="small-12 large-7 columns">
-                <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
-            </div>
-            <div class="large-5 columns hide-for-small">
-                <div class="right">
-                    <i class="hearthicon-appreciate"></i>&nbsp;{{ profile.upVotes }}
-                    /
-                    <i class="hearthicon-hate"></i>&nbsp;{{ profile.downVotes }}
-                </div>
+<div ng-show="isMine">
+    <div class="padding-2 row" ng-show="ratings.length > 0" ng-cloak>
+        <div class="small-12 large-7 columns">
+            <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
+        </div>
+        <div class="large-5 columns hide-for-small">
+            <div class="right">
+                <i class="hearthicon-appreciate"></i>&nbsp;{{ profile.upVotes }}
+                /
+                <i class="hearthicon-hate"></i>&nbsp;{{ profile.downVotes }}
             </div>
         </div>
     </div>
