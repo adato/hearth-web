@@ -125,6 +125,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			}
 		};
 
+		$scope.setActive = function(item, isActive) {
+			item.is_active = isActive;
+			PostsService.update(item);
+		},
+
 		$scope.setLastAddedId = function(id) {
 			$scope.lastAddedId = id;
 			return $scope.lastAddedId;

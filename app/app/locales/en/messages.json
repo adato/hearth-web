@@ -348,5 +348,7 @@
 	"TELL_WHAT": "Tell simply what",
 	"UNLIMITED": "The period of validity - unlimited.",
 	"VALID_UNTIL": "Validity until:",
-	"CANCEL_CHANGES": "Cancel changes"
+	"CANCEL_CHANGES": "Cancel changes",
+	"ACTIVATE": "Activate",
+	"DEACTIVATE": "Deactivate"
 }

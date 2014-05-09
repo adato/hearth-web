@@ -538,6 +538,15 @@ p {
             font-weight: bold;
             font-style: normal;
         }
+        &.inactive {
+            background-color: desaturate(nth($color, 5), 80%);
+            .offer {
+                color: desaturate($offer-text-color, 80%);
+            }
+            a {
+                color: desaturate(nth($color, 1), 80%) !important;
+            }
+        }
     }
     .wish-container {
         padding-left: emCalc($grid-size * 2);
@@ -609,7 +618,7 @@ p {
 .profile {
     h1 {
         color: nth($color, 1);
-        margin-bottom:0;
+        margin-bottom: 0;
     }
     .more-notification {
         background-color: darken(nth($color, 5), 5%);
