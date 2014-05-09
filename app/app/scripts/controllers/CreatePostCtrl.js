@@ -27,21 +27,6 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			return $scope.$broadcast('setDefaultPost', item);
 		};
 
-		$scope.editLocation = function(index) {
-			$scope.editedLocationIndex = index;
-			$('#location-map').foundation('reveal', 'open');
-		};
-
-		$scope.endLocationEdit = function(position, name) {
-			$scope.$apply(function() {
-				$scope.post.locations[$scope.editedLocationIndex] = {
-					type: 'Point',
-					coordinates: position,
-					name: name
-				};
-			});
-		};
-
 		$scope.createAd = function() {
 			var query;
 

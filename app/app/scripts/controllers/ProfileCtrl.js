@@ -405,21 +405,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 		};
 
-		$scope.editLocation = function(index) {
-			$scope.editedLocationIndex = index;
-			$('#location-map').foundation('reveal', 'open');
-		};
-
-		$scope.endLocationEdit = function(position, name) {
-			$scope.$apply(function() {
-				$scope.editedProfile.locations[$scope.editedLocationIndex] = {
-					type: 'Point',
-					coordinates: position,
-					name: name
-				};
-			});
-		};
-
 		return $scope.follow = function(userId, unfollow) {
 			var promise;
 			if (userId === $scope.loggedUser._id) {
