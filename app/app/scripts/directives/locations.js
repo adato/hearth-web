@@ -17,8 +17,8 @@ angular.module('hearth.directives').directive('locations', [
 				'locations': '='
 			},
 			templateUrl: 'templates/locations.html',
-			link: function(scope, el, attrs) {
-				var marker, map, searchBox, position, editedLocationIndex,
+			link: function(scope, el) {
+				var marker, map, searchBox, editedLocationIndex,
 					element = $(el),
 					mapElement = $('#location-map #map-canvas'),
 					inputElement = $('#location-map  input'),
@@ -61,14 +61,14 @@ angular.module('hearth.directives').directive('locations', [
 								}
 
 							}
-						})
+						});
 
 						if (editedLocationIndex !== undefined && scope.locations[editedLocationIndex].coordinates) {
 							var location = scope.locations[editedLocationIndex],
 								coords = location.coordinates;
 
 							scope.$apply(function() {
-								scope.position = new google.maps.LatLng(coords[1], coords[0])
+								scope.position = new google.maps.LatLng(coords[1], coords[0]);
 								scope.selectedName = location.name;
 							});
 							inputElement.val(scope.selectedName);
@@ -102,7 +102,7 @@ angular.module('hearth.directives').directive('locations', [
 				scope.editLocation = function(index) {
 					$('#location-map').foundation('reveal', 'open');
 					editedLocationIndex = index;
-				}
+				};
 
 				$(document).on('opened', '#location-map[data-reveal]', function() {
 					initMap();
@@ -118,12 +118,12 @@ angular.module('hearth.directives').directive('locations', [
 								scope.selectedPosition.k
 							]
 						};
-					})
+					});
 					$('#location-map').foundation('reveal', 'close');
 					$('.pac-container').remove(); //google maps forget this
 				});
 			}
-		}
+		};
 	}
 ])
 /**
