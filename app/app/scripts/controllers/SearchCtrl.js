@@ -287,6 +287,12 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				$scope.expandAd(value);
 			}
 			value.url = $scope.getUrl(value);
+			if (!value.locations) {
+				value.locations = [{
+					name: ''
+				}];
+			}
+		
 			return $scope.items.push(value);
 		};
 

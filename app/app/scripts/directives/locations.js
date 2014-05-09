@@ -54,12 +54,11 @@ angular.module('hearth.directives').directive('locations', [
 								scope.$apply(function() {
 									scope.selectedPosition = [];
 									scope.selectedName = '';
-								})
+								});
 
 								if (marker) {
 									marker.setMap(null);
 								}
-
 							}
 						});
 
@@ -108,7 +107,8 @@ angular.module('hearth.directives').directive('locations', [
 					initMap();
 				});
 
-				$('button', element).click(function() {
+				$('button', '#location-map').unbind('click');
+				$('button', '#location-map').click(function() {
 					scope.$apply(function() {
 						scope.locations[editedLocationIndex] = {
 							type: 'Point',

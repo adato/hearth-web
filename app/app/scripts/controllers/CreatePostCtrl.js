@@ -11,11 +11,6 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		$scope.post = $scope.defaultPost;
 		$scope.$on('setDefaultPost', function($event, newitem) {
 			$scope.post = angular.copy(newitem || $scope.defaultPost);
-			if (!$scope.post.locations || $scope.post.locations.length === 0) {
-				$scope.post.locations = [{
-					name: ''
-				}];
-			}
 			$scope.post.save = function() {
 				$scope.post = this;
 				return $scope.createAd();
