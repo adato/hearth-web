@@ -145,7 +145,7 @@
             {{ 'MY_WEB' | translate }}
               <div class="row" ng-repeat="web in editedProfile.webs track by $index">
                  <div class="large-12 columns">
-                  <input ng-model="editedProfile.webs[$index]"  class="text-input" type="url" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}">
+                  <input ng-model="editedProfile.webs[$index]"  class="text-input" type="url" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" ng-blur="updateUrl($event)">
                   <div class="remove" ng-hide="$first">
                     <span class="fa fa-times-circle" ng-click="editedProfile.webs.splice($index,1)"></span>
                   </div>

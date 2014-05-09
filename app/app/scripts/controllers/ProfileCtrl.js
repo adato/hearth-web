@@ -315,9 +315,22 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return Errors.process(res, $scope.rating);
 			});
 		};
-		$scope.updateProfile = function() {
 
-			if ($.type($scope.editedProfile.interests) === "string") {
+		/**
+		 * Solves adding http into URL
+		 * @param $event event from ngBlur 
+		 */
+		$scope.updateUrl = function($event) {
+			var input = $($event.target),
+				url = input.val();
+
+			if (url && !url.match(/http[s]?:\/\/.*/)) {
+				input.val('http://' + url);
+			}
+		};
+
+		$scope.updateProfile = function() {
+			if ($.type($scope.editedProfile.interests) === 'string') {
 				$scope.editedProfile.interests = $scope.editedProfile.interests.split(',');
 			}
 			return UsersService.update($scope.editedProfile).then(function() {
