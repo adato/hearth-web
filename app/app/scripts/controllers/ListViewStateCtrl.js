@@ -59,7 +59,7 @@ angular.module('hearth.controllers').controller('ListViewStateCtrl', [
 			$scope.$broadcast('cancelCreatingAd');
 			$scope.$broadcast('cancelReplyingAd');
 			$event.stopPropagation();
-			post.date = post.date ? dateFilter(UTCdateFilter(post.date), 'dd.MM.yyyy') : undefined;
+			post.date = post.date && post.date > -1 ? dateFilter(UTCdateFilter(post.date), 'dd.MM.yyyy') : undefined;
 			return $event.preventDefault();
 		};
 		$scope.$on('startEditingAd', function() {

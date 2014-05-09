@@ -2,7 +2,7 @@
 
 angular.module('hearth.controllers').controller('CreatePostCtrl', [
 	'$scope', 'Geocoder', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter',
-	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window,  $filter) {
+	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window, $filter) {
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
@@ -126,7 +126,7 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			var deferred, eventName;
 			//we need copy, because we change data and don't want to show these changes to user
 			post = angular.copy(post);
-			post.date = dateToTimestamp(post.date);
+			post.date = post.date ? dateToTimestamp(post.date) : -1;
 			deferred = $q.defer();
 			$scope.sent = false;
 			PostsService.update(post).then(function(data) {
