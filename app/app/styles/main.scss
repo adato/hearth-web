@@ -495,18 +495,27 @@ p {
         padding: 0;
         padding-top: emCalc($grid-size * 2);
         padding-bottom: emCalc($grid-size * 2);
+        font-size: $desktop-font-size;
         .wish-bottom-bar {
             margin-top: emCalc($grid-size);
             margin-bottom: emCalc(2px);
             font-size: smaller;
         }
-        .need, .need a, .negative, .negative a {
+        .need,
+        .need a,
+        .negative,
+        .negative a {
             color: $need-text-color;
+            font-weight: bold;
         }
-        .offer, .offer a, .positive, .positive a {
+        .offer,
+        .offer a,
+        .positive,
+        .positive a {
             color: $offer-text-color;
+            font-weight: bold;
         }
-        a.name, a.name {
+        a.name {
             text-transform: uppercase;
             font-weight: bold;
         }
@@ -514,7 +523,8 @@ p {
             font-size: 20px;
             color: #685B32;
         }
-        &.user, &.user a {
+        &.user,
+        &.user a {
             color: $user-text-color;
         }
         .smaller {
@@ -530,7 +540,6 @@ p {
         &.new {
             background: $listing-new-background;
         }
-        font-size: $desktop-font-size;
         @media #{$mobile} {
             font-size: $mobile-font-size;
         }
