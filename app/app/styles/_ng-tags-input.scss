@@ -62,6 +62,7 @@
             font-size: $desktop-font-size;
             font-family: inherit;
             float: left;
+            min-width: 300px;
         }
         & input::-ms-clear {
             display: none;
