@@ -110,12 +110,13 @@ angular.module('hearth.directives').directive('locations', [
 				$('button', '#location-map').unbind('click');
 				$('button', '#location-map').click(function() {
 					scope.$apply(function() {
+						debugger
 						scope.locations[editedLocationIndex] = {
 							type: 'Point',
 							name: scope.selectedName,
 							coordinates: [
-								scope.selectedPosition.A,
-								scope.selectedPosition.k
+								scope.selectedPosition.lng(),
+								scope.selectedPosition.lat()
 							]
 						};
 					});
