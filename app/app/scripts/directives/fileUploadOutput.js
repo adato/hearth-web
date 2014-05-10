@@ -6,7 +6,7 @@ angular.module('hearth.directives').directive('fileUploadOutput', [
 		return {
 			scope: true,
 			replace: true,
-			template: '<div>' + '<ul ng-if="!progress && errors.length"><li ng-repeat="error in errors"><small class="alert-box alert error round">{{ error | translate}}</small></li></ul>' + '<div class="progress success round" ng-show="progress"><span class="meter" style="width: {{ progress }}%;"></span></div>' + '</div>',
+			template: '<div>' + '<ul ng-if="!progress && errors.length"><li ng-repeat="error in errors"><small class="alert-box alert error round">{{ error | translate}}</small></li></ul>' + '<div class="progress " ng-show="progress"><span class="meter" style="width: {{ progress }}%;"></span></div>' + '</div>',
 			link: function(scope, el, attrs) {
 				var init;
 				init = function() {
