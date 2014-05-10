@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hearth.controllers').controller('ListViewStateCtrl', [
-	'$scope', '$timeout', '$window', '$location', 'UTCdateFilter', 'dateFilter',
-	function($scope, $timeout, $window, $location, UTCdateFilter, dateFilter) {
+	'$scope', '$timeout', '$window', '$location', 'KeywordsService', 'UTCdateFilter', 'dateFilter',
+	function($scope, $timeout, $window, $location, KeywordsService, UTCdateFilter, dateFilter) {
 		$scope.isAdBeingCreated = false;
 		$scope.isAdBeingEdited = false;
 		$scope.editId = null;
@@ -76,12 +76,15 @@ angular.module('hearth.controllers').controller('ListViewStateCtrl', [
 			}
 			return $scope.isAdBeingEdited && $scope.editId === id;
 		};
-		return $scope.$on('scrollIntoView', function() {
+		$scope.$on('scrollIntoView', function() {
 			return $timeout(function() {
 				if ($window.innerWidth < $scope.breakpointForSmall) {
 					return window.scroll(0, $scope.scrollTop);
 				}
-			});
+			}, 0);
 		});
+		return $scope.queryKeywords = function($query) {
+			return KeywordsService.queryKeywords($query);
+		};
 	}
 ]);

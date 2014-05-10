@@ -292,7 +292,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					name: ''
 				}];
 			}
-		
+
 			return $scope.items.push(value);
 		};
 
@@ -330,11 +330,19 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				return $scope.initMyFollowers();
 			});
 		};
-		$scope.searchByKeyword = function($event, keyword) {
-			$event.preventDefault();
-			$event.stopPropagation();
+		$scope.searchByKeyword = function($event, keyword, reset) {
+			if (reset == null) {
+				reset = false;
+			}
+			if ($event) {
+				$event.preventDefault();
+				$event.stopPropagation();
+			}
 			$scope.offset = 0;
 			if ($scope.keywords.indexOf(keyword) === -1) {
+				if (reset) {
+					$scope.keywords = [];
+				}
 				$scope.keywords.push(keyword);
 			} else {
 				$scope.keywords.splice($scope.keywords.indexOf(keyword), 1);
@@ -374,6 +382,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 			return $scope.listKeywords();
 		};
+		$scope.queryKeywords = function($query) {
+			return KeywordsService.queryKeywords($query);
+		};
+
 		$scope.setLastAddedId(null);
 		return $scope.init();
 	}

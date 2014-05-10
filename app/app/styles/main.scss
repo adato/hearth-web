@@ -59,6 +59,7 @@
 @import "foundation/components/dropdown";
 @import "foundation-datepicker";
 
+
 @import "foundation-improvements";
 @import "font-awesome";
 @import "hearth-icons";
@@ -986,111 +987,7 @@ h1.green {
     color: $success-color;
 }
 
-// ****************************************** text inputs
-.ngTagsInput *,
-*:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.ngTagsInput {
-    button {
-        height: auto;
-        padding: 3px;
-        margin: 0;
-    }
-    position: relative;
-    &:active {
-        outline: none;
-    }
-    & .tags {
-        overflow-y: auto;
-        overflow-x: hidden;
-        word-wrap: break-word;
-        cursor: text;
-        &.focused {
-            outline: none;
-        }
-        & .tag-list {
-            margin: 0px;
-            padding: 0px;
-            overflow: visible;
-            list-style-type: none;
-        }
-        & .tag-item {
-            padding: 1px 4px 1px 4px;
-            margin-right: emCalc($grid-size / 2);
-            border-radius: $global-radius;
-            font-size: small;
-            float: left;
-            background: lighten($body-border-color, 5%);
-            color: $negative-font-color !important;
-            button {
-                @include box-shadow(none);
-            }
-        }
-        & .tag-item.selected {}
-        & .tag-item span {}
-        & .tag-item button {
-            margin: 0px;
-            border: none;
-            background: none;
-            color: #585858;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        & .tag-item button:active {
-            color: #ff0000;
-        }
-        & .tag-input {
-            border: 0px;
-            outline: none;
-            margin: 2px;
-            padding: 0px 0px 0px 4px;
-            font-size: $desktop-font-size;
-            font-family: inherit;
-            float: left;
-        }
-        & input::-ms-clear {
-            display: none;
-        }
-    }
-}
-
-.ngTagsInput .autocomplete {
-    margin-top: 5px;
-    position: absolute;
-    padding: 8px 0;
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    width: 100%;
-    z-index: 999;
-    & .suggestion-list {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-    }
-    & .suggestion-item {
-        padding: 3px 16px;
-        font-size: 16px;
-        line-height: 20px;
-        cursor: pointer;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    & .suggestion-item.selected {
-        color: #fff;
-        background-color: #0097cf;
-    }
-    & .suggestion-item em {
-        font-weight: bold;
-        font-style: normal;
-    }
-}
-
+@import "ng-tags-input";
 @import "create-ad";
 @import "create-ad-select";
 
