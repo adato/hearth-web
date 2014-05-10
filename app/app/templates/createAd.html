@@ -9,9 +9,12 @@
 
 		<div style="position:relative">
 			<div create-ad-select class="create-ad-select" ng-show="isCreatingAd() || isEditingAd()"></div>
+			
 			<input type=="text" style="padding-left: 120px" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" ng-required>
+			
 			<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-model="post.name" name="name" ng-required ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd(), 'error': errors.name }" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
-			<input type="text" datepicker="{{languageCode.code}}" class="text-input middle" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+			
+			
 			<div ng-show="isCreatingAd() || isEditingAd()" class="text-input middle">
 				<i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i>
 				<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" max-length="20">
@@ -19,7 +22,13 @@
 				</tags-input>
 			</div>
 			
+			<input type="text" datepicker="{{languageCode.code}}" class="text-input middle" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+
 			<div class="text-input middle" ng-show="isCreatingAd() || isEditingAd()">
+				<locations locations="post.locations"></locations>
+			</div>
+			
+			<div class="text-input bottom" ng-show="isCreatingAd() || isEditingAd()">
 				<div file-upload upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments.enabled = true" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments.enabled = true" style="position:relative; display:inline-block; float:left; padding-left:2px;">
 					<a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
 							<i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
@@ -37,10 +46,6 @@
 					</ul>
 				</div>
 				<div file-upload-output class="text-center"></div>
-			</div>
-
-			<div class="text-input bottom" ng-show="isCreatingAd() || isEditingAd()">
-				<locations locations="post.locations"></locations>
 			</div>
 
 			<div class="container" ng-show="isCreatingAd() || isEditingAd()">
