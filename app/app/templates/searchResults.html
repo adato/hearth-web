@@ -21,7 +21,7 @@
 			<avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>
 			<div class="small-12 columns wish-text hyphenate" style="width:99%;" ng-if="!isEditingAd(item._id)">
 				<div class="right small">
-					<div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.createdAt"></div>
+					<div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.updatedAt || item.createdAt"></div>
 					<div ng-if="orderBy != 'time' && orderBy != 'relevance'" ng-show="item.distance >= 0">{{ item.distance }} {{ 'KM_FROM_YOU' | translate }}</div>
 					<i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
 				</div>

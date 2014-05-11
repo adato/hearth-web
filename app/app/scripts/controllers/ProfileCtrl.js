@@ -71,7 +71,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 					$scope.ads = [];
 				}
 				return ads.forEach(function(item) {
-					if (!item.is_active) {
+					if (item.is_active === undefined) {
 						item.is_active = true;
 					}
 					$scope.ads.push(item);
