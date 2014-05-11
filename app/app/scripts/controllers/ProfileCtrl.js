@@ -62,7 +62,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			searchParams = {
 				userId: $routeParams.id,
 				limit: $scope.limit,
-				offset: $scope.offset
+				offset: $scope.offset,
+				include_not_active: 1
 			};
 			return UsersService.queryPosts(searchParams).then(function(ads) {
 				$scope.lastQueryReturnedCount = ads.length;
@@ -318,7 +319,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		/**
 		 * Solves adding http into URL
-		 * @param $event event from ngBlur 
+		 * @param $event event from ngBlur
 		 */
 		$scope.updateUrl = function($event) {
 			var input = $($event.target),
