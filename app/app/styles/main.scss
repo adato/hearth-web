@@ -59,7 +59,6 @@
 @import "foundation/components/dropdown";
 @import "foundation-datepicker";
 
-
 @import "foundation-improvements";
 @import "font-awesome";
 @import "hearth-icons";
@@ -952,7 +951,7 @@ button,
     }
     &.primary {
         background: $primary-button-background;
-        border: 1px solid $primary-button-border;
+        border: 1px solid $body-border-color;
         color: white;
         &:hover {
             background-color: darken($primary-button-background, 10%);
@@ -1021,20 +1020,29 @@ h1.green {
     font-size: large;
     margin-top: 0;
     margin-bottom: emCalc($grid-size * 2);
-    &::-webkit-input-placeholder,
-    &::-moz-placeholder,
-    &:-ms-input-placeholder  {
-        color: $body-border-color;
-    }
 }
+
+
+
+::-webkit-input-placeholder, {
+   color: $body-border-color;
+}
+
+:-moz-placeholder {
+   color: $body-border-color;  
+}
+
+::-moz-placeholder {
+   color: $body-border-color;  
+}
+
+:-ms-input-placeholder {  
+   color: $body-border-color;  
+}
+
 .field-container {
-  background-color: lighten($body-bg, 3%);
-  color: $body-border-color;
-  input::-webkit-input-placeholder,
-   input::-moz-placeholder,
-   input:-ms-input-placeholder {
-        color: $body-border-color;
-    }
+    background-color: lighten($body-bg, 3%);
+    color: $body-border-color;
 }
 
 input,
@@ -1394,5 +1402,5 @@ input + .remove {
 }
 
 .clearfix {
-   @include clearfix();
+    @include clearfix;
 }
