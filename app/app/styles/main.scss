@@ -1054,8 +1054,8 @@ textarea,
         background-color: $input-focus-bg-color;
     }
     &.ng-invalid {
-        border-color: $alert-color;
-        background-color: lighten($alert-color, 53%);
+        border-color: $alert-color !important;
+        background-color: lighten($alert-color, 43%) !important;
         // go back to normal on focus
         &:focus {
             background: $input-focus-bg-color;
