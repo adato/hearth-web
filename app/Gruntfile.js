@@ -573,7 +573,7 @@ module.exports = function(grunt) {
 		'preprocess',
 		'ngmin',
 		//'cdnify',
-		//'cssmin',
+		'cssmin',
 		'uglify',
 		//'rev',
 		'usemin',
