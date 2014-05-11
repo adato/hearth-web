@@ -8,7 +8,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		$scope.location = $location;
 		$scope.go = function(where, itemId, authorId) {
 			var path;
-			if (authorId === $scope.loggedEntity._id) {
+			if ($scope.loggedEntity && authorId === $scope.loggedEntity._id) {
 				return $location.search('id', null);
 			} else {
 				if (where === 'detail' && (itemId != null)) {
