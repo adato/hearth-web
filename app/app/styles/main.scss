@@ -1021,6 +1021,20 @@ h1.green {
     font-size: large;
     margin-top: 0;
     margin-bottom: emCalc($grid-size * 2);
+    &::-webkit-input-placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder  {
+        color: $body-border-color;
+    }
+}
+.field-container {
+  background-color: lighten($body-bg, 3%);
+  color: $body-border-color;
+  input::-webkit-input-placeholder,
+   input::-moz-placeholder,
+   input:-ms-input-placeholder {
+        color: $body-border-color;
+    }
 }
 
 input,
@@ -1377,4 +1391,8 @@ input + .remove {
         font-weight: normal;
         font-style: normal;
     }
+}
+
+.clearfix {
+   @include clearfix();
 }

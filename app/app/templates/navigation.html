@@ -43,6 +43,7 @@
 
 				<li ng-repeat="language in languages">
 					<a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="" analytics-on analytics-event="switch-language-to-{{language.code}}" analytics-category="menu">{{language.code}}</a>
+					
 				</li>
 
 				<li class="has-dropdown">
