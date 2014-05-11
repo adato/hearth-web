@@ -36,7 +36,7 @@
 					<span ng-show="item.title">{{item.title}}</span>
 				</div>
 				
-				<div style="display:inline;">{{item.name | urlize }}</div>
+				<div style="display:inline;"ng-bind-html="item.name | linky "><!-- post text --></div>
 				<div ng-if="item.attachments.length" class="photo">
 					<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
 				</div>
