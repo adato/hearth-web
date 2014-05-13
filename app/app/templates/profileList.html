@@ -10,7 +10,7 @@
              'non-expanded' : ad._id != item._id, 
              'wish-fade-out' : item._id == getLastAddedId() 
          }">
-        <div class="wish row" ng-click="go('detail', item._id)" ng-class="{inactive:!item.is_active}">
+        <div class="wish row" ng-click="go('detail', item._id)" ng-class="{inactive:!item.is_active}" ng-hide="!isMine &&!item.is_active">
             <div class="small-12 columns hyphenate profile-wish-text" ng-if="!isEditingAd(item._id)">
                 <span class="small right">
                     <time-ago from-time="item.createdAt"></time-ago>
@@ -53,10 +53,10 @@
                         <a href="" ng-click="startEditingAd($event, item);" style="margin-right:20px;" ng-show="isMine">
                             <i class="fa fa-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
                         </a>                    
-                        <a href="" ng-show="!item.is_active"  ng-click="setActive(item, true);" style="margin-right:20px;" ng-show="isMine">
+                        <a href="" ng-show="!item.is_active && isMine"  ng-click="setActive(item, true);" style="margin-right:20px;" ng-show="isMine">
                             <i class="fa fa-play"></i>&nbsp; {{ 'ACTIVATE' | translate }}
                         </a> 
-                         <a href="" ng-show="item.is_active" ng-click="setActive(item, false);" style="margin-right:20px;" ng-show="isMine">
+                         <a href="" ng-show="item.is_active && isMine" ng-click="setActive(item, false);" style="margin-right:20px;" ng-show="isMine">
                             <i class="fa fa-pause"></i>&nbsp; {{ 'DEACTIVATE' | translate }}
                         </a>     
                         <a ng-click="removeAd(item)" ng-cloak ng-show="isMine">
