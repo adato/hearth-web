@@ -67,11 +67,15 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			searchParams = {
 				communityId: $routeParams.id,
 				limit: $scope.limit,
-				offset: $scope.offset
+				offset: $scope.offset,
+				include_not_active: 1
 			};
 			return CommunityService.queryPosts(searchParams).then(function(data) {
 				$scope.posts = [];
 				return data.forEach(function(item) {
+					if (item.is_active === undefined) {
+						item.is_active = true;
+					}
 					return $scope.posts.push(item);
 				});
 			}, function(err) {

@@ -53,7 +53,7 @@
                         <a href="" ng-click="startEditingAd($event, item);" style="margin-right:20px;" ng-show="isMine">
                             <i class="fa fa-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
                         </a>                    
-                        <a href="" ng-hide="item.is_active"  ng-click="setActive(item, true);" style="margin-right:20px;" ng-show="isMine">
+                        <a href="" ng-show="!item.is_active"  ng-click="setActive(item, true);" style="margin-right:20px;" ng-show="isMine">
                             <i class="fa fa-play"></i>&nbsp; {{ 'ACTIVATE' | translate }}
                         </a> 
                          <a href="" ng-show="item.is_active" ng-click="setActive(item, false);" style="margin-right:20px;" ng-show="isMine">
