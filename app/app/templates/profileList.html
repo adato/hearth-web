@@ -18,12 +18,24 @@
                 </span>
                 <div>
                     <span ng-cloak ng-show="item.type == 'need'">
-                        <strong class="need start-word" ng-show="isMine" ng-cloak> {{ 'I_WISH' | translate }}</strong> 
-                        <strong class="need start-word" ng-show="!isMine" ng-cloak> {{ 'DOES_WISH' | translate }}</strong> 
+                        <strong class="need start-word" ng-show="isMine" ng-cloak>
+                            {{ 'I_WISH' | translate }}
+                            <span ng-bind-html="item.title"></span>
+                        </strong> 
+                        <strong class="need start-word" ng-show="!isMine" ng-cloak>
+                            {{ 'DOES_WISH' | translate }}
+                            <span ng-bind-html="item.title"></span>
+                        </strong> 
                     </span>
                     <span ng-cloak ng-show="item.type == 'offer'">
-                        <strong class="offer start-word" ng-show="isMine" ng-cloak> {{ 'I_GIVE' | translate }}</strong> 
-                        <strong class="offer start-word" ng-show="!isMine" ng-cloak> {{ 'DOES_GIVE' | translate }}</strong>                                 
+                        <strong class="offer start-word" ng-show="isMine" ng-cloak>
+                            {{ 'I_GIVE' | translate }}
+                            <span ng-bind-html="item.title"></span>
+                        </strong> 
+                        <strong class="offer start-word" ng-show="!isMine" ng-cloak>
+                            {{ 'DOES_GIVE' | translate }}
+                             <span ng-bind-html="item.title"></span>
+                        </strong>                                 
                     </span>
                     <span ng-bind-html="item.name | linky "></span>
                 </div>
