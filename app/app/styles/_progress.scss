@@ -1,30 +1,28 @@
 .progress {
+    position:relative;
     margin: {
-        top:1em;
-        bottom:1em;
-    }
+        top: 1em;
+        bottom: 1em;
+    };
     overflow: hidden;
     padding: 0;
     @include border-radius;
     .meter {
         @include transition(width 1s);
-        white-space: nowrap;
-        color: nth($color, 4);
         @include border-radius(0 !important);
-        .text {
-            @include text-shadow(
-                1px 1px 2px $progress-bar-border-color, 
-                -1px -1px 2px $progress-bar-border-color,
-                -1px 1px 2px $progress-bar-border-color,
-                1px -1px 2px $progress-bar-border-color
-            );
-            margin: {
-                margin-left: 1em;
-            };
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            line-height: 1.6em;
-        }
+    }
+    .text {
+         white-space: nowrap;
+        color: nth($color, 4);
+        position:absolute;
+        @include text-shadow(1px 1px 2px $progress-bar-border-color, -1px -1px 2px $progress-bar-border-color, -1px 1px 2px $progress-bar-border-color, 1px -1px 2px $progress-bar-border-color);
+        margin: {
+            margin-left: 1em;
+        };
+        width:100%;
+        position: absolute;
+        background-color: transparent;
+        text-align: center;
+        line-height: 1.6em;
     }
 }
