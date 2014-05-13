@@ -321,12 +321,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		 * Solves adding http into URL
 		 * @param $event event from ngBlur
 		 */
-		$scope.updateUrl = function($event) {
+		$scope.updateUrl = function($event, model, key) {
 			var input = $($event.target),
 				url = input.val();
 
 			if (url && !url.match(/http[s]?:\/\/.*/)) {
-				input.val('http://' + url);
+				model[key] = 'http://' + url;
 			}
 		};
 

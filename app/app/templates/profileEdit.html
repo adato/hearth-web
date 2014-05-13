@@ -102,7 +102,7 @@
           <label>
             <div class="fa fa-facebook"></div>
             {{ 'MY_FACEBOOK' | translate }}
-            <input  ng-model="editedProfile.facebook" class="text-input" type="url">
+            <input  ng-model="editedProfile.facebook" class="text-input" type="url" ng-blur="updateUrl($event, editedProfile, 'facebook')">
             <em>{{ 'EG' | translate }} https://www.facebook.com/profile</em>
           </label>
         </div>
@@ -111,7 +111,7 @@
           <label>
             <div class="fa fa-twitter"></div>
             {{ 'MY_TWITTER' | translate }}
-            <input ng-model="editedProfile.twitter"  class="text-input" type="url">
+            <input ng-model="editedProfile.twitter"  class="text-input" type="url" ng-blur="updateUrl($event, editedProfile, 'twitter')">
             <em>{{ 'EG' | translate }} https://twitter.com/profile</em>
           </label>
         </div>
@@ -123,7 +123,7 @@
           <label>
             <div class="fa fa-linkedin"></div>
             {{ 'MY_LINKEDIN' | translate }}
-            <input  ng-model="editedProfile.linkedin"  class="text-input" type="url">
+            <input  ng-model="editedProfile.linkedin"  class="text-input" type="url" ng-blur="updateUrl($event, editedProfile, 'linkedin')">
             <em>{{ 'EG' | translate }} https://www.linkedin.com/profile</em>
           </label>
         </div>
@@ -132,7 +132,7 @@
           <label>
             <div class="fa fa-google-plus"></div>
             {{ 'MY_GOOGLEPLUS' | translate }}
-            <input ng-model="editedProfile.googleplus"  class="text-input" type="url">
+            <input ng-model="editedProfile.googleplus"  class="text-input" type="url" ng-blur="updateUrl($event, editedProfile, 'googleplus')">
             <em>{{ 'EG' | translate }} https://plus.google.com/profile</em>
           </label>
         </div>
@@ -145,7 +145,7 @@
             {{ 'MY_WEB' | translate }}
               <div class="row" ng-repeat="web in editedProfile.webs track by $index">
                  <div class="large-12 columns">
-                  <input ng-model="editedProfile.webs[$index]"  class="text-input" type="url" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" ng-blur="updateUrl($event)">
+                  <input ng-model="editedProfile.webs[$index]"  class="text-input" type="url" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" ng-blur="updateUrl($event, editedProfile.webs, $index)">
                   <div class="remove" ng-hide="$first">
                     <span class="fa fa-times-circle" ng-click="editedProfile.webs.splice($index,1)"></span>
                   </div>
