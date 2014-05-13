@@ -37,10 +37,7 @@
 						<a ng-click="dismissNotification('newCommunityCreated')" href="" translate class="close">CLOSE</a>
 					</div>
 				</li-->
-				<li class="show-for-small">
-					<a ng-href="#/my"  ng-class="{ 'link': 1, 'active': pageType == 'my' }" id="nav-my">{{ 'TOP_BAR_MY_HEARTH' | translate }}<span></span></a>
-				</li>
-
+			
 				<li ng-repeat="language in languages">
 					<a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="" analytics-on analytics-event="switch-language-to-{{language.code}}" analytics-category="menu">{{language.code}}</a>
 					

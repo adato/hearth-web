@@ -1,5 +1,8 @@
 <li ng-class="{'has-dropdown': myCommunities.length}" >
-    <a href="" ng-click="switchBack()" title="{{ loggedUser.name }}">
+     <a href=""  title="{{ loggedUser.name }}" class="show-for-small">
+        {{ 'TOP_BAR_PROFILE' | translate }}
+    </a>
+    <a href="" ng-click="switchBack()" title="{{ loggedUser.name }}" class="show-for-medium-up">
         {{ 'TOP_BAR_PROFILE' | translate }}
     </a>
     <ul class="dropdown" ng-if="loggedUser._id" title="{{ loggedCommunity.name || loggedUser.name }} ">
@@ -11,7 +14,7 @@
         </li>
         <li ng-repeat="community in myCommunities">
             <a href="" ng-click="switchTo(community)" style="margin-right:30px;" title="{{ community.name }}">
-                <avatar source="community.avatar" size="small" type="'Community'"></avatar>
+             <avatar source="community.avatar" size="small" type="'Community'"></avatar>
                 {{ community.name }}
             </a>
         </li>
