@@ -1,5 +1,10 @@
 'use strict';
-
+/**
+ * @ngdoc directive
+ * @name datepicker
+ * @description Solves UI for selecting date
+ * @restrict A
+ */
 angular.module('hearth.directives').directive('datepicker',
 	function() {
 		return {
@@ -13,19 +18,23 @@ angular.module('hearth.directives').directive('datepicker',
 					monthsShort: ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čer', 'Čev', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'],
 					today: 'Dnes'
 				};
+
+				function destroy() {
+					$(element).removeData();
+					$('.datepicker-dropdown').remove();
+				}
 				attrs.$observe('datepicker', function() {
 					var now = new Date(),
-						limit = (new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)).getTime() ;
+						limit = (new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)).getTime();
 
-					$(element).removeData();
-					$('.datepicker-dropdown').remove()
+					destroy();
 					$(element).fdatepicker({
 						onRender: function(date) {
 							return date.getTime() < limit ? 'disabled' : '';
 						},
 						autoclose: true,
 						weekStart: attrs.datepicker === 'en' ? 0 : 1,
-						format: attrs.datepicker === 'en' ? undefined : 'dd.mm.yyyy',
+						format: attrs.datepicker === 'en' ? 'mm/dd/yyyy' : 'dd.mm.yyyy',
 						language: attrs.datepicker
 					});
 				});

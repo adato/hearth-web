@@ -7,7 +7,7 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			type: 'offer',
 			keywords: [],
 			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, $scope.languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
-			locations : [{
+			locations: [{
 				name: ''
 			}]
 		};
@@ -24,6 +24,12 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		$scope.setDefaultPost = function(item) {
 			return $scope.$broadcast('setDefaultPost', item);
 		};
+
+		$scope.$watch('languageCode', function() {
+			var timestamp = dateToTimestamp($scope.post.date, true);
+
+			$scope.post.date = $filter('date')(timestamp, $scope.languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+		});
 
 		$scope.createAd = function() {
 			var query;
@@ -75,7 +81,7 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			}
 		};
 
-		function dateToTimestamp(dateToFormat) {
+		function dateToTimestamp(dateToFormat, withOffset) {
 			var outDate, dateCs, dateEn, zoneOffset;
 
 			if (dateToFormat) {
@@ -90,7 +96,9 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 				} else {
 					console.error('Unable to parse date ' + dateToFormat);
 				}
-				outDate = outDate + zoneOffset * 60000; // remove timezone offset
+				if (!withOffset) {
+					outDate = outDate + zoneOffset * 60000; // remove timezone offset
+				}
 			}
 			return outDate;
 		}
