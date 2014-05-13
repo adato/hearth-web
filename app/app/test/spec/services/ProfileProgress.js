@@ -8,112 +8,154 @@ describe('Services: ProfileProgress', function() {
 
 	it('should contain an ProfileProgress service', inject(function(ProfileProgress) {
 		expect(ProfileProgress).not.toBeUndefined();
-		expect(ProfileProgress.getProgress()).toBe(0);
-		expect(ProfileProgress.getProgress({})).toBe(0);
-		expect(ProfileProgress.getProgress(undefined, {})).toBe(0);
-		expect(ProfileProgress).not.toBeUndefined();
-		expect(ProfileProgress.getListOfMissing()).toEqual([]);
-		expect(ProfileProgress.getListOfMissing({})).toEqual([]);
-		expect(ProfileProgress.getListOfMissing(undefined, {})).toEqual([]);
+		expect(ProfileProgress.get().progress).toBe(0);
+		expect(ProfileProgress.get({}).progress).toBe(0);
+		expect(ProfileProgress.get(undefined, {}).progress).toBe(0);
 	}));
 
-	it('getProgress: simple object ', inject(function(ProfileProgress) {
+	it('get: simple object ', inject(function(ProfileProgress) {
 		var data = {
-			value1: 'abc'
-		},
-			pattern = {
-				value1: true
-			};
+				name: 'xxxx'
+			},
+			pattern = [{
+				name: 'name',
+				message: 'MISSING_NAME'
+			}];
 
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(100);
+		expect(ProfileProgress.get(data, pattern).progress).toBe(100);
+		expect(ProfileProgress.get(data, pattern).missing.length).toBe(0);
+
 		data = {
-			value1: 'abc'
+			value1: 'abc',
+			value2: ''
 		};
-		pattern = {
-			value1: true,
-			value2: true
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(50);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME2']);
+
 		data = {
 			value1: 'abc',
 			value2: '',
 			value3: 'abc'
 		};
-		pattern = {
-			value1: true,
-			value2: true
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}, {
+			name: 'value3',
+			message: 'MISSING_NAME3'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(67);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME2']);
+
 		data = {
 			value1: 'abc',
 			value2: '',
 			value3: ''
 		};
-		pattern = {
-			value1: true,
-			value2: true,
-			value3: true,
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(33);
-
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}, {
+			name: 'value3',
+			message: 'MISSING_NAME3'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(33);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME2', 'MISSING_NAME3']);
 	}));
 
-	it('getProgress: array ', inject(function(ProfileProgress) {
+	it('get: array ', inject(function(ProfileProgress) {
 		var data = {
-			value1: 'abc',
-			value2: [],
-			value3: ''
-		},
-			pattern = {
-				value1: true,
-				value2: true,
-				value3: true,
-			};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(33);
+				value1: 'abc',
+				value2: [],
+				value3: ''
+			},
+			pattern = [{
+				name: 'value1',
+				message: 'MISSING_NAME1'
+			}, {
+				name: 'value2',
+				message: 'MISSING_NAME2'
+			}, {
+				name: 'value3',
+				message: 'MISSING_NAME3'
+			}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(33);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME2', 'MISSING_NAME3']);
 
 		data = {
 			value1: 'abc',
 			value2: ['']
 		};
-		pattern = {
-			value1: true,
-			value2: true
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(50);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME2']);
 
 		data = {
 			value1: 'abc',
 			value2: ['1']
 		};
-		pattern = {
-			value1: true,
-			value2: true
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(100);
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(100);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual([]);
 
 		data = {
 			value1: 'abc',
 			value2: ['xxxx', '1111'],
 			value3: ''
 		};
-		pattern = {
-			value1: true,
-			value2: true,
-			value3: true,
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(67);
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}, {
+			name: 'value3',
+			message: 'MISSING_NAME3'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(67);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME3']);
 	}));
 
 	it('getListOfMissing: object ', inject(function(ProfileProgress) {
 		var data = {
-			value1: 'abc',
-			value2: {}
-		},
-			pattern = {
-				value1: true,
-				value2: true,
-			};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+				value1: 'abc',
+				value2: {}
+			},
+			pattern = [{
+				name: 'value1',
+				message: 'MISSING_NAME1'
+			}, {
+				name: 'value2',
+				message: 'MISSING_NAME2'
+			}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(50);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME2']);
 
 		data = {
 			value1: 'abc',
@@ -121,11 +163,15 @@ describe('Services: ProfileProgress', function() {
 				prop: ''
 			}
 		};
-		pattern = {
-			value1: true,
-			value2: true
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(50);
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(50);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_NAME2']);
 
 		data = {
 			value1: 'abc',
@@ -133,68 +179,78 @@ describe('Services: ProfileProgress', function() {
 				prop: true
 			}
 		};
-		pattern = {
-			value1: true,
-			value2: true
-		};
-		expect(ProfileProgress.getProgress(data, pattern)).toBe(100);
+		pattern = [{
+			name: 'value1',
+			message: 'MISSING_NAME1'
+		}, {
+			name: 'value2',
+			message: 'MISSING_NAME2'
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(100);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual([]);
 
 	}));
 
-	it('getListOfMissing: simple object ', inject(function(ProfileProgress) {
+	it('getListOfMissing: pattern group ', inject(function(ProfileProgress) {
 		var data = {
-			value1: 'abc'
-		},
-			pattern = {
-				value1: 'VALUE1'
-			};
+				value1: 'abc',
+				value2: {}
+			},
+			pattern = [{
+				message: 'MISSING_SOCIAL',
+				items: [{
+					name: 'facebook'
+				}, {
+					name: 'twitter'
+				}, {
+					name: 'googleplus'
+				}, {
+					name: 'linkedin'
+				}]
+			}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(0);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['MISSING_SOCIAL']);
 
-		expect(ProfileProgress.getListOfMissing(data, pattern)).toEqual([]);
 		data = {
-			value1: 'abc',
-			value2: ''
+			facebook: 'abc'
 		};
-		pattern = {
-			value1: 'VALUE1',
-			value2: 'VALUE2'
-		};
-
-		expect(ProfileProgress.getListOfMissing(data, pattern)).toEqual(['VALUE2']);
+		pattern = [{
+			message: 'MISSING_SOCIAL',
+			items: [{
+				name: 'facebook'
+			}, {
+				name: 'twitter'
+			}, {
+				name: 'googleplus'
+			}, {
+				name: 'linkedin'
+			}]
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(100);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual([]);
 
 		data = {
-			value1: 'abc',
-			value2: '',
-			value3: undefined
+			facebook: 'abc',
+			value2: {}
 		};
-		pattern = {
-			value1: 'VALUE1',
-			value2: 'VALUE2',
-			value3: 'VALUE3'
-		};
+		pattern = [{
+			name: 'value2',
+			message: 'value2err'
+		}, {
+			message: 'MISSING_SOCIAL',
+			items: [{
+				name: 'facebook'
+			}, {
+				name: 'twitter'
+			}, {
+				name: 'googleplus'
+			}, {
+				name: 'linkedin'
+			}]
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(50);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['value2err']);
 
-		expect(ProfileProgress.getListOfMissing(data, pattern)).toEqual(['VALUE2', 'VALUE3']);
-
-	}));
-
-	it('getListOfMissing: array  and object ', inject(function(ProfileProgress) {
-		var data = {
-			value1: 'abc',
-			value2: [],
-			value3: ['item'],
-			value4: {},
-			value5: {
-				property: true
-			}
-		},
-			pattern = {
-				value1: 'VALUE1',
-				value2: 'VALUE2',
-				value3: 'VALUE3',
-				value4: 'VALUE4',
-				value5: 'VALUE5'
-			};
-
-		expect(ProfileProgress.getListOfMissing(data, pattern)).toEqual(['VALUE2', 'VALUE4']);
 	}));
 
 });

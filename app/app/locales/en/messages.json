@@ -334,12 +334,6 @@
 	"TELL_MORE_ABOUT": "Tell more about yourself:",
 	"MISSING_NAME": "name",
 	"MISSING_WORK": "work",
-	"MISSING_EMAIL": "email",
-	"MISSING_PHONE": "phone",
-	"MISSING_FACEBOOK": "link to na Facebook profile",
-	"MISSING_TWITTER": "link to Twitter",
-	"MISSING_GOOGLEPLUS": "link to Google+ profile",
-	"MISSING_LINKEDIN": "link to LinkedIn profile",
 	"MISSING_INTERESTS": "list of interest",
 	"MISSING_ABOUT": "write sometning about yourself",
 	"MISSING_WEBS": "list of yours web pages",
@@ -350,5 +344,7 @@
 	"VALID_UNTIL": "Validity until:",
 	"CANCEL_CHANGES": "Cancel changes",
 	"ACTIVATE": "Activate",
-	"DEACTIVATE": "Deactivate"
+	"DEACTIVATE": "Deactivate",
+	"MISSING_SOCIAL": "links to profile on social networks",
+	"MISSING_CONTACT": "some contact"
 }

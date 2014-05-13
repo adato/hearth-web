@@ -222,44 +222,55 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.$watch('loggedUser', _getIsMine);
 		$scope.$watch('loggedCommunity', _getIsMine);
 
-		var pattern = {
-			name: true,
-			work: true,
-			email: true,
-			phone: true,
-			facebook: true,
-			twitter: true,
-			googleplus: true,
-			linkedin: true,
-			interests: true,
-			about: true,
-			webs: true,
-			user_languages: true
-		},
-			missingItemsPattern = {
-				name: 'MISSING_NAME',
-				work: 'MISSING_WORK',
-				email: 'MISSING_EMAIL',
-				phone: 'MISSING_PHONE',
-				facebook: 'MISSING_FACEBOOK',
-				twitter: 'MISSING_TWITTER',
-				googleplus: 'MISSING_GOOGLEPLUS',
-				linkedin: 'MISSING_LINKEDIN',
-				interests: 'MISSING_INTERESTS',
-				about: 'MISSING_ABOUT',
-				webs: 'MISSING_WEBS',
-				user_languages: 'MISSING_USER_LANGUAGES'
-			};
+		var pattern = [{
+			name: 'name',
+			message: 'MISSING_NAME'
+		}, {
+			name: 'work',
+			message: 'MISSING_WORK'
+		}, {
+			message: 'MISSING_CONTACT',
+			items: [{
+				message: 'MISSING_EMAIL'
+			}, {
+				message: 'MISSING_PHONE'
+			}]
+		}, {
+			message: 'MISSING_SOCIAL',
+			items: [{
+				name: 'facebook'
+			}, {
+				name: 'twitter'
+			}, {
+				name: 'googleplus'
+			}, {
+				name: 'linkedin'
+			}]
+		}, {
+			name: 'interests',
+			message: 'MISSING_INTERESTS'
+		}, {
+			name: 'about',
+			message: 'MISSING_ABOUT'
+		}, {
+			name: 'webs',
+			message: 'MISSING_WEBS'
+		}, {
+			name: 'user_languages',
+			message: 'MISSING_USER_LANGUAGES'
+
+		}];
 
 		$scope.$watch('profile', function() {
 			if (!$scope.profileEditing) {
-				$scope.progress = ProfileProgress.getProgress($scope.profile, pattern);
-				$scope.missingItems = ProfileProgress.getListOfMissing($scope.profile, missingItemsPattern);
+				var progressData = ProfileProgress.get($scope.profile, pattern)
+				$scope.progress = progressData.progress;
+				$scope.missingItems = progressData.missing;
 			}
 		}, true);
 
 		$scope.$watch('editedProfile', function() {
-			$scope.progress = ProfileProgress.getProgress($scope.editedProfile, pattern);
+			$scope.progress = ProfileProgress.get($scope.editedProfile, pattern).progress;
 		}, true);
 
 		$scope.disableMoreNotificaton = function($event) {

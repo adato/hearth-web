@@ -3,74 +3,71 @@
 angular.module('hearth.services').factory('ProfileProgress',
 	function() {
 
-		return {
-			getProgress: function(data, pattern) {
-				var progress = 0,
-					counter = 0,
-					sum = 0,
-					item, property;
+		function isEmpty(value) {
+			var property, propCounter = 0;
 
-				if (pattern && data) {
-					for (var key in pattern) {
-						item = data[key];
-						sum++;
-						if (item instanceof Array) {
-							if (item.length === 1 && item[0] || item.length > 1) {
-								//if there is only one item and item is not empty or if there more items
-								counter++;
-							}
-						} else if (item instanceof Object) {
-							for (property in item) {
-								if (item[property]) {
+			if (value instanceof Array) {
+				if (value.length === 1 && isEmpty(value[0])) {
+					//if there is only one item and item is empty
+					return true;
+				} else if (value.length === 0) {
+					return true;
+				}
+			} else
+
+			if (value instanceof Object) {
+				for (property in value) {
+					propCounter++;
+					return isEmpty(value[property]);
+				}
+				return propCounter === 0;
+			} else if (!value) {
+				return true;
+			}
+			return false;
+		}
+
+		return {
+			get: function(data, patternList) {
+				var i, j, pattern,
+					progress = 0,
+					counter = 0,
+					missingItems = [],
+					errorCounter;
+
+				if (data && patternList && patternList.length > 0) {
+
+					for (i = 0; i < patternList.length; i++) {
+						pattern = patternList[i];
+
+						if (pattern.items && pattern.items.length > 0) {
+							errorCounter = 0;
+							for (j = 0; j < pattern.items.length; j++) {
+								if (!isEmpty(data[pattern.items[j].name])) {
 									counter++;
 									break;
 								}
+								errorCounter++;
 							}
-
-						} else if (item) {
-							counter++;
+							if (errorCounter > 0) {
+								missingItems.push(pattern.message);
+							}
+						} else {
+							if (!isEmpty(data[pattern.name])) {
+								counter++;
+							} else {
+								missingItems.push(pattern.message);
+							}
 						}
 					}
-					progress = Math.round((counter / sum) * 100);
+
+					progress = Math.round((counter / patternList.length) * 100);
 				}
-
-				return progress;
-			},
-
-			getListOfMissing: function(data, pattern) {
-				var property, item, isMissing, missingItems = [];
-
-				if (pattern && data) {
-					for (var key in pattern) {
-						isMissing = true;
-						item = data[key];
-						if (item instanceof Array) {
-							if (item.length === 1 && item[0] || item.length > 1) {
-								//if there is only one item and item is not empty or if there more items
-								isMissing = false;
-
-							}
-						} else if (item instanceof Object) {
-							for (property in item) {
-								if (item[property]) {
-									isMissing = false;
-								}
-							}
-
-						} else if (item) {
-							isMissing = false;
-						}
-
-						if (isMissing) {
-							missingItems.push(pattern[key]);
-						}
-
-					}
-				}
-
-				return missingItems;
+				return {
+					progress: progress,
+					missing: missingItems
+				};
 			}
 		};
-
 	}
 );

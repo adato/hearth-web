@@ -333,12 +333,6 @@
 	"TELL_MORE_ABOUT": "Prozraďte o sobě více:",
 	"MISSING_NAME": "jméno",
 	"MISSING_WORK": "práci",
-	"MISSING_EMAIL": "email",
-	"MISSING_PHONE": "telefon",
-	"MISSING_FACEBOOK": "odkaz na facebookový profil",
-	"MISSING_TWITTER": "odkaz na Twitter",
-	"MISSING_GOOGLEPLUS": "odkaz na Google+ profil",
-	"MISSING_LINKEDIN": "odkaz na LinkedIn profil",
 	"MISSING_INTERESTS": "seznam zájmů",
 	"MISSING_ABOUT": "napište něco o sobě",
 	"MISSING_WEBS": "seznam vašich webových stránek",
@@ -349,5 +343,8 @@
 	"VALID_UNTIL": "Platnost do:",
 	"CANCEL_CHANGES": "Zrušit změny",
 	"ACTIVATE": "Obnovit",
-	"DEACTIVATE": "Pozastavit"
+	"DEACTIVATE": "Pozastavit",
+	"MISSING_SOCIAL": "profil na sociálních sítích",
+	"MISSING_CONTACT": "nějaký kontakt"
+
 }
