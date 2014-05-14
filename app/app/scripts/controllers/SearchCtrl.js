@@ -78,9 +78,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			if (order !== 'relevance') {
 				$location.search('q', null);
 			}
-			if (Auth.isLoggedIn() && order === 'location') {
-				$scope.initMyLocation();
-			}
+			$scope.initMyLocation();
 			$scope.orderBy = order;
 			$scope.offset = 0;
 			ipCookie('orderBy', order);
@@ -90,18 +88,17 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			return $scope.$broadcast('searchWithRefresh');
 		};
 		$scope.updateLocation = function(location) {
-			$scope.myLocation = location;
+			$scope.myLocation = location; 
 			$scope.offset = 0;
 			$rootScope.$broadcast('cancelCreatingAd');
 			$rootScope.$broadcast('cancelReplyingAd');
 			return $scope.$broadcast('searchWithRefresh');
 		};
 		$scope.initMyLocation = function() {
-			var _ref;
-			if ((_ref = $scope.myLocation) === undefined || _ref === null || _ref === 0 || _ref === '') {
+			if (Auth.isLoggedIn() && !$scope.myLocation) {
 				return UsersService.get($scope.loggedUser._id).then(function(data) {
-					if ((data.locations != null) && data.locations.length > 0) {
-						return $scope.myLocation = Geocoder.geoJsonToLatLon(data.locations[0]);
+					if (data.locations && data.locations.length > 0) {
+						$scope.myLocation = Geocoder.geoJsonToLatLon(data.locations[0]);
 					}
 				});
 			}
@@ -117,6 +114,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 		$scope.unifyRelations = function() {
 			var item, _i, _j, _len, _len1, _ref, _ref1, _results;
+
 			$scope.myRelations = [];
 			_ref = $scope.myFollowees;
 			for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -181,6 +179,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 		$scope.getSearchService = function() {
 			var getMarketplaceService, getMyHearthService, searchParams, searchParamsByMyLocation, service;
+
 			searchParams = {
 				limit: $scope.limit,
 				offset: $scope.offset,
@@ -193,8 +192,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			searchParamsByMyLocation = function(searchParams) {
 				return angular.extend(searchParams, {
 					sort: 'distance',
-					lat: $scope.myLocation.lat,
-					lon: $scope.myLocation.lon
+					lat: $scope.myLocation.coordinates[1],
+					lon: $scope.myLocation.coordinates[0]
 				});
 			};
 			getMyHearthService = function() {
@@ -217,6 +216,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			};
 			getMarketplaceService = function() {
 				var _ref;
+	
 				if ($scope.orderBy === 'relevance' && (((_ref = $scope.srch) != null ? _ref.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
 					if ($scope.srch.type != null) {

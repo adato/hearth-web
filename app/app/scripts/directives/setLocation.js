@@ -17,41 +17,20 @@ angular.module('hearth.directives').directive('setLocation', [
 				scope.emptyFocusFn = function() {
 					return scope.showAutodetect = true;
 				};
-				scope.editLocation = function() {
-					return scope.editingLocation = true;
-				};
+
 				scope.autodetectMyLocation = function() {
 					return Geocoder.findMeAndGeocode().then(function(geocodedLocation) {
-						return scope.location = geocodedLocation;
+						scope.location = Geocoder.latLonToGeoJson(geocodedLocation);
+						scope.setLocationFn({
+							location: Geocoder.latLonToGeoJson(scope.location)
+						});
 					});
 				};
-				scope.$watch('location', function(newval, oldval) {
-					scope.editingLocation = false;
-					if ((newval != null) && newval !== oldval && oldval !== undefined) {
-						scope.saveLocation();
-					}
-					if (newval == null) {
-						return scope.editLocation();
-					}
-				});
-				return scope.saveLocation = function() {
-					var location, _ref;
-					if (!scope.location) {
-						return;
-					}
-					scope.editingLocation = false;
-					location = Geocoder.latLonToGeoJson(scope.location);
-					if (((_ref = scope.loggedUser) != null ? _ref._id : void 0) == null) {
-						scope.setLocationFn({
-							location: scope.location
-						});
-						return;
-					}
-					location.id = scope.loggedUser._id;
-					return UserLocation.add(location, function(data) {
-						return scope.setLocationFn({
-							location: scope.location
-						});
+				scope.autodetectMyLocation();
+
+				scope.search = function() {
+					scope.setLocationFn({
+						location: Geocoder.latLonToGeoJson(scope.location)
 					});
 				};
 			}

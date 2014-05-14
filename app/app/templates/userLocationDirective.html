@@ -1,16 +1,9 @@
-<div class="">
-	<div ng-cloak ng-show="location && !editingLocation">
-		<a href="" ng-cloak ng-click="editLocation()" id="user-location-name"><i class="fa fa-edit" style="font-size:130%;"></i></a>&nbsp;{{ location.name }}
-	</div>
-	
-	<div ng-cloak ng-show="!location || editingLocation" style="position:relative;">
+<div>	
+	<div ng-cloak style="position:relative;">
 		<address-autocomplete style="padding-left:40px; margin-bottom:0; position:relative;" connections="right" placeholders="'LOCATION_INPUT_PLACEHOLDER'" location="location" on-empty="emptyFocusFn()"></address-autocomplete>
 		<a href="" class="fa fa-map-marker" ng-click="autodetectMyLocation()" style="position:absolute; left:15px; top:13px;"></a>
-		<div ng-show="showAutodetect" class="typeahead" style="text-align:left;">
-			<div><div ng-click="autodetectMyLocation()"><a href="" id="user-location-detect" analytics-on analytics-event="click on Use actual location" analytics-category="Locations">
-				<i class="hearthicon-locate" style="padding-right:10px;"></i> {{ 'USE_MY_CURRENT_LOCATION_LINK' | translate }}</a></div>
-			</div>
-		</div>
-		<button type="button" class="primary button prefix round connect-left" id="user-location-save" ng-click="saveLocation()" style="width:20%; position:absolute; right:0px; top:0px;" analytics-on analytics-event="saving specific location" analytics-category="Locations">{{ 'SAVE' | translate }}</button>
+		<button type="button" ng-click="search()" class="primary button prefix round connect-left" id="user-location-save"  style="width:10%; position:absolute; right:0px; top:0px;padding-left: 18px;" analytics-on analytics-event="saving specific location" analytics-category="Locations">
+			<i class="fa fa-search"></i>
+		</button>
 	</div>
 </div>
