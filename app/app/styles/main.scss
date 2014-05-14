@@ -500,6 +500,8 @@ p {
             margin-top: emCalc($grid-size);
             margin-bottom: emCalc(2px);
             font-size: smaller;
+            opacity: 0.3;
+            @include transition (opacity, 0.8s);
         }
         .need,
         .need a,
@@ -572,11 +574,8 @@ p {
             }
         }
         &.hoverable:hover {
-            .show-on-hover {
-                position: absolute;
-                bottom: 0.25em;
-                right: 0;
-                display: inherit;
+            .wish-bottom-bar {
+                opacity: 1;
             }
         }
         &.hoverable:hover .wish .wish-text,
@@ -1022,22 +1021,20 @@ h1.green {
     margin-bottom: emCalc($grid-size * 2);
 }
 
-
-
-::-webkit-input-placeholder, {
-   color: $body-border-color;
+::-webkit-input-placeholder {
+    color: $body-border-color;
 }
 
 :-moz-placeholder {
-   color: $body-border-color;  
+    color: $body-border-color;
 }
 
 ::-moz-placeholder {
-   color: $body-border-color;  
+    color: $body-border-color;
 }
 
-:-ms-input-placeholder {  
-   color: $body-border-color;  
+:-ms-input-placeholder {
+    color: $body-border-color;
 }
 
 .field-container {
