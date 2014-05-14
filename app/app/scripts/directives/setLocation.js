@@ -12,17 +12,17 @@ angular.module('hearth.directives').directive('setLocation', [
 				setLocationFn: '&'
 			},
 			templateUrl: 'templates/userLocationDirective.html',
-			link: function(scope, el, attrs) {
+			link: function(scope) {
 				scope.showAutodetect = false;
 				scope.emptyFocusFn = function() {
-					return scope.showAutodetect = true;
+					scope.showAutodetect = true;
 				};
 
 				scope.autodetectMyLocation = function() {
 					return Geocoder.findMeAndGeocode().then(function(geocodedLocation) {
-						scope.location = Geocoder.latLonToGeoJson(geocodedLocation);
+						scope.location = geocodedLocation;
 						scope.setLocationFn({
-							location: Geocoder.latLonToGeoJson(scope.location)
+							location: scope.location
 						});
 					});
 				};
