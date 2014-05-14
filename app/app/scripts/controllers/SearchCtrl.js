@@ -100,8 +100,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			var _ref;
 			if ((_ref = $scope.myLocation) === undefined || _ref === null || _ref === 0 || _ref === '') {
 				return UsersService.get($scope.loggedUser._id).then(function(data) {
-					if ((data.location != null) && data.location.type) {
-						return $scope.myLocation = Geocoder.geoJsonToLatLon(data.location);
+					if ((data.locations != null) && data.locations.length > 0) {
+						return $scope.myLocation = Geocoder.geoJsonToLatLon(data.locations[0]);
 					}
 				});
 			}
@@ -191,15 +191,16 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 			service = null;
 			searchParamsByMyLocation = function(searchParams) {
-				var geo, _ref;
-				searchParams.sort = '-distance';
-				geo = Geocoder.geoJsonToLatLon($scope.myLocation);
-				_ref = [geo.lat, geo.lon], searchParams.lat = _ref[0], searchParams.lon = _ref[1];
-				return searchParams;
+				return angular.extend(searchParams, {
+					sort: 'distance',
+					lat: $scope.myLocation.lat,
+					lon: $scope.myLocation.lon
+				});
 			};
 			getMyHearthService = function() {
 				var _ref;
 				service = FolloweesPostsService;
+
 				if ($scope.orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
 				}
