@@ -261,13 +261,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		}];
 
-		$scope.$watch('profile', function() {
+		$scope.$watch('profile', recountProgress, true);
+
+		function recountProgress() {
 			if (!$scope.profileEditing) {
-				var progressData = ProfileProgress.get($scope.profile, pattern)
+				var progressData = ProfileProgress.get($scope.profile, pattern);
+
 				$scope.progress = progressData.progress;
 				$scope.missingItems = progressData.missing;
 			}
-		}, true);
+		}
 
 		$scope.$watch('editedProfile', function() {
 			$scope.progress = ProfileProgress.get($scope.editedProfile, pattern).progress;
@@ -368,7 +371,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.cancelProfileEdit = function() {
 			$scope.avatar = $scope.profile.avatar;
-			return $scope.profileEditing = false;
+			$scope.profileEditing = false;
+			recountProgress();
 		};
 		$scope.startProfileDelete = function() {
 			$scope.profileErrors = {};
