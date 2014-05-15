@@ -61,6 +61,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			$scope.scrollTop = $(window).scrollTop();
 			$rootScope.$broadcast('startReplyingAd');
 			$scope.ad = ad;
+			$scope.ad.profileUrl = ad.author._type == 'Community' ? 'community' : 'profile';
 			$scope.reply = {
 				id: ad._id,
 				message: '',
