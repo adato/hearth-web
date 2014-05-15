@@ -500,8 +500,6 @@ p {
             margin-top: emCalc($grid-size);
             margin-bottom: emCalc(2px);
             font-size: smaller;
-            opacity: 0.3;
-            @include transition (opacity, 0.8s);
         }
         .need,
         .need a,
@@ -573,9 +571,13 @@ p {
                 color: nth($color, 1);
             }
         }
+        .show-on-hover {
+            visibility: hidden;
+            display: block;
+        }
         &.hoverable:hover {
-            .wish-bottom-bar {
-                opacity: 1;
+            .show-on-hover {
+                visibility: visible;
             }
         }
         &.hoverable:hover .wish .wish-text,
@@ -1051,7 +1053,7 @@ textarea,
         background-color: $input-focus-bg-color;
     }
     &.ng-invalid {
-         border-color: $alert-color;
+        border-color: $alert-color;
         background-color: lighten($alert-color, 53%);
         // go back to normal on focus
         &:focus {

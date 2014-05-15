@@ -53,15 +53,14 @@
 				
 				<div class="row small wish-bottom-bar">
 					<div class="large-7 small-12 columns">
-						<div ng-if="item.location.name" style="margin-top:0;">
-						 {{ item.location.name }}
+						<div ng-if="item.locations" style="margin-top:0;" ng-repeat="location in item.locations">
+						 {{ location.name }}
 						</div>
 					</div>
 					<div class="small-1 columns">
 						&nbsp;
 					</div>
-					<div class="large-5 small-11 columns right show-on-hover text-right">
-					  
+					<div class="large-5 small-11 columns right text-right show-on-hover">
 						<a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
 							<i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
 						</a>
