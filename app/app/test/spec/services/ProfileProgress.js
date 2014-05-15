@@ -251,6 +251,40 @@ describe('Services: ProfileProgress', function() {
 		expect(ProfileProgress.get(data, pattern).progress).toBe(50);
 		expect(ProfileProgress.get(data, pattern).missing).toEqual(['value2err']);
 
+		data = {
+			facebook: 'abc',
+			twitter: '',
+			value2: {},
+			value3: {},
+			value4: ''
+		};
+		pattern = [{
+			name: 'value4',
+			message: 'value4err'
+		}, {
+			message: 'MISSING_VALUE',
+			items: [{
+				name: 'value2'
+			}, {
+				name: 'value3'
+			}]
+		}, {
+			message: 'MISSING_SOCIAL',
+			items: [{
+				name: 'facebook'
+			}, {
+				name: 'twitter'
+			}, {
+				name: 'googleplus'
+			}, {
+				name: 'linkedin'
+			}]
+		}];
+		expect(ProfileProgress.get(data, pattern).progress).toBe(33);
+		expect(ProfileProgress.get(data, pattern).missing).toEqual(['value4err', 'MISSING_VALUE']);
+
+
+
 	}));
 
 });

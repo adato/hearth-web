@@ -231,9 +231,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		}, {
 			message: 'MISSING_CONTACT',
 			items: [{
-				message: 'MISSING_EMAIL'
+				name: 'email'
 			}, {
-				message: 'MISSING_PHONE'
+				name: 'phone'
 			}]
 		}, {
 			message: 'MISSING_SOCIAL',
