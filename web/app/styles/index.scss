@@ -21,6 +21,8 @@
 @import "foundation/components/buttons";
 
 @import "angular";
+$FontAwesomePath: "../../fonts" !default;
+@import "font-awesome";
 
 $orange-color: #ff5500;
 $green-color: #3fc469;
