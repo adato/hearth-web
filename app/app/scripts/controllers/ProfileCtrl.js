@@ -140,46 +140,41 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 		$scope.unifyFollowers = function() {
-			var followee, follower, friends;
-
-			if ($scope.relations) {
+			var followee, follower, friends, person;
+			if ($scope.relations != null) {
 				friends = (function() {
-					var i, len,
-						persons = $scope.relations.friends,
-						results = [];
-
-					for (i = 0, len = persons.length; i < len; i++) {
-						results.push(persons[i].userId);
+					var _i, _len, _ref, _results;
+					_ref = $scope.relations.friends;
+					_results = [];
+					for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+						person = _ref[_i];
+						_results.push(person.userId);
 					}
-					return results;
+					return _results;
 				})();
 				$scope.relations.followees = (function() {
-					var i, len, id,
-						followees = $scope.relations.followees,
-						results = [];
-
-					for (i = 0, len = followees.length; i < len; i++) {
-						followee = followees[i];
-						id = followee.userId;
-						if (__indexOf.call(friends, id) < 0 && followee.userType !== 'Community') {
-							results.push(followee);
+					var _i, _len, _ref, _ref1, _results;
+					_ref = $scope.relations.followees;
+					_results = [];
+					for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+						followee = _ref[_i];
+						if ((_ref1 = followee.userId, __indexOf.call(friends, _ref1) < 0) && followee.userType !== 'Community') {
+							_results.push(followee);
 						}
 					}
-					return results;
+					return _results;
 				})();
 				$scope.relations.followers = (function() {
-					var i, len, id,
-						followers = $scope.relations.followers,
-						results = [];
-
-					for (i = 0, len = followers.length; i < len; i++) {
-						follower = followers[i];
-						id = follower.userId;
-						if (__indexOf.call(friends, id) < 0 && follower.userType !== 'Community') {
-							results.push(follower);
+					var _i, _len, _ref, _ref1, _results;
+					_ref = $scope.relations.followers;
+					_results = [];
+					for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+						follower = _ref[_i];
+						if ((_ref1 = follower.userId, __indexOf.call(friends, _ref1) < 0) && follower.userType !== 'Community') {
+							_results.push(follower);
 						}
 					}
-					return results;
+					return _results;
 				})();
 				return $scope.showFollow = true;
 			}
@@ -299,8 +294,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			if ($scope.profile._id != null) {
 				$scope.rating.dialogShown = true;
 			}
-			$scope.feedbackPlaceholder = $translate(score > 0 ? 'POSITIVE_FEEDBACK_PLACEHOLDER' : 'NEGATIVE_FEEDBACK_PLACEHOLDER');
-			return $scope.feedbackPlaceholder;
+			if (score > 0) {
+				return $scope.feedbackPlaceholder = $translate('POSITIVE_FEEDBACK_PLACEHOLDER');
+			} else {
+				return $scope.feedbackPlaceholder = $translate('NEGATIVE_FEEDBACK_PLACEHOLDER');
+			}
 		};
 		$scope.saveRating = function() {
 			if ($scope.rating.data.text.length < 3) {
@@ -313,7 +311,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			delete $scope.rating.dialogShown;
 			return UsersService.addRating($scope.rating.data).then(function(data) {
 				var event, value;
-
 				flash.success = 'RATING_WAS_SAVED';
 				$scope.rating.dialogShown = false;
 				$scope.go('feedback');
