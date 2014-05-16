@@ -73,7 +73,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			};
 		};
 		$scope.replyToAd = function(ad) {
-			if (($scope.reply.message != null) && $scope.reply.message.length < 3) {
+			if (!$scope.reply.message || $scope.reply.message.length < 3) {
 				this.errors = new ResponseErrors({
 					status: 400,
 					data: {

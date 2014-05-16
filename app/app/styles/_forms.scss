@@ -1,0 +1,72 @@
+.text-input {
+    &:focus {
+        border-color: darken($body-border-color, 10%);
+    }
+    min-height: $button-height;
+    outline: none;
+    font-family: inherit;
+    border: 1px solid $body-border-color;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: nth($color, 3);
+    display: block;
+    padding: emCalc($grid-size);
+    width: 100%;
+    @include box-sizing("border-box");
+    @include border-radius($global-radius);
+    font-weight: $body-font-weight;
+    font-size: large;
+    margin-top: 0;
+    margin-bottom: emCalc($grid-size * 2);
+    .alone {
+        @include border-radius($global-radius);
+    }
+    &.top {
+        @include border-radius($global-radius);
+        @include border-bottom-radius(0);
+        margin-bottom: 0;
+    }
+    &.middle {
+        @include border-radius(0);
+        border-top: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    &.bottom {
+        @include border-radius($global-radius);
+        @include border-top-radius(0);
+        border-top: 0;
+        margin-top: 0;
+    }
+}
+
+
+input,
+textarea,
+.checkbox-input {
+    position: relative;
+    @include transition(background-color, 1.5s);
+    
+    &.ng-dirty {
+        background-color: white;
+        &.ng-invalid {
+            border-color: $alert-color !important;
+            background-color: lighten($alert-color, 53%) !important;
+        }
+    }
+}
+
+::-webkit-input-placeholder {
+    color: $body-border-color;
+}
+
+:-moz-placeholder {
+    color: $body-border-color;
+}
+
+::-moz-placeholder {
+    color: $body-border-color;
+}
+
+:-ms-input-placeholder {
+    color: $body-border-color;
+}

@@ -661,18 +661,6 @@ p {
             padding-bottom: 0;
         }
     }
-    input,
-    textarea,
-    selected {
-        background-color: lighten($body-bg, 20%);
-        @include transition(background-color 1s);
-        &:empty {
-            background-color: lighten($body-bg, 3%);
-        }
-        &:focus {
-            background-color: lighten($body-bg, 20%);
-        }
-    }
     .profile-header {
         $margin-base: 12px;
         .avatar img {
@@ -954,6 +942,13 @@ button,
         background: $primary-button-background;
         border: 1px solid $body-border-color;
         color: white;
+        &[disabled] {
+            color: white;
+            background-color: $body-border-color;
+            &:hover {
+                background-color: $body-border-color;
+            }
+        }
         &:hover {
             background-color: darken($primary-button-background, 10%);
         }
@@ -1001,66 +996,9 @@ h1.green {
     }
 }
 
-.text-input {
-    &:focus {
-        border-color: darken($body-border-color, 10%);
-    }
-    min-height: $button-height;
-    outline: none;
-    background-color: white;
-    font-family: inherit;
-    border: 1px solid $body-border-color;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-    color: nth($color, 3);
-    display: block;
-    padding: emCalc($grid-size);
-    width: 100%;
-    @include box-sizing("border-box");
-    @include border-radius($global-radius);
-    font-weight: $body-font-weight;
-    font-size: large;
-    margin-top: 0;
-    margin-bottom: emCalc($grid-size * 2);
-}
-
-::-webkit-input-placeholder {
-    color: $body-border-color;
-}
-
-:-moz-placeholder {
-    color: $body-border-color;
-}
-
-::-moz-placeholder {
-    color: $body-border-color;
-}
-
-:-ms-input-placeholder {
-    color: $body-border-color;
-}
-
 .field-container {
     background-color: lighten($body-bg, 3%);
     color: $body-border-color;
-}
-
-input,
-textarea,
-.checkbox-input {
-    position: relative;
-    &.ng-invalid.ng-pristine {
-        border-color: $body-border-color;
-        background-color: $input-focus-bg-color;
-    }
-    &.ng-invalid {
-        border-color: $alert-color;
-        background-color: lighten($alert-color, 53%);
-        // go back to normal on focus
-        &:focus {
-            background: $input-focus-bg-color;
-            border-color: $input-focus-border-color;
-        }
-    }
 }
 
 .checkbox-input {
@@ -1091,28 +1029,7 @@ input[disabled].text-input {
     background: $body-bg;
 }
 
-.text-input {
-    .alone {
-        @include border-radius($global-radius);
-    }
-    &.top {
-        @include border-radius($global-radius);
-        @include border-bottom-radius(0);
-        margin-bottom: 0;
-    }
-    &.middle {
-        @include border-radius(0);
-        border-top: 0;
-        margin-bottom: 0;
-        margin-top: 0;
-    }
-    &.bottom {
-        @include border-radius($global-radius);
-        @include border-top-radius(0);
-        border-top: 0;
-        margin-top: 0;
-    }
-}
+@import "forms";
 
 .round,
 .prefix.button.round,
