@@ -3,13 +3,13 @@
         <form name="registerForm" ng-show="!sent" ng-cloak ng-submit="register($event)" class="large-8 large-centered columns" with-errors novalidate>
             <h1>{{ 'REGISTER_TO_HEARTH_TEXT' | translate }}</h1>
             <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
-            
+
             <div style="position:relative; z-index:11;">
                 <input class="text-input top" type="email" name="email" ng-model="user.email" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" autocorrect="off" autocapitalize="off" ng-required="true">
             </div>
 
             <div>
-                <input class="text-input middle" type="text" name="name" ng-model="user.name" placeholder="{{ 'FULLNAME_INPUT_PLACEHOLDER' | translate }}" ng-required="true">
+                <input class="text-input middle" type="text" name="name" ng-model="user.name" placeholder="{{ 'FULLNAME_INPUT_PLACEHOLDER' | translate }}" ng-required="true" ng-pattern="/\S/">
             </div>
 
             <div>
@@ -17,7 +17,7 @@
             </div>
 
             <div>
-                <button type="submit" ng-disabled="sending" class="controls primary button radius" style="width:100%;" analytics-on analytics-event="registration - email" analytics-category="registration" analytics-value="8">
+                <button type="submit" ng-disabled="sending || registerForm.$invalid" class="controls primary button radius" style="width:100%;" analytics-on analytics-event="registration - email" analytics-category="registration" analytics-value="8">
                     {{ 'CREATE_ACCOUNT_BUTTON_CAPTION' | translate }}
                 </button>
 
