@@ -5,9 +5,7 @@
     <form  signed-in name="createCommunityForm" ng-show="!sent" ng-cloak ng-submit="createCommunity($event)" class="large-11 large-centered columns" with-errors novalidate>
         <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
         <div>
-            <input class="text-input top" type="text" name="name" required
-                   ng-model="community.name" placeholder="{{ 'COMMUNITY_NAME_INPUT_PLACEHOLDER' | translate }}"
-                   >
+            <input class="text-input top" ng-minlength="3" type="text" name="name" required ng-model="community.name" placeholder="{{ 'COMMUNITY_NAME_INPUT_PLACEHOLDER' | translate }}">
         </div>
         <div>
             <address-autocomplete placeholders="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'"
