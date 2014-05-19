@@ -3,7 +3,8 @@
         <form name="registerForm" ng-show="!sent" ng-cloak ng-submit="register($event)" class="large-8 large-centered columns" with-errors novalidate>
             <h1>{{ 'REGISTER_TO_HEARTH_TEXT' | translate }}</h1>
             <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
-            <div>
+            
+            <div style="position:relative; z-index:11;">
                 <input class="text-input top" type="email" name="email" ng-model="user.email" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" autocorrect="off" autocapitalize="off" ng-required="true">
             </div>
 
