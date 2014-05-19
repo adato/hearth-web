@@ -348,6 +348,7 @@
 	"MISSING_CONTACT": "nějaký kontakt",
 	"WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
 
-	"VALIDATION_EMAIL": "Email není validní."
+	"VALIDATION_EMAIL": "Email není validní.",
+	"VALIDATION_MAX_LENGTH": "Příliš dlouhý text, pane Shakespeare."
 
 }

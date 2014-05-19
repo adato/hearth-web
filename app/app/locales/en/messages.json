@@ -349,6 +349,7 @@
 	"MISSING_CONTACT": "some contact",
 	"WRONG_ABOUT_LENGTH": "Too long text, Mr. Shakespeare.",
 
-	"VALIDATION_EMAIL": "Email is not valid."
+	"VALIDATION_EMAIL": "Email is not valid.",
+	"VALIDATION_MAX_LENGTH":  "Too long text, Mr. Shakespeare."
 
 }
