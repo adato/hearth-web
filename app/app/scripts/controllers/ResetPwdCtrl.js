@@ -31,4 +31,17 @@ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 			}
 		};
 	}
-]);
+]).directive('pwCheck', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, elem, attrs, ctrl) {
+			var firstPassword = '#' + attrs.pwCheck;
+			$(elem).on('keyup', function() {
+				scope.$apply(function() {
+					var v = elem.val() === $(firstPassword).val();
+					ctrl.$setValidity('pwcheck', v);
+				});
+			});
+		}
+	};
+});
