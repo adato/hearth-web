@@ -345,6 +345,7 @@
 	"ACTIVATE": "Obnovit",
 	"DEACTIVATE": "Pozastavit",
 	"MISSING_SOCIAL": "profil na sociálních sítích",
-	"MISSING_CONTACT": "nějaký kontakt"
+	"MISSING_CONTACT": "nějaký kontakt",
+	"WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare."
 
 }
