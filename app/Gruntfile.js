@@ -25,7 +25,10 @@ module.exports = function(grunt) {
 		// Watches files for changes and runs tasks based on the changed files
 		watch: {
 			js: {
-				files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+				files: [
+					'<%= yeoman.app %>/scripts/{,*/}*.js',
+					'<%= yeoman.app %>/locales/{,*/}*.json'
+				],
 				tasks: ['newer:jshint:all'],
 				options: {
 					livereload: true
@@ -102,10 +105,10 @@ module.exports = function(grunt) {
 							key = match.match.match(/\$translate\(\'(.*)\'\)/)[1];
 
 						if (!translateEn[key]) {
-							grunt.log.error(key + ' is missing in EN ' + match.file + ':' + match.line );
+							grunt.log.error(key + ' is missing in EN ' + match.file + ':' + match.line);
 						}
 						if (!translateCs[key]) {
-							grunt.log.error(key + ' is missing in CS ' + match.file + ':' + match.line );
+							grunt.log.error(key + ' is missing in CS ' + match.file + ':' + match.line);
 						}
 					},
 				}
