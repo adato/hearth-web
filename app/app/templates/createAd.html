@@ -7,7 +7,7 @@
 	<form ng-submit="post.save()" signed-in name="createAdForm" with-errors novalidate class="create-ad" style="margin:0; padding:0;">
 		<div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
 
-		<div style="position:relative">
+		<div style="position:relative;z-index: 11;">
 			<div create-ad-select class="create-ad-select" ng-show="isCreatingAd() || isEditingAd()"></div>
 			
 			<input type=="text" style="padding-left: 120px" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" ng-required="true">
