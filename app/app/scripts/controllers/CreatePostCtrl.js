@@ -34,8 +34,8 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		$scope.createAd = function() {
 			var query;
 
-			if ($scope.post && $scope.post.name && $scope.post.name.length > 0) {
-				if ($scope.post.name.length < 3) {
+			if ($scope.post && $scope.post.title && $scope.post.title.length > 0) {
+				if ($scope.post.title.length < 3) {
 					return $scope.errors = new ResponseErrors({
 						status: 400,
 						data: {
