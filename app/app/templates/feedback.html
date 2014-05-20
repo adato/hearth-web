@@ -18,15 +18,10 @@
                         ng-model="feedback.text" ng-required="true"></textarea>
                 </div>
                 <div class="small-9 columns">
-                    <input class="text-input bottom round connect-right" name="username" type="text" disabled
-                           ng-model="feedback.name" ng-show="feedback.name" ng-required="feedback.name">
-                    <input class="text-input bottom round connect-right" name="email" type="email" autocorrect="off" autocapitalize="off"
-                           placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}"
-                           ng-model="feedback.email" ng-show="!feedback.name" ng-required="!feedback.name">
+                    <input class="text-input bottom round connect-right" name="email" type="email" autocorrect="off" autocapitalize="off" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" ng-model="feedback.email">
                 </div>
                 <div class="small-3 columns">
-                    <button type="submit" ng-disabled="sending" class="primary button prefix round connect-top connect-left"
-                            translate style="width:100%;">SUBMIT</button>
+                    <button type="submit" ng-disabled="sending || feedbackForm.$invalid" class="primary button prefix round connect-top connect-left" translate style="width:100%;">SUBMIT</button>
                 </div>
             </div>
         </form>

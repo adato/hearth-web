@@ -11,20 +11,18 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 				email: ''
 			};
 			$scope.errors = new ResponseErrors();
-			if (($location.search().fromDelete != null) && $location.search().fromDelete) {
+			if ($location.search().fromDelete) {
 				$scope.fromAccountDelete = true;
 			}
-			if (!$scope.loggedUser.loggedIn) {
-				return;
-			}
-			return User.get({
-				userId: $scope.loggedUser._id
-			}, function(data) {
-				$scope.feedback.email = data.email;
-				$scope.feedback.name = data.name;
-				return $scope.feedback.name;
+			Auth.init(function() {
+				User.get({
+					userId: $scope.loggedUser._id
+				}, function(data) {
+					$scope.feedback.email = data.email;
+				});
 			});
 		};
+
 		$scope.submit = function() {
 			if (!$scope.feedbackForm.$valid) {
 				return;
@@ -39,6 +37,6 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 				return $scope.init();
 			});
 		};
-		return $scope.init();
+		$scope.init();
 	}
 ]);
