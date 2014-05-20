@@ -36,7 +36,7 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 
 			if ($scope.post && $scope.post.title && $scope.post.title.length > 0) {
 				if ($scope.post.title.length < 3) {
-					return $scope.errors = new ResponseErrors({
+					$scope.errors = new ResponseErrors({
 						status: 400,
 						data: {
 							name: 'ValidationError',
@@ -48,10 +48,11 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 							}
 						}
 					});
+					return $scope.errors;
 				} else {
 					$scope.sending = true;
 					query = $scope[$scope.post._id ? 'updatePost' : 'createPost']($scope.post);
-					return query.then(function(createdItem) {
+					return query.then(function() {
 						$scope.$emit('cancelCreatingAd');
 						$scope.$emit('cancelEditingAd');
 						$window.location.reload();
@@ -61,7 +62,8 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 						}
 						return delete $scope.errors;
 					}, function(err) {
-						return $scope.errors = new ResponseErrors(err);
+						$scope.errors = new ResponseErrors(err);
+						return $scope.errors;
 					});
 				}
 			}
@@ -69,7 +71,8 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 
 		$scope.autodetectPosition = function() {
 			return Geocoder.findMeAndGeocode().then(function(geocodedLocation) {
-				return $scope.post.location = Geocoder.latLonToGeoJson(geocodedLocation);
+				$scope.post.location = Geocoder.latLonToGeoJson(geocodedLocation);
+				return $scope.post.location;
 			});
 		};
 
@@ -77,7 +80,8 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			var _ref, _ref1;
 
 			if ((((_ref = $event.target) != null ? _ref.response : void 0) != null) && ((_ref1 = $event.target.status) !== 404 && _ref1 !== 403 && _ref1 !== 500)) {
-				return $scope.post.attachments = [JSON.parse($event.target.response)];
+				$scope.post.attachments = [JSON.parse($event.target.response)];
+				return $scope.post.attachments;
 			}
 		};
 

@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 				return;
 			}
 			$scope.errors = new ResponseErrors();
-			return Auth.requestPasswordReset($scope.passwordResetRequest.email).success(function(data) {
+			return Auth.requestPasswordReset($scope.passwordResetRequest.email).success(function() {
 				$translate('FORGOTTEN_PASSWORD_EMAIL_SUCCESS');
 				flash.success = 'FORGOTTEN_PASSWORD_EMAIL_SUCCESS';
 				return $location.path('login');

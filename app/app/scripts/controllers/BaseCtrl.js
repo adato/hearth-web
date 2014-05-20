@@ -2,8 +2,7 @@
 
 angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
 	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie) {
-		var timeout,
-			url = encodeURI(window.location.href);
+		var timeout;
 
 		$scope.breakpointForSmall = 782;
 		$scope.defaultPageType = '';
@@ -29,12 +28,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			}, 1000);
 		});
 		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
-			return $scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
+			$scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
+			return $scope.pageType;
 		});
 
 		$scope.useLanguage = function(language) {
 			return LanguageSwitch.use(language).then(function() {
-				return $scope.languageCode = language;
+				$scope.languageCode = language;
+				return $scope.languageCode;
 			});
 		};
 		$scope.expandAd = function(ad, force) {
@@ -61,7 +62,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			$scope.scrollTop = $(window).scrollTop();
 			$rootScope.$broadcast('startReplyingAd');
 			$scope.ad = ad;
-			$scope.ad.profileUrl = ad.author._type == 'Community' ? 'community' : 'profile';
+			$scope.ad.profileUrl = ad.author._type === 'Community' ? 'community' : 'profile';
 			$scope.reply = {
 				id: ad._id,
 				message: '',
@@ -72,7 +73,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				name: (_ref = ad.author) != null ? _ref.name : void 0
 			};
 		};
-		$scope.replyToAd = function(ad) {
+		$scope.replyToAd = function() {
 			if (!$scope.reply.message || $scope.reply.message.length < 3) {
 				this.errors = new ResponseErrors({
 					status: 400,
@@ -96,7 +97,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				return;
 			}
 			$scope.replyToAdSubmitting = true;
-			return PostsService.reply($scope.reply).then(function(data) {
+			return PostsService.reply($scope.reply).then(function() {
 				$scope.replyToAdSubmitting = false;
 				$scope.replyToAdSubmitted = true;
 				return $timeout(function() {
@@ -104,14 +105,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 					$rootScope.$broadcast('cancelReplyingAd');
 					return delete this.errors;
 				}, 8000);
-			}).then(null, function(res) {
+			}).then(null, function() {
 				delete this.errors;
-				return $scope.replyToAdSubmitting = false;
+				$scope.replyToAdSubmitting = false;
+				return $scope.replyToAdSubmitting;
 			});
 		};
 		$scope.removeAd = function(wish) {
 			var event;
-			if (confirm($translate('AD_REMOVE_ARE_YOU_SURE'))) {
+			if (window.confirm($translate('AD_REMOVE_ARE_YOU_SURE'))) {
 				event = wish.type === 'need' ? 'delete wish' : 'delete offer';
 				$analytics.eventTrack(event, {
 					category: 'Posting',
@@ -119,9 +121,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				});
 				return PostsService.remove(wish).then(function() {
 					$rootScope.$broadcast('removePost', wish._id);
-					return $scope.flash.success = $translate('AD_REMOVE_DONE');
+					$scope.flash.success = $translate('AD_REMOVE_DONE');
+					return $scope.flash.success;
 				}).then(null, function() {
-					return $scope.flash.error = $translate('AD_REMOVE_CANNOT_BE_REMOVED');
+					$scope.flash.error = $translate('AD_REMOVE_CANNOT_BE_REMOVED');
+					return $scope.flash.error;
 				});
 			}
 		};
@@ -129,12 +133,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 		$scope.setActive = function(item, isActive) {
 			item.is_active = isActive;
 			PostsService.update(item);
-		},
+		};
 
 		$scope.setLastAddedId = function(id) {
 			$scope.lastAddedId = id;
 			return $scope.lastAddedId;
 		};
+
 		$scope.getLastAddedId = function() {
 			return $scope.lastAddedId;
 		};
@@ -160,12 +165,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 				return ipCookie(notification, false);
 			}
 		};
-		return $scope.checkNotifications = function() {
+		$scope.checkNotifications = function() {
 			if (ipCookie('newCommunityCreated') === true) {
 				$scope.notifications.newCommunityCreated = true;
 				return ipCookie('newCommunityCreated', false);
 			}
 		};
 
+		return $scope.checkNotifications;
 	}
 ]);

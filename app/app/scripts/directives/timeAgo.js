@@ -10,7 +10,7 @@ angular.module('hearth.directives').directive('timeAgo', [
 				'fromTime': '='
 			},
 			link: {
-				post: function(scope, linkElement, attrs) {
+				post: function(scope, linkElement) {
 					scope.process = function() {
 						var value;
 						if (scope.timeago.nowTime != null) {
@@ -22,7 +22,7 @@ angular.module('hearth.directives').directive('timeAgo', [
 					};
 					scope.timeago = timeago;
 					scope.timeago.init();
-					scope.$watch('timeago.nowTime-timeago.x(fromTime)', function(value) {
+					scope.$watch('timeago.nowTime-timeago.x(fromTime)', function() {
 						return scope.process();
 					});
 					return $rootScope.$on('$translateChangeSuccess', function() {

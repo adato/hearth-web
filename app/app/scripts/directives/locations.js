@@ -17,12 +17,10 @@ angular.module('hearth.directives').directive('locations', [
 				'locations': '='
 			},
 			templateUrl: 'templates/locations.html',
-			link: function(scope, el) {
+			link: function(scope) {
 				var marker, map, searchBox, editedLocationIndex,
-					element = $(el),
 					mapElement = $('#location-map #map-canvas'),
 					inputElement = $('#location-map  input'),
-					geocoder = new google.maps.Geocoder(),
 					initMap = function() {
 						map = new google.maps.Map(mapElement[0], {
 							zoom: 6,
@@ -133,7 +131,7 @@ angular.module('hearth.directives').directive('locations', [
  */
 .factory('geo', [
 	'$q', '$timeout',
-	function($q, $timeout) {
+	function($q) {
 		var geocoder = new google.maps.Geocoder();
 		return {
 			/**

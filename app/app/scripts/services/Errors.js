@@ -15,7 +15,8 @@ angular.module('hearth.services').factory('Errors', function() {
 						var e;
 						e = data.errors[key];
 						if ((e.name != null) && e.name === 'ValidatorError') {
-							return result[key] = e.type;
+							result[key] = e.type;
+							return result[key];
 						}
 					});
 				}
@@ -23,7 +24,7 @@ angular.module('hearth.services').factory('Errors', function() {
 					targetObject.errors = result;
 				}
 			} else if (error.status === 500) {
-				alert('Application error: ' + ((_ref = error.data) != null ? _ref.message : void 0));
+				window.alert('Application error: ' + ((_ref = error.data) != null ? _ref.message : void 0));
 			}
 			return (_ref1 = error.data) != null ? _ref1.message : void 0;
 		}

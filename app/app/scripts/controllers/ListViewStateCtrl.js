@@ -26,7 +26,8 @@ angular.module('hearth.controllers').controller('ListViewStateCtrl', [
 			return $scope.$broadcast('cancelEditingAd');
 		};
 		$scope.$on('cancelCreatingAd', function() {
-			return $scope.isAdBeingCreated = false;
+			$scope.isAdBeingCreated = false;
+			return $scope.isAdBeingCreated;
 		});
 		$scope.$on('startCreatingAd', function() {
 			$scope.isAdBeingCreated = true;
@@ -37,7 +38,8 @@ angular.module('hearth.controllers').controller('ListViewStateCtrl', [
 		});
 		$scope.$on('cancelReplyingAd', function() {
 			delete $location.search().id;
-			return $scope.isAdBeingReplied = false;
+			$scope.isAdBeingReplied = false;
+			return $scope.isAdBeingReplied;
 		});
 		$scope.$on('startReplyingAd', function() {
 			$scope.isAdBeingReplied = true;
@@ -63,12 +65,14 @@ angular.module('hearth.controllers').controller('ListViewStateCtrl', [
 			return $event.preventDefault();
 		};
 		$scope.$on('startEditingAd', function() {
-			return $scope.isAdBeingEdited = true;
+			$scope.isAdBeingEdited = true;
+			return $scope.isAdBeingEdited;
 		});
 		$scope.$on('cancelEditingAd', function() {
 			$scope.$broadcast('setDefaultPost');
 			$scope.editId = null;
-			return $scope.isAdBeingEdited = false;
+			$scope.isAdBeingEdited = false;
+			return $scope.isAdBeingEdited;
 		});
 		$scope.isEditingAd = function(id) {
 			if (id == null) {

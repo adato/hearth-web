@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hearth.controllers').controller('SearchCtrl', [
-	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Geocoder', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'ResponseErrors',
-	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Geocoder, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, ResponseErrors) {
+	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Geocoder', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics',
+	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Geocoder, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics) {
 		var processRow, processSearchResults;
 		$scope.adEditing = false;
 		$scope.location = $location;
@@ -23,12 +23,12 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				}
 			}
 		};
-		$scope.$on('$routeUpdate', function(event, currentRoute) {
+		$scope.$on('$routeUpdate', function() {
 			if (($routeParams.id == null) || !$routeParams.id) {
 				return $scope.expandAd(null);
 			}
 		});
-		$scope.$on('$routeChangeSuccess', function(event, currentRoute, previousRoute) {
+		$scope.$on('$routeChangeSuccess', function() {
 			var orderCookie;
 			orderCookie = ipCookie('orderBy') || 'time';
 			return $scope.setOrderBy(orderCookie);
@@ -175,7 +175,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		$scope.getSearchService = function() {
 			var getMarketplaceService,
 				getMyHearthService,
-				searchParams,
 				searchParamsByMyLocation,
 				searchParams = {
 					limit: $scope.limit,
@@ -286,7 +285,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		$scope.setSearchType = function(type) {
-			return $scope.srch.type = type;
+			$scope.srch.type = type;
+			return $scope.srch.type;
 		};
 		$scope.loadMoreAds = function() {
 			if ($scope.lastQueryReturnedCount > 0) {
@@ -326,7 +326,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 		$scope.listKeywords = function() {
 			return KeywordsService.listKeywords().then(function(data) {
-				return $scope.allKeywords = data;
+				$scope.allKeywords = data;
+				return $scope.allKeywords;
 			});
 		};
 		$scope.init = function() {

@@ -17,23 +17,25 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 			},
 			controller: [
 				'$scope', '$timeout',
-				function($scope, $timeout) {
+				function($scope) {
 					$scope.$watch('location', function(newval) {
 						if ((newval != null) && ((newval != null ? newval.name : void 0) != null)) {
 							return $scope.setLocation(newval);
 						} else {
-							return $scope.locationName = '';
+							$scope.locationName = '';
+							return $scope.locationName;
 						}
 					});
 					return $scope.setLocation = function(location) {
 						$scope.locationName = location.name;
 						$scope.location = location || null;
-						return location.enabled = true;
+						location.enabled = true;
+						return location.enabled;
 					};
 				}
 			],
 			template: '<input type="text" class="location text-input" placeholder="{{ placeholders | translate }}"' + ' ng-model="locationName" ng-focus="focus()" ng-blur="doBlur()" ng-required="isRequired">',
-			link: function(scope, el, attrs) {
+			link: function(scope, el) {
 				var init, inputElement;
 				scope.doBlur = function() {
 					return $timeout(function() {
@@ -60,11 +62,11 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 						if (e.keyCode === 13) {
 							e.preventDefault();
 						}
-						return $('body > .pac-container').filter(':visible').bind('DOMNodeInserted DOMNodeRemoved', function(event) {
+						return $('body > .pac-container').filter(':visible').bind('DOMNodeInserted DOMNodeRemoved', function() {
 							return $('.pac-item').addClass('needsclick');
 						});
 					});
-					return google.maps.event.addListener(autocomplete, 'place_changed', function(a, b, c) {
+					return google.maps.event.addListener(autocomplete, 'place_changed', function() {
 						var place;
 						place = autocomplete.getPlace();
 						if (!(place.geometry || place.geometry.location)) {

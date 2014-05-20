@@ -3,7 +3,7 @@
 angular.module('hearth.directives').directive('validatedCheckbox', function() {
 	return {
 		restrict: 'A',
-		link: function(scope, element, attrs) {
+		link: function(scope, element) {
 			var input;
 			input = element.find('input');
 			return scope.$watch(function() {

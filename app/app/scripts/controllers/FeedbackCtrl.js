@@ -21,7 +21,8 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 				userId: $scope.loggedUser._id
 			}, function(data) {
 				$scope.feedback.email = data.email;
-				return $scope.feedback.name = data.name;
+				$scope.feedback.name = data.name;
+				return $scope.feedback.name;
 			});
 		};
 		$scope.submit = function() {
@@ -29,9 +30,10 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 				return;
 			}
 			$scope.sending = true;
-			return Feedback.add($scope.feedback, function(data) {
+			return Feedback.add($scope.feedback, function() {
 				$scope.feedbackForm.$setPristine();
-				return $scope.sent = true;
+				$scope.sent = true;
+				return $scope.sent;
 			}, function() {
 				$scope.feedbackForm.$setPristine();
 				return $scope.init();

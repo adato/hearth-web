@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-	'$scope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'flash',
-	function($scope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, flash) {
+	'$scope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location',
+	function($scope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location) {
 		if (Auth.isLoggedIn()) {
 			$location.path('profile/' + Auth.getCredentials()._id);
 			return;
@@ -11,7 +11,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.sending = false;
 		$scope.user = new User();
 		$scope.errors = new ResponseErrors();
-		return $scope.register = function($event) {
+		return $scope.register = function() {
 			if (!$scope.registerForm.$valid) {
 				return;
 			}

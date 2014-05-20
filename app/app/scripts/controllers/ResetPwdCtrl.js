@@ -17,14 +17,16 @@ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 			$scope.error = false;
 			if (!$scope.resetPwdForm.$invalid) {
 				if ($scope.password1 !== $scope.password2) {
-					return $scope.error = 'ERR_PASSWORDS_DONT_MATCH';
+					$scope.error = 'ERR_PASSWORDS_DONT_MATCH';
+					return $scope.error;
 				} else {
-					onSuccess = function(data) {
+					onSuccess = function() {
 						flash.success = 'PASSWORD_RESET_SUCCESS';
 						return $location.path('login');
 					};
 					onError = function(data) {
-						return $scope.error = data;
+						$scope.error = data;
+						return $scope.error;
 					};
 					return Auth.resetPassword($scope.hash, $scope.password1, onSuccess, onError);
 				}

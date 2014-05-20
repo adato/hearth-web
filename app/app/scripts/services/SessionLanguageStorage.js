@@ -26,7 +26,7 @@ angular.module('hearth.services').factory('SessionLanguageStorage', [
 				language = value;
 				return changeSessionLanguage();
 			},
-			get: function(name) {
+			get: function() {
 				return (session != null ? session.language : void 0) || language;
 			}
 		};

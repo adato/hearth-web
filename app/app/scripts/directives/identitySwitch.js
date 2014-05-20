@@ -12,7 +12,7 @@ angular.module('hearth.directives').directive('identitySwitch', [
 				switchFn: '&'
 			},
 			templateUrl: 'templates/identitySwitch.html',
-			link: function(scope, el, attrs) {
+			link: function(scope) {
 				var init;
 				scope.myCommunities = [];
 				scope.switchTo = function(account) {
@@ -36,7 +36,8 @@ angular.module('hearth.directives').directive('identitySwitch', [
 				scope.clickAvatar = function() {
 					var _ref, _ref1, _ref2;
 					if ((_ref = scope.myCommunities) != null ? _ref.length : void 0) {
-						return scope.switchExpanded = !scope.switchExpanded;
+						scope.switchExpanded = !scope.switchExpanded;
+						return scope.switchExpanded;
 					} else {
 						if (!((_ref1 = scope.loggedCommunity) != null ? _ref1._id : void 0)) {
 							$location.path('/profile/' + scope.loggedUser._id);

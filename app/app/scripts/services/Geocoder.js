@@ -5,7 +5,7 @@ angular.module('hearth.services').service('Geocoder', [
 	function($window, $q, $rootScope) {
 		var deg2rad, that;
 		that = this;
-		this.findMe = function(callback) {
+		this.findMe = function() {
 			var deferred;
 			deferred = $q.defer();
 			if ($window.navigator.geolocation) {
@@ -28,7 +28,7 @@ angular.module('hearth.services').service('Geocoder', [
 			}
 			return deferred.promise;
 		};
-		this.geocoder = function(position, callback) {
+		this.geocoder = function(position) {
 			var deferred, geocoder, latlng;
 			deferred = $q.defer();
 			geocoder = new google.maps.Geocoder();

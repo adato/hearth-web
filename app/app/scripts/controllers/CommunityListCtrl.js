@@ -40,7 +40,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 				return $scope.$broadcast('search');
 			}
 		};
-		$scope.refreshView = function(view) {
+		$scope.refreshView = function() {
 			var _ref;
 			$scope.lastQueryReturnedCount = 0;
 			$scope.offset = 0;

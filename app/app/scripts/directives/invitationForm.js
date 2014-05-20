@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 				'loggedUser': '='
 			},
 			templateUrl: 'templates/invitationForm.html',
-			link: function(scope, el, attrs) {
+			link: function(scope) {
 				var init;
 				init = function() {
 					var _ref;
@@ -29,12 +29,14 @@ angular.module('hearth.directives').directive('invitationForm', [
 				};
 				scope.$watch('visible', function(newval, oldval) {
 					if (newval !== oldval && (newval != null)) {
-						return scope.status.visible = newval;
+						scope.status.visible = newval;
+						return scope.status.visible;
 					}
 				});
 				scope.$watch('status.visible', function(newval, oldval) {
 					if (newval !== oldval && (newval != null)) {
-						return scope.visible = newval;
+						scope.visible = newval;
+						return scope.visible;
 					}
 				});
 				scope.sendInvitation = function() {
@@ -42,13 +44,14 @@ angular.module('hearth.directives').directive('invitationForm', [
 						return;
 					}
 					scope.status.sending = true;
-					return Invitation.add(scope.invitation, function(data) {
+					return Invitation.add(scope.invitation, function() {
 						scope.status.sentOk = true;
 						return $timeout(function() {
 							return init();
 						}, 3000);
 					}, function(err) {
-						return scope.status.sentError = new ResponseErrors(err);
+						scope.status.sentError = new ResponseErrors(err);
+						return scope.status.sentError;
 					});
 				};
 				scope.cancel = init;

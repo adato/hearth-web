@@ -6,7 +6,8 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 	]).config([
 		'cfpLoadingBarProvider',
 		function(cfpLoadingBarProvider) {
-			return cfpLoadingBarProvider.includeSpinner = false;
+			cfpLoadingBarProvider.includeSpinner = false;
+			return cfpLoadingBarProvider.includeSpinner;
 		}
 	]).config([
 		'$translateProvider',
@@ -122,8 +123,8 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			return $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
 		}
 	]).run([
-		'$rootScope', 'Auth', '$location', 'ipCookie', '$http',
-		function($rootScope, Auth, $location, ipCookie, $http) {
+		'$rootScope', 'Auth', '$location', 'ipCookie',
+		function($rootScope, Auth, $location, ipCookie) {
 			$rootScope.appInitialized = false;
 			Auth.init(function() {
 				$rootScope.appInitialized = true;
@@ -153,11 +154,13 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 	]);
 
 var __indexOf = [].indexOf || function(item) {
-		for (var i = 0, l = this.length; i < l; i++) {
-			if (i in this && this[i] === item) return i;
+	for (var i = 0, l = this.length; i < l; i++) {
+		if (i in this && this[i] === item) {
+			return i;
 		}
-		return -1;
-	};
+	}
+	return -1;
+};
 
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);

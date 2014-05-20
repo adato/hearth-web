@@ -8,7 +8,7 @@ angular.module('hearth.directives').directive('createAdSelect', [
 			replace: true,
 			scope: true,
 			templateUrl: 'templates/createAdSelect.html',
-			link: function(scope, el, attrs) {}
+			link: function() {}
 		};
 	}
 ]);

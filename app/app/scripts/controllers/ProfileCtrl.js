@@ -35,6 +35,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				});
 			}
 		});
+
+		function recountProgress() {
+			if (!$scope.profileEditing) {
+				var progressData = ProfileProgress.get($scope.profile, pattern);
+
+				$scope.progress = progressData.progress;
+				$scope.missingItems = progressData.missing;
+			}
+		}
+
 		fetchUser = function() {
 			$scope.avatar = {};
 			return UsersService.get($routeParams.id).then(function(data) {
@@ -47,7 +57,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.profile = data;
 				$scope.avatar = $scope.profile.avatar;
 				if ($routeParams.action === 'edit') {
-					$scope.startProfileEdit;
+					$scope.startProfileEdit();
 				}
 				return $scope.fetchFollows();
 			}, function(err) {
@@ -114,7 +124,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 					}
 					return UsersService.isFriend($scope.profile._id, $scope.loggedUser._id).then(function(res) {
 						if (res.getFriend) {
-							return $scope.profile.relation = 'friend';
+							$scope.profile.relation = 'friend';
+							return $scope.profile.relation;
 						}
 					});
 				});
@@ -184,7 +195,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 					}
 					return results;
 				})();
-				return $scope.showFollow = true;
+				$scope.showFollow = true;
+				return $scope.showFollow;
 			}
 		};
 		$scope.$on('adsSelected', function() {
@@ -271,15 +283,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.$watch('profile', recountProgress, true);
 
-		function recountProgress() {
-			if (!$scope.profileEditing) {
-				var progressData = ProfileProgress.get($scope.profile, pattern);
-
-				$scope.progress = progressData.progress;
-				$scope.missingItems = progressData.missing;
-			}
-		}
-
 		$scope.$watch('editedProfile', function() {
 			$scope.progress = ProfileProgress.get($scope.editedProfile, pattern).progress;
 		}, true);
@@ -314,7 +317,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 			delete $scope.rating.errors;
 			delete $scope.rating.dialogShown;
-			return UsersService.addRating($scope.rating.data).then(function(data) {
+			return UsersService.addRating($scope.rating.data).then(function() {
 				var event, value;
 
 				flash.success = 'RATING_WAS_SAVED';
@@ -360,7 +363,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.go('ads');
 				return $scope.init();
 			}, function(res) {
-				return $scope.errorsProfile = new ResponseErrors(res);
+				$scope.errorsProfile = new ResponseErrors(res);
+				return $scope.errorsProfile;
 			});
 		};
 		$scope.startProfileEdit = function() {
@@ -372,7 +376,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 					name: ''
 				}];
 			}
-			return $scope.profileEditing = true;
+			$scope.profileEditing = true;
+
+			return $scope.profileEditing;
 		};
 
 		$scope.cancelProfileEdit = function() {
@@ -383,11 +389,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.startProfileDelete = function() {
 			$scope.profileErrors = {};
 			$scope.profileEditing = false;
-			return $scope.profileDeleting = true;
+			$scope.profileDeleting = true;
+			return $scope.profileDeleting;
 		};
 		$scope.cancelProfileDelete = function() {
 			$scope.profileEditing = true;
-			return $scope.profileDeleting = false;
+			$scope.profileDeleting = false;
+			return $scope.profileDeleting;
 		};
 		$scope.deleteProfile = function() {
 			return UsersService.remove($scope.profile).then(function() {
@@ -405,16 +413,19 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return $window.scroll(0, 0);
 		};
 		$scope.avatarUploadStarted = function() {
-			return $scope.avatarUpload = true;
+			$scope.avatarUpload = true;
+			return $scope.avatarUpload;
 		};
 		$scope.avatarUploadSucceeded = function(event) {
 			$scope.avatar = angular.fromJson(event.target.responseText);
 			$scope.editedProfile.avatar = $scope.avatar;
-			return $scope.avatarUpload = false;
+			$scope.avatarUpload = false;
+			return $scope.avatarUpload;
 		};
 		$scope.avatarUploadFailed = function() {
 			$scope.avatarUpload = false;
-			return flash.error = 'AVATAR_UPLOAD_FAILED';
+			flash.error = 'AVATAR_UPLOAD_FAILED';
+			return flash.error;
 		};
 		$scope.loadMore = function(type) {
 			if ($scope.lastQueryReturnedCount === $scope.limit) {

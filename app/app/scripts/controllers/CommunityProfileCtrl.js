@@ -90,7 +90,8 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				offset: $scope.offset
 			};
 			return CommunityService.queryRatings(searchParams).then(function(data) {
-				return $scope.ratings = data;
+				$scope.ratings = data;
+				return $scope.ratings;
 			}, function(err) {
 				return console.log(err);
 			});
@@ -132,9 +133,11 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.rating.dialogShown = true;
 			}
 			if (score > 0) {
-				return $scope.feedbackPlaceholder = $translate('POSITIVE_FEEDBACK_PLACEHOLDER');
+				$scope.feedbackPlaceholder = $translate('POSITIVE_FEEDBACK_PLACEHOLDER');
+				return $scope.feedbackPlaceholder;
 			} else {
-				return $scope.feedbackPlaceholder = $translate('NEGATIVE_FEEDBACK_PLACEHOLDER');
+				$scope.feedbackPlaceholder = $translate('NEGATIVE_FEEDBACK_PLACEHOLDER');
+				return $scope.feedbackPlaceholder;
 			}
 		};
 		$scope.saveRating = function() {
@@ -145,7 +148,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				return false;
 			}
 			delete $scope.rating.errors;
-			return CommunityService.addRating($scope.rating.data).then(function(data) {
+			return CommunityService.addRating($scope.rating.data).then(function() {
 				var event, value;
 				flash.success = 'RATING_WAS_SAVED';
 				$scope.rating.dialogShown = false;
@@ -170,14 +173,16 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.editingCommunity = true;
 			$scope.editCommunity = angular.copy($scope.community);
 			if ($scope.editCommunity.terms) {
-				return $scope.editCommunity.termsShown = true;
+				$scope.editCommunity.termsShown = true;
+				return $scope.editCommunity.termsShown
 			}
 		};
 		$scope.cancelProfileEdit = function() {
 			$scope.editingCommunity = false;
-			return $scope.editCommunity = null;
+			$scope.editCommunity = null;
+			return $scope.editCommunity;
 		};
-		$scope.updateCommunity = function($event) {
+		$scope.updateCommunity = function() {
 			var _ref, _ref1;
 			if ((_ref = $scope.$$childHead) != null ? (_ref1 = _ref.updateCommunityForm) != null ? _ref1.$valid : void 0 : void 0) {
 				return CommunityService.update($scope.editCommunity).then(function(data) {
@@ -189,16 +194,19 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}
 		};
 		$scope.avatarUploadStarted = function() {
-			return $scope.avatarUpload = true;
+			$scope.avatarUpload = true;
+			return $scope.avatarUpload;
 		};
 		$scope.avatarUploadSucceeded = function(event) {
 			$scope.avatar = angular.fromJson(event.target.responseText);
 			$scope.editCommunity.avatar = $scope.avatar;
-			return $scope.avatarUpload = false;
+			$scope.avatarUpload = false;
+			return $scope.avatarUpload;
 		};
 		$scope.avatarUploadFailed = function() {
 			$scope.avatarUpload = false;
-			return flash.error = 'AVATAR_UPLOAD_FAILED';
+			flash.error = 'AVATAR_UPLOAD_FAILED';
+			return flash.error;
 		};
 		$scope.follow = function(communityId, unfollow) {
 			var promise, _ref;
@@ -216,18 +224,18 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 		$scope.acceptMembership = function(userId) {
-			return UsersService.addFollower(userId).then(function(data) {
+			return UsersService.addFollower(userId).then(function() {
 				return init();
 			});
 		};
 		$scope.rejectMembership = function(userId) {
-			return CommunityService.removeApplicant($scope.community._id, userId).then(function(data) {
+			return CommunityService.removeApplicant($scope.community._id, userId).then(function() {
 				return init();
 			});
 		};
 		$scope.removeMember = function(userId) {
-			if (confirm($translate('COMMUNITY_MEMBER_REMOVE_ARE_YOU_SURE'))) {
-				return CommunityService.removeMember($scope.community._id, userId).then(function(data) {
+			if (window.confirm($translate('COMMUNITY_MEMBER_REMOVE_ARE_YOU_SURE'))) {
+				return CommunityService.removeMember($scope.community._id, userId).then(function() {
 					return init();
 				});
 			}

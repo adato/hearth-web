@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hearth.directives').directive('whenScrolled', [
-	'$timeout',
-	function($timeout) {
+
+	function() {
 		return function(scope, elm, attr) {
 			var lastRun, raw;
 			raw = elm[0];
@@ -15,7 +15,8 @@ angular.module('hearth.directives').directive('whenScrolled', [
 					evt.preventDefault();
 					if (lastRun + 2000 < new Date().getTime()) {
 						scope.$apply(attr.whenScrolled);
-						return lastRun = new Date().getTime();
+						lastRun = new Date().getTime();
+						return lastRun;
 					}
 				}
 			});

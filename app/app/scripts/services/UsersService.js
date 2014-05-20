@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('hearth.services').service('UsersService', [
 	'User', 'UserPosts', 'UserRatings', '$q', 'Followers', 'Friends', 'Followees', '$analytics', 'CommunityMemberships',
 	function(User, UserPosts, UserRatings, $q, UserFollowers, UserFriends, UserFollowees, $analytics, CommunityMemberships) {
@@ -22,7 +24,7 @@ angular.module('hearth.services').service('UsersService', [
 		this.update = function(profile) {
 			var deferred = $q.defer();
 
-				profile.$edit(function(data) {
+			profile.$edit(function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
 				return deferred.reject(err);
@@ -74,7 +76,7 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.addFollower = function(userId, followerId) {
+		this.addFollower = function(userId) {
 			var deferred = $q.defer();
 
 			UserFollowers.add({

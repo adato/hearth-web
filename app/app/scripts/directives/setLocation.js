@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hearth.directives').directive('setLocation', [
-	'$timeout', 'Geocoder', 'UserLocation',
-	function($timeout, Geocoder, UserLocation) {
+	'$timeout', 'Geocoder',
+	function($timeout, Geocoder) {
 		return {
 			restrict: 'E',
 			replace: true,
