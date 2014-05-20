@@ -340,7 +340,7 @@
 	"MISSING_USER_LANGUAGES": "information about languages you speak",
 	"DONT_SHOW_ANYMORE": "Don't show again",
 	"TELL_WHAT": "Tell simply what, e.g. tutoring",
-	"UNLIMITED": "The period of validity - unlimited.",
+	"UNLIMITED": "Unlimited.",
 	"VALID_UNTIL": "Validity until:",
 	"CANCEL_CHANGES": "Cancel changes",
 	"ACTIVATE": "Activate",
@@ -351,6 +351,8 @@
 	"WRONG_NAME_LENGTH": "Too long text, Mr. Shakespeare.",
 
 	"VALIDATION_EMAIL": "Email is not valid.",
-	"VALIDATION_MAX_LENGTH": "Too long text, Mr. Shakespeare."
+	"VALIDATION_MAX_LENGTH": "Too long text, Mr. Shakespeare.",
+	"EXPIRATION_DATE": "Expiration date"
+
 
 }

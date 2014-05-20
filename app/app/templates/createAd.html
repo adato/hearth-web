@@ -21,7 +21,11 @@
 				</tags-input>
 			</div>
 			
-			<input type="text" datepicker="{{languageCode.code}}" class="text-input middle" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+			<div class="text-input middle">
+				<label>{{ 'EXPIRATION_DATE' | translate}}
+				<input type="text" datepicker="{{languageCode.code}}"  style="border:0" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+				</label>
+			</div>
 
 			<div class="text-input middle field-container" ng-show="isCreatingAd() || isEditingAd()">
 				<locations locations="post.locations"></locations>

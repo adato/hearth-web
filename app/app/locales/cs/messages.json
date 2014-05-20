@@ -339,7 +339,7 @@
 	"MISSING_USER_LANGUAGES": "informaci o jazycích, kterými mluvíte",
 	"DONT_SHOW_ANYMORE": "Již nerozbrazovat",
 	"TELL_WHAT": "Sdělte stručně co, např. doučování",
-	"UNLIMITED": "Doba platnosti - neomezeně.",
+	"UNLIMITED": "Neomezeně.",
 	"VALID_UNTIL": "Platnost do:",
 	"CANCEL_CHANGES": "Zrušit změny",
 	"ACTIVATE": "Obnovit",
@@ -350,6 +350,7 @@
 	"WRONG_NAME_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
 
 	"VALIDATION_EMAIL": "Email není validní.",
-	"VALIDATION_MAX_LENGTH": "Příliš dlouhý text, pane Shakespeare."
+	"VALIDATION_MAX_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
+	"EXPIRATION_DATE": "Doba platnosti"
 
 }
