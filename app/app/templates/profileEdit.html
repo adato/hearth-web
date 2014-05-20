@@ -18,7 +18,7 @@
     </form>
 
 
-    <div feature-enabled="deleteAccount " class="padding-2">
+    <div feature-enabled="deleteAccount " class="padding-2" ng-hide="relations.adminOfCommunities.length > 0">
       <a href="" class="right" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
           <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ 'DELETE_ACCOUNT_BUTTON_CAPTION' | translate }}
       </a>

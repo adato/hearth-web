@@ -136,6 +136,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.relations.memberOfCommunities = result.filter(function(item) {
 					return item.userType === 'Community';
 				}) || [];
+				$scope.relations.adminOfCommunities = $scope.relations.memberOfCommunities.filter(function(item) {
+					return item.admin === $scope.profile._id;
+				}) || [];
 				return $scope.unifyFollowers();
 			});
 		};
