@@ -1,9 +1,9 @@
-.create-ad-select {
+.needOfferSelector {
     line-height: 34px;
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 110px;
+    width: 100px;
     padding: 5px;
     background-color: nth($color, 4);
     font-size: 17px;
@@ -12,12 +12,11 @@
     @include border-top-left-radius;
     z-index: 9;
     padding-left: 1em;
-    .switch-dropdown {
-        width: 105px;
-        background-color: nth($color, 4);
-        border: 1px solid $body-border-color;
-        span {
-            margin: 3px;
-        }
+    cursor: pointer;
+    color: nth($color, 1);
+    @include transition(background-color, 0.8s);
+    &:hover {
+        background-color: nth($color, 1);
+        color: white;
     }
 }
