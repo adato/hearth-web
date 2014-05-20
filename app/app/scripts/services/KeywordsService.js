@@ -6,7 +6,8 @@ angular.module('hearth.services').service('KeywordsService', [
 		this.listKeywords = function() {
 			var deferred;
 			deferred = $q.defer();
-			Keywords.query({}, function(data) {
+
+			Keywords.get({}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
 				return deferred.reject(err);
@@ -16,7 +17,7 @@ angular.module('hearth.services').service('KeywordsService', [
 		this.queryKeywords = function($query) {
 			var deferred;
 			deferred = $q.defer();
-			Keywords.query({
+			Keywords.get({
 				"keyword": $query
 			}, function(data) {
 				var retData;
