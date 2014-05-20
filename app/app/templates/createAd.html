@@ -6,13 +6,15 @@
 
 	<form ng-submit="post.save()" signed-in name="createAdForm" with-errors novalidate class="create-ad" style="margin:0; padding:0;">
 		<div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+		<div class="alert-box visible alert error round connect-bottom" ng-show="createAdForm.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
+		<div class="alert-box visible alert error round connect-bottom" ng-show="createAdForm.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
 
 		<div style="position:relative;z-index: 11;">
 			<div create-ad-select class="create-ad-select" ng-show="isCreatingAd() || isEditingAd()"></div>
 			
 			<input type=="text" style="padding-left: 120px" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" ng-required="true">
 			
-			<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-model="post.name" name="name" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
+			<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
 			
 			<div ng-show="isCreatingAd() || isEditingAd()" class="text-input middle field-container">
 				<i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i>
