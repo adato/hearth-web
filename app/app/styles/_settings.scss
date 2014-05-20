@@ -19,7 +19,7 @@ $profile-image-size: 96px;
 $activeColor: nth($color, 1);
 
 // Compass Variables
-
+$experimental-support-for-svg: true;
 $grid-background-column-color: rgba(nth($color, 5), 0);
 $grid-background-gutter-color: rgba(cyan, 0.5);
 $grid-background-baseline-color: $grid-background-gutter-color;
