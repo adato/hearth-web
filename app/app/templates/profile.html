@@ -14,7 +14,8 @@
         <div class="padding-2">
             <div ng-show="!rating.dialogShown">{{profile.about | urlize}}</div>
              <div ng-show="profile.interests.length > 0">
-                <h1> {{ 'MY_INTERESTS' | translate }}</h1>
+                <h1 ng-show="isMine"> {{ 'MY_INTERESTS' | translate }}</h1>
+                <h1 ng-hide="isMine"> {{ 'INTERESTS' | translate }}</h1>
                 <div>{{profile.interests.join(', ')}}</div>
             </div>
             <div ng-show="profile.locations.length > 0">
