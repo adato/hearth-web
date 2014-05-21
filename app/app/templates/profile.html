@@ -27,7 +27,7 @@
 
             <div ng-show="profile.webs.length > 0">
                 <h1>{{ 'MY_WEB' | translate }}</h1>
-                <div ng-repeat="web in profile.webs">
+                <div ng-repeat="web in profile.webs track by $index">
                     <a href="{{web}}" target="_blank">{{web}}</a>
                 </div>
             </div>

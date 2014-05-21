@@ -454,6 +454,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 		};
 
+		$scope.addWeb = function() {
+			$scope.editedProfile.webs.push('');
+			$scope.editedProfile.webs = angular.copy($scope.editedProfile.webs);
+		};
+
 		return $scope.follow = function(userId, unfollow) {
 			var promise;
 			if (userId === $scope.loggedUser._id) {
