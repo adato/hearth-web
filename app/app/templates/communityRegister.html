@@ -27,7 +27,7 @@
                       placeholder="{{ 'COMMUNITY_PROFILE_TERMS_OF_MEMBERSHIP' | translate }}"></textarea>
         </div>
         <div>
-            <button type="submit" ng-disabled="sending" class="controls primary button radius right" analytics-on analytics-event="create community form submitted" analytics-category="community" analytics-value="8">
+            <button type="submit" ng-disabled="sending || createCommunityForm.$invalid" class="controls primary button radius right" analytics-on analytics-event="create community form submitted" analytics-category="community" analytics-value="8">
                 {{ 'COMMUNITY_CREATE_BUTTON_CAPTION' | translate }}
             </button>
         </div>
