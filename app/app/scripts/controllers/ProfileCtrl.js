@@ -354,6 +354,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.updateProfile = function() {
+			console.log('updateProfile');
 			if ($.type($scope.editedProfile.interests) === 'string') {
 				$scope.editedProfile.interests = $scope.editedProfile.interests.split(',');
 			}
@@ -368,29 +369,32 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 		$scope.startProfileEdit = function() {
-			$scope.editedProfile = UsersService.clone($scope.profile);
-			$scope.editedProfile.webs = $scope.editedProfile.webs || [''];
-			$scope.profileErrors = {};
-			if (!$scope.editedProfile.locations || $scope.editedProfile.locations.length === 0) {
-				$scope.editedProfile.locations = [{
+			var profile = UsersService.clone($scope.profile);
+
+			angular.extend(profile, {
+				webs: profile.webs || [''],
+				locations: (!profile.locations || profile.locations.length === 0) ? [{
 					name: ''
-				}];
-			}
-			$scope.profileEditing = true;
+				}] : profile.locations
+			});
 
-			return $scope.profileEditing;
+			angular.extend($scope, {
+				profileErrors: {},
+				profileEditing: true,
+				editedProfile: profile
+			});
 		};
-
 		$scope.cancelProfileEdit = function() {
 			$scope.avatar = $scope.profile.avatar;
 			$scope.profileEditing = false;
 			recountProgress();
 		};
 		$scope.startProfileDelete = function() {
-			$scope.profileErrors = {};
-			$scope.profileEditing = false;
-			$scope.profileDeleting = true;
-			return $scope.profileDeleting;
+			angular.extend($scope, {
+				profileErrors: {},
+				profileEditing: false,
+				profileDeleting: true
+			});
 		};
 		$scope.cancelProfileDelete = function() {
 			$scope.profileEditing = true;
