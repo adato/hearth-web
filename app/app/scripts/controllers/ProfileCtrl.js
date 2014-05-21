@@ -354,7 +354,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.updateProfile = function() {
-			console.log('updateProfile');
 			if ($.type($scope.editedProfile.interests) === 'string') {
 				$scope.editedProfile.interests = $scope.editedProfile.interests.split(',');
 			}
