@@ -1,5 +1,6 @@
 <div class="row profile-edit">
   <div class="right-column small-12 large-5 columns push-7" ng-cloak>
+
     
     <div class="profile-header">
       <avatar source="avatar" size="large" class="avatar" type="'User'"></avatar>
@@ -16,7 +17,6 @@
            <button class="primary small button file-upload cursor-pointer" type="button">{{ 'CHOOSE_AVATAR_FILE' | translate}}</button>
       </div>
     </form>
-
 
     <div feature-enabled="deleteAccount " class="padding-2" ng-hide="relations.adminOfCommunities.length > 0">
       <a href="" class="right" analytics-on analytics-event="delete account clicked" analytics-category="My profile" analytics-value="0" ng-click="startProfileDelete(); scrollToTop();">
@@ -165,7 +165,7 @@
        <div class="large-12 columns">
           <label>
             {{ 'MY_INTERESTS' | translate }}
-            <input class="text-input" type="text" ng-model="editedProfile.interests" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate}}">
+            <input class="text-input" type="text" ng-model="editedProfile.interests" ng-placeholder="MY_INTERESTS_EXAMPLE">
           </label>
         </div>
       </div>  
@@ -175,7 +175,7 @@
           <label>
             {{ 'MY_TELL_ABOUT' | translate }}
             <div class="alert-box visible alert error round connect-bottom" ng-show="errorsProfile.base">{{ errorsProfile.base | translate }}</div>
-            <textarea style="z-index:11;position:relative;" placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate}}"  ng-model="editedProfile.about" class="text-input"></textarea>
+            <textarea style="z-index:11;position:relative;" ng-placeholder="MY_TELL_ABOUT_EXAMPLE"  ng-model="editedProfile.about" class="text-input"></textarea>
           </label>
         </div>
         

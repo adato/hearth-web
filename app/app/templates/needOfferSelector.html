@@ -1,10 +1,10 @@
 <div class="needOfferSelector">
 	<div ng-if="community">
-		<span ng-show="ngModel=='need'">{{ 'WE_NEED' | translate }}</span>
-		<span ng-show="ngModel=='offer'">{{ 'WE_GIVE' | translate }}</span>
+		<span ng-show="ngModel=='need'">{{ 'WE_NEED' | translate }} <i class="fa fa-caret-right"></i></span>
+		<span ng-show="ngModel=='offer'">{{ 'WE_GIVE' | translate }} <i class="fa fa-caret-right"></i> </span>
 	</div>
 	<div ng-if="!community">
-		<span ng-show="ngModel=='need'">{{ 'NEED' | translate }}</span>
-		<span ng-show="ngModel=='offer'">{{ 'OFFER' | translate }}</span>
+		<span ng-show="ngModel=='need'">{{ 'NEED' | translate }} <i class="fa fa-caret-right"></i> </span>
+		<span ng-show="ngModel=='offer'">{{ 'OFFER' | translate }} <i class="fa fa-caret-right"></i></span>
 	</div>
 </div>
