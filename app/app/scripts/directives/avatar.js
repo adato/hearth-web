@@ -31,7 +31,7 @@ angular.module('hearth.directives').directive('avatar', [
 
 					return scope.defaultImageType;
 				});
-				return scope.$watch('source', function(val) {
+				scope.$watch('source', function(val) {
 					scope.image = {
 						name: 'normal',
 						src: scope.defaultImageType
@@ -41,8 +41,11 @@ angular.module('hearth.directives').directive('avatar', [
 					}
 					scope.image.px = sizes[attrs.size];
 					if (val && val[scope.image.name]) {
-						scope.image.src = val[scope.image.name];
-						return scope.image.src;
+						var src = val[scope.image.name],
+							uncachedSrc = val[scope.image.name] + '?' + (new Date()).getTime();
+
+						scope.image.src = uncachedSrc;
+						$('img[src^="' + src + '"]').prop('src', uncachedSrc);
 					}
 				});
 			}
