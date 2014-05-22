@@ -12,8 +12,8 @@
         <div class="hr padding-v-1"></div>
 
         <div class="padding-2">
-            <div ng-show="!rating.dialogShown">{{profile.about | urlize}}</div>
-             <div ng-show="profile.interests.length > 0">
+            <div ng-show="profile.about">{{profile.about}}</div>
+            <div ng-show="profile.interests.length > 0 && profile.interests[0]">
                 <h1 ng-show="isMine"> {{ 'MY_INTERESTS' | translate }}</h1>
                 <h1 ng-hide="isMine"> {{ 'INTERESTS' | translate }}</h1>
                 <div>{{profile.interests.join(', ')}}</div>
@@ -24,7 +24,6 @@
                     {{location.name}}
                 </div>
             </div>
-
             <div ng-show="profile.webs.length > 0">
                 <h1>{{ 'MY_WEB' | translate }}</h1>
                 <div ng-repeat="web in profile.webs track by $index">
@@ -38,8 +37,6 @@
                 <a href="{{profile.linkedin}}" ng-show="profile.linkedin" target="_blank"><div class="fa fa-linkedin"></div></a>
                 <a href="{{profile.googleplus}}" ng-show="profile.googleplus" target="_blank"><div class="fa fa-google-plus"></div></a>
             </div>
-            
-            <div ng-show="profile.about"></div>
         </div>
         <hr>
 
