@@ -19,12 +19,15 @@ angular.module('hearth.services').service('LanguageSwitch', [
 				}
 			};
 
-		console.log(ipCookie('language'));
 		this.getLanguages = function() {
 			return languages;
 		};
 		this.uses = function() {
-			return $translate.uses() || languages[1];
+			return $.map(languages, function(item) {
+				if (item.code === $translate.uses()) {
+					return item;
+				}
+			})[0];
 		};
 		this.use = function(language) {
 			ipCookie('language', language.code, {

@@ -5,6 +5,7 @@ var scrollToHash;
 angular.module('hearth.index', ['ngResource', 'pascalprecht.translate', 'hearth.services', 'hearth.filters'])
 	.config(['$translateProvider',
 		function($translateProvider) {
+			preferredLanguage = preferredLanguage || 'cs';
 			$translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
 			$translateProvider.preferredLanguage(preferredLanguage);
 			$translateProvider.useStaticFilesLoader({
@@ -29,6 +30,7 @@ angular.module('hearth.index', ['ngResource', 'pascalprecht.translate', 'hearth.
 			};
 			$scope.languages = LanguageSwitch.getLanguages();
 			$scope.languageCode = LanguageSwitch.uses();
+
 			return $scope.useLanguage = function(language) {
 				return LanguageSwitch.use(language).then(function() {
 					return $scope.languageCode = language;

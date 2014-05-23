@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('hearth.controllers').controller('CreatePostCtrl', [
-	'$scope', 'Geocoder', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter',
-	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window, $filter) {
+	'$scope', 'Geocoder', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter', 'LanguageSwitch',
+	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window, $filter, LanguageSwitch) {
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
-			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, $scope.languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
 			locations: [{
 				name: ''
 			}]
@@ -28,7 +28,7 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		$scope.$watch('languageCode', function() {
 			var timestamp = dateToTimestamp($scope.post.date, true);
 
-			$scope.post.date = $filter('date')(timestamp, $scope.languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+			$scope.post.date = $filter('date')(timestamp, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
 		});
 
 		$scope.createAd = function() {
