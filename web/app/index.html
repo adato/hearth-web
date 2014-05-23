@@ -91,8 +91,10 @@
                     </div>
                     <div class="small-12 large-8 columns links text-right">
                         <a href="app/#/login" translate class="login">INDEX_LOGIN</a>
+
+                      
                         <span ng-repeat="language in languages">
-                            <a ng-click="useLanguage(language)" href="#">{{ language.name }}</a> &nbsp;
+                        <a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="" >{{language.name}}</a>
                         </span>
                     </div>
                 </div>

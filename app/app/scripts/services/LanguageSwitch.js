@@ -3,24 +3,23 @@
 angular.module('hearth.services').service('LanguageSwitch', [
 	'$feature', '$translate', '$http', 'ipCookie',
 	function($feature, $translate, $http, ipCookie) {
-		var init, languages, self;
-		self = this;
-		languages = [];
-		init = function() {
-			languages = [{
+		var languages = [{
 				code: 'en',
 				name: 'English'
 			}, {
 				code: 'cs',
 				name: 'Česky'
-			}];
-			if ($feature.isEnabled('german')) {
-				return languages.push({
-					code: 'de',
-					name: 'Deutsch'
-				});
-			}
-		};
+			}],
+			init = function() {
+				if ($feature.isEnabled('german')) {
+					return languages.push({
+						code: 'de',
+						name: 'Deutsch'
+					});
+				}
+			};
+
+		console.log(ipCookie('language'));
 		this.getLanguages = function() {
 			return languages;
 		};
@@ -34,6 +33,6 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			$http.defaults.headers.common['Accept-Language'] = language.code;
 			return $translate.uses(language.code);
 		};
-		return init();
+		init();
 	}
 ]);
