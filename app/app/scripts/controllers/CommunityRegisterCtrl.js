@@ -4,9 +4,9 @@ angular.module('hearth.controllers').controller('CommunityRegisterCtrl', [
 	'$scope', '$window', 'CommunityService', 'ResponseErrors', '$location', '$timeout', 'ipCookie',
 	function($scope, $window, CommunityService, ResponseErrors, $location, $timeout, ipCookie) {
 		$scope.community = {};
-		$scope.createCommunity = function($event) {
+		$scope.createCommunity = function() {
 			if (!$scope.createCommunityForm.$invalid) {
-				return CommunityService.add($scope.community).then(function(data) {
+				return CommunityService.add($scope.community).then(function() {
 					ipCookie('newCommunityCreated', true);
 					return $timeout(function() {
 						return $window.location.reload();

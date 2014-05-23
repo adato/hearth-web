@@ -11,7 +11,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.sending = false;
 		$scope.user = new User();
 		$scope.errors = new ResponseErrors();
-		return $scope.register = function() {
+		$scope.register = function() {
 			if (!$scope.registerForm.$valid) {
 				return;
 			}

@@ -18,6 +18,6 @@ angular.module('hearth.directives').directive('ngPlaceholder', [
 					element.after('<em>' + $translate(attrs.ngPlaceholder) + '</em>');
 				}
 			}
-		}
+		};
 	}
 ]);

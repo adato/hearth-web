@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 			link: function(scope) {
 				var init;
 				init = function() {
-					var _ref;
+					var loggedUser = scope.loggedUser;
 					scope.status = {
 						visible: false,
 						sentOk: false,
@@ -23,7 +23,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 					};
 					scope.invitation = {
 						toEmail: null,
-						userId: (_ref = scope.loggedUser) != null ? _ref._id : void 0
+						userId: loggedUser ? loggedUser._id : void 0
 					};
 					return scope.sendInvitationForm.$setPristine(true);
 				};

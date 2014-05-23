@@ -19,14 +19,14 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 				'$scope', '$timeout',
 				function($scope) {
 					$scope.$watch('location', function(newval) {
-						if ((newval != null) && ((newval != null ? newval.name : void 0) != null)) {
+						if (newval && newval.name) {
 							return $scope.setLocation(newval);
 						} else {
 							$scope.locationName = '';
 							return $scope.locationName;
 						}
 					});
-					return $scope.setLocation = function(location) {
+					$scope.setLocation = function(location) {
 						$scope.locationName = location.name;
 						$scope.location = location || null;
 						location.enabled = true;
@@ -49,12 +49,12 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 						if (!scope.initted) {
 							init();
 						}
-						if ((scope.onEmpty != null) && scope.onEmpty && !scope.locationName) {
+						if (scope.onEmpty && !scope.locationName) {
 							return scope.onEmpty();
 						}
 					});
 				});
-				return init = function() {
+				init = function() {
 					var autocomplete;
 					scope.initted = true;
 					autocomplete = new google.maps.places.Autocomplete(inputElement);
@@ -84,6 +84,7 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 						});
 					});
 				};
+				return init;
 			}
 		};
 	}

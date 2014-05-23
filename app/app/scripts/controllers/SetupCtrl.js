@@ -9,9 +9,8 @@ angular.module('hearth.controllers').controller('SetupCtrl', [
 				value: $feature.isEnabled(name)
 			};
 		});
-		return $scope.toggle = function(name) {
-			var features;
-			return features = $scope.features.filter(function(feature) {
+		$scope.toggle = function(name) {
+			var features = $scope.features.filter(function(feature) {
 				return feature.name === name;
 			}).forEach(function(feature) {
 				var _ref;
@@ -23,6 +22,7 @@ angular.module('hearth.controllers').controller('SetupCtrl', [
 					return ipCookie('FEATURE_' + feature.name, void 0);
 				}
 			});
+			return features;
 		};
 	}
 ]);

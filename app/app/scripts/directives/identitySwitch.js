@@ -58,13 +58,13 @@ angular.module('hearth.directives').directive('identitySwitch', [
 					}
 				});
 				init = function() {
-					var _ref;
+					var loggedUser = scope.loggedUser;
 					scope.loggedEntity = scope.loggedCommunity || scope.loggedUser;
-					if (((_ref = scope.loggedUser) != null ? _ref._id : void 0) != null) {
+					if (loggedUser && loggedUser._id) {
 						return UsersService.queryCommunities(scope.loggedUser._id).then(function(data) {
 							scope.myCommunities = [];
 							return data.forEach(function(item) {
-								if ((item.admin != null) && item.admin === scope.loggedUser._id) {
+								if (item.admin && item.admin === scope.loggedUser._id) {
 									return scope.myCommunities.push({
 										name: item.userFullname,
 										id: item.userId._id,

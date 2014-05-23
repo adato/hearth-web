@@ -52,7 +52,8 @@ angular.module('hearth.services').factory('ResponseErrors', function() {
 		};
 		exposeErrors = function(errors) {
 			return Object.keys(errors).forEach(function(key) {
-				return responseErrors[key] = errors[key];
+				responseErrors[key] = errors[key];
+				return responseErrors[key];
 			});
 		};
 		init = function() {

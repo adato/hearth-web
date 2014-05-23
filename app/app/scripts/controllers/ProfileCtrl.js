@@ -19,9 +19,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.expandAd(null);
 
 		$scope.$watch('routeParams.action', function(newval) {
-			var defaultEvent, event, _ref;
-			defaultEvent = 'ads';
-			if (((_ref = Auth.getCredentials()) != null ? _ref._id : void 0) !== $routeParams.id) {
+			var event,
+				credentials = Auth.getCredentials(),
+				defaultEvent = 'ads';
+
+			if ((credentials ? credentials._id : void 0) !== $routeParams.id) {
 				defaultEvent = 'feedback';
 			}
 			event = newval || defaultEvent;
@@ -56,7 +58,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				if (data._id == null) {
 					$location.path('404');
 				}
-				if ((data._type != null) && data._type === 'Community') {
+				if (data && data._type === 'Community') {
 					$location.path('/community/' + data._id);
 				}
 				$scope.profile = data;
@@ -82,7 +84,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			};
 			return UsersService.queryPosts(searchParams).then(function(ads) {
 				$scope.lastQueryReturnedCount = ads.length;
-				if (refresh || ($scope.ads == null)) {
+				if (refresh || !$scope.ads) {
 					$scope.ads = [];
 				}
 				return ads.forEach(function(item) {
@@ -103,9 +105,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				limit: $scope.limit,
 				offset: $scope.offset
 			};
-			if ($scope.ratings == null) {
-				$scope.ratings = [];
-			}
+			$scope.ratings = $scope.ratings || [];
+
 			return UsersService.queryRatings(searchParams).then(function(ratings) {
 				$scope.lastQueryReturnedCount = ratings.length;
 				return ratings.forEach(function(item) {
@@ -313,6 +314,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.feedbackPlaceholder = $translate(score > 0 ? 'POSITIVE_FEEDBACK_PLACEHOLDER' : 'NEGATIVE_FEEDBACK_PLACEHOLDER');
 			return $scope.feedbackPlaceholder;
 		};
+		
 		$scope.saveRating = function() {
 			if ($scope.rating.data.text.length < 3) {
 				$scope.rating.errors = {

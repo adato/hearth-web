@@ -174,7 +174,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.editCommunity = angular.copy($scope.community);
 			if ($scope.editCommunity.terms) {
 				$scope.editCommunity.termsShown = true;
-				return $scope.editCommunity.termsShown
+				return $scope.editCommunity.termsShown;
 			}
 		};
 		$scope.cancelProfileEdit = function() {
@@ -209,8 +209,8 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			return flash.error;
 		};
 		$scope.follow = function(communityId, unfollow) {
-			var promise, _ref;
-			if (communityId === ((_ref = $scope.loggedCommunity) != null ? _ref._id : void 0)) {
+			var promise;
+			if (communityId === $scope.loggedCommunity._id) {
 				return;
 			}
 			promise = null;
@@ -249,7 +249,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		});
 		$scope.go = function(where, params) {
 			var path;
-			if (where === 'detail' && (params != null)) {
+			if (where === 'detail' && params) {
 				if ($scope.isMine) {
 					return;
 				}

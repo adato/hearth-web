@@ -64,19 +64,19 @@ angular.module('hearth.services').service('Geocoder', [
 		};
 		this.geoJsonToLatLon = function(geoJson) {
 			var latlon;
-			if (geoJson == null) {
+			if (!geoJson) {
 				return null;
 			}
-			if ((geoJson.lat != null) && (geoJson.lon != null)) {
+			if (geoJson.lat && geoJson.lon) {
 				return geoJson;
 			}
-			if (geoJson.coordinates != null) {
+			if (geoJson.coordinates) {
 				latlon = {
 					name: '',
 					lon: geoJson.coordinates[0],
 					lat: geoJson.coordinates[1]
 				};
-				if (geoJson.name != null) {
+				if (geoJson.name) {
 					latlon.name = geoJson.name;
 				}
 				return latlon;
@@ -87,14 +87,14 @@ angular.module('hearth.services').service('Geocoder', [
 			if (latlon.type === 'Point') {
 				return latlon;
 			}
-			if ((latlon.lat != null) && (latlon.lon != null)) {
+			if (latlon.lat && latlon.lon) {
 				geojson = {
 					type: 'Point',
 					name: '',
 					coordinates: [latlon.lon, latlon.lat]
 				};
 			}
-			if (latlon.name != null) {
+			if (latlon.name) {
 				geojson.name = latlon.name;
 			}
 			return geojson;

@@ -3,7 +3,7 @@
 angular.module('hearth.controllers').controller('ChangePwdCtrl', [
 	'$scope', 'flash', '$location', 'Auth',
 	function($scope, flash, $location, Auth) {
-		return $scope.save = function() {
+		$scope.save = function() {
 			var loggedUser;
 			if (!$scope.changePwdForm.$invalid) {
 				$scope.errors = [];
@@ -14,10 +14,10 @@ angular.module('hearth.controllers').controller('ChangePwdCtrl', [
 					});
 				} else {
 					loggedUser = Auth.getCredentials();
-					return Auth.changePassword($scope.password1, function(data) {
+					return Auth.changePassword($scope.password1, function() {
 						flash.success = 'PASSWORD_WAS_CHANGED';
 						return $location.path('profile/' + loggedUser._id);
-					}, function(res) {
+					}, function() {
 						return $scope.errors.push('PASSWORD_CHANGE_FAILED');
 					});
 				}

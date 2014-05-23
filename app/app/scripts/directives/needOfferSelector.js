@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('needofferselector',
 				community: '=',
 			},
 			templateUrl: 'templates/needOfferSelector.html',
-			link: function(scope, element, attrs) {
+			link: function(scope, element) {
 				var value = {
 					need: 'offer',
 					offer: 'need'

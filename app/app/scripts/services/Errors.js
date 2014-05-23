@@ -10,23 +10,25 @@ angular.module('hearth.services').factory('Errors', function() {
 			if (error.status === 400) {
 				data = error.data;
 				result = {};
-				if (data.errors != null) {
+				if (data.errors) {
 					Object.keys(data.errors).forEach(function(key) {
 						var e;
 						e = data.errors[key];
-						if ((e.name != null) && e.name === 'ValidatorError') {
+						if (e && e.name === 'ValidatorError') {
 							result[key] = e.type;
 							return result[key];
 						}
 					});
 				}
-				if (targetObject != null) {
+				if (targetObject) {
 					targetObject.errors = result;
 				}
 			} else if (error.status === 500) {
-				window.alert('Application error: ' + ((_ref = error.data) != null ? _ref.message : void 0));
+				window.alert('Application error: ' + (_ref = error.data ? _ref.message : void 0));
 			}
-			return (_ref1 = error.data) != null ? _ref1.message : void 0;
+			_ref1 = error.data ? _ref1.message : void 0;
+
+			return _ref1;
 		}
 	};
 });
