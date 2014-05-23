@@ -1,3 +1,9 @@
+input {
+    color: nth($color, 3);
+    font-family: inherit;
+    font-size: large;
+}
+
 .text-input {
     &:focus {
         border-color: darken($body-border-color, 10%);
@@ -39,13 +45,11 @@
     }
 }
 
-
 input,
 textarea,
 .checkbox-input {
     position: relative;
     @include transition(background-color, 1.5s);
-    
     &.ng-dirty {
         background-color: white;
         &.ng-invalid {

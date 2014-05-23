@@ -50,16 +50,20 @@ $activeColor: #2ba6cb !default;
     }
 }
 
-.fa-chevron-right {
+.fi-arrow-right {
     &:after {
+        font-family: 'FontAwesome';
+        content: "\f178";
         font-style: normal;
         font-weight: bold;
         font-size: 2em;
     }
 }
 
-.fa-chevron-left {
+.fi-arrow-left {
     &:after {
+        font-family: 'FontAwesome';
+        content: "\f177";
         font-style: normal;
         font-weight: bold;
         font-size: 2em;
@@ -144,7 +148,6 @@ $activeColor: #2ba6cb !default;
             }
         }
     }
-    
     // Inline display inside a table presents some problems with
     // border and background colors.
     .table-striped & table tr {
