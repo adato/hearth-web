@@ -5,14 +5,18 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, Geocoder, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress) {
 		var fetchAds, fetchRatings, fetchUser;
-		$scope.progress = 0;
-		$scope.rating = {};
-		$scope.adEditing = false;
+
+		angular.extend($scope, {
+			progress: 0,
+			rating: {},
+			adEditing: false,
+			routeParams: $routeParams,
+			location: $location,
+			languageListDefault: ['en', 'de', 'fr', 'ru', 'es', 'cs'],
+			languageList: ['en', 'de', 'fr', 'ru', 'es', 'cs', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh']
+		});
+
 		$scope.expandAd(null);
-		$scope.routeParams = $routeParams;
-		$scope.location = $location;
-		$scope.languageListDefault = ['en', 'de', 'fr', 'ru', 'es', 'cs'];
-		$scope.languageList = ['en', 'de', 'fr', 'ru', 'es', 'cs', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
 
 		$scope.$watch('routeParams.action', function(newval) {
 			var defaultEvent, event, _ref;
@@ -24,6 +28,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.profilePageType = event;
 			return $scope.$broadcast(event + 'Selected');
 		});
+
 		$scope.$watch('location.search().id', function(newval) {
 			if (newval === undefined || newval === null) {
 				return $scope.expandAd(null);
@@ -462,7 +467,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.editedProfile.webs = angular.copy($scope.editedProfile.webs);
 		};
 
-		return $scope.follow = function(userId, unfollow) {
+		$scope.follow = function(userId, unfollow) {
 			var promise;
 			if (userId === $scope.loggedUser._id) {
 				return;

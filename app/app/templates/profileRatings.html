@@ -1,7 +1,7 @@
 <div ng-hide="isMine">
     <div class="padding-2 row" ng-hide="rating.dialogShown">
         <div class="small-12 medium-12 large-5 columns">
-            <div class="button-group radius ratings">
+            <div class="button-group radius ratings" signed-in>
                 <button type="button" class="primary button round connect-right" ng-click="showRatingDialog(1)" ng-disabled="rating.dialogShown" analytics-on analytics-event="click on thumb up" analytics-category="Other profile" analytics-label="thanks">
                     <i class="hearthicon-appreciate"><span>{{ 'THUMB_UP' | translate }}</span></i>
                 </button>
