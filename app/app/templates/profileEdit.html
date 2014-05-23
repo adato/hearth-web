@@ -33,7 +33,7 @@
          <div class="large-6 columns">
           <label>
             {{ 'NAME' | translate }} *
-            <input ng-model="editedProfile.name" class="text-input" type='text' required>
+            <input ng-model="editedProfile.name" class="text-input" type='text' ng-required="true">
           </label>
         </div>
         <div class="large-6 columns">
@@ -72,7 +72,7 @@
         <div class="large-6 columns">
           <label>
             {{ 'MY_EMAIL' | translate }}  *
-            <input  ng-model="editedProfile.email" class="text-input" type='email' required>
+            <input  ng-model="editedProfile.email" class="text-input" type='email' ng-required="true">
           </label>
            <a ng-click="showContactMail = true" ng-hide="showContactMail"><span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}</a>
            <div ng-show="showContactMail">
