@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.apiPrefix
+ * @name hearth.utils.apiPrefix
  * @description 
  * @restrict A
  */
 
-angular.module('hearth.directives').directive('apiPrefix', function() {
+angular.module('hearth.utils').directive('apiPrefix', function() {
 	return {
 		scope: {
 			apiHref: '@',

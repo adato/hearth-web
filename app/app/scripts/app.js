@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput'])
+angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils',  'hearth.geo'])
 	.config(['$sceProvider',
 		function($sceProvider) {}
 	]).config([
@@ -165,3 +165,5 @@ var __indexOf = [].indexOf || function(item) {
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
 angular.module('hearth.services', ['ivpusic.cookie']);
+angular.module('hearth.utils', []);
+angular.module('hearth.geo', []);

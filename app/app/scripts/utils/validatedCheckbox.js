@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.validatedCheckbox
+ * @name hearth.utils.validatedCheckbox
  * @description
  * @restrict A
  */
 
-angular.module('hearth.directives').directive('validatedCheckbox', function() {
+angular.module('hearth.utils').directive('validatedCheckbox', function() {
 	return {
 		restrict: 'A',
 		link: function(scope, element) {

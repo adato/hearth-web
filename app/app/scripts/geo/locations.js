@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.locations
+ * @name hearth.geo.locations
  * @description Renders fields for selecting location, and allows to select location.
  * @restrict E
- * @module hearth.directives
+ * @module hearth.geo
  */
-angular.module('hearth.directives').directive('locations', [
+angular.module('hearth.geo').directive('locations', [
 	'geo', '$timeout',
 	function(geo, $timeout) {
 		return {
@@ -139,59 +139,6 @@ angular.module('hearth.directives').directive('locations', [
 					$('#location-map').foundation('reveal', 'close');
 					$('.pac-container').remove(); //google maps forget this
 				});
-			}
-		};
-	}
-])
-
-/**
- * @ngdoc service
- * @name hearth.directives.geo
- * @description google maps function wrapper
- * @requires $q
- * @requires $timeout
- * @module hearth.directives
- */
-.factory('geo', [
-	'$q', '$timeout',
-	function($q) {
-		var geocoder = new google.maps.Geocoder();
-		return {
-			/**
-			 * @ngdoc function
-			 * @methodOf hearth.directives.geo
-			 * @name getCurrentLocation
-			 * @description returns promise with data about current location
-			 */
-			getCurrentLocation: function() {
-				var deferred = $q.defer();
-
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function(position) {
-						deferred.resolve(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-					});
-				}
-				return deferred.promise;
-			},
-			/**
-			 * @ngdoc function
-			 * @methodOf hearth.directives.geo
-			 * @param {google.maps.LatLng} position position
-			 * @name getAddress
-			 * @description returns promise with postal address data
-			 */
-			getAddress: function(position) {
-				var deferred = $q.defer();
-
-				geocoder.geocode({
-					latLng: position
-				}, function(responses) {
-					if (responses && responses.length > 0) {
-						deferred.resolve(responses[0].formatted_address);
-					}
-				});
-
-				return deferred.promise;
 			}
 		};
 	}

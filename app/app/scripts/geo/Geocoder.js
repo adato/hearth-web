@@ -6,7 +6,7 @@
  * @description
  */
 
-angular.module('hearth.services').service('Geocoder', [
+angular.module('hearth.geo').service('Geocoder', [
 	'$window', '$q', '$rootScope',
 	function($window, $q, $rootScope) {
 		var deg2rad, that;

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.timeAgo
+ * @name hearth.utils.timeAgo
  * @description
  * @restrict EA
  */
 
-angular.module('hearth.directives').directive('timeAgo', [
+angular.module('hearth.utils').directive('timeAgo', [
 	'timeAgoService', '$rootScope',
 	function(timeago, $rootScope) {
 		return {

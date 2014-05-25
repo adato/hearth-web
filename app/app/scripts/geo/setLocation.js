@@ -1,6 +1,12 @@
 'use strict';
+/**
 
-angular.module('hearth.directives').directive('setLocation', [
+ * @ngdoc directive
+ * @name hearth.geo.locations
+ * @description 
+ * @restrict E
+ */
+angular.module('hearth.geo').directive('setLocation', [
 	'$timeout', 'Geocoder',
 	function($timeout, Geocoder) {
 		return {

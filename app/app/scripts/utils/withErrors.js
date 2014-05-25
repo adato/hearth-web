@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.withErrors
+ * @name hearth.utils.withErrors
  * @description
  * @restrict A
  */
 
-angular.module('hearth.directives').directive('withErrors', function() {
+angular.module('hearth.utils').directive('withErrors', function() {
 	return {
 		restrict: 'A',
 		require: 'form',

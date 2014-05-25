@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.whenScrolled
+ * @name hearth.utils.whenScrolled
  * @description
  */
  
-angular.module('hearth.directives').directive('whenScrolled', [
+angular.module('hearth.utils').directive('whenScrolled', [
 
 	function() {
 		return function(scope, elm, attr) {

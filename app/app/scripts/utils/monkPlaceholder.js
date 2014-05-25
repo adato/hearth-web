@@ -1,11 +1,13 @@
 'use strict';
+
 /**
  * @ngdoc directive
- * @name hearth.directives.ngPlaceholder
+ * @name hearth.utils.monkPlaceholder
  * @description solves IE placeholder issue - it is set placeholder in IE it removes all other data from form model
  * @restrict A
  */
-angular.module('hearth.directives').directive('ngPlaceholder', [
+
+angular.module('hearth.utils').directive('monkPlaceholder', [
 	'$translate',
 	function($translate) {
 		return {
