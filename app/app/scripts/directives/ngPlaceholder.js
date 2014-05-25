@@ -1,7 +1,7 @@
 'use strict';
 /**
  * @ngdoc directive
- * @name ngPlaceholder
+ * @name hearth.directives.ngPlaceholder
  * @description solves IE placeholder issue - it is set placeholder in IE it removes all other data from form model
  * @restrict A
  */

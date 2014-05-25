@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.feedback
+ * @description 
+ * @restrict E
+ */
+
 angular.module('hearth.directives').directive('feedback', function() {
 	return {
 		restrict: 'E',

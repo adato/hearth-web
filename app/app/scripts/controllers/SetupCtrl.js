@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('hearth.controllers').controller('SetupCtrl', [
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.SetupCtrl
+ * @description 
+ */
+ 
+ angular.module('hearth.controllers').controller('SetupCtrl', [
 	'$scope', '$feature', 'ipCookie',
 	function($scope, $feature, ipCookie) {
 		$scope.features = Object.keys($$config.features).map(function(name) {

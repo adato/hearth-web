@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.Session
+ * @description
+ */
+
 angular.module('hearth.services').factory('Session', [
 	'$resource',
 	function($resource) {

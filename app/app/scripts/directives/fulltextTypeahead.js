@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.fulltextTypeahead
+ * @description 
+ * @restrict AE
+ */
+
 angular.module('hearth.directives').directive('fulltextTypeahead', [
 
 	function() {

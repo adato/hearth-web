@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.withErrors
+ * @description
+ * @restrict A
+ */
+
 angular.module('hearth.directives').directive('withErrors', function() {
 	return {
 		restrict: 'A',

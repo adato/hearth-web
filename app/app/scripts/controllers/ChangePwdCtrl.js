@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.ChangePwdCtrl
+ * @description 
+ */
+
 angular.module('hearth.controllers').controller('ChangePwdCtrl', [
 	'$scope', 'flash', '$location', 'Auth',
 	function($scope, flash, $location, Auth) {

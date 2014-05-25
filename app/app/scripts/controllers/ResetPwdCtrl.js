@@ -1,6 +1,13 @@
 'use strict';
 
-angular.module('hearth.controllers').controller('ResetPwdCtrl', [
+
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.ResetPwdCtrl
+ * @description 
+ */
+ 
+ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 	'$scope', 'Auth', '$location', 'flash',
 	function($scope, Auth, $location, flash) {
 		$scope.init = function() {

@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.FolloweesSearchService
+ * @description
+ */
+
 angular.module('hearth.services').service('FolloweesSearchService', [
 	'FolloweeSearch', '$q',
 	function(FolloweeSearch, $q) {

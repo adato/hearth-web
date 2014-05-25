@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.TermsCtrl
+ * @description 
+ */
+ 
 angular.module('hearth.controllers').controller('TermsCtrl', [
 	'$scope', 'LanguageSwitch',
 	function($scope, LanguageSwitch) {

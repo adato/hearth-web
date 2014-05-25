@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.Errors
+ * @description 
+ */
+ 
 angular.module('hearth.services').factory('Errors', function() {
 	return {
 		process: function(error, targetObject) {

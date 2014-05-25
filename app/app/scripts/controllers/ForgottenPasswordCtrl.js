@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.ForgottenPasswordCtrl
+ * @description 
+ */
+ 
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 	'$scope', 'Auth', 'flash', '$location', '$translate', 'ResponseErrors',
 	function($scope, Auth, flash, $location, $translate, ResponseErrors) {

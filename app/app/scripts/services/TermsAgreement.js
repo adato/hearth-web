@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.TermsAgreement
+ * @description
+ */
+
 angular.module('hearth.services').factory('TermsAgreement', [
 	'$q', '$location',
 	function($q, $location) {

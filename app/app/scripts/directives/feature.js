@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.feature
+ * @description 
+ * @restrict EC
+ */
+
 angular.module('hearth.directives').directive('feature', function($feature) {
 	return {
 		restrict: 'EC',

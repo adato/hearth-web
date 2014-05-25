@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.CreatePostCtrl
+ * @description 
+ */
+ 
 angular.module('hearth.controllers').controller('CreatePostCtrl', [
 	'$scope', 'Geocoder', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter', 'LanguageSwitch',
 	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window, $filter, LanguageSwitch) {

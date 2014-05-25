@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.LanguageSwitch
+ * @description
+ */
+ 
 angular.module('hearth.services').service('LanguageSwitch', [
 	'$feature', '$translate', '$http', 'ipCookie',
 	function($feature, $translate, $http, ipCookie) {

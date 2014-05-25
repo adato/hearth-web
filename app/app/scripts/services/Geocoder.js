@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.Geocoder
+ * @description
+ */
+
 angular.module('hearth.services').service('Geocoder', [
 	'$window', '$q', '$rootScope',
 	function($window, $q, $rootScope) {

@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.addressAutocomplete
+ * @description 
+ * @restrict E
+ */
+
 angular.module('hearth.directives').directive('addressAutocomplete', [
 	'$timeout',
 	function($timeout) {

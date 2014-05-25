@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.validatedCheckbox
+ * @description
+ * @restrict A
+ */
+
 angular.module('hearth.directives').directive('validatedCheckbox', function() {
 	return {
 		restrict: 'A',

@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.FulltextService
+ * @description
+ */
+
 angular.module('hearth.services').service('FulltextService', [
 	'Fulltext', '$q',
 	function(Fulltext, $q) {

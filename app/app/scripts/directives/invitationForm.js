@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.invitationForm
+ * @description 
+ * @restrict AE
+ */
+
 angular.module('hearth.directives').directive('invitationForm', [
 	'Invitation', '$timeout', 'ResponseErrors',
 	function(Invitation, $timeout, ResponseErrors) {

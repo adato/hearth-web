@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc directive
- * @name social
+ * @name hearth.directives.social
  * @description Displays social networks links
  * @restrict E
  */

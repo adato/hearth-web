@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.KeywordsService
+ * @description
+ */
+
 angular.module('hearth.services').service('KeywordsService', [
 	'$q', 'Keywords',
 	function($q, Keywords) {

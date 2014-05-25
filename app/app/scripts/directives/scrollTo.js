@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.scrollTo
+ * @description 
+ */
+
 angular.module('hearth.directives').directive('scrollTo', [
 	'$location', '$anchorScroll',
 	function($location, $anchorScroll) {

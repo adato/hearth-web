@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.whenScrolled
+ * @description
+ */
+ 
 angular.module('hearth.directives').directive('whenScrolled', [
 
 	function() {

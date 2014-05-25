@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.CommunityMemberships
+ * @description 
+ */
+ 
 angular.module('hearth.services').factory('CommunityMemberships', [
 	'$resource',
 	function($resource) {

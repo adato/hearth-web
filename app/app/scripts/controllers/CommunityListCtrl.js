@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.CommunityListCtrl
+ * @description 
+ */
+ 
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
 	'$scope', 'CommunityService', 'FulltextService', 'UsersCommunitiesService',
 	function($scope, CommunityService, FulltextService, UsersCommunitiesService) {

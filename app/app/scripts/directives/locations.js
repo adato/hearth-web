@@ -2,9 +2,10 @@
 
 /**
  * @ngdoc directive
- * @name locations
+ * @name hearth.directives.locations
  * @description Renders fields for selecting location, and allows to select location.
  * @restrict E
+ * @module hearth.directives
  */
 angular.module('hearth.directives').directive('locations', [
 	'geo', '$timeout',
@@ -142,10 +143,14 @@ angular.module('hearth.directives').directive('locations', [
 		};
 	}
 ])
+
 /**
  * @ngdoc service
- * @name geo
+ * @name hearth.directives.geo
  * @description google maps function wrapper
+ * @requires $q
+ * @requires $timeout
+ * @module hearth.directives
  */
 .factory('geo', [
 	'$q', '$timeout',
@@ -154,7 +159,7 @@ angular.module('hearth.directives').directive('locations', [
 		return {
 			/**
 			 * @ngdoc function
-			 * @methodOf geo
+			 * @methodOf hearth.directives.geo
 			 * @name getCurrentLocation
 			 * @description returns promise with data about current location
 			 */
@@ -170,7 +175,7 @@ angular.module('hearth.directives').directive('locations', [
 			},
 			/**
 			 * @ngdoc function
-			 * @methodOf geo
+			 * @methodOf hearth.directives.geo
 			 * @param {google.maps.LatLng} position position
 			 * @name getAddress
 			 * @description returns promise with postal address data

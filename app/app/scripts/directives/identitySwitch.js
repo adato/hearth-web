@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.identitySwitch
+ * @description 
+ * @restrict E
+ */
+
 angular.module('hearth.directives').directive('identitySwitch', [
 	'UsersService', 'Auth', '$window', '$location', '$timeout',
 	function(UsersService, Auth, $window, $location, $timeout) {

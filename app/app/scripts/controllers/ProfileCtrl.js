@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.ProfileCtrl
+ * @description 
+ */
+
 angular.module('hearth.controllers').controller('ProfileCtrl', [
 	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', 'Geocoder', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress',
 

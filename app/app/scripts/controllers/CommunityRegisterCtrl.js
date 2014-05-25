@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.CommunityRegisterCtrl
+ * @description 
+ */
+
 angular.module('hearth.controllers').controller('CommunityRegisterCtrl', [
 	'$scope', '$window', 'CommunityService', 'ResponseErrors', '$location', '$timeout', 'ipCookie',
 	function($scope, $window, CommunityService, ResponseErrors, $location, $timeout, ipCookie) {

@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.CommunityProfileCtrl
+ * @description 
+ */
+ 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	'$scope', '$routeParams', '$location', 'CommunityService', 'UsersService', '$rootScope', 'ResponseErrors', 'Errors', 'flash', '$translate', '$window', '$analytics',
 	function($scope, $routeParams, $location, CommunityService, UsersService, $rootScope, ResponseErrors, Errors, flash, $translate, $window, $analytics) {

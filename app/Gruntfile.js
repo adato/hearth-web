@@ -136,10 +136,7 @@ module.exports = function(grunt) {
 					dev: false
 				}*/
 			},
-			tutorial: {
-				src: ['content/tutorial/*.ngdoc'],
-				title: 'Tutorial'
-			},
+			
 			api: {
 				src: ['<%= yeoman.app %>/scripts/**/*.js'],
 				title: 'API Documentation'

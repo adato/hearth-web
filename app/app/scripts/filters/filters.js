@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('hearth.filters', []).filter('urlize', function() {
+angular.module('hearth.filters', [])
+/**
+ * @ngdoc filter
+ * @name hearth.filters.urlize
+ * @description
+ */
+ .filter('urlize', function() {
 	return function(input) {
 		if (input) {
 			var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim,
@@ -13,14 +19,20 @@ angular.module('hearth.filters', []).filter('urlize', function() {
 				.replace(emailAddressPattern, '<a href="mailto:$&" target="_blank">$&</a>');
 		}
 	};
-}).filter('apiPrefix', function() {
+})
+/**
+ * @ngdoc filter
+ * @name hearth.filters.apiPrefix
+ * @description
+ */
+.filter('apiPrefix', function() {
 	return function(input) {
 		return $$config.apiPath + input;
 	};
 })
 /**
  * @ngdoc filter
- * @name UTCdate
+ * @name hearth.filters.UTCdate
  * @description Returns date in UTC zone
  */
 .filter('UTCdate', function() {

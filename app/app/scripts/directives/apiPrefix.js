@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.apiPrefix
+ * @description 
+ * @restrict A
+ */
+
 angular.module('hearth.directives').directive('apiPrefix', function() {
 	return {
 		scope: {

@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.Auth
+ * @description 
+ */
+
 angular.module('hearth.services').factory('Auth', [
 	'$session', '$http', '$rootScope', '$q',
 	function($session, $http, $rootScope, $q) {

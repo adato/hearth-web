@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.ResponseErrors
+ * @description
+ */
+
 angular.module('hearth.services').factory('ResponseErrors', function() {
 	return function(res) {
 		var exposeErrors, init, isClientError, isServerError, parseServerErrors, parseValidationErrors, responseClassCode, responseErrors;

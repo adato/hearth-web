@@ -1,7 +1,7 @@
 'use strict';
 /**
  * @ngdoc directive
- * @name needofferselector
+ * @name hearth.directives.needofferselector
  * @description Switches between need and offer
  * @restrict E
  */

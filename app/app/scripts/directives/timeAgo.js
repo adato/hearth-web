@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.timeAgo
+ * @description
+ * @restrict EA
+ */
+
 angular.module('hearth.directives').directive('timeAgo', [
 	'timeAgoService', '$rootScope',
 	function(timeago, $rootScope) {

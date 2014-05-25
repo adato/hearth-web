@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.fileUpload
+ * @description 
+ * @restrict A
+ */
+
 angular.module('hearth.directives').directive('fileUpload', [
 	'$timeout', '$parse', '$rootScope',
 	function($timeout, $parse, $rootScope) {
