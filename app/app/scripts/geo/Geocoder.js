@@ -2,8 +2,11 @@
 
 /**
  * @ngdoc service
- * @name hearth.services.Geocoder
+ * @name hearth.geo.Geocoder
  * @description
+ * @requires $window
+ * @requires $q
+ * @requires $rootScope
  */
 
 angular.module('hearth.geo').service('Geocoder', [
@@ -11,6 +14,13 @@ angular.module('hearth.geo').service('Geocoder', [
 	function($window, $q, $rootScope) {
 		var deg2rad, that;
 		that = this;
+
+		/**
+		 * @ngdoc function
+		 * @methodOf hearth.geo.Geocoder
+		 * @name findMe
+		 * @description 
+		 */
 		this.findMe = function() {
 			var deferred;
 			deferred = $q.defer();
@@ -34,6 +44,12 @@ angular.module('hearth.geo').service('Geocoder', [
 			}
 			return deferred.promise;
 		};
+		/**
+		 * @ngdoc function
+		 * @methodOf hearth.geo.Geocoder
+		 * @name geocoder
+		 * @description 
+		 */
 		this.geocoder = function(position) {
 			var deferred, geocoder, latlng;
 			deferred = $q.defer();
@@ -58,6 +74,13 @@ angular.module('hearth.geo').service('Geocoder', [
 			});
 			return deferred.promise;
 		};
+
+		/**
+		 * @ngdoc function
+		 * @methodOf hearth.geo.Geocoder
+		 * @name findMeAndGeocode
+		 * @description 
+		 */
 		this.findMeAndGeocode = function() {
 			var deferred;
 			deferred = $q.defer();
@@ -68,6 +91,13 @@ angular.module('hearth.geo').service('Geocoder', [
 			});
 			return deferred.promise;
 		};
+
+		/**
+		 * @ngdoc function
+		 * @methodOf hearth.geo.Geocoder
+		 * @name geoJsonToLatLon
+		 * @description 
+		 */
 		this.geoJsonToLatLon = function(geoJson) {
 			var latlon;
 			if (!geoJson) {
@@ -88,6 +118,13 @@ angular.module('hearth.geo').service('Geocoder', [
 				return latlon;
 			}
 		};
+
+		/**
+		 * @ngdoc function
+		 * @methodOf hearth.geo.Geocoder
+		 * @name latLonToGeoJson
+		 * @description 
+		 */
 		this.latLonToGeoJson = function(latlon) {
 			var geojson;
 			if (latlon.type === 'Point') {
@@ -105,6 +142,13 @@ angular.module('hearth.geo').service('Geocoder', [
 			}
 			return geojson;
 		};
+
+		/**
+		 * @ngdoc function
+		 * @methodOf hearth.geo.Geocoder
+		 * @name getDistance
+		 * @description 
+		 */
 		this.getDistance = function(position1, position2) {
 			var R, a, c, d, dLat, dLon;
 			if (position1 === undefined || position1 === null || position1 === 0 || position1 === '') {

@@ -5,7 +5,9 @@
  * @name hearth.geo.locations
  * @description Renders fields for selecting location, and allows to select location.
  * @restrict E
- * @module hearth.geo
+ *
+ * @requires $timeout
+ * @requires geo
  */
 angular.module('hearth.geo').directive('locations', [
 	'geo', '$timeout',
@@ -17,7 +19,7 @@ angular.module('hearth.geo').directive('locations', [
 			scope: {
 				'locations': '='
 			},
-			templateUrl: 'templates/locations.html',
+			templateUrl: 'templates/geo/locations.html',
 			link: function(scope) {
 				var marker, map, searchBox, editedLocationIndex,
 					mapConfig = {

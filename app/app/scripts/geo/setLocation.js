@@ -2,10 +2,13 @@
 /**
 
  * @ngdoc directive
- * @name hearth.geo.locations
+ * @name hearth.geo.setLocation
  * @description 
  * @restrict E
+ * @requires $timeout
+ * @requires Geocoder
  */
+ 
 angular.module('hearth.geo').directive('setLocation', [
 	'$timeout', 'Geocoder',
 	function($timeout, Geocoder) {
@@ -17,7 +20,7 @@ angular.module('hearth.geo').directive('setLocation', [
 				loggedUser: '=',
 				setLocationFn: '&'
 			},
-			templateUrl: 'templates/userLocationDirective.html',
+			templateUrl: 'templates/geo/userLocationDirective.html',
 			link: function(scope) {
 				scope.showAutodetect = false;
 				scope.emptyFocusFn = function() {

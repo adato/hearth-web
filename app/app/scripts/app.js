@@ -166,4 +166,9 @@ angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
 angular.module('hearth.services', ['ivpusic.cookie']);
 angular.module('hearth.utils', []);
+
+/**
+ * @overview  all code working with Google MAPS api
+ * @description all code working with Google MAPS api
+ */
 angular.module('hearth.geo', []);
