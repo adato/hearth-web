@@ -1320,3 +1320,5 @@ input + .remove {
 .clearfix {
     @include clearfix;
 }
+
+@import "messages";

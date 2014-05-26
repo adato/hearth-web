@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils',  'hearth.geo'])
+angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils',  'hearth.geo', 'hearth.messages'])
 	.config(['$sceProvider',
 		function($sceProvider) {}
 	]).config([
@@ -98,6 +98,10 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			}).when('/about', {
 				templateUrl: 'templates/about.html',
 				pageType: 'about'
+			}).when('/messages', {
+				controller: 'Messages',
+				templateUrl: 'templates/messages/messages.html',
+				pageType: 'about'
 			}).otherwise({
 				redirectTo: '/search'
 			});
@@ -168,7 +172,11 @@ angular.module('hearth.services', ['ivpusic.cookie']);
 angular.module('hearth.utils', []);
 
 /**
- * @overview  all code working with Google MAPS api
  * @description all code working with Google MAPS api
  */
 angular.module('hearth.geo', []);
+
+/**
+ * @description all code solves messaging feature
+ */
+angular.module('hearth.messages', []);
