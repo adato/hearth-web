@@ -12,21 +12,23 @@ angular.module('hearth.geo').directive('map', [
 			},
 			template: '<div id="map-canvas" style="height: 300px">map</div>',
 			link: function(scope) {
-				var i, j, ad, location;
 
-				var map = geo.createMap($('#map-canvas')[0]);
+				var map = geo.createMap($('#map-canvas')[0]),
+					markers = [];
 				geo.focusCurrentLocation();
 
-				function placeMarker(location, add) {
+				function placeMarker(location, ad) {
 					var text = [
-						'<span class="' + add.type + '">' + $translate(add.type.toUpperCase()) + '</span> ' + (add.title || ''),
-						'<br>', (add.name || '')
+						'<span class="' + ad.type + '">' + $translate(ad.type.toUpperCase()) + '</span> ' + (ad.title || ''),
+						'<br>', (ad.name || '')
 					];
 
 					var infowindow = new google.maps.InfoWindow({
 							content: text.join('')
 						}),
 						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), undefined, ad.type);
+
+					markers.push(marker);
 					marker.setAnimation(google.maps.Animation.DROP);
 
 					google.maps.event.addListener(marker, 'click', function() {
@@ -34,9 +36,11 @@ angular.module('hearth.geo').directive('map', [
 					});
 				}
 
-				scope.$watch('ads.length', function() {
-					for (i = 0; i < scope.ads.length; i++) {
-						ad = scope.ads[i];
+				function createPins(ads) {
+					var i, j, ad, location;
+
+					for (i = 0; i < ads.length; i++) {
+						ad = ads[i];
 						for (j = 0; j < ad.locations.length; j++) {
 							location = ad.locations[j];
 							if (location.coordinates) {
@@ -44,6 +48,22 @@ angular.module('hearth.geo').directive('map', [
 							}
 						}
 					}
+				}
+
+				function clearMarkers() {
+					for (var i = 0; i < markers.length; i++) {
+						markers[i].setMap(null);
+					}
+					markers = [];
+				}
+
+				scope.$watch('ads', function() {
+					clearMarkers();
+					createPins(scope.ads);
+				});
+				scope.$watch('ads.length', function() {
+					clearMarkers();
+					createPins(scope.ads);
 				});
 
 			}

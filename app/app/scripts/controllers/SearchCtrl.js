@@ -256,12 +256,12 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		processSearchResults = function(data) {
-			var i, len;
+			var i, len = data.length;
 
-			for (i = 0, len = data.length; i < len; i++) {
+			for (i = 0; i < len; i++) {
 				processRow(data[i]);
 			}
-			$scope.lastQueryReturnedCount = data.length;
+			$scope.lastQueryReturnedCount = len;
 			$scope.sent = true;
 			return $scope.updateRelations();
 		};
