@@ -273,10 +273,13 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}];
 			if ($scope.orderBy === 'location' && $scope.myLocation) {
 				myLocation = Geocoder.geoJsonToLatLon($scope.myLocation);
+
 				distances = $.map(value.locations, function(location) {
 					return Math.ceil(Geocoder.getDistance(myLocation, Geocoder.geoJsonToLatLon(location)));
 				});
-				value.distance = Math.min.apply(this, distances);
+				if (distances.length) {
+					value.distance = Math.min.apply(this, distances);
+				}
 			}
 			if (id && id === value._id) {
 				$scope.expandAd(value);
