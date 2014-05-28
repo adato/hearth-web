@@ -20,13 +20,24 @@ angular.module('hearth.geo').directive('map', [
 			replace: true,
 			transclude: true,
 			scope: {
-				'locations': '='
+				'ads': '='
 			},
 			template: '<div id="map-canvas" style="height: 300px">map</div>',
-			link: function(scope) {
-				var map = geo.createMap($('#map-canvas')[0]);
+			link: function(scope, element) {
+				var i, j, ad, location;
 
-				geo.focusCurrentLocation(map);
+				geo.createMap($('#map-canvas')[0]);
+				geo.focusCurrentLocation();
+
+				scope.$watch('ads', function() {
+					for (i = 0; i < scope.ads.length; i++) {
+						ad = scope.ads[i];
+						for (j = 0; j < ad.locations.length; j++) {
+							location = ad.locations[j];
+							geo.placeMarker(geo.getLocationFromCoords(location.coordinates), undefined, ad.type);
+						}
+					}
+				});
 			}
 		};
 	}
