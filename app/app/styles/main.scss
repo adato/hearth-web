@@ -625,6 +625,14 @@ p {
     }
 }
 
+.offer {
+    color: $offer-text-color;
+}
+
+.need {
+    color: $need-text-color;
+}
+
 .profile {
     h1 {
         color: nth($color, 1);

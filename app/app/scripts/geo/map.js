@@ -1,20 +1,8 @@
 'use strict';
 
 angular.module('hearth.geo').directive('map', [
-	'geo',
-	function(geo) {
-		var mapConfig = {
-			zoom: 6,
-			zoomControl: true,
-			mapTypeControl: false,
-			streetViewControl: false,
-			center: new google.maps.LatLng(0, 0),
-			draggableCursor: 'crosshair',
-			zoomControlOptions: {
-				style: google.maps.ZoomControlStyle.LARGE,
-				position: google.maps.ControlPosition.LEFT_CENTER
-			}
-		};
+	'geo', '$translate',
+	function(geo, $translate) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -23,21 +11,41 @@ angular.module('hearth.geo').directive('map', [
 				'ads': '='
 			},
 			template: '<div id="map-canvas" style="height: 300px">map</div>',
-			link: function(scope, element) {
+			link: function(scope) {
 				var i, j, ad, location;
 
-				geo.createMap($('#map-canvas')[0]);
+				var map = geo.createMap($('#map-canvas')[0]);
 				geo.focusCurrentLocation();
 
-				scope.$watch('ads', function() {
+				function placeMarker(location, add) {
+					var text = [
+						'<span class="' + add.type + '">' + $translate(add.type.toUpperCase()) + '</span> ' + (add.title || ''),
+						'<br>', (add.name || '')
+					];
+
+					var infowindow = new google.maps.InfoWindow({
+							content: text.join('')
+						}),
+						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), undefined, ad.type);
+					marker.setAnimation(google.maps.Animation.DROP);
+
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.open(map, marker);
+					});
+				}
+
+				scope.$watch('ads.length', function() {
 					for (i = 0; i < scope.ads.length; i++) {
 						ad = scope.ads[i];
 						for (j = 0; j < ad.locations.length; j++) {
 							location = ad.locations[j];
-							geo.placeMarker(geo.getLocationFromCoords(location.coordinates), undefined, ad.type);
+							if (location.coordinates) {
+								placeMarker(location, ad);
+							}
 						}
 					}
 				});
+
 			}
 		};
 	}

@@ -3,9 +3,9 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.SearchCtrl
- * @description 
+ * @description
  */
- 
+
 angular.module('hearth.controllers').controller('SearchCtrl', [
 	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Geocoder', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics',
 	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Geocoder, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics) {
@@ -244,19 +244,17 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$scope.sent = false;
 			$scope.searchOptions = options;
 			return search.service.query(search.params).then(function(data) {
-				var cat, _ref;
 				if (search.params.query) {
-					cat = $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth';
 					$analytics.eventTrack('search by keyword', {
-						category: cat
+						category: $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth'
 					});
 				}
-				if ((((_ref = $scope.searchOptions) != null ? _ref.add : void 0) != null) && $scope.searchOptions.add === false) {
-					$scope.items = [];
-				}
+				$scope.items = ($scope.searchOptions || {}).add === false ? [] : $scope.items;
+
 				return processSearchResults(data);
 			});
 		};
+
 		processSearchResults = function(data) {
 			var i, len;
 
