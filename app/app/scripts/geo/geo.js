@@ -51,6 +51,35 @@ angular.module('hearth.geo').factory('geo', [
 				});
 
 				return deferred.promise;
+			},
+
+			createMap: function(element) {
+				var mapConfig = {
+					zoom: 6,
+					zoomControl: true,
+					mapTypeControl: false,
+					streetViewControl: false,
+					center: new google.maps.LatLng(0, 0),
+					draggableCursor: 'crosshair',
+					zoomControlOptions: {
+						style: google.maps.ZoomControlStyle.LARGE,
+						position: google.maps.ControlPosition.LEFT_CENTER
+					}
+				};
+				return new google.maps.Map(element, mapConfig);
+			},
+
+			focusCurrentLocation: function(map) {
+				this.getCurrentLocation().then(function(position) {
+					map.setCenter(position);
+				});
+			},
+
+			placeMarker: function(map, location) {
+				return new google.maps.Marker({
+					position: location,
+					map: map
+				});
 			}
 		};
 	}

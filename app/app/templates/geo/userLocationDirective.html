@@ -1,10 +1,11 @@
-<div>	
+<div>
+
 	<div ng-cloak style="position:relative;">
-		<button type="button" ng-click="search()" class="primary button prefix round connect-left padding-1" id="user-location-save"  style="width:10%; height:47px;right:0;position:absolute;" analytics-on analytics-event="saving specific location" analytics-category="Locations">
+		<!--button type="button" ng-click="search()" class="primary button prefix round connect-left padding-1" id="user-location-save"  style="width:10%; height:47px;right:0;position:absolute;" analytics-on analytics-event="saving specific location" analytics-category="Locations">
 			<i class="fa fa-search"></i>
-		</button>
-		
-		<address-autocomplete style="padding-left:40px; margin-bottom:0; position:relative;" connections="right" placeholders="'LOCATION_INPUT_PLACEHOLDER'" location="location" on-empty="emptyFocusFn()"></address-autocomplete>
+		</button-->
+		<input type="text" id="mapsearch" class="text-input top">
+		<map class="text-input bottom"></map>
 		
 		<a href="" class="fa fa-map-marker" ng-click="autodetectMyLocation()" style="position:absolute; left:15px; top:13px;"></a>
 	</div>

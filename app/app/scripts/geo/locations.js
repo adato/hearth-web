@@ -22,22 +22,10 @@ angular.module('hearth.geo').directive('locations', [
 			templateUrl: 'templates/geo/locations.html',
 			link: function(scope) {
 				var marker, map, searchBox, editedLocationIndex,
-					mapConfig = {
-						zoom: 6,
-						zoomControl: true,
-						mapTypeControl: false,
-						streetViewControl: false,
-						center: new google.maps.LatLng(0, 0),
-						draggableCursor: 'crosshair',
-						zoomControlOptions: {
-							style: google.maps.ZoomControlStyle.LARGE,
-							position: google.maps.ControlPosition.LEFT_CENTER
-						},
-					},
 					mapElement = $('#location-map #map-canvas'),
 					searchBoxElement = $('#location-map  input'),
 					initMap = function() {
-						map = new google.maps.Map(mapElement[0], mapConfig);
+						map = geo.createMap(mapElement[0]);
 						searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
 
 						google.maps.event.addListener(map, 'click', function(e) {
