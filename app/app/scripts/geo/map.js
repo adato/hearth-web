@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('hearth.geo').directive('map', [
-	'geo', '$translate',
-	function(geo, $translate) {
+	'geo', '$translate', '$filter',
+
+	function(geo, $translate, $filter) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -19,8 +20,12 @@ angular.module('hearth.geo').directive('map', [
 
 				function placeMarker(location, ad) {
 					var text = [
-						'<span class="' + ad.type + '">' + $translate(ad.type.toUpperCase()) + '</span> ' + (ad.title || ''),
-						'<br>', (ad.name || '')
+						'<div class="marker-tooltip">',
+						'<a href="#ad/' + ad._id +'"><span class="fa fa-eye"></span></a>',
+						'<span class="' + ad.type + '">' + $translate(ad.type.toUpperCase()) + '</span> ' + $filter('linky')(ad.title || ''),
+						'<br>',
+						$filter('linky')(ad.name || ''),
+						'</div>'
 					];
 
 					var infowindow = new google.maps.InfoWindow({

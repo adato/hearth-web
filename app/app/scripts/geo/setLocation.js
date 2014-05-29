@@ -1,17 +1,18 @@
 'use strict';
 /**
-
+ 
  * @ngdoc directive
  * @name hearth.geo.setLocation
- * @description 
+ * @description
  * @restrict E
  * @requires $timeout
  * @requires Geocoder
  */
- 
+
 angular.module('hearth.geo').directive('setLocation', [
-	'$timeout', 'Geocoder',
-	function($timeout, Geocoder) {
+	'$timeout', 'Geocoder', 'geo',
+
+	function($timeout, Geocoder, geo) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -22,25 +23,29 @@ angular.module('hearth.geo').directive('setLocation', [
 				items: '='
 			},
 			templateUrl: 'templates/geo/userLocationDirective.html',
-			link: function(scope) {
+			link: function(scope, element) {
+				var searchBoxElement = $('input', element),
+					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
+
+				google.maps.event.addListener(searchBox, 'places_changed', function() {
+					var places = searchBox.getPlaces();
+
+					if (places && places.length > 0) {
+						geo.focusLocation(places[0].geometry.location);
+						scope.search(places[0].geometry.location);
+
+					}
+				});
+
 				scope.showAutodetect = false;
 				scope.emptyFocusFn = function() {
 					scope.showAutodetect = true;
 				};
 
-				scope.autodetectMyLocation = function() {
-					return Geocoder.findMeAndGeocode().then(function(geocodedLocation) {
-						scope.location = geocodedLocation;
-						scope.setLocationFn({
-							location: scope.location
-						});
-					});
-				};
-				scope.autodetectMyLocation();
-
-				scope.search = function() {
+				scope.search = function(location) {
+					console.log(location);
 					scope.setLocationFn({
-						location: Geocoder.latLonToGeoJson(scope.location)
+						location: Geocoder.latLonToGeoJson(location)
 					});
 				};
 			}

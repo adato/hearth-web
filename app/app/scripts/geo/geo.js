@@ -92,6 +92,10 @@ angular.module('hearth.geo').factory('geo', [
 				});
 			},
 
+			focusLocation: function(position, map) {
+				(map || _map).setCenter(position);
+			},
+
 			placeMarker: function(location, map, type) {
 				return new google.maps.Marker({
 					position: location,
