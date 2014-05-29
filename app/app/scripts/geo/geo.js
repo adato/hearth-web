@@ -10,7 +10,23 @@
 angular.module('hearth.geo').factory('geo', [
 	'$q', '$timeout',
 	function($q) {
-		var geocoder = new google.maps.Geocoder();
+		var geocoder = new google.maps.Geocoder(),
+			_map,
+			images = {
+				need: {
+					url: 'images/need.png',
+					size: new google.maps.Size(29, 53),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(0, 53)
+				},
+				offer: {
+					url: 'images/offer.png',
+					size: new google.maps.Size(29, 53),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(0, 29)
+				}
+			};
+
 		return {
 
 			/**
@@ -66,21 +82,28 @@ angular.module('hearth.geo').factory('geo', [
 						position: google.maps.ControlPosition.LEFT_CENTER
 					}
 				};
-				return new google.maps.Map(element, mapConfig);
+				_map = new google.maps.Map(element, mapConfig);
+				return _map;
 			},
 
 			focusCurrentLocation: function(map) {
 				this.getCurrentLocation().then(function(position) {
-					map.setCenter(position);
+					(map || _map).setCenter(position);
 				});
 			},
 
-			placeMarker: function(map, location) {
+			placeMarker: function(location, map, type) {
 				return new google.maps.Marker({
 					position: location,
-					map: map
+					map: map || _map,
+					icon: images[type]
 				});
+			},
+
+			getLocationFromCoords: function(coords) {
+				return new google.maps.LatLng(coords[1], coords[0]);
 			}
+
 		};
 	}
 ]);

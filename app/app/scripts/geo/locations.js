@@ -61,8 +61,7 @@ angular.module('hearth.geo').directive('locations', [
 
 						if (editedLocationIndex !== undefined && scope.locations[editedLocationIndex].coordinates) {
 							var location = scope.locations[editedLocationIndex],
-								coords = location.coordinates,
-								position = new google.maps.LatLng(coords[1], coords[0]);
+								position = geo.getLocationFromCoords(location.coordinates);
 
 							scope.$apply(function() {
 								setLocation(location.name, position);
@@ -97,10 +96,7 @@ angular.module('hearth.geo').directive('locations', [
 						if (marker) {
 							marker.setMap(null);
 						}
-						marker = new google.maps.Marker({
-							position: position,
-							map: map
-						});
+						marker = geo.placeMarker(position);
 						map.panTo(position);
 						scope.selectedPosition = position;
 					};

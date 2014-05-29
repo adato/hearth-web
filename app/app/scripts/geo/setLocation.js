@@ -18,7 +18,8 @@ angular.module('hearth.geo').directive('setLocation', [
 			scope: {
 				location: '=',
 				loggedUser: '=',
-				setLocationFn: '&'
+				setLocationFn: '&',
+				items: '='
 			},
 			templateUrl: 'templates/geo/userLocationDirective.html',
 			link: function(scope) {
