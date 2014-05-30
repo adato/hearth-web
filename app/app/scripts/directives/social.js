@@ -7,9 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('social', [
-	'shortener',
 
-	function(shortener) {
+	function() {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -20,7 +19,7 @@ angular.module('hearth.directives').directive('social', [
 			templateUrl: 'templates/social.html',
 			link: function(scope) {
 				scope.$watch('item', function(value) {
-					var url = window.location.origin + '/%23/ad/' + value;
+					var url = window.location.href.replace(window.location.hash, '') + '/%23/ad/' + value;
 					angular.extend(scope, {
 						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
 						gplus: 'https://plus.google.com/share?url=' + url,
@@ -33,7 +32,7 @@ angular.module('hearth.directives').directive('social', [
 
 		};
 	}
-]).factory('shortener', [
+])/*.factory('shortener', [
 	'$q',
 	function($q) {
 		return {
@@ -59,4 +58,4 @@ angular.module('hearth.directives').directive('social', [
 			}
 		};
 	}
-]);
+])*/;
