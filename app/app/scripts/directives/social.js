@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('social', [
 			templateUrl: 'templates/social.html',
 			link: function(scope) {
 				scope.$watch('item', function(value) {
-					var url = window.location.href.replace(window.location.hash, '') + '/%23/ad/' + value;
+					var url = window.location.href.replace(window.location.hash, '') + '%23/ad/' + value;
 					angular.extend(scope, {
 						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
 						gplus: 'https://plus.google.com/share?url=' + url,
