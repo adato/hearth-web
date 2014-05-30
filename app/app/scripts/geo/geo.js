@@ -17,7 +17,6 @@ angular.module('hearth.geo').factory('geo', [
 				mapTypeControl: false,
 				streetViewControl: false,
 				center: new google.maps.LatLng(0, 0),
-				draggableCursor: 'crosshair',
 				zoomControlOptions: {
 					style: google.maps.ZoomControlStyle.LARGE,
 					position: google.maps.ControlPosition.LEFT_CENTER
@@ -25,6 +24,12 @@ angular.module('hearth.geo').factory('geo', [
 			},
 			_map,
 			images = {
+				pin: {
+					url: 'images/pin.png',
+					size: new google.maps.Size(49, 49),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(14, 34)
+				},
 				need: {
 					url: 'images/need.png',
 					size: new google.maps.Size(29, 53),
@@ -88,13 +93,15 @@ angular.module('hearth.geo').factory('geo', [
 			 * @ngdoc function
 			 * @name createMap
 			 * @methodOf hearth.geo.geo
-			 * @param {DOMelement} element location
 			 * @description Returns creates Google map and returns reference to map (and saves reference to _map)
+			 *
+			 * @param {DOMelement} element location
+			 * @param {Object} config config to rewrite default map config
 			 *
 			 * @return {google.maps.Map} map
 			 */
-			createMap: function(element) {
-				_map = new google.maps.Map(element, mapConfig);
+			createMap: function(element, config) {
+				_map = new google.maps.Map(element, angular.extend(mapConfig, config));
 
 				return _map;
 			},

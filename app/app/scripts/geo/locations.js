@@ -25,7 +25,9 @@ angular.module('hearth.geo').directive('locations', [
 					mapElement = $('#location-map #map-canvas'),
 					searchBoxElement = $('#location-map  input'),
 					initMap = function() {
-						map = geo.createMap(mapElement[0]);
+						map = geo.createMap(mapElement[0], {
+							draggableCursor: 'url(images/pin.png) 14 34, default'
+						});
 						searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
 
 						google.maps.event.addListener(map, 'click', function(e) {
@@ -96,7 +98,7 @@ angular.module('hearth.geo').directive('locations', [
 						if (marker) {
 							marker.setMap(null);
 						}
-						marker = geo.placeMarker(position);
+						marker = geo.placeMarker(position, 'pin');
 						map.panTo(position);
 						scope.selectedPosition = position;
 					};
