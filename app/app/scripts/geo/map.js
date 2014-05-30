@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('hearth.geo').directive('map', [
-	'geo', '$translate', '$filter',
+	'geo', '$translate', '$filter', '$interpolate',
 
-	function(geo, $translate, $filter) {
+	function(geo, $translate, $filter, $interpolate) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -12,24 +12,22 @@ angular.module('hearth.geo').directive('map', [
 				'ads': '='
 			},
 			template: '<div id="map-canvas" style="height: 300px">map</div>',
-			link: function(scope) {
-
-				var map = geo.createMap($('#map-canvas')[0]),
+			link: function(scope, element) {
+				var map = geo.createMap(element[0]),
 					markers = [];
 				geo.focusCurrentLocation();
 
-				function placeMarker(location, ad) {
-					var text = [
-						'<div class="marker-tooltip">',
-						'<a href="#ad/' + ad._id +'"><span class="fa fa-eye"></span></a>',
-						'<span class="' + ad.type + '">' + $translate(ad.type.toUpperCase()) + '</span> ' + $filter('linky')(ad.title || ''),
-						'<br>',
-						$filter('linky')(ad.name || ''),
-						'</div>'
-					];
+				var template = $interpolate(['<div class="marker-tooltip">',
+					'<a href="#ad/{{_id}}"><span class="fa fa-eye"></span></a>',
+					'<span class="{{type}}">{{type.toUpperCase() | translate}}</span> {{title|linky}}',
+					'<br>',
+					'{{name|linky}}',
+					'</div>'
+				].join(''));
 
+				function placeMarker(location, ad) {
 					var infowindow = new google.maps.InfoWindow({
-							content: text.join('')
+							content: template(ad)
 						}),
 						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
 
