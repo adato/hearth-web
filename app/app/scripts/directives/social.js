@@ -32,30 +32,4 @@ angular.module('hearth.directives').directive('social', [
 
 		};
 	}
-])/*.factory('shortener', [
-	'$q',
-	function($q) {
-		return {
-			shorten: function(url) {
-				var deferred = $q.defer();
-
-				$.ajax({
-					dataType: 'json',
-					url: 'https://www.googleapis.com/urlshortener/v1/url?key=' + $$config.gApiKey,
-					data: JSON.stringify({
-						'longUrl': url,
-						key: $$config.gApiKey
-					}),
-					contentType: 'application/json',
-					type: 'post',
-					'processData': false,
-					success: function(response) {
-						deferred.resolve(response.id);
-					}
-				});
-
-				return deferred.promise;
-			}
-		};
-	}
-])*/;
+]);
