@@ -183,7 +183,7 @@ angular.module('hearth.geo').factory('geo', [
 					};
 
 				if (position1 && position2) {
-					
+
 					dLat = deg2rad(position2.lat() - position1.lat());
 					dLon = deg2rad(position2.lng() - position1.lng());
 					a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(position1.lat())) * Math.cos(deg2rad(position2.lat())) * Math.sin(dLon / 2) * Math.sin(dLon / 2);

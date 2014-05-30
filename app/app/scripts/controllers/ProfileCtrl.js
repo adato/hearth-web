@@ -3,13 +3,13 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.ProfileCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', 'Geocoder', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress',
+	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress',
 
-	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, Geocoder, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress) {
+	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress) {
 		var fetchAds, fetchRatings, fetchUser;
 
 		angular.extend($scope, {
@@ -320,7 +320,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.feedbackPlaceholder = $translate(score > 0 ? 'POSITIVE_FEEDBACK_PLACEHOLDER' : 'NEGATIVE_FEEDBACK_PLACEHOLDER');
 			return $scope.feedbackPlaceholder;
 		};
-		
+
 		$scope.saveRating = function() {
 			if ($scope.rating.data.text.length < 3) {
 				$scope.rating.errors = {

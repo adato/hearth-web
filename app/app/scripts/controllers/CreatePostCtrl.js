@@ -3,12 +3,12 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.CreatePostCtrl
- * @description 
+ * @description
  */
- 
+
 angular.module('hearth.controllers').controller('CreatePostCtrl', [
-	'$scope', 'Geocoder', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter', 'LanguageSwitch',
-	function($scope, Geocoder, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window, $filter, LanguageSwitch) {
+	'$scope', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter', 'LanguageSwitch',
+	function($scope, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window, $filter, LanguageSwitch) {
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
@@ -73,13 +73,6 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 					});
 				}
 			}
-		};
-
-		$scope.autodetectPosition = function() {
-			return Geocoder.findMeAndGeocode().then(function(geocodedLocation) {
-				$scope.post.location = Geocoder.latLonToGeoJson(geocodedLocation);
-				return $scope.post.location;
-			});
 		};
 
 		$scope.photoUploadSuccessful = function($event) {

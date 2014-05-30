@@ -6,20 +6,18 @@
  * @description
  * @restrict E
  * @requires $timeout
- * @requires Geocoder
  * @requires geo
  */
 
 angular.module('hearth.geo').directive('searchMap', [
-	'$timeout', 'Geocoder', 'geo',
+	'$timeout', 'geo',
 
-	function($timeout, Geocoder, geo) {
+	function($timeout, geo) {
 		return {
 			restrict: 'E',
 			replace: true,
 			scope: {
 				location: '=',
-				loggedUser: '=',
 				setLocationFn: '&',
 				items: '='
 			},
@@ -34,7 +32,6 @@ angular.module('hearth.geo').directive('searchMap', [
 					if (places && places.length > 0) {
 						geo.focusLocation(places[0].geometry.location);
 						scope.search(places[0].geometry.location);
-
 					}
 				});
 
@@ -45,7 +42,7 @@ angular.module('hearth.geo').directive('searchMap', [
 
 				scope.search = function(location) {
 					scope.setLocationFn({
-						location: Geocoder.latLonToGeoJson(location)
+						location: location
 					});
 				};
 			}
