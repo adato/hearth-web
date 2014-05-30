@@ -1130,19 +1130,7 @@ small.error {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.invitation-form {
-    form {
-        position: relative;
-        padding: emCalc(2 * $grid-size);
-        background: $body-bg;
-        button[type='submit'] {
-            width: 15%;
-            position: absolute;
-            right: 0px;
-            padding: 0;
-        }
-    }
-}
+
 
 .login {
     min-height: 100%;
