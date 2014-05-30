@@ -19,7 +19,7 @@ angular.module('hearth.geo').service('Geocoder', [
 		 * @ngdoc function
 		 * @methodOf hearth.geo.Geocoder
 		 * @name findMe
-		 * @description 
+		 * @description
 		 */
 		this.findMe = function() {
 			var deferred;
@@ -48,7 +48,7 @@ angular.module('hearth.geo').service('Geocoder', [
 		 * @ngdoc function
 		 * @methodOf hearth.geo.Geocoder
 		 * @name geocoder
-		 * @description 
+		 * @description
 		 */
 		this.geocoder = function(position) {
 			var deferred, geocoder, latlng;
@@ -79,7 +79,7 @@ angular.module('hearth.geo').service('Geocoder', [
 		 * @ngdoc function
 		 * @methodOf hearth.geo.Geocoder
 		 * @name findMeAndGeocode
-		 * @description 
+		 * @description
 		 */
 		this.findMeAndGeocode = function() {
 			var deferred;
@@ -96,7 +96,7 @@ angular.module('hearth.geo').service('Geocoder', [
 		 * @ngdoc function
 		 * @methodOf hearth.geo.Geocoder
 		 * @name geoJsonToLatLon
-		 * @description 
+		 * @description
 		 */
 		this.geoJsonToLatLon = function(geoJson) {
 			var latlon;
@@ -123,7 +123,7 @@ angular.module('hearth.geo').service('Geocoder', [
 		 * @ngdoc function
 		 * @methodOf hearth.geo.Geocoder
 		 * @name latLonToGeoJson
-		 * @description 
+		 * @description
 		 */
 		this.latLonToGeoJson = function(latlon) {
 			var geojson;
@@ -143,34 +143,6 @@ angular.module('hearth.geo').service('Geocoder', [
 			return geojson;
 		};
 
-		/**
-		 * @ngdoc function
-		 * @methodOf hearth.geo.Geocoder
-		 * @name getDistance
-		 * @description 
-		 */
-		this.getDistance = function(position1, position2) {
-			var R, a, c, d, dLat, dLon;
-			if (position1 === undefined || position1 === null || position1 === 0 || position1 === '') {
-				return;
-			}
-			if (position2 === undefined || position2 === null || position2 === 0 || position2 === '') {
-				return;
-			}
-			if (!position1.lat || !position1.lon || !position2.lat || !position2.lon) {
-				return;
-			}
-			R = 6371;
-			dLat = deg2rad(position2.lat - position1.lat);
-			dLon = deg2rad(position2.lon - position1.lon);
-			a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(position1.lat)) * Math.cos(deg2rad(position2.lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-			c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-			d = R * c;
-			return d;
-		};
-		deg2rad = function(deg) {
-			return deg * (Math.PI / 180);
-		};
 		return this;
 	}
 ]);

@@ -44,7 +44,6 @@ angular.module('hearth.geo').directive('searchMap', [
 				};
 
 				scope.search = function(location) {
-					console.log(location);
 					scope.setLocationFn({
 						location: Geocoder.latLonToGeoJson(location)
 					});

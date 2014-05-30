@@ -158,7 +158,41 @@ angular.module('hearth.geo').factory('geo', [
 			 * @return {google.maps.LatLng} location
 			 */
 			getLocationFromCoords: function(coordinates) {
-				return new google.maps.LatLng(coordinates[1], coordinates[0]);
+				if (coordinates) {
+					return new google.maps.LatLng(coordinates[1], coordinates[0]);
+				} else {
+					throw 'Unable to convert coordinates';
+				}
+			},
+
+			/**
+			 * @ngdoc function
+			 * @name placeMarker
+			 * @methodOf hearth.geo.geo
+			 * @description Counts distance between two locations
+			 *
+			 * @param {google.maps.LatLng} position1 position1
+			 * @param {google.maps.LatLng} position2 position2
+			 *
+			 * @return {number} distance in km
+			 */
+			getDistance: function(position1, position2) {
+				var R = 6371,
+					a, c, d, dLat, dLon, deg2rad = function(deg) {
+						return deg * (Math.PI / 180);
+					};
+
+				if (position1 && position2) {
+					
+					dLat = deg2rad(position2.lat() - position1.lat());
+					dLon = deg2rad(position2.lng() - position1.lng());
+					a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(position1.lat())) * Math.cos(deg2rad(position2.lat())) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+					d = R * c;
+					return d;
+				} else {
+					throw 'Unable to count distances of';
+				}
 			}
 		};
 	}

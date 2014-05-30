@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('SearchCtrl', [
-	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Geocoder', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics',
-	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Geocoder, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics) {
+	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Geocoder', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
+
+	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Geocoder, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
 		var processRow, processSearchResults;
 		$scope.adEditing = false;
 		$scope.location = $location;
@@ -101,12 +102,18 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			return $scope.$broadcast('searchWithRefresh');
 		};
 		$scope.initMyLocation = function() {
-			if (Auth.isLoggedIn() && !$scope.myLocation) {
-				return UsersService.get($scope.loggedUser._id).then(function(data) {
-					if (data.locations && data.locations.length > 0) {
-						$scope.myLocation = Geocoder.geoJsonToLatLon(data.locations[0]);
-					}
-				});
+			if (!$scope.myLocation) {
+				if ($scope.loggedUser) {
+					return UsersService.get($scope.loggedUser._id).then(function(data) {
+						if (data.locations && data.locations.length > 0) {
+							$scope.myLocation = geo.getLocationFromCoords(data.locations[0].coordinates);
+						}
+					});
+				} else {
+					geo.getCurrentLocation().then(function(location) {
+						$scope.myLocation = location;
+					});
+				}
 			}
 		};
 		$scope.initMyFollowers = function() {
@@ -267,19 +274,21 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		processRow = function(value) {
-			var myLocation,
-				distances = [],
+			var distances = [],
 				id = $location.search().id;
 
 			value.type = value.type || 'user';
 			value.locations = value.locations || [{
 				name: ''
 			}];
-			if ($scope.orderBy === 'location' && $scope.myLocation) {
-				myLocation = Geocoder.geoJsonToLatLon($scope.myLocation);
-
+			if ($scope.orderBy === 'location') {
 				distances = $.map(value.locations, function(location) {
-					return Math.ceil(Geocoder.getDistance(myLocation, Geocoder.geoJsonToLatLon(location)));
+					try {
+						return Math.ceil(geo.getDistance($scope.myLocation, geo.getLocationFromCoords(location.coordinates)));
+					}
+					catch (e) {
+						console.error(e);
+					}
 				});
 				if (distances.length) {
 					value.distance = Math.min.apply(this, distances);
