@@ -22,7 +22,7 @@ angular.module('hearth.geo').directive('locations', [
 			templateUrl: 'templates/geo/locations.html',
 			link: function(scope) {
 				var marker, map, searchBox, editedLocationIndex,
-					mapElement = $('#location-map #map-canvas'),
+					mapElement = $('#location-map #map'),
 					searchBoxElement = $('#location-map  input'),
 					initMap = function() {
 						map = geo.createMap(mapElement[0], {
@@ -98,7 +98,7 @@ angular.module('hearth.geo').directive('locations', [
 						if (marker) {
 							marker.setMap(null);
 						}
-						marker = geo.placeMarker(position, 'pin');
+						marker = geo.placeMarker(position, 'pin', map);
 						map.panTo(position);
 						scope.selectedPosition = position;
 					};

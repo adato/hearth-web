@@ -22,15 +22,10 @@ angular.module('hearth.geo').directive('map', [
 			scope: {
 				'ads': '='
 			},
-			template: '<div id="map-canvas" style="height: 300px">map</div>',
 			link: function(scope, element) {
-				var template,
+				var template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					map = geo.createMap(element[0]),
 					markers = [];
-
-				function createTemplateFromCache() {
-					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]);
-				}
 
 				function placeMarker(location, ad) {
 					var infowindow = new google.maps.InfoWindow({
@@ -48,6 +43,7 @@ angular.module('hearth.geo').directive('map', [
 
 				function createPins(ads) {
 					var i, j, ad, location;
+					ads = ads || [];
 
 					for (i = 0; i < ads.length; i++) {
 						ad = ads[i];
@@ -76,15 +72,6 @@ angular.module('hearth.geo').directive('map', [
 					createPins(scope.ads);
 				});
 
-				if (!$templateCache.get('templates/geo/markerTooltip.html')) {
-					$http.get('templates/geo/markerTooltip.html', {
-						cache: $templateCache
-					}).success(function() {
-						createTemplateFromCache();
-					});
-				} else {
-					createTemplateFromCache();
-				}
 				geo.focusCurrentLocation();
 			}
 		};

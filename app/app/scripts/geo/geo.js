@@ -101,7 +101,7 @@ angular.module('hearth.geo').factory('geo', [
 			 * @return {google.maps.Map} map
 			 */
 			createMap: function(element, config) {
-				_map = new google.maps.Map(element, angular.extend(mapConfig, config));
+				_map = new google.maps.Map(element, $.extend({}, mapConfig, config));
 
 				return _map;
 			},

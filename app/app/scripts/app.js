@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils',  'hearth.geo', 'hearth.messages'])
+angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
 	.config(['$sceProvider',
 		function($sceProvider) {}
 	]).config([
@@ -127,8 +127,11 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			return $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
 		}
 	]).run([
-		'$rootScope', 'Auth', '$location', 'ipCookie',
-		function($rootScope, Auth, $location, ipCookie) {
+		'$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http',
+		function($rootScope, Auth, $location, ipCookie, $templateCache, $http) {
+			$http.get('templates/geo/markerTooltip.html', {
+				cache: $templateCache
+			});
 			$rootScope.appInitialized = false;
 			Auth.init(function() {
 				$rootScope.appInitialized = true;
