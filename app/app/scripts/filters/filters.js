@@ -6,7 +6,7 @@ angular.module('hearth.filters', [])
  * @name hearth.filters.urlize
  * @description
  */
- .filter('urlize', function() {
+.filter('urlize', function() {
 	return function(input) {
 		if (input) {
 			var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim,
@@ -38,5 +38,23 @@ angular.module('hearth.filters', [])
 .filter('UTCdate', function() {
 	return function(timestamp) {
 		return parseInt(timestamp, 10) - (new Date()).getTimezoneOffset() * 60000;
+	};
+})
+/**
+ * @ngdoc filter
+ * @name hearth.filters.ellipsis
+ * @description Returns shortened text
+ */
+.filter('ellipsis', function() {
+	return function(text, limit) {
+		text = text || '';
+
+		var textLength = text.length;
+
+		text = text.substring(0, limit).trim();
+		if (textLength > text.length) {
+			text += '…';
+		}
+		return text;
 	};
 });
