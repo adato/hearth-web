@@ -26,7 +26,8 @@
 
 			<div ng-if="item.attachments.length" class="photo">
 				<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
-			</div>			
+			</div>
+ 			<social item="item._id"></social>
 		</div>
 
 		<div class="right-column large-5 columns">

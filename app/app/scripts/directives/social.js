@@ -15,19 +15,20 @@ angular.module('hearth.directives').directive('social', [
 			replace: true,
 			transclude: true,
 			scope: {
-				id: '='
+				item: '='
 			},
 			templateUrl: 'templates/social.html',
 			link: function(scope) {
-				var url = window.location.href + '?id=' + scope.id;
-				shortener.shorten(url).then(function(shortUrl) {
+				scope.$watch('item', function(value) {
+					var url = window.location.origin + '/%23/ad/' + value;
 					angular.extend(scope, {
-						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + shortUrl,
-						gplus: 'https://plus.google.com/share?url=' + shortUrl,
-						twitter: 'https://twitter.com/share?url=' + shortUrl,
-						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + shortUrl
+						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+						gplus: 'https://plus.google.com/share?url=' + url,
+						twitter: 'https://twitter.com/share?url=' + url,
+						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
 					});
 				});
+
 			}
 
 		};
