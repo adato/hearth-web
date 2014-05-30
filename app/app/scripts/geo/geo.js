@@ -4,6 +4,7 @@
  * @ngdoc service
  * @name hearth.geo.geo
  * @description google maps function wrapper
+ *
  * @requires $q
  */
 angular.module('hearth.geo').factory('geo', [

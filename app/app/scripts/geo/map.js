@@ -1,9 +1,20 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.geo.map
+ * @description Renders Map with pins
+ *
+ * @restrict E
+ * @requires geo
+ * @requires $interpolate
+ * @requires $templateCache
+ * @requires $http
+ */
 angular.module('hearth.geo').directive('map', [
-	'geo', '$translate', '$filter', '$interpolate',
+	'geo', '$interpolate', '$templateCache', '$http',
 
-	function(geo, $translate, $filter, $interpolate) {
+	function(geo, $interpolate, $templateCache, $http) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -13,17 +24,13 @@ angular.module('hearth.geo').directive('map', [
 			},
 			template: '<div id="map-canvas" style="height: 300px">map</div>',
 			link: function(scope, element) {
-				var map = geo.createMap(element[0]),
+				var template,
+					map = geo.createMap(element[0]),
 					markers = [];
-				geo.focusCurrentLocation();
 
-				var template = $interpolate(['<div class="marker-tooltip">',
-					'<a href="#ad/{{_id}}"><span class="fa fa-eye"></span></a>',
-					'<span class="{{type}}">{{type.toUpperCase() | translate}}</span> {{title|linky}}',
-					'<br>',
-					'{{name|linky}}',
-					'</div>'
-				].join(''));
+				function createTemplateFromCache() {
+					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]);
+				}
 
 				function placeMarker(location, ad) {
 					var infowindow = new google.maps.InfoWindow({
@@ -69,6 +76,16 @@ angular.module('hearth.geo').directive('map', [
 					createPins(scope.ads);
 				});
 
+				if (!$templateCache.get('templates/geo/markerTooltip.html')) {
+					$http.get('templates/geo/markerTooltip.html', {
+						cache: $templateCache
+					}).success(function() {
+						createTemplateFromCache();
+					});
+				} else {
+					createTemplateFromCache();
+				}
+				geo.focusCurrentLocation();
 			}
 		};
 	}

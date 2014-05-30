@@ -3,7 +3,8 @@
  
  * @ngdoc directive
  * @name hearth.geo.searchMap
- * @description
+ * @description UI for search box with map
+ * 
  * @restrict E
  * @requires $timeout
  * @requires geo
