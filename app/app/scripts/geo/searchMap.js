@@ -2,14 +2,15 @@
 /**
  
  * @ngdoc directive
- * @name hearth.geo.setLocation
+ * @name hearth.geo.searchMap
  * @description
  * @restrict E
  * @requires $timeout
  * @requires Geocoder
+ * @requires geo
  */
 
-angular.module('hearth.geo').directive('setLocation', [
+angular.module('hearth.geo').directive('searchMap', [
 	'$timeout', 'Geocoder', 'geo',
 
 	function($timeout, Geocoder, geo) {
@@ -22,7 +23,7 @@ angular.module('hearth.geo').directive('setLocation', [
 				setLocationFn: '&',
 				items: '='
 			},
-			templateUrl: 'templates/geo/userLocationDirective.html',
+			templateUrl: 'templates/geo/searchMap.html',
 			link: function(scope, element) {
 				var searchBoxElement = $('input', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);

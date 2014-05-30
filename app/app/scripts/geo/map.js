@@ -31,7 +31,7 @@ angular.module('hearth.geo').directive('map', [
 					var infowindow = new google.maps.InfoWindow({
 							content: text.join('')
 						}),
-						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), undefined, ad.type);
+						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
 
 					markers.push(marker);
 					marker.setAnimation(google.maps.Animation.DROP);

@@ -5,12 +5,23 @@
  * @name hearth.geo.geo
  * @description google maps function wrapper
  * @requires $q
- * @requires $timeout
  */
 angular.module('hearth.geo').factory('geo', [
-	'$q', '$timeout',
+	'$q',
 	function($q) {
 		var geocoder = new google.maps.Geocoder(),
+			mapConfig = {
+				zoom: 6,
+				zoomControl: true,
+				mapTypeControl: false,
+				streetViewControl: false,
+				center: new google.maps.LatLng(0, 0),
+				draggableCursor: 'crosshair',
+				zoomControlOptions: {
+					style: google.maps.ZoomControlStyle.LARGE,
+					position: google.maps.ControlPosition.LEFT_CENTER
+				}
+			},
 			_map,
 			images = {
 				need: {
@@ -31,17 +42,19 @@ angular.module('hearth.geo').factory('geo', [
 
 			/**
 			 * @ngdoc function
-			 * @methodOf hearth.geo.geo
 			 * @name getCurrentLocation
-			 * @description returns promise with data about current location
+			 * @methodOf hearth.geo.geo
+			 * @description Returns promise with data about current location
+			 *
 			 * @return {promise} Promise will be resolved with location google.maps.LatLng
 			 */
 			getCurrentLocation: function() {
-				var deferred = $q.defer();
+				var me = this,
+					deferred = $q.defer();
 
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(function(position) {
-						deferred.resolve(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+						deferred.resolve(me.getLocationFromCoords([position.coords.longitude, position.coords.latitude]));
 					});
 				}
 				return deferred.promise;
@@ -49,10 +62,11 @@ angular.module('hearth.geo').factory('geo', [
 
 			/**
 			 * @ngdoc function
+			 * @name getAddress
 			 * @methodOf hearth.geo.geo
 			 * @param {google.maps.LatLng} location location
-			 * @name getAddress
-			 * @description returns promise with postal address data
+			 * @description Returns promise with postal address data
+			 *
 			 * @return {promise} promise
 			 */
 			getAddress: function(location) {
@@ -69,34 +83,63 @@ angular.module('hearth.geo').factory('geo', [
 				return deferred.promise;
 			},
 
+			/**
+			 * @ngdoc function
+			 * @name createMap
+			 * @methodOf hearth.geo.geo
+			 * @param {DOMelement} element location
+			 * @description Returns creates Google map and returns reference to map (and saves reference to _map)
+			 *
+			 * @return {google.maps.Map} map
+			 */
 			createMap: function(element) {
-				var mapConfig = {
-					zoom: 6,
-					zoomControl: true,
-					mapTypeControl: false,
-					streetViewControl: false,
-					center: new google.maps.LatLng(0, 0),
-					draggableCursor: 'crosshair',
-					zoomControlOptions: {
-						style: google.maps.ZoomControlStyle.LARGE,
-						position: google.maps.ControlPosition.LEFT_CENTER
-					}
-				};
 				_map = new google.maps.Map(element, mapConfig);
+
 				return _map;
 			},
 
+			/**
+			 * @ngdoc function
+			 * @name focusCurrentLocation
+			 * @methodOf hearth.geo.geo
+			 * @description Centers map to current location
+			 *
+			 * @param {google.maps.Map} element map (optional) - if not set, last created map will be used
+			 *
+			 * @return {google.maps.Map} map
+			 */
 			focusCurrentLocation: function(map) {
-				this.getCurrentLocation().then(function(position) {
-					(map || _map).setCenter(position);
+				var me = this;
+
+				this.getCurrentLocation().then(function(location) {
+					me.focusLocation(location, map);
 				});
 			},
 
-			focusLocation: function(position, map) {
-				(map || _map).setCenter(position);
+			/**
+			 * @ngdoc function
+			 * @name focusCurrentLocation
+			 * @methodOf hearth.geo.geo
+			 * @description Centers map to  location
+			 *
+			 * @param {google.maps.LatLng} location location of map center
+			 * @param {google.maps.Map} map (optional)  - if not set, last created map will be used
+			 */
+			focusLocation: function(location, map) {
+				(map || _map).setCenter(location);
 			},
 
-			placeMarker: function(location, map, type) {
+			/**
+			 * @ngdoc function
+			 * @name placeMarker
+			 * @methodOf hearth.geo.geo
+			 * @description Places marker to location
+			 *
+			 * @param {google.maps.LatLng} location of map center
+			 * @param {String} type  type of icon ('need', 'offer', 'undefined')
+			 * @param {google.maps.Map} map (optional)  - if not set, last created map will be used
+			 */
+			placeMarker: function(location, type, map) {
 				return new google.maps.Marker({
 					position: location,
 					map: map || _map,
@@ -104,10 +147,19 @@ angular.module('hearth.geo').factory('geo', [
 				});
 			},
 
-			getLocationFromCoords: function(coords) {
-				return new google.maps.LatLng(coords[1], coords[0]);
+			/**
+			 * @ngdoc function
+			 * @name placeMarker
+			 * @methodOf hearth.geo.geo
+			 * @description Converts coordinates array to google.maps.LatLng
+			 *
+			 * @param {Array} coordinates location of map center
+			 *
+			 * @return {google.maps.LatLng} location
+			 */
+			getLocationFromCoords: function(coordinates) {
+				return new google.maps.LatLng(coordinates[1], coordinates[0]);
 			}
-
 		};
 	}
 ]);
