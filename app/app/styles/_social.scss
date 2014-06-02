@@ -7,12 +7,14 @@
 		text-align: center;
 		display: inline-block;
 		@include border-radius(50%);
-		@include transition(color 1s, background-color 1s);
+		@include text-shadow( 0 0 4px lighten(nth($color, 1), 35%));
+		@include transition(color 1s, background-color 1s, text-shadow 1s);
 		color: lighten(nth($color, 1), 35%) !important;
 		background-color: darken(nth($color, 1), 8%);
 		padding: 0.5em;
 		&:hover {
-			background-color: nth($color, 1);
+			@include text-shadow(0 -1px nth($color, 3));
+			background-color: lighten(nth($color, 1), 5%);
 			color:white  !important;
 		}
 	}

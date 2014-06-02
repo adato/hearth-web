@@ -397,9 +397,12 @@ p {
 }
 
 .show-on-hover {
-    display: none;
+    @include transition(opacity 1s);
+    opacity: 0;
+    display: block;
     @media #{$mobile} {
         display: inherit;
+        opacity: 1;
     }
 }
 
@@ -572,12 +575,11 @@ p {
             }
         }
         .show-on-hover {
-            visibility: hidden;
             display: block;
         }
         &.hoverable:hover {
             .show-on-hover {
-                visibility: visible;
+                opacity: 1;
             }
         }
         &.hoverable:hover .wish .wish-text,
