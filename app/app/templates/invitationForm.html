@@ -6,10 +6,10 @@
 			
 				<div class="row">
 					 <div class="large-12 columns ">
-					 	<div class="alert-box alert error round connect-bottom visible" ng-show="sendInvitationForm.email.$error.email">{{'VALIDATION_EMAIL' | translate}}</div>
+					 	<div class="alert-box alert error round connect-bottom visible" ng-show="sendInvitationForm.email.$error.emails">{{'VALIDATION_EMAIL' | translate}}</div>
 						<div style="position:relative;z-index:11">
 							<div class="alert error round connect-bottom" ng-show="status.sentError">{{ status.sentError.base | translate }}</div>
-							<input type="email" name="email" class="text-input top" ng-model="invitation.toEmail" required>
+							<input type="emails" name="email" placeholder="{{'EMAIL_INPUT_PLACEHOLDER' | translate}}" class="text-input top" ng-model="invitation.toEmail" required>
 							<textarea class="text-input bottom" ng-model="invitation.message"></textarea>
 						</div>
 					</div>
@@ -19,7 +19,7 @@
 						<a href="" ng-click="cancel()" translate>CANCEL</a>
 					</div>
 					<div class="large-6 columns">
-						<button type="submit" class="primary button right" ng-disabled="status.sending" analytics-on analytics-event="sending invitation" analytics-category="Invitations" >
+						<button type="submit" class="primary button right" ng-disabled="status.sending || sendInvitationForm.$invalid" analytics-on analytics-event="sending invitation" analytics-category="Invitations" >
 							<span class="fa fa-envelope"></span> {{'SEND' | translate}}
 						</button>
 					</div>
