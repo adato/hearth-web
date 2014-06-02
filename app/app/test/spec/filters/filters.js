@@ -19,4 +19,17 @@ describe('Filters: apiPrefix', function() {
 		expect(urlizeFilter('http://www.test.com')).toBe('<a href="http://www.test.com" target="_blank">http://www.test.com</a>');
 		expect(urlizeFilter('https://www.test.com')).toBe('<a href="https://www.test.com" target="_blank">https://www.test.com</a>');
 	}));
+
+	it('should return path with prefix', inject(function(ellipsisFilter) {
+		expect(ellipsisFilter()).toBe('');
+		expect(ellipsisFilter(null)).toBe('');
+		expect(ellipsisFilter('text')).toBe('text');
+		expect(ellipsisFilter('123456789', 10)).toBe('123456789');
+		expect(ellipsisFilter('123456789', 5)).toBe('12345…');
+		expect(ellipsisFilter('a a a ', 5)).toBe('a a a');
+		expect(ellipsisFilter('1234   ', 5)).toBe('1234');
+		expect(ellipsisFilter('1234   ', 5)).toBe('1234');
+		expect(ellipsisFilter('1234……', 5)).toBe('1234…');
+		expect(ellipsisFilter('1234……', -5)).toBe('1234…');
+	}));
 });

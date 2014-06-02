@@ -44,15 +44,21 @@ angular.module('hearth.filters', [])
  * @ngdoc filter
  * @name hearth.filters.ellipsis
  * @description Returns shortened text
+ *
+ * @param {String} text text to shorten
+ * @param {String} limit limit count of characters (optional) (default:127)
+ *
+ * @return {String} shortened text
  */
 .filter('ellipsis', function() {
 	return function(text, limit) {
-		text = text || '';
+		text = (text || '').trim();
+		limit = Math.abs(limit || 127);
 
-		var textLength = text.length;
+		var originalLength = text.length;
 
 		text = text.substring(0, limit).trim();
-		if (textLength > text.length) {
+		if (originalLength > text.length && text[text.length - 1] !== '…') {
 			text += '…';
 		}
 		return text;
