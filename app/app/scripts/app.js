@@ -98,10 +98,10 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			}).when('/about', {
 				templateUrl: 'templates/about.html',
 				pageType: 'about'
-			}).when('/messages', {
+			})/*.when('/messages', {
 				controller: 'Messages',
 				templateUrl: 'templates/messages/messages.html'
-			}).when('/ad/:id', {
+			})*/.when('/ad/:id', {
 				controller: 'AdDetail',
 				templateUrl: 'templates/adDetail.html'
 			}).otherwise({

@@ -38,11 +38,11 @@
 					</div>
 				</li-->
 
-				<li signed-in >
+				<!--li signed-in >
 					<a href="#/messages">
 						<span class="fa fa-envelope"></span>
 					</a>					
-				</li>
+				</li-->
 			
 				<li ng-repeat="language in languages">
 					<a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="" analytics-on analytics-event="switch-language-to-{{language.code}}" analytics-category="menu">{{language.code}}</a>
