@@ -15,9 +15,9 @@ angular.module('hearth.utils').directive('monkPlaceholder', [
 			link: function(scope, element, attrs) {
 				if (!navigator.userAgent.match(/Trident/)) {
 					//you don't deserve this beautiful feature, ugly IE
-					element.attr('placeholder', $translate(attrs.ngPlaceholder));
+					element.attr('placeholder', $translate(attrs.monkPlaceholder));
 				} else {
-					element.after('<em>' + $translate(attrs.ngPlaceholder) + '</em>');
+					element.after('<em>' + $translate(attrs.monkPlaceholder) + '</em>');
 				}
 			}
 		};
