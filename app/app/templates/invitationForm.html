@@ -14,10 +14,11 @@
 			<div class="row">
 				 <div class="large-12 columns ">
 				 	<div class="alert-box alert error round connect-bottom visible" ng-show="sendInvitationForm.email.$error.emails">{{'VALIDATION_EMAIL' | translate}}</div>
+				 	<div class="alert-box alert error round connect-bottom visible" ng-show="sendInvitationForm.message.$error.maxlength">{{'VALIDATION_MAX_LENGTH' | translate}}</div>
 					<div style="position:relative;z-index:11"> 
 						<div class="alert error round connect-bottom" ng-show="status.sentError">{{ status.sentError.base | translate }}</div>
 						<input type="emails" name="email" placeholder="{{'EMAIL_INPUT_PLACEHOLDER' | translate}}" class="text-input top" ng-model="invitation.toEmail" required>
-						<textarea class="text-input bottom" monk-placeholder="EMAIL_TEXT_PLACEHOLDER" ng-model="invitation.message"></textarea>
+						<textarea class="text-input bottom" name="message" ng-maxlength="500" monk-placeholder="EMAIL_TEXT_PLACEHOLDER" ng-model="invitation.message"></textarea>
 					</div>
 				</div>
 			</div>
