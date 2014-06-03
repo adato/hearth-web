@@ -61,13 +61,14 @@
 						&nbsp;
 					</div>
 					<div class="large-5 small-11 columns right text-right show-on-hover">
-						<a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
-							<i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
-						</a>
-
-						<a href="" ng-click="" ng-hide="item.author._id == loggedEntity._id">
-							<i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
-						</a>
+						<div style="margin-bottom:1em;">
+							<a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
+								<i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
+							</a>
+							<a href="" ng-click="" ng-hide="item.author._id == loggedEntity._id">
+								<i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
+							</a>
+						</div>
 						 <social item="item._id"></social>
 					</div>
 				</div>
