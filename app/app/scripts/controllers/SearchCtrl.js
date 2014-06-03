@@ -19,7 +19,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		$scope.keywords = [];
 		$scope.filterExpanded = false;
 		$scope.lastQueryReturnedCount = 0;
-		$scope.filter = {};
+		$scope.filter = {
+			type: ''
+		};
 		$scope.srch = {
 			query: '',
 			filters: [{
@@ -172,15 +174,20 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		$scope.getSearchService = function() {
-			var getMarketplaceService,
-				getMyHearthService,
-				searchParamsByMyLocation,
+			var param,
 				searchParams = {
 					limit: $scope.limit,
 					offset: $scope.offset,
 					r: Math.random(),
-					type: $scope.filter.type
+					type: $scope.filter.type,
+					days: $scope.filter.date
 				};
+
+			for (param in searchParams) {
+				if (searchParams[param] === undefined) {
+					delete searchParams[param];
+				}
+			}
 
 			if (($scope.keywords != null) && $scope.keywords.length) {
 				searchParams.keywords = $scope.keywords.join(',');

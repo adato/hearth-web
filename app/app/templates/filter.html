@@ -6,10 +6,13 @@
 			<dl class="sub-nav">
 				<dt>Podle typu:</dt>
 				<dd class="active">
-					<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'offer'">Inzeráty Věnuji</label>
+					<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'offer'">Věnuji</label>
 				</dd>
 				<dd>
-					<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'need'">Inzeráty Přijmu</label>
+					<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'need'">Přijmu</label>
+				</dd>
+				<dd>
+					<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="''">Všechny</label>
 				</dd>
 			</dl>
 			<dl class="sub-nav">
@@ -30,13 +33,13 @@
 			<dl class="sub-nav">
 				<dt>Podle času:</dt>
 				<dd>
-					<label><input type="radio" name="adDate">Dnes</label>
+					<label><input type="radio" name="adDate" ng-model="filter.date" ng-value="1">Dnes</label>
 				</dd>
 				<dd>
-					<label><input type="radio" name="adDate">3 dny</label>
+					<label><input type="radio" name="adDate" ng-model="filter.date" ng-value="3">3 dny</label>
 				</dd>
 				<dd>
-					<label><input type="radio" name="adDate">Týden</label>
+					<label><input type="radio" name="adDate" ng-model="filter.date" ng-value="7">Týden</label>
 				</dd>
 				<dd>
 					<label><input type="radio" name="adDate">Od: <input type="text" datepicker="{{languageCode.code}}" > Do: <input type="text" datepicker="{{languageCode.code}}" ></label>
