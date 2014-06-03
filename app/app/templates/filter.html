@@ -1,0 +1,79 @@
+<div class="filter" ng-class="{collapsed: !expanded}" ng-click="expanded = !expanded">
+	<div class="row">
+		<div class="large-12 columns">
+			<h1><span class="fa fa-filter"></span>Filtrovat inzeráty</h1> 
+			<dl class="sub-nav">
+				<dt>Podle typu:</dt>
+				<dd class="active">
+					<label><input type="radio" name="adType">Inzeráty Věnuji</label>
+				</dd>
+				<dd>
+					<label><input type="radio" name="adType">Inzeráty Přijmu</label>
+				</dd>
+			</dl>
+			<dl class="sub-nav">
+				<dt>Podle autora:</dt>
+				<dd>
+					<label><input type="checkbox">Jednotlivci</label>
+				</dd>
+				<dd>
+					<label><input type="checkbox">Komunity</label>
+				</dd>
+				<dd>
+					<label><input type="checkbox">Projekty</label>
+				</dd>
+				<dd>
+					<label><input type="checkbox">Jen moje spojení</label>
+				</dd>
+			</dl>
+			<dl class="sub-nav">
+				<dt>Podle času:</dt>
+				<dd>
+					<label><input type="radio" name="adDate">Dnes</label>
+				</dd>
+				<dd>
+					<label><input type="radio" name="adDate">3 dny</label>
+				</dd>
+				<dd>
+					<label><input type="radio" name="adDate">Týden</label>
+				</dd>
+				<dd>
+					<label><input type="radio" name="adDate">Od: <input type="text" datepicker="{{languageCode.code}}" > Do: <input type="text" datepicker="{{languageCode.code}}" ></label>
+				</dd>
+
+			</dl>
+			<dl class="sub-nav">
+				<dt>Podle místa:</dt>
+				<dd class="active"><input type="text"></dd>
+				<dd>A v okruhu</dd>
+				<dd>
+					<label><input type="radio" name="adPlace">10 km</label>
+				</dd>
+				<dd>
+					<label><input type="radio" name="adPlace">25 km</label>
+				</dd>
+				<dd>
+					<label><input type="radio" name="adPlace">100 km</label>
+				</dd>
+			</dl>
+			<dl class="sub-nav">
+				<dt>Podle klíčového slova:</dt>
+				<dd class="active">
+					<input type="text">
+				</dd>
+			</dl>
+		</div>
+		<hr>
+	</div>
+	<div class="row">
+		<div class="large-3 columns">
+			<a  ng-click="$parent.expanded = false">Zavřít filtr</a>
+		</div>
+		<div class="large-5 columns">
+			<label><input type="checkbox">Uložit filtr pro další použití</label>
+		</div>
+		<div class="large-4 columns right">
+			<button class="button primary"><span class="fa fa-filter"></span> Filtrovat inzeráty</button>
+		</div>
+	</div>
+</div>

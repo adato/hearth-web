@@ -50,7 +50,7 @@
 @import "foundation/components/progress-bars";
 
 //@import "foundation/components/side-nav";
-//@import "foundation/components/sub-nav";
+@import "foundation/components/sub-nav";
 //@import "foundation/components/switch";
 //@import "foundation/components/magellan";
 //@import "foundation/components/tables";
@@ -1320,6 +1320,7 @@ input + .remove {
 }
 
 @import "messages";
+@import "filter";
 
 .marker-tooltip {
     text-align: left;
