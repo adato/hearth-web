@@ -180,7 +180,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					offset: $scope.offset,
 					r: Math.random(),
 					type: $scope.filter.type,
-					days: $scope.filter.date
+					days: $scope.filter.date,
+					distance: $scope.filter.distance,
+					lat: $scope.filter.lat,
+					lon: $scope.filter.lon
 				};
 
 			for (param in searchParams) {

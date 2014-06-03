@@ -67,7 +67,7 @@
 
     <div class="left-column small-12 large-7 columns pull-5 alt-bg listing"
          ng-class="{ 'hide-for-small' : isReplyingAd() }">
-        <div ng-include="'templates/filter.html'"></div>
+        <filter data="filter" search-fn="search({add:false})"></filter>
 
         <div class="padding-h-2">
             <div class="row profile-links">
