@@ -17,7 +17,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		$scope.limit = 15;
 		$scope.offset = 0;
 		$scope.keywords = [];
+		$scope.filterExpanded = false;
 		$scope.lastQueryReturnedCount = 0;
+		$scope.filter = {};
 		$scope.srch = {
 			query: '',
 			filters: [{
@@ -176,7 +178,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				searchParams = {
 					limit: $scope.limit,
 					offset: $scope.offset,
-					r: Math.random()
+					r: Math.random(),
+					type: $scope.filter.type
 				};
 
 			if (($scope.keywords != null) && $scope.keywords.length) {
@@ -264,7 +267,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 			return search.service.query(search.params).then(function(data) {
 				var i, len = data.length;
-				
 				if (search.params.query) {
 					$analytics.eventTrack('search by keyword', {
 						category: $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth'

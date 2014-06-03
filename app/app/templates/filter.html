@@ -1,14 +1,15 @@
-<div class="filter" ng-class="{collapsed: !expanded}" ng-click="expanded = !expanded">
+<div class="filter" ng-class="{collapsed: !filterExpanded}" >
 	<div class="row">
 		<div class="large-12 columns">
-			<h1><span class="fa fa-filter"></span>Filtrovat inzeráty</h1> 
+			<h1 ng-click="filterExpanded = !filterExpanded"><span class="fa fa-filter"></span>Filtrovat inzeráty</h1> 
+			<hr>
 			<dl class="sub-nav">
 				<dt>Podle typu:</dt>
 				<dd class="active">
-					<label><input type="radio" name="adType">Inzeráty Věnuji</label>
+					<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'offer'">Inzeráty Věnuji</label>
 				</dd>
 				<dd>
-					<label><input type="radio" name="adType">Inzeráty Přijmu</label>
+					<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'need'">Inzeráty Přijmu</label>
 				</dd>
 			</dl>
 			<dl class="sub-nav">
@@ -65,15 +66,17 @@
 		</div>
 		<hr>
 	</div>
+
 	<div class="row">
 		<div class="large-3 columns">
-			<a  ng-click="$parent.expanded = false">Zavřít filtr</a>
+			<a  ng-click="filterExpanded = false">Zavřít filtr</a>
 		</div>
 		<div class="large-5 columns">
 			<label><input type="checkbox">Uložit filtr pro další použití</label>
 		</div>
-		<div class="large-4 columns right">
-			<button class="button primary"><span class="fa fa-filter"></span> Filtrovat inzeráty</button>
+		<div class="large-4 columns text-right">
+			<button class="button primary" ng-click="search({add:false})"><span class="fa fa-filter"></span> Filtrovat</button>
 		</div>
 	</div>
+
 </div>
