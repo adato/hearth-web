@@ -229,17 +229,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			};
 		};
 
-		function processSearchResults(data) {
-			var i, len = data.length;
-
-			for (i = 0; i < len; i++) {
-				processRow(data[i]);
-			}
-			$scope.lastQueryReturnedCount = len;
-			$scope.sent = true;
-			return $scope.updateRelations();
-		}
-
 		function processRow(value) {
 			var distances = [],
 				id = $location.search().id;
@@ -271,16 +260,22 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 			$scope.sent = false;
 			$scope.searchOptions = options;
+			$scope.items = ($scope.searchOptions || {}).add === false ? [] : $scope.items;
 
 			return search.service.query(search.params).then(function(data) {
+				var i, len = data.length;
+				
 				if (search.params.query) {
 					$analytics.eventTrack('search by keyword', {
 						category: $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth'
 					});
 				}
-				$scope.items = ($scope.searchOptions || {}).add === false ? [] : $scope.items;
-
-				return processSearchResults(data);
+				for (i = 0; i < len; i++) {
+					processRow(data[i]);
+				}
+				$scope.lastQueryReturnedCount = len;
+				$scope.sent = true;
+				return $scope.updateRelations();
 			});
 		};
 
