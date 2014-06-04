@@ -19,9 +19,9 @@
 
 			<div class="row">
 				<div class="large-12 columns">
-					{{item.name}}
+					<span ng-bind-html="item.name | linky"></span>
 						
-					<div ng-if="item.locations"  ng-repeat="location in item.locations">
+					<div ng-if="item.locations" class="locations"  ng-repeat="location in item.locations">
 						<span class="fa fa-map-marker"></span> {{ location.name }}
 					</div>
 
