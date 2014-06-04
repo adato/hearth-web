@@ -15,6 +15,7 @@
         };
         img {
         	@include border-radius;
+        	 border: 2px solid lighten(nth($color, 3), 20%);
         	margin: {
         		right:0.5em;
         	}
