@@ -6,7 +6,9 @@
  * @description 
  */
 
-angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
+angular.module('hearth.controllers').controller('BaseCtrl', [
+	'$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
+
 	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie) {
 		var timeout;
 

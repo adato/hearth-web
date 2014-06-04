@@ -72,9 +72,9 @@
 			</div>
 
 			<div signed-in class="row" ng-if="replyDisplayed">
-				<form ng-submit="replyToAd(ad)" name="replyForm">
+				<form ng-submit="replyToAd(item)" name="replyForm">
 					<div class="large-12 columns">
-						<div ng-cloak>
+						<div ng-cloak ng-hide="replyToAdSubmitting">
 							<div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
 							<textarea ng-model="reply.message" class="text-input" tabindex="1" rows="6" placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-cloak ng-required="true" ng-minlength="3"></textarea>
 							<div class="row">
@@ -97,9 +97,6 @@
 							<div class="clearfix padding-2 successfully-sent">
 								{{ 'SENDING_MESSAGE_SUCCESS' | translate }}
 							</div>
-							<a href="" ng-click="expandAd(null)">
-								{{ 'CLOSE' | translate }}
-							</a>
 						</div>
 					</div>
 				</form>
