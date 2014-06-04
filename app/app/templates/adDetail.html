@@ -29,47 +29,82 @@
 						<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
 					</div>
 				</div>
-	 		</div>
+			</div>
 
-	 		<div ng-if="item.replies" class="row">
+			<div ng-if="item.replies" class="row">
 				<div class="large-12 columns">
-	 				<hr>
-	 				<div ng-repeat="reply in item.replies" class="reply">
-	 					<div class="row">
+					<hr>
+					<div ng-repeat="reply in item.replies" class="reply">
+						<div class="row">
 							<div class="large-12 columns">
-			 					<div class="right" time-ago from-time="reply.updated_at || reply.created_at"></div>
-			 					<avatar ng-if="reply.author._type == 'Community'" source="reply.author.avatar" size="normal" relation="" click="go('community', reply.author._id, reply.author._id)" class="left photo" type="'Community'"></avatar>
+								<div class="right" time-ago from-time="reply.updated_at || reply.created_at"></div>
+								<avatar ng-if="reply.author._type == 'Community'" source="reply.author.avatar" size="normal" relation="" click="go('community', reply.author._id, reply.author._id)" class="left photo" type="'Community'"></avatar>
 								<avatar ng-if="reply.author._type != 'Community'" source="reply.author.avatar" size="normal" relation="reply.author.relation" click="go('profile', reply.author._id, reply.author._id)" class="left photo" type="'User'"></avatar>
-	 							<a class="smaller name" ng-show="reply.author._type != 'Community'" ng-href="#/profile/{{ reply.author._id }}">{{ reply.author.name }}</a>
+								<a class="smaller name" ng-show="reply.author._type != 'Community'" ng-href="#/profile/{{ reply.author._id }}">{{ reply.author.name }}</a>
 								<a class="smaller name" ng-show="reply.author._type == 'Community'" ng-href="#/community/{{ reply.author._id }}">{{ reply.author.name }}</a> &nbsp;
 								<div ng-bind-html="reply.message | linky"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-	 		</div>
+			</div>
 
-	 		<div class="row">
-	 			<div class="large-12 columns">
+			<div class="row">
+				<div class="large-12 columns">
 					<hr>
-	 			</div>
-	 		</div>
+				</div>
+			</div>
 
-	 		<div class="row">
-	 			<div class="large-6 columns">
-		 			<div style="margin-bottom:1em;">
+			<div class="row">
+				<div class="large-6 columns">
+					<div style="margin-bottom:1em;">
 						<!--a href="" ng-click="startEditingAd($event, item);" ng-show="profile._id == loggedCommunity._id || profile._id == loggedUser._id">
 							<i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
 						</a-->
-						<a href="" ng-click="" ng-hide="profile._id == loggedCommunity._id || profile._id == loggedUser._id">
+						<a href="" ng-hide="profile._id == loggedCommunity._id || profile._id == loggedUser._id" ng-click="replyDisplayed=true">
 							<i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
 						</a>
 					</div>
-	 			</div>
-	 			<div class="large-6 columns">
-	 				<social item="item._id"></social>
-	 			</div>
-	 		</div>
+				</div>
+				<div class="large-6 columns">
+					<social item="item._id"></social>
+				</div>
+			</div>
+
+			<div signed-in class="row" ng-if="replyDisplayed">
+				<form ng-submit="replyToAd(ad)" name="replyForm">
+					<div class="large-12 columns">
+						<div ng-cloak>
+							<div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+							<textarea ng-model="reply.message" class="text-input" tabindex="1" rows="6" placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-cloak ng-required="true" ng-minlength="3"></textarea>
+							<div class="row">
+								<div class="padding-h-0 small-12 medium-12 large-4 large-push-8 columns right">
+									<button class="right primary button" type="submit" tabindex="2" analytics-on analytics-event="send message" analytics-category="Marketplace" analytics-value="15" ng-cloak>
+										{{'SUBMIT' | translate}}
+									</button>
+								</div>
+								<div class="padding-h-0 small-12 medium-12 large-8 columns left checkbox-input reply-to-ad" validated-checkbox>
+									<input type="checkbox" id="reply" name="reply" ng-required="true" ng-model="reply.agreed">
+									<label for="reply">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}</label>
+								</div>
+							</div>
+						</div>
+
+						<div ng-show="replyToAdSubmitting" ng-cloak class="clearfix padding-2">
+							{{ 'SENDING_MESSAGE_IN_PROGRESS' | translate }}
+						</div>
+						<div ng-show="replyToAdSubmitted" ng-cloak>
+							<div class="clearfix padding-2 successfully-sent">
+								{{ 'SENDING_MESSAGE_SUCCESS' | translate }}
+							</div>
+							<a href="" ng-click="expandAd(null)">
+								{{ 'CLOSE' | translate }}
+							</a>
+						</div>
+					</div>
+				</form>
+			</div>
+
 		</div>
 
 		<div class="right-column large-5 columns">
