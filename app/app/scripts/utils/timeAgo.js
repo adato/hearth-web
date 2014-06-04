@@ -23,7 +23,7 @@ angular.module('hearth.utils').directive('timeAgo', [
 						if (scope.timeago.nowTime != null) {
 							value = scope.timeago.nowTime - timeago.x(scope.fromTime);
 							if (value) {
-								return linkElement.text(scope.timeago.inWords(value));
+								return linkElement.html('<span class="fa fa-clock-o"></span> ' + scope.timeago.inWords(value));
 							}
 						}
 					};

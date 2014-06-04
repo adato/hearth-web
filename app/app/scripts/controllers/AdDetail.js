@@ -16,6 +16,7 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			id: $routeParams.id
 		}, function(data) {
 			$scope.item = data;
+			$scope.profile = data.author;
 		});
 	}
 ]);

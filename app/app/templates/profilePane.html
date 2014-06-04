@@ -36,5 +36,88 @@
         </div>
         
         <div class="cleaner"></div>
+
     </div>
+
+    <div class="hr padding-v-1"></div>
+
+        <div class="padding-2">
+            <div ng-show="profile.about">{{profile.about}}</div>
+            <div ng-show="profile.interests.length > 0 && profile.interests[0]">
+                <h1 ng-show="isMine"> {{ 'MY_INTERESTS' | translate }}</h1>
+                <h1 ng-hide="isMine"> {{ 'INTERESTS' | translate }}</h1>
+                <div>{{profile.interests.join(', ')}}</div>
+            </div>
+            <div ng-show="profile.locations.length > 0">
+                <h1>{{ 'WHERE' | translate }}</h1>
+                <div ng-repeat="location in profile.locations">
+                    {{location.name}}
+                </div>
+            </div>
+            <div ng-show="profile.webs.length > 0">
+                <h1>{{ 'MY_WEB' | translate }}</h1>
+                <div ng-repeat="web in profile.webs track by $index">
+                    <a href="{{web}}" target="_blank">{{web}}</a>
+                </div>
+            </div>
+
+            <div>
+                <a href="{{profile.facebook}}" ng-show="profile.facebook" target="_blank"><div class="fa fa-facebook"></div></a>
+                <a href="{{profile.twitter}}" ng-show="profile.twitter" target="_blank"><div class="fa fa-twitter"></div></a>
+                <a href="{{profile.linkedin}}" ng-show="profile.linkedin" target="_blank"><div class="fa fa-linkedin"></div></a>
+                <a href="{{profile.googleplus}}" ng-show="profile.googleplus" target="_blank"><div class="fa fa-google-plus"></div></a>
+            </div>
+        </div>
+        <hr>
+
+        <div class="follow-box">
+            <div ng-show="relations.friends.length && showFollow">
+                <h5>{{ 'FRIENDS_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="friend in relations.friends">
+                        <a ng-href="#/profile/{{ friend.userId }}" title="{{ friend.userFullname }}">
+                            <avatar source="friend.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+
+            <div ng-show="relations.followees.length && isMine && showFollow">
+
+                <h5>{{ 'FOLLOWEES_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="followee in relations.followees">
+                        <a ng-href="#/profile/{{ followee.userId }}" title="{{ followee.userFullname }}">
+                            <avatar source="followee.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+
+            <div ng-show="relations.followers.length && isMine && showFollow">
+                <h5>{{ 'FOLLOWERS_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="follower in relations.followers">
+                        <a ng-href="#/profile/{{ follower.userId }}" title="{{ follower.userFullname }}">
+                            <avatar source="follower.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+
+            <div ng-show="relations.mnaberOfCommunities.length">
+                <h5>{{ 'MEMBER_OF_COMMUNITIES_LABEL' | translate }}</h5>
+                <ul>
+                    <li ng-repeat="member in relations.memberOfCommunities">
+                        <a ng-href="#/community/{{ member.userId }}" title="{{ member.userFullname }}">
+                            <avatar source="member.userAvatar" size="follow" class="left photo" type="'Community'"></avatar>
+                        </a>
+                    </li>
+                </ul>
+                <div class="cleaner"></div>
+            </div>
+        </div>
 </div>
