@@ -28,7 +28,45 @@
 					<div ng-if="item.attachments.length" class="photo">
 						<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
 					</div>
-		 			<social item="item._id"></social>
+				</div>
+	 		</div>
+
+	 		<div ng-if="item.replies" class="row">
+				<div class="large-12 columns">
+	 				<hr>
+
+	 				<div ng-repeat="reply in item.replies" class="reply">
+	 					<div class="row">
+							<div class="large-12 columns">
+			 					<div class="right" time-ago from-time="reply.updated_at || reply.created_at"></div>
+			 					<avatar ng-if="reply.author._type == 'Community'" source="reply.author.avatar" size="normal" relation="" click="go('community', reply.author._id, reply.author._id)" class="left photo" type="'Community'"></avatar>
+								<avatar ng-if="reply.author._type != 'Community'" source="reply.author.avatar" size="normal" relation="reply.author.relation" click="go('profile', reply.author._id, reply.author._id)" class="left photo" type="'User'"></avatar>
+								<span ng-bind-html="reply.message | linky"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+	 		</div>
+
+	 		<div class="row">
+	 			<div class="large-12 columns">
+					<hr>
+	 			</div>
+	 		</div>
+
+	 		<div class="row">
+	 			<div class="large-6 columns">
+		 			<!--div style="margin-bottom:1em;">
+						<a href="" ng-click="startEditingAd($event, item);" ng-show="profile.author._id == user._id">
+							<i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
+						</a>
+						<a href="" ng-click="" ng-hide="profile.author._id == user._id">
+							<i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
+						</a>
+					</div-->
+	 			</div>
+	 			<div class="large-6 columns">
+	 				<social item="item._id"></social>
 	 			</div>
 	 		</div>
 		</div>
