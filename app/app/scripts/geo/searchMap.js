@@ -36,11 +36,6 @@ angular.module('hearth.geo').directive('searchMap', [
 					}
 				});
 
-				scope.showAutodetect = false;
-				scope.emptyFocusFn = function() {
-					scope.showAutodetect = true;
-				};
-
 				scope.autodetectMyLocation = function() {
 					geo.getCurrentLocation().then(function(location) {
 						geo.focusLocation(location);
@@ -56,6 +51,7 @@ angular.module('hearth.geo').directive('searchMap', [
 						location: location
 					});
 				};
+				scope.autodetectMyLocation();
 			}
 		};
 	}

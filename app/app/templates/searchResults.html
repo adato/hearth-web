@@ -15,7 +15,8 @@
 			<!--</div>-->
 		</div>
 	</div>
-	<div ng-repeat="(id, item) in items" class="wish-container hoverable" ng-class="{'expanded' : isReplyingAd() && ad._id == item._id, 'non-expanded' : isReplyingAd() && ad._id != item._id, 'wish-fade-out' : item._id == getLastAddedId() }">
+	<div ng-repeat="(id, item) in items | orderBy:orderByPostSort" class="wish-container hoverable" ng-class="{'expanded' : isReplyingAd() && ad._id == item._id, 'non-expanded' : isReplyingAd() && ad._id != item._id, 'wish-fade-out' : item._id == getLastAddedId() }">
+	{{$scope.orderByPostSort}}
 		<div class="wish row" id="wish{{ id }}" ng-if="item.type == 'need' || item.type == 'offer'" ng-click="go('detail', item._id, item.author._id)" analytics-on analytics-event="click on a post" analytics-category="Marketplace">
 			<avatar ng-if="item.author._type == 'Community'" source="item.author.avatar" size="normal" relation="" click="go('community', item.author._id, item.author._id)" class="left photo" type="'Community'"></avatar>
 			<avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>

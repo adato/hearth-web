@@ -10,7 +10,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
 
 	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
-
+		$scope.orderByPostSort = '';
 		$scope.adEditing = false;
 		$scope.location = $location;
 		$scope.timeout = null;
@@ -59,11 +59,14 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		$scope.refreshSearch = function() {
 			return $scope.$broadcast('searchWithRefresh');
 		};
-
+		var orderByPostSortValues = {
+			location: 'distance'
+		};
 		$scope.setOrderBy = function(order) {
 			if (order !== 'relevance') {
 				$location.search('q', null);
 			}
+
 			$scope.initMyLocation();
 			$scope.orderBy = order;
 			$scope.offset = 0;
@@ -71,6 +74,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$rootScope.$broadcast('cancelCreatingAd');
 			$rootScope.$broadcast('cancelReplyingAd');
 			$rootScope.$broadcast('cancelEditingAd');
+
+			$scope.orderByPostSort = orderByPostSortValues[order];
 			return $scope.$broadcast('searchWithRefresh');
 		};
 
@@ -251,21 +256,24 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				name: ''
 			}];
 			if ($scope.orderBy === 'location') {
-				distances = $.map(value.locations, function(location) {
-					try {
+				try {
+					distances = $.map(value.locations, function(location) {
 						return Math.ceil(geo.getDistance($scope.myLocation, geo.getLocationFromCoords(location.coordinates)));
-					} catch (e) {
-						console.error(e);
+					});
+					if (distances.length) {
+						value.distance = Math.min.apply(this, distances);
 					}
-				});
-				if (distances.length) {
-					value.distance = Math.min.apply(this, distances);
+					if (id && id === value._id) {
+						$scope.expandAd(value);
+					}
+					$scope.items.push(value);
+				} catch (e) {}
+			} else {
+				if (id && id === value._id) {
+					$scope.expandAd(value);
 				}
+				$scope.items.push(value);
 			}
-			if (id && id === value._id) {
-				$scope.expandAd(value);
-			}
-			return $scope.items.push(value);
 		}
 
 		$scope.search = function(options) {
@@ -401,12 +409,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 		$scope.$on('mapcenterchange', function(listeners, location) {
 			$scope.myLocation = location;
-			$scope.limit = 30;
-			console.log('mapcenterchange');
 			$scope.search({
 				add: true
 			});
-			$scope.limit = 15;
 		});
 
 		$scope.setLastAddedId(null);
