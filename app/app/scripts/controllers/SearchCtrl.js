@@ -399,6 +399,16 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			});
 		});
 
+		$scope.$on('mapcenterchange', function(listeners, location) {
+			$scope.myLocation = location;
+			$scope.limit = 30;
+			console.log('mapcenterchange');
+			$scope.search({
+				add: true
+			});
+			$scope.limit = 15;
+		});
+
 		$scope.setLastAddedId(null);
 		if (($scope.loggedUser != null ? $scope.loggedUser._id : void 0) != null) {
 			$scope.initMyFollowers();

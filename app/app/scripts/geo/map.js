@@ -9,12 +9,11 @@
  * @requires geo
  * @requires $interpolate
  * @requires $templateCache
- * @requires $http
  */
 angular.module('hearth.geo').directive('map', [
-	'geo', '$interpolate', '$templateCache', '$http',
+	'geo', '$interpolate', '$templateCache',
 
-	function(geo, $interpolate, $templateCache, $http) {
+	function(geo, $interpolate, $templateCache) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -24,8 +23,18 @@ angular.module('hearth.geo').directive('map', [
 			},
 			link: function(scope, element) {
 				var template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
-					map = geo.createMap(element[0]),
-					markers = [];
+					map = geo.createMap(element[0], {
+						zoom: 9
+					}),
+					markerCache = {},
+					centerChangeTimeout;
+
+				google.maps.event.addListener(map, 'center_changed', function() {
+					window.clearTimeout(centerChangeTimeout);
+					centerChangeTimeout = window.setTimeout(function() {
+						scope.$emit('mapcenterchange', map.getCenter());
+					}, 2000);
+				});
 
 				function placeMarker(location, ad) {
 					var infowindow = new google.maps.InfoWindow({
@@ -33,7 +42,7 @@ angular.module('hearth.geo').directive('map', [
 						}),
 						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
 
-					markers.push(marker);
+					markerCache[ad._id] = marker;
 					marker.setAnimation(google.maps.Animation.DROP);
 
 					google.maps.event.addListener(marker, 'click', function() {
@@ -47,28 +56,21 @@ angular.module('hearth.geo').directive('map', [
 
 					for (i = 0; i < ads.length; i++) {
 						ad = ads[i];
-						for (j = 0; j < ad.locations.length; j++) {
-							location = ad.locations[j];
-							if (location.coordinates) {
-								placeMarker(location, ad);
+						if (!markerCache[ad._id]) {
+							for (j = 0; j < ad.locations.length; j++) {
+								location = ad.locations[j];
+								if (location.coordinates) {
+									placeMarker(location, ad);
+								}
 							}
 						}
 					}
 				}
 
-				function clearMarkers() {
-					for (var i = 0; i < markers.length; i++) {
-						markers[i].setMap(null);
-					}
-					markers = [];
-				}
-
 				scope.$watch('ads', function() {
-					clearMarkers();
 					createPins(scope.ads);
 				});
 				scope.$watch('ads.length', function() {
-					clearMarkers();
 					createPins(scope.ads);
 				});
 
