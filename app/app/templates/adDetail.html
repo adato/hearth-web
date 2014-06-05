@@ -31,7 +31,7 @@
 				</div>
 			</div>
 
-			<div ng-if="item.replies" class="row">
+			<div ng-if="item.replies && (profile._id == loggedCommunity._id || profile._id == loggedUser._id)" class="row">
 				<div class="large-12 columns">
 					<hr>
 					<div ng-repeat="reply in item.replies" class="reply">
