@@ -410,7 +410,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		$scope.$on('mapcenterchange', function(listeners, location) {
 			$scope.myLocation = location;
 			$scope.search({
-				add: true
+				add: false
 			});
 		});
 
