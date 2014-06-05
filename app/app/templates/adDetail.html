@@ -31,7 +31,7 @@
 				</div>
 			</div>
 
-			<div ng-if="item.replies && item.replies &&.length && (profile._id == loggedCommunity._id || profile._id == loggedUser._id)" class="row">
+			<div ng-if="item.replies && item.replies.length && (profile._id == loggedCommunity._id || profile._id == loggedUser._id)" class="row">
 				<div class="large-12 columns">
 					<hr>
 					<div ng-repeat="reply in item.replies" class="reply">
@@ -71,8 +71,15 @@
 				</div>
 			</div>
 
+			 <div signed-out ng-if="replyDisplayed">
+		        <div class="round login-prompt" ng-cloak translate>
+		            LOG_IN_TO_REPLY
+		        </div>
+		    </div>
+
 			<div signed-in class="row" ng-if="replyDisplayed">
 				<form ng-submit="replyToAd(item)" name="replyForm">
+
 					<div class="large-12 columns">
 						<div ng-cloak ng-hide="replyToAdSubmitting">
 							<div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
