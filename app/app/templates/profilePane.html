@@ -8,7 +8,7 @@
             {{ profile.name }}
         </h1>
 
-        <div ng-show="isMine" style="line-height:200%; font-size:small;">{{ loggedUser.email }}</div>
+        <div ng-show="isMine" style="line-height:200%; font-size:small;">{{ profile.email }}</div>
         <div style="clear:both;" ng-include src="'templates/profileProgress.html'" ng-show="isMine"></div>
 
         <div ng-show="loggedUser._id && isMine && !profile.notification_disabled && progress<100" ng-click="startProfileEdit()" class="more-notification">

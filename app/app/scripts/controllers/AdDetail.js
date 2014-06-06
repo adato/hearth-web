@@ -7,19 +7,36 @@
  */
 
 angular.module('hearth.controllers').controller('AdDetail', [
-	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$timeout', '$rootScope',
+	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$timeout', '$rootScope', 'UsersService',
 
-	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $timeout, $rootScope) {
-		$scope.item = {};
+	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $timeout, $rootScope, UsersService) {
+		$scope.ad = {};
 		$scope.replyDisplayed = false;
 		$scope.reply = {};
+		$scope.isMine = false;
 
 		AdDetailResource.get({
 			id: $routeParams.id
 		}, function(data) {
-			$scope.item = data;
+			data.profileUrl = data.author._type === 'Community' ? 'community' : 'profile';
+			$scope.ad = data;
 			$scope.profile = data.author;
+
 		});
+
+		$scope.follow = function(userId, unfollow) {
+			var promise;
+			if (userId === $scope.loggedUser._id) {
+				return;
+			}
+			promise = null;
+			if (unfollow) {
+				promise = UsersService.removeFollower(userId, $scope.loggedUser._id);
+			} else {
+				promise = UsersService.addFollower(userId, $scope.loggedUser._id);
+			}
+			return promise;
+		};
 
 		$scope.replyToAd = function(ad) {
 			$scope.reply = {
