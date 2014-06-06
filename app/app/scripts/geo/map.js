@@ -31,7 +31,6 @@ angular.module('hearth.geo').directive('map', [
 					markerCache = {},
 
 					placeMarker = function(location, ad) {
-
 						var id = ad._id,
 							marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
 
@@ -71,10 +70,6 @@ angular.module('hearth.geo').directive('map', [
 						}
 					};
 
-				scope.windowClick = function(id) {
-					console.log(id);
-				};
-				//window.location.href = '#ad/{{_id}}'
 				google.maps.event.addListener(map, 'center_changed', function() {
 					window.clearTimeout(centerChangeTimeout);
 					centerChangeTimeout = window.setTimeout(function() {

@@ -14,7 +14,7 @@
                     <br>
                     <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
                 </div>
-                <div class="small-12 columns">
+                <div class="small-12 columns" style="position: relative;z-index: 10;">
                     <input style="margin-bottom:0;" autocomplete="on" class="text-input top" type="email" name="username" 
                            ng-model="credentials.username" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" 
                            autocorrect="off" autocapitalize="off" 
