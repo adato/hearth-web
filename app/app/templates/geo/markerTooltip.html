@@ -1,6 +1,5 @@
-<div class="marker-tooltip">
-	<a href="#ad/{{_id}}"><span class="fa fa-eye"></span></a>
-	<span class="{{type}}">{{type.toUpperCase() | translate}}</span> {{title|ellipsis:127|linky}}
+<div class="marker-tooltip" itemid="{{_id}}">
+	<span class="{{type}}" ng-click="window.location.href = '#ad/{{_id}}">{{type.toUpperCase() | translate}}</span> {{title|ellipsis:127|linky}}
 	<br>
 	{{name|ellipsis:127|linky}}
 </div>

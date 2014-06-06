@@ -1325,12 +1325,5 @@ input + .remove {
 
 .marker-tooltip {
     text-align: left;
-    .fa {
-        font-size: 2em;
-        float:left;
-        margin:  {
-            right: 0.5em;
-            bottom: 0.5em;
-        }
-    }
+    cursor: pointer;
 }

@@ -22,7 +22,7 @@ angular.module('hearth.geo').directive('map', [
 				'ads': '='
 			},
 			link: function(scope, element) {
-				var infowindow,
+				var infoWindow,
 					centerChangeTimeout,
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					map = geo.createMap(element[0], {
@@ -31,17 +31,26 @@ angular.module('hearth.geo').directive('map', [
 					markerCache = {},
 
 					placeMarker = function(location, ad) {
-						if (infowindow) {
-							infowindow.close();
-						}
-						infowindow = new google.maps.InfoWindow({
-							content: template(ad)
-						});
-						var marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
+
+						var id = ad._id,
+							marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
 
 						marker.setAnimation(google.maps.Animation.DROP);
 						google.maps.event.addListener(marker, 'click', function() {
-							infowindow.open(map, marker);
+							infoWindow = infoWindow;
+							if (infoWindow) {
+								infoWindow.close();
+							}
+							infoWindow = new google.maps.InfoWindow({
+								content: template(ad),
+								maxWidth: 300
+							});
+							infoWindow.open(map, marker);
+							google.maps.event.addListener(infoWindow, 'domready', function() {
+								$('.marker-tooltip').click(function() {
+									window.location.href = '#ad/' + $(this).attr('itemid');
+								});
+							});
 						});
 						markerCache[ad._id] = marker;
 					},
@@ -62,6 +71,10 @@ angular.module('hearth.geo').directive('map', [
 						}
 					};
 
+				scope.windowClick = function(id) {
+					console.log(id);
+				};
+				//window.location.href = '#ad/{{_id}}'
 				google.maps.event.addListener(map, 'center_changed', function() {
 					window.clearTimeout(centerChangeTimeout);
 					centerChangeTimeout = window.setTimeout(function() {
