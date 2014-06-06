@@ -3,9 +3,9 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.CommunityProfileCtrl
- * @description 
+ * @description
  */
- 
+
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	'$scope', '$routeParams', '$location', 'CommunityService', 'UsersService', '$rootScope', 'ResponseErrors', 'Errors', 'flash', '$translate', '$window', '$analytics',
 	function($scope, $routeParams, $location, CommunityService, UsersService, $rootScope, ResponseErrors, Errors, flash, $translate, $window, $analytics) {
@@ -216,7 +216,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 		$scope.follow = function(communityId, unfollow) {
 			var promise;
-			if (communityId === $scope.loggedCommunity._id) {
+			if ($scope.loggedCommunity && communityId === $scope.loggedCommunity._id) {
 				return;
 			}
 			promise = null;
