@@ -798,7 +798,6 @@ p {
         }
     }
     .left-column {
-        //border-left:1px solid $body-border-color;
         background: $body-alt-bg $left-column-background-pattern;
         border-right: 1px solid $body-border-color;
         h1, h2 {
@@ -807,17 +806,8 @@ p {
             margin-bottom: emCalc($grid-size * 2);
             margin-top: emCalc($grid-size * 4);
         }
-        form {
-            //min-width:380px;
-       
-        }
     }
-    .right-column.detail {
-        position: fixed;
-        padding: 0;
-        z-index: 0;
-        padding-left: emCalc($grid-size * 6);
-    }
+
     .right-column.listing {
         padding-left: emCalc($grid-size * 3);
     }
@@ -827,13 +817,6 @@ p {
 }
 
 @media #{$medium} {
-    .right-column.detail {
-        overflow-y: auto;
-        position: fixed;
-        padding: 0;
-        z-index: 0;
-        padding-left: emCalc($grid-size * 6);
-    }
     .right-column.listing {
         padding-left: 0;
     }
