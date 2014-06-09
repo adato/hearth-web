@@ -21,6 +21,7 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			data.profileUrl = data.author._type === 'Community' ? 'community' : 'profile';
 			$scope.ad = data;
 			$scope.profile = data.author;
+			$scope.isMine = data.author._id === $scope.loggedUser._id;
 
 		});
 

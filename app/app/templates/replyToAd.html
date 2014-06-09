@@ -38,7 +38,7 @@
             LOG_IN_TO_REPLY
         </div>
     </div>
-    <div signed-in>
+    <div signed-in ng-hide="isMine">
         <div ng-show="!replyToAdSubmitting && !replyToAdSubmitted" ng-cloak>
             <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
             <textarea ng-model="reply.message" class="text-input" tabindex="1" rows="6"
