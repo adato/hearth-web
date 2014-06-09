@@ -1,3 +1,4 @@
+@import "variables";
 @import "settings";
 
 // import Compass mixins
@@ -59,13 +60,14 @@
 @import "foundation/components/dropdown";
 @import "foundation-datepicker";
 
-@import "foundation-improvements";
 @import "font-awesome";
+@import "locations";
+/*@import "foundation-improvements";
 @import "hearth-icons";
 @import "angular";
 @import "social";
 @import "progress";
-@import "locations";
+*/
 
 @include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
 
@@ -79,7 +81,7 @@ meta.foundation-data-attribute-namespace {
     font-family: false;
 }
 
-@function emCalc($pxWidth, $base: $em-base) {
+/*@function emCalc($pxWidth, $base: $em-base) {
     @return $pxWidth / $base * 1em;
 }
 
@@ -1257,11 +1259,9 @@ textarea:focus {
         color: transparent;
     }
     &:-moz-placeholder {
-        /* Firefox 18- */
         color: transparent;
     }
     &::-moz-placeholder {
-        /* Firefox 19+ */
         color: transparent;
     }
     &:-ms-input-placeholder {
@@ -1309,4 +1309,4 @@ input + .remove {
 .marker-tooltip {
     text-align: left;
     cursor: pointer;
-}
+}*/

@@ -6,13 +6,8 @@
 	</div>
 	<div class="wish-container hoverable" ng-show="isCreatingAd()">
 		<div class="row padding-v-2">
-<!--            <avatar ng-if="!loggedCommunity._id" source="loggedUser.avatar" size="normal" relation="" class="left photo" click="go('profile', loggedUser._id)" type="'User'"></avatar>
-			<avatar ng-if="loggedCommunity._id" source="loggedCommunity.avatar" size="normal" relation="" class="left photo" click="go('community', loggedCommunity._id)" type="'Community'"></avatar>-->
-			<!--<div class="small-12 columns wish-text padding-h-0 right" style="width:99%;" ng-if="!isEditingAd()">-->
-				<!-- this is inside the "create" form -->
 				<div ng-include src="'templates/createAd.html'">
 				</div>
-			<!--</div>-->
 		</div>
 	</div>
 	<div ng-repeat="(id, item) in items | orderBy:orderByPostSort" class="wish-container hoverable" ng-class="{'expanded' : isReplyingAd() && ad._id == item._id, 'non-expanded' : isReplyingAd() && ad._id != item._id, 'wish-fade-out' : item._id == getLastAddedId() }">

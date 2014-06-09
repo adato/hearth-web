@@ -5,50 +5,42 @@
 
 			<ul class="title-area">
 				<li class="name" ng-init="switchExpanded = false">
-					<a href="#/search" ng-class="{ 'active': pageType == 'search' }" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">{{ 'TITLE' | translate }}<span></span></a>
+					<a href="#/search" ng-class="{ 'active': pageType == 'search' }" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">{{ 'TITLE' | translate }}<span>.network</span></a>
 				</li>
-				 <li class="toggle-topbar menu-icon"><a href=""><span></span></a></li>
+				<li class="toggle-topbar menu-icon"><a href=""><span></span></a></li>
 			</ul>
 
 			<ul class="left">
+				<li class="has-form">
+              		<input type="text">
+          		</li>
+          				
 				<li signed-in ng-cloak>
-					<a ng-href="#/communities" ng-class="{ 'link': 1, 'active': pageType == 'communities' }" id="nav-communities">{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}<span></span></a>
+					<a ng-href="#/communities" ng-class="{ 'link': 1, 'active': pageType == 'communities' }" id="nav-communities"><i class="fa fa-users"></i> {{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}</a>
 				</li>
-	            <li signed-in ng-cloak ng-if="!loggedCommunity._id">
+	            <!--li signed-in ng-cloak ng-if="!loggedCommunity._id">
 	            	<a ng-href="#/my" ng-class="{ 'link': 1, 'active': pageType == 'my' }" id="nav-my">{{ 'TOP_BAR_MY_HEARTH' | translate }}<span></span></a>
-	          	</li>
-          		<li signed-in ng-cloak ng-if="loggedCommunity._id">
+	          	</li-->
+          		<!--li signed-in ng-cloak ng-if="loggedCommunity._id">
               		<a ng-href="#/community/{{ loggedCommunity._id }}" ng-class="{ 'link': 1, 'active': pageType == 'community-profile' && isMine }" analytics-on analytics-event="open profile" analytics-category="My community profile" id="nav-profile">{{ 'TOP_BAR_COMMUNITY_PROFILE' | translate }}<span></span></a>
-          		</li>				
-				<identity-switch signed-in logged-user="loggedUser" logged-community="loggedCommunity" switch-fn="switchIdentity(id)"></identity-switch>
+          		</li-->				
+				
 			</ul>
 
 			<ul class="right">
 				<li class="divider show-for-small"></li>
 
-				<!--li signed-in ng-cloak ng-if="!loggedCommunity._id">
-					<a ng-href="#/profile/{{ user._id }}" ng-class="{ 'link': 1, 'active': pageType == 'profile' && isMine }" analytics-on analytics-event="open my profile" analytics-category="My profile" id="nav-profile">{{ 'TOP_BAR_PROFILE' | translate }}<span></span></a>
-				</li-->
-				<!--li class="show-for-medium-up has-dropdown">
-					<div ng-if="notifications.newCommunityCreated == true" class="notification new-community">
-						<span class="arrow"></span>
-						<h5 translate>NEW_COMMUNITY_CREATED_TITLE</h5>
-						<p translate>NEW_COMMUNITY_CREATED_TEXT</p>
-						<a ng-click="dismissNotification('newCommunityCreated')" href="" translate class="close">CLOSE</a>
-					</div>
-				</li-->
-
-				<!--li signed-in >
+				<li signed-in >
 					<a href="#/messages">
-						<span class="fa fa-envelope"></span>
+						<span class="fa fa-envelope"></span> {{ 'MESSAGES' | translate }}
 					</a>					
-				</li-->
-			
-				<li ng-repeat="language in languages">
-					<a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="" analytics-on analytics-event="switch-language-to-{{language.code}}" analytics-category="menu">{{language.code}}</a>
 				</li>
+			
+				<!--li ng-repeat="language in languages">
+					<a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="" analytics-on analytics-event="switch-language-to-{{language.code}}" analytics-category="menu">{{language.code}}</a>
+				</li-->
 
-				<li class="has-dropdown">
+				<!--li class="has-dropdown">
 					<a  ng-class="{ 'link':1, 'active': pageType == 'about' }" class="hide-for-small"  title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
 						<span class="fa fa-question-circle"></span>
 					</a>
@@ -66,11 +58,13 @@
 			          <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a></li>
 			          <li><a href="http://instagram.com/artofhearth" target="_blank"><span class="fa fa-instagram"></span> Instagram</a></li>
 			        </ul>
-				</li>
+				</li-->
 
 				<li>
 					<div ng-if="!loggedUser._id" style="height:55px;"></div>
 				</li>
+
+				<identity-switch signed-in logged-user="loggedUser" logged-community="loggedCommunity" switch-fn="switchIdentity(id)"></identity-switch>
 
 				<li signed-out ng-cloak>
 					<a href="#/login" ng-class="{ 'link': 1, 'active': pageType == 'login' }" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
@@ -78,13 +72,6 @@
 					</a>
 				</li>
 
-				<li signed-in ng-cloak>
-					<form action="{{ '/logout' | apiPrefix }}" method="post">
-						<button type="submit" analytics-on analytics-event="logout" analytics-category="Login" id="nav-logout" title="{{'TOP_BAR_SIGN_OUT' | translate}}">
-							<span class="fa fa-power-off"></span>&nbsp;<span class="show-for-small">{{'TOP_BAR_SIGN_OUT' | translate}}</span>
-						</button>
-					</form>
-				</li>
 			</ul>
 			
 		</section>

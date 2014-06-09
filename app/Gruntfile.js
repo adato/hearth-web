@@ -300,7 +300,8 @@ module.exports = function(grunt) {
 				assetCacheBuster: false,
 				raw: 'Sass::Script::Number.precision = 10\n',
 				importPath: [
-					'app/vendor/font-awesome/scss/'
+					'app/vendor/font-awesome/scss/',
+					'app/vendor/foundation/scss/'
 				]
 			},
 			dist: {
