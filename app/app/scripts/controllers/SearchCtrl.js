@@ -329,6 +329,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				$event.preventDefault();
 				$event.stopPropagation();
 			}
+			$scope.$broadcast('keywordSearch');
 			$scope.offset = 0;
 			if ($scope.keywords.indexOf(keyword) === -1) {
 				if (reset) {

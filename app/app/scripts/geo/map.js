@@ -68,13 +68,23 @@ angular.module('hearth.geo').directive('map', [
 								}
 							}
 						}
+					},
+					clearMarkerCache = function() {
+						for (var key in markerCache) {
+							markerCache[key].setMap(null);
+						}
+						markerCache = [];
 					};
+
+				scope.$on('keywordSearch', function() {
+					clearMarkerCache();
+				});
 
 				google.maps.event.addListener(map, 'center_changed', function() {
 					window.clearTimeout(centerChangeTimeout);
 					centerChangeTimeout = window.setTimeout(function() {
 						scope.$emit('mapcenterchange', map.getCenter());
-					}, 2000);
+					}, 1500);
 				});
 				scope.$watch('ads', function() {
 					createPins(scope.ads);
