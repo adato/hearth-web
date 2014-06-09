@@ -18,10 +18,10 @@ angular.module('hearth.directives').directive('social', [
 			},
 			templateUrl: 'templates/social.html',
 			link: function(scope) {
-				scope.$watch('item', function(value) {
+				scope.$watch('item', function(item) {
 					var url = window.location.href.replace(window.location.hash, '');
-					if (value) {
-						url += '%23/ad/' + value;
+					if (item) {
+						url += '%23/ad/' + item._id;
 					}
 
 					angular.extend(scope, {
