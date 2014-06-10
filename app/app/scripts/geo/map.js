@@ -31,8 +31,14 @@ angular.module('hearth.geo').directive('map', [
 					markerCache = {},
 
 					placeMarker = function(location, ad) {
-						var id = ad._id,
-							marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
+						var marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
+
+						ad.author.avatar.normal = ad.author.avatar.normal || EMPTY_AVATAR_URL;
+						if (ad.community_id) {
+							ad.adType = ad.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+						} else {
+							ad.adType = ad.type;
+						}
 
 						marker.setAnimation(google.maps.Animation.DROP);
 						google.maps.event.addListener(marker, 'click', function() {
@@ -92,6 +98,7 @@ angular.module('hearth.geo').directive('map', [
 				scope.$watch('ads.length', function() {
 					createPins(scope.ads);
 				});
+
 				geo.focusCurrentLocation();
 			}
 		};
