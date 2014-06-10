@@ -18,33 +18,18 @@ angular.module('hearth.directives').directive('social', [
 			},
 			templateUrl: 'templates/social.html',
 			link: function(scope) {
-				scope.$watch('item', function(item) {
+				scope.$watch('item', function(value) {
 					var url = window.location.href.replace(window.location.hash, '');
-					if (item) {
-						url += '%23/ad/' + item._id;
+					if (value) {
+						url += '%23/ad/' + value;
 					}
-					scope.url = url;
+
 					angular.extend(scope, {
 						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
 						gplus: 'https://plus.google.com/share?url=' + url,
 						twitter: 'https://twitter.com/share?url=' + url,
 						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
-					});
-					scope.click = function() {
-
-						FB.ui({
-							action_type: 'matchadviceuk:share',
-							method: 'share_open_graph',
-							action_properties: JSON.stringify({
-								type: 'matchadviceuk:quiz',
-								url: url,
-								title: item.title,
-								description: item.name
-							})
-
-						});
-					}
-
+					});							
 				});
 
 			}
