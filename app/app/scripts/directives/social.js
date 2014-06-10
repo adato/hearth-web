@@ -33,6 +33,7 @@ angular.module('hearth.directives').directive('social', [
 					scope.click = function() {
 
 						FB.ui({
+							action_type: 'hearth:share',
 							method: 'share_open_graph',
 							action_properties: JSON.stringify({
 								url: url,
