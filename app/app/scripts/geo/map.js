@@ -23,7 +23,7 @@ angular.module('hearth.geo').directive('map', [
 			},
 			link: function(scope, element) {
 				var infoWindow,
-					centerChangeTimeout,
+					boundsChangeTimeout,
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					map = geo.createMap(element[0], {
 						zoom: 9
@@ -86,10 +86,10 @@ angular.module('hearth.geo').directive('map', [
 					clearMarkerCache();
 				});
 
-				google.maps.event.addListener(map, 'center_changed', function() {
-					window.clearTimeout(centerChangeTimeout);
-					centerChangeTimeout = window.setTimeout(function() {
-						scope.$emit('mapcenterchange', map.getCenter());
+				google.maps.event.addListener(map, 'bounds_changed', function() {
+					window.clearTimeout(boundsChangeTimeout);
+					boundsChangeTimeout = window.setTimeout(function() {						
+						scope.$emit('mapBoundsChange', map.getBounds());
 					}, 1500);
 				});
 				scope.$watch('ads', function() {

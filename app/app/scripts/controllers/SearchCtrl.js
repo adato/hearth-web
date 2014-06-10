@@ -202,11 +202,30 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 
 			function searchParamsByMyLocation(searchParams) {
-				return angular.extend(searchParams, {
-					sort: 'distance',
-					lat: $scope.myLocation.lat(),
-					lon: $scope.myLocation.lng()
-				});
+				if ($scope.geoBounds) {
+					var northEast = $scope.geoBounds.getNorthEast(),
+						southWest = $scope.geoBounds.getSouthWest();
+
+					return angular.extend(searchParams, {
+						sort: 'distance',
+						bounding_box: {
+							top_left: {
+								lat: northEast.lat(),
+								lon: northEast.lng()
+							},
+							bottom_right: {
+								lat: southWest.lat(),
+								lon: southWest.lng()
+							}
+						}
+					});
+				} else {
+					return angular.extend(searchParams, {
+						sort: 'distance',
+						lat: $scope.myLocation.lat(),
+						lon: $scope.myLocation.lng()
+					});
+				}
 			}
 
 			function getMyHearthService() {
@@ -408,8 +427,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			});
 		});
 
-		$scope.$on('mapcenterchange', function(listeners, location) {
-			$scope.myLocation = location;
+		$scope.$on('mapBoundsChange', function(listeners, bounds) {
+			$scope.myLocation = bounds.getCenter();
+			$scope.geoBounds = bounds;
 			$scope.limit = 40;
 			$scope.search({
 				add: false
