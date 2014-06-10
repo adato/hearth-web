@@ -31,8 +31,9 @@ angular.module('hearth.geo').directive('map', [
 					markerCache = {},
 
 					placeMarker = function(location, ad) {
-						var id = ad._id,
-							marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
+						var marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
+
+						ad.author.avatar.normal = ad.author.avatar.normal || EMPTY_AVATAR_URL;
 
 						marker.setAnimation(google.maps.Animation.DROP);
 						google.maps.event.addListener(marker, 'click', function() {
@@ -92,6 +93,7 @@ angular.module('hearth.geo').directive('map', [
 				scope.$watch('ads.length', function() {
 					createPins(scope.ads);
 				});
+
 				geo.focusCurrentLocation();
 			}
 		};

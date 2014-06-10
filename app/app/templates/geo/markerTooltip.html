@@ -1,5 +1,9 @@
 <div class="marker-tooltip" itemid="{{_id}}">
-	<span class="{{type}}" ng-click="window.location.href = '#ad/{{_id}}">{{type.toUpperCase() | translate}}</span> {{title|ellipsis:127|linky}}
-	<br>
-	{{name|ellipsis:127|linky}}
+	<img src="{{author.avatar.normal}}">
+	<div class="content">
+		<div>{{author.name}}</div>
+		<span class="{{type}}" ng-click="window.location.href = '#ad/{{_id}}">{{type.toUpperCase() | translate}}</span> {{title|ellipsis:127|linky}}
+		<br>
+		{{name|ellipsis:127|linky}}
+	</div>
 </div>

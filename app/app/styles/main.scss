@@ -1310,6 +1310,17 @@ input + .remove {
 .marker-tooltip {
     text-align: left;
     cursor: pointer;
+    .content  {
+        margin: {
+            left: 3.7em;
+        }
+    }
+    img {
+        @include border-radius;
+        width: 3em;
+        float: left;
+        
+    }
 }
 
 form[name="replyForm"] {
