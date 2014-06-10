@@ -36,6 +36,7 @@ angular.module('hearth.directives').directive('social', [
 							action_type: 'matchadviceuk:share',
 							method: 'share_open_graph',
 							action_properties: JSON.stringify({
+								type: 'matchadviceuk:quiz',
 								url: url,
 								title: item.title,
 								description: item.name
