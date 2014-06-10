@@ -31,12 +31,15 @@ angular.module('hearth.directives').directive('social', [
 						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
 					});
 					scope.click = function() {
+
 						FB.ui({
-							method: 'feed',
-							name: item.title,
-							href: url,
-							description: item.name,
-							message: ''
+							method: 'share_open_graph',
+							action_properties: JSON.stringify({
+								url: url,
+								title: item.title,
+								description: item.name
+							})
+
 						});
 					}
 
