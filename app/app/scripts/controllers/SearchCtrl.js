@@ -208,16 +208,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 					return angular.extend(searchParams, {
 						sort: 'distance',
-						bounding_box: {
-							top_left: {
-								lat: northEast.lat(),
-								lon: northEast.lng()
-							},
-							bottom_right: {
-								lat: southWest.lat(),
-								lon: southWest.lng()
-							}
-						}
+						'bounding_box[top_left][lat]': northEast.lat(),
+						'bounding_box[top_left][lon]': southWest.lng(),
+						'bounding_box[bottom_right][lat]': southWest.lat(),
+						'bounding_box[bottom_right][lon]': northEast.lng()
 					});
 				} else {
 					return angular.extend(searchParams, {

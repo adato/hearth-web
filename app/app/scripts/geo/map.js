@@ -26,7 +26,7 @@ angular.module('hearth.geo').directive('map', [
 					boundsChangeTimeout,
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					map = geo.createMap(element[0], {
-						zoom: 9
+						zoom: 11
 					}),
 					markerCache = {},
 
