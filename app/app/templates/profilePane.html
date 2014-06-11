@@ -22,7 +22,7 @@
          </div>
         
         <div class="action">
-            <button ng-show="loggedUser._id && isMine" type="button" class="button primary" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak>
+            <button ng-show="loggedUser._id && isMine" type="button" class="button primary" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak analytics-event="click on edit" analytics-category="Profile">
                 <i class="fa fa-user"></i> {{ 'EDIT_PROFILE' | translate }}
             </button>
             <div ng-switch on="profile.relation == 'followee' || profile.relation == 'friend'" ng-hide="isMine || loggedCommunity._id || !loggedUser._id">

@@ -62,7 +62,7 @@
 					<span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
 					<span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
 				</a>
-				<button class="primary button right" type="submit" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
+				<button class="primary button right" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
 			</div>
 	</form>
 </div>
