@@ -12,6 +12,8 @@
 // Allows the use of rem-calc() or lower-bound() in your settings
  @import "foundation/functions";
 
+ $radius: true;
+
 // $experimental: true;
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
@@ -43,7 +45,7 @@
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+   $body-font-family: "SourceSansPro", "Signika", "Geneva", "Tahoma", sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -65,7 +67,7 @@
 
 // We use these to make sure border radius matches unless we want it different.
    $global-radius: 8px;
-   $global-rounded: 8px;
+   //$global-rounded: 8px;
 
 // We use these to control inset shadow shiny edges and depressions.
 // $shiny-edge-size: 0 1px 0;
@@ -361,7 +363,7 @@
 // $button-border-color: scale-color($bg, $lightness: $button-function-factor);
 
 // We use this to set the default radius used throughout the core.
-// $button-radius: $global-radius;
+ $button-radius: $global-radius;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity for disabled buttons.
