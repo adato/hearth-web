@@ -206,6 +206,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					var northEast = $scope.geoBounds.getNorthEast(),
 						southWest = $scope.geoBounds.getSouthWest();
 
+					delete searchParams.limit;
+
 					return angular.extend(searchParams, {
 						sort: 'distance',
 						'bounding_box[top_left][lat]': northEast.lat(),
