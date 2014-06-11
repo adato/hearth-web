@@ -51,6 +51,7 @@
 
 //@import "foundation/components/side-nav";
 @import "foundation/components/sub-nav";
+
 //@import "foundation/components/switch";
 //@import "foundation/components/magellan";
 //@import "foundation/components/tables";
@@ -808,7 +809,6 @@ p {
             margin-top: emCalc($grid-size * 4);
         }
     }
-
     .right-column.listing {
         padding-left: emCalc($grid-size * 3);
     }
@@ -1116,8 +1116,6 @@ small.error {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-
-
 .login {
     min-height: 100%;
     height: 100%;
@@ -1310,19 +1308,14 @@ input + .remove {
 .marker-tooltip {
     text-align: left;
     cursor: pointer;
-    .content  {
+    .content {
         margin: {
             left: 3.7em;
-        }
+        };
     }
     img {
         @include border-radius;
         width: 3em;
         float: left;
-        
     }
-}
-
-form[name="replyForm"] {
-    position:fixed;
 }

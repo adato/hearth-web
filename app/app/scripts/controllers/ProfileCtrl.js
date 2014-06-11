@@ -24,6 +24,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.expandAd(null);
 
+		$(document.body).scrollTop(0);
+
 		$scope.$watch('routeParams.action', function(newval) {
 			var event,
 				credentials = Auth.getCredentials(),

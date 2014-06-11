@@ -22,7 +22,8 @@
     "ng-tags-input": "~1.1.1",
     "foundation-icon-fonts": "zurb/foundation-icon-fonts",
     "foundation-icons": "*",
-    "foundation-datepicker": "*"
+    "foundation-datepicker": "*",
+    "sticky": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
