@@ -1,18 +1,20 @@
+$socialSize: 10px;
+
 .social {
     text-align: right;
     white-space: nowrap;
     display: block;
     a {
-        font-size: 15px;
+        font-size: $socialSize;
         margin: 0 !important;
-        width: 30px;
-        height: 30px;
+        width: 2*$socialSize;
+        height: 2*$socialSize;
         text-align: center;
         display: inline-block;
         @include border-radius(50%);
         @include transition(color 1s, background-color 1s, text-shadow 1s);
         border: 2px solid nth($color, 1);
-        padding: 6px;
+        padding: 3px;
         &:hover {
             @include text-shadow(0 -1px nth($color, 3));
             background-color: lighten(nth($color, 1), 5%);
