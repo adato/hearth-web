@@ -12,7 +12,9 @@ angular.module('hearth.controllers').controller('AdDetail', [
 	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService) {
 		$scope.ad = {};
 		$scope.replyDisplayed = false;
-		$scope.reply = {};
+		$scope.reply = {
+			agreed: true
+		};
 		$scope.isMine = false;
 		$scope.hideCloseButton = true;
 
