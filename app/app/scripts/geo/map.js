@@ -87,10 +87,7 @@ angular.module('hearth.geo').directive('map', [
 				});
 
 				google.maps.event.addListener(map, 'bounds_changed', function() {
-					window.clearTimeout(boundsChangeTimeout);
-					boundsChangeTimeout = window.setTimeout(function() {						
-						scope.$emit('mapBoundsChange', map.getBounds());
-					}, 1500);
+					scope.$emit('mapBoundsChange', map.getBounds());
 				});
 				scope.$watch('ads', function() {
 					createPins(scope.ads);

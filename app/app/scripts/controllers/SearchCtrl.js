@@ -422,13 +422,17 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				add: false
 			});
 		});
+		var boundsChangeTimeout;
 
 		$scope.$on('mapBoundsChange', function(listeners, bounds) {
-			$scope.myLocation = bounds.getCenter();
-			$scope.geoBounds = bounds;
-			$scope.search({
-				add: false
-			});
+			window.clearTimeout(boundsChangeTimeout);
+			boundsChangeTimeout = window.setTimeout(function() {
+				$scope.myLocation = bounds.getCenter();
+				$scope.geoBounds = bounds;
+				$scope.search({
+					add: false
+				});
+			}, 1500);
 		});
 
 		$scope.setLastAddedId(null);
