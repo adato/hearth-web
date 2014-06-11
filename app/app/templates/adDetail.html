@@ -19,7 +19,7 @@
 
 			<div class="row">
 				<div class="large-12 columns">
-					<span ng-bind-html="ad.name | linky"></span>
+					<span ng-bind-html="ad.name | linky:'_blank'"></span>
 						
 					<div ng-if="ad.locations" class="locations"  ng-repeat="location in ad.locations">
 						<span class="fa fa-map-marker"></span> {{ location.name }}
@@ -42,7 +42,7 @@
 								<avatar ng-if="reply.author._type != 'Community'" source="reply.author.avatar" size="normal" relation="reply.author.relation" click="go('profile', reply.author._id, reply.author._id)" class="left photo" type="'User'"></avatar>
 								<a class="smaller name" ng-show="reply.author._type != 'Community'" ng-href="#/profile/{{ reply.author._id }}">{{ reply.author.name }}</a>
 								<a class="smaller name" ng-show="reply.author._type == 'Community'" ng-href="#/community/{{ reply.author._id }}">{{ reply.author.name }}</a> &nbsp;
-								<div ng-bind-html="reply.message | linky"></div>
+								<div ng-bind-html="reply.message | linky:'_blank'"></div>
 							</div>
 						</div>
 					</div>
