@@ -7,13 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('AdDetail', [
-	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$timeout', '$rootScope', 'UsersService',
+	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService',
 
-	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $timeout, $rootScope, UsersService) {
+	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService) {
 		$scope.ad = {};
 		$scope.replyDisplayed = false;
 		$scope.reply = {};
 		$scope.isMine = false;
+		$scope.hideCloseButton = true;
 
 		AdDetailResource.get({
 			id: $routeParams.id
@@ -22,7 +23,9 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			$scope.ad = data;
 			$scope.profile = data.author;
 			$scope.isMine = data.author._id === $scope.loggedUser._id;
-
+			$scope.agreeTranslationData = {
+				name: data.author.name
+			};
 		});
 
 		$scope.follow = function(userId, unfollow) {
@@ -70,21 +73,17 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			$scope.replyToAdSubmitting = true;
 			return PostsService.reply($scope.reply).then(function() {
 				$scope.replyToAdSubmitting = false;
-				$scope.replyToAdSubmitted = false;
+				$scope.replyToAdSubmitted = true;
 				$scope.replyDisplayed = false;
 				$scope.reply = {
 					id: undefined,
 					message: '',
 					agreed: false
 				};
-				return $timeout(function() {
-					$scope.ad = null;
-					return delete this.errors;
-				}, 8000);
+
 			}).then(null, function() {
 				delete this.errors;
 				$scope.replyToAdSubmitting = false;
-				return $scope.replyToAdSubmitting;
 			});
 		};
 	}
