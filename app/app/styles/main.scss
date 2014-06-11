@@ -64,7 +64,7 @@
 @import "font-awesome";
 @import "hearth-icons";
 @import "angular";
-@import "social";
+@import "mixins/social";
 @import "progress";
 @import "locations";
 
@@ -92,6 +92,11 @@ $listing-image-size: emCalc(50px);
 $slider-width: 320px;
 $slider-tab-width: 320px / 3;
 $menu-item-width-multiplier: 9;
+
+@include social;
+#sendInvitationForm {
+    @include social(3em, left);
+}
 
 //XXX reverts default Foundation behavior
 h1, h2, h3, h4, h5, h6 {
