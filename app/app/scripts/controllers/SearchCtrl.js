@@ -298,6 +298,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$scope.searchOptions = options;
 			$scope.items = ($scope.searchOptions || {}).add === false ? [] : $scope.items;
 
+			if (search.params.type === 'user') {
+				search.params.type = 'user,community';
+			}
+
 			return search.service.query(search.params).then(function(data) {
 				var i, len = data.length;
 				if (search.params.query) {
