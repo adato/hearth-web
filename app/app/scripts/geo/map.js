@@ -11,9 +11,9 @@
  * @requires $templateCache
  */
 angular.module('hearth.geo').directive('map', [
-	'geo', '$interpolate', '$templateCache',
+	'geo', '$interpolate', '$templateCache', '$location', '$route',
 
-	function(geo, $interpolate, $templateCache) {
+	function(geo, $interpolate, $templateCache, $location, $route) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -78,7 +78,11 @@ angular.module('hearth.geo').directive('map', [
 					infoWindow.setContent(marker.desc);
 					infoWindow.open(map, marker);
 					$('.marker-tooltip').click(function() {
-						window.location.href = '#ad/' + $(this).attr('itemid');
+						var itemId = $(this).attr('itemid');
+
+						scope.$apply(function() {
+							var path = $location.path('ad/' + itemId);
+						});
 					});
 				});
 				scope.$on('keywordSearch', function() {
