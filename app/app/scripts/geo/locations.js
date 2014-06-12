@@ -98,7 +98,7 @@ angular.module('hearth.geo').directive('locations', [
 						if (marker) {
 							marker.setMap(null);
 						}
-						marker = geo.placeMarker(position, 'pin', map);
+						marker = geo.placeMarker(position, 'pin', null, map);
 						map.panTo(position);
 						scope.selectedPosition = position;
 					};

@@ -22,16 +22,19 @@ angular.module('hearth.geo').directive('map', [
 				'ads': '='
 			},
 			link: function(scope, element) {
-				var infoWindow,
-					boundsChangeTimeout,
+				var markerCluster,
+					infoWindow = new google.maps.InfoWindow(),
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					map = geo.createMap(element[0], {
 						zoom: 11
 					}),
+					oms = new OverlappingMarkerSpiderfier(map, {
+						markersWontMove: true,
+						markersWontHide: true
+					}),
 					markerCache = {},
-
+					markers = [],
 					placeMarker = function(location, ad) {
-						var marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
 
 						ad.author.avatar.normal = ad.author.avatar.normal || EMPTY_AVATAR_URL;
 						if (ad.community_id) {
@@ -39,25 +42,10 @@ angular.module('hearth.geo').directive('map', [
 						} else {
 							ad.adType = ad.type;
 						}
-
-						marker.setAnimation(google.maps.Animation.DROP);
-						google.maps.event.addListener(marker, 'click', function() {
-							infoWindow = infoWindow;
-							if (infoWindow) {
-								infoWindow.close();
-							}
-							infoWindow = new google.maps.InfoWindow({
-								content: template(ad),
-								maxWidth: 300
-							});
-							infoWindow.open(map, marker);
-							google.maps.event.addListener(infoWindow, 'domready', function() {
-								$('.marker-tooltip').click(function() {
-									window.location.href = '#ad/' + $(this).attr('itemid');
-								});
-							});
-						});
+						var marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type, template(ad));
+						oms.addMarker(marker);
 						markerCache[ad._id] = marker;
+						markers.push(marker);
 					},
 					createPins = function(ads) {
 						var i, j, ad, location;
@@ -74,6 +62,10 @@ angular.module('hearth.geo').directive('map', [
 								}
 							}
 						}
+						markerCluster = new MarkerClusterer(map, markers, {
+							maxZoom: 14,
+							size: 40
+						});
 					},
 					clearMarkerCache = function() {
 						for (var key in markerCache) {
@@ -82,6 +74,13 @@ angular.module('hearth.geo').directive('map', [
 						markerCache = [];
 					};
 
+				oms.addListener('click', function(marker) {
+					infoWindow.setContent(marker.desc);
+					infoWindow.open(map, marker);
+					$('.marker-tooltip').click(function() {
+						window.location.href = '#ad/' + $(this).attr('itemid');
+					});
+				});
 				scope.$on('keywordSearch', function() {
 					clearMarkerCache();
 				});
