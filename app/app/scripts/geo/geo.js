@@ -16,7 +16,7 @@ angular.module('hearth.geo').factory('geo', [
 				zoomControl: true,
 				mapTypeControl: false,
 				streetViewControl: false,
-				center: new google.maps.LatLng(0, 0),
+				center: new google.maps.LatLng(50.075977, 14.426142),
 				zoomControlOptions: {
 					style: google.maps.ZoomControlStyle.LARGE,
 					position: google.maps.ControlPosition.LEFT_CENTER
@@ -27,20 +27,17 @@ angular.module('hearth.geo').factory('geo', [
 				pin: {
 					url: 'images/pin.png',
 					size: new google.maps.Size(49, 49),
-					origin: new google.maps.Point(0, 0),
 					anchor: new google.maps.Point(14, 34)
 				},
 				need: {
 					url: 'images/need.png',
 					size: new google.maps.Size(29, 53),
-					origin: new google.maps.Point(0, 0),
-					anchor: new google.maps.Point(0, 53)
+					anchor: new google.maps.Point(15, 47)
 				},
 				offer: {
 					url: 'images/offer.png',
 					size: new google.maps.Size(29, 53),
-					origin: new google.maps.Point(0, 0),
-					anchor: new google.maps.Point(0, 29)
+					anchor: new google.maps.Point(15, 47)
 				}
 			};
 
@@ -147,10 +144,11 @@ angular.module('hearth.geo').factory('geo', [
 			 * @param {String} type  type of icon ('need', 'offer', 'undefined')
 			 * @param {google.maps.Map} map (optional)  - if not set, last created map will be used
 			 */
-			placeMarker: function(location, type, map) {
+			placeMarker: function(location, type, description, map) {
 				return new google.maps.Marker({
 					position: location,
 					map: map || _map,
+					desc: description,
 					icon: images[type]
 				});
 			},

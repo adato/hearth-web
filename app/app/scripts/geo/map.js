@@ -11,53 +11,49 @@
  * @requires $templateCache
  */
 angular.module('hearth.geo').directive('map', [
-	'geo', '$interpolate', '$templateCache',
+	'geo', '$interpolate', '$templateCache', '$location', '$route',
 
-	function(geo, $interpolate, $templateCache) {
+	function(geo, $interpolate, $templateCache, $location, $route) {
 		return {
 			restrict: 'E',
 			replace: true,
 			transclude: true,
-			scope: {
-				'ads': '='
-			},
 			link: function(scope, element) {
-				var infoWindow,
-					boundsChangeTimeout,
+				var markerCluster,
+					infoWindow = new google.maps.InfoWindow(),
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					map = geo.createMap(element[0], {
 						zoom: 11
 					}),
+					oms = new OverlappingMarkerSpiderfier(map, {
+						markersWontMove: true,
+						markersWontHide: true
+					}),
 					markerCache = {},
-
+					markers = [],
+					markerCluster = new MarkerClusterer(map, markers, {
+						ignoreHidden: true,
+						maxZoom: 14,
+						size: 20
+					}),
 					placeMarker = function(location, ad) {
-						var marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type);
+						var marker = markerCache[ad._id];
 
-						ad.author.avatar.normal = ad.author.avatar.normal || EMPTY_AVATAR_URL;
-						if (ad.community_id) {
-							ad.adType = ad.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+						if (marker) {
+							marker.setVisible(true);
 						} else {
-							ad.adType = ad.type;
-						}
-
-						marker.setAnimation(google.maps.Animation.DROP);
-						google.maps.event.addListener(marker, 'click', function() {
-							infoWindow = infoWindow;
-							if (infoWindow) {
-								infoWindow.close();
+							ad.author.avatar.normal = ad.author.avatar.normal || EMPTY_AVATAR_URL;
+							if (ad.community_id) {
+								ad.adType = ad.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+							} else {
+								ad.adType = ad.type;
 							}
-							infoWindow = new google.maps.InfoWindow({
-								content: template(ad),
-								maxWidth: 300
-							});
-							infoWindow.open(map, marker);
-							google.maps.event.addListener(infoWindow, 'domready', function() {
-								$('.marker-tooltip').click(function() {
-									window.location.href = '#ad/' + $(this).attr('itemid');
-								});
-							});
-						});
-						markerCache[ad._id] = marker;
+							marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type, template(ad));
+							oms.addMarker(marker);
+							markerCache[ad._id] = marker;
+							markers.push(marker);
+							markerCluster.addMarkers(markers);
+						}
 					},
 					createPins = function(ads) {
 						var i, j, ad, location;
@@ -65,40 +61,41 @@ angular.module('hearth.geo').directive('map', [
 
 						for (i = 0; i < ads.length; i++) {
 							ad = ads[i];
-							if (!markerCache[ad._id]) {
-								for (j = 0; j < ad.locations.length; j++) {
-									location = ad.locations[j];
-									if (location.coordinates) {
-										placeMarker(location, ad);
-									}
+							for (j = 0; j < ad.locations.length; j++) {
+								location = ad.locations[j];
+								if (location.coordinates) {
+									placeMarker(location, ad);
 								}
 							}
 						}
+						markerCluster.repaint();
 					},
-					clearMarkerCache = function() {
-						for (var key in markerCache) {
-							markerCache[key].setMap(null);
+					hideMarkers = function() {
+						for (var i = 0; i < markers.length; i++) {
+							markers[i].setVisible(false);
 						}
-						markerCache = [];
 					};
 
+				oms.addListener('click', function(marker) {
+					infoWindow.setContent(marker.desc);
+					infoWindow.open(map, marker);
+					$('.marker-tooltip').click(function() {
+						var itemId = $(this).attr('itemid');
+
+						scope.$apply(function() {
+							var path = $location.path('ad/' + itemId);
+						});
+					});
+				});
 				scope.$on('keywordSearch', function() {
-					clearMarkerCache();
+					hideMarkers();
 				});
-
+				scope.$on('searchByLoc', function(e, ads) {
+					createPins(ads);
+				});
 				google.maps.event.addListener(map, 'bounds_changed', function() {
-					window.clearTimeout(boundsChangeTimeout);
-					boundsChangeTimeout = window.setTimeout(function() {						
-						scope.$emit('mapBoundsChange', map.getBounds());
-					}, 1500);
+					scope.$emit('mapBoundsChange', map.getBounds());
 				});
-				scope.$watch('ads', function() {
-					createPins(scope.ads);
-				});
-				scope.$watch('ads.length', function() {
-					createPins(scope.ads);
-				});
-
 				geo.focusCurrentLocation();
 			}
 		};

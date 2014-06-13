@@ -1,0 +1,29 @@
+@mixin social($size: 2em, $align: right) {
+    .social {
+        text-align: $align;
+        white-space: nowrap;
+        display: block;
+        a { 
+            margin: 0 !important;
+            width: $size;
+            height: $size;
+            text-align: center;
+            display: inline-block;
+            @include border-radius(50%);
+            @include transition(color 1s, background-color 1s, text-shadow 1s);
+            border: 2px solid nth($color, 1);
+            padding: $size /4;
+            padding-top: $size/5;
+            &:hover {
+                @include text-shadow(0 -1px nth($color, 3));
+                background-color: lighten(nth($color, 1), 5%);
+                color: white  !important;
+            }
+            &.fa:before {
+
+            font-size: $size/2;
+            }
+
+        }
+    }
+}

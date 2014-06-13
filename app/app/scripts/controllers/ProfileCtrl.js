@@ -24,6 +24,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.expandAd(null);
 
+		$(document.body).scrollTop(0);
+
 		$scope.$watch('routeParams.action', function(newval) {
 			var event,
 				credentials = Auth.getCredentials(),
@@ -249,7 +251,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			var isMine = $scope.loggedUser && $routeParams.id === $scope.loggedUser._id,
 				isMineCommunity = $scope.loggedCommunity && $routeParams.id === $scope.loggedCommunity._id;
 
-			$rootScope.isMine = isMine || isMineCommunity;
+			$scope.isMine = isMine || isMineCommunity;
 		}
 		$scope.$watch('loggedUser', _getIsMine);
 		$scope.$watch('loggedCommunity', _getIsMine);

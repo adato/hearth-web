@@ -298,6 +298,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$scope.searchOptions = options;
 			$scope.items = ($scope.searchOptions || {}).add === false ? [] : $scope.items;
 
+			if (search.params.type === 'user') {
+				search.params.type = 'user,community';
+			}
+
 			return search.service.query(search.params).then(function(data) {
 				var i, len = data.length;
 				if (search.params.query) {
@@ -307,6 +311,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				}
 				for (i = 0; i < len; i++) {
 					processRow(data[i]);
+				}
+				if ($scope.orderBy === 'location') {
+					$scope.$broadcast('searchByLoc', $scope.items);
 				}
 				$scope.lastQueryReturnedCount = len;
 				$scope.sent = true;
@@ -422,13 +429,17 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				add: false
 			});
 		});
+		var boundsChangeTimeout;
 
 		$scope.$on('mapBoundsChange', function(listeners, bounds) {
-			$scope.myLocation = bounds.getCenter();
-			$scope.geoBounds = bounds;
-			$scope.search({
-				add: false
-			});
+			window.clearTimeout(boundsChangeTimeout);
+			boundsChangeTimeout = window.setTimeout(function() {
+				$scope.myLocation = bounds.getCenter();
+				$scope.geoBounds = bounds;
+				$scope.search({
+					add: false
+				});
+			}, 1500);
 		});
 
 		$scope.setLastAddedId(null);
