@@ -312,6 +312,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				for (i = 0; i < len; i++) {
 					processRow(data[i]);
 				}
+				if ($scope.orderBy === 'location') {
+					$scope.$broadcast('searchByLoc', $scope.items);
+				}
 				$scope.lastQueryReturnedCount = len;
 				$scope.sent = true;
 				return $scope.updateRelations();

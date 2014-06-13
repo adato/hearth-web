@@ -18,9 +18,6 @@ angular.module('hearth.geo').directive('map', [
 			restrict: 'E',
 			replace: true,
 			transclude: true,
-			scope: {
-				'ads': '='
-			},
 			link: function(scope, element) {
 				var markerCluster,
 					infoWindow = new google.maps.InfoWindow(),
@@ -34,18 +31,29 @@ angular.module('hearth.geo').directive('map', [
 					}),
 					markerCache = {},
 					markers = [],
+					markerCluster = new MarkerClusterer(map, markers, {
+						ignoreHidden: true,
+						maxZoom: 14,
+						size: 20
+					}),
 					placeMarker = function(location, ad) {
+						var marker = markerCache[ad._id];
 
-						ad.author.avatar.normal = ad.author.avatar.normal || EMPTY_AVATAR_URL;
-						if (ad.community_id) {
-							ad.adType = ad.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+						if (marker) {
+							marker.setVisible(true);
 						} else {
-							ad.adType = ad.type;
+							ad.author.avatar.normal = ad.author.avatar.normal || EMPTY_AVATAR_URL;
+							if (ad.community_id) {
+								ad.adType = ad.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+							} else {
+								ad.adType = ad.type;
+							}
+							marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type, template(ad));
+							oms.addMarker(marker);
+							markerCache[ad._id] = marker;
+							markers.push(marker);
+							markerCluster.addMarkers(markers);
 						}
-						var marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type, template(ad));
-						oms.addMarker(marker);
-						markerCache[ad._id] = marker;
-						markers.push(marker);
 					},
 					createPins = function(ads) {
 						var i, j, ad, location;
@@ -53,25 +61,19 @@ angular.module('hearth.geo').directive('map', [
 
 						for (i = 0; i < ads.length; i++) {
 							ad = ads[i];
-							if (!markerCache[ad._id]) {
-								for (j = 0; j < ad.locations.length; j++) {
-									location = ad.locations[j];
-									if (location.coordinates) {
-										placeMarker(location, ad);
-									}
+							for (j = 0; j < ad.locations.length; j++) {
+								location = ad.locations[j];
+								if (location.coordinates) {
+									placeMarker(location, ad);
 								}
 							}
 						}
-						markerCluster = new MarkerClusterer(map, markers, {
-							maxZoom: 14,
-							size: 40
-						});
+						markerCluster.repaint();
 					},
-					clearMarkerCache = function() {
-						for (var key in markerCache) {
-							markerCache[key].setMap(null);
+					hideMarkers = function() {
+						for (var i = 0; i < markers.length; i++) {
+							markers[i].setVisible(false);
 						}
-						markerCache = [];
 					};
 
 				oms.addListener('click', function(marker) {
@@ -86,19 +88,14 @@ angular.module('hearth.geo').directive('map', [
 					});
 				});
 				scope.$on('keywordSearch', function() {
-					clearMarkerCache();
+					hideMarkers();
 				});
-
+				scope.$on('searchByLoc', function(e, ads) {
+					createPins(ads);
+				});
 				google.maps.event.addListener(map, 'bounds_changed', function() {
 					scope.$emit('mapBoundsChange', map.getBounds());
 				});
-				scope.$watch('ads', function() {
-					createPins(scope.ads);
-				});
-				scope.$watch('ads.length', function() {
-					createPins(scope.ads);
-				});
-
 				geo.focusCurrentLocation();
 			}
 		};
