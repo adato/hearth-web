@@ -4,7 +4,7 @@
 //
 $color: #e65832, #a7bd1d, #7c766a, white, white;
 $FontAwesomePath: "../../fonts" !default;
-
+/*
 $control-font-color: nth($color, 3);
 $negative-font-color: adjust-color(nth($color, 4), $blue:-13);
 $primary-button-background: nth($color, 2);
@@ -189,9 +189,9 @@ $header-top-margin: 1.5 * $grid-size;
 
 // Heading font sizes
 
-/*$h1-font-size: emCalc(2 * $grid-size);
+$h1-font-size: emCalc(2 * $grid-size);
 $h2-font-size: emCalc(2 * $grid-size);
-$h3-font-size: emCalc(2 * $grid-size);*/
+$h3-font-size: emCalc(2 * $grid-size);
 
 // $h4-font-size: emCalc(23px);
 // $h5-font-size: emCalc(18px);
@@ -240,7 +240,7 @@ $anchor-font-color-hover: #e64500;
 // $hr-border-width: 1px;
 // $hr-border-style: solid;
 $hr-border-color: $primary-color;
-//$hr-margin: emCalc(2 * $grid-size);
+$hr-margin: emCalc(2 * $grid-size);
 
 // Lists
 
@@ -1285,3 +1285,4 @@ $topbar-dropdown-bg: $topbar-bg;
 $topbar-breakpoint: $small-screen;
 
 // $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";
+*/

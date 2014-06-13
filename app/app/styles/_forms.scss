@@ -1,4 +1,11 @@
-input {
+input,
+textarea,
+button,
+.button {
+    border-radius: $global-radius;
+}
+
+/*input {
     color: nth($color, 3);
     font-family: inherit;
     font-size: large;
@@ -74,3 +81,4 @@ textarea,
 :-ms-input-placeholder {
     color: $body-border-color;
 }
+*/

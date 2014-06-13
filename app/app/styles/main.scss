@@ -1,9 +1,9 @@
 @import "variables";
-//@import "settings";
+@import "settings";
 
 @import "compass";
 // import Compass mixins
-@import "compass/reset";
+/*@import "compass/reset";
 @import "compass/layout/stretching";
 @import "compass/layout/grid-background";
 @import "compass/utilities/general/min";
@@ -14,12 +14,12 @@
 @import "compass/css3/shared";
 @import "compass/css3/text-shadow";
 @import "compass/css3/transform";
-@import "compass/typography/links/link-colors";
+@import "compass/typography/links/link-colors";*/
 
 // import parts of Foundation framework
 
 @import "font-awesome";
-/*@import
+@import
   "foundation/components/grid",
   "foundation/components/accordion",
   "foundation/components/alert-boxes",
@@ -56,8 +56,10 @@
   "foundation/components/type",
   "foundation/components/offcanvas",
   "foundation/components/visibility";
-*/
 
+@import "navigation";
+@import "forms";
+/*
 @import "foundation/components/global";
 @import "foundation/components/grid";
 @import "foundation/components/visibility";
@@ -105,12 +107,12 @@
 
 
 @import "locations";
-//@import "foundation-improvements";
+/*@import "foundation-improvements";
 @import "hearth-icons";
 @import "angular";
 @import "mixins/social";
 @import "progress";
-
+*/
 
 @include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
 
@@ -124,7 +126,7 @@ meta.foundation-data-attribute-namespace {
     font-family: false;
 }
 
-@function emCalc($pxWidth, $base: $em-base) {
+/*@function emCalc($pxWidth, $base: $em-base) {
     @return $pxWidth / $base * 1em;
 }
 
@@ -253,7 +255,7 @@ nav.left-pad {
     left: $left-bar-width;
 }
 
-@import "navigation";
+
 
 .content {
     @media #{$small} {
@@ -350,10 +352,10 @@ section.more {
         width: 200px;
     }
     .button {
-        //padding-top: $button-sml - emCalc(2px);
-        //padding-right: $button-sml + emCalc(3px);
-        //padding-bottom: $button-sml - emCalc(2px);
-        //padding-left: $button-sml + emCalc(3px);
+        padding-top: $button-sml - emCalc(2px);
+        padding-right: $button-sml + emCalc(3px);
+        padding-bottom: $button-sml - emCalc(2px);
+        padding-left: $button-sml + emCalc(3px);
         border-color: #aca35e;
         &.round.connect-right {
             border-right: 1px solid;
@@ -1073,7 +1075,7 @@ input[disabled].text-input {
     background: $body-bg;
 }
 
-@import "forms";
+
 
 .round,
 .prefix.button.round,
@@ -1102,11 +1104,11 @@ input[disabled].text-input {
     z-index: 1;
     &.connect-top {
         margin-top: -$global-radius;
-     //   padding-top: $alert-padding-top + emCalc($global-radius);
+        padding-top: $alert-padding-top + emCalc($global-radius);
     }
     &.connect-bottom {
         margin-bottom: -$global-radius;
-        //padding-bottom: $alert-padding-bottom + emCalc($global-radius);
+        padding-bottom: $alert-padding-bottom + emCalc($global-radius);
     }
     &.alert-error,
     &.alert-success {
@@ -1177,9 +1179,9 @@ small.error {
 @import "terms";
 
 hr {
-    //margin: $hr-margin / 2 0 $hr-margin / 2 - emCalc(1px);
+    margin: $hr-margin / 2 0 $hr-margin / 2 - emCalc(1px);
     @media #{$small} {
-        //margin: $hr-margin 0 $hr-margin - emCalc(1px, $desktop-font-size);
+        margin: $hr-margin 0 $hr-margin - emCalc(1px, $desktop-font-size);
     }
 }
 
@@ -1366,8 +1368,15 @@ input + .remove {
         width: 3em;
         float: left;
     }
+    }
+    img {
+        @include border-radius;
+        width: 3em;
+        float: left;
+        
+    }
 }
 
 form[name="replyForm"] {
     position:fixed;
-}
+}*/
