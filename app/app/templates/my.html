@@ -12,14 +12,12 @@
         
         <div class="hide-for-medium-down bob">
             <p>{{'MY_HEARTH_BOB' | translate:info}}</p>
-            <img src="images/hitchhiking.svg">
         </div>
     </header>
     <header class="right-column small-12 large-5 columns push-7"
             ng-show="isCreatingAd()">
         <div class="hide-for-medium-down bob">
             <p>{{'CREATE_YOUR_NEW_NEED_AND_BE_HAPPY' | translate}}</p>
-            <img src="images/hitchhiking.svg">
         </div>
     </header>
 
@@ -60,8 +58,8 @@
             </div>
         </div>
         <div ng-show="orderBy == 'location' && !isCreatingAd()">
-            <set-location  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)">
-            </set-location>
+            <search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"  items="items">
+            </search-map>
             <div class="hr"></div>
         </div>
         <div ng-show="orderBy == 'relevance' && !isCreatingAd()">

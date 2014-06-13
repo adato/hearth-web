@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.RegisterCtrl
+ * @description 
+ */
+ 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
 	'$scope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location',
 	function($scope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location) {
@@ -11,7 +17,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.sending = false;
 		$scope.user = new User();
 		$scope.errors = new ResponseErrors();
-		return $scope.register = function() {
+		$scope.register = function() {
 			if (!$scope.registerForm.$valid) {
 				return;
 			}

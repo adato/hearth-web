@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.invitationForm
+ * @description
+ * @restrict AE
+ */
+
 angular.module('hearth.directives').directive('invitationForm', [
 	'Invitation', '$timeout', 'ResponseErrors',
 	function(Invitation, $timeout, ResponseErrors) {
@@ -14,7 +21,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 			link: function(scope) {
 				var init;
 				init = function() {
-					var _ref;
+					var loggedUser = scope.loggedUser;
 					scope.status = {
 						visible: false,
 						sentOk: false,
@@ -23,7 +30,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 					};
 					scope.invitation = {
 						toEmail: null,
-						userId: (_ref = scope.loggedUser) != null ? _ref._id : void 0
+						userId: loggedUser ? loggedUser._id : void 0
 					};
 					return scope.sendInvitationForm.$setPristine(true);
 				};
@@ -40,19 +47,22 @@ angular.module('hearth.directives').directive('invitationForm', [
 					}
 				});
 				scope.sendInvitation = function() {
-					if (!scope.sendInvitationForm.$valid) {
-						return;
+					if (scope.sendInvitationForm.$valid) {
+						var data = scope.invitation;
+
+						scope.status.sending = true;
+						data.toEmail = scope.invitation.toEmail.replace(/\s/g, '').split(','); //remove all space and split
+
+						return Invitation.add(data, function() {
+							scope.status.sentOk = true;
+							return $timeout(function() {
+								return init();
+							}, 3000);
+						}, function(err) {
+							scope.status.sentError = new ResponseErrors(err);
+							return scope.status.sentError;
+						});
 					}
-					scope.status.sending = true;
-					return Invitation.add(scope.invitation, function() {
-						scope.status.sentOk = true;
-						return $timeout(function() {
-							return init();
-						}, 3000);
-					}, function(err) {
-						scope.status.sentError = new ResponseErrors(err);
-						return scope.status.sentError;
-					});
 				};
 				scope.cancel = init;
 				return init();

@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.FeedbackCtrl
+ * @description 
+ */
+
 angular.module('hearth.controllers').controller('FeedbackCtrl', [
 	'$scope', 'Auth', 'User', '$timeout', '$location', 'Feedback', 'ResponseErrors',
 	function($scope, Auth, User, $timeout, $location, Feedback, ResponseErrors) {

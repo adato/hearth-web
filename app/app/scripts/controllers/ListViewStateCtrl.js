@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.ListViewStateCtrl
+ * @description 
+ */
+
 angular.module('hearth.controllers').controller('ListViewStateCtrl', [
 	'$scope', '$timeout', '$window', '$location', 'KeywordsService', 'UTCdateFilter', 'dateFilter',
 	function($scope, $timeout, $window, $location, KeywordsService, UTCdateFilter, dateFilter) {

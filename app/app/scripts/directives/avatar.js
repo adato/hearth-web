@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.avatar
+ * @description 
+ * @restrict E
+ */
+
 angular.module('hearth.directives').directive('avatar', [
 
 	function() {

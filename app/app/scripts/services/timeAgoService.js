@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.timeAgoService
+ * @description
+ */
+ 
 angular.module('hearth.services').service('timeAgoService', [
 	'$interval', '$translate',
 	function($interval, $translate) {
@@ -29,7 +35,10 @@ angular.module('hearth.services').service('timeAgoService', [
 				strings: {}
 			},
 			doTimeout: function() {
-				return ref.nowTime = (new Date()).getTime();
+				var now = new Date();
+
+				ref.nowTime = now.getTime();
+				return ref.nowTime;
 			},
 			init: function() {
 				var that;
@@ -40,7 +49,8 @@ angular.module('hearth.services').service('timeAgoService', [
 					that = this;
 					that.settings.strings = that.getStrings();
 					$interval(ref.doTimeout, ref.settings.refreshMillis);
-					return this.initted = true;
+					this.initted = true;
+					return this.initted;
 				}
 			},
 			inWords: function(distanceMillis) {

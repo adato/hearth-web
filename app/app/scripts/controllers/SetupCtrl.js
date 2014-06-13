@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('hearth.controllers').controller('SetupCtrl', [
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.SetupCtrl
+ * @description 
+ */
+ 
+ angular.module('hearth.controllers').controller('SetupCtrl', [
 	'$scope', '$feature', 'ipCookie',
 	function($scope, $feature, ipCookie) {
 		$scope.features = Object.keys($$config.features).map(function(name) {
@@ -9,9 +15,8 @@ angular.module('hearth.controllers').controller('SetupCtrl', [
 				value: $feature.isEnabled(name)
 			};
 		});
-		return $scope.toggle = function(name) {
-			var features;
-			return features = $scope.features.filter(function(feature) {
+		$scope.toggle = function(name) {
+			var features = $scope.features.filter(function(feature) {
 				return feature.name === name;
 			}).forEach(function(feature) {
 				var _ref;
@@ -23,6 +28,7 @@ angular.module('hearth.controllers').controller('SetupCtrl', [
 					return ipCookie('FEATURE_' + feature.name, void 0);
 				}
 			});
+			return features;
 		};
 	}
 ]);

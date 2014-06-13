@@ -1,6 +1,7 @@
 <!-- this is inside the "reply" form -->
 <div ng-show="pageType == 'profile'"><span ng-include src="'templates/profilePane.html'"></span></div>
 <hr ng-show="pageType == 'profile'">
+
 <form name="replyForm" class="profile-header" ng-submit="replyToAd(ad)" ng-keydown="escapeKey($event)" style="height:100%;" with-errors novalidate>
     <div class="row" ng-show="pageType != 'profile'">
         <a ng-href="#/{{ad.profileUrl}}/{{ ad.author._id }}">
@@ -38,20 +39,22 @@
             LOG_IN_TO_REPLY
         </div>
     </div>
-    <div signed-in>
+    <div signed-in ng-hide="isMine">
         <div ng-show="!replyToAdSubmitting && !replyToAdSubmitted" ng-cloak>
             <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
-            <textarea ng-model="reply.message" class="text-input" tabindex="1" rows="6"
-                      placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-cloak ng-required="true" ng-minlength="3"></textarea>
-            <div class="row">
-                <div class="padding-h-0 small-12 medium-12 large-4 large-push-8 columns right">
-                    <button class="right primary button" type="submit" tabindex="2" analytics-on analytics-event="send message" analytics-category="Marketplace" analytics-value="15" ng-cloak translate>
-                        SUBMIT
-                    </button>
-                </div>
-                <div class="padding-h-0 small-12 medium-12 large-8 columns left checkbox-input reply-to-ad" validated-checkbox>
-                    <input type="checkbox" id="reply" name="reply" ng-required="true" ng-model="reply.agreed">
-                    <label for="reply">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}</label>
+            <div style="position:relative;z-index:9;">
+                <textarea ng-model="reply.message" class="text-input" tabindex="1" rows="6"
+                          placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-cloak ng-required="true" ng-minlength="3"></textarea>
+                <div class="row">
+                    <div class="padding-h-0 small-12 medium-12 large-4 large-push-8 columns right">
+                        <button class="right primary button" type="submit" tabindex="2" analytics-on analytics-event="send message" analytics-category="Marketplace" analytics-value="15" ng-cloak translate>
+                            SUBMIT
+                        </button>
+                    </div>
+                    <div class="padding-h-0 small-12 medium-12 large-8 columns left checkbox-input reply-to-ad" validated-checkbox>
+                        <input type="checkbox" id="reply" name="reply" ng-required="true" ng-model="reply.agreed">
+                        <label for="reply">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,10 +66,15 @@
             <div class="clearfix padding-2 successfully-sent">
                 {{ 'SENDING_MESSAGE_SUCCESS' | translate }}
             </div>
-            <a href="" ng-click="expandAd(null)">
+            <a href="" ng-hide="hideCloseButton" ng-click="expandAd(null)">
                 {{ 'CLOSE' | translate }}
             </a>
         </div>
     </div>
+    <script>
+        $('[name=replyForm]').sticky({
+            topSpacing: 70
+        });
+    </script>
     
 </form>

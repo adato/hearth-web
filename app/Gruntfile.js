@@ -27,7 +27,8 @@ module.exports = function(grunt) {
 			js: {
 				files: [
 					'<%= yeoman.app %>/scripts/{,*/}*.js',
-					'<%= yeoman.app %>/locales/{,*/}*.json'
+					'<%= yeoman.app %>/locales/{,*/}*.json',
+				'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
 				tasks: ['newer:jshint:all'],
 				options: {
@@ -117,32 +118,17 @@ module.exports = function(grunt) {
 
 		ngdocs: {
 			options: {
-				/*dest: 'docs',
-				scripts: ['../app.min.js'],
+				dest: 'docs',
 				html5Mode: true,
 				startPage: '/api',
-				title: 'My Awesome Docs',
-				image: 'path/to/my/image.png',
-				imageLink: 'http://my-domain.com',
+				title: 'Hearth API',
 				titleLink: '/api',
-				bestMatch: true,
-				analytics: {
-					account: 'UA-08150815-0',
-					domainName: 'my-domain.com'
-				},
-				discussions: {
-					shortName: 'my',
-					url: 'http://my-domain.com',
-					dev: false
-				}*/
+				bestMatch: true
 			},
-			tutorial: {
-				src: ['content/tutorial/*.ngdoc'],
-				title: 'Tutorial'
-			},
+
 			api: {
 				src: ['<%= yeoman.app %>/scripts/**/*.js'],
-				title: 'API Documentation'
+				title: 'Hearth API Documentation'
 			}
 		},
 
@@ -224,6 +210,7 @@ module.exports = function(grunt) {
 			doc: {
 				options: {
 					port: 9001,
+					livereload: 35729,
 					base: 'docs',
 					keepalive: true
 				},
@@ -592,8 +579,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('doc', [
 		'ngdocs',
-		'connect:doc',
-
+		'connect:doc'
 	]);
 
 };

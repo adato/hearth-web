@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.PostReplies
+ * @description
+ */
+
 angular.module('hearth.services').factory('PostReplies', [
 	'$resource',
 	function($resource) {

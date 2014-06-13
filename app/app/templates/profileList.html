@@ -13,7 +13,7 @@
         <div class="wish row" ng-click="go('detail', item._id)" ng-class="{inactive:!item.is_active}" ng-hide="!isMine &&!item.is_active">
             <div class="small-12 columns hyphenate profile-wish-text" ng-if="!isEditingAd(item._id)">
                 <span class="small right">
-                    <time-ago from-time="item.createdAt"></time-ago>
+                    <time-ago from-time="item.updatedAt"></time-ago>
                     <i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
                 </span>
                 <div>
@@ -37,7 +37,7 @@
                              <span ng-bind-html="item.title"></span>
                         </strong>                                 
                     </span>
-                    <span ng-bind-html="item.name | linky "></span>
+                    <span ng-bind-html="item.name | linky:'_blank' "></span>
                 </div>
                 <div ng-if="item.attachments.length" class="photo">
                     <img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
@@ -63,7 +63,7 @@
                             <i class="hearthicon-trash"></i> {{ 'AD_REMOVE_LABEL' | translate }}
                         </a>
                         <a href=""
-                           ng-click="" ng-hide="item.author._id == loggedEntity._id">
+                           ng-click="" ng-hide="isMine">
                             <i class="hearthicon-reply"></i>&nbsp; {{ 'REPLY_BUTTON_CAPTION' | translate }}
                         </a>
                     </div>

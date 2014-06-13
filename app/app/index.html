@@ -17,6 +17,7 @@
 
 
     <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
+    
     <meta property="og:title" content="Hearth.net">
     <meta property="og:description" content="Prostor, kde dávat znamená dostat mnohem víc">
     <meta property="og:image" content="http://www.hearth.net/apple-touch-icon-114x114-precomposed.png">
@@ -52,12 +53,8 @@
       <div class="chromeframe">
         <div class="reason">
           <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
-          <p>In the meantime, look at some nice green woods, because our whole site is orange. We hope you'll be able to see it soon yourself.</p>
         </div>
-        <div class="woods">
-          <a href="http://www.flickr.com/photos/zanthia/7381482708/" title="woods by Zanthia, on Flickr"><img src="http://farm8.staticflickr.com/7095/7381482708_4f3d629d6b_b.jpg" width="1024" height="680" alt="woods"></a>
-          <span>woods by Zanthia, on Flickr</span>
-        </div>
+        
       </div>
     <![endif]-->
 
@@ -111,6 +108,9 @@
      <script src="vendor/angularitics/src/angulartics-ga.js"></script>
      <script src="vendor/ng-tags-input/ng-tags-input.js"></script>
      <script src="vendor/foundation-datepicker/example/js/foundation-datepicker.js"></script>
+     <script src="vendor/sticky/jquery.sticky.js"></script>
+     <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
+
     
 
     <script>
@@ -123,6 +123,7 @@
     <script src="locales/default?callback=defaultTranslation"></script>
 
     <!-- build:js scripts/scripts.js -->
+    <script src="scripts/oms.min.js"></script>
     <script src="scripts/app.js"></script>
 
      <script src="scripts/services/UsersService.js"></script>
@@ -130,7 +131,6 @@
      <script src="scripts/services/FolloweesSearchService.js"></script>
      <script src="scripts/services/FolloweesPostsService.js"></script>
      <script src="scripts/services/PostsService.js"></script>
-     <script src="scripts/services/Geocoder.js"></script>
      <script src="scripts/services/LanguageSwitch.js"></script>
      <script src="scripts/services/timeAgoService.js"></script>
      <script src="scripts/services/$feature.js"></script>
@@ -174,18 +174,12 @@
       <script src="scripts/directives/invitationForm.js"></script>
       <script src="scripts/directives/avatar.js"></script>
       <script src="scripts/directives/identitySwitch.js"></script>
-      <script src="scripts/directives/setLocation.js"></script>
       <script src="scripts/directives/addressAutocomplete.js"></script>
       <script src="scripts/directives/feedback.js"></script>
       <script src="scripts/directives/scrollTo.js"></script>
-      <script src="scripts/directives/whenScrolled.js"></script>
-      <script src="scripts/directives/timeAgo.js"></script>
-      <script src="scripts/directives/withErrors.js"></script>
-      <script src="scripts/directives/validatedCheckbox.js"></script>
       <script src="scripts/directives/htmlLabel.js"></script>
       <script src="scripts/directives/fileUpload.js"></script>
       <script src="scripts/directives/fileUploadOutput.js"></script>
-      <script src="scripts/directives/apiPrefix.js"></script>
       <script src="scripts/directives/signedOut.js"></script>
       <script src="scripts/directives/signedIn.js"></script>
       <script src="scripts/directives/feature.js"></script>
@@ -194,9 +188,21 @@
       <script src="scripts/directives/fulltextTypeahead.js"></script>
       <script src="scripts/directives/social.js"></script>
       <script src="scripts/directives/datepicker.js"></script>
-      <script src="scripts/directives/locations.js"></script>
       <script src="scripts/directives/needOfferSelector.js"></script>
-      <script src="scripts/directives/ngPlaceholder.js"></script>
+      <script src="scripts/directives/filter.js"></script>
+
+      <script src="scripts/utils/timeAgo.js"></script>
+      <script src="scripts/utils/apiPrefix.js"></script>
+      <script src="scripts/utils/validatedCheckbox.js"></script>
+      <script src="scripts/utils/monkPlaceholder.js"></script>
+      <script src="scripts/utils/whenScrolled.js"></script>
+      <script src="scripts/utils/withErrors.js"></script>
+      <script src="scripts/utils/emails.js"></script>
+      
+      <script src="scripts/geo/geo.js"></script>
+      <script src="scripts/geo/locations.js"></script>
+      <script src="scripts/geo/searchMap.js"></script>
+      <script src="scripts/geo/map.js"></script>
 
       <script src="scripts/controllers/BaseCtrl.js"></script>
       <script src="scripts/controllers/SearchCtrl.js"></script>
@@ -215,6 +221,11 @@
       <script src="scripts/controllers/CommunityRegisterCtrl.js"></script>
       <script src="scripts/controllers/CommunityListCtrl.js"></script>
       <script src="scripts/controllers/LoginCtrl.js"></script>
+
+      <script src="scripts/messages/Messages.js"></script>      
+
+      <script src="scripts/controllers/AdDetail.js"></script>
+      <script src="scripts/services/AdDetailResource.js"></script>
       
       <script src="scripts/foundation.topbar.js"></script>
     <!-- endbuild -->

@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.ProfileProgress
+ * @description
+ */
+
 angular.module('hearth.services').factory('ProfileProgress',
 	function() {
 

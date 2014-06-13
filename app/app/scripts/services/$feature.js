@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.$feature
+ * @description 
+ */
+
 angular.module('hearth.services').provider('$feature', function() {
 	var featureCookies, isEnabled;
 	featureCookies = function() {

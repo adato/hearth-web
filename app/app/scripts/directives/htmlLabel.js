@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.htmlLabel
+ * @description 
+ * @restrict A
+ */
+ 
 angular.module('hearth.directives').directive('htmlLabel', function() {
 	return {
 		restrict: 'A',

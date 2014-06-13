@@ -1,11 +1,43 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.SearchCtrl
+ * @description
+ */
+
 angular.module('hearth.controllers').controller('SearchCtrl', [
-	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Geocoder', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics',
-	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Geocoder, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics) {
-		var processRow, processSearchResults;
+	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
+
+	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
+		$scope.orderByPostSort = '';
 		$scope.adEditing = false;
 		$scope.location = $location;
+		$scope.timeout = null;
+		$scope.limit = 15;
+		$scope.offset = 0;
+		$scope.keywords = [];
+		$scope.filterExpanded = false;
+		$scope.lastQueryReturnedCount = 0;
+		$scope.filter = {
+			type: ''
+		};
+		$scope.srch = {
+			query: '',
+			filters: [{
+				type: 'need',
+				name: 'PLURAL_NEEDS'
+			}, {
+				type: 'offer',
+				name: 'PLURAL_OFFERS'
+			}, {
+				type: 'user',
+				name: 'PLURAL_USERS'
+			}]
+		};
+		$scope.sent = false;
+		$scope.items = [];
+
 		$scope.go = function(where, itemId, authorId) {
 			var path;
 			if ($scope.loggedEntity && authorId === $scope.loggedEntity._id) {
@@ -23,61 +55,18 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				}
 			}
 		};
-		$scope.$on('$routeUpdate', function() {
-			if (($routeParams.id == null) || !$routeParams.id) {
-				return $scope.expandAd(null);
-			}
-		});
-		$scope.$on('$routeChangeSuccess', function() {
-			var orderCookie;
-			orderCookie = ipCookie('orderBy') || 'time';
-			return $scope.setOrderBy(orderCookie);
-		});
-		$scope.$watch('location.search().id', function(newval) {
-			var item, _i, _len, _ref, _results;
-			if (newval === undefined || newval === null) {
-				return $scope.expandAd(null, true);
-			} else {
-				_ref = $scope.items;
-				_results = [];
-				for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-					item = _ref[_i];
-					if (item._id === newval) {
-						_results.push($scope.expandAd(item));
-					}
-				}
-				return _results;
-			}
-		});
 
-		$scope.$watch('location.search().q', function(newval) {
-			if ((newval != null) && newval) {
-				$scope.srch.query = newval;
-				return $rootScope.$broadcast('searchWithRefresh');
-			}
-		});
-		$scope.timeout = null;
-		$scope.$on('search', function() {
-			if ($scope.timeout) {
-				$timeout.clear($scope.timeout);
-			}
-			return $timeout(function() {
-				return $scope.search();
-			}, 100);
-		});
-		$scope.$on('searchWithRefresh', function() {
-			$scope.offset = 0;
-			return $scope.search({
-				add: false
-			});
-		});
 		$scope.refreshSearch = function() {
 			return $scope.$broadcast('searchWithRefresh');
+		};
+		var orderByPostSortValues = {
+			location: 'distance'
 		};
 		$scope.setOrderBy = function(order) {
 			if (order !== 'relevance') {
 				$location.search('q', null);
 			}
+
 			$scope.initMyLocation();
 			$scope.orderBy = order;
 			$scope.offset = 0;
@@ -85,8 +74,11 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$rootScope.$broadcast('cancelCreatingAd');
 			$rootScope.$broadcast('cancelReplyingAd');
 			$rootScope.$broadcast('cancelEditingAd');
+
+			$scope.orderByPostSort = orderByPostSortValues[order];
 			return $scope.$broadcast('searchWithRefresh');
 		};
+
 		$scope.updateLocation = function(location) {
 			$scope.myLocation = location;
 			$scope.offset = 0;
@@ -94,15 +86,23 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$rootScope.$broadcast('cancelReplyingAd');
 			return $scope.$broadcast('searchWithRefresh');
 		};
+
 		$scope.initMyLocation = function() {
-			if (Auth.isLoggedIn() && !$scope.myLocation) {
-				return UsersService.get($scope.loggedUser._id).then(function(data) {
-					if (data.locations && data.locations.length > 0) {
-						$scope.myLocation = Geocoder.geoJsonToLatLon(data.locations[0]);
-					}
-				});
+			if (!$scope.myLocation) {
+				if ($scope.loggedUser) {
+					return UsersService.get($scope.loggedUser._id).then(function(data) {
+						if (data.locations && data.locations.length > 0) {
+							$scope.myLocation = geo.getLocationFromCoords(data.locations[0].coordinates);
+						}
+					});
+				} else {
+					geo.getCurrentLocation().then(function(location) {
+						$scope.myLocation = location;
+					});
+				}
 			}
 		};
+
 		$scope.initMyFollowers = function() {
 			return UsersService.queryFollowees($scope.loggedUser._id).then(function(result) {
 				$scope.myFollowees = result || [];
@@ -112,46 +112,49 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				return $scope.unifyRelations();
 			});
 		};
+
 		$scope.unifyRelations = function() {
-			var item, _i, _j, _len, _len1, _ref, _ref1, _results;
+			var item, i, j,
+				myFollowees = $scope.myFollowees,
+				myFriends = $scope.myFriends,
+				results = [];
 
 			$scope.myRelations = [];
-			_ref = $scope.myFollowees;
-			for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-				item = _ref[_i];
+			for (i = 0; i < myFollowees.length; i++) {
+				item = myFollowees[i];
 				$scope.myRelations.push({
 					userId: item.userId,
 					relation: 'followee'
 				});
 			}
-			_ref1 = $scope.myFriends;
-			_results = [];
-			for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-				item = _ref1[_j];
-				_results.push($scope.myRelations.push({
+			for (j = 0; j < myFriends.length; j++) {
+				item = myFriends[j];
+				results.push($scope.myRelations.push({
 					userId: item.userId,
 					relation: 'friend'
 				}));
 			}
-			return _results;
+			return results;
 		};
+
 		$scope.updateRelations = function(newval) {
 			newval = newval || $scope.myRelations || [];
 
 			return $scope.items.map(function(item) {
-				var relation, _i, _j, _len, _len1;
+				var relation, i, j;
+
 				if (item.type === 'user') {
 					item.relation = null;
-					for (_i = 0, _len = newval.length; _i < _len; _i++) {
-						relation = newval[_i];
+					for (i = 0; i < newval.length; i++) {
+						relation = newval[i];
 						if (relation.userId === item._id) {
 							item.relation = relation.relation;
 						}
 					}
 				} else if (item.author != null && item.author) {
 					item.author.relation = null;
-					for (_j = 0, _len1 = newval.length; _j < _len1; _j++) {
-						relation = newval[_j];
+					for (j = 0; j < newval.length; j++) {
+						relation = newval[j];
 						if (relation.userId === item.author._id) {
 							item.author.relation = relation.relation;
 						}
@@ -160,9 +163,11 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				return item;
 			});
 		};
+
 		$scope.$watch('myRelations', function(newval) {
 			return $scope.updateRelations(newval);
 		});
+
 		$scope.getRelationship = function(userId) {
 			if ($scope.myRelations && $scope.myRelations.length > 0) {
 				return $scope.myRelations.map(function(item) {
@@ -172,34 +177,60 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				});
 			}
 		};
+
 		$scope.getSearchService = function() {
-			var getMarketplaceService,
-				getMyHearthService,
-				searchParamsByMyLocation,
+			var param,
 				searchParams = {
 					limit: $scope.limit,
 					offset: $scope.offset,
-					r: Math.random()
+					r: Math.random(),
+					type: $scope.filter.type,
+					days: $scope.filter.date,
+					distance: $scope.filter.distance,
+					lat: $scope.filter.lat,
+					lon: $scope.filter.lon
 				};
+
+			for (param in searchParams) {
+				if (searchParams[param] === undefined) {
+					delete searchParams[param];
+				}
+			}
 
 			if (($scope.keywords != null) && $scope.keywords.length) {
 				searchParams.keywords = $scope.keywords.join(',');
 			}
-			searchParamsByMyLocation = function(searchParams) {
-				return angular.extend(searchParams, {
-					sort: 'distance',
-					lat: $scope.myLocation.lat,
-					lon: $scope.myLocation.lon
-				});
-			};
-			getMyHearthService = function() {
-				var _ref,
-					service = FolloweesPostsService;
+
+			function searchParamsByMyLocation(searchParams) {
+				if ($scope.geoBounds) {
+					var northEast = $scope.geoBounds.getNorthEast(),
+						southWest = $scope.geoBounds.getSouthWest();
+
+					delete searchParams.limit;
+
+					return angular.extend(searchParams, {
+						sort: 'distance',
+						'bounding_box[top_left][lat]': northEast.lat(),
+						'bounding_box[top_left][lon]': southWest.lng(),
+						'bounding_box[bottom_right][lat]': southWest.lat(),
+						'bounding_box[bottom_right][lon]': northEast.lng()
+					});
+				} else {
+					return angular.extend(searchParams, {
+						sort: 'distance',
+						lat: $scope.myLocation.lat(),
+						lon: $scope.myLocation.lng()
+					});
+				}
+			}
+
+			function getMyHearthService() {
+				var service = FolloweesPostsService;
 
 				if ($scope.orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
 				}
-				if ($scope.orderBy === 'relevance' && (((_ref = $scope.srch) != null ? _ref.query : void 0) != null) && $scope.srch.query) {
+				if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
 					searchParams.type = $scope.srch.type || searchParams.type;
 					$location.search('q', searchParams.query);
@@ -207,11 +238,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				}
 				searchParams.userId = $scope.loggedUser._id;
 				return service;
-			};
-			getMarketplaceService = function() {
-				var _ref;
+			}
 
-				if ($scope.orderBy === 'relevance' && (((_ref = $scope.srch) != null ? _ref.query : void 0) != null) && $scope.srch.query) {
+			function getMarketplaceService() {
+				if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
 					if ($scope.srch.type != null) {
 						searchParams.type = $scope.srch.type;
@@ -232,71 +262,77 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			};
 		};
 
-		$scope.search = function(options) {
-			var search = $scope.getSearchService();
-
-			$scope.sent = false;
-			$scope.searchOptions = options;
-			return search.service.query(search.params).then(function(data) {
-				var cat, _ref;
-				if (search.params.query) {
-					cat = $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth';
-					$analytics.eventTrack('search by keyword', {
-						category: cat
-					});
-				}
-				if ((((_ref = $scope.searchOptions) != null ? _ref.add : void 0) != null) && $scope.searchOptions.add === false) {
-					$scope.items = [];
-				}
-				return processSearchResults(data);
-			});
-		};
-		processSearchResults = function(data) {
-			var i, len;
-
-			for (i = 0, len = data.length; i < len; i++) {
-				processRow(data[i]);
-			}
-			$scope.lastQueryReturnedCount = data.length;
-			$scope.sent = true;
-			return $scope.updateRelations();
-		};
-
-		processRow = function(value) {
-			var myLocation,
-				distances = [],
+		function processRow(value) {
+			var distances = [],
 				id = $location.search().id;
 
 			value.type = value.type || 'user';
 			value.locations = value.locations || [{
 				name: ''
 			}];
-			if ($scope.orderBy === 'location' && $scope.myLocation) {
-				myLocation = Geocoder.geoJsonToLatLon($scope.myLocation);
-
-				distances = $.map(value.locations, function(location) {
-					return Math.ceil(Geocoder.getDistance(myLocation, Geocoder.geoJsonToLatLon(location)));
-				});
-				if (distances.length) {
-					value.distance = Math.min.apply(this, distances);
+			if ($scope.orderBy === 'location') {
+				try {
+					distances = $.map(value.locations, function(location) {
+						return Math.ceil(geo.getDistance($scope.myLocation, geo.getLocationFromCoords(location.coordinates)));
+					});
+					if (distances.length) {
+						value.distance = Math.min.apply(this, distances);
+					}
+					if (id && id === value._id) {
+						$scope.expandAd(value);
+					}
+					$scope.items.push(value);
+				} catch (e) {}
+			} else {
+				if (id && id === value._id) {
+					$scope.expandAd(value);
 				}
+				$scope.items.push(value);
 			}
-			if (id && id === value._id) {
-				$scope.expandAd(value);
+		}
+
+		$scope.search = function(options) {
+			var search = $scope.getSearchService();
+
+			$scope.sent = false;
+			$scope.searchOptions = options;
+			$scope.items = ($scope.searchOptions || {}).add === false ? [] : $scope.items;
+
+			if (search.params.type === 'user') {
+				search.params.type = 'user,community';
 			}
-			return $scope.items.push(value);
+
+			return search.service.query(search.params).then(function(data) {
+				var i, len = data.length;
+				if (search.params.query) {
+					$analytics.eventTrack('search by keyword', {
+						category: $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth'
+					});
+				}
+				for (i = 0; i < len; i++) {
+					processRow(data[i]);
+				}
+				if ($scope.orderBy === 'location') {
+					$scope.$broadcast('searchByLoc', $scope.items);
+				}
+				$scope.lastQueryReturnedCount = len;
+				$scope.sent = true;
+				return $scope.updateRelations();
+			});
 		};
 
 		$scope.setSearchType = function(type) {
 			$scope.srch.type = type;
 			return $scope.srch.type;
 		};
+
 		$scope.loadMoreAds = function() {
 			if ($scope.lastQueryReturnedCount > 0) {
 				$scope.offset = $scope.offset + $scope.limit;
 				return $scope.$broadcast('search');
 			}
 		};
+
 		$scope.follow = function(userId, unfollow) {
 			if (userId !== $scope.loggedUser._id) {
 				var promise = UsersService[unfollow ? 'removeFollower' : 'addFollower'](userId, $scope.loggedUser._id);
@@ -306,6 +342,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				});
 			}
 		};
+
 		$scope.searchByKeyword = function($event, keyword, reset) {
 			if (reset == null) {
 				reset = false;
@@ -314,6 +351,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				$event.preventDefault();
 				$event.stopPropagation();
 			}
+			$scope.$broadcast('keywordSearch');
 			$scope.offset = 0;
 			if ($scope.keywords.indexOf(keyword) === -1) {
 				if (reset) {
@@ -327,43 +365,87 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				add: false
 			});
 		};
+
 		$scope.listKeywords = function() {
 			return KeywordsService.listKeywords().then(function(data) {
 				$scope.allKeywords = data;
 				return $scope.allKeywords;
 			});
 		};
-		$scope.init = function() {
-			var _ref;
-			$scope.limit = 15;
-			$scope.offset = 0;
-			$scope.keywords = [];
-			$scope.lastQueryReturnedCount = 0;
-			$scope.srch = {
-				query: '',
-				filters: [{
-					type: 'need',
-					name: 'PLURAL_NEEDS'
-				}, {
-					type: 'offer',
-					name: 'PLURAL_OFFERS'
-				}, {
-					type: 'user',
-					name: 'PLURAL_USERS'
-				}]
-			};
-			$scope.sent = false;
-			$scope.items = [];
-			if (((_ref = $scope.loggedUser) != null ? _ref._id : void 0) != null) {
-				$scope.initMyFollowers();
-			}
-			return $scope.listKeywords();
-		};
+
 		$scope.queryKeywords = function($query) {
 			return KeywordsService.queryKeywords($query);
 		};
 
+		$scope.$on('$routeUpdate', function() {
+			if (($routeParams.id == null) || !$routeParams.id) {
+				return $scope.expandAd(null);
+			}
+		});
+
+		$scope.$on('$routeChangeSuccess', function() {
+			var orderCookie;
+			orderCookie = ipCookie('orderBy') || 'time';
+			return $scope.setOrderBy(orderCookie);
+		});
+
+		$scope.$watch('location.search().id', function(newval) {
+			var item, i, len,
+				results = [],
+				items = $scope.items;
+
+			if (newval === undefined || newval === null) {
+				return $scope.expandAd(null, true);
+			} else {
+				for (i = 0; i < items.length; i++) {
+					item = items[i];
+					if (item._id === newval) {
+						results.push($scope.expandAd(item));
+					}
+				}
+				return results;
+			}
+		});
+
+		$scope.$watch('location.search().q', function(newval) {
+			if ((newval != null) && newval) {
+				$scope.srch.query = newval;
+				return $rootScope.$broadcast('searchWithRefresh');
+			}
+		});
+
+		$scope.$on('search', function() {
+			if ($scope.timeout) {
+				$timeout.clear($scope.timeout);
+			}
+			return $timeout(function() {
+				return $scope.search();
+			}, 100);
+		});
+
+		$scope.$on('searchWithRefresh', function() {
+			$scope.offset = 0;
+			return $scope.search({
+				add: false
+			});
+		});
+		var boundsChangeTimeout;
+
+		$scope.$on('mapBoundsChange', function(listeners, bounds) {
+			window.clearTimeout(boundsChangeTimeout);
+			boundsChangeTimeout = window.setTimeout(function() {
+				$scope.myLocation = bounds.getCenter();
+				$scope.geoBounds = bounds;
+				$scope.search({
+					add: false
+				});
+			}, 1500);
+		});
+
 		$scope.setLastAddedId(null);
-		return $scope.init();
+		if (($scope.loggedUser != null ? $scope.loggedUser._id : void 0) != null) {
+			$scope.initMyFollowers();
+		}
+		return $scope.listKeywords();
 	}
 ]);

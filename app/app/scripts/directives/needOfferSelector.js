@@ -1,7 +1,7 @@
 'use strict';
 /**
  * @ngdoc directive
- * @name needofferselector
+ * @name hearth.directives.needofferselector
  * @description Switches between need and offer
  * @restrict E
  */
@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('needofferselector',
 				community: '=',
 			},
 			templateUrl: 'templates/needOfferSelector.html',
-			link: function(scope, element, attrs) {
+			link: function(scope, element) {
 				var value = {
 					need: 'offer',
 					offer: 'need'

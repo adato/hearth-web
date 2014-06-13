@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.feedback
+ * @description 
+ * @restrict E
+ */
+
 angular.module('hearth.directives').directive('feedback', function() {
 	return {
 		restrict: 'E',
@@ -10,7 +17,7 @@ angular.module('hearth.directives').directive('feedback', function() {
 			recompute = function() {
 				var ratio;
 				ratio = (100 / (scope.upVotes + scope.downVotes)) * scope.downVotes;
-				return scope.ratio = {
+				scope.ratio = {
 					right: ratio + '%'
 				};
 			};

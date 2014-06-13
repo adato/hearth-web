@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.LoginCtrl
+ * @description 
+ */
+
 angular.module('hearth.controllers').controller('LoginCtrl', [
 	'$scope', '$location', '$routeParams', '$translate', 'Auth', 'ResponseErrors', '$rootScope',
 	function($scope, $location, $routeParams, $translate, Auth, ResponseErrors, $rootScope) {

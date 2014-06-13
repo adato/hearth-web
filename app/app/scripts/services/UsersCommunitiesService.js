@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.UsersCommunitiesService
+ * @description
+ */
+ 
 angular.module('hearth.services').service('UsersCommunitiesService', [
 	'$q', 'CommunityMemberships',
 	function($q, CommunityMemberships) {

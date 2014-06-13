@@ -13,7 +13,6 @@
         
         <div class="hide-for-medium-down bob">
             <p ng-hide="page.inviteFriendsClicked">{{'THIS_IS_BOB' | translate:info}}</p>
-            <img src="images/hitchhiking.svg">
         </div>
         <div ng-hide="page.inviteFriendsClicked">
             <div class="row-fluid padding-2" style="clear:both;">
@@ -57,7 +56,6 @@
             ng-show="isCreatingAd()">
         <div class="hide-for-medium-down bob">
             <p>{{'CREATE_YOUR_NEW_NEED_AND_BE_HAPPY' | translate}}</p>
-            <img src="images/hitchhiking.svg">
         </div>
     </header>
 
@@ -69,6 +67,8 @@
 
     <div class="left-column small-12 large-7 columns pull-5 alt-bg listing"
          ng-class="{ 'hide-for-small' : isReplyingAd() }">
+        <!--filter data="filter" search-fn="search({add:false})"></filter-->
+
         <div class="padding-h-2">
             <div class="row profile-links">
                 <div class="small-3 columns left padding-h-0">
@@ -97,9 +97,8 @@
                 </div>
             </div>
         </div>
-        <div ng-show="orderBy == 'location' && !isCreatingAd()">
-            <set-location  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)">
-            </set-location>
+        <div ng-if="orderBy == 'location' && !isCreatingAd()">
+            <search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
             <div class="hr"></div>
         </div>
         <div ng-show="orderBy == 'relevance' && !isCreatingAd()">
@@ -110,6 +109,8 @@
             </div>
             <div class="hr"></div>
         </div>
-        <div ng-include="'templates/searchResults.html'"></div>
+        <div ng-if="orderBy != 'location' || isCreatingAd()" >
+            <div ng-include="'templates/searchResults.html'"></div>   
+        </div>
     </div>
 </div>

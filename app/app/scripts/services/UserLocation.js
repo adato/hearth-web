@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.UserLocation
+ * @description
+ */
+
 angular.module('hearth.services').factory('UserLocation', [
 	'$resource',
 	function($resource) {

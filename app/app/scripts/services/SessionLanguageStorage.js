@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.SessionLanguageStorage
+ * @description
+ */
+ 
 angular.module('hearth.services').factory('SessionLanguageStorage', [
 	'$session', '$log',
 	function($session, $log) {
@@ -27,7 +33,7 @@ angular.module('hearth.services').factory('SessionLanguageStorage', [
 				return changeSessionLanguage();
 			},
 			get: function() {
-				return (session != null ? session.language : void 0) || language;
+				return session ? session.language : language;
 			}
 		};
 	}

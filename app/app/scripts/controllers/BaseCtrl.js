@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.BaseCtrl
+ * @description 
+ */
+
+angular.module('hearth.controllers').controller('BaseCtrl', [
+	'$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
+
 	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie) {
 		var timeout;
 
@@ -100,11 +108,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', ['$scope', '$locatio
 			return PostsService.reply($scope.reply).then(function() {
 				$scope.replyToAdSubmitting = false;
 				$scope.replyToAdSubmitted = true;
-				return $timeout(function() {
-					$scope.ad = null;
-					$rootScope.$broadcast('cancelReplyingAd');
-					return delete this.errors;
-				}, 8000);
 			}).then(null, function() {
 				delete this.errors;
 				$scope.replyToAdSubmitting = false;

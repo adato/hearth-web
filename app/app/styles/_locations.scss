@@ -1,5 +1,8 @@
-#map-canvas {
+.map-canvas {
 	height: 400px;
+	img {
+		max-width: inherit;
+	}
 }
 
 .pac-container {//google maps search field - list

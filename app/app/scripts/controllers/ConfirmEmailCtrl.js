@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name hearth.controllers.ConfirmEmailCtrl
+ * @description 
+ */
+ 
 angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 	'$scope', '$location', 'Auth', 'flash', '$analytics',
 	function($scope, $location, Auth, flash, $analytics) {

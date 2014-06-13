@@ -2,11 +2,14 @@
 
 /**
  * @ngdoc directive
- * @name locations
+ * @name hearth.geo.locations
  * @description Renders fields for selecting location, and allows to select location.
  * @restrict E
+ *
+ * @requires $timeout
+ * @requires geo
  */
-angular.module('hearth.directives').directive('locations', [
+angular.module('hearth.geo').directive('locations', [
 	'geo', '$timeout',
 	function(geo, $timeout) {
 		return {
@@ -16,25 +19,15 @@ angular.module('hearth.directives').directive('locations', [
 			scope: {
 				'locations': '='
 			},
-			templateUrl: 'templates/locations.html',
+			templateUrl: 'templates/geo/locations.html',
 			link: function(scope) {
 				var marker, map, searchBox, editedLocationIndex,
-					mapConfig = {
-						zoom: 6,
-						zoomControl: true,
-						mapTypeControl: false,
-						streetViewControl: false,
-						center: new google.maps.LatLng(0, 0),
-						draggableCursor: 'crosshair',
-						zoomControlOptions: {
-							style: google.maps.ZoomControlStyle.LARGE,
-							position: google.maps.ControlPosition.LEFT_CENTER
-						},
-					},
-					mapElement = $('#location-map #map-canvas'),
+					mapElement = $('#location-map #map'),
 					searchBoxElement = $('#location-map  input'),
 					initMap = function() {
-						map = new google.maps.Map(mapElement[0], mapConfig);
+						map = geo.createMap(mapElement[0], {
+							draggableCursor: 'url(images/pin.png) 14 34, default'
+						});
 						searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
 
 						google.maps.event.addListener(map, 'click', function(e) {
@@ -70,8 +63,7 @@ angular.module('hearth.directives').directive('locations', [
 
 						if (editedLocationIndex !== undefined && scope.locations[editedLocationIndex].coordinates) {
 							var location = scope.locations[editedLocationIndex],
-								coords = location.coordinates,
-								position = new google.maps.LatLng(coords[1], coords[0]);
+								position = geo.getLocationFromCoords(location.coordinates);
 
 							scope.$apply(function() {
 								setLocation(location.name, position);
@@ -106,10 +98,7 @@ angular.module('hearth.directives').directive('locations', [
 						if (marker) {
 							marker.setMap(null);
 						}
-						marker = new google.maps.Marker({
-							position: position,
-							map: map
-						});
+						marker = geo.placeMarker(position, 'pin', null, map);
 						map.panTo(position);
 						scope.selectedPosition = position;
 					};
@@ -138,55 +127,6 @@ angular.module('hearth.directives').directive('locations', [
 					$('#location-map').foundation('reveal', 'close');
 					$('.pac-container').remove(); //google maps forget this
 				});
-			}
-		};
-	}
-])
-/**
- * @ngdoc service
- * @name geo
- * @description google maps function wrapper
- */
-.factory('geo', [
-	'$q', '$timeout',
-	function($q) {
-		var geocoder = new google.maps.Geocoder();
-		return {
-			/**
-			 * @ngdoc function
-			 * @methodOf geo
-			 * @name getCurrentLocation
-			 * @description returns promise with data about current location
-			 */
-			getCurrentLocation: function() {
-				var deferred = $q.defer();
-
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function(position) {
-						deferred.resolve(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-					});
-				}
-				return deferred.promise;
-			},
-			/**
-			 * @ngdoc function
-			 * @methodOf geo
-			 * @param {google.maps.LatLng} position position
-			 * @name getAddress
-			 * @description returns promise with postal address data
-			 */
-			getAddress: function(position) {
-				var deferred = $q.defer();
-
-				geocoder.geocode({
-					latLng: position
-				}, function(responses) {
-					if (responses && responses.length > 0) {
-						deferred.resolve(responses[0].formatted_address);
-					}
-				});
-
-				return deferred.promise;
 			}
 		};
 	}

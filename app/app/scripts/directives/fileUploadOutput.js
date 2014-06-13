@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name hearth.directives.fileUploadOutput
+ * @description 
+ * @restrict A
+ */
+ 
 angular.module('hearth.directives').directive('fileUploadOutput', [
 	'$rootScope',
 	function($rootScope) {

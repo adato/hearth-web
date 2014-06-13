@@ -187,7 +187,7 @@
 									<span ng-bind-html="item.title"></span>
 								</strong>
 							</span>
-							<span ng-bind-html="item.name | linky"></span>
+							<span ng-bind-html="item.name | linky:'_blank'"></span>
 						</div>
 						<div ng-if="item.attachments.length" class="photo">
 							<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin}}">

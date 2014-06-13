@@ -50,7 +50,8 @@
 @import "foundation/components/progress-bars";
 
 //@import "foundation/components/side-nav";
-//@import "foundation/components/sub-nav";
+@import "foundation/components/sub-nav";
+
 //@import "foundation/components/switch";
 //@import "foundation/components/magellan";
 //@import "foundation/components/tables";
@@ -63,7 +64,7 @@
 @import "font-awesome";
 @import "hearth-icons";
 @import "angular";
-@import "social";
+@import "mixins/social";
 @import "progress";
 @import "locations";
 
@@ -91,6 +92,11 @@ $listing-image-size: emCalc(50px);
 $slider-width: 320px;
 $slider-tab-width: 320px / 3;
 $menu-item-width-multiplier: 9;
+
+@include social;
+#sendInvitationForm {
+    @include social(3em, left);
+}
 
 //XXX reverts default Foundation behavior
 h1, h2, h3, h4, h5, h6 {
@@ -397,9 +403,12 @@ p {
 }
 
 .show-on-hover {
-    display: none;
+    @include transition(opacity 1s);
+    opacity: 0;
+    display: block;
     @media #{$mobile} {
         display: inherit;
+        opacity: 1;
     }
 }
 
@@ -572,12 +581,11 @@ p {
             }
         }
         .show-on-hover {
-            visibility: hidden;
             display: block;
         }
         &.hoverable:hover {
             .show-on-hover {
-                visibility: visible;
+                opacity: 1;
             }
         }
         &.hoverable:hover .wish .wish-text,
@@ -597,6 +605,7 @@ p {
                 position: relative;
                 width: 0;
                 left: 100%;
+                z-index: 5;
                 &:after,
                 &:before {
                     width: 0;
@@ -623,6 +632,14 @@ p {
             }
         }
     }
+}
+
+.offer {
+    color: $offer-text-color;
+}
+
+.need {
+    color: $need-text-color;
 }
 
 .profile {
@@ -788,7 +805,6 @@ p {
         }
     }
     .left-column {
-        //border-left:1px solid $body-border-color;
         background: $body-alt-bg $left-column-background-pattern;
         border-right: 1px solid $body-border-color;
         h1, h2 {
@@ -797,16 +813,6 @@ p {
             margin-bottom: emCalc($grid-size * 2);
             margin-top: emCalc($grid-size * 4);
         }
-        form {
-            //min-width:380px;
-       
-        }
-    }
-    .right-column.detail {
-        position: fixed;
-        padding: 0;
-        z-index: 0;
-        padding-left: emCalc($grid-size * 6);
     }
     .right-column.listing {
         padding-left: emCalc($grid-size * 3);
@@ -817,13 +823,6 @@ p {
 }
 
 @media #{$medium} {
-    .right-column.detail {
-        overflow-y: auto;
-        position: fixed;
-        padding: 0;
-        z-index: 0;
-        padding-left: emCalc($grid-size * 6);
-    }
     .right-column.listing {
         padding-left: 0;
     }
@@ -1122,20 +1121,6 @@ small.error {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.invitation-form {
-    form {
-        position: relative;
-        padding: emCalc(2 * $grid-size);
-        background: $body-bg;
-        button[type='submit'] {
-            width: 15%;
-            position: absolute;
-            right: 0px;
-            padding: 0;
-        }
-    }
-}
-
 .login {
     min-height: 100%;
     height: 100%;
@@ -1319,4 +1304,23 @@ input + .remove {
 
 .clearfix {
     @include clearfix;
+}
+
+@import "messages";
+@import "filter";
+@import "adDetail";
+
+.marker-tooltip {
+    text-align: left;
+    cursor: pointer;
+    .content {
+        margin: {
+            left: 3.7em;
+        };
+    }
+    img {
+        @include border-radius;
+        width: 3em;
+        float: left;
+    }
 }

@@ -1,0 +1,63 @@
+<div class="container detail">
+		<div class="left-column small-12 large-7 columns alt-bg"  style="padding:1em;">
+			<div class="row">
+				<div class="large-7 columns">
+					<h1>
+						<span ng-show="ad.type == 'need'" class="need">
+							{{ 'DOES_WISH' | translate }}
+						</span>
+						<span ng-show="ad.type == 'offer'" class="offer">
+							{{ 'DOES_GIVE' | translate }}
+						</span>
+						<span ng-show="ad.title">{{ad.title}}</span>
+					</h1>
+				</div>
+				<div class="large-5 columns text-right">
+					<div time-ago from-time="ad.updatedAt || ad.createdAt"></div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<span ng-bind-html="ad.name | linky:'_blank'"></span>
+						
+					<div ng-if="ad.locations" class="locations"  ng-repeat="location in ad.locations">
+						<span class="fa fa-map-marker"></span> {{ location.name }}
+					</div>
+
+					<div ng-if="ad.attachments.length" class="photo">
+						<img ng-repeat="photo in ad.attachments" ng-src="{{ photo.origin }}">
+					</div>
+				</div>
+			</div>
+
+			<div ng-if="ad.replies && ad.replies.length && (profile._id == loggedCommunity._id || profile._id == loggedUser._id)" class="row">
+				<div class="large-12 columns">
+					<hr>
+					<div ng-repeat="reply in ad.replies" class="reply">
+						<div class="row">
+							<div class="large-12 columns">
+								<div class="right" time-ago from-time="reply.updated_at || reply.created_at"></div>
+								<avatar ng-if="reply.author._type == 'Community'" source="reply.author.avatar" size="normal" relation="" click="go('community', reply.author._id, reply.author._id)" class="left photo" type="'Community'"></avatar>
+								<avatar ng-if="reply.author._type != 'Community'" source="reply.author.avatar" size="normal" relation="reply.author.relation" click="go('profile', reply.author._id, reply.author._id)" class="left photo" type="'User'"></avatar>
+								<a class="smaller name" ng-show="reply.author._type != 'Community'" ng-href="#/profile/{{ reply.author._id }}">{{ reply.author.name }}</a>
+								<a class="smaller name" ng-show="reply.author._type == 'Community'" ng-href="#/community/{{ reply.author._id }}">{{ reply.author.name }}</a> &nbsp;
+								<div ng-bind-html="reply.message | linky:'_blank'"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<hr>
+					<social item="ad._id"></social>
+				</div>
+			</div>
+		</div>
+
+		<div class="right-column large-5 columns">
+			 <div class="profile" ng-include src="'templates/replyToAd.html'"></div>
+		</div>
+</div>

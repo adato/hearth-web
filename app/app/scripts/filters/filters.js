@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('hearth.filters', []).filter('urlize', function() {
+angular.module('hearth.filters', [])
+/**
+ * @ngdoc filter
+ * @name hearth.filters.urlize
+ * @description
+ */
+.filter('urlize', function() {
 	return function(input) {
 		if (input) {
 			var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim,
@@ -13,18 +19,48 @@ angular.module('hearth.filters', []).filter('urlize', function() {
 				.replace(emailAddressPattern, '<a href="mailto:$&" target="_blank">$&</a>');
 		}
 	};
-}).filter('apiPrefix', function() {
+})
+/**
+ * @ngdoc filter
+ * @name hearth.filters.apiPrefix
+ * @description
+ */
+.filter('apiPrefix', function() {
 	return function(input) {
 		return $$config.apiPath + input;
 	};
 })
 /**
  * @ngdoc filter
- * @name UTCdate
+ * @name hearth.filters.UTCdate
  * @description Returns date in UTC zone
  */
 .filter('UTCdate', function() {
 	return function(timestamp) {
 		return parseInt(timestamp, 10) - (new Date()).getTimezoneOffset() * 60000;
+	};
+})
+/**
+ * @ngdoc filter
+ * @name hearth.filters.ellipsis
+ * @description Returns shortened text
+ *
+ * @param {String} text text to shorten
+ * @param {String} limit limit count of characters (optional) (default:127)
+ *
+ * @return {String} shortened text
+ */
+.filter('ellipsis', function() {
+	return function(text, limit) {
+		text = (text || '').trim();
+		limit = Math.abs(limit || 127);
+
+		var originalLength = text.length;
+
+		text = text.substring(0, limit).trim();
+		if (originalLength > text.length && text[text.length - 1] !== '…') {
+			text += '…';
+		}
+		return text;
 	};
 });

@@ -2,60 +2,38 @@
 
 /**
  * @ngdoc directive
- * @name social
+ * @name hearth.directives.social
  * @description Displays social networks links
  * @restrict E
  */
 angular.module('hearth.directives').directive('social', [
-	'shortener',
 
-	function(shortener) {
+	function() {
 		return {
 			restrict: 'E',
 			replace: true,
 			transclude: true,
 			scope: {
-				id: '='
+				item: '='
 			},
 			templateUrl: 'templates/social.html',
 			link: function(scope) {
-				var url = window.location.href + '?id=' + scope.id;
-				shortener.shorten(url).then(function(shortUrl) {
-					angular.extend(scope, {
-						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + shortUrl,
-						gplus: 'https://plus.google.com/share?url=' + shortUrl,
-						twitter: 'https://twitter.com/share?url=' + shortUrl,
-						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + shortUrl
-					});
-				});
-			}
-
-		};
-	}
-]).factory('shortener', [
-	'$q',
-	function($q) {
-		return {
-			shorten: function(url) {
-				var deferred = $q.defer();
-
-				$.ajax({
-					dataType: 'json',
-					url: 'https://www.googleapis.com/urlshortener/v1/url?key=' + $$config.gApiKey,
-					data: JSON.stringify({
-						'longUrl': url,
-						key: $$config.gApiKey
-					}),
-					contentType: 'application/json',
-					type: 'post',
-					'processData': false,
-					success: function(response) {
-						deferred.resolve(response.id);
+				scope.$watch('item', function(value) {
+					var url = window.location.href.replace(window.location.hash, '');
+					if (value) {
+						url += '%23/ad/' + value;
 					}
+
+					angular.extend(scope, {
+						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+						gplus: 'https://plus.google.com/share?url=' + url,
+						twitter: 'https://twitter.com/share?url=' + url,
+						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
+					});							
 				});
 
-				return deferred.promise;
 			}
+
 		};
 	}
 ]);

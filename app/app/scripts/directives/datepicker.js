@@ -1,7 +1,7 @@
 'use strict';
 /**
  * @ngdoc directive
- * @name datepicker
+ * @name hearth.directives.datepicker
  * @description Solves UI for selecting date
  * @restrict A
  */

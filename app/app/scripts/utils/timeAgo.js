@@ -1,6 +1,13 @@
 'use strict';
 
-angular.module('hearth.directives').directive('timeAgo', [
+/**
+ * @ngdoc directive
+ * @name hearth.utils.timeAgo
+ * @description
+ * @restrict EA
+ */
+
+angular.module('hearth.utils').directive('timeAgo', [
 	'timeAgoService', '$rootScope',
 	function(timeago, $rootScope) {
 		return {
@@ -16,7 +23,7 @@ angular.module('hearth.directives').directive('timeAgo', [
 						if (scope.timeago.nowTime != null) {
 							value = scope.timeago.nowTime - timeago.x(scope.fromTime);
 							if (value) {
-								return linkElement.text(scope.timeago.inWords(value));
+								return linkElement.html('<span class="fa fa-clock-o"></span> ' + scope.timeago.inWords(value));
 							}
 						}
 					};

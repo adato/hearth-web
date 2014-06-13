@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name hearth.services.PostsService
+ * @description
+ */
+ 
 angular.module('hearth.services').service('PostsService', [
 	'Post', 'PostReplies', '$q',
 	function(Post, PostReplies, $q) {
