@@ -11,89 +11,115 @@
 				</div>
 		</div>
 	</div>-->
-	<div ng-repeat="(id, item) in items | orderBy:orderByPostSort" class="wish-container hoverable" ng-class="{'expanded' : isReplyingAd() && ad._id == item._id, 'non-expanded' : isReplyingAd() && ad._id != item._id, 'wish-fade-out' : item._id == getLastAddedId() }">
-	
-		<div class="wish row" id="wish{{ id }}" ng-if="item.type == 'need' || item.type == 'offer'" ng-click="go('detail', item._id, item.author._id)" analytics-on analytics-event="click on a post" analytics-category="Marketplace">
-			<avatar ng-if="item.author._type == 'Community'" source="item.author.avatar" size="normal" relation="" click="go('community', item.author._id, item.author._id)" class="left photo" type="'Community'"></avatar>
-			<avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>
-			<div class="small-12 columns wish-text hyphenate" style="width:99%;" ng-if="!isEditingAd(item._id)">
-				<div class="right small">
-					<div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.updatedAt || item.createdAt"></div>
-					<div ng-if="orderBy != 'time' && orderBy != 'relevance'" ng-show="item.distance >= 0"><span class="fa fa-map-marker"></span> {{ item.distance }} {{ 'KM_FROM_YOU' | translate }}</div>
-					<i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
-				</div>
-				<a class="smaller name" ng-show="item.author._type != 'Community'" ng-href="#/profile/{{ item.author._id }}">{{ item.author.name }}</a>
-				<a class="smaller name" ng-show="item.author._type == 'Community'" ng-href="#/community/{{ item.author._id }}">{{ item.author.name }}</a> &nbsp;
-				<div ng-show="item.type == 'need'" class="need">
-					{{ 'DOES_WISH' | translate }}
-					<span ng-show="item.title">{{item.title}}</span>
-				</div>
-				<div ng-show="item.type == 'offer'" class="offer">
-					{{ 'DOES_GIVE' | translate }}
-					<span ng-show="item.title">{{item.title}}</span>
-				</div>
-				
-				<div style="display:inline;" ng-bind-html="item.name | linky:'_blank' "><!-- post text --></div>
-				<div ng-if="item.attachments.length" class="photo">
-					<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
-				</div>
-				<div class="keywords" ng-class="item.type" ng-if="item.keywords">
-					<ul>
-						<li ng-repeat="keyword in item.keywords"><a href="" ng-class="{ 'active': keywords.indexOf(keyword) > -1 }" ng-click="searchByKeyword($event, keyword)" analytics-on analytics-event="filter post keyword" analytics-category="Marketplace" analytics-label="tags">{{ keyword }}</a></li>
-					</ul>
-					<br style="clear:both;">
-				</div>
+	<ul class="ad-list">
+		<li ng-repeat="(id, item) in items | orderBy:orderByPostSort" ng-class="{offer: item.type == 'offer',need: item.type == 'need'}">
+			<div class="content">
+				<span class="type arrow" ng-if="item.type == 'offer'">&#x25b6;</span>
+		       	<span class="type arrow" ng-if="item.type == 'need'">&#x25c0;</span>
 
-				<div ng-show="item.author._id == loggedEntity._id && item.date>0" class="small">
-					{{ 'VALID_UNTIL' | translate }} {{item.date | UTCdate | date : languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}}
-				</div>
-				
-				<div class="row small wish-bottom-bar">
-					<div class="large-7 small-12 columns">
-						<div ng-if="item.locations" style="margin-top:0;" ng-repeat="location in item.locations">
+				<header>
+					<span ng-if="item.locations" ng-repeat="location in item.locations">
 						<span ng-if="location.name" class="fa fa-map-marker"></span> {{ location.name }}
-						</div>
-					</div>
-					<div class="small-1 columns">
-						&nbsp;
-					</div>
-					<div class="large-5 small-11 columns right text-right show-on-hover">
-						<div style="margin-bottom:1em;">
-							<a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
-								<i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
-							</a>
-							<a href="" ng-click="" ng-hide="item.author._id == loggedEntity._id">
-								<i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
-							</a>
-						</div>
-						 <social item="item._id"></social>
-					</div>
+					</span>					
+					<span><span class="fa fa-clock-o"></span> {{item.updatedAt}}</span>
+	       		</header>
+
+	       		<div class="title">
+	       			<span class="type" ng-if="item.type == 'offer'">Nabízí</span>
+	       			<span class="type" ng-if="item.type == 'need'">Přijme</span>
+					<h2>{{item.title}}</h2>
 				</div>
-			</div>
-			<div class="small-12 columns wish-text padding-h-0 right" style="width:99%;" ng-if="isEditingAd(item._id);">
-				<div ng-include src="'templates/createAd.html'">
-				</div>
+				<p>{{item.name}}</p>
 			</div>
 
-			<span class="arrow" ng-show="isReplyingAd() && ad._id == item._id"></span>
-		</div>
-		<div class="wish row user" id="user{{ id }}" ng-if="item.type == 'user'" analytics-on analytics-event="click on user's name" analytics-category="Marketplace">
-			<avatar click="go('profile', item._id, item._id)" source="item.avatar" size="user-search" relation="item.relation" class="left photo" type="item._type"></avatar>
-			<div class="small-11 medium-10 columns wish-text hyphenate">
-				<a class="name" ng-href="#/profile/{{ item._id }}" ng-show="item._type != 'Community'">{{item.name}}</a>
-				<a class="name" ng-href="#/community/{{ item._id }}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
-				{{ item.upVotes }} &nbsp; 
-				<feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
-				&nbsp; {{ item.downVotes }}<br>
-				<div ng-switch on="item.relation == 'followee' || item.relation == 'friend'" ng-hide="!loggedUser._id || loggedUser._id == item._id" class="right">
-					<a href="" ng-switch-when="true" class="small follow" ng-click="follow(item._id, true); $event.stopPropagation()" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
-						<i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
-					</a>
-					<a href="" ng-switch-when="false" class="small follow" ng-click="follow(item._id, false); $event.stopPropagation()">
-						<i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
-					</a>
+			<footer>
+				<button ng-if="item.type == 'offer'" class="small secondary"><b>Požádat</b> o dar</button>
+				<button ng-if="item.type == 'need'" class="small"><b>Nabídnout</b> dar</button>
+			</footer>
+		
+			<!--div class="wish row" id="wish{{ id }}" ng-if="item.type == 'need' || item.type == 'offer'" ng-click="go('detail', item._id, item.author._id)" analytics-on analytics-event="click on a post" analytics-category="Marketplace">
+				<avatar ng-if="item.author._type == 'Community'" source="item.author.avatar" size="normal" relation="" click="go('community', item.author._id, item.author._id)" class="left photo" type="'Community'"></avatar>
+				<avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>
+				<div class="small-12 columns wish-text hyphenate" style="width:99%;" ng-if="!isEditingAd(item._id)">
+					<div class="right small">
+						<div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.updatedAt || item.createdAt"></div>
+						<div ng-if="orderBy != 'time' && orderBy != 'relevance'" ng-show="item.distance >= 0"><span class="fa fa-map-marker"></span> {{ item.distance }} {{ 'KM_FROM_YOU' | translate }}</div>
+						<i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
+					</div>
+					<a class="smaller name" ng-show="item.author._type != 'Community'" ng-href="#/profile/{{ item.author._id }}">{{ item.author.name }}</a>
+					<a class="smaller name" ng-show="item.author._type == 'Community'" ng-href="#/community/{{ item.author._id }}">{{ item.author.name }}</a> &nbsp;
+					<div ng-show="item.type == 'need'" class="need">
+						{{ 'DOES_WISH' | translate }}
+						<span ng-show="item.title">{{item.title}}</span>
+					</div>
+					<div ng-show="item.type == 'offer'" class="offer">
+						{{ 'DOES_GIVE' | translate }}
+						<span ng-show="item.title">{{item.title}}</span>
+					</div>
+					
+					<div style="display:inline;" ng-bind-html="item.name | linky:'_blank' "></div>
+					<div ng-if="item.attachments.length" class="photo">
+						<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
+					</div>
+					<div class="keywords" ng-class="item.type" ng-if="item.keywords">
+						<ul>
+							<li ng-repeat="keyword in item.keywords"><a href="" ng-class="{ 'active': keywords.indexOf(keyword) > -1 }" ng-click="searchByKeyword($event, keyword)" analytics-on analytics-event="filter post keyword" analytics-category="Marketplace" analytics-label="tags">{{ keyword }}</a></li>
+						</ul>
+						<br style="clear:both;">
+					</div>
+
+					<div ng-show="item.author._id == loggedEntity._id && item.date>0" class="small">
+						{{ 'VALID_UNTIL' | translate }} {{item.date | UTCdate | date : languageCode.code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}}
+					</div>
+					
+					<div class="row small wish-bottom-bar">
+						<div class="large-7 small-12 columns">
+							<div ng-if="item.locations" style="margin-top:0;" ng-repeat="location in item.locations">
+							<span ng-if="location.name" class="fa fa-map-marker"></span> {{ location.name }}
+							</div>
+						</div>
+						<div class="small-1 columns">
+							&nbsp;
+						</div>
+						<div class="large-5 small-11 columns right text-right show-on-hover">
+							<div style="margin-bottom:1em;">
+								<a href="" ng-click="startEditingAd($event, item);" ng-show="item.author._id == loggedEntity._id">
+									<i class="fa fa-edit"></i>&nbsp;{{ 'EDIT_BUTTON_CAPTION' | translate }}
+								</a>
+								<a href="" ng-click="" ng-hide="item.author._id == loggedEntity._id">
+									<i class="hearthicon-reply"></i>&nbsp;{{ 'REPLY_BUTTON_CAPTION' | translate }}
+								</a>
+							</div>
+							 <social item="item._id"></social>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+				<div class="small-12 columns wish-text padding-h-0 right" style="width:99%;" ng-if="isEditingAd(item._id);">
+					<div ng-include src="'templates/createAd.html'">
+					</div>
+				</div>
+
+				<span class="arrow" ng-show="isReplyingAd() && ad._id == item._id"></span>
+			</div-->
+
+			<!--div class="wish row user" id="user{{ id }}" ng-if="item.type == 'user'" analytics-on analytics-event="click on user's name" analytics-category="Marketplace">
+				<avatar click="go('profile', item._id, item._id)" source="item.avatar" size="user-search" relation="item.relation" class="left photo" type="item._type"></avatar>
+				<div class="small-11 medium-10 columns wish-text hyphenate">
+					<a class="name" ng-href="#/profile/{{ item._id }}" ng-show="item._type != 'Community'">{{item.name}}</a>
+					<a class="name" ng-href="#/community/{{ item._id }}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
+					{{ item.upVotes }} &nbsp; 
+					<feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
+					&nbsp; {{ item.downVotes }}<br>
+					<div ng-switch on="item.relation == 'followee' || item.relation == 'friend'" ng-hide="!loggedUser._id || loggedUser._id == item._id" class="right">
+						<a href="" ng-switch-when="true" class="small follow" ng-click="follow(item._id, true); $event.stopPropagation()" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
+							<i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
+						</a>
+						<a href="" ng-switch-when="false" class="small follow" ng-click="follow(item._id, false); $event.stopPropagation()">
+							<i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
+						</a>
+					</div>
+				</div>
+			</div-->
+		</li>
+	</ul>
 </div>
