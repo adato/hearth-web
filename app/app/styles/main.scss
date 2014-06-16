@@ -18,6 +18,8 @@
 
 // import parts of Foundation framework
 
+
+
 @import "font-awesome";
 @import
   "foundation/components/grid",
@@ -56,6 +58,20 @@
   "foundation/components/type",
   "foundation/components/offcanvas",
   "foundation/components/visibility";
+
+@import "mixins/social";
+@import "mixins/topbaricons";
+
+@import "navigation";
+@import "forms";
+
+ .logo {
+   @include background( image-url("logo.svg"), nth($color, 1));
+   width: 200px;
+   height: $topbar-height;
+   border-radius: $global-radius;
+}
+
 
 /*
 @import "foundation/components/global";
@@ -253,7 +269,7 @@ nav.left-pad {
     left: $left-bar-width;
 }
 
-@import "navigation";
+
 
 .content {
     @media #{$small} {
@@ -1073,7 +1089,7 @@ input[disabled].text-input {
     background: $body-bg;
 }
 
-@import "forms";
+
 
 .round,
 .prefix.button.round,

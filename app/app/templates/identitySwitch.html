@@ -3,7 +3,12 @@
         {{ 'TOP_BAR_PROFILE' | translate }}
     </a>
     <a href="" ng-click="switchBack()" title="{{ loggedUser.name }}" class="show-for-medium-up">
-        <i class="fa fa-user"></i> {{ 'TOP_BAR_PROFILE' | translate }}
+        <div class="text">
+            <div class="icon">
+                <div class="fa">&#xf007;</div>
+            </div>
+            <div>{{ 'TOP_BAR_PROFILE' | translate }}</div>
+        </div>
     </a>
     <ul class="dropdown" ng-if="loggedUser._id" title="{{ loggedCommunity.name || loggedUser.name }} ">
        <li ng-show="myCommunities.length">

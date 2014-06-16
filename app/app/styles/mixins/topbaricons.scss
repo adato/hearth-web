@@ -1,0 +1,45 @@
+@mixin topbaricons($size: 35px) {
+	li {
+		text-align: center;
+		line-height: 1em;
+		a:hover {
+			.fa {
+				-webkit-animation: rotate 5s linear infinite;
+			}
+		}
+		div {
+			text-align: center;
+			&.text {
+				font-size: 9px;
+				line-height: 9px;
+			}
+			&.fa {
+				font-size: $size / 1.8;
+				margin: {
+					top: 7px;
+				};
+			}
+			&.icon {
+				margin: 1px auto;
+				position: relative;
+				overflow: hidden;
+				width: $size;
+				height: $size - $size / 2 + 9px;
+				margin: {
+					top: 4px;
+					bottom: 3px;
+				};
+				&:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					content: "";
+					border: 2px solid white;
+					border-radius: 50%;
+					width: $size;
+					height: $size;
+				}
+			}
+		}
+	}
+}
