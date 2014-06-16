@@ -20,8 +20,10 @@
 					<a ng-href="{{ '/users/auth/facebook' | apiPrefix }}" class="button secondary small" style="width:100%;" ng-cloak analytics-on analytics-event="login through FB" analytics-category="Login" analytics-label="login page" analytics-value="2"><span class="fa">&#xf09a;</span> {{ 'SIGN_UP_WITH_FACEBOOK' | translate }}</a><br><br>
 					<a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" class="button secondary small" style="width:100%;" ng-cloak analytics-on analytics-event="login through Google" analytics-category="Login" analytics-label="login page" analytics-value="2"><span class="fa">&#xf0d5;</span> {{ 'SIGN_UP_WITH_GOOGLE' | translate }}</a>
 				</section>
+
 				<article class="row">
 					<section class=" large-12 columns">
+						<div class="alert-box visible alert error round"  ng-show="errors.base">{{ errors.base | translate }}</div>
 						<span style="margin-top:1em;margin-left:1em;">{{ 'CREATE_NEW' | translate }}</span>
 						<a ng-href="#/register" analytics-on analytics-event="click on Create account link" analytics-category="registration" analytics-label="front page" analytics-value="3" style="width:100%;"> {{ 'CREATE_ACCOUNT_LINK_CAPTION' | translate }}</a>
 					</section>
