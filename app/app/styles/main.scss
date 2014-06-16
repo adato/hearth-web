@@ -18,6 +18,8 @@
 
 // import parts of Foundation framework
 
+
+
 @import "font-awesome";
 @import
   "foundation/components/grid",
@@ -57,8 +59,13 @@
   "foundation/components/offcanvas",
   "foundation/components/visibility";
 
+@import "mixins/social";
+@import "mixins/topbaricons";
+
 @import "navigation";
 @import "forms";
+
+
 /*
 @import "foundation/components/global";
 @import "foundation/components/grid";

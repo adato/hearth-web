@@ -6,8 +6,6 @@
 			<ul class="title-area">
 				<li class="name" ng-init="switchExpanded = false">
 					<a href="#/search" ng-class="{ 'active': pageType == 'search' }" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-						{{ 'TITLE' | translate }}
-						<div>.network</div>
 					</a>
 				</li>
 				<li class="toggle-topbar menu-icon"><a href=""><span></span></a></li>
@@ -15,13 +13,17 @@
 
 			<ul class="left">
 				<li class="has-form">
-              		<input type="text">
-          		</li>
+					<input type="text">
+				</li>
           				
 				<li signed-in ng-cloak class="icon">
 					<a title="{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}" ng-href="#/communities" ng-class="{ 'link': 1, 'active': pageType == 'communities' }" id="nav-communities">
-						<i class="fa fa-users"></i>
-						<div>{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}</div>
+						 <div class="text">
+							<div class="icon">
+								<div class="fa">&#xf0c0;</div>
+							</div>
+							{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}
+						</div>
 					</a>
 				</li>
 	            <!--li signed-in ng-cloak ng-if="!loggedCommunity._id">
@@ -38,8 +40,12 @@
 
 				<li signed-in class="icon">
 					<a href="#/messages" title="{{ 'MESSAGES' | translate }}">
-						<i class="fa fa-envelope"></i>
-						<div>{{ 'MESSAGES' | translate }}</div>
+						<div class="text">
+							<div class="icon">
+								<div class="fa">&#xf0e0;</div>
+							</div>
+							{{ 'MESSAGES' | translate }}
+						</div>
 					</a>					
 				</li>
 			
