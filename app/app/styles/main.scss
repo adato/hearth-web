@@ -65,6 +65,13 @@
 @import "navigation";
 @import "forms";
 
+ .logo {
+   @include background( image-url("logo.svg"), nth($color, 1));
+   width: 200px;
+   height: $topbar-height;
+   border-radius: $global-radius;
+}
+
 
 /*
 @import "foundation/components/global";
