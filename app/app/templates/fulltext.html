@@ -1,6 +1,6 @@
 <div class="container fulltext profile" ng-init="isFromFulltext = true; x = { editing: 0}; page = {}; page.inviteFriendsClicked = false;" ng-controller="ListViewStateCtrl">
 <a id="topOfPage"></a>
-    <header class="right-column small-12 large-5 columns push-7"
+    <!--header class="right-column small-12 large-5 columns push-7"
             ng-hide="isReplyingAd() || isCreatingAd()">
 
         <div class="invitation-link" signed-in>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header-->
     <header class="right-column small-12 large-5 columns push-7"
             ng-show="isCreatingAd()">
         <div class="hide-for-medium-down bob">
@@ -65,7 +65,7 @@
         <!-- content from partial templates/replyToAd.html -->
     </header>
 
-    <div class="left-column small-12 large-7 columns pull-5 alt-bg listing"
+    <div class="large-12 columns "
          ng-class="{ 'hide-for-small' : isReplyingAd() }">
         <!--filter data="filter" search-fn="search({add:false})"></filter-->
 
