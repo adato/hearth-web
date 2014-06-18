@@ -36,7 +36,7 @@
 					<span ng-if="item.type == 'offer'">{{ 'DOES_GIVE' | translate }}</span>
 					{{item.title}}
 				</h1>
-				<p>{{item.name | linky:'_blank' }}</p>
+				<p ng-bind-html="item.name | linky:'_blank'"></p>
 			</div>
 			<footer>
 				<button ng-if="item.type == 'offer'" class="small secondary"><b>Požádat</b> o dar</button>

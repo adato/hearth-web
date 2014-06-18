@@ -1,0 +1,186 @@
+$size: 30px;
+$border: $size / 10;
+$arrowTop: 30px;
+$itemShadow:  1px 1px 6px gray;
+
+.photo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8em;
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid white;
+    }
+    .spring {
+        width: 10px;
+        height: 500px;
+        background-color: gray;
+    }
+}
+
+.item {
+    background-color: white;
+    min-height: 200px;
+    position: relative;
+    margin: auto;
+    box-shadow: $itemShadow;
+    border-radius: $border;
+    margin: {
+        bottom: 1em;
+    };
+    header {
+        text-align: right;
+        font-size: 0.8em;
+        span {
+            margin: {
+                left: 2em;
+            };
+            .fa {
+                margin: {
+                    right: 0.5em;
+                };
+            }
+        }
+    }
+    footer {
+        padding: {
+            left: 1em;
+            right: 1em;
+        };
+        .share {
+            font-size: 1.8em;
+            float: right;
+            margin: {
+                top: 24px;
+            }
+            color: nth($color, 5);
+        }
+    }
+    .content {
+        margin: {
+            left: sqrt(2) * $size;
+        };
+        padding: {
+            top: 1em;
+            right: 1em;
+            bottom: 1em;
+        };
+        h1 {
+            font-size: 1.2em;
+            font-weight: bold;
+            span {
+                position: relative;
+                z-index: 50;
+                left: -$size / 2;
+                font-size: 0.8em;
+            }
+        }
+        p {
+            text-align: justify;
+            hyphens: auto;
+        }
+    }
+    .overlap {
+        background-color: white;
+        height: 2px + 2 * sqrt(2) * $size;
+        width: sqrt(2) * $size;
+        position: absolute;
+        top: $border;
+        left: 0;
+        z-index: 10;
+    }
+    & .arrowbox {
+        z-index: 9;
+        position: absolute;
+        border-radius: $border;
+        background-color: white;
+        box-shadow: $itemShadow;
+    }
+    & .arrow {
+        height: $size + 30px;
+        width: $size;
+        overflow: hidden;
+        position: absolute;
+        z-index: 20;
+        &:after {
+            z-index: 5;
+            content: "";
+            position: absolute;
+            top: 2 * $border;
+            height: $size;
+            width: $size;
+            @include rotate(45deg);
+        }
+    }
+    button {
+        border: 1px solid transparent;
+        padding: {
+            left: 3em;
+            right: 3em;
+        };
+        margin: {
+            right: 1em;
+        };
+       outline:none;
+    }
+    &.need {
+        h1 {
+            span {
+                color: nth($color, 1);
+            }
+        }
+        button {
+            &:hover {
+                border: 1px solid nth($color, 1);
+            }
+            color: nth($color, 1);
+            background-color: lighten(nth($color, 1), 30%);
+        }
+        & .arrowbox {
+            height: $size;
+            width: $size;
+            left: $border - $size / 2;
+            top: $arrowTop;
+            @include rotate(45deg);
+            -webkit-transform-origin: 50% 50%;
+        }
+        & .arrow {
+            left: -$size + 2 * $border + 5px;
+            top: $arrowTop - 2 * $border;
+            &:after {
+                left: $size / 2;
+                background-color: nth($color, 1);
+            }
+        }
+    }
+    &.offer {
+        h1 {
+            span {
+                color: nth($color, 2);
+            }
+        }
+        button {
+            &:hover {
+                border: 1px solid nth($color, 2);
+            }
+            color: nth($color, 2);
+            background-color: lighten(nth($color, 2), 30%);
+        }
+        & .arrowbox {
+            height: round(sqrt(2) * $size) + 2 * $border;
+            width: round(sqrt(2) * $size);
+            left: -$size / 2;
+            top: $arrowTop - round(sqrt(2) * $size) + $size + $border;
+        }
+        & .arrow {
+            left: -$size / 2 + 2 * $border;
+            top: $arrowTop - round(sqrt(2) * $size) + $size + 2 * $border;
+            &:after {
+                left: -$size / 2;
+                background-color: nth($color, 2);
+            }
+        }
+    }
+}
