@@ -11,31 +11,42 @@
 				</div>
 		</div>
 	</div>-->
-	<ul class="ad-list">
-		<li ng-repeat="(id, item) in items | orderBy:orderByPostSort" ng-class="{offer: item.type == 'offer',need: item.type == 'need'}">
+	
+	<article class="row" ng-repeat="(id, item) in items | orderBy:orderByPostSort" ng-class="{offer: item.type == 'offer',need: item.type == 'need'}">
+		<section class="large-2 columns photo">
+			<img ng-if="item.author.avatar.origin" src="{{item.author.avatar.origin}}"/>
+			<img ng-if="!item.author.avatar.origin" src="images/no-avatar.png"/>
+			<div>{{ item.author.name }}</div>
+			<!--div class="progress"><span class="meter"></span></div-->
+		</section>
+		<section class="large-10 columns">
+			<div class="item" ng-class="item.type">
+			<div class="overlap"> </div>
+			<div class="arrowbox"></div>
+			<div class="arrow"></div>
 			<div class="content">
-				<span class="type arrow" ng-if="item.type == 'offer'">&#x25b6;</span>
-		       	<span class="type arrow" ng-if="item.type == 'need'">&#x25c0;</span>
-
 				<header>
 					<span ng-if="item.locations" ng-repeat="location in item.locations">
 						<span ng-if="location.name" class="fa fa-map-marker"></span> {{ location.name }}
-					</span>					
-					<span><span class="fa fa-clock-o"></span> {{item.updatedAt}}</span>
-	       		</header>
-
-	       		<div class="title">
-	       			<span class="type" ng-if="item.type == 'offer'">Nabízí</span>
-	       			<span class="type" ng-if="item.type == 'need'">Přijme</span>
-					<h2>{{item.title}}</h2>
-				</div>
-				<p>{{item.name}}</p>
+					</span>	
+					<span><span class="fa fa-clock-o"></span>{{item.updatedAt}}</span>
+				</header>
+				<h1>
+					<span ng-if="item.type == 'need'">{{ 'DOES_WISH' | translate }}</span>
+					<span ng-if="item.type == 'offer'">{{ 'DOES_GIVE' | translate }}</span>
+					{{item.title}}
+				</h1>
+				<p>{{item.name | linky:'_blank' }}</p>
 			</div>
-
 			<footer>
 				<button ng-if="item.type == 'offer'" class="small secondary"><b>Požádat</b> o dar</button>
 				<button ng-if="item.type == 'need'" class="small"><b>Nabídnout</b> dar</button>
+				uz pozadalo <b>6 lidi</b><a class="share"><span class="fa fa-share-square-o"></span></a>
 			</footer>
+			</div>
+		</section>
+	 </article>
+
 		
 			<!--div class="wish row" id="wish{{ id }}" ng-if="item.type == 'need' || item.type == 'offer'" ng-click="go('detail', item._id, item.author._id)" analytics-on analytics-event="click on a post" analytics-category="Marketplace">
 				<avatar ng-if="item.author._type == 'Community'" source="item.author.avatar" size="normal" relation="" click="go('community', item.author._id, item.author._id)" class="left photo" type="'Community'"></avatar>
@@ -120,6 +131,6 @@
 					</div>
 				</div>
 			</div-->
-		</li>
-	</ul>
+		
+
 </div>

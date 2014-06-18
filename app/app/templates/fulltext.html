@@ -65,11 +65,9 @@
         <!-- content from partial templates/replyToAd.html -->
     </header>
 
-    <div class="large-12 columns "
-         ng-class="{ 'hide-for-small' : isReplyingAd() }">
-        <!--filter data="filter" search-fn="search({add:false})"></filter-->
+    <div class="large-12 columns " ng-class="{ 'hide-for-small' : isReplyingAd() }">
 
-        <div class="padding-h-2">
+        <!--div class="padding-h-2">
             <div class="row profile-links">
                 <div class="small-3 columns left padding-h-0">
                     <a href=""
@@ -96,7 +94,7 @@
                        ng-click="startCreatingAd()"><i class="fa fa-pencil x-large"></i><div>{{ 'CREATE_POST' | translate }}</div></a>
                 </div>
             </div>
-        </div>
+        </div-->
         <div ng-if="orderBy == 'location' && !isCreatingAd()">
             <search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
             <div class="hr"></div>
