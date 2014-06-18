@@ -73,6 +73,12 @@
    border-radius: $global-radius;
 }
 
+body {
+    background-image: image-url("bg.png");
+    background-repeat: repeat-x;
+    background-attachment:fixed;
+}
+
 
 /*
 @import "foundation/components/global";
