@@ -63,4 +63,22 @@ angular.module('hearth.filters', [])
 		}
 		return text;
 	};
-});
+})
+
+/**
+ * @ngdoc filter
+ * @name hearth.filters.timeAgoService
+ * @description Returns date interval converted to text
+ */
+.filter('ago', [
+	'timeAgoService',
+
+	function(timeAgoService) {
+		return function(value) {
+			var nowDate = new Date(),
+				valueDate = Date.parse(value);
+
+			return timeAgoService.inWords(nowDate.getTime() - valueDate);
+		}
+	}
+]);
