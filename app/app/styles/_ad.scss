@@ -1,7 +1,7 @@
 $size: 30px;
 $border: $size / 10;
 $arrowTop: 30px;
-$itemShadow:  1px 1px 6px gray;
+$itemShadow: 1px 1px 6px gray;
 
 .photo {
     text-align: center;
@@ -18,6 +18,15 @@ $itemShadow:  1px 1px 6px gray;
         height: 500px;
         background-color: gray;
     }
+    div:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        margin-top: 20px;
+        width: 3px;
+        background-color: lighten(nth($color, 3), 25%);
+        height: 100%;
+    }
 }
 
 .item {
@@ -26,7 +35,7 @@ $itemShadow:  1px 1px 6px gray;
     position: relative;
     margin: auto;
     box-shadow: $itemShadow;
-    border-radius: $border;
+    border-radius: $global-radius;
     margin: {
         bottom: 1em;
     };
@@ -54,7 +63,7 @@ $itemShadow:  1px 1px 6px gray;
             float: right;
             margin: {
                 top: 24px;
-            }
+            };
             color: nth($color, 5);
         }
     }
@@ -87,7 +96,7 @@ $itemShadow:  1px 1px 6px gray;
         height: 2px + 2 * sqrt(2) * $size;
         width: sqrt(2) * $size;
         position: absolute;
-        top: $border;
+        top: $arrowTop - 15px;
         left: 0;
         z-index: 10;
     }
@@ -123,7 +132,7 @@ $itemShadow:  1px 1px 6px gray;
         margin: {
             right: 1em;
         };
-       outline:none;
+        outline: none;
     }
     &.need {
         h1 {
