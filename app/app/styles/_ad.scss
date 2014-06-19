@@ -2,30 +2,51 @@ $size: 30px;
 $border: $size / 10;
 $arrowTop: 30px;
 $itemShadow: 1px 1px 6px gray;
+$imageSize: 80px;
 
 .photo {
     text-align: center;
     font-weight: bold;
     font-size: 0.8em;
-    img {
-        width: 80px;
-        height: 80px;
+    img,
+    .img {
+        width: $imageSize;
+        height: $imageSize;
         border-radius: 50%;
         border: 3px solid white;
-    }
-    .spring {
-        width: 10px;
-        height: 500px;
-        background-color: gray;
-    }
-    div:after {
-        content: '';
-        position: absolute;
+        box-shadow: $itemShadow;
+        position: relative;
+        background-size: cover;
         left: 50%;
-        margin-top: 20px;
-        width: 3px;
-        background-color: lighten(nth($color, 3), 25%);
-        height: 100%;
+        margin: {
+            left: -$imageSize / 2;
+        };
+        &:after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: inset -5px -5px 10px rgba(gray, 0.5);
+            width: $imageSize - 5px;
+            height: $imageSize - 5px;
+            top: 0;
+            left: 0;
+        }
+    }
+    div.name {
+        margin: {
+            top: 1em;
+        };
+        text-shadow: 0px 0px 1px gray;
+        &:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            margin-top: 20px;
+            width: 3px;
+            background-color: lighten(nth($color, 3), 25%);
+            height: 80%;
+        }
     }
 }
 
@@ -124,7 +145,7 @@ $itemShadow: 1px 1px 6px gray;
         }
     }
     button {
-        border: 1px solid transparent;
+        border: 2px solid transparent;
         padding: {
             left: 3em;
             right: 3em;
@@ -142,10 +163,10 @@ $itemShadow: 1px 1px 6px gray;
         }
         button {
             &:hover {
-                border: 1px solid nth($color, 1);
+                border-color: nth($color, 1);
             }
             color: nth($color, 1);
-            background-color: lighten(nth($color, 1), 30%);
+            background-color: lighten(nth($color, 1), 40%);
         }
         & .arrowbox {
             height: $size;
@@ -172,10 +193,10 @@ $itemShadow: 1px 1px 6px gray;
         }
         button {
             &:hover {
-                border: 1px solid nth($color, 2);
+                border-color: nth($color, 2);
             }
             color: nth($color, 2);
-            background-color: lighten(nth($color, 2), 30%);
+            background-color: lighten(nth($color, 2), 40%);
         }
         & .arrowbox {
             height: round(sqrt(2) * $size) + 2 * $border;
