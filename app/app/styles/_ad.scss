@@ -112,10 +112,40 @@ $imageSize: 80px;
             hyphens: auto;
         }
     }
+    .share {
+        position: relative;
+        right: 10px;
+        width: 1em;
+        &:hover .sharing {
+            opacity: 1;
+        }
+        .sharing {
+            opacity: 0;
+            position: absolute;
+            right: 3em;
+            top: -0.2em;
+            font-size: 0.5em;
+            transition: opacity 1s;
+            div {
+                text-align: right;
+                white-space: nowrap;
+                span {
+                    margin-left: 0.5em;
+                    color: white;
+                    height: 2em;
+                    width: 2em;
+                    padding-top: 0.50em;
+                    text-align: center;
+                    background-color: nth($color, 5);
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
     .overlap {
         background-color: white;
-        height: 2px + 2 * sqrt(2) * $size;
-        width: sqrt(2) * $size;
+        height: 2.3 * $size;
+        width: $size;
         position: absolute;
         top: $arrowTop - 15px;
         left: 0;
@@ -199,14 +229,15 @@ $imageSize: 80px;
             background-color: lighten(nth($color, 2), 40%);
         }
         & .arrowbox {
-            height: round(sqrt(2) * $size) + 2 * $border;
-            width: round(sqrt(2) * $size);
+            height: round(sqrt(2) * $size) + 4 * $border;
+            width: $size;
             left: -$size / 2;
             top: $arrowTop - round(sqrt(2) * $size) + $size + $border;
+            border-radius: $global-radius;
         }
         & .arrow {
             left: -$size / 2 + 2 * $border;
-            top: $arrowTop - round(sqrt(2) * $size) + $size + 2 * $border;
+            top: $arrowTop - round(sqrt(2) * $size) + $size + 3 * $border;
             &:after {
                 left: -$size / 2;
                 background-color: nth($color, 2);
