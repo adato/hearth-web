@@ -116,19 +116,31 @@ $imageSize: 80px;
         position: relative;
         right: 10px;
         width: 1em;
-        &:hover .sharing {
-            opacity: 1;
+        .fa-share-square-o {
+         @include transition(all 2s ease);
+         @include rotate(0deg);
+     }
+        &:hover {
+            .fa-share-square-o {
+                @include rotate(360deg);
+                color:lighten(desaturate(nth($color, 5), 100%), 20%);  
+            }
+            .sharing {
+                width: 160px;
+            }
         }
         .sharing {
-            opacity: 0;
+            width: 0;
+            overflow: hidden;
             position: absolute;
-            right: 3em;
+            right: 2.5em;
             top: -0.2em;
             font-size: 0.5em;
-            transition: opacity 1s;
+            @include transition(width 2s ease);
             div {
                 text-align: right;
                 white-space: nowrap;
+                margin-right: 0.5em;
                 span {
                     margin-left: 0.5em;
                     color: white;
