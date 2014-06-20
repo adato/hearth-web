@@ -141,15 +141,33 @@ $imageSize: 80px;
                 text-align: right;
                 white-space: nowrap;
                 margin-right: 0.5em;
+                &.report {
+                    color:red;
+                    margin: {
+                        top: 0.5em;
+                    }
+                    opacity: 0.3;
+                    @include transition(opacity 1s);
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
                 span {
+                    border: 2px solid transparent;
                     margin-left: 0.5em;
-                    color: white;
+                    color: lighten(nth($color, 5), 30%);
                     height: 2em;
                     width: 2em;
-                    padding-top: 0.50em;
+                    padding-top: 0.35em;
                     text-align: center;
                     background-color: nth($color, 5);
                     border-radius: 50%;
+                    box-shadow: inset 3px 3px 20px rgba(white, 0.4);
+                    text-shadow: 0 -1px 1px darken(nth($color, 5), 15%);
+                    @include transition(color 1s);
+                    &:hover {
+                        color: white;
+                    }
                 }
             }
         }
