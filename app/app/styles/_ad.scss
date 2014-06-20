@@ -50,6 +50,16 @@ $imageSize: 80px;
     }
 }
 
+.row {
+    &.edit {
+        .item {
+            .textarea-container {
+                height: 300px;
+            }
+        }
+    }
+}
+
 .item {
     background-color: white;
     min-height: 200px;
@@ -88,6 +98,21 @@ $imageSize: 80px;
             color: nth($color, 5);
         }
     }
+    .textarea-container {
+        height: 0;
+        overflow: hidden;
+        @include transition(height 1s ease);
+        padding: {
+            left: 1em;
+            right: 1em;
+        };
+        textarea {
+            height: 200px;
+        }
+        button {
+            margin:0;
+        }
+    }
     .content {
         margin: {
             left: sqrt(2) * $size;
@@ -117,13 +142,13 @@ $imageSize: 80px;
         right: 10px;
         width: 1em;
         .fa-share-square-o {
-         @include transition(all 2s ease);
-         @include rotate(0deg);
-     }
+            @include transition(all 2s ease);
+            @include rotate(0deg);
+        }
         &:hover {
             .fa-share-square-o {
                 @include rotate(360deg);
-                color:lighten(desaturate(nth($color, 5), 100%), 20%);  
+                color: lighten(desaturate(nth($color, 5), 100%), 20%);
             }
             .sharing {
                 width: 160px;
@@ -142,10 +167,10 @@ $imageSize: 80px;
                 white-space: nowrap;
                 margin-right: 0.5em;
                 &.report {
-                    color:red;
+                    color: red;
                     margin: {
                         top: 0.5em;
-                    }
+                    };
                     opacity: 0.3;
                     @include transition(opacity 1s);
                     &:hover {
@@ -204,17 +229,7 @@ $imageSize: 80px;
             @include rotate(45deg);
         }
     }
-    button {
-        border: 2px solid transparent;
-        padding: {
-            left: 3em;
-            right: 3em;
-        };
-        margin: {
-            right: 1em;
-        };
-        outline: none;
-    }
+    
     &.need {
         h1 {
             span {
@@ -272,6 +287,23 @@ $imageSize: 80px;
                 left: -$size / 2;
                 background-color: nth($color, 2);
             }
+        }
+    }
+    button {
+        border: 2px solid transparent;
+        padding: {
+            left: 3em;
+            right: 3em;
+        };
+        margin: {
+            right: 1em;
+        };
+        outline: none;
+        &[disabled=disabled] {
+            border-color:transparent  !important;
+           background-color: lightgray !important;
+            filter:grayscale(1) blur(1px);
+            color: gray !important;
         }
     }
 }

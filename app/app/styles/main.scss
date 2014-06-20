@@ -78,7 +78,9 @@ body {
     background-repeat: repeat-x;
     background-attachment:fixed;
 }
-
+.row {
+  max-width: 960px;
+}
 
 /*
 @import "foundation/components/global";
