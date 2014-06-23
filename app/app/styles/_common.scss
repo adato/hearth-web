@@ -1,0 +1,28 @@
+.box {
+    background-color: white;
+    border-radius: $global-radius;
+    padding: 1em;
+    padding-top: 0;
+    box-shadow: 1px 1px 6px gray;
+    overflow: hidden;
+    .header {
+        background-color: nth($color, 1);
+        color: nth($color, 4);
+        border: {
+            bottom: 1px solid nth($color, 3);
+        };
+        margin-bottom: 1em;
+        padding: 1em;
+        margin: {
+            left: -20px;
+            right: -20px;
+        };
+    }
+}
+
+.logo {
+    @include background(image-url("logo.svg"), nth($color, 1));
+    width: 200px;
+    height: $topbar-height;
+    border-radius: $global-radius;
+}
