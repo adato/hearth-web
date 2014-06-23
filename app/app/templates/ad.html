@@ -1,0 +1,65 @@
+<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
+	<section class="large-2 columns photo">
+		<div class="img" ng-style="{ 'background-image' : 'url(' + (item.author.avatar.origin || 'images/no-avatar.png') + ')' }" ></div>
+		<div class="name">{{ item.author.name }}</div>
+		<!--div class="progress"><span class="meter"></span></div-->
+	</section>
+	<section class="large-10 columns">
+		<div class="item" ng-class="item.type">
+			<div class="overlap"> </div>
+			<div class="arrowbox"></div>
+			<div class="arrow"></div>
+			<div class="content">
+				<header>
+					<span ng-if="item.locations" ng-repeat="location in item.locations">
+						<span ng-if="location.name" class="fa fa-map-marker"></span> {{ location.name }}
+					</span>	
+					<span><span class="fa fa-clock-o"></span>{{item.updatedAt | ago}}</span>
+				</header>
+				<h1>
+					<span ng-if="item.type == 'need'">{{ 'DOES_WISH' | translate }}</span>
+					<span ng-if="item.type == 'offer'">{{ 'DOES_GIVE' | translate }}</span>
+					{{item.title}}
+				</h1>
+				<p ng-bind-html="item.name | linky:'_blank'"></p>
+			</div>
+			<footer>
+				<button ng-click="edit=true" ng-disabled="edit"  class="small" ng-class="{secondary: item.type == 'offer'}">
+					<span ng-if="item.type == 'offer'"><b>Požádat</b> o dar</span>
+					<span ng-if="item.type == 'need'"><b>Nabídnout</b> dar</span>
+				</button>
+				uz pozadalo <b>6 lidi</b>
+				<a class="share">
+					<div class="fa fa-share-square-o"></div>
+					<div class="sharing">
+						<div>
+							<span class="fa fa-facebook"></span>
+							<span class="fa fa-twitter"></span>
+							<span class="fa fa-google-plus"></span>
+							<span class="fa fa-envelope"></span>
+						</div>
+						<div class="report">Nahlasit skodlivy inzerat</div>
+					</div>
+				</a>
+			</footer>
+			<div class="textarea-container">
+				<article class="row">
+					<section class="large-12 columns">
+						<textarea name=""></textarea>
+					</section>
+				</article>
+				<article class="row">
+					<section class="large-8 columns">
+						<a ng-click="edit = false" >Zrušit</a>
+					</section>
+					<section class="large-4 columns text-right">
+						<button ng-class="{secondary: item.type == 'offer'}">
+							<span class="fa fa-envelope"></span>
+							Odeslat
+						</button>
+					</section>
+				</article>
+			</div>
+		</div>
+	</section>
+</article>
