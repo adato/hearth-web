@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie',
+	'$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie', '$http',
 
-	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie) {
+	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie, $http) {
 		var timeout;
 
 		$scope.breakpointForSmall = 782;
@@ -41,13 +41,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		});
 
 		$scope.$on('sendReply', function() {
-				console.info('send');
+			console.info('send');
 		});
 
 		$scope.useLanguage = function(language) {
 			return LanguageSwitch.use(language).then(function() {
 				$scope.languageCode = language;
 				return $scope.languageCode;
+			});
+		};
+		$scope.logout = function(language) {
+			$http({
+				method: 'POST',
+				url: $$config.apiPath + '/logout'
 			});
 		};
 		$scope.expandAd = function(ad, force) {

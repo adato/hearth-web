@@ -46,11 +46,12 @@
 				<article class="row">
 					<section class="large-12 columns">
 						<form name="reply">
-							<div class="alert-box alert radius" ng-show="reply.$invalid">
-								<div ng-show="reply.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
+							<div class="alert-box alert radius" ng-show="reply.$invalid && !reply.$error.required">
+								<div ng-show="reply.$error
+								.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
 								<div ng-show="reply.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
 							</div>
-							<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500"></textarea>
+							<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
 						</form>
 					</section>
 				</article>

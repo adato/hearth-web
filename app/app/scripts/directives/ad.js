@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('ad', [
 			scope: {
 				item: '='
 			},
-			templateUrl: 'templates/ad.html',
+			templateUrl: 'templates/item.html',
 			link: function(scope) {
 				scope.edit = false;
 				scope.message = '';	
