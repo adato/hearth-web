@@ -354,16 +354,16 @@
 // $button-font-align: center;
 
 // We use these to control various hover effects.
-// $button-function-factor: -20%;
+  $button-function-factor: -20%;
 
 // We use these to control button border styles.
-// $button-border-width: 0px;
-// $button-border-style: solid;
+  $button-border-width: 2px;
+  $button-border-style: solid;
 // $button-bg: $primary-color;
-// $button-border-color: scale-color($bg, $lightness: $button-function-factor);
+//$button-border-color: scale-color($bg, $lightness: $button-function-factor);
 
 // We use this to set the default radius used throughout the core.
- $button-radius: $global-radius;
+  $button-radius: $global-radius;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity for disabled buttons.

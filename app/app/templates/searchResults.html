@@ -38,7 +38,7 @@
 					<p ng-bind-html="item.name | linky:'_blank'"></p>
 				</div>
 				<footer>
-					<button ng-click="item.edit=true" ng-disabled="item.edit"  class="small secondary">
+					<button ng-click="item.edit=true" ng-disabled="item.edit"  class="small" ng-class="{secondary: item.type == 'offer'}">
 						<span ng-if="item.type == 'offer'"><b>Požádat</b> o dar</span>
 						<span ng-if="item.type == 'need'"><b>Nabídnout</b> dar</span>
 					</button>
@@ -67,7 +67,7 @@
 							<a  ng-click="item.edit = false" >Zrušit</a>
 						</section>
 						<section class="large-4 columns text-right">
-							<button>
+							<button ng-class="{secondary: item.type == 'offer'}">
 								<span class="fa fa-envelope"></span>
 								Odeslat
 							</button>

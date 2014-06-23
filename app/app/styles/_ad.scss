@@ -236,13 +236,6 @@ $imageSize: 80px;
                 color: nth($color, 1);
             }
         }
-        button {
-            &:hover {
-                border-color: nth($color, 1);
-            }
-            color: nth($color, 1);
-            background-color: lighten(nth($color, 1), 40%);
-        }
         & .arrowbox {
             height: $size;
             width: $size;
@@ -266,13 +259,6 @@ $imageSize: 80px;
                 color: nth($color, 2);
             }
         }
-        button {
-            &:hover {
-                border-color: nth($color, 2);
-            }
-            color: nth($color, 2);
-            background-color: lighten(nth($color, 2), 40%);
-        }
         & .arrowbox {
             height: round(sqrt(2) * $size) + 4 * $border;
             width: $size;
@@ -289,21 +275,5 @@ $imageSize: 80px;
             }
         }
     }
-    button {
-        border: 2px solid transparent;
-        padding: {
-            left: 3em;
-            right: 3em;
-        };
-        margin: {
-            right: 1em;
-        };
-        outline: none;
-        &[disabled=disabled] {
-            border-color:transparent  !important;
-           background-color: lightgray !important;
-            filter:grayscale(1) blur(1px);
-            color: gray !important;
-        }
-    }
+    
 }
