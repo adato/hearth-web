@@ -19,7 +19,6 @@
 // import parts of Foundation framework
 
 
-
 @import "font-awesome";
 @import
   "foundation/components/grid",
@@ -65,13 +64,9 @@
 @import "navigation";
 @import "forms";
 @import "ad";
-
- .logo {
-   @include background( image-url("logo.svg"), nth($color, 1));
-   width: 200px;
-   height: $topbar-height;
-   border-radius: $global-radius;
-}
+@import "common";
+@import "angular";
+@import "angular-loading-bar";
 
 body {
     background-image: image-url("bg.png");
@@ -81,6 +76,7 @@ body {
 .row {
   max-width: 960px;
 }
+
 
 /*
 @import "foundation/components/global";
@@ -132,7 +128,7 @@ body {
 @import "locations";
 /*@import "foundation-improvements";
 @import "hearth-icons";
-@import "angular";
+
 @import "mixins/social";
 @import "progress";
 */
@@ -1343,7 +1339,7 @@ textarea:focus {
     }
 }
 
-@import "angular-loading-bar";
+
 @import "unsupported";
 @import "profile-edit";
 

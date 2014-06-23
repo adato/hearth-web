@@ -4,6 +4,14 @@
 //
 $color: #e65832, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8;
 $FontAwesomePath: "../../fonts" !default;
+
+// Compass defaults
+$default-box-shadow-color: gray;
+$default-box-shadow-h-offset: 1px;
+$default-box-shadow-v-offset: 1px;
+$default-box-shadow-blur: 6px;
+
+
 /*
 $control-font-color: nth($color, 3);
 $negative-font-color: adjust-color(nth($color, 4), $blue:-13);
