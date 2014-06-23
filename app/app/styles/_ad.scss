@@ -56,6 +56,9 @@ $imageSize: 80px;
             .textarea-container {
                 height: 300px;
             }
+            .not-logged-container {
+                height: 50px;
+            }
         }
     }
 }
@@ -98,10 +101,15 @@ $imageSize: 80px;
             color: nth($color, 5);
         }
     }
-    .textarea-container {
+    .alert-box {
+        margin: 1em;
+    }
+    .height-transition {
         height: 0;
         overflow: hidden;
         @include transition(height 1s ease);
+    }
+    .textarea-container {
         padding: {
             left: 1em;
             right: 1em;

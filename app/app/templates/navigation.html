@@ -85,6 +85,14 @@
 					</a>
 				</li>
 
+				<li signed-in ng-cloak>
+					<form action="{{ '/logout' | apiPrefix }}" method="post">
+						<button type="submit" analytics-on analytics-event="logout" analytics-category="Login" id="nav-logout" title="{{'TOP_BAR_SIGN_OUT' | translate}}">
+							<span class="fa fa-power-off"></span>&nbsp;<span class="show-for-small">{{'TOP_BAR_SIGN_OUT' | translate}}</span>
+						</button>
+					</form>
+				</li>
+
 			</ul>
 			
 		</section>

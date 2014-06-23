@@ -1,9 +1,10 @@
 <div when-scrolled="loadMoreAds()" class="wish-list">
-	<div ng-show="!items.length && sent" >
-		<div translate class="padding-2" ng-show="pageType != 'my'">NOTHING_FOUND</div>
-		<div translate class="padding-2" ng-show="pageType == 'my'">MY_HEARTH_NOTHING_FOUND</div>
-		<div class="hr"></div>
-	</div>
+	<article ng-show="!items.length && sent" class="row ">
+		<section class="large-6 large-centered columns box text-center">
+			<div translate class="padding-2" ng-show="pageType != 'my'">NOTHING_FOUND</div>
+			<div translate class="padding-2" ng-show="pageType == 'my'">MY_HEARTH_NOTHING_FOUND</div>
+		</section>
+	</article>
 	<!--
 	<div class="wish-container hoverable" ng-show="isCreatingAd()">
 		<div class="row padding-v-2">

@@ -4,12 +4,10 @@
 			LOG_IN_TO_POST_NEW_WISHES
 	</div>
 
-
 	<form ng-submit="post.save()" signed-in name="createAdForm" with-errors novalidate class="create-ad" style="margin:0; padding:0;">
 		<div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
 		<div class="alert-box visible alert error round connect-bottom" ng-show="createAdForm.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
 		<div class="alert-box visible alert error round connect-bottom" ng-show="createAdForm.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
-
 
 		<div style="position:relative;z-index: 11;">
 			<needofferselector ng-model="post.type" ng-show="isCreatingAd() || isEditingAd()" community="loggedCommunity._id!==undefined"></needofferselector>

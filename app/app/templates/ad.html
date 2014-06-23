@@ -1,4 +1,4 @@
-<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
+<article  class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
 	<section class="large-2 columns photo">
 		<div class="img" ng-style="{ 'background-image' : 'url(' + (item.author.avatar.origin || 'images/no-avatar.png') + ')' }" ></div>
 		<div class="name">{{ item.author.name }}</div>
@@ -42,7 +42,7 @@
 					</div>
 				</a>
 			</footer>
-			<div class="textarea-container">
+			<div signed-in class="textarea-container height-transition">
 				<article class="row">
 					<section class="large-12 columns">
 						<textarea name=""></textarea>
@@ -57,6 +57,16 @@
 							<span class="fa fa-envelope"></span>
 							Odeslat
 						</button>
+					</section>
+				</article>
+			</div>
+			<div signed-out class="not-logged-container height-transition">
+				<article class="row">
+					<section  class="large-12 columns">
+						<div class="radius alert-box info" signed-out ng-cloak >
+							<span translate>LOG_IN_TO_POST_NEW_WISHES</span>
+							 <a class="close" ng-click="edit = false" >&times;</a>
+						</div>
 					</section>
 				</article>
 			</div>
