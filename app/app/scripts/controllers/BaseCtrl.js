@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.BaseCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
@@ -38,6 +38,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
 			$scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
 			return $scope.pageType;
+		});
+
+		$scope.$on('sendReply', function() {
+				console.info('send');
 		});
 
 		$scope.useLanguage = function(language) {

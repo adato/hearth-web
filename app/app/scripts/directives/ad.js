@@ -19,6 +19,11 @@ angular.module('hearth.directives').directive('ad', [
 			templateUrl: 'templates/ad.html',
 			link: function(scope) {
 				scope.edit = false;
+				scope.message = '';	
+
+				scope.sendReply = function() {
+					scope.$emit('sendReply');
+				};
 			}
 
 		};

@@ -45,7 +45,13 @@
 			<div signed-in class="textarea-container height-transition">
 				<article class="row">
 					<section class="large-12 columns">
-						<textarea name=""></textarea>
+						<form name="reply">
+							<div class="alert-box alert radius" ng-show="reply.$invalid">
+								<div ng-show="reply.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
+								<div ng-show="reply.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+							</div>
+							<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500"></textarea>
+						</form>
 					</section>
 				</article>
 				<article class="row">
@@ -53,7 +59,7 @@
 						<a ng-click="edit = false" >Zrušit</a>
 					</section>
 					<section class="large-4 columns text-right">
-						<button ng-class="{secondary: item.type == 'offer'}">
+						<button ng-click="sendReply()" ng-disabled="reply.$invalid" ng-class="{secondary: item.type == 'offer'}">
 							<span class="fa fa-envelope"></span>
 							Odeslat
 						</button>
