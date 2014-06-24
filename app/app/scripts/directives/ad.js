@@ -7,9 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('ad', [
-	'$timeout',
+	'$timeout', '$translate',
 
-	function($timeout) {
+	function($timeout, $translate) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -20,25 +20,38 @@ angular.module('hearth.directives').directive('ad', [
 			templateUrl: 'templates/item.html',
 			link: function(scope) {
 				var init = function() {
-					angular.extend(scope, {
-						edit: false,
-						message: '',
-						agreed: true,
-						submited: false
-					});
-					scope.replyForm.$setPristine();
-				};
+						angular.extend(scope, {
+							edit: false,
+							message: '',
+							agreed: true,
+							submited: false
+						});
+						scope.replyForm.$setPristine();
+					},
+					type = {
+						user: {
+							need: 'I_WISH',
+							offer: 'I_GIVE'
+						},
+						community: {
+							need: 'WE_NEED',
+							offer: 'WE_GIVE'
+						}
+					};
 
-				scope.$watch('item', function(value) {
-					var url = window.location.href.replace(window.location.hash, '');
-					if (value) {
-						url += '%23/ad/' + value._id;
+				scope.$watch('item', function(item) {
+					var url = window.location.href.replace(window.location.hash, ''),
+						typeText = $translate(item.community_id ? type.community[item.type] : type.user[item.type]);
+
+					if (item) {
+						url += '%23/ad/' + item._id;
 					}
 
 					angular.extend(scope, {
 						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
 						gplus: 'https://plus.google.com/share?url=' + url,
-						twitter: 'https://twitter.com/share?url=' + url
+						twitter: 'https://twitter.com/share?url=' + url,
+						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
 						//linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
 					});
 				});

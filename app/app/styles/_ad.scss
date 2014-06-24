@@ -203,20 +203,20 @@ $imageSize: 80px;
                 span,
                 a  {
                     display: inline-block;
-                    border: 2px solid transparent;
                     margin-left: 0.5em;
                     color: lighten(nth($color, 5), 30%);
                     height: 2em;
                     width: 2em;
-                    padding-top: 0.35em;
+                    padding-top: 0.5em;
                     text-align: center;
                     background-color: nth($color, 5);
                     border-radius: 50%;
-                    box-shadow: inset 3px 3px 20px rgba(white, 0.4);
                     text-shadow: 0 -1px 1px darken(nth($color, 5), 15%);
                     @include transition(color 1s);
+                    @include transition(background-color 0.8s);
                     &:hover {
                         color: white;
+                        background-color: darken(nth($color, 5), abs($button-function-factor));
                     }
                 }
             }
