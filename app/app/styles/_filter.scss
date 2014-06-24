@@ -1,8 +1,7 @@
 .filter {
-    max-height: 400px;
+    max-height: 600px;
     overflow: hidden;
     @include transition(max-height 1s);
-    background-color: nth($color, 5);
     h1 {
         margin: 0;
         padding: 0;

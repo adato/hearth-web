@@ -42,3 +42,9 @@ button {
         text-decoration: underline;
     }
 }
+
+.button-group {
+    .button {
+        border-radius: 0;
+    }
+}

@@ -1,116 +1,142 @@
 <div class="container fulltext profile" ng-init="isFromFulltext = true; x = { editing: 0}; page = {}; page.inviteFriendsClicked = false;" ng-controller="ListViewStateCtrl">
 <a id="topOfPage"></a>
-    <!--header class="right-column small-12 large-5 columns push-7"
-            ng-hide="isReplyingAd() || isCreatingAd()">
+	<!--header class="right-column small-12 large-5 columns push-7"
+			ng-hide="isReplyingAd() || isCreatingAd()">
 
-        <div class="invitation-link" signed-in>
-            <a href="" ng-click="page.inviteFriendsClicked = 1;">
-                <i class="fa fa-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}
-            </a>
-        </div>
-        <a name="top"></a>
-        <invitation-form visible="page.inviteFriendsClicked" logged-user="loggedUser"></invitation-form>
-        
-        <div class="hide-for-medium-down bob">
-            <p ng-hide="page.inviteFriendsClicked">{{'THIS_IS_BOB' | translate:info}}</p>
-        </div>
-        <div ng-hide="page.inviteFriendsClicked">
-            <div class="row-fluid padding-2" style="clear:both;">
-                <h3>{{ 'POPULAR_KEYWORDS' | translate }}</h3>
-                <div class="keywords">
-                    <ul class="">
-                        <li ng-repeat="keyword in allKeywords"><a ng-class="{ 'active': keywords.indexOf(keyword.term) > -1 }" ng-click="searchByKeyword($event, keyword.term)" analytics-on analytics-event="filter popular" analytics-category="Marketplace" analytics-label="tags">{{ keyword.term }}</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row-fluid padding-2" signed-in style="clear:both;">
-                <h3 style="font-size:large;">{{ 'ACTIVE_KEYWORDS_FILTER' | translate }}</h3>
-                <div class="keywords">
-                    <ul ng-init="adding = false">
-                        <li ng-repeat="keyword in keywords"><a class="active" ng-click="searchByKeyword($event, keyword, true)"
-                                                               analytics-on analytics-event="filter active" analytics-category="Marketplace" analytics-label="tags"><i class="fa fa-remove"></i> {{ keyword }}</a></li>
-                        <li ng-hide="adding"><a class="add" href="" ng-click="adding = true"><i class="fa fa-plus"></i> {{ 'KEYWORD_ADD' | translate }}</a></li>
-                        <li ng-show="adding">
-                            <tags-input
-                                    ng-model="userSearchKeywords"
-                                    placeholder="{{ 'KEYWORD' | translate }}"
-                                    replace-spaces-with-dashes="false"
-                                    add-on-comma="true"
-                                    add-on-space="false"
-                                    allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$"
-                                    on-tag-added="searchByKeyword(null, $tag); userSearchKeywords = []; adding = false;"
-                                    max-length="20">
-                                <auto-complete source="queryKeywords($query)"
-                                             min-length="2"
-                                             debounce-delay="400"
-                                             max-results-to-show="8">
-                                </auto-complete>
-                            </tags-input> 
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header-->
-    <header class="right-column small-12 large-5 columns push-7"
-            ng-show="isCreatingAd()">
-        <div class="hide-for-medium-down bob">
-            <p>{{'CREATE_YOUR_NEW_NEED_AND_BE_HAPPY' | translate}}</p>
-        </div>
-    </header>
+		<div class="invitation-link" signed-in>
+			<a href="" ng-click="page.inviteFriendsClicked = 1;">
+				<i class="fa fa-arrow-right"></i> {{ 'INVITE_LINK_CAPTION' | translate }}
+			</a>
+		</div>
+		<a name="top"></a>
+		<invitation-form visible="page.inviteFriendsClicked" logged-user="loggedUser"></invitation-form>
+		
+		<div class="hide-for-medium-down bob">
+			<p ng-hide="page.inviteFriendsClicked">{{'THIS_IS_BOB' | translate:info}}</p>
+		</div>
+		<div ng-hide="page.inviteFriendsClicked">
+			<div class="row-fluid padding-2" style="clear:both;">
+				<h3>{{ 'POPULAR_KEYWORDS' | translate }}</h3>
+				<div class="keywords">
+					<ul class="">
+						<li ng-repeat="keyword in allKeywords"><a ng-class="{ 'active': keywords.indexOf(keyword.term) > -1 }" ng-click="searchByKeyword($event, keyword.term)" analytics-on analytics-event="filter popular" analytics-category="Marketplace" analytics-label="tags">{{ keyword.term }}</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row-fluid padding-2" signed-in style="clear:both;">
+				<h3 style="font-size:large;">{{ 'ACTIVE_KEYWORDS_FILTER' | translate }}</h3>
+				<div class="keywords">
+					<ul ng-init="adding = false">
+						<li ng-repeat="keyword in keywords"><a class="active" ng-click="searchByKeyword($event, keyword, true)"
+															   analytics-on analytics-event="filter active" analytics-category="Marketplace" analytics-label="tags"><i class="fa fa-remove"></i> {{ keyword }}</a></li>
+						<li ng-hide="adding"><a class="add" href="" ng-click="adding = true"><i class="fa fa-plus"></i> {{ 'KEYWORD_ADD' | translate }}</a></li>
+						<li ng-show="adding">
+							<tags-input
+									ng-model="userSearchKeywords"
+									placeholder="{{ 'KEYWORD' | translate }}"
+									replace-spaces-with-dashes="false"
+									add-on-comma="true"
+									add-on-space="false"
+									allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$"
+									on-tag-added="searchByKeyword(null, $tag); userSearchKeywords = []; adding = false;"
+									max-length="20">
+								<auto-complete source="queryKeywords($query)"
+											 min-length="2"
+											 debounce-delay="400"
+											 max-results-to-show="8">
+								</auto-complete>
+							</tags-input> 
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header-->
+	<header class="right-column small-12 large-5 columns push-7"
+			ng-show="isCreatingAd()">
+		<div class="hide-for-medium-down bob">
+			<p>{{'CREATE_YOUR_NEW_NEED_AND_BE_HAPPY' | translate}}</p>
+		</div>
+	</header>
 
-    <header class="right-column small-12 large-5 columns push-7 detail slide-in"
-            ng-cloak ng-show="isReplyingAd()">
-        <span  ng-include="'templates/replyToAd.html'"></span>
-        <!-- content from partial templates/replyToAd.html -->
-    </header>
+	<header class="right-column small-12 large-5 columns push-7 detail slide-in"
+			ng-cloak ng-show="isReplyingAd()">
+		<span  ng-include="'templates/replyToAd.html'"></span>
+		<!-- content from partial templates/replyToAd.html -->
+	</header>
 
-    <filter data="filter"></filter>
+	<article class="row">
+		<section class="large-12 columns">
+			<nav class="top-bar toolbar" data-topbar>
+			  <section class="top-bar-section">
+				<ul class="right">
+					<li><a><span class="fa fa-pencil"></span> Vytvorit novy</a></li>
+				</ul>
+				<ul class="left">
+				  <li><a><span class="fa fa-filter"></span> Filtrovat</a></li>
+				  <li>
+					 <ul class="button-group radius">
+						<li><a href="#" class="small button"><span class="fa fa-list-ul"></span> Seznam</a></li>
+						<li><a href="#" class="small button"><span class="fa fa-map-marker"></span> Mapa</a></li>
+					  </ul>
+				  </li>
+				</ul>
+			  </section>
+			</nav>
+		</section>
+	</article>
 
-    <div class="large-12 columns " ng-class="{ 'hide-for-small' : isReplyingAd() }">
+	<article class="row">
+		<section class="large-12 columns">
+			<filter data="filter"></filter>
+		</section>
+	</article>
 
-        <!--div class="padding-h-2">
-            <div class="row profile-links">
-                <div class="small-3 columns left padding-h-0">
-                    <a href=""
-                       analytics-on analytics-event="sort by date" analytics-category="Marketplace" analytics-label="lists"
-                       ng-class="{ 'underliner': orderBy == 'time' && !isCreatingAd() }"
-                       ng-click="setOrderBy('time')"><i class="fa fa-clock-o x-large"></i><div>{{ 'NEWEST' | translate }}</div></a>
-                </div>
-                <div class="small-3 columns left padding-h-0">
-                    <a href=""
-                       analytics-on analytics-event="sort by proximity" analytics-category="Marketplace" analytics-label="lists"
-                       ng-class="{ 'underliner': orderBy == 'location' && !isCreatingAd() }"
-                       ng-click="setOrderBy('location')"><i class="fa fa-map-marker x-large"></i><div>{{ 'NEAREST' | translate }}</div></a>
-                </div>
-                <div class="small-3 columns left padding-h-0">
-                    <a href=""
-                       analytics-on analytics-event="sort by relevance" analytics-category="Marketplace" analytics-label="lists"
-                       ng-class="{ 'underliner': orderBy == 'relevance' && !isCreatingAd() }"
-                       ng-click="setOrderBy('relevance')"><i class="fa fa-search x-large"></i><div>{{ 'SEARCH_LINK' | translate }}</div></a>
-                </div>
-                <div class="small-3 columns left padding-h-0">
-                    <a href=""
-                       analytics-on analytics-event="click on create post" analytics-category="Marketplace" analytics-label="NP"
-                       ng-class="{ 'underliner': isCreatingAd() }"
-                       ng-click="startCreatingAd()"><i class="fa fa-pencil x-large"></i><div>{{ 'CREATE_POST' | translate }}</div></a>
-                </div>
-            </div>
-        </div-->
-        <div ng-if="orderBy == 'location' && !isCreatingAd()">
-            <search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
-            <div class="hr"></div>
-        </div>
-        <div ng-show="orderBy == 'relevance' && !isCreatingAd()">
-            <div class="row">
-                <div class="small-12 columns padding-2">
-                    <fulltext-typeahead></fulltext-typeahead>
-                </div>
-            </div>
-            <div class="hr"></div>
-        </div>
-        <div ng-if="orderBy != 'location' || isCreatingAd()" >
-            <div class="container" ng-include="'templates/searchResults.html'"></div>   
-        </div>
-    </div>
+
+	<div class="large-12 columns " ng-class="{ 'hide-for-small' : isReplyingAd() }">
+
+		<!--div class="padding-h-2">
+			<div class="row profile-links">
+				<div class="small-3 columns left padding-h-0">
+					<a href=""
+					   analytics-on analytics-event="sort by date" analytics-category="Marketplace" analytics-label="lists"
+					   ng-class="{ 'underliner': orderBy == 'time' && !isCreatingAd() }"
+					   ng-click="setOrderBy('time')"><i class="fa fa-clock-o x-large"></i><div>{{ 'NEWEST' | translate }}</div></a>
+				</div>
+				<div class="small-3 columns left padding-h-0">
+					<a href=""
+					   analytics-on analytics-event="sort by proximity" analytics-category="Marketplace" analytics-label="lists"
+					   ng-class="{ 'underliner': orderBy == 'location' && !isCreatingAd() }"
+					   ng-click="setOrderBy('location')"><i class="fa fa-map-marker x-large"></i><div>{{ 'NEAREST' | translate }}</div></a>
+				</div>
+				<div class="small-3 columns left padding-h-0">
+					<a href=""
+					   analytics-on analytics-event="sort by relevance" analytics-category="Marketplace" analytics-label="lists"
+					   ng-class="{ 'underliner': orderBy == 'relevance' && !isCreatingAd() }"
+					   ng-click="setOrderBy('relevance')"><i class="fa fa-search x-large"></i><div>{{ 'SEARCH_LINK' | translate }}</div></a>
+				</div>
+				<div class="small-3 columns left padding-h-0">
+					<a href=""
+					   analytics-on analytics-event="click on create post" analytics-category="Marketplace" analytics-label="NP"
+					   ng-class="{ 'underliner': isCreatingAd() }"
+					   ng-click="startCreatingAd()"><i class="fa fa-pencil x-large"></i><div>{{ 'CREATE_POST' | translate }}</div></a>
+				</div>
+			</div>
+		</div-->
+		<div ng-if="orderBy == 'location' && !isCreatingAd()">
+			<search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
+			<div class="hr"></div>
+		</div>
+		<div ng-show="orderBy == 'relevance' && !isCreatingAd()">
+			<div class="row">
+				<div class="small-12 columns padding-2">
+					<fulltext-typeahead></fulltext-typeahead>
+				</div>
+			</div>
+			<div class="hr"></div>
+		</div>
+		<div ng-if="orderBy != 'location' || isCreatingAd()" >
+			<div class="container" ng-include="'templates/searchResults.html'"></div>   
+		</div>
+	</div>
 </div>
