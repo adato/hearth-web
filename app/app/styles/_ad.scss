@@ -164,44 +164,31 @@ $imageSize: 80px;
         position: relative;
         right: 10px;
         width: 1em;
-        .fa-share-square-o {
-            @include transition(all 2s ease);
-            @include rotate(0deg);
-        }
         &:hover {
             .fa-share-square-o {
-                @include rotate(360deg);
                 color: lighten(desaturate(nth($color, 5), 100%), 20%);
             }
             .sharing {
-                width: 160px;
+                max-width: 300px;
             }
         }
         .sharing {
-            width: 0;
+            max-width: 0;
             overflow: hidden;
             position: absolute;
             right: 2.5em;
             top: -0.2em;
             font-size: 0.5em;
-            @include transition(width 2s ease);
+            padding: {
+                bottom: 1em;
+            };
+            @include transition(max-width 2s ease);
             div {
                 text-align: right;
                 white-space: nowrap;
                 margin-right: 0.5em;
-                &.report {
-                    color: red;
-                    margin: {
-                        top: 0.5em;
-                    };
-                    opacity: 0.3;
-                    @include transition(opacity 1s);
-                    &:hover {
-                        opacity: 1;
-                    }
-                }
                 span,
-                a  {
+                a {
                     display: inline-block;
                     margin-left: 0.5em;
                     color: lighten(nth($color, 5), 30%);
@@ -217,6 +204,15 @@ $imageSize: 80px;
                     &:hover {
                         color: white;
                         background-color: darken(nth($color, 5), abs($button-function-factor));
+                    }
+                    &.fa-flag {
+                        color: lighten(nth($color, 1), 30%);
+                        background-color: nth($color, 1);
+                        text-shadow: 0 -1px 1px darken(nth($color, 1), 15%);
+                        &:hover {
+                            color: white;
+                            background-color: darken(nth($color, 1), abs($button-function-factor));
+                        }
                     }
                 }
             }

@@ -19,12 +19,14 @@ angular.module('hearth.directives').directive('ad', [
 			},
 			templateUrl: 'templates/item.html',
 			link: function(scope) {
-				var init = function() {
+				var timeout = 6000,
+					init = function() {
 						angular.extend(scope, {
 							edit: false,
 							message: '',
-							agreed: true,
-							submited: false
+							agree: true,
+							submited: false,
+							reported: false
 						});
 						scope.replyForm.$setPristine();
 					},
@@ -52,19 +54,27 @@ angular.module('hearth.directives').directive('ad', [
 						gplus: 'https://plus.google.com/share?url=' + url,
 						twitter: 'https://twitter.com/share?url=' + url,
 						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
-						//linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
 					});
 				});
 
+				scope.report = function() {
+					scope.$emit('report', {
+						id: scope.item._id
+					});
+					scope.reported = true;
+					$timeout(function() {
+						scope.reported = false;
+					}, timeout);
+				};
+
 				scope.sendReply = function() {
-					scope.submiting = true;
 					scope.$emit('sendReply', {
 						id: scope.item._id,
 						message: scope.message,
 						agreed: scope.agree
 					});
 					scope.submited = true;
-					$timeout(init, 3000);
+					$timeout(init, timeout);
 				};
 				scope.cancelEdit = function() {
 					init();

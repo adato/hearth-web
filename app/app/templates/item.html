@@ -37,11 +37,21 @@
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
 							<a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a>
+							<a class="fa fa-flag" ng-click="report()" title="Nahlasit skodlivy inzerat"></a>
 						</div>
-						<div class="report">Nahlasit skodlivy inzerat</div>
 					</div>
 				</div>
 			</footer>
+
+			<article class="row" ng-show="reported">
+				<section class="large-12 columns">
+					<div class="radius alert-box warning" >
+						<span>Děkujeme za udání, tento příspěvek prověříme.</span>
+						 <a class="close" ng-click="reported=false" >&times;</a>
+					</div>
+				</section>
+			</article>
+
 			<div signed-in class="reply-box height-transition">
 				<article class="row">
 					<section class="large-12 columns">
