@@ -5,18 +5,23 @@
  * @description Filter rules for search
  * @restrict E
  */
-angular.module('hearth.directives').directive('filter',
+angular.module('hearth.directives').directive('filter', [
+	'geo',
+
 	function(geo) {
 		return {
 			restrict: 'E',
 			scope: {
-				filter: '=data',
-				searchFn: '&'
+				filter: '=data'
 			},
 			templateUrl: 'templates/filter.html',
 			link: function(scope, element) {
 				var searchBoxElement = $('input#geolocation', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
+
+				scope.search = function() {
+					scope.$emit('filter', scope.filter);
+				};
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
 					var places = searchBox.getPlaces();
@@ -34,4 +39,4 @@ angular.module('hearth.directives').directive('filter',
 			}
 		};
 	}
-);
+]);

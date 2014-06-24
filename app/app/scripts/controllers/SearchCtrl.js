@@ -292,6 +292,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		}
 
 		$scope.search = function(options) {
+
 			var search = $scope.getSearchService();
 
 			$scope.sent = false;
@@ -387,6 +388,13 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			var orderCookie;
 			orderCookie = ipCookie('orderBy') || 'time';
 			return $scope.setOrderBy(orderCookie);
+		});
+
+		$scope.$on('filter', function($event, filterData) {
+			$scope.filter = filterData;
+			$scope.search({
+				add: false
+			});
 		});
 
 		$scope.$watch('location.search().id', function(newval) {
