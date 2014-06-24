@@ -34,3 +34,11 @@ button {
         filter: blur(1px) grayscale(70%);
     }
 }
+
+.link-button {
+    display: block;
+    margin-top: 1em;
+    &:hover {
+        text-decoration: underline;
+    }
+}

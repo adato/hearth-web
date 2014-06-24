@@ -53,11 +53,11 @@ $imageSize: 80px;
 .row {
     &.edit {
         .item {
-            .textarea-container {
-                height: 300px;
+            .reply-box {
+                max-height: 500px;
             }
             .not-logged-container {
-                height: 50px;
+                max-height: 100px;
             }
         }
     }
@@ -116,17 +116,21 @@ $imageSize: 80px;
         }
     }
     .height-transition {
-        height: 0;
+        max-height: 0;
         overflow: hidden;
-        @include transition(height 1s ease);
+        @include transition(max-height 1s ease);
     }
-    .textarea-container {
-        padding: {
-            left: 1em;
-            right: 1em;
-        };
+    .reply-box {
+        .columns {
+            padding: {
+                left: 2em;
+                right: 2em;
+                bottom: 1em;
+            };
+        }
         textarea {
             height: 180px;
+            margin-bottom: 0.5em;
         }
         button {
             margin: 0;

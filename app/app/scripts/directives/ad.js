@@ -7,8 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('ad', [
+	'$timeout',
 
-	function() {
+	function($timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -25,6 +26,7 @@ angular.module('hearth.directives').directive('ad', [
 						agreed: true,
 						submited: false
 					});
+					scope.replyForm.$setPristine();
 				};
 
 				scope.sendReply = function() {
@@ -35,7 +37,10 @@ angular.module('hearth.directives').directive('ad', [
 						agreed: scope.agree
 					});
 					scope.submited = true;
-					//init();
+					$timeout(init, 3000);
+				};
+				scope.cancelEdit = function() {
+					init();
 				};
 				init();
 			}
