@@ -19,9 +19,14 @@ angular.module('hearth.directives').directive('filter', [
 				var searchBoxElement = $('input#geolocation', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
 
+				scope.expanded = false;
 				scope.search = function() {
 					scope.$emit('filter', scope.filter);
 				};
+
+				scope.$on('toogleFilters', function() {
+					scope.expanded = !scope.expanded;
+				});
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
 					var places = searchBox.getPlaces();

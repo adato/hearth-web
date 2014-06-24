@@ -2,6 +2,11 @@
     max-height: 600px;
     overflow: hidden;
     @include transition(max-height 1s);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin: {
+        bottom: 1em;
+    }
     h1 {
         margin: 0;
         padding: 0;
@@ -10,15 +15,13 @@
     border: {
         bottom: 1px solid nth($color, 3);
     };
-    padding: {
-        bottom: 1em;
-    };
+
     input.text-input {
         width: 100%;
         margin-bottom: 0;
     }
     &.collapsed {
-        max-height: 35px;
+        max-height: 0;
     }
     .sub-nav {
         margin: {
