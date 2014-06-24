@@ -29,6 +29,20 @@ angular.module('hearth.directives').directive('ad', [
 					scope.replyForm.$setPristine();
 				};
 
+				scope.$watch('item', function(value) {
+					var url = window.location.href.replace(window.location.hash, '');
+					if (value) {
+						url += '%23/ad/' + value._id;
+					}
+
+					angular.extend(scope, {
+						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+						gplus: 'https://plus.google.com/share?url=' + url,
+						twitter: 'https://twitter.com/share?url=' + url
+						//linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
+					});
+				});
+
 				scope.sendReply = function() {
 					scope.submiting = true;
 					scope.$emit('sendReply', {

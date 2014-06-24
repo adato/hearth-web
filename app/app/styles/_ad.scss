@@ -200,7 +200,9 @@ $imageSize: 80px;
                         opacity: 1;
                     }
                 }
-                span {
+                span,
+                a  {
+                    display: inline-block;
                     border: 2px solid transparent;
                     margin-left: 0.5em;
                     color: lighten(nth($color, 5), 30%);

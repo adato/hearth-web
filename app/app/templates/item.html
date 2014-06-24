@@ -29,18 +29,18 @@
 					<span ng-if="item.type == 'need'"><b>Nabídnout</b> dar</span>
 				</button>
 				uz pozadalo <b>6 lidi</b>
-				<a class="share">
+				<div class="share">
 					<div class="fa fa-share-square-o"></div>
 					<div class="sharing">
 						<div>
-							<span class="fa fa-facebook"></span>
-							<span class="fa fa-twitter"></span>
-							<span class="fa fa-google-plus"></span>
-							<span class="fa fa-envelope"></span>
+							<a class="fa fa-facebook" title="Facebook" href="{{facebook}}" target="_blank"></a>
+							<a class="fa fa-google-plus" title="Google+" href="{{gplus}}" target="_blank"></a>
+							<a class="fa fa-twitter" title="Twitter" href="{{twitter}}" target="_blank"></a>
+							<a class="fa fa-envelope" ng-href="mailto:?subject={{item.title}}&body={{item.name}}"></a>
 						</div>
 						<div class="report">Nahlasit skodlivy inzerat</div>
 					</div>
-				</a>
+				</div>
 			</footer>
 			<div signed-in class="reply-box height-transition">
 				<article class="row">
