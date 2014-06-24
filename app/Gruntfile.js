@@ -512,6 +512,28 @@ module.exports = function(grunt) {
 				configFile: 'karma.conf.js',
 				autoWatch: true
 			}
+		},
+		html2js: {
+			options: {
+				base: "<%= yeoman.dist %>"
+			},
+			main: {
+				// src: ['app/**/*.html'],							 // original source
+				src: ['<%= yeoman.dist %>/**/*.html'], // compiled source
+				dest: '<%= yeoman.dist %>/scripts/templates.js'
+			},
+		},
+
+		// Add angular module for merged templates
+		replace: {
+			dist: {
+				src: ['<%= yeoman.dist %>/scripts/scripts.js'],
+				overwrite: true,
+				replacements: [{
+					from: 'module("hearth",["',
+					to: 'module("hearth",["templates-main","'
+				}]
+			}
 		}
 	});
 
@@ -568,7 +590,9 @@ module.exports = function(grunt) {
 		'uglify',
 		//'rev',
 		'usemin',
-		'htmlmin'
+		'htmlmin',
+		'html2js', //  merge all templates to one js file
+		'replace:dist' // add angular module for merged templates
 	]);
 
 	grunt.registerTask('default', [
