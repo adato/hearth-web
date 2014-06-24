@@ -46,12 +46,19 @@
 				<article class="row">
 					<section class="large-12 columns">
 						<form name="reply">
-							<div class="alert-box alert radius" ng-show="reply.$invalid && !reply.$error.required">
-								<div ng-show="reply.$error
-								.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
-								<div ng-show="reply.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+							<div class="alert-box radius" ng-show="reply.$invalid && !reply.message.$error.required">
+								<div ng-show="reply.message.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
+								<div ng-show="reply.message.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+								<div ng-show="reply.agree.$error.required">{{ 'ERR_REPLY_PLEASE_AGREE' | translate }}</div>
+							</div>
+							<div class="alert-box info radius" ng-show="submited" >
+								{{ 'SENDING_MESSAGE_SUCCESS' | translate }}
 							</div>
 							<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
+							<label>
+								<input type="checkbox" name="agree" ng-required="true" ng-model="agreed">
+							 	{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}
+							</label>
 						</form>
 					</section>
 				</article>

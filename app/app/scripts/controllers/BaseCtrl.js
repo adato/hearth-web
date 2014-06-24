@@ -40,8 +40,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return $scope.pageType;
 		});
 
-		$scope.$on('sendReply', function() {
-			console.info('send');
+		$scope.$on('sendReply', function($event, data) {
+			PostsService.reply(data);
 		});
 
 		$scope.useLanguage = function(language) {
@@ -51,10 +51,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 		$scope.logout = function(language) {
-			$http({
-				method: 'POST',
-				url: $$config.apiPath + '/logout'
-			});
+			Auth.logout();
 		};
 		$scope.expandAd = function(ad, force) {
 			var formScope, _ref;

@@ -28,8 +28,9 @@
 }
 
 button {
-    -webkit-transition : -webkit-filter 1s ;
+    -webkit-transition: -webkit-filter 1s;
+    outline: none;
     &[disabled=disabled] {
-        filter:blur(1px) grayscale(70%);
+        filter: blur(1px) grayscale(70%);
     }
 }

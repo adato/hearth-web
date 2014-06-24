@@ -3,7 +3,7 @@
 /**
  * @ngdoc service
  * @name hearth.services.Auth
- * @description 
+ * @description
  */
 
 angular.module('hearth.services').factory('Auth', [
@@ -30,6 +30,9 @@ angular.module('hearth.services').factory('Auth', [
 					$rootScope.user.loggedIn = true;
 					return $rootScope.$broadcast('onUserLogin');
 				});
+			},
+			logout: function() {
+				$http.post($$config.apiPath + '/logout');
 			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;

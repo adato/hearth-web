@@ -18,12 +18,26 @@ angular.module('hearth.directives').directive('ad', [
 			},
 			templateUrl: 'templates/item.html',
 			link: function(scope) {
-				scope.edit = false;
-				scope.message = '';	
+				var init = function() {
+					angular.extend(scope, {
+						edit: false,
+						message: '',
+						agreed: true,
+						submited: false
+					});
+				};
 
 				scope.sendReply = function() {
-					scope.$emit('sendReply');
+					scope.submiting = true;
+					scope.$emit('sendReply', {
+						id: scope.item._id,
+						message: scope.message,
+						agreed: scope.agree
+					});
+					scope.submited = true;
+					//init();
 				};
+				init();
 			}
 
 		};

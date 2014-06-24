@@ -101,6 +101,9 @@ $imageSize: 80px;
             color: nth($color, 5);
         }
     }
+    .alert-box {
+        margin: 1em;
+    }
     form {
         .alert-box {
             margin: {
@@ -123,7 +126,7 @@ $imageSize: 80px;
             right: 1em;
         };
         textarea {
-            height: 200px;
+            height: 180px;
         }
         button {
             margin: 0;
