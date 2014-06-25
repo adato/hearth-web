@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 				files: [
 					'<%= yeoman.app %>/scripts/{,*/}*.js',
 					'<%= yeoman.app %>/locales/{,*/}*.json',
-				'<%= yeoman.app %>/templates/{,*/}*.html',
+					'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
 				tasks: ['newer:jshint:all'],
 				options: {
@@ -503,7 +503,14 @@ module.exports = function(grunt) {
 			}
 		},
 		concat: {
-			dist: {}
+			options: {
+				separator: ';',
+			},
+			dist: {},
+			tmpl: {
+				src: ['<%= yeoman.dist %>/scripts/templates.js', '<%= yeoman.dist %>/scripts/scripts.js'],
+				dest: '<%= yeoman.dist %>/scripts/scripts.js',
+			},
 		},
 
 		// Test settings
@@ -511,6 +518,28 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js',
 				autoWatch: true
+			}
+		},
+		html2js: {
+			options: {
+				base: "<%= yeoman.dist %>",
+			},
+			main: {
+				// src: ['app/**/*.html'],							 // original source
+				src: ['<%= yeoman.dist %>/**/*.html'], // compiled source
+				dest: '<%= yeoman.dist %>/scripts/templates.js'
+			},
+		},
+
+		// Add angular module for merged templates
+		replace: {
+			dist: {
+				src: ['<%= yeoman.dist %>/scripts/scripts.js'],
+				overwrite: true,
+				replacements: [{
+					from: 'module("hearth",["',
+					to: 'module("hearth",["templates-main","'
+				}]
 			}
 		}
 	});
@@ -568,7 +597,10 @@ module.exports = function(grunt) {
 		'uglify',
 		//'rev',
 		'usemin',
-		'htmlmin'
+		'htmlmin',
+		'html2js', //  merge all templates to one js file
+		'replace:dist', // add angular module for merged templates
+		'concat:tmpl',
 	]);
 
 	grunt.registerTask('default', [
