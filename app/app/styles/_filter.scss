@@ -6,23 +6,25 @@
     border-radius: 0 0 $global-radius $global-radius;
     margin: {
         bottom: 1em;
-    }
+    };
     padding: {
-        left:1em;
-        right:1em;
-        } 
+        left: 1em;
+        right: 1em;
+    };
     h1 {
         margin: 0;
         padding: 0;
         cursor: pointer;
     }
-
     input.text-input {
         width: 100%;
         margin-bottom: 0;
     }
     &.collapsed {
         max-height: 0;
+    }
+    .columns {
+        padding: 1em;
     }
     .sub-nav {
         margin: {
