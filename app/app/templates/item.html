@@ -56,14 +56,18 @@
 				<article class="row">
 					<section class="large-12 columns">
 						<form name="replyForm">
-							<div class="alert-box radius" ng-show="replyForm.$invalid && replyForm.$dirty">
-								<div ng-show="replyForm.message.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
-								<div ng-show="replyForm.message.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
-								<div ng-show="replyForm.message.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
-								<div ng-show="replyForm.agree.$error.required">{{ 'ERR_REPLY_PLEASE_AGREE' | translate }}</div>
+							<div class="animate-show" ng-show="replyForm.$invalid && replyForm.$dirty">
+								<div class="alert-box radius " >
+									<div ng-show="replyForm.message.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
+									<div ng-show="replyForm.message.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+									<div ng-show="replyForm.message.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
+									<div ng-show="replyForm.agree.$error.required">{{ 'ERR_REPLY_PLEASE_AGREE' | translate }}</div>
+								</div>
 							</div>
-							<div class="alert-box info radius" ng-show="submited">
-								{{ 'SENDING_MESSAGE_SUCCESS' | translate }}
+							<div class="animate-show" ng-show="submited">
+								<div class="alert-box info radius" >
+									{{ 'SENDING_MESSAGE_SUCCESS' | translate }}
+								</div>
 							</div>
 							<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
 							<label>

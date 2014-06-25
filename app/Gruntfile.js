@@ -558,7 +558,7 @@ module.exports = function(grunt) {
 		'useminPrepare',
 		'concurrent:dist',
 		'compass:dist',
-		//'autoprefixer',
+		'autoprefixer',
 		'concat',
 		'copy:dist',
 		'preprocess',
