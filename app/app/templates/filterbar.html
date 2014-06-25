@@ -1,0 +1,31 @@
+<div>
+	<article class="row">
+		<section class="large-10  push-2 columns">
+			<article class="row filterbar">
+				<section class="large-8  columns">
+					<article class="row filterbar-section">
+						<section class="large-5 columns">
+							<a ng-click="toggleFilter()" class="button" ng-class="{pressed: filterSelected}"><span class="fa fa-filter"></span> Filtrovat</a>
+						</section>
+						<section class="large-6 columns">
+							<ul class="button-group radius">
+								<li><a class="small button left" ng-class="{pressed: !mapSelected}" ng-click="toggleMap()"><span class="fa fa-list-ul"></span> Seznam</a></li>
+								<li><a class="small button right" ng-class="{pressed: mapSelected}" ng-click="toggleMap()"><span class="fa fa-map-marker"></span> Mapa</a></li>
+							</ul>
+						</section>
+						<section class="large-1 columns"></section>
+					</article>
+				</section>
+				<section class="large-4 columns text-right insert-button-container">
+					<a class="button"><span class="fa fa-pencil"></span> Vytvorit novy</a>
+				</section>
+			</article>
+		</section>
+	</article>
+
+	<article class="row">
+		<section class="large-10  push-2 columns">
+			<filter data="filter"></filter>
+		</section>
+	</article>
+</div>

@@ -38,6 +38,7 @@
         .button-group {
             margin: 0.25em;
             .button {
+                box-shadow: inset 2px 2px 2px rgba(white, 0.5);
                 padding: {
                     top: 3px;
                     bottom: 3px;
@@ -45,6 +46,17 @@
                     right: 0.5em;
                 };
                 border: 1px solid nth($color, 5) !important;
+                &.pressed {
+                    color: nth($color, 3);
+                    background-color: lighten(nth($color, 3), 45%);
+                    box-shadow: inset 0px 1px 3px nth($color, 3);
+                }
+                &.left {
+                    border-right: 0 !important;
+                }
+                &.right {
+                    border-left: 0 !important;
+                }
             }
         }
     }
@@ -56,11 +68,12 @@
             border-radius: $global-radius $global-radius 0 0;
             border-style: solid;
             border-color: nth($color, 5), abs($button-function-factor);
+            box-shadow: inset 3px 3px 3px rgba(white, 0.5);
             border: {
-                bottom-width: 2px;
-                left-width: 1px;
-                right-width: 1px;
-                top-width: 1px;
+                bottom-width: 2px !important;
+                left-width: 1px !important;
+                right-width: 1px !important;
+                top-width: 1px !important;
             };
         }
     }
