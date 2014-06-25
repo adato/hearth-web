@@ -71,7 +71,7 @@
 @import "filter";
 
 body {
-    background-image: image-url("bg.png");
+    background-image: inline-image("bg.png");
     background-repeat: repeat-x;
     background-attachment:fixed;
 }

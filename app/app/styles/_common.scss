@@ -21,9 +21,9 @@
 }
 
 .logo {
-    @include background(image-url("logo.svg"), nth($color, 1));
-    width: 200px;
-    height: $topbar-height;
+    @include background(inline-image("logo.svg"), nth($color, 1) !important);
+    width: 200px !important;
+    height: $topbar-height !important;
     border-radius: $global-radius;
 }
 

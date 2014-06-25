@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('ad', [
 				item: '='
 			},
 			templateUrl: 'templates/item.html', //must not use name ad.html - adBlocker!
-			link: function(scope) {
+			link: function(scope, element) {
 				var timeout = 6000,
 					init = function() {
 						angular.extend(scope, {
@@ -79,7 +79,12 @@ angular.module('hearth.directives').directive('ad', [
 				scope.cancelEdit = function() {
 					init();
 				};
+
 				init();
+
+				if (scope.item.author.avatar.normal) {
+					element.find('.img').css('background-image', 'url(' + scope.item.author.avatar.normal + ')');
+				}
 			}
 
 		};

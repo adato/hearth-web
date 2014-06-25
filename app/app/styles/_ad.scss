@@ -21,6 +21,7 @@ $imageSize: 80px;
         margin: {
             left: -$imageSize / 2;
         };
+        background-image: inline-image("no-avatar.png");
         &:after {
             content: '';
             position: absolute;
