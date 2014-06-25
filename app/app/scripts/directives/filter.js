@@ -11,6 +11,7 @@ angular.module('hearth.directives').directive('filter', [
 	function(geo) {
 		return {
 			restrict: 'E',
+			replace: true,
 			scope: {
 				filter: '=data'
 			},
@@ -23,10 +24,9 @@ angular.module('hearth.directives').directive('filter', [
 				scope.search = function() {
 					scope.$emit('filter', scope.filter);
 				};
-
-				scope.$on('toogleFilters', function() {
-					scope.expanded = !scope.expanded;
-				});
+				scope.close = function() {
+					scope.$emit('closeFilter');
+				};
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
 					var places = searchBox.getPlaces();

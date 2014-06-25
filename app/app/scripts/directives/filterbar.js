@@ -9,8 +9,8 @@ angular.module('hearth.directives').directive('filterbar', [
 
 	function() {
 		return {
+			replace: true,
 			restrict: 'E',
-
 			templateUrl: 'templates/filterbar.html',
 			link: function(scope) {
 				angular.extend(scope, {
@@ -20,8 +20,11 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.toggleFilter = function() {
 					scope.filterSelected = !scope.filterSelected;
-					scope.$broadcast('toogleFilters');
 				};
+
+				scope.$on('closeFilter', function() {
+					scope.filterSelected = false;
+				});
 
 				scope.toggleMap = function() {
 					scope.mapSelected = !scope.mapSelected;

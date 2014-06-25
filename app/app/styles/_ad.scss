@@ -50,19 +50,6 @@ $imageSize: 80px;
     }
 }
 
-.row {
-    &.edit {
-        .item {
-            .reply-box {
-                max-height: 500px;
-            }
-            .not-logged-container {
-                max-height: 100px;
-            }
-        }
-    }
-}
-
 .item {
     background-color: white;
     min-height: 200px;
@@ -110,16 +97,13 @@ $imageSize: 80px;
                 left: 1em;
                 right: 1em;
                 bottom: 0;
+                top:0;
             };
             border-bottom-right-radius: 0;
             border-bottom-left-radius: 0;
         }
     }
-    .height-transition {
-        max-height: 0;
-        overflow: hidden;
-        @include transition(max-height 1s ease);
-    }
+
     .reply-box {
         .columns {
             padding: {

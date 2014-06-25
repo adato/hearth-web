@@ -9,8 +9,12 @@
 						</section>
 						<section class="large-6 columns">
 							<ul class="button-group radius">
-								<li><a class="small button left" ng-class="{pressed: !mapSelected}" ng-click="toggleMap()"><span class="fa fa-list-ul"></span> Seznam</a></li>
-								<li><a class="small button right" ng-class="{pressed: mapSelected}" ng-click="toggleMap()"><span class="fa fa-map-marker"></span> Mapa</a></li>
+								<li>
+									<a class="small button left" ng-class="{pressed: !mapSelected}" ng-click="toggleMap()"><span class="fa fa-list-ul"></span> Seznam</a>
+								</li>
+								<li>
+									<a class="small button right" ng-class="{pressed: mapSelected}" ng-click="toggleMap()"><span class="fa fa-map-marker"></span> Mapa</a>
+								</li>
 							</ul>
 						</section>
 						<section class="large-1 columns"></section>
@@ -25,7 +29,7 @@
 
 	<article class="row">
 		<section class="large-10  push-2 columns">
-			<filter data="filter"></filter>
+			<filter data="filter" ng-show="filterSelected" class="animate-show"></filter>
 		</section>
 	</article>
 </div>

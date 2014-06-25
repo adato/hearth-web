@@ -1,7 +1,4 @@
 .filter {
-    max-height: 600px;
-    overflow: hidden;
-    @include transition(max-height 1s);
     background-color: nth($color, 4);
     border-radius: 0 0 $global-radius $global-radius;
     margin: {
@@ -19,9 +16,6 @@
     input.text-input {
         width: 100%;
         margin-bottom: 0;
-    }
-    &.collapsed {
-        max-height: 0;
     }
     .columns {
         padding: 1em;

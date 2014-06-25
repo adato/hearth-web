@@ -43,8 +43,16 @@ button {
     }
 }
 
-.button-group {
-    .button {
-        border-radius: 0;
+.animate-show {
+    opacity: 1;
+    max-height: 1000px;
+    @include transition(max-height 0.8s, opacity 1s);
+    @include box-sizing(border-box);
+    -webkit-box-sizing: border-box;
+    overflow: hidden;
+    &.ng-hide {
+        display: block !important;
+        max-height: 0;
+        opacity: 0;
     }
 }
