@@ -1,0 +1,67 @@
+.filterbar {
+    margin: {
+        left: 0 !important;
+        right: 0 !important;
+    };
+    .button {
+        color: nth($color, 5);
+        background-color: nth($color, 4);
+        border-radius: 0;
+        border: {
+                bottom: 2px solid trasparent;
+            };
+        padding: {
+            top: 0.5em;
+            bottom: 0.5em;
+        };
+        margin: {
+            bottom: 0;
+        };
+        &:hover,
+        &.pressed {
+            color: nth($color, 4);
+            background-color: nth($color, 5);
+             border: {
+                bottom-color: darken(nth($color, 5), abs($button-function-factor));
+            };
+        }
+    }
+    .insert-button-container {
+        padding: {
+            right: 0;
+        };
+        .button {
+            border-radius: $global-radius $global-radius 0 0;
+            border: {
+                bottom: 2px solid lighten(nth($color, 5), abs($button-function-factor));
+            };
+        }
+    }
+    .filterbar-section {
+        background-color: nth($color, 4);
+        .button {
+            border-radius: 0;
+        }
+        .columns {
+            margin: 0;
+            padding: 0;
+        }
+        border-radius: $global-radius $global-radius 0 0;
+        overflow: hidden;
+        border: {
+            bottom: 2px solid lighten(nth($color, 5), abs($button-function-factor));
+        };
+    }
+    .button-group {
+        margin: 0.25em;
+        .button {
+            padding: {
+                top: 3px;
+                bottom: 3px;
+                left:0.5em;
+                right:0.5em;
+            };
+            border: 1px solid nth($color, 5) !important;
+        }
+    }
+}

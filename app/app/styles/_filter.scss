@@ -2,19 +2,20 @@
     max-height: 600px;
     overflow: hidden;
     @include transition(max-height 1s);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    background-color: nth($color, 4);
+    border-radius: 0 0 $global-radius $global-radius;
     margin: {
         bottom: 1em;
     }
+    padding: {
+        left:1em;
+        right:1em;
+        } 
     h1 {
         margin: 0;
         padding: 0;
         cursor: pointer;
     }
-    border: {
-        bottom: 1px solid nth($color, 3);
-    };
 
     input.text-input {
         width: 100%;
