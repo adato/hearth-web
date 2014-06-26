@@ -72,6 +72,7 @@
 @import "leftCharsProgress";
 @import "editAd";
 @import "needOfferSelector";
+@import "ng-tags-input";
 
 body {
     background-image: inline-image("bg.png");
@@ -1052,7 +1053,7 @@ h1.green {
     color: $success-color;
 }
 
-@import "ng-tags-input";
+
 @import "create-ad";
 
 

@@ -5,6 +5,8 @@
     };
     .filterbar-container {
         background-color: nth($color, 4);
+        border: 1px solid darken(nth($color, 4), 20%);
+        border-top: 0;
         border-radius: 0 0 $global-radius $global-radius;
         margin: {
             bottom: 1em;

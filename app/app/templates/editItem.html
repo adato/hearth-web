@@ -45,20 +45,20 @@
 
 			<article class="row">
 				<section class="large-12 columns">
-					<i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i>
+					<i class="fa fa-tags"></i>
 					<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
 						<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 					</tags-input>
 				</section>
 			</article>
 			
-			<article class="row">
+			<!--article class="row">
 				<section class="large-12 columns">
 					<label>{{ 'EXPIRATION_DATE' | translate}}
 						<input type="text" datepicker="{{languageCode.code}}"  style="border:0" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
 					</label>
 				</section>
-			</article>
+			</article-->
 
 			<article class="row">
 				<section class="large-12 columns">
@@ -70,7 +70,7 @@
 				<section class="large-12 columns">
 					<div file-upload upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments.enabled = true" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments.enabled = true" style="position:relative; display:inline-block; float:left; padding-left:2px;">
 						<a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
-								<i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+							<i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
 						</a>
 					</div>
 					<div class="cleaner"></div>
@@ -87,6 +87,8 @@
 					<div file-upload-output class="text-center"></div>
 				</section>
 			</article>
+
+			<hr>
 
 			<article class="row">
 				<section class="large-4 columns">

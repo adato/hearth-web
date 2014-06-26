@@ -1,17 +1,26 @@
 .editAd {
-	input, 
-	textarea {
-		margin-bottom: 0;
-	}
-	.charsleft {
-		text-align: right;
-		margin: {
-			bottom: 0.5em;
-			right: $global-radius;
-		}
-		font-size: 0.8em;
-	}
-	textarea {
-		height: 250px;
-	}
+    input,
+    textarea {
+        margin-bottom: 0;
+    }
+    .charsleft {
+        text-align: right;
+        margin: {
+            bottom: 0.5em;
+            right: $global-radius;
+        };
+        font-size: 0.8em;
+    }
+    textarea {
+        height: 250px;
+    }
+    .fa-tags {
+        float: left;
+        padding: 5px;
+        padding-left: 0px;
+        color: nth($color, 5);
+        margin: {
+        	top: 0.5em;
+        }
+    }
 }
