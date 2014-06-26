@@ -10,7 +10,7 @@ angular.module('hearth.directives').directive('needofferselector',
 		return {
 			restrict: 'E',
 			scope: {
-				ngModel: '=',
+				model: '=',
 				community: '=',
 			},
 			templateUrl: 'templates/needOfferSelector.html',
@@ -23,7 +23,7 @@ angular.module('hearth.directives').directive('needofferselector',
 
 				scope.toggleNeed = function() {
 					scope.needSelected = !scope.needSelected;
-					scope.ngModel = value[scope.needSelected];
+					scope.model = value[scope.needSelected];
 				};
 			}
 		};
