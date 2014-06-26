@@ -9,8 +9,8 @@
 angular.module('hearth.services').factory('UserPosts', [
 	'$resource',
 	function($resource) {
-		return $resource($$config.apiPath + '/users/:userId/posts', {
-			userId: '@id'
+		return $resource($$config.apiPath + '/users/:user_id/posts', {
+			user_id: '@id'
 		}, {
 			get: {
 				method: 'GET',
@@ -18,7 +18,7 @@ angular.module('hearth.services').factory('UserPosts', [
 				params: {
 					limit: 10,
 					offset: 0,
-					sort: '-createdAt',
+					sort: '-created_at',
 					r: Math.random()
 				}
 			}

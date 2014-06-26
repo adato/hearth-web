@@ -25,13 +25,13 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 			}
 			if ($scope.isView('my')) {
 				service = UsersCommunitiesService;
-				searchParams.userId = $scope.loggedUser._id;
+				searchParams.user_id = $scope.loggedUser._id;
 			}
 			return service.query(searchParams).then(function(data) {
 				$scope.lastQueryReturnedCount = data.length;
 				return data.forEach(function(item) {
 					if ($scope.isView('my')) {
-						item = item.userId;
+						item = item.user_id;
 					}
 					return $scope.items.push(item);
 				});

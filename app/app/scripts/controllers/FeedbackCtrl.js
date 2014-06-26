@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 			}
 			Auth.init(function() {
 				User.get({
-					userId: $scope.loggedUser._id
+					user_id: $scope.loggedUser._id
 				}, function(data) {
 					$scope.feedback.email = data.email;
 				});

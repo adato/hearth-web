@@ -18,7 +18,7 @@ angular.module('hearth.services').service('UsersService', [
 			var deferred = $q.defer();
 
 			User.get({
-				userId: id
+				user_id: id
 			}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
@@ -82,11 +82,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.addFollower = function(userId) {
+		this.addFollower = function(user_id) {
 			var deferred = $q.defer();
 
 			UserFollowers.add({
-				userId: userId
+				user_id: user_id
 			}, function(data) {
 				$analytics.eventTrack('add follower', {
 					category: 'followers',
@@ -99,11 +99,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.removeFollower = function(userId, followerId) {
+		this.removeFollower = function(user_id, followerId) {
 			var deferred = $q.defer();
 
 			UserFollowers.remove({
-				userId: userId,
+				user_id: user_id,
 				followerId: followerId
 			}, function(data) {
 				$analytics.eventTrack('remove follower', {
@@ -117,11 +117,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.isFollower = function(userId, followerId) {
+		this.isFollower = function(user_id, followerId) {
 			var deferred = $q.defer();
 
 			UserFollowers.show({
-				userId: userId,
+				user_id: user_id,
 				followerId: followerId
 			}, function(data) {
 				return deferred.resolve(data);
@@ -131,11 +131,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.isFriend = function(userId, friendId) {
+		this.isFriend = function(user_id, friendId) {
 			var deferred;
 			deferred = $q.defer();
 			UserFriends.show({
-				userId: userId,
+				user_id: user_id,
 				friendId: friendId
 			}, function(data) {
 				return deferred.resolve(data);
@@ -145,11 +145,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.queryFriends = function(userId) {
+		this.queryFriends = function(user_id) {
 			var deferred = $q.defer();
 
 			UserFriends.query({
-				userId: userId
+				user_id: user_id
 			}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
@@ -158,11 +158,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.queryFollowers = function(userId) {
+		this.queryFollowers = function(user_id) {
 			var deferred = $q.defer();
 
 			UserFollowers.query({
-				userId: userId
+				user_id: user_id
 			}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
@@ -171,11 +171,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.queryFollowees = function(userId) {
+		this.queryFollowees = function(user_id) {
 			var deferred = $q.defer();
 
 			UserFollowees.query({
-				userId: userId
+				user_id: user_id
 			}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
@@ -184,11 +184,11 @@ angular.module('hearth.services').service('UsersService', [
 			return deferred.promise;
 		};
 
-		this.queryCommunities = function(userId) {
+		this.queryCommunities = function(user_id) {
 			var deferred = $q.defer();
 
 			CommunityMemberships.query({
-				userId: userId
+				user_id: user_id
 			}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {

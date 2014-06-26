@@ -72,10 +72,10 @@
                         <a class="name" ng-href="#/profile/{{ item._id}}" ng-show="item._type != 'Community'">{{item.name}}</a>
                         <a class="name" ng-href="#/community/{{ item._id}}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
                         <div class="smaller" style="margin-bottom:5px;">{{item.description || item.about}}</div>
-                        <div  ng-show="upVotes + downVotes > 0">
-                            {{ item.upVotes}} &nbsp; 
-                            <feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
-                            &nbsp; {{ item.downVotes}}
+                        <div  ng-show="up_votes + down_votes > 0">
+                            {{ item.up_votes}} &nbsp; 
+                            <feedback up-votes="item.up_votes" down-votes="item.down_votes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
+                            &nbsp; {{ item.down_votes}}
                         </div>
                         
                         <div class="row small wish-bottom-bar">

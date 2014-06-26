@@ -9,8 +9,8 @@
 angular.module('hearth.services').factory('UserRatings', [
 	'$resource',
 	function($resource) {
-		return $resource($$config.apiPath + '/users/:userId/ratings', {
-			userId: '@id'
+		return $resource($$config.apiPath + '/users/:user_id/ratings', {
+			user_id: '@id'
 		}, {
 			add: {
 				method: 'POST'
@@ -21,7 +21,7 @@ angular.module('hearth.services').factory('UserRatings', [
 				params: {
 					limit: 10,
 					offset: 0,
-					sort: '-createdAt',
+					sort: '-created_at',
 					r: Math.random()
 				}
 			}

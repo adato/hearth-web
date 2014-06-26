@@ -30,7 +30,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 					};
 					scope.invitation = {
 						toEmail: null,
-						userId: loggedUser ? loggedUser._id : void 0
+						user_id: loggedUser ? loggedUser._id : void 0
 					};
 					return scope.sendInvitationForm.$setPristine(true);
 				};

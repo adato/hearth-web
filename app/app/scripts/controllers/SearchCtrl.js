@@ -123,14 +123,14 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			for (i = 0; i < myFollowees.length; i++) {
 				item = myFollowees[i];
 				$scope.myRelations.push({
-					userId: item.userId,
+					user_id: item.user_id,
 					relation: 'followee'
 				});
 			}
 			for (j = 0; j < myFriends.length; j++) {
 				item = myFriends[j];
 				results.push($scope.myRelations.push({
-					userId: item.userId,
+					user_id: item.user_id,
 					relation: 'friend'
 				}));
 			}
@@ -147,7 +147,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					item.relation = null;
 					for (i = 0; i < newval.length; i++) {
 						relation = newval[i];
-						if (relation.userId === item._id) {
+						if (relation.user_id === item._id) {
 							item.relation = relation.relation;
 						}
 					}
@@ -155,7 +155,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					item.author.relation = null;
 					for (j = 0; j < newval.length; j++) {
 						relation = newval[j];
-						if (relation.userId === item.author._id) {
+						if (relation.user_id === item.author._id) {
 							item.author.relation = relation.relation;
 						}
 					}
@@ -168,10 +168,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			return $scope.updateRelations(newval);
 		});
 
-		$scope.getRelationship = function(userId) {
+		$scope.getRelationship = function(user_id) {
 			if ($scope.myRelations && $scope.myRelations.length > 0) {
 				return $scope.myRelations.map(function(item) {
-					if (item.userId === userId) {
+					if (item.user_id === user_id) {
 						return item.relation;
 					}
 				});
@@ -236,7 +236,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					$location.search('q', searchParams.query);
 					service = FolloweesSearchService;
 				}
-				searchParams.userId = $scope.loggedUser._id;
+				searchParams.user_id = $scope.loggedUser._id;
 				return service;
 			}
 
@@ -334,9 +334,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 		};
 
-		$scope.follow = function(userId, unfollow) {
-			if (userId !== $scope.loggedUser._id) {
-				var promise = UsersService[unfollow ? 'removeFollower' : 'addFollower'](userId, $scope.loggedUser._id);
+		$scope.follow = function(user_id, unfollow) {
+			if (user_id !== $scope.loggedUser._id) {
+				var promise = UsersService[unfollow ? 'removeFollower' : 'addFollower'](user_id, $scope.loggedUser._id);
 
 				return promise.then(function() {
 					return $scope.initMyFollowers();

@@ -20,9 +20,9 @@
 				<avatar ng-if="item.author._type != 'Community'" source="item.author.avatar" size="normal" relation="item.author.relation" click="go('profile', item.author._id, item.author._id)" class="left photo" type="'User'"></avatar>
 				<div class="small-12 columns wish-text hyphenate" style="width:99%;" ng-if="!isEditingAd(item._id)">
 					<div class="right small">
-						<div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.updatedAt || item.createdAt"></div>
+						<div time-ago ng-if="orderBy == 'time' || orderBy == 'relevance'" from-time="item.updated_at || item.created_at"></div>
 						<div ng-if="orderBy != 'time' && orderBy != 'relevance'" ng-show="item.distance >= 0"><span class="fa fa-map-marker"></span> {{ item.distance }} {{ 'KM_FROM_YOU' | translate }}</div>
-						<i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
+						<i class="fa fa-lock" ng-show="item.is_private" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
 					</div>
 					<a class="smaller name" ng-show="item.author._type != 'Community'" ng-href="#/profile/{{ item.author._id }}">{{ item.author.name }}</a>
 					<a class="smaller name" ng-show="item.author._type == 'Community'" ng-href="#/community/{{ item.author._id }}">{{ item.author.name }}</a> &nbsp;
@@ -85,9 +85,9 @@
 				<div class="small-11 medium-10 columns wish-text hyphenate">
 					<a class="name" ng-href="#/profile/{{ item._id }}" ng-show="item._type != 'Community'">{{item.name}}</a>
 					<a class="name" ng-href="#/community/{{ item._id }}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
-					{{ item.upVotes }} &nbsp; 
-					<feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
-					&nbsp; {{ item.downVotes }}<br>
+					{{ item.up_votes }} &nbsp; 
+					<feedback up-votes="item.up_votes" down-votes="item.down_votes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
+					&nbsp; {{ item.down_votes }}<br>
 					<div ng-switch on="item.relation == 'followee' || item.relation == 'friend'" ng-hide="!loggedUser._id || loggedUser._id == item._id" class="right">
 						<a href="" ng-switch-when="true" class="small follow" ng-click="follow(item._id, true); $event.stopPropagation()" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
 							<i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}

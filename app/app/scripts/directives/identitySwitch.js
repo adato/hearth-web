@@ -73,9 +73,9 @@ angular.module('hearth.directives').directive('identitySwitch', [
 							return data.forEach(function(item) {
 								if (item.admin && item.admin === scope.loggedUser._id) {
 									return scope.myCommunities.push({
-										name: item.userFullname,
-										id: item.userId._id,
-										avatar: item.userAvatar
+										name: item.user_full_name,
+										id: item.user_id._id,
+										avatar: item.user_avatar
 									});
 								}
 							});

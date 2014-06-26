@@ -9,8 +9,8 @@
 angular.module('hearth.services').factory('Followers', [
 	'$resource',
 	function($resource) {
-		return $resource($$config.apiPath + '/users/:userId/followers/:followerId', {
-			userId: '@userId',
+		return $resource($$config.apiPath + '/users/:user_id/followers/:followerId', {
+			user_id: '@user_id',
 			followerId: '@followerId'
 		}, {
 			add: {
@@ -26,7 +26,7 @@ angular.module('hearth.services').factory('Followers', [
 				method: 'GET',
 				isArray: true,
 				params: {
-					sort: '-createdAt',
+					sort: '-created_at',
 					r: Math.random()
 				}
 			}
