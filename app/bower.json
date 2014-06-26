@@ -23,7 +23,6 @@
     "foundation-icon-fonts": "zurb/foundation-icon-fonts",
     "foundation-icons": "*",
     "foundation-datepicker": "*",
-    "sticky": "*",
     "markerclustererplus": "~2.1.2"
   },
   "devDependencies": {

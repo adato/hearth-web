@@ -499,7 +499,10 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			dist: {
-
+			},
+			vendor: {
+				src: '<%= yeoman.dist %>/scripts/vendor.js',
+				dest: '<%= yeoman.dist %>/scripts/vendor.js',
 			}
 		},
 		concat: {
@@ -511,6 +514,10 @@ module.exports = function(grunt) {
 				src: ['<%= yeoman.dist %>/scripts/templates.js', '<%= yeoman.dist %>/scripts/scripts.js'],
 				dest: '<%= yeoman.dist %>/scripts/scripts.js',
 			},
+			vendor: {
+				src: ['<%= yeoman.dist %>/scripts/vendor.js', '<%= yeoman.app %>/vendor/angularitics/src/angulartics-ga.js'],
+				dest: '<%= yeoman.dist %>/scripts/vendor.js',
+			}
 		},
 
 		// Test settings
@@ -522,7 +529,7 @@ module.exports = function(grunt) {
 		},
 		html2js: {
 			options: {
-				base: "<%= yeoman.dist %>",
+				base: "<%= yeoman.dist %>"
 			},
 			main: {
 				// src: ['app/**/*.html'],							 // original source
@@ -601,6 +608,8 @@ module.exports = function(grunt) {
 		'html2js', //  merge all templates to one js file
 		'replace:dist', // add angular module for merged templates
 		'concat:tmpl',
+		'concat:vendor',
+		'uglify:vendor'
 	]);
 
 	grunt.registerTask('default', [
