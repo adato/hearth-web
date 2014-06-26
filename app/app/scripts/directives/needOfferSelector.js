@@ -16,16 +16,15 @@ angular.module('hearth.directives').directive('needofferselector',
 			templateUrl: 'templates/needOfferSelector.html',
 			link: function(scope, element) {
 				var value = {
-					need: 'offer',
-					offer: 'need'
+					false: 'offer',
+					true: 'need'
 				};
+				scope.needSelected = false;
 
-				$('div', element).click(function() {
-					scope.$apply(function() {
-
-						scope.ngModel = value[scope.ngModel];
-					});
-				});
+				scope.toggleNeed = function() {
+					scope.needSelected = !scope.needSelected;
+					scope.ngModel = value[scope.needSelected];
+				};
 			}
 		};
 	}

@@ -1,0 +1,17 @@
+.editAd {
+	input, 
+	textarea {
+		margin-bottom: 0;
+	}
+	.charsleft {
+		text-align: right;
+		margin: {
+			bottom: 0.5em;
+			right: $global-radius;
+		}
+		font-size: 0.8em;
+	}
+	textarea {
+		height: 250px;
+	}
+}

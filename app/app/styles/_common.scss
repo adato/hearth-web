@@ -56,9 +56,6 @@ button {
     }
 }
 
-.charsleft {
-    @include transition(color 0.5s);
-    &.warn {
-        color: nth($color, 1);
-    }
+.row {
+  max-width: 960px;
 }

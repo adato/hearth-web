@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('leftCharsProgress', [
 				value: '=',
 				max: '='
 			},
-			template: '<span ng-style="css" class="charsleft" ng-class="{warn:warn}">Zbyva {{charsLeft}} znaku</span>',
+			template: '<div ng-style="css" class="charsleft" ng-class="{warn:warn}">Zbyva {{charsLeft}} znaku</div>',
 			link: function(scope) {
 				scope.$watch('value', function(value) {
 					scope.charsLeft = parseInt(scope.max, 10) - (value || '').length;

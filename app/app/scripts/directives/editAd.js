@@ -11,13 +11,16 @@ angular.module('hearth.directives').directive('editad', [
 		return {
 			replace: true,
 			restrict: 'E',
+			scope: {},
 			templateUrl: 'templates/editItem.html', //must not use name ad.html - adBlocker!
 			link: function(scope) {
+				scope.post = {
+					type: 'offer',
+					isPrivate: false
+				};
+
 				scope.close = function() {
-					scope.$broadcast('closeNewItem');
-					scope.post = {
-						type: 'offer'
-					};
+					scope.$emit('closeNewItem');
 				};
 			}
 		};

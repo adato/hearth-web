@@ -1,22 +1,31 @@
 .needOfferSelector {
-    line-height: 34px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100px;
-    padding: 5px;
-    background-color: nth($color, 4);
-    font-size: 17px;
-    border: 1px solid $body-border-color;
-    height: 48px;
-    @include border-top-left-radius;
-    z-index: 9;
-    padding-left: 1em;
-    cursor: pointer;
-    color: nth($color, 1);
-    @include transition(background-color, 0.8s);
-    &:hover {
-        background-color: nth($color, 1);
-        color: white;
+    .button-group {
+        margin: 0.25em;
+
+        .button {
+            color: nth($color, 5);
+            font-size: 1.2em;
+            background-color: nth($color, 4);
+            box-shadow: inset 2px 2px 2px rgba(white, 0.5);
+            padding: {
+                top: 3px;
+                bottom: 3px;
+                left: 0.5em;
+                right: 0.5em;
+            };
+            border: 1px solid nth($color, 5) !important;
+            border-radius:0; 
+            &.pressed {
+                color: nth($color, 3);
+                background-color: lighten(nth($color, 3), 45%);
+                box-shadow: inset 0px 1px 3px nth($color, 3);
+            }
+            &.left {
+                border-right: 0 !important;
+            }
+            &.right {
+                border-left: 0 !important;
+            }
+        }
     }
 }

@@ -69,15 +69,16 @@
 @import "angular-loading-bar";
 @import "filterbar";
 @import "filter";
+@import "leftCharsProgress";
+@import "editAd";
+@import "needOfferSelector";
 
 body {
     background-image: inline-image("bg.png");
     background-repeat: repeat-x;
     background-attachment:fixed;
 }
-.row {
-  max-width: 960px;
-}
+
 
 
 /*
@@ -1053,7 +1054,7 @@ h1.green {
 
 @import "ng-tags-input";
 @import "create-ad";
-@import "needOfferSelector";
+
 
 .create-post-links {
     a.create-post-link {
