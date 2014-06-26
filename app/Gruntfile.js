@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 				files: [
 					'<%= yeoman.app %>/scripts/{,*/}*.js',
 					'<%= yeoman.app %>/locales/{,*/}*.json',
-				'<%= yeoman.app %>/templates/{,*/}*.html',
+					'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
 				tasks: ['newer:jshint:all'],
 				options: {
@@ -499,11 +499,21 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			dist: {
-
+			},
+			vendor: {
+				src: '<%= yeoman.dist %>/scripts/vendor.js',
+				dest: '<%= yeoman.dist %>/scripts/vendor.js',
 			}
 		},
 		concat: {
-			dist: {}
+			options: {
+				separator: ';',
+			},
+			dist: {},
+			vendor: {
+				src: ['<%= yeoman.dist %>/scripts/vendor.js', '<%= yeoman.app %>/vendor/angularitics/src/angulartics-ga.js'],
+				dest: '<%= yeoman.dist %>/scripts/vendor.js',
+			}
 		},
 
 		// Test settings
@@ -568,7 +578,9 @@ module.exports = function(grunt) {
 		'uglify',
 		//'rev',
 		'usemin',
-		'htmlmin'
+		'htmlmin',
+		'concat:vendor',
+		'uglify:vendor',
 	]);
 
 	grunt.registerTask('default', [
