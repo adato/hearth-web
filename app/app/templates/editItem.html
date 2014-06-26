@@ -1,0 +1,93 @@
+<div>
+	<div signed-out class="animate-show">
+		<article class="row">
+			<section class="large-12 columns">
+				<div class="radius alert-box info" ng-cloak >
+					{{'LOG_IN_TO_POST_NEW_WISHES' || translate}}
+					 <a class="close" ng-click="edit = false" >&times;</a>
+				</div>
+			</section>
+		</article>
+	</div>
+
+	<div signed-in>
+		<form name="createAdForm" novalidate>
+			<article class="row">
+				<section class="large-2 columns">
+					<needofferselector ng-model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
+				</section>
+				<section class="large-10 columns">
+					<input type="text" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" ng-required="true">
+				</section>
+			</article>
+
+			<article class="row">
+				<section class="large-12 columns">
+					<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name" ng-keydown="escapeKey($event)" ng-cloak ></textarea>
+				</section>
+			</article>
+
+			<article class="row">
+				<section class="large-12 columns">
+					<i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i>
+					<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+						<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+					</tags-input>
+				</section>
+			</article>
+			
+			<article class="row">
+				<section class="large-12 columns">
+					<label>{{ 'EXPIRATION_DATE' | translate}}
+						<input type="text" datepicker="{{languageCode.code}}"  style="border:0" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+					</label>
+				</section>
+			</article>
+
+			<article class="row">
+				<section class="large-12 columns">
+					<locations locations="post.locations"></locations>
+				</section>
+			</article>
+		
+			<article class="row">
+				<section class="large-12 columns">
+					<div file-upload upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments.enabled = true" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments.enabled = true" style="position:relative; display:inline-block; float:left; padding-left:2px;">
+						<a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
+								<i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+						</a>
+					</div>
+					<div class="cleaner"></div>
+					<div ng-show="post.attachments.length">
+						<ul>
+							<li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
+								<img ng-src="{{ file.origin }}" class="padding-1">
+								<a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+									<i class="hearthicon-remove"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div file-upload-output class="text-center"></div>
+				</section>
+			</article>
+
+			<article class="row">
+				<section class="large-4 columns">
+					<a ng-click="cancel()">Zrusit</a>
+				</section>
+				<section class="large-4 columns">
+					<a class="create-post-link left"ng-click="post.isPrivate = !post.isPrivate">
+						<span ng-show="!post.isPrivate"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
+						<span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+						<span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+					</a>
+				</section>
+				<section class="large-4 columns text-right">
+					<button type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
+				</section>
+			</article>
+		</form>
+	</div>
+
+</div>

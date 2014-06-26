@@ -53,7 +53,7 @@
 					<a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="" analytics-on analytics-event="switch-language-to-{{language.code}}" analytics-category="menu">{{language.code}}</a>
 				</li-->
 
-				<!--li class="has-dropdown">
+				<li class="has-dropdown">
 					<a  ng-class="{ 'link':1, 'active': pageType == 'about' }" class="hide-for-small"  title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
 						<span class="fa fa-question-circle"></span>
 					</a>
@@ -71,7 +71,7 @@
 			          <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a></li>
 			          <li><a href="http://instagram.com/artofhearth" target="_blank"><span class="fa fa-instagram"></span> Instagram</a></li>
 			        </ul>
-				</li-->
+				</li>
 
 				<li>
 					<div ng-if="!loggedUser._id" style="height:55px;"></div>

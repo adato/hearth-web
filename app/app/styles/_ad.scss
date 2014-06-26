@@ -1,7 +1,6 @@
 $size: 30px;
 $border: $size / 10;
 $arrowTop: 30px;
-$itemShadow: 1px 1px 6px gray;
 $imageSize: 80px;
 
 .photo {
@@ -14,7 +13,7 @@ $imageSize: 80px;
         height: $imageSize;
         border-radius: 50%;
         border: 3px solid white;
-        box-shadow: $itemShadow;
+        box-shadow: $defaultShadow;
         position: relative;
         background-size: cover;
         left: 50%;
@@ -56,7 +55,7 @@ $imageSize: 80px;
     min-height: 200px;
     position: relative;
     margin: auto;
-    box-shadow: $itemShadow;
+    box-shadow: $defaultShadow;
     border-radius: $global-radius;
     margin: {
         bottom: 1em;
@@ -217,7 +216,7 @@ $imageSize: 80px;
         position: absolute;
         border-radius: $border;
         background-color: white;
-        box-shadow: $itemShadow;
+        box-shadow: $defaultShadow;
     }
     & .arrow {
         height: $size + 30px;

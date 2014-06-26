@@ -1,42 +1,44 @@
-<section class="container login">
-    <div class="left-column small-12 large-7 columns alt-bg">
-        <form name="feedbackForm" ng-submit="submit($event)" ng-show="!sent" with-errors novalidate>
-            <div ng-show="fromAccountDelete" class="clearfix padding-2 successfully-sent">
-                {{ 'USER_HAS_BEEN_DELETED' | translate }}
-            </div>
+<section class="container">
+    <article class="row">
+        <section class="left-column small-12 large-12 columns box">
+            <form name="feedbackForm" ng-submit="submit($event)" ng-show="!sent" with-errors novalidate>
+                <div ng-show="fromAccountDelete" class="clearfix padding-2 successfully-sent">
+                    {{ 'USER_HAS_BEEN_DELETED' | translate }}
+                </div>
 
-            <h3 style="font-size:x-large; text-align:center;" ng-hide="fromAccountDelete">{{ 'GIVE_US_FEEDBACK' | translate }}</h3>
-            <h5 ng-show="fromAccountDelete" style="margin:0;" class="padding-v-2">
-                {{ 'WE_WILL_MISS_YOU__TELL_US_WHY_YOU_LEAVE' | translate }}
-            </h5>
-            <div class="hr" style="margin:0;"></div><br>
-            <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+                <h3 style="font-size:x-large; text-align:center;" ng-hide="fromAccountDelete">{{ 'GIVE_US_FEEDBACK' | translate }}</h3>
+                <span>{{ 'FEEDBACK_FORM_SPEECH_BUBBLE' | translate}}</span>
+                <h5 ng-show="fromAccountDelete" style="margin:0;">
+                    {{ 'WE_WILL_MISS_YOU__TELL_US_WHY_YOU_LEAVE' | translate }}
+                </h5>
+                <div class="hr" style="margin:0;"></div><br>
+                <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
 
-            <div class="row collapse">
-                <div class="small-12 columns">
-                    <textarea class="text-input top" name="text" rows="10" placeholder="{{ 'FEEDBACK_TEXT_PLACEHOLDER' | translate }}"
-                        ng-model="feedback.text" ng-required="true"></textarea>
+                <article class="row">
+                    <section class="small-12 columns">
+                        <textarea class="text-input top" name="text" rows="10" placeholder="{{ 'FEEDBACK_TEXT_PLACEHOLDER' | translate }}"
+                            ng-model="feedback.text" ng-required="true"></textarea>
+                    </section>
+                </article>
+                <article class="row">
+                    <section class="small-12 columns">
+                        <input class="text-input bottom round connect-right" name="email" type="email" autocorrect="off" autocapitalize="off" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" ng-model="feedback.email">
+                    </section>
+                </article>
+                <article class="row">
+                    <section class="small-12 columns text-center">
+                        <button type="submit" ng-disabled="sending || feedbackForm.$invalid" class="button">{{'SUBMIT' | translate}}</button>
+                    </section>
+                </article>                    
+            </form>
+            <div ng-show="sent">
+                <div class="clearfix successfully-sent">
+                    {{ 'SENDING_FEEDBACK_SUCCESS' | translate }}
                 </div>
-                <div class="small-9 columns">
-                    <input class="text-input bottom round connect-right" name="email" type="email" autocorrect="off" autocapitalize="off" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" ng-model="feedback.email">
-                </div>
-                <div class="small-3 columns">
-                    <button type="submit" ng-disabled="sending || feedbackForm.$invalid" class="primary button prefix round connect-top connect-left" translate style="width:100%;">SUBMIT</button>
+                <div style="text-align:center;">
+                    <a href="" ng-click="init()" analytics-on analytics-event="feedback form sent" analytics-category="Feedback" analytics-value="4">{{ 'SEND_ANOTHER_FEEDBACK' | translate }}</a>
                 </div>
             </div>
-        </form>
-        <div ng-show="sent">
-            <div class="clearfix padding-2 successfully-sent">
-                {{ 'SENDING_FEEDBACK_SUCCESS' | translate }}
-            </div>
-            <div style="text-align:center;">
-                <a href="" ng-click="init()" class="padding-2" analytics-on analytics-event="feedback form sent" analytics-category="Feedback" analytics-value="4">{{ 'SEND_ANOTHER_FEEDBACK' | translate }}</a>
-            </div>
-        </div>
-    </div>
-    <div class="right-column large-5 columns">
-        <div class="hide-for-medium-down bob">
-            <p style="right:3%; bottom: 35%;">{{ 'FEEDBACK_FORM_SPEECH_BUBBLE' | translate}}</p>
-        </div>
-    </div>
+        </section>
+    </article>
 </section>

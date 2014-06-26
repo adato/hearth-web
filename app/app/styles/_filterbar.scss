@@ -1,80 +1,93 @@
-.filterbar {
+.filterbar-wrap {
     margin: {
-        left: 0 !important;
-        right: 0 !important;
+        bottom: 1em;
     };
-    .button {
-        color: nth($color, 5);
+    .filterbar-container {
         background-color: nth($color, 4);
-        border-radius: 0;
-        border: 0;
-        padding: {
-            top: 0.5em;
-            bottom: 0.5em;
-        };
+        border-radius: 0 0 $global-radius $global-radius;
         margin: {
-            bottom: 0;
+            bottom: 1em;
         };
-        &:hover,
-        &.pressed {
-            color: nth($color, 4);
-            background-color: nth($color, 5);
-        }
+        padding: {
+            left: 1em;
+            right: 1em;
+        };
     }
-    .filterbar-section {
-        background-color: nth($color, 4);
-        .button {
-            border-radius: 0;
-        }
-        .columns {
-            margin: 0;
-            padding: 0;
-        }
-        border-radius: $global-radius $global-radius 0 0;
-        overflow: hidden;
-        border: {
-            bottom: 2px solid lighten(nth($color, 5), abs($button-function-factor));
+    .filterbar {
+        margin: {
+            left: 0 !important;
+            right: 0 !important;
         };
-        .button-group {
-            margin: 0.25em;
-            .button {
-                box-shadow: inset 2px 2px 2px rgba(white, 0.5);
-                padding: {
-                    top: 3px;
-                    bottom: 3px;
-                    left: 0.5em;
-                    right: 0.5em;
-                };
-                border: 1px solid nth($color, 5) !important;
-                &.pressed {
-                    color: nth($color, 3);
-                    background-color: lighten(nth($color, 3), 45%);
-                    box-shadow: inset 0px 1px 3px nth($color, 3);
-                }
-                &.left {
-                    border-right: 0 !important;
-                }
-                &.right {
-                    border-left: 0 !important;
+        .button {
+            color: nth($color, 5);
+            background-color: nth($color, 4);
+            border-radius: 0;
+            border: 0;
+            padding: {
+                top: 0.5em;
+                bottom: 0.5em;
+            };
+            margin: {
+                bottom: 0;
+            };
+            &:hover,
+            &.pressed {
+                color: nth($color, 4);
+                background-color: nth($color, 5);
+            }
+        }
+        .filterbar-section {
+            background-color: nth($color, 4);
+            .columns {
+                margin: 0;
+                padding: 0;
+            }
+            border-radius: $global-radius $global-radius 0 0;
+            overflow: hidden;
+            border: {
+                bottom: 2px solid lighten(nth($color, 5), abs($button-function-factor));
+            };
+            .button-group {
+                margin: 0.25em;
+                .button {
+                    box-shadow: inset 2px 2px 2px rgba(white, 0.5);
+                    padding: {
+                        top: 3px;
+                        bottom: 3px;
+                        left: 0.5em;
+                        right: 0.5em;
+                    };
+                    border: 1px solid nth($color, 5) !important;
+                    &.pressed {
+                        color: nth($color, 3);
+                        background-color: lighten(nth($color, 3), 45%);
+                        box-shadow: inset 0px 1px 3px nth($color, 3);
+                    }
+                    &.left {
+                        border-right: 0 !important;
+                    }
+                    &.right {
+                        border-left: 0 !important;
+                    }
                 }
             }
         }
-    }
-    .insert-button-container {
-        padding: {
-            right: 0;
-        };
-        .button {
-            border-radius: $global-radius $global-radius 0 0;
-            border-style: solid;
-            border-color: nth($color, 5), abs($button-function-factor);
-            box-shadow: inset 3px 3px 3px rgba(white, 0.5);
-            border: {
-                bottom-width: 2px !important;
-                left-width: 1px !important;
-                right-width: 1px !important;
-                top-width: 1px !important;
+        .insert-button-container {
+            padding: {
+                right: 0;
             };
+            .button {
+                border-radius: $global-radius $global-radius 0 0;
+                border-style: solid;
+                border-color: nth($color, 5), abs($button-function-factor);
+                box-shadow: inset 3px 3px 3px rgba(white, 0.5);
+                border: {
+                    bottom-width: 2px !important;
+                    left-width: 1px !important;
+                    right-width: 1px !important;
+                    top-width: 1px !important;
+                };
+            }
         }
     }
 }

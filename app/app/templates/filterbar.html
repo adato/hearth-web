@@ -1,4 +1,4 @@
-<div>
+<div class="filterbar-wrap">
 	<article class="row">
 		<section class="large-10  push-2 columns">
 			<article class="row filterbar">
@@ -21,7 +21,7 @@
 					</article>
 				</section>
 				<section class="large-4 columns text-right insert-button-container">
-					<a class="button"><span class="fa fa-pencil"></span> Vytvorit novy</a>
+					<a  ng-click="toggleNewItem()" ng-class="{pressed: newItemSelected}" class="button"><span class="fa fa-pencil"></span> Vytvorit novy</a>
 				</section>
 			</article>
 		</section>
@@ -29,7 +29,12 @@
 
 	<article class="row">
 		<section class="large-10  push-2 columns">
-			<filter data="filter" ng-show="filterSelected" class="animate-show"></filter>
+			<div ng-show="filterSelected" class="animate-show">
+				<filter data="filter" class="filterbar-container"></filter>
+			</div>
+			<div ng-show="newItemSelected" class="animate-show">
+				<editad class="filterbar-container"></editad>
+			</div>
 		</section>
 	</article>
 </div>

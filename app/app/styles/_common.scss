@@ -3,7 +3,7 @@
     border-radius: $global-radius;
     padding: 1em;
     padding-top: 0;
-    box-shadow: 1px 1px 6px gray;
+    box-shadow: $defaultShadow;
     overflow: hidden;
     .header {
         background-color: nth($color, 1);

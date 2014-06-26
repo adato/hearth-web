@@ -15,14 +15,27 @@ angular.module('hearth.directives').directive('filterbar', [
 			link: function(scope) {
 				angular.extend(scope, {
 					mapSelected: false,
-					filterSelected: false
+					filterSelected: false,
+					newItemSelected: true
 				});
 
+				scope.toggleNewItem = function() {
+					if (!scope.filterSelected) {
+						scope.newItemSelected = !scope.newItemSelected;
+					}
+				};
+
 				scope.toggleFilter = function() {
-					scope.filterSelected = !scope.filterSelected;
+					if (!scope.newItemSelected) {
+						scope.filterSelected = !scope.filterSelected;
+					}
 				};
 
 				scope.$on('closeFilter', function() {
+					scope.filterSelected = false;
+				});
+
+				scope.$on('closeNewItemFilter', function() {
 					scope.filterSelected = false;
 				});
 
