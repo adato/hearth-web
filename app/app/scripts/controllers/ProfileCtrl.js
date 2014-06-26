@@ -85,7 +85,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		fetchAds = function(refresh) {
 			var searchParams;
 			searchParams = {
-				userId: $routeParams.id,
+				user_id: $routeParams.id,
 				limit: $scope.limit,
 				offset: $scope.offset,
 				include_not_active: 1
@@ -109,7 +109,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		fetchRatings = function() {
 			var searchParams;
 			searchParams = {
-				userId: $routeParams.id,
+				user_id: $routeParams.id,
 				limit: $scope.limit,
 				offset: $scope.offset
 			};
@@ -133,11 +133,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			};
 			if ($scope.loggedUser._id != null) {
 				UsersService.isFollower($scope.profile._id, $scope.loggedUser._id).then(function(res) {
-					if (res.isFollower) {
+					if (res.is_follower) {
 						$scope.profile.relation = 'followee';
 					}
 					return UsersService.isFriend($scope.profile._id, $scope.loggedUser._id).then(function(res) {
-						if (res.getFriend) {
+						if (res.get_friend) {
 							$scope.profile.relation = 'friend';
 							return $scope.profile.relation;
 						}
@@ -156,10 +156,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 			return UsersService.queryFriends($scope.profile._id).then(function(result) {
 				$scope.relations.friends = result.filter(function(item) {
-					return item.userType !== 'Community';
+					return item.user_type !== 'Community';
 				}) || [];
 				$scope.relations.memberOfCommunities = result.filter(function(item) {
-					return item.userType === 'Community';
+					return item.user_type === 'Community';
 				}) || [];
 				$scope.relations.adminOfCommunities = $scope.relations.memberOfCommunities.filter(function(item) {
 					return item.admin === $scope.profile._id;
@@ -177,7 +177,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 						results = [];
 
 					for (i = 0, len = persons.length; i < len; i++) {
-						results.push(persons[i].userId);
+						results.push(persons[i].user_id);
 					}
 					return results;
 				})();
@@ -188,8 +188,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 					for (i = 0, len = followees.length; i < len; i++) {
 						followee = followees[i];
-						id = followee.userId;
-						if (__indexOf.call(friends, id) < 0 && followee.userType !== 'Community') {
+						id = followee.user_id;
+						if (__indexOf.call(friends, id) < 0 && followee.user_type !== 'Community') {
 							results.push(followee);
 						}
 					}
@@ -202,8 +202,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 					for (i = 0, len = followers.length; i < len; i++) {
 						follower = followers[i];
-						id = follower.userId;
-						if (__indexOf.call(friends, id) < 0 && follower.userType !== 'Community') {
+						id = follower.user_id;
+						if (__indexOf.call(friends, id) < 0 && follower.user_type !== 'Community') {
 							results.push(follower);
 						}
 					}
@@ -477,16 +477,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.editedProfile.webs = angular.copy($scope.editedProfile.webs);
 		};
 
-		$scope.follow = function(userId, unfollow) {
+		$scope.follow = function(user_id, unfollow) {
 			var promise;
-			if (userId === $scope.loggedUser._id) {
+			if (user_id === $scope.loggedUser._id) {
 				return;
 			}
 			promise = null;
 			if (unfollow) {
-				promise = UsersService.removeFollower(userId, $scope.loggedUser._id);
+				promise = UsersService.removeFollower(user_id, $scope.loggedUser._id);
 			} else {
-				promise = UsersService.addFollower(userId, $scope.loggedUser._id);
+				promise = UsersService.addFollower(user_id, $scope.loggedUser._id);
 			}
 			return promise.then(function() {
 				return $scope.fetchFollows();

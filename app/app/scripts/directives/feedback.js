@@ -11,25 +11,25 @@ angular.module('hearth.directives').directive('feedback', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<div class="ratings-bar large-centered">' + '<i class="hearthicon-appreciate"></i>' + '<div class="ratio">' + '<div class="thumb-ups" ng-style="ratio" title="{{ upVotes }}"></div>' + '<div class="thumb-downs" title="{{ downVotes }}"></div>' + '</div>' + '<i class="hearthicon-hate right"></i>' + '</div>',
+		template: '<div class="ratings-bar large-centered">' + '<i class="hearthicon-appreciate"></i>' + '<div class="ratio">' + '<div class="thumb-ups" ng-style="ratio" title="{{ up_votes }}"></div>' + '<div class="thumb-downs" title="{{ down_votes }}"></div>' + '</div>' + '<i class="hearthicon-hate right"></i>' + '</div>',
 		link: function(scope, el, attrs) {
 			var recompute;
 			recompute = function() {
 				var ratio;
-				ratio = (100 / (scope.upVotes + scope.downVotes)) * scope.downVotes;
+				ratio = (100 / (scope.up_votes + scope.down_votes)) * scope.down_votes;
 				scope.ratio = {
 					right: ratio + '%'
 				};
 			};
-			scope.$watch(attrs.upVotes, function(newval) {
+			scope.$watch(attrs.up_votes, function(newval) {
 				if (newval >= 0) {
-					scope.upVotes = newval;
+					scope.up_votes = newval;
 					return recompute();
 				}
 			});
-			return scope.$watch(attrs.downVotes, function(newval) {
+			return scope.$watch(attrs.down_votes, function(newval) {
 				if (newval >= 0) {
-					scope.downVotes = newval;
+					scope.down_votes = newval;
 					return recompute();
 				}
 			});

@@ -45,11 +45,11 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				if (!$rootScope.isMine) {
 					CommunityService.getApplicant($routeParams.id, $scope.loggedUser._id).then(function(data) {
 						var _ref;
-						if (data.isFollower === true) {
+						if (data.is_follower === true) {
 							$scope.membershipStatus = 'requested';
 						}
 						if (_ref = $scope.loggedUser._id, __indexOf.call($scope.communityMembers.map(function(member) {
-							return member.userId;
+							return member.user_id;
 						}), _ref) >= 0) {
 							return $scope.membershipStatus = 'member';
 						}
@@ -59,8 +59,8 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				return CommunityService.queryApplicants($routeParams.id).then(function(data) {
 					return $scope.communityApplicants = data.filter(function(applicant) {
 						var _ref;
-						if (_ref = applicant.userId, __indexOf.call($scope.communityMembers.map(function(member) {
-							return member.userId;
+						if (_ref = applicant.user_id, __indexOf.call($scope.communityMembers.map(function(member) {
+							return member.user_id;
 						}), _ref) < 0) {
 							return applicant;
 						}
@@ -229,19 +229,19 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				return init();
 			});
 		};
-		$scope.acceptMembership = function(userId) {
-			return UsersService.addFollower(userId).then(function() {
+		$scope.acceptMembership = function(user_id) {
+			return UsersService.addFollower(user_id).then(function() {
 				return init();
 			});
 		};
-		$scope.rejectMembership = function(userId) {
-			return CommunityService.removeApplicant($scope.community._id, userId).then(function() {
+		$scope.rejectMembership = function(user_id) {
+			return CommunityService.removeApplicant($scope.community._id, user_id).then(function() {
 				return init();
 			});
 		};
-		$scope.removeMember = function(userId) {
+		$scope.removeMember = function(user_id) {
 			if (window.confirm($translate('COMMUNITY_MEMBER_REMOVE_ARE_YOU_SURE'))) {
-				return CommunityService.removeMember($scope.community._id, userId).then(function() {
+				return CommunityService.removeMember($scope.community._id, user_id).then(function() {
 					return init();
 				});
 			}

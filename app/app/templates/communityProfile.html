@@ -50,12 +50,12 @@
 					<h5>{{ 'COMMUNITY_PROFILE_APPLICANTS' | translate }} ({{ communityApplicants.length}})</h5>
 					<ul>
 						<li ng-repeat="applicant in communityApplicants">
-							<a ng-href="#/profile/{{applicant.userId}}" title="{{applicant.userFullname}}">
-								<avatar source="applicant.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
+							<a ng-href="#/profile/{{applicant.user_id}}" title="{{applicant.user_full_name}}">
+								<avatar source="applicant.user_avatar" size="follow" class="left photo" type="'User'"></avatar>
 							</a>
 							&nbsp;
-							<button class="small primary button" ng-click="acceptMembership(applicant.userId)" translate>COMMUNITY_MEMBER_ACCEPT</button>
-							<button class="small red button" ng-click="rejectMembership(applicant.userId)" translate>COMMUNITY_MEMBER_REJECT</button>
+							<button class="small primary button" ng-click="acceptMembership(applicant.user_id)" translate>COMMUNITY_MEMBER_ACCEPT</button>
+							<button class="small red button" ng-click="rejectMembership(applicant.user_id)" translate>COMMUNITY_MEMBER_REJECT</button>
 							<br>
 						</li>
 					</ul>
@@ -65,9 +65,9 @@
 				<h5>{{ 'COMMUNITY_PROFILE_MEMBERS' | translate }} ({{ communityMembers.length}})</h5>
 				<ul>
 					<li ng-repeat="member in communityMembers">
-						<a ng-href="#/profile/{{member.userId}}" title="{{member.userFullname}}">
-							<avatar source="member.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
-						</a><br><small ng-show="loggedCommunity._id && isMine && loggedUser._id != member.userId"><a href="" ng-click="removeMember(member.userId)"><i class="fa fa-off"></i> {{ 'COMMUNITY_MEMBER_REMOVE' | translate }}</a></small>
+						<a ng-href="#/profile/{{member.user_id}}" title="{{member.user_full_name}}">
+							<avatar source="member.user_avatar" size="follow" class="left photo" type="'User'"></avatar>
+						</a><br><small ng-show="loggedCommunity._id && isMine && loggedUser._id != member.user_id"><a href="" ng-click="removeMember(member.user_id)"><i class="fa fa-off"></i> {{ 'COMMUNITY_MEMBER_REMOVE' | translate }}</a></small>
 					</li>
 				</ul>
 				<div class="cleaner"></div>                
@@ -163,8 +163,8 @@
 
 					<div class="small-12 columns hyphenate profile-wish-text" ng-if="!isEditingAd(item._id)">
 						<span class="small right">
-							<time-ago from-time="item.createdAt"></time-ago>
-							<i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_MEMBERS' | translate }}"></i>
+							<time-ago from-time="item.created_at"></time-ago>
+							<i class="fa fa-lock" ng-show="item.is_private" title="{{ 'VISIBLE_FOR_MEMBERS' | translate }}"></i>
 						</span>
 						<div>
 							<span ng-cloak ng-show="item.type == 'need'">

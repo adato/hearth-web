@@ -45,12 +45,12 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			getCredentials: function() {
-				return $rootScope.user.getloggedInUser || {
+				return $rootScope.user.get_logged_in_user || {
 					_id: null
 				};
 			},
 			getCommunityCredentials: function() {
-				return $rootScope.user.activeIdentity || null;
+				return $rootScope.user.active_identity || null;
 			},
 			getBaseCredentials: function() {
 				if ($rootScope.user._id) {

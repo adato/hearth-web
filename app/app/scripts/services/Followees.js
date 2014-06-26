@@ -9,8 +9,8 @@
 angular.module('hearth.services').factory('Followees', [
 	'$resource',
 	function($resource) {
-		return $resource($$config.apiPath + '/users/:userId/followees/', {
-			userId: '@userId',
+		return $resource($$config.apiPath + '/users/:user_id/followees/', {
+			user_id: '@user_id',
 			r: Math.random()
 		}, {
 			query: {

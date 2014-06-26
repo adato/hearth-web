@@ -27,7 +27,7 @@ angular.module('hearth.services').factory('CommunityApplicants', [
 				method: 'GET',
 				isArray: true,
 				params: {
-					sort: '-createdAt',
+					sort: '-created_at',
 					r: Math.random()
 				}
 			}

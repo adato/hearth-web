@@ -9,8 +9,8 @@
 angular.module('hearth.services').factory('Friends', [
 	'$resource',
 	function($resource) {
-		return $resource($$config.apiPath + '/users/:userId/friends/:friendId', {
-			userId: '@userId',
+		return $resource($$config.apiPath + '/users/:user_id/friends/:friendId', {
+			user_id: '@user_id',
 			friendId: '@friendId',
 			r: Math.random()
 		}, {

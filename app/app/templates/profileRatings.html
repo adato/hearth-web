@@ -10,8 +10,8 @@
                 </button>
             </div>
         </div>
-        <div class="small-12 medium-12 large-7 columns" ng-show="profile.upVotes + profile.downVotes" ng-cloak>
-            <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
+        <div class="small-12 medium-12 large-7 columns" ng-show="profile.up_votes + profile.down_votes" ng-cloak>
+            <feedback up-votes="profile.up_votes" down-votes="profile.down_votes"></feedback>
         </div>
     </div>
     <div signed-in>
@@ -43,13 +43,13 @@
 <div ng-show="isMine">
     <div class="padding-2 row" ng-show="ratings.length > 0" ng-cloak>
         <div class="small-12 large-7 columns">
-            <feedback up-votes="profile.upVotes" down-votes="profile.downVotes"></feedback>
+            <feedback up-votes="profile.up_votes" down-votes="profile.down_votes"></feedback>
         </div>
         <div class="large-5 columns hide-for-small">
             <div class="right">
-                <i class="hearthicon-appreciate"></i>&nbsp;{{ profile.upVotes }}
+                <i class="hearthicon-appreciate"></i>&nbsp;{{ profile.up_votes }}
                 /
-                <i class="hearthicon-hate"></i>&nbsp;{{ profile.downVotes }}
+                <i class="hearthicon-hate"></i>&nbsp;{{ profile.down_votes }}
             </div>
         </div>
     </div>
@@ -64,17 +64,17 @@
     <div class="hr"></div>
     <div ng-repeat="rating in ratings" class="wish-container">
         <div class="rating row" ng-class="{ 'positive': rating.score > 0, 'negative': rating.score < 0 }">
-            <avatar source="rating.userFromAvatar" size="normal" class="left photo" click="go('profile', rating.userFrom)"></avatar>
+            <avatar source="rating.user_from_avatar" size="normal" class="left photo" click="go('profile', rating.user_from)"></avatar>
             <!-- TODO avatar for community detect -->
             <div class="small-12 columns rating-text hyphenate" style="width:99%;">
                 <div class="right small">
-                    <time-ago from-time="rating.createdAt"></time-ago>
+                    <time-ago from-time="rating.created_at"></time-ago>
                 </div>
 
-                <a ng-href="#/{{rating.entityHelper}}/{{ rating.userFrom }}" ng-show="rating.userFromFullName">
+                <a ng-href="#/{{rating.entity_helper}}/{{ rating.user_from }}" ng-show="rating.user_from_full_name">
                   <i class="hearthicon-appreciate" ng-cloak ng-show="rating.score > 0"></i>
                   <i class="hearthicon-hate" ng-cloak ng-show="rating.score < 0"></i>
-                  {{ rating.userFromFullName }}
+                  {{ rating.user_from_full_name }}
                 </a>
                 <p ng-cloak ng-show="rating.text" style="margin-bottom:0;">{{rating.text | urlize}}</p>
             </div>

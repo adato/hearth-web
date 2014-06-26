@@ -10,8 +10,8 @@
         <h1 ng-show="ad.author.name" class="username" ng-cloak>
             <a ng-href="#/{{ad.profileUrl}}/{{ ad.author._id }}">{{ ad.author.name }}</a>
         </h1>
-        <div ng-show="ad.author.upVotes + ad.author.downVotes">
-            <feedback up-votes="ad.author.upVotes" down-votes="ad.author.downVotes"></feedback>
+        <div ng-show="ad.author.up_votes + ad.author.down_votes">
+            <feedback up-votes="ad.author.up_votes" down-votes="ad.author.down_votes"></feedback>
         </div>
 
         <div ng-switch on="ad.author.relation == 'followee' || ad.author.relation == 'friend'"
@@ -32,7 +32,7 @@
         <span ng-show="ad.location.name" ng-cloak>{{ ad.location.name }}</span>
         <br>
     </span>
-    <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.createdAt | date:'dd.MM.yyyy'}}</span>
+    <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.created_at | date:'dd.MM.yyyy'}}</span>
     <br><br>
     <div signed-out>
         <div class="round login-prompt" ng-cloak translate>

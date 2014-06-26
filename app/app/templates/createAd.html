@@ -54,11 +54,11 @@
 			</div>
 
 			<div class="text-input bottom field-container panel  clearfix" ng-show="isCreatingAd() || isEditingAd()">
-				<a class="create-post-link left" style="line-height:46px" ng-click="post.isPrivate = !post.isPrivate">
+				<a class="create-post-link left" style="line-height:46px" ng-click="post.is_private = !post.is_private">
 					
-					<span ng-show="!post.isPrivate"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
-					<span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-					<span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+					<span ng-show="!post.is_private"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
+					<span ng-show="post.is_private && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+					<span ng-show="post.is_private && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
 				</a>
 				<button class="primary button right" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
 			</div>
