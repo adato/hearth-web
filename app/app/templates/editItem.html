@@ -2,9 +2,9 @@
 	<div signed-out class="animate-show">
 		<article class="row">
 			<section class="large-12 columns">
-				<div class="radius alert-box info" ng-cloak >
-					{{'LOG_IN_TO_POST_NEW_WISHES' || translate}}
-					 <a class="close" ng-click="edit = false" >&times;</a>
+				<div class="radius alert-box info" ng-cloak>
+					<span translate>LOG_IN_TO_POST_NEW_WISHES</span>
+					 <a class="close" ng-click="close()" >&times;</a>
 				</div>
 			</section>
 		</article>
@@ -23,7 +23,9 @@
 
 			<article class="row">
 				<section class="large-12 columns">
-					<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name" ng-keydown="escapeKey($event)" ng-cloak ></textarea>
+					<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name"  ng-cloak ></textarea>
+
+					<left-chars-progress value="post.name" max="2500"></left-chars-progress>
 				</section>
 			</article>
 
@@ -74,7 +76,7 @@
 
 			<article class="row">
 				<section class="large-4 columns">
-					<a ng-click="cancel()">Zrusit</a>
+					<a ng-click="close()">Zrusit</a>
 				</section>
 				<section class="large-4 columns">
 					<a class="create-post-link left"ng-click="post.isPrivate = !post.isPrivate">

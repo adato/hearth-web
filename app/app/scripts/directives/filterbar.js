@@ -35,8 +35,8 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.filterSelected = false;
 				});
 
-				scope.$on('closeNewItemFilter', function() {
-					scope.filterSelected = false;
+				scope.$on('closeNewItem', function() {
+					scope.newItemSelected = false;
 				});
 
 				scope.toggleMap = function() {

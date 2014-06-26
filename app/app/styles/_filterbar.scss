@@ -1,5 +1,6 @@
 .filterbar-wrap {
     margin: {
+        top:1em;
         bottom: 1em;
     };
     .filterbar-container {
@@ -11,6 +12,7 @@
         padding: {
             left: 1em;
             right: 1em;
+            top:1em;
         };
     }
     .filterbar {
@@ -38,10 +40,7 @@
         }
         .filterbar-section {
             background-color: nth($color, 4);
-            .columns {
-                margin: 0;
-                padding: 0;
-            }
+            
             border-radius: $global-radius $global-radius 0 0;
             overflow: hidden;
             border: {
