@@ -18,6 +18,13 @@
     .fa-clock-o,
     .fa-map-marker {
         color: nth($color, 5);
-
+    }
+    .alert-box {
+        border-radius: $global-radius $global-radius 0 0;
+        margin: {
+            left: $global-radius;
+            right: $global-radius;
+            bottom: 0;
+        };
     }
 }
