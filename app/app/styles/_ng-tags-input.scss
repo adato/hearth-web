@@ -20,7 +20,7 @@ tags-input .host {
         word-wrap: break-word;
         cursor: text;
         background-color: white;
-        border: 1px solid darkgray;
+        border: 1px solid darken(nth($color, 4), 20%);
         box-shadow: 1px 1px 1px 0 lightgray inset;
         border-radius: $global-radius;
         outline: none;

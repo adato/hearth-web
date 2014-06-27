@@ -73,6 +73,8 @@
 @import "editAd";
 @import "needOfferSelector";
 @import "ng-tags-input";
+@import "foundation-datepicker";
+@import "locations";
 
 body {
     background-image: inline-image("bg.png");
@@ -126,10 +128,10 @@ body {
 //@import "foundation/components/thumbs";
 //@import "foundation/components/tooltips";
 @import "foundation/components/dropdown";
-//@import "foundation-datepicker";
 
 
-@import "locations";
+
+
 /*@import "foundation-improvements";
 @import "hearth-icons";
 

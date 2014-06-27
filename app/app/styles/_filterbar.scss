@@ -1,3 +1,4 @@
+
 .filterbar-wrap {
     margin: {
         top:1em;
@@ -16,6 +17,11 @@
             right: 1em;
             top:1em;
         };
+        input[type="text"],
+        textarea {
+            border: 1px solid darken(nth($color, 4), 20%);
+            box-shadow: 0 1px 1px white;
+        }
     }
     .filterbar {
         margin: {

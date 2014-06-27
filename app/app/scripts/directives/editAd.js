@@ -6,8 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('editad', [
+	'$filter', 'LanguageSwitch',
 
-	function() {
+	function($filter, LanguageSwitch) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -16,7 +17,11 @@ angular.module('hearth.directives').directive('editad', [
 			link: function(scope) {
 				scope.post = {
 					type: 'offer',
-					isPrivate: false
+					isPrivate: false,
+					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+					locations: [{
+						name: ''
+					}]
 				};
 
 				scope.close = function() {

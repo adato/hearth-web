@@ -45,23 +45,25 @@
 
 			<article class="row">
 				<section class="large-12 columns">
-					<i class="fa fa-tags"></i>
+					<i class="fa fa-tags" title="klicova slova"></i>
 					<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
 						<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 					</tags-input>
 				</section>
 			</article>
-			
-			<!--article class="row">
-				<section class="large-12 columns">
-					<label>{{ 'EXPIRATION_DATE' | translate}}
-						<input type="text" datepicker="{{languageCode.code}}"  style="border:0" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
-					</label>
-				</section>
-			</article-->
 
 			<article class="row">
 				<section class="large-12 columns">
+					<i class="fa fa-clock-o" title="{{ 'EXPIRATION_DATE' | translate}}"></i>
+					<label>{{ 'EXPIRATION_DATE' | translate}}
+						<input type="text" datepicker="{{languageCode.code}}" class="date"  ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+					</label>
+				</section>
+			</article>
+
+			<article class="row">
+				<section class="large-12 columns">
+					<i class="fa fa-map-marker" title="Misto"></i>
 					<locations locations="post.locations"></locations>
 				</section>
 			</article>
