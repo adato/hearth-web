@@ -510,7 +510,7 @@
 
 // We use these to style the labels in different ways
 // $form-label-pointer: pointer;
-// $form-label-font-size: rem-calc(14);
+   $form-label-font-size: rem-calc(14);;
 // $form-label-font-weight: $font-weight-normal;
 // $form-label-line-height: 1.5;
 // $form-label-font-color: scale-color(#000, $lightness: 30%);
@@ -518,7 +518,7 @@
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
    $input-font-color: nth($color,3);
-   $input-font-size: rem-calc(24);
+   $input-font-size: rem-calc(16);
 // $input-bg-color: #fff;
 // $input-focus-bg-color: scale-color(#fff, $lightness: -2%);
    $input-border-color: nth($color,3);

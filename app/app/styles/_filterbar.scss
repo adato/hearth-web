@@ -1,7 +1,6 @@
-
 .filterbar-wrap {
     margin: {
-        top:1em;
+        top: 1em;
         bottom: 1em;
     };
     .filterbar-container {
@@ -15,12 +14,44 @@
         padding: {
             left: 1em;
             right: 1em;
-            top:1em;
+            top: 1em;
         };
         input[type="text"],
-        textarea {
+        textarea,
+        .tags {
             border: 1px solid darken(nth($color, 4), 20%);
             box-shadow: 0 1px 1px white;
+            background-color: lighten(nth($color, 4), 2%);
+            @include transition(background-color, 0.5s);
+            &:focus {
+                background-color: white;
+                box-shadow: inset 0px 1px 2px nth($color, 4);
+            }
+        }
+        tags-input {
+            .host {
+                .tags {
+                    .input {
+                        background-color: lighten(nth($color, 4), 2%);
+                        &.focus {
+                            background-color: white;
+                            box-shadow: inset 0px 1px 2px nth($color, 4);
+                        }
+                    }
+                    &.focused {
+                        background-color: white;
+                        box-shadow: inset 0px 1px 2px nth($color, 4);
+                        .input {
+                            background-color: white;
+                        }
+                    }
+                }
+            }
+        }
+        button {
+            margin: {
+                bottom: 0;
+            };
         }
     }
     .filterbar {
@@ -48,7 +79,6 @@
         }
         .filterbar-section {
             background-color: nth($color, 4);
-            
             border-radius: $global-radius $global-radius 0 0;
             overflow: hidden;
             border: {

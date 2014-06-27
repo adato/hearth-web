@@ -24,7 +24,7 @@
 							<div ng-show="editForm.title.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
 						</div>
 					</div>
-					<input type="text" placeholder="{{'TELL_WHAT' | translate}}" ng-minlength="3" ng-maxlength="250" ng-model="post.title" name="title" ng-required="true">
+					<input type="text" placeholder="{{'TELL_WHAT' | translate}}" ng-minlength="3" ng-maxlength="100" ng-model="post.title" name="title" ng-required="true">
 					<left-chars-progress value="post.title" max="100"></left-chars-progress>
 				</section>
 			</article>
@@ -91,7 +91,7 @@
 									<i class="hearthicon-remove"></i>
 								</a>
 							</li>
-						</ul>
+							</ul>
 					</div>
 					<div file-upload-output class="text-center"></div>
 				</section>
@@ -103,7 +103,16 @@
 					</a>
 				</section>
 				<section class="large-4 columns">
-					<span class="fa fa-share-square-o"></span> Osatní mohou sdílet inzerát na jiné sociální sítě
+					<a ng-click="post.sharing_allowed = !post.sharing_allowed">
+						<span ng-show="post.sharing_allowed">
+							<span class="fa fa-share-square-o"></span>
+							Osatní mohou sdílet inzerát na jiné sociální sítě
+						</span>
+						<span ng-hide="post.sharing_allowed">
+							<span class="fa fa-times"></span>
+							Sdílení na jiné sociální sítě je zakázáno
+						</span>
+					</a>
 				</section>
 			</article>
 
@@ -111,7 +120,7 @@
 
 			<article class="row">
 				<section class="large-4 columns">
-					<a ng-click="close()">Zrusit</a>
+					<a ng-click="close()" class="link-button">{{'CANCEL' | translate}}</a>
 				</section>
 				<section class="large-4 columns">
 					

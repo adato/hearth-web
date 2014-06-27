@@ -19,6 +19,7 @@ angular.module('hearth.directives').directive('editad', [
 					type: 'offer',
 					isPrivate: false,
 					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+					sharing_allowed: true,
 					locations: [{
 						name: ''
 					}]

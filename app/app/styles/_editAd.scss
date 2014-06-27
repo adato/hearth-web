@@ -14,9 +14,7 @@
     textarea {
         height: 250px;
     }
-    .fa-tags,
-    .fa-clock-o,
-    .fa-map-marker {
+    a {
         color: nth($color, 5);
     }
     .alert-box {
@@ -26,5 +24,10 @@
             right: $global-radius;
             bottom: 0;
         };
+    }
+    .row {
+        margin: {
+            bottom: 1em;
+        }
     }
 }
