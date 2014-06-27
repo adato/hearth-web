@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<input type="text" placeholder="{{'TELL_WHAT' | translate}}" ng-minlength="3" ng-maxlength="250" ng-model="post.title" name="title" ng-required="true">
-					<left-chars-progress value="post.title" max="250"></left-chars-progress>
+					<left-chars-progress value="post.title" max="100"></left-chars-progress>
 				</section>
 			</article>
 
@@ -45,31 +45,36 @@
 
 			<article class="row">
 				<section class="large-12 columns">
-					<i class="fa fa-tags" title="klicova slova"></i>
-					<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
-						<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
-					</tags-input>
+					<label>
+						<i class="fa fa-tags"></i> {{ 'KEYWORDS' | translate}} 
+						<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+							<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+						</tags-input>
+					</label>
+				</section>
+			</article>
+
+
+			<article class="row">
+				<section class="large-12 columns">
+					<i class="fa fa-map-marker"></i> {{ 'PLACES' | translate}} 
+					<locations locations="post.locations"></locations>
 				</section>
 			</article>
 
 			<article class="row">
 				<section class="large-12 columns">
-					<i class="fa fa-clock-o" title="{{ 'EXPIRATION_DATE' | translate}}"></i>
-					<label>{{ 'EXPIRATION_DATE' | translate}}
+					<label>
+						<i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
 						<input type="text" datepicker="{{languageCode.code}}" class="date"  ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
 					</label>
 				</section>
 			</article>
 
-			<article class="row">
-				<section class="large-12 columns">
-					<i class="fa fa-map-marker" title="Misto"></i>
-					<locations locations="post.locations"></locations>
-				</section>
-			</article>
+			<hr>
 		
 			<article class="row">
-				<section class="large-12 columns">
+				<section class="large-4 columns">
 					<div file-upload upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments.enabled = true" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments.enabled = true" style="position:relative; display:inline-block; float:left; padding-left:2px;">
 						<a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
 							<i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
@@ -88,6 +93,16 @@
 					</div>
 					<div file-upload-output class="text-center"></div>
 				</section>
+				<section class="large-4 columns">
+					<a class="create-post-link left"ng-click="post.isPrivate = !post.isPrivate">
+						<span ng-show="!post.isPrivate"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
+						<span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+						<span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+					</a>
+				</section>
+				<section class="large-4 columns">
+					<span class="fa fa-share-square-o"></span> Osatní mohou sdílet inzerát na jiné sociální sítě
+				</section>
 			</article>
 
 			<hr>
@@ -97,11 +112,7 @@
 					<a ng-click="close()">Zrusit</a>
 				</section>
 				<section class="large-4 columns">
-					<a class="create-post-link left"ng-click="post.isPrivate = !post.isPrivate">
-						<span ng-show="!post.isPrivate"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
-						<span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-						<span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
-					</a>
+					
 				</section>
 				<section class="large-4 columns text-right">
 					<button type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || editForm.$invalid" translate>SUBMIT</button>

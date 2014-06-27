@@ -17,12 +17,7 @@
     .fa-tags,
     .fa-clock-o,
     .fa-map-marker {
-        float: left;
-        padding: 5px;
-        padding-left: 0px;
         color: nth($color, 5);
-        margin: {
-        	top: 0.5em;
-        }
+
     }
 }
