@@ -59,3 +59,16 @@ button {
 .row {
   max-width: 960px;
 }
+
+.remove {
+    position: absolute;
+    top: rem-calc(18 /  3);
+    right: rem-calc(18);
+    color: nth($color, 1);
+    cursor: pointer;
+    font-size: rem-calc(18);
+    transition: color 0.8s;
+    &:hover {
+        color: darken(nth($color, 1), 20%);
+    }
+}
