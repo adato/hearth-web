@@ -19,8 +19,8 @@
 				<section class="large-9 columns">
 					<div class="animate-show" ng-show="editForm.title.$invalid && editForm.title.$dirty">
 						<div class="alert-box radius">
-							<div ng-show="editForm.title.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
-							<div ng-show="editForm.title.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+							<div ng-show="editForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</div>
+							<div ng-show="editForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</div>
 							<div ng-show="editForm.title.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
 						</div>
 					</div>
@@ -106,11 +106,11 @@
 					<a ng-click="post.sharing_allowed = !post.sharing_allowed">
 						<span ng-show="post.sharing_allowed">
 							<span class="fa fa-share-square-o"></span>
-							Osatní mohou sdílet inzerát na jiné sociální sítě
+							{{'SHARING_SOCIAL_ENABLED' | translate}}
 						</span>
 						<span ng-hide="post.sharing_allowed">
 							<span class="fa fa-times"></span>
-							Sdílení na jiné sociální sítě je zakázáno
+							{{'SHARING_SOCIAL_DISABLED' | translate }}
 						</span>
 					</a>
 				</section>
@@ -126,7 +126,7 @@
 					
 				</section>
 				<section class="large-4 columns text-right">
-					<button type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || editForm.$invalid" translate>SUBMIT</button>
+					<button type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || editForm.$invalid">{{'SUBMIT' | translate}}</button>
 				</section>
 			</article>
 		</form>
