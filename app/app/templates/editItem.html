@@ -88,7 +88,7 @@
 							<li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
 								<img ng-src="{{ file.origin }}" class="padding-1">
 								<a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
-									<i class="hearthicon-remove"></i>
+									<i class="fa fa-times"></i>
 								</a>
 							</li>
 						</ul>
@@ -126,7 +126,7 @@
 					
 				</section>
 				<section class="large-4 columns text-right">
-					<button type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || editForm.$invalid">{{'SUBMIT' | translate}}</button>
+					<button ng-click="send()" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || editForm.$invalid">{{'SUBMIT' | translate}}</button>
 				</section>
 			</article>
 		</form>

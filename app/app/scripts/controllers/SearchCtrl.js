@@ -397,6 +397,27 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			});
 		});
 
+		$scope.$on('adCreated', function($event, data) {
+			$scope.items.unshift(data);
+			console.log('addAdd');
+		});
+
+		$scope.$on('adSaved', function($event, data) {
+			var phantomRecord;
+
+			for (var i = 0; i < $scope.items.length; i++) {
+				if ($scope.items[i].isPhantom) {
+					phantomRecord = $scope.items[i];
+					break;
+				}
+			}
+			if (phantomRecord) {
+				phantomRecord = angular.extend(phantomRecord, data);
+				phantomRecord.isPhantom = false;
+				$scope.items[i] = phantomRecord;
+			}
+		});
+
 		$scope.$watch('location.search().id', function(newval) {
 			var item, i, len,
 				results = [],

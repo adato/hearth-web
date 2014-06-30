@@ -82,7 +82,7 @@ angular.module('hearth.directives').directive('ad', [
 
 				init();
 
-				if (scope.item.author.avatar.normal) {
+				if (scope.item.author && scope.item.author.avatar.normal) {
 					element.find('.img').css('background-image', 'url(' + scope.item.author.avatar.normal + ')');
 				}
 			}
