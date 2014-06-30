@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('filterbar', [
 				angular.extend(scope, {
 					mapSelected: false,
 					filterSelected: false,
-					newItemSelected: true
+					newItemSelected: false
 				});
 
 				scope.toggleNewItem = function() {
