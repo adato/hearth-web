@@ -1,0 +1,3 @@
+@function color($order) {
+  @return nth($color, $order);
+}
