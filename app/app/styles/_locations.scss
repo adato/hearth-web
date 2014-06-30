@@ -1,6 +1,3 @@
-
-
-
 #location-map {
 	.map-canvas {
 		height: 400px;
@@ -13,6 +10,10 @@
 	}
 	input{
 		border: 1px solid darken(nth($color, 4), 20%);
+	}
+	.link-button {
+		margin-top: 1em;
+		float: left;
 	}
 }
 .pac-container {//google maps search field - list

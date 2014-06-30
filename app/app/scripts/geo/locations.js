@@ -107,6 +107,9 @@ angular.module('hearth.geo').directive('locations', [
 					$('#location-map').foundation('reveal', 'open');
 					editedLocationIndex = index;
 				};
+				scope.close = function() {
+					$('#location-map').foundation('reveal', 'close');
+				};
 
 				$(document).on('opened', '#location-map[data-reveal]', function() {
 					initMap();
