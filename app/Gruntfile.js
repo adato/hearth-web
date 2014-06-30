@@ -19,7 +19,8 @@ module.exports = function(grunt) {
 		yeoman: {
 			// configurable paths
 			app: require('./bower.json').appPath || 'app',
-			dist: 'dist'
+			dist: 'dist',
+
 		},
 
 		// Watches files for changes and runs tasks based on the changed files
@@ -498,8 +499,7 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			dist: {
-			},
+			dist: {},
 			vendor: {
 				src: '<%= yeoman.dist %>/scripts/vendor.js',
 				dest: '<%= yeoman.dist %>/scripts/vendor.js',
@@ -548,7 +548,20 @@ module.exports = function(grunt) {
 					to: 'module("hearth",["templates-main","'
 				}]
 			}
-		}
+		},
+
+		cacheBust: {
+			options: {
+				encoding: 'utf8',
+				algorithm: 'md5',
+				length: 16
+			},
+			assets: {
+				files: [{
+					src: ['<%= yeoman.dist %>/index.html']
+				}]
+			}
+		},
 	});
 
 	grunt.registerTask('serve', function(target) {
@@ -609,7 +622,8 @@ module.exports = function(grunt) {
 		'replace:dist', // add angular module for merged templates
 		'concat:tmpl',
 		'concat:vendor',
-		'uglify:vendor'
+		'uglify:vendor',
+		'cacheBust'
 	]);
 
 	grunt.registerTask('default', [
