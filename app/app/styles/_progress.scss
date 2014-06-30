@@ -13,7 +13,7 @@
     }
     .text {
          white-space: nowrap;
-        color: nth($color, 4);
+        color: color(4);
         position:absolute;
         @include text-shadow(1px 1px 2px $progress-bar-border-color, -1px -1px 2px $progress-bar-border-color, -1px 1px 2px $progress-bar-border-color, 1px -1px 2px $progress-bar-border-color);
         margin: {

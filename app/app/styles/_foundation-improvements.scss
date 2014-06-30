@@ -14,7 +14,7 @@
     a {
 	    &:hover,
 	    &:focus {
-	        color: nth($color, 4) !important;
+	        color: color(4) !important;
 	    }
     	
     }

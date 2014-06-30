@@ -15,7 +15,7 @@
         height: 250px;
     }
     a {
-        color: nth($color, 5);
+        color: color(5);
     }
     .alert-box {
         border-radius: $global-radius $global-radius 0 0;

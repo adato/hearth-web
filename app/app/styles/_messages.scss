@@ -15,7 +15,7 @@
                 }
             }
             &:hover {
-                background-color: darken(nth($color, 5), 20%);
+                background-color: darken(color(5), 20%);
             }
         }
         tr.read {
@@ -25,8 +25,8 @@
         }
     }
     .icon {
-        background-color: nth($color, 3);
-        color: nth($color, 5);
+        background-color: color(3);
+        color: color(5);
         padding: 0.5em;
         @include border-radius(50%);
     }
@@ -45,7 +45,7 @@
         li {
             @include transition(color, 0.8s);
             &:hover {
-                color: nth($color, 1);
+                color: color(1);
                 cursor: pointer;
             }
         }

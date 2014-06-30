@@ -5,11 +5,11 @@
 			max-width: inherit;
 		}
 		border-radius: $global-radius;
-		 border: 1px solid darken(nth($color, 4), 20%);
+		 border: 1px solid darken(color(4), 20%);
 		 margin: {bottom: 1em;}
 	}
 	input{
-		border: 1px solid darken(nth($color, 4), 20%);
+		border: 1px solid darken(color(4), 20%);
 	}
 	.link-button {
 		margin-top: 1em;

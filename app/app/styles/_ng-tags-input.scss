@@ -20,7 +20,7 @@ tags-input .host {
         word-wrap: break-word;
         cursor: text;
         background-color: white;
-        border: 1px solid darken(nth($color, 4), 20%);
+        border: 1px solid darken(color(4), 20%);
         box-shadow: 1px 1px 1px 0 lightgray inset;
         border-radius: $global-radius;
         outline: none;
@@ -40,11 +40,11 @@ tags-input .host {
             float: left;
             height: 26px;
             line-height: 25px;
-            border: 1px solid darken(nth($color, 5), 20%);
+            border: 1px solid darken(color(5), 20%);
             border-radius: $global-radius;
-            background: nth($color, 5);
-            color: nth($color, 4);
-            background: linear-gradient(to bottom, lighten(nth($color, 5), 20%) 0%, nth($color, 5) 47%, nth($color, 5) 100%);
+            background: color(5);
+            color: color(4);
+            background: linear-gradient(to bottom, lighten(color(5), 20%) 0%, color(5) 47%, color(5) 100%);
             &.selected {
                 background: linear-gradient(to bottom, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
             }
@@ -79,7 +79,7 @@ tags-input .host {
         }
     }
     ng-invalid .tags {
-        box-shadow: 0 0 3px 1px nth($color, 1);
+        box-shadow: 0 0 3px 1px color(1);
     }
     .autocomplete {
         margin-top: 5px;

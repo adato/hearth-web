@@ -6,7 +6,7 @@ button,
 }
 
 /*input {
-    color: nth($color, 3);
+    color: color(3);
     font-family: inherit;
     font-size: large;
 }
@@ -20,7 +20,7 @@ button,
     font-family: inherit;
     border: 1px solid $body-border-color;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-    color: nth($color, 3);
+    color: color(3);
     display: block;
     padding: emCalc($grid-size);
     width: 100%;
