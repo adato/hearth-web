@@ -3,9 +3,9 @@
         margin: 0.25em;
 
         .button {
-            color: rgba(nth($color, 5), 0.5);
+            color: rgba(color(5), 0.5);
             font-size: 1.2em;
-            background-color: nth($color, 4);
+            background-color: color(4);
             box-shadow: inset 2px 2px 2px rgba(white, 0.5);
             padding: {
                 top: 3px;
@@ -13,12 +13,12 @@
                 left: 0.5em;
                 right: 0.5em;
             };
-            border: 1px solid nth($color, 5) !important;
+            border: 1px solid color(5) !important;
             border-radius:0; 
             &.pressed {
-                color: nth($color, 3);
-                background-color: lighten(nth($color, 3), 45%);
-                box-shadow: inset 0px 1px 3px nth($color, 3);
+                color: color(3);
+                background-color: lighten(color(3), 45%);
+                box-shadow: inset 0px 1px 3px color(3);
             }
             &.left {
                 border-right: 0 !important;

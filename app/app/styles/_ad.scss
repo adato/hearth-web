@@ -44,7 +44,7 @@ $imageSize: 80px;
             left: 50%;
             margin-top: 20px;
             width: 3px;
-            background-color: lighten(nth($color, 3), 25%);
+            background-color: lighten(color(3), 25%);
             height: 80%;
         }
     }
@@ -85,7 +85,7 @@ $imageSize: 80px;
             margin: {
                 top: 24px;
             };
-            color: nth($color, 5);
+            color: color(5);
         }
     }
     .alert-box {
@@ -150,7 +150,7 @@ $imageSize: 80px;
         width: 1em;
         &:hover {
             .fa-share-square-o {
-                color: lighten(desaturate(nth($color, 5), 100%), 20%);
+                color: lighten(desaturate(color(5), 100%), 20%);
             }
             .sharing {
                 max-width: 300px;
@@ -175,27 +175,27 @@ $imageSize: 80px;
                 a {
                     display: inline-block;
                     margin-left: 0.5em;
-                    color: lighten(nth($color, 5), 30%);
+                    color: lighten(color(5), 30%);
                     height: 2em;
                     width: 2em;
                     padding-top: 0.5em;
                     text-align: center;
-                    background-color: nth($color, 5);
+                    background-color: color(5);
                     border-radius: 50%;
-                    text-shadow: 0 -1px 1px darken(nth($color, 5), 15%);
+                    text-shadow: 0 -1px 1px darken(color(5), 15%);
                     @include transition(color 1s);
                     @include transition(background-color 0.8s);
                     &:hover {
                         color: white;
-                        background-color: darken(nth($color, 5), abs($button-function-factor));
+                        background-color: darken(color(5), abs($button-function-factor));
                     }
                     &.fa-flag {
-                        color: lighten(nth($color, 1), 30%);
-                        background-color: nth($color, 1);
-                        text-shadow: 0 -1px 1px darken(nth($color, 1), 15%);
+                        color: lighten(color(1), 30%);
+                        background-color: color(1);
+                        text-shadow: 0 -1px 1px darken(color(1), 15%);
                         &:hover {
                             color: white;
-                            background-color: darken(nth($color, 1), abs($button-function-factor));
+                            background-color: darken(color(1), abs($button-function-factor));
                         }
                     }
                 }
@@ -237,7 +237,7 @@ $imageSize: 80px;
     &.need {
         h1 {
             span {
-                color: nth($color, 1);
+                color: color(1);
             }
         }
         & .arrowbox {
@@ -253,14 +253,14 @@ $imageSize: 80px;
             top: $arrowTop - 2 * $border;
             &:after {
                 left: $size / 2;
-                background-color: nth($color, 1);
+                background-color: color(1);
             }
         }
     }
     &.offer {
         h1 {
             span {
-                color: nth($color, 2);
+                color: color(2);
             }
         }
         & .arrowbox {
@@ -275,7 +275,7 @@ $imageSize: 80px;
             top: $arrowTop - round(sqrt(2) * $size) + $size + 3 * $border;
             &:after {
                 left: -$size / 2;
-                background-color: nth($color, 2);
+                background-color: color(2);
             }
         }
     }

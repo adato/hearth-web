@@ -8,22 +8,22 @@ $defaultShadow: 1px 1px 6px gray;
 
 
 /*
-$control-font-color: nth($color, 3);
-$negative-font-color: adjust-color(nth($color, 4), $blue:-13);
-$primary-button-background: nth($color, 2);
-$primary-button-color: nth($color, 4);
-$primary-button-border: darken(nth($color, 2), 20%);
+$control-font-color: color(3);
+$negative-font-color: adjust-color(color(4), $blue:-13);
+$primary-button-background: color(2);
+$primary-button-color: color(4);
+$primary-button-border: darken(color(2), 20%);
 
 
 $grid-size: 10px;
 $profile-image-size: 96px;
 
 // Foundation datepicker
-$activeColor: nth($color, 1);
+$activeColor: color(1);
 
 // Compass Variables
 $experimental-support-for-svg: true;
-$grid-background-column-color: rgba(nth($color, 5), 0);
+$grid-background-column-color: rgba(color(5), 0);
 $grid-background-gutter-color: rgba(cyan, 0.5);
 $grid-background-baseline-color: $grid-background-gutter-color;
 $grid-background-total-columns: 144;
@@ -68,10 +68,10 @@ $left-column-background-pattern: image-url("pattern-01-white.png");
 
 // $default-float: left;
 
-$body-bg: nth($color, 5);
+$body-bg: color(5);
 $body-alt-bg: ivory;
 $body-border-color: rgb(172, 163, 94);
-$body-font-color: nth($color, 3);
+$body-font-color: color(3);
 $body-font-family: "SourceSansPro", "Signika", "Geneva", "Tahoma", sans-serif;
 $body-font-weight: 300;
 
@@ -86,7 +86,7 @@ $body-font-weight: 300;
 // $text-direction: ltr;
 
 // Colors
-$need-text-color: nth($color, 1);;
+$need-text-color: color(1);;
 $offer-text-color: #50a330;
 $user-text-color: #946f5e;
 $listing-hover-text-color: #685b32;
@@ -685,7 +685,7 @@ $button-function-factor: 30%;
 // $f-dropdown-font-size: emCalc(14px);
 // $f-dropdown-list-padding: emCalc(5px) emCalc(10px);
 // $f-dropdown-line-height: emCalc(18px);
- $f-dropdown-list-hover-bg: nth($color, 1);
+ $f-dropdown-list-hover-bg: color(1);
 // $dropdown-mobile-left: 0;
 
 // When the dropdown has custom content.
@@ -977,7 +977,7 @@ $button-function-factor: 30%;
 // Progress bar height
 
  	$progress-bar-height: 2em;
-	$progress-bar-color:  nth($color, 5);
+	$progress-bar-color:  color(5);
 
 // Border styles
 
@@ -1235,8 +1235,8 @@ $button-function-factor: 30%;
 
 // Background color for the top bar
 
-$topbar-bg: nth($color, 1);
-$topbar-bg-color: nth($color, 1);
+$topbar-bg: color(1);
+$topbar-bg-color: color(1);
 
 // Height and margin
 

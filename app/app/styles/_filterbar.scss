@@ -4,8 +4,8 @@
         bottom: 1em;
     };
     .filterbar-container {
-        background-color: nth($color, 4);
-        border: 1px solid darken(nth($color, 4), 20%);
+        background-color: color(4);
+        border: 1px solid darken(color(4), 20%);
         border-top: 0;
         border-radius: 0 0 $global-radius $global-radius;
         margin: {
@@ -19,28 +19,28 @@
         input[type="text"],
         textarea,
         .tags {
-            border: 1px solid darken(nth($color, 4), 20%);
+            border: 1px solid darken(color(4), 20%);
             box-shadow: 0 1px 1px white;
-            background-color: lighten(nth($color, 4), 2%);
+            background-color: lighten(color(4), 2%);
             @include transition(background-color, 0.5s);
             &:focus {
                 background-color: white;
-                box-shadow: inset 0px 1px 2px nth($color, 4);
+                box-shadow: inset 0px 1px 2px color(4);
             }
         }
         tags-input {
             .host {
                 .tags {
                     .input {
-                        background-color: lighten(nth($color, 4), 2%);
+                        background-color: lighten(color(4), 2%);
                         &.focus {
                             background-color: white;
-                            box-shadow: inset 0px 1px 2px nth($color, 4);
+                            box-shadow: inset 0px 1px 2px color(4);
                         }
                     }
                     &.focused {
                         background-color: white;
-                        box-shadow: inset 0px 1px 2px nth($color, 4);
+                        box-shadow: inset 0px 1px 2px color(4);
                         .input {
                             background-color: white;
                         }
@@ -60,8 +60,8 @@
             right: 0 !important;
         };
         .button {
-            color: nth($color, 5);
-            background-color: nth($color, 4);
+            color: color(5);
+            background-color: color(4);
             border-radius: 0;
             border: 0;
             padding: {
@@ -73,16 +73,16 @@
             };
             &:hover,
             &.pressed {
-                color: nth($color, 4);
-                background-color: nth($color, 5);
+                color: color(4);
+                background-color: color(5);
             }
         }
         .filterbar-section {
-            background-color: nth($color, 4);
+            background-color: color(4);
             border-radius: $global-radius $global-radius 0 0;
             overflow: hidden;
             border: {
-                bottom: 2px solid lighten(nth($color, 5), abs($button-function-factor));
+                bottom: 2px solid lighten(color(5), abs($button-function-factor));
             };
             .button-group {
                 margin: 0.25em;
@@ -94,11 +94,11 @@
                         left: 0.5em;
                         right: 0.5em;
                     };
-                    border: 1px solid nth($color, 5) !important;
+                    border: 1px solid color(5) !important;
                     &.pressed {
-                        color: nth($color, 3);
-                        background-color: lighten(nth($color, 3), 45%);
-                        box-shadow: inset 0px 1px 3px nth($color, 3);
+                        color: color(3);
+                        background-color: lighten(color(3), 45%);
+                        box-shadow: inset 0px 1px 3px color(3);
                     }
                     &.left {
                         border-right: 0 !important;
@@ -116,7 +116,7 @@
             .button {
                 border-radius: $global-radius $global-radius 0 0;
                 border-style: solid;
-                border-color: nth($color, 5), abs($button-function-factor);
+                border-color: color(5), abs($button-function-factor);
                 box-shadow: inset 3px 3px 3px rgba(white, 0.5);
                 border: {
                     bottom-width: 2px !important;

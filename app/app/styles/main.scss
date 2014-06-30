@@ -309,7 +309,7 @@ nav.left-pad {
 a {
     outline-style: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    color: nth($color, 1);
+    color: color(1);
 }
 
 .section-divider {
@@ -361,7 +361,7 @@ section.more {
 
 .appreciate,
 .hate {
-    color: nth($color, 1);
+    color: color(1);
 }
 
 @import "ratings-bar";
@@ -498,7 +498,7 @@ p {
     }
     .photo img {
         @include border-radius($global-radius);
-        border: 2px solid lighten(nth($color, 3), 20%);
+        border: 2px solid lighten(color(3), 20%);
     }
     .followee, .follower, .friend {
         overflow: hidden;
@@ -516,10 +516,10 @@ p {
         background: #4BDB4F;
     }
     .follower:before {
-        background: nth($color, 1);
+        background: color(1);
     }
     .friend:before {
-        background: nth($color, 1);
+        background: color(1);
     }
     .wish-text,
     .rating-text {
@@ -567,7 +567,7 @@ p {
        
         }
         &.add {
-            color: nth($color, 1) !important;
+            color: color(1) !important;
             background: none;
             //darken($body-border-color, 5%);
        
@@ -632,12 +632,12 @@ p {
             font-style: normal;
         }
         &.inactive {
-            background-color: desaturate(nth($color, 5), 80%);
+            background-color: desaturate(color(5), 80%);
             .offer {
                 color: desaturate($offer-text-color, 80%);
             }
             a {
-                color: desaturate(nth($color, 1), 80%) !important;
+                color: desaturate(color(1), 80%) !important;
             }
         }
     }
@@ -646,13 +646,13 @@ p {
         padding-right: emCalc($grid-size * 2);
         h2 {
             margin: 0;
-            color: nth($color, 1);
+            color: color(1);
             font-weight: bold;
         }
         &:hover:not(.expanded) {
             background: $listing-hover-background;
             a {
-                color: nth($color, 1);
+                color: color(1);
             }
         }
         .show-on-hover {
@@ -667,7 +667,7 @@ p {
         &.expanded:hover .wish .wish-text {
             color: $listing-hover-text-color;
             a {
-                color: nth($color, 1);
+                color: color(1);
             }
         }
         &.expanded .wish .wish-text,&.expanded .wish .wish-text a {
@@ -719,12 +719,12 @@ p {
 
 .profile {
     h1 {
-        color: nth($color, 1);
+        color: color(1);
         margin-bottom: 0;
     }
     .more-notification {
-        background-color: darken(nth($color, 5), 5%);
-        background: linear-gradient(top, nth($color, 5), darken(nth($color, 5), 3%));
+        background-color: darken(color(5), 5%);
+        background: linear-gradient(top, color(5), darken(color(5), 3%));
         cursor: pointer;
         position: relative;
         h1 {
@@ -732,13 +732,13 @@ p {
             font-weight: bold;
         }
         a {
-            color: darken(nth($color, 5), 15%);
-            @include text-shadow(0 -1px 0 darken(nth($color, 5), 35%));
+            color: darken(color(5), 15%);
+            @include text-shadow(0 -1px 0 darken(color(5), 35%));
             position: absolute;
             right: 0.5em;
             top: 0.5em;
             &:hover {
-                color: darken(nth($color, 5), 25%);
+                color: darken(color(5), 25%);
             }
             font-size: 2em;
         }
@@ -792,7 +792,7 @@ p {
             display: block;
             text-align: center;
         }
-        border-bottom: 1px solid nth($color, 1);
+        border-bottom: 1px solid color(1);
         margin-top: emCalc($grid-size * 2);
     }
     .follow-box {
@@ -831,7 +831,7 @@ p {
         margin-top: 1px;
     }
     &:before {
-        border-bottom: 10px solid nth($color, 1);
+        border-bottom: 10px solid color(1);
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         margin-top: -1px;
@@ -926,7 +926,7 @@ p {
 }
 
 .delete-account {
-    border: 2px solid nth($color, 1);
+    border: 2px solid color(1);
     color: red;
     background: inherit;
     &:hover {
@@ -1029,11 +1029,11 @@ button,
         }
     }
     &.red {
-        background: nth($color, 1);
-        border: 1px solid nth($color, 1);
+        background: color(1);
+        border: 1px solid color(1);
         color: white;
         &:hover {
-            background-color: darken(nth($color, 1), 10%);
+            background-color: darken(color(1), 10%);
         }
     }
     &.green {
@@ -1284,7 +1284,7 @@ hr {
             line-height: 150%;
         }
         .close {
-            color: nth($color, 1);
+            color: color(1);
             text-align: right;
             float: right;
         }
@@ -1355,15 +1355,15 @@ textarea:focus {
     position: absolute;
     top: 11px;
     right: 24px;
-    color: nth($color, 1);
+    color: color(1);
     cursor: pointer;
 }
 
 input + .remove {
     @include transition(color, 1s);
-    color: nth($color, 3);
+    color: color(3);
     &:hover {
-        color: nth($color, 1);
+        color: color(1);
     }
 }
 
