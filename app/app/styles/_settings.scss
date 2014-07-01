@@ -43,7 +43,7 @@
 // Global
 
 // We use these to control various global styles
-   $body-bg: nth($color, 4);
+   $body-bg: color(4);
    $body-font-color: lighten(black, 22%);
    $body-font-family: "SourceSansPro", "Signika", "Geneva", "Tahoma", sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -58,8 +58,8 @@
 // $default-float: left;
 
 // We use these as default colors throughout
-   $primary-color: nth($color, 1);
-   $secondary-color: nth($color, 2);
+   $primary-color: color(1);
+   $secondary-color: color(2);
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
@@ -916,7 +916,7 @@
 // $reveal-overlay-bg-old: #000;
 
 // We use these to control the style of the modal itself.
-   $reveal-modal-bg: nth($color, 4);
+   $reveal-modal-bg: color(4);
 // $reveal-position-top: rem-calc(100);
 // $reveal-default-width: 80%;
  $reveal-modal-padding: rem-calc(16);
@@ -1179,7 +1179,7 @@
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-   $topbar-bg-color: nth($color, 1);
+   $topbar-bg-color: color(1);
    $topbar-bg: $topbar-bg-color;
 
 // Height and margin

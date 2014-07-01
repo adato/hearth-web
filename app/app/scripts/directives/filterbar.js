@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('filterbar', [
 			link: function(scope) {
 				angular.extend(scope, {
 					mapSelected: false,
-					filterSelected: false,
+					filterSelected: true,
 					newItemSelected: false
 				});
 

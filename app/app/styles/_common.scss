@@ -6,10 +6,10 @@
     box-shadow: $defaultShadow;
     overflow: hidden;
     .header {
-        background-color: nth($color, 1);
-        color: nth($color, 4);
+        background-color: color(1);
+        color: color(4);
         border: {
-            bottom: 1px solid nth($color, 3);
+            bottom: 1px solid color(3);
         };
         margin-bottom: 1em;
         padding: 1em;
@@ -21,7 +21,7 @@
 }
 
 .logo {
-    @include background(inline-image("logo.svg"), nth($color, 1) !important);
+    @include background(inline-image("logo.svg"), color(1) !important);
     width: 200px !important;
     height: $topbar-height !important;
     border-radius: $global-radius;
@@ -67,12 +67,12 @@ button {
     position: absolute;
     top: rem-calc(18 /  3);
     right: rem-calc(18);
-    color: nth($color, 1);
+    color: color(1);
     cursor: pointer;
     font-size: rem-calc(18);
     transition: color 0.8s;
     &:hover {
-        color: darken(nth($color, 1), 20%);
+        color: darken(color(1), 20%);
     }
 }
 
