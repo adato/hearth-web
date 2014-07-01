@@ -2,16 +2,15 @@
 	<article class="row">
 		<section class="large-3 columns">
 			<header>Podle typu</header>
-			<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'offer'">Věnuji</label>
-			<label><input type="radio" name="filterAdType" ng-model="filter.type" ng-value="'need'">Přijmu</label>
-
+			<checkbox model="filter.type" value="'offer'">Věnuji</checkbox>
+			<checkbox model="filter.type" value="'need'">Přijmu</checkbox>
 		</section>
 		<section class="large-3 columns">
 			<header>Podle autora</header>
-			<label><input type="checkbox">Jednotlivci</label>
-			<label><input type="checkbox">Komunity</label>
-			<label><input type="checkbox">Projekty</label>
-			<label><input type="checkbox">Jen moje spojení</label>
+			<checkbox model="filter.type" value="'need'">Jednotlivci</checkbox>
+			<checkbox model="filter.type" value="'need'">Komunity</checkbox>
+			<checkbox model="filter.type" value="'need'">Projekty</checkbox>
+			<checkbox model="filter.type" value="'need'">Jen moje spojení</checkbox>
 		</section>
 		<section class="large-3 columns">
 			<header>Podle casu</header>
@@ -28,7 +27,6 @@
 			<label><input type="radio" name="adPlace" ng-model="filter.distance" ng-value="'100km'">100 km</label>
 		</section>
 	</article>
-
 
 	<hr>
 	
