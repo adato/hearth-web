@@ -30,10 +30,12 @@
 			</div>
 			<footer>
 				<button ng-click="edit=true" ng-disabled="edit"  class="small" ng-class="{secondary: item.type == 'offer'}">
-					<span ng-if="item.type == 'offer'"><b>Požádat</b> o dar</span>
-					<span ng-if="item.type == 'need'"><b>Nabídnout</b> dar</span>
+					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
+					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
-				uz pozadalo <b>6 lidi</b>
+				<span ng-if="item.type == 'offer'" ng-bind-html="'PEOPLE_COUNT_WISH' | translate:  '{value: item.count || 0}'"></span>
+				<span ng-if="item.type == 'need'" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: '{value: item.count || 0}'"></span>
+
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>
 					<div class="sharing">
@@ -42,7 +44,7 @@
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
 							<a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a>
-							<a class="fa fa-flag" ng-click="report()" title="Nahlasit skodlivy inzerat"></a>
+							<a class="fa fa-flag" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
 						</div>
 					</div>
 				</div>
@@ -51,7 +53,7 @@
 			<article class="row animate-show" ng-show="reported">
 				<section class="large-12 columns">
 					<div class="radius alert-box warning" >
-						<span>Děkujeme za udání, tento příspěvek prověříme.</span>
+						<span>{{'THANKS_FOR_REPORT' | translate}}</span>
 						 <a class="close" ng-click="reported=false" >&times;</a>
 					</div>
 				</section>
@@ -70,9 +72,7 @@
 								</div>
 							</div>
 							<div class="animate-show" ng-show="submited">
-								<div class="alert-box info radius" >
-									{{ 'SENDING_MESSAGE_SUCCESS' | translate }}
-								</div>
+								<div class="alert-box info radius" >{{ 'SENDING_MESSAGE_SUCCESS' | translate }}</div>
 							</div>
 							<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
 							<label>
@@ -84,12 +84,12 @@
 				</article>
 				<article class="row">
 					<section class="large-8 columns">
-						<a ng-click="cancelEdit()" class="link-button">Zrušit</a>
+						<a ng-click="cancelEdit()" class="link-button">{{'CANCEL' | translate}}</a>
 					</section>
 					<section class="large-4 columns text-right">
 						<button ng-click="sendReply()" ng-disabled="replyForm.$invalid" ng-class="{secondary: item.type == 'offer'}">
 							<span class="fa fa-envelope"></span>
-							Odeslat
+							{{'SEND' | translate}}
 						</button>
 					</section>
 				</article>
