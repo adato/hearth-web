@@ -15,17 +15,30 @@ angular.module('hearth.directives').directive('editad', [
 			scope: {},
 			templateUrl: 'templates/editItem.html', //must not use name ad.html - adBlocker!
 			link: function(scope) {
-				scope.post = {
+
+				var defaultPost = {
 					type: 'offer',
 					isPrivate: false,
 					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
 					sharing_allowed: true,
 					locations: [{
 						name: ''
-					}]
+					}],
+					attachments: [],
+					name: '',
+					title: '',
+					keywords: [],
+
 				};
 
+				scope.post = angular.copy(defaultPost);
+
 				scope.close = function() {
+					console.log(scope.post);
+
+					scope.editForm.$setPristine();
+					scope.post = angular.copy(defaultPost);
+
 					scope.$emit('closeNewItem');
 				};
 
@@ -59,6 +72,16 @@ angular.module('hearth.directives').directive('editad', [
 						value: 7
 					});*/
 				};
+
+
+				scope.photoUploadSuccessful = function($event) {
+
+					if ($event.target.status === 200) {
+
+						scope.post.attachments.push(JSON.parse($event.target.response));
+					}
+				};
+
 
 				function dateToTimestamp(dateToFormat, withOffset) {
 					var outDate, dateCs, dateEn, zoneOffset;

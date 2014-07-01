@@ -1404,6 +1404,11 @@ input + .remove {
     }
 }
 
+.editAd .attachments li {
+    
+    list-style-type: none;
+}
+
 form[name="replyForm"] {
     position:fixed;
 }*/

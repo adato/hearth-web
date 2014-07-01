@@ -99,3 +99,29 @@ button {
     left: 0;
     z-index: 9;
 }
+
+.attachments {
+    li {
+        list-style-type: none;
+        a {
+            display: block;
+        };
+        img {
+            max-height: 185px;
+        }
+    }
+}
+.file-upload-pogress {
+    .progress {
+        left: -3px;
+        margin-top: 20px;
+        position: relative;
+    }
+}
+.file-upload {
+    position:relative;
+    display:inline-block;
+    text-align: left;
+    float:left;
+    padding-left:2px;
+}
