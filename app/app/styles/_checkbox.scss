@@ -1,11 +1,15 @@
 .checkbox {
-	.fa {
-		position: relative;
-		top: 0.15em;
-		color: color(3);
-		font-size: 2em;
-	}
-	margin: {
-		bottom: rem-calc(9);
-	}
+    .fa {
+        position: relative;
+        top: 0.15em;
+        color: color(3);
+        font-size: 2 * $fontSize;
+        width: $fontSize;
+        margin:{
+        	right: $fontSize;
+        	} 
+    }
+    margin: {
+        bottom: $fontSize / 2;
+    };
 }

@@ -27,6 +27,13 @@ angular.module('hearth.directives').directive('filter', [
 				scope.close = function() {
 					scope.$emit('closeFilter');
 				};
+				if (!scope.filter) {
+					scope.filter = {};
+				}
+
+				if (!scope.filter.related) {
+					scope.filter.related = [];
+				}
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
 					var places = searchBox.getPlaces();

@@ -7,27 +7,26 @@
 		</section>
 		<section class="large-3 columns">
 			<header>Podle autora</header>
-			<checkbox model="filter.type" value="'need'">Jednotlivci</checkbox>
-			<checkbox model="filter.type" value="'need'">Komunity</checkbox>
-			<checkbox model="filter.type" value="'need'">Projekty</checkbox>
-			<checkbox model="filter.type" value="'need'">Jen moje spojení</checkbox>
+			<checkbox model="filter.related" value="user">Jednotlivci</checkbox>
+			<checkbox model="filter.related" value="community">Komunity</checkbox>
+			<checkbox model="filter.related" value="projects">Projekty</checkbox>
+			<checkbox model="filter.related" value="connection">Jen moje spojení</checkbox>
 		</section>
 		<section class="large-3 columns">
 			<header>Podle casu</header>
-			<label><input type="radio" name="adDate" ng-model="filter.date" ng-value="1">Dnes</label>
-			<label><input type="radio" name="adDate" ng-model="filter.date" ng-value="3">3 dny</label>
-			<label><input type="radio" name="adDate" ng-model="filter.date" ng-value="7">Týden</label>
-
+			<checkbox type="radio" model="filter.date" value="1">Dnes</checkbox>
+			<checkbox type="radio" model="filter.date" value="3">3 dny</checkbox>
+			<checkbox type="radio" model="filter.date" value="7">Týden</checkbox>
 		</section>
 		<section class="large-3 columns">
 			<header>Podle místa</header>
 			<input type="text" id="geolocation" class="text-input">
-			<label><input type="radio" name="filter" ng-model="filter.distance" ng-value="'10km'">10 km</label>
-			<label><input type="radio" name="adPlace" ng-model="filter.distance"ng-value="'25km'">25 km</label>
-			<label><input type="radio" name="adPlace" ng-model="filter.distance" ng-value="'100km'">100 km</label>
+			<checkbox type="radio" model="filter.distance" value="10">10 km</checkbox>
+			<checkbox type="radio" model="filter.distance" value="25">25 km</checkbox>
+			<checkbox type="radio" model="filter.distance" value="100">100 km</checkbox>			
 		</section>
 	</article>
-
+{{filter}}
 	<hr>
 	
 	<div class="row">

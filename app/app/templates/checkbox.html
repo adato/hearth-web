@@ -1,5 +1,13 @@
 <label class="checkbox" ng-click="toggle()">
-	<span ng-show="checked" class="fa fa-check-square-o"></span>
-	<span ng-hide="checked" class="fa fa-square-o"></span>
+	
+	<span ng-if="type!='radio'">
+		<span ng-hide="checked" class="fa fa-square-o"></span>
+		<span ng-show="checked" class="fa fa-check-square-o"></span>
+	</span>
+	<span ng-if="type=='radio'">
+		<span ng-hide="checked" class="fa fa-circle-o"></span>
+		<span ng-show="checked" class="fa fa-dot-circle-o"></span>
+	</span>
+	
 	<span ng-transclude></span>
 </label>

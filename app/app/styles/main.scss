@@ -1,7 +1,14 @@
 @import "mixins/pallette-color";
 
-@import "variables";
+//@import "variables";
+
+$color: #e65832, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8;
+$FontAwesomePath: "../../fonts" !default;
+$defaultShadow: 1px 1px 6px gray;
+
 @import "settings";
+
+$fontSize: rem-calc(18);
 
 @import "compass";
 // import Compass mixins
