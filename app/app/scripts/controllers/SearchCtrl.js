@@ -186,7 +186,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					r: Math.random(),
 					type: $scope.filter.type,
 					days: $scope.filter.date,
-					keywords: $.map($scope.filter.keywords, function(item) {
+					keywords: $.map($scope.filter.keywords || [], function(item) {
 						return item.text;
 					}).join(','),
 					distance: $scope.filter.distance,
@@ -195,7 +195,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				};
 
 			for (param in searchParams) {
-				if (searchParams[param] === undefined) {
+				if (searchParams[param] === undefined  || searchParams[param] === '') {
 					delete searchParams[param];
 				}
 			}
