@@ -1,6 +1,14 @@
 <div class="filter">
 	<article class="row">
 		<section class="large-12 columns">
+			<tags-input ng-model="filter.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+				<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+			</tags-input>
+		</section>
+	</article>
+
+	<article class="row">
+		<section class="large-12 columns">
 			<article class="row bars">
 				<section class="large-3 columns">
 					<header>Podle typu</header>

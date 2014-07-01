@@ -186,6 +186,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					r: Math.random(),
 					type: $scope.filter.type,
 					days: $scope.filter.date,
+					keywords: $.map($scope.filter.keywords, function(item) {
+						return item.text;
+					}).join(','),
 					distance: $scope.filter.distance,
 					lat: $scope.filter.lat,
 					lon: $scope.filter.lon

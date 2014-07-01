@@ -4,26 +4,29 @@
         margin-bottom: 0;
     }
     .columns {
-        padding: $fontSize;
+        padding: {
+            top: $fontSize;
+            bottom: $fontSize;
+        };
     }
     header {
         background-color: darken(color(4), 5%);
         text-align: center;
-        padding: $fontSize/2;
+        padding: $fontSize / 2;
         font-weight: bold;
         color: color(3);
         font-size: rem-calc(14);
         margin: {
-            bottom: $fontSize/2;
-        }
+            bottom: $fontSize / 2;
+        };
     }
     .bars {
         margin: 0;
         .columns {
             padding: {
-                left: $fontSize/4;
+                left: $fontSize / 4;
                 right: $fontSize / 4;
-            }
+            };
         }
     }
 }
