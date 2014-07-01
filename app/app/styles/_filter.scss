@@ -4,11 +4,26 @@
         margin-bottom: 0;
     }
     .columns {
-        padding: 1em;
+        padding: $fontSize;
     }
     header {
-        background-color: darken(color(4), 10%);
+        background-color: darken(color(4), 5%);
         text-align: center;
-        padding: 0.5em;
+        padding: $fontSize/2;
+        font-weight: bold;
+        color: color(3);
+        font-size: rem-calc(14);
+        margin: {
+            bottom: $fontSize/2;
+        }
+    }
+    .bars {
+        margin: 0;
+        .columns {
+            padding: {
+                left: $fontSize/4;
+                right: $fontSize / 4;
+            }
+        }
     }
 }

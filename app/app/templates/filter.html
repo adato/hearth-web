@@ -1,29 +1,33 @@
 <div class="filter">
 	<article class="row">
-		<section class="large-3 columns">
-			<header>Podle typu</header>
-			<checkbox model="filter.type" value="'offer'">Věnuji</checkbox>
-			<checkbox model="filter.type" value="'need'">Přijmu</checkbox>
-		</section>
-		<section class="large-3 columns">
-			<header>Podle autora</header>
-			<checkbox model="filter.related" value="user">Jednotlivci</checkbox>
-			<checkbox model="filter.related" value="community">Komunity</checkbox>
-			<checkbox model="filter.related" value="projects">Projekty</checkbox>
-			<checkbox model="filter.related" value="connection">Jen moje spojení</checkbox>
-		</section>
-		<section class="large-3 columns">
-			<header>Podle casu</header>
-			<checkbox type="radio" model="filter.date" value="1">Dnes</checkbox>
-			<checkbox type="radio" model="filter.date" value="3">3 dny</checkbox>
-			<checkbox type="radio" model="filter.date" value="7">Týden</checkbox>
-		</section>
-		<section class="large-3 columns">
-			<header>Podle místa</header>
-			<input type="text" id="geolocation" class="text-input">
-			<checkbox type="radio" model="filter.distance" value="10">10 km</checkbox>
-			<checkbox type="radio" model="filter.distance" value="25">25 km</checkbox>
-			<checkbox type="radio" model="filter.distance" value="100">100 km</checkbox>			
+		<section class="large-12 columns">
+			<article class="row bars">
+				<section class="large-3 columns">
+					<header>Podle typu</header>
+					<checkbox model="filter.type" value="'offer'">Věnuji</checkbox>
+					<checkbox model="filter.type" value="'need'">Přijmu</checkbox>
+				</section>
+				<section class="large-3 columns">
+					<header>Podle autora</header>
+					<checkbox model="filter.related" value="user">Jednotlivci</checkbox>
+					<checkbox model="filter.related" value="community">Komunity</checkbox>
+					<checkbox model="filter.related" value="projects">Projekty</checkbox>
+					<checkbox model="filter.related" value="connection">Jen moje spojení</checkbox>
+				</section>
+				<section class="large-3 columns">
+					<header>Podle casu</header>
+					<checkbox type="radio" model="filter.date" value="1">Dnes</checkbox>
+					<checkbox type="radio" model="filter.date" value="3">3 dny</checkbox>
+					<checkbox type="radio" model="filter.date" value="7">Týden</checkbox>
+				</section>
+				<section class="large-3 columns">
+					<header>Podle místa</header>
+					<input type="text" id="geolocation" class="text-input">
+					<checkbox type="radio" model="filter.distance" value="10">10 km</checkbox>
+					<checkbox type="radio" model="filter.distance" value="25">25 km</checkbox>
+					<checkbox type="radio" model="filter.distance" value="100">100 km</checkbox>			
+				</section>
+			</article>
 		</section>
 	</article>
 
@@ -34,7 +38,7 @@
 			<a ng-click="close()"  class="link-button"><span class="fa fa-angle-double-up"></span> {{'CLOSE' | translate}}</a>
 		</div>
 		<div class="large-5 columns">
-			<label><input type="checkbox">Uložit filtr pro další použití</label>
+			<checkbox model="save" value="true">Uložit filtr pro další použití</checkbox>
 		</div>
 		<div class="large-4 columns text-right">
 			<button class="button" ng-click="search()"><span class="fa fa-filter"></span> Filtrovat</button>
