@@ -85,6 +85,7 @@ $fontSize: rem-calc(18);
 @import "foundation-datepicker";
 @import "locations";
 @import "checkbox";
+@import "map";
 
 body {
     background-image: inline-image("bg.png");
@@ -1391,28 +1392,6 @@ input + .remove {
 @import "messages";
 ;
 @import "adDetail";
-
-.marker-tooltip {
-    text-align: left;
-    cursor: pointer;
-    .content {
-        margin: {
-            left: 3.7em;
-        };
-    }
-    img {
-        @include border-radius;
-        width: 3em;
-        float: left;
-    }
-    }
-    img {
-        @include border-radius;
-        width: 3em;
-        float: left;
-        
-    }
-}
 
 
 form[name="replyForm"] {

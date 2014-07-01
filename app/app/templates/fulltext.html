@@ -99,7 +99,6 @@
 		</div-->
 		<div ng-if="orderBy == 'location' && !isCreatingAd()">
 			<search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
-			<div class="hr"></div>
 		</div>
 		<div ng-show="orderBy == 'relevance' && !isCreatingAd()">
 			<div class="row">
@@ -107,7 +106,6 @@
 					<fulltext-typeahead></fulltext-typeahead>
 				</div>
 			</div>
-			<div class="hr"></div>
 		</div>
 		<div ng-if="orderBy != 'location' || isCreatingAd()" >
 			<div class="container" ng-include="'templates/searchResults.html'"></div>   

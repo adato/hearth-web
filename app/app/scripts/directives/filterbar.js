@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('filterbar', [
 			link: function(scope) {
 				angular.extend(scope, {
 					mapSelected: false,
-					filterSelected: true,
+					filterSelected: false,
 					newItemSelected: false
 				});
 
@@ -43,6 +43,7 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.mapSelected = !scope.mapSelected;
 					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 				};
+				scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 			}
 		};
 	}

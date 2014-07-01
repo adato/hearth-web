@@ -195,7 +195,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				};
 
 			for (param in searchParams) {
-				if (searchParams[param] === undefined  || searchParams[param] === '') {
+				if (searchParams[param] === undefined || searchParams[param] === '') {
 					delete searchParams[param];
 				}
 			}
@@ -419,6 +419,14 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				phantomRecord.isPhantom = false;
 				$scope.items[i] = phantomRecord;
 			}
+		});
+
+		$scope.$on('searchMap', function($event) {
+			$scope.setOrderBy('location');
+		});
+
+		$scope.$on('searchList', function($event) {
+			$scope.setOrderBy('time');
 		});
 
 		$scope.$watch('location.search().id', function(newval) {

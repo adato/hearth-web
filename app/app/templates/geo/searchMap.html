@@ -1,11 +1,11 @@
-<div>
-	<div ng-cloak style="position:relative;">
-		<!--button type="button" ng-click="search()" class="primary button prefix round connect-left padding-1" id="user-location-save"  style="width:10%; height:47px;right:0;position:absolute;" analytics-on analytics-event="saving specific location" analytics-category="Locations">
-			<i class="fa fa-search"></i>
-		</button-->
-		<input type="text" id="mapsearch" style="padding-left:2em;" class="text-input top">
-		<map class="text-input bottom map-canvas"  ads="items"></map>
-				
-		<a href="" class="fa fa-map-marker" ng-click="autodetectMyLocation()" title="{{'LOCATION_GO_CURRENT' | translate}}" style="position:absolute; left:15px; top:13px;"></a>
-	</div>
+<div class="map">
+	<article class="row">
+		<section class="large-10 push-2 columns box" style="padding-top: 1em;">
+			<div ng-cloak style="position:relative;">
+				<input type="text" id="mapsearch" style="padding-left:2em;">
+				<a class="fa fa-map-marker" ng-click="autodetectMyLocation()" title="{{'LOCATION_GO_CURRENT' | translate}}" style="position:absolute; left:15px; top:13px;"></a>
+			</div>
+			<map class="map-canvas" ads="items"></map>
+		</section>
+	</article>
 </div>
