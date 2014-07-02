@@ -43,8 +43,8 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 				templateUrl: 'templates/communityRegister.html',
 				controller: 'CommunityRegisterCtrl',
 				pageType: 'community-create'
-			}).when('/search', {
-				templateUrl: 'templates/fulltext.html',
+			}).when('/', {
+				templateUrl: 'templates/market.html',
 				controller: 'SearchCtrl',
 				reloadOnSearch: false,
 				pageType: 'search'
@@ -105,7 +105,7 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 				controller: 'AdDetail',
 				templateUrl: 'templates/adDetail.html'
 			}).otherwise({
-				redirectTo: '/search'
+				redirectTo: '/'
 			});
 		}
 	]).factory('HearthLoginInterceptor', [
