@@ -33,8 +33,8 @@
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
-				<span ng-if="item.type == 'offer'" ng-bind-html="'PEOPLE_COUNT_WISH' | translate:  '{value: item.apply_count || 0}'"></span>
-				<span ng-if="item.type == 'need'" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: '{value: item.apply_count || 0}'"></span>
+				<span ng-if="item.type == 'offer'" ng-bind-html="'PEOPLE_COUNT_WISH' | translate: {value: item.reply_count}"></span>
+				<span ng-if="item.type == 'need'" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
 
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>

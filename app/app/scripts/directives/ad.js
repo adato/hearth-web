@@ -75,6 +75,7 @@ angular.module('hearth.directives').directive('ad', [
 					});
 					scope.submited = true;
 					$timeout(init, timeout);
+					scope.item.reply_count = scope.item.reply_count + 1;
 				};
 				scope.cancelEdit = function() {
 					init();
