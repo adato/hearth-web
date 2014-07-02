@@ -87,6 +87,7 @@ $fontSize: rem-calc(18);
 @import "checkbox";
 @import "map";
 @import "fulltext";
+@import "adDetail";
 
 body {
     background-image: inline-image("bg.png");
@@ -1392,7 +1393,7 @@ input + .remove {
 
 @import "messages";
 ;
-@import "adDetail";
+
 
 
 form[name="replyForm"] {

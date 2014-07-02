@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-	'$scope', '$routeParams', 'Fulltext',
+	'$scope', '$routeParams', 'Fulltext', '$location',
 
-	function($scope, $routeParams, Fulltext) {
+	function($scope, $routeParams, Fulltext, $location) {
 		$scope.query = $routeParams.q;
 		var params = {
 			limit: 15,
@@ -20,6 +20,10 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		Fulltext.query(params, function(data) {
 			$scope.items = data;
 		});
+
+		$scope.showDetail = function(id) {
+			$location.path('/ad/' + id);
+		};
 
 	}
 ]);

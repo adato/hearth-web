@@ -21,12 +21,12 @@
 			</section>
 		</article>
 
-		<article ng-repeat="item in items" class="item row">
+		<article ng-repeat="item in items" class="search-item row">
 			<section class="large-1  columns icon">
 				<span class="fa fa-recycle"></span>
 			</section>
 			<section class="large-11  columns">
-				<h2>{{item.title}}</h2>
+				<h2 ng-click="showDetail(item._id)">{{item.title}}</h2>
 				<p>{{item.name | ellipsis: 150}}</p>
 				<ul class="breadcrumbs">
 					<li><a>Home</a></li>

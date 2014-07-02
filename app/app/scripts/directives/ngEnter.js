@@ -16,7 +16,6 @@ angular.module('hearth.directives').directive('ngEnter', function() {
 					scope.$apply(function() {
 						scope.$eval(attrs.ngEnter, event);
 					});
-					console.log(attrs);
 					event.preventDefault();
 				}
 			});
