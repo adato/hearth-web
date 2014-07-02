@@ -1,0 +1,25 @@
+.fulltext {
+	margin-top: 3em;
+	h2 {
+		color: color(5);
+		text-decoration: underline;
+		font-size: rem-calc(18);
+		font-weight: bold;
+	}
+	header {
+		text-align: center;
+		position: relative;
+		z-index: 2;
+		background-color: white;
+		&:before {
+			content: '';
+			height: 1px;
+			width: 100%;
+			left: 0;
+			position: absolute;
+			background-color: color(3);
+			top: 0.5em;
+			z-index: 1
+		}
+	}
+}

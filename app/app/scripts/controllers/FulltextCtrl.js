@@ -7,17 +7,19 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-	'$scope', 'PostsService', '$routeParams',
+	'$scope', '$routeParams', 'Fulltext',
 
-	function($scope, PostsService, $routeParams) {
-		var searchParams = {
-			limit: $scope.limit,
+	function($scope, $routeParams, Fulltext) {
+		$scope.query = $routeParams.q;
+		var params = {
+			limit: 15,
 			offset: $scope.offset,
-			q: $routeParams.q
+			query: $routeParams.q
 		};
 
-		PostsService.query(searchParams).then(function(data) {
+		Fulltext.query(params, function(data) {
 			$scope.items = data;
 		});
+
 	}
 ]);

@@ -1,9 +1,12 @@
 <article class="row fulltext">
 	<section class="large-10  push-2 columns box">
-	Nasli jsme pro vas obsah souvisejici s 
+		<article class="row">
+			<section class="large-12  columns">
+				<header>Nasli jsme pro vas obsah souvisejici s <b>{{query}}</b></header>
+			</section>
+		</article>
 		<dl class="sub-nav">
 			<dt>Filtrovat výsledky:</dt>
-			<dd class="active"><a href="#">All</a></dd>
 			<dd><a>Vse</a></dd>
 			<dd><a>Trziste</a></dd>
 			<dd><a>Komunity</a></dd>
@@ -14,7 +17,6 @@
 		<div ng-repeat="item in items">
 			<h2>{{item.title}}</h2>
 			<p>{{item.name}}</p>
-			<hr>
 			<ul class="breadcrumbs">
 				<li><a>Home</a></li>
 				<li><a>Features</a></li>
