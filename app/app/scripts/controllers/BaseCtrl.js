@@ -53,6 +53,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$scope.logout = function(language) {
 			Auth.logout();
 		};
+		$scope.search = function(text) {
+			$location.path('/search');
+			$location.search('q=' + text);
+		};
 		$scope.expandAd = function(ad, force) {
 			var formScope, _ref;
 			formScope = angular.element($('form[name=replyForm]')).scope();

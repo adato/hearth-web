@@ -1,16 +1,41 @@
 .fulltext {
-	margin-top: 3em;
+	margin-top: 2em;
 	h2 {
 		color: color(5);
 		text-decoration: underline;
 		font-size: rem-calc(18);
 		font-weight: bold;
+		cursor: pointer;
+	}
+	p {
+		margin: {
+			bottom: 0;
+		}
+	}
+	.icon {
+		font-size: 2.5em;
+		color: color(1);
+		span {
+			margin: {top: 0.5em;}
+		}
 	}
 	header {
+		margin-top: 1em;
 		text-align: center;
 		position: relative;
-		z-index: 2;
-		background-color: white;
+		height: 2em;
+		div {
+			z-index: 2;
+			background-color: white;
+			display: inline-block;
+			position: absolute;
+			padding: {
+				left: 2em;
+				right: 2em;
+			}
+			left: 25%;
+		}
+
 		&:before {
 			content: '';
 			height: 1px;

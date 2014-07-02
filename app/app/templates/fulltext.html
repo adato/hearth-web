@@ -2,27 +2,39 @@
 	<section class="large-10  push-2 columns box">
 		<article class="row">
 			<section class="large-12  columns">
-				<header>Nasli jsme pro vas obsah souvisejici s <b>{{query}}</b></header>
+				<header>
+					<div>Nasli jsme pro vas obsah souvisejici s <b>{{query}}</b></div>
+				</header>
 			</section>
 		</article>
-		<dl class="sub-nav">
-			<dt>Filtrovat výsledky:</dt>
-			<dd><a>Vse</a></dd>
-			<dd><a>Trziste</a></dd>
-			<dd><a>Komunity</a></dd>
-			<dd><a>Projekty</a></dd>
-			<dd><a>Deje se</a></dd>
-			<dd><a>Lide</a></dd>
-		</dl>
-		<div ng-repeat="item in items">
-			<h2>{{item.title}}</h2>
-			<p>{{item.name}}</p>
-			<ul class="breadcrumbs">
-				<li><a>Home</a></li>
-				<li><a>Features</a></li>
-				<li class="unavailable"><a>Gene Splicing</a></li>
-				<li class="current"><a>Cloning</a></li>
-			</ul>
-		</div>
+		<article class="row">
+			<section class="large-12  columns">
+				<dl class="sub-nav">
+					<dt>Filtrovat výsledky:</dt>
+					<dd><a>Vse</a></dd>
+					<dd><a>Trziste</a></dd>
+					<dd><a>Komunity</a></dd>
+					<dd><a>Projekty</a></dd>
+					<dd><a>Deje se</a></dd>
+					<dd><a>Lide</a></dd>
+				</dl>
+			</section>
+		</article>
+
+		<article ng-repeat="item in items" class="item row">
+			<section class="large-1  columns icon">
+				<span class="fa fa-recycle"></span>
+			</section>
+			<section class="large-11  columns">
+				<h2>{{item.title}}</h2>
+				<p>{{item.name | ellipsis: 150}}</p>
+				<ul class="breadcrumbs">
+					<li><a>Home</a></li>
+					<li><a>Features</a></li>
+					<li class="unavailable"><a>Gene Splicing</a></li>
+					<li class="current"><a>Cloning</a></li>
+				</ul>
+			</section>
+		</article>
 	</section>
 </article>

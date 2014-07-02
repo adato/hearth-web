@@ -225,7 +225,10 @@ module.exports = function(grunt) {
 			options: {
 				jshintrc: '.jshintrc',
 				reporter: require('jshint-stylish'),
-				ignores: '<%= yeoman.app %>/scripts/foundation.topbar.js'
+				ignores: [
+					'<%= yeoman.app %>/scripts/foundation.topbar.js',
+					'<%= yeoman.app %>/scripts/oms.min.js'
+				]
 			},
 			all: [
 				'Gruntfile.js',
