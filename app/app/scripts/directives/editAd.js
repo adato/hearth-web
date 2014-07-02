@@ -34,8 +34,6 @@ angular.module('hearth.directives').directive('editad', [
 				scope.post = angular.copy(defaultPost);
 
 				scope.close = function() {
-					console.log(scope.post);
-
 					scope.editForm.$setPristine();
 					scope.post = angular.copy(defaultPost);
 
@@ -75,9 +73,7 @@ angular.module('hearth.directives').directive('editad', [
 
 
 				scope.photoUploadSuccessful = function($event) {
-
 					if ($event.target.status === 200) {
-
 						scope.post.attachments.push(JSON.parse($event.target.response));
 					}
 				};
