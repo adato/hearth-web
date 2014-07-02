@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('identitySwitch', [
 				loggedCommunity: '=',
 				switchFn: '&'
 			},
-			templateUrl: 'templates/identitySwitch.html',
+			templateUrl: 'templates/directives/identitySwitch.html',
 			link: function(scope) {
 				var init;
 				scope.myCommunities = [];

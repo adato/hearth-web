@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('checkbox', function() {
 			value: '@',
 			type: '@'
 		},
-		templateUrl: 'templates/checkbox.html',
+		templateUrl: 'templates/directives/checkbox.html',
 		link: function(scope, el, attrs) {
 			scope.checked = false;
 

@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('invitationForm', [
 				'visible': '=',
 				'loggedUser': '='
 			},
-			templateUrl: 'templates/invitationForm.html',
+			templateUrl: 'templates/directives/invitationForm.html',
 			link: function(scope) {
 				var init;
 				init = function() {

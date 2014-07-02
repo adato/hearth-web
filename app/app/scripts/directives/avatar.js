@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('avatar', [
 				'clickFn': '&click',
 				'type': '='
 			},
-			templateUrl: 'templates/avatar.html',
+			templateUrl: 'templates/directives/avatar.html',
 			link: function(scope, el, attrs) {
 				scope.$watch('relation', function(val) {
 					scope.extraClass = val;

@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('filter', [
 			scope: {
 				filter: '=data'
 			},
-			templateUrl: 'templates/filter.html',
+			templateUrl: 'templates/directives/filter.html',
 			link: function(scope, element) {
 				var searchBoxElement = $('input#geolocation', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);

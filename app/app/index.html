@@ -8,14 +8,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1"/>
-
     <!-- @if DEBUG -->
       <title>HEARTH.net (debug)</title>
     <!-- @endif -->
-
     <title>HEARTH.net</title>
-
-
     <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
     
     <meta property="og:title" content="Hearth.net">
@@ -39,16 +35,13 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
 
-  
     <!-- build:js config.js -->
       <script src="scripts/config.js"></script>
       <script src="scripts/googleAnalytics.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-controller="BaseCtrl"
-        ng-init="init();"
-        ng-class="pageType"
-        ng-keydown="escapeKey($event)">
+
+  <body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
     <!--[if lt IE 10]>
       <div class="chromeframe">
         <div class="reason">
@@ -63,20 +56,8 @@
       <script src="vendor/json3/lib/json3.js"></script>
     <![endif]-->
 
-    <section class="main-navigation" ng-show="pageType != defaultPageType" ng-include="'templates/navigation.html'">
-    </section>
-
-    <section class="content" ng-class="{ 'left-pad' : sidebarVisible() }">
-      <!-- flash messages (error/info) -->
-      <!--div flash-alert class="alert-box" active-class="visible" duration="10000" ng-cloak>
-        {{ flash.message | translate }}
-      </div-->
-
-      <ng-view></ng-view>
-
-      <footer></footer>
-    </section>
-
+    <section ng-include="'templates/navigation.html'"></section>
+    <ng-view class="container"></ng-view>
 
     <script>
       EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
@@ -244,7 +225,7 @@
     <!-- endbuild -->
 
     <script>
-      $(function() { FastClick.attach(document.body) });
+      $(function() { FastClick.attach(document.body);});
     </script>
     <!-- Crazy Egg tracking script -->
     <script type="text/javascript">

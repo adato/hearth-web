@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('fulltextTypeahead', [
 			restrict: 'AE',
 			replace: true,
 			scope: true,
-			templateUrl: 'templates/fulltextTypeahead.html',
+			templateUrl: 'templates/directives/fulltextTypeahead.html',
 			link: function(scope) {
 				scope.sel = 3;
 				scope.setSel = function(sel) {

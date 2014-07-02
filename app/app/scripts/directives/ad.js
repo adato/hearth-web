@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('ad', [
 			scope: {
 				item: '='
 			},
-			templateUrl: 'templates/item.html', //must not use name ad.html - adBlocker!
+			templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
 			link: function(scope, element) {
 				var timeout = 6000,
 					init = function() {

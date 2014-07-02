@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('filterbar', [
 		return {
 			replace: true,
 			restrict: 'E',
-			templateUrl: 'templates/filterbar.html',
+			templateUrl: 'templates/directives/filterbar.html',
 			link: function(scope) {
 				angular.extend(scope, {
 					mapSelected: false,

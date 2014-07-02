@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('editad', [
 			replace: true,
 			restrict: 'E',
 			scope: {},
-			templateUrl: 'templates/editItem.html', //must not use name ad.html - adBlocker!
+			templateUrl: 'templates/directives/editItem.html', //must not use name ad.html - adBlocker!
 			link: function(scope) {
 
 				var defaultPost = {

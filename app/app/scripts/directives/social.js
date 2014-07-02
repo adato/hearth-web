@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('social', [
 			scope: {
 				item: '='
 			},
-			templateUrl: 'templates/social.html',
+			templateUrl: 'templates/directives/social.html',
 			link: function(scope) {
 				scope.$watch('item', function(value) {
 					var url = window.location.href.replace(window.location.hash, '');

@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('needofferselector',
 				model: '=',
 				community: '=',
 			},
-			templateUrl: 'templates/needOfferSelector.html',
+			templateUrl: 'templates/directives/needOfferSelector.html',
 			link: function(scope, element) {
 				var value = {
 					false: 'offer',
