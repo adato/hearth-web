@@ -35,7 +35,7 @@ $imageSize: 80px;
     }
     div.name {
         margin: {
-            top: 1em;
+            top: $fontSize;
         };
         text-shadow: 0px 0px 1px gray;
         &:after {
@@ -52,13 +52,13 @@ $imageSize: 80px;
 
 .item {
     background-color: white;
-    min-height: 200px;
+    min-height: 150px;
     position: relative;
     margin: auto;
     box-shadow: $defaultShadow;
     border-radius: $global-radius;
     margin: {
-        bottom: 1em;
+        bottom: $fontSize;
     };
     header {
         text-align: right;
@@ -69,55 +69,103 @@ $imageSize: 80px;
             };
             .fa {
                 margin: {
-                    right: 0.5em;
+                    right: $fontSize /2;
                 };
             }
         }
     }
     footer {
+        border-radius: 0 0 $global-radius $global-radius;
+        background-color: color(4);
         padding: {
-            left: 1em;
-            right: 1em;
+            left: sqrt(2) * $size;
+            right: $fontSize;
+            top: $fontSize / 2;
+            bottom: $fontSize / 2;
         };
         .share {
             font-size: 1.8em;
             float: right;
             margin: {
-                top: 24px;
+                top: rem-calc(10);
             };
             color: color(5);
         }
+        button {
+            margin: {
+                right: 2 * $fontSize;
+                bottom: 0;
+            };
+            padding: {
+                top: $fontSize / 2;
+                bottom: $fontSize / 2;
+                left: 2 * $fontSize;
+                right: 2 * $fontSize;
+            };
+            min-width: 10 * $fontSize;
+            transition: background-color 1s, border-color 1s;
+
+
+            &.main {
+                background-color: lighten(color(1), 45%);
+                color: color(1);
+                border-color: lighten(color(1), 20%);
+                &:hover:not([disabled]) {
+                    background-color: lighten(color(1), 25%);
+                    text-shadow: -1px -1px 2px white, 1px 1px 2px white;
+                    border-color: color(1);
+                }
+            }
+            &.main.secondary {
+                background-color: lighten(color(2), 55%);
+                color: color(2);
+                border-color: lighten(color(2), 20%);
+                &:hover:not([disabled]) {
+                    background-color: lighten(color(2), 25%);
+                    text-shadow: -1px -1px 2px white, 1px 1px 2px white;
+                    border-color: color(2);
+                }
+            }
+            &[disabled] {
+                border-color: transparent;
+            }
+        }
     }
     .alert-box {
-        margin: 1em;
+        margin: 0em;
+        margin: {
+            bottom: $fontSize;
+        };
     }
     form {
         .alert-box {
             margin: {
-                left: 1em;
-                right: 1em;
+                left: $fontSize;
+                right: $fontSize;
                 bottom: 0;
-                top:0;
+                top: 0;
             };
             border-bottom-right-radius: 0;
             border-bottom-left-radius: 0;
         }
     }
-
     .reply-box {
         .columns {
             padding: {
-                left: 2em;
-                right: 2em;
-                bottom: 1em;
+                bottom: $fontSize;
             };
         }
         textarea {
             height: 180px;
-            margin-bottom: 0.5em;
+            margin-bottom: $fontSize /2;
         }
         button {
             margin: 0;
+        }
+        form {
+             margin: {
+            top: $fontSize;
+        }
         }
     }
     .content {
@@ -125,9 +173,9 @@ $imageSize: 80px;
             left: sqrt(2) * $size;
         };
         padding: {
-            top: 1em;
-            right: 1em;
-            bottom: 1em;
+            top: $fontSize;
+            right: $fontSize;
+            bottom: $fontSize;
         };
         h1 {
             font-size: 1.2em;
@@ -147,7 +195,7 @@ $imageSize: 80px;
     .share {
         position: relative;
         right: 10px;
-        width: 1em;
+        width: $fontSize;
         &:hover {
             .fa-share-square-o {
                 color: lighten(desaturate(color(5), 100%), 20%);
