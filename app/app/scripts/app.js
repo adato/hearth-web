@@ -30,7 +30,11 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 	]).config([
 		'$routeProvider',
 		function($routeProvider) {
-			return $routeProvider.when('/communities/:action?', {
+			return $routeProvider
+			.when('/search/?', {
+				templateUrl: 'templates/fulltext.html',
+				controller: 'FulltextCtrl'
+			}).when('/communities/:action?', {
 				templateUrl: 'templates/communityList.html',
 				controller: 'CommunityListCtrl',
 				pageType: 'communities'

@@ -86,6 +86,7 @@ $fontSize: rem-calc(18);
 @import "locations";
 @import "checkbox";
 @import "map";
+@import "fulltext";
 
 body {
     background-image: inline-image("bg.png");

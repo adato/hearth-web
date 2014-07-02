@@ -1,8 +1,26 @@
-<article class="row">
+<article class="row fulltext">
 	<section class="large-10  push-2 columns box">
+	Nasli jsme pro vas obsah souvisejici s 
+		<dl class="sub-nav">
+			<dt>Filtrovat výsledky:</dt>
+			<dd class="active"><a href="#">All</a></dd>
+			<dd><a>Vse</a></dd>
+			<dd><a>Trziste</a></dd>
+			<dd><a>Komunity</a></dd>
+			<dd><a>Projekty</a></dd>
+			<dd><a>Deje se</a></dd>
+			<dd><a>Lide</a></dd>
+		</dl>
 		<div ng-repeat="item in items">
-			{{item}}
+			<h2>{{item.title}}</h2>
+			<p>{{item.name}}</p>
+			<hr>
+			<ul class="breadcrumbs">
+				<li><a>Home</a></li>
+				<li><a>Features</a></li>
+				<li class="unavailable"><a>Gene Splicing</a></li>
+				<li class="current"><a>Cloning</a></li>
+			</ul>
 		</div>
-		<hr>
 	</section>
 </article>
