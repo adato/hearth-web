@@ -10,20 +10,34 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 	'$scope', '$routeParams', 'Fulltext', '$location',
 
 	function($scope, $routeParams, Fulltext, $location) {
-		$scope.query = $routeParams.q;
 		var params = {
 			limit: 15,
-			offset: $scope.offset,
+			offset: 0,
 			query: $routeParams.q
 		};
 
-		Fulltext.query(params, function(data) {
-			$scope.items = data;
+		angular.extend($scope, {
+			queryText: $routeParams.q,
+			items: [],
+			filterProperty: 'all'
 		});
 
+		$scope.setFilter = function(property) {
+			$scope.filterProperty = property;
+			$scope.search(params);
+		};
+		$scope.search = function(params, addItems) {
+			Fulltext.query(params, function(data) {
+				$scope.items = addItems ? $scope.items.concat(data) : data;
+			});
+		};
 		$scope.showDetail = function(id) {
 			$location.path('/ad/' + id);
 		};
-
+		$scope.loadMore = function() {
+			params.offset = $scope.items.length;
+			$scope.search(params, true);
+		};
+		$scope.search(params);
 	}
 ]);

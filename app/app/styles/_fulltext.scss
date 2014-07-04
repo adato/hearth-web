@@ -1,44 +1,71 @@
 .fulltext {
-	margin-top: 2em;
-	h2 {
-		color: color(5);
-		text-decoration: underline;
-		font-size: rem-calc(18);
-		font-weight: bold;
-		cursor: pointer;
-		margin: 0;
-	}
-	p {
-		margin: {
-			bottom: 0;
-		}
-	}
-	header {
-		margin-top: 1em;
-		text-align: center;
-		position: relative;
-		height: 2em;
-		div {
-			z-index: 2;
-			background-color: white;
-			display: inline-block;
-			position: absolute;
-			padding: {
-				left: 2em;
-				right: 2em;
-			}
-			left: 25%;
-		}
-
-		&:before {
-			content: '';
-			height: 1px;
-			width: 100%;
-			left: 0;
-			position: absolute;
-			background-color: color(3);
-			top: 0.5em;
-			z-index: 1
-		}
-	}
+    header {
+        margin-top: 1em;
+        text-align: center;
+        position: relative;
+        height: 2em;
+        div {
+            z-index: 2;
+            background-color: white;
+            display: inline-block;
+            position: absolute;
+            padding: {
+                left: 2em;
+                right: 2em;
+            };
+            left: 25%;
+        }
+        &:before {
+            content: '';
+            height: 1px;
+            width: 100%;
+            left: 0;
+            position: absolute;
+            background-color: color(3);
+            top: 0.5em;
+            z-index: 1;
+        }
+    }
+    .filter {
+        dt {
+            color: color(3);
+            text-transform: none;
+        }
+        dd {
+            a {
+            	font-weight: bold;
+                border: 1px solid color(5);
+                border-radius: $global-radius;
+            }
+            &.active {
+            	overflow: visible;
+            	position: relative;
+            	&:after {
+            		content: '';
+            		background-color: color(5);
+            		height: 0.5em;
+            		width: 0.5em;
+            		position: absolute;
+            		bottom: -(0.5em /2);
+            		left:70%;
+            		transform: rotate(67deg) skew(45deg);
+            	}
+            }
+        }
+    }
+    .search-item {
+        h2 {
+            color: color(5);
+            text-decoration: underline;
+            font-size: rem-calc(18);
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0;
+        }
+        p {
+            margin: {
+                bottom: 0;
+            };
+        }
+    }
 }

@@ -1,28 +1,36 @@
-<article class="row fulltext">
-	<section class="large-10  push-2 columns box">
+<article class="row fulltext" when-scrolled="loadMore()">
+	<section class="large-12  columns box">
 		<article class="row">
 			<section class="large-12  columns">
 				<header>
-					<div>Nasli jsme pro vas obsah souvisejici s <b>{{query}}</b></div>
+					<div ng-if="!items.length">Ajtakrajta, nic jsme nenašli.</div>
+					<div ng-if="items.length">Nasli jsme pro vas obsah souvisejici s <b>{{queryText}}</b></div>
 				</header>
 			</section>
 		</article>
-		<article class="row">
+
+		<article class="row" ng-if="items.length">
 			<section class="large-12  columns">
-				<dl class="sub-nav">
+				<dl class="sub-nav filter">
 					<dt>Filtrovat výsledky:</dt>
-					<dd><a>Vse</a></dd>
-					<dd><a>Trziste</a></dd>
-					<dd><a>Komunity</a></dd>
-					<dd><a>Projekty</a></dd>
-					<dd><a>Deje se</a></dd>
-					<dd><a>Lide</a></dd>
+					<dd ng-click="setFilter('all')" ng-class="{active: filterProperty == 'all'}"><a>Vse</a></dd>
+					<dd ng-click="setFilter('market')" ng-class="{active: filterProperty == 'market'}"><a>Trziste</a></dd>
+					<dd ng-click="setFilter('community')" ng-class="{active: filterProperty == 'community'}"><a>Komunity</a></dd>
+					<dd ng-click="setFilter('happening')" ng-class="{active: filterProperty == 'happening'}"><a>Deje se</a></dd>
+					<dd ng-click="setFilter('people')" ng-class="{active: filterProperty == 'people'}"><a>Lide</a></dd>
 				</dl>
 			</section>
 		</article>
 
+		<div ng-if="!items.length">
+			Ajtakrajta, nic co by odpovídalo <b>{{queryText}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.
+		</div>
+
 		<div ng-repeat="item in items" class="search-item">
-			<h2 ng-click="showDetail(item._id)">{{item.title}}</h2>
+			<h2 ng-click="showDetail(item._id)">
+				<span ng-if="title">{{item.title}}</span>
+				<span ng-if="!title">{{item.name | ellipsis: 100}}</span>
+			</h2>
 			<p>{{item.name | ellipsis: 150}}</p>
 			<ul class="breadcrumbs">
 				<li><a>Home</a></li>

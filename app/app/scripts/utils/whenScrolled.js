@@ -3,22 +3,24 @@
 /**
  * @ngdoc directive
  * @name hearth.utils.whenScrolled
- * @description
+ * @description Solves toilet paper scrolling
+ * @restrict A
  */
- 
-angular.module('hearth.utils').directive('whenScrolled', [
 
-	function() {
-		return function(scope, elm, attr) {
-			var lastRun, raw;
-			raw = elm[0];
-			lastRun = null;
-			return angular.element(window).bind('scroll', function(evt) {
-				var rectObject;
-				rectObject = raw.getBoundingClientRect();
-				if (parseInt(rectObject.bottom) > 0 && parseInt(rectObject.bottom) <= parseInt(window.innerHeight)) {
-					evt.stopPropagation();
-					evt.preventDefault();
+angular.module('hearth.utils').directive('whenScrolled', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attr) {
+			var lastRun = null,
+				raw = element[0];
+
+			angular.element(window).bind('scroll', function($event) {
+				var rectObject = raw.getBoundingClientRect(),
+					bottom = parseInt(rectObject.bottom, 10);
+
+				if (bottom > 0 && bottom <= parseInt(window.innerHeight)) {
+					$event.stopPropagation();
+					$event.preventDefault();
 					if (lastRun + 2000 < new Date().getTime()) {
 						scope.$apply(attr.whenScrolled);
 						lastRun = new Date().getTime();
@@ -26,6 +28,6 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					}
 				}
 			});
-		};
-	}
-]);
+		}
+	};
+});

@@ -2,7 +2,7 @@
 	
 	<filterbar></filterbar>
 
-	<div class="large-12 columns " ng-class="{ 'hide-for-small' : isReplyingAd() }">
+	<div class="large-12 columns">
 		<div ng-if="orderBy == 'location' && !isCreatingAd()">
 			<search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 		</div>
