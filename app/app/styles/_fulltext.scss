@@ -6,17 +6,11 @@
 		font-size: rem-calc(18);
 		font-weight: bold;
 		cursor: pointer;
+		margin: 0;
 	}
 	p {
 		margin: {
 			bottom: 0;
-		}
-	}
-	.icon {
-		font-size: 2.5em;
-		color: color(1);
-		span {
-			margin: {top: 0.5em;}
 		}
 	}
 	header {

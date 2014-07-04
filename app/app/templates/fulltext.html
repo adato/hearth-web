@@ -21,20 +21,15 @@
 			</section>
 		</article>
 
-		<article ng-repeat="item in items" class="search-item row">
-			<section class="large-1  columns icon">
-				<span class="fa fa-recycle"></span>
-			</section>
-			<section class="large-11  columns">
-				<h2 ng-click="showDetail(item._id)">{{item.title}}</h2>
-				<p>{{item.name | ellipsis: 150}}</p>
-				<ul class="breadcrumbs">
-					<li><a>Home</a></li>
-					<li><a>Features</a></li>
-					<li class="unavailable"><a>Gene Splicing</a></li>
-					<li class="current"><a>Cloning</a></li>
-				</ul>
-			</section>
-		</article>
+		<div ng-repeat="item in items" class="search-item">
+			<h2 ng-click="showDetail(item._id)">{{item.title}}</h2>
+			<p>{{item.name | ellipsis: 150}}</p>
+			<ul class="breadcrumbs">
+				<li><a>Home</a></li>
+				<li><a>Features</a></li>
+				<li class="unavailable"><a>Gene Splicing</a></li>
+				<li class="current"><a>Cloning</a></li>
+			</ul>
+		</div>
 	</section>
 </article>
