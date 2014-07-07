@@ -30,10 +30,38 @@ angular.module('hearth.geo').directive('map', [
 						markersWontHide: true
 					}),
 					markers = [],
+					markerClusterStyles = [{
+						url: "/images/marker/circle.png",
+						textColor: "white",
+						width: 27,
+						height: 27,
+					}, {
+						url: "/images/marker/circle.png",
+						textColor: "white",
+						width: 27,
+						height: 27,
+					}, {
+						url: "/images/marker/circle2.png",
+						textColor: "white",
+						width: 34,
+						height: 34,
+					}, {
+						url: "/images/marker/circle3.png",
+						textColor: "white",
+						width: 40,
+						height: 40,
+					}, {
+						url: "/images/marker/circle3.png",
+						textColor: "white",
+						width: 40,
+						height: 40,
+					}],
+					//init clusterer with your options				var mc = new MarkerClusterer(map, markers, mcOptions);
 					markerCluster = new MarkerClusterer(map, markers, {
 						ignoreHidden: true,
 						maxZoom: 14,
-						size: 20
+						size: 20,
+						styles: markerClusterStyles
 					}),
 					placeMarker = function(location, ad) {
 						var marker;
@@ -49,7 +77,9 @@ angular.module('hearth.geo').directive('map', [
 						markers.push(marker);
 					},
 					showMarkerWindow = function(content, marker) {
+						var width = $(".gm-style").css("width");
 
+						infoWindow.setOptions({maxWidth: (parseInt(width) - 200) });
 						infoWindow.setContent(content);
 						infoWindow.open(map, marker);
 
@@ -82,11 +112,11 @@ angular.module('hearth.geo').directive('map', [
 							ad = ads[i];
 
 							for (j = 0; j < ad.locations.length; j++) {
-								if(ad.locations[j])
+								if (ad.locations[j])
 									placeMarker(ad.locations[j], ad);
 							}
 						}
-						
+
 						markerCluster.addMarkers(markers);
 						markerCluster.repaint();
 					},
