@@ -12,15 +12,14 @@
 			<article class="row bars">
 				<section class="large-3 columns">
 					<header>Podle typu</header>
-					<checkbox model="filter.type" value="'offer'">Inzeráty věnuji</checkbox>
-					<checkbox model="filter.type" value="'need'">Inzeraty Přijmu</checkbox>
-					<checkbox model="filter.type" value="''">Vsechny inzeraty</checkbox>
+					<checkbox type="radio" model="filter.type" value="offer">Inzeráty věnuji</checkbox>
+					<checkbox type="radio" model="filter.type" value="need">Inzeraty Přijmu</checkbox>
+					<checkbox type="radio" model="filter.type" value="">Vsechny inzeraty</checkbox>
 				</section>
 				<section class="large-3 columns">
 					<header>Podle autora</header>
 					<checkbox model="filter.related" value="user">Jednotlivci</checkbox>
 					<checkbox model="filter.related" value="community">Komunity</checkbox>
-					<checkbox model="filter.related" value="projects">Projekty</checkbox>
 					<checkbox model="filter.related" value="connection">Jen moje spojení</checkbox>
 				</section>
 				<section class="large-3 columns">
@@ -33,9 +32,8 @@
 				<section class="large-3 columns">
 					<header>Podle místa</header>
 					<input type="text" id="geolocation" class="text-input">
-					<checkbox type="radio" model="filter.distance" value="10">10 km</checkbox>
-					<checkbox type="radio" model="filter.distance" value="25">25 km</checkbox>
-					<checkbox type="radio" model="filter.distance" value="100">100 km</checkbox>			
+					<input type="range"  ng-model="filter.distance" step="25"  min="25" max="100">
+					{{filter.distance}} km
 				</section>
 			</article>
 		</section>
@@ -45,7 +43,7 @@
 	
 	<div class="row">
 		<div class="large-3 columns">
-			<a ng-click="close()"  class="link-button"><span class="fa fa-angle-double-up"></span> {{'CLOSE' | translate}}</a>
+			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> Vratit filter do puvodniho nastaveni</a>
 		</div>
 		<div class="large-5 columns">
 			<checkbox model="save" value="true">Uložit filtr pro další použití</checkbox>

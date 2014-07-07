@@ -18,22 +18,25 @@ angular.module('hearth.directives').directive('filter', [
 			templateUrl: 'templates/directives/filter.html',
 			link: function(scope, element) {
 				var searchBoxElement = $('input#geolocation', element),
-					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
+					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
+					defaultFilter = {
+						type: '',
+						distance: 25
+					};
 
 				scope.expanded = false;
 				scope.search = function() {
 					scope.$emit('filter', scope.filter);
+					scope.close();
 				};
 				scope.close = function() {
 					scope.$emit('closeFilter');
 				};
-				if (!scope.filter) {
-					scope.filter = {};
-				}
 
-				if (!scope.filter.related) {
-					scope.filter.related = [];
-				}
+				scope.reset = function() {
+					scope.filter = angular.copy(defaultFilter);
+					scope.close();
+				};
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
 					var places = searchBox.getPlaces();
@@ -47,6 +50,8 @@ angular.module('hearth.directives').directive('filter', [
 						});
 					}
 				});
+
+				scope.reset();
 
 			}
 		};
