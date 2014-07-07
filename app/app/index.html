@@ -56,8 +56,10 @@
       <script src="vendor/json3/lib/json3.js"></script>
     <![endif]-->
 
-    <section ng-include="'templates/navigation.html'"></section>
-    <ng-view class="container"></ng-view>
+    <div class="container">
+      <section ng-include="'templates/navigation.html'"></section>
+      <ng-view class="main-container"></ng-view>
+    </div>
 
     <script>
       EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
@@ -162,7 +164,6 @@
       
       <script src="scripts/directives/invitationForm.js"></script>
       <script src="scripts/directives/avatar.js"></script>
-      <script src="scripts/directives/identitySwitch.js"></script>
       <script src="scripts/directives/addressAutocomplete.js"></script>
       <script src="scripts/directives/feedback.js"></script>
       <script src="scripts/directives/scrollTo.js"></script>

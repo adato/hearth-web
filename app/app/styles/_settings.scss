@@ -1183,7 +1183,7 @@ $crumb-slash: ">";
    $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-  $topbar-height: 45px;
+  $topbar-height: 65px;
   $topbar-margin-bottom: 30px;
 
 // Controlling the styles for the title in the top bar
@@ -1191,7 +1191,7 @@ $crumb-slash: ">";
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
- $topbar-dropdown-bg: $topbar-bg-color;
+  $topbar-dropdown-bg: $topbar-bg-color;
 // $topbar-dropdown-link-color: #fff;
 // $topbar-dropdown-link-bg: #333;
 // $topbar-dropdown-link-weight: $font-weight-normal;

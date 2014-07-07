@@ -68,7 +68,6 @@ $fontSize: rem-calc(18);
   "foundation/components/visibility";
 
 @import "mixins/social";
-@import "mixins/topbaricons";
 
 @import "navigation";
 @import "forms";
@@ -93,8 +92,11 @@ body {
     background-image: inline-image("bg.png");
     background-repeat: repeat-x;
     background-attachment:fixed;
+    .main-container {
+        margin-top: 6em;
+        display: block;
+    }
 }
-
 
 /*
 @import "foundation/components/global";

@@ -12,8 +12,8 @@
         z-index: 10000;
         width: length($color) * $size;
         height: $size;
-        right: 10*$size;
-        top: 0;
+        right: 5*$size;
+        bottom: 80px;
         border: 1px solid black;
         content: "";
         @include background(linear-gradient(left, $grad));

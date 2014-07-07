@@ -13,8 +13,7 @@
 				</section>
 			</article>
 		</div>
-		<div ng-if="orderBy != 'location' || isCreatingAd()" >
-			<div class="container" ng-include="'templates/searchResults.html'"></div>   
+		<div ng-if="orderBy != 'location' || isCreatingAd()" ng-include="'templates/searchResults.html'">
 		</div>
 	</div>
 </div>
