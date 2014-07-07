@@ -237,11 +237,11 @@ $imageSize: 80px;
                     }
                     &.fa-flag {
                         color: lighten(color(1), 30%);
-                        background-color: color(1);
-                        text-shadow: 0 -1px 1px darken(color(1), 15%);
+                        background-color: desaturate(color(1), 50%);
+                        text-shadow: 0 -1px 1px darken(desaturate(color(1), 50%), 15%);
                         &:hover {
                             color: white;
-                            background-color: darken(color(1), abs($button-function-factor));
+                            background-color: color(1);
                         }
                     }
                 }
