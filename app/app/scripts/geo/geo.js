@@ -144,11 +144,11 @@ angular.module('hearth.geo').factory('geo', [
 			 * @param {String} type  type of icon ('need', 'offer', 'undefined')
 			 * @param {google.maps.Map} map (optional)  - if not set, last created map will be used
 			 */
-			placeMarker: function(location, type, description, map) {
+			placeMarker: function(location, type, info, map) {
 				return new google.maps.Marker({
 					position: location,
 					map: map || _map,
-					desc: description,
+					info: info,
 					icon: images[type]
 				});
 			},
