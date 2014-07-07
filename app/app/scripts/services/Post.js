@@ -33,6 +33,10 @@ angular.module('hearth.services').factory('Post', [
 			},
 			remove: {
 				method: 'DELETE'
+			},
+			spam: {
+				url: $$config.apiPath + '/posts/:postId/spam',
+				method: 'PUT'
 			}
 		});
 	}

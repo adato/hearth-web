@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie', '$http',
+	'$scope', '$location', '$route', 'Auth', 'flash', 'PostsService', 'Errors', '$timeout', '$window', '$rootScope', '$routeParams', 'LanguageSwitch', '$q', '$translate', 'UsersService', 'Info', '$analytics', 'ResponseErrors', 'ipCookie', '$http', 'Post',
 
-	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie, $http) {
+	function($scope, $location, $route, Auth, flash, PostsService, Errors, $timeout, $window, $rootScope, $routeParams, LanguageSwitch, $q, $translate, UsersService, Info, $analytics, ResponseErrors, ipCookie, $http, Post) {
 		var timeout;
 
 		$scope.breakpointForSmall = 782;
@@ -42,6 +42,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		$scope.$on('sendReply', function($event, data) {
 			PostsService.reply(data);
+		});
+
+		$scope.$on('report', function($event, data) {
+			Post.spam(data);
 		});
 
 		$scope.useLanguage = function(language) {
