@@ -43,7 +43,7 @@ angular.module('hearth.geo').directive('map', [
 						} else {
 							ad.adType = ad.type;
 						}
-						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type, ad);
+						marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
 
 						oms.addMarker(marker);
 						markers.push(marker);
@@ -68,74 +68,27 @@ angular.module('hearth.geo').directive('map', [
 						}, function(data) {
 
 							data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
+							map.setCenter(marker.position);
 							showMarkerWindow(template(data), marker);
 
-						}, function(err) {
-						});
+						}, function(err) {});
 					},
 					createPins = function(e, ads) {
 						var i, j, ad, location;
 						ads = ads || [];
 
+						console.log("Nacitam.." + ads.length);
 						for (i = 0; i < ads.length; i++) {
 							ad = ads[i];
 
 							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
+								if(ad.locations[j])
+									placeMarker(ad.locations[j], ad);
 							}
 						}
 						
-						markerCluster.repaint();
 						markerCluster.addMarkers(markers);
-
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
-
-							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
-							}
-						}
-
-
 						markerCluster.repaint();
-						markerCluster.addMarkers(markers);
-						
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
-
-							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
-							}
-						}
-						
-
-						markerCluster.repaint();
-						markerCluster.addMarkers(markers);
-						
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
-
-							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
-							}
-						}
-
-						// oms.addListener('click', onMarkerClick);
-
-						markerCluster.repaint();
-						markerCluster.addMarkers(markers);
 					},
 					hideMarkers = function() {
 						for (var i = 0; i < markers.length; i++) {
