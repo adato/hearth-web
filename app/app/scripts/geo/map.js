@@ -20,13 +20,13 @@ angular.module('hearth.geo').directive('map', [
 			transclude: true,
 			link: function(scope, element) {
 				var markerCluster,
+					oms,
 					infoWindow = new google.maps.InfoWindow(),
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					map = geo.createMap(element[0], {
 						zoom: 11
 					}),
-					oms,
-					markerCluster,
+					markerClusterMaxZoom = 14,
 					markers = [],
 					markerClusterStyles = [{
 						url: "images/marker/circle.png",
@@ -63,7 +63,7 @@ angular.module('hearth.geo').directive('map', [
 
 						markerCluster = new MarkerClusterer(map, [], {
 							ignoreHidden: true,
-							maxZoom: 13,
+							maxZoom: markerClusterMaxZoom,
 							zoomOnClick: true,
 							size: 20,
 							styles: markerClusterStyles
@@ -138,10 +138,16 @@ angular.module('hearth.geo').directive('map', [
 						for (var i = 0; i < markers.length; i++) {
 							markers[i].setVisible(false);
 						}
+					},
+					zoomMarkerClusterer = function(cluster) {
+
+        				map.fitBounds(cluster.getBounds());
+						map.setZoom(markerClusterMaxZoom + 1);
 					};
 
 				initMap();
 
+				markerCluster.addListener('click', zoomMarkerClusterer);
 				oms.addListener('click', onMarkerClick);
 				scope.$on('keywordSearch', hideMarkers);
 				scope.$on('searchByLoc', createPins);
