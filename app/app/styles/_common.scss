@@ -21,10 +21,13 @@
 }
 
 .logo {
-    @include background(inline-image("logo.svg"), color(1) !important);
+    background-image: inline-image("logo.svg");
+    background-color: color(1);
+    background-repeat: no-repeat;
     width: 200px !important;
     height: $topbar-height !important;
     border-radius: $global-radius;
+
 }
 
 button {
@@ -34,8 +37,9 @@ button {
         filter: blur(1px) grayscale(70%);
     }
 }
+
 .reveal-modal {
-    border-radius: $global-radius;   
+    border-radius: $global-radius;
 }
 
 .link-button {
@@ -60,12 +64,12 @@ button {
 }
 
 .row {
-  max-width: 960px;
+    max-width: 960px;
 }
 
 .remove {
     position: absolute;
-    top: rem-calc(18 /  3);
+    top: rem-calc(18 / 3);
     right: rem-calc(18);
     color: color(1);
     cursor: pointer;
@@ -91,7 +95,7 @@ button {
         width: 1000px;
     }
     cursor: pointer;
-   // height: $button-height;
+    // height: $button-height;
     opacity: 0;
     position: absolute;
     top: 0px;
@@ -105,7 +109,7 @@ button {
         list-style-type: none;
         a {
             display: block;
-        };
+        }
         img {
             max-height: 185px;
         }
@@ -119,10 +123,24 @@ button {
         position: relative;
     }
 }
+
 .file-upload {
-    position:relative;
-    display:inline-block;
+    position: relative;
+    display: inline-block;
     text-align: left;
-    float:left;
-    padding-left:2px;
+    float: left;
+    padding-left: 2px;
+}
+
+.scrolled {
+    .hide-for-scrolled {
+        display: none;
+    }
+    .show-for-scrolled {
+        display: block;
+    }
+}
+
+.show-for-scrolled {
+    display: none;
 }
