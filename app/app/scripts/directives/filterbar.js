@@ -12,9 +12,12 @@ angular.module('hearth.directives').directive('filterbar', [
 			replace: true,
 			restrict: 'E',
 			templateUrl: 'templates/directives/filterbar.html',
+			scope: {
+				map: '@'
+			},
 			link: function(scope) {
 				angular.extend(scope, {
-					mapSelected: false,
+					mapSelected: scope.map === 'true',
 					filterSelected: false,
 					newItemSelected: false
 				});
@@ -43,7 +46,6 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.mapSelected = !scope.mapSelected;
 					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 				};
-				scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 			}
 		};
 	}
