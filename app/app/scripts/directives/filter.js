@@ -26,7 +26,18 @@ angular.module('hearth.directives').directive('filter', [
 
 				scope.expanded = false;
 				scope.search = function() {
-					scope.$emit('filter', scope.filter);
+					var filterData = angular.copy(scope.filter),
+						keywords = $.map(filterData.keywords || [], function(item) {
+							return item.text;
+						});
+
+					if (keywords.length > 0) {
+						filterData.keywords = keywords.join(',');
+					} else {
+						delete filterData.keywords;
+					}
+
+					scope.$emit('filter', filterData);
 					scope.close();
 				};
 				scope.close = function() {
@@ -35,6 +46,7 @@ angular.module('hearth.directives').directive('filter', [
 
 				scope.reset = function() {
 					scope.filter = angular.copy(defaultFilter);
+					scope.$emit('clearFilter');
 					scope.close();
 				};
 

@@ -54,6 +54,7 @@ angular.module('hearth.directives').directive('editad', [
 						angular.copy(postData), {
 							author: Auth.getCredentials(),
 							updated_at: new Date().toISOString(),
+							reply_count: 0,
 							isPhantom: true
 						}
 					);
@@ -64,6 +65,8 @@ angular.module('hearth.directives').directive('editad', [
 						scope.$emit('adSaved', data);
 					}, function(err) {});
 
+					scope.close();
+
 					/*$analytics.eventTrack(eventName, {
 						category: 'Posting',
 						label: 'NP',
@@ -71,13 +74,11 @@ angular.module('hearth.directives').directive('editad', [
 					});*/
 				};
 
-
 				scope.photoUploadSuccessful = function($event) {
 					if ($event.target.status === 200) {
 						scope.post.attachments.push(JSON.parse($event.target.response));
 					}
 				};
-
 
 				function dateToTimestamp(dateToFormat, withOffset) {
 					var outDate, dateCs, dateEn, zoneOffset;
