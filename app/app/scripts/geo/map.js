@@ -81,8 +81,8 @@ angular.module('hearth.geo').directive('map', [
 						infoWindow.setOptions({
 							maxWidth: (parseInt(width) - 200)
 						});
-						
-						content = '<div style="min-height: 100px; min-width: 200px;">'+content+'</div>';
+
+						content = '<div style="min-height: 100px; min-width: 200px;">' + content + '</div>';
 						infoWindow.setContent(content);
 						infoWindow.open(map, marker);
 
@@ -141,7 +141,7 @@ angular.module('hearth.geo').directive('map', [
 					},
 					zoomMarkerClusterer = function(cluster) {
 
-        				map.fitBounds(cluster.getBounds());
+						map.fitBounds(cluster.getBounds());
 						map.setZoom(markerClusterMaxZoom + 1);
 					};
 
