@@ -91,8 +91,7 @@ angular.module('hearth.geo').directive('map', [
 						}, function(data) {
 
 							data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
-							map.setCenter(marker.position);
-
+							map.panTo(marker.position);
 							
 							if (data.community_id) {
 								data.adType = data.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
