@@ -115,9 +115,6 @@ angular.module('hearth.geo').directive('map', [
 						for (i = 0; i < ads.length; i++) {
 							ad = ads[i];
 
-							if(ad._id != "5274ceee593b390200000022" && i < 10)
-								continue;
-
 							for (j = 0; j < ad.locations.length; j++) {
 								if (ad.locations[j])
 									placeMarker(ad.locations[j], ad);
