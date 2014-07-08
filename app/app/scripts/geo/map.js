@@ -63,7 +63,7 @@ angular.module('hearth.geo').directive('map', [
 
 						markerCluster = new MarkerClusterer(map, [], {
 							ignoreHidden: true,
-							maxZoom: 13,
+							// maxZoom: 13,
 							zoomOnClick: true,
 							size: 20,
 							styles: markerClusterStyles
