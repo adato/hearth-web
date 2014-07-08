@@ -26,7 +26,7 @@ angular.module('hearth.geo').directive('map', [
 					map = geo.createMap(element[0], {
 						zoom: 11
 					}),
-					markerClusterMaxZoom = 14,
+					markerClusterMaxZoom = 13,
 					markers = [],
 					markerClusterStyles = [{
 						url: "images/marker/circle.png",
