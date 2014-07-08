@@ -11,26 +11,26 @@
 		<section class="large-12 columns" style="padding-top:0">
 			<article class="row bars">
 				<section class="large-3 columns">
-					<header>Podle typu</header>
-					<checkbox type="radio" model="filter.type" value="offer">Inzeráty věnuji</checkbox>
-					<checkbox type="radio" model="filter.type" value="need">Inzeraty Přijmu</checkbox>
-					<checkbox type="radio" model="filter.type" value="">Vsechny inzeraty</checkbox>
+					<header>{{'by-type' | translate}}</header>
+					<checkbox type="radio" model="filter.type" value="offer">{{'ads-offer' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.type" value="need">{{'ads-need' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.type" value="">{{'ads-all' | translate}}</checkbox>
 				</section>
 				<section class="large-3 columns">
-					<header>Podle autora</header>
-					<checkbox model="filter.related" value="user">Jednotlivci</checkbox>
-					<checkbox model="filter.related" value="community">Komunity</checkbox>
-					<checkbox model="filter.related" value="connection">Jen moje spojení</checkbox>
+					<header>{{'by-author' | translate}}</header>
+					<checkbox model="filter.related" value="user">{{'individuals' | translate}}</checkbox>
+					<checkbox model="filter.related" value="community">{{'communities' | translate}}</checkbox>
+					<checkbox model="filter.related" value="connection">{{'just-my-connection' | translate}}</checkbox>
 				</section>
 				<section class="large-3 columns">
-					<header>Podle casu</header>
-					<checkbox type="radio" model="filter.date" value="1">Dnes</checkbox>
-					<checkbox type="radio" model="filter.date" value="3">3 dny</checkbox>
-					<checkbox type="radio" model="filter.date" value="7">Týden</checkbox>
-					<checkbox type="radio" model="filter.date" value="30">Měsíc a starší</checkbox>
+					<header>{{'by-time' | translate}}</header>
+					<checkbox type="radio" model="filter.date" value="1">{{'today' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.date" value="3">{{'3-days' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.date" value="7">{{'week' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.date" value="30">{{'month-and-older' | translate}}</checkbox>
 				</section>
 				<section class="large-3 columns">
-					<header>Podle místa</header>
+					<header>{{'by-place' | translate}}</header>
 					<input type="text" id="geolocation" class="text-input">
 					<input type="range"  ng-model="filter.distance" step="25"  min="25" max="100">
 					{{filter.distance}} km
@@ -43,13 +43,13 @@
 	
 	<div class="row">
 		<div class="large-3 columns">
-			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> Vratit filter do puvodniho nastaveni</a>
+			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> {{'return-the-filter-to-original-settings' | translate}}</a>
 		</div>
 		<div class="large-5 columns">
-			<checkbox model="save" value="true">Uložit filtr pro další použití</checkbox>
+			<checkbox model="save" value="true">{{'save-the-filter-for-future-use' | translate}}</checkbox>
 		</div>
 		<div class="large-4 columns text-right">
-			<button class="button" ng-click="search()"><span class="fa fa-filter"></span> Filtrovat</button>
+			<button class="button" ng-click="search()"><span class="fa fa-filter"></span> {{'run-filter' | translate}}</button>
 		</div>
 	</div>
 
