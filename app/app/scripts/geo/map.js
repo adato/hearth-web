@@ -65,7 +65,7 @@ angular.module('hearth.geo').directive('map', [
 							ignoreHidden: true,
 							maxZoom: markerClusterMaxZoom,
 							zoomOnClick: true,
-							size: 20,
+							size: 15,
 							styles: markerClusterStyles
 						});
 					},
