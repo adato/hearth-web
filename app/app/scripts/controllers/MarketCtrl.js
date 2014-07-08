@@ -13,7 +13,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.limit = 15;
 		$scope.items = [];
 
-		$scope.loadMore = function() {
+		$scope.load = function() {
 			var params = $location.search();
 
 			params = angular.extend(params, {
@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 
 			Post.query(params, function(data) {
-				$scope.items = data;
+				$scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
 			});
 		};
 
@@ -38,7 +38,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.items.unshift(data);
 		});
 		$scope.$on('searchMap', function() {
-			$location.path('/map');
+			$scope.showMap = true;
+		});
+		$scope.$on('searchList', function() {
+			$scope.showMap = false;
 		});
 
 		$scope.$on('adSaved', function($event, data) {
@@ -59,10 +62,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('$routeUpdate', function() {
 			$scope.items = [];
-			$scope.loadMore();
+			$scope.load();
 		});
 
-		$scope.loadMore();
+		$scope.load();
 
 	}
 ]);

@@ -52,11 +52,6 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 				controller: 'MarketCtrl',
 				reloadOnSearch: false,
 				pageType: 'search'
-			}).when('/map', {
-				templateUrl: 'templates/map.html',
-				controller: 'MapCtrl',
-				reloadOnSearch: false,
-				pageType: 'search'
 			}).when('/my', {
 				templateUrl: 'templates/my.html',
 				controller: 'SearchCtrl',

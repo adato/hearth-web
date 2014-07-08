@@ -12,12 +12,9 @@ angular.module('hearth.directives').directive('filterbar', [
 			replace: true,
 			restrict: 'E',
 			templateUrl: 'templates/directives/filterbar.html',
-			scope: {
-				map: '@'
-			},
 			link: function(scope) {
 				angular.extend(scope, {
-					mapSelected: scope.map === 'true',
+					mapSelected: false,
 					filterSelected: false,
 					newItemSelected: false
 				});

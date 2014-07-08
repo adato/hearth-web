@@ -1,12 +1,8 @@
-<div ng-controller="ListViewStateCtrl">
-	
-	<filterbar map="false"></filterbar>
+<div>
+	<filterbar></filterbar>
 
-	<div class="large-12 columns">
-		<div ng-if="orderBy == 'location' && !isCreatingAd()">
-			<search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
-		</div>
-		<div when-scrolled="loadMore()" class="wish-list">
+	<div class="large-12 columns" ng-hide="showMap">
+		<div when-scrolled="load()" class="wish-list">
 			<article ng-show="!items.length && sent" class="row ">
 				<section class="large-6 large-centered columns box text-center" style="padding:1em">
 					<div translate class="padding-2" ng-show="pageType != 'my'">NOTHING_FOUND</div>
@@ -15,5 +11,9 @@
 			</article>
 			<ad item=item ng-repeat="(id, item) in items | orderBy:orderByPostSort"></ad>
 		</div>
+	</div>
+
+	<div class="large-12 columns" ng-show="showMap">
+		<search-map location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>
