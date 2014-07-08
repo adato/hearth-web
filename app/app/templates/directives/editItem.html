@@ -12,7 +12,7 @@
 
 	<div signed-in>
 		<form name="editForm" novalidate>
-			<article class="row">
+			<article class="row" style="padding:0">
 				<section class="large-3 columns">
 					<needofferselector model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
 				</section>
@@ -41,39 +41,24 @@
 					<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name"  ng-cloak ng-required="true"></textarea>
 
 					<left-chars-progress value="post.name" max="2500"></left-chars-progress>
-				</section>
-			</article>
 
-			<article class="row">
-				<section class="large-12 columns">
 					<label>
 						<i class="fa fa-tags"></i> {{ 'KEYWORDS' | translate}} 
 						<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
 							<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 						</tags-input>
 					</label>
-				</section>
-			</article>
-
-
-			<article class="row">
-				<section class="large-12 columns">
 					<label>
 						<i class="fa fa-map-marker"></i> {{ 'PLACES' | translate}} 
 						<locations locations="post.locations"></locations>
 					</label>
-				</section>
-			</article>
-
-			<article class="row">
-				<section class="large-12 columns">
 					<label>
 						<i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
 						<input type="text" datepicker="{{languageCode.code}}" class="date"  ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
 					</label>
 				</section>
 			</article>
-
+		
 			<article class="row">
 				<section class="large-4 columns">
 					<div file-upload class="file-upload" upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments = []" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments = []">
@@ -115,9 +100,7 @@
 				</section>
 			</article>
 
-			<hr>
-
-			<article class="row">
+			<article class="row footer">
 				<section class="large-4 columns">
 					<a ng-click="close()" class="link-button">{{'CANCEL' | translate}}</a>
 				</section>

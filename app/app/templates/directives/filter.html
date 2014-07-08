@@ -32,20 +32,20 @@
 				<section class="large-3 columns">
 					<header>{{'by-place' | translate}}</header>
 					<input type="text" id="geolocation" class="text-input">
-					<input type="range"  ng-model="filter.distance" step="25"  min="25" max="100">
-					{{filter.distance}} km
+					<div ng-show="filter.lat && filter.lon">
+						<input type="range"  ng-model="filter.distance" step="25"  min="25" max="100" >
+						<div class="text-center">{{filter.distance}} km</div>
+					</div>
 				</section>
 			</article>
 		</section>
 	</article>
 
-	<hr>
-	
-	<div class="row">
-		<div class="large-3 columns">
+	<div class="row footer">
+		<div class="large-4 columns">
 			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> {{'return-the-filter-to-original-settings' | translate}}</a>
 		</div>
-		<div class="large-5 columns">
+		<div class="large-4 columns">
 			<checkbox model="save" value="true">{{'save-the-filter-for-future-use' | translate}}</checkbox>
 		</div>
 		<div class="large-4 columns text-right">

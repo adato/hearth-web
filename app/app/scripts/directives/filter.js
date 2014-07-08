@@ -46,7 +46,9 @@ angular.module('hearth.directives').directive('filter', [
 					if (!filterData.type) {
 						delete filterData.type;
 					}
-
+					if (!filterData.lon || !filterData.lon) {
+						delete filterData.distance;
+					}
 
 					scope.$emit('filter', filterData);
 					scope.close();
