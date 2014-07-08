@@ -56,11 +56,12 @@ angular.module('hearth.geo').directive('map', [
 						width: 40,
 						height: 40,
 					}],
-					//init clusterer with your options				var mc = new MarkerClusterer(map, markers, mcOptions);
+					//init clusterer with your options
 					markerCluster = new MarkerClusterer(map, markers, {
-						ignoreHidden: true,
-						maxZoom: 14,
-						size: 20,
+						// ignoreHidden: true,
+						// maxZoom: 13,
+						// zoomOnClick: true,
+						// size: 20,
 						styles: markerClusterStyles
 					}),
 					placeMarker = function(location, ad) {
