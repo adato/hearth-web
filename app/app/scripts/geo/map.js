@@ -58,7 +58,8 @@ angular.module('hearth.geo').directive('map', [
 
 						oms = new OverlappingMarkerSpiderfier(map, {
 							markersWontMove: true,
-							markersWontHide: true
+							markersWontHide: true,
+							keepSpiderfied: true,
 						});
 
 						markerCluster = new MarkerClusterer(map, [], {
