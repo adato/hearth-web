@@ -25,10 +25,8 @@ angular.module('hearth.geo').directive('map', [
 					map = geo.createMap(element[0], {
 						zoom: 11
 					}),
-					oms = new OverlappingMarkerSpiderfier(map, {
-						markersWontMove: true,
-						markersWontHide: true
-					}),
+					oms,
+					markerCluster,
 					markers = [],
 					markerClusterStyles = [{
 						url: "images/marker/circle.png",
@@ -56,14 +54,21 @@ angular.module('hearth.geo').directive('map', [
 						width: 40,
 						height: 40,
 					}],
-					//init clusterer with your options
-					markerCluster = new MarkerClusterer(map, markers, {
-						// ignoreHidden: true,
-						// maxZoom: 13,
-						// zoomOnClick: true,
-						// size: 20,
-						styles: markerClusterStyles
-					}),
+					initMap = function() {
+
+						oms = new OverlappingMarkerSpiderfier(map, {
+							markersWontMove: true,
+							markersWontHide: true
+						});
+
+						markerCluster = new MarkerClusterer(map, [], {
+							ignoreHidden: true,
+							maxZoom: 13,
+							zoomOnClick: true,
+							size: 20,
+							styles: markerClusterStyles
+						});
+					},
 					placeMarker = function(location, ad) {
 						var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
 
@@ -111,6 +116,10 @@ angular.module('hearth.geo').directive('map', [
 					createPins = function(e, ads) {
 						var i, j, ad, location;
 						ads = ads || [];
+						markers = [];
+
+						markerCluster.clearMarkers();
+						oms.clearMarkers();
 
 						console.log("Nacitam.." + ads.length);
 						for (i = 0; i < ads.length; i++) {
@@ -130,6 +139,8 @@ angular.module('hearth.geo').directive('map', [
 							markers[i].setVisible(false);
 						}
 					};
+
+				initMap();
 
 				oms.addListener('click', onMarkerClick);
 				scope.$on('keywordSearch', hideMarkers);
