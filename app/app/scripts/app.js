@@ -49,7 +49,7 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 				pageType: 'community-create'
 			}).when('/', {
 				templateUrl: 'templates/market.html',
-				controller: 'SearchCtrl',
+				controller: 'MarketCtrl',
 				reloadOnSearch: false,
 				pageType: 'search'
 			}).when('/my', {

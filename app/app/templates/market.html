@@ -1,19 +1,19 @@
-<div ng-controller="ListViewStateCtrl">
-	
+<div>
 	<filterbar></filterbar>
 
-	<div class="large-12 columns">
-		<div ng-if="orderBy == 'location' && !isCreatingAd()">
-			<search-map  class="padding-2" style="text-align:center;" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
-		</div>
-		<div ng-show="orderBy == 'relevance' && !isCreatingAd()">
-			<article class="row">
-				<section class="small-12 columns padding-2">
-					<fulltext-typeahead></fulltext-typeahead>
+	<div class="large-12 columns" ng-hide="showMap">
+		<div when-scrolled="load()" class="wish-list">
+			<article ng-show="!items.length && sent" class="row ">
+				<section class="large-6 large-centered columns box text-center" style="padding:1em">
+					<div translate class="padding-2" ng-show="pageType != 'my'">NOTHING_FOUND</div>
+					<div translate class="padding-2" ng-show="pageType == 'my'">MY_HEARTH_NOTHING_FOUND</div>
 				</section>
 			</article>
+			<ad item=item ng-repeat="(id, item) in items | orderBy:orderByPostSort"></ad>
 		</div>
-		<div ng-if="orderBy != 'location' || isCreatingAd()" ng-include="'templates/searchResults.html'">
-		</div>
+	</div>
+
+	<div class="large-12 columns" ng-show="showMap">
+		<search-map location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>

@@ -35,9 +35,10 @@
 						<div class="alert-box radius">
 							<div ng-show="editForm.name.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
 							<div ng-show="editForm.name.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+							<div ng-show="editForm.name.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
 						</div>
 					</div>
-					<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name"  ng-cloak ></textarea>
+					<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name"  ng-cloak ng-required="true"></textarea>
 
 					<left-chars-progress value="post.name" max="2500"></left-chars-progress>
 				</section>

@@ -13,23 +13,13 @@
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
 
-			<a data-dropdown="about-drop"  title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
-				<div class="fa fa-question-circle"></div>
-				<label>{{'TOP_BAR_ABOUT' | translate}}</label>
+			<a href="#/communities" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+				<div class="fa fa-users"></div>
+				<label>{{ 'communities' | translate }}</label>
 			</a>
-	
-	        <ul id="about-drop" data-dropdown-content class="f-dropdown">
-	          <li><a href="http://blog.hearth.net" target="_blank">{{'BLOG' | translate}}</a></li>
-	          <li><a ng-href="#/feedback">{{'WRITE_US' | translate}}</a></li>
-	          <li><a ng-href="#/terms">{{'TERMS' | translate}}</a></li>
-	          <li class="divider"></li>
-	          <li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
-	          <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
-	          <li><a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span> Google Plus</a> </li>
-	          <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a></li>
-	          <li><a href="http://instagram.com/artofhearth" target="_blank"><span class="fa fa-instagram"></span> Instagram</a></li>
-	        </ul>
 
+			<div class="separator"></div>
+			
 			<a signed-in ng-click="switchBack()" data-dropdown="profile-drop" title="{{ loggedUser.name }}">
 	             <div class="fa fa-user"></div>
 	            <label>{{ 'TOP_BAR_PROFILE' | translate }}</label>
@@ -48,6 +38,24 @@
 		            </a>
 		        </li>
 		    </ul> 
+
+			<a data-dropdown="about-drop"  title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
+				<div class="fa fa-question-circle"></div>
+				<label>{{'TOP_BAR_ABOUT' | translate}}</label>
+			</a>
+	
+	        <ul id="about-drop" data-dropdown-content class="f-dropdown">
+	          <li><a href="http://blog.hearth.net" target="_blank">{{'BLOG' | translate}}</a></li>
+	          <li><a ng-href="#/feedback">{{'WRITE_US' | translate}}</a></li>
+	          <li><a ng-href="#/terms">{{'TERMS' | translate}}</a></li>
+	          <li class="divider"></li>
+	          <li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
+	          <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
+	          <li><a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span> Google Plus</a> </li>
+	          <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a></li>
+	          <li><a href="http://instagram.com/artofhearth" target="_blank"><span class="fa fa-instagram"></span> Instagram</a></li>
+	        </ul>
+
 		     
 			<a signed-out href="#/login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
 				<div class="text">

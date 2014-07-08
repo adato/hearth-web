@@ -22,7 +22,13 @@ angular.module('hearth.directives').directive('checkbox', function() {
 			scope.checked = false;
 
 			scope.toggle = function() {
-				scope.checked = !scope.checked;
+				if (scope.type === 'radio') {
+					if (!scope.checked) {
+						scope.checked = !scope.checked;
+					}
+				} else {
+					scope.checked = !scope.checked;
+				}
 				if (angular.isArray(scope.model)) {
 					var index = scope.model.indexOf(scope.value);
 					if (index > -1) {

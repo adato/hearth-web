@@ -43,7 +43,6 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.mapSelected = !scope.mapSelected;
 					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 				};
-				scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 			}
 		};
 	}

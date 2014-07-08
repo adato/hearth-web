@@ -15,11 +15,11 @@ angular.module('hearth.services').factory('Post', [
 			get: {
 				method: 'GET',
 				params: {
-					limit: 10,
+					limit: 15,
 					offset: 0,
-					sort: '-created_at',
-					r: Math.random()
-				}
+					sort: '-created_at'
+				},
+				isArray: true
 			},
 			query: {
 				method: 'GET',
@@ -33,6 +33,10 @@ angular.module('hearth.services').factory('Post', [
 			},
 			remove: {
 				method: 'DELETE'
+			},
+			spam: {
+				url: $$config.apiPath + '/posts/:postId/spam',
+				method: 'PUT'
 			}
 		});
 	}

@@ -33,8 +33,9 @@
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
-				<span ng-if="item.type == 'offer'" ng-bind-html="'PEOPLE_COUNT_WISH' | translate: {value: item.reply_count}"></span>
-				<span ng-if="item.type == 'need'" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
+				<span ng-if="item.type == 'offer' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_WISH' | translate: {value: item.reply_count}"></span>
+				<span ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
+				<span ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>
@@ -44,7 +45,7 @@
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
 							<a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a>
-							<a class="fa fa-flag" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
+							<a signed-in class="fa fa-flag" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
 						</div>
 					</div>
 				</div>
@@ -105,7 +106,6 @@
 				</div>
 			</footer>
 
-			
 		</div>
 	</section>
 </article>
