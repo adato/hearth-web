@@ -16,6 +16,19 @@
             right: 1em;
             top: 1em;
         };
+        .footer {
+            padding: {
+                top: $fontSize;
+                bottom: $fontSize;
+            }
+            margin: {
+                top: $fontSize;
+                bottom: 0;
+            }
+            border: {
+                top: 1px solid darken(color(4), 8%);
+            }
+        }
         input[type="text"],
         textarea,
         .tags {
@@ -52,6 +65,10 @@
             margin: {
                 bottom: 0;
             };
+            padding: {
+                top: rem-calc(8);
+                bottom: rem-calc(8);
+            };
         }
     }
     .filterbar {
@@ -71,7 +88,11 @@
             margin: {
                 bottom: 0;
             };
-            &:hover,
+            &[disabled] {
+                cursor: not-allowed;
+            }
+            cursor: pointer;
+            &:hover:not([disabled]),
             &.pressed {
                 color: color(4);
                 background-color: color(5);

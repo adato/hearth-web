@@ -21,7 +21,8 @@ angular.module('hearth.directives').directive('filter', [
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
 					defaultFilter = {
 						type: '',
-						distance: 25
+						distance: 25,
+						related: []
 					};
 
 				scope.expanded = false;
@@ -35,6 +36,18 @@ angular.module('hearth.directives').directive('filter', [
 						filterData.keywords = keywords.join(',');
 					} else {
 						delete filterData.keywords;
+					}
+					if (filterData.related.length > 0) {
+						filterData.related = filterData.related.join(',');
+					} else {
+						delete filterData.related;
+					}
+
+					if (!filterData.type) {
+						delete filterData.type;
+					}
+					if (!filterData.lon || !filterData.lon) {
+						delete filterData.distance;
 					}
 
 					scope.$emit('filter', filterData);
@@ -60,6 +73,13 @@ angular.module('hearth.directives').directive('filter', [
 							scope.filter.lat = location.lat();
 							scope.filter.lon = location.lng();
 						});
+					}
+				});
+
+				scope.$watch('place', function(value) {
+					if (!value) {
+						delete scope.filter.lat;
+						delete scope.filter.lon;
 					}
 				});
 

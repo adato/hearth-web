@@ -3,12 +3,7 @@
         width: 100%;
         margin-bottom: 0;
     }
-    .columns {
-        padding: {
-            top: $fontSize;
-            bottom: $fontSize;
-        };
-    }
+   
     header {
         background-color: darken(color(4), 5%);
         text-align: center;

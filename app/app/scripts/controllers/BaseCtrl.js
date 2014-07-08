@@ -190,6 +190,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		};
 
+		$scope.isScrolled = false;
+		angular.element($window).bind("scroll", function($event) {
+			if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
+				$('html').toggleClass('scrolled');
+				$scope.isScrolled = !$scope.isScrolled;
+			}
+		});
+
 		return $scope.checkNotifications;
 	}
 ]);

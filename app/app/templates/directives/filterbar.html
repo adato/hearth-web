@@ -5,7 +5,7 @@
 				<section class="large-8  columns">
 					<article class="row filterbar-section">
 						<section class="large-5 columns">
-							<a ng-click="toggleFilter()" class="button" ng-class="{pressed: filterSelected}"><span class="fa fa-filter"></span> {{'FILTER' | translate}}</a>
+							<a ng-click="toggleFilter()" ng-disabled="newItemSelected" class="button" ng-class="{pressed: filterSelected}"><span class="fa fa-filter"></span> {{'FILTER' | translate}}</a>
 						</section>
 						<section class="large-6 columns">
 							<ul class="button-group radius">
@@ -21,7 +21,7 @@
 					</article>
 				</section>
 				<section class="large-4 columns text-right insert-button-container">
-					<a  signed-in ng-click="toggleNewItem()" ng-class="{pressed: newItemSelected}" class="button"><span class="fa fa-pencil"></span> {{'CREATE_NEW_ADD' | translate}}</a>
+					<a  signed-in ng-click="toggleNewItem()" ng-disabled="filterSelected" ng-class="{pressed: newItemSelected}" class="button"><span class="fa fa-pencil"></span> {{'CREATE_NEW_ADD' | translate}}</a>
 				</section>
 			</article>
 		</section>

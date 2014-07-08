@@ -3,11 +3,20 @@
 		<section class="large-2 columns text-right">
 			<a href="#/" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
 		</section>
-		<section class="large-4 columns">
+		<section class="large-3 columns show-for-scrolled">
+			<a><span class="fa fa-filter"></span> Filtrovat inzeraty</a>
+		</section>
+		<section class="large-4 columns show-for-scrolled">
+			<a><span class="fa fa-map-marker"></span> Zobrazit inzeraty na mape</a>
+		</section>
+		<section class="large-3 columns show-for-scrolled">
+			<a signed-in ><span class="fa fa-edit"></span> Vytvorit novy inzerat</a>
+		</section>
+		<section class="large-4 columns hide-for-scrolled">
 			<input type="text" ng-model="searchText" ng-enter="search(searchText)">
 			<span class="search-button fa fa-search" ng-click="search(searchText)"></span>
 		</section>
-		<section class="large-6 columns text-right">
+		<section class="large-6 columns text-right hide-for-scrolled">
 			<a href="#/" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa fa-recycle"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
@@ -24,7 +33,7 @@
 	             <div class="fa fa-user"></div>
 	            <label>{{ 'TOP_BAR_PROFILE' | translate }}</label>
 		    </a>
-		    <ul class="f-dropdown" id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
+		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       <li>
 		            <a href="" ng-click="switchBack()" style="margin-right:30px;" title="{{ loggedUser.name }}">
 		                <avatar source="loggedUser.avatar" size="small" type="'User'"></avatar>
