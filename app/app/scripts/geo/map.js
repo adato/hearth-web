@@ -64,14 +64,7 @@ angular.module('hearth.geo').directive('map', [
 						styles: markerClusterStyles
 					}),
 					placeMarker = function(location, ad) {
-						var marker;
-
-						if (ad.community_id) {
-							ad.adType = ad.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
-						} else {
-							ad.adType = ad.type;
-						}
-						marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
+						var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
 
 						oms.addMarker(marker);
 						markers.push(marker);
@@ -99,6 +92,13 @@ angular.module('hearth.geo').directive('map', [
 
 							data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
 							map.setCenter(marker.position);
+
+							
+							if (data.community_id) {
+								data.adType = data.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+							} else {
+								data.adType = data.type;
+							}
 							showMarkerWindow(template(data), marker);
 
 						}, function(err) {});
