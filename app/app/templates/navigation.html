@@ -24,7 +24,7 @@
 	             <div class="fa fa-user"></div>
 	            <label>{{ 'TOP_BAR_PROFILE' | translate }}</label>
 		    </a>
-		    <ul class="f-dropdown" id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
+		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       <li>
 		            <a href="" ng-click="switchBack()" style="margin-right:30px;" title="{{ loggedUser.name }}">
 		                <avatar source="loggedUser.avatar" size="small" type="'User'"></avatar>

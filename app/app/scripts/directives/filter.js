@@ -76,6 +76,13 @@ angular.module('hearth.directives').directive('filter', [
 					}
 				});
 
+				scope.$watch('place', function(value) {
+					if (!value) {
+						delete scope.filter.lat;
+						delete scope.filter.lon;
+					}
+				});
+
 				scope.reset();
 
 			}
