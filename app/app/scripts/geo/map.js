@@ -72,7 +72,11 @@ angular.module('hearth.geo').directive('map', [
 					showMarkerWindow = function(content, marker) {
 						var width = $(".gm-style").css("width");
 
-						infoWindow.setOptions({maxWidth: (parseInt(width) - 200) });
+						infoWindow.setOptions({
+							maxWidth: (parseInt(width) - 200)
+						});
+						
+						content = '<div style="min-height: 100px; min-width: 200px;">'+content+'</div>';
 						infoWindow.setContent(content);
 						infoWindow.open(map, marker);
 
@@ -92,12 +96,13 @@ angular.module('hearth.geo').directive('map', [
 
 							data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
 							map.panTo(marker.position);
-							
+
 							if (data.community_id) {
 								data.adType = data.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
 							} else {
 								data.adType = data.type;
 							}
+
 							showMarkerWindow(template(data), marker);
 
 						}, function(err) {});
@@ -109,6 +114,9 @@ angular.module('hearth.geo').directive('map', [
 						console.log("Nacitam.." + ads.length);
 						for (i = 0; i < ads.length; i++) {
 							ad = ads[i];
+
+							if(ad._id != "5274ceee593b390200000022" && i < 10)
+								continue;
 
 							for (j = 0; j < ad.locations.length; j++) {
 								if (ad.locations[j])
