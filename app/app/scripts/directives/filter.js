@@ -21,7 +21,8 @@ angular.module('hearth.directives').directive('filter', [
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
 					defaultFilter = {
 						type: '',
-						distance: 25
+						distance: 25,
+						related: []
 					};
 
 				scope.expanded = false;
@@ -36,6 +37,16 @@ angular.module('hearth.directives').directive('filter', [
 					} else {
 						delete filterData.keywords;
 					}
+					if (filterData.related.length > 0) {
+						filterData.related = filterData.related.join(',');
+					} else {
+						delete filterData.related;
+					}
+
+					if (!filterData.type) {
+						delete filterData.type;
+					}
+
 
 					scope.$emit('filter', filterData);
 					scope.close();
