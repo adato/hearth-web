@@ -7,18 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-	'$scope', '$routeParams', 'Fulltext', '$location',
+	'$scope', '$routeParams', 'Fulltext',
 
-	function($scope, $routeParams, Fulltext, $location) {
+	function($scope, $routeParams, Fulltext) {
 		var params = {
 			limit: 15,
 			offset: 0,
-			query: $routeParams.q
+			query: $routeParams.q,
 		};
 
 		angular.extend($scope, {
 			queryText: $routeParams.q,
 			items: [],
+			counters: {
+				post: 0,
+				community: 0,
+				user: 0
+			},
 			filterProperty: 'all'
 		});
 
@@ -28,6 +33,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		};
 		$scope.search = function(params, addItems) {
 			Fulltext.query(params, function(data) {
+				//$scope.counters = data.pop();
 				$scope.items = addItems ? $scope.items.concat(data) : data;
 			});
 		};

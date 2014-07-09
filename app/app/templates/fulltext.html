@@ -3,7 +3,7 @@
 		<article class="row">
 			<section class="large-12  columns">
 				<header>
-					<div ng-if="!items.length">Ajtakrajta, nic jsme nenašli.</div>
+					<div ng-if="!items.length && items.$resolved">Ajtakrajta, nic jsme nenašli.</div>
 					<div ng-if="items.length">Nasli jsme pro vas obsah souvisejici s <b>{{queryText}}</b></div>
 				</header>
 			</section>
@@ -13,15 +13,23 @@
 			<section class="large-12  columns">
 				<dl class="sub-nav filter">
 					<dt>Filtrovat výsledky:</dt>
-					<dd ng-click="setFilter('all')" ng-class="{active: filterProperty == 'all'}"><a>Vse</a></dd>
-					<dd ng-click="setFilter('market')" ng-class="{active: filterProperty == 'market'}"><a>Trziste</a></dd>
-					<dd ng-click="setFilter('community')" ng-class="{active: filterProperty == 'community'}"><a>Komunity</a></dd>
-					<dd ng-click="setFilter('people')" ng-class="{active: filterProperty == 'people'}"><a>Lide</a></dd>
+					<dd ng-click="setFilter('all')" ng-class="{active: filterProperty == 'all'}">
+						<a>Vse</a>
+					</dd>
+					<dd ng-click="setFilter('market')" ng-class="{active: filterProperty == 'market'}">
+						<a>Trziste <b>{{counters.post}}</b></a>
+					</dd>
+					<dd ng-click="setFilter('community')" ng-class="{active: filterProperty == 'community'}">
+						<a>Komunity <b>{{counters.community}}</b></a>
+					</dd>
+					<dd ng-click="setFilter('people')" ng-class="{active: filterProperty == 'people'}">
+						<a>Lide <b>{{counters.user}}</b></a>
+					</dd>
 				</dl>
 			</section>
 		</article>
 
-		<div ng-if="!items.length">
+		<div ng-if="!items.length && items.$resolved">
 			Ajtakrajta, nic co by odpovídalo <b>{{queryText}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.
 		</div>
 

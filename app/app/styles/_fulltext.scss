@@ -11,7 +11,7 @@
             position: absolute;
             padding: {
                 left: 2em;
-                right: 2em;
+                right: 1em;
             };
             left: 25%;
         }
@@ -33,23 +33,36 @@
         }
         dd {
             a {
-            	font-weight: bold;
+                font-weight: bold;
                 border: 1px solid color(5);
                 border-radius: $global-radius;
+                b {
+                    background-color: lighten(color(5), 20%);
+                    padding: {
+                        left: 0.5em;
+                        right: 0.5em;
+                    };
+                    border-radius: $global-radius / 2;
+                    position: relative;
+                    top: -3px;
+                    font-size: 9px;
+                    color: white;
+                    z-index: 5;
+                }
             }
             &.active {
-            	overflow: visible;
-            	position: relative;
-            	&:after {
-            		content: '';
-            		background-color: color(5);
-            		height: 0.5em;
-            		width: 0.5em;
-            		position: absolute;
-            		bottom: -(0.5em /2);
-            		left:70%;
-            		transform: rotate(67deg) skew(45deg);
-            	}
+                overflow: visible;
+                position: relative;
+                &:after {
+                    content: '';
+                    background-color: color(5);
+                    height: 0.5em;
+                    width: 0.5em;
+                    position: absolute;
+                    bottom: -(0.5em / 2);
+                    left: 70%;
+                    transform: rotate(67deg) skew(45deg);
+                }
             }
         }
     }
