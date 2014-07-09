@@ -1,4 +1,4 @@
-<div class="filterbar-wrap">
+<div id="map" class="filterbar-wrap">
 	<article class="row">
 		<section class="large-10  push-2 columns">
 			<article class="row filterbar">
@@ -30,10 +30,10 @@
 	<article class="row">
 		<section class="large-10  push-2 columns">
 			<div ng-show="filterSelected" class="animate-show">
-				<filter data="filter" class="filterbar-container"></filter>
+				<filter id="filter" data="filter" class="filterbar-container"></filter>
 			</div>
 			<div ng-show="newItemSelected" class="animate-show">
-				<editad class="filterbar-container"></editad>
+				<editad id="newAd" class="filterbar-container"></editad>
 			</div>
 		</section>
 	</article>

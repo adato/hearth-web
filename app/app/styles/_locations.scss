@@ -1,32 +1,38 @@
 #location-map {
-	.map-canvas {
-		height: 400px;
-		img {
-			max-width: inherit;
-		}
-		border-radius: $global-radius;
-		 border: 1px solid darken(color(4), 20%);
-		 margin: {bottom: 1em;}
-	}
-	input{
-		border: 1px solid darken(color(4), 20%);
-	}
-	.link-button {
-		margin-top: 1em;
-		float: left;
-	}
+    .map-canvas {
+        height: 400px;
+        img {
+            max-width: inherit;
+        }
+        border-radius: $global-radius;
+        border: 1px solid darken(color(4), 20%);
+        margin: {
+            bottom: 1em;
+        };
+    }
+    input {
+        border: 1px solid darken(color(4), 20%);
+    }
+    .link-button {
+        margin-top: 1em;
+        float: left;
+    }
 }
-.pac-container {//google maps search field - list
+
+.pac-container {
+    //google maps search field - list
     z-index: 99999 !important;
 }
+
 .gmnoprint img {
-    max-width: none; 
+    max-width: none;
 }
-.locations  {
-	input {
-		cursor: pointer;
-		margin:  {
-			bottom: rem-calc(18 / 2);
-		} 
-	}
+
+.locations {
+    input {
+        cursor: pointer;
+        margin: {
+            bottom: rem-calc(18 / 2);
+        };
+    }
 }

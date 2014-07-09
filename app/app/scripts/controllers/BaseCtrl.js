@@ -198,6 +198,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		});
 
+		$scope.showUI = function(ui) {
+			$scope.$broadcast('showUI', ui);
+		};
+
+		$scope.home = function() {
+			$scope.top();
+			$location.path('/');
+		};
+		$scope.top = function() {
+			$('html, body').animate({
+				scrollTop: 0
+			}, 1000);
+		};
 		return $scope.checkNotifications;
 	}
 ]);

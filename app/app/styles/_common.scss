@@ -144,3 +144,18 @@ button {
 .show-for-scrolled {
     display: none;
 }
+
+.move2top {
+    height: rem-calc(2*18);
+    width: rem-calc(2*18);
+    position: fixed;
+    cursor: pointer;
+    right: rem-calc(18);
+    bottom: 10%;
+    font-size: rem-calc(2*18);
+    color: color(1);
+    &:hover {
+        color: darken(color(1), 20%);
+    }
+    text-shadow: 0 -1px 2px color(3);
+}

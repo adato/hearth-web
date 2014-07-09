@@ -6,8 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
+	'$anchorScroll',
 
-	function() {
+	function($anchorScroll) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -37,6 +38,17 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.$on('closeNewItem', function() {
 					scope.newItemSelected = false;
+				});
+
+				scope.$on('showUI', function($event, ui) {
+					scope.filterSelected = ui === 'filter';
+					scope.newItemSelected = ui === 'newAd';
+
+					if (ui === 'map') {
+						scope.mapSelected = true;
+						scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
+					}
+					$anchorScroll(ui);
 				});
 
 				scope.toggleMap = function() {
