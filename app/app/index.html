@@ -59,6 +59,7 @@
     <div class="container">
       <section ng-include="'templates/navigation.html'"></section>
       <ng-view class="main-container"></ng-view>
+      <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}"><span class="fa fa-arrow-circle-up"></span></div>
     </div>
 
     <script>
