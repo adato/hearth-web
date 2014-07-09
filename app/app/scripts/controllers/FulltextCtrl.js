@@ -31,9 +31,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 				$scope.items = addItems ? $scope.items.concat(data) : data;
 			});
 		};
-		$scope.showDetail = function(id) {
-			$location.path('/ad/' + id);
-		};
+
 		$scope.loadMore = function() {
 			params.offset = $scope.items.length;
 			$scope.search(params, true);

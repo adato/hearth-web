@@ -25,17 +25,23 @@
 			Ajtakrajta, nic co by odpovídalo <b>{{queryText}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.
 		</div>
 
-		<div ng-repeat="item in items" class="search-item">
-			<h2 ng-click="showDetail(item._id)">
+		<div ng-repeat="item in items" class="search-item" ng-switch="item._type" >
+			<a class="title" ng-href="#/ad/{{item._id}}">
 				<span ng-if="title">{{item.title}}</span>
 				<span ng-if="!title">{{item.name | ellipsis: 100}}</span>
-			</h2>
+			</a>
 			<p>{{item.name | ellipsis: 150}}</p>
-			<ul class="breadcrumbs">
-				<li><a>Home</a></li>
-				<li><a>Features</a></li>
-				<li class="unavailable"><a>Gene Splicing</a></li>
-				<li class="current"><a>Cloning</a></li>
+			<ul class="breadcrumbs" ng-switch-when="Post">
+				<li><a href="#/">{{'HOMEPAGE_MARKET' | translate}}</a></li>
+				<li><a ng-href="#/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
+			</ul>
+			<ul class="breadcrumbs" ng-switch-when="User">
+				<li>{{'PEOPLE' | translate}}</li>
+				<li><a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
+			</ul>
+			<ul class="breadcrumbs" ng-switch-when="Community">
+				<li><a href="#/communities">{{'communities' | translate}}</a></li>
+				<li><a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
 			</ul>
 		</div>
 	</section>
