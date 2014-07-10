@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	function($scope, Post, $location) {
 		$scope.limit = 15;
 		$scope.items = [];
-
+		
 		$scope.load = function() {
 			var params = $location.search();
 

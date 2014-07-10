@@ -13,7 +13,7 @@
 		</div>
 	</div>
 
-	<div class="large-12 columns" ng-show="showMap">
+	<div class="large-12 columns" ng-show="showMap" ng-controller="MapCtrl as map">
 		<search-map location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>
