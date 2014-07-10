@@ -32,9 +32,14 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			$scope.search(params);
 		};
 		$scope.search = function(params, addItems) {
-			Fulltext.query(params, function(data) {
-				$scope.counters = data.pop();
-				$scope.items = addItems ? $scope.items.concat(data) : data;
+			var result = Fulltext.query(params, function(response) {
+				$scope.items = addItems ? $scope.items.concat(response.data) : response.data;
+				$scope.counters = $.extend({
+					post: 0,
+					community: 0,
+					user: 0
+				}, response.meta.counters);
+				$scope.loaded = true;
 			});
 		};
 
