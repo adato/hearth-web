@@ -26,8 +26,11 @@ angular.module('hearth.geo').directive('map', [
 					map = geo.createMap(element[0], {
 						zoom: 11
 					}),
-					markerClusterMaxZoom = 13,
+					markerClusterMaxZoom = 12,
 					markers = [],
+					markerLimitActive = true,
+					markerLimit = 20,
+					markerLimitValues = {},
 					markerClusterStyles = [{
 						url: "images/marker/circle.png",
 						textColor: "white",
@@ -66,9 +69,32 @@ angular.module('hearth.geo').directive('map', [
 							ignoreHidden: true,
 							maxZoom: markerClusterMaxZoom,
 							zoomOnClick: true,
-							size: 15,
+							// size: 20,
+							gridSize: 40,
+							averageCenter: true,
 							styles: markerClusterStyles
 						});
+					},
+					testPositionLimit = function(loc) {
+
+						function roundPos(l) {
+
+							return parseFloat(l).toFixed(4);
+						}
+						
+						var lat = roundPos(loc[0]),
+							lng = roundPos(loc[1]),
+							key = ""+lat+":"+lng;
+
+						if(markerLimitValues[key])
+							markerLimitValues[key]++;
+						else
+							markerLimitValues[key] = 1;
+						
+						if(markerLimitValues[key] > markerLimit)
+							return true;
+
+						return false;
 					},
 					placeMarker = function(location, ad) {
 						var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
@@ -127,8 +153,13 @@ angular.module('hearth.geo').directive('map', [
 							ad = ads[i];
 
 							for (j = 0; j < ad.locations.length; j++) {
-								if (ad.locations[j])
+								if (ad.locations[j]) {
+
+									if(markerLimit && testPositionLimit(ad.locations[j]))
+										continue;
+
 									placeMarker(ad.locations[j], ad);
+								}
 							}
 						}
 
@@ -141,6 +172,8 @@ angular.module('hearth.geo').directive('map', [
 						}
 					},
 					zoomMarkerClusterer = function(cluster) {
+						// var zoom,
+						// 	maxZoom = markerClusterMaxZoom + 1;
 
 						map.fitBounds(cluster.getBounds());
 						map.setZoom(markerClusterMaxZoom + 1);
