@@ -3,13 +3,13 @@
 		<article class="row">
 			<section class="large-12  columns">
 				<header>
-					<div ng-if="!items.length && items.$resolved">Ajtakrajta, nic jsme nenašli.</div>
+					<div ng-if="!items.length && loaded">Ajtakrajta, nic jsme nenašli.</div>
 					<div ng-if="items.length">Nasli jsme pro vas obsah souvisejici s <b>{{queryText}}</b></div>
 				</header>
 			</section>
 		</article>
 
-		<article class="row" ng-if="items.length">
+		<article class="row" ng-if="items.length && loaded">
 			<section class="large-12  columns">
 				<dl class="sub-nav filter">
 					<dt>Filtrovat výsledky:</dt>
@@ -29,7 +29,7 @@
 			</section>
 		</article>
 
-		<div ng-if="!items.length && items.$resolved">
+		<div ng-if="!items.length && loaded">
 			Ajtakrajta, nic co by odpovídalo <b>{{queryText}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.
 		</div>
 

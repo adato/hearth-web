@@ -11,8 +11,7 @@ angular.module('hearth.services').factory('Fulltext', [
 	function($resource) {
 		return $resource($$config.apiPath + '/search', {}, {
 			query: {
-				method: 'GET',
-				isArray: true
+				method: 'GET'
 			}
 		});
 	}
