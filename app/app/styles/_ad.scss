@@ -4,6 +4,7 @@ $arrowTop: 30px;
 $imageSize: 80px;
 
 .photo {
+    position: relative;
     text-align: center;
     font-weight: bold;
     font-size: 0.8em;
@@ -46,6 +47,40 @@ $imageSize: 80px;
             width: 3px;
             background-color: lighten(color(3), 25%);
             height: 80%;
+        }
+    }
+    .user-info {
+        background-color: white;
+        border: 1px solid color(3);
+        display: none;
+        position: absolute;
+        top: 0;
+        position: absolute;
+        left: 150px;
+        z-index: 1000;
+        min-width: 600px;
+        font-weight: normal;
+        padding: 1em;
+        border: 1px solid color(3);
+        text-align: left;
+        border-radius: $global-radius;
+        font-size: rem-calc(18);
+        box-shadow: $defaultShadow;
+        .fa {
+            color: color(1);
+        }
+        div {
+            margin: {
+                bottom: 0.5em;
+            };
+        }
+        .summary {
+                margin-left: 2em;
+        }   
+    }
+    &:hover {
+        .user-info {
+            display: block;
         }
     }
 }
