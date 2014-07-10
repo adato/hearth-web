@@ -33,7 +33,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		};
 		$scope.search = function(params, addItems) {
 			Fulltext.query(params, function(data) {
-				//$scope.counters = data.pop();
+				$scope.counters = data.pop();
 				$scope.items = addItems ? $scope.items.concat(data) : data;
 			});
 		};

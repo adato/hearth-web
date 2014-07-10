@@ -1,5 +1,26 @@
-<article  class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
+<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
 	<section class="large-2 columns photo">
+		<div class="user-info">
+			<article class="row">
+				<section class="large-6 columns">
+					<div><b>15</b> uskutečněných darů a  přání</div>
+					<div class="summary">
+						<div><b>12 super</b> hodnoceni<br></div>
+						<div><b>2 neutrální</b> hodnocení<br></div>
+						<div><b>1</b> se moc <b>nepovedlo</b></div>
+					</div>
+				</section>
+				<section class="large-6 columns">
+					<div>Mám rada, kdyz si lide pomahaji a kdyz se na sebe usmivaji, aniz by k tomu meli duvod.</div>
+					<div><i class="fa fa-heart"></i> Zajímám se o terapie, masaze, leceni, meditace.</div>
+					<div><i class="fa fa-suitcase"></i> Jsem profesionalni maserka</div>
+					<div><i class="fa fa-map-marker"></i> Najdete mne v Plzni a Praze .</div>
+					<div>A na sociálních sítích.</div>
+					<div class="text-right"><a ng-href="#/profile/{{item._id}}">Celý profil</a></div>
+				</section>
+			</article>
+
+		</div>
 		<div class="img"></div>
 		<div class="name">{{ item.author.name }}</div>
 		<!--div class="progress"><span class="meter"></span></div-->
