@@ -10,20 +10,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 	'$scope', '$routeParams', 'Fulltext', '$location',
 
 	function($scope, $routeParams, Fulltext, $location) {
-
-		var filterParams = {
-			all: {},
-			people: {
-				related: 'user'
-			},
-			community: {
-				related: 'community'
-			},
-			market: {
-
-			}
-		};
-
 		angular.extend($scope, {
 			queryText: $routeParams.q,
 			items: [],
@@ -35,11 +21,16 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			filterProperty: 'all'
 		});
 
-		$scope.setFilter = function(property) {
-			$location.search({
+		$scope.setFilter = function(filter) {
+			var params = {
 				q: $routeParams.q,
-				filter: property
-			});
+				type: filter
+			};
+
+			if (params.type === 'all') {
+				delete params.type;
+			}
+			$location.search(params);
 		};
 
 		$scope.$on('$routeUpdate', function() {
@@ -55,10 +46,10 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 				},
 				params = angular.copy(defaultParams);
 
-			if ($location.search().filter) {
-				$scope.filterProperty = $location.search().filter;
-				params = $.extend(params, filterParams[$scope.filterProperty] || {});
+			if ($location.search().type) {
+				params = $.extend(params, $location.search() || {});
 			}
+			$scope.selectedFilter = $location.search().type || 'all';
 
 			Fulltext.query(params, function(response) {
 				$scope.items = params.offset > 0 ? $scope.items.concat(response.data) : response.data;
