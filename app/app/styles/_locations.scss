@@ -3,6 +3,20 @@
 	img {
 		max-width: inherit;
 	}
+
+	.content {
+		font-weight:normal;
+		
+		div {
+			color: #ff5500;
+		}
+
+		span {
+			font-weight: bold;
+		}
+
+	} 
+
 }
 
 .pac-container {//google maps search field - list
