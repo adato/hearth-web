@@ -50,7 +50,7 @@
 				</div>
 			</div>
 			<footer>
-				<button class="secondary" ng-if="mine" ng-click="edit()"><i class="fa fa-edit"></i> {{'EDIT' | translate}}</button>
+				<button class="secondary" ng-if="mine" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-edit"></i> {{'EDIT' | translate}}</button>
 				<button ng-if="mine" data-reveal-id="confirm-delete"><i class="fa fa-times"></i> {{'DELETE' | translate}}</button>
 
 				<div id="confirm-delete" class="reveal-modal tiny" data-reveal>
@@ -62,7 +62,7 @@
 					</article>
 					<article class="row">
 						<section class="large-6 columns">
-							<button class="tiny" ng-click="remove()">{{'OK' | translate}}</button>
+							<button ng-click="remove()">{{'OK' | translate}}</button>
 						</section>
 						<section class="large-6 columns text-right">
 							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
@@ -70,7 +70,7 @@
 					</article>
 				</div>
 
-				<button ng-if="!mine" ng-click="edit=true" ng-disabled="edit"  class="small main" ng-class="{secondary: item.type == 'offer'}">
+				<button ng-if="!mine" ng-click="startEditReply()" ng-disabled="replyEdit"  class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
@@ -100,7 +100,9 @@
 					</section>
 				</article>
 
-				<div signed-in class="reply-box animate-show" ng-show="edit">
+				<editad ng-if="mine" ng-show="adEdit" data="item" class="animate-show" id="editAd"></editad>
+
+				<div signed-in ng-if="!mine" class="reply-box animate-show" ng-show="replyEdit">
 					<article class="row">
 						<section class="large-12 columns">
 							<form name="replyForm">

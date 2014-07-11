@@ -23,13 +23,15 @@ angular.module('hearth.directives').directive('ad', [
 				var timeout = 6000,
 					init = function() {
 						angular.extend(scope, {
-							edit: false,
+							replyEdit: false,
 							message: '',
 							agree: true,
 							submited: false,
 							reported: false
 						});
-						scope.replyForm.$setPristine();
+						if (scope.replyForm) {
+							scope.replyForm.$setPristine();
+						}
 					},
 					type = {
 						user: {
@@ -83,8 +85,13 @@ angular.module('hearth.directives').directive('ad', [
 					init();
 				};
 
+				scope.startEditReply = function() {
+					scope.replyEdit = true;
+				};
+
 				scope.edit = function() {
 					scope.$emit('editAd', scope.item._id);
+					scope.adEdit = true;
 				};
 
 				scope.remove = function() {
@@ -95,6 +102,15 @@ angular.module('hearth.directives').directive('ad', [
 				scope.cancel = function() {
 					$('#confirm-delete').foundation('reveal', 'close');
 				};
+
+				scope.$on('closeEditItem', function() {
+					scope.adEdit = false;
+				});
+
+				scope.$on('adCreated', function($event, data) {
+					console.log(data);
+					scope.adEdit = false;
+				});
 
 				init();
 
