@@ -5,16 +5,18 @@
 				<section class="large-6 columns">
 					<div><b>15</b> uskutečněných darů a  přání</div>
 					<div class="summary">
-						<div><b>12 super</b> hodnoceni<br></div>
-						<div><b>2 neutrální</b> hodnocení<br></div>
-						<div><b>1</b> se moc <b>nepovedlo</b></div>
+						<div ng-if="item.author.up_votes"><b>{{item.author.up_votes}} super</b> hodnoceni<br></div>
+						<div ng-if="item.author.down_votes"><b>{{item.author.down_votes}}</b> se moc <b>nepovedlo</b></div>
 					</div>
 				</section>
 				<section class="large-6 columns">
-					<div>Mám rada, kdyz si lide pomahaji a kdyz se na sebe usmivaji, aniz by k tomu meli duvod.</div>
-					<div><i class="fa fa-heart"></i> Zajímám se o terapie, masaze, leceni, meditace.</div>
-					<div><i class="fa fa-suitcase"></i> Jsem profesionalni maserka</div>
-					<div><i class="fa fa-map-marker"></i> Najdete mne v Plzni a Praze .</div>
+					<div g-if="item.author.about" ng-bind-html="item.author.about | linky:'_blank'"></div>
+					<div ng-if="item.author.interests.length"><i class="fa fa-heart"></i> {{item.author.interests.join(', ')}}</div>
+					<div ng-if="item.author.work"><i class="fa fa-suitcase"></i> {{item.author.work}}</div>
+					<div ng-if="item.author.locations">
+						<i class="fa fa-map-marker"></i> Najdete mne v 
+						<span ng-repeat="location in item.author.locations">{{location.name}}</span>.
+					</div>
 					<div>A na sociálních sítích.</div>
 					<div class="text-right"><a ng-href="#/profile/{{item._id}}">Celý profil</a></div>
 				</section>
