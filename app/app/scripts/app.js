@@ -163,7 +163,7 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 	]).run([
 		'$rootScope', '$location', '$http',
 		function($rootScope, $location, $http) {
-			alert("AA");
+			// alert("AA");
 			
 		}
 	]);
