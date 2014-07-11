@@ -50,7 +50,27 @@
 				</div>
 			</div>
 			<footer>
-				<button ng-click="edit=true" ng-disabled="edit"  class="small main" ng-class="{secondary: item.type == 'offer'}">
+				<button class="secondary" ng-if="mine" ng-click="edit()"><i class="fa fa-edit"></i> {{'EDIT' | translate}}</button>
+				<button ng-if="mine" data-reveal-id="confirm-delete"><i class="fa fa-times"></i> {{'DELETE' | translate}}</button>
+
+				<div id="confirm-delete" class="reveal-modal tiny" data-reveal>
+					<article class="row">
+						<section class="large-12 columns">
+							<h2>Smazat inzerat</h2>
+							<p><i class="fa fa-question-circle"></i> Opravdu chcete smazat inzerat?</p>
+							</section>
+					</article>
+					<article class="row">
+						<section class="large-6 columns">
+							<button class="tiny" ng-click="remove()">{{'OK' | translate}}</button>
+						</section>
+						<section class="large-6 columns text-right">
+							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
+						</section>
+					</article>
+				</div>
+
+				<button ng-if="!mine" ng-click="edit=true" ng-disabled="edit"  class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>

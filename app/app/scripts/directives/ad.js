@@ -15,7 +15,8 @@ angular.module('hearth.directives').directive('ad', [
 			replace: true,
 			transclude: true,
 			scope: {
-				item: '='
+				item: '=',
+				user: '='
 			},
 			templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
 			link: function(scope, element) {
@@ -55,6 +56,7 @@ angular.module('hearth.directives').directive('ad', [
 						twitter: 'https://twitter.com/share?url=' + url,
 						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
 					});
+					scope.mine = scope.item.author._id === scope.user._id;
 				});
 
 				scope.report = function() {
@@ -79,6 +81,19 @@ angular.module('hearth.directives').directive('ad', [
 				};
 				scope.cancelEdit = function() {
 					init();
+				};
+
+				scope.edit = function() {
+					scope.$emit('editAd', scope.item._id);
+				};
+
+				scope.remove = function() {
+					scope.$emit('removeAd', scope.item._id);
+					$('#confirm-delete').foundation('reveal', 'close');
+				};
+
+				scope.cancel = function() {
+					$('#confirm-delete').foundation('reveal', 'close');
 				};
 
 				init();
