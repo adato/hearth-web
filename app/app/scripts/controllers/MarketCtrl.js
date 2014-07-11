@@ -65,6 +65,21 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.load();
 		});
 
+		$scope.$on('removeAd', function($event, id) {
+			var i, item;
+
+			for (i = 0; i < $scope.items.length; i++) {
+				item = $scope.items[i];
+				if (item._id === id) {
+					$scope.items.splice(i, 1);
+					break;
+				}
+			}
+			Post.remove({
+				postId: id
+			});
+		});
+
 		$scope.load();
 
 	}

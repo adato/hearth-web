@@ -9,7 +9,7 @@
 					<div translate class="padding-2" ng-show="pageType == 'my'">MY_HEARTH_NOTHING_FOUND</div>
 				</section>
 			</article>
-			<ad item=item ng-repeat="(id, item) in items | orderBy:orderByPostSort"></ad>
+			<ad item=item ng-repeat="(id, item) in items | orderBy:orderByPostSort" user="user"></ad>
 		</div>
 	</div>
 

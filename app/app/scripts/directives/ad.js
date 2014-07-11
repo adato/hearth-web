@@ -15,20 +15,23 @@ angular.module('hearth.directives').directive('ad', [
 			replace: true,
 			transclude: true,
 			scope: {
-				item: '='
+				item: '=',
+				user: '='
 			},
 			templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
 			link: function(scope, element) {
 				var timeout = 6000,
 					init = function() {
 						angular.extend(scope, {
-							edit: false,
+							replyEdit: false,
 							message: '',
 							agree: true,
 							submited: false,
 							reported: false
 						});
-						scope.replyForm.$setPristine();
+						if (scope.replyForm) {
+							scope.replyForm.$setPristine();
+						}
 					},
 					type = {
 						user: {
@@ -55,6 +58,7 @@ angular.module('hearth.directives').directive('ad', [
 						twitter: 'https://twitter.com/share?url=' + url,
 						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
 					});
+					scope.mine = scope.item.author._id === scope.user._id;
 				});
 
 				scope.report = function() {
@@ -80,6 +84,33 @@ angular.module('hearth.directives').directive('ad', [
 				scope.cancelEdit = function() {
 					init();
 				};
+
+				scope.startEditReply = function() {
+					scope.replyEdit = true;
+				};
+
+				scope.edit = function() {
+					scope.$emit('editAd', scope.item._id);
+					scope.adEdit = true;
+				};
+
+				scope.remove = function() {
+					scope.$emit('removeAd', scope.item._id);
+					$('#confirm-delete').foundation('reveal', 'close');
+				};
+
+				scope.cancel = function() {
+					$('#confirm-delete').foundation('reveal', 'close');
+				};
+
+				scope.$on('closeEditItem', function() {
+					scope.adEdit = false;
+				});
+
+				scope.$on('adCreated', function($event, data) {
+					console.log(data);
+					scope.adEdit = false;
+				});
 
 				init();
 

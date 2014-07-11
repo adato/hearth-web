@@ -1,4 +1,4 @@
-<article class="row fulltext" when-scrolled="loadMore()">
+<article class="row fulltext" when-scrolled="load()">
 	<section class="large-12  columns box">
 		<article class="row">
 			<section class="large-12  columns">
@@ -13,16 +13,16 @@
 			<section class="large-12  columns">
 				<dl class="sub-nav filter">
 					<dt>Filtrovat výsledky:</dt>
-					<dd ng-click="setFilter('all')" ng-class="{active: filterProperty == 'all'}">
+					<dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
 						<a>Vse</a>
 					</dd>
-					<dd ng-click="setFilter('market')" ng-class="{active: filterProperty == 'market'}">
+					<dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
 						<a>Trziste <b>{{counters.post}}</b></a>
 					</dd>
-					<dd ng-click="setFilter('community')" ng-class="{active: filterProperty == 'community'}">
+					<dd ng-click="setFilter('community')" ng-class="{active: selectedFilter == 'community'}">
 						<a>Komunity <b>{{counters.community}}</b></a>
 					</dd>
-					<dd ng-click="setFilter('people')" ng-class="{active: filterProperty == 'people'}">
+					<dd ng-click="setFilter('user')" ng-class="{active: selectedFilter == 'user'}">
 						<a>Lide <b>{{counters.user}}</b></a>
 					</dd>
 				</dl>

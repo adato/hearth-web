@@ -27,7 +27,6 @@
     width: 200px !important;
     height: $topbar-height !important;
     border-radius: $global-radius;
-
 }
 
 button {
@@ -146,16 +145,29 @@ button {
 }
 
 .move2top {
-    height: rem-calc(2*18);
-    width: rem-calc(2*18);
+    height: rem-calc(2 * 18);
+    width: rem-calc(2 * 18);
     position: fixed;
     cursor: pointer;
     right: rem-calc(18);
     bottom: 10%;
-    font-size: rem-calc(2*18);
+    font-size: rem-calc(2 * 18);
     color: color(1);
     &:hover {
         color: darken(color(1), 20%);
     }
     text-shadow: 0 -1px 2px color(3);
+}
+
+input[type="text"],
+textarea,
+.tags {
+    border: 1px solid darken(color(4), 20%);
+    box-shadow: 0 1px 1px white;
+    background-color: lighten(color(4), 2%);
+    @include transition(background-color, 0.5s);
+    &:focus {
+        background-color: white;
+        box-shadow: inset 0px 1px 2px color(4);
+    }
 }

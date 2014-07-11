@@ -6,13 +6,15 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('editad', [
-	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth',
+	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post',
 
-	function($filter, LanguageSwitch, PostsService, $analytics, Auth) {
+	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post) {
 		return {
 			replace: true,
 			restrict: 'E',
-			scope: {},
+			scope: {
+				data: '='
+			},
 			templateUrl: 'templates/directives/editItem.html', //must not use name ad.html - adBlocker!
 			link: function(scope) {
 
@@ -28,16 +30,22 @@ angular.module('hearth.directives').directive('editad', [
 					name: '',
 					title: '',
 					keywords: [],
-
+					edit: false
 				};
 
-				scope.post = angular.copy(defaultPost);
+				if (scope.data && scope.data.date) {
+					scope.data.date = $filter('date')(scope.data.date, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+				}
+
+				scope.post = $.extend(angular.copy(defaultPost), scope.data);
+
+				console.log(scope.post);
 
 				scope.close = function() {
 					scope.editForm.$setPristine();
 					scope.post = angular.copy(defaultPost);
 
-					scope.$emit('closeNewItem');
+					scope.$emit('closeEditItem');
 				};
 
 				scope.send = function() {
@@ -61,9 +69,9 @@ angular.module('hearth.directives').directive('editad', [
 
 					scope.$emit('adCreated', postDataCopy);
 
-					PostsService.add(postData).then(function(data) {
+					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
-					}, function(err) {});
+					});
 
 					scope.close();
 

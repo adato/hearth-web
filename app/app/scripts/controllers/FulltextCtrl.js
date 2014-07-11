@@ -7,15 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-	'$scope', '$routeParams', 'Fulltext',
+	'$scope', '$routeParams', 'Fulltext', '$location',
 
-	function($scope, $routeParams, Fulltext) {
-		var params = {
-			limit: 15,
-			offset: 0,
-			query: $routeParams.q,
-		};
-
+	function($scope, $routeParams, Fulltext, $location) {
 		angular.extend($scope, {
 			queryText: $routeParams.q,
 			items: [],
@@ -27,13 +21,38 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			filterProperty: 'all'
 		});
 
-		$scope.setFilter = function(property) {
-			$scope.filterProperty = property;
-			$scope.search(params);
+		$scope.setFilter = function(filter) {
+			var params = {
+				q: $routeParams.q,
+				type: filter
+			};
+
+			if (params.type === 'all') {
+				delete params.type;
+			}
+			$location.search(params);
 		};
-		$scope.search = function(params, addItems) {
-			var result = Fulltext.query(params, function(response) {
-				$scope.items = addItems ? $scope.items.concat(response.data) : response.data;
+
+		$scope.$on('$routeUpdate', function() {
+			$scope.items = [];
+			$scope.load();
+		});
+
+		$scope.load = function() {
+			var defaultParams = {
+					limit: 15,
+					offset: $scope.items.length,
+					query: $routeParams.q
+				},
+				params = angular.copy(defaultParams);
+
+			if ($location.search().type) {
+				params = $.extend(params, $location.search() || {});
+			}
+			$scope.selectedFilter = $location.search().type || 'all';
+
+			Fulltext.query(params, function(response) {
+				$scope.items = params.offset > 0 ? $scope.items.concat(response.data) : response.data;
 				$scope.counters = $.extend({
 					post: 0,
 					community: 0,
@@ -43,10 +62,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			});
 		};
 
-		$scope.loadMore = function() {
-			params.offset = $scope.items.length;
-			$scope.search(params, true);
-		};
-		$scope.search(params);
+		$scope.load();
 	}
 ]);
