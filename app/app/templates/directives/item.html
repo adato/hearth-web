@@ -13,7 +13,7 @@
 					<div g-if="item.author.about" ng-bind-html="item.author.about | linky:'_blank'"></div>
 					<div ng-if="item.author.interests.length"><i class="fa fa-heart"></i> {{item.author.interests.join(', ')}}</div>
 					<div ng-if="item.author.work"><i class="fa fa-suitcase"></i> {{item.author.work}}</div>
-					<div ng-if="item.author.locations">
+					<div ng-if="item.author.locations.length">
 						<i class="fa fa-map-marker"></i> Najdete mne v 
 						<span ng-repeat="location in item.author.locations">{{location.name}}</span>.
 					</div>
@@ -139,7 +139,8 @@
 						</section>
 					</article>
 				</div>
-				<div signed-out class="not-logged-container animate-show" ng-show="edit">
+				
+				<div signed-out class="not-logged-container animate-show" ng-show="replyEdit">
 					<article class="row">
 						<section  class="large-12 columns">
 							<div class="radius alert-box info" signed-out ng-cloak >
