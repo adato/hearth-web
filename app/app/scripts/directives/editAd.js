@@ -41,7 +41,9 @@ angular.module('hearth.directives').directive('editad', [
 
 				scope.close = function() {
 					scope.editForm.$setPristine();
-					scope.post = angular.copy(defaultPost);
+					if (!scope.data) {
+						scope.post = angular.copy(defaultPost);
+					}
 
 					scope.$emit('closeEditItem');
 				};

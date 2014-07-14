@@ -25,7 +25,6 @@
 		</div>
 		<div class="img"></div>
 		<div class="name">{{ item.author.name }}</div>
-		<!--div class="progress"><span class="meter"></span></div-->
 	</section>
 	
 	<section class="large-10 columns">
@@ -45,7 +44,16 @@
 					<span ng-if="item.type == 'offer'">{{ 'DOES_GIVE' | translate }}</span>
 					{{item.title}}
 				</h1>
-				<p ng-bind-html="item.name | linky:'_blank'"></p>
+				
+				<div class="text-container">
+					<div class="expandable">
+						<p ng-bind-html="item.name | linky:'_blank'"></p>
+					</div>
+					<a ng-if="showMore" ng-click="toggleCollapsed()">
+						<span ng-hide="expanded"><i class="fa fa-angle-double-down"></i> {{ 'show-more' | translate }}</span>
+						<span ng-show="expanded"><i class="fa fa-angle-double-up"></i> {{ 'show-less' | translate }}</span>
+					</a>
+				</div>
 				
 				<div ng-if="item.attachments.length">
 					<img ng-repeat="photo in item.attachments" ng-src="{{ photo.normal }}">

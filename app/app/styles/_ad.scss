@@ -220,9 +220,23 @@ $imageSize: 80px;
                 font-size: 0.8em;
             }
         }
-        p {
-            text-align: justify;
-            hyphens: auto;
+        .text-container {
+            margin-bottom: $fontSize;
+            .expandable {
+                max-height: 5em;
+                transition: max-height, 0.8s;
+                overflow: hidden;
+                p {
+                    text-align: justify;
+                    hyphens: auto;
+                    margin: {
+                        bottom: 0;
+                    };
+                }
+                &.expanded {
+                    max-height: 100em;
+                }
+            }
         }
     }
     .share {

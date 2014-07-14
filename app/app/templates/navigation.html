@@ -29,9 +29,9 @@
 
 			<div class="separator"></div>
 			
-			<a signed-in ng-click="switchBack()" data-dropdown="profile-drop" title="{{ loggedUser.name }}">
-	             <div class="fa fa-user"></div>
-	            <label>{{ 'TOP_BAR_PROFILE' | translate }}</label>
+			<a signed-in ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+	            <div class="img"></div>
+	            <label>{{ loggedUser.name }}</label>
 		    </a>
 		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       <li>
