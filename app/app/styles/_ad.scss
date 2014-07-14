@@ -126,6 +126,12 @@ $imageSize: 80px;
             };
             color: color(5);
         }
+        .remove-button {
+            display: inline-block;
+            margin: {
+                right: 1em;
+            };
+        }
         button {
             margin: {
                 right: 2 * $fontSize;
@@ -373,5 +379,22 @@ $imageSize: 80px;
                 background-color: color(2);
             }
         }
+    }
+}
+
+#confirm-delete {
+    button {
+        padding: {
+            top: 0.25em;
+            bottom: 0.25em;
+        };
+        margin: {
+            bottom: 0;
+        };
+    }
+    .link-button {
+        margin: {
+            top: 0.5em;
+        };
     }
 }
