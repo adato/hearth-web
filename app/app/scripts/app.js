@@ -132,8 +132,8 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			return $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
 		}
 	]).run([
-		'$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http',
-		function($rootScope, Auth, $location, ipCookie, $templateCache, $http) {
+		'$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', 'OpenGraph',
+		function($rootScope, Auth, $location, ipCookie, $templateCache, $http, OpenGraph) {
 			$http.get('templates/geo/markerTooltip.html', {
 				cache: $templateCache
 			});
@@ -161,13 +161,15 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 					}
 					return ipCookie('backUrl', url);
 				}
+				// set default opengraph info
+				OpenGraph.setDefault();
 			});
 		}
 	]).run([
-		'$rootScope', '$location', '$http',
-		function($rootScope, $location, $http) {
-			// alert("AA");
-			
+		'$rootScope', '$location', '$http', "$translate", "OpenGraph",
+		function($rootScope, $location, $http, $translate, OpenGraph) {
+			// set opengraph default info
+			OpenGraph.setDefaultInfo($translate('DEFAULT_TITLE'), $translate('DEFAULT_DESCRIPTION'));
 		}
 	]);
 

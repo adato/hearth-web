@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('AdDetail', [
-	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService',
+	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService', 'OpenGraph',
 
-	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService) {
+	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService, OpenGraph) {
 		$scope.ad = {};
 		$scope.replyDisplayed = false;
 		$scope.reply = {
@@ -21,6 +21,12 @@ angular.module('hearth.controllers').controller('AdDetail', [
 		AdDetailResource.get({
 			id: $routeParams.id
 		}, function(data) {
+			var title =  data.author.name;
+
+			if(data.title)
+				title += " - " + data.title;
+			OpenGraph.set( title, data.name || "");
+
 			data.profileUrl = data.author._type === 'Community' ? 'community' : 'profile';
 			$scope.ad = data;
 			$scope.profile = data.author;
