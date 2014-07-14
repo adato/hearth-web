@@ -27,7 +27,9 @@ angular.module('hearth.directives').directive('ad', [
 							message: '',
 							agree: true,
 							submited: false,
-							reported: false
+							reported: false,
+							showMore: false,
+							expanded: false
 						});
 						if (scope.replyForm) {
 							scope.replyForm.$setPristine();
@@ -62,7 +64,15 @@ angular.module('hearth.directives').directive('ad', [
 					if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
 						item.author.locations = [];
 					}
+					if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0) {
+						scope.showMore = true;
+					}
 				});
+
+				scope.toggleCollapsed = function() {
+					$('.expandable', element).toggleClass('expanded');
+					scope.expanded = !scope.expanded;
+				}
 
 				scope.report = function() {
 					scope.$emit('report', {
