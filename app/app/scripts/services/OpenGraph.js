@@ -8,9 +8,9 @@
 
 angular.module('hearth.services').service('OpenGraph', [
 	'$rootScope',
-	function($rootScope){
+	function($rootScope) {
 		var self = this,
-			defaults ={
+			defaults = {
 				title: "",
 				description: "",
 				image: "",
@@ -37,9 +37,9 @@ angular.module('hearth.services').service('OpenGraph', [
 			$rootScope.og_title = (typeof title === "string") ? title : defaults.title;
 			$rootScope.og_description = (typeof desc === "string") ? desc : defaults.description;
 			$rootScope.og_image = (typeof image === "string") ? image : defaults.image;
-			$rootScope.og_url =  (typeof url === "string") ? url : getUrl();
+			$rootScope.og_url = (typeof url === "string") ? url : getUrl();
 
-			console.log( $rootScope.og_title + " -- " + $rootScope.og_description );
+			// console.log($rootScope.og_title + " -- " + $rootScope.og_description);
 		}
 
 		/**

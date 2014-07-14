@@ -168,8 +168,11 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 	]).run([
 		'$rootScope', '$location', '$http', "$translate", "OpenGraph",
 		function($rootScope, $location, $http, $translate, OpenGraph) {
-			// set opengraph default info
-			OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+
+			$rootScope.$on('$translateChangeSuccess', function () {
+				OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+				OpenGraph.setDefault();
+			});
 		}
 	]);
 

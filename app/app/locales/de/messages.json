@@ -270,5 +270,7 @@
   "KEYWORD": "#F Type few characters...",
   "INDEX_TERMS": "#F Terms of use",
   "INDEX_ABOUT": "#F About Hearth",
-  "TOP_BAR_ABOUT": "#F About"
+  "TOP_BAR_ABOUT": "#F About",
+  "OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc",
+  "OG_DEFAULT_TITLE": "Hearth.net"
 }
