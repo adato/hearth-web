@@ -154,7 +154,7 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			});
 			return $rootScope.$on('$locationChangeStart', function(event, next, current) {
 				var url;
-				url = current.split('#')[1];
+				url = current.split('#!')[1];
 				if (next.match(/login/) && url) {
 					if (current.match(/confirmEmail/g) || current.match(/password/g) || url === '/feedback?fromDelete') {
 						return;
