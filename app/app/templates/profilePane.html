@@ -74,7 +74,7 @@
             <h5>{{ 'FRIENDS_LABEL' | translate }}</h5>
             <ul>
                 <li ng-repeat="friend in relations.friends">
-                    <a ng-href="#/profile/{{ friend.userId }}" title="{{ friend.userFullname }}">
+                    <a ng-href="#!/profile/{{ friend.userId }}" title="{{ friend.userFullname }}">
                         <avatar source="friend.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
                     </a>
                 </li>
@@ -87,7 +87,7 @@
             <h5>{{ 'FOLLOWEES_LABEL' | translate }}</h5>
             <ul>
                 <li ng-repeat="followee in relations.followees">
-                    <a ng-href="#/profile/{{ followee.userId }}" title="{{ followee.userFullname }}">
+                    <a ng-href="#!/profile/{{ followee.userId }}" title="{{ followee.userFullname }}">
                         <avatar source="followee.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
                     </a>
                 </li>
@@ -99,7 +99,7 @@
             <h5>{{ 'FOLLOWERS_LABEL' | translate }}</h5>
             <ul>
                 <li ng-repeat="follower in relations.followers">
-                    <a ng-href="#/profile/{{ follower.userId }}" title="{{ follower.userFullname }}">
+                    <a ng-href="#!/profile/{{ follower.userId }}" title="{{ follower.userFullname }}">
                         <avatar source="follower.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
                     </a>
                 </li>
@@ -111,7 +111,7 @@
             <h5>{{ 'MEMBER_OF_COMMUNITIES_LABEL' | translate }}</h5>
             <ul>
                 <li ng-repeat="member in relations.memberOfCommunities">
-                    <a ng-href="#/community/{{ member.userId }}" title="{{ member.userFullname }}">
+                    <a ng-href="#!/community/{{ member.userId }}" title="{{ member.userFullname }}">
                         <avatar source="member.userAvatar" size="follow" class="left photo" type="'Community'"></avatar>
                     </a>
                 </li>

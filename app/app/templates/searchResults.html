@@ -26,8 +26,8 @@
 					<div ng-if="orderBy != 'time' && orderBy != 'relevance'" ng-show="item.distance >= 0"><span class="fa fa-map-marker"></span> {{ item.distance }} {{ 'KM_FROM_YOU' | translate }}</div>
 					<i class="fa fa-lock" ng-show="item.isPrivate" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></i>
 				</div>
-				<a class="smaller name" ng-show="item.author._type != 'Community'" ng-href="#/profile/{{ item.author._id }}">{{ item.author.name }}</a>
-				<a class="smaller name" ng-show="item.author._type == 'Community'" ng-href="#/community/{{ item.author._id }}">{{ item.author.name }}</a> &nbsp;
+				<a class="smaller name" ng-show="item.author._type != 'Community'" ng-href="#!/profile/{{ item.author._id }}">{{ item.author.name }}</a>
+				<a class="smaller name" ng-show="item.author._type == 'Community'" ng-href="#!/community/{{ item.author._id }}">{{ item.author.name }}</a> &nbsp;
 				<div ng-show="item.type == 'need'" class="need">
 					{{ 'DOES_WISH' | translate }}
 					<span ng-show="item.title">{{item.title}}</span>
@@ -84,8 +84,8 @@
 		<div class="wish row user" id="user{{ id }}" ng-if="item.type == 'user'" analytics-on analytics-event="click on user's name" analytics-category="Marketplace">
 			<avatar click="go('profile', item._id, item._id)" source="item.avatar" size="user-search" relation="item.relation" class="left photo" type="item._type"></avatar>
 			<div class="small-11 medium-10 columns wish-text hyphenate">
-				<a class="name" ng-href="#/profile/{{ item._id }}" ng-show="item._type != 'Community'">{{item.name}}</a>
-				<a class="name" ng-href="#/community/{{ item._id }}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
+				<a class="name" ng-href="#!/profile/{{ item._id }}" ng-show="item._type != 'Community'">{{item.name}}</a>
+				<a class="name" ng-href="#!/community/{{ item._id }}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
 				{{ item.upVotes }} &nbsp; 
 				<feedback up-votes="item.upVotes" down-votes="item.downVotes" with-numbers="true" style="width:60%; display:inline-block;"></feedback> 
 				&nbsp; {{ item.downVotes }}<br>

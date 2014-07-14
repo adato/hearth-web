@@ -4,11 +4,11 @@
 
 <form name="replyForm" class="profile-header" ng-submit="replyToAd(ad)" ng-keydown="escapeKey($event)" style="height:100%;" with-errors novalidate>
     <div class="row" ng-show="pageType != 'profile'">
-        <a ng-href="#/{{ad.profileUrl}}/{{ ad.author._id }}">
+        <a ng-href="#!/{{ad.profileUrl}}/{{ ad.author._id }}">
             <avatar source="ad.author.avatar" size="large" class="left photo" relation="ad.author.relation" style="margin-right:10px;" type="ad.author._type"></avatar>
         </a>
         <h1 ng-show="ad.author.name" class="username" ng-cloak>
-            <a ng-href="#/{{ad.profileUrl}}/{{ ad.author._id }}">{{ ad.author.name }}</a>
+            <a ng-href="#!/{{ad.profileUrl}}/{{ ad.author._id }}">{{ ad.author.name }}</a>
         </h1>
         <div ng-show="ad.author.upVotes + ad.author.downVotes">
             <feedback up-votes="ad.author.upVotes" down-votes="ad.author.downVotes"></feedback>

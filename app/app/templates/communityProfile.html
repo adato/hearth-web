@@ -50,7 +50,7 @@
 					<h5>{{ 'COMMUNITY_PROFILE_APPLICANTS' | translate }} ({{ communityApplicants.length}})</h5>
 					<ul>
 						<li ng-repeat="applicant in communityApplicants">
-							<a ng-href="#/profile/{{applicant.userId}}" title="{{applicant.userFullname}}">
+							<a ng-href="#!/profile/{{applicant.userId}}" title="{{applicant.userFullname}}">
 								<avatar source="applicant.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
 							</a>
 							&nbsp;
@@ -65,7 +65,7 @@
 				<h5>{{ 'COMMUNITY_PROFILE_MEMBERS' | translate }} ({{ communityMembers.length}})</h5>
 				<ul>
 					<li ng-repeat="member in communityMembers">
-						<a ng-href="#/profile/{{member.userId}}" title="{{member.userFullname}}">
+						<a ng-href="#!/profile/{{member.userId}}" title="{{member.userFullname}}">
 							<avatar source="member.userAvatar" size="follow" class="left photo" type="'User'"></avatar>
 						</a><br><small ng-show="loggedCommunity._id && isMine && loggedUser._id != member.userId"><a href="" ng-click="removeMember(member.userId)"><i class="fa fa-off"></i> {{ 'COMMUNITY_MEMBER_REMOVE' | translate }}</a></small>
 					</li>
@@ -75,7 +75,7 @@
 				<h5>{{ 'COMMUNITY_PROFILE_ADMIN' | translate }}</h5>
 				<ul>
 					<li>
-						<a ng-href="#/profile/{{communityAdmin._id}}" title="{{communityAdmin.name}}">
+						<a ng-href="#!/profile/{{communityAdmin._id}}" title="{{communityAdmin.name}}">
 							<avatar source="communityAdmin.avatar" size="follow" class="left photo" type="'User'"></avatar>
 						</a>
 					</li>
@@ -141,10 +141,10 @@
 		<div class="padding-h-2">
 			<div class="row profile-links">
 				<div class="small-4 columns">
-					<a href="" ng-class="{ 'underliner': profilePageType == 'ads'}" ng-href="#/community/{{ community._id }}/ads">{{ 'WISHES_LINK' | translate }}</a>
+					<a href="" ng-class="{ 'underliner': profilePageType == 'ads'}" ng-href="#!/community/{{ community._id }}/ads">{{ 'WISHES_LINK' | translate }}</a>
 				</div>
 				<div class="small-4 columns">
-					<a href="" ng-class="{ 'underliner': profilePageType == 'feedback'}" ng-href="#/community/{{ community._id }}/feedback" translate>{{ 'FEEDBACK_LINK' | translate }}</a>
+					<a href="" ng-class="{ 'underliner': profilePageType == 'feedback'}" ng-href="#!/community/{{ community._id }}/feedback" translate>{{ 'FEEDBACK_LINK' | translate }}</a>
 				</div>
 				<div class="small-4 columns">
 				</div>

@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
-	.config(['$sceProvider',
-		function($sceProvider) {}
+	.config(['$sceProvider', '$locationProvider',
+		function($sceProvider, $locationProvider) {
+
+			$locationProvider.html5Mode(false).hashPrefix('!');
+		}
 	]).config([
 		'cfpLoadingBarProvider',
 		function(cfpLoadingBarProvider) {
@@ -163,7 +166,7 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 	]).run([
 		'$rootScope', '$location', '$http',
 		function($rootScope, $location, $http) {
-			alert("AA");
+			// alert("AA");
 			
 		}
 	]);

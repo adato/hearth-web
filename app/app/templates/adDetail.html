@@ -40,8 +40,8 @@
 								<div class="right" time-ago from-time="reply.updated_at || reply.created_at"></div>
 								<avatar ng-if="reply.author._type == 'Community'" source="reply.author.avatar" size="normal" relation="" click="go('community', reply.author._id, reply.author._id)" class="left photo" type="'Community'"></avatar>
 								<avatar ng-if="reply.author._type != 'Community'" source="reply.author.avatar" size="normal" relation="reply.author.relation" click="go('profile', reply.author._id, reply.author._id)" class="left photo" type="'User'"></avatar>
-								<a class="smaller name" ng-show="reply.author._type != 'Community'" ng-href="#/profile/{{ reply.author._id }}">{{ reply.author.name }}</a>
-								<a class="smaller name" ng-show="reply.author._type == 'Community'" ng-href="#/community/{{ reply.author._id }}">{{ reply.author.name }}</a> &nbsp;
+								<a class="smaller name" ng-show="reply.author._type != 'Community'" ng-href="#!/profile/{{ reply.author._id }}">{{ reply.author.name }}</a>
+								<a class="smaller name" ng-show="reply.author._type == 'Community'" ng-href="#!/community/{{ reply.author._id }}">{{ reply.author.name }}</a> &nbsp;
 								<div ng-bind-html="reply.message | linky:'_blank'"></div>
 							</div>
 						</div>

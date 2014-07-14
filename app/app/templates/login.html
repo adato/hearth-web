@@ -9,7 +9,7 @@
                     <a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" class="rounded primary button" style="width:100%;" ng-cloak analytics-on analytics-event="login through Google" analytics-category="Login"
                        analytics-label="login page" analytics-value="2"><i class="left icon-google-plus-sign"></i> {{ 'SIGN_UP_WITH_GOOGLE' | translate }}</a>
                     <div class="padding-top">
-                        <span class="padding">{{ 'OR_USE_YOUR_EMAIL' | translate }}</span>  | <a class="padding" ng-href="#/forgotten-password" tabindex="-1">{{ 'FORGOTTEN_PASSWORD_LINK' | translate }}</a>
+                        <span class="padding">{{ 'OR_USE_YOUR_EMAIL' | translate }}</span>  | <a class="padding" ng-href="#!/forgotten-password" tabindex="-1">{{ 'FORGOTTEN_PASSWORD_LINK' | translate }}</a>
                     </div>
                     <br>
                     <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="small-12 columns">
                     <div class="hr padding-v-2"></div>
-                    <h2 style="margin-top:1em;">{{ 'CREATE_NEW' | translate }}</h2> <a ng-href="#/register"
+                    <h2 style="margin-top:1em;">{{ 'CREATE_NEW' | translate }}</h2> <a ng-href="#!/register"
                                analytics-on analytics-event="click on Create account link" analytics-category="registration" analytics-label="front page" analytics-value="3"
                        class="controls button radius" style="width:100%;"> {{ 'CREATE_ACCOUNT_LINK_CAPTION' | translate }}</a>
                 </div>

@@ -63,14 +63,14 @@
                 <div class="wish row user"
                      id="user{{ id}}"
                      >
-                    <a ng-href="#/community/{{ item._id }}"><avatar source="item.avatar" size="user-search" relation="item.relation" type="item._type" class="left photo"></avatar></a>
+                    <a ng-href="#!/community/{{ item._id }}"><avatar source="item.avatar" size="user-search" relation="item.relation" type="item._type" class="left photo"></avatar></a>
                     <div class="small-11 medium-10 columns wish-text hyphenate">
                         <div class="right small" ng-if="isView('my')">
                             <div ng-if="item.admin == loggedUser._id"><i class="fa fa-wrench"></i> {{ 'COMMUNITY_ADMIN' | translate }}</div>
                             <div ng-if="item.admin != loggedUser._id"><i class="fa fa-bookmark"></i> {{ 'COMMUNITY_MEMBER' | translate }}</div>
                         </div>                        
-                        <a class="name" ng-href="#/profile/{{ item._id}}" ng-show="item._type != 'Community'">{{item.name}}</a>
-                        <a class="name" ng-href="#/community/{{ item._id}}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
+                        <a class="name" ng-href="#!/profile/{{ item._id}}" ng-show="item._type != 'Community'">{{item.name}}</a>
+                        <a class="name" ng-href="#!/community/{{ item._id}}" ng-show="item._type == 'Community'">{{item.name}}</a><br>
                         <div class="smaller" style="margin-bottom:5px;">{{item.description || item.about}}</div>
                         <div  ng-show="upVotes + downVotes > 0">
                             {{ item.upVotes}} &nbsp; 
@@ -88,7 +88,7 @@
                                 &nbsp;
                             </div>
                             <div class="large-4 small-11 columns right show-on-hover text-right">
-                                <a ng-href="#/community/{{ item._id }}">
+                                <a ng-href="#!/community/{{ item._id }}">
                                     <i class="hearthicon-reply"></i>&nbsp;{{ 'SHOW_PROFILE_BUTTON_CAPTION' | translate }}
                                 </a>
                             </div>
