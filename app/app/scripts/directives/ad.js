@@ -59,6 +59,9 @@ angular.module('hearth.directives').directive('ad', [
 						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
 					});
 					scope.mine = scope.item.author._id === scope.user._id;
+					if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
+						item.author.locations = [];
+					}
 				});
 
 				scope.report = function() {
@@ -108,7 +111,6 @@ angular.module('hearth.directives').directive('ad', [
 				});
 
 				scope.$on('adCreated', function($event, data) {
-					console.log(data);
 					scope.adEdit = false;
 				});
 

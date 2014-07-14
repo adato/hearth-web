@@ -39,8 +39,6 @@ angular.module('hearth.directives').directive('editad', [
 
 				scope.post = $.extend(angular.copy(defaultPost), scope.data);
 
-				console.log(scope.post);
-
 				scope.close = function() {
 					scope.editForm.$setPristine();
 					scope.post = angular.copy(defaultPost);
@@ -54,7 +52,8 @@ angular.module('hearth.directives').directive('editad', [
 					//we need copy, because we change data and don't want to show these changes to user
 					postData = angular.extend(
 						angular.copy(scope.post), {
-							date: dateToTimestamp(scope.post.date)
+							date: dateToTimestamp(scope.post.date),
+							id: scope.post._id
 						}
 					);
 
@@ -63,7 +62,7 @@ angular.module('hearth.directives').directive('editad', [
 							author: Auth.getCredentials(),
 							updated_at: new Date().toISOString(),
 							reply_count: 0,
-							isPhantom: true
+							isPhantom: true,
 						}
 					);
 
