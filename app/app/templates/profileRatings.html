@@ -71,7 +71,7 @@
                     <time-ago from-time="rating.created_at"></time-ago>
                 </div>
 
-                <a ng-href="#/{{rating.entity_helper}}/{{ rating.user_from }}" ng-show="rating.user_from_full_name">
+                <a ng-href="#!/{{rating.entity_helper}}/{{ rating.user_from }}" ng-show="rating.user_from_full_name">
                   <i class="hearthicon-appreciate" ng-cloak ng-show="rating.score > 0"></i>
                   <i class="hearthicon-hate" ng-cloak ng-show="rating.score < 0"></i>
                   {{ rating.user_from_full_name }}

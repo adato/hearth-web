@@ -13,7 +13,7 @@
 				<section class=" large-7 columns">
 					<form method="post" action="{{ '/login' | apiPrefix }}" name="loginForm" autocomplete="on" class="row collapse" with-errors novalidate>
 						<input  autocomplete="on" class="text-input top" type="email" name="username"  ng-model="credentials.username" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}"  autocorrect="off" autocapitalize="off" ng-required="true">
-						<a class="padding" ng-href="#/forgotten-password" tabindex="-1">{{ 'FORGOTTEN_PASSWORD_LINK' | translate }}</a>
+						<a class="padding" ng-href="#!/forgotten-password" tabindex="-1">{{ 'FORGOTTEN_PASSWORD_LINK' | translate }}</a>
 						<input  autocomplete="on" type="password" name="password" ng-model="credentials.password"  placeholder="{{ 'PASSWORD_INPUT_PLACEHOLDER' | translate }}"  ng-required="true">
 						<button type="submit" ng-disabled="sending" style="width:100%;" analytics-on analytics-event="login with email" analytics-category="Login" analytics-label="login page" analytics-value="2">{{ 'LOG_IN' | translate }}</button>
 					</form>
@@ -27,7 +27,7 @@
 					<section class=" large-12 columns">
 						<div class="alert-box visible alert error round"  ng-show="errors.base">{{ errors.base | translate }}</div>
 						<span style="margin-top:1em;margin-left:1em;">{{ 'CREATE_NEW' | translate }}</span>
-						<a ng-href="#/register" analytics-on analytics-event="click on Create account link" analytics-category="registration" analytics-label="front page" analytics-value="3" style="width:100%;"> {{ 'CREATE_ACCOUNT_LINK_CAPTION' | translate }}</a>
+						<a ng-href="#!/register" analytics-on analytics-event="click on Create account link" analytics-category="registration" analytics-label="front page" analytics-value="3" style="width:100%;"> {{ 'CREATE_ACCOUNT_LINK_CAPTION' | translate }}</a>
 					</section>
 				</article>
 			</article>

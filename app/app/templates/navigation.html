@@ -17,12 +17,12 @@
 			<span class="search-button fa fa-search" ng-click="search(searchText)"></span>
 		</section>
 		<section class="large-6 columns text-right hide-for-scrolled">
-			<a href="#/" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+			<a href="#!/" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa fa-recycle"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
 
-			<a href="#/communities" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+			<a href="#!/communities" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa fa-users"></div>
 				<label>{{ 'communities' | translate }}</label>
 			</a>
@@ -55,8 +55,8 @@
 	
 	        <ul id="about-drop" data-dropdown-content class="f-dropdown">
 	          <li><a href="http://blog.hearth.net" target="_blank">{{'BLOG' | translate}}</a></li>
-	          <li><a ng-href="#/feedback">{{'WRITE_US' | translate}}</a></li>
-	          <li><a ng-href="#/terms">{{'TERMS' | translate}}</a></li>
+	          <li><a ng-href="#!/feedback">{{'WRITE_US' | translate}}</a></li>
+	          <li><a ng-href="#!/terms">{{'TERMS' | translate}}</a></li>
 	          <li class="divider"></li>
 	          <li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
 	          <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
@@ -66,7 +66,7 @@
 	        </ul>
 
 		     
-			<a signed-out href="#/login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
+			<a signed-out href="#!/login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
 				<div class="text">
 		            <div class="fa fa-sign-in"></div>
 		            <label>{{ 'TOP_BAR_SIGN_IN' | translate }}</label>
@@ -86,7 +86,7 @@
 
 			<ul class="title-area">
 				<li class="name" ng-init="switchExpanded = false">
-					<a href="#/" class="logo" ng-class="{ 'active': pageType == 'search' }" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
+					<a href="#!/" class="logo" ng-class="{ 'active': pageType == 'search' }" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
 					</a>
 				</li>
 				<li class="toggle-topbar menu-icon"><a href=""><span></span></a></li>
@@ -99,10 +99,10 @@
           				
 				
 	            <li signed-in ng-cloak ng-if="!loggedCommunity._id">
-	            	<a ng-href="#/my" ng-class="{ 'link': 1, 'active': pageType == 'my' }" id="nav-my">{{ 'TOP_BAR_MY_HEARTH' | translate }}<span></span></a>
+	            	<a ng-href="#!/my" ng-class="{ 'link': 1, 'active': pageType == 'my' }" id="nav-my">{{ 'TOP_BAR_MY_HEARTH' | translate }}<span></span></a>
 	          	</li>
           		<li signed-in ng-cloak ng-if="loggedCommunity._id">
-              		<a ng-href="#/community/{{ loggedCommunity._id }}" ng-class="{ 'link': 1, 'active': pageType == 'community-profile' && isMine }" analytics-on analytics-event="open profile" analytics-category="My community profile" id="nav-profile">{{ 'TOP_BAR_COMMUNITY_PROFILE' | translate }}<span></span></a>
+              		<a ng-href="#!/community/{{ loggedCommunity._id }}" ng-class="{ 'link': 1, 'active': pageType == 'community-profile' && isMine }" analytics-on analytics-event="open profile" analytics-category="My community profile" id="nav-profile">{{ 'TOP_BAR_COMMUNITY_PROFILE' | translate }}<span></span></a>
           		</li>				
 				
 			</ul>
@@ -111,7 +111,7 @@
 				<li class="divider show-for-small"></li>
 
 				<li signed-in class="icon">
-					<a href="#/" title="{{ 'MARKET' | translate }}">
+					<a href="#!/" title="{{ 'MARKET' | translate }}">
 						<div class="text">
 							<div class="icon">
 								<div class="fa">&#xf1b8;</div>
@@ -122,7 +122,7 @@
 				</li>
 
 				<li signed-in ng-cloak class="icon">
-					<a title="{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}" ng-href="#/communities" ng-class="{ 'link': 1, 'active': pageType == 'communities' }" id="nav-communities">
+					<a title="{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}" ng-href="#!/communities" ng-class="{ 'link': 1, 'active': pageType == 'communities' }" id="nav-communities">
 						 <div class="text">
 							<div class="icon">
 								<div class="fa">&#xf0c0;</div>
@@ -133,7 +133,7 @@
 				</li>
 
 				<li signed-in class="icon">
-					<a href="#/messages" title="{{ 'MESSAGES' | translate }}">
+					<a href="#!/messages" title="{{ 'MESSAGES' | translate }}">
 						<div class="text">
 							<div class="icon">
 								<div class="fa">&#xf0e0;</div>
@@ -156,8 +156,8 @@
 					</a>
 			        <ul class="dropdown">
 			          <li><a href="http://blog.hearth.net" target="_blank">{{'BLOG' | translate}}</a></li>
-			          <li><a ng-href="#/feedback">{{'WRITE_US' | translate}}</a></li>
-			          <li><a ng-href="#/terms">{{'TERMS' | translate}}</a></li>
+			          <li><a ng-href="#!/feedback">{{'WRITE_US' | translate}}</a></li>
+			          <li><a ng-href="#!/terms">{{'TERMS' | translate}}</a></li>
 			          <li class="divider"></li>
 			          <li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
 			          <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
@@ -174,7 +174,7 @@
 				<identity-switch signed-in logged-user="loggedUser" logged-community="loggedCommunity" switch-fn="switchIdentity(id)"></identity-switch>
 
 				<li signed-out ng-cloak>
-					<a href="#/login" ng-class="{ 'link': 1, 'active': pageType == 'login' }" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
+					<a href="#!/login" ng-class="{ 'link': 1, 'active': pageType == 'login' }" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
 						<div class="text">
 				            <div class="fa">&#xf090;</div>
 				            <div>{{ 'TOP_BAR_SIGN_IN' | translate }}</div>
