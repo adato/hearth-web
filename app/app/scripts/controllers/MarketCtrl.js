@@ -14,9 +14,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.items = [];
 
 		$scope.load = function() {
-			var params = $location.search();
-
-			params = angular.extend(params, {
+			var params = angular.extend(angular.copy($location.search()), {
 				offset: $scope.items.length,
 				limit: $scope.limit
 			});

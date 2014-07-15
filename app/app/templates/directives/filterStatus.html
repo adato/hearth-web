@@ -1,0 +1,11 @@
+<div class="filter-status fixed" ng-if="filterData">
+	<dl>
+		<dt>Filtr je aktivní.</dt>
+		<dd ng-show="filterData.type">Inzeráty: <b>{{filterData.type}}</b> </dd>
+		<dd ng-show="filterData.related">Autor: <b>{{filterData.related}}</b> </dd>
+		<dd ng-show="filterData.days">Čas: <b>{{filterData.days}}</b> </dd>
+		<dd ng-show="filterData.name">Místo: <b>{{filterData.name}}</b> v okruhu <b>{{filterData.distance}} km</b></dd>
+		<dd ng-show="filterData.keywords">Klíčová slova: <b>{{filterData.keywords}}</b></b></dd>
+	</dl>
+</div>
+
