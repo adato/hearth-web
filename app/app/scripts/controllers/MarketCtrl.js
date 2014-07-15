@@ -24,12 +24,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		};
 
-		$scope.$on('filter', function($event, filterData) {
+		$scope.$on('filterApply', function($event, filterData) {
 			$location.search(filterData);
 		});
 
-		$scope.$on('clearFilter', function() {
+		$scope.$on('filterReset', function() {
 			$location.search('');
+			$scope.$broadcast('resetFilterData');
 		});
 
 		$scope.$on('adCreated', function($event, data) {
@@ -42,7 +43,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.showMap = false;
 		});
 
-		$scope.$on('adSaved', function($event, data) {
+		$scope.$on(' dSaved', function($event, data) {
 			var phantomRecord, i;
 
 			for (i = 0; i < $scope.items.length; i++) {
