@@ -60,6 +60,18 @@
 				</div>
 			</div>
 			<footer>
+				<div class="share">
+					<div class="fa fa-share-square-o"></div>
+					<div class="sharing">
+						<div>
+							<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
+							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
+							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
+							<a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a>
+							<a signed-in class="fa fa-flag" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
+						</div>
+					</div>
+				</div>
 				<button class="secondary" ng-if="mine" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
 				<a class="link-button remove-button" ng-if="mine" data-reveal-id="confirm-delete"><i class="fa fa-times"></i> {{'AD_REMOVE_LABEL' | translate}}</a>
 
@@ -88,31 +100,21 @@
 				<span ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
 				<span ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 
-				<div class="share">
-					<div class="fa fa-share-square-o"></div>
-					<div class="sharing">
-						<div>
-							<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
-							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
-							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
-							<a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a>
-							<a signed-in class="fa fa-flag" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
-						</div>
-					</div>
+				
+				<div class="animate-show" ng-show="reported">
+					<article class="row">
+						<section class="large-12 columns">
+							<div class="radius alert-box warning" >
+								<span>{{'THANKS_FOR_REPORT' | translate}}</span>
+								 <a class="close" ng-click="reported=false" >&times;</a>
+							</div>
+						</section>
+					</article>
 				</div>
-
-				<article class="row animate-show" ng-show="reported">
-					<section class="large-12 columns">
-						<div class="radius alert-box warning" >
-							<span>{{'THANKS_FOR_REPORT' | translate}}</span>
-							 <a class="close" ng-click="reported=false" >&times;</a>
-						</div>
-					</section>
-				</article>
 
 				<editad ng-if="mine" ng-show="adEdit" data="item" class="animate-show" id="editAd"></editad>
 
-				<div signed-in ng-if="!mine" class="reply-box animate-show" ng-show="replyEdit">
+				<div signed-in ng-if="!mine" class="reply-box animate-show" ng-cloak ng-show="replyEdit">
 					<article class="row">
 						<section class="large-12 columns">
 							<form name="replyForm">
