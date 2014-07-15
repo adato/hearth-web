@@ -19,6 +19,10 @@ angular.module('hearth.directives').directive('filterStatus', [
 					var searchParams = $location.search(),
 						related = searchParams.related;
 
+					scope.resetFilter = function() {
+						scope.$emit('filterReset');
+					};
+
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;
 					if (!$.isEmptyObject(searchParams)) {
 						related = related ? related.split(',') : [];

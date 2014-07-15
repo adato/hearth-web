@@ -5,6 +5,7 @@
 		<dd ng-show="filterData.days">{{'time' | translate}}: <b>{{'day' + filterData.days | translate}}</b> </dd>
 		<dd ng-show="filterData.name">{{'place' | translate}}: <b>{{filterData.name}}</b> {{'in-area' | translate}} <b>{{filterData.distance}} km</b></dd>
 		<dd ng-show="filterData.keywords">{{'keywords' | translate}}: <b>{{filterData.keywords}}</b></b></dd>
+		<dd><a ng-click="resetFilter()"><i class="fa fa-times"></i> {{'cancel-filter' | translate}}</a></dd>
 	</dl>
 </div>
 

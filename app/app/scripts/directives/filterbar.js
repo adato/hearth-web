@@ -32,7 +32,7 @@ angular.module('hearth.directives').directive('filterbar', [
 					}
 				};
 
-				scope.$on('closeFilter', function() {
+				scope.$on('filterClose', function() {
 					scope.filterSelected = false;
 				});
 
