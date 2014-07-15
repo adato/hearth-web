@@ -12,6 +12,18 @@
       <title>HEARTH.net (debug)</title>
     <!-- @endif -->
     <title>HEARTH.net</title>
+
+    <meta name="fragment" content="!">
+    
+    <meta name="description" content="Hearth.net - {{og_description}}">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{og_title}}" />
+    <meta property="og:description" content="{{og_description}}" />
+    <meta property="og:image" content="{{og_image}}" />
+    <meta property="og:url" content="{{og_url}}" />
+
+<!--
     <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
     
     <meta property="og:title" content="Hearth.net">
@@ -20,7 +32,7 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="114">
     <meta property="og:image:height" content="114">
-
+-->
      <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <!-- endbuild -->
@@ -159,6 +171,8 @@
      <script src="scripts/services/CommunityService.js"></script>
      <script src="scripts/services/KeywordsService.js"></script>
      <script src="scripts/services/ProfileProgress.js"></script>
+     <script src="scripts/services/OpenGraph.js"></script>
+
 
      <script src="scripts/filters/filters.js"></script>
 

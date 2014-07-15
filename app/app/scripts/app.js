@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
-	.config(['$sceProvider',
-		function($sceProvider) {}
+	.config(['$sceProvider', '$locationProvider',
+		function($sceProvider, $locationProvider) {
+			$locationProvider.html5Mode(false).hashPrefix('!');
+		}
 	]).config([
 		'cfpLoadingBarProvider',
 		function(cfpLoadingBarProvider) {
@@ -31,87 +33,89 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 		'$routeProvider',
 		function($routeProvider) {
 			return $routeProvider
-			.when('/search/?', {
-				templateUrl: 'templates/fulltext.html',
-				controller: 'FulltextCtrl',
-				reloadOnSearch: false,
-			}).when('/communities/:action?', {
-				templateUrl: 'templates/communityList.html',
-				controller: 'CommunityListCtrl',
-				pageType: 'communities'
-			}).when('/community/:id/:action?', {
-				templateUrl: 'templates/communityProfile.html',
-				controller: 'CommunityProfileCtrl',
-				pageType: 'community-profile',
-				reloadOnSearch: false
-			}).when('/community-create', {
-				templateUrl: 'templates/communityRegister.html',
-				controller: 'CommunityRegisterCtrl',
-				pageType: 'community-create'
-			}).when('/', {
-				templateUrl: 'templates/market.html',
-				controller: 'MarketCtrl',
-				reloadOnSearch: false,
-				pageType: 'search'
-			}).when('/my', {
-				templateUrl: 'templates/my.html',
-				controller: 'SearchCtrl',
-				reloadOnSearch: false,
-				pageType: 'my'
-			}).when('/register', {
-				templateUrl: 'templates/register.html',
-				controller: 'RegisterCtrl'
-			}).when('/login', {
-				templateUrl: 'templates/login.html',
-				controller: 'LoginCtrl',
-				pageType: 'login'
-			}).when('/profile/:id', {
-				templateUrl: 'templates/profile.html',
-				controller: 'ProfileCtrl',
-				reloadOnSearch: false,
-				pageType: 'profile'
-			}).when('/profile/:id/:action', {
-				templateUrl: 'templates/profile.html',
-				controller: 'ProfileCtrl',
-				reloadOnSearch: false,
-				pageType: 'profile'
-			}).when('/confirmEmail', {
-				templateUrl: 'templates/confirmEmail.html',
-				controller: 'ConfirmEmailCtrl'
-			}).when('/change-password', {
-				templateUrl: 'templates/changePassword.html',
-				controller: 'ChangePwdCtrl',
-				access: 'private'
-			}).when('/forgotten-password', {
-				templateUrl: 'templates/forgottenPassword.html',
-				controller: 'ForgottenPasswordCtrl'
-			}).when('/reset-password', {
-				templateUrl: 'templates/resetPassword.html',
-				controller: 'ResetPwdCtrl'
-			}).when('/feedback', {
-				templateUrl: 'templates/feedback.html',
-				controller: 'FeedbackCtrl',
-				pageType: 'feedback'
-			}).when('/404', {
-				templateUrl: 'templates/404.html'
-			}).when('/setup', {
-				templateUrl: 'templates/setup.html',
-				controller: 'SetupCtrl'
-			}).when('/terms', {
-				controller: 'TermsCtrl',
-				templateUrl: 'templates/terms.html'
-			}).when('/about', {
-				templateUrl: 'templates/about.html',
-				pageType: 'about'
-			})/*.when('/messages', {
-				controller: 'Messages',
-				templateUrl: 'templates/messages/messages.html'
-			})*/.when('/ad/:id', {
-				controller: 'AdDetail',
-				templateUrl: 'templates/adDetail.html'
-			}).otherwise({
-				redirectTo: '/'
-			});
+				.when('/search/?', {
+					templateUrl: 'templates/fulltext.html',
+					controller: 'FulltextCtrl',
+					reloadOnSearch: false,
+				}).when('/communities/:action?', {
+					templateUrl: 'templates/communityList.html',
+					controller: 'CommunityListCtrl',
+					pageType: 'communities'
+				}).when('/community/:id/:action?', {
+					templateUrl: 'templates/communityProfile.html',
+					controller: 'CommunityProfileCtrl',
+					pageType: 'community-profile',
+					reloadOnSearch: false
+				}).when('/community-create', {
+					templateUrl: 'templates/communityRegister.html',
+					controller: 'CommunityRegisterCtrl',
+					pageType: 'community-create'
+				}).when('/', {
+					templateUrl: 'templates/market.html',
+					controller: 'MarketCtrl',
+					reloadOnSearch: false,
+					pageType: 'search'
+				}).when('/my', {
+					templateUrl: 'templates/my.html',
+					controller: 'SearchCtrl',
+					reloadOnSearch: false,
+					pageType: 'my'
+				}).when('/register', {
+					templateUrl: 'templates/register.html',
+					controller: 'RegisterCtrl'
+				}).when('/login', {
+					templateUrl: 'templates/login.html',
+					controller: 'LoginCtrl',
+					pageType: 'login'
+				}).when('/profile/:id', {
+					templateUrl: 'templates/profile.html',
+					controller: 'ProfileCtrl',
+					reloadOnSearch: false,
+					pageType: 'profile'
+				}).when('/profile/:id/:action', {
+					templateUrl: 'templates/profile.html',
+					controller: 'ProfileCtrl',
+					reloadOnSearch: false,
+					pageType: 'profile'
+				}).when('/confirmEmail', {
+					templateUrl: 'templates/confirmEmail.html',
+					controller: 'ConfirmEmailCtrl'
+				}).when('/change-password', {
+					templateUrl: 'templates/changePassword.html',
+					controller: 'ChangePwdCtrl',
+					access: 'private'
+				}).when('/forgotten-password', {
+					templateUrl: 'templates/forgottenPassword.html',
+					controller: 'ForgottenPasswordCtrl'
+				}).when('/reset-password', {
+					templateUrl: 'templates/resetPassword.html',
+					controller: 'ResetPwdCtrl'
+				}).when('/feedback', {
+					templateUrl: 'templates/feedback.html',
+					controller: 'FeedbackCtrl',
+					pageType: 'feedback'
+				}).when('/404', {
+					templateUrl: 'templates/404.html'
+				}).when('/setup', {
+					templateUrl: 'templates/setup.html',
+					controller: 'SetupCtrl'
+				}).when('/terms', {
+					controller: 'TermsCtrl',
+					templateUrl: 'templates/terms.html'
+				}).when('/about', {
+					templateUrl: 'templates/about.html',
+					pageType: 'about'
+				})
+				/*.when('/messages', {
+								controller: 'Messages',
+								templateUrl: 'templates/messages/messages.html'
+							})*/
+				.when('/ad/:id', {
+					controller: 'AdDetail',
+					templateUrl: 'templates/adDetail.html'
+				}).otherwise({
+					redirectTo: '/'
+				});
 		}
 	]).factory('HearthLoginInterceptor', [
 		'$q', '$location', '$timeout', '$rootScope',
@@ -163,6 +167,15 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 					}
 					return ipCookie('backUrl', url);
 				}
+			});
+		}
+	]).run([
+		'$rootScope', '$location', '$http', "$translate", "OpenGraph",
+		function($rootScope, $location, $http, $translate, OpenGraph) {
+
+			$rootScope.$on('$translateChangeSuccess', function() {
+				OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+				OpenGraph.setDefault();
 			});
 		}
 	]);

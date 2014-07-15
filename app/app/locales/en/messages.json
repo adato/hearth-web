@@ -331,5 +331,7 @@
 	"YOUR_NAME": "Your name here",
 	"YOU_HAVE_NOT_BEEN_RATED": "You have not been rated by others yet",
 	"YOU_HAVE_NO_WISHES": "You have no wishes so far.",
-	"required": "This field is required. We hate to play the bad cop but you know these fields..."
+	"required": "This field is required. We hate to play the bad cop but you know these fields...",
+	"OG_DEFAULT_TITLE": "Hearth.net",
+	"OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc"
 }
