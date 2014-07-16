@@ -2,14 +2,14 @@
   "name": "ang2",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.6",
+    "angular": "~1.2.20",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
     "jquery": "~2.1.0",
-    "angular-resource": "1.2.6",
+    "angular-resource": "~1.2.20",
     "angular-cookies": "1.2.6",
     "angular-sanitize": "1.2.6",
-    "angular-route": "1.2.6",
+    "angular-route": "~1.2.20",
     "foundation": "~5.2.3",
     "angular-flash": "~0.1.7",
     "angular-translate": "~1.1.1",
@@ -32,7 +32,7 @@
     "d3": "~3.3.3"
   },
   "resolutions": {
-    "angular": "1.2.6",
+    "angular": "1.2.18",
     "angular-mocks": "1.2.6"
   }
 }
