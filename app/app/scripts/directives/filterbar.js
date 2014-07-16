@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$anchorScroll',
+	'$anchorScroll', '$location',
 
-	function($anchorScroll) {
+	function($anchorScroll, $location) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -32,7 +32,7 @@ angular.module('hearth.directives').directive('filterbar', [
 					}
 				};
 
-				scope.$on('closeFilter', function() {
+				scope.$on('filterClose', function() {
 					scope.filterSelected = false;
 				});
 
@@ -49,6 +49,10 @@ angular.module('hearth.directives').directive('filterbar', [
 						scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 					}
 					$anchorScroll(ui);
+				});
+
+				scope.$on('$routeUpdate', function() {
+					scope.filterOn = !$.isEmptyObject($location.search());
 				});
 
 				scope.toggleMap = function() {
