@@ -34,10 +34,8 @@ angular.module('hearth.controllers').controller('MapCtrl', [
 		};
 
 		this.search = function(options) {
-			console.log("search", self.getSearchParams());
-
 			Post.query(self.getSearchParams(), function(data) {
-				$scope.items = data;
+				$rootScope.$emit("showMarkersOnMap", data);
 			});
 		};
 

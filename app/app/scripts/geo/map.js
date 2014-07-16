@@ -17,8 +17,8 @@ angular.module('hearth.geo').directive('map', [
 		return {
 			restrict: 'E',
 			replace: true,
-			scope: {
-				items: "="
+			scope:  {
+				ads: "="
 			},
 			transclude: true,
 			link: function(scope, element) {
@@ -64,7 +64,6 @@ angular.module('hearth.geo').directive('map', [
 
 				self.initMap = function() {
 
-					alert("INIT MAP");
 					geo.focusCurrentLocation();
 
 					oms = new OverlappingMarkerSpiderfier(map, {
@@ -143,12 +142,12 @@ angular.module('hearth.geo').directive('map', [
 							data.adType = data.type;
 						}
 
-						showMarkerWindow(template(data), marker);
-
+						self.showMarkerWindow(template(data), marker);
 					}, function(err) {});
 				};
 
-				self.createPins = function(ads) {
+				self.createPins = function(e, ads) {
+
 					var i, j, ad, location;
 					ads = ads || [];
 					markers = [];
@@ -156,11 +155,7 @@ angular.module('hearth.geo').directive('map', [
 					markerCluster.clearMarkers();
 					oms.clearMarkers();
 					
-					console.dir(ads);
-
 					console.log("Nacitam.." + ads.length);
-					return;
-
 
 					for (i = 0; i < ads.length; i++) {
 						ad = ads[i];
@@ -168,10 +163,10 @@ angular.module('hearth.geo').directive('map', [
 						for (j = 0; j < ad.locations.length; j++) {
 							if (ad.locations[j]) {
 
-								if (markerLimit && testPositionLimit(ad.locations[j]))
+								if (markerLimit && self.testPositionLimit(ad.locations[j]))
 									continue;
 
-								placeMarker(ad.locations[j], ad);
+								self.placeMarker(ad.locations[j], ad);
 							}
 						}
 					}
@@ -187,8 +182,7 @@ angular.module('hearth.geo').directive('map', [
 				};
 
 				$rootScope.$on('searchMap', self.initMap);
-				scope.$watch('items', self.createPins);
-				// scope.$watch('showMapPins', createPins);
+				$rootScope.$on('showMarkersOnMap', self.createPins);
 			}
 		};
 	}
