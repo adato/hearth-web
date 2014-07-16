@@ -73,7 +73,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 						} else if (e.total > (limitSize * 1024 * 1024)) {
 							scope.error.badSize = true;
 						} else {
-							scope.files.push({origin: src});
+							scope.files.push(src);
 						}
 						scope.$apply();
 					};

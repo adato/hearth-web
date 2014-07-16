@@ -69,9 +69,6 @@ angular.module('hearth.directives').directive('editad', [
 					);
 
 					scope.$emit('adCreated', postDataCopy);
-					console.log(postData);
-					return;
-					
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
