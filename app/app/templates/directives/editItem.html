@@ -77,7 +77,7 @@
                     <div ng-show="post.attachments.length" class="animate-show">
                         <ul class="attachments">
                             <li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
-                                <img ng-src="{{ file.origin }}" class="padding-1">
+                                <img ng-src="{{ file }}" class="padding-1">
                                 <a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
                                     <i class="fa fa-times"></i>
                                 </a>
