@@ -83,8 +83,8 @@ angular.module('hearth.geo').directive('map', [
 					});
 
 
-					markerCluster.addListener('click', zoomMarkerClusterer);
-					oms.addListener('click', onMarkerClick);
+					markerCluster.addListener('click', self.zoomMarkerClusterer);
+					oms.addListener('click', self.onMarkerClick);
 				};
 
 				self.testPositionLimit = function(loc) {
