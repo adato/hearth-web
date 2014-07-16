@@ -7,15 +7,17 @@
  */
 
 angular.module('hearth.controllers').controller('MapCtrl', [
-	'$scope', '$rootScope', '$location', '$window', 'ipCookie', 'Errors', '$analytics', 'geo', 'UsersService', 'Auth',
+	'$scope', '$rootScope', '$location', '$window', 'Auth', 'Post',
 
-	function($scope, $rootScope, $location, $window, ipCookie, Errors, $analytics, geo, UsersService, Auth) {
+	function($scope, $rootScope, $location, $window, Auth, Post) {
 		var self = this;
 
-		console.log($rootScope.filter);
+		this.getFilterParams = function() {
+			return $location.search();
+		};
 
-		this.searchParamsOnMap = function(searchParams) {
-			return angular.extend(searchParams, {
+		this.getMapParams = function(searchParams) {
+			return {
 				sort: 'distance',
 				'bounding_box[top_left][lat]': 85,
 				'bounding_box[top_left][lon]': -170,
@@ -23,39 +25,23 @@ angular.module('hearth.controllers').controller('MapCtrl', [
 				'bounding_box[bottom_right][lon]': 175,
 				offset: 0,
 				r: 0
-			});
-		}
-
-
-		this.showMap = function(location) {
-
-			console.log(location);
+			};
 		};
 
-		this.initMap = function() {
+		this.getSearchParams = function() {
 
-			
+			return angular.extend(self.getFilterParams(), self.getMapParams());
 		};
 
-		$scope.search = function(options) {
-			var search;
+		this.search = function(options) {
+			console.log("search", self.getSearchParams());
 
-
-			if (search.params.type === 'user') {
-				search.params.type = 'user,community';
-			}
-
-			return search.service.query(search.params).then(function(data) {
-				var i, len = data.length;
-				if (search.params.query) {
-					$analytics.eventTrack('search by keyword', {
-						category: $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth'
-					});
-				}
-				processRow(data[i]);
+			Post.query(self.getSearchParams(), function(data) {
+				$scope.items = data;
 			});
 		};
 
-		$rootScope.$on('searchMap', this.initMap);
+		$rootScope.$on('searchMap', this.search);
+		$scope.$on('$routeUpdate', this.search);
 	}
 ]);

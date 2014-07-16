@@ -17,6 +17,9 @@ angular.module('hearth.geo').directive('map', [
 		return {
 			restrict: 'E',
 			replace: true,
+			scope: {
+				items: "="
+			}
 			transclude: true,
 			link: function(scope, element) {
 				var markerCluster,
@@ -177,7 +180,7 @@ angular.module('hearth.geo').directive('map', [
 
 				markerCluster.addListener('click', zoomMarkerClusterer);
 				oms.addListener('click', onMarkerClick);
-				scope.$watch('ads', function() {
+				scope.$watch('items', function() {
 
 					alert("AA");
 				});
