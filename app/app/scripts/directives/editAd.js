@@ -17,11 +17,12 @@ angular.module('hearth.directives').directive('editad', [
 			},
 			templateUrl: 'templates/directives/editItem.html', //must not use name ad.html - adBlocker!
 			link: function(scope) {
+				scope.languageCode = LanguageSwitch.uses().code;
 
 				var defaultPost = {
 					type: 'offer',
 					isPrivate: false,
-					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, scope.languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
 					sharing_allowed: true,
 					locations: [{
 						name: ''
@@ -32,6 +33,7 @@ angular.module('hearth.directives').directive('editad', [
 					keywords: [],
 					edit: false
 				};
+				console.log(scope.languageCode);
 
 				scope.limits = {
 					title: 100
