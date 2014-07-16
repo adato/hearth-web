@@ -67,11 +67,11 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 						// neni spravny format
 						if (!~scope.allowedTypes.indexOf(format)) {
-							scope.error.badSize = true;
+							scope.error.badFormat = true;
 
 						// neni spravna velikost
 						} else if (e.total > (limitSize * 1024 * 1024)) {
-							scope.error.badFormat = true;
+							scope.error.badSize = true;
 						} else {
 							scope.files.push({origin: src});
 						}
