@@ -19,13 +19,13 @@
 				<section class="large-9 columns">
 					<div class="animate-show" ng-show="editForm.title.$invalid && editForm.title.$dirty">
 						<div class="alert-box radius">
-							<div ng-show="editForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</div>
-							<div ng-show="editForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</div>
+							<div ng-show="editForm.title.$error.minlength">{{ 'title-required' | translate }}</div>
+							<div ng-show="editForm.title.$error.maxlength">{{ 'title-maxlength' | translate: {value: limits.title} }}</div>
 							<div ng-show="editForm.title.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
 						</div>
 					</div>
 					<input type="text" placeholder="{{'TELL_WHAT' | translate}}" ng-minlength="3" ng-maxlength="100" ng-model="post.title" name="title" ng-required="true">
-					<left-chars-progress value="post.title" max="100"></left-chars-progress>
+					<left-chars-progress value="post.title" max="limits.title"></left-chars-progress>
 				</section>
 			</article>
 

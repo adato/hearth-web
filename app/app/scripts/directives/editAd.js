@@ -33,6 +33,10 @@ angular.module('hearth.directives').directive('editad', [
 					edit: false
 				};
 
+				scope.limits = {
+					title: 100
+				};
+
 				if (scope.data && scope.data.date) {
 					scope.data.date = $filter('date')(scope.data.date, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
 				}
