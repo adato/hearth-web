@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('editad', [
 					locations: [{
 						name: ''
 					}],
-					attachments: [],
+					attachments_attributes: [],
 					name: '',
 					title: '',
 					keywords: [],
@@ -90,7 +90,7 @@ angular.module('hearth.directives').directive('editad', [
 
 				scope.photoUploadSuccessful = function($event) {
 					if ($event.target.status === 200) {
-						scope.post.attachments.push(JSON.parse($event.target.response));
+						scope.post.attachments_attributes.push(JSON.parse($event.target.response));
 					}
 				};
 

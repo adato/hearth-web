@@ -68,17 +68,17 @@
                         </a>
                     </div>
                      -->
-                    <div image-preview class="file-upload" files="post.attachments" limit="5" ng-show="! post.attachments.length">
-                        <a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
+                    <div image-preview class="file-upload" files="post.attachments_attributes" limit="5" ng-show="! post.attachments_attributes.length">
+                        <a class="create-post-link" ng-hide="post.attachments_attributes.length" ng-click="post.attachmentsEnabled = true">
                             <i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
                         </a>
                     </div>
                     <div class="cleaner"></div>
-                    <div ng-show="post.attachments.length" class="animate-show">
+                    <div ng-show="post.attachments_attributes.length" class="animate-show">
                         <ul class="attachments">
-                            <li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
-                                <img ng-src="{{ file }}" class="padding-1">
-                                <a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+                            <li class="text-center" ng-repeat="item in post.attachments_attributes" style="position:relative;">
+                                <img ng-src="{{ item.file }}" class="padding-1">
+                                <a ng-click="post.attachments_attributes = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
                                     <i class="fa fa-times"></i>
                                 </a>
                             </li>
