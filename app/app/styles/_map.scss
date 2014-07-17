@@ -1,28 +1,16 @@
 .map {
     .map-canvas {
         height: 400px;
+        width: 100%;
+        .gm-style {
+            width: 100%;
+            position: relative !important;
+        }
         img {
-            max-width: inherit;
+            max-width: inherit !important;
         }
         display: block;
-        border-radius: $global-radius;
-        border: 1px solid darken(color(4), 20%);
-        margin: {
-            bottom: 1em;
-        };
+       
     }
-    .marker-tooltip {
-        text-align: left;
-        cursor: pointer;
-        .content {
-            margin: {
-                left: 3.7em;
-            };
-        }
-        img {
-            border-radius: $global-radius;
-            width: 3em;
-            float: left;
-        }
-    }
+    
 }

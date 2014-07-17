@@ -81,7 +81,7 @@ angular.module('hearth.geo').directive('map', [
 						styles: markerClusterStyles
 					});
 
-
+					// google.maps.event.trigger(map, "resize");
 					markerCluster.addListener('click', self.zoomMarkerClusterer);
 					oms.addListener('click', self.onMarkerClick);
 				};
@@ -129,6 +129,7 @@ angular.module('hearth.geo').directive('map', [
 
 				self.onMarkerClick = function(marker) {
 
+					console.log(marker.info);
 					Post.get({
 						postId: marker.info._id
 					}, function(data) {
@@ -181,8 +182,8 @@ angular.module('hearth.geo').directive('map', [
 					map.setZoom(markerClusterMaxZoom + 1);
 				};
 
-				$rootScope.$on('searchMap', self.initMap);
-				$rootScope.$on('showMarkersOnMap', self.createPins);
+				// $rootScope.$on('searchMap', self.initMap);
+				// $rootScope.$on('showMarkersOnMap', self.createPins);
 			}
 		};
 	}
