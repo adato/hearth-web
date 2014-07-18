@@ -3,18 +3,18 @@
 	  <div class="large-12 columns">
 		<input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index)" readonly  ng-model="locations[$index].name" class="text-input" type='text'>
 		<div class="remove" ng-hide="$first">
-		 <span class="fa fa-times-circle"  ng-click="locations.splice($index,1)"></span>
+		 <span class="fa fa-times-circle"  ng-click="remove($event, $index)"></span>
 		</div>
 	  </div>
 	</div>
 	 <a ng-click="locations.push({type: 'Point',name:'',coordinates:null})" ng-hide="locations.length > 0 && !locations[locations.length-1].name">
 		<span class="fa fa-plus-circle"></span> {{ 'ADD' | translate }}
 	</a>
-	<div id="location-map" class="reveal-modal xlarge" data-reveal>
+	<div id="{{'location-map' + itemid}}" class="location-map reveal-modal xlarge" data-reveal>
 		<input type="text" id="mapsearch" class="text-input top">
 		<div id="map" class="map-canvas" class="text-input bottom"/>
 		<a class="close-reveal-modal" title="{{'CLOSE'| translate}}">&#215;</a>
 		<a class="link-button" ng-click="close()">{{'CLOSE'| translate}}</a>
-		<button class="right" ng-disabled="!selectedName || selectedPosition.length === 0">{{'OK' | translate}}</button>
+		<button class="right" ng-click="ok()" ng-disabled="!selectedName || selectedPosition.length === 0">{{'OK' | translate}}</button>
 	</div>
 </div>
