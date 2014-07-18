@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.services').factory('Fulltext', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/search', {}, {
+	'$resource', 'appConfig',
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/search', {}, {
 			query: {
 				method: 'GET'
 			}
