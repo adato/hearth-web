@@ -33,7 +33,6 @@ angular.module('hearth.directives').directive('editad', [
 					keywords: [],
 					edit: false
 				};
-				console.log(scope.languageCode);
 
 				scope.limits = {
 					title: 100

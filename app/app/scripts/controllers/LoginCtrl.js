@@ -3,23 +3,24 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.LoginCtrl
- * @description 
+ * @description
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
 	'$scope', '$location', '$routeParams', '$translate', 'Auth', 'ResponseErrors', '$rootScope',
 	function($scope, $location, $routeParams, $translate, Auth, ResponseErrors, $rootScope) {
 		return Auth.init(function() {
-			if (Auth.isLoggedIn()) {
-				$location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
-				return;
-			}
 			$scope.credentials = {
 				username: '',
 				password: ''
 			};
-			$translate('ERR_NOT_AUTHN');
-			$translate('ERR_NOT_AUTHZ');
+			$scope.facebookLoginUrl = $$config.apiPath + '/auth/facebook';
+			$scope.googleLoginUrl = $$config.apiPath + '/users/auth/google_oauth2';
+			
+			if (Auth.isLoggedIn()) {
+				$location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+				return;
+			}
 			$scope.errors = new ResponseErrors($routeParams.reason ? {
 				status: 400,
 				data: {

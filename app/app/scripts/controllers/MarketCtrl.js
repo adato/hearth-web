@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', 'Post', '$location',
+	'$scope', 'Post', '$location', 'PostReplies',
 
-	function($scope, Post, $location) {
+	function($scope, Post, $location, PostReplies) {
 		$scope.limit = 15;
 		$scope.items = [];
 
@@ -43,7 +43,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.showMap = false;
 		});
 
-		$scope.$on(' dSaved', function($event, data) {
+		$scope.$on('sendReply', function($event, data) {
+			PostReplies.add(data);
+		});
+
+		$scope.$on('report', function($event, data) {
+			Post.spam(data);
+		});
+
+		$scope.$on('adSaved', function($event, data) {
 			var phantomRecord, i;
 
 			for (i = 0; i < $scope.items.length; i++) {
