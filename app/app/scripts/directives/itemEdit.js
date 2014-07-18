@@ -1,11 +1,11 @@
 'use strict';
 /**
  * @ngdoc directive
- * @name hearth.directives.editAd
+ * @name hearth.directives.itemEdit
  * @description M
  * @restrict E
  */
-angular.module('hearth.directives').directive('editad', [
+angular.module('hearth.directives').directive('itemEdit', [
 	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post',
 
 	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post) {
@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('editad', [
 			scope: {
 				data: '='
 			},
-			templateUrl: 'templates/directives/editItem.html', //must not use name ad.html - adBlocker!
+			templateUrl: 'templates/directives/itemEdit.html', //must not use name ad.html - adBlocker!
 			link: function(scope) {
 				scope.languageCode = LanguageSwitch.uses().code;
 

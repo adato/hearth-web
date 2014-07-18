@@ -71,7 +71,8 @@ $fontSize: rem-calc(18);
 
 @import "navigation";
 @import "forms";
-@import "ad";
+@import "item";
+@import "itemEdit";
 @import "common";
 
 @import "angular-loading-bar";
@@ -79,7 +80,6 @@ $fontSize: rem-calc(18);
 @import "filter-status";
 @import "filter";
 @import "leftCharsProgress";
-@import "editAd";
 @import "needOfferSelector";
 @import "ng-tags-input";
 @import "foundation-datepicker";
@@ -87,7 +87,7 @@ $fontSize: rem-calc(18);
 @import "checkbox";
 @import "map";
 @import "fulltext";
-@import "adDetail";
+@import "itemDetail";
 
 body {
     background-image: inline-image("bg.png");
@@ -170,7 +170,7 @@ meta.foundation-data-attribute-namespace {
     font-family: false;
 }
 
-@import "ad";
+
 
 /*@function emCalc($pxWidth, $base: $em-base) {
     @return $pxWidth / $base * 1em;

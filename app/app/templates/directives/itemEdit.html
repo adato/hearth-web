@@ -1,4 +1,4 @@
-<div class="editAd">
+<div class="itemEdit">
     <div signed-out class="animate-show">
         <article class="row">
             <section class="large-12 columns">
@@ -50,7 +50,7 @@
                     </label>
                     <label>
                         <i class="fa fa-map-marker"></i> {{ 'PLACES' | translate}}
-                        <locations locations="post.locations"></locations>
+						<locations itemid="post._id" locations="post.locations"></locations>
                     </label>
                     <label>
                         <i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}

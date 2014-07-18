@@ -15,16 +15,18 @@ angular.module('hearth.geo').directive('locations', [
 		return {
 			restrict: 'A',
 			replace: true,
-			transclude: true,
 			scope: {
-				'locations': '='
+				locations: '=',
+				itemid: '='
 			},
 			templateUrl: 'templates/geo/locations.html',
 			link: function(scope) {
 				var marker, map, searchBox, editedLocationIndex,
-					mapElement = $('#location-map #map'),
-					searchBoxElement = $('#location-map  input'),
 					initMap = function() {
+						console.info('ini');
+						var mapElement = $('#map', scope.dialog[0]),
+							searchBoxElement = $('input', scope.dialog[0]);
+
 						map = geo.createMap(mapElement[0], {
 							draggableCursor: 'url(images/pin.png) 14 34, default'
 						});
@@ -103,33 +105,49 @@ angular.module('hearth.geo').directive('locations', [
 						scope.selectedPosition = position;
 					};
 
-				scope.editLocation = function(index) {
-					$('#location-map').foundation('reveal', 'open');
-					editedLocationIndex = index;
-				};
-				scope.close = function() {
-					$('#location-map').foundation('reveal', 'close');
-				};
+				scope.init = function(id) {
+					scope.dialogSelector = '#location-map' + id;
+					scope.dialog = $(scope.dialogSelector);
 
-				$(document).on('opened', '#location-map[data-reveal]', function() {
-					initMap();
-				});
-
-				$('button', '#location-map').unbind('click');
-				$('button', '#location-map').click(function() {
-					scope.$apply(function() {
-						scope.locations[editedLocationIndex] = {
-							type: 'Point',
-							name: scope.selectedName,
-							coordinates: [
-								scope.selectedPosition.lng(),
-								scope.selectedPosition.lat()
-							]
-						};
+					$(document).on('opened', scope.dialogSelector + '[data-reveal]', function() {
+						initMap();
 					});
-					$('#location-map').foundation('reveal', 'close');
-					$('.pac-container').remove(); //google maps forget this
+				};
+
+				scope.$watch('itemid', function(value) { //ad edit
+					if (!scope.dialog && value) {
+						scope.init(value);
+					}
 				});
+
+				scope.editLocation = function(index) {
+					if (!scope.dialog) { //new add
+						scope.init('');
+					}
+					editedLocationIndex = index;
+					scope.dialog.foundation('reveal', 'open');
+				};
+
+				scope.close = function() {
+					scope.dialog.foundation('reveal', 'close');
+					$('.pac-container').remove(); //google maps forget this
+				};
+
+				scope.ok = function() {
+					scope.locations[editedLocationIndex] = {
+						type: 'Point',
+						name: scope.selectedName,
+						coordinates: [
+							scope.selectedPosition.lng(),
+							scope.selectedPosition.lat()
+						]
+					};
+					scope.close();
+				};
+				scope.remove = function($event, $index) {
+					$event.preventDefault();
+					scope.locations.splice($index, 1);
+				};
 			}
 		};
 	}

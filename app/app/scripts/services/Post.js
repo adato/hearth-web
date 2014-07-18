@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.services').factory('Post', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/posts/:postId', {
+	'$resource', 'appConfig',
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/posts/:postId', {
 			postId: '@id'
 		}, {
 			get: {
@@ -35,7 +35,7 @@ angular.module('hearth.services').factory('Post', [
 				method: 'DELETE'
 			},
 			spam: {
-				url: $$config.apiPath + '/posts/:postId/spam',
+				url: appConfig.apiPath + '/posts/:postId/spam',
 				method: 'PUT'
 			}
 		});

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q',
-	function($session, $http, $rootScope, $q) {
+	'$session', '$http', '$rootScope', '$q', 'appConfig',
+	function($session, $http, $rootScope, $q, appConfig) {
 		return {
 			init: function(callback) {
 				$rootScope.user = {
@@ -25,20 +25,20 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			login: function(credentials) {
-				return $http.post($$config.apiPath + '/login', credentials).then(function(data) {
+				return $http.post(appConfig.apiPath + '/login', credentials).then(function(data) {
 					$rootScope.user = data.data.user;
 					$rootScope.user.loggedIn = true;
 					return $rootScope.$broadcast('onUserLogin');
 				});
 			},
 			logout: function() {
-				$http.post($$config.apiPath + '/logout');
+				$http.post(appConfig.apiPath + '/logout');
 			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
 			},
 			changePassword: function(password, success) {
-				return $http.post($$config.apiPath + '/change-password', {
+				return $http.post(appConfig.apiPath + '/change-password', {
 					password: password
 				}).success(function(data) {
 					return success(data);
@@ -63,7 +63,7 @@ angular.module('hearth.services').factory('Auth', [
 				}
 			},
 			confirmRegistration: function(hash, success, err) {
-				return $http.post($$config.apiPath + '/confirm-registration', {
+				return $http.post(appConfig.apiPath + '/confirm-registration', {
 					'hash': hash
 				}).success(function(data) {
 					return success(data);
@@ -72,12 +72,12 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			requestPasswordReset: function(email) {
-				return $http.post($$config.apiPath + '/reset-password', {
+				return $http.post(appConfig.apiPath + '/reset-password', {
 					email: email
 				});
 			},
 			resetPassword: function(token, password, success, err) {
-				return $http.put($$config.apiPath + '/reset-password', {
+				return $http.put(appConfig.apiPath + '/reset-password', {
 					token: token,
 					password: password,
 					confirm: password
@@ -90,7 +90,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentity: function(identity) {
 				var defer;
 				defer = $q.defer();
-				$http.post($$config.apiPath + '/switch-identity/' + identity).success(function(data) {
+				$http.post(appConfig.apiPath + '/switch-identity/' + identity).success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);
@@ -100,7 +100,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentityBack: function() {
 				var defer;
 				defer = $q.defer();
-				$http.post($$config.apiPath + '/leave-identity').success(function(data) {
+				$http.post(appConfig.apiPath + '/leave-identity').success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);

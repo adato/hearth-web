@@ -501,7 +501,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			});
 		});
 
-		$scope.setLastAddedId(null);
 		if (($scope.loggedUser != null ? $scope.loggedUser._id : void 0) != null) {
 			$scope.initMyFollowers();
 		}
