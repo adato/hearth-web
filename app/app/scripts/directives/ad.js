@@ -24,8 +24,10 @@ angular.module('hearth.directives').directive('ad', [
 					init = function() {
 						angular.extend(scope, {
 							replyEdit: false,
-							message: '',
-							agree: true,
+							reply: {
+								message: '',
+								agree: true
+							},
 							submited: false,
 							reported: false,
 							showMore: false,
@@ -87,8 +89,8 @@ angular.module('hearth.directives').directive('ad', [
 				scope.sendReply = function() {
 					scope.$emit('sendReply', {
 						id: scope.item._id,
-						message: scope.message,
-						agreed: scope.agree
+						message: scope.reply.message,
+						agreed: scope.reply.agree
 					});
 					scope.submited = true;
 					$timeout(init, timeout);

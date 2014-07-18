@@ -129,9 +129,10 @@
 								<div class="animate-show" ng-show="submited">
 									<div class="alert-box info radius" >{{ 'SENDING_MESSAGE_SUCCESS' | translate }}</div>
 								</div>
-								<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
+								{{message}}
+								<textarea name="message" ng-model="reply.message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
 								<label>
-									<input type="checkbox" name="agree" ng-required="true" ng-model="agree">
+									<input type="checkbox" name="agree" ng-required="true" ng-model="reply.agree">
 								 	{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}
 								</label>
 							</form>
