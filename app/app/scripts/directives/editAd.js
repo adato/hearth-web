@@ -53,6 +53,17 @@ angular.module('hearth.directives').directive('editad', [
 					scope.$emit('closeEditItem');
 				};
 
+				scope.transformImagesStructure = function(postDataCopy) {
+					postDataCopy.attachments = [];
+
+					postDataCopy.attachments_attributes.forEach(function(el) {
+						postDataCopy.attachments.push({normal: el.file, origin: el.file});
+					});
+
+					delete postDataCopy.attachments_attributes;
+					return postDataCopy;
+				};
+
 				scope.send = function() {
 					var eventName, postData, postDataCopy;
 
@@ -73,11 +84,13 @@ angular.module('hearth.directives').directive('editad', [
 						}
 					);
 
-					scope.$emit('adCreated', postDataCopy);
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
-
+					
+					postDataCopy = scope.transformImagesStructure(postDataCopy);
+					console.log(postDataCopy.attachments);
+					scope.$emit('adCreated', postDataCopy);
 					scope.close();
 
 					/*$analytics.eventTrack(eventName, {
