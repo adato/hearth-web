@@ -34,9 +34,17 @@
 			<div class="arrow"></div>
 			<div class="content">
 				<header>
-					<span ng-if="item.locations" ng-repeat="location in item.locations">
+					<span ng-if="item.locations.length && item.locations[0].name" class="fa fa-map-marker"></span> {{ item.locations[0].name }}</span>
+					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">a {{item.locations.length - 1}} dalšé</a>
+					<div id="{{'locations' + item._id}}" class="f-dropdown content" data-dropdown-content>
+						<div ng-repeat="location in item.locations">
+							{{ location.name }}
+						</div>
+					</div>
+
+					<!--span ng-if="item.locations" ng-repeat="location in item.locations">
 						<span ng-if="location.name" class="fa fa-map-marker"></span> {{ location.name }}
-					</span>	
+					</span-->	
 					<span><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
 				</header>
 				<h1>
