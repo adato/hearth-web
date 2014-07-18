@@ -54,8 +54,7 @@
 						<span ng-show="expanded"><i class="fa fa-angle-double-up"></i> {{ 'show-less' | translate }}</span>
 					</a>
 				</div>
-				
-				<div ng-if="item.attachments.length">
+				<div class="attachments" ng-if="item.attachments.length">
 					<img ng-repeat="photo in item.attachments" ng-src="{{ photo.normal }}">
 				</div>
 			</div>
