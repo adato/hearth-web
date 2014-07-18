@@ -97,6 +97,14 @@ $imageSize: 80px;
                 };
             }
         }
+        .content {
+            text-align: left;
+            div {
+                margin: {
+                    bottom: 0.5em;
+                }
+            }
+        }
     }
     footer {
         border-radius: 0 0 $global-radius $global-radius;
