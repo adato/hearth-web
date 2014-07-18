@@ -107,8 +107,8 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 				controller: 'Messages',
 				templateUrl: 'templates/messages/messages.html'
 			})*/.when('/ad/:id', {
-				controller: 'AdDetail',
-				templateUrl: 'templates/adDetail.html'
+				controller: 'ItemDetail',
+				templateUrl: 'templates/itemDetail.html'
 			}).otherwise({
 				redirectTo: '/'
 			});

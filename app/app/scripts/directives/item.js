@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.ad
+ * @name hearth.directives.item
  * @description
  * @restrict E
  */
-angular.module('hearth.directives').directive('ad', [
+angular.module('hearth.directives').directive('item', [
 	'$timeout', '$translate',
 
 	function($timeout, $translate) {

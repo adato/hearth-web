@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.AdDetail
+ * @name hearth.controllers.ItemDetail
  * @description
  */
 
-angular.module('hearth.controllers').controller('AdDetail', [
-	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService',
+angular.module('hearth.controllers').controller('ItemDetail', [
+	'$scope', 'ItemDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService',
 
-	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService) {
+	function($scope, ItemDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService) {
 		$scope.ad = {};
 		$scope.replyDisplayed = false;
 		$scope.reply = {
@@ -18,7 +18,7 @@ angular.module('hearth.controllers').controller('AdDetail', [
 		$scope.isMine = false;
 		$scope.hideCloseButton = true;
 
-		AdDetailResource.get({
+		ItemDetailResource.get({
 			id: $routeParams.id
 		}, function(data) {
 			data.profileUrl = data.author._type === 'Community' ? 'community' : 'profile';
