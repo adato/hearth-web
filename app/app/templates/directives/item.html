@@ -3,14 +3,14 @@
 		<div class="user-info">
 			<article class="row">
 				<section class="large-6 columns">
-					<div><b>{{item.author.post_count}}</b> uskutečněných darů a  přání</div>
+					<div ng-bind-html="'count-of-wished-and-gifts' | translate: {value: item.author.post_count}"></div>
 					<div class="summary">
-						<div ng-if="item.author.up_votes"><b>{{item.author.up_votes}} super</b> hodnoceni<br></div>
-						<div ng-if="item.author.down_votes"><b>{{item.author.down_votes}}</b> se moc <b>nepovedlo</b></div>
+						<div ng-if="item.author.up_votes" ng-bind-html="'evaluation-cool' | translate: {value: item.author.up_votes}"></div>
+						<div ng-if="item.author.down_votes" ng-bind-html="'evaluation-bad' | translate: {value: item.author.down_votes}"></div>
 					</div>
 				</section>
 				<section class="large-6 columns">
-					<div g-if="item.author.about" ng-bind-html="item.author.about | linky:'_blank'"></div>
+					<div ng-if="item.author.about" ng-bind-html="item.author.about | linky:'_blank'"></div>
 					<div ng-if="item.author.interests.length"><i class="fa fa-heart"></i> {{item.author.interests.join(', ')}}</div>
 					<div ng-if="item.author.work"><i class="fa fa-suitcase"></i> {{item.author.work}}</div>
 					<div ng-if="item.author.locations.length">
@@ -35,16 +35,12 @@
 			<div class="content">
 				<header>
 					<span ng-if="item.locations.length && item.locations[0].name" class="fa fa-map-marker"></span> {{ item.locations[0].name }}</span>
-					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">a {{item.locations.length - 1}} dalšé</a>
+					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
 					<div id="{{'locations' + item._id}}" class="f-dropdown content" data-dropdown-content>
 						<div ng-repeat="location in item.locations">
 							{{ location.name }}
 						</div>
 					</div>
-
-					<!--span ng-if="item.locations" ng-repeat="location in item.locations">
-						<span ng-if="location.name" class="fa fa-map-marker"></span> {{ location.name }}
-					</span-->	
 					<span><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
 				</header>
 				<h1>
