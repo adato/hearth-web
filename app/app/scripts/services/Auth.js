@@ -21,6 +21,10 @@ angular.module('hearth.services').factory('Auth', [
 						$rootScope.user.loggedIn = true;
 						$rootScope.$broadcast('onUserLogin');
 					}
+					else {
+						$rootScope.$broadcast('unathorizedUserLogin');
+					}
+					$rootScope.$broadcast('authorize');
 					return callback();
 				});
 			},

@@ -87,7 +87,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		});
 
+		$scope.$on('authorize', function() {
+			$scope.load();
+		});
 		$scope.load();
-
 	}
 ]);
