@@ -55,9 +55,11 @@ angular.module('hearth.directives').directive('itemEdit', [
 
 				scope.transformImagesStructure = function(postDataCopy) {
 					postDataCopy.attachments = [];
-
 					postDataCopy.attachments_attributes.forEach(function(el) {
-						postDataCopy.attachments.push({normal: el.file, origin: el.file});
+						postDataCopy.attachments.push({
+							normal: el.file,
+							origin: el.file
+						});
 					});
 
 					delete postDataCopy.attachments_attributes;
@@ -88,7 +90,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
-					
+
 					postDataCopy = scope.transformImagesStructure(postDataCopy);
 					console.log(postDataCopy.attachments);
 					scope.$emit('adCreated', postDataCopy);
