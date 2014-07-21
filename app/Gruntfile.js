@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 				],
 				tasks: ['newer:jshint:all'],
 				options: {
-					livereload: 3333
+					livereload: 35729
 				}
 			},
 			jsTest: {
@@ -138,7 +138,7 @@ module.exports = function(grunt) {
 				port: 9000,
 				// Change this to '0.0.0.0' to access the server from outside.
 				hostname: 'localhost',
-				livereload: 3333,
+				livereload: 35729,
 				open: true,
 				middleware: function(connect, options) {
 					var middlewares = [];
@@ -164,9 +164,9 @@ module.exports = function(grunt) {
 
 //				host: 'hearth-net-topmonks-staging.herokuapp.com', // wherever the data service is running,
 
-				host: '0.0.0.0', // wherever the data service is running,
+				host: 'hearth-net-topmonks-staging.herokuapp.com', // wherever the data service is running,
 				https: false,
-				port: 3000 // the port that the data service is running on
+				port: 80 // the port that the data service is running on
 			}],
 			livereload: {
 				options: {
