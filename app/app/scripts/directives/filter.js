@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-	'geo',
+	'geo', 'KeywordsService',
 
-	function(geo) {
+	function(geo, KeywordsService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -61,6 +61,10 @@ angular.module('hearth.directives').directive('filter', [
 
 				scope.reset = function() {
 					scope.$emit('filterReset');
+				};
+
+				scope.queryKeywords = function($query) {
+					return KeywordsService.queryKeywords($query);
 				};
 
 				scope.$on('resetFilterData', function() {
