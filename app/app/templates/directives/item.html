@@ -18,6 +18,17 @@
 						<span ng-repeat="location in item.author.locations">{{location.name}}</span>.
 					</div>
 					<div>A na sociálních sítích.</div>
+
+					<div ng-if="item.author.facebook || item.author.googleplus || item.author.twitter || item.author.linkedin">{{'and-on-social-networks' | translate}}
+						<span class="social">
+							<a ng-if="item.author.facebook" class="fa fa-facebook" title="Facebook" href="{{item.author.facebook}}" target="_blank"></a>
+							<a ng-if="item.author.googleplus" class="fa fa-google-plus" title="Google+" href="{{item.author.googleplus}}" target="_blank"></a>
+							<a ng-if="item.author.twitter" class="fa fa-twitter" title="Twitter" href="{{item.author.twitter}}" target="_blank"></a>
+							<a ng-if="item.author.linkedin" class="fa fa-linkedin" title="LinkedIn" href="{{item.author.linkedin}}" target="_blank"></a>
+						</span>
+						.
+					<div>
+
 					<div class="text-right"><a ng-href="#/profile/{{item.author._id}}">Celý profil</a></div>
 				</section>
 			</article>

@@ -23,7 +23,6 @@ angular.module('hearth.geo').directive('locations', [
 			link: function(scope) {
 				var marker, map, searchBox, editedLocationIndex,
 					initMap = function() {
-						console.info('ini');
 						var mapElement = $('#map', scope.dialog[0]),
 							searchBoxElement = $('input', scope.dialog[0]);
 
