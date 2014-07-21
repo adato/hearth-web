@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', 'Post', '$location', 'PostReplies',
+	'$scope', 'Post', '$location', 'PostReplies', 'User',
 
-	function($scope, Post, $location, PostReplies) {
+	function($scope, Post, $location, PostReplies, User) {
 		$scope.limit = 15;
 		$scope.items = [];
 
@@ -28,9 +28,23 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$location.search(filterData);
 		});
 
+		$scope.$on('filterSave', function($event, filterData) {
+			User.edit({
+				_id: $scope.user._id,
+				filter: filterData
+			});
+		});
+
 		$scope.$on('filterReset', function() {
 			$location.search('');
 			$scope.$broadcast('resetFilterData');
+
+			if ($scope.user.filter) {
+				User.edit({
+					_id: $scope.user._id,
+					filter: {}
+				});
+			}
 		});
 
 		$scope.$on('adCreated', function($event, data) {
