@@ -88,14 +88,12 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.$watch('place', function(value) {
-					if (!value) {
+					if (!value && scope.filter) {
 						delete scope.filter.lat;
 						delete scope.filter.lon;
 						delete scope.filter.name;
 					}
 				});
-
-				scope.reset();
 
 			}
 		};
