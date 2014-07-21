@@ -29,10 +29,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('filterSave', function($event, filterData) {
-			User.edit({
+			var params = {
 				_id: $scope.user._id,
-				filter: filterData
-			});
+			};
+
+			User.edit(angular.extend(params, filterData));
 		});
 
 		$scope.$on('filterReset', function() {
