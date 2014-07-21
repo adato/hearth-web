@@ -3,7 +3,6 @@
         width: 100%;
         margin-bottom: 0;
     }
-   
     header {
         background-color: darken(white, 5%);
         text-align: center;
@@ -12,7 +11,7 @@
         color: lighten(color(3), 20%);
         font-size: rem-calc(14);
         margin: {
-            bottom: $fontSize ;
+            bottom: $fontSize;
         };
     }
     .bars {
@@ -23,16 +22,16 @@
                 right: 1px;
             };
             &:first-child header {
-                border:{
+                border: {
                     top-left-radius: 8px;
                     bottom-left-radius: 8px;
-                }
+                };
             }
             &:last-child header {
-                border:{
+                border: {
                     top-right-radius: 8px;
                     bottom-right-radius: 8px;
-                }
+                };
             }
         }
     }
@@ -41,10 +40,10 @@
         cursor: pointer;
         outline: none;
     }
-    tags-input .host  {
+    tags-input .host {
         margin: {
-top:1em;
+            top: 1em;
             bottom: 2em;
-            }
+        };
     }
 }
