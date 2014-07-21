@@ -7,9 +7,10 @@
  */
 
 angular.module('hearth.services').factory('Session', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/session', {}, {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/session', {}, {
 			show: {
 				method: 'GET',
 				params: {

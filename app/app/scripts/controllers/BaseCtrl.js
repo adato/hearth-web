@@ -33,8 +33,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		$scope.$watch('user', function() {
 			var user = $scope.user.get_logged_in_user;
-			if (user && user.avatar.normal) {
-				$('.navigation .img').css('background-image', 'url(' + user.avatar.normal + ')');
+			if (user) {
+				$scope.avatarExtraStyle = {
+					'background-image': 'url(' + user.avatar.normal + ')'
+				};
 			}
 		});
 
@@ -47,17 +49,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, 1000);
 		});
 
-		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
-			$scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
-			return $scope.pageType;
-		});
-
 		angular.element(window).bind('scroll', function() {
 			if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
 				$('html').toggleClass('scrolled');
 				$scope.isScrolled = !$scope.isScrolled;
 			}
 		});
-
 	}
 ]);
