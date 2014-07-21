@@ -51,6 +51,18 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('adCreated', function($event, data) {
 			$scope.items.unshift(data);
 		});
+		$scope.$on('adUpdated', function($event, data) {
+			var item, i;
+
+			for (i = 0; i < $scope.items.length; i++) {
+				item = $scope.items[i];
+				if (data._id === item._id) {
+					$scope.items[i] = $.extend(item, data);
+					break;
+				}
+			}
+		});
+
 		$scope.$on('searchMap', function() {
 			$scope.showMap = true;
 		});

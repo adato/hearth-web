@@ -49,7 +49,6 @@ angular.module('hearth.directives').directive('itemEdit', [
 					if (!scope.data) {
 						scope.post = angular.copy(defaultPost);
 					}
-
 					scope.$emit('closeEditItem');
 				};
 
@@ -73,19 +72,12 @@ angular.module('hearth.directives').directive('itemEdit', [
 						}
 					);
 
-					scope.$emit('adCreated', postDataCopy);
-
+					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
 
 					scope.close();
-
-					/*$analytics.eventTrack(eventName, {
-						category: 'Posting',
-						label: 'NP',
-						value: 7
-					});*/
 				};
 
 				scope.photoUploadSuccessful = function($event) {
