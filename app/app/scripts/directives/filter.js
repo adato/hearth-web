@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-	'geo',
+	'geo', 'KeywordsService',
 
-	function(geo) {
+	function(geo, KeywordsService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -63,6 +63,10 @@ angular.module('hearth.directives').directive('filter', [
 					scope.$emit('filterReset');
 				};
 
+				scope.queryKeywords = function($query) {
+					return KeywordsService.queryKeywords($query);
+				};
+
 				scope.$on('resetFilterData', function() {
 					scope.close();
 					scope.filter = angular.copy(defaultFilter);
@@ -84,14 +88,12 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.$watch('place', function(value) {
-					if (!value) {
+					if (!value && scope.filter) {
 						delete scope.filter.lat;
 						delete scope.filter.lon;
 						delete scope.filter.name;
 					}
 				});
-
-				scope.reset();
 
 			}
 		};

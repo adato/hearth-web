@@ -13,6 +13,9 @@ angular.module('hearth.directives').directive('filterbar', [
 			replace: true,
 			restrict: 'E',
 			templateUrl: 'templates/directives/filterbar.html',
+			scope: {
+				filter: '='
+			},
 			link: function(scope) {
 				angular.extend(scope, {
 					mapSelected: false,
@@ -53,6 +56,10 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.$on('$routeUpdate', function() {
 					scope.filterOn = !$.isEmptyObject($location.search());
+				});
+
+				scope.$watch('filter', function(value) {
+					scope.filterOn = !$.isEmptyObject(value);
 				});
 
 				scope.toggleMap = function() {

@@ -29,10 +29,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('filterSave', function($event, filterData) {
-			User.edit({
+			User.edit(angular.extend({
 				_id: $scope.user._id,
 				filter: filterData
-			});
+			}));
 		});
 
 		$scope.$on('filterReset', function() {
@@ -45,11 +45,24 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					filter: {}
 				});
 			}
+			$scope.filter = {};
 		});
 
 		$scope.$on('adCreated', function($event, data) {
 			$scope.items.unshift(data);
 		});
+		$scope.$on('adUpdated', function($event, data) {
+			var item, i;
+
+			for (i = 0; i < $scope.items.length; i++) {
+				item = $scope.items[i];
+				if (data._id === item._id) {
+					$scope.items[i] = $.extend(item, data);
+					break;
+				}
+			}
+		});
+
 		$scope.$on('searchMap', function() {
 			$scope.showMap = true;
 		});
@@ -104,6 +117,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('authorize', function() {
 			$scope.load();
 		});
-		$scope.load();
+		$scope.$watch('user', function(value) {
+			if (value.loggedIn) {
+				$scope.filter = value.filter;
+				$location.search(value.filter);
+			}
+			$scope.load();
+		});
 	}
 ]);

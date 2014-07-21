@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('itemEdit', [
-	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post',
+	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post', 'KeywordsService',
 
-	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post) {
+	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post, KeywordsService) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -65,7 +65,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 				};
 
 				scope.send = function() {
-					var eventName, postData, postDataCopy;
+					var postData, postDataCopy;
 
 					//we need copy, because we change data and don't want to show these changes to user
 					postData = angular.extend(
@@ -84,6 +84,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 						}
 					);
 
+					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
@@ -104,6 +105,10 @@ angular.module('hearth.directives').directive('itemEdit', [
 					if ($event.target.status === 200) {
 						scope.post.attachments_attributes.push(JSON.parse($event.target.response));
 					}
+				};
+
+				scope.queryKeywords = function($query) {
+					return KeywordsService.queryKeywords($query);
 				};
 
 				function dateToTimestamp(dateToFormat, withOffset) {
