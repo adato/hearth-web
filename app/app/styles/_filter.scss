@@ -5,28 +5,46 @@
     }
    
     header {
-        background-color: darken(color(4), 5%);
+        background-color: darken(white, 5%);
         text-align: center;
         padding: $fontSize / 2;
         font-weight: bold;
-        color: color(3);
+        color: lighten(color(3), 20%);
         font-size: rem-calc(14);
         margin: {
-            bottom: $fontSize / 2;
+            bottom: $fontSize ;
         };
     }
     .bars {
         margin: 0;
         .columns {
             padding: {
-                left: $fontSize / 4;
-                right: $fontSize / 4;
+                left: 1px;
+                right: 1px;
             };
+            &:first-child header {
+                border:{
+                    top-left-radius: 8px;
+                    bottom-left-radius: 8px;
+                }
+            }
+            &:last-child header {
+                border:{
+                    top-right-radius: 8px;
+                    bottom-right-radius: 8px;
+                }
+            }
         }
     }
     input[type=range] {
         width: 100%;
         cursor: pointer;
         outline: none;
+    }
+    tags-input .host  {
+        margin: {
+top:1em;
+            bottom: 2em;
+            }
     }
 }

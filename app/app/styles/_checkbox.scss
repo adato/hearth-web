@@ -1,19 +1,22 @@
 .checkbox {
-    .fa {
-        position: relative;
-        top: $fontSize /2;
-        color: color(3);
-        font-size: 2 * $fontSize;
-        width: $fontSize;
-        margin: {
-            right: $fontSize;
-        };
-        &:before {
-
-        text-shadow: 0 0 2px darken(color(4), 30%);
-        }
-    }
     margin: {
         bottom: $fontSize / 2;
     };
+    height: 3em;
+    padding: {
+        top: 0.8em;
+        left: 4em;
+    }
+    background-image: inline-image("filter/checkbox-off.svg");
+    &.on {
+        font-weight: bold;
+        background-image: inline-image("filter/checkbox-on.svg");
+    }
+    &.radio {
+        background-image: inline-image("filter/radio-off.svg");
+        &.on {
+             font-weight: bold;
+            background-image: inline-image("filter/radio-on.svg");
+        }
+    }
 }

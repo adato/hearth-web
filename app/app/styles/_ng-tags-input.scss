@@ -20,8 +20,8 @@ tags-input .host {
         word-wrap: break-word;
         cursor: text;
         background-color: white;
-        border: 1px solid darken(color(4), 20%);
-        box-shadow: 1px 1px 1px 0 lightgray inset;
+        border: 0;
+  
         border-radius: $global-radius;
         outline: none;
         &.focused {
@@ -35,16 +35,15 @@ tags-input .host {
         }
         .tag-item {
             margin: 2px;
-            padding: 0 5px;
+            padding: 5px 10px 10px 10px;
             display: inline-block;
             float: left;
-            height: 26px;
+            height: 36px;
             line-height: 25px;
-            border: 1px solid darken(color(5), 20%);
+        
             border-radius: $global-radius;
-            background: color(5);
+            background: color(1);
             color: color(4);
-            background: linear-gradient(to bottom, lighten(color(5), 20%) 0%, color(5) 47%, color(5) 100%);
             &.selected {
                 background: linear-gradient(to bottom, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
             }
@@ -56,20 +55,20 @@ tags-input .host {
                 cursor: pointer;
                 vertical-align: middle;
                 font: bold 16px Arial, sans-serif;
-                color: #585858;
+                color: white;
             }
             .remove-button:active {
                 color: red;
             }
         }
         .input {
-            border: 0;
+                  border: 1px solid darken(color(4), 20%);  
             outline: none;
             margin: 2px;
             padding: 0;
             padding-left: 5px;
             float: left;
-            height: 26px;
+            height: 16px;
             &.invalid-tag {
                 color: red;
             }
