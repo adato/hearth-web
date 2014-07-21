@@ -58,6 +58,10 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.filterOn = !$.isEmptyObject($location.search());
 				});
 
+				scope.$watch('filter', function(value) {
+					scope.filterOn = !$.isEmptyObject(value);
+				});
+
 				scope.toggleMap = function() {
 					scope.mapSelected = !scope.mapSelected;
 					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');

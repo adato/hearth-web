@@ -1,4 +1,4 @@
-<div class="filter-status fixed show-for-scrolled" ng-if="filterData">
+<div class="filter-status fixed show-for-scrolled" ng-show="filterData">
 	<dl>
 		<dd ng-show="filterData.type">{{'ads' | translate}}: <b>{{filterData.type.toUpperCase() | translate}}</b> </dd>
 		<dd ng-show="filterData.related">{{'author' | translate}}: <b>{{filterData.related}}</b> </dd>
