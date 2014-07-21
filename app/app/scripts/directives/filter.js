@@ -49,6 +49,9 @@ angular.module('hearth.directives').directive('filter', [
 						scope.reset();
 					} else {
 						scope.$emit('filterApply', filterData);
+						if (scope.filterSave) {
+							scope.$emit('filterSave', filterData);
+						}
 						scope.close();
 					}
 				};

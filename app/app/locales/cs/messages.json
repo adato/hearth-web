@@ -352,6 +352,7 @@
 	"ads-need": "Inzer\u00e1ty p\u0159ijmu",
 	"ads-offer": "Inzer\u00e1ty v\u011bnuji",
 	"and-next": "a {{value}} dal\u0161\u00edch",
+	"and-on-social-networks": "A na soci\u00e1ln\u00edch s\u00edt\u00edch",
 	"author": "Autor",
 	"by-author": "Podle autora",
 	"by-place": "Podle m\u00edsta",
@@ -393,5 +394,6 @@
 	"today": "Dnes",
 	"user": "jednotivci",
 	"week": "T\u00fdden",
-	"without-limit": "Bez omezen\u00ed"
+	"without-limit": "Bez omezen\u00ed",
+	"you-will-find-me": "Najdete mne v"
 }

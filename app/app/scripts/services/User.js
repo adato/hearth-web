@@ -16,10 +16,7 @@ angular.module('hearth.services').factory('User', [
 				method: 'POST'
 			},
 			get: {
-				method: 'GET',
-				params: {
-					r: Math.random()
-				}
+				method: 'GET'
 			},
 			edit: {
 				method: 'PUT'
