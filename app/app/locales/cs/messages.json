@@ -347,7 +347,6 @@
 	"YOUR_NAME": "Va\u0161e jm\u00e9no",
 	"YOU_HAVE_NOT_BEEN_RATED": "Zat\u00edm v\u00e1s je\u0161t\u011b nikdo neohodnotil.",
 	"YOU_HAVE_NO_WISHES": "Zat\u00edm jste se nezapojili.",
-<<<<<<< HEAD
 	"ads-all": "V\u0161echny inzer\u00e1ty",
 	"ads-need": "Inzer\u00e1ty p\u0159ijmu",
 	"ads-offer": "Inzer\u00e1ty v\u011bnuji",
@@ -364,9 +363,7 @@
 	"run-filter": "Filtrovat",
 	"save-the-filter-for-future-use": "Ulo\u017eit filtr pro dal\u0161\u00ed pou\u017eit\u00ed",
 	"today": "Dnes",
-	"week": "T\u00fdden"
-=======
+	"week": "T\u00fdden",
 	"SEND_FB_INVITATION": "Pozvěte přátele na Facebooku",
 	"required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole..."
->>>>>>> origin
 }
