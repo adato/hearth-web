@@ -5,14 +5,14 @@
     .charsleft {
         text-align: right;
         margin: {
-            bottom: 0.5em;
+            bottom: 0;
             right: $global-radius;
         }
         ;
         font-size: 0.8em;
     }
     textarea {
-        height: 250px;
+        height: 150px;
     }
     a {
         color: color(5);
@@ -27,7 +27,7 @@
     }
     .row {
         margin: {
-            bottom: 1em;
+            bottom: $fontSize/2;
         }
     }
     

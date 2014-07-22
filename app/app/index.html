@@ -85,11 +85,9 @@
       <script src="vendor/json3/lib/json3.js"></script>
     <![endif]-->
 
-    <div class="container">
-      <section ng-include="'templates/navigation.html'"></section>
-      <ng-view class="main-container"></ng-view>
-      <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}"><span class="fa fa-caret-square-o-up"></span></div>
-    </div>
+    <section ng-include="'templates/navigation.html'"></section>
+    <ng-view class="main-container"></ng-view>
+    <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}"><span class="fa fa-caret-square-o-up"></span></div>
 
     <script>
       EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
