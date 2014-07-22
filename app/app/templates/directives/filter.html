@@ -46,7 +46,7 @@
 			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> {{'return-the-filter-to-original-settings' | translate}}</a>
 		</div>
 		<div class="large-4 columns">
-			<checkbox model="save" value="true">{{'save-the-filter-for-future-use' | translate}}</checkbox>
+			<checkbox signed-in model="filterSave" value="true">{{'save-the-filter-for-future-use' | translate}}</checkbox>
 		</div>
 		<div class="large-4 columns text-right">
 			<button class="button" ng-click="search()"><span class="fa fa-filter"></span> {{'run-filter' | translate}}</button>

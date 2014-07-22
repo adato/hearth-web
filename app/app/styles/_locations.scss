@@ -1,11 +1,11 @@
-#location-map {
-	.map-canvas {
-		height: 400px;
-		img {
-			max-width: inherit;
-		}
-		border-radius: $global-radius;
-		border: 1px solid darken(color(4), 20%);
+.location-map {
+    .map-canvas {
+        height: 400px;
+        img {
+            max-width: inherit;
+        }
+        border-radius: $global-radius;
+        border: 1px solid darken(color(4), 20%);
         margin: {
             bottom: 1em;
         };

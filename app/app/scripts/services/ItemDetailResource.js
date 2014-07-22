@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc service
- * @name hearth.services.AdDetailResource
+ * @name hearth.services.ItemDetailResource
  * @description
  */
 
-angular.module('hearth.services').factory('AdDetailResource', [
+angular.module('hearth.services').factory('ItemDetailResource', [
 	'$resource',
 	function($resource) {
 		return $resource($$config.apiPath + '/posts/:id', {

@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', 'Post', '$location',
+	'$scope', 'Post', '$location', 'PostReplies', 'User',
 
-	function($scope, Post, $location) {
+	function($scope, Post, $location, PostReplies, User) {
 		$scope.limit = 15;
 		$scope.items = [];
 		
@@ -24,22 +24,58 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		};
 
-		$scope.$on('filter', function($event, filterData) {
+		$scope.$on('filterApply', function($event, filterData) {
 			$location.search(filterData);
 		});
 
-		$scope.$on('clearFilter', function() {
+		$scope.$on('filterSave', function($event, filterData) {
+			User.edit(angular.extend({
+				_id: $scope.user._id,
+				filter: filterData
+			}));
+		});
+
+		$scope.$on('filterReset', function() {
 			$location.search('');
+			$scope.$broadcast('resetFilterData');
+
+			if ($scope.user.filter) {
+				User.edit({
+					_id: $scope.user._id,
+					filter: {}
+				});
+			}
+			$scope.filter = {};
 		});
 
 		$scope.$on('adCreated', function($event, data) {
 			$scope.items.unshift(data);
 		});
+		$scope.$on('adUpdated', function($event, data) {
+			var item, i;
+
+			for (i = 0; i < $scope.items.length; i++) {
+				item = $scope.items[i];
+				if (data._id === item._id) {
+					$scope.items[i] = $.extend(item, data);
+					break;
+				}
+			}
+		});
+
 		$scope.$on('searchMap', function() {
 			$scope.showMap = true;
 		});
 		$scope.$on('searchList', function() {
 			$scope.showMap = false;
+		});
+
+		$scope.$on('sendReply', function($event, data) {
+			PostReplies.add(data);
+		});
+
+		$scope.$on('report', function($event, data) {
+			Post.spam(data);
 		});
 
 		$scope.$on('adSaved', function($event, data) {
@@ -59,6 +95,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('$routeUpdate', function() {
+			if ($scope.filter && $.isEmptyObject($location.search())) {
+				$scope.search($scope.filter);
+				return;
+			}
 			$scope.items = [];
 			$scope.load();
 		});
@@ -78,7 +118,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		});
 
-		$scope.load();
-
+		$scope.$on('authorize', function() {
+			$scope.load();
+		});
+		$scope.$watch('user', function(value) {
+			if (value.loggedIn) {
+				$scope.filter = value.filter;
+				$location.search(value.filter);
+			}
+			$scope.load();
+		});
 	}
 ]);

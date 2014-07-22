@@ -1,27 +1,28 @@
 'use strict';
 /**
  * @ngdoc directive
- * @name hearth.directives.editAd
+ * @name hearth.directives.itemEdit
  * @description M
  * @restrict E
  */
-angular.module('hearth.directives').directive('editad', [
-	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post',
+angular.module('hearth.directives').directive('itemEdit', [
+	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post', 'KeywordsService',
 
-	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post) {
+	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post, KeywordsService) {
 		return {
 			replace: true,
 			restrict: 'E',
 			scope: {
 				data: '='
 			},
-			templateUrl: 'templates/directives/editItem.html', //must not use name ad.html - adBlocker!
+			templateUrl: 'templates/directives/itemEdit.html', //must not use name ad.html - adBlocker!
 			link: function(scope) {
+				scope.languageCode = LanguageSwitch.uses().code;
 
 				var defaultPost = {
 					type: 'offer',
 					isPrivate: false,
-					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, scope.languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
 					sharing_allowed: true,
 					locations: [{
 						name: ''
@@ -31,6 +32,10 @@ angular.module('hearth.directives').directive('editad', [
 					title: '',
 					keywords: [],
 					edit: false
+				};
+
+				scope.limits = {
+					title: 100
 				};
 
 				if (scope.data && scope.data.date) {
@@ -44,12 +49,11 @@ angular.module('hearth.directives').directive('editad', [
 					if (!scope.data) {
 						scope.post = angular.copy(defaultPost);
 					}
-
 					scope.$emit('closeEditItem');
 				};
 
 				scope.send = function() {
-					var eventName, postData, postDataCopy;
+					var postData, postDataCopy;
 
 					//we need copy, because we change data and don't want to show these changes to user
 					postData = angular.extend(
@@ -68,25 +72,22 @@ angular.module('hearth.directives').directive('editad', [
 						}
 					);
 
-					scope.$emit('adCreated', postDataCopy);
-
+					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
 
 					scope.close();
-
-					/*$analytics.eventTrack(eventName, {
-						category: 'Posting',
-						label: 'NP',
-						value: 7
-					});*/
 				};
 
 				scope.photoUploadSuccessful = function($event) {
 					if ($event.target.status === 200) {
 						scope.post.attachments.push(JSON.parse($event.target.response));
 					}
+				};
+
+				scope.queryKeywords = function($query) {
+					return KeywordsService.queryKeywords($query);
 				};
 
 				function dateToTimestamp(dateToFormat, withOffset) {

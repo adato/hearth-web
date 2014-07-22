@@ -14,7 +14,6 @@ $imageSize: 80px;
         height: $imageSize;
         border-radius: 50%;
         border: 3px solid white;
-        box-shadow: $defaultShadow;
         position: relative;
         background-size: cover;
         left: 50%;
@@ -22,17 +21,7 @@ $imageSize: 80px;
             left: -$imageSize / 2;
         };
         background-image: inline-image("no-avatar.png");
-        &:after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: inset -5px -5px 10px rgba(gray, 0.5);
-            width: $imageSize - 5px;
-            height: $imageSize - 5px;
-            top: 0;
-            left: 0;
-        }
+       
     }
     div.name {
         margin: {
@@ -108,6 +97,14 @@ $imageSize: 80px;
                 };
             }
         }
+        .content {
+            text-align: left;
+            div {
+                margin: {
+                    bottom: 0.5em;
+                }
+            }
+        }
     }
     footer {
         border-radius: 0 0 $global-radius $global-radius;
@@ -131,6 +128,9 @@ $imageSize: 80px;
             margin: {
                 right: 1em;
             };
+        }
+        .footer-container {
+            margin-top: $fontSize;
         }
         button {
             margin: {
@@ -156,7 +156,7 @@ $imageSize: 80px;
                 }
             }
             &.main.secondary {
-                background-color: lighten(color(2), 55%);
+                background-color: lighten(color(2), 50%);
                 color: color(2);
                 border-color: lighten(color(2), 20%);
                 &:hover:not([disabled]) {

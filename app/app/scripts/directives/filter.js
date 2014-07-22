@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-	'geo',
+	'geo', 'KeywordsService',
 
-	function(geo) {
+	function(geo, KeywordsService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -48,19 +48,29 @@ angular.module('hearth.directives').directive('filter', [
 					if ($.isEmptyObject(filterData)) {
 						scope.reset();
 					} else {
-						scope.$emit('filter', filterData);
+						scope.$emit('filterApply', filterData);
+						if (scope.filterSave) {
+							scope.$emit('filterSave', filterData);
+						}
 						scope.close();
 					}
 				};
 				scope.close = function() {
-					scope.$emit('closeFilter');
+					scope.$emit('filterClose');
 				};
 
 				scope.reset = function() {
-					scope.filter = angular.copy(defaultFilter);
-					scope.$emit('clearFilter');
-					scope.close();
+					scope.$emit('filterReset');
 				};
+
+				scope.queryKeywords = function($query) {
+					return KeywordsService.queryKeywords($query);
+				};
+
+				scope.$on('resetFilterData', function() {
+					scope.close();
+					scope.filter = angular.copy(defaultFilter);
+				});
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
 					var places = searchBox.getPlaces();
@@ -78,14 +88,12 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.$watch('place', function(value) {
-					if (!value) {
+					if (!value && scope.filter) {
 						delete scope.filter.lat;
 						delete scope.filter.lon;
 						delete scope.filter.name;
 					}
 				});
-
-				scope.reset();
 
 			}
 		};

@@ -119,7 +119,6 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 				if (data) {
 					$scope.sent = true;
 				}
-				$scope.setLastAddedId(data._id);
 				$scope.error = null;
 				$scope.sending = false;
 				return deferred.resolve(data);

@@ -57,11 +57,11 @@ $topBarImageSize: 1.8em;
             &.logo {
                 display: block;
                 position: relative;
-                left: -23px;
+                right: 22px;
                 top: -4px;
                 height: $topBarHeight !important;
                 .scrolled & {
-                    left: 0px;
+                    right: -74px;
                     top: 0px;
                     height: $topBarHeight / 2 !important;
                     background-size: 181%;

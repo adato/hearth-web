@@ -3,21 +3,31 @@
 		<div class="user-info">
 			<article class="row">
 				<section class="large-6 columns">
-					<div><b>15</b> uskutečněných darů a  přání</div>
+					<div ng-bind-html="'count-of-wished-and-gifts' | translate: {value: item.author.post_count}"></div>
 					<div class="summary">
-						<div ng-if="item.author.up_votes"><b>{{item.author.up_votes}} super</b> hodnoceni<br></div>
-						<div ng-if="item.author.down_votes"><b>{{item.author.down_votes}}</b> se moc <b>nepovedlo</b></div>
+						<div ng-if="item.author.up_votes" ng-bind-html="'evaluation-cool' | translate: {value: item.author.up_votes}"></div>
+						<div ng-if="item.author.down_votes" ng-bind-html="'evaluation-bad' | translate: {value: item.author.down_votes}"></div>
 					</div>
 				</section>
 				<section class="large-6 columns">
-					<div g-if="item.author.about" ng-bind-html="item.author.about | linky:'_blank'"></div>
+					<div ng-if="item.author.about" ng-bind-html="item.author.about | linky:'_blank'"></div>
 					<div ng-if="item.author.interests.length"><i class="fa fa-heart"></i> {{item.author.interests.join(', ')}}</div>
 					<div ng-if="item.author.work"><i class="fa fa-suitcase"></i> {{item.author.work}}</div>
 					<div ng-if="item.author.locations.length">
-						<i class="fa fa-map-marker"></i> Najdete mne v 
+						<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
 						<span ng-repeat="location in item.author.locations">{{location.name}}</span>.
 					</div>
-					<div>A na sociálních sítích.</div>
+
+					<div ng-if="item.author.facebook || item.author.googleplus || item.author.twitter || item.author.linkedin">{{'and-on-social-networks' | translate}}
+						<span class="social">
+							<a ng-if="item.author.facebook" class="fa fa-facebook" title="Facebook" href="{{item.author.facebook}}" target="_blank"></a>
+							<a ng-if="item.author.googleplus" class="fa fa-google-plus" title="Google+" href="{{item.author.googleplus}}" target="_blank"></a>
+							<a ng-if="item.author.twitter" class="fa fa-twitter" title="Twitter" href="{{item.author.twitter}}" target="_blank"></a>
+							<a ng-if="item.author.linkedin" class="fa fa-linkedin" title="LinkedIn" href="{{item.author.linkedin}}" target="_blank"></a>
+						</span>
+						.
+					<div>
+
 					<div class="text-right"><a ng-href="#/profile/{{item.author._id}}">Celý profil</a></div>
 				</section>
 			</article>
@@ -34,9 +44,13 @@
 			<div class="arrow"></div>
 			<div class="content">
 				<header>
-					<span ng-if="item.locations" ng-repeat="location in item.locations">
-						<span ng-if="location.name" class="fa fa-map-marker"></span> {{ location.name }}
-					</span>	
+					<span ng-if="item.locations.length && item.locations[0].name" class="fa fa-map-marker"></span> {{ item.locations[0].name }}</span>
+					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
+					<div id="{{'locations' + item._id}}" class="f-dropdown content" data-dropdown-content>
+						<div ng-repeat="location in item.locations">
+							{{ location.name }}
+						</div>
+					</div>
 					<span><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
 				</header>
 				<h1>
@@ -100,66 +114,71 @@
 				<span ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
 				<span ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 
-				
-				<div class="animate-show" ng-show="reported">
-					<article class="row">
-						<section class="large-12 columns">
-							<div class="radius alert-box warning" >
-								<span>{{'THANKS_FOR_REPORT' | translate}}</span>
-								 <a class="close" ng-click="reported=false" >&times;</a>
-							</div>
-						</section>
-					</article>
-				</div>
-
-				<editad ng-if="mine" ng-show="adEdit" data="item" class="animate-show" id="editAd"></editad>
-
-				<div signed-in ng-if="!mine" class="reply-box animate-show" ng-cloak ng-show="replyEdit">
-					<article class="row">
-						<section class="large-12 columns">
-							<form name="replyForm">
-								<div class="animate-show" ng-show="replyForm.$invalid && replyForm.$dirty">
-									<div class="alert-box radius">
-										<div ng-show="replyForm.message.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
-										<div ng-show="replyForm.message.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
-										<div ng-show="replyForm.message.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
-										<div ng-show="replyForm.agree.$error.required">{{ 'ERR_REPLY_PLEASE_AGREE' | translate }}</div>
+				<div class="footer-container" ng-show="replyEdit || adEdit || reported">
+					<div ng-show="reported">
+						<div class="animate-show" ng-cloak >
+							<article class="row">
+								<section class="large-12 columns">
+									<div class="radius alert-box warning" >
+										<span>{{'THANKS_FOR_REPORT' | translate}}</span>
+										 <a class="close" ng-click="reported=false" >&times;</a>
 									</div>
+								</section>
+							</article>
+						</div>
+					</div>
+
+					<item-edit ng-if="mine" ng-show="adEdit" data="item" class="animate-show" id="editAd"></item-edit>
+
+					<div signed-in ng-if="!mine" class="reply-box animate-show">
+						<article class="row">
+							<section class="large-12 columns">
+								<form name="replyForm">
+									<div class="animate-show" ng-show="replyForm.$invalid && replyForm.$dirty">
+										<div class="alert-box radius">
+											<div ng-show="replyForm.message.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
+											<div ng-show="replyForm.message.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+											<div ng-show="replyForm.message.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
+											<div ng-show="replyForm.agree.$error.required">{{ 'ERR_REPLY_PLEASE_AGREE' | translate }}</div>
+										</div>
+									</div>
+									<div class="animate-show" ng-show="submited">
+										<div class="alert-box info radius" >{{ 'SENDING_MESSAGE_SUCCESS' | translate }}</div>
+									</div>
+									{{message}}
+									<textarea name="message" ng-model="reply.message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
+									<label>
+										<input type="checkbox" name="agree" ng-required="true" ng-model="reply.agree">
+									 	{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}
+									</label>
+								</form>
+							</section>
+						</article>
+						<article class="row">
+							<section class="large-8 columns">
+								<a ng-click="cancelEdit()" class="link-button">{{'CANCEL' | translate}}</a>
+							</section>
+							<section class="large-4 columns text-right">
+								<button ng-click="sendReply()" ng-disabled="replyForm.$invalid" ng-class="{secondary: item.type == 'offer'}">
+									<span class="fa fa-envelope"></span>
+									{{'SEND' | translate}}
+								</button>
+							</section>
+						</article>
+					</div>
+					<div signed-out class="not-logged-container animate-show" ng-show="replyEdit">
+						<article class="row">
+							<section  class="large-12 columns">
+								<div class="radius alert-box info" signed-out ng-cloak >
+									<span translate>LOG_IN_TO_POST_NEW_WISHES</span>
+									 <a class="close" ng-click="edit = false" >&times;</a>
 								</div>
-								<div class="animate-show" ng-show="submited">
-									<div class="alert-box info radius" >{{ 'SENDING_MESSAGE_SUCCESS' | translate }}</div>
-								</div>
-								<textarea name="message" ng-model="message" ng-minlength="3" ng-maxlength="500" ng-required="true"></textarea>
-								<label>
-									<input type="checkbox" name="agree" ng-required="true" ng-model="agree">
-								 	{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}
-								</label>
-							</form>
-						</section>
-					</article>
-					<article class="row">
-						<section class="large-8 columns">
-							<a ng-click="cancelEdit()" class="link-button">{{'CANCEL' | translate}}</a>
-						</section>
-						<section class="large-4 columns text-right">
-							<button ng-click="sendReply()" ng-disabled="replyForm.$invalid" ng-class="{secondary: item.type == 'offer'}">
-								<span class="fa fa-envelope"></span>
-								{{'SEND' | translate}}
-							</button>
-						</section>
-					</article>
+							</section>
+						</article>
+					</div>
 				</div>
 				
-				<div signed-out class="not-logged-container animate-show" ng-show="replyEdit">
-					<article class="row">
-						<section  class="large-12 columns">
-							<div class="radius alert-box info" signed-out ng-cloak >
-								<span translate>LOG_IN_TO_POST_NEW_WISHES</span>
-								 <a class="close" ng-click="edit = false" >&times;</a>
-							</div>
-						</section>
-					</article>
-				</div>
+				
 			</footer>
 
 		</div>
