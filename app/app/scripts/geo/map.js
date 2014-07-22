@@ -95,7 +95,6 @@ angular.module('hearth.geo').directive('map', [
                         key = "" + lat + ":" + lng;
 
                     markerLimitValues[key] = markerLimitValues[key] ? markerLimitValues[key] + 1 : 1;
-
                     return markerLimitValues[key] > markerLimit;
                 };
 
@@ -120,6 +119,7 @@ angular.module('hearth.geo').directive('map', [
                         var itemId = $(this).attr('itemid');
 
                         scope.$apply(function() {
+                                                      
                             var path = $location.path('ad/' + itemId);
                         });
                     });

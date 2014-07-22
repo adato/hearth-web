@@ -125,7 +125,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$watch('user', function(value) {
 			if (value.loggedIn) {
 				$scope.filter = value.filter;
-				$location.search(value.filter);
+				$location.search(value.filter || {});
 			}
 			$scope.load();
 		});

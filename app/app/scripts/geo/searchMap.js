@@ -53,7 +53,7 @@ angular.module('hearth.geo').directive('searchMap', [
 				};
 
 				scope.getFilterParams = function() {
-					return $location.search();
+					return angular.copy($location.search());
 				};
 
 				scope.getMapParams = function(searchParams) {
