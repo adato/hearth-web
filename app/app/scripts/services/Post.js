@@ -14,12 +14,12 @@ angular.module('hearth.services').factory('Post', [
 		}, {
 			get: {
 				method: 'GET',
-				params: {
-					limit: 15,
-					offset: 0,
-					sort: '-created_at'
-				},
-				isArray: true
+				// params: {
+				// 	limit: 15,
+				// 	offset: 0,
+				// 	sort: '-created_at'
+				// },
+				// isArray: true
 			},
 			query: {
 				method: 'GET',

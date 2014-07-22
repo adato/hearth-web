@@ -35,11 +35,11 @@ angular.module('hearth.controllers').controller('MapCtrl', [
 
 		this.search = function(options) {
 			Post.query(self.getSearchParams(), function(data) {
-				$rootScope.$emit("showMarkersOnMap", data);
+				$scope.$broadcast("showMarkersOnMap", data);
 			});
 		};
 
-		$rootScope.$on('searchMap', this.search);
+		$scope.$on('searchMap', this.search);
 		$scope.$on('$routeUpdate', this.search);
 	}
 ]);

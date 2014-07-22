@@ -46,14 +46,15 @@ angular.module('hearth.directives').directive('filterbar', [
 
 					if (ui === 'map') {
 						scope.mapSelected = true;
-						scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
+						scope.$broadcast(scope.mapSelected ? 'searchMap' : 'searchList');
 					}
 					$anchorScroll(ui);
 				});
 
 				scope.toggleMap = function() {
+
 					scope.mapSelected = !scope.mapSelected;
-					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
+					scope.$broadcast(scope.mapSelected ? 'searchMap' : 'searchList');
 				};
 			}
 		};

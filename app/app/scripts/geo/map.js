@@ -17,19 +17,17 @@ angular.module('hearth.geo').directive('map', [
 		return {
 			restrict: 'E',
 			replace: true,
-			scope:  {
+			scope: {
 				ads: "="
 			},
-			transclude: true,
+			// transclude: true,
 			link: function(scope, element) {
 				var markerCluster,
 					oms,
+					map = null,
 					self = {},
 					infoWindow = new google.maps.InfoWindow(),
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
-					map = geo.createMap(element[0], {
-						zoom: 11
-					}),
 					markerClusterMaxZoom = 12,
 					markers = [],
 					markerLimitActive = true,
@@ -64,26 +62,35 @@ angular.module('hearth.geo').directive('map', [
 
 				self.initMap = function() {
 
-					geo.focusCurrentLocation();
+					if(map)
+						return false;
 
-					oms = new OverlappingMarkerSpiderfier(map, {
-						markersWontMove: true,
-						markersWontHide: true,
-						keepSpiderfied: true,
-					});
+					setTimeout(function() {
+						map = geo.createMap(element[0], {
+							zoom: 11
+						});
+				
+						google.maps.event.trigger(map, "resize");
+						geo.focusCurrentLocation();
 
-					markerCluster = new MarkerClusterer(map, [], {
-						ignoreHidden: true,
-						maxZoom: markerClusterMaxZoom,
-						zoomOnClick: true,
-						gridSize: 40,
-						averageCenter: true,
-						styles: markerClusterStyles
-					});
+						oms = new OverlappingMarkerSpiderfier(map, {
+							markersWontMove: true,
+							markersWontHide: true,
+							keepSpiderfied: true,
+						});
 
-					// google.maps.event.trigger(map, "resize");
-					markerCluster.addListener('click', self.zoomMarkerClusterer);
-					oms.addListener('click', self.onMarkerClick);
+						markerCluster = new MarkerClusterer(map, [], {
+							ignoreHidden: true,
+							maxZoom: markerClusterMaxZoom,
+							zoomOnClick: true,
+							gridSize: 40,
+							averageCenter: true,
+							styles: markerClusterStyles
+						});
+
+						markerCluster.addListener('click', self.zoomMarkerClusterer);
+						oms.addListener('click', self.onMarkerClick);
+					}, 100);
 				};
 
 				self.testPositionLimit = function(loc) {
@@ -101,8 +108,8 @@ angular.module('hearth.geo').directive('map', [
 				};
 
 				self.placeMarker = function(location, ad) {
-					var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
 
+					var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
 					oms.addMarker(marker);
 					markers.push(marker);
 				};
@@ -129,10 +136,9 @@ angular.module('hearth.geo').directive('map', [
 
 				self.onMarkerClick = function(marker) {
 
-					console.log(marker.info);
-					Post.get({
-						postId: marker.info._id
-					}, function(data) {
+					Post.get({postId: marker.info._id}, function(data) {
+
+						console.log(data);
 
 						data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
 						map.panTo(marker.position);
@@ -182,8 +188,8 @@ angular.module('hearth.geo').directive('map', [
 					map.setZoom(markerClusterMaxZoom + 1);
 				};
 
-				// $rootScope.$on('searchMap', self.initMap);
-				// $rootScope.$on('showMarkersOnMap', self.createPins);
+				scope.$on('searchMap', self.initMap);
+				scope.$on('showMarkersOnMap', self.createPins);
 			}
 		};
 	}

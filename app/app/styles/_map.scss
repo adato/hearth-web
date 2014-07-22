@@ -1,15 +1,11 @@
 .map {
     .map-canvas {
         height: 400px;
-        width: 100%;
-        .gm-style {
-            width: 100%;
-            position: relative !important;
-        }
-        img {
-            max-width: inherit !important;
-        }
         display: block;
+        
+        img {
+            max-width: inherit;
+        }
        
     }
     
