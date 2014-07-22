@@ -30,7 +30,7 @@
 
 			<div class="separator"></div>
 			
-			<a signed-in ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+			<a signed-in ng-show="loggedUser.name" ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
 	            <div class="img" ng-style="avatarExtraStyle"></div>
 	            <label>{{ loggedUser.name }}</label>
 		    </a>
