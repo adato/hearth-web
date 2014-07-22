@@ -33,7 +33,8 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 			return $routeProvider
 			.when('/search/?', {
 				templateUrl: 'templates/fulltext.html',
-				controller: 'FulltextCtrl'
+				controller: 'FulltextCtrl',
+				reloadOnSearch: false,
 			}).when('/communities/:action?', {
 				templateUrl: 'templates/communityList.html',
 				controller: 'CommunityListCtrl',

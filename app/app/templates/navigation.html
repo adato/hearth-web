@@ -29,23 +29,14 @@
 
 			<div class="separator"></div>
 			
-			<a signed-in ng-click="switchBack()" data-dropdown="profile-drop" title="{{ loggedUser.name }}">
-	             <div class="fa fa-user"></div>
-	            <label>{{ 'TOP_BAR_PROFILE' | translate }}</label>
+			<a signed-in ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+	            <div class="img"></div>
+	            <label>{{ loggedUser.name }}</label>
 		    </a>
 		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
-		       <li>
-		            <a href="" ng-click="switchBack()" style="margin-right:30px;" title="{{ loggedUser.name }}">
-		                <avatar source="loggedUser.avatar" size="small" type="'User'"></avatar>
-		                {{ loggedUser.name }}
-		            </a>
-		        </li>
-		        <li ng-repeat="community in myCommunities">
-		            <a href="" ng-click="switchTo(community)" style="margin-right:30px;" title="{{ community.name }}">
-		             <avatar source="community.avatar" size="small" type="'Community'"></avatar>
-		                {{ community.name }}
-		            </a>
-		        </li>
+		       <li><a ng-href="#/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> Můj profil</a></li>
+		       <li><a ng-href="#/profile/{{ loggedUser._id }}"><i class="fa fa-cog"></i> Nastavení</a></li>
+		       <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>Odhlásit se</a></li>
 		    </ul> 
 
 			<a data-dropdown="about-drop"  title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
@@ -73,10 +64,10 @@
 		        </div>
 			</a>
 
-			<a signed-in ng-click="logout()">
+			<!--a signed-in ng-click="logout()">
 	            <div class="fa fa-sign-out"></div>
 	            <label>{{'TOP_BAR_SIGN_OUT' | translate}}</label>
-			</a>
+			</a-->
 
 		</section>
 	</article>

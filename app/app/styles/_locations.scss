@@ -5,8 +5,10 @@
 			max-width: inherit;
 		}
 		border-radius: $global-radius;
-		 border: 1px solid darken(color(4), 20%);
-		 margin: {bottom: 1em;}
+		border: 1px solid darken(color(4), 20%);
+        margin: {
+            bottom: 1em;
+        };
 	}
 	input{
 		border: 1px solid darken(color(4), 20%);
@@ -28,14 +30,17 @@
 		}
 
 	} 
-
 }
-.pac-container {//google maps search field - list
+
+.pac-container {
+    //google maps search field - list
     z-index: 99999 !important;
 }
+
 .gmnoprint img {
-    max-width: none; 
+    max-width: none;
 }
+
 .locations  {
 	input {
 		cursor: pointer;

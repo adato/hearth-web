@@ -20,14 +20,14 @@
 					<header>{{'by-author' | translate}}</header>
 					<checkbox model="filter.related" value="user">{{'individuals' | translate}}</checkbox>
 					<checkbox model="filter.related" value="community">{{'communities' | translate}}</checkbox>
-					<checkbox model="filter.related" value="connection">{{'just-my-connection' | translate}}</checkbox>
+					<checkbox model="filter.my_section" value="true">{{'just-my-connection' | translate}}</checkbox>
 				</section>
 				<section class="large-3 columns">
 					<header>{{'by-time' | translate}}</header>
-					<checkbox type="radio" model="filter.date" value="1">{{'today' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.date" value="3">{{'3-days' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.date" value="7">{{'week' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.date" value="30">{{'month-and-older' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.days" value="1">{{'today' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.days" value="3">{{'3-days' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.days" value="7">{{'week' | translate}}</checkbox>
+					<checkbox type="radio" model="filter.days" value="">{{'without-limit' | translate}}</checkbox>
 				</section>
 				<section class="large-3 columns">
 					<header>{{'by-place' | translate}}</header>

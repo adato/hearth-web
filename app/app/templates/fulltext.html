@@ -1,41 +1,55 @@
-<article class="row fulltext" when-scrolled="loadMore()">
+<article class="row fulltext" when-scrolled="load()">
 	<section class="large-12  columns box">
 		<article class="row">
 			<section class="large-12  columns">
 				<header>
-					<div ng-if="!items.length">Ajtakrajta, nic jsme nenašli.</div>
+					<div ng-if="!items.length && loaded">Ajtakrajta, nic jsme nenašli.</div>
 					<div ng-if="items.length">Nasli jsme pro vas obsah souvisejici s <b>{{queryText}}</b></div>
 				</header>
 			</section>
 		</article>
 
-		<article class="row" ng-if="items.length">
+		<article class="row" ng-if="items.length && loaded">
 			<section class="large-12  columns">
 				<dl class="sub-nav filter">
 					<dt>Filtrovat výsledky:</dt>
-					<dd ng-click="setFilter('all')" ng-class="{active: filterProperty == 'all'}"><a>Vse</a></dd>
-					<dd ng-click="setFilter('market')" ng-class="{active: filterProperty == 'market'}"><a>Trziste</a></dd>
-					<dd ng-click="setFilter('community')" ng-class="{active: filterProperty == 'community'}"><a>Komunity</a></dd>
-					<dd ng-click="setFilter('people')" ng-class="{active: filterProperty == 'people'}"><a>Lide</a></dd>
+					<dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
+						<a>Vse</a>
+					</dd>
+					<dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
+						<a>Trziste <b>{{counters.post}}</b></a>
+					</dd>
+					<dd ng-click="setFilter('community')" ng-class="{active: selectedFilter == 'community'}">
+						<a>Komunity <b>{{counters.community}}</b></a>
+					</dd>
+					<dd ng-click="setFilter('user')" ng-class="{active: selectedFilter == 'user'}">
+						<a>Lide <b>{{counters.user}}</b></a>
+					</dd>
 				</dl>
 			</section>
 		</article>
 
-		<div ng-if="!items.length">
+		<div ng-if="!items.length && loaded">
 			Ajtakrajta, nic co by odpovídalo <b>{{queryText}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.
 		</div>
 
-		<div ng-repeat="item in items" class="search-item">
-			<h2 ng-click="showDetail(item._id)">
+		<div ng-repeat="item in items" class="search-item" ng-switch="item._type" >
+			<a class="title" ng-href="#/ad/{{item._id}}">
 				<span ng-if="title">{{item.title}}</span>
 				<span ng-if="!title">{{item.name | ellipsis: 100}}</span>
-			</h2>
+			</a>
 			<p>{{item.name | ellipsis: 150}}</p>
-			<ul class="breadcrumbs">
-				<li><a>Home</a></li>
-				<li><a>Features</a></li>
-				<li class="unavailable"><a>Gene Splicing</a></li>
-				<li class="current"><a>Cloning</a></li>
+			<ul class="breadcrumbs" ng-switch-when="Post">
+				<li><a href="#/">{{'HOMEPAGE_MARKET' | translate}}</a></li>
+				<li><a ng-href="#/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
+			</ul>
+			<ul class="breadcrumbs" ng-switch-when="User">
+				<li>{{'PEOPLE' | translate}}</li>
+				<li><a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
+			</ul>
+			<ul class="breadcrumbs" ng-switch-when="Community">
+				<li><a href="#/communities">{{'communities' | translate}}</a></li>
+				<li><a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
 			</ul>
 		</div>
 	</section>

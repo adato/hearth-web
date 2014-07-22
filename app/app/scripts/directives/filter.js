@@ -26,32 +26,31 @@ angular.module('hearth.directives').directive('filter', [
 					};
 
 				scope.expanded = false;
+
 				scope.search = function() {
-					var filterData = angular.copy(scope.filter),
-						keywords = $.map(filterData.keywords || [], function(item) {
-							return item.text;
-						});
+					var item, key,
+						filterData = angular.copy(scope.filter);
 
-					if (keywords.length > 0) {
-						filterData.keywords = keywords.join(',');
-					} else {
-						delete filterData.keywords;
-					}
-					if (filterData.related.length > 0) {
-						filterData.related = filterData.related.join(',');
-					} else {
-						delete filterData.related;
-					}
-
-					if (!filterData.type) {
-						delete filterData.type;
-					}
+					filterData.keywords = $.map(filterData.keywords || [], function(item) {
+						return item.text;
+					});
 					if (!filterData.lon || !filterData.lon) {
 						delete filterData.distance;
 					}
+					for (key in filterData) {
+						item = filterData[key];
+						filterData[key] = $.isArray(item) ? item.join(',') : item;
 
-					scope.$emit('filter', filterData);
-					scope.close();
+						if (!filterData[key]) {
+							delete filterData[key];
+						}
+					}
+					if ($.isEmptyObject(filterData)) {
+						scope.reset();
+					} else {
+						scope.$emit('filter', filterData);
+						scope.close();
+					}
 				};
 				scope.close = function() {
 					scope.$emit('closeFilter');
@@ -67,9 +66,11 @@ angular.module('hearth.directives').directive('filter', [
 					var places = searchBox.getPlaces();
 
 					if (places && places.length > 0) {
-						var location = places[0].geometry.location;
+						var location = places[0].geometry.location,
+							name = places[0].name;
 
 						scope.$apply(function() {
+							scope.filter.name = name;
 							scope.filter.lat = location.lat();
 							scope.filter.lon = location.lng();
 						});
@@ -80,6 +81,7 @@ angular.module('hearth.directives').directive('filter', [
 					if (!value) {
 						delete scope.filter.lat;
 						delete scope.filter.lon;
+						delete scope.filter.name;
 					}
 				});
 

@@ -357,13 +357,16 @@
 	"communities": "Komunity",
 	"individuals": "Jednotlivci",
 	"just-my-connection": "Jen moje spojen\u00ed",
-	"month-and-older": "M\u011bs\u00edc a star\u0161\u00ed",
+	"market": "Tr\u017ei\u0161t\u011b",
 	"required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole...",
 	"return-the-filter-to-original-settings": "Vr\u00e1tit filtr do p\u016fvodn\u00edho nastaven\u00ed",
 	"run-filter": "Filtrovat",
 	"save-the-filter-for-future-use": "Ulo\u017eit filtr pro dal\u0161\u00ed pou\u017eit\u00ed",
+	"show-less": "Zobrazit m\u00e9n\u011b",
+	"show-more": "Zobrazit v\u00edce",
 	"today": "Dnes",
 	"week": "T\u00fdden",
 	"SEND_FB_INVITATION": "Pozvěte přátele na Facebooku",
-	"required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole..."
+	"required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole...",
+	"without-limit": "Bez omezen\u00ed"
 }

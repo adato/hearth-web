@@ -18,6 +18,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$scope.facebookLoginUrl = $$config.apiPath + '/auth/facebook';
 		$scope.googleLoginUrl = $$config.apiPath + '/users/auth/google_oauth2';
 		$scope.notifications = {};
+
 		$scope.init = function() {
 			$scope.navigator = navigator;
 			$scope.flash = flash;
@@ -35,6 +36,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$(document).foundation();
 			}, 1000);
 		});
+
 		$scope.$on('$routeChangeSuccess', function(event, currentRoute) {
 			$scope.pageType = currentRoute.pageType ? currentRoute.pageType : $location.path() === '/' ? $scope.defaultPageType : void 0;
 			return $scope.pageType;
@@ -48,13 +50,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			Post.spam(data);
 		});
 
+		$scope.$watch('user', function() {
+			var user = $scope.user.get_logged_in_user;
+			if (user && user.avatar.normal) {
+				$('.navigation .img').css('background-image', 'url(' + user.avatar.normal + ')');
+			}
+		});
+
 		$scope.useLanguage = function(language) {
 			return LanguageSwitch.use(language).then(function() {
 				$scope.languageCode = language;
 				return $scope.languageCode;
 			});
 		};
-		$scope.logout = function(language) {
+		$scope.logout = function() {
 			Auth.logout();
 		};
 		$scope.search = function(text) {
@@ -191,7 +200,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$scope.isScrolled = false;
-		angular.element($window).bind("scroll", function($event) {
+		angular.element($window).bind('scroll', function() {
 			if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
 				$('html').toggleClass('scrolled');
 				$scope.isScrolled = !$scope.isScrolled;

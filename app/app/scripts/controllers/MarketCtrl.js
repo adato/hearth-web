@@ -14,9 +14,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.items = [];
 		
 		$scope.load = function() {
-			var params = $location.search();
-
-			params = angular.extend(params, {
+			var params = angular.extend(angular.copy($location.search()), {
 				offset: $scope.items.length,
 				limit: $scope.limit
 			});
@@ -63,6 +61,21 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('$routeUpdate', function() {
 			$scope.items = [];
 			$scope.load();
+		});
+
+		$scope.$on('removeAd', function($event, id) {
+			var i, item;
+
+			for (i = 0; i < $scope.items.length; i++) {
+				item = $scope.items[i];
+				if (item._id === id) {
+					$scope.items.splice(i, 1);
+					break;
+				}
+			}
+			Post.remove({
+				postId: id
+			});
 		});
 
 		$scope.load();

@@ -36,7 +36,7 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.filterSelected = false;
 				});
 
-				scope.$on('closeNewItem', function() {
+				scope.$on('closeEditItem', function() {
 					scope.newItemSelected = false;
 				});
 
