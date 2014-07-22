@@ -30,9 +30,6 @@ angular.module('hearth.geo').directive('map', [
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					infoWindow = new google.maps.InfoWindow(),
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
-					map = geo.createMap(element[0], {
-						zoom: 11
-					}),
 					markerClusterMaxZoom = 12,
 					markers = [],
 					markerLimitActive = true,
