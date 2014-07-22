@@ -12,15 +12,6 @@ angular.module('hearth.services').factory('Post', [
 		return $resource($$config.apiPath + '/posts/:postId', {
 			postId: '@id'
 		}, {
-			get: {
-				method: 'GET',
-				// params: {
-				// 	limit: 15,
-				// 	offset: 0,
-				// 	sort: '-created_at'
-				// },
-				// isArray: true
-			},
 			query: {
 				method: 'GET',
 				isArray: true

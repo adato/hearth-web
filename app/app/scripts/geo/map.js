@@ -24,8 +24,7 @@ angular.module('hearth.geo').directive('map', [
 			link: function(scope, element) {
 				var markerCluster,
 					oms,
-					map = null,
-					self = {},
+					map,
 					infoWindow = new google.maps.InfoWindow(),
 					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
 					infoWindow = new google.maps.InfoWindow(),
@@ -62,69 +61,63 @@ angular.module('hearth.geo').directive('map', [
 						height: 40,
 					}];
 
-				self.initMap = function() {
+				scope.initMap = function() {
 
-					if(map)
-						return false;
+					if(! map) {
+						setTimeout(function() {
+							map = geo.createMap(element[0], {
+								zoom: 11
+							});
+					
+							google.maps.event.trigger(map, "resize");
+							geo.focusCurrentLocation();
 
-					setTimeout(function() {
-						map = geo.createMap(element[0], {
-							zoom: 11
-						});
-				
-						google.maps.event.trigger(map, "resize");
-						geo.focusCurrentLocation();
+							oms = new OverlappingMarkerSpiderfier(map, {
+								markersWontMove: true,
+								markersWontHide: true,
+								keepSpiderfied: true,
+							});
 
-						oms = new OverlappingMarkerSpiderfier(map, {
-							markersWontMove: true,
-							markersWontHide: true,
-							keepSpiderfied: true,
-						});
+							markerCluster = new MarkerClusterer(map, [], {
+								ignoreHidden: true,
+								maxZoom: markerClusterMaxZoom,
+								zoomOnClick: true,
+								gridSize: 40,
+								averageCenter: true,
+								styles: markerClusterStyles
+							});
 
-						markerCluster = new MarkerClusterer(map, [], {
-							ignoreHidden: true,
-							maxZoom: markerClusterMaxZoom,
-							zoomOnClick: true,
-							// size: 20,
-							gridSize: 40,
-							averageCenter: true,
-							styles: markerClusterStyles
-						});
-
-						markerCluster.addListener('click', self.zoomMarkerClusterer);
-						oms.addListener('click', self.onMarkerClick);
-					}, 100);
+							markerCluster.addListener('click', scope.zoomMarkerClusterer);
+							oms.addListener('click', scope.onMarkerClick);
+						}, 100);
+					}
 				};
 
-				self.testPositionLimit = function(loc) {
+				scope.testPositionLimit = function(loc) {
 
 					var lat = parseFloat(loc[0]).toFixed(4),
 						lng = parseFloat(loc[1]).toFixed(4),
 						key = "" + lat + ":" + lng;
 
-					if (markerLimitValues[key])
-						markerLimitValues[key]++;
-					else
-						markerLimitValues[key] = 1;
+					markerLimitValues[key] = markerLimitValues[key] ? markerLimitValues[key] + 1 : 1;
 
 					return markerLimitValues[key] > markerLimit;
 				};
 
-				self.placeMarker = function(location, ad) {
+				scope.placeMarker = function(location, ad) {
 
 					var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
 					oms.addMarker(marker);
 					markers.push(marker);
 				};
 
-				self.showMarkerWindow = function(content, marker) {
+				scope.showMarkerWindow = function(content, marker) {
 					var width = $(".gm-style").css("width");
 
 					infoWindow.setOptions({
 						maxWidth: (parseInt(width) - 200)
 					});
 
-					content = '<div style="min-height: 100px; min-width: 200px;">' + content + '</div>';
 					infoWindow.setContent(content);
 					infoWindow.open(map, marker);
 
@@ -137,11 +130,9 @@ angular.module('hearth.geo').directive('map', [
 					});
 				};
 
-				self.onMarkerClick = function(marker) {
+				scope.onMarkerClick = function(marker) {
 
 					Post.get({postId: marker.info._id}, function(data) {
-
-						console.log(data);
 
 						data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
 						map.panTo(marker.position);
@@ -152,12 +143,11 @@ angular.module('hearth.geo').directive('map', [
 							data.adType = data.type;
 						}
 
-						self.showMarkerWindow(template(data), marker);
+						scope.showMarkerWindow(template(data), marker);
 					}, function(err) {});
 				};
 
-				self.createPins = function(e, ads) {
-
+				scope.createPins = function(e, ads) {
 					var i, j, ad, location;
 					ads = ads || [];
 					markers = [];
@@ -165,18 +155,16 @@ angular.module('hearth.geo').directive('map', [
 					markerCluster.clearMarkers();
 					oms.clearMarkers();
 					
-					console.log("Nacitam.." + ads.length);
-
 					for (i = 0; i < ads.length; i++) {
 						ad = ads[i];
 
 						for (j = 0; j < ad.locations.length; j++) {
 							if (ad.locations[j]) {
 
-								if (markerLimit && self.testPositionLimit(ad.locations[j]))
+								if (markerLimit && scope.testPositionLimit(ad.locations[j]))
 									continue;
 
-								self.placeMarker(ad.locations[j], ad);
+								scope.placeMarker(ad.locations[j], ad);
 							}
 						}
 					}
@@ -185,14 +173,14 @@ angular.module('hearth.geo').directive('map', [
 					markerCluster.repaint();
 				};
 
-				self.zoomMarkerClusterer = function(cluster) {
+				scope.zoomMarkerClusterer = function(cluster) {
 
 					map.fitBounds(cluster.getBounds());
 					map.setZoom(markerClusterMaxZoom + 1);
 				};
 
-				scope.$on('searchMap', self.initMap);
-				scope.$on('showMarkersOnMap', self.createPins);
+				scope.$on('searchMap', scope.initMap);
+				scope.$on('showMarkersOnMap', scope.createPins);
 			}
 		};
 	}

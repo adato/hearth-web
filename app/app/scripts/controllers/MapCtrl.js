@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MapCtrl', [
-	'$scope', '$rootScope', '$location', '$window', 'Auth', 'Post',
+	'$scope', '$location', 'Post',
 
-	function($scope, $rootScope, $location, $window, Auth, Post) {
+	function($scope, $location, Post) {
 		var self = this;
 
 		this.getFilterParams = function() {
