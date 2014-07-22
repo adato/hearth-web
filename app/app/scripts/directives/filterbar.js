@@ -52,7 +52,6 @@ angular.module('hearth.directives').directive('filterbar', [
 				});
 
 				scope.toggleMap = function() {
-
 					scope.mapSelected = !scope.mapSelected;
 					scope.$broadcast(scope.mapSelected ? 'searchMap' : 'searchList');
 				};

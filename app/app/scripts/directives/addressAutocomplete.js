@@ -41,7 +41,7 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 					};
 				}
 			],
-			template: '<input type="text" class="location text-input" placeholder="{{ placeholders | translate }}"' + ' ng-model="locationName" ng-focus="focus()" ng-blur="doBlur()" ng-required="isRequired">',
+			template: '<input type="text" class="location text-input" placeholder="{{ placeholders | translate }}"' + ' ng-model="locationName" ng-focus="focus()" ng-blur="doBlur()" ng-required="isRequired" />',
 			link: function(scope, el) {
 				var init, inputElement;
 				scope.doBlur = function() {

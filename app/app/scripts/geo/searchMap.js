@@ -11,9 +11,9 @@
  */
 
 angular.module('hearth.geo').directive('searchMap', [
-	'$timeout', 'geo',
+	'$timeout', 'geo', '$location', 'Post',
 
-	function($timeout, geo) {
+	function($timeout, geo, $location, Post) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -51,7 +51,37 @@ angular.module('hearth.geo').directive('searchMap', [
 						location: location
 					});
 				};
-				scope.autodetectMyLocation();
+
+								scope.getFilterParams = function() {
+					return $location.search();
+				};
+
+				scope.getMapParams = function(searchParams) {
+					return {
+						sort: 'distance',
+						'bounding_box[top_left][lat]': 85,
+						'bounding_box[top_left][lon]': -170,
+						'bounding_box[bottom_right][lat]': -85,
+						'bounding_box[bottom_right][lon]': 175,
+						offset: 0,
+						r: 0
+					};
+				};
+
+				scope.getSearchParams = function() {
+
+					return angular.extend(scope.getFilterParams(), scope.getMapParams());
+				};
+
+				scope.search = function(options) {
+					Post.query(scope.getSearchParams(), function(data) {
+						scope.$broadcast("showMarkersOnMap", data);
+					});
+				};
+
+				scope.$on('searchMap', scope.search);
+				scope.$on("searchMap", scope.autodetectMyLocation);
+				scope.$on('$routeUpdate', scope.search);
 			}
 		};
 	}
