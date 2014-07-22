@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress',
+	'$scope', 'Auth', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress', 'Facebook',
 
-	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress) {
+	function($scope, Auth, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress, Facebook) {
 		var fetchAds, fetchRatings, fetchUser;
 
 		angular.extend($scope, {
@@ -492,5 +492,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return $scope.fetchFollows();
 			});
 		};
+
+		$scope.inviteFriends = Facebook.inviteFriends;
 	}
 ]);

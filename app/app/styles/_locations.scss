@@ -15,6 +15,20 @@
 		margin-top: 1em;
 		float: left;
 	}
+
+	.content {
+		font-weight:normal;
+		
+		div {
+			color: #ff5500;
+		}
+
+		span {
+			font-weight: bold;
+		}
+
+	} 
+
 }
 .pac-container {//google maps search field - list
     z-index: 99999 !important;

@@ -14,12 +14,17 @@
     <title>HEARTH.net</title>
     <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
     
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{og_title}}" />
+    <meta property="og:description" content="{{og_description}}" />
+    <meta property="og:image" content="{{og_image}}" />
+    <meta property="og:url" content="{{og_url}}" />
+<!-- 
     <meta property="og:title" content="Hearth.net">
     <meta property="og:description" content="Prostor, kde dávat znamená dostat mnohem víc">
     <meta property="og:image" content="http://www.hearth.net/apple-touch-icon-114x114-precomposed.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="114">
-    <meta property="og:image:height" content="114">
+ -->
+
 
      <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
@@ -40,8 +45,39 @@
       <script src="scripts/googleAnalytics.js"></script>
     <!-- endbuild -->
   </head>
+<<<<<<< HEAD
 
   <body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
+=======
+  <body ng-controller="BaseCtrl"
+        ng-init="init();"
+        ng-class="pageType"
+        ng-keydown="escapeKey($event)">
+
+  <div id="fb-root"></div>
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script type='text/javascript'>
+  <!--
+    if (top.location!= self.location) {
+      top.location = self.location;
+    }
+  //-->
+  </script>
+
+  <script>
+    // window.fbAsyncInit = function() {
+    //     FB.init({appId: '301646633324636', status: true, cookie: true,
+    //     xfbml: true});
+    // };
+    // (function() {
+    //     var e = document.createElement('script'); e.async = true;
+    //     e.src = document.location.protocol +
+    //     '//connect.facebook.net/en_US/all.js';
+    //     document.getElementById('fb-root').appendChild(e);
+    // }());
+  </script>
+
+>>>>>>> origin
     <!--[if lt IE 10]>
       <div class="chromeframe">
         <div class="reason">
@@ -160,6 +196,7 @@
      <script src="scripts/services/CommunityService.js"></script>
      <script src="scripts/services/KeywordsService.js"></script>
      <script src="scripts/services/ProfileProgress.js"></script>
+     <script src="scripts/services/Facebook.js"></script>
 
      <script src="scripts/filters/filters.js"></script>
 
@@ -242,4 +279,4 @@
       a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
     </script>
   </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+</html>

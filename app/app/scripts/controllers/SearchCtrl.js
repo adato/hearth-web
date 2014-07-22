@@ -80,6 +80,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		$scope.updateLocation = function(location) {
+			// funkce zdvojuje nektere requesty
+			return;
+
 			$scope.myLocation = location;
 			$scope.offset = 0;
 			$rootScope.$broadcast('cancelCreatingAd');
@@ -204,6 +207,20 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				searchParams.keywords = $scope.keywords.join(',');
 			}
 
+			function searchParamsOnMap(searchParams) {
+				delete searchParams.limit;
+
+				return angular.extend(searchParams, {
+					sort: 'distance',
+					'bounding_box[top_left][lat]': 85,
+					'bounding_box[top_left][lon]': -170,
+					'bounding_box[bottom_right][lat]': -85,
+					'bounding_box[bottom_right][lon]': 175,
+					offset: 0,
+					r: 0
+				});
+			}
+
 			function searchParamsByMyLocation(searchParams) {
 				if ($scope.geoBounds) {
 					var northEast = $scope.geoBounds.getNorthEast(),
@@ -230,7 +247,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			function getMyHearthService() {
 				var service = FolloweesPostsService;
 
-				if ($scope.orderBy === 'location' && $scope.myLocation) {
+				if ($scope.orderBy === 'location' ) {
+					searchParams = searchParamsOnMap(searchParams);
+				} else if ($scope.orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
 				}
 				if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
@@ -244,6 +263,8 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 
 			function getMarketplaceService() {
+				var service = PostsService;
+
 				if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
 					if ($scope.srch.type != null) {
@@ -251,12 +272,15 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					}
 					$location.search('q', searchParams.query);
 					return FulltextService;
+				} else if ($scope.orderBy === 'location' ) {
+
+					searchParams = searchParamsOnMap(searchParams);
 				} else if ($scope.orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
-					return PostsService;
 				} else {
 					return PostsService;
 				}
+				return service;
 			};
 
 			return {
@@ -313,11 +337,16 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 						category: $scope.pageType === 'search' ? 'Marketplace' : 'My Hearth'
 					});
 				}
-				for (i = 0; i < len; i++) {
-					processRow(data[i]);
-				}
+
 				if ($scope.orderBy === 'location') {
+
+					$scope.items = data;
 					$scope.$broadcast('searchByLoc', $scope.items);
+				} else {
+
+					for (i = 0; i < len; i++) {
+						processRow(data[i]);
+					}
 				}
 				$scope.lastQueryReturnedCount = len;
 				$scope.sent = true;
@@ -455,6 +484,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		});
 
 		$scope.$on('search', function() {
+
 			if ($scope.timeout) {
 				$timeout.clear($scope.timeout);
 			}
@@ -468,18 +498,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			return $scope.search({
 				add: false
 			});
-		});
-		var boundsChangeTimeout;
-
-		$scope.$on('mapBoundsChange', function(listeners, bounds) {
-			window.clearTimeout(boundsChangeTimeout);
-			boundsChangeTimeout = window.setTimeout(function() {
-				$scope.myLocation = bounds.getCenter();
-				$scope.geoBounds = bounds;
-				$scope.search({
-					add: false
-				});
-			}, 1500);
 		});
 
 		$scope.setLastAddedId(null);
