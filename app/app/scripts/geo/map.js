@@ -58,7 +58,6 @@ angular.module('hearth.geo').directive('map', [
                     }];
 
                 scope.initMap = function() {
-
                     if (!map) {
                         $timeout(function() {
 	                        map = geo.createMap(element[0], {
@@ -177,7 +176,7 @@ angular.module('hearth.geo').directive('map', [
                     map.setZoom(markerClusterMaxZoom + 1);
                 };
 
-                scope.$on('searchMap', scope.initMap);
+                scope.$on('initMap', scope.initMap);
                 scope.$on('showMarkersOnMap', scope.createPins);
             }
         };

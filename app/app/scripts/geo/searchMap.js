@@ -52,7 +52,7 @@ angular.module('hearth.geo').directive('searchMap', [
 					});
 				};
 
-								scope.getFilterParams = function() {
+				scope.getFilterParams = function() {
 					return $location.search();
 				};
 
@@ -74,13 +74,14 @@ angular.module('hearth.geo').directive('searchMap', [
 				};
 
 				scope.search = function(options) {
+
 					Post.query(scope.getSearchParams(), function(data) {
 						scope.$broadcast("showMarkersOnMap", data);
 					});
 				};
 
-				scope.$on('searchMap', scope.search);
-				scope.$on("searchMap", scope.autodetectMyLocation);
+				scope.$on('initMap', scope.search);
+				scope.$on("initMap", scope.autodetectMyLocation);
 				scope.$on('$routeUpdate', scope.search);
 			}
 		};

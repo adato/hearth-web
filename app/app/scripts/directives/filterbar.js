@@ -13,9 +13,7 @@ angular.module('hearth.directives').directive('filterbar', [
 			replace: true,
 			restrict: 'E',
 			templateUrl: 'templates/directives/filterbar.html',
-			scope: {
-				filter: '='
-			},
+			scope: true,
 			link: function(scope) {
 				angular.extend(scope, {
 					mapSelected: false,
@@ -50,6 +48,7 @@ angular.module('hearth.directives').directive('filterbar', [
 					if (ui === 'map') {
 						scope.mapSelected = true;
 						scope.$broadcast(scope.mapSelected ? 'searchMap' : 'searchList');
+						scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 					}
 					$anchorScroll(ui);
 				});
@@ -58,10 +57,9 @@ angular.module('hearth.directives').directive('filterbar', [
 					scope.filterOn = !$.isEmptyObject($location.search());
 				});
 
-
 				scope.toggleMap = function() {
 					scope.mapSelected = !scope.mapSelected;
-					scope.$broadcast(scope.mapSelected ? 'searchMap' : 'searchList');
+					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 				};
 			}
 		};

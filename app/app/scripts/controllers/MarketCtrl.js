@@ -65,6 +65,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('searchMap', function() {
 			$scope.showMap = true;
+			$scope.$broadcast('initMap');
 		});
 		$scope.$on('searchList', function() {
 			$scope.showMap = false;
