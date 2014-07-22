@@ -722,10 +722,12 @@ p {
 }
 
 .offer {
+    text-decoration: underline;
     color: $offer-text-color;
 }
 
 .need {
+    text-decoration: underline;
     color: $need-text-color;
 }
 
