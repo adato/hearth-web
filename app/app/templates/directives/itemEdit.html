@@ -1,117 +1,126 @@
 <div class="itemEdit">
-	<div signed-out class="animate-show">
-		<article class="row">
-			<section class="large-12 columns">
-				<div class="radius alert-box info" ng-cloak>
-					<span translate>LOG_IN_TO_POST_NEW_WISHES</span>
-					 <a class="close" ng-click="close()" >&times;</a>
-				</div>
-			</section>
-		</article>
-	</div>
+    <div signed-out class="animate-show">
+        <article class="row">
+            <section class="large-12 columns">
+                <div class="radius alert-box info" ng-cloak>
+                    <span translate>LOG_IN_TO_POST_NEW_WISHES</span>
+                    <a class="close" ng-click="close()">&times;</a>
+                </div>
+            </section>
+        </article>
+    </div>
 
-	<div signed-in>
-		<form name="editForm" novalidate>
-			<article class="row" style="padding:0">
-				<section class="large-3 columns">
-					<needofferselector model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
-				</section>
-				<section class="large-9 columns">
-					<div class="animate-show" ng-show="editForm.title.$invalid && editForm.title.$dirty">
-						<div class="alert-box radius">
+    <div signed-in>
+        <form name="editForm" novalidate>
+            <article class="row" style="padding:0">
+                <section class="large-3 columns">
+                    <needofferselector model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
+                </section>
+                <section class="large-9 columns">
+                    <div class="animate-show" ng-show="editForm.title.$invalid && editForm.title.$dirty">
+                        <div class="alert-box radius">
 							<div ng-show="editForm.title.$error.minlength">{{ 'title-required' | translate }}</div>
 							<div ng-show="editForm.title.$error.maxlength">{{ 'title-maxlength' | translate: {value: limits.title} }}</div>
-							<div ng-show="editForm.title.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
-						</div>
-					</div>
-					<input type="text" placeholder="{{'TELL_WHAT' | translate}}" ng-minlength="3" ng-maxlength="100" ng-model="post.title" name="title" ng-required="true">
+                            <div ng-show="editForm.title.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
+                        </div>
+                    </div>
+                    <input type="text" placeholder="{{'TELL_WHAT' | translate}}" ng-minlength="3" ng-maxlength="100" ng-model="post.title" name="title" ng-required="true">
 					<left-chars-progress value="post.title" max="limits.title"></left-chars-progress>
-				</section>
-			</article>
+                </section>
+            </article>
 
-			<article class="row">
-				<section class="large-12 columns">
-					<div class="animate-show" ng-show="editForm.name.$invalid && editForm.name.$dirty">
-						<div class="alert-box radius">
-							<div ng-show="editForm.name.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
-							<div ng-show="editForm.name.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
-							<div ng-show="editForm.name.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
-						</div>
-					</div>
-					<textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name"  ng-cloak ng-required="true"></textarea>
+            <article class="row">
+                <section class="large-12 columns">
+                    <div class="animate-show" ng-show="editForm.name.$invalid && editForm.name.$dirty">
+                        <div class="alert-box radius">
+                            <div ng-show="editForm.name.$error.minlength">{{ 'ERR_AD_NAME_MIN_LEN' | translate }}</div>
+                            <div ng-show="editForm.name.$error.maxlength">{{ 'ERR_AD_NAME_LEN' | translate }}</div>
+                            <div ng-show="editForm.name.$error.required">{{ 'ERR_REPLY_EMPTY_MESSAGE' | translate }}</div>
+                        </div>
+                    </div>
+                    <textarea placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="name" ng-cloak ng-required="true"></textarea>
 
-					<left-chars-progress value="post.name" max="2500"></left-chars-progress>
+                    <left-chars-progress value="post.name" max="2500"></left-chars-progress>
 
-					<label>
-						<i class="fa fa-tags"></i> {{ 'KEYWORDS' | translate}} 
-						<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
-							<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
-						</tags-input>
-					</label>
-					<label>
-						<i class="fa fa-map-marker"></i> {{ 'PLACES' | translate}} 
+                    <label>
+                        <i class="fa fa-tags"></i> {{ 'KEYWORDS' | translate}}
+                        <tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+                            <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+                        </tags-input>
+                    </label>
+                    <label>
+                        <i class="fa fa-map-marker"></i> {{ 'PLACES' | translate}}
 						<locations itemid="post._id" locations="post.locations"></locations>
-					</label>
-					<label>
-						<i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
+                    </label>
+                    <label>
+                        <i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
 						<input type="text" datepicker="{{languageCode}}" class="date"  ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
-					</label>
-				</section>
-			</article>
-		
-			<article class="row">
-				<section class="large-4 columns">
-					<div file-upload class="file-upload" upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments = []" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments = []">
-						<a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
-							<i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
-						</a>
-					</div>
-					<div class="cleaner"></div>
-					<div ng-show="post.attachments.length">
-						<ul class="attachments">
-							<li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
-								<img ng-src="{{ file.origin }}" class="padding-1">
-								<a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
-									<i class="fa fa-times"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div file-upload-output class="text-center file-upload-pogress"></div>
-				</section>
-				<section class="large-4 columns">
-					<a class="create-post-link left"ng-click="post.isPrivate = !post.isPrivate">
-						<span ng-show="!post.isPrivate"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
-						<span ng-show="post.isPrivate && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-						<span ng-show="post.isPrivate && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
-					</a>
-				</section>
-				<section class="large-4 columns">
-					<a ng-click="post.sharing_allowed = !post.sharing_allowed">
-						<span ng-show="post.sharing_allowed">
-							<span class="fa fa-share-square-o"></span>
-							{{'SHARING_SOCIAL_ENABLED' | translate}}
-						</span>
-						<span ng-hide="post.sharing_allowed">
-							<span class="fa fa-times"></span>
-							{{'SHARING_SOCIAL_DISABLED' | translate }}
-						</span>
-					</a>
-				</section>
-			</article>
+                    </label>
+                </section>
+            </article>
 
-			<article class="row footer">
-				<section class="large-4 columns">
-					<a ng-click="close()" class="link-button">{{'CANCEL' | translate}}</a>
-				</section>
-				<section class="large-4 columns">
-					
-				</section>
-				<section class="large-4 columns text-right">
-					<button ng-click="send()" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || editForm.$invalid">{{'SUBMIT' | translate}}</button>
-				</section>
-			</article>
-		</form>
-	</div>
+            <article class="row">
+                <section class="large-4 columns">
+					<!-- 
+                    <div file-upload upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments.enabled = true" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments.enabled = true" style="position:relative; display:inline-block; float:left; padding-left:2px;">
+                        <a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
+                            <i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+                        </a>
+                    </div>
+                     -->
+                    <div image-preview class="file-upload" files="post.attachments_attributes" limit="5" ng-show="! post.attachments_attributes.length">
+                        <a class="create-post-link" ng-hide="post.attachments_attributes.length" ng-click="post.attachmentsEnabled = true">
+                            <i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+                        </a>
+                    </div>
+                    <div class="cleaner"></div>
+                    <div ng-show="post.attachments_attributes.length" class="animate-show">
+                        <ul class="attachments">
+                            <li class="text-center" ng-repeat="item in post.attachments_attributes" style="position:relative;">
+                                <img ng-src="{{ item.file }}" class="padding-1">
+                                <a ng-click="post.attachments_attributes = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="large-4 columns">
+                    <a class="create-post-link left" ng-click="post.isPrivate = !post.isPrivate">
+                        <span ng-show="!post.isPrivate">
+                            <span class="fa fa-unlock"></span>{{ 'VISIBLE_FOR_ALL' | translate }}</span>
+                        <span ng-show="post.isPrivate && !loggedCommunity._id">
+                            <span class="fa fa-lock"></span>{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+                        <span ng-show="post.isPrivate && loggedCommunity._id">
+                            <span class="fa fa-lock"></span>{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+                    </a>
+                </section>
+                <section class="large-4 columns">
+                    <a ng-click="post.sharing_allowed = !post.sharing_allowed">
+                        <span ng-show="post.sharing_allowed">
+                            <span class="fa fa-share-square-o"></span>
+                            {{'SHARING_SOCIAL_ENABLED' | translate}}
+                        </span>
+                        <span ng-hide="post.sharing_allowed">
+                            <span class="fa fa-times"></span>
+                            {{'SHARING_SOCIAL_DISABLED' | translate }}
+                        </span>
+                    </a>
+                </section>
+            </article>
+
+            <article class="row footer">
+                <section class="large-4 columns">
+                    <a ng-click="close()" class="link-button">{{'CANCEL' | translate}}</a>
+                </section>
+                <section class="large-4 columns">
+
+                </section>
+                <section class="large-4 columns text-right">
+                    <button ng-click="send()" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || editForm.$invalid">{{'SUBMIT' | translate}}</button>
+                </section>
+            </article>
+        </form>
+    </div>
 
 </div>

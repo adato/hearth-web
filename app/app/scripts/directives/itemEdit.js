@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 					locations: [{
 						name: ''
 					}],
-					attachments: [],
+					attachments_attributes: [],
 					name: '',
 					title: '',
 					keywords: [],
@@ -52,6 +52,17 @@ angular.module('hearth.directives').directive('itemEdit', [
 					scope.$emit('closeEditItem');
 				};
 
+				scope.transformImagesStructure = function(postDataCopy) {
+					postDataCopy.attachments = [];
+
+					postDataCopy.attachments_attributes.forEach(function(el) {
+						postDataCopy.attachments.push({normal: el.file, origin: el.file});
+					});
+
+					delete postDataCopy.attachments_attributes;
+					return postDataCopy;
+				};
+
 				scope.send = function() {
 					var postData, postDataCopy;
 
@@ -72,17 +83,23 @@ angular.module('hearth.directives').directive('itemEdit', [
 						}
 					);
 
+<<<<<<< HEAD
 					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
+=======
+>>>>>>> develop
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
-
+					
+					postDataCopy = scope.transformImagesStructure(postDataCopy);
+					console.log(postDataCopy.attachments);
+					scope.$emit('adCreated', postDataCopy);
 					scope.close();
 				};
 
 				scope.photoUploadSuccessful = function($event) {
 					if ($event.target.status === 200) {
-						scope.post.attachments.push(JSON.parse($event.target.response));
+						scope.post.attachments_attributes.push(JSON.parse($event.target.response));
 					}
 				};
 

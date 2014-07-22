@@ -235,6 +235,12 @@ $imageSize: 80px;
                 }
             }
         }
+        .attachments {
+            img {
+                max-width: 96px;
+                max-height: 96px;
+            }
+        }
     }
     .share {
         position: relative;
