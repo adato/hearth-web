@@ -62,7 +62,7 @@ angular.module('hearth.directives').directive('item', [
 						twitter: 'https://twitter.com/share?url=' + url,
 						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
 					});
-					scope.mine = scope.item.author._id === scope.user._id;
+					scope.mine = scope.item.author._id === (scope.user ) ? scope.user._id : null;
 					if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
 						item.author.locations = [];
 					}
