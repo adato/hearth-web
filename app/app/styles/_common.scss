@@ -159,14 +159,11 @@ button {
 }
 
 input[type="text"],
-textarea,
-.tags {
+textarea {
     border: 1px solid darken(color(4), 20%);
-    box-shadow: 0 1px 1px white;
     background-color: lighten(color(4), 2%);
     @include transition(background-color, 0.5s);
     &:focus {
         background-color: white;
-        box-shadow: inset 0px 1px 2px color(4);
     }
 }

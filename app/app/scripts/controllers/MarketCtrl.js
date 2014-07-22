@@ -95,6 +95,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		$scope.$on('$routeUpdate', function() {
+			if ($scope.filter && $.isEmptyObject($location.search())) {
+				$scope.search($scope.filter);
+				return;
+			}
 			$scope.items = [];
 			$scope.load();
 		});

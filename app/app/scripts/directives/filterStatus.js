@@ -14,14 +14,15 @@ angular.module('hearth.directives').directive('filterStatus', [
 			restrict: 'E',
 			replace: true,
 			templateUrl: 'templates/directives/filterStatus.html',
+			scope: {},
 			link: function(scope) {
-				scope.$on('$routeUpdate', function() {
+				scope.resetFilter = function() {
+					scope.$emit('filterReset');
+				};
+
+				scope.fetchData = function() {
 					var searchParams = $location.search(),
 						related = searchParams.related;
-
-					scope.resetFilter = function() {
-						scope.$emit('filterReset');
-					};
 
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;
 					if (!$.isEmptyObject(searchParams)) {
@@ -37,7 +38,9 @@ angular.module('hearth.directives').directive('filterStatus', [
 							scope.filterData.related = scope.filterData.related.join(', ');
 						}
 					}
-				});
+				};
+				scope.$on('$routeUpdate', scope.fetchData);
+				scope.fetchData();
 			}
 		};
 	}
