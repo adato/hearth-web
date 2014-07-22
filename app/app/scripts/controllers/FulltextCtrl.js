@@ -39,12 +39,10 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		});
 
 		$scope.load = function() {
-			var defaultParams = {
-					limit: 15,
-					offset: $scope.items.length,
-					query: $routeParams.q
-				},
-				params = angular.copy(defaultParams);
+			var params = {
+				offset: $scope.items.length,
+				query: $routeParams.q
+			};
 
 			if ($location.search().type) {
 				params = $.extend(params, $location.search() || {});
@@ -53,13 +51,19 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
 			Fulltext.query(params, function(response) {
 				$scope.items = params.offset > 0 ? $scope.items.concat(response.data) : response.data;
+				$scope.loaded = true;
+			});
+
+			Fulltext.stats({
+				query: $routeParams.q
+			}, function(response) {
 				$scope.counters = $.extend({
 					post: 0,
 					community: 0,
 					user: 0
-				}, response.meta.counters);
-				$scope.loaded = true;
+				}, response.counters);
 			});
+
 		};
 
 		$scope.load();

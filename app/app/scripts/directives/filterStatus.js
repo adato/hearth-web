@@ -21,7 +21,7 @@ angular.module('hearth.directives').directive('filterStatus', [
 				};
 
 				scope.fetchData = function() {
-					var searchParams = $location.search(),
+					var searchParams = angular.copy($location.search()),
 						related = searchParams.related;
 
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;

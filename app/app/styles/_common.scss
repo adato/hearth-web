@@ -158,12 +158,16 @@ button {
     }
 }
 
-input[type="text"],
+input:not([type]),
+input[type='text'],
 textarea {
     border: 1px solid darken(color(4), 20%);
     background-color: lighten(color(4), 2%);
     @include transition(background-color, 0.5s);
+    box-shadow: none;
     &:focus {
         background-color: white;
+        box-shadow: none;
+        border: 1px solid darken(color(4), 40%);
     }
 }

@@ -28,15 +28,6 @@ $imageSize: 80px;
             top: $fontSize;
         };
         text-shadow: 0px 0px 1px gray;
-        &:after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            margin-top: 20px;
-            width: 3px;
-            background-color: lighten(color(3), 25%);
-            height: 80%;
-        }
     }
     .user-info {
         background-color: white;

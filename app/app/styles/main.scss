@@ -95,11 +95,11 @@ body {
     background-attachment:fixed;
     .main-container {
         display: block;
+        position: relative;
         .scrolled & {
-            margin-top: 6em;
-            
+            top: 6em;
         }
-        margin-top: 8em;
+        top: 8em;
     }
 }
 

@@ -6,55 +6,89 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-	'geo', 'KeywordsService',
+	'geo', 'KeywordsService', '$location',
 
-	function(geo, KeywordsService) {
+	function(geo, KeywordsService, $location) {
 		return {
 			restrict: 'E',
 			replace: true,
 			scope: {
-				filter: '=data'
+
 			},
 			templateUrl: 'templates/directives/filter.html',
 			link: function(scope, element) {
 				var searchBoxElement = $('input#geolocation', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
-					defaultFilter = {
+					filterDefault = {
 						type: '',
 						distance: 25,
-						related: []
+						days: ''
 					};
 
-				scope.expanded = false;
-
-				scope.search = function() {
-					var item, key,
-						filterData = angular.copy(scope.filter);
-
-					filterData.keywords = $.map(filterData.keywords || [], function(item) {
-						return item.text;
-					});
-					if (!filterData.lon || !filterData.lon) {
-						delete filterData.distance;
-					}
-					for (key in filterData) {
-						item = filterData[key];
-						filterData[key] = $.isArray(item) ? item.join(',') : item;
-
-						if (!filterData[key]) {
-							delete filterData[key];
-						}
-					}
-					if ($.isEmptyObject(filterData)) {
+				scope.applyFilter = function() {
+					if ($.isEmptyObject(scope.filter)) {
 						scope.reset();
 					} else {
-						scope.$emit('filterApply', filterData);
-						if (scope.filterSave) {
-							scope.$emit('filterSave', filterData);
-						}
+						scope.$emit('filterApply', scope.convertFilterToParams(scope.filter), scope.filterSave);
 						scope.close();
 					}
 				};
+
+				scope.convertFilterToParams = function(filter) {
+					var related = [],
+						params = {};
+
+					if (filter.type) {
+						params.type = filter.type;
+					}
+					if (filter.days) {
+						params.days = filter.days;
+					}
+					if (filter.my_section) {
+						params.my_section = filter.my_section;
+					}
+					if (filter.user) {
+						related.push('user');
+					}
+					if (filter.community) {
+						related.push('community');
+					}
+					if (related.length) {
+						params.related = related.join(',');
+					}
+					if (filter.keywords.length) {
+						params.keywords = $.map(filter.keywords || [], function(item) {
+							return item.text;
+						}).join(',');
+					}
+					if (filter.lon && filter.lat) {
+						params.lon = filter.lon;
+						params.lat = filter.lat;
+						params.name = filter.name;
+						params.distance = filter.distance;
+					}
+					return params;
+				};
+
+				scope.convertParamsToFilter = function(params) {
+					return {
+						type: params.type || filterDefault.type,
+						days: params.days || filterDefault.days,
+						my_section: params.my_section,
+						user: (params.related || '').indexOf('user') > -1 ? 'true' : undefined,
+						community: (params.related || '').indexOf('community') > -1 ? 'true' : undefined,
+						keywords: $.map(params.keywords || {}, function(keyword) {
+							return {
+								text: keyword
+							};
+						}),
+						lon: params.lon,
+						lat: params.lat,
+						distance: params.distance || filterDefault.distance,
+						name: params.name
+					};
+				};
+
 				scope.close = function() {
 					scope.$emit('filterClose');
 				};
@@ -68,8 +102,8 @@ angular.module('hearth.directives').directive('filter', [
 				};
 
 				scope.$on('resetFilterData', function() {
+					scope.filter = angular.copy(filterDefault);
 					scope.close();
-					scope.filter = angular.copy(defaultFilter);
 				});
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
@@ -77,7 +111,7 @@ angular.module('hearth.directives').directive('filter', [
 
 					if (places && places.length > 0) {
 						var location = places[0].geometry.location,
-							name = places[0].name;
+							name = places[0].formatted_address;
 
 						scope.$apply(function() {
 							scope.filter.name = name;
@@ -94,6 +128,16 @@ angular.module('hearth.directives').directive('filter', [
 						delete scope.filter.name;
 					}
 				});
+
+				scope.$on('$routeUpdate', function() {
+					scope.updateFilterByRoute();
+				});
+
+				scope.updateFilterByRoute = function() {
+					var search = $location.search();
+					scope.filter = $.isEmptyObject(search) ? angular.copy(filterDefault) : scope.convertParamsToFilter(search);
+				};
+				scope.updateFilterByRoute();
 
 			}
 		};

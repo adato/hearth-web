@@ -24,15 +24,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		};
 
-		$scope.$on('filterApply', function($event, filterData) {
+		$scope.$on('filterApply', function($event, filterData, save) {
 			$location.search(filterData);
-		});
-
-		$scope.$on('filterSave', function($event, filterData) {
-			User.edit(angular.extend({
-				_id: $scope.user._id,
-				filter: filterData
-			}));
+			if (save) {
+				User.edit(angular.extend({
+					_id: $scope.user._id,
+					filter: filterData
+				}));
+			}
 		});
 
 		$scope.$on('filterReset', function() {
@@ -46,6 +45,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				});
 			}
 			$scope.filter = {};
+			$scope.user.filter = {};
 		});
 
 		$scope.$on('adCreated', function($event, data) {
@@ -96,7 +96,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('$routeUpdate', function() {
 			if ($scope.filter && $.isEmptyObject($location.search())) {
-				$scope.search($scope.filter);
+				$location.search($scope.filter);
 				return;
 			}
 			$scope.items = [];
