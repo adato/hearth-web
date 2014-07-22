@@ -83,10 +83,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 						}
 					);
 
-<<<<<<< HEAD
 					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
-=======
->>>>>>> develop
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
