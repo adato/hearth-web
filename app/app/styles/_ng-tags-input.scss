@@ -19,13 +19,12 @@ tags-input .host {
         overflow: hidden;
         word-wrap: break-word;
         cursor: text;
-        background-color: white;
+        background-color: transparent;
         border: 0;
         border-radius: $global-radius;
         outline: none;
         &.focused {
             outline: none;
-            box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
         }
         .tag-list {
             margin: 0;
@@ -67,6 +66,7 @@ tags-input .host {
             padding-left: 5px;
             float: left;
             height: 35px;
+            min-width: 15em;
             &.invalid-tag {
                 color: red;
             }

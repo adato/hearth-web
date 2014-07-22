@@ -129,6 +129,9 @@ $imageSize: 80px;
                 right: 1em;
             };
         }
+        .footer-container {
+            margin-top: $fontSize;
+        }
         button {
             margin: {
                 right: 2 * $fontSize;
