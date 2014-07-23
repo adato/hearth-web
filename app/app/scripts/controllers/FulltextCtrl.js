@@ -7,9 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-	'$scope', '$routeParams', 'Fulltext', '$location',
+	'$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch',
 
-	function($scope, $routeParams, Fulltext, $location) {
+	function($scope, $routeParams, Fulltext, $location, LanguageSwitch) {
+		$scope.languageCode = LanguageSwitch.uses().code;
+
 		angular.extend($scope, {
 			queryText: $routeParams.q,
 			items: [],
@@ -44,13 +46,32 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 				query: $routeParams.q
 			};
 
+			$scope.queryText = $routeParams.q;
+			$scope.loaded = false;
+
 			if ($location.search().type) {
 				params = $.extend(params, $location.search() || {});
 			}
 			$scope.selectedFilter = $location.search().type || 'all';
 
 			Fulltext.query(params, function(response) {
-				$scope.items = params.offset > 0 ? $scope.items.concat(response.data) : response.data;
+				var i, item, data = response.data;
+
+				for (i = 0; i < data.length; i++) {
+					item = data[i];
+					if (item.author && item.author.avatar.normal) {
+						data[i].avatarStyle = {
+							'background-image': 'url(' + item.author.avatar.normal + ')'
+						};
+					}
+					if (item.avatar && item.avatar.normal) {
+						data[i].avatarStyle = {
+							'background-image': 'url(' + item.avatar.normal + ')'
+						};
+					}
+				}
+
+				$scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
 				$scope.loaded = true;
 			});
 

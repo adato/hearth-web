@@ -14,7 +14,7 @@
 				<dl class="sub-nav filter">
 					<dt>Filtrovat výsledky:</dt>
 					<dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
-						<a>Vse</a>
+						<a>Vse <b>{{counters.post + counters.community + counters.user}}</b></a>
 					</dd>
 					<dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
 						<a>Trziste <b>{{counters.post}}</b></a>
@@ -33,24 +33,37 @@
 			Ajtakrajta, nic co by odpovídalo <b>{{queryText}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.
 		</div>
 
-		<div ng-repeat="item in items" class="search-item" ng-switch="item._type" >
-			<a class="title" ng-href="#/ad/{{item._id}}">
-				<span ng-if="title">{{item.title}}</span>
-				<span ng-if="!title">{{item.name | ellipsis: 100}}</span>
-			</a>
-			<p>{{item.name | ellipsis: 150}}</p>
-			<ul class="breadcrumbs" ng-switch-when="Post">
-				<li><a href="#/">{{'HOMEPAGE_MARKET' | translate}}</a></li>
-				<li><a ng-href="#/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
-			</ul>
-			<ul class="breadcrumbs" ng-switch-when="User">
-				<li>{{'PEOPLE' | translate}}</li>
-				<li><a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
-			</ul>
-			<ul class="breadcrumbs" ng-switch-when="Community">
-				<li><a href="#/communities">{{'communities' | translate}}</a></li>
-				<li><a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a></li>
-			</ul>
-		</div>
+		<article ng-repeat="item in items" class="row search-item" ng-switch="item._type" >
+			<section class="large-2 columns">
+				<div class="img" ng-style="item.avatarStyle"></div>
+			</section>
+			<section class="large-10 columns">
+				<i class="fa" ng-class="{'fa-recycle' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
+				<a class="title" ng-href="#/ad/{{item._id}}">
+					<span ng-if="title">{{item.title}}</span>
+					<span ng-if="!title">{{item.name | ellipsis: 50}}</span>
+					<span ng-if="item.author.name"> ({{item.author.name}})</span>
+					
+				</a>
+				<p ng-switch-when="Post">{{item.name | ellipsis: 150}}</p>
+				<p ng-switch-when="User">{{item.about | ellipsis: 150}}</p>
+				<p ng-switch-when="Community">{{item.description | ellipsis: 150}}</p>
+			
+				<div class="breadcrumb" ng-switch-when="Post">
+					<a href="#/">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
+					<a ng-href="#/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+					<span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>  /
+					{{item.updated_at |  date : languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}} 
+				</div>
+				<div class="breadcrumb" ng-switch-when="User">
+					{{'people' | translate}} &gt;
+					<a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+				</div>
+				<div class="breadcrumb" ng-switch-when="Community">
+					<a href="#/communities">{{'communities' | translate}}</a>  &gt;
+					<a ng-href="#/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+				</div>
+			</section>
+		</article>
 	</section>
 </article>
