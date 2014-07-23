@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	function($scope, Post, $location, PostReplies, User) {
 		$scope.limit = 15;
 		$scope.items = [];
-		
+
 		$scope.load = function() {
 			var params = angular.extend(angular.copy($location.search()), {
 				offset: $scope.items.length,
@@ -31,6 +31,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					_id: $scope.user._id,
 					filter: filterData
 				}));
+				$scope.user.filter = filterData;
 			}
 		});
 
@@ -46,6 +47,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			}
 			$scope.filter = {};
 			$scope.user.filter = {};
+			$scope.items = [];
+			$scope.load();
 		});
 
 		$scope.$on('adCreated', function($event, data) {
