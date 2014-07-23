@@ -25,7 +25,15 @@ angular.module('hearth.directives').directive('imagePreview', [
 						+ '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
-				scope.files = scope.files || [];
+				
+				if(scope.files) {
+					scope.files.forEach(function(item, index) {
+						scope.files[index].file = item.origin;
+					});
+
+				} else {
+					 scope.files = [];
+				}
 
 				function previewImage(el, limitSize) {
 					var file = $(el).find(".file-upload-input")[0].files[0],
