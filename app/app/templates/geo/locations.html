@@ -13,7 +13,7 @@
 	<div id="{{'location-map' + itemid}}" class="location-map reveal-modal xlarge" data-reveal>
 		<input type="text" id="mapsearch" class="text-input top">
 		<div id="map" class="map-canvas" class="text-input bottom"/>
-		<a class="close-reveal-modal" title="{{'CLOSE'| translate}}">&#215;</a>
+		<a class="close-reveal-modal" ng-click="close()" title="{{'CLOSE'| translate}}">&#215;</a>
 		<a class="link-button" ng-click="close()">{{'CLOSE'| translate}}</a>
 		<button class="right" ng-click="ok()" ng-disabled="!selectedName || selectedPosition.length === 0">{{'OK' | translate}}</button>
 	</div>
