@@ -24,7 +24,8 @@ angular.module('hearth.geo').directive('map', [
             link: function(scope, element) {
                 var markerCluster, oms, map,
                     infoWindow = new google.maps.InfoWindow(),
-                    template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
+                    template = "",
+                    templateSource = $templateCache.get('templates/geo/markerTooltip.html'),
                     markerClusterMaxZoom = 12,
                     markers = [],
                     markerLimitActive = true,
@@ -56,6 +57,11 @@ angular.module('hearth.geo').directive('map', [
                         width: 40,
                         height: 40,
                     }];
+
+                if(typeof templateSource !== 'string')
+                    templateSource = templateSource[1];
+
+                template = $interpolate(templateSource);
 
                 scope.initMap = function() {
                     if (!map) {
@@ -139,7 +145,6 @@ angular.module('hearth.geo').directive('map', [
                         } else {
                             data.adType = data.type;
                         }
-
                         scope.showMarkerWindow(template(data), marker);
                     }, function(err) {});
                 };
