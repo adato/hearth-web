@@ -19,8 +19,20 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			attachments_attributes: []
 		};
 		$scope.post = $scope.defaultPost;
+
 		$scope.$on('setDefaultPost', function($event, newitem) {
 			$scope.post = angular.copy(newitem || $scope.defaultPost);
+			
+			if($scope.post.attachments) {
+
+				for(var i = 0; i < $scope.post.attachments.length; i++) {
+					var tmp = $scope.post.attachments[i];
+					tmp.file = tmp.origin;
+
+					$scope.post.attachments_attributes = [tmp];
+				}
+			}
+
 			$scope.post.save = function() {
 				$scope.post = this;
 				return $scope.createAd();
