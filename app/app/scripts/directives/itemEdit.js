@@ -86,14 +86,13 @@ angular.module('hearth.directives').directive('itemEdit', [
 						}
 					);
 
-					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
 						scope.$emit('adSaved', data);
 					});
 
 					postDataCopy = scope.transformImagesStructure(postDataCopy);
-					console.log(postDataCopy.attachments);
-					scope.$emit('adCreated', postDataCopy);
+					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
+					// scope.$emit('adCreated', postDataCopy);
 					scope.close();
 
 					/*$analytics.eventTrack(eventName, {
