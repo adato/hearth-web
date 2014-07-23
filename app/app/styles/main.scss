@@ -91,7 +91,8 @@ $fontSize: rem-calc(18);
 
 body {
     background-image: inline-image("bg.png");
-    background-repeat: repeat-x;
+    background-repeat: no-repeat;
+    background-position: 50% top;
     background-attachment:fixed;
     .main-container {
         display: block;
