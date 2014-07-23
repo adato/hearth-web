@@ -332,5 +332,7 @@
 	"YOU_HAVE_NOT_BEEN_RATED": "Zat\u00edm v\u00e1s je\u0161t\u011b nikdo neohodnotil.",
 	"YOU_HAVE_NO_WISHES": "Zat\u00edm jste se nezapojili.",
 	"SEND_FB_INVITATION": "Pozvěte přátele na Facebooku",
-	"required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole..."
+	"required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole...",
+	"ERROR_BAD_IMAGE_FORMAT": "Obrázek má špatný formát.",
+	"ERROR_BAD_IMAGE_SIZE": "Obrázek je moc veliký."
 }

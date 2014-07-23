@@ -1148,6 +1148,10 @@ hr {
     font-size: 1px;
 }
 
+.error {
+    color: red;
+}
+
 #grid {
     @include stretch;
     background-image: image-url("grid.png");

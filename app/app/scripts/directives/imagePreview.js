@@ -20,9 +20,8 @@ angular.module('hearth.directives').directive('imagePreview', [
 			template: '<div>'
 						+ '<input class="file-upload-input" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
 						+ '<span ng-transclude style="position:relative"></span>' 
-						+ '<br /><br />'
-	                    + '<span ng-if="error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</span>'
-	                    + '<span ng-if="error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</span>'
+	                    + '<span ng-if="error.badFormat" class="error">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</span>'
+	                    + '<span ng-if="error.badSize" class="error">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</span>'
 						+ '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
@@ -68,7 +67,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 						// bad format
 						if (!~scope.allowedTypes.indexOf(format)) {
 							scope.error.badFormat = true;
-
 						// bad image size
 						} else if (e.total > (limitSize * 1024 * 1024)) {
 							scope.error.badSize = true;
