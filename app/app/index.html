@@ -3,66 +3,69 @@
 <!--[if IE 7]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html ng-app="hearth" class="no-js lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!-->
-<html ng-app="hearth" class="no-js">
-<!--<![endif]-->
-
-<head>
+<!--[if gt IE 9]><!--> <html ng-app="hearth" class="no-js"> <!--<![endif]-->
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1"/>
 
     <!-- @if DEBUG -->
-    <title>HEARTH.net (debug)</title>
+      <title>HEARTH.net (debug)</title>
     <!-- @endif -->
 
     <title>HEARTH.net</title>
 
 
     <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
-
+    
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{og_title}}" />
     <meta property="og:description" content="{{og_description}}" />
     <meta property="og:image" content="{{og_image}}" />
     <meta property="og:url" content="{{og_url}}" />
-    <!-- 
+<!-- 
     <meta property="og:title" content="Hearth.net">
     <meta property="og:description" content="Prostor, kde dávat znamená dostat mnohem víc">
     <meta property="og:image" content="http://www.hearth.net/apple-touch-icon-114x114-precomposed.png">
  -->
 
 
-    <!-- build:css({.tmp,app}) styles/main.css -->
+     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <!-- endbuild -->
 
-    <!-- @if DEBUG -->
-    <link rel="stylesheet" href="styles/palette.css">
+     <!-- @if DEBUG -->
+     <link rel="stylesheet" href="styles/palette.css">
     <!-- @endif -->
-
+ 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
 
-
+  
     <!-- build:js config.js -->
-    <script src="scripts/config.js"></script>
-    <script src="scripts/googleAnalytics.js"></script>
+      <script src="scripts/config.js"></script>
+      <script src="scripts/googleAnalytics.js"></script>
     <!-- endbuild -->
-    <script src="http://connect.facebook.net/en_US/all.js" /></script>
-</head>
+  </head>
+  <body ng-controller="BaseCtrl"
+        ng-init="init();"
+        ng-class="pageType"
+        ng-keydown="escapeKey($event)">
 
-<body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
-    <div id="fb-root"></div>
-    <script type='text/javascript'>
-    if (top.location != self.location) {
-        top.location = self.location
+  <div id="fb-root"></div>
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script type='text/javascript'>
+  <!--
+    if (top.location!= self.location) {
+      top.location = self.location;
     }
-    </script>
-    <script>
+  //-->
+  </script>
+
+  <script>
     // window.fbAsyncInit = function() {
     //     FB.init({appId: '301646633324636', status: true, cookie: true,
     //     xfbml: true});
@@ -73,7 +76,7 @@
     //     '//connect.facebook.net/en_US/all.js';
     //     document.getElementById('fb-root').appendChild(e);
     // }());
-    </script>
+  </script>
 
     <!--[if lt IE 10]>
       <div class="chromeframe">
@@ -93,28 +96,28 @@
     </section>
 
     <section class="content" ng-class="{ 'left-pad' : sidebarVisible() }">
-        <!-- flash messages (error/info) -->
-        <div flash-alert class="alert-box" active-class="visible" duration="10000" ng-cloak>
-            {{ flash.message | translate }}
-        </div>
+      <!-- flash messages (error/info) -->
+      <div flash-alert class="alert-box" active-class="visible" duration="10000" ng-cloak>
+        {{ flash.message | translate }}
+      </div>
 
-        <ng-view></ng-view>
+      <ng-view></ng-view>
 
-        <footer></footer>
+      <footer></footer>
     </section>
 
 
     <script>
-    EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
-    EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.png"'.slice(11, -1);
+      EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
+      EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.png"'.slice(11, -1);
     </script>
     <script>
-    document.write(
+      document.write(
         '' +
-        '<script src="https://maps.googleapis.com/maps/api/js?' +
-        ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-        'sensor=true&libraries=places"><\/script>'
-    );
+          '<script src="https://maps.googleapis.com/maps/api/js?' +
+          ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+          'sensor=true&libraries=places"><\/script>'
+      );
     </script>
 
     <script src="vendor/jquery/dist/jquery.js"></script>
@@ -137,13 +140,13 @@
     <script src="vendor/sticky/jquery.sticky.js"></script>
     <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
 
-    <script>
-    var preferredLanguage, translations = {};
 
-    function defaultTranslation(args) {
+    <script>
+      var preferredLanguage, translations = {};
+      function defaultTranslation(args) {
         preferredLanguage = args[0];
         translations[preferredLanguage] = args[1];
-    }
+      }
     </script>
     <script src="locales/default?callback=defaultTranslation"></script>
 
@@ -255,24 +258,21 @@
     <script src="scripts/services/AdDetailResource.js"></script>
 
     <script src="scripts/foundation.topbar.js"></script>
+
     <!-- endbuild -->
 
     <script>
-    $(function() {
-        FastClick.attach(document.body)
-    });
+      $(function() { FastClick.attach(document.body) });
     </script>
     <!-- Crazy Egg tracking script -->
     <script type="text/javascript">
-    setTimeout(function() {
-        var a = document.createElement("script");
-        var b = document.getElementsByTagName("script")[0];
-        a.src = document.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?" + Math.floor(new Date().getTime() / 3600000);
-        a.async = true;
-        a.type = "text/javascript";
-        b.parentNode.insertBefore(a, b)
-    }, 1);
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName("script")[0];
+      a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
     </script>
+
 </body>
 
 </html>
+
