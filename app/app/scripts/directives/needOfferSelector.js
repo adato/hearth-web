@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('needofferselector',
 				community: '=',
 			},
 			templateUrl: 'templates/directives/needOfferSelector.html',
-			link: function(scope, element) {
+			link: function(scope) {
 				var value = {
 					false: 'offer',
 					true: 'need'
@@ -25,6 +25,10 @@ angular.module('hearth.directives').directive('needofferselector',
 					scope.needSelected = !scope.needSelected;
 					scope.model = value[scope.needSelected];
 				};
+				scope.$watch('model', function(value) {
+					scope.model = value;
+					scope.needSelected = value === 'need';
+				});
 			}
 		};
 	}
