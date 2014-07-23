@@ -15,7 +15,8 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
 			locations: [{
 				name: ''
-			}]
+			}],
+			attachments_attributes: []
 		};
 		$scope.post = $scope.defaultPost;
 		$scope.$on('setDefaultPost', function($event, newitem) {
@@ -39,7 +40,6 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 
 		$scope.createAd = function() {
 			var query;
-
 			if ($scope.post && $scope.post.title && $scope.post.title.length > 0) {
 				if ($scope.post.title.length < 3) {
 					$scope.errors = new ResponseErrors({
@@ -79,8 +79,8 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			var _ref, _ref1;
 
 			if ((((_ref = $event.target) != null ? _ref.response : void 0) != null) && ((_ref1 = $event.target.status) !== 404 && _ref1 !== 403 && _ref1 !== 500)) {
-				$scope.post.attachments = [JSON.parse($event.target.response)];
-				return $scope.post.attachments;
+				$scope.post.attachments_attributes = [JSON.parse($event.target.response)];
+				return $scope.post.attachments_attributes;
 			}
 		};
 

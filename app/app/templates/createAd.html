@@ -37,7 +37,7 @@
 			
 			<div class="text-input middle field-container" ng-show="isCreatingAd() || isEditingAd()">
 				
-				<div image-preview class="file-upload" files="post.attachments_attributes" limit="5" ng-show="! post.attachments_attributes.length" style="position:relative; display:inline-block; float:left; padding-left:2px;">
+				<div image-preview class="file-upload" files="post.attachments_attributes" limit="5" ng-show="! post.attachments_attributes.length" style="position:relative; display:inline-block; float:left; padding-left:2px; text-align: left; position: relative; top: 10px;">
                     <a class="create-post-link" ng-hide="post.attachments_attributes.length" ng-click="post.attachmentsEnabled = true">
                         <i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
                     </a>
@@ -51,8 +51,9 @@
 				<div class="cleaner"></div>
 				<div ng-show="post.attachments_attributes.length">
 					<ul>
-						<li class="text-center" ng-repeat="file in post.attachments_attributes" style="position:relative;">
-							<img ng-src="{{ file.origin }}" class="padding-1">
+						<li class="text-center" ng-repeat="file in post.attachments_attributes" style="position:relative;display: inline-block;">
+							<img ng-src="{{ file.file }}" class="padding-1" style="max-width: 150px;">
+							<br />
 							<a ng-click="post.attachments_attributes = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
 								<i class="hearthicon-remove"></i>
 							</a>

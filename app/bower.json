@@ -22,7 +22,7 @@
     "ng-tags-input": "~1.1.1",
     "foundation-icon-fonts": "zurb/foundation-icon-fonts",
     "foundation-icons": "*",
-    "foundation-datepicker": "*",
+    "foundation-datepicker": "1.0.0",
     "sticky": "*",
     "markerclustererplus": "~2.1.2"
   },
