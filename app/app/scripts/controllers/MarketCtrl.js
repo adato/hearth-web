@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', 'Post', '$location', 'PostReplies', 'User',
+	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate',
 
-	function($scope, Post, $location, PostReplies, User) {
+	function($scope, Post, $location, PostReplies, User, $translate) {
 		$scope.limit = 15;
 		$scope.items = [];
 
@@ -20,7 +20,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 
 			Post.query(params, function(data) {
-				$scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
+				$scope.items = params.offset > 0 ? $scope.items.concat(data.data) : data.data;
+				$scope.topArrowText.top = $translate('ads-has-been-read', {
+					value: $scope.items.length
+				});
+				$scope.topArrowText.bottom = $translate('remains', {
+					value: data.total
+				});
 			});
 		};
 
@@ -131,6 +137,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$location.search(value.filter || {});
 			}
 			$scope.load();
+		});
+
+		$scope.$on('$destroy', function() {
+			$scope.topArrowText.top = '';
+			$scope.topArrowText.bottom = '';
 		});
 	}
 ]);

@@ -145,13 +145,18 @@ button {
 }
 
 .move2top {
-    height: rem-calc(2 * 18);
-    width: rem-calc(2 * 18);
+    height: 2 * $fontSize;
+    width: 4 * $fontSize;
     position: fixed;
     cursor: pointer;
-    right: rem-calc(18);
+    right: $fontSize;
+    text-align: center;
     bottom: 10%;
-    font-size: rem-calc(2 * 18);
+     font-size: 10px;
+    .fa {
+        font-size: 2 * $fontSize;
+        display: block;
+    }
     color: color(3);
     &:hover {
         color: darken(color(3), 20%);

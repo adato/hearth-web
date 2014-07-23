@@ -87,7 +87,11 @@
 
     <section ng-include="'templates/navigation.html'"></section>
     <ng-view class="main-container"></ng-view>
-    <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}"><span class="fa fa-caret-square-o-up"></span></div>
+    <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
+        {{topArrowText.top}}
+        <span class="fa fa-caret-square-o-up"></span>
+        {{topArrowText.bottom}}
+    </div>
 
     <script>
       EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);

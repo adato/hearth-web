@@ -12,6 +12,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 	function($scope, $location, $route, Auth) {
 		var timeout;
 
+		$scope.topArrowText = {};
 		$scope.isScrolled = false;
 
 		$scope.showUI = function(ui) {
