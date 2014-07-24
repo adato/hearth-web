@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('social', [
-
-	function() {
+	'Facebook',
+	function(Facebook) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -18,6 +18,12 @@ angular.module('hearth.directives').directive('social', [
 			},
 			templateUrl: 'templates/social.html',
 			link: function(scope) {
+
+				scope.fbInvite = function() {
+
+					Facebook.inviteFriends();
+					return false;
+				}
 				scope.$watch('item', function(value) {
 					var url = window.location.href.replace(window.location.hash, '');
 					if (value) {
