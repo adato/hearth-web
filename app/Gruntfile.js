@@ -512,7 +512,13 @@ module.exports = function(grunt) {
 				configFile: 'karma.conf.js',
 				autoWatch: true
 			}
-		}
+		},
+		rename: {
+	        index: {
+	            src: '<%= yeoman.dist %>/index.html',
+	            dest: '<%= yeoman.dist %>/index2.html'
+	        }
+	    }
 	});
 
 	grunt.registerTask('serve', function(target) {
@@ -568,7 +574,8 @@ module.exports = function(grunt) {
 		'uglify',
 		//'rev',
 		'usemin',
-		'htmlmin'
+		'htmlmin',
+		"rename:index"
 	]);
 
 	grunt.registerTask('default', [
