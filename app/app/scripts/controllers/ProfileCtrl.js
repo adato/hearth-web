@@ -492,7 +492,5 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				return $scope.fetchFollows();
 			});
 		};
-
-		$scope.inviteFriends = Facebook.inviteFriends;
 	}
 ]);
