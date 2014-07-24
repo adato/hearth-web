@@ -75,7 +75,8 @@ angular.module('hearth.geo').directive('searchMap', [
 
 				scope.search = function(options) {
 
-					Post.query(scope.getSearchParams(), function(data) {
+					Post.mapQuery(scope.getSearchParams(), function(data) {
+						console.log(data);
 						scope.$broadcast("showMarkersOnMap", data);
 					});
 				};

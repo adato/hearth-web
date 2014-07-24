@@ -17,7 +17,15 @@ angular.module('hearth.services').factory('Post', [
 				url: appConfig.apiPath + '/search/',
 				params: {
 					type: 'post'
-				}
+				},
+			},
+			mapQuery: {
+				method: 'GET',
+				url: appConfig.apiPath + '/search/',
+				params: {
+					type: 'post'
+				},
+				isArray: true
 			},
 			add: {
 				method: 'POST'
