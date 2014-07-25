@@ -63,6 +63,10 @@
     if (top.location!= self.location) {
       top.location = self.location;
     }
+
+    if (window.location.hash.indexOf('#/') === 0)
+      window.location.hash = '#!' + window.location.hash.slice(1);
+
   //-->
   </script>
 
