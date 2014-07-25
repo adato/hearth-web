@@ -22,6 +22,12 @@ angular.module('hearth.directives').directive('item', [
 			link: function(scope, element) {
 				scope.avatarStyle = {};
 
+				$timeout(function() {
+					var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
+					$('.timeline', element).height($(element).height() - elementsHeight);
+
+				});
+
 				var timeout = 6000,
 					init = function() {
 						angular.extend(scope, {
