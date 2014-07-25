@@ -136,6 +136,10 @@ module.exports = function(grunt) {
 		connect: {
 			options: {
 				port: 9000,
+				protocol: 'https',
+			 	key: grunt.file.read('./cert/server.key').toString(),
+				cert: grunt.file.read('./cert/server.crt').toString(),
+				ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
 				hostname: 'localhost',
 				livereload: 35729,
@@ -161,7 +165,7 @@ module.exports = function(grunt) {
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-  			host: 'hearth-net-topmonks-staging.herokuapp.com', // wherever the data service is running,
+  				host: 'hearth-net-topmonks-staging.herokuapp.com', // wherever the data service is running,
 				https: true,
 				port: 443 // the port that the data service is running on
 			}],
