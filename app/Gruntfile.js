@@ -162,8 +162,8 @@ module.exports = function(grunt) {
 				context: '/api', // the context of the data service
 				changeOrigin: true,
   			host: 'hearth-net-topmonks-staging.herokuapp.com', // wherever the data service is running,
-				https: false,
-				port: 80 // the port that the data service is running on
+				https: true,
+				port: 443 // the port that the data service is running on
 			}],
 			livereload: {
 				options: {
