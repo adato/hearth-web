@@ -1,39 +1,6 @@
 <article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
 	<section class="large-2 columns photo">
-		<div class="user-info">
-			<article class="row">
-				<section class="large-6 columns">
-					<div ng-bind-html="'count-of-wished-and-gifts' | translate: {value: item.author.post_count}"></div>
-					<div class="summary">
-						<div ng-if="item.author.up_votes" ng-bind-html="'evaluation-cool' | translate: {value: item.author.up_votes}"></div>
-						<div ng-if="item.author.down_votes" ng-bind-html="'evaluation-bad' | translate: {value: item.author.down_votes}"></div>
-					</div>
-				</section>
-				<section class="large-6 columns">
-					<div ng-if="item.author.about" ng-bind-html="item.author.about | linky:'_blank'"></div>
-					<div ng-if="item.author.interests.length"><i class="fa fa-heart"></i> {{item.author.interests.join(', ')}}</div>
-					<div ng-if="item.author.work"><i class="fa fa-suitcase"></i> {{item.author.work}}</div>
-					<div ng-if="item.author.locations.length">
-						<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
-						<span ng-repeat="location in item.author.locations">{{location.name}}</span>.
-					</div>
-
-					<div ng-if="item.author.facebook || item.author.googleplus || item.author.twitter || item.author.linkedin">{{'and-on-social-networks' | translate}}
-						<span class="social">
-							<a ng-if="item.author.facebook" class="fa fa-facebook" title="Facebook" href="{{item.author.facebook}}" target="_blank"></a>
-							<a ng-if="item.author.googleplus" class="fa fa-google-plus" title="Google+" href="{{item.author.googleplus}}" target="_blank"></a>
-							<a ng-if="item.author.twitter" class="fa fa-twitter" title="Twitter" href="{{item.author.twitter}}" target="_blank"></a>
-							<a ng-if="item.author.linkedin" class="fa fa-linkedin" title="LinkedIn" href="{{item.author.linkedin}}" target="_blank"></a>
-						</span>
-						.
-					<div>
-
-
-					<div class="text-right"><a ng-href="#/profile/{{item.author._id}}">Celý profil</a></div>
-				</section>
-			</article>
-
-		</div>
+		<div gn-include="_user-info.html"></div>
 		<div class="avatar" ng-style="avatarStyle"></div>
 		<div class="name">{{ item.author.name }}</div>
 		<div class="karma" ng-class="{empty: !item.karma}">
