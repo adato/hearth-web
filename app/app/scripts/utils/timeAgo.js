@@ -5,6 +5,8 @@
  * @name hearth.utils.timeAgo
  * @description
  * @restrict EA
+ * 
+ * @deprecated -  better use as filter
  */
 
 angular.module('hearth.utils').directive('timeAgo', [

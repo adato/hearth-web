@@ -56,7 +56,7 @@ angular.module('hearth.geo').directive('searchMap', [
 					return angular.copy($location.search());
 				};
 
-				scope.getMapParams = function(searchParams) {
+				scope.getMapParams = function() {
 					return {
 						sort: 'distance',
 						'bounding_box[top_left][lat]': 85,
@@ -73,15 +73,14 @@ angular.module('hearth.geo').directive('searchMap', [
 					return angular.extend(scope.getFilterParams(), scope.getMapParams());
 				};
 
-				scope.search = function(options) {
-
+				scope.search = function() {
 					Post.mapQuery(scope.getSearchParams(), function(data) {
-						scope.$broadcast("showMarkersOnMap", data);
+						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};
 
 				scope.$on('initMap', scope.search);
-				scope.$on("initMap", scope.autodetectMyLocation);
+				scope.$on('initMap', scope.autodetectMyLocation);
 				scope.$on('$routeUpdate', scope.search);
 			}
 		};

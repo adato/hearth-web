@@ -7,9 +7,10 @@
  */
 
 angular.module('hearth.services').factory('UserLocation', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/users/:user_id/location', {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/users/:user_id/location', {
 			user_id: '@id'
 		}, {
 			add: {

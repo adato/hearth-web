@@ -5,11 +5,12 @@
  * @name hearth.services.UserPosts
  * @description
  */
- 
+
 angular.module('hearth.services').factory('UserPosts', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/users/:user_id/posts', {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/users/:user_id/posts', {
 			user_id: '@id'
 		}, {
 			get: {

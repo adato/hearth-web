@@ -7,15 +7,16 @@
  */
 
 angular.module('hearth.services').service('Facebook', [
-	'$translate',
-	function($translate) {
+	'$translate', 'appConfig',
+	
+	function($translate, appConfig) {
 		var inited = false;
 
 		this.init = function() {
 
 			if (!inited) {
 				FB.init({
-					appId: $$config.fbAppId,
+					appId: appConfig.fbAppId,
 					cookie: true,
 					status: true,
 					xfbml: true
@@ -29,7 +30,7 @@ angular.module('hearth.services').service('Facebook', [
 				method: 'apprequests',
 				message: $translate('HOMEPAGE_HEADING')
 			});
-		}
+		};
 
 		this.init();
 		return this;

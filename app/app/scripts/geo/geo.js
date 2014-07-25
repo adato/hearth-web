@@ -42,10 +42,10 @@ angular.module('hearth.geo').factory('geo', [
 			};
 
 		google.maps.Map.prototype.clearMarkers = function() {
-		    for(var i=0; i < this.markers.length; i++){
-		        this.markers[i].setMap(null);
-		    }
-		    this.markers = new Array();
+			for (var i = 0; i < this.markers.length; i++) {
+				this.markers[i].setMap(null);
+			}
+			this.markers = [];
 		};
 
 		return {

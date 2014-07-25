@@ -536,7 +536,7 @@ module.exports = function(grunt) {
 		},
 		html2js: {
 			options: {
-				base: "<%= yeoman.dist %>"
+				base: '<%= yeoman.dist %>'
 			},
 			main: {
 				// src: ['app/**/*.html'],							 // original source
