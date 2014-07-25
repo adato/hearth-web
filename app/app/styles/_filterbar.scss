@@ -19,14 +19,12 @@
             padding: {
                 top: $fontSize;
                 bottom: $fontSize;
-            }
+            };
             margin: {
                 top: $fontSize;
                 bottom: 0;
-            }
+            };
         }
-       
-     
         button {
             margin: {
                 bottom: 0;
@@ -101,16 +99,20 @@
                 right: 0;
             };
             .button {
-                border-radius: $global-radius $global-radius 0 0;
-                border-style: solid;
+                border-radius: $global-radius;
                 border-color: color(5), abs($button-function-factor);
-                box-shadow: inset 3px 3px 3px rgba(white, 0.5);
-                border: {
-                    bottom-width: 2px !important;
-                    left-width: 1px !important;
-                    right-width: 1px !important;
-                    top-width: 1px !important;
+                background-color: color(5);
+                color: white;
+                padding: {
+                    left: 3.2em;
+                    right: 3.2em;
                 };
+                border: 2px solid color(5);
+                transition: border-color 1s, background-color 1s;
+                &:hover {
+                    background-color: darken(color(5), abs($button-function-factor));
+                    border-color: darken(color(5), abs($button-function-factor));
+                }
             }
         }
     }
