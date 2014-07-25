@@ -20,6 +20,8 @@ angular.module('hearth.directives').directive('item', [
 			},
 			templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
 			link: function(scope, element) {
+				scope.avatarStyle = {};
+
 				var timeout = 6000,
 					init = function() {
 						angular.extend(scope, {
@@ -62,7 +64,7 @@ angular.module('hearth.directives').directive('item', [
 						twitter: 'https://twitter.com/share?url=' + url,
 						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
 					});
-					scope.mine = scope.item.author._id === ((scope.user ) ? scope.user._id : null);
+					scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 					if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
 						item.author.locations = [];
 					}
@@ -70,10 +72,22 @@ angular.module('hearth.directives').directive('item', [
 						scope.showMore = true;
 					}
 					if (item.author && item.author.avatar.normal) {
-						item.avatarStyle = {
+						scope.avatarStyle = {
 							'background-image': 'url(' + item.author.avatar.normal + ')'
 						};
 					}
+					if (item.author.up_votes) {
+						item.karma = {
+							width: ((item.author.up_votes / (item.author.up_votes + item.author.down_votes)) * 100) + '%'
+						};
+					} else if (item.author.down_votes) {
+						item.karma = {
+							width: 0
+						};
+					} else {
+						item.karma = undefined;
+					}
+
 				});
 
 				scope.toggleCollapsed = function() {
