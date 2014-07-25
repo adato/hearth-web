@@ -29,7 +29,7 @@ angular.module('hearth.directives').directive('social', [
 						gplus: 'https://plus.google.com/share?url=' + url,
 						twitter: 'https://twitter.com/share?url=' + url,
 						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
-					});							
+					});
 				});
 
 			}

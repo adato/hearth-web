@@ -7,9 +7,10 @@
  */
 
 angular.module('hearth.services').factory('Followers', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/users/:user_id/followers/:followerId', {
+	'$resource', 'appConfig',
+	
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/users/:user_id/followers/:followerId', {
 			user_id: '@user_id',
 			followerId: '@followerId'
 		}, {

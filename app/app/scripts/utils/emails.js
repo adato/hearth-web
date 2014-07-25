@@ -26,7 +26,7 @@ angular.module('hearth.utils').directive('input', function() {
 						}
 					}
 					ctrl.$setValidity('emails', true);
-                    return viewValue;
+					return viewValue;
 				});
 			}
 		}

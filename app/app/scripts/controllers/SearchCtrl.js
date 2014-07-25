@@ -4,6 +4,8 @@
  * @ngdoc controller
  * @name hearth.controllers.SearchCtrl
  * @description
+ * 
+ * @deprecated
  */
 
 angular.module('hearth.controllers').controller('SearchCtrl', [

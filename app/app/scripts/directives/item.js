@@ -74,7 +74,7 @@ angular.module('hearth.directives').directive('item', [
 				scope.toggleCollapsed = function() {
 					$('.expandable', element).toggleClass('expanded');
 					scope.expanded = !scope.expanded;
-				}
+				};
 
 				scope.report = function() {
 					scope.$emit('report', {
@@ -122,7 +122,7 @@ angular.module('hearth.directives').directive('item', [
 					scope.adEdit = false;
 				});
 
-				scope.$on('adCreated', function($event, data) {
+				scope.$on('adCreated', function() {
 					scope.adEdit = false;
 				});
 

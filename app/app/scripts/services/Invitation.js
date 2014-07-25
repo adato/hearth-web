@@ -7,9 +7,10 @@
  */
 
 angular.module('hearth.services').factory('Invitation', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/invitation', {}, {
+	'$resource', 'appConfig',
+	
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/invitation', {}, {
 			add: {
 				method: 'POST'
 			}

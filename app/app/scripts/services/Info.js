@@ -7,9 +7,10 @@
  */
 
 angular.module('hearth.services').factory('Info', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/info', {}, {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/info', {}, {
 			show: {
 				method: 'GET'
 			}

@@ -3,13 +3,14 @@
 /**
  * @ngdoc service
  * @name hearth.services.Feedback
- * @description 
+ * @description
  */
- 
+
 angular.module('hearth.services').factory('Feedback', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/feedback', {}, {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/feedback', {}, {
 			add: {
 				method: 'POST'
 			}

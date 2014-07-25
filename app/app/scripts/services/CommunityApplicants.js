@@ -3,14 +3,14 @@
 /**
  * @ngdoc service
  * @name hearth.services.CommunityApplicants
- * @description 
+ * @description
  */
- 
- 
+
 angular.module('hearth.services').factory('CommunityApplicants', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/communities/:communityId/applicants/:applicantId', {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/communities/:communityId/applicants/:applicantId', {
 			communityId: '@communityId',
 			applicantId: '@applicantId'
 		}, {
