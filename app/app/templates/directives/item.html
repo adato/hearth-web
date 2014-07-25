@@ -34,8 +34,11 @@
 			</article>
 
 		</div>
-		<div class="img"></div>
+		<div class="avatar" ng-style="item.avatarStyle"></div>
 		<div class="name">{{ item.author.name }}</div>
+		<div class="progress"></div>
+		{{item.author.up_votes}}
+			{{item.author.down_votes}}
 	</section>
 	
 	<section class="large-10 columns">

@@ -69,6 +69,11 @@ angular.module('hearth.directives').directive('item', [
 					if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0) {
 						scope.showMore = true;
 					}
+					if (item.author && item.author.avatar.normal) {
+						item.avatarStyle = {
+							'background-image': 'url(' + item.author.avatar.normal + ')'
+						};
+					}
 				});
 
 				scope.toggleCollapsed = function() {
@@ -127,10 +132,6 @@ angular.module('hearth.directives').directive('item', [
 				});
 
 				init();
-
-				if (scope.item.author && scope.item.author.avatar.normal) {
-					element.find('.img').css('background-image', 'url(' + scope.item.author.avatar.normal + ')');
-				}
 			}
 
 		};

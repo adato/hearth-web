@@ -8,20 +8,16 @@ $imageSize: 80px;
     text-align: center;
     font-weight: bold;
     font-size: 0.8em;
-    img,
-    .img {
+    .avatar {
         width: $imageSize;
         height: $imageSize;
-        border-radius: 50%;
-        border: 3px solid white;
-        position: relative;
-        background-size: cover;
-        left: 50%;
         margin: {
             left: -$imageSize / 2;
         };
-        background-image: inline-image("no-avatar.png");
-       
+        &:before {
+            width: $imageSize;
+            height: $imageSize;
+        }
     }
     div.name {
         margin: {
@@ -93,7 +89,7 @@ $imageSize: 80px;
             div {
                 margin: {
                     bottom: 0.5em;
-                }
+                };
             }
         }
     }

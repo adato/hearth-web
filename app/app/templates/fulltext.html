@@ -35,7 +35,7 @@
 
 		<article ng-repeat="item in items" class="row search-item" ng-switch="item._type" >
 			<section class="large-2 columns">
-				<div class="img" ng-style="item.avatarStyle"></div>
+				<div class="avatar" ng-style="item.avatarStyle"></div>
 			</section>
 			<section class="large-10 columns">
 				<i class="fa" ng-class="{'fa-recycle' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>

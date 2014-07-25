@@ -1,3 +1,23 @@
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-size: cover;
+    left: 50%;
+    position: relative !important; 
+    background-image: inline-image("no-avatar.png");
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        border-radius: 50%;
+        box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+        width: 45px;
+        height: 45px;
+        left:0;
+    }
+}
+
 .box {
     background-color: white;
     border-radius: $global-radius;
@@ -152,7 +172,7 @@ button {
     right: $fontSize;
     text-align: center;
     bottom: 10%;
-     font-size: 10px;
+    font-size: 10px;
     .fa {
         font-size: 2 * $fontSize;
         display: block;
