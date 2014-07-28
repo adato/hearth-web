@@ -10,6 +10,8 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 	'$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch',
 
 	function($scope, $routeParams, Fulltext, $location, LanguageSwitch) {
+		var deleteOffset = false;
+
 		$scope.languageCode = LanguageSwitch.uses().code;
 
 		angular.extend($scope, {
@@ -32,11 +34,13 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			if (params.type === 'all') {
 				delete params.type;
 			}
+			
+			deleteOffset = true;
 			$location.search(params);
 		};
 
 		$scope.$on('$routeUpdate', function() {
-			$scope.items = [];
+			// $scope.items = [];
 			$scope.load();
 		});
 
@@ -45,6 +49,12 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 				offset: $scope.items.length,
 				query: $routeParams.q
 			};
+
+			if(deleteOffset) {
+
+				delete params.offset;
+				deleteOffset = false;
+			}
 
 			$scope.queryText = $routeParams.q;
 			$scope.loaded = false;
