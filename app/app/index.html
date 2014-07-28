@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 7]>         <html xmlns:ng="//angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html xmlns:ng="//angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html ng-app="hearth" class="no-js lt-ie10"> <![endif]-->
 <!--[if gt IE 9]><!--> <html ng-app="hearth" class="no-js"> <!--<![endif]-->
   <head>
@@ -22,17 +22,6 @@
     <meta property="og:description" content="{{og_description}}" />
     <meta property="og:image" content="{{og_image}}" />
     <meta property="og:url" content="{{og_url}}" />
-
-<!--
-    <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="{{og_title}}" />
-    <meta property="og:description" content="{{og_description}}" />
-    <meta property="og:image" content="{{og_image}}" />
-    <meta property="og:url" content="{{og_url}}" />
- -->
-
 
      <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
@@ -63,6 +52,9 @@
     if (top.location!= self.location) {
       top.location = self.location;
     }
+
+    if (window.location.hash.indexOf('#/') === 0)
+      window.location.hash = '#!' + window.location.hash.slice(1);
   //-->
   </script>
 
@@ -108,7 +100,7 @@
     <script>
       document.write(
         '' +
-          '<script src="https://maps.googleapis.com/maps/api/js?' +
+          '<script src="//maps.googleapis.com/maps/api/js?' +
           ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
           'sensor=true&libraries=places"><\/script>'
       );

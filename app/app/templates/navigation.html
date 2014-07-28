@@ -1,7 +1,7 @@
 <div class="fixed navigation">
 	<article class="row">
 		<section class="large-2 columns text-right">
-			<a href="#/" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
+			<a href="#!/" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
 		</section>
 		<section class="large-3 columns show-for-scrolled">
 			<a ng-click="showUI('filter')"><span class="fa fa-filter"></span> {{'filter-ads' | translate}}</a>
@@ -35,8 +35,8 @@
 	            <label>{{ loggedUser.name }}</label>
 		    </a>
 		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
-		       <li><a ng-href="#/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> Můj profil</a></li>
-		       <li><a ng-href="#/profile/{{ loggedUser._id }}"><i class="fa fa-cog"></i> Nastavení</a></li>
+		       <li><a ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> Můj profil</a></li>
+		       <li><a ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-cog"></i> Nastavení</a></li>
 		       <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>Odhlásit se</a></li>
 		    </ul> 
 
