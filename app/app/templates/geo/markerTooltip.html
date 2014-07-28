@@ -1,10 +1,12 @@
-<div class="marker-tooltip" itemid="{{_id}}">
-	<img src="{{author.avatar.normal}}">
-	<div class="content">
-		<div>{{author.name}}</div>
+<div style="min-height: 100px; min-width: 200px;">
+	<div class="marker-tooltip" itemid="{{_id}}">
+		<img src="{{author.avatar.normal}}">
+		<div class="content">
+			<div>{{author.name}}</div>
 
-		<span class="{{type}}" >{{adType.toUpperCase() | translate}}</span> {{title|ellipsis:127|linky:'_blank'}}
-		<br>
-		{{name|ellipsis:127|linky:'_blank'}}
+			<span class="{{type}}" >{{adType.toUpperCase() | translate}}</span> {{title|ellipsis:127|linky:'_blank'}}
+			<br>
+			{{name|ellipsis:127|linky:'_blank'}}
+		</div>
 	</div>
 </div>

@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.AdDetail
+ * @name hearth.controllers.ItemDetail
  * @description
  */
 
@@ -18,7 +18,7 @@ angular.module('hearth.controllers').controller('AdDetail', [
 		$scope.isMine = false;
 		$scope.hideCloseButton = true;
 
-		AdDetailResource.get({
+		ItemDetailResource.get({
 			id: $routeParams.id
 		}, function(data) {
 			var title = data.author.name;

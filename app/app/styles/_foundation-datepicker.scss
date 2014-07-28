@@ -31,7 +31,7 @@ input.date  {
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: $zindexDropdown;
+    z-index: $zindexDropdown !important;
     float: left;
     display: none;
     // none by default, but block on "open" of the menu

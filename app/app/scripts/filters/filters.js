@@ -79,6 +79,6 @@ angular.module('hearth.filters', [])
 				valueDate = Date.parse(value);
 
 			return timeAgoService.inWords(nowDate.getTime() - valueDate);
-		}
+		};
 	}
 ]);

@@ -1,15 +1,15 @@
 {
   "name": "ang2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
-    "angular": "1.2.6",
+    "angular": "~1.2.21",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
     "jquery": "~2.1.0",
-    "angular-resource": "1.2.6",
+    "angular-resource": "~1.2.20",
     "angular-cookies": "1.2.6",
     "angular-sanitize": "1.2.6",
-    "angular-route": "1.2.6",
+    "angular-route": "~1.2.20",
     "foundation": "~5.2.3",
     "angular-flash": "~0.1.7",
     "angular-translate": "~1.1.1",
@@ -22,7 +22,7 @@
     "ng-tags-input": "~2.0.1",
     "foundation-icon-fonts": "zurb/foundation-icon-fonts",
     "foundation-icons": "*",
-    "foundation-datepicker": "*",
+    "foundation-datepicker": "~1.0.0",
     "markerclustererplus": "~2.1.2"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "d3": "~3.3.3"
   },
   "resolutions": {
-    "angular": "1.2.6",
+    "angular": "~1.2.21",
     "angular-mocks": "1.2.6"
   }
 }

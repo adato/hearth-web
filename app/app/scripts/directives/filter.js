@@ -6,70 +6,115 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-	'geo',
+	'geo', 'KeywordsService', '$location',
 
-	function(geo) {
+	function(geo, KeywordsService, $location) {
 		return {
 			restrict: 'E',
 			replace: true,
 			scope: {
-				filter: '=data'
+
 			},
 			templateUrl: 'templates/directives/filter.html',
 			link: function(scope, element) {
 				var searchBoxElement = $('input#geolocation', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
-					defaultFilter = {
+					filterDefault = {
 						type: '',
 						distance: 25,
-						related: []
+						days: ''
 					};
 
-				scope.expanded = false;
-				scope.search = function() {
-					var filterData = angular.copy(scope.filter),
-						keywords = $.map(filterData.keywords || [], function(item) {
-							return item.text;
-						});
-
-					if (keywords.length > 0) {
-						filterData.keywords = keywords.join(',');
+				scope.applyFilter = function() {
+					if ($.isEmptyObject(scope.filter)) {
+						scope.reset();
 					} else {
-						delete filterData.keywords;
+						scope.$emit('filterApply', scope.convertFilterToParams(scope.filter), scope.filterSave);
+						scope.close();
 					}
-					if (filterData.related.length > 0) {
-						filterData.related = filterData.related.join(',');
-					} else {
-						delete filterData.related;
-					}
-
-					if (!filterData.type) {
-						delete filterData.type;
-					}
-					if (!filterData.lon || !filterData.lon) {
-						delete filterData.distance;
-					}
-
-					scope.$emit('filter', filterData);
-					scope.close();
 				};
+
+				scope.convertFilterToParams = function(filter) {
+					var related = [],
+						params = {};
+
+					if (filter.type) {
+						params.type = filter.type;
+					}
+					if (filter.days) {
+						params.days = filter.days;
+					}
+					if (filter.my_section) {
+						params.my_section = filter.my_section;
+					}
+					if (filter.user) {
+						related.push('user');
+					}
+					if (filter.community) {
+						related.push('community');
+					}
+					if (related.length) {
+						params.related = related.join(',');
+					}
+					if (filter.keywords.length) {
+						params.keywords = $.map(filter.keywords || [], function(item) {
+							return item.text;
+						}).join(',');
+					}
+					if (filter.lon && filter.lat) {
+						params.lon = filter.lon;
+						params.lat = filter.lat;
+						params.name = filter.name;
+						params.distance = filter.distance;
+					}
+					return params;
+				};
+
+				scope.convertParamsToFilter = function(params) {
+					return {
+						type: params.type || filterDefault.type,
+						days: params.days || filterDefault.days,
+						my_section: params.my_section,
+						user: (params.related || '').indexOf('user') > -1 ? 'true' : undefined,
+						community: (params.related || '').indexOf('community') > -1 ? 'true' : undefined,
+						keywords: $.map(params.keywords || {}, function(keyword) {
+							return {
+								text: keyword
+							};
+						}),
+						lon: params.lon,
+						lat: params.lat,
+						distance: params.distance || filterDefault.distance,
+						name: params.name
+					};
+				};
+
 				scope.close = function() {
-					scope.$emit('closeFilter');
+					scope.$emit('filterClose');
 				};
 
 				scope.reset = function() {
-					scope.filter = angular.copy(defaultFilter);
-					scope.$emit('clearFilter');
-					scope.close();
+					scope.$emit('filterReset');
 				};
+
+				scope.queryKeywords = function($query) {
+					return KeywordsService.queryKeywords($query);
+				};
+
+				scope.$on('resetFilterData', function() {
+					scope.filter = angular.copy(filterDefault);
+					scope.close();
+				});
 
 				google.maps.event.addListener(searchBox, 'places_changed', function() {
 					var places = searchBox.getPlaces();
 
 					if (places && places.length > 0) {
-						var location = places[0].geometry.location;
+						var location = places[0].geometry.location,
+							name = places[0].formatted_address;
 
 						scope.$apply(function() {
+							scope.filter.name = name;
 							scope.filter.lat = location.lat();
 							scope.filter.lon = location.lng();
 						});
@@ -77,13 +122,22 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.$watch('place', function(value) {
-					if (!value) {
+					if (!value && scope.filter) {
 						delete scope.filter.lat;
 						delete scope.filter.lon;
+						delete scope.filter.name;
 					}
 				});
 
-				scope.reset();
+				scope.$on('$routeUpdate', function() {
+					scope.updateFilterByRoute();
+				});
+
+				scope.updateFilterByRoute = function() {
+					var search = $location.search();
+					scope.filter = $.isEmptyObject(search) ? angular.copy(filterDefault) : scope.convertParamsToFilter(search);
+				};
+				scope.updateFilterByRoute();
 
 			}
 		};

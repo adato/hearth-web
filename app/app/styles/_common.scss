@@ -1,3 +1,23 @@
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-size: cover;
+    left: 50%;
+    position: relative !important; 
+    background-image: inline-image("no-avatar.png");
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        border-radius: 50%;
+        box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+        width: 45px;
+        height: 45px;
+        left:0;
+    }
+}
+
 .box {
     background-color: white;
     border-radius: $global-radius;
@@ -51,7 +71,7 @@ button {
 
 .animate-show {
     opacity: 1;
-    max-height: 1000px;
+    max-height: 2000px;
     @include transition(max-height 0.8s, opacity 1s);
     @include box-sizing(border-box);
     overflow: hidden;
@@ -145,29 +165,34 @@ button {
 }
 
 .move2top {
-    height: rem-calc(2 * 18);
-    width: rem-calc(2 * 18);
+    height: 2 * $fontSize;
+    width: 4 * $fontSize;
     position: fixed;
     cursor: pointer;
-    right: rem-calc(18);
+    right: $fontSize;
+    text-align: center;
     bottom: 10%;
-    font-size: rem-calc(2 * 18);
-    color: color(1);
-    &:hover {
-        color: darken(color(1), 20%);
+    font-size: 10px;
+    .fa {
+        font-size: 2 * $fontSize;
+        display: block;
     }
-    text-shadow: 0 -1px 2px color(3);
+    color: color(3);
+    &:hover {
+        color: darken(color(3), 20%);
+    }
 }
 
-input[type="text"],
-textarea,
-.tags {
+input:not([type]),
+input[type='text'],
+textarea {
     border: 1px solid darken(color(4), 20%);
-    box-shadow: 0 1px 1px white;
     background-color: lighten(color(4), 2%);
     @include transition(background-color, 0.5s);
+    box-shadow: none;
     &:focus {
         background-color: white;
-        box-shadow: inset 0px 1px 2px color(4);
+        box-shadow: none;
+        border: 1px solid darken(color(4), 40%);
     }
 }

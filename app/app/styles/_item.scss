@@ -8,30 +8,15 @@ $imageSize: 80px;
     text-align: center;
     font-weight: bold;
     font-size: 0.8em;
-    img,
-    .img {
+    .avatar {
         width: $imageSize;
         height: $imageSize;
-        border-radius: 50%;
-        border: 3px solid white;
-        box-shadow: $defaultShadow;
-        position: relative;
-        background-size: cover;
-        left: 50%;
         margin: {
             left: -$imageSize / 2;
         };
-        background-image: inline-image("no-avatar.png");
-        &:after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: inset -5px -5px 10px rgba(gray, 0.5);
-            width: $imageSize - 5px;
-            height: $imageSize - 5px;
-            top: 0;
-            left: 0;
+        &:before {
+            width: $imageSize;
+            height: $imageSize;
         }
     }
     div.name {
@@ -39,15 +24,6 @@ $imageSize: 80px;
             top: $fontSize;
         };
         text-shadow: 0px 0px 1px gray;
-        &:after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            margin-top: 20px;
-            width: 3px;
-            background-color: lighten(color(3), 25%);
-            height: 80%;
-        }
     }
     .user-info {
         background-color: white;
@@ -85,6 +61,43 @@ $imageSize: 80px;
     }
 }
 
+.timeline {
+    background-color: lighten(color(3), 40%);
+    opacity: 0.5;
+    margin: {
+        top: $fontSize;
+        bottom: $fontSize;
+        left: auto;
+        right: auto;
+    };
+    width: 5px;
+    border-radius: 5px;
+
+}
+
+.karma {
+    height: 5px;
+    width: $imageSize;
+    margin: {
+        top: $fontSize / 4;
+        bottom: $fontSize / 2;
+        left: auto;
+        right: auto;
+    };
+    background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to right, darken(color(5), 30%) 0%, darken(color(5), 30%) 80%, color(5) 100%);
+    
+    &.empty {
+        background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten(color(3), 20%);
+        .positive {
+            display: none;
+        }
+    }
+    .positive {
+        height: 5px;
+        background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken(color(2), 10%) 0%, color(2) 80%, lighten(color(2), 5%) 100%);
+    }
+}
+
 .item {
     background-color: white;
     min-height: 150px;
@@ -105,6 +118,14 @@ $imageSize: 80px;
             .fa {
                 margin: {
                     right: $fontSize / 2;
+                };
+            }
+        }
+        .content {
+            text-align: left;
+            div {
+                margin: {
+                    bottom: 0.5em;
                 };
             }
         }
@@ -132,6 +153,9 @@ $imageSize: 80px;
                 right: 1em;
             };
         }
+        .footer-container {
+            margin-top: $fontSize;
+        }
         button {
             margin: {
                 right: 2 * $fontSize;
@@ -156,7 +180,7 @@ $imageSize: 80px;
                 }
             }
             &.main.secondary {
-                background-color: lighten(color(2), 55%);
+                background-color: lighten(color(2), 50%);
                 color: color(2);
                 border-color: lighten(color(2), 20%);
                 &:hover:not([disabled]) {
@@ -242,6 +266,12 @@ $imageSize: 80px;
                 &.expanded {
                     max-height: 100em;
                 }
+            }
+        }
+        .attachments {
+            img {
+                max-width: 96px;
+                max-height: 96px;
             }
         }
     }

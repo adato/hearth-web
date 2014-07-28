@@ -7,9 +7,13 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-	'$scope', '$routeParams', 'Fulltext', '$location',
+	'$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch',
 
-	function($scope, $routeParams, Fulltext, $location) {
+	function($scope, $routeParams, Fulltext, $location, LanguageSwitch) {
+		var deleteOffset = false;
+
+		$scope.languageCode = LanguageSwitch.uses().code;
+
 		angular.extend($scope, {
 			queryText: $routeParams.q,
 			items: [],
@@ -30,21 +34,30 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			if (params.type === 'all') {
 				delete params.type;
 			}
+			
+			deleteOffset = true;
 			$location.search(params);
 		};
 
 		$scope.$on('$routeUpdate', function() {
-			$scope.items = [];
+			// $scope.items = [];
 			$scope.load();
 		});
 
 		$scope.load = function() {
-			var defaultParams = {
-					limit: 15,
-					offset: $scope.items.length,
-					query: $routeParams.q
-				},
-				params = angular.copy(defaultParams);
+			var params = {
+				offset: $scope.items.length,
+				query: $routeParams.q
+			};
+
+			if(deleteOffset) {
+
+				delete params.offset;
+				deleteOffset = false;
+			}
+
+			$scope.queryText = $routeParams.q;
+			$scope.loaded = false;
 
 			if ($location.search().type) {
 				params = $.extend(params, $location.search() || {});
@@ -52,14 +65,36 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			$scope.selectedFilter = $location.search().type || 'all';
 
 			Fulltext.query(params, function(response) {
-				$scope.items = params.offset > 0 ? $scope.items.concat(response.data) : response.data;
+				var i, item, data = response.data;
+
+				for (i = 0; i < data.length; i++) {
+					item = data[i];
+					if (item.author && item.author.avatar.normal) {
+						data[i].avatarStyle = {
+							'background-image': 'url(' + item.author.avatar.normal + ')'
+						};
+					}
+					if (item.avatar && item.avatar.normal) {
+						data[i].avatarStyle = {
+							'background-image': 'url(' + item.avatar.normal + ')'
+						};
+					}
+				}
+
+				$scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
+				$scope.loaded = true;
+			});
+
+			Fulltext.stats({
+				query: $routeParams.q
+			}, function(response) {
 				$scope.counters = $.extend({
 					post: 0,
 					community: 0,
 					user: 0
-				}, response.meta.counters);
-				$scope.loaded = true;
+				}, response.counters);
 			});
+
 		};
 
 		$scope.load();

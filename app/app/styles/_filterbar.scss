@@ -1,11 +1,10 @@
 .filterbar-wrap {
     margin: {
-        top: 1em;
         bottom: 1em;
     };
     .filterbar-container {
-        background-color: color(4);
-        border: 1px solid darken(color(4), 20%);
+        background-color: white;
+        border: 1px solid darken(white, 20%);
         border-top: 0;
         border-radius: 0 0 $global-radius $global-radius;
         margin: {
@@ -20,35 +19,11 @@
             padding: {
                 top: $fontSize;
                 bottom: $fontSize;
-            }
+            };
             margin: {
                 top: $fontSize;
                 bottom: 0;
-            }
-            border: {
-                top: 1px solid darken(color(4), 8%);
-            }
-        }
-       
-        tags-input {
-            .host {
-                .tags {
-                    .input {
-                        background-color: lighten(color(4), 2%);
-                        &.focus {
-                            background-color: white;
-                            box-shadow: inset 0px 1px 2px color(4);
-                        }
-                    }
-                    &.focused {
-                        background-color: white;
-                        box-shadow: inset 0px 1px 2px color(4);
-                        .input {
-                            background-color: white;
-                        }
-                    }
-                }
-            }
+            };
         }
         button {
             margin: {
@@ -67,7 +42,7 @@
         };
         .button {
             color: color(5);
-            background-color: color(4);
+            background-color: white;
             border-radius: 0;
             border: 0;
             padding: {
@@ -83,12 +58,12 @@
             cursor: pointer;
             &:hover:not([disabled]),
             &.pressed {
-                color: color(4);
+                color: white;
                 background-color: color(5);
             }
         }
         .filterbar-section {
-            background-color: color(4);
+            background-color: white;
             border-radius: $global-radius $global-radius 0 0;
             overflow: hidden;
             border: {
@@ -124,16 +99,20 @@
                 right: 0;
             };
             .button {
-                border-radius: $global-radius $global-radius 0 0;
-                border-style: solid;
+                border-radius: $global-radius;
                 border-color: color(5), abs($button-function-factor);
-                box-shadow: inset 3px 3px 3px rgba(white, 0.5);
-                border: {
-                    bottom-width: 2px !important;
-                    left-width: 1px !important;
-                    right-width: 1px !important;
-                    top-width: 1px !important;
+                background-color: color(5);
+                color: white;
+                padding: {
+                    left: 3.2em;
+                    right: 3.2em;
                 };
+                border: 2px solid color(5);
+                transition: border-color 1s, background-color 1s;
+                &:hover {
+                    background-color: darken(color(5), abs($button-function-factor));
+                    border-color: darken(color(5), abs($button-function-factor));
+                }
             }
         }
     }

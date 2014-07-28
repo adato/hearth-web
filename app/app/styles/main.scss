@@ -2,7 +2,7 @@
 
 //@import "variables";
 
-$color: #fa5800, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8, desaturate(#facf00, 20%);
+$color: #fa5800, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8;
 $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 
@@ -71,7 +71,8 @@ $fontSize: rem-calc(18);
 
 @import "navigation";
 @import "forms";
-@import "ad";
+@import "item";
+@import "itemEdit";
 @import "common";
 
 @import "angular-loading-bar";
@@ -79,7 +80,6 @@ $fontSize: rem-calc(18);
 @import "filter-status";
 @import "filter";
 @import "leftCharsProgress";
-@import "editAd";
 @import "needOfferSelector";
 @import "ng-tags-input";
 @import "foundation-datepicker";
@@ -87,19 +87,20 @@ $fontSize: rem-calc(18);
 @import "checkbox";
 @import "map";
 @import "fulltext";
-@import "adDetail";
+@import "itemDetail";
 
 body {
     background-image: inline-image("bg.png");
-    background-repeat: repeat-x;
+    background-repeat: no-repeat;
+    background-position: 50% top;
     background-attachment:fixed;
     .main-container {
         display: block;
+        position: relative;
         .scrolled & {
-            margin-top: 6em;
-            
+            top: 6em;
         }
-        margin-top: 8em;
+        top: 8em;
     }
 }
 
@@ -170,7 +171,7 @@ meta.foundation-data-attribute-namespace {
     font-family: false;
 }
 
-@import "ad";
+
 
 /*@function emCalc($pxWidth, $base: $em-base) {
     @return $pxWidth / $base * 1em;
@@ -727,10 +728,12 @@ p {
 }
 
 .offer {
+    text-decoration: underline;
     color: $offer-text-color;
 }
 
 .need {
+    text-decoration: underline;
     color: $need-text-color;
 }
 

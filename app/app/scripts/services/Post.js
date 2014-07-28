@@ -7,22 +7,24 @@
  */
 
 angular.module('hearth.services').factory('Post', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/posts/:postId', {
+	'$resource', 'appConfig',
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/posts/:postId', {
 			postId: '@id'
 		}, {
-			get: {
-				method: 'GET',
-				params: {
-					limit: 15,
-					offset: 0,
-					sort: '-created_at'
-				},
-				isArray: true
-			},
 			query: {
 				method: 'GET',
+				url: appConfig.apiPath + '/search/',
+				params: {
+					type: 'post'
+				},
+			},
+			mapQuery: {
+				method: 'GET',
+				url: appConfig.apiPath + '/search/',
+				params: {
+					type: 'post'
+				},
 				isArray: true
 			},
 			add: {
@@ -35,7 +37,7 @@ angular.module('hearth.services').factory('Post', [
 				method: 'DELETE'
 			},
 			spam: {
-				url: $$config.apiPath + '/posts/:postId/spam',
+				url: appConfig.apiPath + '/posts/:postId/spam',
 				method: 'PUT'
 			}
 		});

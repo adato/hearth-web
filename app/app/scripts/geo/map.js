@@ -11,144 +11,179 @@
  * @requires $templateCache
  */
 angular.module('hearth.geo').directive('map', [
-	'geo', '$interpolate', '$templateCache', 'Post', '$location', '$route',
+    'geo', '$interpolate', '$templateCache', 'Post', '$location', '$route', '$timeout',
 
-	function(geo, $interpolate, $templateCache, Post, $location, $route) {
-		return {
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-			link: function(scope, element) {
-				var markerCluster,
-					infoWindow = new google.maps.InfoWindow(),
-					template = $interpolate($templateCache.get('templates/geo/markerTooltip.html')[1]),
-					map = geo.createMap(element[0], {
-						zoom: 11
-					}),
-					oms = new OverlappingMarkerSpiderfier(map, {
-						markersWontMove: true,
-						markersWontHide: true
-					}),
-					markers = [],
-					markerCluster = new MarkerClusterer(map, markers, {
-						ignoreHidden: true,
-						maxZoom: 14,
-						size: 20
-					}),
-					placeMarker = function(location, ad) {
-						var marker;
+    function(geo, $interpolate, $templateCache, Post, $location, $route, $timeout) {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                ads: "="
+            },
+            // transclude: true,
+            link: function(scope, element) {
+                var markerCluster, oms, map,
+                    infoWindow = new google.maps.InfoWindow(),
+                    template = "",
+                    templateSource = $templateCache.get('templates/geo/markerTooltip.html'),
+                    markerClusterMaxZoom = 12,
+                    markers = [],
+                    markerLimitActive = true,
+                    markerLimit = 20,
+                    markerLimitValues = {},
+                    markerClusterStyles = [{
+                        url: "images/marker/circle.png",
+                        textColor: "white",
+                        width: 27,
+                        height: 27,
+                    }, {
+                        url: "images/marker/circle.png",
+                        textColor: "white",
+                        width: 27,
+                        height: 27,
+                    }, {
+                        url: "images/marker/circle2.png",
+                        textColor: "white",
+                        width: 34,
+                        height: 34,
+                    }, {
+                        url: "images/marker/circle3.png",
+                        textColor: "white",
+                        width: 40,
+                        height: 40,
+                    }, {
+                        url: "images/marker/circle3.png",
+                        textColor: "white",
+                        width: 40,
+                        height: 40,
+                    }];
 
-						if (ad.community_id) {
-							ad.adType = ad.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
-						} else {
-							ad.adType = ad.type;
-						}
-						marker = geo.placeMarker(geo.getLocationFromCoords(location.coordinates), ad.type, ad);
+                if(typeof templateSource !== 'string')
+                    templateSource = templateSource[1];
 
-						oms.addMarker(marker);
-						markers.push(marker);
-					},
-					showMarkerWindow = function(content, marker) {
+                template = $interpolate(templateSource);
 
-						infoWindow.setContent(content);
-						infoWindow.open(map, marker);
+                scope.initMap = function() {
+                    if (!map) {
+                        $timeout(function() {
+	                        map = geo.createMap(element[0], {
+	                            zoom: 11
+	                        });
 
-						$('.marker-tooltip').click(function() {
-							var itemId = $(this).attr('itemid');
+	                        google.maps.event.trigger(map, "resize");
+	                        geo.focusCurrentLocation();
 
-							scope.$apply(function() {
-								var path = $location.path('ad/' + itemId);
-							});
-						});
-					},
-					onMarkerClick = function(marker) {
+	                        oms = new OverlappingMarkerSpiderfier(map, {
+	                            markersWontMove: true,
+	                            markersWontHide: true,
+	                            keepSpiderfied: true,
+	                        });
 
-						Post.get({
-							postId: marker.info._id
-						}, function(data) {
+	                        markerCluster = new MarkerClusterer(map, [], {
+	                            ignoreHidden: true,
+	                            maxZoom: markerClusterMaxZoom,
+	                            zoomOnClick: true,
+	                            gridSize: 40,
+	                            averageCenter: true,
+	                            styles: markerClusterStyles
+	                        });
 
-							data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
-							showMarkerWindow(template(data), marker);
+	                        markerCluster.addListener('click', scope.zoomMarkerClusterer);
+	                        oms.addListener('click', scope.onMarkerClick);
+                        }, 100);
+                    }
+                };
 
-						}, function(err) {
-						});
-					},
-					createPins = function(e, ads) {
-						var i, j, ad, location;
-						ads = ads || [];
+                scope.testPositionLimit = function(loc) {
 
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
+                    var lat = parseFloat(loc[0]).toFixed(4),
+                        lng = parseFloat(loc[1]).toFixed(4),
+                        key = "" + lat + ":" + lng;
 
-							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
-							}
-						}
-						
-						markerCluster.repaint();
-						markerCluster.addMarkers(markers);
+                    markerLimitValues[key] = markerLimitValues[key] ? markerLimitValues[key] + 1 : 1;
+                    return markerLimitValues[key] > markerLimit;
+                };
 
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
+                scope.placeMarker = function(location, ad) {
 
-							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
-							}
-						}
+                    var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
+                    oms.addMarker(marker);
+                    markers.push(marker);
+                };
 
+                scope.showMarkerWindow = function(content, marker) {
+                    var width = $(".gm-style").css("width");
 
-						markerCluster.repaint();
-						markerCluster.addMarkers(markers);
-						
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
+                    infoWindow.setOptions({
+                        maxWidth: (parseInt(width) - 200)
+                    });
 
-							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
-							}
-						}
-						
+                    infoWindow.setContent(content);
+                    infoWindow.open(map, marker);
 
-						markerCluster.repaint();
-						markerCluster.addMarkers(markers);
-						
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
+                    $('.marker-tooltip').click(function() {
+                        var itemId = $(this).attr('itemid');
 
-							for (j = 0; j < ad.locations.length; j++) {
-								location = ad.locations[j];
-								if (location.coordinates) {
-									placeMarker(location, ad);
-								}
-							}
-						}
+                        scope.$apply(function() {
+                                                      
+                            var path = $location.path('ad/' + itemId);
+                        });
+                    });
+                };
 
-						// oms.addListener('click', onMarkerClick);
+                scope.onMarkerClick = function(marker) {
 
-						markerCluster.repaint();
-						markerCluster.addMarkers(markers);
-					},
-					hideMarkers = function() {
-						for (var i = 0; i < markers.length; i++) {
-							markers[i].setVisible(false);
-						}
-					};
+                    Post.get({
+                        postId: marker.info._id
+                    }, function(data) {
 
-				oms.addListener('click', onMarkerClick);
-				scope.$on('keywordSearch', hideMarkers);
-				scope.$on('searchByLoc', createPins);
+                        data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
+                        map.panTo(marker.position);
 
-				geo.focusCurrentLocation();
-			}
-		};
-	}
+                        if (data.community_id) {
+                            data.adType = data.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+                        } else {
+                            data.adType = data.type;
+                        }
+                        scope.showMarkerWindow(template(data), marker);
+                    }, function(err) {});
+                };
+
+                scope.createPins = function(e, ads) {
+                    var i, j, ad, location;
+                    ads = ads || [];
+                    markers = [];
+
+                    markerCluster.clearMarkers();
+                    oms.clearMarkers();
+
+                    for (i = 0; i < ads.length; i++) {
+                        ad = ads[i];
+
+                        for (j = 0; j < ad.locations.length; j++) {
+                            if (ad.locations[j]) {
+
+                                if (markerLimit && scope.testPositionLimit(ad.locations[j]))
+                                    continue;
+
+                                scope.placeMarker(ad.locations[j], ad);
+                            }
+                        }
+                    }
+
+                    markerCluster.addMarkers(markers);
+                    markerCluster.repaint();
+                };
+
+                scope.zoomMarkerClusterer = function(cluster) {
+
+                    map.fitBounds(cluster.getBounds());
+                    map.setZoom(markerClusterMaxZoom + 1);
+                };
+
+                scope.$on('initMap', scope.initMap);
+                scope.$on('showMarkersOnMap', scope.createPins);
+            }
+        };
+    }
 ]);

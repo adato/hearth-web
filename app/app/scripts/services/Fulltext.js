@@ -7,11 +7,20 @@
  */
 
 angular.module('hearth.services').factory('Fulltext', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/search', {}, {
+	'$resource', 'appConfig',
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/search', {}, {
 			query: {
-				method: 'GET'
+				method: 'GET',
+				params: {
+					limit: 15
+				}
+			},
+			stats: {
+				method: 'GET',
+				params: {
+					counters: true
+				}
 			}
 		});
 	}

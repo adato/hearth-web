@@ -3,13 +3,14 @@
 /**
  * @ngdoc service
  * @name hearth.services.FolloweePosts
- * @description 
+ * @description
  */
-  
+
 angular.module('hearth.services').factory('FolloweePosts', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/users/:user_id/followees/posts', {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/users/:user_id/followees/posts', {
 			user_id: '@user_id'
 		}, {
 			query: {

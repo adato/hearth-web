@@ -26,13 +26,14 @@
 <!--
     <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
     
-    <meta property="og:title" content="Hearth.net">
-    <meta property="og:description" content="Prostor, kde dávat znamená dostat mnohem víc">
-    <meta property="og:image" content="http://www.hearth.net/apple-touch-icon-114x114-precomposed.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="114">
-    <meta property="og:image:height" content="114">
--->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{og_title}}" />
+    <meta property="og:description" content="{{og_description}}" />
+    <meta property="og:image" content="{{og_image}}" />
+    <meta property="og:url" content="{{og_url}}" />
+ -->
+
+
      <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <!-- endbuild -->
@@ -54,6 +55,30 @@
   </head>
 
   <body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
+
+  <div id="fb-root"></div>
+  <script src="//connect.facebook.net/en_US/all.js"></script>
+  <script type='text/javascript'>
+  <!--
+    if (top.location!= self.location) {
+      top.location = self.location;
+    }
+  //-->
+  </script>
+
+  <script>
+    // window.fbAsyncInit = function() {
+    //     FB.init({appId: '301646633324636', status: true, cookie: true,
+    //     xfbml: true});
+    // };
+    // (function() {
+    //     var e = document.createElement('script'); e.async = true;
+    //     e.src = document.location.protocol +
+    //     '//connect.facebook.net/en_US/all.js';
+    //     document.getElementById('fb-root').appendChild(e);
+    // }());
+  </script>
+
     <!--[if lt IE 10]>
       <div class="chromeframe">
         <div class="reason">
@@ -68,10 +93,12 @@
       <script src="vendor/json3/lib/json3.js"></script>
     <![endif]-->
 
-    <div class="container">
-      <section ng-include="'templates/navigation.html'"></section>
-      <ng-view class="main-container"></ng-view>
-      <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}"><span class="fa fa-arrow-circle-up"></span></div>
+    <section ng-include="'templates/navigation.html'"></section>
+    <ng-view class="main-container"></ng-view>
+    <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
+        {{topArrowText.top}}
+        <span class="fa fa-caret-square-o-up"></span>
+        {{topArrowText.bottom}}
     </div>
 
     <script>
@@ -109,8 +136,8 @@
     <script src="vendor/angular-loading-bar/src/loading-bar.js"></script>
     <script src="vendor/angular-cookie/angular-cookie.js"></script>
     <script src="vendor/ng-tags-input/ng-tags-input.min.js"></script>
+    <script src="vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
     <!-- endbower -->
-    <script src="vendor/foundation-datepicker/example/js/foundation-datepicker.js"></script>
     <script src="vendor/angularitics/src/angulartics-ga.js"></script>
     <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
     <!-- endbuild -->
@@ -129,6 +156,7 @@
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/oms.min.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/appConfig.js"></script>
 
      <script src="scripts/services/UsersService.js"></script>
      <script src="scripts/services/FulltextService.js"></script>
@@ -172,7 +200,7 @@
      <script src="scripts/services/KeywordsService.js"></script>
      <script src="scripts/services/ProfileProgress.js"></script>
      <script src="scripts/services/OpenGraph.js"></script>
-
+     <script src="scripts/services/Facebook.js"></script>
 
      <script src="scripts/filters/filters.js"></script>
 
@@ -196,11 +224,13 @@
       <script src="scripts/directives/needOfferSelector.js"></script>
       <script src="scripts/directives/filter.js"></script>
       <script src="scripts/directives/filterbar.js"></script>
-      <script src="scripts/directives/editAd.js"></script>
-      <script src="scripts/directives/ad.js"></script>
+      <script src="scripts/directives/filterStatus.js"></script>
+      <script src="scripts/directives/itemEdit.js"></script>
+      <script src="scripts/directives/item.js"></script>
       <script src="scripts/directives/leftCharsProgress.js"></script>
       <script src="scripts/directives/checkbox.js"></script>
       <script src="scripts/directives/ngEnter.js"></script>
+      <script src="scripts/directives/imagePreview.js"></script>
 
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>
@@ -237,8 +267,8 @@
 
       <script src="scripts/messages/Messages.js"></script>      
 
-      <script src="scripts/controllers/AdDetail.js"></script>
-      <script src="scripts/services/AdDetailResource.js"></script>
+      <script src="scripts/controllers/ItemDetail.js"></script>
+      <script src="scripts/services/ItemDetailResource.js"></script>
       
       <script src="scripts/foundation.topbar.js"></script>
     <!-- endbuild -->
@@ -254,4 +284,4 @@
       a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
     </script>
   </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+</html>

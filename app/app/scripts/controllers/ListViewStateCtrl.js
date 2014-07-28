@@ -4,6 +4,7 @@
  * @ngdoc controller
  * @name hearth.controllers.ListViewStateCtrl
  * @description 
+ * @deprecated
  */
 
 angular.module('hearth.controllers').controller('ListViewStateCtrl', [

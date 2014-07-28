@@ -3,13 +3,14 @@
 /**
  * @ngdoc service
  * @name hearth.services.CommunityRatings
- * @description 
+ * @description
  */
 
 angular.module('hearth.services').factory('CommunityRatings', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/communities/:communityId/ratings', {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/communities/:communityId/ratings', {
 			communityId: '@id'
 		}, {
 			add: {

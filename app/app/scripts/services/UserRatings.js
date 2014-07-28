@@ -7,9 +7,10 @@
  */
 
 angular.module('hearth.services').factory('UserRatings', [
-	'$resource',
-	function($resource) {
-		return $resource($$config.apiPath + '/users/:user_id/ratings', {
+	'$resource', 'appConfig',
+
+	function($resource, appConfig) {
+		return $resource(appConfig.apiPath + '/users/:user_id/ratings', {
 			user_id: '@id'
 		}, {
 			add: {

@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.ad
+ * @name hearth.directives.item
  * @description
  * @restrict E
  */
-angular.module('hearth.directives').directive('ad', [
+angular.module('hearth.directives').directive('item', [
 	'$timeout', '$translate',
 
 	function($timeout, $translate) {
@@ -20,12 +20,22 @@ angular.module('hearth.directives').directive('ad', [
 			},
 			templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
 			link: function(scope, element) {
+				scope.avatarStyle = {};
+
+				$timeout(function() {
+					var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
+					$('.timeline', element).height($(element).height() - elementsHeight);
+
+				});
+
 				var timeout = 6000,
 					init = function() {
 						angular.extend(scope, {
 							replyEdit: false,
-							message: '',
-							agree: true,
+							reply: {
+								message: '',
+								agree: true
+							},
 							submited: false,
 							reported: false,
 							showMore: false,
@@ -60,19 +70,36 @@ angular.module('hearth.directives').directive('ad', [
 						twitter: 'https://twitter.com/share?url=' + url,
 						mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
 					});
-					scope.mine = scope.item.author._id === scope.user._id;
+					scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 					if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
 						item.author.locations = [];
 					}
 					if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0) {
 						scope.showMore = true;
 					}
+					if (item.author && item.author.avatar.normal) {
+						scope.avatarStyle = {
+							'background-image': 'url(' + item.author.avatar.normal + ')'
+						};
+					}
+					if (item.author.up_votes) {
+						item.karma = {
+							width: ((item.author.up_votes / (item.author.up_votes + item.author.down_votes)) * 100) + '%'
+						};
+					} else if (item.author.down_votes) {
+						item.karma = {
+							width: 0
+						};
+					} else {
+						item.karma = undefined;
+					}
+
 				});
 
 				scope.toggleCollapsed = function() {
 					$('.expandable', element).toggleClass('expanded');
 					scope.expanded = !scope.expanded;
-				}
+				};
 
 				scope.report = function() {
 					scope.$emit('report', {
@@ -87,8 +114,8 @@ angular.module('hearth.directives').directive('ad', [
 				scope.sendReply = function() {
 					scope.$emit('sendReply', {
 						id: scope.item._id,
-						message: scope.message,
-						agreed: scope.agree
+						message: scope.reply.message,
+						agreed: scope.reply.agree
 					});
 					scope.submited = true;
 					$timeout(init, timeout);
@@ -120,15 +147,11 @@ angular.module('hearth.directives').directive('ad', [
 					scope.adEdit = false;
 				});
 
-				scope.$on('adCreated', function($event, data) {
+				scope.$on('adCreated', function() {
 					scope.adEdit = false;
 				});
 
 				init();
-
-				if (scope.item.author && scope.item.author.avatar.normal) {
-					element.find('.img').css('background-image', 'url(' + scope.item.author.avatar.normal + ')');
-				}
 			}
 
 		};

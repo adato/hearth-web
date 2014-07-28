@@ -5,6 +5,8 @@
  * @name hearth.directives.feature
  * @description 
  * @restrict EC
+ * 
+ * @deprecated
  */
 
 angular.module('hearth.directives').directive('feature', function($feature) {

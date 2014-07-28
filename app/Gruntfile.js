@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 				],
 				tasks: ['newer:jshint:all'],
 				options: {
-					livereload: true
+					livereload: 3333
 				}
 			},
 			jsTest: {
@@ -137,9 +137,13 @@ module.exports = function(grunt) {
 		connect: {
 			options: {
 				port: 9000,
+				protocol: 'https',
+			 	key: grunt.file.read('./cert/server.key').toString(),
+				cert: grunt.file.read('./cert/server.crt').toString(),
+				ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
 				hostname: 'localhost',
-				livereload: 35729,
+				livereload: 3333,
 				open: true,
 				middleware: function(connect, options) {
 					var middlewares = [];
@@ -162,9 +166,9 @@ module.exports = function(grunt) {
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-				host: 'hearth-net-topmonks-dev.herokuapp.com', // wherever the data service is running,
-				https: false,
-				port: 80 // the port that the data service is running on
+				host: 'hearth-net-topmonks-dev.herokuapp.com',  // wherever the data service is running,
+				https: true,
+				port: 443  // the port that the data service is running on
 			}],
 			livereload: {
 				options: {
@@ -532,7 +536,7 @@ module.exports = function(grunt) {
 		},
 		html2js: {
 			options: {
-				base: "<%= yeoman.dist %>"
+				base: '<%= yeoman.dist %>'
 			},
 			main: {
 				// src: ['app/**/*.html'],							 // original source

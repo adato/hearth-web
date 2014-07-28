@@ -1,7 +1,6 @@
 <div class="profile-header">
     
     <div style="display:block; width:110px; height:100px; float:left;">
-        
         <avatar source="profile.avatar" size="large" class="left photo" relation="profile.relation" style="margin-right:10px;" type="'User'"></avatar></div>
         
         <h1 ng-show="userNameEditable != true" class="username" style="display:inline-block;" ng-cloak>
@@ -25,6 +24,8 @@
             <button ng-show="loggedUser._id && isMine" type="button" class="button primary" id="nav-edit-profile" ng-click="startProfileEdit()" ng-cloak analytics-event="click on edit" analytics-category="Profile">
                 <i class="fa fa-user"></i> {{ 'EDIT_PROFILE' | translate }}
             </button>
+            <a ng-show="loggedUser._id && isMine" ng-click="inviteFriends()" style=" float: right;font-size: 17px;margin-top: 15px;">{{ 'SEND_FB_INVITATION' | translate }}</a>
+            <div class="cleaner"></div>
             <div ng-switch on="profile.relation == 'followee' || profile.relation == 'friend'" ng-hide="isMine || loggedCommunity._id || !loggedUser._id">
                 <button ng-switch-when="true" type="button" class="small primary button" ng-click="follow(profile._id, true)" ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
                     <i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
