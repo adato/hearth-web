@@ -11,6 +11,12 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
 	function($scope, $routeParams, Fulltext, $location, LanguageSwitch) {
 		var deleteOffset = false;
+		
+		$scope.addresses = {
+			"Community": "community",
+			"User": "profile",
+			"Post": "ad",
+		};
 
 		$scope.languageCode = LanguageSwitch.uses().code;
 
