@@ -7,39 +7,41 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('social', [
-	'Facebook',
-	function(Facebook) {
-		return {
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-			scope: {
-				item: '='
-			},
-			templateUrl: 'templates/social.html',
-			link: function(scope) {
+    'Facebook', '$timeout',
+    function(Facebook, $timeout) {
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            scope: {
+                item: '=',
+                facebookInvite: "@"
+            },
+            templateUrl: 'templates/social.html',
+            link: function(scope) {
 
-				scope.fbInvite = function() {
+                scope.fbInvite = function() {
 
-					Facebook.inviteFriends();
-					return false;
-				}
-				scope.$watch('item', function(value) {
-					var url = window.location.href.replace(window.location.hash, '');
-					if (value) {
-						url += '%23/ad/' + value;
-					}
+                    Facebook.inviteFriends();
+                    return false;
+                }
 
-					angular.extend(scope, {
-						facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
-						gplus: 'https://plus.google.com/share?url=' + url,
-						twitter: 'https://twitter.com/share?url=' + url,
-						linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
-					});							
-				});
+                scope.$watch('item', function(value) {
+                    var url = window.location.href.replace(window.location.hash, '');
+                    if (value) {
+                        url += '%23/ad/' + value;
+                    }
 
-			}
+                    angular.extend(scope, {
+                        facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+                        gplus: 'https://plus.google.com/share?url=' + url,
+                        twitter: 'https://twitter.com/share?url=' + url,
+                        linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
+                    });
+                });
 
-		};
-	}
+            }
+
+        };
+    }
 ]);

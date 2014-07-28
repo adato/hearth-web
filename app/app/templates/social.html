@@ -1,5 +1,6 @@
 <span class="social">
-	<a class="fa fa-facebook" title="Facebook" ng-click="fbInvite()" target="_blank"></a>
+	<a class="fa fa-facebook" ng-if="!facebookInvite" title="Facebook" href="{{facebook}}" target="_blank"></a>
+	<a class="fa fa-facebook" ng-if="facebookInvite" title="Facebook" ng-click="fbInvite()" target="_blank"></a>
 	<a class="fa fa-google-plus" title="Google+" href="{{gplus}}" target="_blank"></a>
 	<a class="fa fa-twitter" title="Twitter" href="{{twitter}}" target="_blank"></a>
 	<a class="fa fa-linkedin" title="LinkedIn" href="{{linkedin}}" target="_blank"></a>
