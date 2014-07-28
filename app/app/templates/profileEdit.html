@@ -138,14 +138,14 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row urls">
         <div class="large-6 columns">
           <label>
             <div class="fa fa-globe"></div>
             {{ 'MY_WEB' | translate }}
               <div class="row" ng-repeat="web in editedProfile.webs track by $index">
                  <div class="large-12 columns">
-                  <input ng-model="web"  class="text-input" type="url" ng-required="!$first" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" ng-blur="updateUrl($event, editedProfile.webs, $index)">
+                  <input ng-model="editedProfile.webs[$index]" class="text-input" type="url" ng-required="!$first || editedProfile.webs.length > 1" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" ng-click="focusWebInput($event)" ng-blur="updateUrl($event, editedProfile.webs, $index)" />
                   <div class="remove" ng-hide="$first">
                     <span class="fa fa-times-circle" ng-click="editedProfile.webs.splice($index,1)"></span>
                   </div>
