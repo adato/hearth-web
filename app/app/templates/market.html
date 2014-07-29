@@ -1,4 +1,5 @@
 <div>
+	{{searchMap | json }}
 	<filter-status></filter-status>
 	<filterbar filter=filter></filterbar>
 
@@ -14,6 +15,6 @@
 		</div>
 	</div>
 	<div class="large-12 columns" ng-show="showMap">
-		<search-map location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
+		<search-map show-map="showMap" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>

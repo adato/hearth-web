@@ -20,10 +20,12 @@ angular.module('hearth.geo').directive('searchMap', [
 			scope: {
 				location: '=',
 				setLocationFn: '&',
-				items: '='
+				items: '=',
+				showMap: '='
 			},
 			templateUrl: 'templates/geo/searchMap.html',
 			link: function(scope, element) {
+
 				var searchBoxElement = $('input', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
 
@@ -74,9 +76,12 @@ angular.module('hearth.geo').directive('searchMap', [
 				};
 
 				scope.search = function() {
-					Post.mapQuery(scope.getSearchParams(), function(data) {
-						scope.$broadcast('showMarkersOnMap', data);
-					});
+					// search only when map is shown
+					if(scope.showMap) {
+						Post.mapQuery(scope.getSearchParams(), function(data) {
+							scope.$broadcast('showMarkersOnMap', data);
+						});
+					}
 				};
 
 				scope.$on('initMap', scope.search);

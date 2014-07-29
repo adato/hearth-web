@@ -7,27 +7,30 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate',
+	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout',
 
-	function($scope, Post, $location, PostReplies, User, $translate) {
+	function($scope, Post, $location, PostReplies, User, $translate, $timeout) {
 		$scope.limit = 15;
 		$scope.items = [];
+		$scope.showMap = false;
 
 		$scope.load = function() {
-			var params = angular.extend(angular.copy($location.search()), {
-				offset: $scope.items.length,
-				limit: $scope.limit
-			});
+			if($scope.showMap === false) {
+				var params = angular.extend(angular.copy($location.search()), {
+					offset: $scope.items.length,
+					limit: $scope.limit
+				});
 
-			Post.query(params, function(data) {
-				$scope.items = params.offset > 0 ? $scope.items.concat(data.data) : data.data;
-				$scope.topArrowText.top = $translate('ads-has-been-read', {
-					value: $scope.items.length
+				Post.query(params, function(data) {
+					$scope.items = params.offset > 0 ? $scope.items.concat(data.data) : data.data;
+					$scope.topArrowText.top = $translate('ads-has-been-read', {
+						value: $scope.items.length
+					});
+					$scope.topArrowText.bottom = $translate('remains', {
+						value: data.total
+					});
 				});
-				$scope.topArrowText.bottom = $translate('remains', {
-					value: data.total
-				});
-			});
+			}
 		};
 
 		$scope.$on('filterApply', function($event, filterData, save) {
@@ -74,7 +77,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('searchMap', function() {
 			$scope.showMap = true;
-			$scope.$broadcast('initMap');
+			$timeout(function() {
+				$scope.$broadcast('initMap');
+			});
 		});
 		$scope.$on('searchList', function() {
 			$scope.showMap = false;
