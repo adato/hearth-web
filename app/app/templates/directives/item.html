@@ -1,8 +1,10 @@
 <article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
 	<section class="large-2 columns photo">
 		<div ng-include="'templates/_user-info.html'"></div>
-		<div class="avatar" ng-style="avatarStyle"></div>
-		<div class="name">{{ item.author.name }}</div>
+		<a ng-href="#!/{{profileLinkType[item.author._type]}}/{{ item.author._id }}">
+			<div class="avatar" ng-style="avatarStyle"></div>
+			<div class="name">{{ item.author.name }}</div>
+		</a>
 		<div class="karma" ng-class="{empty: !item.karma}">
 			<div class="positive" ng-style="item.karma"></div>
 		</div>

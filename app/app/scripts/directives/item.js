@@ -55,6 +55,11 @@ angular.module('hearth.directives').directive('item', [
 							offer: 'WE_GIVE'
 						}
 					};
+					
+				scope.profileLinkType = {
+					"User": "profile",
+					"Community": "community",
+				};
 
 				scope.$watch('item', function(item) {
 					var url = window.location.href.replace(window.location.hash, ''),
