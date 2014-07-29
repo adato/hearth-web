@@ -67,7 +67,7 @@ angular.module('hearth.services').factory('Auth', [
 				}
 			},
 			confirmRegistration: function(hash, success, err) {
-				return $http.post(appConfig.apiPath + '/confirm-registration', {
+				return $http.post(appConfig.apiPath + '/users/confirm_registration', {
 					'hash': hash
 				}).success(function(data) {
 					return success(data);
@@ -94,7 +94,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentity: function(identity) {
 				var defer;
 				defer = $q.defer();
-				$http.post(appConfig.apiPath + '/switch-identity/' + identity).success(function(data) {
+				$http.post(appConfig.apiPath + '/sessions/switch_identity/' + identity).success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);
@@ -104,7 +104,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentityBack: function() {
 				var defer;
 				defer = $q.defer();
-				$http.post(appConfig.apiPath + '/leave-identity').success(function(data) {
+				$http.post(appConfig.apiPath + '/sessions/leave_identity').success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);
