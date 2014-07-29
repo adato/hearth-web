@@ -3,8 +3,8 @@
 		<article class="row">
 			<section class="large-12 columns">
 				<header>
-					<div ng-if="!items.length && loaded">Ajtakrajta, nic jsme nenašli.</div>
-					<div ng-if="items.length">Nasli jsme pro vas obsah souvisejici s <b>{{queryText}}</b></div>
+					<div ng-if="!items.length && loaded">{{ 'FULLTEXT_NOTHING_FOUND' | translate }}</div>
+					<div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {value: queryText}"></div>
 				</header>
 			</section>
 		</article>
@@ -12,26 +12,24 @@
 		<article class="row">
 			<section class="large-12  columns">
 				<dl class="sub-nav filter">
-					<dt>Filtrovat výsledky:</dt>
+					<dt>{{ 'FULLTEXT_FILTER_SEARCH_RESULTS' | translate }}:</dt>
 					<dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
-						<a>Vse <b>{{counters.post + counters.community + counters.user}}</b></a>
+						<a>{{ 'FULLTEXT_ALL' | translate }} <b>{{counters.post + counters.community + counters.user}}</b></a>
 					</dd>
 					<dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
-						<a>Trziste <b>{{counters.post}}</b></a>
+						<a>{{ 'FULLTEXT_MARKET' | translate }} <b>{{counters.post}}</b></a>
 					</dd>
 					<dd ng-click="setFilter('community')" ng-class="{active: selectedFilter == 'community'}">
-						<a>Komunity <b>{{counters.community}}</b></a>
+						<a>{{ 'FULLTEXT_COMMUNITY' | translate }} <b>{{counters.community}}</b></a>
 					</dd>
 					<dd ng-click="setFilter('user')" ng-class="{active: selectedFilter == 'user'}">
-						<a>Lide <b>{{counters.user}}</b></a>
+						<a>{{ 'FULLTEXT_USERS' | translate }} <b>{{counters.user}}</b></a>
 					</dd>
 				</dl>
 			</section>
 		</article>
 
-		<div ng-if="!items.length && loaded">
-			Ajtakrajta, nic co by odpovídalo <b>{{queryText}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.
-		</div>
+		<div ng-if="!items.length && loaded" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
 
 		<article ng-repeat="item in items" class="row search-item" ng-switch="item._type" >
 			<section class="large-2 columns">

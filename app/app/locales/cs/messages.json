@@ -400,5 +400,13 @@
 	"without-limit": "Bez omezen\u00ed",
 	"OG_DEFAULT_TITLE": "Hearth.net",
 	"OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc",
-	"you-will-find-me": "Najdete mne v"
+	"you-will-find-me": "Najdete mne v",
+	"FULLTEXT_ALL": "Vše",
+    "FULLTEXT_COMMUNITY": "Komunity",
+    "FULLTEXT_FILTER_SEARCH_RESULTS": "Filtrovat v\u00fdsledky",
+    "FULLTEXT_MARKET": "Tržiště",
+    "FULLTEXT_NOTHING_FOUND": "Ajtakrajta, nic jsme nena\u0161li.",
+    "FULLTEXT_NOTHING_FOUND_RELATED_TO": "Ajtakrajta, nic co by odpov\u00eddalo <b>{{value}}<\/b> jsme nena\u0161li. Bu\u010f se tenhle v\u00fdraz n\u011bkde schov\u00e1v\u00e1, nebo je\u0161t\u011b neexistuje.",
+    "FULLTEXT_USERS": "Lidé",
+    "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>"
 }
