@@ -24,6 +24,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
         $scope.expandAd(null);
 
+
+        setTimeout(function() {
+
+            $scope.startProfileEdit();
+        }, 2000);
+
         $(document.body).scrollTop(0);
 
         $scope.$watch('routeParams.action', function(newval) {
@@ -388,7 +394,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
             if ($.type($scope.editedProfile.interests) === 'string') {
                 $scope.editedProfile.interests = $scope.editedProfile.interests.split(',');
             }
+
+            // hotfix reverse ordrer of adresses
+            $scope.editedProfile.locations.reverse();
+
             return UsersService.update($scope.editedProfile).then(function() {
+
+                $scope.editedProfile.locations.reverse();
                 flash.success = 'PROFILE_WAS_UPDATED';
                 $scope.profileEditing = false;
                 $scope.go('ads');

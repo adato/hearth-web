@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 				files: [
 					'<%= yeoman.app %>/scripts/{,*/}*.js',
 					'<%= yeoman.app %>/locales/{,*/}*.json',
-				'<%= yeoman.app %>/templates/{,*/}*.html',
+					'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
 				tasks: ['newer:jshint:all'],
 				options: {
@@ -579,7 +579,7 @@ module.exports = function(grunt) {
 		//'rev',
 		'usemin',
 		'htmlmin',
-		"rename:index"
+		// "rename:index",
 	]);
 
 	grunt.registerTask('default', [
