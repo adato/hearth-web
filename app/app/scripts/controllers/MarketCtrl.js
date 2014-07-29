@@ -83,6 +83,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 		$scope.$on('searchList', function() {
 			$scope.showMap = false;
+			$scope.load();
 		});
 
 		$scope.$on('sendReply', function($event, data) {
