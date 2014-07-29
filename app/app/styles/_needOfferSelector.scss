@@ -11,7 +11,7 @@
     height: 48px;
     @include border-top-left-radius;
     z-index: 9;
-    padding-left: 1em;
+    padding-left: 12px;
     cursor: pointer;
     color: nth($color, 1);
     @include transition(background-color, 0.8s);
