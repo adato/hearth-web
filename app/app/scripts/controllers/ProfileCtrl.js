@@ -24,12 +24,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
         $scope.expandAd(null);
 
-
-        setTimeout(function() {
-
-            $scope.startProfileEdit();
-        }, 2000);
-
         $(document.body).scrollTop(0);
 
         $scope.$watch('routeParams.action', function(newval) {
