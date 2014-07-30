@@ -33,6 +33,11 @@ angular.module('hearth.directives').directive('filterbar', [
 					}
 				};
 
+				scope.testFilterActive = function() {
+
+					scope.filterOn = !$.isEmptyObject($location.search());
+				};
+
 				scope.$on('filterClose', function() {
 					scope.filterSelected = false;
 				});
@@ -54,13 +59,15 @@ angular.module('hearth.directives').directive('filterbar', [
 				});
 
 				scope.$on('$routeUpdate', function() {
-					scope.filterOn = !$.isEmptyObject($location.search());
+					scope.testFilterActive();
 				});
 
 				scope.toggleMap = function() {
 					scope.mapSelected = !scope.mapSelected;
 					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
 				};
+
+				scope.testFilterActive();
 			}
 		};
 	}

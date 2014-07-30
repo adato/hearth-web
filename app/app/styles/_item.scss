@@ -28,23 +28,24 @@ $imageSize: 80px;
     }
     .user-info {
         background-color: white;
-        border: 1px solid color(3);
-        display: none;
+        border: 2px solid color(1);
         position: absolute;
         top: 0;
-        position: absolute;
         left: 150px;
+        display: none;
         z-index: 1000;
-        min-width: 600px;
+        min-width: 500px;
         font-weight: normal;
         padding: 1em;
-        border: 1px solid color(3);
         text-align: left;
         border-radius: $global-radius;
         font-size: rem-calc(18);
         box-shadow: $defaultShadow;
         .fa {
             color: color(1);
+            margin-right: 5px;
+            text-align: center;
+            width: 18px;
         }
         div {
             margin: {
@@ -53,6 +54,44 @@ $imageSize: 80px;
         }
         .summary {
             margin-left: 2em;
+        }
+
+        .count_accomplished {
+            color: color(1);
+            text-align: center;
+        }
+
+        .social {
+            a {
+                font-size: 20px;
+                color: color(5);
+            }
+        }
+
+        .profil-link {
+            a {
+                color: color(5);
+            }
+        }
+
+        .links {
+            margin-top: 10px;
+        }
+
+        .author-about {
+            border-top: 1px solid color(1);
+            font-weight: bold;
+            position: relative;
+            text-align: center;
+            top: 13px;
+            div {
+                background-color: white;
+                display: inline-block;
+                padding-left: 8px;
+                padding-right: 8px;
+                position: relative;
+                top: -12px;
+            }
         }
     }
     &:hover {

@@ -32,7 +32,7 @@
 				<section class="large-3 columns">
 					<header>{{'by-place' | translate}}</header>
 					<input type="text" id="geolocation" ng-model="filter.name">
-					<div ng-show="filter.lat && filter.lon">
+					<div ng-show="filter.lat && filter.lon && filter.name">
 						<input type="range" ng-model="filter.distance" step="25"  min="25" max="100" >
 						<div class="text-center">{{filter.distance}} km</div>
 					</div>

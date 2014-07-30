@@ -157,6 +157,7 @@ angular.module('hearth.geo').directive('map', [
                     markerCluster.clearMarkers();
                     oms.clearMarkers();
 
+                    console.log("Nacetl jsem: "+ ads.length);
                     for (i = 0; i < ads.length; i++) {
                         ad = ads[i];
 
@@ -165,7 +166,6 @@ angular.module('hearth.geo').directive('map', [
 
                                 if (markerLimit && scope.testPositionLimit(ad.locations[j]))
                                     continue;
-
                                 scope.placeMarker(ad.locations[j], ad);
                             }
                         }
