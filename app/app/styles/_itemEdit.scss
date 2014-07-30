@@ -13,6 +13,7 @@
     }
     textarea {
         height: 150px;
+        resize: vertical;
     }
     a {
         color: color(5);
@@ -30,5 +31,4 @@
             bottom: $fontSize/2;
         }
     }
-    
 }
