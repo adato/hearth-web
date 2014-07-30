@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 				data: '='
 			},
 			templateUrl: 'templates/directives/itemEdit.html', //must not use name ad.html - adBlocker!
-			link: function(scope) {
+			link: function(scope, element) {
 				scope.languageCode = LanguageSwitch.uses().code;
 
 				var defaultPost = {
@@ -43,6 +43,15 @@ angular.module('hearth.directives').directive('itemEdit', [
 				}
 
 				scope.post = $.extend(angular.copy(defaultPost), scope.data);
+
+				$('.tagsInput', element).keypress(function(e) {
+			        if (e.keyCode == 9) {
+						var self = this;
+						setTimeout(function() {
+							$(self).find("input").focus();
+						});
+			        }
+			    });
 
 				scope.close = function() {
 					scope.editForm.$setPristine();
