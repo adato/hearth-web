@@ -31,14 +31,19 @@ module.exports = function(grunt) {
 					'<%= yeoman.app %>/locales/{,*/}*.json',
 					'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
-				tasks: ['newer:jshint:all'],
+				tasks: [
+					// 'newer:jshint:all'
+				],
 				options: {
 					livereload: 3333
 				}
 			},
 			jsTest: {
 				files: ['test/spec/{,*/}*.js'],
-				tasks: ['newer:jshint:test', 'karma']
+				tasks: [
+					// 'newer:jshint:test', 
+					'karma'
+				]
 			},
 			compass: {
 				files: ['<%= yeoman.app %>/{,*/}*.{scss,sass}'],
