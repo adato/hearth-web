@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-    'geo', 'KeywordsService', '$location',
+    'geo', 'KeywordsService', '$location', 'Auth',
 
-    function(geo, KeywordsService, $location) {
+    function(geo, KeywordsService, $location, Auth) {
         return {
             restrict: 'E',
             replace: true,
@@ -24,6 +24,8 @@ angular.module('hearth.directives').directive('filter', [
                         distance: 25,
                         days: ''
                     };
+
+                scope.loggedUser = Auth.isLoggedIn();
 
                 scope.applyFilter = function() {
 

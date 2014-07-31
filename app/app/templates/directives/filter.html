@@ -20,7 +20,7 @@
 					<header>{{'by-author' | translate}}</header>
 					<checkbox model="filter.user" value="true">{{'individuals' | translate}}</checkbox>
 					<checkbox model="filter.community" value="true">{{'communities' | translate}}</checkbox>
-					<checkbox model="filter.my_section" value="true">{{'just-my-connection' | translate}}</checkbox>
+					<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{'just-my-connection' | translate}}</checkbox>
 				</section>
 				<section class="large-3 columns">
 					<header>{{'by-time' | translate}}</header>
