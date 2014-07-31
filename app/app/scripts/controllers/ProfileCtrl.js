@@ -45,6 +45,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
             } else {
                 return $scope.ads.forEach(function(item) {
                     if (item._id === newval) {
+                        
+                        $('[name=replyForm]').unstick();
+                        $('[name=replyForm]').sticky({
+                            topSpacing: 70
+                        });
+
                         return $scope.expandAd(item);
                     }
                 });

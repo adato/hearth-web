@@ -1,6 +1,6 @@
 <!-- this is inside the "reply" form -->
 <div ng-show="pageType == 'profile'"><span ng-include src="'templates/profilePane.html'"></span></div>
-<hr ng-show="pageType == 'profile'">
+<hr ng-show="pageType == 'profile'" />
 
 <form name="replyForm" class="profile-header" ng-submit="replyToAd(ad)" ng-keydown="escapeKey($event)" style="height:100%;" with-errors novalidate>
     <div class="row" ng-show="pageType != 'profile'">
