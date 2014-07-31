@@ -34,9 +34,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		$scope.$watch('user', function() {
 			var user = $scope.user.get_logged_in_user;
-			if (user) {
+			if (user && user.avatar.normal) {
 				$scope.avatarExtraStyle = {
 					'background-image': 'url(' + user.avatar.normal + ')'
+				};
+			} else {
+				$scope.avatarExtraStyle = {
+					'background-image': 'url(' + $$config.defaultUserImage + ')'
 				};
 			}
 		});

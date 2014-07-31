@@ -45,6 +45,13 @@
 				<div class="attachments" ng-if="item.attachments.length">
 					<img ng-repeat="photo in item.attachments" ng-src="{{ photo.normal }}">
 				</div>
+				<div class="tags" ng-if="item.keywords.length">
+					<ul>
+						<li ng-repeat="tag in item.keywords">
+							{{tag.text}}
+						</li>
+					</ul>
+				</div>
 			</div>
 			<footer>
 				<div class="share">
