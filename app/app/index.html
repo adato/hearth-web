@@ -53,8 +53,9 @@
       top.location = self.location;
     }
 
-    if (window.location.hash.indexOf('#/') === 0 || window.location.href.slice(-1) === "#")
+    if (window.location.hash.indexOf('#!') === -1){
       window.location.hash = '#!' + window.location.hash.slice(1);
+    }
   //-->
   </script>
 
