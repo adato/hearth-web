@@ -30,6 +30,7 @@ $imageSize: 80px;
         background-color: white;
         border: 2px solid color(1);
         position: absolute;
+        color: #9F9F9F;
         top: 0;
         left: 150px;
         display: none;
@@ -43,7 +44,7 @@ $imageSize: 80px;
         box-shadow: $defaultShadow;
         .fa {
             color: color(1);
-            margin-right: 5px;
+            margin-right: 8px;
             text-align: center;
             width: 18px;
         }
@@ -59,6 +60,7 @@ $imageSize: 80px;
         .count_accomplished {
             color: color(1);
             text-align: center;
+            margin-bottom: 20px
         }
 
         .social {
@@ -69,6 +71,8 @@ $imageSize: 80px;
         }
 
         .profil-link {
+            position: relative;
+            top: 8px;
             a {
                 color: color(5);
             }
@@ -76,9 +80,16 @@ $imageSize: 80px;
 
         .links {
             margin-top: 10px;
+            height: 18px;
+            .fa {
+
+                font-size: 20px;
+                margin-right: 2px;
+            }
         }
 
         .author-about {
+            color: black;
             border-top: 1px solid color(1);
             font-weight: bold;
             position: relative;
