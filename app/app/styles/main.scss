@@ -95,6 +95,7 @@ $menu-item-width-multiplier: 9;
 
 @include social;
 #sendInvitationForm {
+    position: fixed;
     @include social(3em, left);
 }
 
