@@ -49,7 +49,7 @@
                         </div>
                         <div ng-if="!item.location.name">&nbsp;</div>
                     </div>
-                    <div class="show-on-hover small-10 columns right text-right">
+                    <div class="show-on-hover small-10 columns right text-right margin-bottom-10">
                         <a href="" ng-click="startEditingAd($event, item);" style="margin-right:20px;" ng-show="isMine">
                             <i class="fa fa-edit"></i>&nbsp; {{ 'EDIT_BUTTON_CAPTION' | translate }}
                         </a>                    
@@ -67,6 +67,8 @@
                             <i class="hearthicon-reply"></i>&nbsp; {{ 'REPLY_BUTTON_CAPTION' | translate }}
                         </a>
                     </div>
+                    <div class="cleaner"></div>
+                    <social item="item._id"></social>
                 </div>
             </div>
             <div class="small-12 columns padding-h-0 " ng-if="isEditingAd(item._id); ">
