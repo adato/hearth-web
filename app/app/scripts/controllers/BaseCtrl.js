@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 		$scope.logout = function() {
 			Auth.logout();
-			$location.path('/');
+			window.location = window.location.pathname;
 		};
 		$scope.search = function(text) {
 			$location.path('/search');
