@@ -198,6 +198,39 @@ $imageSize: 80px;
             };
             color: color(5);
         }
+        .spam {
+            font-size: 0.8em;
+            float: right;
+            margin: {
+                top: rem-calc(10);
+            };
+            color: color(5);
+            display: inline-block;
+            margin-left: 0.5em;
+            color: lighten(color(5), 30%);
+            height: 2em;
+            width: 2em;
+            padding-top: 0.5em;
+            text-align: center;
+            background-color: color(5);
+            border-radius: 50%;
+            text-shadow: 0 -1px 1px darken(color(5), 15%);
+            @include transition(color 1s);
+            @include transition(background-color 0.8s);
+            &:hover {
+                color: white;
+                background-color: darken(color(5), abs($button-function-factor));
+            }
+            &.fa-flag {
+                color: lighten(color(1), 30%);
+                background-color: desaturate(color(1), 50%);
+                text-shadow: 0 -1px 1px darken(desaturate(color(1), 50%), 15%);
+                &:hover {
+                    color: white;
+                    background-color: color(1);
+                }
+            }
+        }
         .remove-button {
             display: inline-block;
             margin: {
@@ -370,15 +403,6 @@ $imageSize: 80px;
                     &:hover {
                         color: white;
                         background-color: darken(color(5), abs($button-function-factor));
-                    }
-                    &.fa-flag {
-                        color: lighten(color(1), 30%);
-                        background-color: desaturate(color(1), 50%);
-                        text-shadow: 0 -1px 1px darken(desaturate(color(1), 50%), 15%);
-                        &:hover {
-                            color: white;
-                            background-color: color(1);
-                        }
                     }
                 }
             }

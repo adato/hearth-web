@@ -7,9 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('item', [
-    '$timeout', '$translate',
+    '$timeout', '$translate', 'Auth',
 
-    function($timeout, $translate) {
+    function($timeout, $translate, Auth) {
         return {
             restrict: 'E',
             replace: true,
@@ -117,13 +117,18 @@ angular.module('hearth.directives').directive('item', [
                 };
 
                 scope.report = function() {
-                    scope.$emit('report', {
-                        id: scope.item._id
-                    });
-                    scope.reported = true;
-                    $timeout(function() {
-                        scope.reported = false;
-                    }, timeout);
+                    if(Auth.isLoggedIn()) {
+
+                        scope.$emit('report', {
+                            id: scope.item._id
+                        });
+                        scope.reported = true;
+                        $timeout(function() {
+                            scope.reported = false;
+                        }, timeout);
+                    } else {
+                        scope.reportNotLoggedIn = true;
+                    }
                 };
 
                 scope.sendReply = function() {

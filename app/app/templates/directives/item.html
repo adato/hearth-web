@@ -54,6 +54,7 @@
 				</div>
 			</div>
 			<footer>
+				<a class="spam fa fa-flag" ng-if="! mine" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>
 					<div class="sharing">
@@ -62,7 +63,6 @@
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
 							<a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a>
-							<a signed-in class="fa fa-flag" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
 						</div>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 				<span ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
 				<span ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 
-				<div class="footer-container" ng-show="replyEdit || adEdit || reported">
+				<div class="footer-container" ng-show="replyEdit || adEdit || reported || reportNotLoggedIn">
 					<div ng-show="reported">
 						<div class="animate-show" ng-cloak >
 							<article class="row">
@@ -106,6 +106,16 @@
 								</section>
 							</article>
 						</div>
+					</div>
+					<div signed-out class="not-logged-container animate-show" ng-show="reportNotLoggedIn">
+						<article class="row">
+							<section  class="large-12 columns">
+								<div class="radius alert-box info" signed-out ng-cloak >
+									<span translate>LOG_IN_BEFORE_REPORT</span>
+									 <a class="close" ng-click="reportNotLoggedIn=false" >&times;</a>
+								</div>
+							</section>
+						</article>
 					</div>
 
 					<item-edit ng-if="mine" ng-show="adEdit" data="item" class="animate-show" id="editAd"></item-edit>
@@ -157,10 +167,7 @@
 						</article>
 					</div>
 				</div>
-				
-				
 			</footer>
-
 		</div>
 	</section>
 </article>

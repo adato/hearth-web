@@ -401,6 +401,7 @@
 	"OG_DEFAULT_TITLE": "Hearth.net",
 	"OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc",
 	"you-will-find-me": "Najdete mne v",
+	"LOG_IN_BEFORE_REPORT": "Pro nahl&aacute;&scaron;en&iacute; inzer&aacute;tu se nejprve <a href='#!/login'>přihlaste</a> pros&iacute;m.",
 	"FULLTEXT_ALL": "Vše",
     "FULLTEXT_COMMUNITY": "Komunity",
     "FULLTEXT_FILTER_SEARCH_RESULTS": "Filtrovat v\u00fdsledky",
