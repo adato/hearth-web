@@ -1,80 +1,81 @@
 <!-- this is inside the "reply" form -->
 <div ng-show="pageType == 'profile'"><span ng-include src="'templates/profilePane.html'"></span></div>
 <hr ng-show="pageType == 'profile'" />
-
-<form name="replyForm" class="profile-header" ng-submit="replyToAd(ad)" ng-keydown="escapeKey($event)" style="height:100%;" with-errors novalidate>
-    <div class="row" ng-show="pageType != 'profile'">
-        <a ng-href="#!/{{ad.profileUrl}}/{{ ad.author._id }}">
-            <avatar source="ad.author.avatar" size="large" class="left photo" relation="ad.author.relation" style="margin-right:10px;" type="ad.author._type"></avatar>
-        </a>
-        <h1 ng-show="ad.author.name" class="username" ng-cloak>
-            <a ng-href="#!/{{ad.profileUrl}}/{{ ad.author._id }}">{{ ad.author.name }}</a>
-        </h1>
-        <div ng-show="ad.author.upVotes + ad.author.downVotes">
-            <feedback up-votes="ad.author.upVotes" down-votes="ad.author.downVotes"></feedback>
-        </div>
-
-        <div ng-switch on="ad.author.relation == 'followee' || ad.author.relation == 'friend'"
-             ng-hide="!loggedUser._id || loggedEntity._id == ad.author._id || ad.author._type == 'Community'" class="padding-v-1"><!-- hidden 4 community -->
-            <a href="" ng-switch-when="true" ng-click="follow(ad.author._id, true); $event.stopPropagation()"
-               ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
-                <i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
+<section class="sticky-container" style="position: relative;">
+    <form name="replyForm" id="replyForm" class="profile-header" ng-submit="replyToAd(ad)" ng-keydown="escapeKey($event)" style="height:100%;" with-errors novalidate>
+        <div class="row" ng-show="pageType != 'profile'">
+            <a ng-href="#!/{{ad.profileUrl}}/{{ ad.author._id }}">
+                <avatar source="ad.author.avatar" size="large" class="left photo" relation="ad.author.relation" style="margin-right:10px;" type="ad.author._type"></avatar>
             </a>
-            <a href="" ng-switch-when="false" ng-click="follow(ad.author._id, false); $event.stopPropagation()">
-                <i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
-            </a>
+            <h1 ng-show="ad.author.name" class="username" ng-cloak>
+                <a ng-href="#!/{{ad.profileUrl}}/{{ ad.author._id }}">{{ ad.author.name }}</a>
+            </h1>
+            <div ng-show="ad.author.upVotes + ad.author.downVotes">
+                <feedback up-votes="ad.author.upVotes" down-votes="ad.author.downVotes"></feedback>
+            </div>
+
+            <div ng-switch on="ad.author.relation == 'followee' || ad.author.relation == 'friend'"
+                 ng-hide="!loggedUser._id || loggedEntity._id == ad.author._id || ad.author._type == 'Community'" class="padding-v-1"><!-- hidden 4 community -->
+                <a href="" ng-switch-when="true" ng-click="follow(ad.author._id, true); $event.stopPropagation()"
+                   ng-init="dl = 'FOLLOWING_BUTTON_CAPTION'; l = dl" ng-mouseenter="dl = 'UNFOLLOW_BUTTON_CAPTION'" ng-mouseleave="dl = l">
+                    <i class="hearthicon-follow"></i>&nbsp; {{ dl | translate }}
+                </a>
+                <a href="" ng-switch-when="false" ng-click="follow(ad.author._id, false); $event.stopPropagation()">
+                    <i class="hearthicon-follow"></i>&nbsp; {{ 'FOLLOW_BUTTON_CAPTION' | translate }}
+                </a>
+            </div>
+            <div class="cleaner"></div>
         </div>
-        <div class="cleaner"></div>
-    </div>
-    <br style="clear:both;" ng-show="pageType != 'profile'">
-    <span href="" ng-show="ad.location.name" ng-cloak>
-        <i class="fa fa-map-marker" style="display:inline-block; width:20px;"></i>
-        <span ng-show="ad.location.name" ng-cloak>{{ ad.location.name }}</span>
-        <br>
-    </span>
-    <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.createdAt | date:'dd.MM.yyyy'}}</span>
-    <br><br>
-    <div signed-out>
-        <div class="round login-prompt" ng-cloak translate>
-            LOG_IN_TO_REPLY
+        <br style="clear:both;" ng-show="pageType != 'profile'">
+        <span href="" ng-show="ad.location.name" ng-cloak>
+            <i class="fa fa-map-marker" style="display:inline-block; width:20px;"></i>
+            <span ng-show="ad.location.name" ng-cloak>{{ ad.location.name }}</span>
+            <br>
+        </span>
+        <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.createdAt | date:'dd.MM.yyyy'}}</span>
+        <br><br>
+        <div signed-out>
+            <div class="round login-prompt" ng-cloak translate>
+                LOG_IN_TO_REPLY
+            </div>
         </div>
-    </div>
-    <div signed-in ng-hide="isMine">
-        <div ng-show="!replyToAdSubmitting && !replyToAdSubmitted" ng-cloak>
-            <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
-            <div style="position:relative;z-index:9;">
-                <textarea ng-model="reply.message" class="text-input" tabindex="1" rows="6"
-                          placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-cloak ng-required="true" ng-minlength="3"></textarea>
-                <div class="row">
-                    <div class="padding-h-0 small-12 medium-12 large-4 large-push-8 columns right">
-                        <button class="right primary button" type="submit" tabindex="2" analytics-on analytics-event="send message" analytics-category="Marketplace" analytics-value="15" ng-cloak translate>
-                            SUBMIT
-                        </button>
-                    </div>
-                    <div class="padding-h-0 small-12 medium-12 large-8 columns left checkbox-input reply-to-ad" validated-checkbox>
-                        <input type="checkbox" id="reply" name="reply" ng-required="true" ng-model="reply.agreed">
-                        <label for="reply">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}</label>
+        <div signed-in ng-hide="isMine">
+            <div ng-show="!replyToAdSubmitting && !replyToAdSubmitted" ng-cloak>
+                <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
+                <div style="position:relative;z-index:9;">
+                    <textarea ng-model="reply.message" class="text-input" tabindex="1" rows="6"
+                              placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-cloak ng-required="true" ng-minlength="3"></textarea>
+                    <div class="row">
+                        <div class="padding-h-0 small-12 medium-12 large-4 large-push-8 columns right">
+                            <button class="right primary button" type="submit" tabindex="2" analytics-on analytics-event="send message" analytics-category="Marketplace" analytics-value="15" ng-cloak translate>
+                                SUBMIT
+                            </button>
+                        </div>
+                        <div class="padding-h-0 small-12 medium-12 large-8 columns left checkbox-input reply-to-ad" validated-checkbox>
+                            <input type="checkbox" id="reply" name="reply" ng-required="true" ng-model="reply.agreed">
+                            <label for="reply">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:agreeTranslationData }}</label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div ng-show="replyToAdSubmitting" ng-cloak class="clearfix padding-2">
-            {{ 'SENDING_MESSAGE_IN_PROGRESS' | translate }}
-        </div>
-        <div ng-show="replyToAdSubmitted" ng-cloak>
-            <div class="clearfix padding-2 successfully-sent">
-                {{ 'SENDING_MESSAGE_SUCCESS' | translate }}
+            <div ng-show="replyToAdSubmitting" ng-cloak class="clearfix padding-2">
+                {{ 'SENDING_MESSAGE_IN_PROGRESS' | translate }}
             </div>
-            <a href="" ng-hide="hideCloseButton" ng-click="expandAd(null)">
-                {{ 'CLOSE' | translate }}
-            </a>
+            <div ng-show="replyToAdSubmitted" ng-cloak>
+                <div class="clearfix padding-2 successfully-sent">
+                    {{ 'SENDING_MESSAGE_SUCCESS' | translate }}
+                </div>
+                <a href="" ng-hide="hideCloseButton" ng-click="expandAd(null)">
+                    {{ 'CLOSE' | translate }}
+                </a>
+            </div>
         </div>
-    </div>
-    <script>
-        $('[name=replyForm]').sticky({
-            topSpacing: 70
-        });
-    </script>
-    
-</form>
+        <script>
+            $('#replyForm').sticky({
+                topSpacing: 70
+            });
+        </script>
+        
+    </form>
+</section>
