@@ -26,7 +26,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					$scope.topArrowText.top = $translate('ads-has-been-read', {
 						value: $scope.items.length
 					});
-					$scope.topArrowText.bottom = $translate('remains', {
+					$scope.topArrowText.bottom = $translate('total-count', {
 						value: data.total
 					});
 				});
