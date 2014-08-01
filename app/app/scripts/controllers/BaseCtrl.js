@@ -19,8 +19,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$scope.$broadcast('showUI', ui);
 		};
 		$scope.logout = function() {
-			Auth.logout();
-			window.location = window.location.pathname;
+			Auth.logout(function() {
+				window.location = window.location.pathname;
+			});
 		};
 		$scope.search = function(text) {
 			$location.path('/search');

@@ -35,8 +35,16 @@ angular.module('hearth.services').factory('Auth', [
 					return $rootScope.$broadcast('onUserLogin');
 				});
 			},
-			logout: function() {
-				$http.post(appConfig.apiPath + '/logout');
+			logout: function(cb) {
+				return $session.then(function(session) {
+					if (session._id) {
+						delete session._id
+					}
+					$http.post(appConfig.apiPath + '/logout').success(cb).error(cb);
+				}, function() {
+
+					$http.post(appConfig.apiPath + '/logout').success(cb).error(cb);
+				});
 			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
