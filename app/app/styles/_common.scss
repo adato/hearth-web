@@ -59,6 +59,7 @@ button {
 
 .reveal-modal {
     border-radius: $global-radius;
+    min-height: unset !important;
 }
 
 .link-button {
