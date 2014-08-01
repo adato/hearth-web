@@ -81,4 +81,16 @@ angular.module('hearth.filters', [])
 			return timeAgoService.inWords(nowDate.getTime() - valueDate);
 		};
 	}
-]);
+])
+
+
+/**
+ * @ngdoc filter
+ * @name hearth.filters.num
+ * @description Returns int number from string
+ */
+.filter('num', function() {
+    return function(input) {
+      return parseInt(input, 10);
+    }
+});
