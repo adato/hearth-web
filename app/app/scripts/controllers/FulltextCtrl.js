@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		$scope.languageCode = LanguageSwitch.uses().code;
 
 		angular.extend($scope, {
-			queryText: $routeParams.q,
+			queryText: $routeParams.q || '',
 			items: [],
 			counters: {
 				post: 0,
@@ -50,19 +50,19 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			$scope.load();
 		});
 
-		$scope.load = function() {
+		$scope.load = function(addOffset) {
 			var params = {
-				offset: $scope.items.length,
-				query: $routeParams.q
+				query: $routeParams.q || "",
+				offset: (addOffset) ? $scope.items.length : 0
 			};
-
+			
 			if(deleteOffset) {
 
 				delete params.offset;
 				deleteOffset = false;
 			}
 
-			$scope.queryText = $routeParams.q;
+			$scope.queryText = params.query;
 			$scope.loaded = false;
 
 			if ($location.search().type) {
@@ -92,7 +92,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			});
 
 			Fulltext.stats({
-				query: $routeParams.q
+				query: params.query 
 			}, function(response) {
 				$scope.counters = $.extend({
 					post: 0,

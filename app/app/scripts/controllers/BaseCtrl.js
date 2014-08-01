@@ -24,8 +24,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 		$scope.search = function(text) {
+
 			$location.path('/search');
-			$location.search('q=' + text);
+			$location.search('q=' + (text || ""));
 		};
 		$scope.top = function() {
 			$('html, body').animate({
