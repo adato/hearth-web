@@ -50,6 +50,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
                         $('[name=replyForm]').sticky({
                             topSpacing: 70
                         });
+                        $('[name=replyForm]').sticky('update');
 
                         return $scope.expandAd(item);
                     }
