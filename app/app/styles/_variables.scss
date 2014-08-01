@@ -144,7 +144,11 @@ $medium-screen: emCalc(1280px);
 $large-screen: emCalc(1440px);
 
 $screen: "only screen";
-$mobile: "only screen and (max-width: #{$small-screen})";
+
+// ============ Odstraneni responzivity ======
+$mobile: "only screen and (width: #{$small-screen})";
+//$mobile: "only screen and (max-width: #{$small-screen})";
+
 $small: "only screen and (min-width: #{$small-screen})";
 $medium: "only screen and (min-width: #{$medium-screen})";
 $large: "only screen and (min-width: #{$large-screen})";
