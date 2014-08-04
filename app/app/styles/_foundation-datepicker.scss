@@ -50,25 +50,25 @@ $activeColor: #2ba6cb !default;
     }
 }
 
-.fi-arrow-right {
-    &:after {
-        font-family: 'FontAwesome';
-        content: "\f178";
-        font-style: normal;
-        font-weight: bold;
-        font-size: 2em;
-    }
-}
+//.fi-arrow-right {
+//    &:after {
+//        font-family: 'FontAwesome';
+//        content: "\f178";
+//        font-style: normal;
+//        font-weight: bold;
+//        font-size: 2em;
+//    }
+//}
 
-.fi-arrow-left {
-    &:after {
-        font-family: 'FontAwesome';
-        content: "\f177";
-        font-style: normal;
-        font-weight: bold;
-        font-size: 2em;
-    }
-}
+//.fi-arrow-left {
+//    &:after {
+//        font-family: 'FontAwesome';
+//        content: "\f177";
+//        font-style: normal;
+//        font-weight: bold;
+//        font-size: 2em;
+//    }
+//}
 
 // real datepicker styles
 .datepicker {

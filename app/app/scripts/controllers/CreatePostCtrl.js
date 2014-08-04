@@ -47,7 +47,7 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		$scope.$watch('languageCode', function() {
 			var timestamp = dateToTimestamp($scope.post.date, true);
 
-			$scope.post.date = $filter('date')(timestamp, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+			$scope.post.date = $filter('date')(timestamp, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
 		});
 
 		$scope.createAd = function() {
