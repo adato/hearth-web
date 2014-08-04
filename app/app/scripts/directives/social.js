@@ -29,7 +29,7 @@ angular.module('hearth.directives').directive('social', [
                 scope.$watch('item', function(value) {
                     var url = window.location.href.replace(window.location.hash, '');
                     if (value) {
-                        url += '%23/ad/' + value;
+                        url += '%23%21/ad/' + value;
                     }
 
                     angular.extend(scope, {
