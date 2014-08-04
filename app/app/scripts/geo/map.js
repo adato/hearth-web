@@ -153,12 +153,16 @@ angular.module('hearth.geo').directive('map', [
 							ad = ads[i];
 
 							for (j = 0; j < ad.locations.length; j++) {
-								if (ad.locations[j]) {
+								var loc = ad.locations[j];
+								if( loc && ! $.isArray(loc) && loc.coordinates )
+									loc = loc.coordinates;
 
-									if(markerLimit && testPositionLimit(ad.locations[j]))
+								if (loc) {
+
+									if(markerLimit && testPositionLimit(loc))
 										continue;
 
-									placeMarker(ad.locations[j], ad);
+									placeMarker(loc, ad);
 								}
 							}
 						}

@@ -206,7 +206,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 			function searchParamsOnMap(searchParams) {
 				delete searchParams.limit;
-
 				return angular.extend(searchParams, {
 					sort: 'distance',
 					'bounding_box[top_left][lat]': 85,
@@ -243,19 +242,19 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 			function getMyHearthService() {
 				var service = FolloweesPostsService;
-
 				if ($scope.orderBy === 'location' ) {
-					searchParams = searchParamsOnMap(searchParams);
+					service = PostsService;
 				} else if ($scope.orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
-				}
-				if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
+					
+				}else if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
 					searchParams.type = $scope.srch.type || searchParams.type;
 					$location.search('q', searchParams.query);
 					service = FolloweesSearchService;
 				}
 				searchParams.userId = $scope.loggedUser._id;
+
 				return service;
 			}
 
@@ -280,10 +279,11 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				return service;
 			};
 
-			return {
+			var ret = {
 				service: $scope.pageType === 'my' ? getMyHearthService() : getMarketplaceService(),
 				params: searchParams
 			};
+			return ret;
 		};
 
 		function processRow(value) {
@@ -325,7 +325,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			if (search.params.type === 'user') {
 				search.params.type = 'user,community';
 			}
-
 			return search.service.query(search.params).then(function(data) {
 				var i, len = data.length;
 				if (search.params.query) {
@@ -455,9 +454,12 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 		$scope.$on('searchWithRefresh', function() {
 			$scope.offset = 0;
-			return $scope.search({
-				add: false
-			});
+			
+			return $timeout(function() {
+				return $scope.search({
+					add: false
+				});
+			}, 300);
 		});
 
 		$scope.setLastAddedId(null);
