@@ -171,12 +171,15 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 
 			$rootScope.$on('$translateChangeSuccess', function () {
 				OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+				console.log($translate('OG_DEFAULT_TITLE'));
+				OpenGraph.setDefault();
 			});
 
 	    	$rootScope.$on('$routeChangeStart', function(evt, absNewUrl, absOldUrl){
 		        $window.scrollTo(0,0);
 			});
 	    	$rootScope.$on('$routeChangeSuccess', function(evt, absNewUrl, absOldUrl){
+	    		console.log($translate('OG_DEFAULT_TITLE'));
 				OpenGraph.setDefault();
 	    	});
 		}
