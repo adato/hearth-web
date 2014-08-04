@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('invitationForm', [
-	'Invitation', '$timeout', 'ResponseErrors',
-	function(Invitation, $timeout, ResponseErrors) {
+	'Invitation', '$timeout', 'ResponseErrors', 'OpenGraph',
+	function(Invitation, $timeout, ResponseErrors, OpenGraph) {
 		return {
 			restrict: 'AE',
 			replace: true,
@@ -20,6 +20,9 @@ angular.module('hearth.directives').directive('invitationForm', [
 			templateUrl: 'templates/invitationForm.html',
 			link: function(scope) {
 				var init;
+
+				scope.inviteInfo = OpenGraph.getDefaultInfo();
+
 				init = function() {
 					var loggedUser = scope.loggedUser;
 					scope.status = {

@@ -28,6 +28,14 @@ angular.module('hearth.services').service('OpenGraph', [
 			defaults.description = desc || "";
 			defaults.image = image || "";
 		}
+		
+		/**
+		 * Vrati defaultni opengraph info pro aplikaci
+		 */
+		this.getDefaultInfo = function() {
+
+			return defaults;
+		}
 
 		/**
 		 * Nastavi info do opengraph meta tagu

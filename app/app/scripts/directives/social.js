@@ -15,7 +15,9 @@ angular.module('hearth.directives').directive('social', [
             transclude: true,
             scope: {
                 item: '=',
-                facebookInvite: "@"
+                title: '=',
+                summary: '=',
+                facebookInvite: '@'
             },
             templateUrl: 'templates/social.html',
             link: function(scope) {
@@ -27,16 +29,21 @@ angular.module('hearth.directives').directive('social', [
                 }
 
                 scope.$watch('item', function(value) {
-                    var url = window.location.href.replace(window.location.hash, '');
+                    var url = window.location.href.replace(window.location.hash, ''),
+                        title = encodeURIComponent(scope.title),
+                        summary = encodeURIComponent(scope.summary);
+
+
                     if (value) {
                         url += '%23%21/ad/' + value;
                     }
+
 
                     angular.extend(scope, {
                         facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
                         gplus: 'https://plus.google.com/share?url=' + url,
                         twitter: 'https://twitter.com/share?url=' + url,
-                        linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
+                        linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url + '&title=' + title + '&summary=' + summary
                     });
                 });
 
