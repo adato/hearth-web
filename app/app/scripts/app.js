@@ -170,17 +170,24 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 		function($rootScope, $location, $http, $translate, OpenGraph, $window) {
 
 			$rootScope.$on('$translateChangeSuccess', function () {
-				OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
-				console.log($translate('OG_DEFAULT_TITLE'));
-				OpenGraph.setDefault();
+	    		if($translate('OG_DEFAULT_TITLE') !== '') {
+					OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+					OpenGraph.setDefault();
+
+					console.log("TranslateChangeSuccess: "+$translate('OG_DEFAULT_TITLE') + " - " + $translate('OG_DEFAULT_DESCRIPTION'));
+				}
 			});
 
 	    	$rootScope.$on('$routeChangeStart', function(evt, absNewUrl, absOldUrl){
 		        $window.scrollTo(0,0);
 			});
 	    	$rootScope.$on('$routeChangeSuccess', function(evt, absNewUrl, absOldUrl){
-	    		console.log($translate('OG_DEFAULT_TITLE'));
-				OpenGraph.setDefault();
+	    		if($translate('OG_DEFAULT_TITLE') !== '') {
+					OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+					OpenGraph.setDefault();
+					
+					console.log("RouteChangeSuccess: "+$translate('OG_DEFAULT_TITLE') + " - " + $translate('OG_DEFAULT_DESCRIPTION'));
+	    		}
 	    	});
 		}
 	]);
