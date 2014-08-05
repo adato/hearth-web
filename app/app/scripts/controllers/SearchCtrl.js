@@ -320,6 +320,13 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		}
 
 		$scope.search = function(options) {
+			if( typeof $scope.loggedUser === 'undefined') {
+
+				return $timeout(function() {
+					$scope.search(options);
+				}, 100);
+			}
+			
 			var search = $scope.getSearchService();
 
 			$scope.sent = false;
@@ -453,7 +460,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 			return $timeout(function() {
 				return $scope.search();
-			}, 100);
+			}, 200);
 		});
 
 		$scope.$on('searchWithRefresh', function() {

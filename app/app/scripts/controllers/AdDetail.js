@@ -40,7 +40,6 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			OpenGraph.set( $scope.ad.og_title, data.name || "");
 
 		}, function(err) {
-
 			$scope.loaded = true;
 			$scope.ad = {
 				error: true
