@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('AdDetail', [
-	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService', 'OpenGraph', '$translate',
+	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService', 'OpenGraph', '$translate', '$timeout',
 
-	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService, OpenGraph, $translate) {
+	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService, OpenGraph, $translate, $timeout) {
 		$scope.ad = {};
 		$scope.replyDisplayed = false;
 		$scope.reply = {
@@ -18,9 +18,14 @@ angular.module('hearth.controllers').controller('AdDetail', [
 		$scope.isMine = false;
 		$scope.hideCloseButton = true;
 		
-		AdDetailResource.get({
-			id: $routeParams.id
-		}, function(data) {
+		function processAdDetail (data) {
+
+			if(typeof $scope.loggedUser === 'undefined') {
+				return $timeout(function() {
+					processAdDetail (data);
+				}, 100);
+			}
+
 			$scope.loaded = true;
 			if(data.error) {
 				return $scope.error = true;
@@ -38,8 +43,11 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			if(data.title)
 				$scope.ad.og_title += " " + data.title;
 			OpenGraph.set( $scope.ad.og_title, data.name || "");
+		}
 
-		}, function(err) {
+		AdDetailResource.get({
+			id: $routeParams.id
+		}, processAdDetail, function(err) {
 			$scope.loaded = true;
 			$scope.ad = {
 				error: true
