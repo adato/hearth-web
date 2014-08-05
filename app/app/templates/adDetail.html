@@ -23,7 +23,7 @@
 					<span ng-bind-html="ad.name | linky:'_blank'"></span>
 						
 					<div ng-if="ad.locations" class="locations"  ng-repeat="location in ad.locations">
-						<span class="fa fa-map-marker"></span> {{ location.name }}
+						<span ng-if="location.name"><span class="fa fa-map-marker"></span> {{ location.name }}</span>
 					</div>
 
 					<div ng-if="ad.attachments.length" class="photo">
