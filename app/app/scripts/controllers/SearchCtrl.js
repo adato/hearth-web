@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('SearchCtrl', [
-	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
+	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo', '$translate',
 
-	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
+	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo, $translate) {
 		$scope.orderByPostSort = '';
 		$scope.adEditing = false;
 		$scope.location = $location;
@@ -289,6 +289,10 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		function processRow(value) {
 			var distances = [],
 				id = $location.search().id;
+
+			value.og_title = value.author.name + " " + $translate((value.type === 'need' ? 'DOES_WISH' : 'DOES_GIVE' )).toLowerCase();
+			if(value.title)
+				value.og_title += " " + value.title;
 
 			value.type = value.type || 'user';
 			value.locations = value.locations || [{

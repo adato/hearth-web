@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('AdDetail', [
-	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService', 'OpenGraph',
+	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService', 'OpenGraph', '$translate',
 
-	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService, OpenGraph) {
+	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService, OpenGraph, $translate) {
 		$scope.ad = {};
 		$scope.replyDisplayed = false;
 		$scope.reply = {
@@ -26,11 +26,6 @@ angular.module('hearth.controllers').controller('AdDetail', [
 				return $scope.error = true;
 			}
 
-			var title =  data.author.name;
-			if(data.title)
-				title += " - " + data.title;
-			OpenGraph.set( title, data.name || "");
-
 			data.profileUrl = data.author._type === 'Community' ? 'community' : 'profile';
 			$scope.ad = data;
 			$scope.profile = data.author;
@@ -38,6 +33,12 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			$scope.agreeTranslationData = {
 				name: data.author.name
 			};
+
+			$scope.ad.og_title = data.author.name + " " + $translate((data.type === 'need' ? 'DOES_WISH' : 'DOES_GIVE' )).toLowerCase();
+			if(data.title)
+				$scope.ad.og_title += " " + data.title;
+			OpenGraph.set( $scope.ad.og_title, data.name || "");
+
 		}, function(err) {
 
 			$scope.loaded = true;
