@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('social', [
             transclude: true,
             scope: {
                 item: '=',
-                title: '=',
+                title: '=name',
                 summary: '=',
                 facebookInvite: '@'
             },
