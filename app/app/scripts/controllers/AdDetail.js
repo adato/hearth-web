@@ -17,12 +17,16 @@ angular.module('hearth.controllers').controller('AdDetail', [
 		};
 		$scope.isMine = false;
 		$scope.hideCloseButton = true;
-
+		
 		AdDetailResource.get({
 			id: $routeParams.id
 		}, function(data) {
-			var title =  data.author.name;
+			$scope.loaded = true;
+			if(data.error) {
+				return $scope.error = true;
+			}
 
+			var title =  data.author.name;
 			if(data.title)
 				title += " - " + data.title;
 			OpenGraph.set( title, data.name || "");
@@ -34,6 +38,12 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			$scope.agreeTranslationData = {
 				name: data.author.name
 			};
+		}, function(err) {
+
+			$scope.loaded = true;
+			$scope.ad = {
+				error: true
+			}
 		});
 
 		$scope.follow = function(userId, unfollow) {

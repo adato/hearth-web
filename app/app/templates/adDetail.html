@@ -1,4 +1,5 @@
-<div class="container detail">
+<div class="container detail" ng-if="! ad.error && loaded">
+
 		<div class="left-column small-12 large-7 columns alt-bg"  style="padding:1em;">
 			<div class="row">
 				<div class="large-7 columns">
@@ -60,4 +61,7 @@
 		<div class="right-column large-5 columns">
 			 <div class="profile" ng-include src="'templates/replyToAd.html'"></div>
 		</div>
+</div>
+<div class="container detail-notfound" ng-if="ad.error && loaded">
+	{{ 'POST_NOT_FOUND' | translate }}
 </div>
