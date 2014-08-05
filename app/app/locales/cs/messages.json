@@ -336,6 +336,7 @@
 	"SEND_FB_INVITATION": "Pozvěte přátele na Facebooku",
 	"required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole...",
 	"POST_NOT_FOUND": "Příspěvek nebyl nalezen. Buď neexistuje nebo byl smazán.",
+	"POST_IS_PAUSED": "Inzerát je pozastavený",
 	"ERROR_BAD_IMAGE_FORMAT": "Obrázek má špatný formát.",
 	"ERROR_BAD_IMAGE_SIZE": "Obrázek je moc veliký."
 }

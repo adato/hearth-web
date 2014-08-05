@@ -49,11 +49,13 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="large-12 columns">
 					<hr>
-					<social item="ad._id" name="ad.og_title" summary="ad.name"></social>
+					<div ng-if="!ad.is_active" class="large-5 columns clear-padding-left">
+						{{ 'POST_IS_PAUSED' | translate }}
+					</div>
+					<social class="large-5 right columns" item="ad._id" name="ad.og_title" summary="ad.name"></social>
 				</div>
 			</div>
 		</div>
