@@ -462,7 +462,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		$scope.$watch('location.search().q', function(newval) {
 			if ((newval != null) && newval) {
 				$scope.srch.query = newval;
-				// alert("AA3");
 				console.log("DEAD END - zdvojovani vysledku v search tabu");
 				// return $rootScope.$broadcast('searchWithRefresh');
 			}
