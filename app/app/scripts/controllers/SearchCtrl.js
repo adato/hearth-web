@@ -181,7 +181,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 		};
 
-		$scope.getSearchService = function() {
+		$scope.getSearchService = function(orderBy) {
 			var param,
 				searchParams = {
 					limit: $scope.limit,
@@ -242,12 +242,13 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 			function getMyHearthService() {
 				var service = FolloweesPostsService;
-				if ($scope.orderBy === 'location' ) {
-					service = PostsService;
-				} else if ($scope.orderBy === 'location' && $scope.myLocation) {
+
+				if (orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
+				} else if (orderBy === 'location' ) {
+					service = FolloweesPostsService;
 					
-				}else if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
+				}else if (orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
 					searchParams.type = $scope.srch.type || searchParams.type;
 					$location.search('q', searchParams.query);
@@ -261,18 +262,17 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			function getMarketplaceService() {
 				var service = PostsService;
 
-				if ($scope.orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
+				if (orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
 					if ($scope.srch.type != null) {
 						searchParams.type = $scope.srch.type;
 					}
 					$location.search('q', searchParams.query);
 					return FulltextService;
-				} else if ($scope.orderBy === 'location' ) {
-
-					searchParams = searchParamsOnMap(searchParams);
-				} else if ($scope.orderBy === 'location' && $scope.myLocation) {
+				} else if (orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
+				} else if (orderBy === 'location' ) {
+					searchParams = searchParamsOnMap(searchParams);
 				} else {
 					return PostsService;
 				}
@@ -327,15 +327,14 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 		}
 
-		$scope.search = function(options) {
+		$scope.search = function(options, orderBy) {
 			if( typeof $scope.loggedUser === 'undefined') {
 
 				return $timeout(function() {
-					$scope.search(options);
+					$scope.search(options, orderBy);
 				}, 100);
 			}
-			
-			var search = $scope.getSearchService();
+			var search = $scope.getSearchService(orderBy);
 
 			$scope.sent = false;
 			$scope.searchOptions = options;
@@ -352,10 +351,16 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					});
 				}
 
-				if ($scope.orderBy === 'location') {
+				// alert(orderBy + " = " + $scope.orderBy);			
 
-					$scope.items = data;
-					$scope.$broadcast('searchByLoc', $scope.items);
+				// console.log(data.length);
+				// alert("OK");
+				// return;
+
+				if (orderBy === 'location') {
+
+					$scope.mapItems = data;
+					$scope.$broadcast('searchByLoc', $scope.mapItems);
 				} else {
 
 					for (i = 0; i < len; i++) {
@@ -410,7 +415,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			}
 			return $scope.search({
 				add: false
-			});
+			}, $scope.orderBy);
 		};
 
 		$scope.listKeywords = function() {
@@ -467,7 +472,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 				$timeout.clear($scope.timeout);
 			}
 			return $timeout(function() {
-				return $scope.search();
+				return $scope.search({}, $scope.orderBy);
 			}, 200);
 		});
 
@@ -477,7 +482,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			return $timeout(function() {
 				return $scope.search({
 					add: false
-				});
+				}, $scope.orderBy);
 			}, 300);
 		});
 
