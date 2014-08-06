@@ -1344,3 +1344,11 @@ input + .remove {
 .clear-padding-left {
     padding-left: 0px;
 }
+
+.profile {
+    .is-sticky {
+        form {
+            width: 41.6667%;
+        }
+    }
+}

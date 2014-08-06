@@ -21,7 +21,6 @@
 			<div class="row">
 				<div class="large-12 columns">
 					<span ng-bind-html="ad.name | linky:'_blank'"></span>
-						
 					<div ng-if="ad.locations" class="locations"  ng-repeat="location in ad.locations">
 						<span ng-if="location.name"><span class="fa fa-map-marker"></span> {{ location.name }}</span>
 					</div>

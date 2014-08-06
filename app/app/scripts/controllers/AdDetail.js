@@ -43,7 +43,7 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			if(data.title)
 				$scope.ad.og_title += " " + data.title;
 			OpenGraph.set( $scope.ad.og_title, data.name || "");
-		}
+		}	
 
 		AdDetailResource.get({
 			id: $routeParams.id

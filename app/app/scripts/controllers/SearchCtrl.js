@@ -290,9 +290,17 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			var distances = [],
 				id = $location.search().id;
 
-			value.og_title = value.author.name + " " + $translate((value.type === 'need' ? 'DOES_WISH' : 'DOES_GIVE' )).toLowerCase();
-			if(value.title)
-				value.og_title += " " + value.title;
+			if(value._type === 'User') {
+
+				value.og_title = value.name;
+				value.og_description = value.about;
+			} else {
+				
+				value.og_description = value.name;
+				value.og_title = value.author.name + " " + $translate((value.type === 'need' ? 'DOES_WISH' : 'DOES_GIVE' )).toLowerCase();
+				if(value.title)
+					value.og_title += " " + value.title;
+			}
 
 			value.type = value.type || 'user';
 			value.locations = value.locations || [{
