@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('SearchCtrl', [
-	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo', '$translate',
+	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo', '$translate', 'FulltextSearchService',
 
-	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo, $translate) {
+	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo, $translate, FulltextSearchService) {
 		$scope.orderByPostSort = '';
 		$scope.adEditing = false;
 		$scope.location = $location;
@@ -252,7 +252,9 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					searchParams.query = $scope.srch.query;
 					searchParams.type = $scope.srch.type || searchParams.type;
 					$location.search('q', searchParams.query);
-					service = FolloweesSearchService;
+
+					service = FulltextSearchService;
+					searchParams.my_section=true;
 				}
 				searchParams.userId = $scope.loggedUser._id;
 
