@@ -335,6 +335,7 @@
 	"OG_DEFAULT_TITLE": "Hearth.net",
 	"SEND_FB_INVITATION": "Invitate your friends on Facebook",
 	"required": "This field is required. We hate to play the bad cop but you know these fields...",
+	"POST_IS_NOT_VALID": "There was an error while saving this post. Edit it first and then try it again.",
 	"POST_NOT_FOUND": "Post does not exist or has been deleted.",
 	"POST_IS_PAUSED": "Post is paused",
 	"ERROR_BAD_IMAGE_FORMAT": "Picture has bad format.",
