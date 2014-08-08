@@ -13,7 +13,7 @@
 			<a ng-click="showUI('newAd')" signed-in ><span class="fa fa-edit"></span> {{'create-new-ad' | translate}}</a>
 		</section>
 		<section class="large-4 columns hide-for-scrolled">
-			<input type="text" id="searchBox" ng-model="searchText" ng-enter="search(searchText)">
+			<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchText" ng-enter="search(searchText)">
 			<span class="search-button fa fa-search" ng-click="search(searchText)"></span>
 		</section>
 		

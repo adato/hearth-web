@@ -409,5 +409,6 @@
     "FULLTEXT_NOTHING_FOUND": "Ajtakrajta, nic jsme nena\u0161li.",
     "FULLTEXT_NOTHING_FOUND_RELATED_TO": "Ajtakrajta, nic co by odpov\u00eddalo <b>{{value}}<\/b> jsme nena\u0161li. Bu\u010f se tenhle v\u00fdraz n\u011bkde schov\u00e1v\u00e1, nebo je\u0161t\u011b neexistuje.",
     "FULLTEXT_USERS": "Lidé",
+    "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadejte co vás zajímá...",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>"
 }

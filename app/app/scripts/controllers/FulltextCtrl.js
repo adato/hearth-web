@@ -56,6 +56,11 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 				offset: (addOffset) ? $scope.items.length : 0
 			};
 			
+			if( params.query === '' ) {
+				// dont search empty query and redirect to marketplace
+				$location.path("/");
+			}
+
 			if(deleteOffset) {
 
 				delete params.offset;
