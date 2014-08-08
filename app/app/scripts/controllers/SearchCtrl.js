@@ -345,6 +345,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			if (search.params.type === 'user') {
 				search.params.type = 'user,community';
 			}
+
 			return search.service.query(search.params).then(function(data) {
 				var i, len = data.length;
 				if (search.params.query) {
@@ -353,16 +354,16 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 					});
 				}
 
-				// alert(orderBy + " = " + $scope.orderBy);			
-
-				// console.log(data.length);
-				// alert("OK");
-				// return;
-
 				if (orderBy === 'location') {
 
 					$scope.mapItems = data;
 					$scope.$broadcast('searchByLoc', $scope.mapItems);
+
+					if($scope.pageType === 'my' ) {
+						for (i = 0; i < len; i++)
+							processRow(data[i]);
+					}
+
 				} else {
 
 					for (i = 0; i < len; i++) {
