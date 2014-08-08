@@ -26,6 +26,9 @@
             z-index: 1;
         }
     }
+    .searchInProgress {
+        opacity: 0.4;
+    }
     .filter {
         margin: {
             bottom: $fontSize;

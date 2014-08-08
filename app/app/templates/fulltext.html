@@ -1,67 +1,67 @@
 <article class="row fulltext" when-scrolled="load(1)">
-	<section class="large-12  columns box">
-		<article class="row">
-			<section class="large-12 columns">
-				<header>
-					<div ng-if="!items.length && loaded">{{ 'FULLTEXT_NOTHING_FOUND' | translate }}</div>
-					<div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {value: queryText}"></div>
-				</header>
-			</section>
-		</article>
+    <section class="large-12  columns box">
+        <article class="row">
+            <section class="large-12 columns">
+                <header>
+                    <div ng-if="!items.length && loaded">{{ 'FULLTEXT_NOTHING_FOUND' | translate }}</div>
+                    <div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {value: queryText}"></div>
+                </header>
+            </section>
+        </article>
 
-		<article class="row">
-			<section class="large-12  columns">
-				<dl class="sub-nav filter">
-					<dt>{{ 'FULLTEXT_FILTER_SEARCH_RESULTS' | translate }}:</dt>
-					<dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
-						<a>{{ 'FULLTEXT_ALL' | translate }} <b>{{counters.post + counters.community + counters.user}}</b></a>
-					</dd>
-					<dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
-						<a>{{ 'FULLTEXT_MARKET' | translate }} <b>{{counters.post}}</b></a>
-					</dd>
-					<dd ng-click="setFilter('community')" ng-class="{active: selectedFilter == 'community'}">
-						<a>{{ 'FULLTEXT_COMMUNITY' | translate }} <b>{{counters.community}}</b></a>
-					</dd>
-					<dd ng-click="setFilter('user')" ng-class="{active: selectedFilter == 'user'}">
-						<a>{{ 'FULLTEXT_USERS' | translate }} <b>{{counters.user}}</b></a>
-					</dd>
-				</dl>
-			</section>
-		</article>
+        <article class="row">
+            <section class="large-12  columns">
+                <dl class="sub-nav filter">
+                    <dt>{{ 'FULLTEXT_FILTER_SEARCH_RESULTS' | translate }}:</dt>
+                    <dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
+                        <a>{{ 'FULLTEXT_ALL' | translate }} <b>{{counters.post + counters.community + counters.user}}</b></a>
+                    </dd>
+                    <dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
+                        <a>{{ 'FULLTEXT_MARKET' | translate }} <b>{{counters.post}}</b></a>
+                    </dd>
+                    <dd ng-click="setFilter('community')" ng-class="{active: selectedFilter == 'community'}">
+                        <a>{{ 'FULLTEXT_COMMUNITY' | translate }} <b>{{counters.community}}</b></a>
+                    </dd>
+                    <dd ng-click="setFilter('user')" ng-class="{active: selectedFilter == 'user'}">
+                        <a>{{ 'FULLTEXT_USERS' | translate }} <b>{{counters.user}}</b></a>
+                    </dd>
+                </dl>
+            </section>
+        </article>
 
-		<div ng-if="!items.length && loaded" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
+        <div ng-if="!items.length && loaded" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
+        <section id="fulltextSearchResults">
+            <article ng-repeat="item in items" class="row search-item" ng-switch="item._type">
+                <section class="large-2 columns">
+                    <div class="avatar" ng-style="item.avatarStyle"></div>
+                </section>
+                <section class="large-10 columns">
+                    <i class="fa" ng-class="{'fa-recycle' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
+                    <a class="title" ng-href="#!/{{addresses[item._type]}}/{{item._id}}">
+                        <span ng-if="title">{{item.title}}</span>
+                        <span ng-if="!title">{{item.name | ellipsis: 50}}</span>
+                        <span ng-if="item.author.name">({{item.author.name}})</span>
 
-		<article ng-repeat="item in items" class="row search-item" ng-switch="item._type" >
-			<section class="large-2 columns">
-				<div class="avatar" ng-style="item.avatarStyle"></div>
-			</section>
-			<section class="large-10 columns">
-				<i class="fa" ng-class="{'fa-recycle' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
-				<a class="title" ng-href="#!/{{addresses[item._type]}}/{{item._id}}">
-					<span ng-if="title">{{item.title}}</span>
-					<span ng-if="!title">{{item.name | ellipsis: 50}}</span>
-					<span ng-if="item.author.name"> ({{item.author.name}})</span>
-					
-				</a>
-				<p ng-switch-when="Post">{{item.name | ellipsis: 150}}</p>
-				<p ng-switch-when="User">{{item.about | ellipsis: 150}}</p>
-				<p ng-switch-when="Community">{{item.description | ellipsis: 150}}</p>
-			
-				<div class="breadcrumb" ng-switch-when="Post">
-					<a href="#!/">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
-					<a ng-href="#!/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
-					<span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>  /
-					{{item.updated_at |  date : languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}} 
-				</div>
-				<div class="breadcrumb" ng-switch-when="User">
-					{{'people' | translate}} &gt;
-					<a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
-				</div>
-				<div class="breadcrumb" ng-switch-when="Community">
-					<a href="#!/communities">{{'communities' | translate}}</a>  &gt;
-					<a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
-				</div>
-			</section>
-		</article>
-	</section>
+                    </a>
+                    <p ng-switch-when="Post">{{item.name | ellipsis: 150}}</p>
+                    <p ng-switch-when="User">{{item.about | ellipsis: 150}}</p>
+                    <p ng-switch-when="Community">{{item.description | ellipsis: 150}}</p>
+
+                    <div class="breadcrumb" ng-switch-when="Post">
+                        <a href="#!/">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
+                        <a ng-href="#!/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                        <span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}}
+                    </div>
+                    <div class="breadcrumb" ng-switch-when="User">
+                        {{'people' | translate}} &gt;
+                        <a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                    </div>
+                    <div class="breadcrumb" ng-switch-when="Community">
+                        <a href="#!/communities">{{'communities' | translate}}</a> &gt;
+                        <a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                    </div>
+                </section>
+            </article>
+        </section>
+    </section>
 </article>

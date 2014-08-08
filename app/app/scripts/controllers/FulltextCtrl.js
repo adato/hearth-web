@@ -7,107 +7,117 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-	'$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch',
+    '$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate',
 
-	function($scope, $routeParams, Fulltext, $location, LanguageSwitch) {
-		var deleteOffset = false;
-		
-		$scope.addresses = {
-			"Community": "community",
-			"User": "profile",
-			"Post": "ad",
-		};
+    function($scope, $routeParams, Fulltext, $location, LanguageSwitch, $translate) {
+        var deleteOffset = false;
 
-		$scope.languageCode = LanguageSwitch.uses().code;
+        $scope.addresses = {
+            "Community": "community",
+            "User": "profile",
+            "Post": "ad",
+        };
 
-		angular.extend($scope, {
-			queryText: $routeParams.q || '',
-			items: [],
-			counters: {
-				post: 0,
-				community: 0,
-				user: 0
-			},
-			filterProperty: 'all'
-		});
+        $scope.languageCode = LanguageSwitch.uses().code;
 
-		$scope.setFilter = function(filter) {
-			var params = {
-				q: $routeParams.q,
-				type: filter
-			};
+        angular.extend($scope, {
+            queryText: $routeParams.q || '',
+            items: [],
+            counters: {
+                post: 0,
+                community: 0,
+                user: 0
+            },
+            filterProperty: 'all'
+        });
 
-			if (params.type === 'all') {
-				delete params.type;
-			}
-			
-			deleteOffset = true;
-			$location.search(params);
-		};
+        $scope.setFilter = function(filter) {
+            var params = {
+                q: $routeParams.q,
+                type: filter
+            };
 
-		$scope.$on('$routeUpdate', function() {
-			// $scope.items = [];
-			$scope.load();
-		});
+            if (params.type === 'all') {
+                delete params.type;
+            }
 
-		$scope.load = function(addOffset) {
-			var params = {
-				query: $routeParams.q || "",
-				offset: (addOffset) ? $scope.items.length : 0
-			};
-			
-			if( params.query === '' ) {
-				// dont search empty query and redirect to marketplace
-				$location.path("/");
-			}
+            deleteOffset = true;
+            $location.search(params);
+        };
 
-			if(deleteOffset) {
+        $scope.$on('$routeUpdate', function() {
+            // $scope.items = [];
+            $scope.load();
+        });
 
-				delete params.offset;
-				deleteOffset = false;
-			}
+        $scope.load = function(addOffset) {
+            var params = {
+                query: $routeParams.q || "",
+                offset: (addOffset) ? $scope.items.length : 0
+            };
 
-			$scope.queryText = params.query;
-			$scope.loaded = false;
+            if (params.query === '') {
+                // dont search empty query and redirect to marketplace
+                $location.path("/");
+            }
 
-			if ($location.search().type) {
-				params = $.extend(params, $location.search() || {});
-			}
-			$scope.selectedFilter = $location.search().type || 'all';
+            if (deleteOffset) {
 
-			Fulltext.query(params, function(response) {
-				var i, item, data = response.data;
+                delete params.offset;
+                deleteOffset = false;
+            }
 
-				for (i = 0; i < data.length; i++) {
-					item = data[i];
-					if (item.author && item.author.avatar.normal) {
-						data[i].avatarStyle = {
-							'background-image': 'url(' + item.author.avatar.normal + ')'
-						};
-					}
-					if (item.avatar && item.avatar.normal) {
-						data[i].avatarStyle = {
-							'background-image': 'url(' + item.avatar.normal + ')'
-						};
-					}
-				}
+            $scope.queryText = params.query;
+            $scope.loaded = false;
 
-				$scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
-				$scope.loaded = true;
-			});
+            if ($location.search().type) {
+                params = $.extend(params, $location.search() || {});
+            }
+            $scope.selectedFilter = $location.search().type || 'all';
 
-			Fulltext.stats({
-				query: params.query 
-			}, function(response) {
-				$scope.counters = $.extend({
-					post: 0,
-					community: 0,
-					user: 0
-				}, response.counters);
-			});
+            $("#fulltextSearchResults").addClass("searchInProgress");
+            Fulltext.query(params, function(response) {
+                $("#fulltextSearchResults").removeClass("searchInProgress");
 
-		};
+                var i, item, data = response.data;
 
-		$scope.load();
-	}
+                for (i = 0; i < data.length; i++) {
+                    item = data[i];
+                    if (item.author && item.author.avatar.normal) {
+                        data[i].avatarStyle = {
+                            'background-image': 'url(' + item.author.avatar.normal + ')'
+                        };
+                    }
+                    if (item.avatar && item.avatar.normal) {
+                        data[i].avatarStyle = {
+                            'background-image': 'url(' + item.avatar.normal + ')'
+                        };
+                    }
+                }
+
+                $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
+                $scope.loaded = true;
+
+                $scope.topArrowText.bottom = $translate('total-count', {
+                    value: response.total
+                });
+                $scope.topArrowText.top = $translate('ads-has-been-read', {
+                    value: $scope.items.length
+                });
+            });
+
+            Fulltext.stats({
+                query: params.query
+            }, function(response) {
+                $scope.counters = $.extend({
+                    post: 0,
+                    community: 0,
+                    user: 0
+                }, response.counters);
+            });
+
+        };
+
+        $scope.load();
+    }
 ]);
