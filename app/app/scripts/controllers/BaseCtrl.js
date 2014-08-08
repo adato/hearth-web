@@ -135,9 +135,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		$scope.setActive = function(item, isActive) {
 			var newItem = angular.copy(item);
-			newItem.isActive = isActive;
-
-			PostsService.update(item).then(function(data) {
+			newItem.is_active = isActive;
+			PostsService.update(newItem).then(function(data) {
 				
 				item.is_active = isActive;
 			}, function(res) {
