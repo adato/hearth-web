@@ -27,7 +27,11 @@
         }
     }
     .searchInProgress {
-        opacity: 0.4;
+        opacity: 0.3;
+        transition: opacity .3s ease-out;
+        -moz-transition: opacity .3s ease-out;
+        -webkit-transition: opacity .3s ease-out;
+        -o-transition: opacity .3s ease-out;
     }
     .filter {
         margin: {
