@@ -153,10 +153,11 @@ angular.module('hearth.geo').directive('map', [
                         markers = [];
 
                         if(map === null) {
+                            initMap();
 
-                        	return setTimeout(function() {
-                        		createPins(e, ads);
-                        	}, 100);
+                        	//return setTimeout(function() {
+                        	//	createPins(e, ads);
+                        	//}, 100);
                         }
 
                         markerCluster.clearMarkers();
@@ -196,7 +197,7 @@ angular.module('hearth.geo').directive('map', [
                         map.setZoom(markerClusterMaxZoom + 1);
                     };
 
-                setTimeout(initMap, 200);
+                //setTimeout(initMap, 200);
 
                 scope.$on('keywordSearch', hideMarkers);
                 scope.$on('searchByLoc', createPins);
