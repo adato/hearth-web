@@ -1,7 +1,7 @@
 <span class="social">
-	<a class="fa fa-facebook" ng-if="!facebookInvite" title="Facebook" href="{{facebook}}" target="_blank"></a>
-	<a class="fa fa-facebook" ng-if="facebookInvite" title="Facebook" ng-click="fbInvite()" target="_blank"></a>
-	<a class="fa fa-google-plus" title="Google+" href="{{gplus}}" target="_blank"></a>
-	<a class="fa fa-twitter" title="Twitter" href="{{twitter}}" target="_blank"></a>
-	<a class="fa fa-linkedin" title="LinkedIn" href="{{linkedin}}" target="_blank"></a>
+	<a class="fa fa-facebook" analytics-on analytics-event="share" analytics-category="Add" analytics-value="Facebook" ng-if="!facebookInvite" title="Facebook" href="{{facebook}}" target="_blank"></a>
+	<a class="fa fa-facebook" analytics-on analytics-event="social invitation" analytics-category="Invitations" ng-if="facebookInvite" title="Facebook" ng-click="fbInvite()" target="_blank"></a>
+	<a class="fa fa-google-plus" analytics-on analytics-event="share" analytics-category="Add" analytics-value="Google+" title="Google+" href="{{gplus}}" target="_blank"></a>
+	<a class="fa fa-twitter" analytics-on analytics-event="share" analytics-category="Add" analytics-value="Twitter" title="Twitter" href="{{twitter}}" target="_blank"></a>
+	<a class="fa fa-linkedin" analytics-on analytics-event="share" analytics-category="Add" analytics-value="LinkedIn" title="LinkedIn" href="{{linkedin}}" target="_blank"></a>
 </span>
