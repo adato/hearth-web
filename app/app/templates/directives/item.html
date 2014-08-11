@@ -54,7 +54,7 @@
 				</div>
 			</div>
 			<footer>
-				<a class="spam fa fa-flag" ng-if="! mine" ng-click="report()" title="{{'REPORT_HARMFUL_AD' | translate}}"></a>
+				<a class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" data-reveal-id="confirm-report"></a>
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>
 					<div class="sharing">
@@ -79,6 +79,23 @@
 					<article class="row">
 						<section class="large-6 columns">
 							<button ng-click="remove()">{{'OK' | translate}}</button>
+						</section>
+						<section class="large-6 columns text-right">
+							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
+						</section>
+					</article>
+				</div>
+
+				<div id="confirm-report" class="reveal-modal tiny" data-reveal>
+					<article class="row">
+						<section class="large-12 columns">
+							<h2>{{'AD_REPORT_CONFIRM' | translate}}</h2>
+							<p><i class="fa fa-question-circle"></i> {{'AD_REPORT_ARE_YOU_SURE' | translate}}</p>
+							</section>
+					</article>
+					<article class="row">
+						<section class="large-6 columns">
+							<button ng-click="report()">{{'OK' | translate}}</button>
 						</section>
 						<section class="large-6 columns text-right">
 							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
@@ -120,7 +137,7 @@
 
 					<item-edit ng-if="mine" ng-show="adEdit" data="item" class="animate-show" id="editAd"></item-edit>
 
-					<div signed-in ng-if="!mine" class="reply-box animate-show">
+					<div signed-in ng-if="!mine" ng-show="replyEdit" class="reply-box animate-show">
 						<article class="row">
 							<section class="large-12 columns">
 								<form name="replyForm">

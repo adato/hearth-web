@@ -123,6 +123,7 @@ angular.module('hearth.directives').directive('item', [
                             id: scope.item._id
                         });
                         scope.reported = true;
+                        scope.cancel();
                         $timeout(function() {
                             scope.reported = false;
                         }, timeout);

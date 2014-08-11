@@ -334,5 +334,7 @@
 	"required": "This field is required. We hate to play the bad cop but you know these fields...",
 	"OG_DEFAULT_TITLE": "Hearth.net",
 	"OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc",
+	"AD_REPORT_CONFIRM": "Nahlásit inzerát",
+    "AD_REPORT_ARE_YOU_SURE": "Doopravdy chcete nahlásit tento inzerát jako škodlivý?",
 	"SEND_FB_INVITATION": "Invitate your friends on Facebook"
 }

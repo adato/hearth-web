@@ -20,6 +20,11 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
         $scope.languageCode = LanguageSwitch.uses().code;
 
+        $scope.$on('$destroy', function() {
+            $scope.topArrowText.top = '';
+            $scope.topArrowText.bottom = '';
+        });
+        
         angular.extend($scope, {
             queryText: $routeParams.q || '',
             items: [],
