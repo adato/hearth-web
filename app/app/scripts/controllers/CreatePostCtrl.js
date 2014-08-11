@@ -18,7 +18,6 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 			}],
 			attachments_attributes: []
 		};
-
 		$scope.post = $scope.defaultPost;
 
 		$scope.$on('setDefaultPost', function($event, newitem) {

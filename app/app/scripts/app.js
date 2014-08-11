@@ -15,6 +15,7 @@ angular.module('hearth', ['ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.t
 	]).config([
 		'$translateProvider',
 		function($translateProvider) {
+
 			preferredLanguage = preferredLanguage || 'cs';
 			$translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
 			$translateProvider.preferredLanguage(preferredLanguage);

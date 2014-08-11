@@ -37,7 +37,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 		this.use = function(language) {
 			ipCookie('language', language.code, {
-				expires: 21
+				expires: 60 * 24
 			});
 			$http.defaults.headers.common['Accept-Language'] = language.code;
 			return $translate.uses(language.code);
