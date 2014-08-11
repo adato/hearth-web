@@ -12,12 +12,13 @@ angular.module('hearth.controllers').controller('CreatePostCtrl', [
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
-			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
 			locations: [{
 				name: ''
 			}],
 			attachments_attributes: []
 		};
+
 		$scope.post = $scope.defaultPost;
 
 		$scope.$on('setDefaultPost', function($event, newitem) {
