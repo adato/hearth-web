@@ -147,19 +147,23 @@ angular.module('hearth.geo').directive('map', [
 
                         }, function(err) {});
                     },
+                    clearMarkers = function() {
+                        if(markers) {
+                            for (var i = 0; i < markers.length; i++) {
+                                markers[i].setMap(null);
+                            }
+                        }
+                    },
                     createPins = function(e, ads) {
                         var i, j, ad, location;
                         ads = ads || [];
-                        markers = [];
 
-                        if(map === null) {
+                        if (map === null) {
                             initMap();
-
-                        	//return setTimeout(function() {
-                        	//	createPins(e, ads);
-                        	//}, 100);
                         }
 
+                        clearMarkers();
+                        markers = [];
                         markerCluster.clearMarkers();
                         oms.clearMarkers();
 
@@ -191,7 +195,7 @@ angular.module('hearth.geo').directive('map', [
                     },
                     zoomMarkerClusterer = function(cluster) {
                         // var zoom,
-                        // 	maxZoom = markerClusterMaxZoom + 1;
+                        //  maxZoom = markerClusterMaxZoom + 1;
 
                         map.fitBounds(cluster.getBounds());
                         map.setZoom(markerClusterMaxZoom + 1);
