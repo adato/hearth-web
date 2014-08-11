@@ -98,9 +98,13 @@ angular.module('hearth.geo').directive('map', [
                         else
                             markerLimitValues[key] = 1;
 
-                        if (markerLimitValues[key] > markerLimit)
-                            return true;
+                        if (markerLimitValues[key] > markerLimit) {
 
+                            // console.log("position true");
+                            return true;
+                        }
+
+                        // console.log("position false");
                         return false;
                     },
                     placeMarker = function(location, ad) {
@@ -153,6 +157,8 @@ angular.module('hearth.geo').directive('map', [
                                 markers[i].setMap(null);
                             }
                         }
+                        markers = [];
+                        markerLimitValues = {};
                     },
                     createPins = function(e, ads) {
                         var i, j, ad, location;
@@ -163,11 +169,24 @@ angular.module('hearth.geo').directive('map', [
                         }
 
                         clearMarkers();
-                        markers = [];
                         markerCluster.clearMarkers();
                         oms.clearMarkers();
 
                         console.log("Nacitam.." + ads.length);
+
+                        // var count = 0;
+                        // for (i = 0; i < ads.length; i++) {
+                        //     ad = ads[i];
+                        //     for (j = 0; j < ad.locations.length; j++) {
+                        //         var loc = ad.locations[j];
+                        //         if (loc && !$.isArray(loc) && loc.coordinates) {
+                        //             count++;
+                        //         }
+                        //     }
+                        // }
+
+                        // console.log("Lokace: " + count);
+
                         for (i = 0; i < ads.length; i++) {
                             ad = ads[i];
                             for (j = 0; j < ad.locations.length; j++) {

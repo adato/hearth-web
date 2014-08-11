@@ -245,8 +245,19 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 				if (orderBy === 'location' && $scope.myLocation) {
 					searchParams = searchParamsByMyLocation(searchParams);
+					delete searchParams.limit;
+					delete searchParams.sort;
+					delete searchParams.offset;
+					delete searchParams.lon;
+					delete searchParams.lat;
+					
 				} else if (orderBy === 'location' ) {
 					service = FolloweesPostsService;
+					delete searchParams.limit;
+					delete searchParams.offset;
+					delete searchParams.sort;
+					delete searchParams.lon;
+					delete searchParams.lat;
 					
 				}else if (orderBy === 'relevance' && (($scope.srch != null ? $scope.srch.query : void 0) != null) && $scope.srch.query) {
 					searchParams.query = $scope.srch.query;
