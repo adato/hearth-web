@@ -34,12 +34,12 @@
         </span>
         <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.createdAt | date:'dd.MM.yyyy'}}</span>
         <br><br>
-        <div signed-out>
+        <div signed-out ng-hide="! ad.is_active">
             <div class="round login-prompt" ng-cloak translate>
                 LOG_IN_TO_REPLY
             </div>
         </div>
-        <div signed-in ng-hide="isMine">
+        <div signed-in ng-hide="isMine || ! ad.is_active">
             <div ng-show="!replyToAdSubmitting && !replyToAdSubmitted" ng-cloak>
                 <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
                 <div style="position:relative;z-index:9;">

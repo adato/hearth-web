@@ -33,12 +33,13 @@ angular.module('hearth.directives').directive('identitySwitch', [
 					});
 				};
 				scope.switchBack = function() {
-					return Auth.switchIdentityBack().then(function() {
+					Auth.switchIdentityBack().then(function() {
 						$location.path('/profile/' + scope.loggedUser._id);
 						return $timeout(function() {
 							return $window.location.reload();
 						});
 					});
+					return false;
 				};
 				scope.clickAvatar = function() {
 					var _ref, _ref1, _ref2;
