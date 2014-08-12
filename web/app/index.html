@@ -15,18 +15,18 @@
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="114">
         <meta property="og:image:height" content="114">
-      
+
         <!-- build:css({.tmp,app}) index.css -->
         <link rel="stylesheet" type="text/css" href="styles/index.css">
         <!-- endbuild -->
-       
+
         <!-- build:css vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="vendor/ng-tags-input/ng-tags-input.min.css" />
         <link rel="stylesheet" href="vendor/foundation-icon-fonts/foundation-icons.css" />
         <!-- endbower -->
         <!-- endbuild -->
-        
+
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
@@ -37,7 +37,7 @@
         <script src="scripts/config.js"></script>
         <script src="scripts/googleAnalytics.js"></script>
         <!-- endbuild -->
-        
+
     </head>
     <body ng-controller="IndexCtrl" ng-cloak ng-show="appLoaded">
     <!-- ClickTale Top part -->
@@ -78,8 +78,8 @@
                         <h1>HEARTH<span style="font-size:30px; margin-top:-20px;display:block;padding-left:86px;">.net<span style="font-weight:300;">work</span></span></h1>
                     </div>
                     <div class="small-12 large-8 columns links text-right">
-                        <a href="app/#/login" translate class="login">INDEX_LOGIN</a>
-                        
+                        <a href="app/#!/login" translate class="login">INDEX_LOGIN</a>
+
                         <span ng-repeat="language in languages">
                             <a ng-click="useLanguage(language)" ng-hide="languageCode.code==language.code" href="">{{language.name}}</a>
                         </span>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="small-12 large-6 columns">
                         <h2 translate>INDEX_GENEROUS_NETWORK</h2>
-                        <a href="app/#/register" class="large primary button" translate>INDEX_REGISTER_NOW</a>
+                        <a href="app/#!/register" class="large primary button" translate>INDEX_REGISTER_NOW</a>
                     </div>
                 </div>
             </section>
@@ -190,7 +190,7 @@
             <section class="invert small-gap">
                 <div class="row">
                     <div class="small-12 large-9 columns"><h3 translate>INDEX_JOIN_US</h3></div>
-                    <div class="small-12 large-3 columns"><a href="app/#/register" class="primary button" translate>INDEX_REGISTER_NOW</a></div>
+                    <div class="small-12 large-3 columns"><a href="app/#!/register" class="primary button" translate>INDEX_REGISTER_NOW</a></div>
                 </div>
             </section>
             <section class="heads">
@@ -224,7 +224,7 @@
                         <p translate>INDEX_PETR_VACLAVEK_TITLE</p>
                         <p><em translate>INDEX_PETR_VACLAVEK_TEXT</em></p>
                     </div>
-                    
+
                 </div>
             </section>
             <section class="grey">
@@ -258,11 +258,11 @@
                     <div class="small-6 large-3 columns footer-icons">
                         <p translate>HEARTH.NET</p>
                         <ul>
-                            <li><a href="app/#/login" translate>INDEX_LOGIN</a></li>
-                            <li><a href="app/#/register" translate>INDEX_REGISTER</a></li>
-                            <li><a href="app/#/search" translate>INDEX_MARKETPLACE</a></li>
-                            <li><a href="app/#/about" translate>INDEX_ABOUT</a></li>
-                            <li><a href="app/#/terms" translate>INDEX_TERMS</a></li>
+                            <li><a href="app/#!/login" translate>INDEX_LOGIN</a></li>
+                            <li><a href="app/#!/register" translate>INDEX_REGISTER</a></li>
+                            <li><a href="app/#!/search" translate>INDEX_MARKETPLACE</a></li>
+                            <li><a href="app/#!/about" translate>INDEX_ABOUT</a></li>
+                            <li><a href="app/#!/terms" translate>INDEX_TERMS</a></li>
                         </ul>
                         <ul>
                             <li ng-repeat="language in languages">
@@ -286,7 +286,7 @@
                 </div>
             </section>
         </div>
-    
+
 
         <!-- build:js vendor.js -->
         <!-- bower:js -->
@@ -349,6 +349,6 @@
             "https://clicktalecdn.sslcs.cdngc.net/www02/ptc/cafc802a-788d-4890-b42b-c27eace6ded3.js":
             "http://cdn.clicktale.net/www02/ptc/cafc802a-788d-4890-b42b-c27eace6ded3.js")+"'%20type='text/javascript'%3E%3C/script%3E"));
         </script>
-        <!-- ClickTale end of Bottom part -->        
+        <!-- ClickTale end of Bottom part -->
     </body>
 </html>
