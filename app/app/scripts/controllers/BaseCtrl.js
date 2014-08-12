@@ -136,6 +136,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$scope.setActive = function(item, isActive) {
 			var newItem = angular.copy(item);
 			newItem.is_active = isActive;
+
+
+			if(newItem.attachments) {
+				newItem.attachments_attributes = [];
+				for(var i = 0; i < newItem.attachments.length; i++) {
+					var tmp = newItem.attachments[i];
+					tmp.file = tmp.origin;
+
+					newItem.attachments_attributes.push(tmp);
+				}
+			}
 			PostsService.update(newItem).then(function(data) {
 				
 				item.is_active = isActive;
