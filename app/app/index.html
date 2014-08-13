@@ -148,6 +148,27 @@
     </script>
     <script src="locales/default?callback=defaultTranslation"></script>
 
+    <script>
+      $(function() { 
+        
+        function resizeMenuBar() {
+          $('.navigation').css("width", $(".main-container").width()+"px");
+        }
+
+        $(window).scroll(function() {
+          var fixedHeader = $('.navigation');
+
+          resizeMenuBar();
+          fixedHeader.css('left', -1 * $(this).scrollLeft() + "px");
+          if ( $(this).scrollLeft() != 0 )
+            fixedHeader.css('right', "auto");
+          else
+            fixedHeader.css('right', 0);
+        });
+       
+        $(window).resize(resizeMenuBar);
+      });
+    </script>
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/oms.min.js"></script>
