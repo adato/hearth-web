@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-    'geo', 'KeywordsService', '$location', 'Auth',
+    'geo', 'KeywordsService', '$location', 'Auth', '$timeout',
 
-    function(geo, KeywordsService, $location, Auth) {
+    function(geo, KeywordsService, $location, Auth, $timeout) {
         return {
             restrict: 'E',
             replace: true,
@@ -24,6 +24,17 @@ angular.module('hearth.directives').directive('filter', [
                         distance: 25,
                         days: ''
                     };
+
+                $timeout(function () {
+                    $(".tags input", element).keypress(function(e) {
+                        if (e.keyCode == 9) {
+                            var self = this;
+                            setTimeout(function() {
+                                $(".tags input", element).focus();
+                            });
+                        }
+                    });
+                });
 
                 scope.loggedUser = Auth.isLoggedIn();
 
