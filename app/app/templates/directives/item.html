@@ -42,8 +42,10 @@
 						<span ng-show="expanded"><i class="fa fa-angle-double-up"></i> {{ 'show-less' | translate }}</span>
 					</a>
 				</div>
-				<div class="attachments" ng-if="item.attachments.length">
-					<img ng-repeat="photo in item.attachments" ng-src="{{ photo.normal }}">
+				<div class="attachments" ng-if="item.attachments.length" fancybox>
+					<a class="fancy" ng-href="{{ photo.origin }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments">
+						<img ng-src="{{ photo.normal }}">
+					</a>
 				</div>
 				<div class="tags" ng-if="item.keywords.length">
 					<ul>
