@@ -119,12 +119,13 @@ angular.module('hearth.geo').directive('locations', [
 					}
 				});
 
-				scope.editLocation = function(index) {
+				scope.editLocation = function(index, $event) {
 					if (!scope.dialog) { //new add
 						scope.init('');
 					}
 					editedLocationIndex = index;
 					scope.dialog.foundation('reveal', 'open');
+					$event.preventDefault();
 				};
 
 				scope.close = function() {

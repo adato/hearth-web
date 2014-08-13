@@ -75,6 +75,18 @@ angular.module('hearth.directives').directive('itemEdit', [
 					return postDataCopy;
 				};
 
+				scope.cleanNullLocations = function(loc) {
+
+					for(var i = 0; i < loc.length; i++) {
+
+						if(! loc[i].coordinates) {
+							loc.splice(i, 1);
+							i--;
+						}
+					}
+					return loc;
+				}
+
 				scope.send = function() {
 					var postData, postDataCopy;
 
@@ -85,6 +97,9 @@ angular.module('hearth.directives').directive('itemEdit', [
 							id: scope.post._id
 						}
 					);
+
+					// clear locations from null values
+					postData.locations = scope.cleanNullLocations(postData.locations);
 
 					postDataCopy = angular.extend(
 						angular.copy(postData), {

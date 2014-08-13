@@ -1,7 +1,7 @@
  <div class="locations">
 	<div class="row" ng-repeat="location in locations track by $index">
 	  <div class="large-12 columns">
-		<input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index)" readonly  ng-model="locations[$index].name" class="text-input" type='text'>
+		<input placeholder="{{ 'MY_PLACE' | translate}}" ng-click="editLocation($index, $event)" readonly  ng-model="locations[$index].name" class="text-input" type='text'>
 		<div class="remove" ng-hide="$first">
 		 <span class="fa fa-times-circle"  ng-click="remove($event, $index)"></span>
 		</div>

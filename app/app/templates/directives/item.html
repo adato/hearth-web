@@ -21,7 +21,7 @@
 					<span ng-if="item.locations.length && item.locations[0].name" class="fa fa-map-marker"></span> {{ item.locations[0].name }}</span>
 					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
 					<div id="{{'locations' + item._id}}" class="f-dropdown content" data-dropdown-content>
-						<div ng-repeat="location in item.locations">
+						<div ng-repeat="location in item.locations track by $index" ng-if="!$first">
 							{{ location.name }}
 						</div>
 					</div>
