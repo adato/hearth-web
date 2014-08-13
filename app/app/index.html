@@ -86,7 +86,7 @@
       <script src="vendor/json3/lib/json3.js"></script>
     <![endif]-->
 
-    <section ng-include="'templates/navigation.html'"></section>
+    <section ng-include="'templates/navigation.html'" id="navigation"></section>
     <ng-view class="main-container"></ng-view>
     <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
         {{topArrowText.top}}

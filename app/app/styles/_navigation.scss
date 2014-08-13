@@ -2,6 +2,31 @@ $topBarHeight: rem-calc(40);
 $topBarLabelSize: rem-calc(14);
 $topBarImageSize: 1.8em;
 
+.MarketCtrl {
+    .navigation {
+        .scrolled & {
+            padding: 2px;
+        }
+
+        .columns {
+            > a {
+                .fa {
+                    .scrolled & {
+                        font-size: 1em !important;
+                    }
+                }
+                &.logo {
+                    .scrolled & {
+                        right: -74px;
+                        top: 0px;
+                        height: $topBarHeight / 2 !important;
+                        background-size: 181%;
+                    }
+                }
+            }
+        }
+    }
+}
 .navigation {
     box-shadow: 0 2px 2px rgba(black, 0.3);
     background-color: color(1);
@@ -10,9 +35,6 @@ $topBarImageSize: 1.8em;
     // ============ Odstraneni responzivity ======
     min-width:950px;
 
-    .scrolled & {
-        padding: 2px;
-    }
     .columns {
         >.separator {
             width: $topBarHeight;
@@ -36,9 +58,6 @@ $topBarImageSize: 1.8em;
             };
             .fa {
                 font-size: $topBarHeight - $topBarLabelSize;
-                .scrolled & {
-                    font-size: 1em !important;
-                }
             }
             .img {
                 opacity: 0.8;
@@ -64,12 +83,6 @@ $topBarImageSize: 1.8em;
                 right: 22px;
                 top: -4px;
                 height: $topBarHeight !important;
-                .scrolled & {
-                    right: -74px;
-                    top: 0px;
-                    height: $topBarHeight / 2 !important;
-                    background-size: 181%;
-                }
                 margin: {
                     left: 0;
                 };

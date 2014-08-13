@@ -152,16 +152,34 @@ button {
     padding-left: 2px;
 }
 
+
+.show-for-scrolled {
+    display: none;
+}
+
 .scrolled {
-    .hide-for-scrolled {
-        display: none;
+    .MarketCtrl {
+        .show-for-scrolled {
+            display: block;
+        }
     }
-    .show-for-scrolled {
-        display: block;
+    .MarketCtrl {
+        .hide-for-scrolled {
+            display: none;
+        }
     }
 }
 
-.show-for-scrolled {
+
+.scrolled {
+    .move2top.show-for-scrolled {
+        display: block;
+    }
+    .move2top.hide-for-scrolled {
+        display: none;
+    }
+}
+.move2top.show-for-scrolled {
     display: none;
 }
 
