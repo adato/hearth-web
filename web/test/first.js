@@ -7,12 +7,12 @@ describe("Main app", function() {
 
     describe("Logged user", function () {
         it('should reset page url', function() { 
-            browser().navigateTo('/app/#/search');
+            browser().navigateTo('/app/#!/search');
         });
         
         it('should go to landing page and login', function() { 
             helpers.loginTestuser();
-            browser().navigateTo('/app/#/search');
+            browser().navigateTo('/app/#!/search');
             expect(browser().location().path()).toBe("/search");
         });
 
