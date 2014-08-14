@@ -6,13 +6,13 @@ describe("Main app", function() {
 
 
     describe("Logged user", function () {
-        it('should reset page url', function() { 
-            browser().navigateTo('/app/#/search');
+        it('should reset page url', function() {
+            browser().navigateTo('/app/#!/search');
         });
-        
-        it('should go to landing page and login', function() { 
+
+        it('should go to landing page and login', function() {
             helpers.loginTestuser();
-            browser().navigateTo('/app/#/search');
+            browser().navigateTo('/app/#!/search');
             expect(browser().location().path()).toBe("/search");
         });
 
@@ -21,12 +21,12 @@ describe("Main app", function() {
             expect(element("#nav-edit-profile:visible").count()).toBe(1);
         });
 
-        it('should logout', function() { 
+        it('should logout', function() {
             helpers.logout();
             expect(element("#nav-profile:visible").count()).toBe(0);
         });
     });
-    
+
     describe("Anonymous user on landing page", function () {
 
         it('should go to landing page after typing url', function() {

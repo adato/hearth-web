@@ -99,7 +99,7 @@ angular.module('hearth.index', ['ngResource', 'pascalprecht.translate', 'hearth.
 			}, 500);
 			return Auth.init(function() {
 				if (Auth.isLoggedIn()) {
-					$window.location.href = 'app/#/search';
+					$window.location.href = 'app/#!/search';
 				}
 				if (!Auth.isLoggedIn()) {
 					return $rootScope.appLoaded = true;
