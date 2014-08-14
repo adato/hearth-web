@@ -21,6 +21,7 @@ angular.module('hearth.directives').directive('item', [
             templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
             link: function(scope, element) {
                 scope.avatarStyle = {};
+                scope.reportNotLoggedIn = 0;
 
                 function drawTimeline() {
 
@@ -116,6 +117,11 @@ angular.module('hearth.directives').directive('item', [
                     scope.expanded = !scope.expanded;
                 };
 
+                scope.toggleReportNotLoggedIn = function() {
+
+                    scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
+                };
+
                 scope.report = function() {
                     if(Auth.isLoggedIn()) {
 
@@ -146,6 +152,9 @@ angular.module('hearth.directives').directive('item', [
                     init();
                 };
 
+                scope.alert = function(cc) {
+                    alert(cc);
+                }
                 scope.startEditReply = function() {
                     scope.replyEdit = true;
                 };

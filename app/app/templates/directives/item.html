@@ -56,7 +56,10 @@
 				</div>
 			</div>
 			<footer>
-				<a class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" data-reveal-id="confirm-report"></a>
+				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="toggleReportNotLoggedIn()">
+				</a>
+				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" data-reveal-id="confirm-report">
+				</a>
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>
 					<div class="sharing">
@@ -112,7 +115,6 @@
 				<span ng-if="item.type == 'offer' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_WISH' | translate: {value: item.reply_count}"></span>
 				<span ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
 				<span ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
-
 				<div class="footer-container" ng-show="replyEdit || adEdit || reported || reportNotLoggedIn">
 					<div ng-show="reported">
 						<div class="animate-show" ng-cloak >
