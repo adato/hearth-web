@@ -13,12 +13,20 @@
                 left: 0.5em;
                 right: 0.5em;
             };
-            border: 1px solid color(5) !important;
+            border: 2px solid color(5) !important;
             border-radius:0; 
             &.pressed {
-                color: color(3);
+                color: white;
+                font-weight: 400;
                 background-color: lighten(color(3), 45%);
                 box-shadow: inset 0px 1px 3px color(3);
+            }
+            &.left.pressed {
+                
+                background-color: #F95702;
+            }
+            &.right.pressed {
+                background-color: #a3bf1d;
             }
             &.left {
                 border-right: 0 !important;
