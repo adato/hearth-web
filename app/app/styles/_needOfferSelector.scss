@@ -1,15 +1,14 @@
 .needOfferSelector {
     .button-group {
         margin: 0.25em;
-
         .button {
             color: rgba(color(5), 0.5);
             font-size: 1.2em;
             background-color: color(4);
             box-shadow: inset 2px 2px 2px rgba(white, 0.5);
             padding: {
-                top: 3px;
-                bottom: 3px;
+                top: 5px;
+                bottom: 5px;
                 left: 0.5em;
                 right: 0.5em;
             };

@@ -1,14 +1,52 @@
 .itemEdit {
+    width: 800px;
+    padding: 15px;
+    text-align: left;
+    h2 {
+        font-weight: normal;
+        font-size: 25px;
+        text-align: center;
+        span {
+            padding-left: 40px;
+        }
+    }
+    hr {
+        border: 1px solid #bbb8b1;
+        margin-bottom: 22px;
+    }
     input, textarea {
-        margin-bottom: 0;
+        border: 1px solid #d7d7d7 !important;
+        background: transparent !important;
+
+        -webkit-box-shadow:inset 0 0 5px #d7d7d7 !important;
+           -moz-box-shadow:inset 0 0 5px #d7d7d7 !important;
+                box-shadow:inset 0 0 5px #d7d7d7 !important;
+    }
+    label {
+        font-size: 16px;
+        display: inline-block;
+    }
+    .name {
+        position: relative;
+        top: 4px;
+        margin-left: 170px;
+        width: 78%;
+    }
+
+    .fa {
+        margin-right: 2px;
+    }
+    .date {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: auto;
     }
     .charsleft {
         text-align: right;
         margin: {
             bottom: 0;
             right: $global-radius;
-        }
-        ;
+        };
         font-size: 0.8em;
     }
     textarea {
