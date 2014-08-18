@@ -2,12 +2,15 @@
     width: 800px;
     padding: 15px;
     text-align: left;
-    h2 {
-        font-weight: normal;
-        font-size: 25px;
+    .head {
         text-align: center;
-        span {
-            padding-left: 40px;
+        h2 {
+            font-weight: normal;
+            font-size: 25px;
+            text-align: center;
+            span {
+                padding-left: 20px;
+            }
         }
     }
     hr {
@@ -25,6 +28,16 @@
     label {
         font-size: 16px;
         display: inline-block;
+        .fa {
+            margin-right: 4px;
+        }
+    }
+    textarea {
+        height: 150px;
+        resize: vertical;
+    }
+    a {
+        color: color(5);
     }
     .name {
         position: relative;
@@ -32,14 +45,30 @@
         margin-left: 170px;
         width: 78%;
     }
-
-    .fa {
-        margin-right: 2px;
+    .tags {
     }
     .date {
-        padding-left: 20px;
-        padding-right: 20px;
-        width: auto;
+        margin-bottom: 15px;
+        input {
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 115px;
+            margin-bottom: 0px !important;
+        }
+    }
+    .files {
+      & > div {
+        width: 50%;
+        text-align: center;
+      }
+    }
+
+    .lock {
+      & > a {
+        width: 50%;
+        text-align: center;
+        margin-bottom: 25px;
+      }
     }
     .charsleft {
         text-align: right;
@@ -48,13 +77,6 @@
             right: $global-radius;
         };
         font-size: 0.8em;
-    }
-    textarea {
-        height: 150px;
-        resize: vertical;
-    }
-    a {
-        color: color(5);
     }
     .alert-box {
         border-radius: $global-radius $global-radius 0 0;

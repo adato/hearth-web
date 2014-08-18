@@ -1,5 +1,5 @@
 <div class="itemEdit modal">
-	<div class="round">
+	<div class="head">
 		<h2 class="fa fa-pencil">
 			<span ng-if="post.id">{{ EDIT | translate }}</span>
 			<span ng-if="! post.id">CREATE {{ CREATE | translate }}</span>
@@ -25,7 +25,7 @@
 					<i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i> Klíčová slova
 				</label>
 
-				<tags-input ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+				<tags-input class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
 					<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 				</tags-input>
 			</div>
@@ -37,41 +37,43 @@
 				<locations locations="post.locations"></locations>
 			</div>
 			
-			<div class="text-input middle field-container">
+			<div class="date">
 				<label>
 					<i class="fa fa-clock-o" style="float:left; padding:5px; padding-left:0px;"></i> {{ 'EXPIRATION_DATE' | translate}}
 				</label>
 				<input type="text" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
-				</label>
+				<a href="">Neomezeně</a>
 			</div>
 			
-			<div class="text-input middle field-container">
+			<hr />
+
+			<div class="files">
 				<div file-upload upload-name="'temp_upload'" file-upload-path="/files" on-file-upload-started="post.attachments.enabled = true" on-file-upload-success="photoUploadSuccessful($event)" on-file-upload-error="post.attachments.enabled = true" style="position:relative; display:inline-block; float:left; padding-left:2px;">
-					<a class="create-post-link" ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
-							<i class="fa fa-camera-retro" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+					<a ng-hide="post.attachments.length" ng-click="post.attachmentsEnabled = true">
+						<i class="fa fa-picture-o" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
 					</a>
 				</div>
-				<div class="cleaner"></div>
-				<div>
-					<ul>
-						<li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
-							<img ng-src="{{ file.origin }}" class="padding-1">
-							<a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
-								<i class="hearthicon-remove"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
+				<ul>
+					<li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
+						<img ng-src="{{ file.origin }}" class="padding-1">
+						<a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+							<i class="hearthicon-remove"></i>
+						</a>
+					</li>
+				</ul>
 				<div file-upload-output class="text-center"></div>
 			</div>
-
-			<div class="text-input bottom field-container panel">
-				<a class="create-post-link left" style="line-height:46px" ng-click="post.is_private = !post.is_private">
-					
+			<div class="lock">
+				<a class="create-post-link left" ng-click="post.is_private = !post.is_private">
 					<span ng-show="!post.is_private"><span class="fa fa-unlock"></span> {{ 'VISIBLE_FOR_ALL' | translate }}</span>
 					<span ng-show="post.is_private && !loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
 					<span ng-show="post.is_private && loggedCommunity._id"><span class="fa fa-lock"></span> {{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
 				</a>
+			</div>
+
+			<hr />
+			
+			<div class="editBottom">
 				<button class="primary button right" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
 			</div>
 	</form>
