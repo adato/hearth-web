@@ -90,7 +90,7 @@ button {
 .remove {
     position: absolute;
     top: rem-calc(18 / 3);
-    right: rem-calc(18);
+    right: rem-calc(7);
     color: color(1);
     cursor: pointer;
     font-size: rem-calc(18);
@@ -226,4 +226,12 @@ textarea {
 
 .clear {
     clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+.pointer {
+    cursor: pointer;
 }

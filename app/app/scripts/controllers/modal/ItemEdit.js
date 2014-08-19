@@ -16,11 +16,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			locations: [{
 				name: ''
 			}],
+			location_unlimited: false,
+			date_unlimited: false
 		};
 
 		// hotfix for now
 		$scope.loggedCommunity = false;
-
 
 		$scope.$watch('languageCode', function() {
 			var timestamp = dateToTimestamp($scope.post.date, true);
@@ -30,6 +31,37 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.setDefaultPost = function() {
 			$scope.post = angular.copy($scope.defaultPost);
 		};
+
+		function dateToTimestamp(dateToFormat, withOffset) {
+			var outDate, dateCs, dateEn, zoneOffset;
+
+			if (dateToFormat) {
+				dateCs = dateToFormat.match(/(^\d{2})\.(\d{2})\.(\d{4})$/),
+				dateEn = dateToFormat.match(/(^\d{2})\/(\d{2})\/(\d{4})$/),
+				zoneOffset = (new Date()).getTimezoneOffset();
+
+				if (dateCs) {
+					outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
+				} else if (dateEn) {
+					outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
+				} else {
+					console.error('Unable to parse date ' + dateToFormat);
+				}
+				if (!withOffset) {
+					outDate = outDate + zoneOffset * 60000; // remove timezone offset
+				}
+			}
+			return outDate;
+		}
+
+		$scope.dateUnlimitedToggle = function() {
+
+			$scope.post.date_unlimited = !$scope.post.date_unlimited;
+			if ($scope.post.date_unlimited) {
+
+				$scope.post.date = "";
+			}
+		}
 
 		// $scope.createAd = function() {
 		// 	var query;
@@ -77,28 +109,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// 		return $scope.post.attachments;
 		// 	}
 		// };
-
-		function dateToTimestamp(dateToFormat, withOffset) {
-			var outDate, dateCs, dateEn, zoneOffset;
-
-			if (dateToFormat) {
-				dateCs = dateToFormat.match(/(^\d{2})\.(\d{2})\.(\d{4})$/),
-				dateEn = dateToFormat.match(/(^\d{2})\/(\d{2})\/(\d{4})$/),
-				zoneOffset = (new Date()).getTimezoneOffset();
-
-				if (dateCs) {
-					outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
-				} else if (dateEn) {
-					outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
-				} else {
-					console.error('Unable to parse date ' + dateToFormat);
-				}
-				if (!withOffset) {
-					outDate = outDate + zoneOffset * 60000; // remove timezone offset
-				}
-			}
-			return outDate;
-		}
 
 		// $scope.createPost = function(post) {
 		// 	var deferred, eventName, postData;
@@ -154,11 +164,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// 	});
 		// 	return deferred.promise;
 		// };
-		
+
 		$scope.init = function() {
 			$scope.post = $scope.post || $scope.defaultPost;
 		}
-		
+
 		$scope.init();
 
 	}

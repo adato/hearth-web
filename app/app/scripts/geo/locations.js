@@ -10,145 +10,291 @@
  * @requires geo
  */
 angular.module('hearth.geo').directive('locations', [
-	'geo', '$timeout',
-	function(geo, $timeout) {
-		return {
-			restrict: 'A',
-			replace: true,
-			scope: {
-				locations: '=',
-				itemid: '='
-			},
-			templateUrl: 'templates/geo/locations.html',
-			link: function(scope) {
-				var marker, map, searchBox, editedLocationIndex,
-					initMap = function() {
-						var mapElement = $('#map', scope.dialog[0]),
-							searchBoxElement = $('input', scope.dialog[0]);
+    'geo', '$timeout',
+    function(geo, $timeout) {
+        return {
+            restrict: 'A',
+            replace: true,
+            scope: {
+                locations: '=',
+                limit: '='
+            },
+            templateUrl: 'templates/geo/locations.html',
+            link: function(scope, baseElement) {
+                var map, marker;
+                scope.mapDisplay = -1;
 
-						map = geo.createMap(mapElement[0], {
-							draggableCursor: 'url(images/pin.png) 14 34, default'
-						});
-						searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
+                window.tmp = scope.locations;
 
-						google.maps.event.addListener(map, 'click', function(e) {
-							placeMarker(e.latLng, map);
-							geo.getAddress(e.latLng).then(function(address) {
-								scope.selectedName = address;
-								searchBoxElement.val(address);
-							});
-						});
-						searchBoxElement.blur(function() {
-							var places = searchBox.getPlaces();
-							if (!places) {
-								clearLocation();
-							}
-						});
-						google.maps.event.addListener(searchBox, 'places_changed', function() {
-							var places = searchBox.getPlaces();
+                function getDefaultLocation() {
 
-							if (places && places.length > 0) {
-								scope.$apply(function() {
-									setLocation(places[0].formatted_address, places[0].geometry.location);
-								});
-								placeMarker(places[0].geometry.location, map);
-							} else {
-								clearLocation();
-							}
-						});
-						searchBoxElement.change(function() {
-							if (!searchBoxElement.val()) {
-								clearLocation();
-							}
-						});
+                    return {
+                        type: 'Point',
+                        name: '',
+                        coordinates: null
+                    };
+                }
 
-						if (editedLocationIndex !== undefined && scope.locations[editedLocationIndex].coordinates) {
-							var location = scope.locations[editedLocationIndex],
-								position = geo.getLocationFromCoords(location.coordinates);
+                function placeMarker(position, map) {
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+                    marker = geo.placeMarker(position, 'pin', null, map);
+                    map.panTo(position);
+                };
 
-							scope.$apply(function() {
-								setLocation(location.name, position);
-							});
-							searchBoxElement.val(location.name);
-							placeMarker(position, map);
-						} else {
-							geo.getCurrentLocation().then(function(position) {
-								placeMarker(position, map);
-								geo.getAddress(position).then(function(address) {
-									$timeout(function() {
-										setLocation(address, position);
-									});
-									searchBoxElement.val(address);
-								});
-							});
-						}
-					},
-					clearLocation = function() {
-						scope.$apply(function() {
-							setLocation('', []);
-						});
-						if (marker) {
-							marker.setMap(null);
-						}
-					},
-					setLocation = function(address, position) {
-						scope.selectedName = address;
-						scope.selectedPosition = position;
-					},
-					placeMarker = function(position, map) {
-						if (marker) {
-							marker.setMap(null);
-						}
-						marker = geo.placeMarker(position, 'pin', null, map);
-						map.panTo(position);
-						scope.selectedPosition = position;
-					};
+                function initSearchBoxes() {
 
-				scope.init = function(id) {
-					scope.dialogSelector = '#location-map' + id;
-					scope.dialog = $(scope.dialogSelector);
+                    $('.map-input', baseElement).each(function(index) {
+                        var sBox = new google.maps.places.SearchBox(this);
 
-					$(document).on('opened', scope.dialogSelector + '[data-reveal]', function() {
-						initMap();
-					});
-				};
+                        google.maps.event.addListener(sBox, 'places_changed', function() {
+                            var places = sBox.getPlaces();
 
-				scope.$watch('itemid', function(value) { //ad edit
-					if (!scope.dialog && value) {
-						scope.init(value);
-					}
-				});
+                            if (places && places.length) {
+                                var location = places[0].geometry.location,
+                                    name = places[0].formatted_address;
 
-				scope.editLocation = function(index, $event) {
-					if (!scope.dialog) { //new add
-						scope.init('');
-					}
-					editedLocationIndex = index;
-					scope.dialog.foundation('reveal', 'open');
-					$event.preventDefault();
-				};
+                                scope.fillLocation(index, places[0].geometry.location, name);
+                            }
+                        });
 
-				scope.close = function() {
-					scope.dialog.foundation('reveal', 'close');
-					$('.pac-container').remove(); //google maps forget this
-				};
+                        $(this).keyup(function() {
 
-				scope.ok = function() {
-					scope.locations[editedLocationIndex] = {
-						type: 'Point',
-						name: scope.selectedName,
-						coordinates: [
-							scope.selectedPosition.lng(),
-							scope.selectedPosition.lat()
-						]
-					};
-					scope.close();
-				};
-				scope.remove = function($event, $index) {
-					$event.preventDefault();
-					scope.locations.splice($index, 1);
-				};
-			}
-		};
-	}
+                            if (!this.value) {
+                                scope.clearLocation(index);
+                            }
+                        });
+
+                        $(this).blur(function() {
+                            var places = sBox.getPlaces();
+                            if (!places) {
+                                scope.clearLocation(index);
+                            }
+                        });
+                    });
+                }
+
+                scope.clearLocation = function(index) {
+                    scope.locations[index] = getDefaultLocation();
+                };
+
+                scope.fillLocation = function(index, pos, addr) {
+
+                    scope.locations[index] = {
+                        name: addr,
+                        coordinates: [pos.lng(), pos.lat()]
+                    };
+                };
+
+                scope.closeMap = function() {
+                    scope.toggleMap(-1);
+                };
+
+                scope.initMap = function(index) {
+
+                    map = geo.createMap($("#map-" + index, baseElement)[0], {
+                        draggableCursor: 'url(images/pin.png) 14 34, default'
+                    });
+
+                    google.maps.event.addListener(map, 'click', function(e) {
+                        placeMarker(e.latLng, map);
+                        geo.getAddress(e.latLng).then(function(address) {
+                            scope.fillLocation(index, e.latLng, address);
+                            scope.closeMap();
+                        });
+                    });
+                };
+
+                scope.remove = function($event, $index) {
+                    if($event)
+                    	$event.preventDefault();
+
+                    scope.locations.splice($index, 1);
+
+                    if (scope.mapDisplay == $index)
+                        scope.closeMap();
+                };
+
+                scope.removeAll = function() {
+
+                	for( var len = scope.locations.length-1; len+1; len--) {
+                		scope.remove(null, len);
+                	}
+                }
+
+                scope.add = function() {
+                    scope.locations.push(getDefaultLocation());
+                    setTimeout(initSearchBoxes);
+                };
+
+                scope.toggleMap = function(index) {
+                    var actual = angular.copy(scope.mapDisplay);
+
+                    if(scope.limit == true) {
+                    	return false;
+                    }
+
+                    if (scope.mapDisplay != -1) {
+                        $("#map-" + scope.mapDisplay, baseElement).fadeToggle();
+                        scope.mapDisplay = -1;
+                    }
+
+                    if (actual != index && index != -1) {
+                        $("#map-" + index, baseElement).fadeToggle();
+                        scope.mapDisplay = index;
+                        scope.initMap(index);
+                    }
+                };
+
+                scope.locationDoesNotMatter = function() {
+                    scope.closeMap();
+                	scope.limit = ! scope.limit;
+
+                	if(scope.limit == true) {
+                		scope.removeAll();
+                        scope.add();
+                	}
+                }
+
+                setTimeout(initSearchBoxes);
+
+
+                //               var searchBoxbaseElement = [0],
+                //                   // searchBoxbaseElement.blur(function() {
+                //                   // 	var places = searchBox.getPlaces();
+                //                   // 	alert("CLEAR");
+                //                   // });
+
+
+                // $(searchBoxbaseElement).click(function() {
+                // 	alert("AA");
+                // });
+                //                   google.maps.event.addListener(searchBox, 'places_changed', function() {
+                //                       var places = searchBox.getPlaces();
+
+                //                       if (places && places.length > 0) {
+                //                           var location = places[0].geometry.location,
+                //                               name = places[0].formatted_address;
+
+                //                           alert(name);
+                //                       }
+                //                   });
+
+                // }
+
+                // var marker, map, searchBox, editedLocationIndex,
+                // 	initMap = function() {
+                // var mapbaseElement = $('#map', scope.dialog[0]),
+                // 	searchBoxbaseElement = $('input', scope.dialog[0]);
+
+                // map = geo.createMap(mapbaseElement[0], {
+                // 	draggableCursor: 'url(images/pin.png) 14 34, default'
+                // });
+                // 		searchBox = new google.maps.places.SearchBox(searchBoxbaseElement[0]);
+
+                // 		google.maps.event.addListener(map, 'click', function(e) {
+                // 			placeMarker(e.latLng, map);
+                // 			geo.getAddress(e.latLng).then(function(address) {
+                // 				scope.selectedName = address;
+                // 				searchBoxbaseElement.val(address);
+                // 			});
+                // 		});
+                // 		searchBoxbaseElement.blur(function() {
+                // 			var places = searchBox.getPlaces();
+                // 			if (!places) {
+                // 				clearLocation();
+                // 			}
+                // 		});
+                // 		searchBoxbaseElement.change(function() {
+                // 			if (!searchBoxbaseElement.val()) {
+                // 				clearLocation();
+                // 			}
+                // 		});
+
+                // 		if (editedLocationIndex !== undefined && scope.locations[editedLocationIndex].coordinates) {
+                // 			var location = scope.locations[editedLocationIndex],
+                // 				position = geo.getLocationFromCoords(location.coordinates);
+
+                // 			scope.$apply(function() {
+                // 				setLocation(location.name, position);
+                // 			});
+                // 			searchBoxbaseElement.val(location.name);
+                // 			placeMarker(position, map);
+                // 		} else {
+                // 			geo.getCurrentLocation().then(function(position) {
+                // 				placeMarker(position, map);
+                // 				geo.getAddress(position).then(function(address) {
+                // 					$timeout(function() {
+                // 						setLocation(address, position);
+                // 					});
+                // 					searchBoxbaseElement.val(address);
+                // 				});
+                // 			});
+                // 		}
+                // 	},
+                // 	clearLocation = function() {
+                // 		scope.$apply(function() {
+                // 			setLocation('', []);
+                // 		});
+                // 		if (marker) {
+                // 			marker.setMap(null);
+                // 		}
+                // 	},
+                // 	setLocation = function(address, position) {
+                // 		scope.selectedName = address;
+                // 		scope.selectedPosition = position;
+                // 	},
+                // 	placeMarker = function(position, map) {
+                // 		if (marker) {
+                // 			marker.setMap(null);
+                // 		}
+                // 		marker = geo.placeMarker(position, 'pin', null, map);
+                // 		map.panTo(position);
+                // 		scope.selectedPosition = position;
+                // 	};
+
+                // scope.init = function(id) {
+                // 	scope.dialogSelector = '#location-map' + id;
+                // 	scope.dialog = $(scope.dialogSelector);
+
+                // 	$(document).on('opened', scope.dialogSelector + '[data-reveal]', function() {
+                // 		initMap();
+                // 	});
+                // };
+
+                // scope.$watch('itemid', function(value) { //ad edit
+                // 	if (!scope.dialog && value) {
+                // 		scope.init(value);
+                // 	}
+                // });
+
+                // scope.editLocation = function(index, $event) {
+                // 	if (!scope.dialog) { //new add
+                // 		scope.init('');
+                // 	}
+                // 	editedLocationIndex = index;
+                // 	scope.dialog.foundation('reveal', 'open');
+                // 	$event.preventDefault();
+                // };
+
+                // scope.close = function() {
+                // 	scope.dialog.foundation('reveal', 'close');
+                // 	$('.pac-container').remove(); //google maps forget this
+                // };
+
+                // scope.ok = function() {
+                // 	scope.locations[editedLocationIndex] = {
+                // 		type: 'Point',
+                // 		name: scope.selectedName,
+                // 		coordinates: [
+                // 			scope.selectedPosition.lng(),
+                // 			scope.selectedPosition.lat()
+                // 		]
+                // 	};
+                // 	scope.close();
+                // };
+            }
+        };
+    }
 ]);

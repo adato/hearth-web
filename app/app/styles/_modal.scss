@@ -81,9 +81,7 @@
   position: relative;
   width: auto;
   text-align: letf;
-
-  top: 50%;
-  transform: translateY(-50%);
+  margin-top: 4%;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-close {
@@ -200,4 +198,31 @@
 
 .ngdialog {
   z-index: 100 !important;
+
+  
+  .disabled {
+    a {
+      color: #939393 !important;
+    }
+    input {
+      background-color: #DDD !important;
+    }
+  }
+}
+
+.ngdialog .head {
+    
+  position: relative;
+  top: -5px;
+
+  .close {
+    color: #ddd;
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    &:hover {
+     color: #CCC;
+    }
+  }
 }

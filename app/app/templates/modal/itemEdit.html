@@ -1,10 +1,10 @@
 <div class="itemEdit modal">
 	<div class="head">
 		<h2 class="fa fa-pencil">
-			<span ng-if="post.id">{{ EDIT | translate }}</span>
-			<span ng-if="! post.id">CREATE {{ CREATE | translate }}</span>
+			<span ng-if="post.id">{{ 'EDIT_POST' | translate }}</span>
+			<span ng-if="! post.id">{{ 'CREATE_POST' | translate }}</span>
 		</h2>
-		<span class="close fa fa-cross"></span>
+		<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 	</div>
 	<hr />
 	<form ng-submit="post.save()" name="createAdForm" with-errors novalidate class="create-ad" style="margin:0; padding:0;">
@@ -22,7 +22,7 @@
 			
 			<div class="text-input middle field-container">
 				<label>
-					<i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i> Klíčová slova
+					<i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i> {{'KEYWORDS' | translate }}
 				</label>
 
 				<tags-input class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
@@ -32,17 +32,19 @@
 
 			<div class="text-input middle field-container">
 				<label>
-					<i class="fa fa-map-marker " style="float:left; padding:5px; padding-left:0px;"></i> Místo
+					<i class="fa fa-map-marker " style="float:left; padding:5px; padding-left:0px;"></i> {{ 'place' | translate}}
 				</label>
-				<locations locations="post.locations"></locations>
+				<locations locations="post.locations" limit="post.location_unlimited"></locations>
 			</div>
 			
 			<div class="date">
 				<label>
 					<i class="fa fa-clock-o" style="float:left; padding:5px; padding-left:0px;"></i> {{ 'EXPIRATION_DATE' | translate}}
 				</label>
-				<input type="text" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
-				<a href="">Neomezeně</a>
+				<div ng-class="{disabled: post.date_unlimited == true}">
+					<input type="text" ng-disabled="post.date_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+				</div>
+				<a href="" ng-click="dateUnlimitedToggle()">{{ 'UNLIMITED' | translate }}</a>
 			</div>
 			
 			<hr />
@@ -73,8 +75,14 @@
 
 			<hr />
 			
-			<div class="editBottom">
-				<button class="primary button right" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
+			<div class="bottom">
+				<a href="" ng-click="closeThisDialog()" class="fleft close">
+					{{ 'CLOSE' | translate }}
+				</a>
+				<button class="primary button fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" ng-disabled="sending || createAdForm.$invalid" translate>SUBMIT</button>
+				<a href="" class="fright deleteLink " ng-if="post.id" ng-click="delete()">
+					{{ 'DELETE' | translate }}
+				</a>
 			</div>
 	</form>
 </div>
