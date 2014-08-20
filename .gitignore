@@ -4,4 +4,3 @@ dist
 .sass-cache
 vendor
 target/
-Gemfile.lock
