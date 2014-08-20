@@ -199,7 +199,7 @@
 .ngdialog {
   z-index: 100 !important;
 
-  
+
   .disabled {
     a {
       color: #939393 !important;
@@ -225,4 +225,13 @@
      color: #CCC;
     }
   }
+}
+
+
+.ngdialog-overlay {
+  
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  filter: url('/images/blur.svg#blur'); /* for Firefox */
 }
