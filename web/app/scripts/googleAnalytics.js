@@ -10,5 +10,5 @@
 	m.parentNode.insertBefore(a, m);
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-ga('create', 'UA-51368639-1', 'hearth-net-topmonks-production.herokuapp.com');
+ga('create', 'UA-51368639-1', 'www.hearth.net');
 ga('send', 'pageview');
