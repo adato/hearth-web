@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', 'Errors', '$q', 'PostsService', '$analytics', 'ResponseErrors', '$timeout', '$window', '$filter', 'LanguageSwitch',
-	function($scope, Errors, $q, PostsService, $analytics, ResponseErrors, $timeout, $window, $filter, LanguageSwitch) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element) {
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
@@ -17,11 +17,25 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				name: ''
 			}],
 			location_unlimited: false,
-			date_unlimited: false
+			date_unlimited: false,
+			attachments_attributes: [],
+			// is_active: false
 		};
+		$scope.showFiles = false;
 
 		// hotfix for now
 		$scope.loggedCommunity = false;
+		$scope.sending = false;
+
+    	$('.create-ad-textarea', $element).on('focus', function(){
+		    $(this).autosize();
+		});
+    	$rootScope.$on('removeAd', function(info, id) {
+    		if(id == $scope.post._id) {
+    			$scope.closeThisDialog();
+    		}
+    	});
+
 
 		$scope.$watch('languageCode', function() {
 			var timestamp = dateToTimestamp($scope.post.date, true);
@@ -55,7 +69,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.dateUnlimitedToggle = function() {
-
+			alert("AA");
 			$scope.post.date_unlimited = !$scope.post.date_unlimited;
 			if ($scope.post.date_unlimited) {
 
@@ -63,52 +77,156 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		}
 
-		// $scope.createAd = function() {
-		// 	var query;
+		$scope.removeImage = function(index) {
+			var files = $scope.post.attachments_attributes;
 
-		// 	if ($scope.post && $scope.post.title && $scope.post.title.length > 0) {
-		// 		if ($scope.post.title.length < 3) {
-		// 			$scope.errors = new ResponseErrors({
-		// 				status: 400,
-		// 				data: {
-		// 					name: 'ValidationError',
-		// 					errors: {
-		// 						name: {
-		// 							name: 'ValidatorError',
-		// 							type: 'ERR_AD_NAME_MIN_LEN'
-		// 						}
+			if (!files[index]._id) {
+
+				files.splice(index, 1);
+			} else {
+				files[index].deleted = true;
+			}
+		}
+
+		function recountImages() {
+			var files = $scope.post.attachments_attributes;
+			var res = false;
+
+			if (files) {
+				for (var i = 0; i < files.length; i++) {
+					if (!files[i]._id || !files[i].deleted) {
+						res = true;
+					}
+				}
+			}
+			$scope.showFiles = res;
+		}
+		$scope.$watch('post', recountImages, true);
+
+		$scope.transformImagesStructure = function(postDataCopy) {
+			postDataCopy.attachments = [];
+			postDataCopy.attachments_attributes.forEach(function(el) {
+				postDataCopy.attachments.push({
+					normal: el.file,
+					origin: el.file
+				});
+			});
+
+			delete postDataCopy.attachments_attributes;
+			return postDataCopy;
+		};
+
+		$scope.cleanNullLocations = function(loc) {
+
+			for (var i = 0; i < loc.length; i++) {
+
+				if (!loc[i].coordinates) {
+					loc.splice(i, 1);
+					i--;
+				}
+			}
+			return loc;
+		}
+
+		$scope.save = function() {
+			var postData, postDataCopy;
+
+			//we need copy, because we change data and don't want to show these changes to user
+			postData = angular.extend(
+				angular.copy($scope.post), {
+					date: dateToTimestamp($scope.post.date, true),
+					id: $scope.post._id
+				}
+			);
+
+			// clear locations from null values
+			postData.locations = $scope.cleanNullLocations(postData.locations);
+
+			console.log($scope.post);
+
+			postDataCopy = angular.extend(
+				angular.copy(postData), {
+					author: Auth.getCredentials(),
+					updated_at: new Date().toISOString(),
+					reply_count: 0,
+					isPhantom: true,
+				}
+			);
+
+			if($scope.sending) {
+				return false;
+			}
+			$scope.sending = true;
+
+			Post[$scope.post._id ? 'update' : 'add'](postData, function(data) {
+				$scope.sending = false;
+				$scope.$emit('adSaved', data);
+				$scope.closeThisDialog();
+			}, function() {
+
+				alert("There was an error while saving this post");
+				$scope.sending = false;
+			});
+
+			postDataCopy = $scope.transformImagesStructure(postDataCopy);
+			// $scope.$emit($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
+			// $scope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
+			$rootScope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
+			// $rootScope.$emit($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
+			// scope.$emit('adCreated', postDataCopy);
+
+			/*$analytics.eventTrack(eventName, {
+				category: 'Posting',
+				label: 'NP',
+				value: 7
+			});*/
+
+		};
+
+		$scope.delete = function() {
+
+			// $rootScope.$broadcast('removeAd', $scope.post._id);
+			// $rootScope.$emit('removeAd', $scope.post._id);
+			// $('#confirm-delete').foundation('reveal', 'close');
+		}
+
+
+		// var query;
+
+		// if ($scope.post && $scope.post.title && $scope.post.title.length > 0) {
+		// 	if ($scope.post.title.length < 3) {
+		// 		$scope.errors = new ResponseErrors({
+		// 			status: 400,
+		// 			data: {
+		// 				name: 'ValidationError',
+		// 				errors: {
+		// 					name: {
+		// 						name: 'ValidatorError',
+		// 						type: 'ERR_AD_NAME_MIN_LEN'
 		// 					}
 		// 				}
-		// 			});
+		// 			}
+		// 		});
+		// 		return $scope.errors;
+		// 	} else {
+		// 		$scope.sending = true;
+		// 		query = $scope[$scope.post._id ? 'updatePost' : 'createPost']($scope.post);
+		// 		return query.then(function() {
+		// 			$scope.$emit('cancelCreatingAd');
+		// 			$scope.$emit('cancelEditingAd');
+		// 			$window.location.reload();
+		// 			$scope.sending = false;
+		// 			if ($scope.createAdForm != null) {
+		// 				$scope.createAdForm.$setPristine();
+		// 			}
+		// 			return delete $scope.errors;
+		// 		}, function(err) {
+		// 			$scope.errors = new ResponseErrors(err);
 		// 			return $scope.errors;
-		// 		} else {
-		// 			$scope.sending = true;
-		// 			query = $scope[$scope.post._id ? 'updatePost' : 'createPost']($scope.post);
-		// 			return query.then(function() {
-		// 				$scope.$emit('cancelCreatingAd');
-		// 				$scope.$emit('cancelEditingAd');
-		// 				$window.location.reload();
-		// 				$scope.sending = false;
-		// 				if ($scope.createAdForm != null) {
-		// 					$scope.createAdForm.$setPristine();
-		// 				}
-		// 				return delete $scope.errors;
-		// 			}, function(err) {
-		// 				$scope.errors = new ResponseErrors(err);
-		// 				return $scope.errors;
-		// 			});
-		// 		}
+		// 		});
 		// 	}
-		// };
+		// }
 
-		// $scope.photoUploadSuccessful = function($event) {
-		// 	var _ref, _ref1;
-
-		// 	if ((((_ref = $event.target) != null ? _ref.response : void 0) != null) && ((_ref1 = $event.target.status) !== 404 && _ref1 !== 403 && _ref1 !== 500)) {
-		// 		$scope.post.attachments = [JSON.parse($event.target.response)];
-		// 		return $scope.post.attachments;
-		// 	}
-		// };
 
 		// $scope.createPost = function(post) {
 		// 	var deferred, eventName, postData;
@@ -165,8 +283,22 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// 	return deferred.promise;
 		// };
 
+		function transformExistingPost(post) {
+			if(post) {
+
+				post.date = $filter('date')(post.date + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+				if(!post.locations.length) {
+					post.locations = [{
+						name: ''
+					}];
+				}
+			}
+
+			return post;
+		}
+
 		$scope.init = function() {
-			$scope.post = $scope.post || $scope.defaultPost;
+			$scope.post = transformExistingPost($scope.post) || $scope.defaultPost;
 		}
 
 		$scope.init();

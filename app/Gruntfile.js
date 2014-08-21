@@ -171,7 +171,7 @@ module.exports = function(grunt) {
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-				host: 'hearth-net-topmonks-dev.herokuapp.com',  // wherever the data service is running,
+				host: 'dev.hearth.net',  // wherever the data service is running,
 				https: true,
 				port: 443  // the port that the data service is running on
 			}],

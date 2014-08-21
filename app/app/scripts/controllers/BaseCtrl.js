@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$location', '$route', 'Auth', 'ngDialog',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog',
 
-    function($scope, $location, $route, Auth, ngDialog) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog) {
         var timeout;
 
         $scope.topArrowText = {};
@@ -70,7 +70,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         });
 
 
-        $scope.showLoginBox = function() {
+        $rootScope.showLoginBox = function() {
 
             ngDialog.open({
                 template: $$config.modalTemplates + 'loginBox.html',
@@ -79,9 +79,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         }
 
-        $scope.editItem = function(post) {
+        $rootScope.editItem = function(post) {
             if (!Auth.isLoggedIn())
-                return $scope.showLoginBox();
+                return $rootScope.showLoginBox();
 
             var scope = $scope.$new();
             scope.post = post;

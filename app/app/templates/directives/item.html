@@ -71,10 +71,11 @@
 						</div>
 					</div>
 				</div>
-				<button class="secondary" ng-if="mine" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
-				<a class="link-button remove-button" ng-if="mine" data-reveal-id="confirm-delete"><i class="fa fa-times"></i> {{'AD_REMOVE_LABEL' | translate}}</a>
+				 <!-- ng-if="mine" -->
+				<button class="secondary" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
+				<a class="link-button remove-button" ng-if="mine" data-reveal-id="confirm-delete-{{item._id}}"><i class="fa fa-times"></i> {{'AD_REMOVE_LABEL' | translate}}</a>
 
-				<div id="confirm-delete" class="reveal-modal tiny" data-reveal>
+				<div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
 					<article class="row">
 						<section class="large-12 columns">
 							<h2>{{'AD_REMOVE_LABEL' | translate}}</h2>

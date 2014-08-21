@@ -198,8 +198,22 @@
 
 .ngdialog {
   z-index: 100 !important;
-
-
+  label {
+      font-size: 16px;
+      display: inline-block;
+      .fa {
+          margin-right: 4px;
+      }
+  }
+  a {
+      color: color(5);
+      &:hover {
+          opacity: 0.7;
+      }
+      .fa {
+          margin-right: 4px;
+      }
+  }
   .disabled {
     a {
       color: #939393 !important;
@@ -207,6 +221,33 @@
     input {
       background-color: #DDD !important;
     }
+  }
+
+  .head {
+    text-align: center;
+    h2 {
+        font-weight: normal;
+        font-size: 25px;
+        text-align: center;
+        span {
+            padding-left: 5px;
+            font-family: "SourceSansPro","Signika","Geneva","Tahoma",sans-serif;
+        }
+    }
+  }
+  hr {
+      border: 1px solid #bbb8b1;
+      margin-bottom: 22px;
+  }
+
+  .error {
+    color: red;
+    font-size: 16px;
+  }
+
+  .moveUp {
+    position: relative;
+    top: -15px;
   }
 }
 
@@ -224,6 +265,28 @@
     &:hover {
      color: #CCC;
     }
+  }
+
+  .headMessage {
+    background-color: red;
+    color: white;
+    height: 32px;
+    left: 0;
+    margin: 0 auto;
+    padding-top: 4px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: -32px;
+    width: 500px;
+    
+
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 }
 

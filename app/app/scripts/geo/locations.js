@@ -51,6 +51,7 @@ angular.module('hearth.geo').directive('locations', [
                         google.maps.event.addListener(sBox, 'places_changed', function() {
                             var places = sBox.getPlaces();
 
+                            console.log(places);
                             if (places && places.length) {
                                 var location = places[0].geometry.location,
                                     name = places[0].formatted_address;
@@ -68,6 +69,7 @@ angular.module('hearth.geo').directive('locations', [
 
                         $(this).blur(function() {
                             var places = sBox.getPlaces();
+                            console.log(places);
                             if (!places) {
                                 scope.clearLocation(index);
                             }
