@@ -88,7 +88,7 @@ describe("Main app", function() {
         it('should expand post with login prompt', function() {
             element('.wish:eq(1)').click();
             expect(element('.round.login-prompt:visible').count()).toBe(1);
-            expect(element('.login-prompt a[href="#/login"]:visible').count()).toBe(1);
+            expect(element('.login-prompt a[href="#!/login"]:visible').count()).toBe(1);
         });
 
         // user profile
@@ -133,7 +133,7 @@ describe("Main app", function() {
             element('.row.profile-links a:eq(3)').click();
             expect(element('.row.profile-links a:eq(3)').attr("class")).toEqual("underliner");
             expect(element('.round.login-prompt:visible').count()).toBe(1);
-            expect(element('.login-prompt a[href="#/login"]:visible').count()).toBe(1);
+            expect(element('.login-prompt a[href="#!/login"]:visible').count()).toBe(1);
         });
 
     });
