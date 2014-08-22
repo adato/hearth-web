@@ -7,9 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('item', [
-    '$timeout', '$translate', 'Auth',
+    '$timeout', '$translate', 'Auth', '$rootScope',
 
-    function($timeout, $translate, Auth) {
+    function($timeout, $translate, Auth, $rootScope) {
         return {
             restrict: 'E',
             replace: true,
@@ -22,7 +22,6 @@ angular.module('hearth.directives').directive('item', [
             link: function(scope, element) {
                 scope.avatarStyle = {};
                 scope.reportNotLoggedIn = 0;
-
                 function drawTimeline() {
 
                     var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
@@ -87,6 +86,8 @@ angular.module('hearth.directives').directive('item', [
                         mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
                     });
                     scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
+
+
                     if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
                         item.author.locations = [];
                     }
@@ -109,7 +110,6 @@ angular.module('hearth.directives').directive('item', [
                     } else {
                         item.karma = undefined;
                     }
-
                 });
 
                 scope.toggleCollapsed = function() {
@@ -120,6 +120,11 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleReportNotLoggedIn = function() {
 
                     scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
+                };
+
+                scope.toggleTag = function(tag) {
+
+                    alert(tag);
                 };
 
                 scope.report = function() {
@@ -160,18 +165,21 @@ angular.module('hearth.directives').directive('item', [
                 };
 
                 scope.edit = function() {
-                    scope.$emit('editAd', scope.item._id);
-                    scope.adEdit = true;
+                    // scope.$emit('editAd', scope.item._id);
+                    $rootScope.$broadcast('editAd', scope.item._id);
+                    // scope.adEdit = true;
+                    $rootScope.editItem(scope.item);
+                };
+
+                scope.cancel = function() {
+                    $('#confirm-delete-'+scope.item._id).foundation('reveal', 'close');
                 };
 
                 scope.remove = function() {
                     scope.$emit('removeAd', scope.item._id);
-                    $('#confirm-delete').foundation('reveal', 'close');
+                    scope.cancel();
                 };
 
-                scope.cancel = function() {
-                    $('#confirm-delete').foundation('reveal', 'close');
-                };
 
                 scope.$on('closeEditItem', function() {
                     scope.adEdit = false;

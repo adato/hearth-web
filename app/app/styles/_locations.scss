@@ -1,35 +1,6 @@
 .location-map {
-    .map-canvas {
-        height: 400px;
-        img {
-            max-width: inherit;
-        }
-        border-radius: $global-radius;
-        border: 1px solid darken(color(4), 20%);
-        margin: {
-            bottom: 1em;
-        };
-	}
-	input{
-		border: 1px solid darken(color(4), 20%);
-	}
-	.link-button {
-		margin-top: 1em;
-		float: left;
-	}
-
-	.content {
-		font-weight:normal;
-		
-		div {
-			color: #ff5500;
-		}
-
-		span {
-			font-weight: bold;
-		}
-
-	} 
+	height: 250px;
+	clear: both;
 }
 
 .pac-container {
@@ -48,5 +19,50 @@
 		margin:  {
 			bottom: rem-calc(18 / 2);
 		} 
+	}
+
+	.row {
+		.locInput {
+			width: 94%;
+			position: relative;
+		}
+		.remove {
+		    top: 4px;
+			color: #939393;
+		    font-size: 15px;
+		    padding-left: 6px;
+	    	background-color: white;
+		    &:hover {
+		    	opacity: 0.8;
+		    }
+		}
+		.mapIcon {
+		    font-size: 14px;
+		    padding-left: 10px;
+		    position: relative;
+		    text-align: center;
+		    top: 5px;
+		    i {
+		    	position: relative;
+	    	    display: block;
+			    font-size: 27px;
+			    line-height: 16px;
+		    	span {
+				    bottom: -4px;
+				    font-size: 17px;
+				    position: absolute;
+				    right: -5px;
+		    	}
+		    }
+		    &.selected {
+		    	a {
+		    		color: #F95901;
+		    	}
+		    }
+		}
+	}
+	.controll {
+		position: relative;
+		top: -8px;
 	}
 }

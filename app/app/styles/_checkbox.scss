@@ -5,18 +5,20 @@
     height: 3em;
     padding: {
         top: 0.8em;
-        left: 4em;
+        left: 1em;
     }
-    background-image: inline-image("filter/checkbox-off.svg");
+    .fa {
+        font-size: 36px;
+        width: 31px;
+        color: #F3A17C;
+    }
+
+    span {
+        margin-left: 4px;
+        position: relative;
+        top: -4px;
+    }
     &.on {
         font-weight: bold;
-        background-image: inline-image("filter/checkbox-on.svg");
-    }
-    &.radio {
-        background-image: inline-image("filter/radio-off.svg");
-        &.on {
-             font-weight: bold;
-            background-image: inline-image("filter/radio-on.svg");
-        }
     }
 }

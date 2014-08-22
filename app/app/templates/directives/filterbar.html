@@ -24,7 +24,8 @@
 					</article>
 				</section>
 				<section class="large-3 columns text-right insert-button-container">
-					<a ng-click="toggleNewItem()" ng-disabled="filterSelected" ng-class="{pressed: newItemSelected}" class="button"><span class="fa fa-pencil"></span> {{'CREATE_NEW_ADD' | translate}}</a>
+					<!-- toggleNewItem() -->
+					<a ng-click="editItem(null)" ng-disabled="filterSelected" ng-class="{pressed: newItemSelected}" class="button"><span class="fa fa-pencil"></span> {{'CREATE_NEW_ADD' | translate}}</a>
 				</section>
 			</article>
 		</section>
@@ -35,9 +36,9 @@
 			<div ng-show="filterSelected" class="animate-show">
 				<filter id="filter" class="filterbar-container"></filter>
 			</div>
-			<div ng-show="newItemSelected" class="animate-show">
+<!-- 			<div ng-show="newItemSelected" class="animate-show">
 				<item-edit id="newOffer" class="filterbar-container"></item-edit>
-			</div>
+			</div> -->
 		</section>
 	</article>
 </div>

@@ -103,7 +103,7 @@
         '' +
           '<script src="//maps.googleapis.com/maps/api/js?' +
           ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-          'sensor=true&libraries=places"><\/script>'
+          'sensor=true&libraries=places,geometry"><\/script>'
       );
     </script>
 
@@ -130,11 +130,17 @@
     <script src="vendor/angular-cookie/angular-cookie.js"></script>
     <script src="vendor/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
+    <script src="vendor/ngDialog/js/ngDialog.js"></script>
+    <script src="vendor/jquery-autosize/jquery.autosize.js"></script>
     <!-- endbower -->
     <script src="vendor/angularitics/src/angulartics-ga.js"></script>
     <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
     <!-- endbuild -->
     
+    <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
+    <!-- <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog-theme-default.css" media="screen" /> -->
+    <script src="vendor/ngDialog/js/ngDialog.min.js"></script>
+
     <!-- Add fancyBox main JS and CSS files -->
     <script type="text/javascript" src="vendor/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
     <link rel="stylesheet" type="text/css" href="vendor/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
@@ -282,6 +288,7 @@
       <script src="scripts/controllers/CommunityListCtrl.js"></script>
       <script src="scripts/controllers/LoginCtrl.js"></script>
       <script src="scripts/controllers/FulltextCtrl.js"></script>
+      <script src="scripts/controllers/modal/ItemEdit.js"></script>
 
       <script src="scripts/messages/Messages.js"></script>      
 

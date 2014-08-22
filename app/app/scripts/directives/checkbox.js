@@ -15,6 +15,7 @@ angular.module('hearth.directives').directive('checkbox', function() {
 		scope: {
 			model: '=',
 			value: '@',
+			onUpdate: '&',
 			type: '@'
 		},
 		templateUrl: 'templates/directives/checkbox.html',
@@ -39,6 +40,9 @@ angular.module('hearth.directives').directive('checkbox', function() {
 				} else {
 					scope.model = scope.checked ? scope.value : undefined;
 				}
+
+				if(scope.onUpdate)
+					scope.onUpdate(scope.model);
 			};
 
 			scope.$watch('model', function(value) {

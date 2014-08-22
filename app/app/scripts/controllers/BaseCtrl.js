@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$location', '$route', 'Auth',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog',
 
-    function($scope, $location, $route, Auth) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog) {
         var timeout;
 
         $scope.topArrowText = {};
@@ -57,7 +57,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         });
 
         $scope.$on('$routeChangeSuccess', function(next, current) {
-            
+
             $("#all").removeClass();
             $("#all").addClass(current.controller);
         });
@@ -68,5 +68,33 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $scope.isScrolled = !$scope.isScrolled;
             }
         });
+
+
+        $rootScope.showLoginBox = function() {
+
+            ngDialog.open({
+                template: $$config.modalTemplates + 'loginBox.html',
+                controller: 'LoginCtrl',
+                scope: $scope
+            });
+        }
+
+        $rootScope.editItem = function(post) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox();
+
+            var scope = $scope.$new();
+            scope.post = post;
+
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'itemEdit.html',
+                controller: 'ItemEdit',
+                scope: scope,
+                closeByDocument: false,
+                showClose: false
+            });
+
+            dialog.closePromise.then(function(data) {});
+        };
     }
 ]);

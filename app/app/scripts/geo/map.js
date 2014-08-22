@@ -58,7 +58,7 @@ angular.module('hearth.geo').directive('map', [
                         height: 40,
                     }];
 
-                if(typeof templateSource !== 'string')
+                if (typeof templateSource !== 'string')
                     templateSource = templateSource[1];
 
                 template = $interpolate(templateSource);
@@ -66,30 +66,30 @@ angular.module('hearth.geo').directive('map', [
                 scope.initMap = function() {
                     if (!map) {
                         $timeout(function() {
-	                        map = geo.createMap(element[0], {
-	                            zoom: 11
-	                        });
+                            map = geo.createMap(element[0], {
+                                zoom: 11
+                            });
 
-	                        google.maps.event.trigger(map, "resize");
-	                        geo.focusCurrentLocation();
+                            google.maps.event.trigger(map, "resize");
+                            geo.focusCurrentLocation();
 
-	                        oms = new OverlappingMarkerSpiderfier(map, {
-	                            markersWontMove: true,
-	                            markersWontHide: true,
-	                            keepSpiderfied: true,
-	                        });
+                            oms = new OverlappingMarkerSpiderfier(map, {
+                                markersWontMove: true,
+                                markersWontHide: true,
+                                keepSpiderfied: true,
+                            });
 
-	                        markerCluster = new MarkerClusterer(map, [], {
-	                            ignoreHidden: true,
-	                            maxZoom: markerClusterMaxZoom,
-	                            zoomOnClick: true,
-	                            gridSize: 40,
-	                            averageCenter: true,
-	                            styles: markerClusterStyles
-	                        });
+                            markerCluster = new MarkerClusterer(map, [], {
+                                ignoreHidden: true,
+                                maxZoom: markerClusterMaxZoom,
+                                zoomOnClick: true,
+                                gridSize: 40,
+                                averageCenter: true,
+                                styles: markerClusterStyles
+                            });
 
-	                        markerCluster.addListener('click', scope.zoomMarkerClusterer);
-	                        oms.addListener('click', scope.onMarkerClick);
+                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
+                            oms.addListener('click', scope.onMarkerClick);
                         }, 100);
                     }
                 };
@@ -125,7 +125,7 @@ angular.module('hearth.geo').directive('map', [
                         var itemId = $(this).attr('itemid');
 
                         scope.$apply(function() {
-                                                      
+
                             var path = $location.path('ad/' + itemId);
                         });
                     });
@@ -149,23 +149,45 @@ angular.module('hearth.geo').directive('map', [
                     }, function(err) {});
                 };
 
+                scope.isInDistance = function(maxDist, base, point) {
+
+                    var dist = google.maps.geometry.spherical.computeDistanceBetween(
+                        new google.maps.LatLng(base.lat, base.lng), geo.getLocationFromCoords(point)
+                        );
+
+                    return maxDist > dist / 1000;  // transfer to km
+                }
+
                 scope.createPins = function(e, ads) {
-                    var i, j, ad, location;
+                    var i, j, ad, location, distanceBase, distance = false;
                     ads = ads || [];
                     markers = [];
 
                     markerCluster.clearMarkers();
                     oms.clearMarkers();
 
-                    console.log("Nacetl jsem: "+ ads.length);
+                    if (typeof $location.search().distance != 'undefined') {
+                        distance = parseInt($location.search().distance, 10);
+                        distanceBase = {
+                            lat: $location.search().lat,
+                            lng: $location.search().lon
+                        };
+                    }
+
+                    console.log("Nacetl jsem: " + ads.length);
                     for (i = 0; i < ads.length; i++) {
                         ad = ads[i];
 
                         for (j = 0; j < ad.locations.length; j++) {
                             if (ad.locations[j]) {
 
-                                if (markerLimit && scope.testPositionLimit(ad.locations[j]))
+                                if (
+                                    (distance && !scope.isInDistance(distance, distanceBase, ad.locations[j]) )
+                                     ||
+                                    markerLimit && scope.testPositionLimit(ad.locations[j])
+                                ){
                                     continue;
+                                }
                                 scope.placeMarker(ad.locations[j], ad);
                             }
                         }

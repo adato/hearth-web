@@ -1,22 +1,162 @@
 .itemEdit {
+    width: 800px;
+    padding: 15px;
+    text-align: left;
+    
     input, textarea {
-        margin-bottom: 0;
+        border: 1px solid #d7d7d7 !important;
+        background: transparent !important;
+
+        -webkit-box-shadow:inset 0 0 5px #d7d7d7 !important;
+           -moz-box-shadow:inset 0 0 5px #d7d7d7 !important;
+                box-shadow:inset 0 0 5px #d7d7d7 !important;
+    }
+
+    textarea {
+        height: 85px;
+        resize: vertical;
+
+        -webkit-transition: height 0.2s;
+        -moz-transition: height 0.2s;
+        transition: height 0.2s;
+    }
+
+    .checkbox {
+        color: #1fb1e8;
+        padding-top: 0px;
+        height: auto;
+        padding-left: 0px;
+        .fa {
+            margin-left: 0px;
+            color: #1fb1e8;
+            font-size: 24px;
+            width: 21px;
+        }
+        span {
+            margin-left: 0px;
+            position: relative;
+            top: -2px;
+        }
+    }
+    .name {
+        position: relative;
+        top: 4px;
+        margin-left: 170px;
+        width: 78%;
+    }
+    .tags {
+    }
+    .date {
+        margin-bottom: 15px;
+        input {
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 124px;
+            margin-bottom: 0px !important;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        .checkbox {
+            position: relative;
+            top: 2px;
+        }
+    }
+    .files {
+      & > div {
+        width: 50%;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    .lock {
+      & > a {
+        width: 50%;
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: bold;
+        span {
+            margin-right: 5px;
+        }
+      }
+    }
+
+    .withFiles {
+        .file-upload {
+            text-align: left;
+        }
+
+        .fileList {
+            border-bottom: 3px solid #bbb8b1;
+            clear: both;
+            display: block;
+            margin-bottom: 25px;
+            text-align: left;
+            width: 100%;
+            ul {
+                margin-left: 0px;
+                li.active {
+                    width: 184px;
+                    height: 123px;
+                    display: inline-block;
+                    position: relative;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                    
+                    &:nth-child(4n) {
+                        margin-right: 0px;
+                    }
+                    &:nth-child(1) {
+                        margin-right: 10px;
+                    }
+                    img {
+                        width: 184px;
+                        height: 123px;
+                    }
+                    a {
+                        position: absolute;
+                        font-size: 26px;
+                        display: none;
+                        color: white;
+                        z-index: 200;
+                        right: 5px;
+                        top: -5px;
+                    }
+                    .overlay {
+                        background-color: #0fb1d3;
+                        position: absolute;
+                        opacity: 0.4;
+                        top: 0px;
+                        left: 0px;
+                        right: 0px;
+                        bottom: 0px;
+                        display: none;
+                    }
+                    &:hover {
+                        .overlay {
+                            display: block;
+                        }
+                        a {
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+
+        .create-post-link {
+            width: 100% !important;
+        }
     }
     .charsleft {
         text-align: right;
         margin: {
             bottom: 0;
             right: $global-radius;
-        }
-        ;
+        };
         font-size: 0.8em;
-    }
-    textarea {
-        height: 150px;
-        resize: vertical;
-    }
-    a {
-        color: color(5);
     }
     .alert-box {
         border-radius: $global-radius $global-radius 0 0;
@@ -29,6 +169,54 @@
     .row {
         margin: {
             bottom: $fontSize/2;
+        }
+    }
+
+    .bottom {
+
+        .deleteLink {
+            color: red;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-right: 30px;
+            font-size: 20px;
+        }
+        .pauseLink {
+            text-transform: uppercase;
+            margin-right: 30px;
+            font-size: 20px;
+            width: 130px;
+        }
+
+        a {
+            position: relative;
+            top: 12px;
+
+            &.close {
+                margin-left: 20px;
+            }
+        }
+
+        .button {
+            border: none;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 1.3rem;
+            margin: 0 0 1.25rem;
+            padding: 0.5rem 2rem;
+            text-transform: uppercase;
+            transition: background-color 300ms ease-out 0s;
+            opacity: 1;
+            cursor: pointer;
+
+            // needs latest Compass, add '@import "compass"' to your scss
+            background-color: rgb(65,171,233); // Old browsers
+            @include filter-gradient(#41abe9, #339dd9, horizontal); // IE6-9 fallback on horizontal gradient
+            @include background-image(linear-gradient(left top, rgba(65,171,233,1) 1%,rgba(54,158,219,1) 17%,rgba(51,157,217,1) 100%));
+            &:hover {
+                opacity: 0.7;
+            }
         }
     }
 }
