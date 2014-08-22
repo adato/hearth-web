@@ -7,21 +7,25 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('item', [
-    '$timeout', '$translate', 'Auth', '$rootScope',
+    '$timeout', '$translate', 'Auth', '$rootScope', '$location', 'Filter',
 
-    function($timeout, $translate, Auth, $rootScope) {
+    function($timeout, $translate, Auth, $rootScope, $location, Filter) {
         return {
             restrict: 'E',
             replace: true,
             transclude: true,
             scope: {
                 item: '=',
-                user: '='
+                user: '=',
+                keywordsActive: '='
             },
             templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
             link: function(scope, element) {
                 scope.avatarStyle = {};
                 scope.reportNotLoggedIn = 0;
+                scope.toggleTag = Filter.toggleTag;
+                scope.keywordsActive = scope.keywordsActive || [];
+
                 function drawTimeline() {
 
                     var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
@@ -122,10 +126,6 @@ angular.module('hearth.directives').directive('item', [
                     scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
                 };
 
-                scope.toggleTag = function(tag) {
-
-                    alert(tag);
-                };
 
                 scope.report = function() {
                     if(Auth.isLoggedIn()) {

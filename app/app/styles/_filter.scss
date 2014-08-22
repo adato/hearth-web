@@ -40,10 +40,15 @@
         cursor: pointer;
         outline: none;
     }
-    tags-input .host {
-        margin: {
-            top: 1em;
-            bottom: 2em;
-        };
+    tags-input {
+        input {
+            background-color: transparent;
+        }
+        .host {
+            margin: {
+                top: 1em;
+                bottom: 2em;
+            };
+        }
     }
 }

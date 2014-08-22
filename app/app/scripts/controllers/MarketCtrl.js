@@ -7,13 +7,25 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout',
+	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout', 'Filter',
 
-	function($scope, Post, $location, PostReplies, User, $translate, $timeout) {
+	function($scope, Post, $location, PostReplies, User, $translate, $timeout, Filter) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.showMap = false;
 		$scope.loading = false;
+		$scope.keywordsActive = [];
+
+		function init() {
+
+			refreshTags();
+		}
+
+		function refreshTags () {
+			$scope.keywordsActive = Filter.getActiveTags();
+		}
+
+        $scope.$on('$routeUpdate', refreshTags);
 
 		$scope.addItemsToList = function(data, index) {
 			if(data.data.length > index) {
@@ -178,5 +190,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 		});
+
+		init();
 	}
 ]);

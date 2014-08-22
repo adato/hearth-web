@@ -84,7 +84,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 return $rootScope.showLoginBox();
 
             var scope = $scope.$new();
-            scope.post = post;
+            scope.post = angular.copy(post);
 
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
