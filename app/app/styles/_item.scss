@@ -522,3 +522,11 @@ $imageSize: 80px;
     }
 }
 
+.wish-list {
+    article.mine {
+        .item,
+        .arrowbox {
+            border: 2px solid #f95800;
+        }
+    }
+}

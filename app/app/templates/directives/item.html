@@ -1,4 +1,4 @@
-<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
+<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mine: mine}">
 	<section class="large-2 columns photo">
 		<div ng-include="'templates/_user-info.html'"></div>
 		<a ng-href="#!/{{profileLinkType[item.author._type]}}/{{ item.author._id }}">
