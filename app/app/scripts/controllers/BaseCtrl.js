@@ -90,6 +90,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 template: $$config.modalTemplates + 'itemEdit.html',
                 controller: 'ItemEdit',
                 scope: scope,
+                closeByDocument: false,
                 showClose: false
             });
 

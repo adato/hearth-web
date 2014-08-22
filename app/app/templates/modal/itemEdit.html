@@ -1,6 +1,6 @@
 <div class="itemEdit modal">
 
-    <div class="headMessage error round connect-bottom">
+    <div class="headMessage error">
         V příspěvku je chyba. Před pokračováním ji nejprve opravte.
     </div>
     <div class="head">
@@ -61,7 +61,7 @@
                 </label>
                 <div ng-class="{disabled: post.date_unlimited == true}">
                     <input type="text" ng-disabled="post.date_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
-                    <checkbox model="post.date_unlimited" on-update="dateUnlimitedToggle()" value="false">{{ 'UNLIMITED' | translate }}</checkbox>
+                    <checkbox model="none" on-update="dateUnlimitedToggle()" value="false">{{ 'UNLIMITED' | translate }}</checkbox>
                 </div>
                 <!-- <a href="" ng-click="dateUnlimitedToggle()">{{ 'UNLIMITED' | translate }}</a> -->
 

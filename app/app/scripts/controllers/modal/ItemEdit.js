@@ -27,20 +27,44 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.loggedCommunity = false;
 		$scope.sending = false;
 
-    	$('.create-ad-textarea', $element).on('focus', function(){
-		    $(this).autosize();
+		$('.create-ad-textarea', $element).on('focus', function() {
+			$(this).autosize();
 		});
-    	$rootScope.$on('removeAd', function(info, id) {
-    		if(id == $scope.post._id) {
-    			$scope.closeThisDialog();
-    		}
-    	});
+		$rootScope.$on('removeAd', function(info, id) {
+			if (id == $scope.post._id) {
+				$scope.closeThisDialog();
+			}
+		});
 
+		// setTimeout($scope.showError, 3000);
 
 		$scope.$watch('languageCode', function() {
 			var timestamp = dateToTimestamp($scope.post.date, true);
 			$scope.post.date = $filter('date')(timestamp, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
 		});
+
+		$scope.showError = function(err, isError) {
+			var modalWindow = $(".ngdialog-content"),
+				messageBox = $(".headMessage", $element);
+
+			messageBox.hide();
+			messageBox.html("Hello Dolly");
+
+			modalWindow.removeClass("errorBox");
+			modalWindow.removeClass("msgBox");
+
+			// if(isError)
+			modalWindow.addClass("errorBox");
+
+			messageBox.toggle(
+				"slide", {
+					direction: 'up',
+					duration: 'slow',
+					easing: 'easeOutQuart'
+				}
+			);
+		};
+
 
 		$scope.setDefaultPost = function() {
 			$scope.post = angular.copy($scope.defaultPost);
@@ -69,7 +93,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.dateUnlimitedToggle = function() {
-			alert("AA");
+			
 			$scope.post.date_unlimited = !$scope.post.date_unlimited;
 			if ($scope.post.date_unlimited) {
 
@@ -142,8 +166,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// clear locations from null values
 			postData.locations = $scope.cleanNullLocations(postData.locations);
 
-			console.log($scope.post);
-
 			postDataCopy = angular.extend(
 				angular.copy(postData), {
 					author: Auth.getCredentials(),
@@ -152,14 +174,17 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					isPhantom: true,
 				}
 			);
-
-			if($scope.sending) {
+			if ($scope.sending) {
 				return false;
 			}
 			$scope.sending = true;
 
 			Post[$scope.post._id ? 'update' : 'add'](postData, function(data) {
 				$scope.sending = false;
+
+				postDataCopy = $scope.transformImagesStructure(postDataCopy);
+				$rootScope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
+
 				$scope.$emit('adSaved', data);
 				$scope.closeThisDialog();
 			}, function() {
@@ -167,13 +192,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				alert("There was an error while saving this post");
 				$scope.sending = false;
 			});
-
-			postDataCopy = $scope.transformImagesStructure(postDataCopy);
-			// $scope.$emit($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
-			// $scope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
-			$rootScope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
-			// $rootScope.$emit($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
-			// scope.$emit('adCreated', postDataCopy);
 
 			/*$analytics.eventTrack(eventName, {
 				category: 'Posting',
@@ -284,10 +302,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// };
 
 		function transformExistingPost(post) {
-			if(post) {
+			if (post) {
 
 				post.date = $filter('date')(post.date + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
-				if(!post.locations.length) {
+				if (!post.locations.length) {
 					post.locations = [{
 						name: ''
 					}];

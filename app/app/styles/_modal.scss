@@ -67,10 +67,11 @@
   animation: ngdialog-flyout .5s;
 }
 
+
 .ngdialog.ngdialog-theme-default .ngdialog-content {
   -webkit-animation: ngdialog-flyin .5s;
   animation: ngdialog-flyin .5s;
-  border-radius: 5px;
+  border-radius: 8px;
   color: black;
   font-size: 1.1em;
   line-height: 1.5em;
@@ -249,28 +250,29 @@
     position: relative;
     top: -15px;
   }
-}
+  
 
-.ngdialog .head {
-    
-  position: relative;
-  top: -5px;
+  .head {
+      
+    position: relative;
+    top: -5px;
 
-  .close {
-    color: #ddd;
-    font-size: 30px;
-    position: absolute;
-    right: 0;
-    cursor: pointer;
-    &:hover {
-     color: #CCC;
+    .close {
+      color: #ddd;
+      font-size: 30px;
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      &:hover {
+       color: #CCC;
+      }
     }
   }
 
   .headMessage {
-    background-color: red;
     color: white;
     height: 32px;
+    max-height: 32px;
     left: 0;
     margin: 0 auto;
     padding-top: 4px;
@@ -278,18 +280,40 @@
     right: 0;
     text-align: center;
     top: -32px;
-    width: 500px;
-    
+    width: 780px;
+    font-weight: bold;
 
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: none;
+
+    background-image: radial-gradient(center bottom, ellipse cover, #ffeda3, #ffc800);
+    background-image: -o-radial-gradient(center bottom, ellipse cover, #ffeda3, #ffc800);
+    background-image: -ms-radial-gradient(center bottom, ellipse cover, #ffeda3, #ffc800);
+    background-image: -moz-radial-gradient(center bottom, ellipse cover, #ffeda3, #ffc800);
+    background-image: -webkit-radial-gradient(center bottom, ellipse cover, #ffeda3, #ffc800);
   }
 }
 
+
+.ngdialog.ngdialog-theme-default .ngdialog-content.errorBox {
+  border: 6px solid #FF0302;
+
+  .headMessage {
+    background-color: #FE0000;
+  }
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content.msgBox {
+  border: 6px solid #818181;
+
+  .headMessage {
+    background-color: #818181;
+  }
+}
 
 .ngdialog-overlay {
   
