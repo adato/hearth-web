@@ -105,11 +105,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			var files = $scope.post.attachments_attributes;
 
 			if (!files[index]._id) {
-
 				files.splice(index, 1);
 			} else {
 				files[index].deleted = true;
 			}
+			$scope.$apply();
 		}
 
 		function recountImages() {
@@ -150,7 +150,17 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 			}
 			return loc;
-		}
+		};
+
+		$scope.transformPostData = function(data) {
+			// clear locations from null values
+			data.locations = $scope.cleanNullLocations(data.locations);
+			// transform keywords 
+			data.keywords = data.keywords.map(function(obj) {
+				return obj.text;
+			});
+			return data;
+		};
 
 		$scope.save = function() {
 			var postData, postDataCopy;
@@ -163,8 +173,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 			);
 
-			// clear locations from null values
-			postData.locations = $scope.cleanNullLocations(postData.locations);
+			postData = $scope.transformPostData(postData);
 
 			postDataCopy = angular.extend(
 				angular.copy(postData), {
@@ -309,6 +318,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					post.locations = [{
 						name: ''
 					}];
+				}
+				post.attachments_attributes = [];
+				if(post.attachments) {
+					post.attachments.forEach(function(obj, ind) {
+						obj.file = obj.origin;
+						post.attachments_attributes.push(obj);
+					});
+
 				}
 			}
 

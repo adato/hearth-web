@@ -26,6 +26,16 @@
 			width: 94%;
 			position: relative;
 		}
+		.remove {
+		    top: 4px;
+			color: #939393;
+		    font-size: 15px;
+		    padding-left: 6px;
+	    	background-color: white;
+		    &:hover {
+		    	opacity: 0.8;
+		    }
+		}
 		.mapIcon {
 		    font-size: 14px;
 		    padding-left: 10px;

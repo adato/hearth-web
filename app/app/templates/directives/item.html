@@ -48,9 +48,9 @@
 					</a>
 				</div>
 				<div class="tags" ng-if="item.keywords.length">
-					<ul>
-						<li ng-repeat="tag in item.keywords">
-							{{tag.text}}
+					<ul class="tagList">
+						<li ng-click="toggleTag(tag)" ng-repeat="tag in item.keywords">
+							{{tag}}
 						</li>
 					</ul>
 				</div>
@@ -71,7 +71,8 @@
 						</div>
 					</div>
 				</div>
-				<button ng-if="mine" class="secondary" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
+				<!-- ng-if="mine"  -->
+				<button class="secondary" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
 				<a class="link-button remove-button" ng-if="mine" data-reveal-id="confirm-delete-{{item._id}}"><i class="fa fa-times"></i> {{'AD_REMOVE_LABEL' | translate}}</a>
 
 				<div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
@@ -138,8 +139,6 @@
 							</section>
 						</article>
 					</div>
-
-					<item-edit ng-if="mine" ng-show="adEdit" data="item" class="animate-show" id="editAd"></item-edit>
 
 					<div signed-in ng-if="!mine" ng-show="replyEdit" class="reply-box animate-show">
 						<article class="row">

@@ -495,3 +495,30 @@ $imageSize: 80px;
         };
     }
 }
+
+
+.tagList {
+    list-style: none;
+    margin-left: 0px;
+
+    li {
+        border: 1px solid #C2C2C2;
+        border-radius: 8px;
+        padding: 1px;
+        padding-left: 7px;
+        font-size: 13px;
+        padding-right: 7px;
+        display: inline-block;
+        margin-right: 6px;
+        margin-bottom: 5px;
+        text-transform: capitalize;
+        
+        &:hover {
+            cursor: pointer;
+            background-color: #7AD0F1;
+            border-color: #7AD0F1;
+            color: white;
+        }
+    }
+}
+

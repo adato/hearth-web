@@ -10,11 +10,42 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout',
 
 	function($scope, Post, $location, PostReplies, User, $translate, $timeout) {
-		$scope.limit = 15;
+		$scope.limit = 1;
 		$scope.items = [];
 		$scope.showMap = false;
+		$scope.loading = false;
+
+		$scope.addItemsToList = function(data, index) {
+			if(data.data.length > index) {
+				$scope.items.push(data.data[index]);
+
+				return $timeout(function() {
+					$scope.addItemsToList(data, index+1);
+				});
+			}
+
+			$scope.finishLoading(data);
+		};
+
+		$scope.finishLoading = function(data) {
+			$scope.topArrowText.top = $translate('ads-has-been-read', {
+				value: $scope.items.length
+			});
+			$scope.topArrowText.bottom = $translate('total-count', {
+				value: data.total
+			});
+
+			return;
+			$scope.loading = false;
+		}
 
 		$scope.load = function() {
+			
+			if($scope.loading == true)
+				return;
+			
+			$scope.loading = true;
+					
 			if($scope.showMap === false) {
 				var params = angular.extend(angular.copy($location.search()), {
 					offset: $scope.items.length,
@@ -22,13 +53,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				});
 
 				Post.query(params, function(data) {
-					$scope.items = params.offset > 0 ? $scope.items.concat(data.data) : data.data;
-					$scope.topArrowText.top = $translate('ads-has-been-read', {
-						value: $scope.items.length
-					});
-					$scope.topArrowText.bottom = $translate('total-count', {
-						value: data.total
-					});
+					if(params.offset > 0) {
+						$scope.addItemsToList(data, 0);
+					} else {
+						$scope.items = data.data;
+						$scope.finishLoading(data);
+					}
 				});
 			}
 		};

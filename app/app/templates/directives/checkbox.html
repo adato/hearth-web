@@ -1,5 +1,4 @@
-<label class="checkbox" ng-click="toggle()">
-	
+<label class="checkbox" ng-click="toggle()" ng-class="{on: checked, radio:type=='radio'}">
 	<i class="fa" ng-class="{ 'fa-check-square': checked && type!='radio', 'fa-square-o': !checked && type!='radio', 'fa-circle-o': !checked && type=='radio', 'fa-circle': checked && type =='radio' }"></i>
 	<span ng-transclude></span>
 </label>

@@ -74,10 +74,9 @@
                         <i class="fa fa-picture-o" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
                     </a>
                 </div>
-
                 <div class="fileList" ng-show="showFiles">
                     <ul>
-                        <li ng-show="! file._id || ! file.deleted" class="text-center" ng-repeat="file in post.attachments_attributes track by $index">
+                        <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
                             <div class="overlay"></div>
                             <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
                                 <i class="fa fa-times"></i>

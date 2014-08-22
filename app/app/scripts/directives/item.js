@@ -86,6 +86,8 @@ angular.module('hearth.directives').directive('item', [
                         mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
                     });
                     scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
+
+
                     if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
                         item.author.locations = [];
                     }
@@ -108,7 +110,6 @@ angular.module('hearth.directives').directive('item', [
                     } else {
                         item.karma = undefined;
                     }
-
                 });
 
                 scope.toggleCollapsed = function() {
@@ -119,6 +120,11 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleReportNotLoggedIn = function() {
 
                     scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
+                };
+
+                scope.toggleTag = function(tag) {
+
+                    alert(tag);
                 };
 
                 scope.report = function() {
