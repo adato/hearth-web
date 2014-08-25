@@ -3,6 +3,15 @@ $border: $size / 10;
 $arrowTop: 30px;
 $imageSize: 80px;
 
+.mineItem {
+
+    .avatar:before,
+    .item,
+    .arrowbox {
+        border: 2px solid #f95800;
+    }
+}
+
 .photo {
     position: relative;
     text-align: center;
