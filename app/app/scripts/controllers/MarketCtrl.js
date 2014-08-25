@@ -10,7 +10,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout',
 
 	function($scope, Post, $location, PostReplies, User, $translate, $timeout) {
-		$scope.limit = 1;
+		$scope.limit = 15;
 		$scope.items = [];
 		$scope.showMap = false;
 		$scope.loading = false;

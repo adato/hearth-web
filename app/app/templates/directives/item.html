@@ -1,4 +1,4 @@
-<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit}">
+<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine}">
 	<section class="large-2 columns photo">
 		<div ng-include="'templates/_user-info.html'"></div>
 		<a ng-href="#!/{{profileLinkType[item.author._type]}}/{{ item.author._id }}">
@@ -71,8 +71,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- ng-if="mine"  -->
-				<button class="secondary" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
+				<button ng-if="mine" class="secondary" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
 				<a class="link-button remove-button" ng-if="mine" data-reveal-id="confirm-delete-{{item._id}}"><i class="fa fa-times"></i> {{'AD_REMOVE_LABEL' | translate}}</a>
 
 				<div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
