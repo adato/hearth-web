@@ -521,7 +521,7 @@ $imageSize: 80px;
         margin-right: 6px;
         margin-bottom: 5px;
         text-transform: capitalize;
-        
+        &.active,
         &:hover {
             cursor: pointer;
             background-color: #7AD0F1;
@@ -531,3 +531,11 @@ $imageSize: 80px;
     }
 }
 
+.wish-list {
+    article.mine {
+        .item,
+        .arrowbox {
+            border: 2px solid #f95800;
+        }
+    }
+}

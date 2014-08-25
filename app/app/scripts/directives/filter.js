@@ -86,6 +86,10 @@ angular.module('hearth.directives').directive('filter', [
                 };
 
                 scope.convertParamsToFilter = function(params) {
+                    if(! $.isArray(params.keywords)) {
+                        params.keywords = params.keywords.split(",");
+                    }
+
                     var filter = {
                         type: params.type || filterDefault.type,
                         days: params.days || filterDefault.days,

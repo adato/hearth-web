@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 			jsTest: {
 				files: ['test/spec/{,*/}*.js'],
 				tasks: [
-					// 'newer:jshint:test', 
+					// 'newer:jshint:test',
 					'karma'
 				]
 			},
@@ -310,6 +310,7 @@ module.exports = function(grunt) {
 				httpFontsPath: '../fonts',
 				relativeAssets: false,
 				assetCacheBuster: false,
+				bundleExec: true,
 				raw: 'Sass::Script::Number.precision = 10\n',
 				importPath: [
 					'app/vendor/font-awesome/scss/',
