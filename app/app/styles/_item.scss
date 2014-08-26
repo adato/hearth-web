@@ -159,6 +159,12 @@ $imageSize: 80px;
     }
 }
 
+.date {
+    background-color: red;
+    display: inline-block;
+    width: 135px;
+}
+
 .item {
     background-color: white;
     min-height: 150px;
@@ -189,8 +195,37 @@ $imageSize: 80px;
                     bottom: 0.5em;
                 };
             }
+
         }
-    }
+        .location-dropdown {
+
+            right: 0px !important;
+            top: 10px !important;
+            left: auto !important;
+
+            margin-right: 160px;
+            background-color: white;
+            border: 1px solid #e3e3e3;
+            border-radius: 10px;
+            min-width: 133px;
+            padding: 10px;
+            position: absolute;
+            display: none;
+            &.open {
+                display: inline-block;
+            }
+            div {
+                margin-bottom: 20px;
+                .fa {
+                    margin-left: 0px;
+                    margin-right: 6px;
+                }
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+     }
     footer {
         border-radius: 0 0 $global-radius $global-radius;
         background-color: color(4);

@@ -20,12 +20,12 @@
 				<header>
 					<span ng-if="item.locations.length && item.locations[0].name" class="fa fa-map-marker"></span> {{ item.locations[0].short_address }}</span>
 					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
-					<div id="{{'locations' + item._id}}" class="f-dropdown content" data-dropdown-content>
-						<div ng-repeat="location in item.locations track by $index" ng-if="!$first">
-							{{ location.short_address }}
+					<div id="{{'locations' + item._id}}" class="location-dropdown content" data-dropdown-content>
+						<div ng-repeat="location in item.locations track by $index">
+							<span class="fa fa-map-marker"></span> {{ location.short_address }}
 						</div>
 					</div>
-					<span title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
+					<span class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
 				</header>
 				<h1>
 					<span ng-if="item.type == 'need'">{{ 'DOES_WISH' | translate }}</span>

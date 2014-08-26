@@ -26,8 +26,14 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleTag = Filter.toggleTag;
                 scope.keywordsActive = scope.keywordsActive || [];
 
-                console.log("linked");
-
+                // testing
+                scope.item.locations = [
+                    {short_address: "Praha 8"},
+                    {short_address: "Praha 7"},
+                    {short_address: "Praha 6"},
+                    {short_address: "Praha 5"},
+                    {short_address: "Ulice 123 Praha 1 110 00 Česká republika"},
+                ];
 
                 function drawTimeline() {
 
