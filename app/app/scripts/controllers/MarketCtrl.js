@@ -33,7 +33,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				return $timeout(function() {
 					$scope.addItemsToList(data, index+1);
-				});
+				}, 10);
 			}
 
 			$scope.finishLoading(data);

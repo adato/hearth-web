@@ -26,6 +26,9 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleTag = Filter.toggleTag;
                 scope.keywordsActive = scope.keywordsActive || [];
 
+                console.log("linked");
+
+
                 function drawTimeline() {
 
                     var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);

@@ -41,7 +41,8 @@
 }
 
 .logo {
-    background-image: inline-image("logo.svg");
+    background-image: inline-image("logo.png");
+    background-position: center center;
     background-color: color(1);
     background-repeat: no-repeat;
     width: 200px !important;

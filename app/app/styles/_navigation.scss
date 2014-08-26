@@ -17,10 +17,13 @@ $topBarImageSize: 1.8em;
                 }
                 &.logo {
                     .scrolled & {
-                        right: -74px;
                         top: 0px;
                         height: $topBarHeight / 2 !important;
-                        background-size: 181%;
+                        background-size: 48%;
+                        /*
+                            right: -74px;
+                            background-size: 181%;
+                         */
                     }
                 }
             }
