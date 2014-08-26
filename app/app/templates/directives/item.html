@@ -71,7 +71,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="controlButtons">
+				<div class="controll-buttons" ng-if="mine">
 					<div class="fa fa-pencil" ng-click="edit()"></div>
 					<div class="fa" ng-class="{'fa-pause': item.is_active, 'fa-play': !item.is_active}" ng-click="pauseToggle()"></div>
 					<div class="fa fa-times" data-reveal-id="confirm-delete-{{item._id}}"></div>

@@ -247,6 +247,22 @@ $imageSize: 80px;
             };
             color: color(5);
         }
+        .controll-buttons {
+            color: #1fb1e8;
+            display: inline-block;
+            float: right;
+            font-size: 25px;
+            position: relative;
+            right: 10px;
+            top: 8px;
+            div {
+                margin-left: 10px;
+                cursor: pointer;
+            }
+            .fa-times {
+                font-size: 30px;
+            }
+        }
         .spam {
             font-size: 1.5em;
             float: right;
@@ -407,8 +423,7 @@ $imageSize: 80px;
     }
     .share {
         position: relative;
-        right: 10px;
-        width: $fontSize;
+        display: inline-block;
         &:hover {
             .fa-share-square-o {
                 color: lighten(desaturate(color(5), 100%), 20%);
@@ -417,16 +432,22 @@ $imageSize: 80px;
                 max-width: 300px;
             }
         }
+        &:first-child {
+            float: right;
+        }
         .sharing {
+            float: left;
             max-width: 0;
             overflow: hidden;
-            position: absolute;
-            right: 2.5em;
-            top: -0.2em;
             font-size: 0.5em;
             padding: {
                 bottom: 1em;
             };
+            a {
+                &:first-child {
+                    margin-left: 0px;
+                }
+            }
             @include transition(max-width 2s ease);
             div {
                 text-align: right;
