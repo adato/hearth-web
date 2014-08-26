@@ -391,6 +391,12 @@ $imageSize: 80px;
                     max-height: 100em;
                 }
             }
+            .show-more {
+                position: absolute;
+                right: 20px;
+                color: #20B1EA;
+                font-weight: bold;
+            }
         }
         .attachments {
             img {
