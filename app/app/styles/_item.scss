@@ -159,11 +159,6 @@ $imageSize: 80px;
     }
 }
 
-.date {
-    background-color: red;
-    display: inline-block;
-    width: 135px;
-}
 
 .item {
     background-color: white;
@@ -178,14 +173,23 @@ $imageSize: 80px;
     header {
         text-align: right;
         font-size: 0.8em;
+        .date {
+            display: inline-block;
+            width: 145px;
+        }
         span {
             margin: {
-                left: 2em;
+                left: 1.5em;
             };
             .fa {
                 margin: {
                     right: $fontSize / 2;
                 };
+            }
+        }
+        a {
+            &.open {
+                display: none;
             }
         }
         .content {
