@@ -169,7 +169,7 @@ $imageSize: 80px;
         }
         span {
             margin: {
-                left: 1.5em;
+                left: 1em;
             };
             .fa {
                 margin: {
@@ -179,12 +179,15 @@ $imageSize: 80px;
         }
         a {
             &.open {
-                display: none;
+                visibility: hidden;
             }
         }
         .locations {
             display: inline-block;
             position: relative;
+            span {
+                margin-left: 0px;
+            }
         }
         .content {
             text-align: left;
@@ -199,9 +202,8 @@ $imageSize: 80px;
 
             margin-left: 0;
             margin-right: 0;
-            right: 0 !important;
-            top: -5px !important;
-            left: auto !important;
+            left: -7px !important;
+            top: -11px !important;
             
             background-color: white;
             border: 1px solid #e3e3e3;
@@ -217,8 +219,6 @@ $imageSize: 80px;
             div {
                 margin-bottom: 20px;
                 .fa {
-                    margin-left: 0px;
-                    margin-right: 6px;
                 }
                 &:last-child {
                     margin-bottom: 0px;

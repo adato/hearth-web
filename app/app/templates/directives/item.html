@@ -24,7 +24,7 @@
 						<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
 						<div id="{{'locations' + item._id}}" class="location-dropdown content" data-dropdown-content>
 							<div ng-repeat="location in item.locations track by $index">
-								<span class="fa fa-map-marker"></span> {{ location.short_address }}
+								&nbsp;&nbsp;<span class="fa fa-map-marker"></span> {{ location.short_address }}&nbsp;&nbsp;
 							</div>
 						</div>
 					</div>
