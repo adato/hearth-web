@@ -19,12 +19,16 @@ angular.module('hearth.directives').directive('filterStatus', [
 				scope.resetFilter = function() {
 					scope.$emit('filterReset');
 				};
-
 				scope.fetchData = function() {
 					var searchParams = angular.copy($location.search()),
 						related = searchParams.related;
 
+					
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;
+
+					if(scope.filterData && scope.filterData.keywords)
+						scope.filterData.keywords = scope.filterData.keywords.join(", ");
+
 					if (!$.isEmptyObject(searchParams)) {
 						related = related ? related.split(',') : [];
 

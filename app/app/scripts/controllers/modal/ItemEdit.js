@@ -319,14 +319,15 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 						name: ''
 					}];
 				}
-				post.attachments_attributes = [];
-				if(post.attachments) {
-					post.attachments.forEach(function(obj, ind) {
-						obj.file = obj.origin;
-						post.attachments_attributes.push(obj);
-					});
+				// post.attachments_attributes = [];
+				// if(post.attachments) {
+				// 	post.attachments.forEach(function(obj, ind) {
+				// 		obj.file = obj.origin;
+				// 		post.attachments_attributes.push(obj);
+				// 	});
 
-				}
+				// }
+				console.log(post);
 			}
 
 			return post;

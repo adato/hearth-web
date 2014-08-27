@@ -42,10 +42,10 @@
 						<span ng-show="expanded">{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
 					</a>
 				</div>
-				<div class="attachments" ng-if="item.attachments.length" fancybox>
-					<a class="fancy" ng-href="{{ photo.origin }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments">
+				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
+					<a class="fancy" ng-href="{{ photo.file }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes">
 						<img ng-src="{{ photo.normal }}">
-					</a>
+					</a>	
 				</div>
 				<div class="tags" ng-if="item.keywords.length">
 					<ul class="tagList">
