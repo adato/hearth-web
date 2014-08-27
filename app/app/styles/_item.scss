@@ -236,8 +236,10 @@ $imageSize: 80px;
             bottom: $fontSize / 2;
         };
         span {
-            display: inline-block;
-            margin-top: 15px;
+            &.margin {
+                display: inline-block;
+                margin-top: 15px;
+            }
         }
         .share {
             font-size: 1.8em;
@@ -273,7 +275,6 @@ $imageSize: 80px;
             display: inline-block;
             margin-left: 0.1em;
             color: black;
-            height: 2em;
             width: 2em;
             padding-top: 0.05em;
             text-align: center;
