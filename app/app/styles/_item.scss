@@ -273,10 +273,6 @@ $imageSize: 80px;
                 color: black;
                 opacity: 0.2;
             }
-//            &.fa-flag {
-                //&:hover {
-                //}
-  //          }
         }
         .remove-button {
             display: inline-block;
@@ -322,6 +318,25 @@ $imageSize: 80px;
             }
             &[disabled] {
                 border-color: transparent;
+            }
+        }
+    }
+    .show-more {
+        position: absolute;
+        right: 20px;
+        color: #20B1EA;
+        font-weight: bold;
+        span {
+            &:last-child {
+                display: none;
+            }
+        }
+        &.expanded {
+            span:first-child {
+                display: none;
+            }
+            span:last-child {
+                display: inline-block;
             }
         }
     }
@@ -397,28 +412,10 @@ $imageSize: 80px;
                    /* max-height: 100em; */
                 }
             }
-            .show-more {
-                position: absolute;
-                right: 20px;
-                color: #20B1EA;
-                font-weight: bold;
-                span {
-                    &:last-child {
-                        display: none;
-                    }
-                }
-                &.expanded {
-                    span:first-child {
-                        display: none;
-                    }
-                    span:last-child {
-                        display: inline-block;
-                    }
-                }
-            }
+            
         }
         .attachments {
-            margin-top:40px;
+            margin-top:20px;
             margin-bottom:20px;
             a:nth-child(3n+1) {
                 margin-left: 50px;
@@ -430,6 +427,10 @@ $imageSize: 80px;
                 margin-bottom:20px;
                 border-radius: 10px;
             }
+        }
+        .tags {
+            width: 80%;
+            float: left;
         }
     }
     .share {
@@ -451,6 +452,13 @@ $imageSize: 80px;
             max-width: 0;
             overflow: hidden;
             font-size: 0.5em;
+        
+            background-color: #f4f4f4;
+            position: absolute;
+            right: 30px;
+            top: 0;
+            z-index: 3000;
+
             padding: {
                 bottom: 1em;
             };
@@ -585,8 +593,7 @@ $imageSize: 80px;
 
 .tagList {
     list-style: none;
-    margin-left: 0px;
-
+    margin-bottom: 0px;
     li {
         border: 1px solid #C2C2C2;
         border-radius: 8px;

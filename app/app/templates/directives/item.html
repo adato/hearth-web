@@ -18,7 +18,8 @@
 			<div class="arrow"></div>
 			<div class="content">
 				<header>
-					<span ng-if="item.locations.length && item.locations[0].name" class="fa fa-map-marker"></span> {{ item.locations[0].short_address }}</span>
+					<span ng-if="item.locations.length && item.locations[0].short_address" class="fa fa-map-marker"></span>
+					{{ item.locations[0].short_address }}</span>
 					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
 					<div id="{{'locations' + item._id}}" class="location-dropdown content" data-dropdown-content>
 						<div ng-repeat="location in item.locations track by $index">
@@ -32,15 +33,10 @@
 					<span ng-if="item.type == 'offer'">{{ 'DOES_GIVE' | translate }}</span>
 					{{item.title}}
 				</h1>
-				
 				<div class="text-container">
 					<div class="expandable">
 						<p ng-bind-html="item.name | linky:'_blank'"></p>
 					</div>
-					<a ng-if="showMore" class="show-more" ng-click="toggleCollapsed()">
-						<span>{{ 'show-more' | translate }} <i class="fa fa-chevron-down"></i></span>
-						<span>{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
-					</a>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
 					<a class="fancy" ng-href="{{ photo.file }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes">
@@ -54,6 +50,11 @@
 						</li>
 					</ul>
 				</div>
+				<a ng-if="showMore" class="show-more" ng-click="toggleCollapsed()">
+					<span>{{ 'show-more' | translate }} <i class="fa fa-chevron-down"></i></span>
+					<span>{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
+				</a>
+				<div class="clear"></div>
 			</div>
 			<footer>
 				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="toggleReportNotLoggedIn()">
