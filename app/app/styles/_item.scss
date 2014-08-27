@@ -429,9 +429,14 @@ $imageSize: 80px;
         .attachments {
             margin-top:40px;
             margin-bottom:20px;
+            a:first-child {
+                margin-left: 50px;
+            }
             img {
-                max-width: 96px;
-                max-height: 96px;
+                max-width: 185px;
+                max-height: 185px;
+                margin-right: 20px;
+                border-radius: 10px;
             }
         }
     }
