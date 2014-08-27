@@ -21,18 +21,18 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			refreshTags();
 		}
 
-		function refreshTags () {
+		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
 
-        $scope.$on('$routeUpdate', refreshTags);
+		$scope.$on('$routeUpdate', refreshTags);
 
 		$scope.addItemsToList = function(data, index) {
-			if(data.data.length > index) {
+			if (data.data.length > index) {
 				$scope.items.push(data.data[index]);
 
 				return $timeout(function() {
-					$scope.addItemsToList(data, index+1);
+					$scope.addItemsToList(data, index + 1);
 				}, 10);
 			}
 
@@ -51,20 +51,24 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		$scope.load = function() {
-			
-			if($scope.loading == true)
+
+			if ($scope.loading == true)
 				return;
-			
+
 			$scope.loading = true;
-					
-			if($scope.showMap === false) {
+
+			if ($scope.showMap === false) {
 				var params = angular.extend(angular.copy($location.search()), {
 					offset: $scope.items.length,
 					limit: $scope.limit
 				});
 
+				if ( $.isArray(params.keywords)) {
+					params.keywords = params.keywords.join(",");
+				}
+
 				Post.query(params, function(data) {
-					if(params.offset > 0) {
+					if (params.offset > 0) {
 						$scope.addItemsToList(data, 0);
 					} else {
 						$scope.items = data.data;
