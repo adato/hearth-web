@@ -26,15 +26,6 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleTag = Filter.toggleTag;
                 scope.keywordsActive = scope.keywordsActive || [];
 
-                // testing
-                scope.item.locations = [
-                    {short_address: "Ulice 123 Praha 1 110 00 Česká republika"},
-                    {short_address: "Praha 8"},
-                    {short_address: "Praha 7"},
-                    {short_address: "Praha 6"},
-                    {short_address: "Praha 5"},
-                ];
-
                 function drawTimeline() {
 
                     // var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
@@ -121,18 +112,9 @@ angular.module('hearth.directives').directive('item', [
                 });
 
                 scope.toggleCollapsed = function() {
-                    // $('.expandable', element).toggleClass('expanded');
-                    var mh = (scope.expanded) ? 80 : 3000;
-                    
-                    if(! scope.expanded)
-                        $('.show-more', element).toggleClass('expanded');
-
-                    $('.expandable', element).animate({ "max-height": mh}, 800, function(){
-                            if(scope.expanded)
-                                $('.show-more', element).toggleClass('expanded');
-                            scope.expanded = !scope.expanded;
-
-                    });
+                    $('.show-more', element).toggleClass('expanded');
+                    $('.expandable', element).css("max-height", (scope.expanded) ? 80 : 3000);
+                    scope.expanded = !scope.expanded;
                 };
 
                 scope.toggleReportNotLoggedIn = function() {
