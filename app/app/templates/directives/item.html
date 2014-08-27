@@ -77,7 +77,7 @@
 				<div class="controll-buttons" ng-if="mine">
 					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit()"></div>
 					<div class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></div>
-					<div class="fa fa-pause" title="{{'A;D_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></div>
+					<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></div>
 					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></div>
 				</div>
 				<div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
