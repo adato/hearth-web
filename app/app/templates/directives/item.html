@@ -18,12 +18,14 @@
 			<div class="arrow"></div>
 			<div class="content">
 				<header>
-					<span ng-if="item.locations.length && item.locations[0].short_address" class="fa fa-map-marker"></span>
-					{{ item.locations[0].short_address }}</span>
-					<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
-					<div id="{{'locations' + item._id}}" class="location-dropdown content" data-dropdown-content>
-						<div ng-repeat="location in item.locations track by $index">
-							<span class="fa fa-map-marker"></span> {{ location.short_address }}
+					<div class="locations" ng-if="item.locations.length && item.locations[0].short_address">
+						<span class="fa fa-map-marker"></span>
+						{{ item.locations[0].short_address }}</span>
+						<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
+						<div id="{{'locations' + item._id}}" class="location-dropdown content" data-dropdown-content>
+							<div ng-repeat="location in item.locations track by $index">
+								<span class="fa fa-map-marker"></span> {{ location.short_address }}
+							</div>
 						</div>
 					</div>
 					<span class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
@@ -73,15 +75,14 @@
 					</div>
 				</div>
 				<div class="controll-buttons" ng-if="mine">
-					<div class="fa fa-pencil" ng-click="edit()"></div>
-					<div class="fa" ng-class="{'fa-pause': item.is_active, 'fa-play': !item.is_active}" ng-click="pauseToggle()"></div>
-					<div class="fa fa-times" data-reveal-id="confirm-delete-{{item._id}}"></div>
+					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit()"></div>
+					<div class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></div>
+					<div class="fa fa-pause" title="{{'A;D_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></div>
+					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></div>
 				</div>
-				<button ng-if="mine" class="secondary" ng-click="edit()" ng-disabled="adEdit"><i class="fa fa-pencil"></i> {{'EDIT_BUTTON_CAPTION' | translate}}</button>
-				<a class="link-button remove-button" ng-if="mine" data-reveal-id="confirm-delete-{{item._id}}"><i class="fa fa-times"></i> {{'AD_REMOVE_LABEL' | translate}}</a>
-
 				<div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
 					<article class="row">
+
 						<section class="large-12 columns">
 							<h2>{{'AD_REMOVE_LABEL' | translate}}</h2>
 							<p><i class="fa fa-question-circle"></i> {{'AD_REMOVE_ARE_YOU_SURE' | translate}}</p>
@@ -90,6 +91,23 @@
 					<article class="row">
 						<section class="large-6 columns">
 							<button ng-click="remove()">{{'OK' | translate}}</button>
+						</section>
+						<section class="large-6 columns text-right">
+							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
+						</section>
+					</article>
+				</div>
+				<div id="confirm-pause-{{item._id}}" class="reveal-modal tiny" data-reveal>
+					<article class="row">
+
+						<section class="large-12 columns">
+							<h2>{{'AD_PAUSE_LABEL' | translate}}</h2>
+							<p><i class="fa fa-question-circle"></i> {{'AD_PAUSE_ARE_YOU_SURE' | translate}}</p>
+							</section>
+					</article>
+					<article class="row">
+						<section class="large-6 columns">
+							<button ng-click="pauseToggle()">{{'OK' | translate}}</button>
 						</section>
 						<section class="large-6 columns text-right">
 							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
@@ -192,6 +210,7 @@
 						</article>
 					</div>
 				</div>
+				<div class="clear"></div>
 			</footer>
 		</div>
 	</section>

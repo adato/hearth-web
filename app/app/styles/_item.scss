@@ -166,7 +166,6 @@ $imageSize: 80px;
         font-size: 0.8em;
         .date {
             display: inline-block;
-            width: 145px;
         }
         span {
             margin: {
@@ -183,6 +182,10 @@ $imageSize: 80px;
                 display: none;
             }
         }
+        .locations {
+            display: inline-block;
+            position: relative;
+        }
         .content {
             text-align: left;
             div {
@@ -194,16 +197,18 @@ $imageSize: 80px;
         }
         .location-dropdown {
 
-            right: 0px !important;
-            top: 10px !important;
+            margin-left: 0;
+            margin-right: 0;
+            right: 0 !important;
+            top: -5px !important;
             left: auto !important;
-
-            margin-right: 160px;
+            
             background-color: white;
             border: 1px solid #e3e3e3;
             border-radius: 10px;
-            min-width: 133px;
             padding: 10px;
+            padding-right: 0px;
+            padding-left: 0px;
             position: absolute;
             display: none;
             &.open {
@@ -230,6 +235,10 @@ $imageSize: 80px;
             top: $fontSize / 2;
             bottom: $fontSize / 2;
         };
+        span {
+            display: inline-block;
+            margin-top: 15px;
+        }
         .share {
             font-size: 1.8em;
             float: right;
@@ -322,10 +331,11 @@ $imageSize: 80px;
         }
     }
     .show-more {
-        position: absolute;
-        right: 20px;
         color: #20B1EA;
         font-weight: bold;
+        display: inline-block;
+        float: right;
+
         span {
             &:last-child {
                 display: none;
@@ -460,7 +470,6 @@ $imageSize: 80px;
             z-index: 3000;
 
             padding: {
-                bottom: 1em;
             };
             a {
                 &:first-child {

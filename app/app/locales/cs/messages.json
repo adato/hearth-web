@@ -417,6 +417,11 @@
     "FULLTEXT_USERS": "Lidé",
     "LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
     "AD_REPORT_CONFIRM": "Nahlásit inzerát",
+    "AD_PAUSE_LABEL": "Pozastavit inzerát",
+    "AD_RESUME_LABEL": "Obnovit inzerát",
+    "AD_REMOVE_LABEL": "Odstranit inzerát",
+    "AD_EDIT_LABEL": "Editovat inzerát",
+    "AD_PAUSE_ARE_YOU_SURE": "Doopravdy chcete pozastavit tento inzerát?",
     "AD_REPORT_ARE_YOU_SURE": "Doopravdy chcete nahlásit tento inzerát jako škodlivý?",
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadejte co vás zajímá...",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>"

@@ -26,6 +26,16 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleTag = Filter.toggleTag;
                 scope.keywordsActive = scope.keywordsActive || [];
 
+
+                // testing
+                scope.item.locations = [
+                    {short_address: "Ulice 123 Praha 1 110 00 Česká republika"},
+                    {short_address: "Praha 8"},
+                    {short_address: "Praha 7"},
+                    {short_address: "Praha 6"},
+                    {short_address: "Praha 5"},
+                ];
+                
                 function drawTimeline() {
 
                     // var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
@@ -163,10 +173,14 @@ angular.module('hearth.directives').directive('item', [
                         function(res) {
                             pauseProgress = false;
                             scope.item.is_active = !scope.item.is_active;
+
+                            scope.cancel();
                         },
                         function(err) {
                             pauseProgress = false;
                             console.log(err);
+
+                            scope.cancel();
                         }
                     );
                     // scope.$emit('report', {id: scope.item._id});

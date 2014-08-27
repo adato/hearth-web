@@ -236,3 +236,20 @@ textarea {
 .pointer {
     cursor: pointer;
 }
+
+.datepicker {
+    border: 3px solid #ff4100 !important;
+    border-radius: 8px;
+    thead {
+        tr {
+            th {
+                color: #FF4100 !important;
+            }
+        }
+    }
+    td {
+        &.active {
+            background-color: #FF4100 !important;
+        }
+    }
+}
