@@ -138,6 +138,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('report', function($event, data) {
 			Post.spam(data);
 		});
+		$scope.$on('suspend', function($event, data) {
+			Post.suspend(data);
+		});
+		$scope.$on('resume', function($event, data) {
+			Post.resume(data);
+		});
 
 		$scope.$on('adSaved', function($event, data) {
 			var phantomRecord, i;

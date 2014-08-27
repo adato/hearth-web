@@ -19,6 +19,14 @@ angular.module('hearth.services').factory('Post', [
 					type: 'post'
 				},
 			},
+			suspend: {
+				url: appConfig.apiPath + '/posts/:postId/suspend',
+				method: 'PUT'
+			},
+			resume: {
+				url: appConfig.apiPath + '/posts/:postId/resume',
+				method: 'PUT'
+			},
 			mapQuery: {
 				method: 'GET',
 				url: appConfig.apiPath + '/search/',

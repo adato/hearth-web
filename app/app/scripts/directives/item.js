@@ -7,9 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('item', [
-    '$timeout', '$translate', 'Auth', '$rootScope', '$location', 'Filter',
+    '$timeout', '$translate', 'Auth', '$rootScope', '$location', 'Filter', 'Post',
 
-    function($timeout, $translate, Auth, $rootScope, $location, Filter) {
+    function($timeout, $translate, Auth, $rootScope, $location, Filter, Post) {
         return {
             restrict: 'E',
             replace: true,
@@ -45,12 +45,8 @@ angular.module('hearth.directives').directive('item', [
                     return [element[0].clientWidth, element[0].clientHeight].join('x');
                 }, drawTimeline);
 
-                //     drawTimeline();
-                // $timeout(function() {
-
-                //     $(element).css("background-color", "red");
-                // });
-
+                
+                var pauseProgress = false;
                 var timeout = 6000,
                     init = function() {
                         angular.extend(scope, {
@@ -174,9 +170,26 @@ angular.module('hearth.directives').directive('item', [
                     init();
                 };
 
-                scope.alert = function(cc) {
-                    alert(cc);
+                scope.pauseToggle = function() {
+                    var Action = (scope.item.is_active) ? Post.suspend : Post.resume;
+                    
+                    if(pauseProgress)
+                        return false;
+                    pauseProgress = true;
+
+                    Action({id: scope.item._id}, 
+                        function(res) {
+                            pauseProgress = false;
+                            scope.item.is_active = !scope.item.is_active;
+                        },
+                        function(err) {
+                            pauseProgress = false;
+                            console.log(err);
+                        }
+                    );
+                    // scope.$emit('report', {id: scope.item._id});
                 }
+
                 scope.startEditReply = function() {
                     scope.replyEdit = true;
                 };

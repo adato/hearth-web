@@ -3,15 +3,6 @@ $border: $size / 10;
 $arrowTop: 30px;
 $imageSize: 80px;
 
-.mineItem {
-
-    .avatar:before,
-    .item,
-    .arrowbox {
-        border: 2px solid #f95800;
-    }
-}
-
 .photo {
     position: relative;
     text-align: center;
@@ -613,6 +604,35 @@ $imageSize: 80px;
             background-color: #7AD0F1;
             border-color: #7AD0F1;
             color: white;
+        }
+    }
+}
+
+
+.mineItem {
+
+    .avatar:before,
+    .item,
+    .arrowbox {
+        border: 2px solid #f95800;
+    }
+    .share {
+        color: #f95800 !important;
+        a {
+            text-shadow: none !important;
+            background-color: #f95800 !important;
+            color: white !important;
+            &:hover {
+                background-color: #B6B6B6 !important;
+            }
+        }
+    }
+    .controll-buttons {
+        div {
+            color: #f95800 !important;
+            &:hover {
+                color: #B6B6B6 !important;
+            }
         }
     }
 }
