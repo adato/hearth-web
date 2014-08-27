@@ -26,8 +26,9 @@ angular.module('hearth.directives').directive('filterStatus', [
 					
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;
 
-					if(scope.filterData && scope.filterData.keywords)
+					if(scope.filterData && $.isArray(scope.filterData.keywords)) {
 						scope.filterData.keywords = scope.filterData.keywords.join(", ");
+					}
 
 					if (!$.isEmptyObject(searchParams)) {
 						related = related ? related.split(',') : [];

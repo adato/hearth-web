@@ -394,7 +394,6 @@ $imageSize: 80px;
             margin-bottom: $fontSize;
             .expandable {
                 max-height: 5em;
-                transition: max-height, 0.8s;
                 overflow: hidden;
                 p {
                     text-align: justify;
@@ -404,7 +403,7 @@ $imageSize: 80px;
                     };
                 }
                 &.expanded {
-                    max-height: 100em;
+                   /* max-height: 100em; */
                 }
             }
             .show-more {
@@ -412,9 +411,24 @@ $imageSize: 80px;
                 right: 20px;
                 color: #20B1EA;
                 font-weight: bold;
+                span {
+                    &:last-child {
+                        display: none;
+                    }
+                }
+                &.expanded {
+                    span:first-child {
+                        display: none;
+                    }
+                    span:last-child {
+                        display: inline-block;
+                    }
+                }
             }
         }
         .attachments {
+            margin-top:40px;
+            margin-bottom:20px;
             img {
                 max-width: 96px;
                 max-height: 96px;

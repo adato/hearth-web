@@ -37,8 +37,8 @@ angular.module('hearth.directives').directive('item', [
 
                 function drawTimeline() {
 
-                    var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
-                    $('.timeline', element).height($(element).height() - elementsHeight);
+                    // var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
+                    // $('.timeline', element).height($(element).height() - elementsHeight);
                 }
 
                 scope.$watch(function() {
@@ -100,7 +100,6 @@ angular.module('hearth.directives').directive('item', [
                     });
                     scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 
-
                     if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
                         item.author.locations = [];
                     }
@@ -126,15 +125,24 @@ angular.module('hearth.directives').directive('item', [
                 });
 
                 scope.toggleCollapsed = function() {
-                    $('.expandable', element).toggleClass('expanded');
-                    scope.expanded = !scope.expanded;
+                    // $('.expandable', element).toggleClass('expanded');
+                    var mh = (scope.expanded) ? 80 : 3000;
+                    
+                    if(! scope.expanded)
+                        $('.show-more', element).toggleClass('expanded');
+
+                    $('.expandable', element).animate({ "max-height": mh}, 800, function(){
+                            if(scope.expanded)
+                                $('.show-more', element).toggleClass('expanded');
+                            scope.expanded = !scope.expanded;
+
+                    });
                 };
 
                 scope.toggleReportNotLoggedIn = function() {
 
                     scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
                 };
-
 
                 scope.report = function() {
                     if(Auth.isLoggedIn()) {

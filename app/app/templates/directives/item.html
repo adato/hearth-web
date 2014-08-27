@@ -38,8 +38,8 @@
 						<p ng-bind-html="item.name | linky:'_blank'"></p>
 					</div>
 					<a ng-if="showMore" class="show-more" ng-click="toggleCollapsed()">
-						<span ng-hide="expanded">{{ 'show-more' | translate }} <i class="fa fa-chevron-down"></i></span>
-						<span ng-show="expanded">{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
+						<span>{{ 'show-more' | translate }} <i class="fa fa-chevron-down"></i></span>
+						<span>{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
 					</a>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
