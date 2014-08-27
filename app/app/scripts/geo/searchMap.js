@@ -41,8 +41,8 @@ angular.module('hearth.geo').directive('searchMap', [
                 scope.autodetectMyLocation = function() {
                     geo.getCurrentLocation().then(function(location) {
                         geo.focusLocation(location);
-                        geo.getAddress(location).then(function(address) {
-                            searchBoxElement.val(address);
+                        geo.getAddress(location).then(function(info) {
+                            searchBoxElement.val(info.formatted_address);
                         });
                         scope.search(location);
                     });

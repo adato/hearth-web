@@ -205,6 +205,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					isPhantom: true,
 				}
 			);
+
 			if ($scope.sending) {
 				return false;
 			}

@@ -86,7 +86,7 @@ angular.module('hearth.geo').factory('geo', [
 					latLng: location
 				}, function(responses) {
 					if (responses && responses.length > 0) {
-						deferred.resolve(responses[0].formatted_address);
+						deferred.resolve(responses[0]);
 					}
 				});
 
