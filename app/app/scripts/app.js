@@ -152,6 +152,7 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'ngSanitize', 'ngResource', 'pa
                 $rootScope.loggedCommunity = Auth.getCommunityCredentials();
 
                 $rootScope.$broadcast("initFinished");
+                $rootScope.initFinished = true;
             });
             $rootScope.$on('onUserLogin', function() {
                 var backUrl;

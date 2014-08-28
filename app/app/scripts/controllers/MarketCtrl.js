@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout', 'Filter',
+	'$scope', '$rootScope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout', 'Filter',
 
-	function($scope, Post, $location, PostReplies, User, $translate, $timeout, Filter) {
+	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.showMap = false;
@@ -205,5 +205,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		// ==== Global event fired when init process is finished
 		$scope.$on('initFinished', init);
+		if($rootScope.initFinished) {
+			init();
+			$scope.load();
+		}
 	}
 ]);
