@@ -25,16 +25,6 @@ angular.module('hearth.directives').directive('item', [
                 scope.reportNotLoggedIn = 0;
                 scope.toggleTag = Filter.toggleTag;
                 scope.keywordsActive = scope.keywordsActive || [];
-
-
-                // testing
-                scope.item.locations = [
-                    {short_address: "Ulice 123 Praha 1 110 00 Česká republika"},
-                    {short_address: "Praha 8"},
-                    {short_address: "Praha 7"},
-                    {short_address: "Praha 6"},
-                    {short_address: "Praha 5"},
-                ];
                 
                 function drawTimeline() {
 
@@ -186,15 +176,15 @@ angular.module('hearth.directives').directive('item', [
                     // scope.$emit('report', {id: scope.item._id});
                 }
 
-                scope.startEditReply = function() {
-                    scope.replyEdit = true;
-                };
-
                 scope.edit = function() {
                     // scope.$emit('editAd', scope.item._id);
                     $rootScope.$broadcast('editAd', scope.item._id);
                     // scope.adEdit = true;
                     $rootScope.editItem(scope.item);
+                };
+
+                scope.replyItem = function() {
+                    $rootScope.replyItem(scope.item);
                 };
 
                 scope.cancel = function() {

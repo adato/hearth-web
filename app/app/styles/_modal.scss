@@ -251,9 +251,7 @@
     top: -15px;
   }
   
-
   .head {
-      
     position: relative;
     top: -5px;
 
@@ -262,6 +260,7 @@
       font-size: 30px;
       position: absolute;
       right: 0;
+      top: 0px;
       cursor: pointer;
       &:hover {
        color: #CCC;

@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('checkbox', function() {
 		transclude: true,
 		scope: {
 			model: '=',
-			value: '@',
+			value: '=',
 			onUpdate: '&',
 			type: '@'
 		},

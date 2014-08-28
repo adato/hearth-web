@@ -96,5 +96,24 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             dialog.closePromise.then(function(data) {});
         };
+
+
+        $rootScope.replyItem = function(post) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox();
+
+            var scope = $scope.$new();
+            scope.post = post;
+            
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'itemReply.html',
+                controller: 'ItemReply',
+                scope: scope,
+                closeByDocument: false,
+                showClose: false
+            });
+
+            dialog.closePromise.then(function(data) {});
+        };
     }
 ]);

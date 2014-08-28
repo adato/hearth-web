@@ -24,7 +24,7 @@
 						<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
 						<div id="{{'locations' + item._id}}" class="location-dropdown content" data-dropdown-content>
 							<div ng-repeat="location in item.locations track by $index">
-								&nbsp;&nbsp;<span class="fa fa-map-marker"></span> {{ location.short_address }}&nbsp;&nbsp;
+								&nbsp;&nbsp;<span class="fa fa-map-marker"></span> {{ location.short_address }}
 							</div>
 						</div>
 					</div>
@@ -132,7 +132,7 @@
 					</article>
 				</div>
 
-				<button ng-if="!mine" ng-click="startEditReply()" ng-disabled="replyEdit"  class="small main" ng-class="{secondary: item.type == 'offer'}">
+				<button ng-if="!mine" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
@@ -163,7 +163,7 @@
 						</article>
 					</div>
 
-					<div signed-in ng-if="!mine" ng-show="replyEdit" class="reply-box animate-show">
+<!-- 					<div signed-in ng-if="!mine" ng-show="replyEdit" class="reply-box animate-show">
 						<article class="row">
 							<section class="large-12 columns">
 								<form name="replyForm">
@@ -198,7 +198,7 @@
 								</button>
 							</section>
 						</article>
-					</div>
+					</div> -->
 					<div signed-out class="not-logged-container animate-show" ng-show="replyEdit">
 						<article class="row">
 							<section  class="large-12 columns">
