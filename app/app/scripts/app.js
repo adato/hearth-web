@@ -141,17 +141,6 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'ngSanitize', 'ngResource', 'pa
         '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http',
         function($rootScope, Auth, $location, ipCookie, $templateCache, $http) {
 
-
-            // ================= DEVELOP =========================
-            // ================= DEVELOP =========================
-            // ================= DEVELOP =========================
-            // ================= DEVELOP =========================
-            $rootScope.$on('$viewContentLoaded', function() {
-                // $templateCache.removeAll();
-            });
-            // ================= DEVELOP =========================
-            // ================= DEVELOP =========================
-            // ================= DEVELOP =========================
             $http.get('templates/geo/markerTooltip.html', {
                 cache: $templateCache
             });
@@ -160,7 +149,9 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'ngSanitize', 'ngResource', 'pa
                 $rootScope.appInitialized = true;
                 $rootScope.loggedUser = Auth.getCredentials();
                 $rootScope.loggedEntity = Auth.getBaseCredentials();
-                return $rootScope.loggedCommunity = Auth.getCommunityCredentials();
+                $rootScope.loggedCommunity = Auth.getCommunityCredentials();
+
+                $rootScope.$broadcast("initFinished");
             });
             $rootScope.$on('onUserLogin', function() {
                 var backUrl;

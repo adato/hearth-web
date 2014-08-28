@@ -16,16 +16,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.loading = false;
 		$scope.keywordsActive = [];
 
-		function init() {
-
-			refreshTags();
-		}
-
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
-
-		$scope.$on('$routeUpdate', refreshTags);
 
 		$scope.addItemsToList = function(data, index) {
 			if (data.data.length > index) {
@@ -51,7 +44,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		$scope.load = function() {
-
 			if ($scope.loading == true)
 				return;
 
@@ -77,6 +69,26 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				});
 			}
 		};
+
+		function init() {
+
+			refreshTags();
+
+			$scope.$on('authorize', function() {
+				console.log("authorize");
+				$scope.load();
+			});
+			$scope.$watch('user', function(value) {
+				if (value.loggedIn) {
+					$scope.filter = value.filter;
+					$location.search(value.filter || {});
+				}
+				$scope.load();
+			});
+
+		}
+
+		$scope.$on('$routeUpdate', refreshTags);
 
 		$scope.$on('filterApply', function($event, filterData, save) {
 			$location.search(filterData);
@@ -185,22 +197,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		});
 
-		$scope.$on('authorize', function() {
-			$scope.load();
-		});
-		$scope.$watch('user', function(value) {
-			if (value.loggedIn) {
-				$scope.filter = value.filter;
-				$location.search(value.filter || {});
-			}
-			$scope.load();
-		});
 
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 		});
 
-		init();
+		// ==== Global event fired when init process is finished
+		$scope.$on('initFinished', init);
 	}
 ]);
