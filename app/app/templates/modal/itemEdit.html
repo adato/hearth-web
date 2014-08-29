@@ -53,6 +53,10 @@
                     <i class="fa fa-map-marker " style="float:left; padding:5px; padding-left:0px;"></i> {{ 'place' | translate}}
                 </label>
                 <locations locations="post.locations" limit="post.location_unlimited"></locations>
+
+                <div class="moveUp error" ng-show="createAdForm.emptyLocations && showForm">
+                    <span ng-show="createAdForm.emptyLocations">{{ 'LOCATIONS_ARE_EMPTY' | translate }}</span>
+                </div>
             </div>
 
             <div class="date">
@@ -62,9 +66,11 @@
                 <div ng-class="{disabled: post.date_unlimited == true}">
                     <input type="text" ng-disabled="post.date_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
                     <checkbox model="none" on-update="dateUnlimitedToggle()" value="false">{{ 'UNLIMITED' | translate }}</checkbox>
-                </div>
-                <!-- <a href="" ng-click="dateUnlimitedToggle()">{{ 'UNLIMITED' | translate }}</a> -->
 
+                    <div class="clear moveUp error" ng-show="createAdForm.emptyDate && showForm">
+                        <span ng-show="createAdForm.emptyDate">{{ 'DATE_IS_EMPTY' | translate }}</span>
+                    </div>
+                </div>
             </div>
             <hr />
             <div class="files" ng-class="{withFiles: showFiles}">
