@@ -41,9 +41,12 @@
 					</div>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
-					<a class="fancy" ng-href="{{ photo.file }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes">
-						<img ng-src="{{ photo.normal }}">
-					</a>	
+					<div class="expandable">
+						<a class="fancy" ng-href="{{ photo.file }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes track by $index">
+							<img ng-if="$index < 3" ng-src="{{ photo.normal }}">
+							<img ng-if="$index >= 3" data-src="{{ photo.normal }}" class="lazyLoad">
+						</a>	
+					</div>
 				</div>
 				<div class="tags" ng-if="item.keywords.length">
 					<ul class="tagList">

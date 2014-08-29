@@ -430,15 +430,23 @@ $imageSize: 80px;
         .attachments {
             margin-top:20px;
             margin-bottom:20px;
-            a:nth-child(3n+1) {
-                margin-left: 50px;
-            }
-            img {
-                max-width: 185px;
-                max-height: 185px;
-                margin-right: 20px;
-                margin-bottom:20px;
-                border-radius: 10px;
+
+            .expandable {
+                max-height: 190px;
+                overflow: hidden;
+                a:nth-child(3n+1) {
+                    margin-left: 50px;
+                }
+                .lazyLoad {
+                    display: none;
+                }
+                img {
+                    max-width: 185px;
+                    max-height: 185px;
+                    margin-right: 20px;
+                    margin-bottom:20px;
+                    border-radius: 10px;
+                }
             }
         }
         .tags {

@@ -90,9 +90,10 @@ angular.module('hearth.directives').directive('item', [
                     if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
                         item.author.locations = [];
                     }
-                    if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0) {
+                    if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0 || item.attachments_attributes.length > 3) {
                         scope.showMore = true;
                     }
+
                     if (item.author && item.author.avatar.normal) {
                         scope.avatarStyle = {
                             'background-image': 'url(' + item.author.avatar.normal + ')'
@@ -113,7 +114,12 @@ angular.module('hearth.directives').directive('item', [
 
                 scope.toggleCollapsed = function() {
                     $('.show-more', element).toggleClass('expanded');
-                    $('.expandable', element).css("max-height", (scope.expanded) ? 80 : 3000);
+                    $('.text-container .expandable', element).css("max-height", (scope.expanded) ? 80 : 3000);
+                    $('.attachments .expandable', element).css("max-height", (scope.expanded) ? 190 : 3000);
+                    $('.attachments .lazyLoad', element).each(function() {
+                        $(this).attr("src", $(this).attr("data-src"));
+                        $(this).fadeIn();
+                    });
                     scope.expanded = !scope.expanded;
                 };
 
