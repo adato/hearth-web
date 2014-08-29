@@ -10,6 +10,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 	'$scope', '$rootScope', 'Auth', 'Errors', '$element', 'PostReplies',
 	function($scope, $rootScope, Auth, Errors, $element, PostReplies) {
 		$scope.sending = false;
+		$scope.showErrors = false;
 		$scope.reply = {
 			agree: true,
 			text: '',
@@ -33,10 +34,11 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				agreed: $scope.reply.agree
 			};
 			
-			if($scope.sending) {
+			$scope.showErrors = true;
+			if($scope.sending || $scope.replyForm.text.$invalid) {
 				return false;
 			}
-			
+
 			$scope.sending = true;
 			PostReplies.add(data, function(res) {
 				
