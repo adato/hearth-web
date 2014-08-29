@@ -6,10 +6,10 @@
  * @description
  */
 
-angular.module('hearth.controllers').controller('AdDetail', [
-	'$scope', 'AdDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService', 'OpenGraph',
+angular.module('hearth.controllers').controller('ItemDetail', [
+	'$scope', 'ItemDetailResource', '$routeParams', 'PostsService', 'ResponseErrors', '$rootScope', 'UsersService', 'OpenGraph',
 
-	function($scope, AdDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService, OpenGraph) {
+	function($scope, ItemDetailResource, $routeParams, PostsService, ResponseErrors, $rootScope, UsersService, OpenGraph) {
 		$scope.ad = {};
 		$scope.replyDisplayed = false;
 		$scope.reply = {
@@ -34,6 +34,8 @@ angular.module('hearth.controllers').controller('AdDetail', [
 			$scope.agreeTranslationData = {
 				name: data.author.name
 			};
+
+			console.log(data);
 		});
 
 		$scope.follow = function(user_id, unfollow) {
