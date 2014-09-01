@@ -18,13 +18,18 @@ angular.module('hearth.controllers').controller('ItemReply', [
 		$scope.translationData = {
 			name: $scope.post.author.name
 		};
+		$scope.showErrors = {
+			text: false,
+			agree: false
+		}
 
 		$('.reply-ad-textarea', $element).on('focus', function() {
 			$(this).autosize();
 		});
 
 		$scope.toggleMail = function() {
-			$scope.reply.agree = ! $scope.reply.agree;
+			$scope.reply.agree = !$scope.reply.agree;
+			$scope.showErrors.agree = false;
 		}
 
 		$scope.sendReply = function() {
@@ -33,18 +38,30 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				message: $scope.reply.text,
 				agreed: $scope.reply.agree
 			};
-			
-			$scope.showErrors = true;
-			if($scope.sending || $scope.replyForm.text.$invalid) {
+
+			$.each($scope.showErrors, function(key, value) {
+				$scope.showErrors[key] = true;
+			});
+
+			if ($scope.sending || !data.agreed || $scope.replyForm.text.$invalid) {
 				return false;
 			}
 
 			$scope.sending = true;
 			PostReplies.add(data, function(res) {
-				
+
+				$scope.sending = false;
 				$scope.closeThisDialog();
 				$scope.post.reply_count += 1;
+			}, function(res) {
+
+				alert("There was an error while sending request to api.");
+				$scope.sending = false;
 			});
+		};
+
+		$scope.disableErrorMsg = function(key) {
+			$scope.showErrors[key] = false;
 		};
 	}
 ]);
