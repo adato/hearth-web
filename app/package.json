@@ -1,7 +1,9 @@
 {
   "name": "ang2",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "grunt-connect-rewrite": "^0.2.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",

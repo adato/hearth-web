@@ -12,7 +12,9 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt); // Load grunt tasks automatically
 
 	require('time-grunt')(grunt); // Time how long tasks take. Can help when optimizing build times
-
+	
+	var rewriteRulesSnippet = require('grunt-connect-rewrite/lib/utils').rewriteRequest;
+	
 	grunt.initConfig({ // Define the configuration for all the tasks
 
 		// Project settings
@@ -153,21 +155,32 @@ module.exports = function(grunt) {
 				middleware: function(connect, options) {
 					var middlewares = [];
 
+					// RewriteRules support
+					middlewares.push(rewriteRulesSnippet);
+
 					if (!Array.isArray(options.base)) {
 						options.base = [options.base];
 					}
 
-					// Setup the proxy
 					middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
 
-					// Serve static files
+					var directory = options.directory || options.base[options.base.length - 1];
 					options.base.forEach(function(base) {
+						// Serve static files.
 						middlewares.push(connect.static(base));
 					});
+
+					// Make directory browse-able.
+					middlewares.push(connect.directory(directory));
 
 					return middlewares;
 				}
 			},
+			rules: [
+				{from: '^/api/(.*)$',to: '/api/$1'},
+				{from: '^/app(.*)$',to: '$1'},
+				{from: '^(?!app).*',to: '/app/', redirect: 'permanent'},
+			],
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
@@ -185,17 +198,23 @@ module.exports = function(grunt) {
 					middleware: function(connect, options) {
 						var middlewares = [];
 
+						// RewriteRules support
+						middlewares.push(rewriteRulesSnippet);
+
 						if (!Array.isArray(options.base)) {
 							options.base = [options.base];
 						}
-
-						// Setup the proxy
+	
 						middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
 
-						// Serve static files
+						var directory = options.directory || options.base[options.base.length - 1];
 						options.base.forEach(function(base) {
+							// Serve static files.
 							middlewares.push(connect.static(base));
 						});
+
+						// Make directory browse-able.
+						middlewares.push(connect.directory(directory));
 
 						return middlewares;
 					}
@@ -227,6 +246,12 @@ module.exports = function(grunt) {
 				server: {}
 			}
 
+		},
+
+		configureRewriteRules: {
+			options: {
+				rulesProvider: 'connect.rules'
+			}
 		},
 
 		// Make sure code styles are up to par and there are no obvious mistakes
@@ -582,6 +607,7 @@ module.exports = function(grunt) {
 			return grunt.task.run([
 				'build',
 				'configureProxies:server',
+				'configureRewriteRules',
 				'connect:dist:keepalive'
 			]);
 		}
@@ -595,6 +621,7 @@ module.exports = function(grunt) {
 			'concurrent:server',
 			'autoprefixer',
 			'configureProxies:server',
+			'configureRewriteRules',
 			'connect:livereload',
 			'watch'
 		]);
