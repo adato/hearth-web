@@ -124,8 +124,8 @@ angular.module('hearth.directives').directive('item', [
                 };
 
                 scope.toggleReportNotLoggedIn = function() {
-
-                    scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
+                    $rootScope.showLoginBox();
+                    //scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
                 };
 
                 scope.report = function() {
