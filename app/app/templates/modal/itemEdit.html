@@ -63,9 +63,9 @@
                 <label>
                     <i class="fa fa-clock-o" style="float:left; padding:5px; padding-left:0px;"></i> {{ 'EXPIRATION_DATE' | translate}}
                 </label>
-                <div ng-class="{disabled: post.date_unlimited == true}">
-                    <input type="text" ng-disabled="post.date_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
-                    <checkbox model="none" on-update="dateUnlimitedToggle()" value="false">{{ 'UNLIMITED' | translate }}</checkbox>
+                <div ng-class="{disabled: post.valid_until_unlimited == true}">
+                    <input type="text" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
+                    <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
 
                     <div class="clear moveUp error" ng-show="createAdForm.emptyDate && showForm">
                         <span ng-show="createAdForm.emptyDate">{{ 'DATE_IS_EMPTY' | translate }}</span>

@@ -75,7 +75,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			refreshTags();
 
 			$scope.$on('authorize', function() {
-				console.log("authorize");
 				$scope.load();
 			});
 			$scope.$watch('user', function(value) {
@@ -139,6 +138,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		});
 		$scope.$on('searchList', function() {
+			$scope.showMap = false;
+			$scope.load();
+		});
+		$scope.$on('refreshMarketplace', function() {
+			
+			$scope.items = [];
 			$scope.showMap = false;
 			$scope.load();
 		});

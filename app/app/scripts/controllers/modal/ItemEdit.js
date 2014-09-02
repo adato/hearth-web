@@ -17,7 +17,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				name: ''
 			}],
 			location_unlimited: false,
-			date_unlimited: false,
+			valid_until_unlimited: false,
 			attachments_attributes: [],
 			// is_active: false
 		};
@@ -66,7 +66,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			);
 		};
 
-
 		$scope.setDefaultPost = function() {
 			$scope.post = angular.copy($scope.defaultPost);
 		};
@@ -94,9 +93,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.dateUnlimitedToggle = function() {
-			
-			$scope.post.date_unlimited = !$scope.post.date_unlimited;
-			if ($scope.post.date_unlimited) {
+
+			// $scope.post.valid_until_unlimited = !$scope.post.valid_until_unlimited;
+			if (!$scope.post.valid_until_unlimited) {
 
 				$scope.post.date = "";
 			}
@@ -181,6 +180,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			data.keywords = data.keywords.map(function(obj) {
 				return obj.text;
 			});
+
+			if(!data.valid_until_unlimited) {
+				data.valid_until_unlimited = false;
+			}
+
 			return data;
 		};
 
@@ -215,9 +219,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.sending = false;
 
 				postDataCopy = $scope.transformImagesStructure(postDataCopy);
-				$rootScope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
+				// $rootScope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
 
-				$scope.$emit('adSaved', data);
+				// $scope.$emit('adSaved', data);
+				
+				$rootScope.$broadcast('refreshMarketplace');
 				$scope.closeThisDialog();
 			}, function() {
 
@@ -241,102 +247,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 
-		// var query;
-
-		// if ($scope.post && $scope.post.title && $scope.post.title.length > 0) {
-		// 	if ($scope.post.title.length < 3) {
-		// 		$scope.errors = new ResponseErrors({
-		// 			status: 400,
-		// 			data: {
-		// 				name: 'ValidationError',
-		// 				errors: {
-		// 					name: {
-		// 						name: 'ValidatorError',
-		// 						type: 'ERR_AD_NAME_MIN_LEN'
-		// 					}
-		// 				}
-		// 			}
-		// 		});
-		// 		return $scope.errors;
-		// 	} else {
-		// 		$scope.sending = true;
-		// 		query = $scope[$scope.post._id ? 'updatePost' : 'createPost']($scope.post);
-		// 		return query.then(function() {
-		// 			$scope.$emit('cancelCreatingAd');
-		// 			$scope.$emit('cancelEditingAd');
-		// 			$window.location.reload();
-		// 			$scope.sending = false;
-		// 			if ($scope.createAdForm != null) {
-		// 				$scope.createAdForm.$setPristine();
-		// 			}
-		// 			return delete $scope.errors;
-		// 		}, function(err) {
-		// 			$scope.errors = new ResponseErrors(err);
-		// 			return $scope.errors;
-		// 		});
-		// 	}
-		// }
-
-
-		// $scope.createPost = function(post) {
-		// 	var deferred, eventName, postData;
-
-		// 	//we need copy, because we change data and don't want to show these changes to user
-		// 	postData = angular.copy(post);
-		// 	postData.date = dateToTimestamp(post.date);
-		// 	deferred = $q.defer();
-		// 	$scope.sent = false;
-
-		// 	PostsService.add(postData).then(function(data) {
-		// 		if (data) {
-		// 			$scope.sent = true;
-		// 		}
-		// 		$scope.error = null;
-		// 		$scope.sending = false;
-		// 		return deferred.resolve(data);
-		// 	}, function(err) {
-		// 		$scope.sending = false;
-		// 		return deferred.reject(err);
-		// 	});
-		// 	eventName = post.type === 'need' ? 'post new wish' : 'post new offer';
-		// 	$analytics.eventTrack(eventName, {
-		// 		category: 'Posting',
-		// 		label: 'NP',
-		// 		value: 7
-		// 	});
-		// 	return deferred.promise;
-		// };
-
-		// return $scope.updatePost = function(post) {
-		// 	var deferred, eventName;
-		// 	//we need copy, because we change data and don't want to show these changes to user
-		// 	post = angular.copy(post);
-		// 	post.date = post.date ? dateToTimestamp(post.date) : -1;
-		// 	deferred = $q.defer();
-		// 	$scope.sent = false;
-		// 	PostsService.update(post).then(function(data) {
-		// 		if (data) {
-		// 			$scope.sent = true;
-		// 		}
-		// 		$scope.error = null;
-		// 		return deferred.resolve(data);
-		// 	}, function(err) {
-		// 		$scope.sending = false;
-		// 		return deferred.reject(err);
-		// 	});
-		// 	eventName = post.type === 'need' ? 'update wish' : 'update offer';
-		// 	$analytics.eventTrack(eventName, {
-		// 		category: 'Posting',
-		// 		label: 'NP',
-		// 		value: 7
-		// 	});
-		// 	return deferred.promise;
-		// };
-
 		function transformExistingPost(post) {
 			if (post) {
 
-				post.date = $filter('date')(post.date + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+				post.date = $filter('date')(post.date, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+				if(post.valid_until_unlimited) {
+					post.date = '';
+				}
+
 				if (!post.locations.length) {
 					post.locations = [{
 						name: ''

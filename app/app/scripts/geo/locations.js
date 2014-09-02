@@ -179,9 +179,9 @@ angular.module('hearth.geo').directive('locations', [
 
                 scope.locationDoesNotMatter = function() {
                     scope.closeMap();
-                    scope.limit = !scope.limit;
-
-                    if (scope.limit == true) {
+                    // scope.limit = !scope.limit;
+                    
+                    if (scope.limit != true) {
                         scope.removeAll();
                         scope.add();
                     }
