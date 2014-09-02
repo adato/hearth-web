@@ -86,7 +86,7 @@ angular.module('hearth.directives').directive('filter', [
                 };
 
                 scope.convertParamsToFilter = function(params) {
-                    if(! $.isArray(params.keywords)) {
+                    if(params.keywords && ! $.isArray(params.keywords)) {
                         params.keywords = params.keywords.split(",");
                     }
 
