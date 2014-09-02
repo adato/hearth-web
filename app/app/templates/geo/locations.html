@@ -1,7 +1,7 @@
 <div class="locations">
     <div class="row" id="row-{{$index}}" ng-repeat="location in locations track by $index" ng-class="{disabled: limit == true}">
         <div class="fleft locInput">
-            <input placeholder="{{ 'MY_PLACE' | translate}}" ng-disabled="limit == true" ng-model="locations[$index].name" class="map-input" type='text'>
+            <input placeholder="{{ 'MY_PLACE' | translate}}" ng-blur="testEmptyLocation()" ng-focus="hideError(location)" ng-disabled="limit == true" ng-model="locations[$index].name" class="map-input" type='text'>
             <div class="remove" ng-hide="$first">
                 <!-- <span class="fa fa-times-circle" ng-click="remove($event, $index)"></span> -->
                 <span class="remove" ng-click="remove($event, $index)">smazat</span>
@@ -10,9 +10,9 @@
         <div class="fleft mapIcon" ng-class="{selected: mapDisplay == $index}">
             <a ng-click="toggleMap($index)">
                 <i class="fa fa-map-marker">
-                	<span ng-show="mapDisplay == $index" class="fa fa-times"></span>
+                    <span ng-show="mapDisplay == $index" class="fa fa-times"></span>
                 </i>
-    			{{ 'MAP' | translate }}
+                {{ 'MAP' | translate }}
             </a>
         </div>
         <div id="map-{{$index}}" class="location-map hidden"></div>
@@ -21,12 +21,13 @@
     <div class="clear"></div>
     <div class="controll">
         <a ng-click="add()" ng-hide="locations.length > 0 && !locations[locations.length-1].name">
-            <span class="fa fa-plus-square"></span> {{ 'ADD' | translate }}
-            &nbsp;
-            &nbsp;
+            <span class="fa fa-plus-square"></span>{{ 'ADD' | translate }} &nbsp; &nbsp;
         </a>
         <checkbox ng-show="limit != -1" model="limit" on-update="locationDoesNotMatter()" value="true">
             {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
         </checkbox>
+    </div>
+    <div class="error moveUp" ng-show="error">
+        <span>{{ 'LOCATIONS_IS_EMPTY' | translate }}</span>
     </div>
 </div>

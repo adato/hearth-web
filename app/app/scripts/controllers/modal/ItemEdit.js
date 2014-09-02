@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout) {
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
@@ -22,6 +22,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// is_active: false
 		};
 		$scope.showFiles = false;
+		$scope.showError = {
+			title: false,
+			text: false,
+			locations: false,
+			date: false
+		};
 
 		// hotfix for now
 		$scope.loggedCommunity = false;
@@ -93,6 +99,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.dateUnlimitedToggle = function() {
+
+			$scope.showError.date = false;
 
 			// $scope.post.valid_until_unlimited = !$scope.post.valid_until_unlimited;
 			if (!$scope.post.valid_until_unlimited) {
@@ -181,6 +189,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				return obj.text;
 			});
 
+			if(!data.location_unlimited) {
+				data.location_unlimited = false;
+				data.locations = [];
+			}
+
 			if(!data.valid_until_unlimited) {
 				data.valid_until_unlimited = false;
 			}
@@ -188,9 +201,44 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return data;
 		};
 
+		$scope.testForm = function(post) {
+			var res = true;
+			
+			if($scope.createAdForm.title.$invalid) {
+				res = false;
+				$scope.showError.title = true;
+			}
+
+			if($scope.createAdForm.text.$invalid) {
+				res = false;
+				$scope.showError.text = true;
+			}
+
+			if(post.date == '' && !post.valid_until_unlimited) {
+				res = false;
+				$scope.showError.date = true;
+			}
+			
+			if(post.locations && ! post.location_unlimited) {
+
+				post.locations.forEach(function(item) {
+
+					if(item.name == '') {
+						res = false;
+						$scope.showError.locations = true;
+					}
+				});
+			}
+
+			return res;
+		};
+
 		$scope.save = function() {
 			var postData, postDataCopy;
 
+			if(! $scope.testForm($scope.post)) {
+				return false;
+			}
 			//we need copy, because we change data and don't want to show these changes to user
 			postData = angular.extend(
 				angular.copy($scope.post), {

@@ -29,7 +29,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 
 		$scope.toggleMail = function() {
 			$scope.reply.agree = !$scope.reply.agree;
-			$scope.showErrors.agree = false;
+			$scope.showErrors.agree = ! $scope.reply.agree;
 		}
 
 		$scope.sendReply = function() {

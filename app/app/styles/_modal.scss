@@ -251,6 +251,11 @@
     top: -15px;
   }
   
+  .moveBot {
+    position: relative;
+    top: 4px;
+  }
+  
   .head {
     position: relative;
     top: -5px;
@@ -267,7 +272,9 @@
       }
     }
   }
-
+  .keywords {
+    margin-bottom: 15px;
+  }
   .headMessage {
     color: white;
     height: 32px;

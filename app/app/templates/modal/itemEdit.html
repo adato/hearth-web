@@ -21,9 +21,9 @@
         <div>
             <needofferselector class="fleft" ng-model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
             <div class="name ">
-                <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="visitedTitle = true">
+                <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 
-                <div class="moveUp error" ng-show="createAdForm.title.$dirty && createAdForm.title.$invalid && visitedTitle">
+                <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
                     <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
                     <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
                     <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
@@ -31,47 +31,47 @@
             </div>
             <div class="clear"></div>
 
-            <textarea ng-blur="visitedTextarea = true" required placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
-            <div class="moveUp error" ng-show="createAdForm.text.$dirty && createAdForm.text.$invalid && visitedTextarea">
+            <textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
+            <div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
                 <span ng-show="createAdForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
                 <span ng-show="createAdForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
                 <span ng-show="createAdForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
 
-            <div class="text-input middle field-container">
-                <label>
-                    <i class="fa fa-tags" style="float:left; padding:5px; padding-left:0px;"></i> {{'KEYWORDS' | translate }}
+            <div class="text-input keywords field-container">
+                <label class="moveBot">
+                    <i class="fa fa-tags"></i> {{'KEYWORDS' | translate }}
                 </label>
 
-                <tags-input class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+                <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
                     <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
                 </tags-input>
             </div>
 
             <div class="text-input middle field-container">
                 <label>
-                    <i class="fa fa-map-marker " style="float:left; padding:5px; padding-left:0px;"></i> {{ 'place' | translate}}
+                    <i class="fa fa-map-marker"></i> {{ 'place' | translate}}
                 </label>
-                <locations locations="post.locations" limit="post.location_unlimited"></locations>
+                <locations locations="post.locations" error="showError.locations" limit="post.location_unlimited"></locations>
 
-                <div class="moveUp error" ng-show="createAdForm.emptyLocations && showForm">
+                <div class="clear error" ng-show="createAdForm.emptyLocations && showError.locations">
                     <span ng-show="createAdForm.emptyLocations">{{ 'LOCATIONS_ARE_EMPTY' | translate }}</span>
                 </div>
             </div>
-
             <div class="date">
                 <label>
-                    <i class="fa fa-clock-o" style="float:left; padding:5px; padding-left:0px;"></i> {{ 'EXPIRATION_DATE' | translate}}
+                    <i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
                 </label>
                 <div ng-class="{disabled: post.valid_until_unlimited == true}">
-                    <input type="text" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}">
-                    <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
+                    <input type="text" ng-focus="showError.date = false" ng-blur="showError.date = true" name="date" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}" required>
 
-                    <div class="clear moveUp error" ng-show="createAdForm.emptyDate && showForm">
-                        <span ng-show="createAdForm.emptyDate">{{ 'DATE_IS_EMPTY' | translate }}</span>
+                    <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
+                    <div class="clear error" ng-show="showError.date">
+                        <span ng-show="createAdForm.date.$error.required">{{ 'DATE_IS_EMPTY' | translate }}</span>
                     </div>
                 </div>
             </div>
+
             <hr />
             <div class="files" ng-class="{withFiles: showFiles}">
 
