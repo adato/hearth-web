@@ -72,6 +72,10 @@ angular.module('hearth.directives').directive('item', [
                 };
 
                 scope.$watch('item', function(item) {
+                    if(! item._type) {
+                        return false;
+                    }
+
                     var url = window.location.href.replace(window.location.hash, ''),
                         typeText = $translate(item.community_id ? type.community[item.type] : type.user[item.type]);
 
@@ -85,6 +89,7 @@ angular.module('hearth.directives').directive('item', [
                         twitter: 'https://twitter.com/share?url=' + url,
                         mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
                     });
+
                     scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 
                     if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {

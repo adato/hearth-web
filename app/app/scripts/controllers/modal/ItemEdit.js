@@ -194,6 +194,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.locations = [];
 			}
 
+			if(!data.locations.length) {
+				data.locations = false;
+			}
+
 			if(!data.valid_until_unlimited) {
 				data.valid_until_unlimited = false;
 			}

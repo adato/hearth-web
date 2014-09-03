@@ -1,7 +1,10 @@
 <div class="detail">
 	<article class="row">
-		<section class="large-12 columns">
-			<item keywords-active="{}" user="user" item=ad></item>
+		<section ng-show="show && ad" class="large-12 columns">
+			<item keywords-active="{}" user="user" item="ad"></item>
+		</section>
+		<section ng-show="show && ad === false" class="item-not-found">
+			Inzerát nebyl nalezen.
 		</section>
 	</article>
 </div>
