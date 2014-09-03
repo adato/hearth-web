@@ -87,7 +87,7 @@
     <![endif]-->
 
     <section ng-include="'templates/navigation.html'" id="navigation"></section>
-    <ng-view class="main-container"></ng-view>
+    <div app-view-segment="0" class="main-container"></div>
     <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
         {{topArrowText.top}}
         <span class="fa fa-caret-square-o-up"></span>
@@ -132,6 +132,7 @@
     <script src="vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
     <script src="vendor/ngDialog/js/ngDialog.js"></script>
     <script src="vendor/jquery-autosize/jquery.autosize.js"></script>
+    <script src="vendor/angular-route-segment/build/angular-route-segment.js"></script>
     <!-- endbower -->
     <script src="vendor/angularitics/src/angulartics-ga.js"></script>
     <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
@@ -277,6 +278,7 @@
       <script src="scripts/controllers/CreatePostCtrl.js"></script>
       <script src="scripts/controllers/ListViewStateCtrl.js"></script>
       <script src="scripts/controllers/ProfileCtrl.js"></script>
+      <script src="scripts/controllers/ProfileDataFeedCtrl.js"></script>
       <script src="scripts/controllers/RegisterCtrl.js"></script>
       <script src="scripts/controllers/ConfirmEmailCtrl.js"></script>
       <script src="scripts/controllers/ChangePwdCtrl.js"></script>

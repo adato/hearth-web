@@ -7,16 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('TermsCtrl', [
-	'$scope', 'LanguageSwitch',
-	function($scope, LanguageSwitch) {
+	'$scope', 'LanguageSwitch', '$rootScope',
+	function($scope, LanguageSwitch, $rootScope) {
 		$scope.showButton = true;
+		$scope.termsPath = false;
+
 		var updateTermsPath = function() {
-			$scope.termsPath = '../locales/' + LanguageSwitch.uses().code + '/terms.html';
-			return $scope.termsPath;
+
+			return $scope.termsPath = 'locales/' + LanguageSwitch.uses().code + '/terms.html';
 		};
 		$scope.$watch(function() {
 			return LanguageSwitch.uses();
 		}, updateTermsPath);
-		return updateTermsPath();
+		
+		$rootScope.$on("languageInited", updateTermsPath);
+		if($rootScope.languageInited) {
+			updateTermsPath();
+		}
+
 	}
 ]);

@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.services').service('LanguageSwitch', [
-	'$feature', '$translate', '$http', 'ipCookie',
-	function($feature, $translate, $http, ipCookie) {
+	'$feature', '$translate', '$http', 'ipCookie', '$rootScope',
+	function($feature, $translate, $http, ipCookie, $rootScope) {
 		var languages = [{
 				code: 'en',
 				name: 'English'
@@ -23,8 +23,10 @@ angular.module('hearth.services').service('LanguageSwitch', [
 						name: 'Deutsch'
 					});
 				}
+				$rootScope.$broadcast("languageInited");
+				$rootScope.languageInited = true;
 			};
-
+			
 		this.getLanguages = function() {
 			return languages;
 		};

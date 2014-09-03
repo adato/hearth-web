@@ -22,6 +22,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			languageList: ['en', 'de', 'fr', 'ru', 'es', 'cs', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh']
 		});
 
+		console.log("Profile panel"); 
+
 		$(document.body).scrollTop(0);
 
 		$scope.$watch('routeParams.action', function(newval) {

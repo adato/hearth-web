@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearth', ['ngDialog', 'ngRoute', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
+angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {
             $locationProvider.html5Mode(false).hashPrefix('!');
@@ -30,92 +30,190 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'ngSanitize', 'ngResource', 'pa
             return $httpProvider.responseInterceptors.push('TermsAgreement');
         }
     ]).config([
-        '$routeProvider',
-        function($routeProvider) {
-            return $routeProvider
-                .when('/search/?', {
-                    templateUrl: 'templates/fulltext.html',
-                    controller: 'FulltextCtrl',
-                    reloadOnSearch: false,
-                }).when('/communities/:action?', {
-                    templateUrl: 'templates/communityList.html',
-                    controller: 'CommunityListCtrl',
-                    pageType: 'communities'
-                }).when('/community/:id/:action?', {
-                    templateUrl: 'templates/communityProfile.html',
-                    controller: 'CommunityProfileCtrl',
-                    pageType: 'community-profile',
-                    reloadOnSearch: false
-                }).when('/community-create', {
-                    templateUrl: 'templates/communityRegister.html',
-                    controller: 'CommunityRegisterCtrl',
-                    pageType: 'community-create'
-                }).when('/', {
-                    templateUrl: 'templates/market.html',
-                    controller: 'MarketCtrl',
-                    reloadOnSearch: false,
-                    pageType: 'search'
-                }).when('/my', {
-                    templateUrl: 'templates/my.html',
-                    controller: 'SearchCtrl',
-                    reloadOnSearch: false,
-                    pageType: 'my'
-                }).when('/register', {
-                    templateUrl: 'templates/register.html',
-                    controller: 'RegisterCtrl'
-                }).when('/login', {
-                    templateUrl: 'templates/login.html',
-                    controller: 'LoginCtrl',
-                    pageType: 'login'
-                }).when('/profile/:id', {
-                    templateUrl: 'templates/profile.html',
-                    controller: 'ProfileCtrl',
-                    reloadOnSearch: false,
-                    pageType: 'profile'
-                }).when('/profile/:id/:action', {
-                    templateUrl: 'templates/profile.html',
-                    controller: 'ProfileCtrl',
-                    reloadOnSearch: false,
-                    pageType: 'profile'
-                }).when('/confirmEmail', {
-                    templateUrl: 'templates/confirmEmail.html',
-                    controller: 'ConfirmEmailCtrl'
-                }).when('/change-password', {
-                    templateUrl: 'templates/changePassword.html',
-                    controller: 'ChangePwdCtrl',
-                    access: 'private'
-                }).when('/forgotten-password', {
-                    templateUrl: 'templates/forgottenPassword.html',
-                    controller: 'ForgottenPasswordCtrl'
-                }).when('/reset-password', {
-                    templateUrl: 'templates/resetPassword.html',
-                    controller: 'ResetPwdCtrl'
-                }).when('/feedback', {
-                    templateUrl: 'templates/feedback.html',
-                    controller: 'FeedbackCtrl',
-                    pageType: 'feedback'
-                }).when('/404', {
-                    templateUrl: 'templates/404.html'
-                }).when('/setup', {
-                    templateUrl: 'templates/setup.html',
-                    controller: 'SetupCtrl'
-                }).when('/terms', {
-                    controller: 'TermsCtrl',
-                    templateUrl: 'templates/terms.html'
-                }).when('/about', {
-                    templateUrl: 'templates/about.html',
-                    pageType: 'about'
+        '$routeSegmentProvider', '$routeProvider',
+        function($routeSegmentProvider, $routeProvider) {
+
+
+            $routeSegmentProvider
+                .when('/search/?', 'search')
+                .when('/', 'market')
+                .when('/ad/:id', 'ad')
+                .when('/404', 'err404')
+                .when('/setup', 'setup')
+                .when('/terms', 'terms')
+                .when('/about', 'about')
+                .when('/feedback', 'feedback')
+
+                .when('/register', 'reg')
+                .when('/login', 'login')
+                .when('/reset-password', 'reset-pass')
+                .when('/forgotten-password', 'forgot-pass')
+                .when('/confirmEmail', 'confirm-email')
+                .when('/change-password', 'change-pass')
+
+
+                .when('/profile/:id', 'profile')
+                .when('/profile/:id/posts', 'profile.posts')
+                .when('/profile/:id/communities', 'profile.communities')
+                .when('/profile/:id/given-ratings', 'profile.given')
+                .when('/profile/:id/received-ratings', 'profile.received')
+                
+                .when('/profile/:id/following', 'profile.following')
+                .when('/profile/:id/followers', 'profile.followers')
+                .when('/profile/:id/invite', 'profile.invite')
+
+            .when('/communities/:action?', 'communities')
+            // .when('/community/:id/:action?', 'community')
+            // .when('/community-create', 'community-create')
+            // .when('/profile/:id/:action', 'profile-action')
+            // .when('/', '')
+            .segment('market', {
+                templateUrl: 'templates/market.html',
+                controller: 'MarketCtrl',
+                reloadOnSearch: false,
+                pageType: 'search'
+            }).segment('search', {
+                templateUrl: 'templates/fulltext.html',
+                controller: 'FulltextCtrl'
+            }).segment('reg', {
+                templateUrl: 'templates/register.html',
+                controller: 'RegisterCtrl'
+            }).segment('login', {
+                templateUrl: 'templates/login.html',
+                controller: 'LoginCtrl',
+                pageType: 'login'
+            }).segment('confirm-email', {
+                templateUrl: 'templates/confirmEmail.html',
+                controller: 'ConfirmEmailCtrl'
+            }).segment('change-pass', {
+                templateUrl: 'templates/changePassword.html',
+                controller: 'ChangePwdCtrl',
+                access: 'private'
+            }).segment('forgot-pass', {
+                templateUrl: 'templates/forgottenPassword.html',
+                controller: 'ForgottenPasswordCtrl'
+            }).segment('reset-pass', {
+                templateUrl: 'templates/resetPassword.html',
+                controller: 'ResetPwdCtrl'
+            }).segment('feedback', {
+                templateUrl: 'templates/feedback.html',
+                controller: 'FeedbackCtrl',
+                pageType: 'feedback'
+            }).segment('404', {
+                templateUrl: 'templates/404.html'
+            }).segment('setup', {
+                templateUrl: 'templates/setup.html',
+                controller: 'SetupCtrl'
+            }).segment('terms', {
+                controller: 'TermsCtrl',
+                templateUrl: 'templates/terms.html'
+            }).segment('about', {
+                templateUrl: 'templates/about.html',
+                pageType: 'about'
+            }).segment('ad', {
+                controller: 'ItemDetail',
+                templateUrl: 'templates/itemDetail.html'
+            }).segment('communities', {
+                templateUrl: 'templates/communityList.html',
+                controller: 'CommunityListCtrl',
+                pageType: 'communities'
+
+            }).segment('profile', {
+                templateUrl: 'templates/profile/topPanel.html',
+                controller: 'ProfileCtrl',
+                reloadOnSearch: false,
+                pageType: 'profile'
+            })
+
+            .within()
+
+                .segment('home', {
+                    default: true,
+                    templateUrl: 'templates/profile/home.html'
                 })
-                /*.when('/messages', {
-				controller: 'Messages',
-				templateUrl: 'templates/messages/messages.html'
-			})*/
-                .when('/ad/:id', {
-                    controller: 'ItemDetail',
-                    templateUrl: 'templates/itemDetail.html'
-                }).otherwise({
-                    redirectTo: '/'
-                });
+                .segment('posts', {
+                    templateUrl: 'templates/profile/posts.html',
+                    controller: 'ProfileDataFeedCtrl',
+                    reloadOnSearch: false,
+                    pageType: 'profile',
+                    dependencies: ['id']
+                })
+                .segment('given', {
+                    templateUrl: 'templates/profile/ratingsGiven.html',
+                    controller: 'ProfileDataFeedCtrl',
+                    reloadOnSearch: false,
+                    pageType: 'profile',
+                    dependencies: ['id']
+                })
+                .segment('received', {
+                    templateUrl: 'templates/profile/ratingsReceived.html',
+                    controller: 'ProfileDataFeedCtrl',
+                    reloadOnSearch: false,
+                    pageType: 'profile',
+                    dependencies: ['id']
+                })
+                .segment('communities', {
+                    templateUrl: 'templates/profile/communities.html',
+                    controller: 'ProfileDataFeedCtrl',
+                    reloadOnSearch: false,
+                    pageType: 'profile',
+                    dependencies: ['id']
+                })
+                .segment('followers', {
+                    templateUrl: 'templates/profile/followers.html',
+                    controller: 'ProfileDataFeedCtrl',
+                    reloadOnSearch: false,
+                    pageType: 'profile',
+                    dependencies: ['id']
+                })
+                .segment('following', {
+                    templateUrl: 'templates/profile/following.html',
+                    controller: 'ProfileDataFeedCtrl',
+                    pageType: 'profile',
+                    dependencies: ['id']
+                })
+
+                .segment('invite', {
+                    templateUrl: 'templates/profile/invite.html',
+                    controller: 'ProfileInviteCtrl',
+                    dependencies: ['id']
+                })
+            // .within()
+            //     .segment('recommended', {
+            //         templateUrl: 'templates/section1/item.html',
+            //         controller: 'Section1ItemCtrl',
+            //         dependencies: ['id']
+            //     })
+            //     segment('recommendations', {
+            //         templateUrl: 'templates/section1/item.html',
+            //         controller: 'Section1ItemCtrl',
+            //         dependencies: ['id']
+            //     })
+
+            $routeProvider.otherwise({
+                redirectTo: '/'
+            });
+
+
+            // }).when('/community/:id/:action?', {
+            //     templateUrl: 'templates/communityProfile.html',
+            //     controller: 'CommunityProfileCtrl',
+            //     pageType: 'community-profile',
+            //     reloadOnSearch: false
+            // }).when('/community-create', {
+            //     templateUrl: 'templates/communityRegister.html',
+            //     controller: 'CommunityRegisterCtrl',
+            //     pageType: 'community-create'
+            // }).when('/my', {
+            //     templateUrl: 'templates/my.html',
+            //     controller: 'SearchCtrl',
+            //     reloadOnSearch: false,
+            //     pageType: 'my'
+            // }).when('/profile/:id/:action', {
+            //     templateUrl: 'templates/profile.html',
+            //     controller: 'ProfileCtrl',
+            //     reloadOnSearch: false,
+            //     pageType: 'profile'
         }
     ]).factory('HearthLoginInterceptor', [
         '$q', '$location', '$timeout', '$rootScope',
