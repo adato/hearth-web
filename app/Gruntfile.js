@@ -179,7 +179,7 @@ module.exports = function(grunt) {
 			rules: [
 				{from: '^/api/(.*)$',to: '/api/$1'},
 				{from: '^/app(.*)$',to: '$1'},
-				{from: '^(?!app).*',to: '/app/', redirect: 'permanent'},
+				// {from: '^(?!app).*',to: '/app/', redirect: 'permanent'},
 			],
 			proxies: [{
 				context: '/api', // the context of the data service
@@ -226,14 +226,37 @@ module.exports = function(grunt) {
 					base: [
 
 						//'.tmp',
-						//'test',
+						//'tesat',
 						//'<%= yeoman.app %>'
 					]
 				}
 			},
 			dist: {
 				options: {
-					base: '<%= yeoman.dist %>'
+					base: '<%= yeoman.dist %>',
+					middleware: function(connect, options) {
+						var middlewares = [];
+
+						// RewriteRules support
+						middlewares.push(rewriteRulesSnippet);
+
+						if (!Array.isArray(options.base)) {
+							options.base = [options.base];
+						}
+	
+						middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+						var directory = options.directory || options.base[options.base.length - 1];
+						options.base.forEach(function(base) {
+							// Serve static files.
+							middlewares.push(connect.static(base));
+						});
+
+						// Make directory browse-able.
+						middlewares.push(connect.directory(directory));
+
+						return middlewares;
+					}
 				}
 			},
 			doc: {
