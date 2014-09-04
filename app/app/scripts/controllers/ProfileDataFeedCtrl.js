@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		var loadServices = {
             'profile': loadUserHome,
             'profile.posts': UserPosts.get,
-            'profile.communities': UsersCommunitiesService.get,
+            'profile.communities': UsersCommunitiesService.query,
             'profile.given': UserRatings.given,
             'profile.received': UserRatings.received,
             'profile.following': Followees.query,
@@ -35,6 +35,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         console.log("Calling load service", $scope.pageSegment);
+        console.log("Calling load service", loadServices[$scope.pageSegment]);
         loadServices[$scope.pageSegment]({user_id: $routeParams.id}, processData, processDataErr);
 	}
 ]);

@@ -3,7 +3,7 @@
 		<p>Uzivatel nebyl nalezen</p>
 	</div>
 	<div class="user" ng-show="info">
-		<h3>{{ info.name }}</h3>
+		<h3>{{ info.name }} <span ng-show="mine">- is mine</span></h3>
 
 		{{ info | json }}
 
