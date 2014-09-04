@@ -168,13 +168,15 @@ module.exports = function(grunt) {
 					return middlewares;
 				}
 			},
+
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-				host: 'dev.hearth.net',  // wherever the data service is running,
-				https: true,
-				port: 443  // the port that the data service is running on
+				host: process.env.GRUNT_HOST || 'dev.hearth.net',  // wherever the data service is running,
+				https: process.env.GRUNT_SSL == null, // true,
+				port: process.env.GRUNT_PORT || 443  // the port that the data service is running on
 			}],
+
 			livereload: {
 				options: {
 					open: true,
