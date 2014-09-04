@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function loadUserHome(params, done, doneErr) {
-    		alert("HOME");
+    		
     		done({});
         }
 
