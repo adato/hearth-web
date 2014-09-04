@@ -1,3 +1,11 @@
 <div ng-include="'templates/profile/followingPanel.html'"></div>
 
 <h4>Kdo me sleduje</h4>
+
+
+<div ng-repeat="(id, item) in data track by $index">
+	{{ item }}
+	<br />
+	<hr />
+	<br />
+</div>

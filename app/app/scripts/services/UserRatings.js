@@ -25,6 +25,21 @@ angular.module('hearth.services').factory('UserRatings', [
 					sort: '-created_at',
 					r: Math.random()
 				}
+			},
+			received: {
+				method: 'GET',
+				isArray: true,
+				params: {
+					type: 'received',
+					r: Math.random()
+				}
+			},
+			given: {
+				method: 'GET',
+				isArray: true,
+				params: {
+					type: 'given',
+				}
 			}
 		});
 	}
