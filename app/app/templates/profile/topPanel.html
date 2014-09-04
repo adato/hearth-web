@@ -1,19 +1,30 @@
-<h3>Profil - top panel</h3>
+<div ng-show="loaded">
+	<div class="user" ng-show="! info">
+		<p>Uzivatel nebyl nalezen</p>
+	</div>
+	<div class="user" ng-show="info">
+		<h3>{{ info.name }}</h3>
 
-<br />
-<a href="#!/profile/53a963cd3038620002000000">Home</a>
-<br />
+		{{ info | json }}
 
-<a href="#!/profile/53a963cd3038620002000000/posts">Aktivty</a>
+		<br />
+		Karma: {{ info.up_votes / (info.down_votes + info.up_votes) * 100 }}%
 
-<br />
+		<br />
+		<a href="#!/profile/53a963cd3038620002000000">Home</a>
+		<br />
 
-<a href="#!/profile/53a963cd3038620002000000/communities">Communities</a>
-<br />
+		<a href="#!/profile/53a963cd3038620002000000/posts">Aktivty - {{ info.post_count}}</a>
+		<br />
 
-<a href="#!/profile/53a963cd3038620002000000/following">Koho ja sleduji</a>
-<br />
-<a href="#!/profile/53a963cd3038620002000000/invite">Invite</a>
+		<a href="#!/profile/53a963cd3038620002000000/communities">Communities - {{ info.communities_count}}</a>
+		<br />
 
-<hr />
-<div app-view-segment="1"></div>
+		<a href="#!/profile/53a963cd3038620002000000/following">Inspirován - {{ info.followees_count }} / Inspiruji - {{ info.followers_count }}</a>
+		<br />
+		<a href="#!/profile/53a963cd3038620002000000/invite">Invite</a>
+
+		<hr />
+		<div app-view-segment="1"></div>
+	</div>
+</div>

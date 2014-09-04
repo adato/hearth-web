@@ -129,47 +129,42 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
 
                 .segment('home', {
                     default: true,
+                    controller: 'ProfileDataFeedCtrl',
                     templateUrl: 'templates/profile/home.html'
                 })
                 .segment('posts', {
                     templateUrl: 'templates/profile/posts.html',
                     controller: 'ProfileDataFeedCtrl',
                     reloadOnSearch: false,
-                    pageType: 'profile',
                     dependencies: ['id']
                 })
                 .segment('given', {
                     templateUrl: 'templates/profile/ratingsGiven.html',
                     controller: 'ProfileDataFeedCtrl',
                     reloadOnSearch: false,
-                    pageType: 'profile',
                     dependencies: ['id']
                 })
                 .segment('received', {
                     templateUrl: 'templates/profile/ratingsReceived.html',
                     controller: 'ProfileDataFeedCtrl',
                     reloadOnSearch: false,
-                    pageType: 'profile',
                     dependencies: ['id']
                 })
                 .segment('communities', {
                     templateUrl: 'templates/profile/communities.html',
                     controller: 'ProfileDataFeedCtrl',
                     reloadOnSearch: false,
-                    pageType: 'profile',
                     dependencies: ['id']
                 })
                 .segment('followers', {
                     templateUrl: 'templates/profile/followers.html',
                     controller: 'ProfileDataFeedCtrl',
                     reloadOnSearch: false,
-                    pageType: 'profile',
                     dependencies: ['id']
                 })
                 .segment('following', {
                     templateUrl: 'templates/profile/following.html',
                     controller: 'ProfileDataFeedCtrl',
-                    pageType: 'profile',
                     dependencies: ['id']
                 })
 

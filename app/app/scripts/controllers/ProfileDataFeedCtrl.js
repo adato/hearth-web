@@ -7,10 +7,10 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', 
+	'$scope', '$routeParams', 'Followers', 'Followees', 'UserPosts',
+	function($scope, $routeParams, Followers, Followees, UserPosts) {
 
-	function($scope) {
+		console.log($scope.pageSegment);
 
-		console.log("ProfileCtrl feeed inited");
 	}
 ]);
