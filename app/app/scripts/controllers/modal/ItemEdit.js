@@ -275,7 +275,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				// $scope.$emit('adSaved', data);
 				
-				$rootScope.$broadcast('refreshMarketplace');
+				$rootScope.$broadcast('postCreated');
 				$(document.body).scrollTop(0);
 				$scope.closeThisDialog();
 			}, function() {

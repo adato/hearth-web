@@ -27,6 +27,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.mine = $scope.isMine();
 				$scope.loaded = true;
 
+				$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
 				$scope.loaded = true;
 			});

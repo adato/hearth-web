@@ -141,7 +141,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.showMap = false;
 			$scope.load();
 		});
-		$scope.$on('refreshMarketplace', function() {
+		$scope.$on('postCreated', function() {
 			
 			$scope.items = [];
 			$scope.showMap = false;

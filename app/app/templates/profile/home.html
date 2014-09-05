@@ -1,3 +1,28 @@
 <h4>Home - zakladni info</h4>
 
-{{ data | json }}
+{{ receivedRatings | json }}
+{{ activityLog | json }}
+
+
+<section class="posts">
+	<head>
+		<h3 ng-show="posts.total">Momentalne mate posty</h3>
+		<h3 ng-show="! posts.total">Momentalne nemate zadne posty</h3>
+		<i class="fa fa-plus-square" ng-click="editItem(null)" ></i>
+	</head>
+	<ul ng-if="posts.total">
+		<li ng-repeat="(id, item) in posts.data track by $index">
+			<span>
+				{{item.title | ellipsis}}
+				<span ng-if="item.locations.length && item.locations[0].city"> / {{item.locations[0].city}}</span>
+			</span>
+
+			<i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
+			<i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
+			<i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
+			<i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
+
+		    <section ng-include="'templates/modals.html'" id="modals"></section>
+		</li>
+	</ul>
+</section>

@@ -87,58 +87,9 @@
 					<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></div>
 					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></div>
 				</div>
-				<div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
-					<article class="row">
-
-						<section class="large-12 columns">
-							<h2>{{'AD_REMOVE_LABEL' | translate}}</h2>
-							<p><i class="fa fa-question-circle"></i> {{'AD_REMOVE_ARE_YOU_SURE' | translate}}</p>
-							</section>
-					</article>
-					<article class="row">
-						<section class="large-6 columns">
-							<button ng-click="remove()">{{'OK' | translate}}</button>
-						</section>
-						<section class="large-6 columns text-right">
-							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
-						</section>
-					</article>
-				</div>
-				<div id="confirm-pause-{{item._id}}" class="reveal-modal tiny" data-reveal>
-					<article class="row">
-
-						<section class="large-12 columns">
-							<h2>{{'AD_PAUSE_LABEL' | translate}}</h2>
-							<p><i class="fa fa-question-circle"></i> {{'AD_PAUSE_ARE_YOU_SURE' | translate}}</p>
-							</section>
-					</article>
-					<article class="row">
-						<section class="large-6 columns">
-							<button ng-click="pauseToggle()">{{'OK' | translate}}</button>
-						</section>
-						<section class="large-6 columns text-right">
-							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
-						</section>
-					</article>
-				</div>
-
-				<div id="confirm-report" class="reveal-modal tiny" data-reveal>
-					<article class="row">
-						<section class="large-12 columns">
-							<h2>{{'AD_REPORT_CONFIRM' | translate}}</h2>
-							<p><i class="fa fa-question-circle"></i> {{'AD_REPORT_ARE_YOU_SURE' | translate}}</p>
-							</section>
-					</article>
-					<article class="row">
-						<section class="large-6 columns">
-							<button ng-click="report()">{{'OK' | translate}}</button>
-						</section>
-						<section class="large-6 columns text-right">
-							<a class="link-button" ng-click="cancel()">{{'CANCEL' | translate}}</a>
-						</section>
-					</article>
-				</div>
-
+				
+			    <section ng-include="'templates/modals.html'" id="modals"></section>
+			    
 				<button ng-if="!mine" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>

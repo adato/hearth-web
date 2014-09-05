@@ -1,0 +1,51 @@
+<div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
+    <article class="row">
+
+        <section class="large-12 columns">
+            <h2>{{'AD_REMOVE_LABEL' | translate}}</h2>
+            <p><i class="fa fa-question-circle"></i> {{'AD_REMOVE_ARE_YOU_SURE' | translate}}</p>
+        </section>
+    </article>
+    <article class="row">
+        <section class="large-6 columns">
+            <button ng-click="remove(item)">{{'OK' | translate}}</button>
+        </section>
+        <section class="large-6 columns text-right">
+            <a class="link-button" ng-click="cancel(item)">{{'CANCEL' | translate}}</a>
+        </section>
+    </article>
+</div>
+<div id="confirm-pause-{{item._id}}" class="reveal-modal tiny" data-reveal>
+    <article class="row">
+
+        <section class="large-12 columns">
+            <h2>{{'AD_PAUSE_LABEL' | translate}}</h2>
+            <p><i class="fa fa-question-circle"></i> {{'AD_PAUSE_ARE_YOU_SURE' | translate}}</p>
+        </section>
+    </article>
+    <article class="row">
+        <section class="large-6 columns">
+            <button ng-click="pauseToggle(item)">{{'OK' | translate}}</button>
+        </section>
+        <section class="large-6 columns text-right">
+            <a class="link-button" ng-click="cancel(item)">{{'CANCEL' | translate}}</a>
+        </section>
+    </article>
+</div>
+
+<div id="confirm-report" class="reveal-modal tiny" data-reveal>
+    <article class="row">
+        <section class="large-12 columns">
+            <h2>{{'AD_REPORT_CONFIRM' | translate}}</h2>
+            <p><i class="fa fa-question-circle"></i> {{'AD_REPORT_ARE_YOU_SURE' | translate}}</p>
+        </section>
+    </article>
+    <article class="row">
+        <section class="large-6 columns">
+            <button ng-click="report(item)">{{'OK' | translate}}</button>
+        </section>
+        <section class="large-6 columns text-right">
+            <a class="link-button" ng-click="cancel(item)">{{'CANCEL' | translate}}</a>
+        </section>
+    </article>
+</div>

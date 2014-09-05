@@ -207,7 +207,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		// };
 		
 		$scope.load();
-		$scope.$on('refreshMarketplace', $scope.load);
+		$scope.$on('postCreated', $scope.load);
 
 		$scope.$on('removeAd', $scope.removeAd);
 
