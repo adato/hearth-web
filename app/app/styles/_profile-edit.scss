@@ -26,8 +26,23 @@
             bottom: 0;
         };
     }
+    input, textarea {
+        border: none;
+        -moz-box-shadow: inset 0px 0px 10px #AAA;
+        -webkit-box-shadow: inset 0px 0px 10px #AAA;
+        box-shadow: inset 0px 0px 10px #AAA;
+        border: 1px solid #AAA;
+
+        &:focus {
+            border: 2px solid #FF6D1F;
+            box-shadow: none;
+        }
+    }
+
     textarea {
-        line-height: 1.33em;
+        line-height: 1.33 !important;
+        padding: 15px;
+        min-height: 200px;
     }
     .webs {
         .web-item {

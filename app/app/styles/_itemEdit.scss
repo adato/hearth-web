@@ -62,6 +62,12 @@
             top: 2px;
         }
     }
+    .locations {
+        .controll {
+            position: relative;
+            top: -8px;
+        }
+    }
     .files {
       & > div {
         width: 50%;
