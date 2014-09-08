@@ -39,6 +39,51 @@
         }
     }
 
+    .image-upload {
+        width:195px;
+        height: 195px;
+        margin: 0px auto;
+        text-align: center;
+        position: relative;
+
+        border-radius: 50%;
+        box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.5) inset;
+
+        .preview {
+            width:195px;
+            height: 195px;
+            border-radius: 50%;
+        }
+
+        .text {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            text-shadow: 0 0 4px #666;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+
+            span {
+                font-size: 61px;
+                font-weight: normal;
+                margin-top: 61px;
+                display: block;
+            }
+        }
+
+        input {
+            background-color: red;
+            cursor: pointer;
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+
     textarea {
         line-height: 1.33 !important;
         padding: 15px;

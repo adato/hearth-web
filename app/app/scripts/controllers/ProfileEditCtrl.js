@@ -47,7 +47,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}, function(res) {});
 		};
 
-
+		$scope.avatarUploadSucceeded = function (status, res) {
+			
+			console.log(status);
+			$scope.profile.avatar = res;
+		}
 		$scope.updateUrl = function($event, model, key) {
 			var input = $($event.target),
 				url = input.val();

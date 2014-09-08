@@ -469,6 +469,21 @@ p {
     z-index: 9;
 }
 
+
+.image-upload-input {
+    &::-ms-browse {
+        width: 1000px;
+    }
+    cursor: pointer;
+    height: $button-height;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    left: 0;
+    z-index: 9;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -1414,3 +1429,13 @@ input + .remove {
 form[name="replyForm"] {
     position:fixed;
 }*/
+
+img.blur { 
+    -webkit-filter: blur(3px); 
+    -moz-filter: blur(3px); 
+    -o-filter: blur(3px); 
+    -ms-filter: blur(3px); 
+    filter: blur(3px);
+    filter: url(../blur.svg#blur);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+}
