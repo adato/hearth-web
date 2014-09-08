@@ -12,15 +12,32 @@
                 top: 0;
             };
         }
+        span {
+            border: 3px solid black;
+            border-radius: 50%;
+            height: 70px;
+            padding-top: 8px;
+            text-align: center;
+            width: 70px;
+        }
     }
     input {
         margin: {
             bottom: 0;
         };
     }
-    em {
-        font-size: 0.7em;
-        font-style: normal;
+    textarea {
+        line-height: 1.33em;
+    }
+    .webs {
+        .web-item {
+            position: relative;
+            .fa-times-circle {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+            }
+        }
     }
     .languages {
         label {

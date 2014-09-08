@@ -89,6 +89,7 @@ $fontSize: rem-calc(18);
 @import "fulltext";
 @import "itemDetail";
 @import "modal";
+@import "profile-edit";
 
 body {
     background-image: inline-image("bg.png");
@@ -1375,7 +1376,6 @@ textarea:focus {
 
 
 @import "unsupported";
-@import "profile-edit";
 
 .remove {
     position: absolute;

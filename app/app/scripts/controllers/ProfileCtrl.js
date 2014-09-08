@@ -34,6 +34,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		function refreshDataFeed() {
+			$rootScope.subPageLoaded = false;
     		$scope.pagePath = $route.current.originalPath;
     		$scope.pageSegment = $route.current.$$route.segment;
 		}

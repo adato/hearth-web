@@ -7,7 +7,7 @@
                 <span class="remove" ng-click="remove($event, $index)">smazat</span>
             </div>
         </div>
-        <div class="fleft mapIcon" ng-class="{selected: mapDisplay == $index}">
+        <div class="fleft mapIcon" ng-show="!hideMap" ng-class="{selected: mapDisplay == $index}">
             <a ng-click="toggleMap($index)">
                 <i class="fa fa-map-marker">
                     <span ng-show="mapDisplay == $index" class="fa fa-times"></span>

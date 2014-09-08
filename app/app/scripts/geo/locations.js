@@ -18,7 +18,8 @@ angular.module('hearth.geo').directive('locations', [
             scope: {
                 locations: '=',
                 limit: '=',
-                error: '='
+                error: '=',
+                hideMap: '='
             },
             templateUrl: 'templates/geo/locations.html',
             link: function(scope, baseElement) {
@@ -48,6 +49,7 @@ angular.module('hearth.geo').directive('locations', [
                 function initSearchBoxes() {
 
                     $('.map-input', baseElement).each(function(index) {
+                        console.log(index);
                         var sBox = new google.maps.places.SearchBox(this);
 
                         google.maps.event.addListener(sBox, 'places_changed', function() {
@@ -211,6 +213,7 @@ angular.module('hearth.geo').directive('locations', [
                     }
                 }
 
+                scope.$watch('locations', initSearchBoxes);
                 setTimeout(initSearchBoxes);
             }
         };

@@ -57,10 +57,11 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
                 .when('/profile/:id/communities', 'profile.communities')
                 .when('/profile/:id/given-ratings', 'profile.given')
                 .when('/profile/:id/received-ratings', 'profile.received')
-                
                 .when('/profile/:id/following', 'profile.following')
                 .when('/profile/:id/followers', 'profile.followers')
                 .when('/profile/:id/invite', 'profile.invite')
+
+                .when('/profile-edit', 'profileEdit')
 
             .when('/communities/:action?', 'communities')
             // .when('/community/:id/:action?', 'community')
@@ -117,6 +118,12 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
                 templateUrl: 'templates/communityList.html',
                 controller: 'CommunityListCtrl',
                 pageType: 'communities'
+
+            }).segment('profileEdit', {
+                templateUrl: 'templates/profile/editProfile.html',
+                controller: 'ProfileEditCtrl',
+                reloadOnSearch: false,
+                pageType: 'profile'
 
             }).segment('profile', {
                 templateUrl: 'templates/profile/topPanel.html',

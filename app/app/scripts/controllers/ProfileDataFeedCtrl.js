@@ -23,7 +23,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             };
 
         function loadUserHome(params) {
-            var fulltextParams;
+            var fulltextParams = {
+                type: 'post',
+                include_not_active: +$scope.mine, // cast bool to int
+                author_id: params.user_id
+            }
 
             UserRatings.received(params, function(res) {
                 $scope.receivedRatings = res;
@@ -31,14 +35,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             ActivityLog.get(params, function(res) {
                 $scope.activityLog = res;
             });
-
-            console.log($scope.mine);
-            fulltextParams = {
-                type: 'post',
-                include_not_active: $scope.mine,
-                author_id: params.user_id
-            }
-
             Fulltext.query(fulltextParams, function(res) {
                 $scope.posts = res;
             });
@@ -59,26 +55,22 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     $scope.cancel(item);
                 }
             );
-        }
+        };
 
         $scope.cancel = function(item) {
             $('#confirm-delete-' + item._id).foundation('reveal', 'close');
         };
 
         $scope.remove = function(item) {
-            console.log(item);
-
             Post.remove({postId: item._id}, function (res) {
 
                 $scope.$emit('postCreated', item._id); // refresh post list
                 $scope.cancel(item);
-            }, function (err) {
-                console.log("Error: ", err);
-            });
+            }, processDataErr);
         };
 
         function processData(res) {
-
+            $rootScope.subPageLoaded = true;
             $scope.data = res;
         }
 

@@ -34,9 +34,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.sending = false;
 		$scope.pauseSending = false;
 
-		$('.create-ad-textarea', $element).on('focus', function() {
-			$(this).autosize();
-		});
 		$rootScope.$on('removeAd', function(info, id) {
 			if (id == $scope.post._id) {
 				$scope.closeThisDialog();
@@ -307,6 +304,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				if(post.valid_until_unlimited) {
 					post.date = '';
 				}
+
+				post.name = $.trim(post.name);
 
 				if (!post.locations.length) {
 					post.locations = [{

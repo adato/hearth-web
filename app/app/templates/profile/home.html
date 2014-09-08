@@ -1,6 +1,13 @@
 <h4>Home - zakladni info</h4>
 
 
+<section class="userInfo">
+	<h3>Poznejte uživatele {{ info.name }}</h3>
+	<span class="work">{{info.work}}</span>
+	<span class="regDate">Uživatel se registroval {{info.created_at | ago}}</span>
+	<span class="work">{{info.twitter}}</span>
+</section>
+
 <section class="ratings">
 	<head>
 		<h3>Vaše nové upozornění</h3>
@@ -14,9 +21,24 @@
 	</ul>
 </section>
 
+<section class="activity-feed">
+	<head>
+		<h3 ng-show="mine">Vaše aktivity</h3>
+		<h3 ng-show="!mine">Aktivity uživatele</h3>
+	</head>
+	<ul ng-if="activityLog.length">
+		<li ng-repeat="(id, item) in activityLog track by $index">
+			<span>
+				<span dynamic-text="item.text" dynamic-data="item.data"></span>
+				<span class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span> {{item.created_at | ago}}</span>
+			</span>
+		</li>
+	</ul>
+</section>
+
 <section class="posts">
 	<head>
-		<h3 ng-show="posts.total">Momentalne mate posty</h3>
+		<h3 ng-show="posts.total">Momentalne mate {{posts.total}} posty</h3>
 		<h3 ng-show="! posts.total">Momentalne nemate zadne posty</h3>
 		<i class="fa fa-plus-square" ng-click="editItem(null)" ></i>
 	</head>
@@ -34,5 +56,9 @@
 
 		    <section ng-include="'templates/modals.html'" id="modals"></section>
 		</li>
+		<li class="tcenter">
+			<a href="#!/profile/{{info._id}}/posts">Všechny inzeráty</a>
+		</li>
 	</ul>
+
 </section>

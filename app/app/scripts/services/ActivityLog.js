@@ -10,7 +10,7 @@ angular.module('hearth.services').factory('ActivityLog', [
 	'$resource', 'appConfig',
 
 	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/users/:user_id/activity', {
+		return $resource(appConfig.apiPath + '/users/:user_id/activity_feed', {
 			user_id: '@id'
 		}, {
 			get: {

@@ -23,10 +23,6 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			agree: false
 		}
 
-		$('.reply-ad-textarea', $element).on('focus', function() {
-			$(this).autosize();
-		});
-
 		$scope.toggleMail = function() {
 			$scope.reply.agree = !$scope.reply.agree;
 			$scope.showErrors.agree = ! $scope.reply.agree;
