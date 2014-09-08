@@ -27,15 +27,13 @@ angular.module('hearth.geo').directive('locations', [
                 scope.mapDisplay = -1;
                 scope.error = false;
 
-                window.tmp = scope.locations;
-
                 function getDefaultLocation() {
 
-                    return {
+                    return angular.copy({
                         type: 'Point',
                         name: '',
                         coordinates: null
-                    };
+                    });
                 }
 
                 function placeMarker(position, map) {
@@ -49,12 +47,14 @@ angular.module('hearth.geo').directive('locations', [
                 function initSearchBoxes() {
 
                     $('.map-input', baseElement).each(function(index) {
-                        console.log(index);
-                        var sBox = new google.maps.places.SearchBox(this);
+                        if ($(this).hasClass("inited")) {
+                            return true;
+                        }
+                        $(this).addClass("inited");
 
+                        var sBox = new google.maps.places.SearchBox(this);
                         google.maps.event.addListener(sBox, 'places_changed', function() {
                             var places = sBox.getPlaces();
-
                             if (places && places.length) {
                                 var location = places[0].geometry.location,
                                     name = places[0].formatted_address,
@@ -65,45 +65,44 @@ angular.module('hearth.geo').directive('locations', [
                         });
 
                         $(this).keyup(function() {
-
                             if (!this.value) {
                                 scope.clearLocation(index);
                             }
                         });
 
                         $(this).blur(function() {
-                            var places = sBox.getPlaces();
-                            if (!places) {
+                            if (!this.value) {
                                 scope.clearLocation(index);
                             }
                         });
                     });
-                }
+                };
 
                 scope.hideError = function(loc) {
 
-                    if(loc && loc.name == '') {
+                    if (loc && loc.name == '') {
                         scope.error = false;
                     }
                 };
 
-                scope.testEmptyLocation = function() {
-                    var isEmpty = false;
+                scope.testEmptyLocation = function(item) {
 
-                    scope.locations.forEach(function(item) {
-                        if(item.name === '') {
-                            isEmpty = true;
-                        }
+                    item.name === '' && (scope.error = true);
+                };
+
+                scope.testAllEmptyLocation = function () {
+
+
+                    scope.locations.forEach(function (item) {
+                        scope.testEmptyLocation(item);
                     });
-
-                    scope.error = isEmpty;
                 };
 
                 scope.translateLocation = function(loc) {
                     var short = {},
                         long = {};
-                    
-                    if(loc) {
+
+                    if (loc) {
                         Object.keys(loc).forEach(function(key) {
                             short[loc[key].types[0]] = loc[key].short_name;
                             long[loc[key].types[0]] = loc[key].long_name;
@@ -117,14 +116,14 @@ angular.module('hearth.geo').directive('locations', [
                         country: long.country, // zeme
                         country_code: short.country, // kod zeme - CZ
                         zipcode: long.postal_code, // PSC
-                        city: long.postal_town || long.locality, // mestska cast nebo jen mesto
+                        city: long.postal_town || long.locality || long.administrative_area_level_1, // mestska cast nebo jen mesto nebo kraj
                         area: long.administrative_area_level_1, // kraj
                     };
                 };
 
                 scope.clearLocation = function(index) {
                     scope.locations[index] = getDefaultLocation();
-                    scope.testEmptyLocation();
+                    scope.$apply();
                 };
 
                 scope.fillLocation = function(index, pos, addr, info) {
@@ -133,11 +132,12 @@ angular.module('hearth.geo').directive('locations', [
                         coordinates: [pos.lng(), pos.lat()]
                     };
 
-                    if($.isPlainObject(info)) {
+                    if ($.isPlainObject(info)) {
                         Object.keys(info).forEach(function(key) {
                             scope.locations[index][key] = info[key];
                         });
                     }
+                    scope.$apply();
                 };
 
                 scope.closeMap = function() {
@@ -164,12 +164,13 @@ angular.module('hearth.geo').directive('locations', [
                     if ($event)
                         $event.preventDefault();
 
+                    scope.hideError(scope.locations[$index]);
                     scope.locations.splice($index, 1);
 
                     if (scope.mapDisplay == $index)
                         scope.closeMap();
 
-                    scope.testEmptyLocation();
+                    scope.testAllEmptyLocation();
                 };
 
                 scope.removeAll = function() {
@@ -181,6 +182,7 @@ angular.module('hearth.geo').directive('locations', [
 
                 scope.add = function() {
                     scope.locations.push(getDefaultLocation());
+                    scope.error = false;
                     setTimeout(initSearchBoxes);
                 };
 
@@ -206,7 +208,7 @@ angular.module('hearth.geo').directive('locations', [
                 scope.locationDoesNotMatter = function() {
                     scope.closeMap();
                     // scope.limit = !scope.limit;
-                    
+
                     if (scope.limit != true) {
                         scope.removeAll();
                         scope.add();

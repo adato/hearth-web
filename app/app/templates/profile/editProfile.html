@@ -7,8 +7,9 @@
         <img class="preview blur" ng-if="profile.avatar.normal" ng-src="{{profile.avatar.normal}}" />
         <img class="preview blur" ng-if="!profile.avatar.normal" src="images/default_avatar.png" />
             <div class="text">
-              <span class="fa fa-plus-square-o"></span>
-              {{ 'CHOOSE_AVATAR_FILE' | translate}}
+              <span class="fa fa-plus-square-o" ng-class="{'vis-hidden':uploadingInProgress}"></span>
+              <span ng-if="! uploadingInProgress">{{ 'CHOOSE_AVATAR_FILE' | translate}}</span>
+              <span ng-if="uploadingInProgress">{{ 'UPLOADING_FILE' | translate}}<span>
             </div>
         </div>
     </div>
@@ -134,7 +135,7 @@
             {{ 'MY_WEB' | translate }}
           </label>
           <div ng-repeat="web in profile.webs track by $index" class="web-item">
-            <input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.web" class="text-input" type="url" ng-required="!$first" ng-class="{top: $first && !$last, bottom:$last && !$first, middle: !($first || $last)}" ng-blur="updateUrl($event, profile.webs, $index)">
+            <input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.web" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
             <div class="remove" ng-hide="$first">
               <span class="fa fa-times-circle" ng-click="profile.webs.splice($index,1)"></span>
             </div>

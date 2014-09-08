@@ -29,9 +29,8 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 					name: ''
 				}];
 			}
-
 			return data;
-		}
+		};
 
 		$scope.init = function() {
 			if (!$rootScope.loggedUser) {
@@ -47,11 +46,20 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}, function(res) {});
 		};
 
-		$scope.avatarUploadSucceeded = function (status, res) {
-			
-			console.log(status);
-			$scope.profile.avatar = res;
-		}
+		$scope.avatarUploadFailed = function (err) {
+
+			$scope.uploadingInProgress = false;
+		};
+		
+		$scope.avatarUploadStarted = function (argument) {
+			$scope.uploadingInProgress = true;
+		};
+
+		$scope.avatarUploadSucceeded = function (event) {
+			$scope.profile.avatar = angular.fromJson(event.target.responseText);
+			$scope.uploadingInProgress = false;
+		};
+
 		$scope.updateUrl = function($event, model, key) {
 			var input = $($event.target),
 				url = input.val();

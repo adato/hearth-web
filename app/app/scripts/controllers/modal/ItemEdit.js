@@ -167,9 +167,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.cleanNullLocations = function(loc) {
-
 			for (var i = 0; i < loc.length; i++) {
-
 				if (!loc[i].coordinates) {
 					loc.splice(i, 1);
 					i--;
@@ -186,8 +184,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				return obj.text;
 			});
 
-			if(!data.location_unlimited) {
-				data.location_unlimited = false;
+			if(data.location_unlimited) {
 				data.locations = [];
 			}
 
@@ -240,6 +237,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(! $scope.testForm($scope.post)) {
 				return false;
 			}
+
 			//we need copy, because we change data and don't want to show these changes to user
 			postData = angular.extend(
 				angular.copy($scope.post), {
@@ -249,7 +247,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			);
 
 			postData = $scope.transformPostData(postData);
-
+			
 			postDataCopy = angular.extend(
 				angular.copy(postData), {
 					author: Auth.getCredentials(),
@@ -307,7 +305,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				post.name = $.trim(post.name);
 
-				if (!post.locations.length) {
+				if (! post.location_unlimited && !post.locations.length) {
 					post.locations = [{
 						name: ''
 					}];
