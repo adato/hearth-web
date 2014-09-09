@@ -43,14 +43,14 @@
 
       <div class="row languages">
         <div class="large-12 columns">
-          <label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) &gt;-1 || profile.user_languages[lang]">
-            <input type="checkbox" ng-model="profile.user_languages[lang]">{{ 'MY_LANG_' + lang.toUpperCase() | translate }}
+          <label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
+            <checkbox ng-model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG_' + lang.toUpperCase() | translate }}</checkbox>
           </label>
 
           <label data-dropdown="language-drop" class="dropdown">
             <span class="fa fa-comments"></span>{{ 'OTHER_LANG' | translate }}</label>
           <ul id="language-drop" data-dropdown-content class="f-dropdown">
-            <label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) &gt;-1 || profile.user_languages[lang]">
+            <label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) >-1 || profile.user_languages[lang]">
               <input type="checkbox" ng-model="profile.user_languages[lang]">{{ 'MY_LANG_' + lang.toUpperCase() | translate }}
             </label>
           </ul>
@@ -135,7 +135,7 @@
             {{ 'MY_WEB' | translate }}
           </label>
           <div ng-repeat="web in profile.webs track by $index" class="web-item">
-            <input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.web" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
+            <input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
             <div class="remove" ng-hide="$first">
               <span class="fa fa-times-circle" ng-click="profile.webs.splice($index,1)"></span>
             </div>
