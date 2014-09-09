@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 	function($scope, Auth, $route, User, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress, Facebook) {
 		$scope.loaded = false;
+		$scope.sending = false;
 		$scope.profile = false;
 		$scope.showError = {
 			locations: false,
@@ -29,6 +30,16 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 					name: ''
 				}];
 			}
+
+			$scope.languageList.forEach(function(item) {
+
+				if(!data.user_languages[item]) {
+					data.user_languages[item] = false;
+				}
+			});
+
+			$scope.showContactMail = data.contact_email && data.contact_email != '';
+
 			return data;
 		};
 
@@ -37,6 +48,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$route.repload("#!/");
 			}
 
+			// $scope.initLocations();
 			User.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
@@ -46,16 +58,16 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}, function(res) {});
 		};
 
-		$scope.avatarUploadFailed = function (err) {
+		$scope.avatarUploadFailed = function(err) {
 
 			$scope.uploadingInProgress = false;
 		};
-		
-		$scope.avatarUploadStarted = function (argument) {
+
+		$scope.avatarUploadStarted = function(argument) {
 			$scope.uploadingInProgress = true;
 		};
 
-		$scope.avatarUploadSucceeded = function (event) {
+		$scope.avatarUploadSucceeded = function(event) {
 			$scope.profile.avatar = angular.fromJson(event.target.responseText);
 			$scope.uploadingInProgress = false;
 		};
@@ -67,6 +79,32 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				url = 'http://' + url;
 			model[key] = url;
 		};
+
+		$scope.switchLanguage = function(lang) {
+			console.log(lang);
+			$scope.profile.user_languages[lang] = !$scope.profile.user_languages[lang];
+		};
+
+		$scope.update = function() {
+
+			console.log($scope.profile);
+
+			if($scope.sending)
+				return false;
+
+			$scope.sending = true;
+			
+			User.edit($scope.profile, function(res) {
+
+				console.log(res);
+				$scope.sending = false;
+			}, function(res) {
+
+				console.log(res);
+				$scope.sending = false;
+			});
+
+		}
 
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();

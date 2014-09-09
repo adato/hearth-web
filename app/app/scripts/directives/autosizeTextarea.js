@@ -15,10 +15,7 @@ angular.module('hearth.directives').directive('autosizeTextarea',
 				setTimeout(function() {
 					var el = ($(element).prop('tagName') == 'TEXTAREA') ? $(element) : $('textarea', element);
 
-					el.autosize({append :''});
-					setTimeout(function () {
-						el.trigger('autosize.resize');
-					});
+					el.autosize({append :''}).show().trigger('autosize.resize');
 				});
 			}
 		};

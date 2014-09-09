@@ -39,14 +39,17 @@ angular.module('hearth.directives').directive('checkbox', function() {
 						scope.model.push(scope.value);
 					}
 				} else {
-					scope.model = scope.checked ? scope.value : scope.valueOff;
+					if(typeof scope.model !== 'undefined') {
+						scope.model = scope.checked ? scope.value : scope.valueOff;
+					}
 				}
 
 				if(scope.onUpdate)
-					scope.onUpdate(scope.model);
+					scope.onUpdate(scope.checked ? scope.value : scope.valueOff);
 			};
 
 			scope.$watch('model', function(value) {
+				console.log(scope.model, value);
 				if (angular.isArray(scope.model)) {
 					var index = scope.model.indexOf(value);
 					scope.checked = index > -1;
