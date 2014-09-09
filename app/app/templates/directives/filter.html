@@ -11,9 +11,9 @@
 			<article class="row bars">
 				<section class="large-3 columns">
 					<header>{{'by-type' | translate}}</header>
-					<checkbox type="radio" model="filter.type" value="'offer'">{{'ads-offer' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.type" value="'need'">{{'ads-need' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.type" value="">{{'ads-all' | translate}}</checkbox>
+					<radio type="radio" model="filter.type" value="'offer'">{{'ads-offer' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="'need'">{{'ads-need' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="null">{{'ads-all' | translate}}</radio>
 				</section>
 				<section class="large-3 columns">
 					<header>{{'by-author' | translate}}</header>
@@ -23,10 +23,10 @@
 				</section>
 				<section class="large-3 columns">
 					<header>{{'by-time' | translate}}</header>
-					<checkbox type="radio" model="filter.days" value="1">{{'today' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.days" value="3">{{'3-days' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.days" value="7">{{'week' | translate}}</checkbox>
-					<checkbox type="radio" model="filter.days" value="">{{'without-limit' | translate}}</checkbox>
+					<radio type="radio" model="filter.days" value="'1'">{{'today' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="'3'">{{'3-days' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="'7'">{{'week' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="null">{{'without-limit' | translate}}</radio>
 				</section>
 				<section class="large-3 columns">
 					<header>{{'by-place' | translate}}</header>

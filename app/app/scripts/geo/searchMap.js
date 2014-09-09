@@ -91,7 +91,8 @@ angular.module('hearth.geo').directive('searchMap', [
 
                 scope.$on('initMap', scope.search);
                 scope.$on('initMap', scope.autodetectMyLocation);
-                scope.$on('$routeUpdate', scope.search);
+                scope.$on('filterReseted', scope.search);
+                scope.$on('filterApplied', scope.search);
             }
         };
     }

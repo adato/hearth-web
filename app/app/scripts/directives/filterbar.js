@@ -35,7 +35,6 @@ angular.module('hearth.directives').directive('filterbar', [
 				};
 
 				scope.testFilterActive = function() {
-
 					scope.filterOn = !$.isEmptyObject($location.search());
 				};
 
@@ -59,9 +58,8 @@ angular.module('hearth.directives').directive('filterbar', [
 					$anchorScroll(ui);
 				});
 
-				scope.$on('$routeUpdate', function() {
-					scope.testFilterActive();
-				});
+				scope.$on('filterReseted', scope.testFilterActive);
+				scope.$on('filterApplied', scope.testFilterActive);
 
 				scope.toggleMap = function() {
 					scope.mapSelected = !scope.mapSelected;

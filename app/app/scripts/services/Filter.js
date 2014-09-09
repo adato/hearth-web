@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-	'$location',
-	function($location) {
+	'$location', '$rootScope', 'User',
+	function($location, $rootScope, User) {
 		return {
 			toggleTag: function(tag) {
 				var params, index;
@@ -31,6 +31,7 @@ angular.module('hearth.services').factory('Filter', [
                     delete params.keywords;
                 
                 $location.search(params);
+                $rootScope.$broadcast("filterApplied", params);
 			},
 			getActiveTags: function() {
 				var params = $location.search();
@@ -43,7 +44,35 @@ angular.module('hearth.services').factory('Filter', [
 	            else
                     return params.keywords;
 
-			}
+			},
+            get: function() {
+                return $location.search();
+            },
+            isSet: function() {
+                return !$.isEmptyObject($location.search());
+            },
+            apply: function(filterData, save){
+                $location.search(filterData);
+                if (save) {
+                    User.edit(angular.extend({
+                        _id: $rootScope.loggedUser,
+                        filter: filterData
+                    }));
+                }
+
+                $rootScope.$broadcast("filterApplied", filterData);
+            },
+            reset: function() {
+                $location.search('');
+                if ($rootScope.loggedUser) {
+                    User.edit({
+                        _id: $rootScope.loggedUser._id,
+                        filter: {}
+                    });
+                }
+
+                $rootScope.$broadcast("filterReseted");
+            }
 		};
 	}
 ]);

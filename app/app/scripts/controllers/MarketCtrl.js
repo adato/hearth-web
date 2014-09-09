@@ -78,48 +78,31 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.load();
 			});
 			$scope.$watch('user', function(value) {
-				if (value.loggedIn) {
+				if (value.loggedIn && !Filter.isSet()) {
 					$scope.filter = value.filter;
 					$location.search(value.filter || {});
 				}
 				$scope.load();
 			});
-
 		}
 
-		$scope.$on('$routeUpdate', function() {
+		$scope.$on('filterApplied', function($event, filterData) {
+			$scope.user.filter = filterData;
+
 			refreshTags();
 			
 			if ($scope.filter && $.isEmptyObject($location.search())) {
-				$location.search($scope.filter);
-				return;
+				return $location.search($scope.filter);
 			}
 
 			$scope.items = [];
 			$scope.load();
 		});
 
-		$scope.$on('filterApply', function($event, filterData, save) {
-			$location.search(filterData);
-			if (save) {
-				User.edit(angular.extend({
-					_id: $scope.user._id,
-					filter: filterData
-				}));
-				$scope.user.filter = filterData;
-			}
-		});
-
-		$scope.$on('filterReset', function() {
-			$location.search('');
+		$scope.$on('filterReseted', function() {
+			
 			$scope.$broadcast('resetFilterData');
 
-			if ($scope.user.filter) {
-				User.edit({
-					_id: $scope.user._id,
-					filter: {}
-				});
-			}
 			$scope.filter = {};
 			$scope.user.filter = {};
 			$scope.items = [];
@@ -147,7 +130,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.$broadcast('initMap');
 			});
 		});
+
 		$scope.$on('searchList', function() {
+			$scope.loading = false;
 			$scope.showMap = false;
 			$scope.load();
 		});

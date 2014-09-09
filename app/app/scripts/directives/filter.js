@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-    'geo', 'KeywordsService', '$location', 'Auth', '$timeout',
+    'geo', 'KeywordsService', '$location', 'Auth', '$timeout', 'Filter',
 
-    function(geo, KeywordsService, $location, Auth, $timeout) {
+    function(geo, KeywordsService, $location, Auth, $timeout, Filter) {
         return {
             restrict: 'E',
             replace: true,
@@ -20,9 +20,9 @@ angular.module('hearth.directives').directive('filter', [
                 var searchBoxElement = $('input#geolocation', element),
                     searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
                     filterDefault = {
-                        type: '',
+                        type: null,
                         distance: 25,
-                        days: ''
+                        days: null
                     };
 
                 $timeout(function () {
@@ -43,7 +43,7 @@ angular.module('hearth.directives').directive('filter', [
                     if ($.isEmptyObject(scope.filter)) {
                         scope.reset();
                     } else {
-                        scope.$emit('filterApply', scope.convertFilterToParams(scope.filter), scope.filterSave);
+                        Filter.apply(scope.convertFilterToParams(scope.filter), scope.filterSave);
                         scope.close();
                     }
                 };
@@ -94,8 +94,8 @@ angular.module('hearth.directives').directive('filter', [
                         type: params.type || filterDefault.type,
                         days: params.days || filterDefault.days,
                         my_section: params.my_section,
-                        user: (params.related || '').indexOf('user') > -1 ? 'true' : undefined,
-                        community: (params.related || '').indexOf('community') > -1 ? 'true' : undefined,
+                        user: (params.related || '').indexOf('user') > -1 ? true : undefined,
+                        community: (params.related || '').indexOf('community') > -1 ? true : undefined,
                         keywords: $.map(params.keywords || {}, function(keyword) {
                             return {
                                 text: keyword
@@ -123,14 +123,14 @@ angular.module('hearth.directives').directive('filter', [
                 };
 
                 scope.reset = function() {
-                    scope.$emit('filterReset');
+                    Filter.reset();
                 };
 
                 scope.queryKeywords = function($query) {
                     return KeywordsService.queryKeywords($query);
                 };
 
-                scope.$on('resetFilterData', function() {
+                scope.$on('filterReseted', function() {
                     scope.filter = angular.copy(filterDefault);
                     scope.close();
                 });
@@ -159,7 +159,7 @@ angular.module('hearth.directives').directive('filter', [
                 //     }
                 // });
 
-                scope.$on('$routeUpdate', function() {
+                scope.$on('filterApplied', function() {
                     scope.updateFilterByRoute();
                 });
 
