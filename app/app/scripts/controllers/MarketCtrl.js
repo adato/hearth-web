@@ -87,7 +87,17 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		}
 
-		$scope.$on('$routeUpdate', refreshTags);
+		$scope.$on('$routeUpdate', function() {
+			refreshTags();
+			
+			if ($scope.filter && $.isEmptyObject($location.search())) {
+				$location.search($scope.filter);
+				return;
+			}
+
+			$scope.items = [];
+			$scope.load();
+		});
 
 		$scope.$on('filterApply', function($event, filterData, save) {
 			$location.search(filterData);
@@ -176,15 +186,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				phantomRecord.isPhantom = false;
 				$scope.items[i] = phantomRecord;
 			}
-		});
-
-		$scope.$on('$routeUpdate', function() {
-			if ($scope.filter && $.isEmptyObject($location.search())) {
-				$location.search($scope.filter);
-				return;
-			}
-			$scope.items = [];
-			$scope.load();
 		});
 
 		$scope.$on('removeAd', function($event, id) {

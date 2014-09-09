@@ -17,8 +17,8 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			locations: false,
 		};
 
-		$scope.languageListDefault = ['en', 'de', 'fr', 'ru', 'es', 'cs'];
-		$scope.languageList = ['en', 'de', 'fr', 'ru', 'es', 'cs', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
+		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
+		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
 
 		$scope.transformDataIn = function(data) {
 

@@ -54,6 +54,10 @@
             margin-left: 70px;
         }
 
+        .error {
+            color: red;
+        }
+
         &.location {
 
             position: relative;
@@ -67,7 +71,8 @@
                 }
             }
 
-            .controll {
+            .controll,
+            .error {
                 position: relative;
                 right: 15px;
             }
@@ -75,6 +80,35 @@
             span {
                 &.remove {
                     top: 6px;
+                }
+            }
+        }
+
+        &.languages {
+            margin-left: 70px;
+
+            .fa-check-square {
+                color: rgb(156, 199, 6);
+            }
+
+            .checkbox {
+                padding-left: 0px;
+                padding-right: 1em;
+
+                span {
+                    margin: 0;
+                }
+            }
+            label {
+                &.dropdown {
+                    border: 3px solid #f3a17c;
+                    border-radius: 13px;
+                    color: #f3a17c;
+                    font-size: 14px;
+                    padding: 3px 6px;
+                    position: relative;
+                    top: -10px;
+                    margin-top: 20px;
                 }
             }
         }
@@ -190,7 +224,6 @@
         label {
             white-space: nowrap;
             margin: {
-                right: 1em;
             };
             display: inline-block;
         }

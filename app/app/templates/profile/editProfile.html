@@ -59,15 +59,13 @@
           </label>
 
           <label data-dropdown="language-drop" class="dropdown">
-            <span class="fa fa-comments"></span>{{ 'OTHER_LANG' | translate }}
+            {{ 'ADD_OTHER_LANG' | translate }}
           </label>
 
           <ul id="language-drop" data-dropdown-content class="f-dropdown">
-            <li>
               <label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) >-1 || profile.user_languages[lang]">
                 <checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG_' + lang.toUpperCase() | translate }}</checkbox>
               </label>
-            </li>
           </ul>
       </section>
       <div class="clear"></div>
@@ -97,7 +95,7 @@
             </label>
             <div>
               <a ng-click="showContactMail = false; profile.contact_email =''" class="controll">
-                <span class="fa fa-minus-circle"></span>{{ 'REMOVE' | translate }}
+                <span class="fa fa-minus-square"></span>{{ 'REMOVE' | translate }}
               </a>
             </div>
           </div>
@@ -162,7 +160,7 @@
             </div>
           </div>
           <a ng-click="profile.webs.push('')">
-            <span class="fa fa-plus-square"></span>{{ 'ADD' | translate }}
+            <span class="fa fa-plus-square"></span>{{ 'ADD_NEXT_WEB' | translate }}
           </a>
         </div>
       </section>
