@@ -1,5 +1,4 @@
 <div class="itemEdit modal">
-
     <div class="headMessage error">
         V příspěvku je chyba. Před pokračováním ji nejprve opravte.
     </div>
@@ -19,7 +18,7 @@
         <div class="alert-box visible alert error round connect-bottom" ng-show="createAdForm.$error.maxlength"></div> -->
 
         <div>
-            <needofferselector class="fleft" ng-model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
+            <needofferselector class="fleft" model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
             <div class="name ">
                 <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 

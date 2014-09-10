@@ -45,7 +45,7 @@ angular.module('hearth.geo').directive('locations', [
                 };
 
                 function initSearchBoxes() {
-
+                    console.log("init");
                     $('.map-input', baseElement).each(function(index) {
                         if ($(this).hasClass("inited")) {
                             return true;

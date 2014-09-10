@@ -23,7 +23,7 @@
         <a ng-click="add()" ng-hide="locations.length > 0 && !locations[locations.length-1].name">
             <span class="fa fa-plus-square"></span>{{ 'ADD' | translate }} &nbsp; &nbsp;
         </a>
-        <checkbox ng-show="limit != -1" model="limit" on-update="locationDoesNotMatter()" value="true">
+        <checkbox ng-show="limit != -1" model="limit" on-update="locationDoesNotMatter()" value="true" value-off="false">
             {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
         </checkbox>
     </div>

@@ -176,7 +176,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
-		$scope.transformPostData = function(data) {
+		$scope.transformDataOut = function(data) {
 			// clear locations from null values
 			data.locations = $scope.cleanNullLocations(data.locations);
 			// transform keywords 
@@ -246,7 +246,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 			);
 
-			postData = $scope.transformPostData(postData);
+			postData = $scope.transformDataOut(postData);
 			
 			postDataCopy = angular.extend(
 				angular.copy(postData), {
@@ -295,7 +295,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 
-		function transformExistingPost(post) {
+		function transformDataIn(post) {
 			if (post) {
 
 				post.date = $filter('date')(post.date, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
@@ -305,7 +305,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				post.name = $.trim(post.name);
 
-				if (! post.location_unlimited && !post.locations.length) {
+				if (!post.locations || !post.locations.length || post.location_unlimited) {
 					post.locations = [{
 						name: ''
 					}];
@@ -316,7 +316,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.init = function() {
-			$scope.post = transformExistingPost($scope.post) || $scope.defaultPost;
+			$scope.post = transformDataIn($scope.post) || $scope.defaultPost;
 		}
 
 		$scope.init();
