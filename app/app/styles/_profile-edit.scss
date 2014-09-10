@@ -168,7 +168,8 @@
         position: relative;
 
         border-radius: 50%;
-        box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.5) inset;
+        box-shadow: -3px 3px 6px rgba(0, 0, 0, 1) inset;
+        overflow: hidden;
 
         .preview {
             width:195px;

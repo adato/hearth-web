@@ -27,7 +27,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             var fulltextParams = {
                 type: 'post',
                 include_not_active: +$scope.mine, // cast bool to int
-                author_id: params.user_id
+                author_id: params.user_id,
+                limit: 1000
             }
 
             Fulltext.query(fulltextParams, function(res) {
