@@ -2,13 +2,24 @@
 
 <h4>Seznam inzeratu</h4>
 
-<div ng-repeat="(id, item) in data track by $index">
+<div ng-repeat="(id, item) in postsActive track by $index">
 	{{ item }}
 	<br />
 	<hr />
 	<br />
 </div>
 
-<div ng-if="! data.length">
+
+<div class="inactivePosts" ng-show="postsInactive.length">
+	<h3>Neaktivni</h3>
+	<div ng-repeat="(id, item) in postsInactive track by $index">
+		{{ item }}
+		<br />
+		<hr />
+		<br />
+	</div>
+</div>
+
+<div ng-if="!postsActive.length && !postsInactive.length">
 	<p>Zatím zde nejsou žádné záznamy</p>
 </div>

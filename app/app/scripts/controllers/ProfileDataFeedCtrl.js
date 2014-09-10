@@ -11,7 +11,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
     function($scope, $timeout, $rootScope, $routeParams, Followers, Followees, UserPosts, UsersCommunitiesService, UserRatings, ActivityLog, Fulltext, Post) {
         var loadServices = {
                 'profile': loadUserHome,
-                'profile.posts': UserPosts.get,
+                'profile.posts': loadUserPosts,
                 'profile.communities': UsersCommunitiesService.query,
                 'profile.given': UserRatings.given,
                 'profile.received': UserRatings.received,
@@ -22,6 +22,27 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 user_id: $routeParams.id
             };
 
+        function loadUserPosts(params, done, doneErr) {
+
+            var fulltextParams = {
+                type: 'post',
+                include_not_active: +$scope.mine, // cast bool to int
+                author_id: params.user_id
+            }
+
+            Fulltext.query(fulltextParams, function(res) {
+
+                $scope.postsActive = [];
+                $scope.postsInactive = [];
+
+                res.data.forEach(function(item) {
+                    if(item.is_active)
+                        $scope.postsActive.push(item);
+                    else
+                        $scope.postsInactive.push(item);
+                });
+            }, doneErr);
+        }
         function loadUserHome(params) {
             var fulltextParams = {
                 type: 'post',
