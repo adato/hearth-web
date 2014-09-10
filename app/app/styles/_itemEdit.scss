@@ -204,26 +204,5 @@
             }
         }
 
-        .button {
-            border: none;
-            color: white;
-            font-weight: bold;
-            display: inline-block;
-            font-size: 1.3rem;
-            margin: 0 0 1.25rem;
-            padding: 0.5rem 2rem;
-            text-transform: uppercase;
-            transition: background-color 300ms ease-out 0s;
-            opacity: 1;
-            cursor: pointer;
-
-            // needs latest Compass, add '@import "compass"' to your scss
-            background-color: rgb(65,171,233); // Old browsers
-            @include filter-gradient(#41abe9, #339dd9, horizontal); // IE6-9 fallback on horizontal gradient
-            @include background-image(linear-gradient(left top, rgba(65,171,233,1) 1%,rgba(54,158,219,1) 17%,rgba(51,157,217,1) 100%));
-            &:hover {
-                opacity: 0.7;
-            }
-        }
     }
 }

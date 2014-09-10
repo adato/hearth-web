@@ -14,8 +14,8 @@
         top: 20px;
         color: black;
 
-        &:first-child {
-            border-top-width: 0px;
+        &.hide-border {
+            border-width: 0px;
         }
         .content {
             background-color: white;
@@ -23,25 +23,27 @@
             position: relative;
             top: -33px;
 
-            span.fa {
-                font-size: 1.3em;
-                border: 3px solid black;
-                border-radius: 50%;
-                height: 57px;
-                width: 57px;
-                padding-top: 8px;
-                margin-right: 15px;
-                text-align: center;
-            }
+            span {
+                &.fa {
+                    font-size: 1.3em;
+                    border: 3px solid black;
+                    border-radius: 50%;
+                    height: 57px;
+                    width: 57px;
+                    padding-top: 8px;
+                    margin-right: 15px;
+                    text-align: center;
+                }
 
-            span.fa-envelop {
-                font-size: 1.15em;
-                padding-top: 10px;
-            }
+                &.fa-envelop {
+                    font-size: 1.15em;
+                    padding-top: 10px;
+                }
 
-            span.fa-hearth {
-                font-size: 1.2em;
-                padding-top: 10px;
+                &.fa-heart {
+                    font-size: 1.2em;
+                    padding-top: 11px;
+                }
             }
         }
     }
@@ -243,6 +245,16 @@
             padding: {
                 bottom: 1em;
             };
+        }
+    }
+
+    .revert-changes {
+        color: #3FACED;
+        font-weight: bold;
+        position: relative;
+        top: 20px;
+        .fa {
+            margin-right: 5px;
         }
     }
 }
