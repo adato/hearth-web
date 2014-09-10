@@ -1,12 +1,12 @@
+/*
+
 .detail {
     h1 {
-        margin: 0;
     }
     height: 100%;
     min-height: 100;
     .locations {
         margin: {
-            top: 1em;
         };
     }
     .reply {
@@ -14,11 +14,13 @@
             bottom: 1em;
         };
         img {
-        	@include border-radius;
-        	 border: 2px solid lighten(color(3), 20%);
-        	margin: {
-        		right:0.5em;
-        	}
+            @include border-radius;
+             border: 2px solid lighten(color(3), 20%);
+            margin: {
+                right:0.5em;
+            }
         }
     }
 }
+
+*/

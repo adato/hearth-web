@@ -1,3 +1,256 @@
+<div class="profile-view" ng-controller="ListViewStateCtrl">
+    <header>
+        <div class="user-basic">
+            <h1><span>Karel Zápotocký</span></h1>
+            <p><span class="fa fa-quote-right"></span> jen jeho jest, co všech jest</p>
+        </div>
+        <div class="buttons">
+            <button class="invite-button blue"><span class="fa fa-forward"></span> Pozvat přátele<br> do Hearth</button>
+            <button><span class="fa fa-gears"></span> Nastavení</button>
+        </div>
+        <div class="highlights">
+            <div class="profile-photo" style="background-image:url(images/index/libor.png);"></div>
+            <div class="friends-and-follows"><b>89</b><br>lidí inspiruji<hr><strong>50</strong>ti lidmi inspirován</div>
+            <div class="communities"><b>8</b> komunit</div>
+            <div class="ratings"><b>24</b> darů a přání</div>
+            <div class="karma-bar"><span class="positive" style="width:70%;">70% <i class="fa fa-sun-o"></i></span><span class="negative" style="width:30%;"><i class="fa fa-moon-o"></i> 30%</span></div>
+        </div>
+    </header>
+
+    <!-- two columns displayed in main page of user profile -->
+    <div class="profile-listings">
+        <div class="left-pane">
+            <div class="messages">
+                <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
+            </div>
+            <div class="ratings">
+                <h3>Máte 1 nové hodnocení</h3>
+                <div class="rating">
+                    <div class="avatar"></div>
+                    <small class="date">včera</small>
+                    <div class="rating-text">
+                        Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!<br>
+                        <small class="rating-from">Říká <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> </small>
+                    </div>
+                </div>
+                <div class="rating">
+                    <div class="avatar"></div>
+                    <small class="date">před 5ti dny</small> 
+                    <div class="rating-text">
+                        Tentokrát to úplně nevyšlo, ale i tak díky za snahu.<br>
+                        <small class="rating-from">Říká <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> </small>
+                    </div>
+                </div>
+                <div class="buttons">      
+                    <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší příspěvky</button>
+                </div>
+            </div>
+            <div class="ads">
+                <h3>Momentálně máte aktivní 2 inzeráty <a href="#" class="create-ad-sign"></a></h3>
+                <div class="ad">
+                    <i class="fa fa-caret-left gift-receive"></i> &nbsp;
+                    <span><a href="">Přijmu příjemné příhody</a> / Praha</span>
+                    <div class="ad-controls">
+                        <a href=""><i class="fa fa-pencil"></i></a>
+                        <a href=""><i class="fa fa-pause"></i></a>
+                        <a href=""><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="ad">
+                    <i class="fa fa-caret-right gift-give"></i> &nbsp;
+                    <span><a href="">Daruji jeden až dva kýble svěcené vody</a> / Zruč nad Sázavou</span>
+                    <div class="ad-controls">
+                        <a href=""><i class="fa fa-pencil"></i></a>
+                        <a href=""><i class="fa fa-pause"></i></a>
+                        <a href=""><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="buttons">      
+                    <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší příspěvky</button>
+                </div>                
+            </div>
+        </div>
+
+        <div class="right-pane">
+            <div class="activities">
+                <h3>Poslední aktivita ve vaší síti</h3>
+                <h4>Dnes</h4>
+                <div class="activity">
+                    <div class="avatar"></div>
+                    <div class="activity-text">Přidal jste nový inzerát <a href="#">Věnuji hlídání dětí</a>.</div>
+                </div>
+                <h4>Včera</h4>
+                <div class="activity">
+                    <div class="avatar"></div>
+                    <div class="activity-text"><a href="#">Luční Koník</a> Vás oslovil ohledně inzerátu <a href="#">Shrabat listí</a>.</div>
+                </div>
+                <div class="activity">
+                    <div class="avatar"></div>
+                    <div class="activity-text">Pozastavil jste inzerát <a href="#">Shrabat listí</a>.</div>
+                </div>
+                <h4>Minulý týden</h4>
+                <div class="activity">
+                    <div class="avatar"></div>
+                    <div class="activity-text"><a href="#">Imimoto Asaki</a> Vás oslovil ohledně inzerátu <a href="#">Feng-shuei</a>.</div>
+                </div>
+                <div class="buttons">
+                    <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší příspěvky</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- people listing (following) -->
+    <div class="bottom-tabs">
+        <ul>
+            <li><a href="#" class="selected">Inspiruje vás 14 lidí</a></li>
+            <li><a href="#">Inspirujete 3 lidi</a></li>
+        </ul>
+    </div>
+
+    <div class="people-listing">
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">Jana Miříková</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">Karel Pecháček</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">John Smith</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">A. Šeran</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">Chandralekha Anirudh</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- people listing (followees) -->
+    <div class="bottom-tabs">
+        <ul>
+            <li><a href="#">Inspiruje vás 14 lidí</a></li>
+            <li><a href="#" class="selected">Inspirujete 3 lidi</a></li>
+        </ul>
+    </div>
+
+    <div class="people-listing">
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">John Smith</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">A. Šeran</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+        <div class="person">
+            <div class="avatar"></div>
+            <div class="name">
+                <h4><a href="">Chandralekha Anirudh</a></h4>
+                <a href="#">Přestat sledovat</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ads listing -->
+    <div class="bottom-tabs">
+        <ul>
+            <li><a href="#" class="selected">Moje inzeráty</a></li>
+            <li><a href="#">Napsali mi</a></li>
+            <li><a href="#">Napsal jsem ostatním</a></li>           
+        </ul>
+    </div>
+
+    <div class="ads-listing">
+    todo
+    </div>
+
+
+    <!-- rating received listing -->
+    <div class="bottom-tabs">
+        <ul>
+            <li><a href="#">Moje inzeráty</a></li>
+            <li><a href="#" class="selected">Napsali o mě</a></li>
+            <li><a href="#">Napsal jsem o ostatních</a></li>           
+        </ul>
+    </div>
+    <div class="rating-listing">
+        <div class="rating">
+            <div class="avatar"></div>
+            <small class="date">včera</small>
+            <div class="rating-text">
+                Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!<br>
+                <small class="rating-from">Říká <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> </small>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- rating given listing -->
+    <div class="bottom-tabs">
+        <ul>
+            <li><a href="#">Moje inzeráty</a></li>
+            <li><a href="#">Napsali o mě</a></li>
+            <li><a href="#" class="selected">Napsal jsem o ostatních</a></li>           
+        </ul>
+    </div>
+    <div class="rating-listing">
+        <div class="rating">
+            <div class="avatar"></div>
+            <small class="date">včera</small>
+            <div class="rating-text">
+                Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!<br>
+                <small class="rating-from">Napsal jsem <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> </small>
+            </div>
+        </div>
+        <div class="rating">
+            <div class="avatar"></div>
+            <small class="date">včera</small>
+            <div class="rating-text">
+                Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!<br>
+                <small class="rating-from">Napsal jsem <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> </small>
+            </div>
+        </div>
+        <div class="rating">
+            <div class="avatar"></div>
+            <small class="date">včera</small>
+            <div class="rating-text">
+                Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!<br>
+                <small class="rating-from">Napsal jsem <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> </small>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 
 <div ng-show="loaded">
 	<div class="user" ng-show="! info">
 		<p>Uzivatel nebyl nalezen</p>
@@ -27,4 +280,4 @@
 		<hr />
 		<div app-view-segment="1"></div>
 	</div>
-</div>
+</div> -->

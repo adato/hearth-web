@@ -159,9 +159,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.messageBottom = 'ERR_FORM_PUT_ERROR';
 				$scope.sending = false;
 			});
-
 		}
-
 
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
