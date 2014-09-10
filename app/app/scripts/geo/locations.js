@@ -19,6 +19,7 @@ angular.module('hearth.geo').directive('locations', [
                 locations: '=',
                 limit: '=',
                 error: '=',
+                errorMessage: '=',
                 hideMap: '='
             },
             templateUrl: 'templates/geo/locations.html',
@@ -26,6 +27,7 @@ angular.module('hearth.geo').directive('locations', [
                 var map, marker;
                 scope.mapDisplay = -1;
                 scope.error = false;
+                scope.errorMsg = scope.errorMessage || 'LOCATIONS_IS_EMPTY';
 
                 function getDefaultLocation() {
 

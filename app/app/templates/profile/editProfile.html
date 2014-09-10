@@ -24,7 +24,10 @@
         <div class="name margin">
           <label>
             {{ 'NAME' | translate }} *
-            <input ng-model="profile.name" class="text-input" type='text' ng-required="true">
+            <input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="profile.name" class="text-input" type='text' ng-required="true">
+            <div class="absolute error" ng-show="showError.name">
+                <span ng-show="profileEditForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+            </div>
           </label>
         </div>
         <div class="work margin">
@@ -45,7 +48,7 @@
         </span>
       </h2>
       <section class="location">
-        <locations locations="profile.locations" error="showError.locations" limit="-1" hide-map="true"></locations>
+        <locations locations="profile.locations" error="showError.locations" error-message="'LOCATIONS_IS_EMPTY_STRICT'" limit="-1" hide-map="true"></locations>
       </section>
 
       <h2>
@@ -80,7 +83,11 @@
           <div class="margin">
             <label>
               {{ 'MY_EMAIL' | translate }} *
-              <input ng-model="profile.email" class="text-input" type='email' ng-required="true">
+              <input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
+              <div class="error" ng-class="{absolute: showContactMail}" ng-show="showError.email">
+                  <span ng-show="profileEditForm.email.$error.email">{{ 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+                  <span ng-show="profileEditForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+              </div>
             </label>
             <div class="clear"></div>
             <a ng-click="showContactMail = true || profile.contact_email !=''" ng-hide="showContactMail" class="controll">
@@ -90,7 +97,11 @@
           <div ng-show="showContactMail">
             <label>
               {{ 'MY_CONTACT_EMAIL' | translate }}
-              <input ng-model="profile.contact_email" class="text-input" type='email' ng-required="false">
+              <input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="showError.contact_email = true" class="text-input" name="contact_email" type='email' ng-required="true">
+              <div class="error" ng-show="showError.contact_email">
+                  <span ng-show="profileEditForm.contact_email.$error.email">{{ 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+                  <span ng-show="profileEditForm.contact_email.$error.required">{{ 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
+              </div>
               <em>{{ 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
             </label>
             <div>
@@ -104,7 +115,11 @@
           <label>
             <div class="fa fa-phone"></div>
             {{ 'MY_PHONE' | translate }}
-            <input ng-model="profile.phone" class="text-input" type="text" ng-pattern="/[+]?[()/0-9. -]{9,}/">
+            <input ng-model="profile.phone" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input" type="text" ng-pattern="/((\+420|00420) ?)?\d{3}( |-)?\d{3}( |-)?\d{3}/">
+             <div class="error" ng-show="showError.phone">
+                <span ng-show="profileEditForm.phone.$error.pattern">{{ 'ERR_NOT_VALID_PHONE' | translate }}</span>
+            </div>
+            <!-- <input ng-model="profile.phone" class="text-input" type="text" ng-pattern="/[+]?[()/0-9. -]{9,}/"> -->
           </label>
         </div>
       </section>
@@ -195,6 +210,9 @@
           <a ng-href="#!/profile/{{profile._id}}" class="revert-changes">
             <span class="fa fa-chevron-left"></span>{{ 'CANCEL_CHANGES' | translate }}</a>
           <button type="submit" class="button-send right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5">{{ 'SAVE' | translate }}</button>
+          <div class="fright error down-error" ng-show="messageBottom">
+              <span>{{ messageBottom | translate}}</span>
+          </div>
         </div>
       </section>
   </form>

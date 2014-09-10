@@ -15,33 +15,15 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.profile = false;
 		$scope.showError = {
 			locations: false,
+			name: false,
+			email: false,
+			phone: false,
+			contact_email: false,
+			message: false,
 		};
 
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
-
-		$scope.transformDataIn = function(data) {
-
-			if (!data.webs || !data.webs.length) {
-				data.webs = [''];
-			}
-			if (!data.locations || !data.locations.length) {
-				data.locations = [{
-					name: ''
-				}];
-			}
-
-			$scope.languageList.forEach(function(item) {
-
-				if(!data.user_languages[item]) {
-					data.user_languages[item] = false;
-				}
-			});
-
-			$scope.showContactMail = data.contact_email && data.contact_email != '';
-
-			return data;
-		};
 
 		$scope.init = function() {
 			if (!$rootScope.loggedUser) {
@@ -81,33 +63,110 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		};
 
 		$scope.switchLanguage = function(lang) {
-			console.log(lang);
 			$scope.profile.user_languages[lang] = !$scope.profile.user_languages[lang];
 		};
 
+		$scope.disableErrorMsg = function(key) {
+			$scope.showError[key] = false;
+		};
+
+		$scope.transformDataIn = function(data) {
+
+			if (!data.webs || !data.webs.length) {
+				data.webs = [''];
+			}
+			if (!data.locations || !data.locations.length) {
+				data.locations = [{
+					name: ''
+				}];
+			}
+
+			data.interests = (data.interests) ? data.interests.join(",") : '';
+
+			$scope.languageList.forEach(function(item) {
+
+				if(!data.user_languages[item]) {
+					data.user_languages[item] = false;
+				}
+			});
+
+			$scope.showContactMail = data.contact_email && data.contact_email != '';
+			return data;
+		};
+
+		$scope.transferDataOut = function(data) {
+
+			data.interests = data.interests.split(",");
+			return data;
+		}
+
+		$scope.validateData = function(data) {
+			var res = true;
+
+			if($scope.profileEditForm.name.$invalid) {
+				res = false;
+				$scope.showError.name = true;
+			}
+			
+			if(data.locations) {
+				data.locations.forEach(function(item) {
+					if(item.name == '') {
+						res = false;
+						$scope.showError.locations = true;
+					}
+				});
+			}
+			
+			if($scope.profileEditForm.email.$invalid) {
+				res = false;
+				$scope.showError.email = true;
+			}
+				
+			if($scope.profileEditForm.phone.$invalid) {
+				res = false;
+				$scope.showError.phone = true;
+			}
+
+			if($scope.showContactMail && $scope.profileEditForm.contact_email.$invalid) {
+				res = false;
+				$scope.showError.contact_email = true;
+			}
+			return res;
+		}
+
 		$scope.update = function() {
-
-			console.log($scope.profile);
-
-			if($scope.sending)
+			var transformedData;
+				
+			if(! $scope.validateData($scope.profile)) {
+				$timeout(function() {
+					$scope.messageBottom = 'ERR_FORM_NOT_VALID';
+				});
 				return false;
+			}
 
+			if($scope.sending) {
+				return false;
+			}
 			$scope.sending = true;
 			
-			User.edit($scope.profile, function(res) {
-
-				console.log(res);
+			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
+			User.edit(transformedData, function(res) {
 				$scope.sending = false;
+				$location.path('/profile/'+$scope.profile._id);
 			}, function(res) {
 
 				console.log(res);
+				$scope.messageBottom = 'ERR_FORM_PUT_ERROR';
 				$scope.sending = false;
 			});
 
 		}
 
+
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
-
+		$scope.$watch('showError', function() {
+		  	$scope.messageBottom = false;
+		}, true); 
 	}
 ]);
