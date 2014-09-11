@@ -1,14 +1,16 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
-<h4>Prijata hodnoceni</h4>
 
-
-<div ng-repeat="(id, item) in data track by $index">
-	{{ item }}
-	<br />
-	<hr />
-	<br />
-</div>
-
-<div ng-if="! data.length">
-	<p>Zatím zde nejsou žádné záznamy</p>
+<div class="rating-listing">
+	<div class="rating" ng-repeat="(id, item) in data track by $index">
+		<div class="avatar">
+			<img ng-src="{{item.user_from_avatar.normal}}" />
+		</div>
+		<small class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}">{{ item.updated_at | ago }}</small>
+		<div class="rating-text">
+			{{ item.text }}
+			<br>
+			<small class="rating-from">Říká <a href="#!/profile/{{item.user_from}}">Martin Novák</a> k <a href="">Pěstování bylinek -- <b>????? </b></a> 
+			</small>
+		</div>
+	</div>
 </div>

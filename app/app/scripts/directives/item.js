@@ -17,6 +17,7 @@ angular.module('hearth.directives').directive('item', [
             scope: {
                 item: '=',
                 user: '=',
+                hideAvatar: '=',
                 keywordsActive: '='
             },
             templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!

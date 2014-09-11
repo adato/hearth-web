@@ -1,14 +1,49 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
-<h4>Mnou dana hodnoceni</h4>
 
-
-<div ng-repeat="(id, item) in data track by $index">
-	{{ item }}
-	<br />
-	<hr />
-	<br />
+<div class="rating-listing">
+	<div class="rating" ng-repeat="(id, item) in data track by $index">
+		<div class="avatar">
+			<img ng-src="{{item.user_from_avatar.normal}}" />
+		</div>
+		<small class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}">{{ item.updated_at | ago }}</small>
+		<div class="rating-text">
+			{{ item.text }}
+			<br>
+			<small class="rating-from">Napsal jsem <a href="#!/profile/{{item.user_from}}">Martin Novák</a> k <a href="">Pěstování bylinek</a> 
+			</small>
+		</div>
+	</div>
 </div>
 
-<div ng-if="! data.length">
-	<p>Zatím zde nejsou žádné záznamy</p>
+<div class="rating-listing">
+	<div class="rating">
+		<div class="avatar"></div>
+		<small class="date">včera</small>
+		<div class="rating-text">
+			Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!
+			<br>
+			<small class="rating-from">Napsal jsem <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> 
+			</small>
+		</div>
+	</div>
+	<div class="rating">
+		<div class="avatar"></div>
+		<small class="date">včera</small>
+		<div class="rating-text">
+			Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!
+			<br>
+			<small class="rating-from">Napsal jsem <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> 
+			</small>
+		</div>
+	</div>
+	<div class="rating">
+		<div class="avatar"></div>
+		<small class="date">včera</small>
+		<div class="rating-text">
+			Díky za pomoc se zahradní architekturou. Nevěděl jsem, co a jak, ale vaše rada mne osvítila. Děkuji! A ještě přidávám k dobru jednu historku: Povídá jednou pan Kolát, jak potkal na silnici brouka. Ale ne jen tak ledasjakého!
+			<br>
+			<small class="rating-from">Napsal jsem <a href="">Martin Novák</a> k <a href="">Pěstování bylinek</a> 
+			</small>
+		</div>
+	</div>
 </div>

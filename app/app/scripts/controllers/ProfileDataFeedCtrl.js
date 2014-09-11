@@ -47,7 +47,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         function loadUserHome(params) {
             var fulltextParams = {
                 type: 'post',
-                include_not_active: +$scope.mine, // cast bool to int
                 author_id: params.user_id
             }
 

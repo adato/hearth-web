@@ -18,26 +18,27 @@
 		</section>
 		
 		<section class="large-6 columns text-right hide-for-scrolled">
-			<a href="#!/" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+			<a href="#!/" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa fa-recycle"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
 
-			<a href="#!/communities" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+			<a href="#!/communities" ng-class="{active: segment == 'communities'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa fa-users"></div>
 				<label>{{ 'communities' | translate }}</label>
 			</a>
 
 			<div class="separator"></div>
 			
-			<a signed-in ng-show="loggedUser.name" ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+			<a signed-in ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
 	            <div class="img" ng-style="avatarExtraStyle"></div>
 	            <label>{{ loggedUser.name }}</label>
 		    </a>
 		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
-		       <li><a ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> Můj profil</a></li>
-		       <li><a ng-href="#!/profile-edit"><i class="fa fa-cog"></i> Nastavení</a></li>
-		       <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>Odhlásit se</a></li>
+		       <li><a ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
+		       <li><a ng-href="#!/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT'| translate }}</a></li>
+		       <li><a ng-href="#!/profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+		       <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
 		    </ul> 
 
 			<a data-dropdown="about-drop"  title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">

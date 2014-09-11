@@ -1,64 +1,165 @@
-<h4>Home - zakladni info</h4>
+<!-- two columns displayed in main page of user profile -->
+<div class="profile-listings">
+    <div class="left-pane">
+        <!-- <div class="messages">
+                <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
+            </div> -->
+        <div class="ratings">
+            <h3 ng-if="receivedRatings.length">Vaše hodnocení</h3>
+
+            <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating">
+                <div class="avatar"></div>
+                <small class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}">{{item.created_at | ago}}</small>
+                <div class="rating-text">
+                    {{item.text | ellipsis}}
+                    <br>
+                    <small class="rating-from">Říká <a href="#!/profile/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}} </a> k <a href="">Pěstování bylinek</a> 
+                    </small>
+                </div>
+            </div>
+            <p ng-if="! receivedRatings.length">Zatím zde nemáte žádná hodnocení</p>
+            <div class="buttons">
+                <a href="#/profile/{{info._id}}/given-ratings">
+                    <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší hodnocení</button>
+                </a>
+            </div>
+        </div>
+        <div class="ads">
+            <h3></h3>
+            <h3 ng-show="mine">
+                <span ng-if="posts.data.length">Momentálně máte aktivní {{ posts.data.length }} inzeráty</span>
+                <span ng-if="! posts.data.length">Aktivní inzeráty</span>
+
+                <a class="create-ad-sign" ng-click="editItem(null)"></a>
+            </h3>
+            <h3 ng-show="!mine">Inzeráty uživatele</h3>
+
+            <p ng-if="mine && ! posts.data.length">Zatím zde nemáte žádné inzeráty</p>
+            <p ng-if="!mine && ! posts.data.length">Uživatel zatím nemá žádné inzeráty</p>
+
+            <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
+                <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
+                <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
+                <span>
+                    <a href="#!/ad/{{ item._id }}">{{item.title | ellipsis}}</a>
+                    <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>
+                </span>
+                <div class="ad-controls">
+                    <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
+                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
+                    <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
+                    <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
+                </div>
+
+                <section ng-include="'templates/modals.html'" id="modals"></section>
+            </div>
+            <div class="buttons">
+                <a href="#!/profile/{{info._id}}/posts">
+                    <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Všechny příspěvky</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-pane">
 
 
-<section class="userInfo">
-	<h3>Poznejte uživatele {{ info.name }}</h3>
-	<span class="work">{{info.work}}</span>
-	<span class="regDate">Uživatel se registroval {{info.created_at | ago}}</span>
-	<span class="work">{{info.twitter}}</span>
-</section>
+        <section class="userInfo">
+            <h3>Poznejte uživatele {{ info.name }}</h3>
+            <span class="work">{{info.work}}</span>
+            <span class="regDate">Uživatel se registroval {{info.created_at | ago}}</span>
+            <span class="work">{{info.twitter}}</span>
+        </section>
+        <br />
+        <br />
 
-<section class="ratings">
-	<head>
-		<h3>Vaše nové upozornění</h3>
-	</head>
-	<ul ng-if="receivedRatings.length">
-		<li ng-repeat="(id, item) in receivedRatings track by $index">
-			<span>
-				{{item.user_from_full_name | ellipsis}} - {{item.text | ellipsis}} - <span class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span> {{item.created_at | ago}}</span>
-			</span>
-		</li>
-	</ul>
-</section>
+        <div class="activities">
+
+            <!--  <ul ng-if="activityLog.length">
+                <li>
+                    <span>
+                        <span dynamic-text="item.text" dynamic-data="item.data"></span>
+                        <span class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span> {{item.created_at | ago}}</span>
+                    </span>
+                </li>
+            </ul> -->
+            
+            <h3 ng-show="mine">Vaše aktivity</h3>
+            <h3 ng-show="!mine">Aktivity uživatele</h3>
+            
+            <p ng-hide="activityLog.length">Zatím zde nejsou žádné záznamy.</p>
+            <div ng-if="activityLog.length">
+
+                <h4>Dnes</h4>
+                <div class="activity" ng-repeat="(id, item) in activityLog track by $index">
+                    <div class="avatar"></div>
+                    <div class="activity-text">Přidal jste nový inzerát <a href="#">Věnuji hlídání dětí</a>.</div>
+                </div>
+                <h4>Včera</h4>
+                <div class="activity">
+                    <div class="avatar"></div>
+                    <div class="activity-text"><a href="#">Luční Koník</a> Vás oslovil ohledně inzerátu <a href="#">Shrabat listí</a>.</div>
+                </div>
+                <div class="activity">
+                    <div class="avatar"></div>
+                    <div class="activity-text">Pozastavil jste inzerát <a href="#">Shrabat listí</a>.</div>
+                </div>
+                <h4>Minulý týden</h4>
+                <div class="activity">
+                    <div class="avatar"></div>
+                    <div class="activity-text"><a href="#">Imimoto Asaki</a> Vás oslovil ohledně inzerátu <a href="#">Feng-shuei</a>.</div>
+                </div>
+                <div class="buttons">
+                    <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší příspěvky</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <h4>Home - zakladni info</h4>
+
 
 <section class="activity-feed">
-	<head>
-		<h3 ng-show="mine">Vaše aktivity</h3>
-		<h3 ng-show="!mine">Aktivity uživatele</h3>
-	</head>
-	<ul ng-if="activityLog.length">
-		<li ng-repeat="(id, item) in activityLog track by $index">
-			<span>
-				<span dynamic-text="item.text" dynamic-data="item.data"></span>
-				<span class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span> {{item.created_at | ago}}</span>
-			</span>
-		</li>
-	</ul>
+    <head>
+        <h3 ng-show="mine">Vaše aktivity</h3>
+        <h3 ng-show="!mine">Aktivity uživatele</h3>
+    </head>
+    <ul ng-if="activityLog.length">
+        <li ng-repeat="(id, item) in activityLog track by $index">
+            <span>
+                <span dynamic-text="item.text" dynamic-data="item.data"></span>
+                <span class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><span class="fa fa-clock-o"></span> {{item.created_at | ago}}</span>
+            </span>
+        </li>
+    </ul>
 </section>
 
 <section class="posts">
-	<head>
-		<h3 ng-show="posts.total">Momentalne mate {{posts.total}} posty</h3>
-		<h3 ng-show="! posts.total">Momentalne nemate zadne posty</h3>
-		<i class="fa fa-plus-square" ng-click="editItem(null)" ></i>
-	</head>
-	<ul ng-if="posts.total">
-		<li ng-repeat="(id, item) in posts.data track by $index">
-			<span>
-				{{item.title | ellipsis}}
-				<span ng-if="item.locations.length && item.locations[0].city"> / {{item.locations[0].city}}</span>
-			</span>
+    <head>
+        <h3 ng-show="posts.total">Momentalne mate {{posts.total}} posty</h3>
+        <h3 ng-show="! posts.total">Momentalne nemate zadne posty</h3>
+    </head>
+    <ul ng-if="posts.total">
+        <li ng-repeat="(id, item) in posts.data track by $index">
+            <span>
+                {{item.title | ellipsis}}
+                <span ng-if="item.locations.length && item.locations[0].city"> / {{item.locations[0].city}}</span>
+            </span>
 
-			<i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
-			<i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
-			<i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
-			<i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
+            <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
+            <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
+            <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
+            <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
 
-		    <section ng-include="'templates/modals.html'" id="modals"></section>
-		</li>
-		<li class="tcenter">
-			<a href="#!/profile/{{info._id}}/posts">Všechny inzeráty</a>
-		</li>
-	</ul>
+            <section ng-include="'templates/modals.html'" id="modals"></section>
+        </li>
+        <li class="tcenter">
+            <a href="#!/profile/{{info._id}}/posts">Všechny inzeráty</a>
+        </li>
+    </ul>
 
 </section>
+ -->

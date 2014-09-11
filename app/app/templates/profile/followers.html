@@ -1,15 +1,40 @@
 <div ng-include="'templates/profile/followingPanel.html'"></div>
 
-<h4>Kdo me sleduje</h4>
-
-
-<div ng-repeat="(id, item) in data track by $index">
-	{{ item }}
-	<br />
-	<hr />
-	<br />
+<div class="people-listing">
+	<div class="person" ng-repeat="(id, item) in data track by $index">
+		<div class="avatar"></div>
+		<div class="name">
+			<h4>
+				<a href="#!/profile{{ item.user_id}}">{{ item.user_full_name}}</a>
+			</h4>
+			<!-- <a ng-click="stopFollowing(item)">Přestat sledovat</a> -->
+		</div>
+	</div>
 </div>
 
-<div ng-if="! data.length">
-	<p>Zatím zde nejsou žádné záznamy</p>
+<!-- 
+<div class="people-listing">
+    <div class="person">
+        <div class="avatar"></div>
+        <div class="name">
+            <h4><a href="">John Smith</a></h4>
+            <a href="#">Přestat sledovat</a>
+        </div>
+    </div>
+    <div class="person">
+        <div class="avatar"></div>
+        <div class="name">
+            <h4><a href="">A. Šeran</a></h4>
+            <a href="#">Přestat sledovat</a>
+        </div>
+    </div>
+    <div class="person">
+        <div class="avatar"></div>
+        <div class="name">
+            <h4><a href="">Chandralekha Anirudh</a></h4>
+            <a href="#">Přestat sledovat</a>
+        </div>
+    </div>
 </div>
+
+ -->

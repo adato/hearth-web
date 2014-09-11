@@ -62,6 +62,7 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
                 .when('/profile/:id/invite', 'profile.invite')
 
                 .when('/profile-edit', 'profileEdit')
+                .when('/profile-settings', 'profileSettings')
 
             .when('/communities/:action?', 'communities')
             // .when('/community/:id/:action?', 'community')
@@ -122,6 +123,12 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
             }).segment('profileEdit', {
                 templateUrl: 'templates/profile/editProfile.html',
                 controller: 'ProfileEditCtrl',
+                reloadOnSearch: false,
+                pageType: 'profile'
+
+            }).segment('profileSettings', {
+                templateUrl: 'templates/profile/editSettings.html',
+                controller: 'ProfileSettingsCtrl',
                 reloadOnSearch: false,
                 pageType: 'profile'
 

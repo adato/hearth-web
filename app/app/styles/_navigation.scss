@@ -67,6 +67,7 @@ $topBarImageSize: 1.8em;
                 transition: opacity 1s;
                 border: 2px solid lighten(color(1), 25%);
             }
+            &.active,
             &:hover {
                 color: lighten(color(1), 50%);
                 .fa {

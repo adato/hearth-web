@@ -7,10 +7,16 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout) {
         var timeout;
+        $scope.segment = false;
+
+        $rootScope.$on("$routeChangeSuccess", function() {
+            console.log($route.current.segment.slice(0,7));
+            $scope.segment = $route.current.segment;
+        });
 
         $scope.topArrowText = {};
         $scope.isScrolled = false;
@@ -27,6 +33,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!text) return false;
             $location.path('/search');
             $location.search('q=' + (text || ""));
+            
+            $timeout(function() {
+                $scope.$emit("fulltextSearch");
+                $scope.$broadcast("fulltextSearch");
+            });
         };
         $scope.top = function() {
             $('html, body').animate({
