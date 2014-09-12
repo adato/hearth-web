@@ -502,15 +502,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			});
 		});
 
-		$scope.$on("fulltextSearch", function(text) {
-			
-			console.log("EVENT", text);
-			$scope.offset = 0;
-			return $scope.search({
-				add: false
-			});
-		});
-
 		if (($scope.loggedUser != null ? $scope.loggedUser._id : void 0) != null) {
 			$scope.initMyFollowers();
 		}

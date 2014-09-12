@@ -124,5 +124,9 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
         };
 
         $scope.load();
+
+        
+        $scope.$on("fulltextSearch", $scope.load);
+
     }
 ]);
