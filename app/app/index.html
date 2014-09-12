@@ -147,13 +147,8 @@
     <link rel="stylesheet" type="text/css" href="vendor/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 
     <script>
-      var preferredLanguage, translations = {};
-      function defaultTranslation(args) {
-        preferredLanguage = args[0];
-        translations[preferredLanguage] = args[1];
-      }
+      preferredLanguage = $.cookie('language');
     </script>
-    <script src="locales/default?callback=defaultTranslation"></script>
 
     <script>
       $(function() { 

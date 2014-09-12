@@ -9,8 +9,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
-	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope',
-	function($scope, UsersService, LanguageSwitch, $rootScope) {
+	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route',
+	function($scope, UsersService, LanguageSwitch, $rootScope, $route) {
 		$scope.loaded = true;
 		$scope.pass = {
 			old: '',
@@ -20,9 +20,13 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		function init() {
 
 			$scope.lang = LanguageSwitch.uses();
-			console.log($scope.lang);
 		}
 
+		$scope.switchLang = function(lang) {
+
+			LanguageSwitch.swicthTo(lang);
+			window.location.reload();
+		}
 
 
 		$scope.$on('initFinished', init);

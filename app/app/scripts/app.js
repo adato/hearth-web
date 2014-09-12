@@ -14,8 +14,9 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
     ]).config([
         '$translateProvider',
         function($translateProvider) {
-            preferredLanguage = preferredLanguage || 'cs';
-            $translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
+
+            preferredLanguage = preferredLanguage || $$config.defaultLanguage;
+            // $translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
             $translateProvider.preferredLanguage(preferredLanguage);
             $translateProvider.useStaticFilesLoader({
                 prefix: 'locales/',

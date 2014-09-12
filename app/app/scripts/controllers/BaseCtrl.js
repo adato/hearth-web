@@ -34,8 +34,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $location.path('/search');
             $location.search('q=' + (text || ""));
             
+            // first reload scope to new location, then start searching
             $timeout(function() {
-                $scope.$emit("fulltextSearch");
                 $scope.$broadcast("fulltextSearch");
             });
         };

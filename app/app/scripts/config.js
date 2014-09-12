@@ -4,6 +4,7 @@ $$config = {
 	apiPath: '/api',
 	modalTemplates: 'templates/modal/',
 	lengthUnit: 'km',
+	defaultLanguage: 'cs',
 	defaultUserImage: 'images/no-avatar.png',
 	gApiKey: 'AIzaSyDArE48iXuR16XEp8zEUDo4g6E7GSqGJgc',
 	// fbAppId: '277542219089599', // production

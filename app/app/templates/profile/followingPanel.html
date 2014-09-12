@@ -1,6 +1,6 @@
 <div class="bottom-tabs">
     <ul>
-        <li><a href="#!/profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'profile.following'}">Inspiruje vás 14 lidí</a></li>
-        <li><a href="#!/profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'profile.followers'}">Inspirujete 3 lidi</a></li>
+        <li><a href="#!/profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'profile.following'}">Inspiruje vás {{info.followees_count}} lidí</a></li>
+        <li><a href="#!/profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'profile.followers'}">Inspirujete {{info.followers_count}} lidi</a></li>
     </ul>
 </div>
