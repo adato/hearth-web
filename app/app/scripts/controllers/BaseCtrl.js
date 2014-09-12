@@ -34,7 +34,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $location.path('/search');
             $location.search('q=' + (text || ""));
             
-            $rootScope.$broadcast("fulltextSearch");
+            $timeout(function() {
+                $scope.$emit("fulltextSearch");
+                $scope.$broadcast("fulltextSearch");
+            });
         };
         $scope.top = function() {
             $('html, body').animate({

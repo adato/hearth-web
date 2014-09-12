@@ -24,7 +24,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             $scope.topArrowText.top = '';
             $scope.topArrowText.bottom = '';
         });
-        
+
         angular.extend($scope, {
             queryText: $routeParams.q || '',
             items: [],
@@ -125,8 +125,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
         $scope.load();
 
-        
         $scope.$on("fulltextSearch", $scope.load);
-
     }
 ]);

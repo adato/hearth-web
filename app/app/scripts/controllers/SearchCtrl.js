@@ -4,7 +4,7 @@
  * @ngdoc controller
  * @name hearth.controllers.SearchCtrl
  * @description
- * 
+ *
  * @deprecated
  */
 
