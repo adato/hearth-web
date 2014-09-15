@@ -14,7 +14,7 @@
             <button ng-if="! mine" class="follow-button blue"><span class="fa fa-forward"></span> Sledovat</button>
         </div>
         <div class="highlights">
-            <a href="#!/profile/{{info._id}}" class="profile-photo" style="background-image:url('{{info.avatar.normal}}');"></a>
+            <a href="#!/profile/{{info._id}}" class="profile-photo" style="background-image:url('{{info.avatar.large}}');"></a>
             <a href="#!/profile/{{info._id}}/following" class="friends-and-follows"><b>{{info.followers_count}}</b><br>lidí inspiruji<hr><strong>{{info.followees_count}}</strong>ti lidmi inspirován</a>
             <a href="#!/profile/{{info._id}}/communities" class="communities"><b>{{info.communities_count}}</b> komunit</a>
             <a href="#!/profile/{{info._id}}/posts" class="ratings"><b>{{info.post_count}}</b> darů a přání</a>

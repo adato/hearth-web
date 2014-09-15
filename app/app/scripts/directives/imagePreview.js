@@ -21,8 +21,8 @@ angular.module('hearth.directives').directive('imagePreview', [
 						+ '<input class="file-upload-input" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
 						+ '<span ng-transclude style="position:relative"></span>' 
 						+ '<br /><br />'
-	                    + '<span ng-if="error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</span>'
-	                    + '<span ng-if="error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</span>'
+	                    + '<div ng-if="error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
+	                    + '<div ng-if="error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
 						+ '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];

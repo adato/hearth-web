@@ -14,7 +14,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.segment = false;
 
         $rootScope.$on("$routeChangeSuccess", function() {
-            console.log($route.current.segment.slice(0,7));
             $scope.segment = $route.current.segment;
         });
 
