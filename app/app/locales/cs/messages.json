@@ -128,7 +128,10 @@
 	"ERR_NOT_FILLED_CONTACT_EMAIL": "Vyplňte prosím váš kontaktní email",
 	"ERR_NOT_VALID_PHONE": "Telefon zadávejte ve formátu +420 XXX XXX XXX",
 	"ERR_NOT_FILLED_NAME": "Vyplňte prosím vaše jméno a příjmení",
-	"ERR_FORM_PUT_ERROR": "Při odesílání došlo k chybě. Zkuste to prosím znovu.",
+	"ERR_NOT_FILLED_OLD_PASS": "Zadejte vaše staré heslo..",
+	"ERR_NOT_FILLED_NEW_PASS": "Zadejte nové heslo, které chcete nastavit.",
+	"ERR_TOO_SHORT_NEW_PASS": "Nové heslo musí mít alespoň 5 znaků!",
+	"ERR_OLD_PASS_IS_NOT_VALID": "Zadali jste špatné staré heslo.",
 	"LOCATIONS_IS_EMPTY": "Doplňte prázdné místo a nebo zaškrtněte, že na místě nezáleží.",
 	"LOCATIONS_IS_EMPTY_STRICT": "Vyplňte všechna místa.",
 	"DATE_IS_EMPTY": "Vyplňte datum platnosti inzerátu a nebo zaškrtněte neomezené datum.",
@@ -452,5 +455,8 @@
     "AD_PAUSE_ARE_YOU_SURE": "Doopravdy chcete pozastavit tento inzerát?",
     "AD_REPORT_ARE_YOU_SURE": "Doopravdy chcete nahlásit tento inzerát jako škodlivý?",
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadejte co vás zajímá...",
+    "FILL_NEW_PASS": "Zadejte nové heslo",
+    "FILL_CURRENT_PASS": "Zadejte současné heslo",
+    "WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíte - budeme vděční, když nám povíte důvod:",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>"
 }

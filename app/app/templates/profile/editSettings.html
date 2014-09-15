@@ -1,5 +1,5 @@
-<div class="row profile-edit" ng-show="loaded">
-  <form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate ng-show="loaded">
+<div class="row profile-edit profile-settings" ng-show="loaded">
+  <form id="profileSettingsForm" name="profileSettingsForm" ng-submit="update()" novalidate ng-show="loaded">
 
     <div class="large-12">
       <h2>
@@ -24,24 +24,31 @@
 
         <div class="fleft large-6">
           <div class="fleft large-11">
-            <label for="oldPass">Zadejte současné heslo</label>
-            <input type="password" name="oldPass" id="oldPass" ng-model="pass.old" required />
-            <div class="absolute error" ng-show="showError.name">
-                <span ng-show="profileEditForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+            <label for="oldPass">{{ 'FILL_CURRENT_PASS' | translate }}</label>
+            <input type="password" ng-focus="showError.oldPass = false; profileSettingsForm.oldPass.$error.notValid = false;" ng-blur="showError.oldPass = true; testOldPassword(pass.old, 'oldPass')" name="oldPass" id="oldPass" ng-model="pass.old" required />
+            <div class="absolute error" ng-show="showError.oldPass">
+                <span ng-show="profileSettingsForm.oldPass.$error.required">{{ 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
+                <span ng-show="profileSettingsForm.oldPass.$error.notValid">{{ 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
             </div>
           </div>
         </div>
 
         <div class="fright large-6">
           <div class="fright large-11">
-            <label for="newPass">Zadejte nové heslo</label>
-            <input type="password" name="newPass" ng-model="pass.changed" id="newPass" required />
+            <label for="newPass">{{ 'FILL_NEW_PASS' | translate }}</label>
+            <show-text-in-password>
+              <input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" required ng-minlength="5" />
+            </show-text-in-password>
+            <div class=" error" ng-show="showError.newPass">
+                <span ng-show="profileSettingsForm.newPass.$error.required">{{ 'ERR_NOT_FILLED_NEW_PASS' | translate }}</span>
+                <span ng-show="profileSettingsForm.newPass.$error.minlength">{{ 'ERR_TOO_SHORT_NEW_PASS' | translate }}</span>
+            </div>
           </div>
         </div>
 
         <div class="clear"></div>
         <br />
-        <button type="submit" class="button-send right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5">{{ 'SAVE' | translate }}</button>
+        <button type="submit" class="button-send right" ng-click="changePassword(pass)" analytics-on analytics-event="edit password" analytics-category="Profile settings" analytics-value="1">{{ 'SAVE' | translate }}</button>
       </section>
       <br />
       <br />
@@ -52,19 +59,24 @@
         </span>
       </h2>
       <section class="delete-account">
-
-        <label for="text">Je nám líto, že nás opouštíte - budeme vděční, když nám povíte důvod:</label>
+        <label for="text">{{ 'WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE' | translate }}</label>
         <textarea ng-model="leave.reason" autosize-textarea></textarea>
 
         <div class="fleft large-6">
           <div class="fleft large-11">
-            <label for="oldPassLeave">Zadejte vaše heslo</label>
-            <input type="password" name="oldPassLeave" id="oldPassLeave" required />
+            <label for="oldPassLeave">{{ 'FILL_CURRENT_PASS' | translate }}</label>
+            <input type="password" ng-focus="showError.oldPassLeave = false; profileSettingsForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass" id="oldPassLeave" required />
+            <div class="absolute error" ng-show="showError.oldPassLeave">
+                <span ng-show="profileSettingsForm.oldPassLeave.$error.required">{{ 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
+                <span ng-show="profileSettingsForm.oldPassLeave.$error.notValid">{{ 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
+            </div>
           </div>
         </div>
-        <div class="clear"></div>
-        <button type="submit" class="button-send right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5">{{ 'USER_DELETE_PROFILE' | translate }}</button>
-
+        
+        <div class="fright tright large-6">
+          <br />
+          <button ng-click="deleteAccount(leave)" type="submit" class="button-send" analytics-on analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1">{{ 'USER_DELETE_PROFILE' | translate }}</button>
+        </div>
       </section>
       <div class="clear"></div>
 

@@ -1445,3 +1445,22 @@ img.blur {
 .vis-hidden {
     visibility: hidden;
 }
+
+
+.text-in-password {
+    position: relative;
+    .fa-eye {
+        position: absolute;
+        top: 0.783rem;
+        right: 0.5rem;
+        cursor: pointer;
+
+        padding-left: 16px;
+        padding-right: 10px;
+        position: absolute;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
