@@ -51,37 +51,47 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             $scope.$emit("fulltextSearch");
         };
 
-        $scope.processData = function(response) {
+        $scope.processData = function(params) {
+            return function(response) {
+                var i, item, data = response.data;
 
-            $("#fulltextSearchResults").removeClass("searchInProgress");
+                $("#fulltextSearchResults").removeClass("searchInProgress");
 
-            var i, item, data = response.data;
-
-            for (i = 0; i < data.length; i++) {
-                item = data[i];
-                if (item.author && item.author.avatar.normal) {
-                    data[i].avatarStyle = {
-                        'background-image': 'url(' + item.author.avatar.normal + ')'
-                    };
+                for (i = 0; i < data.length; i++) {
+                    item = data[i];
+                    if (item.author && item.author.avatar.normal) {
+                        data[i].avatarStyle = {
+                            'background-image': 'url(' + item.author.avatar.normal + ')'
+                        };
+                    }
+                    if (item.avatar && item.avatar.normal) {
+                        data[i].avatarStyle = {
+                            'background-image': 'url(' + item.avatar.normal + ')'
+                        };
+                    }
                 }
-                if (item.avatar && item.avatar.normal) {
-                    data[i].avatarStyle = {
-                        'background-image': 'url(' + item.avatar.normal + ')'
-                    };
-                }
+
+                $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
+                $scope.loaded = true;
+
+                $scope.topArrowText.bottom = $translate('total-count', {
+                    value: response.total
+                });
+                $scope.topArrowText.top = $translate('ads-has-been-read', {
+                    value: $scope.items.length
+                });
             }
-
-            $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
-            $scope.loaded = true;
-
-            $scope.topArrowText.bottom = $translate('total-count', {
-                value: response.total
-            });
-            $scope.topArrowText.top = $translate('ads-has-been-read', {
-                value: $scope.items.length
-            });
         };
         
+        $scope.processStatsData = function(response) {
+
+            $scope.counters = $.extend({
+                post: 0,
+                community: 0,
+                user: 0
+            }, response.counters);
+        };
+
         $scope.load = function(addOffset) {
             var params = {
                 query: $routeParams.q || "",
@@ -108,17 +118,9 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             $scope.selectedFilter = $location.search().type || 'all';
 
             $("#fulltextSearchResults").addClass("searchInProgress");
-            Fulltext.query(params, $scope.processData);
-
-            Fulltext.stats({
-                query: params.query
-            }, function(response) {
-                $scope.counters = $.extend({
-                    post: 0,
-                    community: 0,
-                    user: 0
-                }, response.counters);
-            });
+            
+            Fulltext.query(params, $scope.processData(params));
+            Fulltext.stats({query: params.query}, $scope.processStatsData);
         };
 
 
