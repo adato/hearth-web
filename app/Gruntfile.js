@@ -180,7 +180,7 @@ module.exports = function(grunt) {
 			rules: [
 				{from: '^/api/(.*)$',to: '/api/$1'},
 				{from: '^/app(.*)$',to: '$1'},
-				{from: '^(?!app).*',to: '/app/', redirect: 'temporary'},
+				// {from: '^(?!app).*',to: '/app/', redirect: 'temporary'},
 			],
 
 			proxies: [{
