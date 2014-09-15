@@ -19,7 +19,7 @@
             </div>
             <p ng-if="! receivedRatings.length">Zatím zde nemáte žádná hodnocení</p>
             <div class="buttons">
-                <a href="#/profile/{{info._id}}/given-ratings">
+                <a href="#!/profile/{{info._id}}/given-ratings">
                     <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší hodnocení</button>
                 </a>
             </div>
@@ -89,28 +89,21 @@
             
             <p ng-hide="activityLog.length">Zatím zde nejsou žádné záznamy.</p>
             <div ng-if="activityLog.length">
+                <div class="timeline-container">
+                    <div class="profile-timeline"></div>
 
-                <h4>Dnes</h4>
-                <div class="activity" ng-repeat="(id, item) in activityLog track by $index">
-                    <div class="avatar"></div>
-                    <div class="activity-text">Přidal jste nový inzerát <a href="#">Věnuji hlídání dětí</a>.</div>
-                </div>
-                <h4>Včera</h4>
-                <div class="activity">
-                    <div class="avatar"></div>
-                    <div class="activity-text"><a href="#">Luční Koník</a> Vás oslovil ohledně inzerátu <a href="#">Shrabat listí</a>.</div>
-                </div>
-                <div class="activity">
-                    <div class="avatar"></div>
-                    <div class="activity-text">Pozastavil jste inzerát <a href="#">Shrabat listí</a>.</div>
-                </div>
-                <h4>Minulý týden</h4>
-                <div class="activity">
-                    <div class="avatar"></div>
-                    <div class="activity-text"><a href="#">Imimoto Asaki</a> Vás oslovil ohledně inzerátu <a href="#">Feng-shuei</a>.</div>
+                    <div ng-repeat="(id, item) in activityLog track by $index" ng-init="item.prevDate = ($index > 0) ? activityLog[$index-1].created_at : null">
+                        <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
+                        <div class="activity">
+                            <div class="avatar"></div>
+                            <div class="activity-text" dynamic-text="item.text" dynamic-data="item.data"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="buttons">
-                    <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší aktivity</button>
+                    <a href="#!/profile/{{info._id}}/activity-feed">
+                        <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> Starší aktivity</button>
+                    </a>
                 </div>
             </div>
         </div>

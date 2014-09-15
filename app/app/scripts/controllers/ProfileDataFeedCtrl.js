@@ -16,7 +16,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'profile.given': UserRatings.given,
                 'profile.received': UserRatings.received,
                 'profile.following': Followees.query,
-                'profile.followers': Followers.query
+                'profile.followers': Followers.query,
+                'profile.activities': ActivityLog.get
             },
             params = {
                 user_id: $routeParams.id
@@ -44,6 +45,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 });
             }, doneErr);
         }
+
         function loadUserHome(params) {
             var fulltextParams = {
                 type: 'post',

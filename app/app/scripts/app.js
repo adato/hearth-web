@@ -59,6 +59,7 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
                 .when('/profile/:id/given-ratings', 'profile.given')
                 .when('/profile/:id/received-ratings', 'profile.received')
                 .when('/profile/:id/following', 'profile.following')
+                .when('/profile/:id/activity-feed', 'profile.activities')
                 .when('/profile/:id/followers', 'profile.followers')
                 .when('/profile/:id/invite', 'profile.invite')
 
@@ -179,6 +180,11 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
                 })
                 .segment('following', {
                     templateUrl: 'templates/profile/following.html',
+                    controller: 'ProfileDataFeedCtrl',
+                    dependencies: ['id']
+                })
+                .segment('activities', {
+                    templateUrl: 'templates/profile/activities.html',
                     controller: 'ProfileDataFeedCtrl',
                     dependencies: ['id']
                 })

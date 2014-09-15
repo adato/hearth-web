@@ -329,22 +329,46 @@
         .right-pane {
             @extend .large-5, .columns, .box;
             .activities {
+
                 h4 {
                     margin-left: 30px;
                     font-size: 1.2rem;
                     font-weight: bold;
+                    position: relative;
+                    background-color: white;
                 }
                 .activity {
                     margin-left:30px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    position: relative;
+                    background-color: white;
                     .avatar {
                         float:left;
                         left:0;
                         margin:10px;
+                        margin-top: 5px;
+                        margin-bottom: 5px;
                     }
                     .activity-text {
                         @extend .clearfix;
                         padding-top:20px;
                         margin-left:80px;
+                    }
+                }
+                .timeline-container {
+                    position: relative;
+                    padding-bottom: 20px;
+
+                    .profile-timeline {
+                        position: absolute;
+                        left: 60px;
+                        top: 0px;
+                        bottom: 0px;
+                        height: 100%;
+                        background-color: #cacaca;
+                        width: 5px;
+
                     }
                 }
             }
@@ -477,4 +501,5 @@
             }
         }
     }
+
 }

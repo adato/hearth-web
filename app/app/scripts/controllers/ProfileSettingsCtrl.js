@@ -145,7 +145,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			if (!$scope.validateChangePasswordError(pass)) {
 				return;
 			}
-
+			
 			if($scope.changeSubmitted) {
 				return false;
 			}
@@ -165,7 +165,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			LanguageSwitch.swicthTo(lang);
 			window.location.reload();
 		};
-
 
 		$rootScope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
