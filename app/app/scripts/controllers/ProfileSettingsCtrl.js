@@ -37,13 +37,34 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			return res;
 		};
 
+		$scope.processDeleteUserResult = function(res) {
+
+			console.log(res);
+			// window.location.reload("/app/");
+		};
+
+	 	$scope.sendDeleteRequest = function(data) {
+	 		return function(resultValidation) {
+
+				if(! validationResult) {
+					return false;
+				}
+
+				User.remove({
+					user_id: $rootScope.loggedUser._id,
+					current_password: data.pass
+				}, $scope.processDeleteUserResult);
+	 		}
+	 	}
+
 		$scope.deleteAccount = function(data) {
 			
 			if(! $scope.validateDeleteAccount(data)) {
 				return;
 			}
 
-			console.log(data);
+			$scope.testOldPassword(data.pass, 'oldPassLeave', $scope.sendDeleteRequest(pass));
+
 		};
 
 		$scope.validateChangePasswordError = function(data) {
