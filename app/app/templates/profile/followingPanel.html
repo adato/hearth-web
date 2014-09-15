@@ -1,6 +1,6 @@
 <div class="bottom-tabs">
     <ul>
-        <li><a href="#!/profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'profile.following'}">Inspiruje vás {{info.followees_count}} lidí</a></li>
-        <li><a href="#!/profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'profile.followers'}">Inspirujete {{info.followers_count}} lidi</a></li>
+        <li><a href="#!/profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'profile.following'}">{{ 'YOU_ARE_INSPIRED' | translate }} {{info.followees_count}} {{ 'PEOPLE_SECOND_CASE' | translate}}</a></li>
+        <li><a href="#!/profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'profile.followers'}">{{ 'YOU_ARE_INSPIRING' | translate }} {{info.followers_count}} {{ 'PEOPLE_FIRST_CASE' | translate}}</a></li>
     </ul>
 </div>

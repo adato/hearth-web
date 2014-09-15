@@ -1,8 +1,8 @@
 <div class="bottom-tabs">
     <ul>
-        <li><a href="#!/profile/{{info._id}}/posts" ng-class="{selected: pageSegment =='profile.posts'}">Moje inzeráty</a></li>
-        <li><a href="#!/profile/{{info._id}}/received-ratings" ng-class="{selected: pageSegment =='profile.received'}">Napsali mi</a></li>
-        <li><a href="#!/profile/{{info._id}}/given-ratings" ng-class="{selected: pageSegment =='profile.given'}">Napsal jsem ostatním</a></li>           
+        <li><a href="#!/profile/{{info._id}}/posts" ng-class="{selected: pageSegment =='profile.posts'}">{{ 'MY_POSTS' | translate}}</a></li>
+        <li><a href="#!/profile/{{info._id}}/received-ratings" ng-class="{selected: pageSegment =='profile.received'}">{{ 'THEY_WROTE_ME' | translate }}</a></li>
+        <li><a href="#!/profile/{{info._id}}/given-ratings" ng-class="{selected: pageSegment =='profile.given'}">{{ 'ME_WROTE_THEM' | translate }}</a></li>           
     </ul>
 </div>
 

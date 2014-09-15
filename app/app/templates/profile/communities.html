@@ -1,4 +1,5 @@
-<h4>Komunity</h4>
+<div class="bottom-tabs"></div>
+<h4>{{ 'TOP_BAR_CREATE_COMMUNITY' | translate }}</h4>
 
 
 <div ng-repeat="(id, item) in data track by $index">
@@ -9,5 +10,5 @@
 </div>
 
 <div ng-if="! data.length">
-	<p>Zatím zde nejsou žádné záznamy</p>
+	<p>{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
 </div>

@@ -1,9 +1,8 @@
-<div class="bottom-tabs">
-</div>
+<div class="bottom-tabs"></div>
 
 <div class="clear"></div>
 
-<p ng-hide="data.length">Zatím zde nejsou žádné záznamy.</p>
+<p ng-hide="data.length">{{ 'NOTICE_EMPTY_DATA' | translate}}</p>
 <div ng-if="data.length">
     <div class="timeline-container">
         <div class="profile-timeline"></div>
