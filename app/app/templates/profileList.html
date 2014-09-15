@@ -1,4 +1,6 @@
-<div when-scrolled="loadMore('ads')" ng-cloak class="wish-list">
+===================== DEPRECATED =====================
+
+<!-- <div when-scrolled="loadMore('ads')" ng-cloak class="wish-list">
     <div ng-show="!ads.length">
         <div ng-show="!isMine" class="padding-2" ng-cloak translate>USER_HAS_NO_WISHES</div>
         <div ng-show="isMine" class="padding-2" ng-cloak translate>YOU_HAVE_NO_WISHES</div>
@@ -40,7 +42,7 @@
                     <span ng-bind-html="item.name | linky:'_blank' "></span>
                 </div>
                 <div ng-if="item.attachments.length" class="photo">
-                    <img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin }}">
+                    <img ng-repeat="photo in item.attachments" ng-src="{{ photo.large }}">
                 </div>
                 <div class="row small wish-bottom-bar">
                     <div class="small-6 columns">
@@ -76,4 +78,4 @@
             <span class="arrow" ng-show="isReplyingAd() && ad._id == item._id"></span>
         </div>
     </div>
-</div>
+</div> -->

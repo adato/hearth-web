@@ -51,10 +51,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             $scope.$emit("fulltextSearch");
         };
 
-        $scope.$on('$routeUpdate', function() {
-            $scope.load();
-        });
-
         $scope.processData = function(response) {
 
             $("#fulltextSearchResults").removeClass("searchInProgress");
@@ -84,7 +80,8 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             $scope.topArrowText.top = $translate('ads-has-been-read', {
                 value: $scope.items.length
             });
-        }
+        };
+        
         $scope.load = function(addOffset) {
             var params = {
                 query: $routeParams.q || "",

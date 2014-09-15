@@ -43,7 +43,7 @@
 				<div ng-show="post.attachments.length">
 					<ul>
 						<li class="text-center" ng-repeat="file in post.attachments" style="position:relative;">
-							<img ng-src="{{ file.origin }}" class="padding-1">
+							<img ng-src="{{ file.large }}" class="padding-1">
 							<a ng-click="post.attachments = []" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
 								<i class="hearthicon-remove"></i>
 							</a>

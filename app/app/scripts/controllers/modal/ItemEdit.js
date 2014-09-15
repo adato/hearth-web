@@ -158,7 +158,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			postDataCopy.attachments_attributes.forEach(function(el) {
 				postDataCopy.attachments.push({
 					normal: el.file,
-					origin: el.file
+					origin: el.file,
+					large: el.file
 				});
 			});
 

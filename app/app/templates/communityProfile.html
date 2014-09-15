@@ -190,7 +190,7 @@
 							<span ng-bind-html="item.name | linky:'_blank'"></span>
 						</div>
 						<div ng-if="item.attachments.length" class="photo">
-							<img ng-repeat="photo in item.attachments" ng-src="{{ photo.origin}}">
+							<img ng-repeat="photo in item.attachments" ng-src="{{ photo.large}}">
 						</div>
 						<div class="row small wish-bottom-bar">
 							<div class="small-6 columns">

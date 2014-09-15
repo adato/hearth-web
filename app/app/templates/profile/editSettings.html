@@ -23,18 +23,28 @@
       <section class="change-pass">
 
         <div class="fleft large-6">
-          <label for="oldPass">Zadejte současné heslo</label>
-          <input type="password" name="oldPass" id="oldPass" ng-model="pass.old" required />
+          <div class="fleft large-11">
+            <label for="oldPass">Zadejte současné heslo</label>
+            <input type="password" name="oldPass" id="oldPass" ng-model="pass.old" required />
+            <div class="absolute error" ng-show="showError.name">
+                <span ng-show="profileEditForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+            </div>
+          </div>
         </div>
 
         <div class="fright large-6">
-          <label for="newPass">Zadejte nové heslo</label>
-          <input type="password" name="newPass" ng-model="pass.changed" id="newPass" required />
+          <div class="fright large-11">
+            <label for="newPass">Zadejte nové heslo</label>
+            <input type="password" name="newPass" ng-model="pass.changed" id="newPass" required />
+          </div>
         </div>
 
         <div class="clear"></div>
+        <br />
         <button type="submit" class="button-send right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5">{{ 'SAVE' | translate }}</button>
       </section>
+      <br />
+      <br />
 
       <h2>
         <span class="content">
@@ -46,9 +56,13 @@
         <label for="text">Je nám líto, že nás opouštíte - budeme vděční, když nám povíte důvod:</label>
         <textarea ng-model="leave.reason" autosize-textarea></textarea>
 
-        <label for="oldPassLeave">Zadejte vaše heslo</label>
-        <input type="password" name="oldPassLeave" id="oldPassLeave" required />
-
+        <div class="fleft large-6">
+          <div class="fleft large-11">
+            <label for="oldPassLeave">Zadejte vaše heslo</label>
+            <input type="password" name="oldPassLeave" id="oldPassLeave" required />
+          </div>
+        </div>
+        <div class="clear"></div>
         <button type="submit" class="button-send right" analytics-on analytics-event="same my description" analytics-category="My profile" analytics-value="5">{{ 'USER_DELETE_PROFILE' | translate }}</button>
 
       </section>

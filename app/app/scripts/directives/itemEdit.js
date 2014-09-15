@@ -67,6 +67,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 					postDataCopy.attachments_attributes.forEach(function(el) {
 						postDataCopy.attachments.push({
 							normal: el.file,
+							large: el.file,
 							origin: el.file
 						});
 					});

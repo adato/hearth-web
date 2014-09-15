@@ -16,20 +16,28 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			old: '',
 			changed: ''
 		}
-		
-		function init() {
+
+		$scope.deleteAccount = function() {
+			
+		};
+
+		$scope.changePassword = function() {
+			
+		};
+
+		$scope.init = function () {
 
 			$scope.lang = LanguageSwitch.uses();
-		}
+		};
 
 		$scope.switchLang = function(lang) {
 
 			LanguageSwitch.swicthTo(lang);
 			window.location.reload();
-		}
+		};
 
 
-		$scope.$on('initFinished', init);
-		$rootScope.initFinished && init();
+		$scope.$on('$scope.initFinished', $scope.init);
+		$rootScope.$scope.initFinished && $scope.init();
 	}
 ]);
