@@ -218,6 +218,12 @@
             .buttons {
                 text-align:center;
             }
+            p {
+                margin: {
+                    left:30px;
+                    right:30px;
+                }   
+            }
         }
 
         .left-pane {
@@ -336,14 +342,9 @@
         }
         .right-pane {
             @extend .large-5, .columns;
+            padding:0;
             .user-about {
                 @extend .box;
-                p {
-                    margin: {
-                        left:30px;
-                        right:30px;
-                    }   
-                }
             }
             .activities {
                 @extend .box;
@@ -442,6 +443,9 @@
         }
         .person {
             @extend .large-4, .columns;
+            .name {
+                margin-left:120px;
+            }
             h4 {
                 margin-top:30px;
             }
