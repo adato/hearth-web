@@ -5,7 +5,7 @@
 		<div class="avatar"></div>
 		<div class="name">
 			<h4>
-				<a href="#!/profile{{ item.user_id}}">{{ item.user_full_name}}</a>
+				<a href="#!/profile/{{ item.user_id}}">{{ item.user_full_name | ellipsis:24 }}</a>
 			</h4>
 		</div>
 	</div>

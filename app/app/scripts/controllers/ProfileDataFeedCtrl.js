@@ -7,12 +7,12 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Followees', 'UserPosts', 'UsersCommunitiesService', 'UserRatings', 'ActivityLog', 'Fulltext', 'Post',
-    function($scope, $timeout, $rootScope, $routeParams, Followers, Followees, UserPosts, UsersCommunitiesService, UserRatings, ActivityLog, Fulltext, Post) {
+    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Followees', 'UserPosts', 'CommunityMemberships', 'UserRatings', 'ActivityLog', 'Fulltext', 'Post',
+    function($scope, $timeout, $rootScope, $routeParams, Followers, Followees, UserPosts, CommunityMemberships, UserRatings, ActivityLog, Fulltext, Post) {
         var loadServices = {
                 'profile': loadUserHome,
                 'profile.posts': loadUserPosts,
-                'profile.communities': UsersCommunitiesService.query,
+                'profile.communities': CommunityMemberships.query,
                 'profile.given': UserRatings.given,
                 'profile.received': UserRatings.received,
                 'profile.following': Followees.query,
@@ -98,7 +98,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function processDataErr(res) {
-
             console.log("Err", res);
         }
 

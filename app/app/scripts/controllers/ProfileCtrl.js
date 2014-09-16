@@ -24,6 +24,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;
+				if (res && res.avatar.normal) {
+	            	$scope.info.avatarStyle = res.avatar.large;
+	            } else {
+	                $scope.info.avatarStyle = $$config.defaultUserImage;
+				}
+
 				$scope.mine = $scope.isMine();
 				$scope.loaded = true;
 
@@ -33,18 +39,19 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
-		function refreshDataFeed() {
+		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
     		$scope.pagePath = $route.current.originalPath;
     		$scope.pageSegment = $route.current.$$route.segment;
 		}
 
-		refreshDataFeed();
-		$rootScope.$on('$routeChangeSuccess', refreshDataFeed);
-
-		$scope.$on('initFinished', $scope.fetchUser);
-		if($rootScope.initFinished) {
+		$scope.refreshUser = function() {
+			$scope.refreshDataFeed();
 			$scope.fetchUser();
-		}
+		};
+		
+		$rootScope.$on('$routeChangeSuccess', $scope.refreshUser);
+		$scope.$on('initFinished', $scope.refreshUser);
+		$rootScope.initFinished && $scope.refreshUser;
 	}
 ]);

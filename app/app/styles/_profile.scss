@@ -121,6 +121,8 @@
                 border-radius:300px;
                 border:2px solid color(4);
                 box-shadow:inset 0px 6px 9px 0px rgba(50, 50, 50, 0.75);
+
+                background-image: inline-image("no-avatar.png");
             }
             .friends-and-follows {
                 @extend .large-2, .columns;
