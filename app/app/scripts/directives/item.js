@@ -18,15 +18,29 @@ angular.module('hearth.directives').directive('item', [
                 item: '=',
                 user: '=',
                 hideAvatar: '=',
-                keywordsActive: '='
+                keywordsActive: '=',
+                inactivateTags: '=',
             },
             templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
             link: function(scope, element) {
+                var pauseProgress = false;
+                var timeout = 6000;
+                var type = {
+                    user: {
+                        need: 'I_WISH',
+                        offer: 'I_GIVE'
+                    },
+                    community: {
+                        need: 'WE_NEED',
+                        offer: 'WE_GIVE'
+                    }
+                };
+                    
                 scope.avatarStyle = {};
                 scope.reportNotLoggedIn = 0;
-                scope.toggleTag = Filter.toggleTag;
-                scope.keywordsActive = scope.keywordsActive || [];
-                
+                scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
+                scope.keywords = scope.keywordsActive || [];
+
                 function drawTimeline() {
 
                     // var elementsHeight = 2 * 18 + $('.avatar', element).outerHeight(true) + $('.name', element).outerHeight(true) + $('.karma', element).outerHeight(true);
@@ -38,34 +52,22 @@ angular.module('hearth.directives').directive('item', [
                 }, drawTimeline);
 
                 
-                var pauseProgress = false;
-                var timeout = 6000,
-                    init = function() {
-                        angular.extend(scope, {
-                            replyEdit: false,
-                            reply: {
-                                message: '',
-                                agree: true
-                            },
-                            submited: false,
-                            reported: false,
-                            showMore: false,
-                            expanded: false
-                        });
-                        if (scope.replyForm) {
-                            scope.replyForm.$setPristine();
-                        }
-                    },
-                    type = {
-                        user: {
-                            need: 'I_WISH',
-                            offer: 'I_GIVE'
+                scope.init = function() {
+                    angular.extend(scope, {
+                        replyEdit: false,
+                        reply: {
+                            message: '',
+                            agree: true
                         },
-                        community: {
-                            need: 'WE_NEED',
-                            offer: 'WE_GIVE'
-                        }
-                    };
+                        submited: false,
+                        reported: false,
+                        showMore: false,
+                        expanded: false
+                    });
+                    if (scope.replyForm) {
+                        scope.replyForm.$setPristine();
+                    }
+                }
 
                 scope.profileLinkType = {
                     "User": "profile",
@@ -152,11 +154,11 @@ angular.module('hearth.directives').directive('item', [
                         agreed: scope.reply.agree
                     });
                     scope.submited = true;
-                    $timeout(init, timeout);
+                    $timeout(scope.init, timeout);
                     scope.item.reply_count = scope.item.reply_count + 1;
                 };
                 scope.cancelEdit = function() {
-                    init();
+                    scope.init();
                 };
 
                 scope.pauseToggle = function() {
@@ -212,7 +214,7 @@ angular.module('hearth.directives').directive('item', [
                     scope.adEdit = false;
                 });
 
-                init();
+                scope.init();
             }
 
         };

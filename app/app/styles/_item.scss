@@ -610,21 +610,29 @@ $imageSize: 80px;
     }
 }
 
+.tags {
+    .tagList {
+        list-style: none;
+        margin-bottom: 0px;
+        li {
+            border: 1px solid #C2C2C2;
+            border-radius: 8px;
+            padding: 1px;
+            padding-left: 7px;
+            font-size: 13px;
+            padding-right: 7px;
+            display: inline-block;
+            margin-right: 6px;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+            
+            
+        }
+    }
+}
 
-.tagList {
-    list-style: none;
-    margin-bottom: 0px;
+.tagsActive {
     li {
-        border: 1px solid #C2C2C2;
-        border-radius: 8px;
-        padding: 1px;
-        padding-left: 7px;
-        font-size: 13px;
-        padding-right: 7px;
-        display: inline-block;
-        margin-right: 6px;
-        margin-bottom: 5px;
-        text-transform: capitalize;
         &.active,
         &:hover {
             cursor: pointer;
@@ -634,7 +642,6 @@ $imageSize: 80px;
         }
     }
 }
-
 
 .mineItem {
 

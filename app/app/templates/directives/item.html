@@ -52,9 +52,9 @@
 						</a>	
 					</div>
 				</div>
-				<div class="tags" ng-if="item.keywords.length">
+				<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
 					<ul class="tagList">
-						<li ng-click="toggleTag(tag)" ng-class="{active: keywordsActive.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords">
+						<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords">
 							{{tag}}
 						</li>
 					</ul>

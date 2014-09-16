@@ -21,7 +21,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.fetchUser = function () {
-
+			$scope.loaded = false;
+			
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;
 				if (res && res.avatar.normal) {
