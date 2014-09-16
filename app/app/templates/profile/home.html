@@ -41,7 +41,8 @@
                 <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
                 <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
                 <span>
-                    <a href="#!/ad/{{ item._id }}">{{item.title | ellipsis}}</a>
+                    <a ng-if="item.title" href="#!/ad/{{ item._id }}">{{item.title | ellipsis:30}}</a>
+                    <a ng-if="!item.title" href="#!/ad/{{ item._id }}">{{item.name | ellipsis:30}}</a>
                     <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>
                 </span>
                 <div class="ad-controls">
@@ -61,7 +62,7 @@
         </div>
     </div>
 
-    <div class="right-pane">
+    <div class="right-pane" ng-if="!mine">
         <div class="user-about">
             <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
             <p>
@@ -70,6 +71,8 @@
                 <span class="work">{{info.twitter}}</span>
             </p>
         </div>
+    </div>
+    <div class="right-pane">
 
         <div class="activities">
             

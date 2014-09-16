@@ -7,9 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('item', [
-    '$timeout', '$translate', 'Auth', '$rootScope', '$location', 'Filter', 'Post',
+    '$timeout', '$translate', 'Auth', '$rootScope', '$location', 'Filter', 'Post', 'Karma',
 
-    function($timeout, $translate, Auth, $rootScope, $location, Filter, Post) {
+    function($timeout, $translate, Auth, $rootScope, $location, Filter, Post, Karma) {
         return {
             restrict: 'E',
             replace: true,
@@ -105,17 +105,12 @@ angular.module('hearth.directives').directive('item', [
                             'background-image': 'url(' + item.author.avatar.normal + ')'
                         };
                     }
-                    if (item.author.up_votes) {
-                        item.karma = {
-                            width: ((item.author.up_votes / (item.author.up_votes + item.author.down_votes)) * 100) + '%'
-                        };
-                    } else if (item.author.down_votes) {
-                        item.karma = {
-                            width: 0
-                        };
-                    } else {
-                        item.karma = undefined;
+
+                    item.karma = Karma.count(item.author.up_votes, item.author.down_votes);
+                    if(item.karma) {
+                        item.karma += "%";
                     }
+
                 });
 
                 scope.toggleCollapsed = function() {

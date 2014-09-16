@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'Auth', '$route', 'User', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress', 'Facebook',
+	'$scope', 'Auth', '$route', 'User', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress', 'Facebook', 'Karma',
 
-	function($scope, Auth, $route, User, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress, Facebook) {
+	function($scope, Auth, $route, User, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress, Facebook, Karma) {
 		$scope.loaded = false;
 		$scope.info = false;
 		
@@ -29,6 +29,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 	            } else {
 	                $scope.info.avatarStyle = $$config.defaultUserImage;
 				}
+
+				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 
 				$scope.mine = $scope.isMine();
 				$scope.loaded = true;
@@ -50,8 +52,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.fetchUser();
 		};
 		
-		$rootScope.$on('$routeChangeSuccess', $scope.refreshUser);
+		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
-		$rootScope.initFinished && $scope.refreshUser;
+		$rootScope.initFinished && $scope.refreshUser();
 	}
 ]);
