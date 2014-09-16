@@ -32,10 +32,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				}
 
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
-
 				$scope.mine = $scope.isMine();
 				$scope.loaded = true;
-				$scope.info.following = false;
 
 				$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
@@ -54,13 +52,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.toggleFollow = function(user_id) {
 			
-			if($scope.info.following) {
+			if($scope.info.is_followed) {
 				$scope.removeFollower(user_id);
 			} else {
 				$scope.addFollower(user_id);
 			}
 			
-			$scope.info.following = !$scope.info.following;
+			$scope.info.is_followed = !$scope.info.is_followed;
 		}
 
 		$scope.refreshDataFeed = function() {
