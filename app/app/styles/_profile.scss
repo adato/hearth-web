@@ -529,3 +529,15 @@
     }
 
 }
+
+.mine-profile {
+    .others {
+        display: none;
+    }
+}
+
+.others-profile {
+    .mine {
+        display: none;
+    }
+}

@@ -5,7 +5,8 @@
                 <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
             </div> -->
         <div class="ratings">
-            <h3 ng-if="receivedRatings.length">{{ 'YOUR_RATING' | translate}}</h3>
+            <h3 class="mine" ng-if="receivedRatings.length">{{ 'YOUR_RATING' | translate}}</h3>
+            <h3 class="others" ng-if="receivedRatings.length">{{ 'USERS_RATINGS' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating">
                 <div class="avatar"></div>
@@ -25,16 +26,16 @@
         </div>
         <div class="ads">
             <h3></h3>
-            <h3 ng-show="mine">
+            <h3 class="mine">
                 <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} {{ 'POSTS' | translate }}</span>
                 <span ng-if="! posts.data.length">{{ 'ACTIVE_POSTS' | translate}}</span>
 
                 <a class="create-ad-sign" ng-click="editItem(null)"></a>
             </h3>
-            <h3 ng-show="!mine">{{ 'USER_POSTS' | translate }}</h3>
+            <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
 
-            <p ng-if="mine && ! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
-            <p ng-if="!mine && ! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
+            <p class="mine" ng-if="! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
+            <p class="others" ng-if="! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
 
             <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
                 <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
@@ -61,7 +62,7 @@
         </div>
     </div>
 
-    <div class="right-pane" ng-if="!mine">
+    <div class="right-pane others">
         <div class="user-about">
             <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
             <p>
@@ -75,8 +76,8 @@
 
         <div class="activities">
             
-            <h3 ng-show="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
-            <h3 ng-show="!mine">{{ 'USER_ACTIVITY' | translate }}</h3>
+            <h3 class="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
+            <h3 class="others">{{ 'USER_ACTIVITY' | translate }}</h3>
             
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">
