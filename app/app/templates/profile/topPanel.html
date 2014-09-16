@@ -13,9 +13,8 @@
                 <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
             </button> 
             <a ng-if="mine" href="#!/profile-edit" class="right"><button><i class="fa fa-gears"></i> {{ 'SETTINGS' | translate}}</button></a>
-            <button ng-if="!mine" class="follow-button blue right">
-                <i class="fa fa-forward"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}
-            </button>
+            <button ng-if="!mine && !info.following" class="follow-button blue right" ng-click="toggleFollow(info._id)"><i class="fa fa-forward"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}</button>
+            <button ng-if="!mine && info.following" class="follow-button blue right" ng-click="toggleFollow(info._id)"><i class="fa fa-times"></i> {{ 'UNFOLLOW_BUTTON_CAPTION' | translate}}</button>
         </div>
         <div class="highlights">
             <a href="#!/profile/{{info._id}}" class="profile-photo" style="background-image: url('{{info.avatarStyle}}');"></a>

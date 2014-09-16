@@ -146,6 +146,7 @@
 	"FOLLOWERS_LABEL": "Zaj\u00edmaj\u00ed se o m\u011b",
 	"FOLLOWING_BUTTON_CAPTION": "U\u017e sleduji",
 	"FOLLOW_BUTTON_CAPTION": "Sledovat",
+	"UNFOLLOW_BUTTON_CAPTION": "Přestat sledovat",
 	"FORGOTTEN_PASSWORD_EMAIL_FAIL": "Bum! Zasl\u00e1n\u00ed potvrzovac\u00edho emailu se bohu\u017eel nezda\u0159ilo. M\u011bli jste p\u0159ek\u0159\u00ed\u017een\u00e9 prsty?",
 	"FORGOTTEN_PASSWORD_EMAIL_SUCCESS": "Na uvedenou adresu jsme v\u00e1m poslali odkaz.  Klikn\u011bte na n\u011bj a vytvo\u0159te si nov\u00e9 heslo.",
 	"FORGOTTEN_PASSWORD_LINK": "Zapomn\u011bli jste heslo?",

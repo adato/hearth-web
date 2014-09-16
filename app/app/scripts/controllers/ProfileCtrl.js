@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'Auth', '$route', 'User', 'flash', 'Errors', '$routeParams', '$location', 'UsersService', '$rootScope', '$timeout', '$window', '$translate', '$analytics', '$q', 'ResponseErrors', 'ProfileProgress', 'Facebook', 'Karma',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma',
 
-	function($scope, Auth, $route, User, flash, Errors, $routeParams, $location, UsersService, $rootScope, $timeout, $window, $translate, $analytics, $q, ResponseErrors, ProfileProgress, Facebook, Karma) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma) {
 		$scope.loaded = false;
 		$scope.info = false;
 		
@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.fetchUser = function () {
 			$scope.loaded = false;
-			
+
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;
 				if (res && res.avatar.normal) {
@@ -35,6 +35,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				$scope.mine = $scope.isMine();
 				$scope.loaded = true;
+				$scope.info.following = false;
 
 				$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
@@ -42,11 +43,31 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		$scope.removeFollower = function(user_id) {
+
+			UsersService.removeFollower(user_id, $rootScope.loggedUser._id);
+		};
+		
+		$scope.addFollower = function(user_id) {
+			UsersService.addFollower(user_id);
+		};
+
+		$scope.toggleFollow = function(user_id) {
+			
+			if($scope.info.following) {
+				$scope.removeFollower(user_id);
+			} else {
+				$scope.addFollower(user_id);
+			}
+			
+			$scope.info.following = !$scope.info.following;
+		}
+
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
     		$scope.pagePath = $route.current.originalPath;
     		$scope.pageSegment = $route.current.$$route.segment;
-		}
+		};
 
 		$scope.refreshUser = function() {
 			$scope.refreshDataFeed();

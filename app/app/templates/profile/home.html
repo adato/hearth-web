@@ -13,8 +13,7 @@
                 <div class="rating-text">
                     {{item.text | ellipsis}}
                     <br>
-                    <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/profile/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}} </a> k <a href="">Pěstování bylinek ??? </a> 
-                    </small>
+                    <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/profile/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}} </a></small>
                 </div>
             </div>
             <p ng-if="! receivedRatings.length">{{ 'NO_RATINGS_YET' | translate}}</p>
