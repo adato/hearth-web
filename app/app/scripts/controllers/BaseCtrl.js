@@ -7,15 +7,19 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element) {
         var timeout;
         $scope.segment = false;
 
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
         });
+
+        $scope.closeDropdown = function(id) {
+            Foundation.libs.dropdown.close($('#'+id));
+        };
 
         $scope.topArrowText = {};
         $scope.isScrolled = false;

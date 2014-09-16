@@ -35,10 +35,10 @@
 	            <label>{{ loggedUser.name }}</label>
 		    </a>
 		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
-		       <li><a ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
-		       <li><a ng-href="#!/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT'| translate }}</a></li>
-		       <li><a ng-href="#!/profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
-		       <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
+		       <li><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
+		       <li><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT'| translate }}</a></li>
+		       <li><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+		       <li><a href="" ng-click="closeDropdown('profile-drop'); logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
 		    </ul> 
 
 			<a data-dropdown="about-drop"  title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
@@ -47,9 +47,9 @@
 			</a>
 	
 	        <ul id="about-drop" data-dropdown-content class="f-dropdown">
-	          <li><a href="http://blog.hearth.net" target="_blank">{{'BLOG' | translate}}</a></li>
-	          <li><a ng-href="#!/feedback">{{'WRITE_US' | translate}}</a></li>
-	          <li><a ng-href="#!/terms">{{'TERMS' | translate}}</a></li>
+	          <li><a ng-click="closeDropdown('about-drop')" href="http://blog.hearth.net" target="_blank">{{'BLOG' | translate}}</a></li>
+	          <li><a ng-click="closeDropdown('about-drop')" ng-href="#!/feedback">{{'WRITE_US' | translate}}</a></li>
+	          <li><a ng-click="closeDropdown('about-drop')" ng-href="#!/terms">{{'TERMS' | translate}}</a></li>
 	          <li class="divider"></li>
 	          <li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
 	          <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
