@@ -45,7 +45,7 @@
                     <a ng-if="!item.title" href="#!/ad/{{ item._id }}">{{item.name | ellipsis:30}}</a>
                     <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>
                 </span>
-                <div class="ad-controls">
+                <div class="ad-controls mine">
                     <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
                     <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
                     <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
