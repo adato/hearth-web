@@ -62,16 +62,14 @@
     </div>
 
     <div class="right-pane">
-
-
-        <section class="userInfo">
+        <div class="user-about">
             <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
-            <span class="work">{{info.work}}</span>
-            <span class="regDate">{{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
-            <span class="work">{{info.twitter}}</span>
-        </section>
-        <br />
-        <br />
+            <p>
+                <span class="work">{{info.work}}</span>
+                <span class="regDate">{{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
+                <span class="work">{{info.twitter}}</span>
+            </p>
+        </div>
 
         <div class="activities">
             

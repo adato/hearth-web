@@ -9,9 +9,13 @@
             <p ng-if="mine && info.about != ''"><span class="fa fa-quote-right"></span> {{info.about}}</p>
         </div>
         <div class="buttons">
-            <button ng-if="mine" class="invite-button blue"><span class="fa fa-forward" ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span></button>
-            <a  ng-if="mine" href="#!/profile-edit"><button><span class="fa fa-gears"></span> {{ 'SETTINGS' | translate}}</button></a>
-            <button ng-if="! mine" class="follow-button blue"><span class="fa fa-forward"></span> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}</button>
+            <button ng-if="mine" class="invite-button blue">
+                <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
+            </button> 
+            <a ng-if="mine" href="#!/profile-edit" class="right"><button><i class="fa fa-gears"></i> {{ 'SETTINGS' | translate}}</button></a>
+            <button ng-if="!mine" class="follow-button blue right">
+                <i class="fa fa-forward"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}
+            </button>
         </div>
         <div class="highlights">
             <a href="#!/profile/{{info._id}}" class="profile-photo" style="background-image:url('{{info.avatar.large}}');"></a>
@@ -22,8 +26,8 @@
                 <strong>{{info.followees_count}}</strong>
                 {{ 'INSPIRED_BY_THEM' | translate }}</a>
             <a href="#!/profile/{{info._id}}/communities" class="communities"><b>{{info.communities_count}}</b> {{ 'COMMUNITS' | translate}}</a>
-            <a href="#!/profile/{{info._id}}/posts" class="ratings"><b>{{info.post_count}}</b> {{ 'GIVES_AND_WISHES' | translate}}</a>
-            <div class="karma-bar"><span class="positive" style="width:70%;">70% <i class="fa fa-sun-o"></i></span><span class="negative" style="width:30%;"><i class="fa fa-moon-o"></i> 30%</span></div>
+            <a href="#!/profile/{{info._id}}/posts" class="ratings"><b>{{info.post_count}}</b><br>{{ 'GIVES_AND_WISHES' | translate}}</a>
+            <div class="karma-bar"><span class="positive" style="width:100%;">100% <i class="fa fa-sun-o"></i></span><span class="negative" style="width:0%;"><i class="fa fa-moon-o"></i> 0%</span></div>
         </div>
     </header>
     <div class="clear"></div>

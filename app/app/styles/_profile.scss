@@ -57,6 +57,9 @@
                     left:50px;
                     right:50px;
                 } 
+                a {
+                    color:darken(color(3), 40%);
+                }
                 span {
                     display:inline-block;
                     padding: {
@@ -164,6 +167,8 @@
                 padding:0;
                 float:right;
                 .positive, .negative {
+                    min-width:10%;
+                    max-width:90%;
                     display:inline-block;
                     padding:10px;
                     color:color(4);
@@ -176,7 +181,7 @@
                     text-align:right;
                     .fa { 
                         display:inline-block; 
-                        margin-left:15px;
+                        margin-left:5px;
                     }
                 }
                 .negative {
@@ -185,7 +190,7 @@
                     border-bottom-right-radius:$global-radius;
                     .fa { 
                         display:inline-block; 
-                        margin-right:15px;
+                        margin-right:5px;
                     }                   
                 }
             }
@@ -268,6 +273,9 @@
                             width:80px;
                             height:80px;
                         }
+                        img {
+                            border-radius: 50%;
+                        }
                     }
                     .rating-text {
                         font-size:1.2rem;
@@ -327,9 +335,18 @@
             }
         }
         .right-pane {
-            @extend .large-5, .columns, .box;
+            @extend .large-5, .columns;
+            .user-about {
+                @extend .box;
+                p {
+                    margin: {
+                        left:30px;
+                        right:30px;
+                    }   
+                }
+            }
             .activities {
-
+                @extend .box;
                 h4 {
                     margin-left: 30px;
                     font-size: 1.2rem;
@@ -481,6 +498,9 @@
                 &::before {
                     width:80px;
                     height:80px;
+                }
+                img {
+                    border-radius: 50%;
                 }
             }
             .rating-text {
