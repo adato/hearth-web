@@ -27,7 +27,9 @@
         <div class="ads">
             <h3></h3>
             <h3 class="mine">
-                <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} {{ 'POSTS' | translate }}</span>
+                <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
+                    <pluralize-translate count="posts.data.length" key="'POSTS_PL'"></pluralize-translate>
+                </span>
                 <span ng-if="! posts.data.length">{{ 'ACTIVE_POSTS' | translate}}</span>
 
                 <a class="create-ad-sign" ng-click="editItem(null)"></a>

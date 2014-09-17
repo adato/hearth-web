@@ -5,9 +5,9 @@
 		<div class="avatar"></div>
 		<div class="name">
 			<h4>
-				<a href="#!/profile/{{ item.user_id}}">{{ item.user_full_name | ellipsis:24}}</a>
+				<a href="#!/profile/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
 			</h4>
-			<a class="mine" ng-click="removeFollower(item.user_id)">{{ 'UNFOLLOW_BUTTON_CAPTION' | translate }}</a>
+			<a class="mine" ng-click="removeFollower(item._id)">{{ 'UNFOLLOW_BUTTON_CAPTION' | translate }}</a>
 		</div>
 	</div>
 </div>

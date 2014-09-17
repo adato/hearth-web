@@ -20,21 +20,23 @@
             <a href="#!/profile/{{info._id}}" class="profile-photo" style="background-image: url('{{info.avatarStyle}}');"></a>
             <a href="#!/profile/{{info._id}}/following" class="friends-and-follows">
                 <b>{{info.followers_count}}</b>
-                <br>
+                <br />
+                <pluralize-translate count="info.followers_count" key="'HOW_MANY_PLEOPLE'"></pluralize-translate>
                 <span ng-if="mine">{{ 'INSPIRED_BY_ME' | translate }}</span>
                 <span ng-if="!mine">{{ 'INSPIRED_BY_HIM' | translate }}</span>
                 <hr>
-                <strong>{{info.followees_count}}</strong>
-                {{ 'INSPIRED_BY_THEM' | translate }}</a>
-            <a href="#!/profile/{{info._id}}/communities" class="communities"><b>{{info.communities_count}}</b> {{ 'COMMUNITS' | translate}}</a>
-            <a href="#!/profile/{{info._id}}/posts" class="ratings"><b>{{info.post_count}}</b><br>{{ 'GIVES_AND_WISHES' | translate}}</a>
+                <strong>{{info.followees_count}}</strong> <pluralize-translate count="info.followees_count" key="'BY_PLEOPLE'"></pluralize-translate>
+                <br />{{ 'IS_INSPIRED' | translate }}
+            </a>
+            <a href="#!/profile/{{info._id}}/communities" class="communities"><b>{{info.communities_count}}</b> 
+                <pluralize-translate count="info.communities_count" key="'COMMUNITS'"></pluralize-translate>
+            </a>
+            <a href="#!/profile/{{info._id}}/posts" class="ratings"><b>{{info.post_count}}</b><br>
+                <pluralize-translate count="info.post_count" key="'GIVES_AND_WISHES'"></pluralize-translate>
+            </a>
             <div class="karma-bar" ng-if="info.karma != null"><span class="positive" style="width:{{info.karma}}%;">{{ info.karma }}% <i class="fa fa-sun-o"></i></span><span class="negative" style="width:{{100 - info.karma}}%;"><i class="fa fa-moon-o"></i> {{100 - info.karma}}%</span></div>
         </div>
     </header>
     <div class="clear"></div>
-
-    <input ng-model="count" type="text" ng-init="count = 1" />
-    <pluralize-translate count="count" key="'TEST'"></pluralize-translate>
-
     <div ng-show="info" ng-cloak app-view-segment="1"></div>
 </div>
