@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('pluralizeTranslate', [
 	'$translate',
 	function($translate) {
 		return {
-			transclude: false,
+			transclude: true,
 			restrict: 'E',
 			scope: {
 				count: "=",

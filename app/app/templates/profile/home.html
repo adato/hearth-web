@@ -9,8 +9,10 @@
             <h3 class="others" ng-if="receivedRatings.length">{{ 'USERS_RATINGS' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating">
-                <div class="avatar"></div>
-                <small class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}">{{item.created_at | ago}}</small>
+                <div class="avatar">
+                    <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
+                </div>
+                <small class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
                 <div class="rating-text">
                     {{item.text | ellipsis}}
                     <br>
@@ -26,7 +28,7 @@
         </div>
         <div class="ads">
             <h3></h3>
-            <h3 class="mine">
+            <h3 ng-if="mine">
                 <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
                     <pluralize-translate count="posts.data.length" key="'POSTS_PL'"></pluralize-translate>
                 </span>
@@ -64,18 +66,22 @@
         </div>
     </div>
 
-    <div class="right-pane others">
+    <div ng-if="!mine" class="right-pane">
         <div class="user-about">
             <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
             <p>
                 <span class="work">{{info.work}}</span>
                 <span class="regDate">{{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
-                <span class="work">{{info.twitter}}</span>
+                <span class="social">
+                    <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
+                    <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
+                    <a target="_blank" ng-if="info.googleplus" href="{{info.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
+                    <a target="_blank" ng-if="info.webs.length && info.webs[0]" href="{{info.webs[0]}}"><i class="fa fa-link"></i></a>
+                </span>
             </p>
         </div>
     </div>
     <div class="right-pane">
-
         <div class="activities">
             
             <h3 class="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>

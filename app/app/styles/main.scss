@@ -1469,3 +1469,9 @@ img.blur {
         }
     }
 }
+
+.capital {
+    * {
+        text-transform: capitalize;
+    }
+}

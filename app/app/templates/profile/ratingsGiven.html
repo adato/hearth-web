@@ -3,9 +3,9 @@
 <div class="rating-listing">
 	<div class="rating" ng-repeat="(id, item) in data track by $index">
 		<div class="avatar">
-			<img ng-src="{{item.user_from_avatar.normal}}" />
+			<img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
 		</div>
-		<small class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}">{{ item.updated_at | ago }}</small>
+		<small class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</small>
 		<div class="rating-text">
 			{{ item.text }}
 			<br>

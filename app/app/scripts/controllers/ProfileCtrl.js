@@ -21,7 +21,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.fetchUser = function () {
-			$scope.loaded = false;
+
+			if($scope.info._id !== $routeParams.id) {
+				$scope.loaded = false;
+			}
 
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;

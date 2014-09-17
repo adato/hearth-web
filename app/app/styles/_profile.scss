@@ -7,6 +7,9 @@
         top:-40px; // hack, remove when whole site is updated
     }
 
+    .avatar {
+        overflow: hidden;
+    }
     .button-flat {
         font-weight:bold;
         border:0;
@@ -469,7 +472,10 @@
     }
 
     .ads-listing {
-
+        .large-10 {
+            float: unset;
+            margin: 0px auto;
+        }
     }
 
     .rating-listing {
