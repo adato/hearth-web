@@ -20,7 +20,9 @@ angular.module('hearth.directives').directive('pluralizeTranslate', [
 			template: '<span ng-pluralize count="count" when="translateStrings"></span>',
 			link: function($scope, el, attrs) {
 				$scope.$watch("key", function(key) {
-					$scope.translateStrings = JSON.parse($translate(key));
+					console.log("======= Translate: ",key);
+					console.log($translate(key));
+					$scope.translateStrings = jQuery.parseJSON($translate(key));
 				});
 			}
 		};
