@@ -1,6 +1,0 @@
-.charsleft {
-    @include transition(color 0.5s);
-    &.warn {
-        color: color(1);
-    }
-}
