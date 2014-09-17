@@ -13,6 +13,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.loaded = false;
 		$scope.info = false;
 		
+	    $scope.translateStrings = {'0': 'No candies','one': '1 candy for sale.','other': '{} candies for sale.'};
+
+
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
 			var _mineCommunity = ($rootScope.loggedCommunity) ? $rootScope.loggedCommunity._id == $routeParams.id: false;

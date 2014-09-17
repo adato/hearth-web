@@ -480,6 +480,7 @@
     "ME_WROTE_THEM": "Napsal jsem ostatním",
     "ME_WROTE": "Napsal jsem",
     "SAYING": "Říká",
+    "TEST": "{\"0\": \"NULA\",\"1\": \"JEDNA\",\"2\": \"DVA\",\"other\": \" {} jinych\"}",
     "ACTIVE_POSTS": "Aktivní inzeráty",
     "LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
     "LOCATION_UNLIMITED_MESSAGE": "Kdekoliv",

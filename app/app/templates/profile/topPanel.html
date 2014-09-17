@@ -32,5 +32,9 @@
         </div>
     </header>
     <div class="clear"></div>
+
+    <input ng-model="count" type="text" ng-init="count = 1" />
+    <pluralize-translate count="count" key="'TEST'"></pluralize-translate>
+
     <div ng-show="info" ng-cloak app-view-segment="1"></div>
 </div>
