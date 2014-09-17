@@ -22,7 +22,7 @@ angular.module('hearth.directives').directive('pluralizeTranslate', [
 				$scope.$watch("key", function(key) {
 					console.log("======= Translate: ",key);
 					console.log($translate(key));
-					$scope.translateStrings = ($translate(key));
+					$scope.translateStrings = jQuery.parseJSON($translate(key));
 				});
 			}
 		};
