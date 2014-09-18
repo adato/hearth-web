@@ -58,13 +58,13 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 				var out = {
 					user_id: $rootScope.loggedUser._id,
-					current_password: data.pass,
+					password_current: data.pass,
 					reason: data.reason
 				};
 
 				User.remove(out, $scope.processDeleteUserResult);
 			}
-		}
+		};
 
 		$scope.deleteAccount = function(data) {
 
