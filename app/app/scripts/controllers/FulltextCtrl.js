@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-    '$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate',
+    '$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate', '$rootScope',
 
-    function($scope, $routeParams, Fulltext, $location, LanguageSwitch, $translate) {
+    function($scope, $routeParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
         var deleteOffset = false;
 
         $scope.addresses = {
@@ -17,8 +17,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             "User": "profile",
             "Post": "ad",
         };
-
-        $scope.languageCode = LanguageSwitch.uses().code;
 
         $scope.$on('$destroy', function() {
             $scope.topArrowText.top = '';
@@ -124,13 +122,17 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
         };
 
 
+        $scope.init = function() {
+            $scope.languageCode = LanguageSwitch.uses().code;
+            $scope.load();
+        }
+
         $scope.$on("fulltextSearch", function(text) {
             $scope.offset = 0;
             $scope.load();
         });
 
-        $scope.load();
-
-        $scope.$on("fulltextSearch", $scope.load);
+        $scope.$on('initFinished', $scope.init);
+        $rootScope.initFinished && $scope.init();
     }
 ]);
