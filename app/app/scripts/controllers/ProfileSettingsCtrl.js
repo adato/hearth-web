@@ -56,11 +56,13 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					return false;
 				}
 
-				User.remove({
+				var out = {
 					user_id: $rootScope.loggedUser._id,
 					current_password: data.pass,
 					reason: data.reason
-				}, $scope.processDeleteUserResult);
+				};
+
+				User.remove(out, $scope.processDeleteUserResult);
 			}
 		}
 
@@ -70,7 +72,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				return;
 			}
 
-			$scope.testOldPassword(data.pass, 'profileDeleteForm', 'oldPassLeave', $scope.sendDeleteRequest(data.pass));
+			$scope.testOldPassword(data.pass, 'profileDeleteForm', 'oldPassLeave', $scope.sendDeleteRequest(data));
 		};
 
 		$scope.validateChangePasswordError = function(data) {

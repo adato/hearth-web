@@ -312,7 +312,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					}];
 				}
 			}
-
 			return post;
 		}
 

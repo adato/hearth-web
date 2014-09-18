@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         var loadServices = {
                 'profile': loadUserHome,
                 'profile.posts': loadUserPosts,
-                'profile.communities': CommunityMemberships.query,
+                'profile.communities': loadCommunities,
                 'profile.given': UserRatings.given,
                 'profile.received': UserRatings.received,
                 'profile.following': Followees.query,
@@ -23,11 +23,26 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 user_id: $routeParams.id
             };
 
+        function loadCommunities(params, done, doneErr) {
+
+            CommunityMemberships.query(params, function(res) {
+                $scope.communityAdminCount = 0;
+                if(res) {
+                    res.forEach(function(item) {
+                        $scope.communityAdminCount += +item.current_user_admin;
+                    });
+                }
+
+                done(res);
+            }, doneErr);
+        }
+
         function loadUserPosts(params, done, doneErr) {
 
             var fulltextParams = {
                 type: 'post',
                 include_not_active: +$scope.mine, // cast bool to int
+                include_expired: +$scope.mine, // cast bool to int
                 author_id: params.user_id,
                 limit: 1000
             }
@@ -38,7 +53,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 $scope.postsInactive = [];
 
                 res.data.forEach(function(item) {
-                    if(item.is_active)
+                    if(item.is_active && !item.is_expired)
                         $scope.postsActive.push(item);
                     else
                         $scope.postsInactive.push(item);

@@ -4,8 +4,8 @@ angular.module('hearth').config([
 
 
 		$routeSegmentProvider
-			.when('/search/?', 'search')
 			.when('/', 'market')
+			.when('/search/?', 'search')
 			.when('/ad/:id', 'ad')
 			.when('/404', 'err404')
 			.when('/setup', 'setup')
@@ -43,6 +43,7 @@ angular.module('hearth').config([
 			templateUrl: 'templates/market.html',
 			controller: 'MarketCtrl',
 			reloadOnSearch: false,
+			 disableCache: true,
 			pageType: 'search'
 		}).segment('search', {
 			templateUrl: 'templates/fulltext.html',
