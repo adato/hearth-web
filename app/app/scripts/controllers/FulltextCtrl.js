@@ -123,6 +123,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
 
         $scope.init = function() {
+            console.log(LanguageSwitch);
             $scope.languageCode = LanguageSwitch.uses().code;
             $scope.load();
         }
