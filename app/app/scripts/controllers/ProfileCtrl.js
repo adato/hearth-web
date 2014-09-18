@@ -7,11 +7,13 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$translate',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $translate) {
 		$scope.loaded = false;
 		$scope.info = false;
+
+		console.log($translate("SUBJSON_TEST"));
 
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;

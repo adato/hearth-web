@@ -500,6 +500,7 @@
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadejte co vás zajímá...",
     "NOTICE_EMPTY_DATA": "Zatím zde nejsou žádné záznamy.",
     "FILL_NEW_PASS": "Zadejte nové heslo",
+    "SUBJSON_TEST": {"1": "ABCD","other": "Other"},
     "FILL_CURRENT_PASS": "Zadejte současné heslo",
     "WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíte - budeme vděční, když nám povíte důvod:",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>"
