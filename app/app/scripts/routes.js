@@ -12,14 +12,13 @@ angular.module('hearth').config([
 			.when('/terms', 'terms')
 			.when('/about', 'about')
 			.when('/feedback', 'feedback')
-
-		.when('/register', 'reg')
+			// ... 
+			.when('/register', 'reg')
 			.when('/login', 'login')
 			.when('/reset-password', 'reset-pass')
 			.when('/forgotten-password', 'forgot-pass')
 			.when('/confirmEmail', 'confirm-email')
 			.when('/change-password', 'change-pass')
-
 
 		.when('/profile/:id', 'profile')
 			.when('/profile/:id/posts', 'profile.posts')
@@ -43,7 +42,7 @@ angular.module('hearth').config([
 			templateUrl: 'templates/market.html',
 			controller: 'MarketCtrl',
 			reloadOnSearch: false,
-			 disableCache: true,
+			disableCache: true,
 			pageType: 'search'
 		}).segment('search', {
 			templateUrl: 'templates/fulltext.html',
@@ -112,11 +111,11 @@ angular.module('hearth').config([
 
 		.within()
 
-		.segment('home', {
-			default: true,
-			controller: 'ProfileDataFeedCtrl',
-			templateUrl: 'templates/profile/home.html'
-		})
+			.segment('home', {
+				default: true,
+				controller: 'ProfileDataFeedCtrl',
+				templateUrl: 'templates/profile/home.html'
+			})
 			.segment('posts', {
 				templateUrl: 'templates/profile/posts.html',
 				controller: 'ProfileDataFeedCtrl',
@@ -158,11 +157,11 @@ angular.module('hearth').config([
 				dependencies: ['id']
 			})
 
-		.segment('invite', {
-			templateUrl: 'templates/profile/invite.html',
-			controller: 'ProfileInviteCtrl',
-			dependencies: ['id']
-		})
+			.segment('invite', {
+				templateUrl: 'templates/profile/invite.html',
+				controller: 'ProfileInviteCtrl',
+				dependencies: ['id']
+			})
 		$routeProvider.otherwise({
 			redirectTo: '/'
 		});

@@ -1,5 +1,5 @@
 <article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine}">
-	<section ng-hide="hideAvatar" class="large-2 columns photo">
+	<section ng-if="! hideAvatar" class="large-2 columns photo">
 		<div ng-include="'templates/_user-info.html'"></div>
 		<a ng-href="#!/{{profileLinkType[item.author._type]}}/{{ item.author._id }}">
 			<div class="avatar" ng-style="avatarStyle"></div>
@@ -98,7 +98,7 @@
 				<span class="margin" ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
 				<span class="margin" ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 				<div class="footer-container" ng-show="replyEdit || adEdit || reported || reportNotLoggedIn">
-					<div ng-show="reported">
+					<div ng-if="reported">
 						<div class="animate-show" ng-cloak >
 							<article class="row">
 								<section class="large-12 columns">
@@ -121,6 +121,7 @@
 						</article>
 					</div>
 
+<!-- ======================== DEPRECATED ===================== -->
 <!-- 					<div signed-in ng-if="!mine" ng-show="replyEdit" class="reply-box animate-show">
 						<article class="row">
 							<section class="large-12 columns">

@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('pluralizeTranslate', [
-	'$translate',
-	function($translate) {
+	'$translate', '$rootScope',
+	function($translate, $rootScope) {
 		return {
 			transclude: true,
 			restrict: 'E',
@@ -19,11 +19,21 @@ angular.module('hearth.directives').directive('pluralizeTranslate', [
 			},
 			template: '<span ng-pluralize count="count" when="translateStrings"></span>',
 			link: function($scope, el, attrs) {
-				$scope.$watch("key", function(key) {
-					console.log("======= Translate: ",key);
-					console.log($translate(key));
-					$scope.translateStrings = jQuery.parseJSON($translate(key));
+				$scope.translateStrings = null;
+
+				function refreshTranslation(key) {
+					console.log("translating: " + key, $rootScope.languageInited);
+					if($rootScope.languageInited) {
+						$scope.translateStrings = jQuery.parseJSON($translate(key));
+					}
+				}
+
+				$scope.$watch("key", refreshTranslation);
+				
+				$rootScope.$on("languageInited", function() {
+					refreshTranslation($scope.key);
 				});
+				$rootScope.languageInited && refreshTranslation($scope.key);
 			}
 		};
 	}

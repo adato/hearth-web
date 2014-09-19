@@ -18,7 +18,7 @@
         </div>
         <div class="highlights">
             <a href="#!/profile/{{info._id}}" class="profile-photo" style="background-image: url('{{info.avatarStyle}}');"></a>
-            <a href="#!/profile/{{info._id}}/following" class="friends-and-follows">
+            <a href="#!/profile/{{info._id}}/following" ng-class="{'active': (pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers_count')}" class="friends-and-follows">
                 <b>{{info.followers_count}}</b>
                 <br />
                 <pluralize-translate count="info.followers_count" key="'HOW_MANY_PLEOPLE'"></pluralize-translate>
@@ -28,10 +28,10 @@
                 <strong>{{info.followees_count}}</strong> <pluralize-translate count="info.followees_count" key="'BY_PLEOPLE'"></pluralize-translate>
                 <br />{{ 'IS_INSPIRED' | translate }}
             </a>
-            <a href="#!/profile/{{info._id}}/communities" class="communities"><b>{{info.communities_count}}</b> 
+            <a href="#!/profile/{{info._id}}/communities" class="communities" ng-class="{'active': (pageSegment.substr(8) == 'communities')}"><b>{{info.communities_count}}</b> 
                 <pluralize-translate count="info.communities_count" key="'COMMUNITS'"></pluralize-translate>
             </a>
-            <a href="#!/profile/{{info._id}}/posts" class="ratings"><b>{{info.post_count}}</b><br>
+            <a href="#!/profile/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(8) == 'posts' || pageSegment.substr(8) == 'received' || pageSegment.substr(8) == 'given')}" class="ratings"><b>{{info.post_count}}</b><br>
                 <pluralize-translate count="info.post_count" key="'GIVES_AND_WISHES'"></pluralize-translate>
             </a>
             <div class="karma-bar" ng-if="info.karma != null"><span class="positive" style="width:{{info.karma}}%;">{{ info.karma }}% <i class="fa fa-sun-o"></i></span><span class="negative" style="width:{{100 - info.karma}}%;"><i class="fa fa-moon-o"></i> {{100 - info.karma}}%</span></div>

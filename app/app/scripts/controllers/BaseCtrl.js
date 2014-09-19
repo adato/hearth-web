@@ -83,7 +83,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             }
         });
 
-
         $rootScope.showLoginBox = function() {
 
             ngDialog.open({
@@ -91,7 +90,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'LoginCtrl',
                 scope: $scope
             });
-        }
+        };
 
         $rootScope.editItem = function(post) {
             if (!Auth.isLoggedIn())

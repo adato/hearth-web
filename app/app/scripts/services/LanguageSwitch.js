@@ -16,20 +16,21 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			}, {
 				code: 'cs',
 				name: 'Česky'
-			}],
-			init = function() {
-				if ($feature.isEnabled('german')) {
-					return languages.push({
-						code: 'de',
-						name: 'Deutsch'
-					});
-				}
+			}];
 
-				console.log("Language Inited");
-				$rootScope.$broadcast("languageInited");
-				$rootScope.languageInited = true;
-			};
-			
+		this.init = function() {
+			if ($feature.isEnabled('german')) {
+				return languages.push({
+					code: 'de',
+					name: 'Deutsch'
+				});
+			}
+
+			console.log("Language Inited");
+			$rootScope.languageInited = true;
+			$rootScope.$broadcast("languageInited");
+		};
+		
 		this.getLanguages = function() {
 			return languages;
 		};
@@ -67,6 +68,5 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		this.load = function() {
 			return $.cookie('language');
 		};
-		init();
 	}
 ]);

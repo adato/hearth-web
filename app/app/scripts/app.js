@@ -95,6 +95,11 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'route-segment', 'view-segment'
                 OpenGraph.setDefault();
             });
         }
+    ]).run([
+        'LanguageSwitch',
+        function(LanguageSwitch) {
+            LanguageSwitch.init();
+        }
     ]);
 
 var __indexOf = [].indexOf || function(item) {

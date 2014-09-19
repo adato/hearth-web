@@ -149,6 +149,7 @@
                     margin:5px;
                 }
                 hr { margin:10px; }
+                &.active,
                 &:hover {
                     background:color(1);
                     border-color:lighten(color(1), 20%);

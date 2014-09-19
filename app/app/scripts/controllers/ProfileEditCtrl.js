@@ -144,9 +144,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				return false;
 			}
 
-			if($scope.sending) {
-				return false;
-			}
+			if($scope.sending) return false;
 			$scope.sending = true;
 			
 			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
