@@ -58,7 +58,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 				var out = {
 					user_id: $rootScope.loggedUser._id,
-					password_current: data.pass,
+					current_password: data.pass,
 					reason: data.reason
 				};
 
