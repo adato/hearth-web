@@ -2,18 +2,17 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.CommunityRegisterCtrl
+ * @name hearth.controllers.CommunityCreateCtrl
  * @description 
  */
 
-angular.module('hearth.controllers').controller('CommunityRegisterCtrl', [
+angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 	'$scope', '$window', 'CommunityService', 'ResponseErrors', '$location', '$timeout', 'ipCookie',
 	function($scope, $window, CommunityService, ResponseErrors, $location, $timeout, ipCookie) {
 		$scope.community = {};
 		$scope.createCommunity = function() {
 			if (!$scope.createCommunityForm.$invalid) {
 				return CommunityService.add($scope.community).then(function() {
-					ipCookie('newCommunityCreated', true);
 					return $timeout(function() {
 						return $window.location.reload();
 					});
