@@ -90,10 +90,6 @@ angular.module('hearth').config([
 			}).segment('ad', {
 				controller: 'ItemDetail',
 				templateUrl: 'templates/itemDetail.html'
-			}).segment('communities', {
-				templateUrl: 'templates/communityList.html',
-				controller: 'CommunityListCtrl',
-				pageType: 'communities'
 
 			}).segment('community-list', {
 			    templateUrl: 'templates/community/list.html',
@@ -101,12 +97,12 @@ angular.module('hearth').config([
 			    pageType: 'community-list',
 			    reloadOnSearch: false
 			}).segment('community-create', {
-			    templateUrl: 'templates/community/create.html',
+			    templateUrl: 'templates/community/register.html',
 			    controller: 'communityCreateCtrl',
 			    pageType: 'community-create',
 			    reloadOnSearch: false
 			}).segment('community', {
-			    templateUrl: 'templates/community/detail.html',
+			    templateUrl: 'templates/community/profile.html',
 			    controller: 'communityProfileCtrl',
 			    pageType: 'community',
 			    reloadOnSearch: false

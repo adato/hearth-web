@@ -5,6 +5,8 @@
 $color: #fa5800, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8;
 $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
+$webWidth: 960px;
+
 
 @import "settings";
 
@@ -89,6 +91,7 @@ $fontSize: rem-calc(18);
 @import "itemDetail";
 @import "modal";
 @import "profile";
+@import "communities";
 @import "profile-edit";
 
 body {
@@ -97,7 +100,9 @@ body {
     background-position: 50% top;
     background-attachment:fixed;
     .main-container {
+        width: $webWidth;
         display: block;
+        margin: 0px auto;
         position: relative;
         .scrolled & {
             top: 6em;
@@ -108,7 +113,7 @@ body {
 
 // ============ Odstraneni responzivity ======
 #all {
-    min-width:950px;
+    min-width:$webWidth;
 }
 
 /*
