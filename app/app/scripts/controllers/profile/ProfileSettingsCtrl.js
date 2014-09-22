@@ -135,8 +135,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 				ChangePassword.change({
 					user_id: $rootScope.loggedUser._id,
-					password: pass.newPass,
-					password_confirmation: pass.newPass,
+					password: pass.changed,
+					password_confirmation: pass.changed,
 					current_password: pass.old
 				}, $scope.processChangeResult);
 			}
