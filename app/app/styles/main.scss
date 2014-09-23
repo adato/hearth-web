@@ -92,6 +92,8 @@ $fontSize: rem-calc(18);
 @import "modal";
 @import "profile";
 @import "communities";
+@import "community-profile";
+@import "community-edit";
 @import "profile-edit";
 
 body {
@@ -100,7 +102,6 @@ body {
     background-position: 50% top;
     background-attachment:fixed;
     .main-container {
-        width: $webWidth;
         display: block;
         margin: 0px auto;
         position: relative;
@@ -113,7 +114,6 @@ body {
 
 // ============ Odstraneni responzivity ======
 #all {
-    min-width:$webWidth;
 }
 
 /*

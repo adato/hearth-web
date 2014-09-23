@@ -1,3 +1,21 @@
 <div class="community-list-item">
-	{{ item }}
+	<a href="#!/community/{{item._id}}">
+		<div class="avatar community-avatar">
+			<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+		</div>
+	</a>
+	<div class="community-list-item-data">
+		<a href="#!/community/{{item._id}}">
+			<h4 class="small-6 fleft">{{ item.name }}</h4>
+		</a>
+		<div class="small-6 tright fright">
+			<a href="#!/community/{{item._id}}/edit" ng-if="item.administrator == loggedUser._id">
+				{{'ADMINISTRATOR' | translate}}
+			</a>
+		</div>
+		<div class="clear"></div>
+		<a href="#!/community/{{item._id}}">
+			<p>{{ item.description | ellipsis }}</p>
+		</a>
+	 </div>
 </div>

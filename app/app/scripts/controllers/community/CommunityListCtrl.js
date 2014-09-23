@@ -7,22 +7,26 @@
  */
  
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', '$rootScope',
-	function($scope, $rootScope) {
-		$scope.myCommunities = null;
-		$scope.randomCommunities = null;
+	'$scope', '$rootScope', 'CommunityMemberships', 'Communities',
+	function($scope, $rootScope, CommunityMemberships, Communities) {
+		$scope.myCommunities = [];
+		$scope.randomCommunities = [];
 		
 		$scope.fetchMyCommunities = function() {
-			
+			if(! $rootScope.loggedUser._id) return false;
+			// get my communities
+			CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
+				$scope.myCommunities = res;
+			});
 		};
 
 		$scope.fetchRandomCommunities = function() {
-
-			
+			Communities.random(function(res) {
+				$scope.randomCommunities = res;
+			});
 		};
 
 		$scope.init = function() {
-			
 			$scope.fetchMyCommunities();
 			$scope.fetchRandomCommunities();
 		};

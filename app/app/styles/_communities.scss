@@ -1,4 +1,6 @@
 .communities {
+    width: $webWidth;
+    margin: 0px auto;
     
     .community-listing {
         @extend .clearfix;

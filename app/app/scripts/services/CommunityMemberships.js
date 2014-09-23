@@ -15,6 +15,7 @@ angular.module('hearth.services').factory('CommunityMemberships', [
 		}, {
 			get: {
 				method: 'GET',
+				isArray: true,
 				params: {
 					r: Math.random()
 				}
