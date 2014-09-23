@@ -64,7 +64,7 @@
             {{ 'COMMUNITY_NAME' | translate }} *
             <input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="community.name" class="text-input" type='text' ng-required="true">
             <div class="absolute error" ng-show="showError.name">
-                <span ng-show="communityEditForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+                <span ng-show="communityEditForm.name.$error.required">{{ 'ERR_COMMUNITY_NAME_NOT_FILLED' | translate }}</span>
             </div>
           </label>
         </div>
@@ -80,7 +80,7 @@
         </span>
       </h2>
       <section class="location">
-        <locations locations="community.locations" error="showError.locations" error-message="'LOCATIONS_IS_EMPTY_STRICT'" limit="-1" max-count="1" hide-map="true"></locations>
+        <locations locations="community.locations" error="showError.locations" placeholder-key="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'" error-message="'LOCATIONS_IS_EMPTY_STRICT'" limit="-1" max-count="1" hide-map="true"></locations>
       </section>
 
       <h2>
@@ -113,15 +113,15 @@
           <a ng-if="community._id" ng-href="#!/communities/" class="revert-changes"><span class="fa fa-chevron-left"></span>{{ 'CANCEL_CHANGES' | translate }}</a>
           <a ng-if="!community._id" ng-href="#!/communities/{{community._id}}" class="revert-changes"><span class="fa fa-chevron-left"></span>{{ 'CANCEL_CHANGES' | translate }}</a>
 
-          <button type="submit" class="button-send right" analytics-on analytics-event="same my description" analytics-category="My community" analytics-value="5">{{ 'SAVE' | translate }}</button>
+          <button type="submit" class="button-send right" analytics-on analytics-event="save profile" analytics-category="My community" analytics-value="5">{{ 'SAVE' | translate }}</button>
         </div>
       </section>
 
       </div>
     </form>
 
-    <div ng-if="!community._id && communityUsers.length > 2 ">
-
+    <div ng-if="true ">
+<!-- !community._id && communityUsers.length > 2 -->
       <h2>
         <span class="content">
           <span class="fa fa-info"></span>{{ 'COMMUNITY_CHANGE_ADMIN' | translate }}
@@ -135,13 +135,20 @@
       <div class="clear"></div>
   </div>
 
-
-        <h2>
-          <span class="content">
-            <span class="fa fa-minus-circle"></span>{{ 'COMMUNITY_DELETE' | translate }}
-          </span>
-        </h2>
-      
-        <div class="clear"></div>
-
+  <div ng-if="true ">
+    <h2>
+      <span class="content">
+        <span class="fa fa-minus-circle"></span>{{ 'COMMUNITY_DELETE' | translate }}
+      </span>
+    </h2>
+    <section class="delete">
+      <p class="small-8 fleft">
+        {{ 'COMMUNITY_HAS_MEMBERS_COUNT' | translate }}
+        <pluralize-translate count="info.communityMembers.count()" key="'X_MEMBERS'"></pluralize-translate>,
+        {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
+      </p>
+      <button type="submit" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
+    </section>
+  </div>
+  <div class="clear"></div>
 </div>

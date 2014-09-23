@@ -29,6 +29,9 @@ angular.module('hearth.services').factory('Community', [
 			edit: {
 				method: 'PUT'
 			},
+			remove: {
+				method: 'DELETE'
+			},
 			add: {
 				method: 'POST'
 			}

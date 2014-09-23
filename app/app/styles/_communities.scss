@@ -1,8 +1,8 @@
 .communities {
-    width: $webWidth;
+    width: 960px; /* ==== set general width === */
+
     margin: 0px auto;
-    
-    .community-listing {
+    .community-list {
         @extend .clearfix;
         clear:both;
         .avatar {
@@ -24,8 +24,14 @@
                 border-radius: 50%;
             }
         }
-        .community {
+        .community-list-item {
             @extend .large-10, .large-centered, .clearfix;
+            background:lighten(color(5), 45%);
+            h4 {
+                a {
+                    color: black;
+                }
+            }
             margin: {
                 bottom: 5px;
                 left:auto;
@@ -37,7 +43,6 @@
                 left:20px;
                 right:20px;
             }
-            background:lighten(color(5), 45%);
             small {
                 font-size:0.85rem;
                 float: right;
@@ -51,17 +56,15 @@
                     }
                 }
             }
-            .community-text {
+            p {
                 font-size:1.2rem;
                 line-height:125%;
+                width: 80%;
+                float: left;
+                color: black;
                 margin: {
                     top:10px;
                     bottom:10px;
-                    left:130px; 
-                }
-                .rating-from {
-                    display:inline-block;
-                    margin-top:10px;
                 }
             }
         }

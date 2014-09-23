@@ -19,6 +19,7 @@ angular.module('hearth.geo').directive('locations', [
                 locations: '=',
                 limit: '=',
                 maxCount: '=',
+                placeholderKey: '=',
                 error: '=',
                 errorMessage: '=',
                 hideMap: '='
@@ -29,7 +30,8 @@ angular.module('hearth.geo').directive('locations', [
                 scope.mapDisplay = -1;
                 scope.error = false;
                 scope.errorMsg = scope.errorMessage || 'LOCATIONS_IS_EMPTY';
-                
+                scope.placeholder = scope.placeholderKey || "MY_PLACE";
+
                 function getDefaultLocation() {
 
                     return angular.copy({

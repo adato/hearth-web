@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
-	'$scope', '$window', '$routeParams', 'Community',
-	function($scope, $window, $routeParams, Community) {
+	'$scope', '$window', '$routeParams', 'Community', 'CommunityMembers',
+	function($scope, $window, $routeParams, Community, CommunityMembers) {
 		$scope.communityUsers = [];
 		$scope.defaultCommunity = {
 			name: '',
@@ -37,6 +37,10 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 				$scope.community = res;
 				$scope.loaded = true;
 			});
+
+			CommunityMembers.query({communityId: id}, function(res) {
+				$scope.communityUsers = res;
+			});
 		};
 
 		$scope.getCommunityId = function() {
@@ -46,9 +50,12 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		$scope.save = function() {
 
 			console.log("Saving: ", $scope.community);
-
 		};
 
+		$scope.remove = function() {
+
+			// remove
+		};
 
 		$scope.init = function() {
 

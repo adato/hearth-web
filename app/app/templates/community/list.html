@@ -7,8 +7,10 @@
             </a>
         </p>
     </header>
+    <div class="clear"></div>
     <div class="my-communities" ng-if="myCommunities.length">
-        <h4>{{ 'YOU_ARE_ADMIN_IN_X_COMMUNITIES' | translate }}</h4>
+        <h3>{{ 'YOU_ARE_ADMIN_IN_X_COMMUNITIES' | translate }}</h3>
+        <br />
         <div class="community-list">
             <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div>
         </div>
@@ -17,6 +19,7 @@
     <div class="random-communities">
         <h3 ng-if="myCommunities.length">{{ 'ANOTHER_COMMUNITIES' | translate }}</h3>
         <h3 ng-if="! myCommunities.length">{{ 'RANDOM_COMMUNITIES' | translate }}</h3>
+        <br />
         <div class="community-list">
             <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in randomCommunities track by $index"></div>
         </div>

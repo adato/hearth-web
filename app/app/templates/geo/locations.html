@@ -1,7 +1,7 @@
 <div class="locations">
     <div class="row" id="row-{{$index}}" ng-repeat="location in locations track by $index" ng-class="{disabled: limit == true}">
         <div class="fleft locInput">
-            <input placeholder="{{ 'MY_PLACE' | translate}}" ng-blur="testEmptyLocation(location)" ng-focus="hideError(location)" ng-disabled="limit == true" ng-model="locations[$index].name" class="map-input" type='text'>
+            <input placeholder="{{ placeholder | translate}}" ng-blur="testEmptyLocation(location)" ng-focus="hideError(location)" ng-disabled="limit == true" ng-model="locations[$index].name" class="map-input" type='text'>
             <div class="remove" ng-hide="$first">
                 <!-- <span class="fa fa-times-circle" ng-click="remove($event, $index)"></span> -->
                 <span class="remove" ng-click="remove($event, $index)">smazat</span>
