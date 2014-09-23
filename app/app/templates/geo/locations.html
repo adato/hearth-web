@@ -20,7 +20,7 @@
     </div>
     <div class="clear"></div>
     <div class="controll">
-        <a ng-click="add()" ng-if="!(locations.length > 0 && !locations[locations.length-1].name) || (! maxCount || maxCount < locations.length)">
+        <a ng-click="add()" ng-show="locations.length > 0 && !locations[locations.length-1].name && maxCount > locations.length">
             <span class="fa fa-plus-square"></span>{{ 'ADD' | translate }} &nbsp; &nbsp;
         </a>
         <checkbox ng-show="limit != -1" model="limit" on-update="locationDoesNotMatter()" value="true" value-off="false">

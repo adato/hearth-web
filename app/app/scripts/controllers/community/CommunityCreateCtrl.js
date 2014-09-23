@@ -7,20 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
-	'$scope', '$window', '$routeParams', 'Community', 'CommunityMembers',
-	function($scope, $window, $routeParams, Community, CommunityMembers) {
+	'$scope', '$location', '$routeParams', 'Community', 'CommunityMembers',
+	function($scope, $location, $routeParams, Community, CommunityMembers) {
 		$scope.communityUsers = [];
+		$scope.adminChangeId = null;
+		$scope.sendingDelete = false;
 		$scope.defaultCommunity = {
 			name: '',
 			locations: [{name:''}],
 			description: '',
-			restrictions: '',
+			terms: '',
 		};
 		$scope.showError = {
 			location: false,
 			name: false,
-			about: false,
-			restrictions: false,
+			description: false,
+			terms: false,
+			locations: false,
 		};
 		$scope.community = {};
 
@@ -39,6 +42,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			});
 
 			CommunityMembers.query({communityId: id}, function(res) {
+				console.log(res);
 				$scope.communityUsers = res;
 			});
 		};
@@ -47,14 +51,68 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			return $routeParams.id;
 		};
 
-		$scope.save = function() {
+		$scope.validate = function(data) {
+			var err = false;
 
-			console.log("Saving: ", $scope.community);
+			if($scope.communityForm.name.$invalid) {
+				$scope.showError.name = err = true;
+			}
+			
+			if($scope.communityForm.terms.$invalid) {
+				$scope.showError.terms = err = true;
+			}
+
+			if($scope.communityForm.description.$invalid) {
+				$scope.showError.description = err = true;
+			}
+
+			if(data.locations) {
+				data.locations.forEach(function(item) {
+					console.log(item);
+					if(item.name == '') {
+						$scope.showError.locations = err = true;
+					}
+				});
+			}
+
+			return ! err; // return true if valid
+		}
+
+		$scope.save = function() {
+			// if we have community ID - then edit
+			var service = ($scope.community._id) ? Community.edit : Community.add;
+
+			// validate data
+			if(!$scope.validate($scope.community)) return false;
+
+			// lock
+			if($scope.sending) return false;
+			$scope.sending = true;
+
+			service($scope.community, function(res) {
+	            $location.path('#!/community/'+res._id);
+			}, function(res) {
+				alert("Operace se nezdařila :-(");
+				$scope.sending = false;;
+			});
 		};
 
 		$scope.remove = function() {
 
-			// remove
+			if($scope.sendingDelete) return false;
+			$scope.sendingDelete = true;
+
+			Community.remove(function(res) {
+
+				$scope.sendingDelete = false;
+				alert("KOMUNITA BYLA SMAZANA");
+				window.location.reload("#!/communities");
+
+			}, function(res) {
+
+				alert("Při mazání komunity došlo k chybě.");
+				$scope.sendingDelete = false;
+			});
 		};
 
 		$scope.init = function() {

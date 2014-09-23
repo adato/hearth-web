@@ -18,10 +18,10 @@ angular.module('hearth.geo').directive('locations', [
             scope: {
                 locations: '=',
                 limit: '=',
-                maxCount: '=',
+                maxCount: '=?',
                 placeholderKey: '=',
                 error: '=',
-                errorMessage: '=',
+                errorMessage: '=?',
                 hideMap: '='
             },
             templateUrl: 'templates/geo/locations.html',
@@ -31,6 +31,7 @@ angular.module('hearth.geo').directive('locations', [
                 scope.error = false;
                 scope.errorMsg = scope.errorMessage || 'LOCATIONS_IS_EMPTY';
                 scope.placeholder = scope.placeholderKey || "MY_PLACE";
+                scope.maxCount = scope.maxCount || 30;
 
                 function getDefaultLocation() {
 
@@ -217,7 +218,7 @@ angular.module('hearth.geo').directive('locations', [
                         scope.removeAll();
                         scope.add();
                     }
-                }
+                };
 
                 scope.$watch('locations', initSearchBoxes);
                 setTimeout(initSearchBoxes);

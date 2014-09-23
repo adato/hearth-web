@@ -1431,7 +1431,6 @@ input + .remove {
 ;
 
 
-
 form[name="replyForm"] {
     position:fixed;
 }*/
@@ -1455,7 +1454,6 @@ img.blur {
     display: none;
 }
 
-
 .text-in-password {
     position: relative;
     .fa-eye {
@@ -1478,4 +1476,8 @@ img.blur {
     * {
         text-transform: capitalize;
     }
+}
+
+.margin-top {
+    margin-top: 10px;
 }
