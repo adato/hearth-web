@@ -1,14 +1,37 @@
+$medium-avatar-size: 80px;
+
 .profile-view {
-    max-width:1000px;
+    max-width:960px;
     padding-bottom: 100px;
     margin: {
         left: auto;
         right: auto;
-        top:-40px; // hack, remove when whole site is updated
+        top:-40px; // moved whole page a little bit up to avoid blank space on top
     }
 
     .avatar {
         overflow: hidden;
+    }
+    .medium-avatar {
+        .avatar {
+            left:0;
+            width:$medium-avatar-size;
+            height:$medium-avatar-size;
+            margin: {
+                top:20px;
+                left:20px;
+                right:20px;
+                bottom:0px;
+            }
+            float:left;
+            &::before {
+                width:$medium-avatar-size;
+                height:$medium-avatar-size;
+            }
+            img {
+                border-radius: 50%;
+            }
+        }
     }
     .button-flat {
         font-weight:bold;
@@ -113,8 +136,9 @@
         .highlights {
             @extend .large-12, .columns;
             display:block;
-            height:320px;
+            height:340px;
             padding:0;
+            margin-top:20px;
             .profile-photo {
                 @extend .large-3, .columns;
                 width:300px;
@@ -124,7 +148,6 @@
                 border-radius:300px;
                 border:2px solid color(4);
                 box-shadow:inset 0px 6px 9px 0px rgba(50, 50, 50, 0.75);
-
                 background-image: inline-image("no-avatar.png");
             }
             .friends-and-follows {
@@ -226,8 +249,8 @@
             }
             p {
                 margin: {
-                    left:30px;
-                    right:30px;
+                    left:20px;
+                    right:20px;
                 }   
             }
         }
@@ -258,6 +281,7 @@
             .ratings {
                 @extend .box;
                 .rating {
+                    @extend .clearfix, .medium-avatar;
                     margin-bottom:5px;
                     padding: {
                         top:20px;
@@ -271,23 +295,7 @@
                         line-height:125%;
                     }
                     .avatar {
-                        left:0;
-                        width:80px;
-                        height:80px;
-                        margin: {
-                            top:0px;
-                            left:20px;
-                            right:20px;
-                            bottom:20px;
-                        }
-                        float:left;
-                        &::before {
-                            width:80px;
-                            height:80px;
-                        }
-                        img {
-                            border-radius: 50%;
-                        }
+                        margin-top:0;
                     }
                     .rating-text {
                         font-size:1.2rem;
@@ -377,12 +385,14 @@
                     .activity-text {
                         @extend .clearfix;
                         padding-top:20px;
-                        margin-left:80px;
+                        padding-right:20px;
+                        margin-left:$medium-avatar-size;
                     }
                 }
                 .timeline-container {
                     position: relative;
                     padding-bottom: 20px;
+                    paddign-right: 20px;
 
                     h4 {
                         text-transform: uppercase;
@@ -457,24 +467,13 @@
             }
         }
         .person {
-            @extend .large-4, .columns;
+            @extend .large-4, .columns, .medium-avatar;
             .name {
                 margin-left:120px;
             }
             h4 {
                 margin-top:30px;
             }
-            .avatar {
-                left:0;
-                width:80px;
-                height:80px;
-                margin:20px;
-                float:left;
-                &::before {
-                    width:80px;
-                    height:80px;
-                }
-            }            
         }       
     }
 
@@ -486,27 +485,8 @@
     }
 
     .community-listing {
-        @extend .clearfix;
+        @extend .clearfix, .medium-avatar;
         clear:both;
-        .avatar {
-            left:0;
-            width:80px;
-            height:80px;
-            margin: {
-                top:10px;
-                left:20px;
-                right:20px;
-                bottom:10px;
-            }
-            float:left;
-            &::before {
-                width:80px;
-                height:80px;
-            }
-            img {
-                border-radius: 50%;
-            }
-        }
         .community {
             @extend .large-10, .large-centered, .clearfix;
             margin: {
@@ -534,6 +514,9 @@
                     }
                 }
             }
+            .avatar {
+                margin-top:0;
+            }
             .community-text {
                 font-size:1.2rem;
                 line-height:125%;
@@ -553,7 +536,7 @@
         @extend .clearfix;
         clear:both;
         .rating {
-            @extend .large-10, .large-centered, .clearfix;
+            @extend .large-10, .large-centered, .clearfix, .medium-avatar;
             margin: {
                 bottom: 5px;
                 left:auto;
@@ -569,25 +552,6 @@
             small {
                 font-size:0.85rem;
                 line-height:125%;
-            }
-            .avatar {
-                left:0;
-                width:80px;
-                height:80px;
-                margin: {
-                    top:0px;
-                    left:20px;
-                    right:20px;
-                    bottom:20px;
-                }
-                float:left;
-                &::before {
-                    width:80px;
-                    height:80px;
-                }
-                img {
-                    border-radius: 50%;
-                }
             }
             .rating-text {
                 font-size:1.2rem;
