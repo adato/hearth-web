@@ -112,7 +112,7 @@ angular.module('hearth').config([
 				.segment('home', {
 					default: true,
 					controller: 'CommunityDataFeedCtrl',
-					templateUrl: 'templates/community/detailHome.html'
+					templateUrl: 'templates/community/profileHome.html'
 				})
 		  	.up()
 			// ========= Profile

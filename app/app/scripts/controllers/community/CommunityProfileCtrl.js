@@ -7,27 +7,20 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community',
-	function($scope, $routeParams, $rootScope, Community) {
-		
-		$scope.fetchUser = function() {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route',
+	function($scope, $routeParams, $rootScope, Community, $route) {
+		$scope.loaded = true;
+		$scope.info = {};
 
-			if ($scope.info._id !== $routeParams.id) {
-				$scope.loaded = false;
-			}
+		$scope.fetchCommunity = function() {
 
-			User.get({
-				user_id: $routeParams.id
-			}, function(res) {
+			if ($scope.info._id !== $routeParams.id) $scope.loaded = false;
+
+			Community.get({ communityId: $routeParams.id }, function(res) {
+
 				$scope.info = res;
-				if (res && res.avatar.normal) {
-					$scope.info.avatarStyle = res.avatar.large;
-				} else {
-					$scope.info.avatarStyle = $$config.defaultUserImage;
-				}
 
-				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
-				$scope.mine = $scope.isMine();
+				// $scope.mine = $scope.isMine();
 				$scope.loaded = true;
 
 				$scope.$broadcast("profileTopPanelLoaded");
@@ -35,6 +28,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.loaded = true;
 			});
 		};
+		
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
 			$scope.pagePath = $route.current.originalPath;
