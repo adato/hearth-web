@@ -21,7 +21,7 @@
             </div>
             <p ng-if="! receivedRatings.length">{{ 'NO_RATINGS_YET' | translate}}</p>
             <div class="buttons">
-                <a href="#!/profile/{{info._id}}/given-ratings">
+                <a href="#!/profile/{{info._id}}/received-ratings">
                     <button class="button-flat blue spacy"><i class="fa fa-chevron-down"></i> {{ 'OLDER_RATINGS' | translate }}</button>
                 </a>
             </div>
@@ -69,8 +69,8 @@
         <div class="user-about">
             <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
             <p>
-                <span class="work">{{info.work}}</span>
-                <span class="regDate">{{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
+                <span class="work"><i class="fa fa-briefcase"></i> {{info.work}}</span>
+                <span class="reg-date"><i class="fa fa-asterisk"></i> {{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
                 <span class="social">
                     <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
                     <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
