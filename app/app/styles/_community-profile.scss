@@ -318,7 +318,6 @@
             .ads {
                 @extend .box;
                 a.create-ad-sign {
-                    @extend .fa, .fa-plus-square;
                     float:right;
                     display:block;
                     width:20px;

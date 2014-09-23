@@ -1,5 +1,4 @@
 $medium-avatar-size: 80px;
-
 .profile-view {
     max-width:960px;
     padding-bottom: 100px;
@@ -30,6 +29,7 @@ $medium-avatar-size: 80px;
             }
             img {
                 border-radius: 50%;
+                background:color(4);
             }
         }
     }
@@ -38,6 +38,7 @@ $medium-avatar-size: 80px;
         border:0;
         &.blue {
             background:color(5);
+            background: linear-gradient(180deg, lighten(color(5), 10%) 30%, color(5) 70%);
             i {
                 display:inline-block;
                 margin-right:10px;
@@ -75,6 +76,7 @@ $medium-avatar-size: 80px;
     header {
         .user-basic {
             @extend .large-7, .columns;
+            padding:0;
             h1 {
                 position: relative;
                 z-index: 1;
@@ -136,9 +138,9 @@ $medium-avatar-size: 80px;
         .highlights {
             @extend .large-12, .columns;
             display:block;
-            height:340px;
+            height:320px;
             padding:0;
-            margin-top:20px;
+            margin-top:10px;
             .profile-photo {
                 @extend .large-3, .columns;
                 width:300px;
@@ -150,16 +152,15 @@ $medium-avatar-size: 80px;
                 box-shadow:inset 0px 6px 9px 0px rgba(50, 50, 50, 0.75);
                 background-image: inline-image("no-avatar.png");
             }
-            .friends-and-follows {
-                @extend .large-2, .columns;
-                width:170px;
-                height:170px;
+            .bubble {
                 border-radius:50%;
+                border:none;
                 background:color(3);
-                border:10px solid color(3);
-                padding:10px;
+                padding:20px;
                 text-align:center;
                 color:color(4);
+                box-shadow:inset 0px -1px 50px 30px rgba(50, 50, 50, 0.75);
+                text-shadow: 0px 0px 13px rgba(50, 50, 50, 1);
                 margin: {
                     top: 20px; 
                     left:40px;
@@ -174,18 +175,25 @@ $medium-avatar-size: 80px;
                 hr { margin:10px; }
                 &.active,
                 &:hover {
-                    background:color(1);
-                    border-color:lighten(color(1), 20%);
+                    background:mix(darken(color(1), 20%), darken(color(3), 10%));
+                    border:10px solid lighten(color(1), 20%);
+                    box-shadow:none;
+                    padding:10px;
                 }
             }
+            .friends-and-follows {
+                @extend .large-2, .columns, .bubble;
+                width:170px;
+                height:170px;
+            }
             .communities {
-                @extend .large-3, .columns, .friends-and-follows;
+                @extend .large-3, .columns, .bubble;
                 width:120px;
                 height:120px;
                 margin-top:100px;
             }
             .ratings {
-                @extend .large-3, .columns, .friends-and-follows;
+                @extend .large-3, .columns, .bubble;
                 width:130px;
                 height:130px;
                 margin-top:40px;
@@ -203,9 +211,11 @@ $medium-avatar-size: 80px;
                     padding:10px;
                     color:color(4);
                     font-weight:bold;
+                    box-shadow: inset 0px 0px 10px 0px rgba(color(4), 0.75);
                 }
                 .positive {
                     background:color(2);
+                    background: linear-gradient(130deg, darken(color(2), 10%) 30%, color(2) 70%);
                     border-top-left-radius:$global-radius;
                     border-bottom-left-radius:$global-radius;
                     text-align:right;
@@ -216,6 +226,7 @@ $medium-avatar-size: 80px;
                 }
                 .negative {
                     background:color(5);
+                    background: linear-gradient(130deg, darken(color(5), 10%) 30%, color(5) 70%);
                     border-top-right-radius:$global-radius;
                     border-bottom-right-radius:$global-radius;
                     .fa { 
@@ -328,7 +339,6 @@ $medium-avatar-size: 80px;
             .ads {
                 @extend .box;
                 a.create-ad-sign {
-                    @extend .fa, .fa-plus-square;
                     float:right;
                     display:block;
                     width:20px;
@@ -341,7 +351,7 @@ $medium-avatar-size: 80px;
                     margin: {
                         left:30px;
                         right:15px;
-                        bottom:5px;
+                        top:10px;
                     }
                     &>span { 
                         vertical-align:super; 
@@ -369,8 +379,12 @@ $medium-avatar-size: 80px;
                 }
                 span { display:block; }
                 .social { 
-                    font-size: 1.4rem;
+                    font-size: 1.5rem;
                     text-align: right;
+                    margin-top:10px;
+                    .fa {
+                        margin:5px;
+                    }
                 }
             }
             .activities {
@@ -447,7 +461,7 @@ $medium-avatar-size: 80px;
                 background:darken(color(4), 40%);
                 color:lighten(color(4), 20%);
                 min-width:250px;
-                font-size:1.3rem;
+                font-size:1.2rem;
                 padding: {
                     left:30px;
                     right:30px;
@@ -495,6 +509,13 @@ $medium-avatar-size: 80px;
         .large-10 {
             float: unset;
             margin: 0px auto;
+        }
+        &>article>section {
+            @extend .large-centered;
+        }
+        h3 {
+            text-align:center;
+            margin:20px;
         }
     }
 
