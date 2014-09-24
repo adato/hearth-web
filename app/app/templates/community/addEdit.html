@@ -37,16 +37,17 @@
 -->
 <div class="row community-edit" ng-show="loaded">
   <form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
-
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
-      <div class="image-upload" image-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()">
-        <img class="preview blur" ng-if="community.avatar.normal" ng-src="{{community.avatar.normal}}" />
-        <img class="preview wblur" ng-if="!community.avatar.normal" src="images/default_avatar.png" />
-        <div class="text">
-          <span class="fa fa-plus-square-o" ng-class="{'vis-hidden':uploadingInProgress}"></span>
-          <span ng-if="! uploadingInProgress">{{ 'CHOOSE_AVATAR_FILE' | translate}}</span>
-          <span ng-if="uploadingInProgress">{{ 'UPLOADING_FILE' | translate}}</span>
-        </div>
+      <div image-preview class="image-upload" files="community.avatar" limit="1" single-file="true">
+          <img class="preview" ng-if="community.avatar.file" ng-src="{{community.avatar.file}}" />
+          <img class="preview" ng-if="!community.avatar.file" src="images/default_avatar.png" />
+          <div class="text">
+            <span class="fa fa-plus-square-o"></span>
+            <span>{{ 'CHOOSE_AVATAR_FILE' | translate}}</span>
+          </div>
+          <a class="create-post-link">
+              <i class="fa fa-picture-o"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+          </a>
       </div>
     </div>
 
@@ -142,13 +143,15 @@
         <span class="fa fa-minus-circle"></span>{{ 'COMMUNITY_DELETE' | translate }}
       </span>
     </h2>
+    <br />
+    <br />
     <section class="delete">
       <p class="small-8 fleft">
         {{ 'COMMUNITY_HAS_MEMBERS_COUNT' | translate }}
         <pluralize-translate count="info.communityMembers.count()" key="'X_MEMBERS'"></pluralize-translate>,
         {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
       </p>
-      <button type="submit" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
+      <button ng-click="delete()" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
     </section>
   </div>
   <div class="clear"></div>

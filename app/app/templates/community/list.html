@@ -1,7 +1,7 @@
 <div class="communities">
     <header>
-        <h3 class="fleft small-6">{{'COMMUNITIES' | translate}}</h3>
-        <p class="fright tright small-6">
+        <h3 class="fleft small-6" ng-if="myCommunities.length">{{'COMMUNITIES' | translate}}</h3>
+        <p class="fright tright small-6" ng-if="loggedUser._id">
             <a href="#!/community-create">
                 {{'CREATE_COMMUNITY' | translate}}
             </a>

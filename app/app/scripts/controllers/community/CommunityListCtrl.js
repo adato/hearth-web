@@ -27,7 +27,9 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		};
 
 		$scope.init = function() {
-			$scope.fetchMyCommunities();
+			if($rootScope.loggedUser._id) {
+				$scope.fetchMyCommunities();
+			}
 			$scope.fetchRandomCommunities();
 		};
 

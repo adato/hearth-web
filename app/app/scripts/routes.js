@@ -39,8 +39,8 @@ angular.module('hearth').config([
 			// ======= Communities & subroutes
 			.when('/communities', 'community-list')
 			.when('/community-create', 'community-create')
+			.when('/community/:id/edit', 'community-edit')
 			.when('/community/:id', 'community')
-			.when('/community/:id/edit', 'community.edit')
 
 			// ====== Route settings =========
 			.segment('market', {
@@ -97,6 +97,11 @@ angular.module('hearth').config([
 			    pageType: 'community-list',
 			    reloadOnSearch: false
 			}).segment('community-create', {
+			    templateUrl: 'templates/community/addEdit.html',
+			    controller: 'CommunityCreateCtrl',
+			    pageType: 'community-create',
+			    reloadOnSearch: false
+			}).segment('community-edit', {
 			    templateUrl: 'templates/community/addEdit.html',
 			    controller: 'CommunityCreateCtrl',
 			    pageType: 'community-create',

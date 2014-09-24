@@ -97,12 +97,12 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			});
 		};
 
-		$scope.remove = function() {
+		$scope.delete = function() {
 
 			if($scope.sendingDelete) return false;
 			$scope.sendingDelete = true;
 
-			Community.remove(function(res) {
+			Community.remove({communityId: $scope.community._id}, function(res) {
 
 				$scope.sendingDelete = false;
 				alert("KOMUNITA BYLA SMAZANA");

@@ -14,19 +14,26 @@ angular.module('hearth.directives').directive('imagePreview', [
 			transclude: true,
 			replace: true,
 			scope: {
-				files: "=",
-				limit: "="
+				files: "=?",
+				limit: "=",
+				singleFile: "=",
 			},
 			template: '<div>'
 						+ '<input class="file-upload-input" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
-						+ '<span ng-transclude style="position:relative"></span>' 
+						+ '<span ng-transclude class="image-preview-content"></span>' 
 						+ '<br /><br />'
 	                    + '<div ng-if="error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
 	                    + '<div ng-if="error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
 						+ '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
-				scope.files = scope.files || [];
+
+				// preview jen jednoho souboru? Nebo to budeme davat do pole
+				if(scope.singleFile) {
+					scope.files = scope.files || {};
+				} else {
+					scope.files = scope.files || [];
+				}
 
 				function previewImage(el, limitSize) {
 					var file = $(el).find(".file-upload-input")[0].files[0],
@@ -73,7 +80,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 						} else if (e.total > (limitSize * 1024 * 1024)) {
 							scope.error.badSize = true;
 						} else {
-							scope.files.push({file:src});
+
+							if(scope.singleFile) {
+								scope.files = {file:src};
+							} else {
+								scope.files.push({file:src});
+							}
 						}
 						scope.$apply();
 					};

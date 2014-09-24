@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.fetchCommunity = function() {
 
 			if ($scope.info._id !== $routeParams.id) $scope.loaded = false;
-
+			
 			Community.get({ communityId: $routeParams.id }, function(res) {
 
 				$scope.info = res;
