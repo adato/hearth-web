@@ -37,10 +37,14 @@ angular.module('hearth').config([
 			.when('/profile-settings', 'profileSettings')
 
 			// ======= Communities & subroutes
-			.when('/communities', 'community-list')
-			.when('/community-create', 'community-create')
-			.when('/community/:id/edit', 'community-edit')
+			.when('/communities', 'communityList')
+			.when('/community-create', 'communityCreate')
+			.when('/community/:id/edit', 'communityEdit')
 			.when('/community/:id', 'community')
+			.when('/community/:id/invite-friends', 'community.inviteFriends')
+			.when('/community/:id/posts', 'community.posts')
+			.when('/community/:id/members', 'community.members')
+			.when('/community/:id/about', 'community.about')
 
 			// ====== Route settings =========
 			.segment('market', {
@@ -91,17 +95,17 @@ angular.module('hearth').config([
 				controller: 'ItemDetail',
 				templateUrl: 'templates/itemDetail.html'
 
-			}).segment('community-list', {
+			}).segment('communityList', {
 			    templateUrl: 'templates/community/list.html',
 			    controller: 'CommunityListCtrl',
 			    pageType: 'community-list',
 			    reloadOnSearch: false
-			}).segment('community-create', {
+			}).segment('communityCreate', {
 			    templateUrl: 'templates/community/addEdit.html',
 			    controller: 'CommunityCreateCtrl',
 			    pageType: 'community-create',
 			    reloadOnSearch: false
-			}).segment('community-edit', {
+			}).segment('communityEdit', {
 			    templateUrl: 'templates/community/addEdit.html',
 			    controller: 'CommunityCreateCtrl',
 			    pageType: 'community-create',
@@ -113,11 +117,31 @@ angular.module('hearth').config([
 			    reloadOnSearch: false
 		    })
 			.within()
-
 				.segment('home', {
 					default: true,
 					controller: 'CommunityDataFeedCtrl',
-					templateUrl: 'templates/community/profileHome.html'
+					templateUrl: 'templates/community/profileHome.html',
+					dependencies: ['id']
+				})
+				.segment('members', {
+					controller: 'CommunityDataFeedCtrl',
+					templateUrl: 'templates/community/profileMembers.html',
+					dependencies: ['id']
+				})
+				.segment('posts', {
+					controller: 'CommunityDataFeedCtrl',
+					templateUrl: 'templates/community/profilePosts.html',
+					dependencies: ['id']
+				})
+				.segment('about', {
+					controller: 'CommunityDataFeedCtrl',
+					templateUrl: 'templates/community/profileAbout.html',
+					dependencies: ['id']
+				})
+				.segment('inviteFriends', {
+					controller: 'CommunityDataFeedCtrl',
+					templateUrl: 'templates/community/profileInviteFriends.html',
+					dependencies: ['id']
 				})
 		  	.up()
 			// ========= Profile

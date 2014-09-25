@@ -9,21 +9,24 @@
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	'$scope', '$routeParams', '$rootScope', 'Community', '$route',
 	function($scope, $routeParams, $rootScope, Community, $route) {
-		$scope.loaded = true;
+		$scope.loaded = false;
 		$scope.info = {};
+
+		$scope.isMine = function(res) {
+			return $rootScope.loggedUser._id == res.admin;
+		};
 
 		$scope.fetchCommunity = function() {
 
 			if ($scope.info._id !== $routeParams.id) $scope.loaded = false;
-			
+
 			Community.get({ communityId: $routeParams.id }, function(res) {
 
 				$scope.info = res;
-
-				// $scope.mine = $scope.isMine();
 				$scope.loaded = true;
+				$scope.mine = $scope.isMine(res); // is community mine?
 
-				$scope.$broadcast("profileTopPanelLoaded");
+				$scope.$broadcast("communityTopPanelLoaded");
 			}, function(res) {
 				$scope.loaded = true;
 			});

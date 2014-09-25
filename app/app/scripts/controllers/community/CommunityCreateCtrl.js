@@ -9,7 +9,7 @@
 angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 	'$scope', '$location', '$routeParams', 'Community', 'CommunityMembers',
 	function($scope, $location, $routeParams, Community, CommunityMembers) {
-		$scope.communityUsers = [];
+		$scope.communityMembers = [];
 		$scope.adminChangeId = null;
 		$scope.sendingDelete = false;
 		$scope.defaultCommunity = {
@@ -36,14 +36,12 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		$scope.loadCommunity = function(id) {
 
 			Community.get({communityId: id}, function(res) {
-				console.log(res);
 				$scope.community = res;
 				$scope.loaded = true;
 			});
 
 			CommunityMembers.query({communityId: id}, function(res) {
-				console.log(res);
-				$scope.communityUsers = res;
+				$scope.communityMembers = res;
 			});
 		};
 
@@ -68,7 +66,6 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 
 			if(data.locations) {
 				data.locations.forEach(function(item) {
-					console.log(item);
 					if(item.name == '') {
 						$scope.showError.locations = err = true;
 					}
@@ -90,7 +87,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			$scope.sending = true;
 
 			service($scope.community, function(res) {
-	            $location.path('#!/community/'+res._id);
+	            $location.path('/community/'+res._id);
 			}, function(res) {
 				alert("Operace se nezdařila :-(");
 				$scope.sending = false;;
@@ -101,13 +98,11 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 
 			if($scope.sendingDelete) return false;
 			$scope.sendingDelete = true;
-
 			Community.remove({communityId: $scope.community._id}, function(res) {
 
 				$scope.sendingDelete = false;
 				alert("KOMUNITA BYLA SMAZANA");
 				window.location.reload("#!/communities");
-
 			}, function(res) {
 
 				alert("Při mazání komunity došlo k chybě.");

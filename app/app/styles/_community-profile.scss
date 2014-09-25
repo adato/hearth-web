@@ -125,8 +125,8 @@
                 border-radius:300px;
                 border:2px solid color(4);
                 box-shadow:inset 0px 6px 9px 0px rgba(50, 50, 50, 0.75);
-
-                background-image: inline-image("no-avatar.png");
+                
+                background-image: inline-image("default_avatar.png");
             }
             .friends-and-follows {
                 @extend .large-2, .columns;
@@ -167,39 +167,6 @@
                 width:130px;
                 height:130px;
                 margin-top:40px;
-            }
-            .karma-bar {
-                @extend .large-8, .columns, .pull-right;
-                height:30px;
-                padding:0;
-                float:right;
-                .positive, .negative {
-                    min-width:10%;
-                    max-width:90%;
-                    display:inline-block;
-                    padding:10px;
-                    color:color(4);
-                    font-weight:bold;
-                }
-                .positive {
-                    background:color(2);
-                    border-top-left-radius:$global-radius;
-                    border-bottom-left-radius:$global-radius;
-                    text-align:right;
-                    .fa { 
-                        display:inline-block; 
-                        margin-left:5px;
-                    }
-                }
-                .negative {
-                    background:color(5);
-                    border-top-right-radius:$global-radius;
-                    border-bottom-right-radius:$global-radius;
-                    .fa { 
-                        display:inline-block; 
-                        margin-right:5px;
-                    }                   
-                }
             }
         }
     }
