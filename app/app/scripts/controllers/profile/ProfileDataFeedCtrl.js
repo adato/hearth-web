@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Followees', 'UserPosts', 'CommunityMemberships', 'UserRatings', 'ActivityLog', 'Fulltext', 'Post',
-    function($scope, $timeout, $rootScope, $routeParams, Followers, Followees, UserPosts, CommunityMemberships, UserRatings, ActivityLog, Fulltext, Post) {
+    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Followees', 'UserPosts', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
+    function($scope, $timeout, $rootScope, $routeParams, Followers, Followees, UserPosts, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
         var loadServices = {
                 'profile': loadUserHome,
                 'profile.posts': loadUserPosts,
@@ -17,7 +17,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'profile.received': UserRatings.received,
                 'profile.following': Followees.query,
                 'profile.followers': Followers.query,
-                'profile.activities': ActivityLog.get
+                'profile.activities': UsersActivityLog.get
             },
             params = {
                 user_id: $routeParams.id
@@ -70,7 +70,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             UserRatings.received(params, function(res) {
                 $scope.receivedRatings = res;
             });
-            ActivityLog.get(params, function(res) {
+            UsersActivityLog.get(params, function(res) {
                 $scope.activityLog = res;
             });
             Fulltext.query(fulltextParams, function(res) {

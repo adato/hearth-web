@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc service
- * @name hearth.services.UserRatings
+ * @name hearth.services.CommunityActivityLog
  * @description
  */
 
-angular.module('hearth.services').factory('ActivityLog', [
+angular.module('hearth.services').factory('CommunityActivityLog', [
 	'$resource', 'appConfig',
 
 	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/users/:user_id/activity_feed', {
-			user_id: '@id'
+		return $resource(appConfig.apiPath + '/communities/:communityId/activity_feed', {
+			communityId: '@communityId'
 		}, {
 			get: {
 				method: 'GET',

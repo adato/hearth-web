@@ -23,9 +23,8 @@ angular.module('hearth.directives').directive('pluralizeTranslate', [
 
 				function refreshTranslation(key) {
 
-					console.log("translating: " + key, $rootScope.languageInited, $translate(key));
 					if($rootScope.languageInited) {
-						console.log("translating: " + key, $rootScope.languageInited, $translate(key));
+						// console.log("translating: " + key, $rootScope.languageInited, $translate(key));
 						try {
 							$scope.translateStrings = jQuery.parseJSON($translate(key));
 					    } catch (e) {
@@ -36,11 +35,11 @@ angular.module('hearth.directives').directive('pluralizeTranslate', [
 
 				$scope.$watch("key", refreshTranslation);
 				if( $rootScope.languageInited ) {
-					console.log("INITED");
+					// console.log("INITED");
 					refreshTranslation($scope.key);
 				} 
 				$rootScope.$on("languageInited", function() {
-					console.log("INITED_EVENT");
+					// console.log("INITED_EVENT");
 					refreshTranslation($scope.key);
 				});
 			}

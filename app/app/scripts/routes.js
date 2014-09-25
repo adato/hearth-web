@@ -46,6 +46,7 @@ angular.module('hearth').config([
 			.when('/community/:id/members', 'community.members')
 			.when('/community/:id/applications', 'community.applications')
 			.when('/community/:id/about', 'community.about')
+			.when('/community/:id/activity-feed', 'community.activity-feed')
 
 			// ====== Route settings =========
 			.segment('market', {
@@ -150,6 +151,12 @@ angular.module('hearth').config([
 				.segment('inviteFriends', {
 					controller: 'CommunityDataFeedCtrl',
 					templateUrl: 'templates/community/profileInviteFriends.html',
+					reloadOnSearch: false,
+					dependencies: ['id']
+				})
+				.segment('activity-feed', {
+					controller: 'CommunityDataFeedCtrl',
+					templateUrl: 'templates/community/profileActivityFeed.html',
 					reloadOnSearch: false,
 					dependencies: ['id']
 				})

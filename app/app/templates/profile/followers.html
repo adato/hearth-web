@@ -2,9 +2,11 @@
 
 <div class="people-listing">
 	<div class="person" ng-repeat="(id, item) in data track by $index">
-		<div class="avatar">
-			<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
-		</div>
+		<a href="#!/profile/{{ item._id}}">
+			<div class="avatar">
+				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+			</div>
+		</a>
 		<div class="name">
 			<h4>
 				<a href="#!/profile/{{ item._id}}">{{ item.name | ellipsis:24 }}</a>

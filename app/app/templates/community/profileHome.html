@@ -1,30 +1,46 @@
+<br />
+<br />
+
 <!-- two columns displayed in main page of user profile -->
 <div class="profile-listings">
     <div class="left-pane">
         <!-- <div class="messages">
                 <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
             </div> -->
-        <div class="ratings">
-            <h3 class="mine">{{ 'YOUR_RATING' | translate}}</h3>
-            <h3 class="others">{{ 'USERS_RATINGS' | translate}}</h3>
+        <div class="ratings" ng-if="mine">
+            
+            <p ng-if="! applications.length">{{ 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
+        	<div ng-if="applications.length">
 
-            <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating">
-                <div class="avatar">
-                    <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
-                </div>
-                <small class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
-                <div class="rating-text">
-                    {{item.text | ellipsis}}
-                    <br>
-                    <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/profile/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.</small>
-                </div>
-            </div>
-            <p ng-if="! receivedRatings.length">{{ 'NO_RATINGS_YET' | translate}}</p>
-            <div class="buttons">
-                <a href="#!/profile/{{info._id}}/received-ratings">
-                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_RATINGS' | translate }}</button>
-                </a>
-            </div>
+	            <h3 class="small-8 fleft">{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}} - {{applications.length}}</h3>
+	            <a class="fright" ng-if="false">{{ 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
+	            <div class="clear"></div>
+
+	            <div ng-repeat="(id, item) in applications track by $index" class="rating" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].created_at : null">
+	            	<h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
+	            	<div class="applications-item">
+		                <div class="avatar">
+		                    <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
+		                </div>
+		                <div class="applications-text">
+		                    <a href="#!/profile/{{item.user_from}} ">
+		                    	{{item.name | ellipsis}}
+		                    	<br />
+		                    	<small>{{ 'SHOW_PROFILE' | translate}}</small>
+		                    </a>
+		                </div>
+		                <div class="application-buttons">
+		                	<a ng-click="acceptApplication(item._id)"><i class="fa fa-check"></i></a>
+		                	<a ng-click="rejectApplication(item._id)"><i class="fa fa-times"></i></a>
+		                </div>
+	            	</div>
+	            </div>
+	            <div class="buttons">
+	                <a href="#!/community/{{info._id}}/applications">
+	                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}</button>
+	                </a>
+	            </div>
+	        </div>
         </div>
         <div class="ads">
             <h3 ng-if="mine">

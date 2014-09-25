@@ -7,14 +7,15 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog',
+	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog) {
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
             'community.members': loadCommunityMember,
             'community.about': loadCommunityAbout,
             'community.applications': loadCommunityApplications,
+            'community.activity-feed': CommunityActivityLog.get,
         };
 
         function loadCommunityAbout(id, done, doneErr) {
@@ -64,18 +65,17 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             var fulltextParams = {
                 type: 'post',
                 author_id: id
-            }
+            };
 
-            console.log("home");
-            // UserRatings.received(params, function(res) {
-            //     $scope.receivedRatings = res;
-            // });
-            // ActivityLog.get(params, function(res) {
-            //     $scope.activityLog = res;
-            // });
-            // Fulltext.query(fulltextParams, function(res) {
-            //     $scope.posts = res;
-            // });
+            CommunityActivityLog.get({communityId: id}, function(res) {
+                $scope.activityLog = res;
+            });
+            CommunityApplicants.query({communityId: id}, function(res) {
+                $scope.applications = res;
+            });
+            Fulltext.query(fulltextParams, function(res) {
+                $scope.posts = res;
+            });
         }
 
         $scope.pauseToggle = function(item) {

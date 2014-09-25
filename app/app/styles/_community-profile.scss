@@ -223,9 +223,9 @@
                     margin-right:15px;
                 }
             }
-            .ratings {
+            .applications {
                 @extend .box;
-                .rating {
+                .application {
                     margin-bottom:5px;
                     padding: {
                         top:20px;
@@ -257,7 +257,7 @@
                             border-radius: 50%;
                         }
                     }
-                    .rating-text {
+                    .applications-text {
                         font-size:1.2rem;
                         line-height:125%;
                         margin: {
@@ -265,7 +265,7 @@
                             bottom:10px;
                             left:130px; 
                         }
-                        .rating-from {
+                        .applications-from {
                             display:inline-block;
                             margin-top:10px;
                         }

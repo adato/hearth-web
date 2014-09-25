@@ -1,0 +1,18 @@
+<div class="bottom-tabs"></div>
+
+<div class="clear"></div>
+
+<p ng-hide="data.length">{{ 'NOTICE_EMPTY_DATA' | translate}}</p>
+<div ng-if="data.length">
+    <div class="timeline-container">
+        <div class="profile-timeline"></div>
+
+        <div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].created_at : null">
+            <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
+            <div class="activity">
+                <div class="avatar"></div>
+                <div class="activity-text" dynamic-text="item.text" dynamic-data="item.data"></div>
+            </div>
+        </div>
+    </div>
+</div>	

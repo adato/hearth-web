@@ -1,4 +1,4 @@
-<!-- two columns displayed in main page of user profile -->
+
 <div class="profile-listings">
     <div class="left-pane">
         <!-- <div class="messages">
@@ -83,8 +83,7 @@
     <div class="right-pane">
         <div class="activities">
             
-            <h3 class="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
-            <h3 class="others">{{ 'USER_ACTIVITY' | translate }}</h3>
+            <h3>{{ 'COMMUNITY_LAST_ACTIVITY' | translate }}</h3>
             
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">

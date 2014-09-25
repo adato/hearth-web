@@ -5,9 +5,11 @@
 
 <div class="community-listing">
 	<div class="community" ng-repeat="(id, item) in data track by $index">
-		<div class="avatar">
-			<img ng-src="{{ item.avatar.normal }}" ng-if="item.avatar.normal" />
-		</div>
+		<a ng-href="#!/community/{{item._id}}/">
+			<div class="avatar">
+				<img ng-src="{{ item.avatar.normal }}" ng-if="item.avatar.normal" />
+			</div>
+		</a>
 		<h3>
 			<a ng-href="#!/community/{{item._id}}/">{{ item.name }}</a>
 			<small ng-if="mine" class="status">
