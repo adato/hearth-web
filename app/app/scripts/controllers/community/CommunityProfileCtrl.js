@@ -15,6 +15,10 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.isMine = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
+		
+		$scope.amIAdmin = function(res) {
+			return $rootScope.loggedUser._id == res.admin;
+		};
 
 		$scope.fetchCommunity = function() {
 
@@ -25,6 +29,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.info = res;
 				$scope.loaded = true;
 				$scope.mine = $scope.isMine(res); // is community mine?
+				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
 				$scope.$broadcast("communityTopPanelLoaded");
 			}, function(res) {

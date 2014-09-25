@@ -7,7 +7,7 @@
 		<div class="user-basic">
 			<h1>
 				<a href="#!/community/{{info._id}}">
-					<span>{{ info.name }}</span>
+					<span>{{ info.name | ellipsis:20 }}</span>
 				</a>
 			</h1>
 			<p ng-if="info.description">

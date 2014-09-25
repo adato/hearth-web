@@ -43,15 +43,7 @@
 	        </div>
         </div>
         <div class="ads">
-            <h3 ng-if="mine">
-                <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
-                    <pluralize-translate count="posts.data.length" key="'POSTS_PL'"></pluralize-translate>
-                </span>
-                <span ng-if="! posts.data.length">{{ 'ACTIVE_POSTS' | translate}}</span>
-
-                <a class="create-ad-sign" ng-click="editItem(null)"><i class="fa fa-plus-square"></i></a>
-            </h3>
-            <h3 ng-if="!mine && posts.data.length">{{ 'COMMUNITY_POSTS' | translate }}</h3>
+            <h3>{{ 'COMMUNITY_POSTS' | translate }}</h3>
 
             <p ng-if="! posts.data.length">{{ 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
 
