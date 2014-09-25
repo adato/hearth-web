@@ -43,7 +43,6 @@
 	        </div>
         </div>
         <div class="ads">
-        	{{ posts | json }}
             <h3 ng-if="mine">
                 <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
                     <pluralize-translate count="posts.data.length" key="'POSTS_PL'"></pluralize-translate>
@@ -52,10 +51,9 @@
 
                 <a class="create-ad-sign" ng-click="editItem(null)"><i class="fa fa-plus-square"></i></a>
             </h3>
-            <h3 if="!mine">{{ 'COMMUNITY_POSTS' | translate }}</h3>
+            <h3 ng-if="!mine && posts.data.length">{{ 'COMMUNITY_POSTS' | translate }}</h3>
 
-            <p ng-if="mine && ! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
-            <p ng-if="! mine && ! posts.data.length">{{ 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
+            <p ng-if="! posts.data.length">{{ 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
 
             <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
                 <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
@@ -74,7 +72,7 @@
 
                 <section ng-include="'templates/modals.html'" id="modals"></section>
             </div>
-            <div class="buttons">
+            <div class="buttons" ng-if="posts.data.length">
                 <a href="#!/profile/{{info._id}}/posts">
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
@@ -84,8 +82,7 @@
     <div class="right-pane">
         <div class="activities">
             
-            <h3 class="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
-            <h3 class="others">{{ 'USER_ACTIVITY' | translate }}</h3>
+            <h3>{{ 'COMMUNITY_ACTIVITY' | translate }}</h3>
             
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">

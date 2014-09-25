@@ -44,7 +44,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 include_expired: +$scope.mine, // cast bool to int
                 author_id: id,
                 limit: 1000
-            }
+            };
 
             Fulltext.query(fulltextParams, function(res) {
             	console.log(res);
@@ -123,11 +123,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
 
             // refresh after new post created
-            // if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
-            //     $scope.$on('postCreated', function() {
-            //         loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
-            //     });
-            // }
+            if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
+                $scope.$on('postCreated', function() {
+                    loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+                });
+            }
         }
 
         $scope.$on('communityTopPanelLoaded', init);
