@@ -44,6 +44,7 @@ angular.module('hearth').config([
 			.when('/community/:id/invite-friends', 'community.inviteFriends')
 			.when('/community/:id/posts', 'community.posts')
 			.when('/community/:id/members', 'community.members')
+			.when('/community/:id/applications', 'community.applications')
 			.when('/community/:id/about', 'community.about')
 
 			// ====== Route settings =========
@@ -121,26 +122,35 @@ angular.module('hearth').config([
 					default: true,
 					controller: 'CommunityDataFeedCtrl',
 					templateUrl: 'templates/community/profileHome.html',
-					dependencies: ['id']
 				})
 				.segment('members', {
 					controller: 'CommunityDataFeedCtrl',
 					templateUrl: 'templates/community/profileMembers.html',
+					reloadOnSearch: false,
+					dependencies: ['id']
+				})
+				.segment('applications', {
+					controller: 'CommunityDataFeedCtrl',
+					templateUrl: 'templates/community/profileApplications.html',
+					reloadOnSearch: false,
 					dependencies: ['id']
 				})
 				.segment('posts', {
 					controller: 'CommunityDataFeedCtrl',
 					templateUrl: 'templates/community/profilePosts.html',
+					reloadOnSearch: false,
 					dependencies: ['id']
 				})
 				.segment('about', {
 					controller: 'CommunityDataFeedCtrl',
 					templateUrl: 'templates/community/profileAbout.html',
+					reloadOnSearch: false,
 					dependencies: ['id']
 				})
 				.segment('inviteFriends', {
 					controller: 'CommunityDataFeedCtrl',
 					templateUrl: 'templates/community/profileInviteFriends.html',
+					reloadOnSearch: false,
 					dependencies: ['id']
 				})
 		  	.up()

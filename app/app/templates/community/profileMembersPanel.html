@@ -1,0 +1,19 @@
+<div class="bottom-tabs">
+    <ul class="mine">
+        <li>
+            <a href="#!/community/{{info._id}}/members" ng-class="{selected: pageSegment =='community.members'}">
+                {{ 'COMMUNITY_HAS' | translate}} {{ info.member_count}}
+                <pluralize-translate count="info.members_count || 1" key="'X_MEMBERS'"></pluralize-translate>
+            </a>
+        </li>
+        <li>
+            <a href="#!/community/{{info._id}}/applications" ng-class="{selected: pageSegment =='community.applications'}">
+                {{ 'COMMUNITY_HAS' | translate }}
+                {{ info.member_count}}
+                <pluralize-translate count="info.members_count || 0" key="'X_MEMBERS'"></pluralize-translate>
+            </a>
+        </li> 
+    </ul>
+</div>
+
+<div class="clear"></div>

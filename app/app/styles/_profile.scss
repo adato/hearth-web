@@ -440,51 +440,7 @@ $medium-avatar-size: 80px;
 
     }
 
-    .bottom-tabs {
-        @extend .large-12, .columns, .clearfix;
-        text-align:center;
-        border-top:3px solid color(1);
-        padding-top:2px;
-        font-weight: bold;
-        margin: {
-            top:30px;
-            bottom:30px;
-        }
-        h2 {
-            color: #F95800;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        ul {
-            @include inline-list;
-            li>a {
-                background:darken(color(4), 40%);
-                color:lighten(color(4), 20%);
-                min-width:250px;
-                font-size:1.2rem;
-                padding: {
-                    left:30px;
-                    right:30px;
-                    top:5px;
-                    bottom:5px;
-                }
-                margin: {
-                    left:5px;
-                    right:5px;
-                    top:5px;
-                }
-                border-bottom-left-radius:$global-radius / 2;
-                border-bottom-right-radius:$global-radius / 2;
-                &:hover {
-                    background:darken(color(1), 10%);
-                }
-                &.selected {
-                    background:color(1);
-                }
-            }
-        }
-    }
-
+    
     .people-listing {
         @extend .clearfix;
         a {

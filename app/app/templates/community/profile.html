@@ -1,4 +1,4 @@
-<div class="community-view" ng-if="loaded" ng-class="{'mine': mine, 'others': ! mine}">
+<div class="community-view profile-common" ng-show="loaded" ng-class="{'mine': mine, 'others': ! mine}">
 
 	<div class="user" ng-show="! info">
 		<p>{{ 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
@@ -38,7 +38,8 @@
 			</a>
 			<a href="#!/community/{{info._id}}/members" class="communities" ng-class="{'active': (pageSegment.substr(9) == 'members')}">
 				<b>{{info.member_count}}</b> 
-                <pluralize-translate count="info.members_count" key="'MEMBERS_COUNT'"></pluralize-translate>
+				<br />
+                <pluralize-translate count="info.members_count || 1" key="'COMMUNITY_MEMBERS'"></pluralize-translate>
             </a>
 			<a href="#!/community/{{info._id}}/about" class="ratings" ng-class="{'active': (pageSegment.substr(9) == 'about')}">
 				{{ 'COMMUNITY_ABOUT_SHORT' | translate}}
@@ -48,3 +49,4 @@
 	<div class="clear"></div>
 	<div app-view-segment="1"></div>
 </div>
+

@@ -3,21 +3,20 @@
 </div>
 
 
-
 <div class="community-listing">
 	<div class="community" ng-repeat="(id, item) in data track by $index">
 		<div class="avatar">
 			<img ng-src="{{ item.avatar.normal }}" ng-if="item.avatar.normal" />
 		</div>
 		<h3>
-			{{ item.user_id.name }}
-			<small class="status">
+			<a ng-href="#!/community/{{item._id}}/">{{ item.name }}</a>
+			<small ng-if="mine" class="status">
 				<a ng-if="item.current_user_admin" class="admin">{{ 'ADMIN' | translate }}</a>
 				<a ng-if="! item.current_user_admin" onclick="alert('ne a ne')">{{ 'LEAVE_COMMUNITY' | translate }}</a>
 			</small>
 		</h3>
 		<div class="community-text">
-			{{ item.user_id.description }}
+			<a ng-href="#!/community/{{item._id}}/">{{ item.description }}</a>
 		</div>
 	</div>
 </div>

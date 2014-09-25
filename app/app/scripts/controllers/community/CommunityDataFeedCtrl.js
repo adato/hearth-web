@@ -7,48 +7,46 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext) {
-		$scope.loaded = true;
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants',
+	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants) {
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
             'community.members': loadCommunityMember,
             'community.about': loadCommunityAbout,
-        },
-        params = {
-            community_id: $routeParams.id
+            'community.applications': loadCommunityApplications,
         };
 
-        function loadCommunityAbout(params, done, doneErr) {
+        function loadCommunityAbout(id, done, doneErr) {
         	// do nothing
         }
 
-        function loadCommunityMember(params, done, doneErr) {
+        function loadCommunityMember(id, doneErr) {
 
-            CommunityMemberships.query(params, function(res) {
-                $scope.communityAdminCount = 0;
-                if(res) {
-                    res.forEach(function(item) {
-                        $scope.communityAdminCount += +item.current_user_admin;
-                    });
-                }
-
-                done(res);
+            CommunityMembers.query({communityId: id}, function(res) {
+                $scope.data = res;
             }, doneErr);
         }
 
-        function loadCommunityPosts(params, done, doneErr) {
+        function loadCommunityApplications(id, doneErr) {
+
+            CommunityApplicants.query({communityId: id}, function(res) {
+                $scope.data = res;
+            }, doneErr);
+        }
+
+        function loadCommunityPosts(id, doneErr) {
 
             var fulltextParams = {
                 type: 'post',
                 include_not_active: +$scope.mine, // cast bool to int
                 include_expired: +$scope.mine, // cast bool to int
-                author_id: params.community_id,
+                author_id: id,
                 limit: 1000
             }
 
             Fulltext.query(fulltextParams, function(res) {
+            	console.log(res);
 
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
@@ -62,10 +60,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }, doneErr);
         }
 
-        function loadCommunityHome(params) {
+        function loadCommunityHome(id) {
             var fulltextParams = {
                 type: 'post',
-                author_id: params.community_id
+                author_id: id
             }
 
             console.log("home");
@@ -105,8 +103,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }, processDataErr);
         };
 
+        $scope.removeMember = function(id) {
+        	CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
+        		loadCommunityMember($scope.info._id, processDataErr);
+        		alert("Člen byl vyhozen z komunity");
+        	});
+        };
+
         function processData(res) {
-            $rootScope.subPageLoaded = true;
             $scope.data = res;
         }
 
@@ -115,16 +119,15 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function init() {
-            console.log("Calling load service", $scope.pageSegment);
-            console.log("Calling load service", loadServices[$scope.pageSegment]);
-            loadServices[$scope.pageSegment](params, processData, processDataErr);
+            console.log("Calling load service for segment ", $scope.pageSegment);
+            loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
 
             // refresh after new post created
-            if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
-                $scope.$on('postCreated', function() {
-                    loadServices[$scope.pageSegment](params, processData, processDataErr);
-                });
-            }
+            // if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
+            //     $scope.$on('postCreated', function() {
+            //         loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+            //     });
+            // }
         }
 
         $scope.$on('communityTopPanelLoaded', init);

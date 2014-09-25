@@ -10,8 +10,8 @@
 			<h4>
 				<a href="#!/profile/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
 			</h4>
-			<a class="mine" ng-if="item._id != loggedUser._id" ng-click="removeMember(item._id)">{{ 'COMMUNITY_KICK_MEMBER' | translate }}</a>
-			<a href="#!/community/{{info._id}}/edit" class="mine" ng-if="item._id == loggedUser._id">{{ 'COMMUNITY_ADMIN' | translate }}</a>
+			<a class="mine" ng-click="rejectApplication(item._id)">{{ 'COMMUNITY_MEMBER_REJECT' | translate }}</a>
+			<a class="mine" ng-click="approveApplication(item._id)">{{ 'COMMUNITY_MEMBER_ACCEPT' | translate }}</a>
 		</div>
 	</div>
 </div>
