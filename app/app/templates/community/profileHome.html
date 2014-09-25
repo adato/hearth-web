@@ -1,3 +1,110 @@
-<div>
-	home..
+<!-- two columns displayed in main page of user profile -->
+<div class="profile-listings">
+    <div class="left-pane">
+        <!-- <div class="messages">
+                <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
+            </div> -->
+        <div class="ratings">
+            <h3 class="mine">{{ 'YOUR_RATING' | translate}}</h3>
+            <h3 class="others">{{ 'USERS_RATINGS' | translate}}</h3>
+
+            <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating">
+                <div class="avatar">
+                    <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
+                </div>
+                <small class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
+                <div class="rating-text">
+                    {{item.text | ellipsis}}
+                    <br>
+                    <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/profile/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.</small>
+                </div>
+            </div>
+            <p ng-if="! receivedRatings.length">{{ 'NO_RATINGS_YET' | translate}}</p>
+            <div class="buttons">
+                <a href="#!/profile/{{info._id}}/received-ratings">
+                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_RATINGS' | translate }}</button>
+                </a>
+            </div>
+        </div>
+        <div class="ads">
+            <h3 ng-if="mine">
+                <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
+                    <pluralize-translate count="posts.data.length" key="'POSTS_PL'"></pluralize-translate>
+                </span>
+                <span ng-if="! posts.data.length">{{ 'ACTIVE_POSTS' | translate}}</span>
+
+                <a class="create-ad-sign" ng-click="editItem(null)"><i class="fa fa-plus-square"></i></a>
+            </h3>
+            <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
+
+            <p class="mine" ng-if="! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
+            <p class="others" ng-if="! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
+
+            <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
+                <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
+                <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
+                <span>
+                    <a ng-if="item.title" href="#!/ad/{{ item._id }}">{{item.title | ellipsis:30}}</a>
+                    <a ng-if="!item.title" href="#!/ad/{{ item._id }}">{{item.name | ellipsis:30}}</a>
+                    <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>
+                </span>
+                <div class="ad-controls mine">
+                    <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
+                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
+                    <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
+                    <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
+                </div>
+
+                <section ng-include="'templates/modals.html'" id="modals"></section>
+            </div>
+            <div class="buttons">
+                <a href="#!/profile/{{info._id}}/posts">
+                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="!mine" class="right-pane">
+        <div class="user-about">
+            <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
+            <p>
+                <span class="work"><i class="fa fa-briefcase"></i> {{info.work}}</span>
+                <span class="reg-date"><i class="fa fa-asterisk"></i> {{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
+                <span class="social">
+                    <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
+                    <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
+                    <a target="_blank" ng-if="info.googleplus" href="{{info.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
+                    <a target="_blank" ng-if="info.webs.length && info.webs[0]" href="{{info.webs[0]}}"><i class="fa fa-link"></i></a>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="right-pane">
+        <div class="activities">
+            
+            <h3 class="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
+            <h3 class="others">{{ 'USER_ACTIVITY' | translate }}</h3>
+            
+            <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
+            <div ng-if="activityLog.length">
+                <div class="timeline-container">
+                    <div class="profile-timeline"></div>
+
+                    <div ng-repeat="(id, item) in activityLog track by $index" ng-init="item.prevDate = ($index > 0) ? activityLog[$index-1].created_at : null">
+                        <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
+                        <div class="activity">
+                            <div class="avatar"></div>
+                            <div class="activity-text" dynamic-text="item.text" dynamic-data="item.data"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <a href="#!/profile/{{info._id}}/activity-feed">
+                        <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
