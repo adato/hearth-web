@@ -7,3 +7,6 @@
 	<h3>{{ 'POSTS_INACTIVE' | translate }}</h3>
 	<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsInactive track by $index" user="loggedUser" inactivate-tags='true'></item>
 </div>
+
+
+<div ng-if="! postsActive.length">{{ 'COMMUNITY_HAS_NO_ADS_YET' | translate }}

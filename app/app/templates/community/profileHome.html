@@ -43,6 +43,7 @@
 	        </div>
         </div>
         <div class="ads">
+        	{{ posts | json }}
             <h3 ng-if="mine">
                 <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
                     <pluralize-translate count="posts.data.length" key="'POSTS_PL'"></pluralize-translate>
@@ -51,10 +52,10 @@
 
                 <a class="create-ad-sign" ng-click="editItem(null)"><i class="fa fa-plus-square"></i></a>
             </h3>
-            <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
+            <h3 if="!mine">{{ 'COMMUNITY_POSTS' | translate }}</h3>
 
-            <p class="mine" ng-if="! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
-            <p class="others" ng-if="! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
+            <p ng-if="mine && ! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
+            <p ng-if="! mine && ! posts.data.length">{{ 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
 
             <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
                 <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
@@ -78,22 +79,6 @@
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
             </div>
-        </div>
-    </div>
-
-    <div ng-if="!mine" class="right-pane">
-        <div class="user-about">
-            <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
-            <p>
-                <span class="work"><i class="fa fa-briefcase"></i> {{info.work}}</span>
-                <span class="reg-date"><i class="fa fa-asterisk"></i> {{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
-                <span class="social">
-                    <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
-                    <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
-                    <a target="_blank" ng-if="info.googleplus" href="{{info.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
-                    <a target="_blank" ng-if="info.webs.length && info.webs[0]" href="{{info.webs[0]}}"><i class="fa fa-link"></i></a>
-                </span>
-            </p>
         </div>
     </div>
     <div class="right-pane">
