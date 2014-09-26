@@ -534,6 +534,7 @@
     "WRITTEN_FROM_ALLOWED": "Napsáno {{len}} z {{maxLen}} povolených znaků",
     "AD_REPORT_CONFIRM": "Nahlásit inzerát",
     "AD_PAUSE_LABEL": "Pozastavit inzerát",
+    "AD_ADD_LABEL": "Přidat inzerát",
     "AD_RESUME_LABEL": "Obnovit inzerát",
     "AD_REMOVE_LABEL": "Odstranit inzerát",
     "AD_EDIT_LABEL": "Editovat inzerát",

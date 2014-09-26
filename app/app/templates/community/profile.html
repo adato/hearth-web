@@ -51,7 +51,7 @@
 			<a href="#!/community/{{info._id}}/members" class="communities" ng-class="{'active': (pageSegment.substr(9) == 'members')}">
 				<b>{{info.member_count}}</b> 
 				<br />
-                <pluralize-translate count="info.members_count || 1" key="'COMMUNITY_MEMBERS'"></pluralize-translate>
+                <pluralize-translate count="info.member_count" key="'COMMUNITY_MEMBERS'"></pluralize-translate>
             </a>
 			<a href="#!/community/{{info._id}}/about" class="ratings" ng-class="{'active': (pageSegment.substr(9) == 'about')}">
 				{{ 'COMMUNITY_ABOUT_SHORT' | translate}}

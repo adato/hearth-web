@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             'community.members': loadCommunityMember,
             'community.about': loadCommunityAbout,
             'community.applications': loadCommunityApplications,
-            'community.activity-feed': CommunityActivityLog.get,
+            'community.activity-feed': loadCommunityActivityLog,
         };
 
         function loadCommunityAbout(id, done, doneErr) {
@@ -67,7 +67,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 author_id: id
             };
 
-            CommunityActivityLog.get({communityId: id}, function(res) {
+            CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
                 $scope.activityLog = res;
             });
             CommunityApplicants.query({communityId: id}, function(res) {
@@ -78,26 +78,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             });
         }
 
+        function loadCommunityActivityLog(id) {
+
+            CommunityActivityLog.get({communityId: id}, function(res) {
+                $scope.data = res;
+            }, processDataErr);
+        }
         // =================================== Public Methods ====================================
         
-        $scope.rejectApplication = function(id)  {
-
-        	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
-        		$scope.init();
-        	}, function(res) {
-        		alert("There was an error while processing this post.");
-        	});
-        };
-
-        $scope.approveApplication = function(id) {
-
-        	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
-        		$scope.init();
-        	}, function(res) {
-        		alert("There was an error while processing this post.");
-        	});
-        };
-
         $scope.pauseToggle = function(item) {
             var Action = (item.is_active) ? Post.suspend : Post.resume;
 
@@ -126,7 +114,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         $scope.removeMember = function(id) {
         	CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
         		alert("Člen byl vyhozen z komunity");
-        		init();
+        		$scope.init();
         	});
         };
 

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants',
-	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers',
+	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers) {
 		$scope.loaded = false;
 		$scope.info = {};
 
@@ -47,13 +47,31 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			CommunityApplicants.add({communityId: $scope.info._id}, function(res) {
 				
-				// flash message and refresh the community profile page
-				alert("OK");
+    			alert("FLASH MESSAGE");
 				$scope.init();
-			}, function(err) {
-				alert("There was en error while processing this request :-(");
-			});
+			}, handleApiError);
 		};
+
+
+        $scope.rejectApplication = function(id)  {
+
+        	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
+    			alert("FLASH MESSAGE");
+        		$scope.init();
+        	}, handleApiError);
+        };
+
+        $scope.approveApplication = function(id) {
+
+        	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
+    			alert("FLASH MESSAGE");
+        		$scope.init();
+        	}, handleApiError);
+        };
+
+        function handleApiError(res) {
+    		alert("There was an error while processing this post.");
+        }
 
 		$scope.init = function() {
 			$scope.refreshDataFeed();

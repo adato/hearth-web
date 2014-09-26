@@ -22,19 +22,21 @@
 	            <div ng-repeat="(id, item) in applications track by $index" class="rating" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].created_at : null">
 	            	<h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
 	            	<div class="applications-item">
-		                <div class="avatar">
-		                    <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
-		                </div>
-		                <div class="applications-text">
-		                    <a href="#!/profile/{{item.user_from}} ">
+	                    <a href="#!/profile/{{item._id}} ">
+                            <div class="avatar">
+                                <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
+                            </div>
+                        </a>
+                        <div class="applications-text">
+                            <a href="#!/profile/{{item._id}} ">
 		                    	{{item.name | ellipsis}}
 		                    	<br />
 		                    	<small>{{ 'SHOW_PROFILE' | translate}}</small>
 		                    </a>
 		                </div>
 		                <div class="application-buttons">
-		                	<a ng-click="acceptApplication(item._id)"><i class="fa fa-check"></i></a>
-		                	<a ng-click="rejectApplication(item._id)"><i class="fa fa-times"></i></a>
+		                	<a ng-click="approveApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_ACCEPT' | translate }}"><i class="fa fa-check"></i></a>
+		                	<a ng-click="rejectApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_REJECT' | translate }}"><i class="fa fa-times"></i></a>
 		                </div>
 	            	</div>
 	            </div>
@@ -46,7 +48,11 @@
 	        </div>
         </div>
         <div class="ads">
-            <h3>{{ 'COMMUNITY_POSTS' | translate }}</h3>
+            <h3 class="iblock">
+                {{ 'COMMUNITY_POSTS' | translate }}
+                <a ng-if="mine" class="create-ad-sig fright" ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}"><i class="fa fa-plus-square"></i></a>
+            </h3>
+            <div class="clear"></div>
 
             <p ng-if="! posts.data.length">{{ 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
 
@@ -78,7 +84,6 @@
         <div class="activities">
             
             <h3>{{ 'COMMUNITY_ACTIVITY' | translate }}</h3>
-            
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">
                 <div class="timeline-container">
