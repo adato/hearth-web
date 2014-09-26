@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		$scope.sendingDelete = false;
 		$scope.defaultCommunity = {
 			name: '',
-			locations: [{name:''}],
+			location: {name:''},
 			description: '',
 			terms: '',
 		};
@@ -23,7 +23,6 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			name: false,
 			description: false,
 			terms: false,
-			locations: false,
 		};
 		$scope.community = {};
 
@@ -33,10 +32,26 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			$scope.loaded = true;
 		};
 
+		$scope.transformDataOut = function(data) {
+
+			data.location = data.location[0];
+			return data;
+		};
+
+		$scope.transformDataIn = function(data) {
+
+			if(data.location === null) {
+				data.location = [{name:''}];
+			} else {
+				data.location = [data.location];
+			}
+			return data;
+		};
+
 		$scope.loadCommunity = function(id) {
 
 			Community.get({communityId: id}, function(res) {
-				$scope.community = res;
+				$scope.community = $scope.transformDataIn(res);
 				$scope.loaded = true;
 			});
 
@@ -64,12 +79,8 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 				$scope.showError.description = err = true;
 			}
 
-			if(data.locations) {
-				data.locations.forEach(function(item) {
-					if(item.name == '') {
-						$scope.showError.locations = err = true;
-					}
-				});
+			if(data.location[0].name == '') {
+				$scope.showError.location = err = true;
 			}
 
 			return ! err; // return true if valid
@@ -78,7 +89,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		$scope.save = function() {
 			// if we have community ID - then edit
 			var service = ($scope.community._id) ? Community.edit : Community.add;
-
+			var transformedData;
 			// validate data
 			if(!$scope.validate($scope.community)) return false;
 
@@ -86,7 +97,8 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			if($scope.sending) return false;
 			$scope.sending = true;
 
-			service($scope.community, function(res) {
+			transformedData = $scope.transformDataOut(angular.copy($scope.community));
+			service(transformedData, function(res) {
 	            $location.path('/community/'+res._id);
 			}, function(res) {
 				alert("Operace se nezdařila :-(");

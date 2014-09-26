@@ -1,40 +1,3 @@
-<!-- ========================== DEPRECATED ====================== -->
-<!-- <div ng-controller="CommunityRegisterCtrl" ng-init="community.termsShown = false">
-    <div class="round login-prompt" signed-out ng-cloak translate>
-        LOG_IN_TO_CREATE_COMMUNITY
-    </div>
-    <form  signed-in name="createCommunityForm" ng-show="!sent" ng-cloak ng-submit="createCommunity($event)" class="large-11 large-centered columns" with-errors novalidate>
-        <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
-        <div>
-            <input class="text-input top" ng-minlength="3" type="text" name="name" required ng-model="community.name" placeholder="{{ 'COMMUNITY_NAME_INPUT_PLACEHOLDER' | translate }}">
-        </div>
-        <div>
-            <address-autocomplete placeholders="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'"
-                                  location="community.location"
-                                  class="text-input middle"
-                                  focus="x.enabled = true"
-                                  blur="x.enabled = false"
-                                  is-required="true"
-                                  />
-        </div>
-        <div>
-            <textarea class="text-input" ng-class="{ 'middle': community.termsShown, 'bottom': !community.termsShown }" rows="6" name="description" required
-                      ng-model="community.description" placeholder="{{ 'COMMUNITY_DESCRIPTION_INPUT_PLACEHOLDER' | translate }}"
-                      ></textarea>
-        </div>
-        <a href="" ng-click="community.termsShown = true" ng-hide="community.termsShown"><i class="fa fa-plus"></i> {{ 'COMMUNITY_ADD_TERMS' | translate }}</a>
-        <div ng-show="community.termsShown">
-            <textarea class="text-input bottom" rows="6" name="terms" ng-model="community.terms"
-                      placeholder="{{ 'COMMUNITY_community_TERMS_OF_MEMBERSHIP' | translate }}"></textarea>
-        </div>
-        <div>
-            <button type="submit" ng-disabled="sending || createCommunityForm.$invalid" class="controls primary button radius right" analytics-on analytics-event="create community form submitted" analytics-category="community" analytics-value="8">
-                {{ 'COMMUNITY_CREATE_BUTTON_CAPTION' | translate }}
-            </button>
-        </div>
-    </form>
-</div>
--->
 <div class="row community-edit" ng-show="loaded">
   <form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
@@ -80,7 +43,7 @@
         </span>
       </h2>
       <section class="location">
-        <locations locations="community.locations" error="showError.locations" placeholder-key="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'" error-message="'COMMUNITY_LOCATIONS_IS_EMPTY_STRICT'" limit="-1" max-count="1" hide-map="true"></locations>
+        <locations locations="community.location" error="showError.location" placeholder-key="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'" error-message="'COMMUNITY_LOCATIONS_IS_EMPTY_STRICT'" limit="-1" max-count="1" hide-map="true"></locations>
       </section>
 
       <h2>
@@ -153,7 +116,8 @@
     <section class="delete">
       <p class="small-8 fleft" ng-if="communityMembers.length > 1">
         {{ 'COMMUNITY_HAS_MEMBERS_COUNT' | translate }}
-        <pluralize-translate count="communityMembers.length" key="'X_MEMBERS'"></pluralize-translate>, {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
+        {{ community.member_count }}
+        <pluralize-translate count="community.member_count" key="'X_MEMBERS'"></pluralize-translate>, {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
       </p>
       <p class="small-8 fleft" ng-if="communityMembers.length == 1">
         {{ 'COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE' | translate }}
