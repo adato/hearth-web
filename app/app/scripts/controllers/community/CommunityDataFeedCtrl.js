@@ -78,6 +78,26 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             });
         }
 
+        // =================================== Public Methods ====================================
+        
+        $scope.rejectApplication = function(id)  {
+
+        	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
+        		$scope.init();
+        	}, function(res) {
+        		alert("There was an error while processing this post.");
+        	});
+        };
+
+        $scope.approveApplication = function(id) {
+
+        	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
+        		$scope.init();
+        	}, function(res) {
+        		alert("There was an error while processing this post.");
+        	});
+        };
+
         $scope.pauseToggle = function(item) {
             var Action = (item.is_active) ? Post.suspend : Post.resume;
 
@@ -105,8 +125,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         $scope.removeMember = function(id) {
         	CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
-        		loadCommunityMember($scope.info._id, processDataErr);
         		alert("Člen byl vyhozen z komunity");
+        		init();
         	});
         };
 

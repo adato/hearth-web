@@ -9,10 +9,13 @@
             </div> -->
         <div class="ratings" ng-if="mine">
             
-            <p ng-if="! applications.length">{{ 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
-        	<div ng-if="applications.length">
+            <div ng-if="!applications.length">
+                <h3>{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
+                <p>{{ 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
+            </div>
+            <div ng-if="applications.length">
 
-	            <h3 class="small-8 fleft">{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}} - {{applications.length}}</h3>
+                <h3 class="small-8 fleft">{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}} - {{applications.length}}</h3>
 	            <a class="fright" ng-if="false">{{ 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
 	            <div class="clear"></div>
 
@@ -90,7 +93,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <a href="#!/profile/{{info._id}}/activity-feed">
+                    <a href="#!/community/{{info._id}}/activity-feed">
                         <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
                     </a>
                 </div>

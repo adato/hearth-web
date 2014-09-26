@@ -1,15 +1,10 @@
 <div class="communities">
-    <header>
-        <h3 class="fleft small-6" ng-if="myCommunities.length">{{'COMMUNITIES' | translate}}</h3>
-        <p class="fright tright small-6" ng-if="loggedUser._id">
-            <a href="#!/community-create">
-                {{'CREATE_COMMUNITY' | translate}}
-            </a>
-        </p>
-    </header>
-    <div class="clear"></div>
+    <a href="#!/community-create" class="fright">
+        {{'CREATE_COMMUNITY' | translate}}
+    </a>
     <div class="my-communities" ng-if="myCommunities.length">
-        <h3>{{ 'YOU_ARE_ADMIN_IN_X_COMMUNITIES' | translate }}</h3>
+        <h3 class="fleft iblock">{{ 'YOU_ARE_ADMIN_IN_X_COMMUNITIES' | translate }}</h3>
+        <div class="clear"></div>
         <br />
         <div class="community-list">
             <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div>
@@ -17,7 +12,8 @@
     </div>
 
     <div class="random-communities">
-        <h3 ng-if="myCommunities.length">{{ 'SUGGESTED_COMMUNITIES' | translate }}</h3>
+        <h3 class="fleft iblock">{{ 'SUGGESTED_COMMUNITIES' | translate }}</h3>
+        <div class="clear"></div>
         <br />
         <div class="community-list">
             <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in randomCommunities track by $index"></div>
