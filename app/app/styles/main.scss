@@ -90,12 +90,12 @@ $fontSize: rem-calc(18);
 @import "fulltext";
 @import "itemDetail";
 @import "modal";
-@import "profile";
 @import "profileCommon";
+@import "profile";
+@import "profile-edit";
 @import "communities";
 @import "community-profile";
 @import "community-edit";
-@import "profile-edit";
 
 body {
     background-image: inline-image("bg.png");

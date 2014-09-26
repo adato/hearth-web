@@ -1,4 +1,178 @@
+$medium-avatar-size: 80px;
 .profile-common {
+    header {
+        .user-basic {
+            @extend .large-7, .columns;
+            padding:0;
+            h1 {
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+                padding: {
+                    left:50px;
+                    right:50px;
+                } 
+                a {
+                    color:darken(color(3), 40%);
+                }
+                span {
+                    display:inline-block;
+                    padding: {
+                        left: 10px;
+                        right: 10px; 
+                    }
+                }
+                &:before, &:after {
+                    position: absolute;
+                    top: 51%;
+                    overflow: hidden;
+                    width: 50%;
+                    height: 2px;
+                    content: '\a0';
+                    background-color: rgba(250, 250, 250, 0.7);
+                }
+                &:before {
+                    margin-left: -50%;
+                    text-align: right;
+                }                 
+            }
+            p {
+                margin-left:45px;
+                padding-left:20px;
+                .fa {
+                    display:inline-block;
+                    margin-right: 10px;
+                    color:color(1);
+                }
+            }      
+        }
+        .buttons {
+            @extend .large-5, .columns;
+            button {
+                @extend .button-flat;
+                vertical-align:top;
+                height:60px;
+                top:0;
+                &.blue {
+                    margin:0;
+                }
+                .fa {
+                    display:inline-block;
+                    margin-right:10px;
+                }
+            }
+        }
+        .highlights {
+            @extend .large-12, .columns;
+            display:block;
+            height:320px;
+            padding:0;
+            margin-top:10px;
+            .profile-photo {
+                @extend .large-3, .columns;
+                width:300px;
+                height:300px;
+                overflow: hidden;
+                background-repeat:none;
+                background-size:300px 300px;
+                border-radius:300px;
+                border:2px solid color(4);
+                box-shadow:inset 0px 6px 9px 0px rgba(50, 50, 50, 0.75);
+                background-image: inline-image("no-avatar.png");
+
+                img {
+                    min-width: 300px;
+                    min-height: 300px;
+                    position: relative;
+                    left:-15px;
+                }
+            }
+            .bubble {
+                border-radius:50%;
+                border:none;
+                background:color(3);
+                padding:20px;
+                text-align:center;
+                color:color(4);
+                box-shadow:inset 0px -1px 50px 30px rgba(50, 50, 50, 0.75);
+                text-shadow: 0px 0px 13px rgba(50, 50, 50, 1);
+                margin: {
+                    top: 20px; 
+                    left:40px;
+                    right:40px;
+                    bottom:30px;
+                }
+                b {
+                    font-size:56px;
+                    font-weight:bold;
+                    margin:5px;
+                }
+                hr { margin:10px; }
+                &.active,
+                &:hover {
+                    background:mix(darken(color(1), 20%), darken(color(3), 10%));
+                    border:10px solid lighten(color(1), 20%);
+                    box-shadow:none;
+                    padding:10px;
+                }
+            }
+            .friends-and-follows {
+                @extend .large-2, .columns, .bubble;
+                width:170px;
+                height:170px;
+            }
+            .communities {
+                @extend .large-3, .columns, .bubble;
+                width:120px;
+                height:120px;
+                margin-top:100px;
+            }
+            .ratings {
+                @extend .large-3, .columns, .bubble;
+                width:130px;
+                height:130px;
+                margin-top:40px;
+                margin-right:0;
+            }
+            .karma-bar {
+                @extend .large-8, .columns, .pull-right;
+                height:30px;
+                padding:0;
+                float:right;
+                .positive, .negative {
+                    min-width:10%;
+                    max-width:90%;
+                    display:inline-block;
+                    padding:10px;
+                    color:color(4);
+                    font-weight:bold;
+                    box-shadow: inset 0px 0px 10px 0px rgba(color(4), 0.75);
+                }
+                .positive {
+                    background:color(2);
+                    background: linear-gradient(130deg, darken(color(2), 10%) 30%, color(2) 70%);
+                    border-top-left-radius:$global-radius;
+                    border-bottom-left-radius:$global-radius;
+                    text-align:right;
+                    .fa { 
+                        display:inline-block; 
+                        margin-left:5px;
+                    }
+                }
+                .negative {
+                    background:color(5);
+                    background: linear-gradient(130deg, darken(color(5), 10%) 30%, color(5) 70%);
+                    border-top-right-radius:$global-radius;
+                    border-bottom-right-radius:$global-radius;
+                    .fa { 
+                        display:inline-block; 
+                        margin-right:5px;
+                    }                   
+                }
+            }
+        }
+    }
+
     .avatar {
         overflow: hidden;
     }

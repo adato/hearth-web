@@ -2,6 +2,10 @@
     max-width:1000px;
     padding-bottom: 100px;
     
+    .profile-photo {
+        background-image: inline-image("no-cm-avatar.png") !important;
+
+    }
     margin: {
         left: auto;
         right: auto;
@@ -50,126 +54,7 @@
     a {
         color:color(5);
     }
-    header {
-        .user-basic {
-            @extend .large-7, .columns;
-            h1 {
-                position: relative;
-                z-index: 1;
-                overflow: hidden;
-                padding: {
-                    left:50px;
-                    right:50px;
-                } 
-                a {
-                    color:darken(color(3), 40%);
-                }
-                span {
-                    display:inline-block;
-                    padding: {
-                        left: 10px;
-                        right: 10px; 
-                    }
-                }
-                &:before, &:after {
-                    position: absolute;
-                    top: 51%;
-                    overflow: hidden;
-                    width: 50%;
-                    height: 2px;
-                    content: '\a0';
-                    background-color: rgba(250, 250, 250, 0.7);
-                }
-                &:before {
-                    margin-left: -50%;
-                    text-align: right;
-                }                 
-            }
-            p {
-                margin-left:45px;
-                padding-left:20px;
-                .fa {
-                    display:inline-block;
-                    margin-right: 10px;
-                    color:color(1);
-                }
-            }      
-        }
-        .buttons {
-            @extend .large-5, .columns;
-            button {
-                @extend .button-flat;
-                vertical-align:top;
-                height:60px;
-                top:0;
-                &.blue {
-                    margin:0;
-                }
-                .fa {
-                    display:inline-block;
-                    margin-right:10px;
-                }
-            }
-        }
-        .highlights {
-            @extend .large-12, .columns;
-            display:block;
-            height:320px;
-            padding:0;
-            .community-photo {
-                @extend .large-3, .columns;
-                width:300px;
-                height:300px;
-                background-repeat:none;
-                background-size:300px 300px;
-                border-radius:300px;
-                border:2px solid color(4);
-                box-shadow:inset 0px 6px 9px 0px rgba(50, 50, 50, 0.75);
-                
-                background-image: inline-image("default_avatar.png");
-            }
-            .friends-and-follows {
-                @extend .large-2, .columns;
-                width:170px;
-                height:170px;
-                border-radius:50%;
-                background:color(3);
-                border:10px solid color(3);
-                padding:10px;
-                text-align:center;
-                color:color(4);
-                margin: {
-                    top: 20px; 
-                    left:40px;
-                    right:40px;
-                    bottom:30px;
-                }
-                b {
-                    font-size:56px;
-                    font-weight:bold;
-                    margin:5px;
-                }
-                hr { margin:10px; }
-                &.active,
-                &:hover {
-                    background:color(1);
-                    border-color:lighten(color(1), 20%);
-                }
-            }
-            .communities {
-                @extend .large-3, .columns, .friends-and-follows;
-                width:120px;
-                height:120px;
-                margin-top:100px;
-            }
-            .ratings {
-                @extend .large-3, .columns, .friends-and-follows;
-                width:130px;
-                height:130px;
-                margin-top:40px;
-            }
-        }
-    }
+    
     .community-listings {
         @extend .clearfix;
         .box {
@@ -362,12 +247,10 @@
                         height: 100%;
                         background-color: #cacaca;
                         width: 5px;
-
                     }
                 }
             }
         }
-
     }
 
     .bottom-tabs {

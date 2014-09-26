@@ -18,7 +18,6 @@
 
     <div class="random-communities">
         <h3 ng-if="myCommunities.length">{{ 'OTHER_COMMUNITIES' | translate }}</h3>
-        <h3 ng-if="! myCommunities.length">{{ 'RANDOM_COMMUNITIES' | translate }}</h3>
         <br />
         <div class="community-list">
             <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in randomCommunities track by $index"></div>
