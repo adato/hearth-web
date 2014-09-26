@@ -20,6 +20,14 @@
 					<i class="fa fa-plus"></i> {{ 'SETTINGS' | translate}}
 				</button>
 			</a>
+			<a ng-if="!info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="right">
+				<br />
+				<br />
+				<span class="fa fa-smile-o"></span> {{'COMMUNITY_APPLY' | translate}}
+				&nbsp;
+			</a>
+			<span class="right" ng-if="info.is_applicant" >{{'COMMUNITY_APPLICATION_SENT' | translate}}</span>
+
 			<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
 				<br />
 				<br />

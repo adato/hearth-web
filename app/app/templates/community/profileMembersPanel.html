@@ -1,5 +1,5 @@
 <div class="bottom-tabs">
-    <ul class="mine">
+    <ul ng-if="mine">
         <li>
             <a href="#!/community/{{info._id}}/members" ng-class="{selected: pageSegment =='community.members'}">
                 {{ 'COMMUNITY_HAS' | translate}} {{ info.member_count}}

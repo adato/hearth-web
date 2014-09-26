@@ -7,15 +7,15 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route',
-	function($scope, $routeParams, $rootScope, Community, $route) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants',
+	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants) {
 		$scope.loaded = false;
 		$scope.info = {};
 
 		$scope.isMine = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
-		
+
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
@@ -41,6 +41,18 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$rootScope.subPageLoaded = false;
 			$scope.pagePath = $route.current.originalPath;
 			$scope.pageSegment = $route.current.$$route.segment;
+		};
+
+		$scope.applyForCommunity = function() {
+
+			CommunityApplicants.add({communityId: $scope.info._id}, function(res) {
+				
+				// flash message and refresh the community profile page
+				alert("OK");
+				$scope.init();
+			}, function(err) {
+				alert("There was en error while processing this request :-(");
+			});
 		};
 
 		$scope.init = function() {
