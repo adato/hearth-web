@@ -120,6 +120,13 @@
         }
     }
 
+    .change-admin {
+        select {
+            width: unset;
+            min-width: 100px;
+        }
+    }
+
     input {
         margin: {
             bottom: 0;

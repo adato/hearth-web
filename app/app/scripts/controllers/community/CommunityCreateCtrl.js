@@ -105,6 +105,11 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 				$scope.sending = false;;
 			});
 		};
+		
+		$scope.change = function(id) {
+
+			
+		}
 
 		$scope.delete = function() {
 

@@ -91,20 +91,26 @@
   </form>
   <div class="clear"></div>
 
-  <div ng-if="communityUsers.length > 2">
+  <!-- ==================================== Change admin in community ================================ -->
+  <div ng-if="community.member_count > 1">
     <h2>
       <span class="content">
         <span class="fa fa-info"></span>{{ 'COMMUNITY_CHANGE_ADMIN' | translate }}
       </span>
     </h2>
-    <section>
-      <select ng-model="adminChangeId">
-        <option ng-repeat="(id, item) in communityUsers track by $index" ng-if="loggedUser._id != item._id" value="item._id">{{item.name}}</option>
-      </select>
+    <section class="change-admin">
+      <span>
+        {{ 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }}
+        <select ng-model="adminChangeId" ng-init="adminChangeId = communityMembers[1]._id">
+          <option ng-repeat="(id, item) in communityMembers track by $index" ng-if="loggedUser._id != item._id" ng-value="item._id">{{item.name}}</option>
+        </select>
+      </span>
+      <button ng-click="change(adminChangeId)" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
     </section>
   </div>
   <div class="clear"></div>
 
+  <!-- ==================================== Delete community ================================ -->
   <div ng-if="community._id">
     <h2>
       <span class="content">
