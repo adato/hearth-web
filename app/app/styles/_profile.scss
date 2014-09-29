@@ -1,3 +1,4 @@
+$medium-avatar-size: 80px;
 .profile-view {
     max-width:960px;
     padding-bottom: 100px;
@@ -6,6 +7,31 @@
         right: auto;
         top:-40px; // moved whole page a little bit up to avoid blank space on top
     }
+
+
+    .medium-avatar {
+        .avatar {
+            left:0;
+            width:$medium-avatar-size;
+            height:$medium-avatar-size;
+            margin: {
+                top:20px;
+                left:0px;
+                right:20px;
+                bottom:0px;
+            }
+            float:left;
+            &::before {
+                width:$medium-avatar-size;
+                height:$medium-avatar-size;
+            }
+            img {
+                border-radius: 50%;
+                background:color(4);
+            }
+        }
+    }
+
 
     .people-listing {
         @extend .clearfix;

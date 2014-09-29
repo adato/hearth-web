@@ -54,7 +54,7 @@ $medium-avatar-size: 80px;
                 height:60px;
                 top:0;
                 &.blue {
-                    margin:0;
+                    margin:0 !important;
                 }
                 .fa {
                     display:inline-block;
@@ -75,9 +75,9 @@ $medium-avatar-size: 80px;
                 overflow: hidden;
                 background-repeat:none;
                 background-size:300px 300px;
-                border-radius:300px;
+                border-radius:50%;
                 border:2px solid color(4);
-                box-shadow:inset 0px 6px 9px 0px rgba(50, 50, 50, 0.75);
+                box-shadow:inset 0px 6px 15px 0px rgba(50, 50, 50, 0.75);
                 background-image: inline-image("no-avatar.png");
 
                 img {
@@ -85,6 +85,7 @@ $medium-avatar-size: 80px;
                     min-height: 300px;
                     position: relative;
                     left:-15px;
+                    background:color(4);
                 }
             }
             .bubble {
@@ -140,8 +141,8 @@ $medium-avatar-size: 80px;
                 padding:0;
                 float:right;
                 .positive, .negative {
-                    min-width:10%;
-                    max-width:90%;
+                    min-width:12%;
+                    max-width:88%;
                     display:inline-block;
                     padding:10px;
                     color:color(4);
