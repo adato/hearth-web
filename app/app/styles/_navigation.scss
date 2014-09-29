@@ -80,12 +80,11 @@ $topBarImageSize: 1.8em;
             }
             &.logo {
                 display: block;
-                position: relative;
-                right: 22px;
-                top: -4px;
                 height: $topBarHeight !important;
                 margin: {
-                    left: 0;
+                    bottom:0;right:0;
+                    top:-2px;
+                    left: -32px;
                 };
             }
         }

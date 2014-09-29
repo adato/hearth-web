@@ -55,8 +55,11 @@ $medium-avatar-size: 80px;
                 vertical-align:top;
                 height:60px;
                 top:0;
-                &.blue {
-                    margin:0px !important;
+                padding-left:1rem;
+                padding-right:1rem;
+                margin-right:1rem;
+                &.invite-button {
+                    @extend .blue-color;
                 }
                 .fa {
                     display:inline-block;
@@ -65,9 +68,9 @@ $medium-avatar-size: 80px;
             }
         }
         .highlights {
-            @extend .large-12, .columns;
+            @extend .columns;
             display:block;
-            height:320px;
+            min-height:320px;
             padding:0;
             margin-top:10px;
             .profile-photo {
@@ -201,18 +204,21 @@ $medium-avatar-size: 80px;
             }
         }
     }
+    .blue-color {
+        background:color(5);
+        background: linear-gradient(180deg, lighten(color(5), 10%) 30%, color(5) 70%);
+        &:hover {
+            background:darken(color(5), 20%);
+        }
+    }
     .button-flat {
         font-weight:bold;
         border:0;
         &.blue {
-            background:color(5);
-            background: linear-gradient(180deg, lighten(color(5), 10%) 30%, color(5) 70%);
+            @extend .blue-color;            
             i {
                 display:inline-block;
                 margin-right:10px;
-            }
-            &:hover {
-                background:darken(color(5), 20%);
             }
             margin:1.25rem;
             margin-left: 0px;
