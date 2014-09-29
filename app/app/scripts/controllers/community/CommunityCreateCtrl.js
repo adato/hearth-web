@@ -99,6 +99,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 
 			transformedData = $scope.transformDataOut(angular.copy($scope.community));
 			service(transformedData, function(res) {
+	            $rootScope.$broadcast("newCommunity");
 	            $location.path('/community/'+res._id);
 			}, function(res) {
 				alert("Operace se nezdařila :-(");
@@ -108,7 +109,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		
 		$scope.change = function(id) {
 
-			
+				
 		}
 
 		$scope.delete = function() {
@@ -119,7 +120,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 
 				$scope.sendingDelete = false;
 				alert("KOMUNITA BYLA SMAZANA");
-				window.location.reload("#!/communities");
+				$location.path("/communities");
 			}, function(res) {
 
 				alert("Při mazání komunity došlo k chybě.");

@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships) {
         var timeout;
         $scope.segment = false;
 
@@ -83,6 +83,18 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             }
         });
 
+        $scope.loadMyCommunities = function() {
+            CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
+                $rootScope.myCommunities = res;
+                console.log(res);
+            });
+        }
+
+        $scope.$on('newCommunity', $scope.loadMyCommunities);
+        $scope.$on('initFinished', $scope.loadMyCommunities);
+        $rootScope.initFinished && $scope.loadMyCommunities();
+
+        // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function() {
 
             ngDialog.open({

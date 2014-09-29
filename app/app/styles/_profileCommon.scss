@@ -48,13 +48,18 @@ $medium-avatar-size: 80px;
         }
         .buttons {
             @extend .large-5, .columns;
+            padding-left: 0px;
+            padding-right: 0px;
             button {
                 @extend .button-flat;
                 vertical-align:top;
                 height:60px;
                 top:0;
                 &.blue {
-                    margin:0;
+                    margin:0px !important;
+                }
+                &.invite-button {
+
                 }
                 .fa {
                     display:inline-block;
@@ -212,6 +217,8 @@ $medium-avatar-size: 80px;
                 background:darken(color(5), 20%);
             }
             margin:1.25rem;
+            margin-left: 0px;
+            margin-right: 0px;
         }
         padding: {
             top:10px;
