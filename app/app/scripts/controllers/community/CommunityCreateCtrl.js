@@ -7,10 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
-	'$scope', '$location', '$routeParams', 'Community', 'CommunityMembers',
-	function($scope, $location, $routeParams, Community, CommunityMembers) {
-		$scope.communityMembers = [];
-		$scope.adminChangeId = null;
+	'$scope', '$rootScope', '$location', '$routeParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin',
+	function($scope, $rootScope, $location, $routeParams, Community, CommunityMembers, CommunityDelegateAdmin) {
+		$scope.communityMembers = false;
 		$scope.sendingDelete = false;
 		$scope.defaultCommunity = {
 			name: '',
@@ -48,6 +47,24 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			return data;
 		};
 
+		/**
+		 * Function will remove user from list
+		 * @param  {string} id UserId to remove
+		 * @param  {array} arr User list in array
+		 * @return {array}     User list without me
+		 */
+		$scope.removeMemberFromList = function(arr, uId) {
+
+			for(var i = 0; i < arr.length; i++) {
+
+				if(arr[i]._id == uId) {
+					arr.splice(i, 1);
+					break;
+				}
+			}
+			return arr;
+		};
+
 		$scope.loadCommunity = function(id) {
 
 			Community.get({communityId: id}, function(res) {
@@ -56,7 +73,11 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			});
 
 			CommunityMembers.query({communityId: id}, function(res) {
-				$scope.communityMembers = res;
+				// remove myself from list
+				$scope.communityMembers = $scope.removeMemberFromList(res, $rootScope.loggedUser._id);
+				if($scope.communityMembers.length) {
+					$scope.adminChangeId = $scope.communityMembers[0]._id;
+				}
 			});
 		};
 
@@ -99,7 +120,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 
 			transformedData = $scope.transformDataOut(angular.copy($scope.community));
 			service(transformedData, function(res) {
-	            $rootScope.$broadcast("newCommunity");
+	            $rootScope.$broadcast("reloadCommunities");
 	            $location.path('/community/'+res._id);
 			}, function(res) {
 				alert("Operace se nezdařila :-(");
@@ -109,7 +130,20 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		
 		$scope.change = function(id) {
 
-				
+			if(!id) {
+
+				alert("Musíte vybrat člena komunity.");
+				return false;
+			}
+
+			CommunityDelegateAdmin.delegate({community_id: $scope.community._id, new_admin_id: id},
+				function(res) {
+		            $rootScope.$broadcast("reloadCommunities");
+					$location.path('/community/'+$scope.community._id);
+				}, function(res) {
+
+					alert("There was an error while processing this request");
+				});
 		}
 
 		$scope.delete = function() {
@@ -120,6 +154,8 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 
 				$scope.sendingDelete = false;
 				alert("KOMUNITA BYLA SMAZANA");
+
+	            $rootScope.$broadcast("reloadCommunities");
 				$location.path("/communities");
 			}, function(res) {
 
@@ -137,6 +173,7 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 			}
 		};
 
-		$scope.init();
+		$scope.$on('initFinished', $scope.init);
+        $rootScope.initFinished && $scope.init();
 	}
 ]);

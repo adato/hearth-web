@@ -86,11 +86,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.loadMyCommunities = function() {
             CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
                 $rootScope.myCommunities = res;
-                console.log(res);
             });
         }
 
-        $scope.$on('newCommunity', $scope.loadMyCommunities);
+        $scope.$on('reloadCommunities', $scope.loadMyCommunities);
         $scope.$on('initFinished', $scope.loadMyCommunities);
         $rootScope.initFinished && $scope.loadMyCommunities();
 

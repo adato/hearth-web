@@ -101,8 +101,8 @@
     <section class="change-admin">
       <span>
         {{ 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }}
-        <select ng-model="adminChangeId" ng-init="adminChangeId = communityMembers[1]._id">
-          <option ng-repeat="(id, item) in communityMembers track by $index" ng-if="loggedUser._id != item._id" ng-value="item._id">{{item.name}}</option>
+        <select ng-if="communityMembers" ng-model="adminChangeId">
+          <option ng-repeat="(id, item) in communityMembers track by $index" ng-value="item._id" ng-selected="$index == 0">{{item.name}}</option>
         </select>
       </span>
       <button ng-click="change(adminChangeId)" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
