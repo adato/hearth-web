@@ -21,9 +21,12 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		};
 
 		$scope.fetchRandomCommunities = function() {
-			Communities.random({}, function(res) {
-				$scope.randomCommunities = res;
-			});
+
+			// they are loaded from BaseCtrl for top panel already
+			$scope.randomCommunities = $rootScope.myCommunities;
+
+			// Communities.random({}, function(res) {
+			// });
 		};
 
 		$scope.init = function() {
