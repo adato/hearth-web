@@ -427,10 +427,12 @@ $medium-avatar-size: 80px;
                 }
 
                 .reg-date {
-                    position: relative;
-                    top: 15px;
-                    left: 15px;
                     font-size: 14px;
+                    position: relative;
+                    height: 30px;
+                    left: 15px;
+                    margin-bottom: 5px;
+                    padding-top: 15px;
                     .fa {
                         margin-right: 10px !important;
                     }

@@ -2,8 +2,9 @@
   <form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
       <div image-preview class="image-upload" files="community.avatar" limit="1" single-file="true">
+
         <img class="preview" ng-if="community.avatar.file" ng-src="{{community.avatar.file}}" />
-        <img class="preview" ng-if="!community.avatar.file" src="images/default_avatar.png" />
+        <img class="preview" ng-if="!community.avatar.file && community.avatar.large" ng-src="{{community.avatar.large}}" />
         <div class="text">
           <span class="fa fa-plus-square-o"></span>
           <span>{{ 'CHOOSE_AVATAR_FILE' | translate}}</span>

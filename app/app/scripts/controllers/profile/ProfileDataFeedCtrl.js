@@ -64,9 +64,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         function loadUserHome(params) {
             var fulltextParams = {
                 type: 'post',
-                author_id: params.user_id
+                author_id: params.user_id,
             }
 
+            params.limit = 5;
             UserRatings.received(params, function(res) {
                 $scope.receivedRatings = res;
             });

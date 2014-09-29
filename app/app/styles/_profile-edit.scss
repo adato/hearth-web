@@ -178,7 +178,9 @@
         border-radius: 50%;
         box-shadow: -3px 3px 6px rgba(0, 0, 0, 1) inset;
         overflow: hidden;
-
+        background-image: url("/images/default_avatar.png");
+        background-repeat: no-repeat;
+        background-position: center center;
         .preview {
             width:195px;
             height: 195px;

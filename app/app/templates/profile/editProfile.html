@@ -3,16 +3,19 @@
 
 
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
-      <div class="image-upload" image-upload file-upload-path="/users/{{ loggedUser._id }}/files" upload-name="'avatar'" on-file-upload-started="avatarUploadStarted()" on-file-upload-success="avatarUploadSucceeded($event)" on-file-upload-error="avatarUploadFailed()">
-        <img class="preview blur" ng-if="profile.avatar.normal" ng-src="{{profile.avatar.normal}}" />
-        <img class="preview blur" ng-if="!profile.avatar.normal" src="images/default_avatar.png" />
+      <div image-preview class="image-upload" files="profile.avatar" limit="1" single-file="true">
+        <img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" />
+        <img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" />
         <div class="text">
-          <span class="fa fa-plus-square-o" ng-class="{'vis-hidden':uploadingInProgress}"></span>
-          <span ng-if="! uploadingInProgress">{{ 'CHOOSE_AVATAR_FILE' | translate}}</span>
-          <span ng-if="uploadingInProgress">{{ 'UPLOADING_FILE' | translate}}</span>
+          <span class="fa fa-plus-square-o"></span>
+          <span>{{ 'CHOOSE_AVATAR_FILE' | translate}}</span>
         </div>
+        <a class="create-post-link">
+          <i class="fa fa-picture-o"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+        </a>
       </div>
     </div>
+
 
     <div class="fleft small-12 large-7 pull-5 alt-bg">
       <h2 class="hide-border">

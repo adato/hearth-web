@@ -74,14 +74,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             }
         });
 
+        $scope.getRandom = function() {
+            return Math.random();
+        };
+
         $scope.loadMyCommunities = function() {
             CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
                 $rootScope.myCommunities = res;
                 $rootScope.myAdminCommunities = [];
-                for(var i = 0; i < res.length; i++ ) {
-                    if(res[i].admin == $rootScope.loggedUser._id)
-                        $rootScope.myAdminCommunities.push(res[i]);
-                }
+                res.forEach(function(item) {
+
+                    // create list of communities I'm admin in
+                    if(item.admin == $rootScope.loggedUser._id)
+                        $rootScope.myAdminCommunities.push(item);
+                });
             });
         };
 
