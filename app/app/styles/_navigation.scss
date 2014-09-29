@@ -20,10 +20,6 @@ $topBarImageSize: 1.8em;
                         top: 0px;
                         height: $topBarHeight / 2 !important;
                         background-size: 48%;
-                        /*
-                            right: -74px;
-                            background-size: 181%;
-                         */
                     }
                 }
             }
@@ -64,6 +60,7 @@ $topBarImageSize: 1.8em;
             }
             .img {
                 opacity: 0.8;
+                overflow: hidden;
                 transition: opacity 1s;
                 border: 2px solid lighten(color(1), 25%);
             }
@@ -103,6 +100,14 @@ $topBarImageSize: 1.8em;
                 color: color(4);
             }
         }
+        li {
+            &.no-hover:hover{
+                background-color: inherit;
+                a {
+                    color: inherit;
+                }
+            }
+        }
         .divider {
             border: {
                 top: 1px solid lighten(color(3), 40%);
@@ -112,6 +117,38 @@ $topBarImageSize: 1.8em;
             width: 1 * $fontSize;
         }
         box-shadow: 0 2px 2px rgba(black, 0.3);
+    }
+    .user-dropdown {
+        p.heading {
+            text-align: left;
+            padding-left: 5px;
+            margin-bottom: 0px;
+            color: #7c766a;
+        }
+        .user-switch-item {
+            padding-top: 6px;
+            padding-bottom: 3px;
+        }
+        .av-img {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            overflow: hidden;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-size: cover;
+            background-image: inline-image("no-avatar.png");
+            &.community {
+                background-image: inline-image("no-cm-avatar.png");
+            }
+        }
+        span {
+            position: relative;
+            top: -6px;
+        }
+        .user-switch-item {
+            margin-left: 10px;
+        }
     }
     .img {
         width: $topBarImageSize;

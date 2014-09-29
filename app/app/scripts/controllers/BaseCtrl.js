@@ -50,15 +50,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.$watch('user', function() {
             var user = $scope.user.get_logged_in_user;
-            if (user && user.avatar.normal) {
-                $scope.avatarExtraStyle = {
-                    'background-image': 'url(' + user.avatar.normal + ')'
-                };
-            } else {
-                $scope.avatarExtraStyle = {
-                    'background-image': 'url(' + $$config.defaultUserImage + ')'
-                };
-            }
         });
 
         $scope.$on('$includeContentLoaded', function() {
@@ -86,8 +77,31 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.loadMyCommunities = function() {
             CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
                 $rootScope.myCommunities = res;
+                $rootScope.myAdminCommunities = [];
+                for(var i = 0; i < res.length; i++ ) {
+                    if(res[i].admin == $rootScope.loggedUser._id)
+                        $rootScope.myAdminCommunities.push(res[i]);
+                }
             });
-        }
+        };
+
+        $rootScope.switchIdentity = function(id) {
+            Auth.switchIdentity(id).then(function() {
+                $location.path('/community/' + id);
+                return $timeout(function() {
+                    return $window.location.reload();
+                });
+            });
+        };
+
+        $rootScope.leaveIdentity = function(id) {
+            Auth.leaveIdentity(id).then(function() {
+                $location.path('/profile/' + id);
+                return $timeout(function() {
+                    return $window.location.reload();
+                });
+            });
+        };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);
         $scope.$on('initFinished', $scope.loadMyCommunities);

@@ -31,13 +31,32 @@
 			<div class="separator"></div>
 			
 			<a signed-in ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
-	            <div class="img" ng-style="avatarExtraStyle"></div>
+	            <div class="img">
+	            	<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
+	            </div>
 	            <label>{{ loggedUser.name }}</label>
 		    </a>
-		    <ul class="f-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
+		    <ul class="f-dropdown user-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       <li><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
 		       <li><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT'| translate }}</a></li>
 		       <li><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+		       <li class="no-hover"><p class="heading"><i class="fa fa-share"></i> {{ 'SWITCH_TO' | translate }}:</p></li>
+		       <li ng-if="loggedCommunity._id">
+					<a class="user-switch-item" ng-click="leaveIdentity(loggedUser._id); closeDropdown('profile-drop')">
+						<div class="av-img">
+							<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" title="{{ loggedUser.name }}" />
+						</div>
+						<span>{{ loggedUser.name | ellipsis}}</span>
+					</a>
+		       </li>
+		       <li ng-repeat="item in myAdminCommunities" ng-if="loggedCommunity._id != item._id">
+					<a class="user-switch-item" ng-click="switchIdentity(item._id); closeDropdown('profile-drop')">
+						<div class="av-img community">
+							<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" title="{{ item.normal }}" />
+						</div>
+						<span>{{ item.name | ellipsis}}</span>
+					</a>
+		       </li>
 		       <li><a href="" ng-click="closeDropdown('profile-drop'); logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
 		    </ul> 
 
