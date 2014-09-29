@@ -32,7 +32,7 @@
 			
 			<a signed-in ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
 	            <div class="img">
-	            	<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
+	            	<img data-dropdown="profile-drop" ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
 	            </div>
 	            <label>{{ loggedUser.name }}</label>
 		    </a>

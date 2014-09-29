@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers',
-	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window',
+	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window) {
 		$scope.loaded = false;
 		$scope.info = {};
 
@@ -52,7 +52,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, handleApiError);
 		};
 
-
         $scope.rejectApplication = function(id)  {
 
         	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
@@ -61,6 +60,17 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         	}, handleApiError);
         };
 
+        $scope.leaveCommunity = function() {
+        	CommunityLeave.leave({community_id: $scope.info._id}, function(res) {
+
+        		alert("FLASH MESSAGE");
+        		$window.reload();
+        		$rootScope.$broadcast("reloadCommunities");
+        	}, function(res) {
+
+        		alert("There was an error while processing this request.");
+        	});
+        }
         $scope.approveApplication = function(id) {
 
         	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {

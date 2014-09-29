@@ -22,6 +22,15 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return _mineCommunity || _mineUser;
 		};
 
+		$scope.citiesToString = function(info) {
+			var list = [];
+			info.locations.forEach(function(item) {
+				if(item.city) list.push(item.city);
+			});
+
+			return list.join(", ");
+		};
+
 		$scope.fetchUser = function () {
 
 			if($scope.info._id !== $routeParams.id) {
@@ -30,11 +39,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;
-				if (res && res.avatar.normal) {
-	            	$scope.info.avatarStyle = res.avatar.large;
-	            } else {
-	                $scope.info.avatarStyle = $$config.defaultUserImage;
-				}
+				$scope.info.cities = $scope.citiesToString(res);
 
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $scope.isMine();

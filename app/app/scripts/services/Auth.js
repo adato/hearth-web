@@ -102,7 +102,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentity: function(identity) {
 				var defer;
 				defer = $q.defer();
-				$http.get(appConfig.apiPath + '/switch-identity/' + identity).success(function(data) {
+				$http.post(appConfig.apiPath + '/session/switch_identity/', {id: identity}).success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);
@@ -112,7 +112,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentityBack: function() {
 				var defer;
 				defer = $q.defer();
-				$http.post(appConfig.apiPath + '/leave-identity').success(function(data) {
+				$http.post(appConfig.apiPath + '/session/leave_identity').success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);

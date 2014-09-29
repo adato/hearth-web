@@ -13,15 +13,15 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		$scope.sendingDelete = false;
 		$scope.defaultCommunity = {
 			name: '',
-			location: {name:''},
+			location: [{name:''}],
 			description: '',
 			terms: '',
 		};
 		$scope.showError = {
-			location: false,
 			name: false,
-			description: false,
 			terms: false,
+			location: false,
+			description: false,
 		};
 		$scope.community = {};
 
@@ -66,7 +66,6 @@ angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
 		};
 
 		$scope.loadCommunity = function(id) {
-
 			Community.get({communityId: id}, function(res) {
 				$scope.community = $scope.transformDataIn(res);
 				$scope.loaded = true;

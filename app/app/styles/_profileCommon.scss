@@ -243,7 +243,7 @@ $medium-avatar-size: 80px;
     a {
         color:color(5);
     }
-        .profile-listings {
+    .profile-listings {
         @extend .clearfix;
         .box {
             background:lighten(color(4), 10%);
@@ -376,20 +376,63 @@ $medium-avatar-size: 80px;
         .right-pane {
             @extend .large-5, .columns;
             padding:0;
+
             .user-about {
                 @extend .box;
-                .work .fa, .reg-date .fa {
-                    color:color(1);
-                    margin-left:10px;
-                    margin-right:10px;
+                span {
+                    &.descr {
+                        .fa {
+                            width: 8px;
+                            color:color(1);
+                            margin-right:15px;
+                        }
+                    }
+
                 }
+                .mtop {
+                    margin-top: 20px;
+                }
+                .mbot {
+                    margin-bottom: 20px;
+                }
+                .line {
+                    span {
+                        &:nth-child(1) {
+                            padding-left: 20px;
+                        }
+                    }
+                }
+
                 span { display:block; }
                 .social { 
                     font-size: 1.5rem;
                     text-align: right;
                     margin-top:10px;
+                    margin-bottom: 5px;
+                    padding-right: 5px;
                     .fa {
-                        margin:5px;
+                        margin:1px;
+                    }
+                    .fa:hover {
+                        opacity: 0.7;
+                    }
+                    .link {
+                        i {
+                            font-size: 21px;
+                            height: 20px;
+                            margin-left: 0;
+                            width: 19px;
+                        }
+                    }
+                }
+
+                .reg-date {
+                    position: relative;
+                    top: 15px;
+                    left: 15px;
+                    font-size: 14px;
+                    .fa {
+                        margin-right: 10px !important;
                     }
                 }
             }
@@ -438,14 +481,58 @@ $medium-avatar-size: 80px;
                         height: 100%;
                         background-color: #cacaca;
                         width: 5px;
-
                     }
                 }
             }
         }
-
     }
 
+	.bottom-tabs {
+        @extend .large-12, .columns, .clearfix;
+        text-align:center;
+        border-top:3px solid color(1);
+        padding-top:2px;
+        font-weight: bold;
+        margin: {
+            top:30px;
+            bottom:30px;
+        }
+        h2 {
+            color: #F95800;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        ul {
+            @include inline-list;
+            li>a {
+                background:darken(color(4), 40%);
+                color:lighten(color(4), 20%);
+                min-width:250px;
+                font-size:1.2rem;
+                padding: {
+                    left:30px;
+                    right:30px;
+                    top:5px;
+                    bottom:5px;
+                }
+                margin: {
+                    left:5px;
+                    right:5px;
+                    top:5px;
+                }
+                border-bottom-left-radius:$global-radius / 2;
+                border-bottom-right-radius:$global-radius / 2;
+                &:hover {
+                    background:darken(color(1), 10%);
+                }
+                &.selected {
+                    background:color(1);
+                }
+            }
+        }
+    }
+
+    /*
 
     .profile-listings {
         @extend .clearfix;
@@ -650,49 +737,5 @@ $medium-avatar-size: 80px;
 
     }
 
-	.bottom-tabs {
-        @extend .large-12, .columns, .clearfix;
-        text-align:center;
-        border-top:3px solid color(1);
-        padding-top:2px;
-        font-weight: bold;
-        margin: {
-            top:30px;
-            bottom:30px;
-        }
-        h2 {
-            color: #F95800;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        ul {
-            @include inline-list;
-            li>a {
-                background:darken(color(4), 40%);
-                color:lighten(color(4), 20%);
-                min-width:250px;
-                font-size:1.2rem;
-                padding: {
-                    left:30px;
-                    right:30px;
-                    top:5px;
-                    bottom:5px;
-                }
-                margin: {
-                    left:5px;
-                    right:5px;
-                    top:5px;
-                }
-                border-bottom-left-radius:$global-radius / 2;
-                border-bottom-right-radius:$global-radius / 2;
-                &:hover {
-                    background:darken(color(1), 10%);
-                }
-                &.selected {
-                    background:color(1);
-                }
-            }
-        }
-    }
-
+    */
 }

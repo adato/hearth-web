@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window) {
         var timeout;
         $scope.segment = false;
 
@@ -95,7 +95,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.leaveIdentity = function(id) {
-            Auth.leaveIdentity(id).then(function() {
+            Auth.switchIdentityBack(id).then(function() {
                 $location.path('/profile/' + id);
                 return $timeout(function() {
                     return $window.location.reload();
