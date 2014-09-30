@@ -19,9 +19,12 @@
 
 }
 
-
 .community-avatar {
     background-image: inline-image("no-cm-avatar.png");
+}
+
+.avatar-isset {
+    background-image: none;
 }
 
 .box {

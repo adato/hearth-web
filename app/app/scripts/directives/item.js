@@ -17,6 +17,7 @@ angular.module('hearth.directives').directive('item', [
             scope: {
                 item: '=',
                 user: '=',
+                community: '=',
                 hideAvatar: '=',
                 keywordsActive: '=',
                 inactivateTags: '=',
@@ -93,19 +94,16 @@ angular.module('hearth.directives').directive('item', [
                         mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
                     });
 
-                    scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
+                    if(scope.community)
+                        scope.mine = scope.item.author._id === ((scope.community._id) ? scope.community._id : null);
+                    else
+                        scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 
                     if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
                         item.author.locations = [];
                     }
                     if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0 || item.attachments_attributes.length > 3) {
                         scope.showMore = true;
-                    }
-
-                    if (item.author && item.author.avatar.normal) {
-                        scope.avatarStyle = {
-                            'background-image': 'url(' + item.author.avatar.normal + ')'
-                        };
                     }
 
                     item.karma = Karma.count(item.author.up_votes, item.author.down_votes);

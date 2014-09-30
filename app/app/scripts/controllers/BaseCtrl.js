@@ -48,6 +48,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             }, 1000);
         };
 
+        $scope.refreshToMarketPlace = function() {
+            window.location.hash = '#!/';
+            location.reload();
+        };
+
         $scope.$watch('user', function() {
             var user = $scope.user.get_logged_in_user;
         });
@@ -93,12 +98,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $rootScope.switchIdentity = function(id) {
             Auth.switchIdentity(id).then(function() {
-                // $location.path('/community/' + id);
                 window.location.hash = '#!/community/'+id;
                 location.reload();
-                // return $timeout(function() {
-                //     return $window.location.reload("/community/"+id);
-                // });
             });
         };
 
@@ -106,10 +107,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             Auth.switchIdentityBack(id).then(function() {
                 window.location.hash = '#!/profile/' + id
                 location.reload();
-                // $location.path();
-                // return $timeout(function() {
-                //     return $window.location.reload();
-                // });
             });
         };
 

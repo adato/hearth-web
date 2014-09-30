@@ -2,10 +2,6 @@
 	<article class="row">
 		<section class="">
 			<div class="count_accomplished" ng-bind-html="'count-of-wished-and-gifts' | translate: {value: item.author.post_count}"></div>
-			<!-- <div class="summary">
-				<div ng-if="item.author.up_votes" ng-bind-html="'evaluation-cool' | translate: {value: item.author.up_votes}"></div>
-				<div ng-if="item.author.down_votes" ng-bind-html="'evaluation-bad' | translate: {value: item.author.down_votes}"></div>
-			</div> -->
 		</section>
 		<section class="columns user-info-text">
 			<div class="author-about" ng-if="item.author.about">
@@ -31,7 +27,7 @@
 			<div>
 		</section>
 		<section class="columns large-5">
-			<div class="profil-link text-right"><a ng-href="#!/profile/{{item.author._id}}">Celý profil</a></div>
+			<div class="profil-link text-right"><a ng-href="#!/{{ profileLinkType[item.author._type] }}/{{item.author._id}}">Celý profil</a></div>
 		</section>
 	</article>
 </div>

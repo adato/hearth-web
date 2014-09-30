@@ -11,6 +11,7 @@ $imageSize: 80px;
     .avatar {
         width: $imageSize;
         height: $imageSize;
+        overflow: hidden;
         margin: {
             left: -$imageSize / 2;
         };
