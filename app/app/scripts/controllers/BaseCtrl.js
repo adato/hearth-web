@@ -160,5 +160,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             dialog.closePromise.then(function(data) {});
         };
+
+
+        $rootScope.showTutorial = function() {
+
+            var scope = $scope.$new();
+            
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'tutorial.html',
+                controller: 'Tutorial',
+                scope: scope,
+                className: 'ngdialog-tutorial',
+                closeByDocument: false,
+                showClose: false
+            });
+
+            dialog.closePromise.then(function(data) {});
+        };
+
+        setTimeout(function() {
+            $rootScope.showTutorial();
+        }, 1000);
     }
 ]);

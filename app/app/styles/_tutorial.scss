@@ -1,0 +1,53 @@
+.ngdialog-tutorial {
+	text-align: center;
+	height: 100%;
+	
+	.ngdialog-overlay {
+		background-color: rgba(0,0,0,0.8);
+	}
+
+	.ngdialog-content {
+		height: 100%;
+		background-color: transparent;
+
+		.tutorial {
+			color: white;
+		
+		    display: inline-block;
+		    position: absolute;
+		    bottom: 0;
+		    right: 0;
+		    left: 0;
+		    top: 0;
+		    height: 300px;
+		    margin: auto;
+		    vertical-align: middle;
+
+			.opening {
+				width: 600px;
+				margin: 0px auto;
+				
+				h2 {
+					color: white;
+					font-weight: bold;
+				}
+				.tbutton {
+					background-color: transparent;
+					border: 5px solid #D05A22;
+					font-weight: bold;
+					font-size: 25px;
+					border-radius: 15px;
+					box-shadow: 0 0 100px 15px #D05A22, 0 0 100px 15px #D05A22 inset;
+				}
+
+				a {
+					color: white;
+					text-decoration: underline;
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+}

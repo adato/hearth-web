@@ -1,0 +1,20 @@
+<section class="large-8 large tutorial tcenter">
+	<article class="opening" ng-if="! slider">
+		<h2>{{ 'TUTORIAL_HEADER' | translate }}</h2>
+		<br />
+		<br />
+
+		<button class="tbutton" ng-click="showMeMagic()">{{ 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
+		<br />
+		<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
+	</article>
+	<article class="slider" ng-if="slider">
+
+		<ul rn-carousel class="image">
+			<li ng-repeat="image in sportImages" ng-style="{ backgroundImage: 'url(' + image + ')' }">
+				<div class="layer">{{ image }}</div>
+			</li>
+		</ul>
+
+	</article>
+</section>
