@@ -47,8 +47,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             };
 
             Fulltext.query(fulltextParams, function(res) {
-            	console.log(res);
-
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
 

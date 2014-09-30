@@ -33,10 +33,11 @@
                 </span>
                 <span ng-if="! posts.data.length">{{ 'ACTIVE_POSTS' | translate}}</span>
 
-                <a class="create-ad-sign" ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}"><i class="fa fa-plus-square"></i></a>
+                <a ng-if="!loggedCommunity" class="create-ad-sign" ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}"><i class="fa fa-plus-square"></i></a>
             </h3>
             <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
 
+            <p class="mine" ng-if="posts.data.length && loggedCommunity">{{ 'SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
             <p class="mine" ng-if="! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
             <p class="others" ng-if="! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
 
@@ -48,7 +49,7 @@
                     <a ng-if="!item.title" href="#!/ad/{{ item._id }}">{{item.name | ellipsis:30}}</a>
                     <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>
                 </span>
-                <div class="ad-controls mine">
+                <div class="ad-controls mine" ng-if="!loggedCommunity">
                     <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
                     <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
                     <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>

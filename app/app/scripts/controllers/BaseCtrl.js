@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache) {
         var timeout;
         $scope.segment = false;
 
@@ -48,9 +48,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             }, 1000);
         };
 
-        $scope.refreshToMarketPlace = function() {
-            window.location.hash = '#!/';
-            location.reload();
+        $scope.refreshToPath = function(path) {
+            // window.location.hash = '#!/' + path;
+            // location.reload();
+            $location.refresh()
         };
 
         $scope.$watch('user', function() {
