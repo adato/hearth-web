@@ -10,16 +10,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 	'$scope', '$rootScope', 'CommunityMemberships', 'Communities',
 	function($scope, $rootScope, CommunityMemberships, Communities) {
 		$scope.randomCommunities = [];
-		
-		$scope.fetchMyCommunities = function() {
-			// if(! $rootScope.loggedUser._id) return false;
-			// // get my communities
-			// CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
-			// 	$scope.myCommunities = res;
-			// });
-			// 
-			// loaded already in BaseCtrl for top navigation
-		};
+		// my communities are loaded already in BaseCtrl for top navigation
 
 		$scope.fetchRandomCommunities = function() {
 
@@ -30,9 +21,6 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		};
 
 		$scope.init = function() {
-			if($rootScope.loggedUser._id) {
-				$scope.fetchMyCommunities();
-			}
 			$scope.fetchRandomCommunities();
 		};
 

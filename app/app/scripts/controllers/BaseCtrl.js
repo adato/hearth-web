@@ -93,19 +93,23 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $rootScope.switchIdentity = function(id) {
             Auth.switchIdentity(id).then(function() {
-                $location.path('/community/' + id);
-                return $timeout(function() {
-                    return $window.location.reload();
-                });
+                // $location.path('/community/' + id);
+                window.location.hash = '#!/community/'+id;
+                location.reload();
+                // return $timeout(function() {
+                //     return $window.location.reload("/community/"+id);
+                // });
             });
         };
 
         $rootScope.leaveIdentity = function(id) {
             Auth.switchIdentityBack(id).then(function() {
-                $location.path('/profile/' + id);
-                return $timeout(function() {
-                    return $window.location.reload();
-                });
+                window.location.hash = '#!/profile/' + id
+                location.reload();
+                // $location.path();
+                // return $timeout(function() {
+                //     return $window.location.reload();
+                // });
             });
         };
 

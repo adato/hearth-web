@@ -30,11 +30,17 @@
 
 			<div class="separator"></div>
 			
-			<a signed-in ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" ng-click="switchBack()" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+			<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
 	            <div class="img">
 	            	<img data-dropdown="profile-drop" ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
 	            </div>
 	            <label>{{ loggedUser.name }}</label>
+		    </a>
+			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+	            <div class="img">
+	            	<img data-dropdown="profile-drop" ng-src="{{loggedCommunity.avatar.normal}}" ng-if="loggedCommunity.avatar.normal" />
+	            </div>
+	            <label>{{ loggedCommunity.name }}</label>
 		    </a>
 		    <ul class="f-dropdown user-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       <li><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>

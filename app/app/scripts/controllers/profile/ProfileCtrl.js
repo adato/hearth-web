@@ -32,7 +32,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.fetchUser = function () {
-
+			// dont load user when there is no ID in params
+			if(! $routeParams.id) return false;
+			
 			if($scope.info._id !== $routeParams.id) {
 				$scope.loaded = false;
 			}
