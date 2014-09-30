@@ -31,7 +31,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.mine = $scope.isMine(res); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
-				// $scope.$broadcast("communityTopPanelLoaded");
+				$scope.$broadcast("communityTopPanelLoaded");
 			}, function(res) {
 				$scope.loaded = true;
 			});
