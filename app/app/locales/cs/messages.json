@@ -64,6 +64,8 @@
 	"SUGGESTED_COMMUNITIES": "Doporučené komunity",
 	"OTHER_COMMUNITIES": "Další komunity",
 	"SHOW_PROFILE": "Zobrazit profil",
+	"COUNT_OF_PLUS_POINTS": "Počet kladných hodnocení",
+	"COUNT_OF_MINUS_POINTS": "Počet záporných hodnocení",
 	"COMMUNITY_MY": "Moje",
 	"X_MEMBERS": "{\"1\": \"člena\", \"2\": \"členy\", \"3\": \"členy\", \"4\": \"členy\", \"other\": \"členů\"}",
 	"COMMUNITY_MEMBERS": "{\"1\": \"člen\", \"2\": \"členi\", \"3\": \"členi\", \"4\": \"členi\", \"other\": \"členů\"}",
