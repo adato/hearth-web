@@ -49,9 +49,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $scope.refreshToPath = function(path) {
-            // window.location.hash = '#!/' + path;
-            // location.reload();
-            $location.refresh()
+            window.location.hash = '#!/' + path;
+            location.reload();
         };
 
         $scope.$watch('user', function() {
