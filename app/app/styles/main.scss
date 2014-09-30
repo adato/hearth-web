@@ -1106,10 +1106,6 @@ h1.green {
     color: $success-color;
 }
 
-
-@import "create-ad";
-
-
 .create-post-links {
     a.create-post-link {
         padding: emCalc($grid-size);

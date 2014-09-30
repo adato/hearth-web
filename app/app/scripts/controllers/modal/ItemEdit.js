@@ -29,8 +29,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			date: false
 		};
 
-		// hotfix for now
-		$scope.loggedCommunity = false;
 		$scope.sending = false;
 		$scope.pauseSending = false;
 

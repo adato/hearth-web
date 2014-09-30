@@ -1,6 +1,5 @@
 <div class="itemEdit modal">
     <div class="headMessage error">
-        V příspěvku je chyba. Před pokračováním ji nejprve opravte.
     </div>
     <div class="head">
         <h2 class="fa fa-pencil">
@@ -10,16 +9,10 @@
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
     </div>
     <hr />
-
     <form ng-submit="save()" name="createAdForm" novalidate class="create-ad">
-        <!--
-        <div class="alert-box visible alert error round connect-bottom">{{ errors.base | translate }}</div>
-        <div class="alert-box visible alert error round connect-bottom" ng-show="createAdForm.$error.minlength"></div>
-        <div class="alert-box visible alert error round connect-bottom" ng-show="createAdForm.$error.maxlength"></div> -->
-
         <div>
-            <needofferselector class="fleft" model="post.type" community="loggedCommunity._id!==undefined"></needofferselector>
-            <div class="name ">
+            <needofferselector class="fleft" model="post.type" community="loggedCommunity"></needofferselector>
+            <div class="name" ng-class="{'community-style-name': loggedCommunity}">
                 <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 
                 <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
