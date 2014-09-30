@@ -84,6 +84,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $scope.loadMyCommunities = function() {
+
+            // when user is not logged, he has no communities
+            if(!$rootScope.loggedUser._id) {
+                return $rootScope.myCommunities = $rootScope.myAdminCommunities = [];
+            }
+
             CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
                 $rootScope.myCommunities = res;
                 $rootScope.myAdminCommunities = [];
