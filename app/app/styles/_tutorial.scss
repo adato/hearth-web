@@ -37,7 +37,11 @@
 					font-weight: bold;
 					font-size: 25px;
 					border-radius: 15px;
-					box-shadow: 0 0 100px 15px #D05A22, 0 0 20px 5px #D05A22 inset;
+					box-shadow: 0 0 100px 15px #D05A22, 0 0 50px 5px #D05A22 inset;
+
+					&:hover {
+						opacity: 0.9;
+					}
 				}
 
 				a {

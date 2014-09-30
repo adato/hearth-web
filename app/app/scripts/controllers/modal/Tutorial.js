@@ -7,12 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('Tutorial', [
-	'$scope', '$rootScope',
-	function($scope, $rootScopex) {
+	'$scope', '$rootScope', 'Tutorial',
+	function($scope, $rootScopex, Tutorial) {
 		$scope.slider = false;
-		
-		$scope.init = function() {
 
+		function processResult (res) {
+
+			console.log(res);
+			$scope.tutorials = res;
+		}
+
+		function processError(res) {
+			alert("There was an error while processing this request");
+		}
+
+		$scope.loadTutorials = function() {
+			var Service = ($rootScopex.loggedUser._id) ? Tutorial.get : Tutorial.getAll;
+			Service(processResult, processError);
 		};
 
 		$scope.closeAll = function() {
@@ -25,6 +36,10 @@ angular.module('hearth.controllers').controller('Tutorial', [
 			$scope.closeThisDialog();
 		};
 
-		$scope.init();
+		$scope.showMeMagic = function() {
+			$scope.slider = true;
+		};
+
+		$scope.loadTutorials();
 	}
 ]);
