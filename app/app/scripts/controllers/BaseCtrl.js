@@ -184,8 +184,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
-        setTimeout(function() {
-            $rootScope.showTutorial();
-        }, 500);
+        // setTimeout(function() {
+        //     $rootScope.showTutorial();
+        // }, 500);
     }
 ]);
