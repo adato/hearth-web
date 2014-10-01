@@ -22,7 +22,7 @@
 	            <div ng-repeat="(id, item) in applications track by $index" class="rating" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].created_at : null">
 	            	<h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
 	            	<div class="applications-item">
-	                    <a href="#!/profile/{{item._id}} ">
+	                    <a href="#!/community/{{item._id}} ">
                             <div class="avatar">
                                 <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
                             </div>
@@ -62,21 +62,21 @@
             <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
                 <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
                 <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
-                <span>4
+                <span>
                     <a ng-if="item.title" href="#!/ad/{{ item._id }}">{{item.title | ellipsis:30}}</a>
                     <a ng-if="!item.title" href="#!/ad/{{ item._id }}">{{item.name | ellipsis:30}}</a>
                     <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>
                 </span>
                 <div class="ad-controls" ng-if="loggedCommunity && loggedCommunity._id == info._id">
                     <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
-                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
+                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle(item)"></i>
                     <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
                     <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
                 </div>
                 <section ng-include="'templates/modals.html'" id="modals"></section>
             </div>
             <div class="buttons" ng-if="posts.data.length">
-                <a href="#!/profile/{{info._id}}/posts">
+                <a href="#!/community/{{info._id}}/posts">
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
             </div>

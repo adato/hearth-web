@@ -1,11 +1,12 @@
 <div class="bottom-tabs"></div>
+<div class="clear"></div>
 
 <div class="ads-listing active">
-	<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsActive track by $index" user="loggedUser" inactivate-tags='true'></item>
+	<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsActive track by $index" community="loggedCommunity" user="loggedUser" inactivate-tags='true'></item>
 </div>
 <div ng-if="mine && postsInactive" class="ads-listing inactive">
 	<h3>{{ 'POSTS_INACTIVE' | translate }}</h3>
-	<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsInactive track by $index" user="loggedUser" inactivate-tags='true'></item>
+	<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsInactive track by $index" community="loggedCommunity" user="loggedUser" inactivate-tags='true'></item>
 </div>
 
 

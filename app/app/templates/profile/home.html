@@ -51,7 +51,7 @@
                 </span>
                 <div class="ad-controls mine" ng-if="!loggedCommunity">
                     <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
-                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle()"></i>
+                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle(item)"></i>
                     <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
                     <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
                 </div>

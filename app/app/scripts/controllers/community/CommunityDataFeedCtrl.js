@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post',
+	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post) {
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
@@ -42,7 +42,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 type: 'post',
                 include_not_active: +$scope.mine, // cast bool to int
                 include_expired: +$scope.mine, // cast bool to int
-                author_id: id,
+                community_id: id,
                 limit: 1000
             };
 
@@ -62,7 +62,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function loadCommunityHome(id) {
             var fulltextParams = {
                 type: 'post',
-                author_id: id
+                community_id: id
             };
 
             CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {

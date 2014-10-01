@@ -8,8 +8,9 @@
 		<br />
 		<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
 	</article>
+	
 	<article class="slider" ng-if="slider">
-		<i class="fa fa-times closeButton" ng-click="close()"></i>
+		<i class="fa fa-times close-button" ng-click="close()"></i>
 		<ul rn-carousel>
 			<li ng-repeat="item in tutorials">
 				<div class="slider-item">
