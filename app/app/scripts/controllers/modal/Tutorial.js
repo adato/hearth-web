@@ -23,12 +23,24 @@ angular.module('hearth.controllers').controller('Tutorial', [
 		$scope.loadTutorials = function() {
 			var Service = ($rootScope.loggedUser._id) ? Tutorial.get : Tutorial.getAll;
 			// Service(processResult, processError);
-			var res = [{
-				"text": "This is tutorial page no.1",
+			var res = [
+			{
+				"text": "This is tutorial page no.1 This is tutorial page no.1 This is tutorial page no.1",
 				"icon": "fa-globe",
 				"image": "http://guardianlv.com/wp-content/uploads/2013/05/Justdoit-650x406.jpg",
 				"created_at": "2014-10-01T11:21:33.993+02:00"
-			}];
+			},{
+				"text": "This is tutorial page no.2 This is tutorial page no.2 ",
+				"icon": "fa-globe",
+				"image": "http://guardianlv.com/wp-content/uploads/2013/05/Justdoit-650x406.jpg",
+				"created_at": "2014-10-01T11:21:33.993+02:00"
+			},{
+				"text": "This is tutorial page no.3",
+				"icon": "fa-globe",
+				"image": "http://guardianlv.com/wp-content/uploads/2013/05/Justdoit-650x406.jpg",
+				"created_at": "2014-10-01T11:21:33.993+02:00"
+			},
+			];
 
 			processResult(res);
 		};

@@ -8,7 +8,7 @@
 		<br />
 		<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
 	</article>
-	
+
 	<article class="slider" ng-if="slider">
 		<i class="fa fa-times close-button" ng-click="close()"></i>
 		<ul rn-carousel>
@@ -17,6 +17,7 @@
 					<header>
 						<i class="fa {{ item.icon }}"></i> 
 						<p>{{ item.text }}</p>
+						<div class="clear"></div>
 					</header>
 					<img ng-src="{{ item.image }}" title="{{ item.text }}" />
 				</div>
