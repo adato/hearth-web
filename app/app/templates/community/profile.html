@@ -20,7 +20,7 @@
 					<i class="fa fa-plus"></i> {{ 'SETTINGS' | translate}}
 				</button>
 			</a>
-			<button class="follow-button right" ng-if="! mine" ng-click="leaveCommunity()">
+			<button class="follow-button right" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
 				<i class="fa fa-plus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
 			</button>
 			<a ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="right">

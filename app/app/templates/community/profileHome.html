@@ -56,12 +56,13 @@
                 </a>
             </h3>
             <div class="clear"></div>
+            <p ng-if="mine && ! loggedCommunity">{{ 'SWITCH_TO_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
 
             <p ng-if="! posts.data.length">{{ 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
             <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
                 <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
                 <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
-                <span>
+                <span>4
                     <a ng-if="item.title" href="#!/ad/{{ item._id }}">{{item.title | ellipsis:30}}</a>
                     <a ng-if="!item.title" href="#!/ad/{{ item._id }}">{{item.name | ellipsis:30}}</a>
                     <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>

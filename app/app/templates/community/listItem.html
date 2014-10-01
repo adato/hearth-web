@@ -7,12 +7,10 @@
 	<div class="community-list-item-data">
 		<h4 class="small-8 fleft"><a href="#!/community/{{item._id}}">{{ item.name }}</a></h4>
 		<small class="tright fright">
-			<a href="#!/community/{{item._id}}/edit" ng-if="item.admin == loggedUser._id">
-				{{'ADMINISTRATOR' | translate}}
-			</a>
+			<span ng-if="item.admin == loggedUser._id">
+				{{'ADMIN' | translate}}
+			</span>
 		</small>
-		<a href="#!/community/{{item._id}}">
-			<p>{{ item.description | ellipsis }}</p>
-		</a>
+		<p>{{ item.description | ellipsis }}</p>
 	 </div>
 </div>

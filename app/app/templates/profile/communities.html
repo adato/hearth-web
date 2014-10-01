@@ -1,10 +1,15 @@
-<div class="bottom-tabs">
-	<h2>Jste členem {{data.length}}ti komunit z toho ve {{communityAdminCount}} jste administrátorem</h2>
+<div ng-if="myCommunities.length" class="bottom-tabs">
+	<h2>
+		{{ 'YOU_ARE_MEMBER' | translate}}
+		<pluralize-translate count="myCommunities.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
+		{{ 'FROM_THAT' | translate }}
+		<pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
+		{{ 'ADMIN_7_CASE' | translate }}
+	</h2>
 </div>
 
-
 <div class="community-listing">
-	<div class="community" ng-repeat="(id, item) in data track by $index">
+	<div class="community" ng-repeat="(id, item) in myCommunities track by $index">
 		<a ng-href="#!/community/{{item._id}}/">
 			<div class="avatar">
 				<img ng-src="{{ item.avatar.normal }}" ng-if="item.avatar.normal" />
@@ -13,8 +18,8 @@
 		<h3>
 			<a ng-href="#!/community/{{item._id}}/">{{ item.name }}</a>
 			<small ng-if="mine" class="status">
-				<a ng-if="item.current_user_admin" class="admin">{{ 'ADMIN' | translate }}</a>
-				<a ng-if="! item.current_user_admin" onclick="alert('ne a ne')">{{ 'LEAVE_COMMUNITY' | translate }}</a>
+				<a ng-if="item.admin == loggedUser._id" class="admin">{{ 'ADMIN' | translate }}</a>
+				<!-- <a ng-if="item.admin != loggedUser._id" ng-click="">{{ 'LEAVE_COMMUNITY' | translate }}</a> -->
 			</small>
 		</h3>
 		<div class="community-text">
@@ -23,6 +28,6 @@
 	</div>
 </div>
 
-<div ng-if="! data.length">
+<div ng-if="! myCommunities.length">
 	<p>{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
 </div>

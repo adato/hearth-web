@@ -25,22 +25,16 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadCommunities(params, done, doneErr) {
 
-            CommunityMemberships.query(params, function(res) {
-                $scope.communityAdminCount = 0;
-                if(res) {
-                    res.forEach(function(item) {
-                        $scope.communityAdminCount += +item.current_user_admin;
-                    });
-                }
-
-                done(res);
-            }, doneErr);
+            // already loaded in BaseCtrl
+            // myAdminCommunities
+            // myCommunities
         }
 
         function loadUserPosts(params, done, doneErr) {
 
             var fulltextParams = {
                 type: 'post',
+                related: 'user',
                 include_not_active: +$scope.mine, // cast bool to int
                 include_expired: +$scope.mine, // cast bool to int
                 author_id: params.user_id,
@@ -64,6 +58,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         function loadUserHome(params) {
             var fulltextParams = {
                 type: 'post',
+                related: 'user',
                 author_id: params.user_id,
             }
 

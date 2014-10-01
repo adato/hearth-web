@@ -1,9 +1,21 @@
 <div class="communities">
-    <a href="#!/community-create" class="fright">
+    <h2 ng-if="myCommunities.length">{{ 'COMMUNITIES' | translate }}</h2>
+
+    <a ng-click="showAddForm = !showAddForm" class="button2 fright">
+        <span class="fa fa-pencil"></span> 
         {{'CREATE_COMMUNITY' | translate}}
     </a>
+    <div class="community-list-add-form" ng-show="showAddForm" ng-include="'templates/community/addEdit.html'" ng-controller="CommunityCreateCtrl"></div>
+
+
     <div class="my-communities" ng-if="myCommunities.length">
-        <h3 class="fleft iblock">{{ 'YOU_ARE_ADMIN_IN_X_COMMUNITIES' | translate }}</h3>
+        <h3 class="fleft iblock">
+            {{ 'YOU_ARE_MEMBER' | translate}}
+            <pluralize-translate count="myCommunities.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
+            {{ 'FROM_THAT' | translate }}
+            <pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
+            {{ 'ADMIN_7_CASE' | translate }}
+        </h3>
         <div class="clear"></div>
         <br />
         <div class="community-list">

@@ -1,6 +1,8 @@
 .communities {
     width: 960px; /* ==== set general width === */
-
+    h2 {
+        display: inline-block;
+    }
     margin: 0px auto;
     .community-list {
         @extend .clearfix;
@@ -68,5 +70,16 @@
                 }
             }
         }
+    }
+}
+
+.community-list-add-form {
+    -moz-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+
+    .community-edit {
+        margin-bottom: 20px;
     }
 }
