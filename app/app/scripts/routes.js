@@ -104,12 +104,12 @@ angular.module('hearth').config([
 			    pageType: 'community-list',
 			    reloadOnSearch: false
 			}).segment('communityCreate', {
-			    templateUrl: 'templates/community/addEdit.html',
+			    templateUrl: 'templates/community/editCommunity.html',
 			    controller: 'CommunityCreateCtrl',
 			    pageType: 'community-create',
 			    reloadOnSearch: false
 			}).segment('communityEdit', {
-			    templateUrl: 'templates/community/addEdit.html',
+			    templateUrl: 'templates/community/editCommunity.html',
 			    controller: 'CommunityCreateCtrl',
 			    pageType: 'community-create',
 			    reloadOnSearch: false

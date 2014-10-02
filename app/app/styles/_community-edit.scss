@@ -152,6 +152,9 @@
         margin: 0px auto;
         text-align: center;
         position: relative;
+        background-image: url("/images/default_avatar.png");
+        background-position: center center;
+        background-repeat: no-repeat;
 
         border-radius: 50%;
         box-shadow: -3px 3px 6px rgba(0, 0, 0, 1) inset;

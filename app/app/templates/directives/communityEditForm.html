@@ -75,7 +75,7 @@
       <br />
       <section>
         <div class="large-12 columns">
-          <a ng-if="!community._id" ng-href="#!/communities/" class="revert-changes">
+          <a ng-if="!community._id" ng-click="close()" class="revert-changes">
             <span class="fa fa-chevron-left"></span>{{ 'CANCEL_ADD_COMMUNITY' | translate }}
           </a>
           <a ng-if="community._id" ng-href="#!/community/{{community._id}}" class="revert-changes">

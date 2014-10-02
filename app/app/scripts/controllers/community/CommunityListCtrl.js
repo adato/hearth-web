@@ -19,8 +19,12 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 			});
 		};
 
+		$scope.toggleForm = function() {
+			$(".community-list-add-form").slideToggle();
+		};
+
 		$scope.init = function() {
-			$scope.fetchRandomCommunities();
+			// $scope.fetchRandomCommunities();
 		};
 
 		$scope.$on('initFinished', $scope.init);
