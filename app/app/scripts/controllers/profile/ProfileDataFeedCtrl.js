@@ -15,14 +15,29 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'profile.communities': loadCommunities,
                 'profile.given': UserRatings.given,
                 'profile.received': UserRatings.received,
-                'profile.following': Followees.query,
-                'profile.followers': Followers.query,
-                'profile.friends': Friends.query,
+                'profile.following': loadFollowees,
+                'profile.followers': loadFollowers,
+                'profile.friends': loadFriends,
                 'profile.activities': UsersActivityLog.get
             },
             params = {
                 user_id: $routeParams.id
             };
+
+        function loadFollowees(params, done, doneErr) {
+            params.related = "user";
+            Followees.query(params, done, doneErr);
+        }
+
+        function loadFollowers(params, done, doneErr) {
+            params.related = "user";
+            Followers.query(params, done, doneErr);
+        }
+
+        function loadFriends(params, done, doneErr) {
+            params.related = "user";
+            Friends.query(params, done, doneErr);
+        }
 
         function loadCommunities(params, done, doneErr) {
 
