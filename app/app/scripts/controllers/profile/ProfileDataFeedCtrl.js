@@ -25,9 +25,15 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadCommunities(params, done, doneErr) {
 
-            // already loaded in BaseCtrl
-            // myAdminCommunities
-            // myCommunities
+            CommunityMemberships.query(params, function(res) {
+                $scope.communityAdminCount = 0;
+                if(res) {
+                    res.forEach(function(item) {
+                        $scope.communityAdminCount += +item.current_user_admin;
+                    });
+                }
+                done(res);
+            }, doneErr);
         }
 
         function loadUserPosts(params, done, doneErr) {
