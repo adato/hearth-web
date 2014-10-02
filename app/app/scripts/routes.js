@@ -32,6 +32,7 @@ angular.module('hearth').config([
 			.when('/profile/:id/following', 'profile.following')
 			.when('/profile/:id/activity-feed', 'profile.activities')
 			.when('/profile/:id/followers', 'profile.followers')
+			.when('/profile/:id/friends', 'profile.friends')
 			.when('/profile/:id/invite', 'profile.invite')
 			.when('/profile-edit', 'profileEdit')
 			.when('/profile-settings', 'profileSettings')
@@ -212,6 +213,12 @@ angular.module('hearth').config([
 				})
 				.segment('followers', {
 					templateUrl: 'templates/profile/followers.html',
+					controller: 'ProfileDataFeedCtrl',
+					reloadOnSearch: false,
+					dependencies: ['id']
+				})
+				.segment('friends', {
+					templateUrl: 'templates/profile/friends.html',
 					controller: 'ProfileDataFeedCtrl',
 					reloadOnSearch: false,
 					dependencies: ['id']

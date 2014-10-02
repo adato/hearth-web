@@ -8,26 +8,11 @@
 	</h2>
 </div>
 
-<div class="community-listing">
-	<div class="community" ng-repeat="(id, item) in myCommunities track by $index">
-		<a ng-href="#!/community/{{item._id}}/">
-			<div class="avatar">
-				<img ng-src="{{ item.avatar.normal }}" ng-if="item.avatar.normal" />
-			</div>
-		</a>
-		<h3>
-			<a ng-href="#!/community/{{item._id}}/">{{ item.name }}</a>
-			<small ng-if="mine" class="status">
-				<a ng-if="item.admin == loggedUser._id" class="admin">{{ 'ADMIN' | translate }}</a>
-				<!-- <a ng-if="item.admin != loggedUser._id" ng-click="">{{ 'LEAVE_COMMUNITY' | translate }}</a> -->
-			</small>
-		</h3>
-		<div class="community-text">
-			<a ng-href="#!/community/{{item._id}}/">{{ item.description }}</a>
-		</div>
+<div class="communities">
+	<div class="community-list">
+	    <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div>
 	</div>
 </div>
-
 <div ng-if="! myCommunities.length">
 	<p>{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
 </div>

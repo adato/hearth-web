@@ -12,6 +12,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache) {
         var timeout;
         $scope.segment = false;
+        $scope.addresses = {
+            "Community": "community",
+            "User": "profile",
+            "Post": "ad",
+        };
 
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
@@ -46,6 +51,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $('html, body').animate({
                 scrollTop: 0
             }, 1000);
+        };
+
+        $scope.getProfileLinkByType = function(type) {
+            return $scope.addresses[type];
         };
 
         $scope.refreshToPath = function(path) {

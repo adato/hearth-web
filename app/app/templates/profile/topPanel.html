@@ -20,7 +20,7 @@
             <a href="#!/profile/{{info._id}}" class="profile-photo">
                 <img ng-src="{{info.avatar.large}}" ng-if="info.avatar.large" />
             </a>
-            <a href="#!/profile/{{info._id}}/following" ng-class="{'active': (pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers_count')}" class="friends-and-follows">
+            <a href="#!/profile/{{info._id}}/following" ng-class="{'active': (pageSegment.substr(8) == 'friends' || pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers_count')}" class="friends-and-follows">
                 <b>{{info.followers_count}}</b>
                 <br />
                 <pluralize-translate count="info.followers_count" key="'HOW_MANY_PLEOPLE'"></pluralize-translate>
