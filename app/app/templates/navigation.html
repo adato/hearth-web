@@ -34,17 +34,17 @@
 
 			<div class="separator"></div>
 			
-			<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+			<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
 	            <div class="img">
 	            	<img data-dropdown="profile-drop" ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
 	            </div>
-	            <label>{{ loggedUser.name }}</label>
+	            <label>{{ loggedUser.name | ellipsis:13}}</label>
 		    </a>
-			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}">
+			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
 	            <div class="img">
 	            	<img data-dropdown="profile-drop" ng-src="{{loggedCommunity.avatar.normal}}" ng-if="loggedCommunity.avatar.normal" />
 	            </div>
-	            <label>{{ loggedCommunity.name }}</label>
+	            <label>{{ loggedCommunity.name | ellipsis:13}}</label>
 		    </a>
 		    <ul class="f-dropdown user-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       
@@ -54,23 +54,25 @@
 		       
 		       <li ng-if="loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/community/{{ loggedCommunity._id }}"><i class="fa fa-users"></i> {{ 'TOP_BAR_COMMUNITY_PROFILE'| translate }}</a></li>
 		       <li ng-if="loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/community/{{ loggedCommunity._id }}/edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT'| translate }}</a></li>
-		       <li class="no-hover"><p class="heading"><i class="fa fa-share"></i> {{ 'SWITCH_TO' | translate }}:</p></li>
+	          <li class="divider" ng-if="myAdminCommunities.length"></li>
+		       <li class="no-hover" ng-if="myAdminCommunities.length"><p class="heading"><i class="fa fa-share"></i> {{ 'SWITCH_TO' | translate }}:</p></li>
 		       <li ng-if="loggedCommunity._id">
-					<a class="user-switch-item" ng-click="leaveIdentity(loggedUser._id); closeDropdown('profile-drop')">
+					<a class="user-switch-item" ng-click="leaveIdentity(loggedUser._id); closeDropdown('profile-drop')" title="{{ loggedUser.name }}">
 						<div class="av-img">
 							<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" title="{{ loggedUser.name }}" />
 						</div>
-						<span>{{ loggedUser.name | ellipsis}}</span>
+						<span>{{ loggedUser.name | ellipsis:14}}</span>
 					</a>
 		       </li>
 		       <li ng-repeat="item in myAdminCommunities" ng-if="loggedCommunity._id != item._id">
-					<a class="user-switch-item" ng-click="switchIdentity(item._id); closeDropdown('profile-drop')">
+					<a class="user-switch-item" ng-click="switchIdentity(item._id); closeDropdown('profile-drop')" title="{{ item.name}}">
 						<div class="av-img community">
 							<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" title="{{ item.normal }}" />
 						</div>
-						<span>{{ item.name | ellipsis}}</span>
+						<span>{{ item.name | ellipsis:14}}</span>
 					</a>
 		       </li>
+	          <li class="divider" ng-if="myAdminCommunities.length"></li>
 		       <li><a href="" ng-click="closeDropdown('profile-drop'); logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
 		    </ul> 
 
