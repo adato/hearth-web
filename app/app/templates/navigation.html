@@ -61,7 +61,7 @@
 						<div class="av-img">
 							<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" title="{{ loggedUser.name }}" />
 						</div>
-						<span>{{ loggedUser.name | ellipsis:14}}</span>
+						<span>{{ loggedUser.name | ellipsis:12}}</span>
 					</a>
 		       </li>
 		       <li ng-repeat="item in myAdminCommunities" ng-if="loggedCommunity._id != item._id">
@@ -69,7 +69,7 @@
 						<div class="av-img community">
 							<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" title="{{ item.normal }}" />
 						</div>
-						<span>{{ item.name | ellipsis:14}}</span>
+						<span>{{ item.name | ellipsis:12}}</span>
 					</a>
 		       </li>
 	          <li class="divider" ng-if="myAdminCommunities.length"></li>
