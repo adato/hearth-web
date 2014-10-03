@@ -22,7 +22,7 @@
 				<div class="fa fa-recycle"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
-			<a ng-click="showTutorial()" title="click me if you can">
+			<a ng-if="loggedUser._id" ng-click="showTutorial()" title="click me if you can">
 				<div class="fa fa-spoon"></div>
 				<label>{{ 'TUTORIAL' | translate }}</label>
 			</a>
