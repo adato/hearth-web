@@ -27,6 +27,10 @@ angular.module('hearth.services').factory('Post', [
 				url: appConfig.apiPath + '/posts/:postId/resume',
 				method: 'PUT'
 			},
+			prolong: {
+				url: appConfig.apiPath + '/posts/:postId/prolong',
+				method: 'PUT'
+			},
 			mapQuery: {
 				method: 'GET',
 				url: appConfig.apiPath + '/search/',

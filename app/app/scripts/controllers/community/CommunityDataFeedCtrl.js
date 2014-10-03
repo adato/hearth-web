@@ -83,19 +83,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }, processDataErr);
         }
         // =================================== Public Methods ====================================
-        
-        $scope.pauseToggle = function(item) {
-            var Action = (item.is_active) ? Post.suspend : Post.resume;
-
-            Action({
-                    id: item._id
-                },
-                function(res) {
-                    item.is_active = !item.is_active;
-                    $scope.cancel(item);
-                }
-            );
-        };
 
         $scope.cancel = function(item) {
             $('#confirm-delete-' + item._id).foundation('reveal', 'close');

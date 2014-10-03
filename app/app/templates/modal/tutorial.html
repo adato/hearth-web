@@ -1,4 +1,4 @@
-<section class="large-8 large tutorial tcenter">
+<section class="large-6 large tutorial tcenter">
 	<article class="opening" ng-if="! slider">
 		<h2>{{ 'TUTORIAL_HEADER' | translate }}</h2>
 		<br />
@@ -9,20 +9,23 @@
 		<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
 	</article>
 
-	<article class="slider" ng-if="slider">
-		<i class="fa fa-times close-button" ng-click="close()"></i>
-		<ul rn-carousel>
-			<li ng-repeat="item in tutorials">
-				<div class="slider-item">
+	<section class="slider" ng-if="slider">
+		<i class="fa fa-times close-button" ng-click="slider = ! slider"></i>
+		<!-- <i class="fa fa-times close-button" ng-click="close()"></i> -->
+
+		<i class="leftButton fa"></i>
+		<i class="rightButton fa"></i>
+		<div class="flexslider" flexslider ng-if="loaded">
+			<ul class="slides">
+				<li class="slider-item" ng-repeat="item in tutorials">
 					<header>
 						<i class="fa {{ item.icon }}"></i> 
 						<p>{{ item.text }}</p>
 						<div class="clear"></div>
 					</header>
 					<img ng-src="{{ item.image }}" title="{{ item.text }}" />
-				</div>
-			</li>
-		</ul>
-
-	</article>
+				</li>
+			</ul>
+		</div>
+	</section>
 </section>

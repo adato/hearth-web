@@ -110,9 +110,9 @@
                 <a class="fright deleteLink" ng-if="post._id" data-reveal-id="confirm-delete-{{post._id}}">
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
-                <a class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle()">
-                    <span ng-if="post.is_active"><i class="fa fa-pause"></i>{{ 'DEACTIVATE' | translate }}</span>
-                    <span ng-if="! post.is_active"><i class="fa fa-play"></i>{{ 'ACTIVATE' | translate }}</span>
+                <a class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle(post)">
+                    <span ng-if="!isPostActive(post)"><i class="fa fa-play"></i>{{ 'ACTIVATE' | translate }}</span>
+                    <span ng-if="isPostActive(post)"><i class="fa fa-pause"></i>{{ 'DEACTIVATE' | translate }}</span>
                 </a>
             </div>
     </form>

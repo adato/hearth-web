@@ -24,7 +24,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		};
 
 		$scope.init = function() {
-			$scope.fetchRandomCommunities();
+			// $scope.fetchRandomCommunities();
 		};
 
 		$scope.$on('initFinished', $scope.init);

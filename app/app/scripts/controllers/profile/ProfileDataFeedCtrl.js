@@ -69,7 +69,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 $scope.postsInactive = [];
 
                 res.data.forEach(function(item) {
-                    if(item.is_active && !item.is_expired)
+                    if($rootScope.isPostActive(item))
                         $scope.postsActive.push(item);
                     else
                         $scope.postsInactive.push(item);
@@ -98,19 +98,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         $scope.cancelEdit = function() {
             init();
-        };
-
-        $scope.pauseToggle = function(item) {
-            var Action = (item.is_active) ? Post.suspend : Post.resume;
-
-            Action({
-                    id: item._id
-                },
-                function(res) {
-                    item.is_active = !item.is_active;
-                    $scope.cancel(item);
-                }
-            );
         };
 
         $scope.cancel = function(item) {

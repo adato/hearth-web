@@ -7,13 +7,15 @@
  */
 
 angular.module('hearth.controllers').controller('Tutorial', [
-	'$scope', '$rootScope', 'Tutorial',
-	function($scope, $rootScope, Tutorial) {
+	'$scope', '$rootScope', 'Tutorial', '$timeout',
+	function($scope, $rootScope, Tutorial, $timeout) {
 		$scope.slider = false;
+		$scope.loaded = false;
+
 		function processResult(res) {
 
-			console.log(res);
 			$scope.tutorials = res;
+			$scope.loaded = true;
 		}
 
 		function processError(res) {
@@ -21,33 +23,12 @@ angular.module('hearth.controllers').controller('Tutorial', [
 		}
 
 		$scope.loadTutorials = function() {
-			var Service = ($rootScope.loggedUser._id) ? Tutorial.get : Tutorial.getAll;
-			// Service(processResult, processError);
-			var res = [
-			{
-				"text": "This is tutorial page no.1 This is tutorial page no.1 This is tutorial page no.1",
-				"icon": "fa-globe",
-				"image": "http://guardianlv.com/wp-content/uploads/2013/05/Justdoit-650x406.jpg",
-				"created_at": "2014-10-01T11:21:33.993+02:00"
-			},{
-				"text": "This is tutorial page no.2 This is tutorial page no.2 ",
-				"icon": "fa-globe",
-				"image": "http://guardianlv.com/wp-content/uploads/2013/05/Justdoit-650x406.jpg",
-				"created_at": "2014-10-01T11:21:33.993+02:00"
-			},{
-				"text": "This is tutorial page no.3",
-				"icon": "fa-globe",
-				"image": "http://guardianlv.com/wp-content/uploads/2013/05/Justdoit-650x406.jpg",
-				"created_at": "2014-10-01T11:21:33.993+02:00"
-			},
-			];
-
-			processResult(res);
+			Tutorial.get({user_id: $rootScope.loggedUser._id}, processResult, processError);
 		};
 
 		$scope.closeAll = function() {
 
-			$scope.closeThisDialog();
+			Tutorial.ignore({user_id: $rootScope.loggedUser._id}, $scope.closeThisDialog, $scope.closeThisDialog);
 		};
 
 		$scope.close = function() {

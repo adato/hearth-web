@@ -20,7 +20,7 @@
 	            <div class="clear"></div>
 
 	            <div ng-repeat="(id, item) in applications track by $index" class="rating" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].created_at : null">
-	            	<h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
+	            	<h4 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h4>
 	            	<div class="applications-item">
 	                    <a href="#!/community/{{item._id}} ">
                             <div class="avatar">
@@ -69,8 +69,8 @@
                 </span>
                 <div class="ad-controls" ng-if="loggedCommunity && loggedCommunity._id == info._id">
                     <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
-                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!item.is_active" ng-click="pauseToggle(item)"></i>
-                    <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="item.is_active" data-reveal-id="confirm-pause-{{item._id}}"></i>
+                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></i>
+                    <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" data-reveal-id="confirm-pause-{{item._id}}"></i>
                     <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
                 </div>
                 <section ng-include="'templates/modals.html'" id="modals"></section>
@@ -84,7 +84,6 @@
     </div>
     <div class="right-pane">
         <div class="activities">
-            
             <h3>{{ 'COMMUNITY_ACTIVITY' | translate }}</h3>
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">

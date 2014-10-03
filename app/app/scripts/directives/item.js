@@ -36,7 +36,9 @@ angular.module('hearth.directives').directive('item', [
                         offer: 'WE_GIVE'
                     }
                 };
-                    
+                
+                scope.isPostActive = $rootScope.isPostActive;
+                scope.pauseToggle = $rootScope.pauseToggle;
                 scope.avatarStyle = {};
                 scope.reportNotLoggedIn = 0;
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
@@ -159,30 +161,6 @@ angular.module('hearth.directives').directive('item', [
                     scope.init();
                 };
 
-                scope.pauseToggle = function() {
-                    var Action = (scope.item.is_active) ? Post.suspend : Post.resume;
-                    
-                    if(pauseProgress)
-                        return false;
-                    pauseProgress = true;
-
-                    Action({id: scope.item._id}, 
-                        function(res) {
-                            pauseProgress = false;
-                            scope.item.is_active = !scope.item.is_active;
-
-                            scope.cancel();
-                        },
-                        function(err) {
-                            pauseProgress = false;
-                            console.log(err);
-
-                            scope.cancel();
-                        }
-                    );
-                    // scope.$emit('report', {id: scope.item._id});
-                }
-
                 scope.edit = function() {
                     // scope.$emit('editAd', scope.item._id);
                     $rootScope.$broadcast('editAd', scope.item._id);
@@ -202,7 +180,6 @@ angular.module('hearth.directives').directive('item', [
                     scope.$emit('removeAd', scope.item._id);
                     scope.cancel();
                 };
-
 
                 scope.$on('closeEditItem', function() {
                     scope.adEdit = false;

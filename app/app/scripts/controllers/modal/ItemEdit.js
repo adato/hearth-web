@@ -115,27 +115,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.$apply();
 		}
 
-
-        $scope.pauseToggle = function() {
-            var Action = ($scope.post.is_active) ? Post.suspend : Post.resume;
-            
-            if($scope.pauseSending)
-                return false;
-            $scope.pauseSending = true;
-
-            Action({id: $scope.post._id}, 
-                function(res) {
-                    $scope.pauseSending = false;
-                    $scope.post.is_active = ! $scope.post.is_active;
-                },
-                function(err) {
-                    $scope.pauseSending = false;
-                    console.log(err);
-                }
-            );
-            // scope.$emit('report', {id: scope.item._id});
-        }
-
 		function recountImages() {
 			var files = $scope.post.attachments_attributes;
 			var res = false;

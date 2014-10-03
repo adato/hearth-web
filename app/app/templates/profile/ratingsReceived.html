@@ -9,7 +9,7 @@
 		<div class="rating-text">
 			{{ item.text }}
 			<br>
-			<small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/profile/{{item.user_from}}">{{ item.user_from_full_name}}</a></small>
+			<small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type)}}/{{item.user_from}}">{{ item.user_from_full_name}}</a></small>
 		</div>
 	</div>
 </div>

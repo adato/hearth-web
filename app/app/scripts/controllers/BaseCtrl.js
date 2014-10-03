@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache', 'Post',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache, Post) {
         var timeout;
         $scope.segment = false;
         $scope.addresses = {
@@ -192,6 +192,33 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             dialog.closePromise.then(function(data) {});
         };
+
+        $rootScope.pauseToggle = function(item, modal) {
+            var Action;
+
+            if($rootScope.isPostActive(item)) {
+                Action = Post.suspend;
+            } else {
+                Action = (item.is_expired) ? Post.prolong : Post.resume;
+            }
+            
+            Action({
+                    id: item._id
+                },
+                function(res) {
+                    item.is_active = !item.is_active;
+                    if( item.is_expired) item.is_expired = false;
+
+                    if(modal) {
+                        $('#'+modal).foundation('reveal', 'close');
+                    }
+                }
+            );
+        };
+
+        $rootScope.isPostActive = function(item) {
+            return item.is_active && !item.is_expired;
+        }
 
         // setTimeout(function() {
         //     $rootScope.showTutorial();

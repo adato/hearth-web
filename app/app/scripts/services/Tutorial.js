@@ -22,6 +22,10 @@ angular.module('hearth.services').factory('Tutorial', [
 			get: {
 				method: 'GET',
 				isArray: true
+			},
+			ignore: {
+				url: appConfig.apiPath + '/users/:user_id/tutorial/ignore',
+				method: 'PUT'
 			}
 		});
 	}
