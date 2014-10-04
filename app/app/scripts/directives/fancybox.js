@@ -30,28 +30,3 @@ angular.module('hearth.directives').directive('fancybox', function($compile, $ti
         }
     }
 });
-
-
-angular.module('hearth.directives').directive('flexslider', function() {
-
-    return {
-        link: function($scope, element, attrs) {
-
-            setTimeout(function() {
-
-                element.flexslider({
-                    animation: "slide",
-                    itemWidth: 600,
-                    itemMargin: 5,
-                    directionNav: false,
-                    after: $scope.hideItem,
-
-                });
-            });
-
-            $scope.hideItem = function(slider) {
-                console.log(slider.currentSlide);
-            }
-        }
-    }
-});
