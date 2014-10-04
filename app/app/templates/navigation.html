@@ -38,13 +38,13 @@
 	            <div class="img">
 	            	<img data-dropdown="profile-drop" ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
 	            </div>
-	            <label>{{ loggedUser.name | ellipsis:13}}</label>
+	            <label>{{ loggedUser.name | ellipsis:9}}</label>
 		    </a>
 			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
 	            <div class="img">
 	            	<img data-dropdown="profile-drop" ng-src="{{loggedCommunity.avatar.normal}}" ng-if="loggedCommunity.avatar.normal" />
 	            </div>
-	            <label>{{ loggedCommunity.name | ellipsis:13}}</label>
+	            <label>{{ loggedCommunity.name | ellipsis:9}}</label>
 		    </a>
 		    <ul class="f-dropdown user-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       
