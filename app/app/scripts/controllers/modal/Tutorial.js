@@ -32,40 +32,7 @@ angular.module('hearth.controllers').controller('Tutorial', [
 		};
 
 		$scope.loadTutorials = function() {
-			// Tutorial.get({user_id: $rootScope.loggedUser._id}, processResult, processError);
-			var res = [{
-				"text": "Test tutorialu. Tady bude nejaky pekny popisny text. ",
-				"icon": "fa-check",
-				"image": "https://hearth-net-topmonks-dev-ugc.s3.amazonaws.com/uploads/tutorial_images/542c009e6639640002000000/tutorial_image.jpg",
-				"created_at": "2014-10-01T15:24:46.429+02:00"
-			},
-			{
-				"text": "Test tutorialu2. Tady bude nejaky pekny popisny text. ",
-				"icon": "fa-check",
-				"image": "https://hearth-net-topmonks-dev-ugc.s3.amazonaws.com/uploads/tutorial_images/542c009e6639640002000000/tutorial_image.jpg",
-				"created_at": "2014-10-01T15:24:46.429+02:00"
-			},
-			{
-				"text": "Test tutorialu3. Tady bude nejaky pekny popisny text. ",
-				"icon": "fa-phone",
-				"image": "https://hearth-net-topmonks-dev-ugc.s3.amazonaws.com/uploads/tutorial_images/542c009e6639640002000000/tutorial_image.jpg",
-				"created_at": "2014-10-01T15:24:46.429+02:00"
-			},
-			{
-				"text": "Test tutorialu4. Tady bude nejaky pekny popisny text. ",
-				"icon": "fa-check",
-				"image": "https://hearth-net-topmonks-dev-ugc.s3.amazonaws.com/uploads/tutorial_images/542c009e6639640002000000/tutorial_image.jpg",
-				"created_at": "2014-10-01T15:24:46.429+02:00"
-			},
-			{
-				"text": "Test tutorialu5. Tady bude nejaky pekny popisny text. ",
-				"icon": "fa-check",
-				"image": "https://hearth-net-topmonks-dev-ugc.s3.amazonaws.com/uploads/tutorial_images/542c009e6639640002000000/tutorial_image.jpg",
-				"created_at": "2014-10-01T15:24:46.429+02:00"
-			}
-			];
-
-			processResult(res);
+			Tutorial.get({user_id: $rootScope.loggedUser._id}, processResult, processError);
 		};
 
 		$scope.closeAll = function() {
