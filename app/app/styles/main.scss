@@ -106,6 +106,7 @@ body {
     background-attachment:fixed;
     .main-container {
         display: block;
+        min-width:960px;
         margin: 0px auto;
         position: relative;
         .scrolled & {
