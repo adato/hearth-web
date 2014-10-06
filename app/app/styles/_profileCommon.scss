@@ -145,9 +145,18 @@ $medium-avatar-size: 80px;
                 height:30px;
                 padding:0;
                 float:right;
+
+                .bar:first-child {
+                    border-top-left-radius:$global-radius;
+                    border-bottom-left-radius:$global-radius;
+                }
+
+                .bar:last-child {
+                    border-top-right-radius:$global-radius;
+                    border-bottom-right-radius:$global-radius;
+                }
+
                 .positive, .negative {
-                    min-width:12%;
-                    max-width:88%;
                     display:inline-block;
                     padding:10px;
                     color:color(4);
@@ -157,8 +166,6 @@ $medium-avatar-size: 80px;
                 .positive {
                     background:color(2);
                     background: linear-gradient(130deg, darken(color(2), 10%) 30%, color(2) 70%);
-                    border-top-left-radius:$global-radius;
-                    border-bottom-left-radius:$global-radius;
                     text-align:right;
                     .fa { 
                         display:inline-block; 
@@ -168,8 +175,6 @@ $medium-avatar-size: 80px;
                 .negative {
                     background:color(5);
                     background: linear-gradient(130deg, darken(color(5), 10%) 30%, color(5) 70%);
-                    border-top-right-radius:$global-radius;
-                    border-bottom-right-radius:$global-radius;
                     .fa { 
                         display:inline-block; 
                         margin-right:5px;
@@ -405,6 +410,7 @@ $medium-avatar-size: 80px;
                     span {
                         &:nth-child(1) {
                             padding-left: 20px;
+                            padding-right: 20px;
                         }
                     }
                 }
