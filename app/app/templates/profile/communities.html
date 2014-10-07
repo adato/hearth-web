@@ -1,18 +1,18 @@
-<div ng-if="myCommunities.length" class="bottom-tabs">
+<div ng-if="data.length" class="bottom-tabs">
 	<h2>
 		{{ 'YOU_ARE_MEMBER' | translate}}
-		<pluralize-translate count="myCommunities.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
+		<pluralize-translate count="data.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
 		{{ 'FROM_THAT' | translate }}
-		<pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
+		<pluralize-translate count="communityAdminCount" key="'IN_X'"></pluralize-translate>
 		{{ 'ADMIN_7_CASE' | translate }}
 	</h2>
 </div>
 
 <div class="communities">
 	<div class="community-list">
-	    <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div>
+	    <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in data track by $index"></div>
 	</div>
 </div>
-<div ng-if="! myCommunities.length">
+<div ng-if="! data.length">
 	<p>{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
 </div>
