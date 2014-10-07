@@ -1,0 +1,124 @@
+$terms-width: 30em;
+$max-modal-window-width:23em;
+
+@include social;
+.register-login-dialog {
+	max-width:$max-modal-window-width;
+	padding:.5rem;
+	h2 {
+		margin:0;
+		font-size:3rem;
+	}
+	hr {
+		margin-bottom:.5rem;
+	}
+	.success {
+		color:color(2);
+	}
+
+	.register-login-form {
+		padding: {
+			left:1rem;
+			right:1rem;
+			top:.5rem;
+			bottom:0px;
+		}
+
+		input {
+			border: 1px solid #d7d7d7!important;
+			background: transparent!important;
+			box-shadow: inset 0 0 5px #d7d7d7!important;
+		}
+
+		input:focus {
+			border: 1px solid color(5) !important;
+			background: transparent!important;
+			box-shadow: inset 0 0 5px color(5) !important;
+		}
+		
+		.error {
+			text-align:left;
+		}
+
+	}
+
+	.social {
+		text-align:center;
+		padding:10px;
+		padding-bottom:1rem;
+		a {
+			border: 2px solid color(5);
+			padding: 5px;
+			font-size:150%;
+			line-height:150%;
+			margin-left:10px !important; /* uff, ugly! but because in @social is redefined */
+			margin-right:10px !important;
+		}
+		a:hover {
+			background:lighten(color(5), 20%);
+		}
+	}
+	button {
+		text-transform:none;
+		i.fa {
+			margin-right:0.5rem;
+		}
+	}
+	p, button {
+		margin-bottom:1rem;
+	}
+	.bottom {
+		p {
+			margin-bottom:.2rem;
+		}
+	}
+
+}
+.terms {
+	display:block !important;
+	box-sizing:initial;
+	background:lighten(color(4), 10%);
+	border-top-right-radius:$global-radius;
+	border-bottom-right-radius:$global-radius;
+	border-left:1px solid color(3);
+	position:absolute;
+	left:100%;
+	top:5em;
+	width:$terms-width;
+	font-size:.7rem;
+	padding:1rem;
+	padding-right:.5rem;
+	text-align:left;
+	transition:0.5s linear all;
+	opacity:1;	
+
+	h3 {
+		font-size:1.3rem;
+	}
+
+	.scroll {
+		overflow-y:scroll;
+		height:36em;
+	}
+
+	&.ng-hide {
+	  opacity:0;
+	}
+}
+
+.ngdialog.in-page { // for displaying in page, not modal
+	position:initial;
+	overflow:initial;
+
+	.ngdialog-content {
+		margin-top:-3rem;
+	}
+
+	span.close { 		// hide close button?
+		display:none;
+	}
+}
+
+.ngdialog.shifted-left {
+	margin-left:-1*($terms-width/2);
+}
