@@ -9,14 +9,16 @@
             <h3 class="others">{{ 'USERS_RATINGS' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating">
-                <div class="avatar">
-                    <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
-                </div>
+                <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">
+                    <div class="avatar">
+                        <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
+                    </div>
+                </a>
                 <small class="date" title="{{item.created_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
                 <div class="rating-text">
                     {{item.text | ellipsis}}
                     <br>
-                    <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/profile/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.</small>
+                    <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.</small>
                 </div>
             </div>
             <p ng-if="! receivedRatings.length">{{ 'NO_RATINGS_YET' | translate}}</p>

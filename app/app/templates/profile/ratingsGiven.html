@@ -2,14 +2,16 @@
 
 <div class="rating-listing">
 	<div class="rating" ng-repeat="(id, item) in data track by $index">
-		<div class="avatar">
-			<img ng-if="item.user_to_avatar.normal" ng-src="{{item.user_to_avatar.normal}}" />
-		</div>
+		<a href="#!/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to}}">
+			<div class="avatar">
+				<img ng-if="item.user_to_avatar.normal" ng-src="{{item.user_to_avatar.normal}}" />
+			</div>
+		</a>
 		<small class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</small>
 		<div class="rating-text">
 			{{ item.text }}			
 			<br>
-			<small class="rating-from">{{ 'ME_WROTE' | translate}} <a href="#!/{{ item.entity_helper }}/{{item.user_to}}">{{ item.user_to_full_name}}</a></small>
+			<small class="rating-from">{{ 'ME_WROTE' | translate}} <a href="#!/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to}}">{{ item.user_to_full_name}}</a></small>
 		</div>
 	</div>
 </div>
