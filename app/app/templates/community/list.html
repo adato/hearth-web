@@ -12,9 +12,11 @@
         <h3 class="fleft iblock">
             {{ 'YOU_ARE_MEMBER' | translate}}
             <pluralize-translate count="myCommunities.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
-            {{ 'FROM_THAT' | translate }}
-            <pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
-            {{ 'ADMIN_7_CASE' | translate }}
+            <span ng-if="myAdminCommunities.length">
+                {{ 'FROM_THAT' | translate }}
+                <pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
+                {{ 'ADMIN_7_CASE' | translate }}
+            </span>
         </h3>
         <div class="clear"></div>
         <br />
