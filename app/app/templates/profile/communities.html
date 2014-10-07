@@ -1,12 +1,16 @@
 <div ng-if="data.length" class="bottom-tabs">
-	<h2>
-		{{ 'USER_IS_MEMBER' | translate}}
+	<h2 ng-if="mine">
+		{{ 'YOU_ARE_MEMBER' | translate}}
 		<pluralize-translate count="data.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
-		<span ng-if="communityAdminCount mine">
+		<span ng-if="myAdminCommunities.length">
 			{{ 'FROM_THAT' | translate }}
-			<pluralize-translate count="communityAdminCount" key="'IN_X'"></pluralize-translate>
+			<pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
 			{{ 'ADMIN_7_CASE' | translate }}
 		</span>
+	</h2>
+	<h2 ng-if="! mine">
+		{{ 'USER_IS_MEMBER' | translate}}
+		<pluralize-translate count="data.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
 	</h2>
 </div>
 
