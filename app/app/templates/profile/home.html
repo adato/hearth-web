@@ -20,7 +20,7 @@
                 </div>
             </div>
             <p ng-if="! receivedRatings.length">{{ 'NO_RATINGS_YET' | translate}}</p>
-            <div class="buttons">
+            <div class="buttons" ng-if=" receivedRatings.length">
                 <a href="#!/profile/{{info._id}}/received-ratings">
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_RATINGS' | translate }}</button>
                 </a>
@@ -59,7 +59,7 @@
 
                 <section ng-include="'templates/modals.html'" id="modals"></section>
             </div>
-            <div class="buttons">
+            <div class="buttons" ng-if="posts.data.length">
                 <a href="#!/profile/{{info._id}}/posts">
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
