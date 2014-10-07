@@ -1,8 +1,8 @@
 $terms-width: 30em;
 $max-modal-window-width:23em;
 
-@include social;
 .register-login-dialog {
+	@include social;
 	max-width:$max-modal-window-width;
 	padding:.5rem;
 	h2 {
