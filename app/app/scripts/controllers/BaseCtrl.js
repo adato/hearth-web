@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache', 'Post',
+    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache', 'Post', 'Tutorial',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache, Post) {
+    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache, Post, Tutorial) {
         var timeout;
         $scope.segment = false;
         $scope.addresses = {
@@ -125,9 +125,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        // try to load tutorial pages - if there is any, show tutorial
+        $scope.checkTutorial = function() {
+            Tutorial.get({user_id: $rootScope.loggedUser._id}, function(res) {
+                if(res.length) $rootScope.showTutorial(res);
+            });
+        };
+
+        $scope.initHearthbeat = function() {
+
+            $scope.loadMyCommunities();
+            $scope.checkTutorial();
+        };
+
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);
-        $scope.$on('initFinished', $scope.loadMyCommunities);
-        $rootScope.initFinished && $scope.loadMyCommunities();
+        $scope.$on('initFinished', $scope.initHearthbeat);
+        $rootScope.initFinished && $scope.initHearthbeat();
 
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function() {
@@ -177,10 +190,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
 
-        $rootScope.showTutorial = function() {
+        $rootScope.showTutorial = function(slides) {
 
             var scope = $scope.$new();
-            
+            scope.tutorials = slides || [];
+
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'tutorial.html',
                 controller: 'Tutorial',

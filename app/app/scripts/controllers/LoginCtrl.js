@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				password: ''
 			};
 			$scope.facebookLoginUrl = $$config.apiPath + '/auth/facebook';
-			$scope.googleLoginUrl = $$config.apiPath + '/users/auth/google_oauth2';
+			$scope.googleLoginUrl = $$config.apiPath + '/auth/google_oauth2';
 			
 			if (Auth.isLoggedIn()) {
 				$location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);

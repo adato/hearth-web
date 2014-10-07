@@ -7,9 +7,9 @@
 		</div>
 		<small class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</small>
 		<div class="rating-text">
-			{{ item.text }}
+			{{ item.text }}			
 			<br>
-			<small class="rating-from">{{ 'ME_WROTE' | translate}} <a href="#!/{{ getProfileLinkByType(item.user_to_type)}}/{{item.user_to}}">{{ item.user_to_full_name}}</a></small>
+			<small class="rating-from">{{ 'ME_WROTE' | translate}} <a href="#!/{{ item.entity_helper }}/{{item.user_to}}">{{ item.user_to_full_name}}</a></small>
 		</div>
 	</div>
 </div>

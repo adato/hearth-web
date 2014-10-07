@@ -32,7 +32,12 @@ angular.module('hearth.controllers').controller('Tutorial', [
 		};
 
 		$scope.loadTutorials = function() {
-			Tutorial.get({user_id: $rootScope.loggedUser._id}, processResult, processError);
+
+			// if not loaded already from BaseCtrl
+			if(! $scope.tutorials)
+				processResult($scope.tutorials)
+			else
+				Tutorial.get({user_id: $rootScope.loggedUser._id}, processResult, processError);
 		};
 
 		$scope.closeAll = function() {

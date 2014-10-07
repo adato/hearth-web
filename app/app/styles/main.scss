@@ -78,6 +78,7 @@ $fontSize: rem-calc(18);
 @import "common";
 @import "buttons";
 @import "tutorial";
+@import "userForms";
 
 @import "angular-loading-bar";
 @import "filterbar";
@@ -516,14 +517,6 @@ p {
         height: 40%;
         opacity: 0.2;
     }
-}
-
-.login-prompt {
-    text-align: center;
-    background: white;
-    border: 1px solid #eee;
-    padding: 20px;
-    clear: both;
 }
 
 .show-on-hover {
@@ -1243,14 +1236,6 @@ small.error {
     border-bottom: 1px solid;
     padding: 3px 15px 15px 15px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-}
-
-.login {
-    min-height: 100%;
-    height: 100%;
-    .padding-top {
-        padding-top: emCalc($grid-size * 4);
-    }
 }
 
 @import "terms";

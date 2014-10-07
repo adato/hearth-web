@@ -64,7 +64,7 @@
 
 
 			.slider {
-				position: relative;
+				position: absolute;
 				top: 0px;
 				bottom: 0px;
 				height: 100%;
@@ -111,9 +111,14 @@
 				    position: relative;
 				    top: 50%;
 				    width: 650px ;
-				    height: 540px;
 				    margin: auto;
 				    margin-top: -270px;
+
+					.closeAll {
+					    bottom: -10px;
+					    position: absolute;
+					    right: 50px;
+					}
 				}
 
 				.rn-carousel-container {

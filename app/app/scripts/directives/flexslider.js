@@ -18,8 +18,8 @@ angular.module('hearth.directives').directive('flexslider', function() {
                     itemMargin: 50,
                     useCSS: false,
                     directionNav: false,
-                    after: $scope.hideItem,
-
+                    // after: $scope.hideItem,
+                    slideshow: false
                 });
             });
 

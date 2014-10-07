@@ -1,4 +1,54 @@
-<div class="login">
+<div id="" class="ngdialog in-page ngdialog-theme-default" ng-class="{ 'shifted-left': showTerms }">
+<div class="ngdialog-overlay"></div>
+<div class="ngdialog-content">
+    <div class="register-login-dialog">
+        <div class="headMessage error">
+        </div>
+        <div class="head">
+            <h2>Registrace</h2>
+            <span class="close fa fa-times"></span>
+        </div>
+        <hr />
+        <form ng-submit="register()" name="registerForm" novalidate class="register-login-form">
+            <p class="error">Něco se pokazilo. Registraci nebylo možno dokončit</p>
+            <p>Váš profil je již jen pár kliků odsud. Šup šup</p>
+            <input type="text" name="title" ng-minlength="3" ng-maxlength="100" placeholder="Jméno a příjmení" class="form-control text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+            <div class="moveUp error">
+                <span>Toto jméno nelze použít. Prostě nelze.</span>
+            </div>
+            <input type="email" name="email" ng-minlength="3" ng-maxlength="100" placeholder="E-mail" class="form-control text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+            <div class="moveUp error">
+                <span>Tento email již někdo použil. Nebyl jste to vy?</span>
+            </div>
+            <input type="password" name="password" ng-minlength="3" ng-maxlength="100" placeholder="Heslo" class="form-control text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+            <div class="moveUp error">
+                <span>Toto heslo je příliš jednoduché.</span>
+            </div>
+            <div class="clear"></div>
+        </form>
+        <hr />
+        <div class="social">
+            <a ng-href="{{ '/users/auth/facebook' | apiPrefix }}" class="fa fa-facebook"></a> <a ng-href="{{ '/users/auth/twitter' | apiPrefix }}" class="fa fa-twitter"></a> <a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" class="fa fa-google"></a>
+        </div>
+        <hr />
+        <div class="bottom">
+            <button class="primary button-send pointer center" type="submit"><i class="fa fa-user"></i> Registrovat</button>
+            <p>Registrací souhlasíte s <a href="" ng-click="showTerms = !showTerms">podmínkami používání</a></p>
+            <p>Už máte účet? <a href="#!/login">Přihlaste se</a></p>
+        </div>
+    </div>
+    <div class="terms" ng-show="showTerms">
+        <h3>Podmínky použití štědré sociální sítě - Hearth.net</h3>
+        <div class="scroll">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod feugiat consectetur. Praesent sed odio quis nisl gravida rhoncus. In quis lacus nec ligula luctus hendrerit. In placerat fermentum nisi, id placerat mauris hendrerit nec. Nullam pellentesque felis nunc, sed tincidunt neque suscipit ac. Sed convallis lacus ut mauris feugiat, et consequat augue mollis. Aliquam non dui a neque pellentesque lacinia. Aliquam dictum, orci quis congue sollicitudin, sapien erat vehicula urna, vel ultrices leo ante sed ligula. Suspendisse tincidunt a dui vel malesuada. Aliquam sapien urna, porttitor vitae euismod et, euismod vel nulla. Pellentesque imperdiet urna eu ipsum lacinia fermentum. Suspendisse euismod, nisl ut ultrices posuere, metus neque euismod dolor, ac mattis metus velit vel nunc. Etiam imperdiet volutpat metus at malesuada. Nunc dapibus laoreet arcu in pretium.
+            </p><p>
+            Maecenas luctus nisi quis sapien congue iaculis. Suspendisse eget tincidunt erat. Fusce vehicula ante ac malesuada pharetra. Morbi dapibus, sapien id maximus volutpat, diam ex vestibulum ligula, ac pharetra lectus dolor id enim. Donec elit quam, volutpat in congue sed, condimentum quis enim. Phasellus tincidunt commodo nunc, eu elementum libero egestas non. In imperdiet enim ut leo mattis, nec suscipit dolor venenatis. Donec feugiat semper leo, ac mattis purus congue et. Pellentesque dictum lectus et sollicitudin dignissim. Ut dictum pharetra consequat. Curabitur pharetra auctor ipsum non pretium.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="login">
     <div class="left-column small-12 medium-12 large-7 columns alt-bg row">
         <form name="registerForm" ng-show="!sent" ng-cloak ng-submit="register($event)" class="large-8 large-centered columns" with-errors novalidate>
             <h1>{{ 'REGISTER_TO_HEARTH_TEXT' | translate }}</h1>
@@ -55,3 +105,4 @@
         <a class="close-reveal-modal">&#215;</a>
     </div>
 </div>
+ -->
