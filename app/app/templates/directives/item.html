@@ -107,8 +107,8 @@
 				<span class="margin" ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 				<span ng-if="!isPostActive(item)">
 					&nbsp;&nbsp;&nbsp;
-					<span ng-if="item.is_expired && item.valid_until_unlimited ">{{ 'POST_HAS_EXPIRED' | translate  }} {{ item.valid_until_unlimited | date:'dd.MM.yyyy HH:mm:ss' }}</span>
-					<span ng-if="item.is_expired && !item.valid_until_unlimited ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
+					<span ng-if="item.is_expired && item.date ">{{ 'POST_HAS_EXPIRED' | translate  }} {{ item.date | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+					<span ng-if="item.is_expired && !item.date ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
 					<span ng-if="!item.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ item.suspended_at | date:'dd.MM.yyyy HH:mm:ss' }}</span>
 				</span>
 				<div class="clear"></div>
