@@ -17,6 +17,10 @@
     <hr />
     <form ng-submit="save()" name="createAdForm" novalidate class="create-ad">
         <div>
+            <div class="messageBox" ng-if="!isPostActive(item)">
+                aaaa
+
+            </div>
             <needofferselector class="fleft" model="post.type" community="loggedCommunity"></needofferselector>
             <div class="name" ng-class="{'community-style-name': loggedCommunity}">
                 <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
@@ -111,7 +115,7 @@
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
                 <a class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle(post)">
-                    <span ng-if="!isPostActive(post)"><i class="fa fa-play"></i>{{ 'ACTIVATE' | translate }}</span>
+                    <span ng-if="!isPostActive(post)"><i class="fa" ng-class="{'fa-refresh': item.is_expired, 'fa-play': !item.is_expired}"></i>{{ 'ACTIVATE' | translate }}</span>
                     <span ng-if="isPostActive(post)"><i class="fa fa-pause"></i>{{ 'DEACTIVATE' | translate }}</span>
                 </a>
             </div>

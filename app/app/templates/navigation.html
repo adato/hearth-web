@@ -22,11 +22,7 @@
 				<div class="fa fa-recycle"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
-			<a ng-if="loggedUser._id" ng-click="showTutorial()" title="click me if you can">
-				<div class="fa fa-spoon"></div>
-				<label>{{ 'TUTORIAL' | translate }}</label>
-			</a>
-
+			
 			<a href="#!/communities" ng-class="{active: segment == 'communities'}" title="{{ 'COMMUNITIES' | translate }}">
 				<div class="fa fa-users"></div>
 				<label>{{ 'COMMUNITIES' | translate }}</label>

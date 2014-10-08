@@ -59,23 +59,8 @@
             <p ng-if="mine && ! loggedCommunity">{{ 'SWITCH_TO_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
 
             <p ng-if="! posts.data.length">{{ 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
-            <div class="ad" ng-repeat="(id, item) in posts.data track by $index">
-                <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
-                <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
-                <span>
-                    <a ng-if="item.title" href="#!/ad/{{ item._id }}">{{item.title | ellipsis:30}}</a>
-                    <a ng-if="!item.title" href="#!/ad/{{ item._id }}">{{item.name | ellipsis:30}}</a>
-                    <span ng-if="item.locations.length && item.locations[0].city">/ {{item.locations[0].city}}</span>
-                    <span ng-if="!item.locations.length || ! item.locations[0].city">/ {{ 'LOCATION_UNLIMITED_MESSAGE' | translate }}</span>
-                </span>
-                <div class="ad-controls" ng-if="loggedCommunity && loggedCommunity._id == info._id">
-                    <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
-                    <i class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></i>
-                    <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" data-reveal-id="confirm-pause-{{item._id}}"></i>
-                    <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
-                </div>
-                <section ng-include="'templates/modals.html'" id="modals"></section>
-            </div>
+            
+            <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = (!loggedCommunity || loggedCommunity._id != info._id)"></div>
             <div class="buttons" ng-if="posts.data.length">
                 <a href="#!/community/{{info._id}}/posts">
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>

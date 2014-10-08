@@ -207,15 +207,18 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+
         $rootScope.pauseToggle = function(item, modal) {
             var Action;
 
+            // suspend or play based on post active state
             if($rootScope.isPostActive(item)) {
                 Action = Post.suspend;
             } else {
                 Action = (item.is_expired) ? Post.prolong : Post.resume;
             }
             
+            // call service
             Action({
                     id: item._id
                 },
@@ -230,12 +233,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             );
         };
 
+        // return false if post is inactive
         $rootScope.isPostActive = function(item) {
             return item.is_active && !item.is_expired;
         }
-
-        // setTimeout(function() {
-        //     $rootScope.showTutorial();
-        // }, 500);
     }
 ]);

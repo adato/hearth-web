@@ -91,7 +91,7 @@
 				</div>
 				<div class="controll-buttons" ng-if="mine">
 					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"></div>
-					<div class="fa fa-play" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></div>
+					<div class="fa " ng-class="{'fa-refresh': item.is_expired, 'fa-play': !item.is_expired}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></div>
 					<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" data-reveal-id="confirm-pause-{{item._id}}"></div>
 					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></div>
 				</div>
@@ -105,6 +105,12 @@
 				<span class="margin" ng-if="item.type == 'offer' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_WISH' | translate: {value: item.reply_count}"></span>
 				<span class="margin" ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
 				<span class="margin" ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
+				<span ng-if="!isPostActive(item)">
+					&nbsp;&nbsp;&nbsp;
+					<span ng-if="item.is_expired && item.valid_until_unlimited ">{{ 'POST_HAS_EXPIRED' | translate  }} {{ item.valid_until_unlimited | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+					<span ng-if="item.is_expired && !item.valid_until_unlimited ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
+					<span ng-if="!item.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ item.suspended_at | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+				</span>
 				<div class="clear"></div>
 			</footer>
 		</div>
