@@ -13,10 +13,10 @@
 		<pluralize-translate count="data.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
 	</h2>
 </div>
-
 <div class="communities">
 	<div class="community-list">
-	    <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in data track by $index"></div>
+	    <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in data track by $index"></div> -->
+	    <community-item item="item" ng-repeat="(id, item) in data track by $index" user="mine && info"></community-item>
 	</div>
 </div>
 <div ng-if="! data.length">

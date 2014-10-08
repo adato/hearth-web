@@ -7,7 +7,7 @@
 	<div class="community-list-item-data">
 		<h4 class="small-8 fleft"><a href="#!/community/{{item._id}}">{{ item.name }}</a></h4>
 		<small class="tright fright">
-			<span ng-if="item.admin == loggedUser._id">
+			<span ng-if="user && item.admin == user._id">
 				{{'ADMIN' | translate}}
 			</span>
 		</small>
