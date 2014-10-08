@@ -11,6 +11,8 @@
         {{ 'USING_HEARTH_IN_LANG' | translate }} <b>{{ 'HEARTH_IN_THIS_LANG' | translate }}</b> - 
         <a ng-if="lang.code == 'cs'" ng-click="switchLang('en')">{{ 'SWITCH_TO_ENGLISH' | translate }}</a>
         <a ng-if="lang.code == 'en'" ng-click="switchLang('cs')">{{ 'SWITCH_TO_CZECH' | translate }}</a>
+
+        {{ lang | json }}
       </section>
       <div class="clear"></div>
 

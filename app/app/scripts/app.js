@@ -17,6 +17,7 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'angular-flexslider', 'route-se
 
             preferredLanguage = preferredLanguage || $$config.defaultLanguage;
             // $translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
+            console.log("Setting preffered language", preferredLanguage);
             $translateProvider.preferredLanguage(preferredLanguage);
             $translateProvider.useStaticFilesLoader({
                 prefix: 'locales/',
@@ -51,8 +52,10 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'angular-flexslider', 'route-se
             return $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
         }
     ]).run([
-        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http',
-        function($rootScope, Auth, $location, ipCookie, $templateCache, $http) {
+        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate',
+        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate) {
+
+            $translate.uses(preferredLanguage);
 
             $http.get('templates/geo/markerTooltip.html', {
                 cache: $templateCache

@@ -44,7 +44,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				alert("Váš účet byl smazán :-(");
 				window.location.replace("/app/");
 			} else {
-
 				alert("Při mazání účtu došlo k chybě.");
 			}
 		};
@@ -55,7 +54,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				if (!validationResult) {
 					return false;
 				}
-
 				var out = {
 					user_id: $rootScope.loggedUser._id,
 					current_password: data.pass,
@@ -158,8 +156,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.init = function() {
-
+			console.log("==== LANGUAGE 1 ==== ");
 			$scope.lang = LanguageSwitch.uses();
+			console.log("==== LANGUAGE 2 ==== ", $scope.lang);
 		};
 
 		$scope.switchLang = function(lang) {
@@ -168,7 +167,10 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			window.location.reload();
 		};
 
-		$rootScope.$on('initFinished', $scope.init);
-		$rootScope.initFinished && $scope.init();
+		setInterval(function() {
+			console.log("LANG: ", $scope.lang);
+		}, 1000);
+		$rootScope.$on('languageInited', $scope.init);
+		$rootScope.languageInited && $scope.init();
 	}
 ]);
