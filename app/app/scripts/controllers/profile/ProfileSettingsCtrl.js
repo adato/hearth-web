@@ -12,6 +12,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User',
 	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User) {
 		$scope.loaded = true;
+		$scope.lang = false;
 		$scope.changeSubmitted = false;
 		$scope.pass = {
 			old: '',
@@ -168,9 +169,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		setInterval(function() {
-			console.log("LANG: ", $scope.lang);
+			$scope.init();
 		}, 1000);
-		$rootScope.$on('languageInited', $scope.init);
-		$rootScope.languageInited && $scope.init();
+		$rootScope.$on('initFinished', $scope.init);
+		$rootScope.initFinished && $scope.init();
 	}
 ]);

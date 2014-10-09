@@ -212,19 +212,24 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             var Action;
 
             // suspend or play based on post active state
-            if($rootScope.isPostActive(item)) {
+            if($rootScope.isPostActive(item)) 
                 Action = Post.suspend;
-            } else {
+            else
+                // if item is expired, then prolong him, or just resume
                 Action = (item.is_expired) ? Post.prolong : Post.resume;
-            }
             
             // call service
             Action({
                     id: item._id
                 },
                 function(res) {
+                    // switch active state (inactive -> active | active -> inactive)
                     item.is_active = !item.is_active;
-                    if( item.is_expired) item.is_expired = false;
+                    if( item.is_expired) {
+                        // if post is expired, then prolong him and set him active
+                        item.is_expired = false;
+                        item.is_active = true;
+                    }
 
                     if(modal) {
                         $('#'+modal).foundation('reveal', 'close');

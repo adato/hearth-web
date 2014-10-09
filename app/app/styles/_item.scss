@@ -3,6 +3,12 @@ $border: $size / 10;
 $arrowTop: 30px;
 $imageSize: 80px;
 
+
+    
+article.row.inactive {
+    opacity: 0.55;
+}
+
 .photo {
     position: relative;
     text-align: center;

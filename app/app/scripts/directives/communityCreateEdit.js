@@ -26,7 +26,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 };
                 $scope.showError = {
                     name: false,
-                    terms: false,
                     location: false,
                     description: false,
                 };
@@ -63,7 +62,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.removeMemberFromList = function(arr, uId) {
 
                     for(var i = 0; i < arr.length; i++) {
-
                         if(arr[i]._id == uId) {
                             arr.splice(i, 1);
                             break;
@@ -76,6 +74,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     Community.get({communityId: id}, function(res) {
                         $scope.community = $scope.transformDataIn(res);
                         $scope.loaded = true;
+                        // $scope.community.member_count = 1;
                     });
 
                     CommunityMembers.query({communityId: id}, function(res) {
@@ -98,10 +97,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         $scope.showError.name = err = true;
                     }
                     
-                    if($scope.communityForm.terms.$invalid) {
-                        $scope.showError.terms = err = true;
-                    }
-
                     if($scope.communityForm.description.$invalid) {
                         $scope.showError.description = err = true;
                     }

@@ -22,7 +22,7 @@
       <section class="who">
         <div class="name margin">
           <label>
-            {{ 'COMMUNITY_NAME' | translate }} *
+            {{ 'COMMUNITY_NAME' | translate }}
             <input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="community.name" class="text-input" type='text' ng-required="true">
             <div class="absolute error" ng-show="showError.name">
               <span ng-show="communityForm.name.$error.required">{{ 'ERR_COMMUNITY_NAME_NOT_FILLED' | translate }}</span>
@@ -63,11 +63,8 @@
           <label>
             {{ 'COMMUNITY_RESTRICTIONS' | translate }}
           </label>
-          <textarea autosize-textarea class="text-input" ng-focus="showError.terms = false" ng-blur="showError.terms = true" type="text" ng-model="community.terms" placeholder="{{'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" name="terms" required></textarea>
+          <textarea autosize-textarea class="text-input" type="text" ng-model="community.terms" placeholder="{{'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" name="terms"></textarea>
           <max-len-counter max-len="300" value="community.terms"></max-len-counter>
-          <div class="error margin-top" ng-show="showError.terms">
-            <span ng-show="communityForm.terms.$error.required">{{ 'ERR_COMMUNITY_TERMS_NOT_FILLED' | translate }}</span>
-          </div>
         </div>
       </section>
       <div class="clear"></div>
@@ -89,20 +86,25 @@
   <div class="clear"></div>
 
   <!-- ==================================== Change admin in community ================================ -->
-  <div ng-if="community.member_count > 1">
+  <div>
     <h2>
       <span class="content">
-        <span class="fa fa-info"></span>{{ 'COMMUNITY_CHANGE_ADMIN' | translate }}
+        <span class="fa fa-share"></span>{{ 'COMMUNITY_CHANGE_ADMIN' | translate }}
       </span>
     </h2>
-    <section class="change-admin">
+    <section class="change-admin" ng-if="community.member_count > 1">
       <span>
         {{ 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }}
-        <select ng-if="communityMembers" ng-model="adminChangeId">
-          <option ng-repeat="(id, item) in communityMembers track by $index" ng-value="item._id" ng-selected="$index == 0">{{item.name}}</option>
-        </select>
+        &nbsp;
+        <select class="pass-admin-select" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
       </span>
       <button ng-click="change(adminChangeId)" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+    </section>
+    <section class="change-admin" ng-if="community.member_count == 1">
+        <br />
+        {{ 'COMMUNITY_YOU_CAN_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS' | translate }}
+        <br />
+        <br />
     </section>
   </div>
   <div class="clear"></div>
@@ -117,12 +119,12 @@
     <br />
     <br />
     <section class="delete">
-      <p class="small-8 fleft" ng-if="communityMembers.length > 1">
+      <p class="small-8 fleft" ng-if="community.member_count > 1">
         {{ 'COMMUNITY_HAS_MEMBERS_COUNT' | translate }}
         {{ community.member_count }}
         <pluralize-translate count="community.member_count" key="'X_MEMBERS'"></pluralize-translate>, {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
       </p>
-      <p class="small-8 fleft" ng-if="communityMembers.length == 1">
+      <p class="small-8 fleft" ng-if="community.member_count == 1">
         {{ 'COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE' | translate }}
       </p>
       <button ng-click="delete()" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>

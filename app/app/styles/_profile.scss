@@ -67,12 +67,6 @@ $medium-avatar-size: 80px;
         }
     }
 
-    .inactive {
-        article {
-            opacity: 0.55;
-        }
-    }
-
     .community-listing {
         @extend .clearfix, .medium-avatar;
         clear:both;
