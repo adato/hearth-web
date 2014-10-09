@@ -80,13 +80,13 @@ $fontSize: rem-calc(18);
 @import "tutorial";
 @import "userForms";
 
-@import "angular-loading-bar";
+@import "angularLoadingBar";
 @import "filterbar";
-@import "filter-status";
+@import "filterStatus";
 @import "filter";
 @import "needOfferSelector";
-@import "ng-tags-input";
-@import "foundation-datepicker";
+@import "ngTagsInput";
+@import "foundationDatepicker";
 @import "locations";
 @import "checkbox";
 @import "map";
@@ -95,10 +95,11 @@ $fontSize: rem-calc(18);
 @import "modal";
 @import "profileCommon";
 @import "profile";
-@import "profile-edit";
+@import "profileEditCommon";
+@import "profileEdit";
 @import "communities";
-@import "community-profile";
-@import "community-edit";
+@import "communityProfile";
+@import "communityEdit";
 
 body {
     background-image: inline-image("bg.png");
@@ -169,8 +170,8 @@ body {
 
 
 
-/*@import "foundation-improvements";
-@import "hearth-icons";
+/*@import "foundationImprovements";
+@import "hearthIcons";
 
 @import "mixins/social";
 @import "progress";
@@ -399,7 +400,7 @@ section.more {
     color: color(1);
 }
 
-@import "ratings-bar";
+@import "ratingsBar";
 
 .thumb-ups-color {
     color: #458c50;

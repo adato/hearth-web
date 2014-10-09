@@ -1,5 +1,10 @@
 $medium-avatar-size: 80px;
 .profile-common {
+
+    .error {
+        color: red;
+    }
+
     header {
         .user-basic {
             @extend .large-7, .columns;

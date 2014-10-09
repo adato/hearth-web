@@ -1,4 +1,4 @@
-.profile-edit {
+.community-edit {
     background-color: white;
     border-radius: 10px;
     box-shadow: -1px 1px 10px #777;
@@ -58,10 +58,6 @@
             margin-left: 70px;
         }
 
-        .error {
-            color: red;
-        }
-
         .absolute {
             position: absolute;
         }
@@ -88,35 +84,6 @@
             span {
                 &.remove {
                     top: 6px;
-                }
-            }
-        }
-
-        &.languages {
-            margin-left: 70px;
-
-            .fa-check-square {
-                color: rgb(156, 199, 6);
-            }
-
-            .checkbox {
-                padding-left: 0px;
-                padding-right: 1em;
-
-                span {
-                    margin: 0;
-                }
-            }
-            label {
-                &.dropdown {
-                    border: 3px solid #f3a17c;
-                    border-radius: 13px;
-                    color: #f3a17c;
-                    font-size: 14px;
-                    padding: 3px 6px;
-                    position: relative;
-                    top: -10px;
-                    margin-top: 20px;
                 }
             }
         }
@@ -149,17 +116,25 @@
         }
     }
 
+    .change-admin {
+        select {
+            width: unset;
+            min-width: 120px;
+        }
+    }
+
     input {
         margin: {
             bottom: 0;
         };
     }
-    input, textarea {
+    input, textarea, select {
         background-color: white;
         -moz-box-shadow: inset 0px 0px 10px #AAA;
         -webkit-box-shadow: inset 0px 0px 10px #AAA;
         box-shadow: 0 0 7px #DDD inset;
-        border: 1px solid #d7d7d7   ;
+        border: 1px solid #d7d7d7;
+        border-radius: 8px;
 
         &:focus {
             border: 2px solid #FF6D1F;
@@ -168,7 +143,58 @@
         resize: none;
     }
 
+    .pass-admin-select {
+        position: relative;
+        top: 2px;
+    }
 
+    .image-upload {
+        width:195px;
+        height: 195px;
+        margin: 0px auto;
+        text-align: center;
+        position: relative;
+        background-image: url("/images/default_avatar.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        border-radius: 50%;
+        box-shadow: -3px 3px 6px rgba(0, 0, 0, 1) inset;
+
+        .preview {
+            width:195px;
+            height: 195px;
+            border-radius: 50%;
+        }
+
+        .text {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            text-shadow: 0 0 4px #666;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+
+            span.fa {
+                font-size: 61px;
+                font-weight: normal;
+                margin-top: 61px;
+                display: block;
+            }
+        }
+
+        input {
+            background-color: red;
+            cursor: pointer;
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
 
     textarea {
         line-height: 1.33 !important;
@@ -227,7 +253,7 @@
     }
 }
 
-.profile-settings {
+.community-settings {
     input {
         margin-bottom: $fontSize / 2;
     }   

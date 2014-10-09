@@ -149,27 +149,6 @@
         }
     }
 
-    input {
-        margin: {
-            bottom: 0;
-        };
-    }
-    input, textarea {
-        background-color: white;
-        -moz-box-shadow: inset 0px 0px 10px #AAA;
-        -webkit-box-shadow: inset 0px 0px 10px #AAA;
-        box-shadow: 0 0 7px #DDD inset;
-        border: 1px solid #d7d7d7   ;
-
-        &:focus {
-            border: 2px solid #FF6D1F;
-            box-shadow: none;
-        }
-        resize: none;
-    }
-
-
-
     textarea {
         line-height: 1.33 !important;
         padding: 15px;
