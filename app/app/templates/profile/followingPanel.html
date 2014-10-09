@@ -2,21 +2,15 @@
     <ul>
         <li>
             <a href="#!/profile/{{info._id}}/friends" ng-class="{selected: pageSegment == 'profile.friends'}">
-                <span class="mine">
-                    {{ 'YOU_HAVE' | translate }}
-                    {{ 'OF_FRIENDS' | translate }}
-                    {{info.friend_count}}
-                </span>
-                <span class="others">
-                    {{ 'USER_HAS' | translate }}
-                    {{info.friend_count}}
-                    {{ 'OF_FRIENDS' | translate }}
-                </span>
+                <span class="mine">{{ 'YOU_HAVE' | translate }}</span>
+                <span class="others">{{ 'USER_HAS' | translate }}</span>
+                {{info.friend_count}}
+                <pluralize-translate count="info.friend_count" key="'X_FRIENDS'"></pluralize-translate>
             </a>
         </li>
         <li>
             <a href="#!/profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'profile.following'}">
-            	<span class="mine">
+                <span class="mine">
                     <pluralize-translate count="info.followees_count" key="'INSPIRING_PL'" class="capital"></pluralize-translate>
                     {{ 'YOU_PL_2_CASE' | translate }} 
                     {{info.followees_count}}

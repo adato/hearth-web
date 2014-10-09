@@ -77,6 +77,7 @@
 	"COUNT_OF_MINUS_POINTS": "Počet záporných hodnocení",
 	"COMMUNITY_MY": "Moje",
 	"X_MEMBERS": "{\"1\": \"člena\", \"2\": \"členy\", \"3\": \"členy\", \"4\": \"členy\", \"other\": \"členů\"}",
+	"X_FRIENDS": "{\"1\": \"kamaráda\", \"2\": \"kamarády\", \"3\": \"kamarády\", \"4\": \"kamarády\", \"other\": \"přátel\"}",
 	"COMMUNITY_MEMBERS": "{\"1\": \"člen\", \"2\": \"členi\", \"3\": \"členi\", \"4\": \"členi\", \"other\": \"členů\"}",
 	"COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE": "Komunita nemá žádného dalšího člena, nechcete do ní spíše dotáhnout více lidí?",
 	"COMMUNITY_HAS_NO_ADS_YET": "Komunita zatím nemá žádné inzeráty",
