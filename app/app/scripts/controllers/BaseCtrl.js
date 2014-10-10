@@ -176,7 +176,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.replyItem = function(post) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox();
-
+            
             var scope = $scope.$new();
             scope.post = post;
             
@@ -186,6 +186,23 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: scope,
                 closeByDocument: false,
                 showClose: false
+            });
+
+            dialog.closePromise.then(function(data) {});
+        };
+
+
+        // show modal window with invite options
+        $rootScope.openInviteBox = function() {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox();
+            
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'inviteBox.html',
+                controller: 'InviteBox',
+                scope: $scope.$new(),
+                closeByDocument: false,
+                // showClose: false
             });
 
             dialog.closePromise.then(function(data) {});

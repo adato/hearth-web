@@ -1,0 +1,55 @@
+<section class="invite-box">
+    <div class="social" ng-if="!showEmailForm">
+        <h2>{{ 'INVITE_YOUR_FRIENDS_TO_HEARTH' | translate }}</h2>
+        <ul>
+            <li>
+                <a ng-href="">
+                    <i class="fa fa-facebook"></i>
+                    {{ 'INVITE_FACEBOOK' | translate }}
+                </a>
+            </li>
+            <li>
+                <a ng-href="">
+                    <i class="fa fa-twitter"></i>
+                    {{ 'INVITE_TWITTER' | translate }}
+                </a>
+            </li>
+            <li>
+                <a ng-href="">
+                    <i class="fa fa-google"></i>
+                    {{ 'INVITE_GOOGLE' | translate }}
+                </a>
+            </li>
+            <li>
+                <a ng-href="">
+                    <i class="fa fa-linkedin"></i>
+                    {{ 'INVITE_LINKEDIN' | translate }}
+                </a>
+            </li>
+            <li>
+                <a ng-click="toggleEmailForm()">
+                    <i class="fa fa-envelope"></i>
+                    {{ 'INVITE_EMAIL' | translate }}
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="emailForm" ng-if="showEmailForm">
+        <i class="fa fa-chevron-left toggle-form" ng-click="toggleEmailForm()"></i>
+        <form ng-submit="sendEmailInvitation()" id="inviteForm" name="inviteForm" novalidate>
+            <label>
+                {{ 'FILL_FRIENDS_EMAILS' | translate }}
+                <input name="addrs" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" ng-focus="showError.addrs = false" ng-blur="showError.addrs = true" ng-model="inv.addrs" class="text-input" type='text' ng-required="true">
+                <div class="absolute error" ng-show="showError.addrs">
+                    <span ng-show="profileEditForm.addrs.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+                </div>
+            </label>
+            <label>
+                {{ 'FILL_EMAIL_INVITATION_MESSAGE' | translate }}
+                <textarea autosize-textarea max-len="300" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" ng-model="inv.text"></textarea>
+                <max-len-counter class="moveUp" max-len="300" value="inv.text"></max-len-counter>
+            </label>
+            <button type="submit" class="button-send right" analytics-on analytics-event="send email invitation" analytics-category="General" analytics-value="5">{{ 'SEND_EMAIL_INVITATION' | translate }}</button>
+        </form>
+    </div>
+</section>
