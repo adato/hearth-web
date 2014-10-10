@@ -21,7 +21,8 @@
                     <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.</small>
                 </div>
             </div>
-            <p ng-if="! receivedRatings.length">{{ 'NO_RATINGS_YET' | translate}}</p>
+            <p class="mine" ng-if="! receivedRatings.length">{{ 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
+            <p class="others" ng-if="! receivedRatings.length">{{ 'USER_HAS_NO_RATINGS_YET' | translate}}</p>
             <div class="buttons" ng-if=" receivedRatings.length">
                 <a href="#!/profile/{{info._id}}/received-ratings">
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_RATINGS' | translate }}</button>
@@ -61,7 +62,7 @@
                 <span class="descr mtop fleft small-6" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</span>
                 <div class="clear"></div>
             </div>
-            <div class=" mtop mbot line" ng-if="info.interests">
+            <div class=" mtop mbot line" ng-if="info.interests && info.interests[0] != ''">
                 <span class="descr mtop"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</span>
             </div>
             <span class="descr reg-date fleft"><i class="fa fa-asterisk"></i> {{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>

@@ -7,28 +7,51 @@
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
-	'$scope', '$location', '$routeParams', '$translate', 'Auth', 'ResponseErrors', '$rootScope',
-	function($scope, $location, $routeParams, $translate, Auth, ResponseErrors, $rootScope) {
-		return Auth.init(function() {
-			$scope.credentials = {
-				username: '',
-				password: ''
-			};
-			$scope.facebookLoginUrl = $$config.apiPath + '/auth/facebook';
-			$scope.googleLoginUrl = $$config.apiPath + '/auth/google_oauth2';
-			
-			if (Auth.isLoggedIn()) {
-				$location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
-				return;
+	'$scope', '$location', '$routeParams', 'Auth', '$rootScope', 'Login',
+	function($scope, $location, $routeParams, Auth, $rootScope, Login) {
+		$scope.data = {
+			username: '',
+			password: ''
+		};
+
+		$scope.showError = {
+			badCredentials: false
+		};
+
+		function processLoginResult(res) {
+			$scope.showError.badCredentials = true;
+		}
+
+		$scope.validateLogin = function(data) {
+			console.log(data);
+			return data.username != '' && data.password != '';
+		};
+
+		$scope.sendLogin = function(data) {
+
+			Login.send(data, function(res) {
+
+				console.log(res);
+			}, processLoginResult);
+		};
+
+		$scope.login = function() {
+			$scope.showError.badCredentials = false;
+
+			if(! $scope.validateLogin($scope.data)) {
+				$scope.showError.badCredentials = true;
+			} else {
+				$scope.sendLogin($scope.login);
 			}
-			$scope.errors = new ResponseErrors($routeParams.reason ? {
-				status: 400,
-				data: {
-					name: 'ValidationError',
-					message: 'ERR_' + $routeParams.reason.toUpperCase().replace('-', '_')
-				}
-			} : null);
-			return $scope.errors;
-		});
+		};
+
+		$scope.init = function() {
+			if (Auth.isLoggedIn()) {
+				return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+			}
+		};
+
+		$scope.$on('initFinished', $scope.init);
+		$rootScope.initFinished && $scope.init();
 	}
 ]);

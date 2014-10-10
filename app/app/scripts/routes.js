@@ -60,24 +60,24 @@ angular.module('hearth').config([
 				templateUrl: 'templates/fulltext.html',
 				controller: 'FulltextCtrl'
 			}).segment('reg', {
-				templateUrl: 'templates/register.html',
+				templateUrl: 'templates/userForms/register.html',
 				controller: 'RegisterCtrl'
 			}).segment('login', {
-				templateUrl: 'templates/login.html',
+				templateUrl: 'templates/userForms/login.html',
 				controller: 'LoginCtrl',
 				pageType: 'login'
 			}).segment('confirm-email', {
 				templateUrl: 'templates/confirmEmail.html',
 				controller: 'ConfirmEmailCtrl'
 			}).segment('change-pass', {
-				templateUrl: 'templates/changePassword.html',
+				templateUrl: 'templates/userForms/changePassword.html',
 				controller: 'ChangePwdCtrl',
 				access: 'private'
 			}).segment('forgot-pass', {
-				templateUrl: 'templates/forgottenPassword.html',
+				templateUrl: 'templates/userForms/forgottenPassword.html',
 				controller: 'ForgottenPasswordCtrl'
 			}).segment('reset-pass', {
-				templateUrl: 'templates/resetPassword.html',
+				templateUrl: 'templates/userForms/resetPassword.html',
 				controller: 'ResetPwdCtrl'
 			}).segment('feedback', {
 				templateUrl: 'templates/feedback.html',

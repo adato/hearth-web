@@ -1,13 +1,32 @@
 $terms-width: 30em;
 $max-modal-window-width:23em;
 
+
+.register-form {
+	position: relative;
+
+}
 .register-login-dialog {
+
+   	background: none repeat scroll 0 0 #fff;
+    border-radius: 8px;
+    color: black;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    margin: 4% auto 0;
+    margin-top: 0px;
+    max-width: 100%;
+    position: relative;
+    width: auto;
 	@include social;
 	max-width:$max-modal-window-width;
 	padding:.5rem;
+
 	h2 {
 		margin:0;
-		font-size:3rem;
+		font-size: 25px;
+	    font-weight: normal;
+	    text-align: center;
 	}
 	hr {
 		margin-bottom:.5rem;
@@ -15,11 +34,18 @@ $max-modal-window-width:23em;
 	.success {
 		color:color(2);
 	}
+	p {
+		text-align: center;
+	}
+
+	a {
+		color: color(5);
+	}
 
 	.register-login-form {
 		padding: {
-			left:1rem;
-			right:1rem;
+			left:0.9rem;
+			right:0.9rem;
 			top:.5rem;
 			bottom:0px;
 		}
@@ -38,6 +64,10 @@ $max-modal-window-width:23em;
 		
 		.error {
 			text-align:left;
+			&.moveUp {
+				position: relative;
+				top: -15px;
+			}
 		}
 
 	}
@@ -73,6 +103,14 @@ $max-modal-window-width:23em;
 		}
 	}
 
+	.head,
+	.bottom {
+		text-align: center;
+	}
+
+	.close {
+		display: none;
+	}
 }
 .terms {
 	display:block !important;
@@ -101,24 +139,30 @@ $max-modal-window-width:23em;
 		height:36em;
 	}
 
+	p {
+		text-align: justify;
+	}
+
 	&.ng-hide {
 	  opacity:0;
 	}
 }
 
-.ngdialog.in-page { // for displaying in page, not modal
-	position:initial;
-	overflow:initial;
+.ngdialog {
+	.register-login-dialog { // for displaying in page, not modal
+		position:initial;
+		overflow:initial;
 
-	.ngdialog-content {
-		margin-top:-3rem;
-	}
+		.ngdialog-content {
+			margin-top:-3rem;
+		}
 
-	span.close { 		// hide close button?
-		display:none;
+		span.close { 		// hide close button?
+			display:inline-block;
+		}
 	}
 }
 
-.ngdialog.shifted-left {
+.shifted-left {
 	margin-left:-1*($terms-width/2);
 }

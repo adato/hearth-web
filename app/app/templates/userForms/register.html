@@ -1,28 +1,27 @@
-<div id="" class="ngdialog in-page ngdialog-theme-default" ng-class="{ 'shifted-left': showTerms }">
-<div class="ngdialog-overlay"></div>
-<div class="ngdialog-content">
+<div class="register-form" ng-class="{ 'shifted-left': showTerms }">
     <div class="register-login-dialog">
         <div class="headMessage error">
         </div>
         <div class="head">
-            <h2>Registrace</h2>
+            <h2>{{ 'SIGNUP_HEADING' | translate }}</h2>
             <span class="close fa fa-times"></span>
         </div>
         <hr />
         <form ng-submit="register()" name="registerForm" novalidate class="register-login-form">
-            <p class="error">Něco se pokazilo. Registraci nebylo možno dokončit</p>
-            <p>Váš profil je již jen pár kliků odsud. Šup šup</p>
-            <input type="text" name="title" ng-minlength="3" ng-maxlength="100" placeholder="Jméno a příjmení" class="form-control text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+            <p class="error">{{ 'SIGNUP_PROCESS_ERROR' | translate }}</p>
+            <p>{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
+            <input type="text" name="title" placeholder="Jméno a příjmení" class="form-control text-input top" />
             <div class="moveUp error">
-                <span>Toto jméno nelze použít. Prostě nelze.</span>
+                <span>{{ 'SIGNUP_BAD_NAME' | translate }}</span>
             </div>
-            <input type="email" name="email" ng-minlength="3" ng-maxlength="100" placeholder="E-mail" class="form-control text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+            <input type="email" name="email" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" />
             <div class="moveUp error">
-                <span>Tento email již někdo použil. Nebyl jste to vy?</span>
+                <span>{{ 'SIGNUP_ALREADY_USED_EMAIL' | translate }}</span>
             </div>
-            <input type="password" name="password" ng-minlength="3" ng-maxlength="100" placeholder="Heslo" class="form-control text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+            <input type="password" name="password" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" />
             <div class="moveUp error">
-                <span>Toto heslo je příliš jednoduché.</span>
+                <span>{{ 'SIGNUP_SHORT_PASSWORD' | translate }}</span>
+                <span>{{ 'SIGNUP_EASY_PASSWORD' | translate }}</span>
             </div>
             <div class="clear"></div>
         </form>
@@ -32,18 +31,18 @@
         </div>
         <hr />
         <div class="bottom">
-            <button class="primary button-send pointer center" type="submit"><i class="fa fa-user"></i> Registrovat</button>
-            <p>Registrací souhlasíte s <a href="" ng-click="showTerms = !showTerms">podmínkami používání</a></p>
-            <p>Už máte účet? <a href="#!/login">Přihlaste se</a></p>
+            <button class="primary button-send pointer center" type="submit"><i class="fa fa-user"></i> {{ 'SIGNUP_BUTTON' | translate }}</button>
+            <p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }} <a href="" ng-click="showTerms = !showTerms">{{ 'WITH_TERMS_OF_USE' | translate }}</a></p>
+            <p>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }} <a href="#!/login">{{ 'LOGIN_TO_HEARTH' | translate }}</a></p>
         </div>
-    </div>
-    <div class="terms" ng-show="showTerms">
-        <h3>Podmínky použití štědré sociální sítě - Hearth.net</h3>
-        <div class="scroll">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod feugiat consectetur. Praesent sed odio quis nisl gravida rhoncus. In quis lacus nec ligula luctus hendrerit. In placerat fermentum nisi, id placerat mauris hendrerit nec. Nullam pellentesque felis nunc, sed tincidunt neque suscipit ac. Sed convallis lacus ut mauris feugiat, et consequat augue mollis. Aliquam non dui a neque pellentesque lacinia. Aliquam dictum, orci quis congue sollicitudin, sapien erat vehicula urna, vel ultrices leo ante sed ligula. Suspendisse tincidunt a dui vel malesuada. Aliquam sapien urna, porttitor vitae euismod et, euismod vel nulla. Pellentesque imperdiet urna eu ipsum lacinia fermentum. Suspendisse euismod, nisl ut ultrices posuere, metus neque euismod dolor, ac mattis metus velit vel nunc. Etiam imperdiet volutpat metus at malesuada. Nunc dapibus laoreet arcu in pretium.
-            </p><p>
-            Maecenas luctus nisi quis sapien congue iaculis. Suspendisse eget tincidunt erat. Fusce vehicula ante ac malesuada pharetra. Morbi dapibus, sapien id maximus volutpat, diam ex vestibulum ligula, ac pharetra lectus dolor id enim. Donec elit quam, volutpat in congue sed, condimentum quis enim. Phasellus tincidunt commodo nunc, eu elementum libero egestas non. In imperdiet enim ut leo mattis, nec suscipit dolor venenatis. Donec feugiat semper leo, ac mattis purus congue et. Pellentesque dictum lectus et sollicitudin dignissim. Ut dictum pharetra consequat. Curabitur pharetra auctor ipsum non pretium.
-            </p>
+        <div class="terms" ng-show="showTerms">
+            <h3>{{ 'TERMS_OF_USE_ON_HEARTH' | translate }}</h3>
+            <div class="scroll">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod feugiat consectetur. Praesent sed odio quis nisl gravida rhoncus. In quis lacus nec ligula luctus hendrerit. In placerat fermentum nisi, id placerat mauris hendrerit nec. Nullam pellentesque felis nunc, sed tincidunt neque suscipit ac. Sed convallis lacus ut mauris feugiat, et consequat augue mollis. Aliquam non dui a neque pellentesque lacinia. Aliquam dictum, orci quis congue sollicitudin, sapien erat vehicula urna, vel ultrices leo ante sed ligula. Suspendisse tincidunt a dui vel malesuada. Aliquam sapien urna, porttitor vitae euismod et, euismod vel nulla. Pellentesque imperdiet urna eu ipsum lacinia fermentum. Suspendisse euismod, nisl ut ultrices posuere, metus neque euismod dolor, ac mattis metus velit vel nunc. Etiam imperdiet volutpat metus at malesuada. Nunc dapibus laoreet arcu in pretium.
+                </p><p>
+                Maecenas luctus nisi quis sapien congue iaculis. Suspendisse eget tincidunt erat. Fusce vehicula ante ac malesuada pharetra. Morbi dapibus, sapien id maximus volutpat, diam ex vestibulum ligula, ac pharetra lectus dolor id enim. Donec elit quam, volutpat in congue sed, condimentum quis enim. Phasellus tincidunt commodo nunc, eu elementum libero egestas non. In imperdiet enim ut leo mattis, nec suscipit dolor venenatis. Donec feugiat semper leo, ac mattis purus congue et. Pellentesque dictum lectus et sollicitudin dignissim. Ut dictum pharetra consequat. Curabitur pharetra auctor ipsum non pretium.
+                </p>
+            </div>
         </div>
     </div>
 </div>

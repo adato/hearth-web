@@ -94,10 +94,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.loadMyCommunities = function() {
 
-            // when user is not logged, he has no communities
-            if(!$rootScope.loggedUser._id) {
-                return $rootScope.myCommunities = $rootScope.myAdminCommunities = [];
-            }
+            // // when user is not logged, he has no communities
+            // if(!$rootScope.loggedUser._id) {
+            //     return $rootScope.myCommunities = $rootScope.myAdminCommunities = [];
+            // }
 
             CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
                 $rootScope.myCommunities = res;
@@ -134,8 +134,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.initHearthbeat = function() {
 
-            $scope.loadMyCommunities();
-            $scope.checkTutorial();
+            if($rootScope.loggedUser._id) {
+                $scope.checkTutorial();
+                $scope.loadMyCommunities();
+            }
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);
