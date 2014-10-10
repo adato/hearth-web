@@ -125,8 +125,10 @@
                         margin-right: 10px;
                     }
                     img {
-                        width: 184px;
-                        height: 123px;
+                        max-width: 184px;
+                        max-height: 123px;
+                        width: auto;
+                        height: auto;
                     }
                     a {
                         position: absolute;
