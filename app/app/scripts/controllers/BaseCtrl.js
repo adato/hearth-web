@@ -196,11 +196,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox();
 
-            Post.remove({postId:post._id}, function(res) {
+            //Post.remove({postId:post._id}, function(res) {
                 if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
                 cb && cb(post); // if callback given, call it
-            });
+            //});
         };
 
         $rootScope.closeModal = function(item, modal) {

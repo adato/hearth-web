@@ -109,9 +109,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.load();
 		});
 
+		// ======================= REVIEW ==============================
 		$scope.$on('adCreated', function($event, data) {
 			$scope.items.unshift(data);
 		});
+		// ======================= REVIEW ==============================
 		$scope.$on('adUpdated', function($event, data) {
 			var item, i;
 

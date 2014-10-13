@@ -66,6 +66,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                         $scope.postsInactive.push(item);
                 });
             }, doneErr);
+
+            // var destroyLoadListener = $scope.$on('postCreated', function() {
+            //     destroyLoadListener();
+            //     loadUserPosts(params, done, doneErr);
+            // });
         }
 
         function loadUserHome(params) {
@@ -123,6 +128,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 });
             }
         }
+
 
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);

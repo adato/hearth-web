@@ -1,10 +1,13 @@
 <div class="detail">
 	<article class="row">
-		<section ng-show="show && ad" class="large-12 columns">
+		<section ng-show="! itemDeleted && show && ad" class="large-12 columns">
 			<item keywords-active="{}" user="user" item="ad"></item>
 		</section>
-		<section ng-show="show && ad === false" class="item-not-found">
+		<section ng-show="! itemDeleted && show && ad === false" class="item-not-found">
 			{{ 'POST_NOT_FOUND' | translate }}
+		</section>
+		<section ng-show="itemDeleted" class="item-not-found">
+			{{ 'POST_WAS_DELETED' | translate }}
 		</section>
 	</article>
 </div>
