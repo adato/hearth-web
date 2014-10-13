@@ -111,6 +111,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             console.log("Err", res);
         }
 
+        // only hide post .. may be used later for delete revert
+        $scope.removeItemFromList = function($event, item) {
+            $( ".post_"+item._id ).slideUp( "slow", function() {});
+        };
+
+
         function init() {
             console.log("Calling load service for segment ", $scope.pageSegment);
             loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
@@ -123,6 +129,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }
         }
 
+        $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('communityTopPanelLoaded', init);
         $scope.loaded && init();
     }

@@ -92,10 +92,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             });
         }
 
-        // only hide post .. may be used later for delete revert
-        $scope.removeItemFromList = function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {});
-        };
 
         $scope.cancelEdit = function() {
             init();
@@ -129,6 +125,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             }
         }
 
+        // only hide post .. may be used later for delete revert
+        $scope.removeItemFromList = function($event, item) {
+            $( ".post_"+item._id ).slideUp( "slow", function() {});
+        };
 
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);
