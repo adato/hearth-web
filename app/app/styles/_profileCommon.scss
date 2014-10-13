@@ -8,6 +8,8 @@ $medium-avatar-size: 80px;
         .user-basic {
             @extend .large-7, .columns;
             padding:0;
+            margin-left:1rem;
+            margin-right:-1rem;
             h1 {
                 position: relative;
                 z-index: 1;
