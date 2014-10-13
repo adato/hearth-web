@@ -20,7 +20,8 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		};
 
 		$scope.toggleForm = function() {
-			$(".community-list-add-form").slideToggle();
+			$(".community-list-add-button").slideToggle();			
+			$(".community-list-add-form").toggle();
 		};
 
 		$scope.init = function() {

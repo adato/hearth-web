@@ -21,43 +21,36 @@
 				</button>
 			</a>
 			<button class="follow-button right" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
-				<i class="fa fa-plus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
+				<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
 			</button>
 			<a ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="right">
-				<br />
-				<br />
-				<span class="fa fa-smile-o"></span> {{'COMMUNITY_APPLY' | translate}}
-				&nbsp;
+				<button class="follow-button blue right"><i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}</button>
 			</a>
 			<span class="right" ng-if="!mine && info.is_applicant" >
 				<br />
-				<br />
-				{{'COMMUNITY_APPLICATION_SENT' | translate}} <span class="fa fa-smile-o"></span>
+				<div class="success"><span class="fa fa-smile-o"></span> {{'COMMUNITY_APPLICATION_SENT' | translate}}</div>
 			</span>
 
 			<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
-				<br />
-				<br />
-				<span class="fa fa-share"></span> {{'COMMUNITY_INVITE_FRIENDS' | translate}}
-				&nbsp;
+				<button class="follow-button blue right"><i class="fa fa-share"></i> {{'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
 			</a>
 		</div>
 		<div class="highlights">
 			<a href="#!/community/{{info._id}}" class="profile-photo">
 				<img ng-if="info.avatar.large" ng-src="{{info.avatar.large}}" />
 			</a>
-			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(9) == 'posts')}" class="friends-and-follows">
+			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(9) == 'posts')}" class="posts-count">
 				<b>{{info.post_count}}</b>
 				<br />
 				<pluralize-translate count="info.post_count" key="'GIVES_AND_WISHES'"></pluralize-translate>
 			</a>
-			<a href="#!/community/{{info._id}}/members" class="communities" ng-class="{'active': (pageSegment.substr(9) == 'members')}">
+			<a href="#!/community/{{info._id}}/members" class="members-count" ng-class="{'active': (pageSegment.substr(9) == 'members')}">
 				<b>{{info.member_count}}</b> 
 				<br />
                 <pluralize-translate count="info.member_count" key="'COMMUNITY_MEMBERS'"></pluralize-translate>
             </a>
-			<a href="#!/community/{{info._id}}/about" class="ratings" ng-class="{'active': (pageSegment.substr(9) == 'about')}">
-				{{ 'COMMUNITY_ABOUT_SHORT' | translate}}
+			<a href="#!/community/{{info._id}}/about" class="about" ng-class="{'active': (pageSegment.substr(9) == 'about')}">
+				<span>{{ 'COMMUNITY_ABOUT_SHORT' | translate}}</span>
             </a>
 		</div>
 	</header>

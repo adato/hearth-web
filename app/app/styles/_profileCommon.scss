@@ -1,6 +1,5 @@
 $medium-avatar-size: 80px;
 .profile-common {
-
     .error {
         color: red;
     }
@@ -39,7 +38,7 @@ $medium-avatar-size: 80px;
                 &:before {
                     margin-left: -50%;
                     text-align: right;
-                }                 
+                }
             }
             p {
                 margin-left:45px;
@@ -49,7 +48,7 @@ $medium-avatar-size: 80px;
                     margin-right: 10px;
                     color:color(1);
                 }
-            }      
+            }
         }
         .buttons {
             @extend .large-5, .columns;
@@ -63,6 +62,7 @@ $medium-avatar-size: 80px;
                 padding-left:1rem;
                 padding-right:1rem;
                 margin-right:1rem;
+                margin-top:0 !important;
                 &.invite-button {
                     @extend .blue-color;
                     white-space:nowrap;
@@ -72,12 +72,20 @@ $medium-avatar-size: 80px;
                     margin-right:10px;
                 }
             }
+            .success {
+                color:color(2);
+                padding:1rem;
+                border-radius:$global-radius;
+                border:1px solid color(2);
+            }
         }
         .highlights {
             @extend .columns;
             display:block;
             min-height:320px;
             padding:0;
+            padding-left:1rem;
+            padding-right:1rem;
             margin-top:10px;
             .profile-photo {
                 @extend .large-3, .columns;
@@ -115,7 +123,7 @@ $medium-avatar-size: 80px;
                     bottom:30px;
                 }
                 b {
-                    font-size:56px;
+                    font-size:46px;
                     font-weight:bold;
                     margin:5px;
                 }
@@ -145,6 +153,32 @@ $medium-avatar-size: 80px;
                 height:130px;
                 margin-top:40px;
                 margin-right:0;
+            }
+            .posts-count {
+                @extend .large-3, .columns, .bubble;
+                width:140px;
+                height:140px;
+            }
+            .members-count {
+                @extend .large-3, .columns, .bubble;
+                width:130px;
+                height:130px;
+                margin-top:100px;
+                b {
+                    display:inline-block;
+                    margin-top:.5rem;
+                }
+            }
+            .about {
+                @extend .large-3, .columns, .bubble;
+                width:130px;
+                height:130px;
+                margin-top:40px;
+                margin-right:20px;
+                span {
+                    display:inline-block;
+                    margin-top:1.8rem;
+                }
             }
             .karma-bar {
                 @extend .large-8, .columns, .pull-right;
