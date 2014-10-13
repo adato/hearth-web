@@ -481,15 +481,22 @@ $medium-avatar-size: 80px;
                     }
                     .activity-text {
                         @extend .clearfix;
-                        padding-top:20px;
                         padding-right:20px;
+
+                        /* padding-top:10px; */
+                        display: table-cell;
+                        height: 60px;
+                        vertical-align: middle;
+
                         margin-left:$medium-avatar-size;
                     }
                 }
                 .timeline-container {
                     position: relative;
-                    padding-bottom: 20px;
                     paddign-right: 20px;
+
+                    margin-bottom: 10px;
+                    padding-bottom: 1px;
 
                     h4 {
                         text-transform: uppercase;

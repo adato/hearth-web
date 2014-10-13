@@ -74,7 +74,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     Community.get({communityId: id}, function(res) {
                         $scope.community = $scope.transformDataIn(res);
                         $scope.loaded = true;
-                        // $scope.community.member_count = 1;
                     });
 
                     CommunityMembers.query({communityId: id}, function(res) {

@@ -19,7 +19,8 @@
 	            <a class="fright" ng-if="false">{{ 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
 	            <div class="clear"></div>
 
-	            <div ng-repeat="(id, item) in applications track by $index" class="rating" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].created_at : null">
+	            <div ng-repeat="(id, item) in applications track by $index" class="rating" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
+
 	            	<h4 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h4>
 	            	<div class="applications-item">
 	                    <a href="#!/community/{{item._id}} ">
@@ -73,17 +74,7 @@
             <h3>{{ 'COMMUNITY_ACTIVITY' | translate }}</h3>
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">
-                <div class="timeline-container">
-                    <div class="profile-timeline"></div>
-
-                    <div ng-repeat="(id, item) in activityLog track by $index" ng-init="item.prevDate = ($index > 0) ? activityLog[$index-1].created_at : null">
-                        <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
-                        <div class="activity">
-                            <div class="avatar"></div>
-                            <div class="activity-text" dynamic-text="item.text" dynamic-data="item.data"></div>
-                        </div>
-                    </div>
-                </div>
+                <div ng-include="'templates/_activityList.html'">
                 <div class="buttons">
                     <a href="#!/community/{{info._id}}/activity-feed">
                         <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
