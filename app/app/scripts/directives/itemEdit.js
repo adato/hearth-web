@@ -94,6 +94,7 @@ angular.module('hearth.directives').directive('itemEdit', [
 					//we need copy, because we change data and don't want to show these changes to user
 					postData = angular.extend(
 						angular.copy(scope.post), {
+							dateOrig: scope.post.date,
 							date: dateToTimestamp(scope.post.date),
 							id: scope.post._id
 						}

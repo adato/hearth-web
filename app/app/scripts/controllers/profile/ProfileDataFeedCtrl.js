@@ -87,20 +87,17 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             });
         }
 
+        // only hide post .. may be used later for delete revert
+        $scope.removeItemFromList = function($event, item) {
+            $( ".post_"+item._id ).slideUp( "slow", function() {});
+        };
+
         $scope.cancelEdit = function() {
             init();
         };
 
-        $scope.cancel = function(item) {
-            $('#confirm-delete-' + item._id).foundation('reveal', 'close');
-        };
-
-        $scope.remove = function(item) {
-            Post.remove({postId: item._id}, function (res) {
-
-                $scope.$emit('postCreated', item._id); // refresh post list
-                $scope.cancel(item);
-            }, processDataErr);
+        $scope.close = function() {
+            $scope.close();
         };
 
         function processData(res) {
@@ -127,6 +124,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             }
         }
 
+        $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);
         $scope.loaded && init();
     }

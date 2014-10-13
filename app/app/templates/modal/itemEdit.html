@@ -17,9 +17,10 @@
     <hr />
     <form ng-submit="save()" name="createAdForm" novalidate class="create-ad">
         <div>
-            <div class="messageBox" ng-if="!isPostActive(item)">
-                aaaa
-
+            <div class="messageBox" ng-if="!isPostActive(post)">
+                <span ng-if="post.is_expired && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.date | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+                <span ng-if="post.is_expired && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
+                <span ng-if="!post.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:'dd.MM.yyyy HH:mm:ss' }}</span>
             </div>
             <needofferselector class="fleft" model="post.type" community="loggedCommunity"></needofferselector>
             <div class="name" ng-class="{'community-style-name': loggedCommunity}">
@@ -106,7 +107,7 @@
             </div>
             <hr />
             <div class="bottom">
-                <a href="" ng-click="closeThisDialog()" class="fleft close">
+                <a href="" ng-click="closeEdit()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
                 <button class="primary button-send fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SUBMIT</button>
@@ -114,8 +115,8 @@
                 <a class="fright deleteLink" ng-if="post._id" data-reveal-id="confirm-delete-{{post._id}}">
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
-                <a class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle(post)">
-                    <span ng-if="!isPostActive(post)"><i class="fa" ng-class="{'fa-refresh': item.is_expired, 'fa-play': !item.is_expired}"></i>{{ 'ACTIVATE' | translate }}</span>
+                <a class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle(post, false, setPostActiveStateCallback)">
+                    <span ng-if="!isPostActive(post)"><i class="fa" ng-class="{'fa-refresh': post.is_expired, 'fa-play': !post.is_expired}"></i>{{ 'ACTIVATE' | translate }}</span>
                     <span ng-if="isPostActive(post)"><i class="fa fa-pause"></i>{{ 'DEACTIVATE' | translate }}</span>
                 </a>
             </div>

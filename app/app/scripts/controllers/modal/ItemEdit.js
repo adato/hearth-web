@@ -265,17 +265,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		};
 
-		$scope.delete = function() {
+        // when edited, we should change also original post
+        $scope.setPostActiveStateCallback = function(post) {
 
-			// $rootScope.$broadcast('removeAd', $scope.post._id);
-			// $rootScope.$emit('removeAd', $scope.post._id);
-			// $('#confirm-delete').foundation('reveal', 'close');
-		}
-
+        	$scope.postOrig.is_active = post.is_active;
+        	$scope.postOrig.is_expired = post.is_expired;
+        };
 
 		function transformDataIn(post) {
 			if (post) {
-
+				post.dateOrig = post.date;
 				post.date = $filter('date')(post.date, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
 				if(post.valid_until_unlimited) {
 					post.date = '';
@@ -292,11 +291,26 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return post;
 		}
 
+		$scope.itemDeleted = function($event, item) {
+
+			if($scope.post._id == item._id) $scope.closeEdit();
+		};
+
+		$scope.closeEdit = function() {
+			// == close all modal windows 
+			if($scope.post._id) {
+				$('#confirm-delete-'+$scope.post._id).foundation('reveal', 'close');
+				$('#confirm-pause-'+$scope.post._id).foundation('reveal', 'close');
+			}
+			
+			$scope.closeThisDialog();
+		};
+
 		$scope.init = function() {
 			$scope.post = transformDataIn($scope.post) || $scope.defaultPost;
-		}
+		};
 
 		$scope.init();
-
+		$rootScope.$on("itemDeleted", $scope.itemDeleted);
 	}
 ]);

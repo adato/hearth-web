@@ -1,4 +1,4 @@
-<article class="row" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine, inactive: !isPostActive(item)}">
+<article class="row post_{{ item._id }}" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine, inactive: !isPostActive(item)}">
 	<section ng-if="! hideAvatar" class="large-2 columns photo">
 		<div ng-include="'templates/_user-info.html'"></div>
 		<a ng-href="#!/{{profileLinkType[item.author._type]}}/{{ item.author._id }}">
@@ -74,9 +74,9 @@
 				<div class="clear"></div>
 			</div>
 			<footer>
-				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="toggleReportNotLoggedIn()">
+				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)">
 				</a>
-				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" data-reveal-id="confirm-report">
+				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" data-reveal-id="confirm-report-{{item._id}}">
 				</a>
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>

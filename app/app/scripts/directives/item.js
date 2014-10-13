@@ -37,12 +37,19 @@ angular.module('hearth.directives').directive('item', [
                     }
                 };
                 
-                scope.isPostActive = $rootScope.isPostActive;
-                scope.pauseToggle = $rootScope.pauseToggle;
+                // default values
                 scope.avatarStyle = {};
                 scope.reportNotLoggedIn = 0;
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
                 scope.keywords = scope.keywordsActive || [];
+                
+                // public methods from rootScope
+                scope.isPostActive = $rootScope.isPostActive;
+                scope.reportItem = $rootScope.reportItem;
+                scope.pauseToggle = $rootScope.pauseToggle;
+                scope.closeModal = $rootScope.closeModal;
+                scope.deleteItem = $rootScope.deleteItem;
+
 
                 function drawTimeline() {
 
@@ -131,22 +138,6 @@ angular.module('hearth.directives').directive('item', [
                     //scope.reportNotLoggedIn = !scope.reportNotLoggedIn;
                 };
 
-                scope.report = function() {
-                    if(Auth.isLoggedIn()) {
-
-                        scope.$emit('report', {
-                            id: scope.item._id
-                        });
-                        scope.reported = true;
-                        scope.cancel();
-                        $timeout(function() {
-                            scope.reported = false;
-                        }, timeout);
-                    } else {
-                        scope.reportNotLoggedIn = true;
-                    }
-                };
-
                 scope.sendReply = function() {
                     scope.$emit('sendReply', {
                         id: scope.item._id,
@@ -174,11 +165,6 @@ angular.module('hearth.directives').directive('item', [
 
                 scope.cancel = function() {
                     $('#confirm-delete-'+scope.item._id).foundation('reveal', 'close');
-                };
-
-                scope.remove = function() {
-                    scope.$emit('removeAd', scope.item._id);
-                    scope.cancel();
                 };
 
                 scope.$on('closeEditItem', function() {

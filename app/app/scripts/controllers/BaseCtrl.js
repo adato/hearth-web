@@ -94,11 +94,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.loadMyCommunities = function() {
 
-            // // when user is not logged, he has no communities
-            // if(!$rootScope.loggedUser._id) {
-            //     return $rootScope.myCommunities = $rootScope.myAdminCommunities = [];
-            // }
-
             CommunityMemberships.get({user_id: $rootScope.loggedUser._id},function(res) {
                 $rootScope.myCommunities = res;
                 $rootScope.myAdminCommunities = [];
@@ -145,7 +140,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.initFinished && $scope.initHearthbeat();
 
         // ======================================== PUBLIC METHODS =====================================
-        $rootScope.showLoginBox = function() {
+        $rootScope.showLoginBox = function(showMsgOnlyLogged) {
 
             ngDialog.open({
                 template: $$config.modalTemplates + 'loginBox.html',
@@ -154,12 +149,27 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        // send report to API and close modal.. maybe fire some notification too?
+        $rootScope.reportItem = function(item, modal) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox();
+
+            Post.spam({id: item._id}, function(res) {
+                if(modal) $('#'+modal).foundation('reveal', 'close');
+                $rootScope.$broadcast('reportItem', item);
+
+                alert("FLASH MESSAGE");
+            });
+        };
+
+        // open modal window for item edit
         $rootScope.editItem = function(post) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox();
 
             var scope = $scope.$new();
             scope.post = angular.copy(post);
+            scope.postOrig = post;
 
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
@@ -168,11 +178,36 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 closeByDocument: false,
                 showClose: false
             });
-
             dialog.closePromise.then(function(data) {});
         };
 
+        $rootScope.removeItemFromList = function(id, list) {
+            for (var i = 0; i < list.length; i++) {
+                if (list[i]._id === id) {
+                    list.splice(i, 1);
+                    break;
+                }
+            }
+            return list;
+        };
 
+        // delete item
+        $rootScope.deleteItem = function(post, modal, cb) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox();
+
+            Post.remove({postId:post._id}, function(res) {
+                if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
+                $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
+                cb && cb(post); // if callback given, call it
+            });
+        };
+
+        $rootScope.closeModal = function(item, modal) {
+            // if opened close modal window
+            if(modal) $('#'+modal).foundation('reveal', 'close');
+        };
+        
         $rootScope.replyItem = function(post) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox();
@@ -191,7 +226,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
-
         // show modal window with invite options
         $rootScope.openInviteBox = function() {
             if (!Auth.isLoggedIn())
@@ -207,7 +241,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             dialog.closePromise.then(function(data) {});
         };
-
 
         $rootScope.showTutorial = function(slides) {
 
@@ -226,16 +259,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
-
-        $rootScope.pauseToggle = function(item, modal) {
-            var Action;
+        // == deactivate / prolong / activate post item
+        // and close modal or call given callback
+        $rootScope.pauseToggle = function(item, modal, cb) {
+            var Action, actionType;
 
             // suspend or play based on post active state
-            if($rootScope.isPostActive(item)) 
+            if($rootScope.isPostActive(item)) {
+
                 Action = Post.suspend;
-            else
+                actionType = 'suspend';
+            } else {
+
                 // if item is expired, then prolong him, or just resume
                 Action = (item.is_expired) ? Post.prolong : Post.resume;
+                actionType = 'activate';
+            }
             
             // call service
             Action({
@@ -243,23 +282,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 },
                 function(res) {
                     // switch active state (inactive -> active | active -> inactive)
-                    item.is_active = !item.is_active;
+                    item.is_active = actionType == 'activate';
                     if( item.is_expired) {
+                        
                         // if post is expired, then prolong him and set him active
                         item.is_expired = false;
                         item.is_active = true;
                     }
 
-                    if(modal) {
-                        $('#'+modal).foundation('reveal', 'close');
-                    }
-                }
-            );
+                    if(modal) $('#'+modal).foundation('reveal', 'close');
+                    if(cb) cb(item);
+            });
         };
 
         // return false if post is inactive
         $rootScope.isPostActive = function(item) {
             return item.is_active && !item.is_expired;
-        }
+        };
     }
 ]);

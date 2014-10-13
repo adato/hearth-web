@@ -8,10 +8,10 @@
     </article>
     <article class="row">
         <section class="large-6 columns">
-            <button ng-click="remove(item, 'confirm-delete-'+item._id)">{{'OK' | translate}}</button>
+            <button ng-click="deleteItem(item, 'confirm-delete-'+item._id, deleteItemCallback)">{{'OK' | translate}}</button>
         </section>
         <section class="large-6 columns text-right">
-            <a class="link-button" ng-click="cancel(item)">{{'CANCEL' | translate}}</a>
+            <a class="link-button" ng-click="closeModal(item, 'confirm-delete-'+item._id)">{{'CANCEL' | translate}}</a>
         </section>
     </article>
 </div>
@@ -25,15 +25,15 @@
     </article>
     <article class="row">
         <section class="large-6 columns">
-            <button ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">{{'OK' | translate}}</button>
+            <button ng-click="pauseToggle(item, 'confirm-pause-'+item._id, setPostActiveStateCallback)">{{'OK' | translate}}</button>
         </section>
         <section class="large-6 columns text-right">
-            <a class="link-button" ng-click="cancel(item)">{{'CANCEL' | translate}}</a>
+            <a class="link-button" ng-click="closeModal(item, 'confirm-pause-'+item._id)">{{'CANCEL' | translate}}</a>
         </section>
     </article>
 </div>
 
-<div id="confirm-report" class="reveal-modal tiny" data-reveal>
+<div id="confirm-report-{{item._id}}" class="reveal-modal tiny" data-reveal>
     <article class="row">
         <section class="large-12 columns">
             <h2>{{'AD_REPORT_CONFIRM' | translate}}</h2>
@@ -42,10 +42,10 @@
     </article>
     <article class="row">
         <section class="large-6 columns">
-            <button ng-click="report(item, 'confirm-report')">{{'OK' | translate}}</button>
+            <button ng-click="reportItem(item, 'confirm-report-'+item._id)">{{'OK' | translate}}</button>
         </section>
         <section class="large-6 columns text-right">
-            <a class="link-button" ng-click="cancel(item)">{{'CANCEL' | translate}}</a>
+            <a class="link-button" ng-click="closeModal(item, 'confirm-report-'+item._id)">{{'CANCEL' | translate}}</a>
         </section>
     </article>
 </div>
