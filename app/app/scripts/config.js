@@ -11,10 +11,10 @@ $$config = {
 	// fbAppId: '277542219089599', // production
 	fbAppId: '769756073037691', // staging
 	fbAppId: {
-				facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
-				gplus: 'https://plus.google.com/share?url=' + url,
-				twitter: 'https://twitter.com/share?url=' + url,
-				linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url=' + url
+				facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+				gplus: 'https://plus.google.com/share?url=',
+				twitter: 'https://twitter.com/share?url=',
+				linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
 	},
 	features: {
 		aboutPage: false,
