@@ -3,25 +3,25 @@
         <h2>{{ 'INVITE_YOUR_FRIENDS_TO_HEARTH' | translate }}</h2>
         <ul>
             <li>
-                <a ng-href="">
+                <a ng-click="fbInvite()">
                     <i class="fa fa-facebook"></i>
                     {{ 'INVITE_FACEBOOK' | translate }}
                 </a>
             </li>
             <li>
-                <a ng-href="">
+                <a target="_blank" ng-href="{{endpoints.twitter + url}}">
                     <i class="fa fa-twitter"></i>
                     {{ 'INVITE_TWITTER' | translate }}
                 </a>
             </li>
             <li>
-                <a ng-href="">
+                <a target="_blank" ng-href="{{endpoints.gplus + url}}">
                     <i class="fa fa-google"></i>
                     {{ 'INVITE_GOOGLE' | translate }}
                 </a>
             </li>
             <li>
-                <a ng-href="">
+                <a target="_blank" ng-href="{{endpoints.linkedin + urlLinkedin}}">
                     <i class="fa fa-linkedin"></i>
                     {{ 'INVITE_LINKEDIN' | translate }}
                 </a>
@@ -34,9 +34,9 @@
             </li>
         </ul>
     </div>
-    <div class="emailForm" ng-if="showEmailForm">
+    <div class="emailForm register-login-dialog" ng-if="showEmailForm">
         <i class="fa fa-chevron-left toggle-form" ng-click="toggleEmailForm()"></i>
-        <form ng-submit="sendEmailInvitation()" id="inviteForm" name="inviteForm" novalidate>
+        <form ng-submit="sendEmailInvitation()" id="inviteForm" name="inviteForm" class="register-login-form" novalidate>
             <label>
                 {{ 'FILL_FRIENDS_EMAILS' | translate }}
                 <input name="addrs" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" ng-focus="showError.addrs = false" ng-blur="showError.addrs = true" ng-model="inv.addrs" class="text-input" type='text' ng-required="true">

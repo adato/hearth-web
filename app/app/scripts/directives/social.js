@@ -8,8 +8,7 @@
  */
 angular.module('hearth.directives').directive('social', [
 
-	'Facebook',
-	function(Facebook) {
+	function() {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -21,23 +20,19 @@ angular.module('hearth.directives').directive('social', [
 				facebookInvite: '@'
 			},
 			templateUrl: 'templates/directives/social.html',
-			link: function(scope) {
+			link: function($scope) {
+				$scope.url = "";
 
-				scope.fbInvite = function() {
-					Facebook.inviteFriends();
-					return false;
-				}
+				$scope.$watch('item', function(value) {
+					var title = encodeURIComponent(scope.title);
+					var summary = encodeURIComponent(scope.summary);
 
-				scope.$watch('item', function(value) {
-				 	var url = window.location.href.replace(window.location.hash, ''),
-						title = encodeURIComponent(scope.title),
-						summary = encodeURIComponent(scope.summary);
+				 	$scope.url = window.location.href.replace(window.location.hash, '');
 
 					if (value) {
-						url += '%23/ad/' + value;
+						$scope.url += '%23/ad/' + value;
 					}
-
-					angular.extend(scope, $$config.sharingEndpoints);
+					$scope.endpoints = $$config.sharingEndpoints;
 				});
 			}
 		};
