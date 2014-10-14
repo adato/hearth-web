@@ -75,19 +75,16 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.validateChangePasswordError = function(data) {
-			var res = true;
+			var invalid = false;
 
 			if ($scope.profileSettingsForm.newPass.$invalid) {
-				res = false;
-				$scope.showError.newPass = true;
+				invalid = $scope.showError.newPass = true;
 			}
 
 			if ($scope.profileSettingsForm.oldPass.$invalid) {
-				res = false;
-				$scope.showError.oldPass = true;
+				invalid = $scope.showError.oldPass = true;
 			}
-
-			return res;
+			return !invalid;
 		};
 
 		$scope.testOldPassword = function(pass, form, error, done) {

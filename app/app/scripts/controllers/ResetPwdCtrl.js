@@ -10,15 +10,21 @@
  angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 	'$scope', 'Auth', '$location', 'flash',
 	function($scope, Auth, $location, flash) {
+		$scope.validLink = true;
+		$scope.sent = false;
+
+		// check hash code if is valid
 		$scope.init = function() {
 			var search;
-			search = $location.search();
-			$scope.hash = search.hash;
+			$scope.hash = $location.search().hash
 			if (!$scope.hash) {
-				flash.error = 'MISSING_PASSWORD_RESET_HASH';
-				return $location.path('login');
+				$scope.validLink = false;
+			} else {
+				// check link
 			}
 		};
+
+
 		return $scope.resetPwd = function() {
 			var onError, onSuccess;
 			$scope.error = false;

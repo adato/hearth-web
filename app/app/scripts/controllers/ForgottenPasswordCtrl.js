@@ -3,31 +3,47 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.ForgottenPasswordCtrl
- * @description 
+ * @description
  */
- 
+
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
-	'$scope', 'Auth', 'flash', '$location', '$translate', 'ResponseErrors',
-	function($scope, Auth, flash, $location, $translate, ResponseErrors) {
-		$scope.passwordResetRequest = {
-			email: ''
-		};
-		$scope.errors = new ResponseErrors();
-		return $scope.requestPasswordReset = function() {
-			if (!$scope.forgottenPasswordForm.$valid) {
-				return;
-			}
-			$scope.errors = new ResponseErrors();
-			return Auth.requestPasswordReset($scope.passwordResetRequest.email).success(function() {
-				$translate('FORGOTTEN_PASSWORD_EMAIL_SUCCESS');
-				flash.success = 'FORGOTTEN_PASSWORD_EMAIL_SUCCESS';
-				return $location.path('login');
-			}).error(function(data, status) {
-				return $scope.errors = new ResponseErrors({
-					data: data,
-					status: status
-				});
-			});
-		};
-	}
+    '$scope', 'Auth', '$location', '$translate', 'ResponseErrors',
+    function($scope, Auth, $location, $translate, ResponseErrors) {
+        $scope.sent = false;
+        $scope.data = {
+            email: ''
+        };
+        $scope.showError = {
+            email: false
+        };
+
+        $scope.errors = new ResponseErrors();
+
+        $scope.validateData = function(form) {
+            var invalid = false;
+
+            if ($scope.resetPasswordForm.email.$invalid) {
+                invalid = $scope.showError.email = true;
+            }
+
+            return !invalid;
+        };
+
+        $scope.resetPassword = function() {
+            // is form valid?
+            if (!$scope.validateData($scope.data))
+                return false;
+
+            if($scope.sending) return false;
+            $scope.sending = true;
+            
+            return Auth.requestPasswordReset($scope.data.email).success(function() {
+                $scope.sent = true;
+            	$scope.sending = false;;
+            }).error(function(data, status) {
+            	$scope.sending = false;;
+                console.log(data, status);
+            });
+        };
+    }
 ]);

@@ -19,7 +19,6 @@ angular.module('hearth.directives').directive('showTextInPassword', [
 			link: function($scope, el, attrs) {
 				var el = $('input', el);
 				$scope.toggleShow = function() {
-					console.log(el.attr('type'));
 					if(el.attr('type') == 'password') {
 						el.attr('type', 'text');
 					} else {

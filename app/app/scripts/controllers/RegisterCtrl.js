@@ -3,43 +3,111 @@
 /**
  * @ngdoc controller
  * @name hearth.controllers.RegisterCtrl
- * @description 
+ * @description
  */
- 
+
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-	'$scope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location',
-	function($scope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location) {
-		if (Auth.isLoggedIn()) {
-			$location.path('profile/' + Auth.getCredentials()._id);
-			return;
-		}
-		$scope.sent = false;
-		$scope.sending = false;
-		$scope.user = new User();
-		$scope.errors = new ResponseErrors();
-		$scope.register = function() {
-			if (!$scope.registerForm.$valid) {
-				return;
-			}
-			$scope.errors = new ResponseErrors();
-			$scope.user.language = LanguageSwitch.uses();
-			$scope.sending = true;
-			return $scope.user.$save(function() {
-				$scope.sent = true;
-				$scope.sending = false;
-				return $analytics.eventTrack('registration email sent', {
-					category: 'registration',
-					label: 'registration email sent'
-				});
-			}, function(err) {
-				$scope.errors = new ResponseErrors(err);
-				$scope.sent = false;
-				$scope.sending = false;
-				return $analytics.eventTrack('error during registration', {
-					category: 'registration',
-					label: 'error during registration'
-				});
-			});
-		};
-	}
+    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location',
+    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location) {
+
+        $scope.user = new User();
+        $scope.sent = false; // show result msg
+        $scope.sending = false; // lock - send user only once
+        $scope.termsPath = false;
+
+        $scope.apiErrors = {};
+        $scope.showError = {
+            topError: false,
+            name: false,
+            email: false,
+            password: false,
+        };
+
+        $scope.validateData = function(user) {
+            var invalid = false;
+
+            if ($scope.registerForm.name.$invalid) {
+                invalid = $scope.showError.name = true;
+            }
+
+            if ($scope.registerForm.email.$invalid) {
+                invalid = $scope.showError.email = true;
+            }
+
+            if ($scope.registerForm.password.$invalid) {
+                invalid = $scope.showError.password = true;
+            }
+
+            return !invalid;
+        };
+
+        // no api endpoint for this reuqest yet        
+        // $scope.checkUsedEmail = function(email, cb) {
+        //     cb(false);
+        // };
+
+        // when registration is successfull - hide form and show success message
+        $scope.hideForm = function() {
+            $(".register-login-form").fadeOut('slow', function() {
+                $(".register-successful").fadeIn('slow', function() {});
+            });
+        };
+
+        $scope.sendRegistration = function(user) {
+
+            $scope.showError.topError = false;
+
+            // lock - dont send form twice
+            if ($scope.sending) return false;
+            $scope.sending = true;
+
+            return $scope.user.$save(function() {
+
+                $scope.sent = true;
+                $scope.sending = false;
+                $scope.hideForm();
+                return $analytics.eventTrack('registration email sent', {
+                    category: 'registration',
+                    label: 'registration email sent'
+                });
+
+            }, function(err) {
+                $scope.sending = false;
+                $scope.showError.topError = true;
+                $scope.apiErrors = new ResponseErrors(err);
+                if ($scope.apiErrors.email)
+                    $scope.showError.email = true;
+
+                return $analytics.eventTrack('error during registration', {
+                    category: 'registration',
+                    label: 'error during registration'
+                });
+            });
+        };
+
+        $scope.register = function(user) {
+            user.language = LanguageSwitch.uses();
+
+            if (!$scope.validateData(user)) return false;
+
+            // $scope.checkUsedEmail(user.email, function(isUsed) {
+            //     if (isUsed) {
+            //         $scope.registerForm.email.$error.used = true;
+            //         return $scope.showError.email = true;
+            //     }
+
+            $scope.sendRegistration(user);
+            // });
+        };
+
+        $scope.init = function() {
+            if (Auth.isLoggedIn()) {
+                return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+            }
+            $scope.termsPath = '/locales/' + LanguageSwitch.uses().code + '/terms.html';
+        };
+
+        $scope.$on('initFinished', $scope.init);
+        $rootScope.initFinished && $scope.init();
+    }
 ]);

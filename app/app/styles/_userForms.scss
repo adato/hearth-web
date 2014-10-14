@@ -41,7 +41,10 @@ $max-modal-window-width:23em;
 	a {
 		color: color(5);
 	}
-
+	
+	.register-successful {
+		display: none;
+	}
 	.register-login-form {
 		padding: {
 			left:0.9rem;

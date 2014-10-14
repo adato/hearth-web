@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'appConfig',
-	function($session, $http, $rootScope, $q, appConfig) {
+	'$session', '$http', '$rootScope', '$q',
+	function($session, $http, $rootScope, $q) {
 		return {
 			init: function(callback) {
 				$rootScope.user = {
@@ -28,11 +28,14 @@ angular.module('hearth.services').factory('Auth', [
 					return callback();
 				});
 			},
-			login: function(credentials) {
-				return $http.post(appConfig.apiPath + '/login', credentials).then(function(data) {
+			login: function(credentials, cb) {
+				return $http.post($$config.apiPath + '/login', credentials).then(function(data) {
+					
 					$rootScope.user = data.data.user;
 					$rootScope.user.loggedIn = true;
-					return $rootScope.$broadcast('onUserLogin');
+					$rootScope.$broadcast('onUserLogin');
+
+					cb(data);
 				});
 			},
 			logout: function(cb) {
@@ -40,17 +43,17 @@ angular.module('hearth.services').factory('Auth', [
 					if (session._id) {
 						delete session._id
 					}
-					$http.post(appConfig.apiPath + '/logout').success(cb).error(cb);
+					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
 				}, function() {
 
-					$http.post(appConfig.apiPath + '/logout').success(cb).error(cb);
+					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
 				});
 			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
 			},
 			changePassword: function(password, success) {
-				return $http.post(appConfig.apiPath + '/change-password', {
+				return $http.post($$config.apiPath + '/change-password', {
 					password: password
 				}).success(function(data) {
 					return success(data);
@@ -75,7 +78,7 @@ angular.module('hearth.services').factory('Auth', [
 				}
 			},
 			confirmRegistration: function(hash, success, err) {
-				return $http.post(appConfig.apiPath + '/users/confirm_registration', {
+				return $http.post($$config.apiPath + '/users/confirm_registration', {
 					'hash': hash
 				}).success(function(data) {
 					return success(data);
@@ -84,12 +87,12 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			requestPasswordReset: function(email) {
-				return $http.post(appConfig.apiPath + '/reset-password', {
+				return $http.post($$config.apiPath + '/reset_password', {
 					email: email
 				});
 			},
 			resetPassword: function(token, password, success, err) {
-				return $http.put(appConfig.apiPath + '/reset-password', {
+				return $http.put($$config.apiPath + '/reset_password', {
 					token: token,
 					password: password,
 					confirm: password
@@ -102,7 +105,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentity: function(identity) {
 				var defer;
 				defer = $q.defer();
-				$http.post(appConfig.apiPath + '/session/switch_identity/', {id: identity}).success(function(data) {
+				$http.post($$config.apiPath + '/session/switch_identity/', {id: identity}).success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);
@@ -112,7 +115,7 @@ angular.module('hearth.services').factory('Auth', [
 			switchIdentityBack: function() {
 				var defer;
 				defer = $q.defer();
-				$http.post(appConfig.apiPath + '/session/leave_identity').success(function(data) {
+				$http.post($$config.apiPath + '/session/leave_identity').success(function(data) {
 					return defer.resolve(data);
 				}).error(function(data) {
 					return defer.reject(data);

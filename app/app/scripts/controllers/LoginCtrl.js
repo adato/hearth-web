@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
-	'$scope', '$location', '$routeParams', 'Auth', '$rootScope', 'Login',
-	function($scope, $location, $routeParams, Auth, $rootScope, Login) {
+	'$scope', '$location', '$routeParams', 'Auth', '$rootScope',
+	function($scope, $location, $routeParams, Auth, $rootScope) {
 		$scope.data = {
 			username: '',
 			password: ''
@@ -23,26 +23,21 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		}
 
 		$scope.validateLogin = function(data) {
-			console.log(data);
 			return data.username != '' && data.password != '';
 		};
 
-		$scope.sendLogin = function(data) {
-
-			Login.send(data, function(res) {
-
-				console.log(res);
-			}, processLoginResult);
+		// if login is opened in modal window, close him
+		$scope.closeModal = function() {
+			if($scope.closeThisDialog) $scope.closeThisDialog();
 		};
 
-		$scope.login = function() {
+		$scope.login = function(data) {
 			$scope.showError.badCredentials = false;
 
-			if(! $scope.validateLogin($scope.data)) {
-				$scope.showError.badCredentials = true;
-			} else {
-				$scope.sendLogin($scope.login);
-			}
+			if(! $scope.validateLogin(data))
+				return $scope.showError.badCredentials = true;
+
+			Auth.login(data, processLoginResult);
 		};
 
 		$scope.init = function() {

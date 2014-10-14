@@ -142,17 +142,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function(showMsgOnlyLogged) {
 
+            $scope.showMsgOnlyLoggeg = showMsgOnlyLogged;
             ngDialog.open({
-                template: $$config.modalTemplates + 'loginBox.html',
+                template: $$config.templates + 'userForms/login.html',
                 controller: 'LoginCtrl',
-                scope: $scope
+                scope: $scope,
+                showClose: false
             });
         };
 
         // send report to API and close modal.. maybe fire some notification too?
         $rootScope.reportItem = function(item, modal) {
             if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox();
+                return $rootScope.showLoginBox(true);
 
             Post.spam({id: item._id}, function(res) {
                 if(modal) $('#'+modal).foundation('reveal', 'close');
@@ -165,7 +167,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // open modal window for item edit
         $rootScope.editItem = function(post) {
             if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox();
+                return $rootScope.showLoginBox(true);
 
             var scope = $scope.$new();
             scope.post = angular.copy(post);
@@ -194,7 +196,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // delete item
         $rootScope.deleteItem = function(post, modal, cb) {
             if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox();
+                return $rootScope.showLoginBox(true);
 
             Post.remove({postId:post._id}, function(res) {
                 if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
@@ -210,7 +212,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         
         $rootScope.replyItem = function(post) {
             if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox();
+                return $rootScope.showLoginBox(true);
             
             var scope = $scope.$new();
             scope.post = post;
@@ -229,7 +231,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // show modal window with invite options
         $rootScope.openInviteBox = function() {
             if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox();
+                return $rootScope.showLoginBox(true);
             
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'inviteBox.html',

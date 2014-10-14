@@ -3,6 +3,7 @@ var $$config;
 $$config = {
 	apiPath: '/api',
 	modalTemplates: 'templates/modal/',
+	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
 	defaultUserImage: 'images/no-avatar.png',

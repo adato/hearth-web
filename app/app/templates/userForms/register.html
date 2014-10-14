@@ -1,4 +1,4 @@
-<div class="register-form" ng-class="{ 'shifted-left': showTerms }">
+<div class="register-form" ng-class="{ 'shifted-left': showTerms && ! sent}">
     <div class="register-login-dialog">
         <div class="headMessage error">
         </div>
@@ -7,101 +7,47 @@
             <span class="close fa fa-times"></span>
         </div>
         <hr />
-        <form ng-submit="register()" name="registerForm" novalidate class="register-login-form">
-            <p class="error">{{ 'SIGNUP_PROCESS_ERROR' | translate }}</p>
+        <form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
+            <p class="error" ng-if="showError.topError">{{ 'SIGNUP_PROCESS_ERROR' | translate }}</p>
             <p>{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
-            <input type="text" name="title" placeholder="Jméno a příjmení" class="form-control text-input top" />
-            <div class="moveUp error">
-                <span>{{ 'SIGNUP_BAD_NAME' | translate }}</span>
+            <input type="text" name="name" ng-model="user.name" ng-focus="showError.name = false" placeholder="Jméno a příjmení" class="form-control text-input top" required />
+            <div class="moveUp error" ng-show="showError.name">
+                <span ng-show="registerForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+                <span ng-show="registerForm.name.$error.used">{{ 'SIGNUP_ERR_BAD_NAME' | translate }}</span>
             </div>
-            <input type="email" name="email" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" />
-            <div class="moveUp error">
-                <span>{{ 'SIGNUP_ALREADY_USED_EMAIL' | translate }}</span>
+            <input type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" required />
+            <div class="moveUp error" ng-show="showError.email">
+                <span ng-show="registerForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+                <span ng-show="registerForm.email.$error.used">{{ 'SIGNUP_ERR_ALREADY_USED_EMAIL' | translate }}</span>
+                <span ng-show="registerForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
+                <span ng-show="apiErrors.email">{{ apiErrors.email | translate }}</span>
             </div>
-            <input type="password" name="password" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" />
-            <div class="moveUp error">
-                <span>{{ 'SIGNUP_SHORT_PASSWORD' | translate }}</span>
-                <span>{{ 'SIGNUP_EASY_PASSWORD' | translate }}</span>
+
+            <show-text-in-password>
+                <input type="password" name="password" ng-model="user.password" ng-focus="showError.password = false" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" required ng-minlength="5" />
+            </show-text-in-password>
+            <div class="moveUp error" ng-show="showError.password">
+                <span ng-show="registerForm.password.$error.required">{{ 'SIGNUP_ERR_NO_PASSWORD' | translate }}</span>
+                <span ng-show="registerForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
             </div>
+
             <div class="clear"></div>
-        </form>
-        <hr />
-        <div class="social">
-            <a ng-href="{{ '/users/auth/facebook' | apiPrefix }}" class="fa fa-facebook"></a> <a ng-href="{{ '/users/auth/twitter' | apiPrefix }}" class="fa fa-twitter"></a> <a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" class="fa fa-google"></a>
-        </div>
-        <hr />
-        <div class="bottom">
-            <button class="primary button-send pointer center" type="submit"><i class="fa fa-user"></i> {{ 'SIGNUP_BUTTON' | translate }}</button>
-            <p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }} <a href="" ng-click="showTerms = !showTerms">{{ 'WITH_TERMS_OF_USE' | translate }}</a></p>
-            <p>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }} <a href="#!/login">{{ 'LOGIN_TO_HEARTH' | translate }}</a></p>
-        </div>
-        <div class="terms" ng-show="showTerms">
-            <h3>{{ 'TERMS_OF_USE_ON_HEARTH' | translate }}</h3>
-            <div class="scroll">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod feugiat consectetur. Praesent sed odio quis nisl gravida rhoncus. In quis lacus nec ligula luctus hendrerit. In placerat fermentum nisi, id placerat mauris hendrerit nec. Nullam pellentesque felis nunc, sed tincidunt neque suscipit ac. Sed convallis lacus ut mauris feugiat, et consequat augue mollis. Aliquam non dui a neque pellentesque lacinia. Aliquam dictum, orci quis congue sollicitudin, sapien erat vehicula urna, vel ultrices leo ante sed ligula. Suspendisse tincidunt a dui vel malesuada. Aliquam sapien urna, porttitor vitae euismod et, euismod vel nulla. Pellentesque imperdiet urna eu ipsum lacinia fermentum. Suspendisse euismod, nisl ut ultrices posuere, metus neque euismod dolor, ac mattis metus velit vel nunc. Etiam imperdiet volutpat metus at malesuada. Nunc dapibus laoreet arcu in pretium.
-                </p><p>
-                Maecenas luctus nisi quis sapien congue iaculis. Suspendisse eget tincidunt erat. Fusce vehicula ante ac malesuada pharetra. Morbi dapibus, sapien id maximus volutpat, diam ex vestibulum ligula, ac pharetra lectus dolor id enim. Donec elit quam, volutpat in congue sed, condimentum quis enim. Phasellus tincidunt commodo nunc, eu elementum libero egestas non. In imperdiet enim ut leo mattis, nec suscipit dolor venenatis. Donec feugiat semper leo, ac mattis purus congue et. Pellentesque dictum lectus et sollicitudin dignissim. Ut dictum pharetra consequat. Curabitur pharetra auctor ipsum non pretium.
-                </p>
+            <hr />
+            <div class="social">
+                <a ng-href="{{ '/users/auth/facebook' | apiPrefix }}" class="fa fa-facebook"></a> <a ng-href="{{ '/users/auth/twitter' | apiPrefix }}" class="fa fa-twitter"></a> <a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" class="fa fa-google"></a>
             </div>
+            <hr />
+            <div class="bottom">
+                <button class="primary button-send pointer center" type="submit"><i class="fa fa-user"></i> {{ 'SIGNUP_BUTTON' | translate }}</button>
+                <p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }} <a href="" ng-click="showTerms = !showTerms">{{ 'WITH_TERMS_OF_USE' | translate }}</a></p>
+                <p>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }} <a href="#!/login">{{ 'LOGIN_TO_HEARTH' | translate }}</a></p>
+            </div>
+            <div class="terms" ng-show="showTerms && ! sent">
+                <ng-include src="termsPath"></ng-include>
+            </div>
+        </form>
+        <div class="register-successful">
+            <p>{{ 'SIGNUP_WAS_SUCCESSFUL' | translate }}</p>
         </div>
     </div>
 </div>
-
-<!-- <div class="login">
-    <div class="left-column small-12 medium-12 large-7 columns alt-bg row">
-        <form name="registerForm" ng-show="!sent" ng-cloak ng-submit="register($event)" class="large-8 large-centered columns" with-errors novalidate>
-            <h1>{{ 'REGISTER_TO_HEARTH_TEXT' | translate }}</h1>
-            <div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
-
-            <div style="position:relative; z-index:11;">
-                <input class="text-input top" type="email" name="email" ng-model="user.email" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" autocorrect="off" autocapitalize="off" ng-required="true">
-            </div>
-
-            <div>
-                <input class="text-input middle" type="text" name="name" ng-model="user.name" placeholder="{{ 'FULLNAME_INPUT_PLACEHOLDER' | translate }}" ng-required="true" ng-pattern="/\S/">
-            </div>
-
-            <div>
-                <input class="text-input bottom" type="password" name="password" ng-model="user.password" placeholder="{{ 'PASSWORD_INPUT_PLACEHOLDER' | translate }}" ng-required="true">
-            </div>
-
-            <div>
-                <button type="submit" ng-disabled="sending || registerForm.$invalid" class="controls primary button radius" style="width:100%;" analytics-on analytics-event="registration - email" analytics-category="registration" analytics-value="8">
-                    {{ 'CREATE_ACCOUNT_BUTTON_CAPTION' | translate }}
-                </button>
-
-                <div>
-                    <br><br>
-                    <div class="text-center">
-                        <a ng-href="{{ '/users/auth/facebook' | apiPrefix }}" ng-cloak analytics-on analytics-event="registration - FB" analytics-category="registration" analytics-value="8">
-                            <i class="fa fa-facebook-sign"></i>
-                            {{ 'USE_FACEBOOK' | translate }}
-                        </a>
-                        <span class="padding">|</span>
-
-                        <a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" ng-cloak>
-                            <i class="fa fa-google-plus-sign" analytics-on analytics-event="registration - Google" analytics-category="registration" analytics-value="8"></i>
-                            {{ 'USE_GOOGLE' | translate }}
-                        </a>
-                        <br><br>
-
-                        <a ng-href="#!/login" style="padding-left:0;">
-                            {{ 'BACK_TO_LOGIN' | translate }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </form>
-
-        <form ng-show="sent" class="padding-2">
-            <h1 class="green"><i class="fa fa-check"></i> {{ 'OK_ACCOUNT_CREATED' | translate }}</h1>
-            <p>{{ 'OK_CHECK_YOUR_EMAIL_AND_CONFIG' | translate }}</p>
-        </form>
-    </div>
-
-    <div id="terms" class="reveal-modal" ng-controller="TermsCtrl">
-        <ng-include src="termsPath"></ng-include>
-        <a class="close-reveal-modal">&#215;</a>
-    </div>
-</div>
- -->
