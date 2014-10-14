@@ -32,41 +32,6 @@ $medium-avatar-size: 80px;
         }
     }
 
-
-    .people-listing {
-        @extend .clearfix;
-        a {
-            color:darken(color(3), 20%);
-            &:hover {
-                color:color(5);
-            }
-        }
-        .person {
-            @extend .large-4, .columns, .medium-avatar;
-            min-height:110px;
-            .name {
-                margin-left:100px;
-            }
-            h4 {
-                margin-top:30px;
-            }
-        }       
-    }
-
-    .ads-listing {
-        .large-10 {
-            float: unset;
-            margin: 0px auto;
-        }
-        &>article>section {
-            @extend .large-centered;
-        }
-        h3 {
-            text-align:center;
-            margin:20px;
-        }
-    }
-
     .community-listing {
         @extend .clearfix, .medium-avatar;
         clear:both;

@@ -56,297 +56,38 @@
     }
     
     .community-listings {
+        @extend .clearfix, .profile-listings;
+        .applications {
+            @extend .box, .community-applications-list;
+        }
+    }
+}
+
+
+.community-applications-list {
+    .application {
         @extend .clearfix;
-        .box {
-            background:lighten(color(4), 10%);
-            padding:0;
-            border-radius:$global-radius;
-            box-shadow:(-1px 3px 8px 0px rgba(150, 150, 150, 0.44));
-            margin-bottom:15px;
-
-            h3 {
-                font-size:120%;
-                color:color(3);
-                padding: {
-                    left:20px;
-                    top:10px;
-                    bottom:10px;
-                    right:20px;
-                }
-            }
-            .buttons {
-                text-align:center;
-            }
-            p {
-                margin: {
-                    left:30px;
-                    right:30px;
-                }   
-            }
+        margin-bottom:5px;
+        padding: {
+            top:10px;
+            bottom:0px;
+            left:20px;
+            right:20px;
         }
-
-        .left-pane {
-            @extend .large-7, .columns;
-            .messages {
-                @extend .box;
-
-                text-align:center;
-                font-size:130%;
-                border:2px solid color(5);
-                padding: {
-                    left:30px;
-                    top:20px;
-                    right:30px;
-                    bottom:20px;
-                }
-                .fa {
-                    color:color(5);
-                    border-radius:50%;
-                    border:2px solid lighten(color(5), 30%);
-                    padding:8px;
-                    display:inline-block;
-                    margin-right:15px;
-                }
-            }
-            .applications {
-                @extend .box;
-                .application {
-                    margin-bottom:5px;
-                    padding: {
-                        top:20px;
-                        bottom:20px;
-                        left:20px;
-                        right:20px;
-                    }
-                    background:lighten(color(5), 45%);
-                    small {
-                        font-size:0.85rem;
-                        line-height:125%;
-                    }
-                    .avatar {
-                        left:0;
-                        width:80px;
-                        height:80px;
-                        margin: {
-                            top:0px;
-                            left:20px;
-                            right:20px;
-                            bottom:20px;
-                        }
-                        float:left;
-                        &::before {
-                            width:80px;
-                            height:80px;
-                        }
-                        img {
-                            border-radius: 50%;
-                        }
-                    }
-                    .applications-text {
-                        font-size:1.2rem;
-                        line-height:125%;
-                        margin: {
-                            top:10px;
-                            bottom:10px;
-                            left:130px; 
-                        }
-                        .applications-from {
-                            display:inline-block;
-                            margin-top:10px;
-                        }
-                    }
-                    .date {
-                        float:right;
-                    }
-                }
-                button {
-                    @extend .button-flat;
-                    margin: {
-                        left:auto;
-                        right:auto;
-                    }
-                }
-            }
-            .ads {
-                @extend .box;
-                a.create-ad-sign {
-                    float:right;
-                    display:block;
-                    width:20px;
-                    height:20px;
-                    margin-top:5px;
-                }
-                .ad {
-                    font-size:120%;
-                    font-weight:bold;
-                    margin: {
-                        left:30px;
-                        right:15px;
-                        bottom:5px;
-                    }
-                    &>span { 
-                        vertical-align:super; 
-                    }                    
-                    .ad-controls {
-                        color: #1fb1e8;
-                        cursor: pointer;
-                        float:right;
-                        .fa {
-                            padding-left:10px;
-                        }
-                    }
-                }
-            }
+        background:lighten(color(5), 45%);
+        small {
+            font-size:0.85rem;
+            line-height:125%;
         }
-        .right-pane {
-            @extend .large-5, .columns;
-            padding:0;
-            .user-about {
-                @extend .box;
-            }
-            .activities {
-                @extend .box;
-                h4 {
-                    margin-left: 30px;
-                    font-size: 1.2rem;
-                    font-weight: bold;
-                    position: relative;
-                    background-color: white;
-                }
-                .activity {
-                    margin-left:30px;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                    position: relative;
-                    background-color: white;
-                    .avatar {
-                        float:left;
-                        left:0;
-                        margin:10px;
-                        margin-top: 5px;
-                        margin-bottom: 5px;
-                    }
-                    .activity-text {
-                        @extend .clearfix;
-                        padding-top:20px;
-                        margin-left:80px;
-                    }
-                }
-                .timeline-container {
-                    position: relative;
-                    padding-bottom: 20px;
-
-                    h4 {
-                        text-transform: uppercase;
-                    }
-                    .community-timeline {
-                        position: absolute;
-                        left: 60px;
-                        top: 0px;
-                        bottom: 0px;
-                        height: 100%;
-                        background-color: #cacaca;
-                        width: 5px;
-                    }
-                }
-            }
-        }
-    }
-
-    .bottom-tabs {
-        @extend .large-12, .columns, .clearfix;
-        text-align:center;
-        border-top:3px solid color(1);
-        padding-top:2px;
-        font-weight: bold;
-        margin: {
-            top:30px;
-            bottom:30px;
-        }
-        h2 {
-            color: #F95800;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        ul {
-            @include inline-list;
-            li>a {
-                background:darken(color(4), 40%);
-                color:lighten(color(4), 20%);
-                min-width:250px;
-                font-size:1.3rem;
-                padding: {
-                    left:30px;
-                    right:30px;
-                    top:5px;
-                    bottom:5px;
-                }
-                margin: {
-                    left:5px;
-                    right:5px;
-                    top:5px;
-                }
-                border-bottom-left-radius:$global-radius / 2;
-                border-bottom-right-radius:$global-radius / 2;
-                &:hover {
-                    background:darken(color(1), 10%);
-                }
-                &.selected {
-                    background:color(1);
-                }
-            }
-        }
-    }
-
-    .people-listing {
-        @extend .clearfix;
-        a {
-            color:darken(color(3), 20%);
-            &:hover {
-                color:color(5);
-            }
-        }
-        .person {
-            @extend .large-4, .columns;
-            .name {
-                margin-left:120px;
-            }
-            h4 {
-                margin-top:30px;
-            }
-            .avatar {
-                left:0;
-                width:80px;
-                height:80px;
-                margin:20px;
-                float:left;
-                &::before {
-                    width:80px;
-                    height:80px;
-                }
-            }            
-        }       
-    }
-
-    .ads-listing {
-        .large-10 {
-            float: unset;
-            margin: 0px auto;
-        }
-    }
-
-    .community-listing {
-        @extend .clearfix;
-        clear:both;
         .avatar {
             left:0;
             width:80px;
             height:80px;
             margin: {
-                top:10px;
-                left:20px;
-                right:20px;
-                bottom:10px;
+                top:0px;
+                left:10px;
+                right:10px;
+                bottom:20px;
             }
             float:left;
             &::before {
@@ -357,107 +98,66 @@
                 border-radius: 50%;
             }
         }
-        .community {
-            @extend .large-10, .large-centered, .clearfix;
+        .applications-text {
+            font-size:1.2rem;
+            line-height:125%;
             margin: {
-                bottom: 5px;
-                left:auto;
-                right:auto;
+                top:10px;
+                bottom:10px;
+                left:110px; 
             }
-            padding: {
-                top:20px;
-                bottom:20px;
-                left:20px;
-                right:20px;
+            .applications-from {
+                display:inline-block;
+                margin-top:10px;
             }
-            background:lighten(color(5), 45%);
-            small {
-                font-size:0.85rem;
-                float: right;
-                line-height:125%;
-                a {
-                    color: black;
-                    opacity: 0.7;
-                    &.admin {
-                        opacity: 1;
-                        color: #F95800;
-                    }
-                }
-            }
-            .community-text {
-                font-size:1.2rem;
-                line-height:125%;
-                margin: {
-                    top:10px;
-                    bottom:10px;
-                    left:130px; 
-                }
-                .rating-from {
-                    display:inline-block;
-                    margin-top:10px;
+            a {
+                color:darken(color(3), 20%);
+                &:hover {
+                    color:color(5);
                 }
             }
         }
+        .applications-buttons {
+            @extend .community-applications-buttons;
+        }
+        .date {
+            float:right;
+        }
     }
-    .rating-listing {
-        @extend .clearfix;
+    .buttons {
         clear:both;
-        .rating {
-            @extend .large-10, .large-centered, .clearfix;
-            margin: {
-                bottom: 5px;
-                left:auto;
-                right:auto;
-            }
-            padding: {
-                top:20px;
-                bottom:20px;
-                left:20px;
-                right:20px;
-            }
-            background:lighten(color(5), 45%);
-            small {
-                font-size:0.85rem;
-                line-height:125%;
-            }
-            .avatar {
-                left:0;
-                width:80px;
-                height:80px;
-                margin: {
-                    top:0px;
-                    left:20px;
-                    right:20px;
-                    bottom:20px;
-                }
-                float:left;
-                &::before {
-                    width:80px;
-                    height:80px;
-                }
-                img {
-                    border-radius: 50%;
-                }
-            }
-            .rating-text {
-                font-size:1.2rem;
-                line-height:125%;
-                margin: {
-                    top:10px;
-                    bottom:10px;
-                    left:130px; 
-                }
-                .rating-from {
-                    display:inline-block;
-                    margin-top:10px;
-                }
-            }
-            .date {
-                float:right;
-            }
+    }
+    button {
+        margin: {
+            left:auto;
+            right:auto;
         }
     }
+}
 
+.community-applications-buttons {
+    float:right;
+    margin-top:-4rem;
+    a {
+        @extend .clearfix;
+        font-size:2em;
+        border:2px solid color(5);
+        border-radius:50%;
+        margin:.5rem;
+        padding:.5rem;
+        width:3.2rem;
+        height:3.2rem;
+        text-align:center;
+        display:inline-block;
+        &.yes:hover {
+            color:color(2);
+            border-color:color(2);
+        }
+        &.no:hover {
+            border-color:color(1);
+            color:color(1);
+        }
+    }
 }
 
 .mine-community {

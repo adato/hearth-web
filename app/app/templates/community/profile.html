@@ -17,7 +17,7 @@
 		<div class="buttons">
 			<a ng-if="mine" href="#!/community/{{info._id}}/edit">
 				<button class="follow-button blue right">
-					<i class="fa fa-plus"></i> {{ 'SETTINGS' | translate}}
+					<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
 				</button>
 			</a>
 			<button class="follow-button right" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">

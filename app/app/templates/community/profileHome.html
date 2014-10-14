@@ -2,12 +2,12 @@
 <br />
 
 <!-- two columns displayed in main page of user profile -->
-<div class="profile-listings">
+<div class="community-listings">
     <div class="left-pane">
         <!-- <div class="messages">
                 <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
             </div> -->
-        <div class="ratings" ng-if="mine">
+        <div class="applications" ng-if="mine">
             
             <div ng-if="!applications.length">
                 <h3>{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
@@ -15,15 +15,15 @@
             </div>
             <div ng-if="applications.length">
 
-                <h3 class="small-8 fleft">{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}} - {{applications.length}}</h3>
+                <h3 class="small-8 fleft">{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}}: {{applications.length}}</h3>
 	            <a class="fright" ng-if="false">{{ 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
 	            <div class="clear"></div>
 
-	            <div ng-repeat="(id, item) in applications track by $index" class="rating" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
+	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 
-	            	<h4 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h4>
+	            	<!--<h5 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h5>-->
 	            	<div class="applications-item">
-	                    <a href="#!/community/{{item._id}} ">
+	                    <a href="#!/profile/{{item._id}} ">
                             <div class="avatar">
                                 <img ng-if="item.avatar.normal" ng-src="{{item.avatar.normal}}" />
                             </div>
@@ -31,14 +31,15 @@
                         <div class="applications-text">
                             <a href="#!/profile/{{item._id}} ">
 		                    	{{item.name | ellipsis}}
-		                    	<br />
+                            </a><br>
+                            <a href="#!/profile/{{item._id}} ">
 		                    	<small>{{ 'SHOW_PROFILE' | translate}}</small>
-		                    </a>
+                            </a>
 		                </div>
-		                <div class="application-buttons">
-		                	<a ng-click="approveApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_ACCEPT' | translate }}"><i class="fa fa-check"></i></a>
-		                	<a ng-click="rejectApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_REJECT' | translate }}"><i class="fa fa-times"></i></a>
-		                </div>
+                        <div class="applications-buttons">
+                            <a ng-click="approveApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
+                            <a ng-click="rejectApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
+                        </div>
 	            	</div>
 	            </div>
 	            <div class="buttons">
