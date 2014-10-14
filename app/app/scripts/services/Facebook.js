@@ -7,16 +7,16 @@
  */
 
 angular.module('hearth.services').service('Facebook', [
-	'$translate', 'appConfig',
+	'$translate',
 	
-	function($translate, appConfig) {
+	function($translate) {
 		var inited = false;
 
 		this.init = function() {
 
 			if (!inited) {
 				FB.init({
-					appId: appConfig.fbAppId,
+					appId: $$config.fbAppId,
 					cookie: true,
 					status: true,
 					xfbml: true

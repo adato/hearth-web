@@ -19,7 +19,12 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		};
 
 		function processLoginResult(res) {
-			$scope.showError.badCredentials = true;
+			if(res.data && res.data.ok === true) {
+				console.log(res);
+				window.location = window.location.pathname;
+			} else {
+				$scope.showError.badCredentials = true;
+			}
 		}
 
 		$scope.validateLogin = function(data) {

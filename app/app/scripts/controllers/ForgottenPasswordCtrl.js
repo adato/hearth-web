@@ -39,7 +39,8 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
             
             return Auth.requestPasswordReset($scope.data.email).success(function() {
                 $scope.sent = true;
-            	$scope.sending = false;;
+            	$scope.sending = false;
+                
             }).error(function(data, status) {
             	$scope.sending = false;;
                 console.log(data, status);

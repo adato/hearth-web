@@ -29,14 +29,7 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			login: function(credentials, cb) {
-				return $http.post($$config.apiPath + '/login', credentials).then(function(data) {
-					
-					$rootScope.user = data.data.user;
-					$rootScope.user.loggedIn = true;
-					$rootScope.$broadcast('onUserLogin');
-
-					cb(data);
-				});
+				return $http.post($$config.apiPath + '/login', credentials, {nointercept: true}).then(cb, cb);
 			},
 			logout: function(cb) {
 				return $session.then(function(session) {

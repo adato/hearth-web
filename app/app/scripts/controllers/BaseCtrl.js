@@ -141,7 +141,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function(showMsgOnlyLogged) {
-
+            
             $scope.showMsgOnlyLoggeg = showMsgOnlyLogged;
             ngDialog.open({
                 template: $$config.templates + 'userForms/login.html',

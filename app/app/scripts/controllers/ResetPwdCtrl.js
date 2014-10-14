@@ -8,55 +8,70 @@
  */
  
  angular.module('hearth.controllers').controller('ResetPwdCtrl', [
-	'$scope', 'Auth', '$location', 'flash',
-	function($scope, Auth, $location, flash) {
-		$scope.validLink = true;
+	'$scope', 'Auth', '$location',
+	function($scope, Auth, $location) {
+		$scope.hash = true;
 		$scope.sent = false;
+
+		$scope.data = {
+			password: '',
+			password2: '',
+		};
+
+		$scope.showError = {
+			topError: false,
+			password: false,
+			password2: false,	
+		};
+		
+		$scope.validateData = function(data) {
+            var invalid = false;
+
+            if ($scope.resetPasswordForm.password.$invalid) {
+                invalid = $scope.showError.password = true;
+            }
+
+            if ($scope.resetPasswordForm.password2.$invalid) {
+                invalid = $scope.showError.password2 = true;
+            }
+
+            if (!invalid && data.password !== data.password2) {
+            	$scope.showError.password2 = true;
+                invalid = $scope.resetPasswordForm.password2.$error.passwordDoesNotMatch = true;
+            }
+            
+            return !invalid;
+        };
+
+		$scope.resetPassword = function(data) {
+			$scope.showError.topError = false;
+			if(!$scope.validateData(data))
+				return false;
+
+			function onSuccess() {
+				$scope.sent = true;
+			}
+
+			function onError() {
+				$scope.showError.topError = true;
+			}
+
+			return Auth.resetPassword($scope.hash, data.password, onSuccess, onError);
+		};
 
 		// check hash code if is valid
 		$scope.init = function() {
-			var search;
-			$scope.hash = $location.search().hash
+			$scope.hash = $location.search().hash;
+
 			if (!$scope.hash) {
-				$scope.validLink = false;
+				$scope.hash = false;
 			} else {
-				// check link
+				// validate link
+				// $scope.hash = false;
 			}
 		};
 
-
-		return $scope.resetPwd = function() {
-			var onError, onSuccess;
-			$scope.error = false;
-			if (!$scope.resetPwdForm.$invalid) {
-				if ($scope.password1 !== $scope.password2) {
-					$scope.error = 'ERR_PASSWORDS_DONT_MATCH';
-					return $scope.error;
-				} else {
-					onSuccess = function() {
-						flash.success = 'PASSWORD_RESET_SUCCESS';
-						return $location.path('login');
-					};
-					onError = function(data) {
-						$scope.error = data;
-						return $scope.error;
-					};
-					return Auth.resetPassword($scope.hash, $scope.password1, onSuccess, onError);
-				}
-			}
-		};
+		$scope.init();
+		
 	}
-]).directive('pwCheck', function() {
-	return {
-		require: 'ngModel',
-		link: function(scope, elem, attrs, ctrl) {
-			var firstPassword = '#' + attrs.pwCheck;
-			$(elem).on('keyup', function() {
-				scope.$apply(function() {
-					var v = elem.val() === $(firstPassword).val();
-					ctrl.$setValidity('pwcheck', v);
-				});
-			});
-		}
-	};
-});
+]);

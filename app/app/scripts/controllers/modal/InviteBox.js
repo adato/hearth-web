@@ -7,13 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-	'$scope', '$rootScope', 'Invitation',
-	function($scope, $rootScope, Invitation) {
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph',
+	function($scope, $rootScope, Invitation, OpenGraph) {
 		$scope.showEmailForm = false;
 		$scope.inv = {
 			text: '',
 			addrs: '',
 		};
+		$scope.inviteInfo = OpenGraph.getDefaultInfo();
 
 		function handleResult (res) {
 			console.log(res);
@@ -28,7 +29,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
 		$scope.sendEmailInvitation = function() {
 			Invitation.add($scope.inv, handleResult);
-		}
+		};
 
 		// func will show or hide email form
 		$scope.toggleEmailForm = function() {

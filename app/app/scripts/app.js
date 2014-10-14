@@ -34,15 +34,24 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'angular-flexslider', 'route-se
     ]).factory('HearthLoginInterceptor', [
         '$q', '$location', '$timeout', '$rootScope',
         function($q, $location, $timeout, $rootScope) {
+            // middleware for handling ajax responses
             return function(promise) {
                 return promise.then(function(response) {
+                    // when ok, it will pass
                     return response;
                 }, function(response) {
-                    if (response.status === 401) {
-                        $rootScope.referrerUrl = $location.path();
-                        $location.path('/login');
+                    // when request failed and interceptor is turned on
+                    if (response.config.nointercept) {
+                        return $q.reject(response);
+                    } else {
+                        // it will check 401 status (unauthorized)
+                        if (response.status === 401) {
+                            $rootScope.referrerUrl = $location.path();
+                            // and reload to /login page
+                            $location.path('/login');
+                        }
+                        return $q.reject(response);
                     }
-                    return $q.reject(response);
                 });
             };
         }
