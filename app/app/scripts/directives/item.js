@@ -45,6 +45,7 @@ angular.module('hearth.directives').directive('item', [
                 
                 // public methods from rootScope
                 scope.isPostActive = $rootScope.isPostActive;
+                scope.loggedUser = $rootScope.loggedUser;
                 scope.showLoginBox = $rootScope.showLoginBox;
                 scope.reportItem = $rootScope.reportItem;
                 scope.pauseToggle = $rootScope.pauseToggle;
