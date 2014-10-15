@@ -9,7 +9,8 @@ $$config = {
 	defaultUserImage: 'images/no-avatar.png',
 	gApiKey: 'AIzaSyDArE48iXuR16XEp8zEUDo4g6E7GSqGJgc',
 	// fbAppId: '277542219089599', // production
-	fbAppId: '769756073037691', // staging
+	// fbAppId: '769756073037691', // staging
+	fbAppId: '1495788017321716', // dev
 	sharingEndpoints: {
 				facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
 				gplus: 'https://plus.google.com/share?url=',
