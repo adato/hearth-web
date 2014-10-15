@@ -34,14 +34,14 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
             // Check if email is in our DB
             Email.exists({email: email}, function(res) {
-                if (res.exists) {
+                if (res.ok) {
                    
                     // show error when email does not exist
                     $scope.showError.email = true;
                     $scope[form][inputName].$error.used = true;
                 }
                 // call callbeck
-                cb && cb(res.exists);
+                cb && cb(res.ok);
             });
         };
 

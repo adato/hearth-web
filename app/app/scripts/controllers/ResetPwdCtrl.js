@@ -10,8 +10,9 @@
  angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 	'$scope', 'Auth', '$location',
 	function($scope, Auth, $location) {
-		$scope.hash = true;
+		$scope.token = true;
 		$scope.sent = false;
+		$scope.tokenVerified = false;
 
 		$scope.data = {
 			password: '',
@@ -42,6 +43,7 @@
             
             return !invalid;
         };
+        
 
 		$scope.resetPassword = function(data) {
 			$scope.showError.topError = false;
@@ -56,22 +58,37 @@
 				$scope.showError.topError = true;
 			}
 
-			return Auth.resetPassword($scope.hash, data.password, onSuccess, onError);
+			return Auth.resetPassword($scope.token, data.password, onSuccess, onError);
 		};
 
-		// check hash code if is valid
-		$scope.init = function() {
-			$scope.hash = $location.search().hash;
-
-			if (!$scope.hash) {
-				$scope.hash = false;
-			} else {
-				// validate link
-				// $scope.hash = false;
+		/**
+		 * Check on api if given token is valid
+		 */
+		$scope.validateToken = function(token) {
+			
+			// if token is not given, then show message
+			if(!token)
+				return $scope.tokenVerified = true;
+			else {
+				
+				// if token is given, check api
+				Auth.checkResetPasswordToken(token, function(res) {
+					if(!res.ok) {
+						// if not valid, set him to false
+						$scope.token = false;
+					}
+					$scope.tokenVerified = true;
+				});
 			}
+		}
+
+		// check token code if is valid
+		$scope.init = function() {
+			$scope.token = $location.search().hash;
+
+			$scope.validateToken($scope.token);
 		};
 
 		$scope.init();
-		
 	}
 ]);

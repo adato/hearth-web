@@ -84,6 +84,13 @@ angular.module('hearth.services').factory('Auth', [
 					email: email
 				});
 			},
+			checkResetPasswordToken: function(token, cb) {
+				return $http.get($$config.apiPath + '/users/check_reset_password_token?token='+token).success(function(res) {
+					return cb(res);
+				}).error(function(res) {
+					return cb(res);
+				});
+			},
 			resetPassword: function(token, password, success, err) {
 				return $http.put($$config.apiPath + '/reset_password', {
 					token: token,
