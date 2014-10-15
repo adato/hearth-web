@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
-    '$scope', 'Auth', '$location', '$translate', 'ResponseErrors',
-    function($scope, Auth, $location, $translate, ResponseErrors) {
+    '$scope', 'Auth', '$location', '$translate', 'ResponseErrors', 'Email',
+    function($scope, Auth, $location, $translate, ResponseErrors, Email) {
         $scope.sent = false;
         $scope.data = {
             email: ''
@@ -18,32 +18,53 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
         };
 
         $scope.errors = new ResponseErrors();
+        
+        $scope.testEmailExists = function(email, form, inputName, cb) {
 
-        $scope.validateData = function(form) {
-            var invalid = false;
+            $scope[form][inputName].$error.unknown = false;
+            // dont check when email is blank
+            if (!email) return false;
 
+            // Check if email is in our DB
+            Email.exists({email: email}, function(res) {
+                if (!res.exists) {
+                   
+                    // show error when email does not exist
+                    $scope.showError.email = true;
+                    $scope[form][inputName].$error.unknown = true;
+                }
+                // call callbeck
+                cb && cb(res.exists);
+            });
+        };
+
+        $scope.validateEmail = function(form, cb) {
+            $scope.showError.email = true;
+            // if form is not valid, return false
             if ($scope.resetPasswordForm.email.$invalid) {
-                invalid = $scope.showError.email = true;
+                cb && cb(false);
+            } else {
+                // else test if email exists
+                $scope.testEmailExists(form.email, 'resetPasswordForm', 'email',cb);
             }
-
-            return !invalid;
         };
 
         $scope.resetPassword = function() {
-            // is form valid?
-            if (!$scope.validateData($scope.data))
-                return false;
+            // is email valid?
+            $scope.validateEmail($scope.data, function(res) {
+                if(!res) return false;
 
-            if($scope.sending) return false;
-            $scope.sending = true;
-            
-            return Auth.requestPasswordReset($scope.data.email).success(function() {
-                $scope.sent = true;
-            	$scope.sending = false;
-                
-            }).error(function(data, status) {
-            	$scope.sending = false;;
-                console.log(data, status);
+                if ($scope.sending) return false;
+                $scope.sending = true;
+
+                return Auth.requestPasswordReset($scope.data.email).success(function() {
+                    $scope.sent = true;
+                    $scope.sending = false;
+
+                }).error(function(data, status) {
+                    $scope.sending = false;
+                    console.log(data, status);
+                });
             });
         };
     }

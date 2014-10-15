@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location',
-    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location) {
+    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email',
+    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email) {
 
         $scope.user = new User();
         $scope.sent = false; // show result msg
@@ -21,6 +21,28 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             name: false,
             email: false,
             password: false,
+        };
+
+        $scope.checkEmailExists = function(email, form, inputName, cb) {
+
+            $scope[form][inputName].$error.used = false;
+            $scope.apiErrors.email = false;
+            
+            // dont check when email is invalid
+            if ($scope[form][inputName].$invalid)
+                return false;
+
+            // Check if email is in our DB
+            Email.exists({email: email}, function(res) {
+                if (res.exists) {
+                   
+                    // show error when email does not exist
+                    $scope.showError.email = true;
+                    $scope[form][inputName].$error.used = true;
+                }
+                // call callbeck
+                cb && cb(res.exists);
+            });
         };
 
         $scope.validateData = function(user) {
@@ -55,6 +77,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
         $scope.sendRegistration = function(user) {
 
+            $scope.registerForm.email.$error.used = false;
             $scope.showError.topError = false;
 
             // lock - dont send form twice
