@@ -529,13 +529,14 @@ $medium-avatar-size: 80px;
                 }
             }
             .timeline-container {
+                overflow: hidden;
                 position: relative;
-                paddign-right: 20px;
-
+                padding-right: 20px;
                 margin-bottom: 10px;
                 padding-bottom: 1px;
 
                 h4 {
+                    margin-top:0;
                     text-transform: uppercase;
                 }
                 .profile-timeline {
@@ -546,6 +547,7 @@ $medium-avatar-size: 80px;
                     height: 100%;
                     background-color: #cacaca;
                     width: 5px;
+                    margin-top:-20px;
                 }
             }
         }
