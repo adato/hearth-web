@@ -34,20 +34,27 @@
             </li>
         </ul>
     </div>
-    <div class="emailForm register-login-dialog" ng-if="showEmailForm">
+    <div class="emailForm register-login-dialog" ng-show="showEmailForm">
         <i class="fa fa-chevron-left toggle-form" ng-click="toggleEmailForm()"></i>
-        <form ng-submit="sendEmailInvitation()" id="inviteForm" name="inviteForm" class="register-login-form" novalidate>
+        <form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="register-login-form" novalidate>
+            <p class="success" ng-if="sent">{{ 'INVITE_EMAIL_WAS_SENT' | translate }}</p>
             <label>
                 {{ 'FILL_FRIENDS_EMAILS' | translate }}
-                <input name="addrs" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" ng-focus="showError.addrs = false" ng-blur="showError.addrs = true" ng-model="inv.addrs" class="text-input" type='text' ng-required="true">
-                <div class="absolute error" ng-show="showError.addrs">
-                    <span ng-show="profileEditForm.addrs.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+                <input name="to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" ng-focus="showError.to_email = false" ng-blur="showError.to_email = true; testEmailsFormat(inv.to_email)" ng-model="inv.to_email" class="text-input" type='text' ng-required="true">
+                <div class="moveUp error" ng-show="showError.to_email">
+                    <span ng-show="inviteForm.to_email.$error.required">{{ 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
+                    <span ng-show="inviteForm.to_email.$error.format">{{ 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
                 </div>
             </label>
             <label>
                 {{ 'FILL_EMAIL_INVITATION_MESSAGE' | translate }}
-                <textarea autosize-textarea max-len="300" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" ng-model="inv.text"></textarea>
-                <max-len-counter class="moveUp" max-len="300" value="inv.text"></max-len-counter>
+                <textarea name="message" autosize-textarea max-len="300" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" ng-model="inv.message" ng-focus="showError.message = false" ng-blur="showError.message = true" required></textarea>
+
+                <max-len-counter class="moveUp" max-len="300" value="inv.message"></max-len-counter>
+                <div class="moveUp error" ng-show="showError.message">
+                    <span ng-show="inviteForm.message.$error.required">{{ 'ERR_NOT_FILLED_INVITE_TEXT' | translate }}</span>
+                    <span ng-show="inviteForm.message.$error.maxlength">{{ 'ERR_FILLED_INVITE_TEXT_TOO_LONG' | translate }}</span>
+                </div>
             </label>
             <button type="submit" class="button-send right" analytics-on analytics-event="send email invitation" analytics-category="General" analytics-value="5">{{ 'SEND_EMAIL_INVITATION' | translate }}</button>
         </form>

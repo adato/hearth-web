@@ -10,7 +10,7 @@ angular.module('hearth.services').factory('Email', [
 	'$resource', 'appConfig',
 
 	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/users/exists_email', {
+		return $resource(appConfig.apiPath + '/users/check_email', {
 			email: '@email'
 		}, {
 			exists: {
