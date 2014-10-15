@@ -1,9 +1,9 @@
 <section class="tutorial tcenter">
 	<article class="opening" ng-if="! slider">
+		<span class="controlls"><i class="fa fa-times close-button" ng-click="close()"></i></span>
 		<h2>{{ 'TUTORIAL_HEADER' | translate }}</h2>
 		<br />
 		<br />
-
 		<button class="tbutton" ng-click="showMeMagic()">{{ 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
 		<br />
 		<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
@@ -23,7 +23,9 @@
 						<p>{{ item.text }}</p>
 						<div class="clear"></div>
 					</header>
-					<img ng-src="{{ item.image }}" title="{{ item.text }}" />
+					<div class="slider-image">
+						<img ng-src="{{ item.image }}" title="{{ item.text }}" />
+					</div>
 				</li>
 			</ul>
 			<div class="tright closeAll">

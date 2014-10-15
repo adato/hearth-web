@@ -24,6 +24,42 @@
 		    margin: auto;
 		    vertical-align: middle;
 
+
+			span.controlls {
+				.fa  {
+				    position: absolute;
+				    cursor: pointer;
+				    &:hover {
+				    	color: #FE4300;
+				    	text-shadow: -1px 0px 8px #FE4300;
+			    	}
+				}
+
+				.fa-angle-left,
+				.fa-angle-right {
+					font-size: 100px;
+				}
+
+				.fa-angle-left {
+				    left: -40px;
+				    top: 25px;
+				}
+				.fa-angle-right {
+				    right: -40px;
+				    top: 25px;
+				}
+
+				.close-button {
+					z-index: 1000;
+					color: #c5c6c7;
+				    cursor: pointer;
+				    font-size: 30px;
+				    position: absolute;
+			        right: -25px;
+					top: -50px;
+				}
+			}
+
 			.opening {
 				width: 600px;
 			    height: 290px;
@@ -62,47 +98,16 @@
 				}
 			}
 
-
 			.slider {
 				position: absolute;
 				top: 0px;
 				bottom: 0px;
 				height: 100%;
 
-				span.controlls {
-					.fa  {
-					    position: absolute;
-					    cursor: pointer;
-					    &:hover {
-					    	color: #FE4300;
-					    	text-shadow: -1px 0px 8px #FE4300;
-				    	}
-					}
-
-					.fa-angle-left,
-					.fa-angle-right {
-						font-size: 100px;
-					}
-
-					.fa-angle-left {
-					    left: -90px;
-					    top: 25px;
-					}
-					.fa-angle-right {
-					    right: -40px;
-					    top: 25px;
-					}
-
-					.close-button {
-						z-index: 1000;
-						color: #c5c6c7;
-					    cursor: pointer;
-					    font-size: 30px;
-					    position: absolute;
-				        right: -25px;
-	    				top: -30px;
-					}
+				.flex-viewport {
+					width: 650px;
 				}
+
 				.flexslider {
 				    background: transparent;
 	    			border-width: 0px;
@@ -110,14 +115,14 @@
 				    box-shadow: none;
 				    position: relative;
 				    top: 50%;
-				    width: 650px ;
+				    width: 650px;
 				    margin: auto;
 				    margin-top: -270px;
 
 					.closeAll {
 					    bottom: -10px;
 					    position: absolute;
-					    right: 50px;
+					    right: 25px;
 					}
 				}
 
@@ -149,12 +154,22 @@
 					}
 				}
 
+			    .slider-image {
+			    	width: 600px;
+			    	text-align: center;
+			    	padding-bottom: 10px;
+			    }
+
 				.slider-item {
-					width: 600px;
-					margin-right: 50px;
+					width: 650px !important;
+			    	min-width: 650px !important;
+
+					padding-left: 25px;
+					padding-right: 25px;
 
 					header {
 						margin-bottom: 50px;
+
 						i {
 						    border-right: 2px solid #D05A22;
 						    color: #D05A22;
