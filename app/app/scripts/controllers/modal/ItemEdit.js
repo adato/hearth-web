@@ -310,7 +310,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.post = transformDataIn($scope.post) || $scope.defaultPost;
 		};
 
+        $scope.refreshItemInfo = function($event, item) {
+            // if renewed item is this item, refresh him!
+            if(item._id === $scope.post._id) {
+                $scope.post = transformDataIn(item);
+            }
+        };
 		$scope.init();
+        $rootScope.$on('updatedItem', $scope.refreshItemInfo);
 		$rootScope.$on("itemDeleted", $scope.itemDeleted);
 	}
 ]);

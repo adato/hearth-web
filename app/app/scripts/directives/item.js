@@ -121,7 +121,6 @@ angular.module('hearth.directives').directive('item', [
                     if(item.karma) {
                         item.karma += "%";
                     }
-
                 });
 
                 scope.toggleCollapsed = function() {
@@ -169,6 +168,14 @@ angular.module('hearth.directives').directive('item', [
                     $('#confirm-delete-'+scope.item._id).foundation('reveal', 'close');
                 };
 
+                scope.refreshItemInfo = function($event, item) {
+
+                    // if renewed item is this item, refresh him!
+                    if(item._id === scope.item._id) {
+                        scope.item = item;
+                    }
+                };
+
                 scope.$on('closeEditItem', function() {
                     scope.adEdit = false;
                 });
@@ -178,6 +185,7 @@ angular.module('hearth.directives').directive('item', [
                 });
 
                 scope.init();
+                $rootScope.$on('updatedItem', scope.refreshItemInfo);
             }
 
         };

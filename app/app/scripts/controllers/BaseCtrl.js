@@ -283,17 +283,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     id: item._id
                 },
                 function(res) {
-                    // switch active state (inactive -> active | active -> inactive)
-                    item.is_active = actionType == 'activate';
-                    if( item.is_expired) {
-                        
-                        // if post is expired, then prolong him and set him active
-                        item.is_expired = false;
-                        item.is_active = true;
-                    }
 
                     if(modal) $('#'+modal).foundation('reveal', 'close');
                     if(cb) cb(item);
+                    $rootScope.$broadcast('updatedItem', res);
             });
         };
 

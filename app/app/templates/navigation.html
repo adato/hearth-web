@@ -43,7 +43,7 @@
 	            </div>
 	            <label>{{ loggedUser.name | ellipsis:9}}</label>
 		    </a>
-			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
+			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' || segment.slice(0,11) == 'communities'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
 	            <div class="img">
 	            	<img data-dropdown="profile-drop" ng-src="{{loggedCommunity.avatar.normal}}" ng-if="loggedCommunity.avatar.normal" />
 	            </div>

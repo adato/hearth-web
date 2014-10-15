@@ -66,12 +66,15 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                         $scope.postsInactive.push(item);
                 });
             }, doneErr);
-
-            // var destroyLoadListener = $scope.$on('postCreated', function() {
-            //     destroyLoadListener();
-            //     loadUserPosts(params, done, doneErr);
-            // });
         }
+
+        $scope.refreshItemInfo = function($event, itemNew) {
+            $scope.posts.data.forEach(function(item, key) {
+                if(item._id === itemNew._id) {
+                    $scope.posts.data[key] = itemNew;
+                }
+            });
+        };
 
         function loadUserHome(params) {
             var fulltextParams = {
@@ -90,6 +93,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             Fulltext.query(fulltextParams, function(res) {
                 $scope.posts = res;
             });
+
+            $scope.$on('updatedItem', $scope.refreshItemInfo);
         }
 
 
@@ -129,6 +134,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         $scope.removeItemFromList = function($event, item) {
             $( ".post_"+item._id ).slideUp( "slow", function() {});
         };
+
 
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);

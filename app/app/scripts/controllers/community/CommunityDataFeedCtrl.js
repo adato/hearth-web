@@ -59,6 +59,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }, doneErr);
         }
 
+         $scope.refreshItemInfo = function($event, itemNew) {
+            $scope.posts.data.forEach(function(item, key) {
+                if(item._id === itemNew._id) {
+                    $scope.posts.data[key] = itemNew;
+                }
+            });
+        };
+
         function loadCommunityHome(id) {
             var fulltextParams = {
                 type: 'post',
@@ -74,6 +82,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             Fulltext.query(fulltextParams, function(res) {
                 $scope.posts = res;
             });
+
+            $scope.$on('updatedItem', $scope.refreshItemInfo);
         }
 
         function loadCommunityActivityLog(id) {
