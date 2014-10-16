@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearth', ['ngDialog', 'ngRoute', 'angular-flexslider', 'route-segment', 'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
+angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-flexslider', 'route-segment', 'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {
             $locationProvider.html5Mode(false).hashPrefix('!');
@@ -12,12 +12,22 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'angular-flexslider', 'route-se
             return cfpLoadingBarProvider.includeSpinner;
         }
     ]).config([
+        'tmhDynamicLocaleProvider',
+        function(tmhDynamicLocaleProvider) {
+            tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
+        }
+    ]).config([
         '$translateProvider',
         function($translateProvider) {
 
             preferredLanguage = preferredLanguage || $$config.defaultLanguage;
             // $translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
             console.log("Setting preffered language", preferredLanguage);
+
+            // $.getScript('vendor/angular-i18n/angular-locale_cs.js', function() {
+            //     console.log('Localise file loaded');
+            // });
+
             $translateProvider.preferredLanguage(preferredLanguage);
             $translateProvider.useStaticFilesLoader({
                 prefix: 'locales/',
@@ -61,10 +71,18 @@ angular.module('hearth', ['ngDialog', 'ngRoute', 'angular-flexslider', 'route-se
             return $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
         }
     ]).run([
-        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate',
-        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate) {
+        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale',
+        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale) {
 
             $translate.uses(preferredLanguage);
+            tmhDynamicLocale.set(preferredLanguage);
+            
+            // console.log($locale.DATETIME_FORMATS.shortDate);
+            // setTimeout(function() {
+            //     tmhDynamicLocale.set('en');
+
+            //     console.log($locale.pluralCat);
+            // }, 2000);
 
             $http.get('templates/geo/markerTooltip.html', {
                 cache: $templateCache

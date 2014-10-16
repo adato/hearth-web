@@ -23,6 +23,20 @@
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
 			
+			<div ng-init="num=3">
+			<div ng-if="num !== null">
+				<hr />
+				CodeNum: {{ 'PERS.'+(num)}}
+				<br />
+				Code: {{ 'PERS.'+pluralCat(num)}}
+				<br />
+				Translation: {{ 'PERS.'+pluralCat(num) | translate:'{count: '+num+'}' }}
+			</div>
+			<br />
+			<input ng-model="num" />
+			<hr />
+			</div>
+
 			<a href="#!/communities" ng-class="{active: segment == 'communities'}" title="{{ 'COMMUNITIES' | translate }}">
 				<div class="fa fa-users"></div>
 				<label>{{ 'COMMUNITIES' | translate }}</label>
@@ -43,7 +57,7 @@
 	            </div>
 	            <label>{{ loggedUser.name | ellipsis:9}}</label>
 		    </a>
-			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' || segment.slice(0,11) == 'communities'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
+			<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' }" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
 	            <div class="img">
 	            	<img data-dropdown="profile-drop" ng-src="{{loggedCommunity.avatar.normal}}" ng-if="loggedCommunity.avatar.normal" />
 	            </div>

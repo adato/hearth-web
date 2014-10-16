@@ -1,6 +1,6 @@
 <section class="tutorial tcenter">
+	<span class="controlls"><i class="fa fa-times close-button" ng-click="close()"></i></span>
 	<article class="opening" ng-if="! slider">
-		<span class="controlls"><i class="fa fa-times close-button" ng-click="close()"></i></span>
 		<h2>{{ 'TUTORIAL_HEADER' | translate }}</h2>
 		<br />
 		<br />
@@ -12,7 +12,6 @@
 	<section class="slider" ng-if="slider">
 		<div class="flexslider" flexslider ng-if="loaded">
 			<span class="controlls">
-				<i class="fa fa-times close-button" ng-click="close()"></i>
 				<i ng-if="tutorials.length > 1" class="leftButton fa fa-angle-left" ng-click="prev()"></i>
 				<i ng-if="tutorials.length > 1" class="rightButton fa fa-angle-right" ng-click="next()"></i>
 			</span>

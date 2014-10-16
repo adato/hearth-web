@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache', 'Post', 'Tutorial',
+    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache', 'Post', 'Tutorial',
 
-    function($scope, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache, Post, Tutorial) {
+    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache, Post, Tutorial) {
         var timeout;
         $scope.segment = false;
         $scope.addresses = {
@@ -18,6 +18,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             "Post": "ad",
         };
 
+
+        $rootScope.pluralCat = $locale.pluralCat;
+
+        
+        setInterval(function() {
+            
+            $rootScope.pluralCat = $locale.pluralCat;
+
+        }, 1000);
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
         });
