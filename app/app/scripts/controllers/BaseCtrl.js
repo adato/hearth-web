@@ -18,10 +18,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             "Post": "ad",
         };
 
-
         $rootScope.pluralCat = $locale.pluralCat;
-
-        
         setInterval(function() {
             
             $rootScope.pluralCat = $locale.pluralCat;
@@ -131,9 +128,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         // try to load tutorial pages - if there is any, show tutorial
         $scope.checkTutorial = function() {
-            Tutorial.get({user_id: $rootScope.loggedUser._id}, function(res) {
-                if(res.length) $rootScope.showTutorial(res);
-            });
+            // check only after login
+            if($.cookie('logged') === '1') {
+
+                $.removeCookie('logged');
+                Tutorial.get({user_id: $rootScope.loggedUser._id}, function(res) {
+                    if(res.length) $rootScope.showTutorial(res);
+                });
+            }
         };
 
         $scope.initHearthbeat = function() {

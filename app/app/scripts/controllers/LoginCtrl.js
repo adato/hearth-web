@@ -18,11 +18,26 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			badCredentials: false
 		};
 
+		function showErrorCredentials() {
+			
+			// focus to password field
+			$(".login_password").focus();
+
+			// show top error message
+			$scope.showError.badCredentials = true;
+
+			// set blank password - try it again
+			$scope.data.password = '';
+		}
+		
 		function processLoginResult(res) {
 			if(res.data && res.data.ok === true) {
+				// set cookie for tutorial check and all actions after login
+				$.cookie('logged', 1);
+
 				window.location = window.location.pathname;
 			} else {
-				$scope.showError.badCredentials = true;
+				showErrorCredentials();
 			}
 		}
 
@@ -36,10 +51,9 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		};
 
 		$scope.login = function(data) {
-			$scope.showError.badCredentials = false;
-
+			// $scope.showError.badCredentials = false;
 			if(! $scope.validateLogin(data))
-				return $scope.showError.badCredentials = true;
+				return showErrorCredentials();
 
 			Auth.login(data, processLoginResult);
 		};
@@ -48,6 +62,8 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			if (Auth.isLoggedIn()) {
 				return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
 			}
+
+			$(".login_name").focus();
 		};
 
 		$scope.$on('initFinished', $scope.init);

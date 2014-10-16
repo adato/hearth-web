@@ -1,35 +1,37 @@
-<section class="tutorial tcenter">
+<div class="tutorial-container">
 	<span class="controlls"><i class="fa fa-times close-button" ng-click="close()"></i></span>
-	<article class="opening" ng-if="! slider">
-		<h2>{{ 'TUTORIAL_HEADER' | translate }}</h2>
-		<br />
-		<br />
-		<button class="tbutton" ng-click="showMeMagic()">{{ 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
-		<br />
-		<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
-	</article>
+	<section class="tutorial tcenter">
+		<article class="opening" ng-if="! slider">
+			<h2>{{ 'TUTORIAL_HEADER' | translate }}</h2>
+			<br />
+			<br />
+			<button class="tbutton" ng-click="showMeMagic()">{{ 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
+			<br />
+			<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
+		</article>
 
-	<section class="slider" ng-if="slider">
-		<div class="flexslider" flexslider ng-if="loaded">
-			<span class="controlls">
-				<i ng-if="tutorials.length > 1" class="leftButton fa fa-angle-left" ng-click="prev()"></i>
-				<i ng-if="tutorials.length > 1" class="rightButton fa fa-angle-right" ng-click="next()"></i>
-			</span>
-			<ul class="slides">
-				<li class="slider-item" ng-repeat="item in tutorials">
-					<header>
-						<i class="fa {{ item.icon }}"></i> 
-						<p>{{ item.text }}</p>
-						<div class="clear"></div>
-					</header>
-					<div class="slider-image">
-						<img ng-src="{{ item.image }}" title="{{ item.text }}" />
-					</div>
-				</li>
-			</ul>
-			<div class="tright closeAll">
-				<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING_BELOW_SLIDE' | translate }}</a>
+		<section class="slider" ng-if="slider">
+			<div class="flexslider" flexslider ng-if="loaded">
+				<span class="controlls">
+					<i ng-if="tutorials.length > 1" class="leftButton fa fa-angle-left" ng-click="prev()"></i>
+					<i ng-if="tutorials.length > 1" class="rightButton fa fa-angle-right" ng-click="next()"></i>
+				</span>
+				<ul class="slides">
+					<li class="slider-item" ng-repeat="item in tutorials">
+						<header>
+							<i class="fa {{ item.icon }}"></i> 
+							<p>{{ item.text }}</p>
+							<div class="clear"></div>
+						</header>
+						<div class="slider-image">
+							<img ng-src="{{ item.image }}" title="{{ item.text }}" />
+						</div>
+					</li>
+				</ul>
+				<div class="tright closeAll">
+					<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING_BELOW_SLIDE' | translate }}</a>
+				</div>
 			</div>
-		</div>
+		</section>
 	</section>
-</section>
+</div>

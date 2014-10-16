@@ -9,8 +9,8 @@
     <form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form">
         <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
         <p ng-if="showMsgOnlyLoggeg">{{ 'LOGIN_REQUIRED' | translate }}</p>
-        <input type="text" name="username" ng-model="data.username" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">
-        <input type="password" name="password" ng-model="data.password" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top">
+        <input type="text" name="username" class="login_name" ng-model="data.username" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">
+        <input type="password" class="login_password" name="password" ng-model="data.password" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top">
         <p><a ng-click="closeModal()" href="#!/forgotten-password">{{ 'HAVE_YOU_FORGOT_PASS' | translate }}</a></p>
         <div class="clear"></div>
         <hr />

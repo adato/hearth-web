@@ -10,20 +10,9 @@
 		height: 100%;
 		background-color: transparent;
 
-		.tutorial {
-			color: white;
-			width: 650px;
+		.tutorial-container {
 
-		    display: inline-block;
-		    position: absolute;
-		    bottom: 0;
-		    right: 0;
-		    left: 0;
-		    top: 0;
-		    margin: auto;
-		    vertical-align: middle;
-
-			span.controlls {
+			.controlls {
 				.fa  {
 				    position: absolute;
 				    cursor: pointer;
@@ -53,141 +42,155 @@
 				    cursor: pointer;
 				    font-size: 30px;
 				    position: absolute;
-			        right: -25px;
-					top: -50px;
+			        right: 10px;
+					top: 10px;
 				}
 			}
+			.tutorial {
+				color: white;
+				width: 650px;
 
-			.opening {
-				width: 600px;
-			    height: 290px;
-				margin: 0px auto;
-    			margin-top: -145px;
-			    
-				position: absolute;
-			    top: 50%;
-				right: 0;
-				left: 0;
-				top: 50%;
+			    display: inline-block;
+			    position: absolute;
+			    bottom: 0;
+			    right: 0;
+			    left: 0;
+			    top: 0;
+			    margin: auto;
+			    vertical-align: middle;
 
-				h2 {
-					color: white;
-					font-weight: bold;
-				}
-				.tbutton {
-					background-color: transparent;
-					border: 5px solid #D05A22;
-					font-weight: bold;
-					font-size: 25px;
-					border-radius: 15px;
-					box-shadow: 0 0 100px 15px #D05A22, 0 0 50px 5px #D05A22 inset;
 
-					&:hover {
-						opacity: 0.9;
-					}
-				}
-
-				a {
-					color: white;
-					text-decoration: underline;
-					&:hover {
-						text-decoration: none;
-					}
-				}
-			}
-
-			.slider {
-				position: absolute;
-				top: 0px;
-				bottom: 0px;
-				height: 100%;
-
-				.flex-viewport {
-					width: 650px;
-				}
-
-				.flexslider {
-				    background: transparent;
-	    			border-width: 0px;
-				    border-radius: 0px;
-				    box-shadow: none;
-				    position: relative;
-				    top: 50%;
-				    width: 650px;
-				    margin: auto;
-				    margin-top: -270px;
-
-					.closeAll {
-					    bottom: -10px;
-					    position: absolute;
-					    right: 25px;
-					}
-				}
-
-				.rn-carousel-container {
+				.opening {
+					width: 600px;
+				    height: 290px;
 					margin: 0px auto;
-				}
-				
-				ol {
-					list-style: none;
-					display: inline-block;
-					margin: auto;
+	    			margin-top: -145px;
+				    
 					position: absolute;
-					top: 115px;
-					bottom: unset;
-					left: 0px;
-					li {
-						display: inline-block;
-						a {
-							background-color: white;
-							box-shadow: none;
-							width: 13px;
-							height: 13px;
+				    top: 50%;
+					right: 0;
+					left: 0;
+					top: 50%;
 
-							&.flex-active {
-								background-color: #D05A22;
-								box-shadow: 0 0 4px #D05A22
+					h2 {
+						color: white;
+						font-weight: bold;
+					}
+					.tbutton {
+						background-color: transparent;
+						border: 5px solid #D05A22;
+						font-weight: bold;
+						font-size: 25px;
+						border-radius: 15px;
+						box-shadow: 0 0 100px 15px #D05A22, 0 0 50px 5px #D05A22 inset;
+
+						&:hover {
+							opacity: 0.9;
+						}
+					}
+
+					a {
+						color: white;
+						text-decoration: underline;
+						&:hover {
+							text-decoration: none;
+						}
+					}
+				}
+
+				.slider {
+					position: absolute;
+					top: 0px;
+					bottom: 0px;
+					height: 100%;
+
+					.flex-viewport {
+						width: 650px;
+					}
+
+					.flexslider {
+					    background: transparent;
+		    			border-width: 0px;
+					    border-radius: 0px;
+					    box-shadow: none;
+					    position: relative;
+					    top: 50%;
+					    width: 650px;
+					    margin: auto;
+					    margin-top: -270px;
+
+						.closeAll {
+						    bottom: -10px;
+						    position: absolute;
+						    right: 25px;
+						}
+					}
+
+					.rn-carousel-container {
+						margin: 0px auto;
+					}
+					
+					ol {
+						list-style: none;
+						display: inline-block;
+						margin: auto;
+						position: absolute;
+						top: 115px;
+						bottom: unset;
+						left: 0px;
+						li {
+							display: inline-block;
+							a {
+								background-color: white;
+								box-shadow: none;
+								width: 13px;
+								height: 13px;
+
+								&.flex-active {
+									background-color: #D05A22;
+									box-shadow: 0 0 4px #D05A22
+								}
 							}
 						}
 					}
-				}
 
-			    .slider-image {
-			    	width: 600px;
-			    	text-align: center;
-			    	padding-bottom: 10px;
-			    }
+				    .slider-image {
+				    	width: 600px;
+				    	text-align: center;
+				    	padding-bottom: 10px;
+				    }
 
-				.slider-item {
-					width: 650px !important;
-			    	min-width: 650px !important;
+					.slider-item {
+						width: 650px !important;
+				    	min-width: 650px !important;
 
-					padding-left: 25px;
-					padding-right: 25px;
+						padding-left: 25px;
+						padding-right: 25px;
 
-					header {
-						margin-bottom: 50px;
+						header {
+							margin-bottom: 50px;
 
-						i {
-						    border-right: 2px solid #D05A22;
-						    color: #D05A22;
-						    display: inline-block;
-						    float: left;
-						    font-size: 80px;
-						    padding-bottom: 5px;
-						    padding-right: 20px;
-						    padding-top: 5px;
-						    margin-left: 5px;
-						}
-						p {
-						    display: inline;
-						    float: left;
-						    font-size: 25px;
-						    line-height: 1.1;
-						    margin-left: 20px;
-						    text-align: left;
-						    width: 370px;
-						    margin-bottom: 0px;
+							i {
+							    border-right: 2px solid #D05A22;
+							    color: #D05A22;
+							    display: inline-block;
+							    float: left;
+							    font-size: 80px;
+							    padding-bottom: 5px;
+							    padding-right: 20px;
+							    padding-top: 5px;
+							    margin-left: 5px;
+							}
+							p {
+							    display: inline;
+							    float: left;
+							    font-size: 25px;
+							    line-height: 1.1;
+							    margin-left: 20px;
+							    text-align: left;
+							    width: 370px;
+							    margin-bottom: 0px;
+							}
 						}
 					}
 				}
