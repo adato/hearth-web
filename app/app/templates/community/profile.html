@@ -7,12 +7,9 @@
 		<div class="user-basic">
 			<h1>
 				<a href="#!/community/{{info._id}}">
-					<span>{{ info.name | ellipsis:20 }}</span>
+					{{ info.name }}
 				</a>
 			</h1>
-			<p ng-if="info.description">
-				<span class="fa fa-quote-right"></span>{{info.description | ellipsis}}
-			</p>
 		</div>
 		<div class="buttons">
 			<a ng-if="mine" href="#!/community/{{info._id}}/edit">
