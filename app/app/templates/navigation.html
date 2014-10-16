@@ -22,20 +22,6 @@
 				<div class="fa fa-recycle"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
-			
-			<div ng-init="num=3">
-			<div ng-if="num !== null">
-				<hr />
-				CodeNum: {{ 'PERS.'+(num)}}
-				<br />
-				Code: {{ 'PERS.'+pluralCat(num)}}
-				<br />
-				Translation: {{ 'PERS.'+pluralCat(num) | translate:'{count: '+num+'}' }}
-			</div>
-			<br />
-			<input ng-model="num" />
-			<hr />
-			</div>
 
 			<a href="#!/communities" ng-class="{active: segment == 'communities'}" title="{{ 'COMMUNITIES' | translate }}">
 				<div class="fa fa-users"></div>
