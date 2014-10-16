@@ -70,6 +70,13 @@ angular.module('hearth.services').factory('Auth', [
 					return null;
 				}
 			},
+			getSessionInfo: function() {
+				return {
+                    loggedUser: this.getCredentials(),
+                    loggedEntity: this.getBaseCredentials(),
+                    loggedCommunity: this.getCommunityCredentials()
+				}
+			},
 			confirmRegistration: function(hash, success, err) {
 				return $http.post($$config.apiPath + '/users/confirm_registration', {
 					'hash': hash

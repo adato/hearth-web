@@ -3,132 +3,135 @@
 angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-flexslider', 'route-segment', 'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {
+
+            // ============================
+            // === Location Configuration
+            // ============================
             $locationProvider.html5Mode(false).hashPrefix('!');
         }
     ]).config([
         'cfpLoadingBarProvider',
         function(cfpLoadingBarProvider) {
+
+            // ===============================
+            // === Loading Bar Configuration
+            // ===============================
             cfpLoadingBarProvider.includeSpinner = false;
             return cfpLoadingBarProvider.includeSpinner;
         }
     ]).config([
-        'tmhDynamicLocaleProvider',
-        function(tmhDynamicLocaleProvider) {
-            tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
-        }
-    ]).config([
-        '$translateProvider',
-        function($translateProvider) {
-
+        'tmhDynamicLocaleProvider', '$translateProvider',
+        function(tmhDynamicLocaleProvider, $translateProvider) {
+            
+            // ===============================
+            // === Localization
+            // ===============================
+            
+            // get preferred language from cookies or config
             preferredLanguage = preferredLanguage || $$config.defaultLanguage;
-            // $translateProvider.translations(preferredLanguage, translations[preferredLanguage]);
             console.log("Setting preffered language", preferredLanguage);
-
-            // $.getScript('vendor/angular-i18n/angular-locale_cs.js', function() {
-            //     console.log('Localise file loaded');
-            // });
-
+            
+            // configure dynamic locale - dates && pluralization && etc
+            tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
+            
+            // configure translate provider - where language constants are
             $translateProvider.preferredLanguage(preferredLanguage);
+            $translateProvider.useStorage('SessionLanguageStorage');
             $translateProvider.useStaticFilesLoader({
                 prefix: 'locales/',
                 suffix: '/messages.json'
             });
-            return $translateProvider.useStorage('SessionLanguageStorage');
         }
     ]).config([
         '$httpProvider', '$translateProvider',
         function($httpProvider, $translateProvider) {
-            $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
-            return $httpProvider.responseInterceptors.push('TermsAgreement');
-        }
-    ]).factory('HearthLoginInterceptor', [
-        '$q', '$location', '$timeout', '$rootScope',
-        function($q, $location, $timeout, $rootScope) {
-            // middleware for handling ajax responses
-            return function(promise) {
-                return promise.then(function(response) {
-                    // when ok, it will pass
-                    return response;
-                }, function(response) {
-                    // when request failed and interceptor is turned on
-                    if (response.config.nointercept) {
-                        return $q.reject(response);
-                    } else {
-                        // it will check 401 status (unauthorized)
-                        if (response.status === 401) {
-                            $rootScope.referrerUrl = $location.path();
-                            // and reload to /login page
-                            $location.path('/login');
-                        }
-                        return $q.reject(response);
-                    }
-                });
-            };
-        }
-    ]).config([
-        '$httpProvider',
-        function($httpProvider) {
-            return $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
-        }
-    ]).run([
-        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale',
-        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale) {
 
-            $translate.uses(preferredLanguage);
-            tmhDynamicLocale.set(preferredLanguage);
+            // ===============================
+            // === Configure ajax calls
+            // ===============================
             
-            // console.log($locale.DATETIME_FORMATS.shortDate);
-            // setTimeout(function() {
-            //     tmhDynamicLocale.set('en');
+            // Add language header
+            $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
 
-            //     console.log($locale.pluralCat);
-            // }, 2000);
+            // ======== Watch for unauth responses
+            $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
 
-            $http.get('templates/geo/markerTooltip.html', {
-                cache: $templateCache
-            });
+            // ======== ?? wtf is this?
+            $httpProvider.responseInterceptors.push('TermsAgreement');
+        }
+    ]).run([
+        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph',
+        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph) {
             $rootScope.appInitialized = false;
-            Auth.init(function() {
-                $rootScope.appInitialized = true;
-                $rootScope.loggedUser = Auth.getCredentials();
-                $rootScope.loggedEntity = Auth.getBaseCredentials();
-                $rootScope.loggedCommunity = Auth.getCommunityCredentials();
+            $rootScope.appInitialized = false;
 
-                $rootScope.$broadcast("initFinished");
+            /**
+             * This will cache some files at start
+             */
+            function cacheFiles(done) {
+
+                // cache tooltip in MAP -- DEPRECATED -- remove when map will be refactored
+                $http.get('templates/geo/markerTooltip.html', {
+                    cache: $templateCache
+                });
+                done(null);
+            }
+
+            /**
+             * This will init app language
+             */
+            function initLanguage(done) {
+
+                // $translate.uses(preferredLanguage); // already loaded from config
+                tmhDynamicLocale.set(preferredLanguage);
+
+                $rootScope.$on('$translateLoadingSuccess',function($event, data){
+                    LanguageSwitch.init();
+
+                    $rootScope.$broadcast("initLanguageSuccess", preferredLanguage);
+                    done(null, data);
+                });
+            }
+            
+            /**
+             * This will init session of user
+             */
+            function initSession(done) {
+                // get session info from API
+                Auth.init(function() {
+
+                    // enrich rootScope with user/community credentials
+                    angular.extend($rootScope, Auth.getSessionInfo());
+
+                    $rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
+                    done(null, $rootScope.loggedUser);
+                });
+            }
+
+            /**
+             * When localization loaded, fill opengraph info
+             */
+            function initOpenGraph(done) {
+
+                $rootScope.$on('$translateChangeSuccess', function() {
+                    OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+                    OpenGraph.setDefault();
+                });
+
+                done(null);
+            }
+            
+            // === Init hearth core parts
+            async.parallel({
+                language: initLanguage, // download language files
+                session: initSession,   // get user session from api
+                openGraph: initOpenGraph, // fill default og info
+                cacheFiles: cacheFiles,   // cache some files at start
+            }, function(err, init) {
+
                 $rootScope.initFinished = true;
+                $rootScope.$broadcast("initFinished");
             });
-            $rootScope.$on('onUserLogin', function() {
-                var backUrl;
-                backUrl = ipCookie('backUrl');
-                if (backUrl) {
-                    ipCookie('backUrl', null);
-                    return $location.url(backUrl);
-                }
-            });
-            return $rootScope.$on('$locationChangeStart', function(event, next, current) {
-                var url;
-                url = current.split('#')[1];
-                if (next.match(/login/) && url) {
-                    if (current.match(/confirmEmail/g) || current.match(/password/g) || url === '/feedback?fromDelete') {
-                        return;
-                    }
-                    return ipCookie('backUrl', url);
-                }
-            });
-        }
-    ]).run([
-        '$rootScope', '$location', '$http', "$translate", "OpenGraph",
-        function($rootScope, $location, $http, $translate, OpenGraph) {
-
-            $rootScope.$on('$translateChangeSuccess', function() {
-                OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
-                OpenGraph.setDefault();
-            });
-        }
-    ]).run([
-        'LanguageSwitch',
-        function(LanguageSwitch) {
-            LanguageSwitch.init();
         }
     ]);
 

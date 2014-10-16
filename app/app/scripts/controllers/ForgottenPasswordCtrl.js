@@ -67,5 +67,7 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
                 });
             });
         };
+
+        $(".fg_email").focus();
     }
 ]);
