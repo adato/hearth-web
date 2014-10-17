@@ -1,6 +1,6 @@
 <div class="communities">
     <h2 ng-if="myCommunities.length">{{ 'COMMUNITIES' | translate }}</h2>
-    <a ng-click="toggleForm()" class="button2 fright community-list-add-button">
+    <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button2 fright community-list-add-button">
         <span class="fa fa-pencil"></span>
         {{'CREATE_COMMUNITY' | translate}}
     </a>
