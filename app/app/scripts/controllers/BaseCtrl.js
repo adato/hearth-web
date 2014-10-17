@@ -18,12 +18,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             "Post": "ad",
         };
 
-        $rootScope.pluralCat = $locale.pluralCat;
-        setInterval(function() {
-            
-            $rootScope.pluralCat = $locale.pluralCat;
-
-        }, 1000);
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
         });
@@ -144,6 +138,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $scope.checkTutorial();
                 $scope.loadMyCommunities();
             }
+
+            $rootScope.pluralCat = $locale.pluralCat;
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);

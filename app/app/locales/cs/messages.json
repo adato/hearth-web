@@ -414,8 +414,17 @@
     "HOW_MANY_PEOPLE": "{\"1\": \"\u010dlov\u011bka\",\"2\": \"lidi\",\"3\": \"lidi\",\"4\": \"lidi\",\"other\": \"lid\u00ed\"}",
     "HOW_MANY_PEOPLE_1_COND": "{\"1\": \"\u010dlov\u011bk\",\"2\": \"lidi\",\"3\": \"lidi\",\"4\": \"lidi\",\"other\": \"lid\u00ed\"}",
     "BY_PEOPLE": "{\"0\": \"lidmi\",\"1\": \"\u010dlov\u011bkem\",\"2\": \"ma lidmi\",\"3\": \"mi lidmi\",\"4\": \"mi lidmi\",\"7\": \"mi lidmi\",\"8\": \"mi lidmi\",\"other\": \"ti lidmi\"}",
-    "GIVES_AND_WISHES": "{\"1\": \"dar a př\u00e1n\u00ed\",\"2\": \"dary a př\u00e1n\u00ed\",\"3\": \"dary a př\u00e1n\u00ed\",\"4\": \"dary a př\u00e1n\u00ed\",\"other\": \"darů a př\u00e1n\u00ed\"}",
-    "COMMUNITIES_PL": "{\"1\": \"komunita\",\"2\": \"komunity\",\"3\": \"komunity\",\"4\": \"komunity\",\"other\": \"komunit\"}",
+    "GIVES_AND_WISHES": {
+        "one": "dar a přání",
+        "few": "dary a př\u00e1n\u00ed",
+        "other": "darů a př\u00e1n\u00ed"
+    },
+    "COMMUNITIES_PL": {
+        "one": "komunita",
+        "few": "komunity",
+        "many": "komunit",
+        "other": "komunit"
+    },
     "OF_X_COMMUNITIES": "{\"1\": \"jedné komunity\",\"2\": \"{} komunit\",\"3\": \"{} komunit\",\"4\": \"{} komunit\",\"7\": \"{}mi komunit\",\"8\": \"{}mi komunit\",\"other\": \"{}ti komunit\"}",
     "IN_X": "{\"0\": \"v žádné nejste\",\"1\": \"v jedné jste\",\"2\": \"ve {} jste\",\"3\": \"ve {} jste\",\"4\": \"ve {} jste\",\"7\": \"v {}mi jste\",\"8\": \"v {}mi jste\",\"other\": \"v {}ti jste\"}",
     "POSTS_PL": "{\"1\": \"inzer\u00e1t\",\"2\": \"inzer\u00e1ty\",\"3\": \"inzer\u00e1ty\",\"4\": \"inzer\u00e1ty\",\"other\": \"inzer\u00e1tů\"}",
@@ -625,10 +634,6 @@
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadejte co vás zajímá...",
     "NOTICE_EMPTY_DATA": "Zatím zde nejsou žádné záznamy.",
     "FILL_NEW_PASS": "Zadejte nové heslo",
-    "SUBJSON_TEST": {
-        "1": "ABCD",
-        "other": "Other"
-    },
     "FILL_CURRENT_PASS": "Zadejte současné heslo",
     "WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíte - budeme vděční, když nám povíte důvod:",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>"
