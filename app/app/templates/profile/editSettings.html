@@ -38,12 +38,17 @@
           <div class="fright large-6">
             <div class="fright large-11">
               <label for="newPass">{{ 'FILL_NEW_PASS' | translate }}</label>
-              <show-text-in-password>
-                <input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" required ng-minlength="5" />
-              </show-text-in-password>
-              <div class=" error" ng-show="showError.newPass">
-                  <span ng-show="profileSettingsForm.newPass.$error.required">{{ 'ERR_NOT_FILLED_NEW_PASS' | translate }}</span>
-                  <span ng-show="profileSettingsForm.newPass.$error.minlength">{{ 'ERR_TOO_SHORT_NEW_PASS' | translate }}</span>
+              <div ng-if="user.logged_in_using_omniauth">
+                {{ CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH | translate }}
+              </div>
+              <div ng-if="!user.logged_in_using_omniauth">
+                <show-text-in-password>
+                  <input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" required ng-minlength="5" />
+                </show-text-in-password>
+                <div class=" error" ng-show="showError.newPass">
+                    <span ng-show="profileSettingsForm.newPass.$error.required">{{ 'ERR_NOT_FILLED_NEW_PASS' | translate }}</span>
+                    <span ng-show="profileSettingsForm.newPass.$error.minlength">{{ 'ERR_TOO_SHORT_NEW_PASS' | translate }}</span>
+                </div>
               </div>
             </div>
           </div>
