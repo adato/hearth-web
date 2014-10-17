@@ -127,7 +127,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             if (Auth.isLoggedIn()) {
                 return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
             }
-            $(".register_name").focus();
+            // $(".register_name").focus();
 
             $scope.termsPath = '/locales/' + $rootScope.language + '/terms.html';
         };
