@@ -88,6 +88,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
                 $rootScope.$on('$translateLoadingSuccess',function($event, data){
                     LanguageSwitch.init();
 
+                    $rootScope.language = preferredLanguage;
                     $rootScope.$broadcast("initLanguageSuccess", preferredLanguage);
                     done(null, data);
                 });

@@ -129,8 +129,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             }
             $(".register_name").focus();
 
-            console.log(LanguageSwitch.uses());
-            $scope.termsPath = '/locales/' + LanguageSwitch.uses().code + '/terms.html';
+            $scope.termsPath = '/locales/' + $rootScope.language + '/terms.html';
         };
 
         $scope.$on('initFinished', $scope.init);
