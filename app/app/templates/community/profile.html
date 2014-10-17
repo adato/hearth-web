@@ -11,7 +11,7 @@
 				</a>
 			</h1>
 		</div>
-		<div class="buttons">
+		<div class="buttons" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
 			<a ng-if="mine" href="#!/community/{{info._id}}/edit">
 				<button class="follow-button blue right">
 					<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
