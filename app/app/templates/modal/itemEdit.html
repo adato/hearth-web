@@ -90,7 +90,7 @@
                             <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
                                 <i class="fa fa-times"></i>
                             </a>
-                            <img ng-src="{{ file.file }}" class="padding-1">
+                            <img resized-thumbnail-image ng-src="{{ file.file }}" class="padding-1">
                         </li>
                     </ul>
                 </div>

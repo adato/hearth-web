@@ -109,15 +109,14 @@
             ul {
                 margin-left: 0px;
                 li.active {
-                    width: 184px;
-                    height: 123px;
-                    display: inline-block;
                     position: relative;
                     display: inline-block;
                     vertical-align: middle;
-                    margin-right: 10px;
-                    margin-bottom: 10px;
-                    
+                    width: 123px;
+                    height: 123px;
+                    overflow: hidden;
+                    margin: 10px;
+
                     &:nth-child(4n) {
                         margin-right: 0px;
                     }
@@ -125,10 +124,23 @@
                         margin-right: 10px;
                     }
                     img {
-                        max-width: 184px;
-                        max-height: 123px;
+                        position:absolute;
+                        left: -100%;
+                        right: -100%;
+                        top: -100%;
+                        bottom: -100%;
+                        margin: auto;
                         width: auto;
                         height: auto;
+
+                        &.landscape {
+                            height: 100%;
+                            width: auto;
+                            max-width: initial;
+                        }   
+                        &.portrait {
+                            width:100%;
+                        }                     
                     }
                     a {
                         position: absolute;
@@ -138,6 +150,7 @@
                         z-index: 200;
                         right: 5px;
                         top: -5px;
+                        text-shadow: 0 0 4px #666;
                     }
                     .overlay {
                         background-color: #0fb1d3;
