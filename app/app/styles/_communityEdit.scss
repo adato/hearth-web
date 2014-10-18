@@ -149,24 +149,39 @@
     }
 
     .image-upload {
+        position: relative;
+        vertical-align: middle;
+        overflow: hidden;
         width:195px;
         height: 195px;
         margin: 0px auto;
         text-align: center;
-        position: relative;
-        background-image: url("/images/default_avatar.png");
-        background-position: center center;
-        background-repeat: no-repeat;
 
         border-radius: 50%;
         box-shadow: -3px 3px 6px rgba(0, 0, 0, 1) inset;
+        background-image: url("/images/default_avatar.png");
+        background-repeat: no-repeat;
+        background-position: center center;
 
-        .preview {
-            width:195px;
-            height: 195px;
-            border-radius: 50%;
+        img {
+            position:absolute;
+            left: -100%;
+            right: -100%;
+            top: -100%;
+            bottom: -100%;
+            margin: auto;
+            width: auto;
+            height: auto;
+
+            &.landscape {
+                height: 100%;
+                width: auto;
+                max-width: initial;
+            }   
+            &.portrait {
+                width:100%;
+            }                     
         }
-
         .text {
             color: white;
             font-size: 17px;
