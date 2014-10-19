@@ -285,6 +285,7 @@ $medium-avatar-size: 80px;
         border-radius:$global-radius;
         box-shadow:(-1px 3px 8px 0px rgba(150, 150, 150, 0.44));
         margin-bottom:15px;
+        overflow:hidden;
 
         h3 {
             font-size:120%;
