@@ -411,7 +411,8 @@ $medium-avatar-size: 80px;
     .right-pane {
         @extend .large-5, .columns;
         padding:0;
-
+        float: right;
+        
         .user-about {
             @extend .box;
             span {
