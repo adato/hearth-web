@@ -11,10 +11,10 @@
     <div class="my-communities" ng-if="myCommunities.length">
         <h3 class="fleft iblock">
             {{ 'YOU_ARE_MEMBER' | translate}}
-            <pluralize-translate count="myCommunities.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
+            {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
             <span ng-if="myAdminCommunities.length">
                 {{ 'FROM_THAT' | translate }}
-                <pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
+                {{'IN_X.'+pluralCat(myAdminCommunities.length)  | translate:'{count:'+myAdminCommunities.length+'}'}}
                 {{ 'ADMIN_7_CASE' | translate }}
             </span>
         </h3>

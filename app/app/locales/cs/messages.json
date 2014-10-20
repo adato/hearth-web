@@ -88,9 +88,21 @@
     "COUNT_OF_PLUS_POINTS": "Počet kladných hodnocení",
     "COUNT_OF_MINUS_POINTS": "Počet záporných hodnocení",
     "COMMUNITY_MY": "Moje",
-    "X_MEMBERS": "{\"1\": \"člena\", \"2\": \"členy\", \"3\": \"členy\", \"4\": \"členy\", \"other\": \"členů\"}",
-    "X_FRIENDS": "{\"1\": \"kamaráda\", \"2\": \"kamarády\", \"3\": \"kamarády\", \"4\": \"kamarády\", \"other\": \"přátel\"}",
-    "COMMUNITY_MEMBERS": "{\"1\": \"člen\", \"2\": \"členi\", \"3\": \"členi\", \"4\": \"členi\", \"other\": \"členů\"}",
+    "X_MEMBERS": {
+        "one": "člena",
+        "few": "členy",
+        "other": "členů"
+    },
+    "X_FRIENDS": {
+        "one": "kamaráda",
+        "few": "kamarády",
+        "other": "přátel"
+    },
+    "COMMUNITY_MEMBERS": {
+        "one": "člen",
+        "few": "členi",
+        "other": "členů"
+    },
     "COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE": "Komunita nemá žádného dalšího člena, nechcete do ní spíše dotáhnout více lidí?",
     "COMMUNITY_HAS_NO_ADS_YET": "Komunita zatím nemá žádné inzeráty",
     "COMMUNITY_ACTIVITY": "Aktivita komunity",
@@ -408,12 +420,31 @@
     "PEOPLE_COUNT_WISH": "u\u017e po\u017e\u00e1dalo <b>{{value}} lid\u00ed<\/b>",
     "HE_INSPIRING": "Inspiruje",
     "HE_IS_INSPIRED": "Je inspirován",
+    "IS_INSPIRING": "inspirují",
+    "WITH_X_7_CASE": {
+        "one": "ním",
+        "few": "mi",
+        "many": "ti",
+        "other": "ti"
+    },
     "IS_INSPIRED": "inspirován",
     "INSPIRED_BY_HIM": "inspiruje",
     "INSPIRED_BY_ME": "inspiruji",
-    "HOW_MANY_PEOPLE": "{\"1\": \"\u010dlov\u011bka\",\"2\": \"lidi\",\"3\": \"lidi\",\"4\": \"lidi\",\"other\": \"lid\u00ed\"}",
-    "HOW_MANY_PEOPLE_1_COND": "{\"1\": \"\u010dlov\u011bk\",\"2\": \"lidi\",\"3\": \"lidi\",\"4\": \"lidi\",\"other\": \"lid\u00ed\"}",
-    "BY_PEOPLE": "{\"0\": \"lidmi\",\"1\": \"\u010dlov\u011bkem\",\"2\": \"ma lidmi\",\"3\": \"mi lidmi\",\"4\": \"mi lidmi\",\"7\": \"mi lidmi\",\"8\": \"mi lidmi\",\"other\": \"ti lidmi\"}",
+    "HOW_MANY_PEOPLE": {
+        "one": "člověka",
+        "few": "lidi",
+        "other": "lidí"
+    },
+    "HOW_MANY_PEOPLE_1_COND": {
+        "one": "\u010dlov\u011bk",
+        "few": "lidi",
+        "other": "lid\u00ed"
+    },
+    "BY_PEOPLE": {
+        "one": "člověkem",
+        "few": "lidmi",
+        "other": "lidmi"
+    },
     "GIVES_AND_WISHES": {
         "one": "dar a přání",
         "few": "dary a př\u00e1n\u00ed",
@@ -425,10 +456,26 @@
         "many": "komunit",
         "other": "komunit"
     },
-    "OF_X_COMMUNITIES": "{\"1\": \"jedné komunity\",\"2\": \"{} komunit\",\"3\": \"{} komunit\",\"4\": \"{} komunit\",\"7\": \"{}mi komunit\",\"8\": \"{}mi komunit\",\"other\": \"{}ti komunit\"}",
-    "IN_X": "{\"0\": \"v žádné nejste\",\"1\": \"v jedné jste\",\"2\": \"ve {} jste\",\"3\": \"ve {} jste\",\"4\": \"ve {} jste\",\"7\": \"v {}mi jste\",\"8\": \"v {}mi jste\",\"other\": \"v {}ti jste\"}",
-    "POSTS_PL": "{\"1\": \"inzer\u00e1t\",\"2\": \"inzer\u00e1ty\",\"3\": \"inzer\u00e1ty\",\"4\": \"inzer\u00e1ty\",\"other\": \"inzer\u00e1tů\"}",
-    "INSPIRING_PL": "{\"1\": \"inspiruje \", \"2\": \"inspiruj\u00ed \",\"3\": \"inspiruj\u00ed \",\"4\": \"inspiruj\u00ed \",\"other\": \"inspiruje\"}",
+    "OF_X_COMMUNITIES": {
+        "one": "jedné komunity",
+        "few": "{{count}} komunit",
+        "other": "{{count}} komunit"
+    },
+    "IN_X": {
+        "one": "v jedné jste",
+        "few": "ve {{count}} jste",
+        "other": "v {{count}} jste"
+    },
+    "POSTS_PL": {
+        "one": "inzer\u00e1t",
+        "few": "inzer\u00e1ty",
+        "other": "inzer\u00e1tů"
+    },
+    "INSPIRING_PL": {
+        "one": "inspiruje",
+        "few": "inspiruj\u00ed",
+        "other": "inspiruje"
+    },
     "YOU_PL_2_CASE": "vás",
     "YOU_ARE_MEMBER": "Jste členem",
     "USER_IS_MEMBER": "Uživatel je členem",

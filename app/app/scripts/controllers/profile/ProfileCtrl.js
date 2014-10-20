@@ -13,8 +13,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.loaded = false;
 		$scope.info = false;
 
-		console.log($translate("SUBJSON_TEST"));
-
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
 			var _mineCommunity = ($rootScope.loggedCommunity) ? $rootScope.loggedCommunity._id == $routeParams.id: false;

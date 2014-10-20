@@ -1,21 +1,20 @@
 <div ng-if="data.length" class="bottom-tabs">
 	<h2 ng-if="mine">
 		{{ 'YOU_ARE_MEMBER' | translate}}
-		<pluralize-translate count="data.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
+		{{'OF_X_COMMUNITIES.'+pluralCat(data.length) | translate:'{count:'+data.length+'}' }}
 		<span ng-if="myAdminCommunities.length">
 			{{ 'FROM_THAT' | translate }}
-			<pluralize-translate count="myAdminCommunities.length" key="'IN_X'"></pluralize-translate>
+			{{'IN_X.'+pluralCat(myAdminCommunities.length) | translate:'{count:'+myAdminCommunities.length+'}' }}
 			{{ 'ADMIN_7_CASE' | translate }}
 		</span>
 	</h2>
 	<h2 ng-if="! mine">
 		{{ 'USER_IS_MEMBER' | translate}}
-		<pluralize-translate count="data.length" key="'OF_X_COMMUNITIES'"></pluralize-translate>
+		{{'OF_X_COMMUNITIES.'+pluralCat(data.length) | translate:'{count:'+data.length+'}' }}
 	</h2>
 </div>
 <div class="communities">
 	<div class="community-list">
-	    <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in data track by $index"></div> -->
 	    <community-item item="item" ng-repeat="(id, item) in data track by $index" user="mine && info"></community-item>
 	</div>
 </div>

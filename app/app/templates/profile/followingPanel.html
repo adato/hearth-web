@@ -5,21 +5,21 @@
                 <span class="mine">{{ 'YOU_HAVE' | translate }}</span>
                 <span class="others">{{ 'USER_HAS' | translate }}</span>
                 {{info.friend_count}}
-                <pluralize-translate count="info.friend_count" key="'X_FRIENDS'"></pluralize-translate>
+                {{'X_FRIENDS.'+pluralCat(info.friend_count) | translate }}
             </a>
         </li>
         <li>
             <a href="#!/profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'profile.following'}">
                 <span class="mine">
-                    <pluralize-translate count="info.followees_count" key="'INSPIRING_PL'" class="capital"></pluralize-translate>
+                    {{'INSPIRING_PL.'+pluralCat(info.followees_count) | translate }}
                     {{ 'YOU_PL_2_CASE' | translate }} 
                     {{info.followees_count}}
-                    <pluralize-translate count="info.followees_count" key="'HOW_MANY_PEOPLE_1_COND'"></pluralize-translate>
+                    {{'HOW_MANY_PEOPLE_1_COND.'+pluralCat(info.followees_count) | translate }}
                 </span>
                 <span class="others">
                     {{ 'HE_IS_INSPIRED' | translate }}
                     {{info.followees_count}}
-                    <pluralize-translate count="info.followees_count" key="'BY_PEOPLE'"></pluralize-translate>
+                    {{'BY_PEOPLE.'+pluralCat(info.followees_count) | translate }}
                 </span>
             </a>
         </li>
@@ -28,7 +28,7 @@
                 <span class="mine capital">{{ 'YOU_ARE_INSPIRING' | translate }}</span>
                 <span class="others capital">{{ 'HE_INSPIRING' | translate }}</span>
                 {{info.followers_count}} 
-                <pluralize-translate count="info.followers_count" key="'HOW_MANY_PEOPLE'"></pluralize-translate>
+                {{'HOW_MANY_PEOPLE.'+pluralCat(info.followers_count) | translate }}
         	</a>
         </li>
     </ul>

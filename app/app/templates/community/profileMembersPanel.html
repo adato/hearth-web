@@ -3,13 +3,14 @@
         <li>
             <a href="#!/community/{{info._id}}/members" ng-class="{selected: pageSegment =='community.members'}">
                 {{ 'COMMUNITY_HAS' | translate}} {{ info.member_count}}
-                <pluralize-translate count="info.members_count" key="'X_MEMBERS'"></pluralize-translate>
+                {{'X_MEMBERS.'+pluralCat(info.members_count) | translate }}
             </a>
         </li>
         <li>
             <a href="#!/community/{{info._id}}/applications" ng-class="{selected: pageSegment =='community.applications'}">
                 {{ info.applicant_count}}
-                <pluralize-translate count="info.applicant_count" key="'HOW_MANY_PEOPLE'"></pluralize-translate>
+
+                {{'HOW_MANY_PEOPLE.'+pluralCat(info.applicant_count) | translate }}
                 {{ 'WAITING_FOR_APPROVE' | translate }}
             </a>
         </li> 

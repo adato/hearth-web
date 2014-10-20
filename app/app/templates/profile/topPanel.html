@@ -23,12 +23,14 @@
             <a href="#!/profile/{{info._id}}/following" ng-class="{'active': (pageSegment.substr(8) == 'friends' || pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers_count')}" class="friends-and-follows">
                 <b>{{info.followers_count}}</b>
                 <br />
-                <pluralize-translate count="info.followers_count" key="'HOW_MANY_PEOPLE'"></pluralize-translate>
+                {{ 'HOW_MANY_PEOPLE.'+pluralCat(info.followers_count) | translate }}
                 <span ng-if="mine">{{ 'INSPIRED_BY_ME' | translate }}</span>
                 <span ng-if="!mine">{{ 'INSPIRED_BY_HIM' | translate }}</span>
                 <hr>
-                <strong>{{info.followees_count}}</strong> <pluralize-translate count="info.followees_count" key="'BY_PEOPLE'"></pluralize-translate>
-                <br />{{ 'IS_INSPIRED' | translate }}
+                {{info.followees_count}}
+                {{ 'BY_PEOPLE.'+pluralCat(info.followees_count) | translate }}
+                <br />
+                {{ 'IS_INSPIRED' | translate }}
             </a>
             <a href="#!/profile/{{info._id}}/communities" class="communities" ng-class="{'active': (pageSegment.substr(8) == 'communities')}"><b>{{info.communities_count}}</b> 
                 {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
