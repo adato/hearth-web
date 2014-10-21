@@ -1,165 +1,166 @@
-'use strict';
-/**
- * @ngdoc directive
- * @name hearth.directives.itemEdit
- * @description M
- * @restrict E
- */
-angular.module('hearth.directives').directive('itemEdit', [
-	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post', 'KeywordsService',
+// ========================== DEPRECATED ====================
+// 'use strict';
+// /**
+//  * @ngdoc directive
+//  * @name hearth.directives.itemEdit
+//  * @description M
+//  * @restrict E
+//  */
+// angular.module('hearth.directives').directive('itemEdit', [
+// 	'$filter', 'LanguageSwitch', 'PostsService', '$analytics', 'Auth', 'Post', 'KeywordsService',
 
-	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post, KeywordsService) {
-		return {
-			replace: true,
-			restrict: 'E',
-			scope: {
-				data: '='
-			},
-			templateUrl: 'templates/directives/itemEdit.html', //must not use name ad.html - adBlocker!
-			link: function(scope, element) {
-				scope.languageCode = LanguageSwitch.uses().code;
+// 	function($filter, LanguageSwitch, PostsService, $analytics, Auth, Post, KeywordsService) {
+// 		return {
+// 			replace: true,
+// 			restrict: 'E',
+// 			scope: {
+// 				data: '='
+// 			},
+// 			templateUrl: 'templates/directives/itemEdit.html', //must not use name ad.html - adBlocker!
+// 			link: function(scope, element) {
+// 				scope.languageCode = LanguageSwitch.uses().code;
 
-				var defaultPost = {
-					type: 'offer',
-					isPrivate: false,
-					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, scope.languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
-					sharing_allowed: true,
-					locations: [{
-						name: ''
-					}],
-					attachments_attributes: [],
-					name: '',
-					title: '',
-					keywords: [],
-					edit: false
-				};
+// 				var defaultPost = {
+// 					type: 'offer',
+// 					isPrivate: false,
+// 					date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, scope.languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+// 					sharing_allowed: true,
+// 					locations: [{
+// 						name: ''
+// 					}],
+// 					attachments_attributes: [],
+// 					name: '',
+// 					title: '',
+// 					keywords: [],
+// 					edit: false
+// 				};
 
-				scope.limits = {
-					title: 100
-				};
+// 				scope.limits = {
+// 					title: 100
+// 				};
 
-				if (scope.data && scope.data.date) {
-					scope.data.date = $filter('date')(scope.data.date, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
-				}
+// 				if (scope.data && scope.data.date) {
+// 					scope.data.date = $filter('date')(scope.data.date, LanguageSwitch.uses() === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+// 				}
 
-				scope.post = $.extend(angular.copy(defaultPost), scope.data);
+// 				scope.post = $.extend(angular.copy(defaultPost), scope.data);
 
-				$('.tagsInput', element).keypress(function(e) {
-			        if (e.keyCode == 9) {
-						var self = this;
-						setTimeout(function() {
-							$(self).find("input").focus();
-						});
-			        }
-			    });
+// 				$('.tagsInput', element).keypress(function(e) {
+// 			        if (e.keyCode == 9) {
+// 						var self = this;
+// 						setTimeout(function() {
+// 							$(self).find("input").focus();
+// 						});
+// 			        }
+// 			    });
 
-				scope.close = function() {
-					scope.editForm.$setPristine();
-					if (!scope.data) {
-						scope.post = angular.copy(defaultPost);
-					}
+// 				scope.close = function() {
+// 					scope.editForm.$setPristine();
+// 					if (!scope.data) {
+// 						scope.post = angular.copy(defaultPost);
+// 					}
 
-					scope.$emit('closeEditItem');
-				};
+// 					scope.$emit('closeEditItem');
+// 				};
 
-				scope.transformImagesStructure = function(postDataCopy) {
-					postDataCopy.attachments = [];
-					postDataCopy.attachments_attributes.forEach(function(el) {
-						postDataCopy.attachments.push({
-							normal: el.file,
-							large: el.file,
-							origin: el.file
-						});
-					});
+// 				scope.transformImagesStructure = function(postDataCopy) {
+// 					postDataCopy.attachments = [];
+// 					postDataCopy.attachments_attributes.forEach(function(el) {
+// 						postDataCopy.attachments.push({
+// 							normal: el.file,
+// 							large: el.file,
+// 							origin: el.file
+// 						});
+// 					});
 
-					delete postDataCopy.attachments_attributes;
-					return postDataCopy;
-				};
+// 					delete postDataCopy.attachments_attributes;
+// 					return postDataCopy;
+// 				};
 
-				scope.cleanNullLocations = function(loc) {
+// 				scope.cleanNullLocations = function(loc) {
 
-					for(var i = 0; i < loc.length; i++) {
+// 					for(var i = 0; i < loc.length; i++) {
 
-						if(! loc[i].coordinates) {
-							loc.splice(i, 1);
-							i--;
-						}
-					}
-					return loc;
-				}
+// 						if(! loc[i].coordinates) {
+// 							loc.splice(i, 1);
+// 							i--;
+// 						}
+// 					}
+// 					return loc;
+// 				}
 
-				scope.send = function() {
-					var postData, postDataCopy;
+// 				scope.send = function() {
+// 					var postData, postDataCopy;
 
-					//we need copy, because we change data and don't want to show these changes to user
-					postData = angular.extend(
-						angular.copy(scope.post), {
-							dateOrig: scope.post.date,
-							date: dateToTimestamp(scope.post.date),
-							id: scope.post._id
-						}
-					);
+// 					//we need copy, because we change data and don't want to show these changes to user
+// 					postData = angular.extend(
+// 						angular.copy(scope.post), {
+// 							dateOrig: scope.post.date,
+// 							date: dateToTimestamp(scope.post.date),
+// 							id: scope.post._id
+// 						}
+// 					);
 
-					// clear locations from null values
-					postData.locations = scope.cleanNullLocations(postData.locations);
+// 					// clear locations from null values
+// 					postData.locations = scope.cleanNullLocations(postData.locations);
 
-					postDataCopy = angular.extend(
-						angular.copy(postData), {
-							author: Auth.getCredentials(),
-							updated_at: new Date().toISOString(),
-							reply_count: 0,
-							isPhantom: true,
-						}
-					);
+// 					postDataCopy = angular.extend(
+// 						angular.copy(postData), {
+// 							author: Auth.getCredentials(),
+// 							updated_at: new Date().toISOString(),
+// 							reply_count: 0,
+// 							isPhantom: true,
+// 						}
+// 					);
 
-					Post[scope.data ? 'update' : 'add'](postData, function(data) {
-						scope.$emit('adSaved', data);
-					});
+// 					Post[scope.data ? 'update' : 'add'](postData, function(data) {
+// 						scope.$emit('adSaved', data);
+// 					});
 
-					postDataCopy = scope.transformImagesStructure(postDataCopy);
-					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
-					// scope.$emit('adCreated', postDataCopy);
-					scope.close();
+// 					postDataCopy = scope.transformImagesStructure(postDataCopy);
+// 					scope.$emit(scope.data ? 'adUpdated' : 'adCreated', postDataCopy);
+// 					// scope.$emit('adCreated', postDataCopy);
+// 					scope.close();
 
-					/*$analytics.eventTrack(eventName, {
-						category: 'Posting',
-						label: 'NP',
-						value: 7
-					});*/
-				};
+// 					/*$analytics.eventTrack(eventName, {
+// 						category: 'Posting',
+// 						label: 'NP',
+// 						value: 7
+// 					});*/
+// 				};
 
-				scope.photoUploadSuccessful = function($event) {
-					if ($event.target.status === 200) {
-						scope.post.attachments_attributes.push(JSON.parse($event.target.response));
-					}
-				};
+// 				scope.photoUploadSuccessful = function($event) {
+// 					if ($event.target.status === 200) {
+// 						scope.post.attachments_attributes.push(JSON.parse($event.target.response));
+// 					}
+// 				};
 
-				scope.queryKeywords = function($query) {
-					return KeywordsService.queryKeywords($query);
-				};
+// 				scope.queryKeywords = function($query) {
+// 					return KeywordsService.queryKeywords($query);
+// 				};
 
-				function dateToTimestamp(dateToFormat, withOffset) {
-					var outDate, dateCs, dateEn, zoneOffset;
+// 				function dateToTimestamp(dateToFormat, withOffset) {
+// 					var outDate, dateCs, dateEn, zoneOffset;
 
-					if (dateToFormat) {
-						dateCs = dateToFormat.match(/(^\d{2})\.(\d{2})\.(\d{4})$/),
-						dateEn = dateToFormat.match(/(^\d{2})\/(\d{2})\/(\d{4})$/),
-						zoneOffset = (new Date()).getTimezoneOffset();
+// 					if (dateToFormat) {
+// 						dateCs = dateToFormat.match(/(^\d{2})\.(\d{2})\.(\d{4})$/),
+// 						dateEn = dateToFormat.match(/(^\d{2})\/(\d{2})\/(\d{4})$/),
+// 						zoneOffset = (new Date()).getTimezoneOffset();
 
-						if (dateCs) {
-							outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
-						} else if (dateEn) {
-							outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
-						} else {
-							console.error('Unable to parse date ' + dateToFormat);
-						}
-						if (!withOffset) {
-							outDate = outDate + zoneOffset * 60000; // remove timezone offset
-						}
-					}
-					return outDate;
-				}
-			}
-		};
-	}
-]);
+// 						if (dateCs) {
+// 							outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
+// 						} else if (dateEn) {
+// 							outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
+// 						} else {
+// 							console.error('Unable to parse date ' + dateToFormat);
+// 						}
+// 						if (!withOffset) {
+// 							outDate = outDate + zoneOffset * 60000; // remove timezone offset
+// 						}
+// 					}
+// 					return outDate;
+// 				}
+// 			}
+// 		};
+// 	}
+// ]);

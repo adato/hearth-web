@@ -65,7 +65,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			$http.defaults.headers.common['Accept-Language'] = language.code;
 			$translate.uses(language.code);
 			tmhDynamicLocale.set(language.code);
-
+			
 			$rootScope.language = language.code;
 			$rootScope.$broadcast("initLanguageSuccess", language.code);
 			return language.code;

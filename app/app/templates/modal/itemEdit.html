@@ -17,8 +17,9 @@
     <hr />
     <form ng-submit="save()" name="createAdForm" novalidate class="create-ad">
         <div>
+            <p class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</p>
             <div class="messageBox" ng-if="!isPostActive(post)">
-                <span ng-if="post.is_expired && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.date | date:DATETIME_FORMATS.medium }}</span>
+                <span ng-if="post.is_expired && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
                 <span ng-if="post.is_expired && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
                 <span ng-if="!post.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
             </div>
@@ -66,15 +67,14 @@
                     <i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
                 </label>
                 <div ng-class="{disabled: post.valid_until_unlimited == true}">
-                    <input type="text" ng-focus="showError.date = false" ng-blur="showError.date = true" name="date" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{languageCode.code}}" ng-model="post.date" placeholder="{{'UNLIMITED' | translate}}" required>
-
+                    <input type="text" ng-focus="showError.valid_until = false" ng-blur="showError.valid_until = true" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" ng-model="post.valid_until" placeholder="{{'UNLIMITED' | translate}}" required>
                     <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
-                    <div class="clear error" ng-show="showError.date">
-                        <span ng-show="createAdForm.date.$error.required">{{ 'DATE_IS_EMPTY' | translate }}</span>
+                    <div class="clear error" ng-show="showError.valid_until">
+                        <span ng-show="createAdForm.valid_until.$error.required">{{ 'DATE_IS_EMPTY' | translate }}</span>
                     </div>
                 </div>
             </div>
-
+            
             <hr />
             <div class="files" ng-class="{withFiles: showFiles}">
 

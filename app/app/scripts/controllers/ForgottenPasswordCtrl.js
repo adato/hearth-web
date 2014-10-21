@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
-    '$scope', 'Auth', '$location', '$translate', 'ResponseErrors', 'Email',
-    function($scope, Auth, $location, $translate, ResponseErrors, Email) {
+    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email',
+    function($scope, Auth, $location, ResponseErrors, Email) {
         $scope.sent = false;
         $scope.data = {
             email: ''

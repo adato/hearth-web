@@ -9,24 +9,27 @@
 angular.module('hearth.controllers').controller('ItemEdit', [
 	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout',
 	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout) {
+		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
+
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
-			date: $filter('date')(new Date().getTime() + 30 * 24 * 60 * 60 * 1000, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'),
+			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $rootScope.DATETIME_FORMATS.shortDate),
 			locations: [{
 				name: ''
 			}],
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
-			// is_active: false
+			is_active: true
 		};
+
 		$scope.showFiles = false;
 		$scope.showError = {
 			title: false,
 			text: false,
 			locations: false,
-			date: false
+			valid_until: false
 		};
 
 		$scope.sending = false;
@@ -38,12 +41,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		});
 
-		// setTimeout($scope.showError, 3000);
+		// $scope.$watch('languageCode', function() {
+		// 	var timestamp = dateToTimestamp($scope.post.date, true);
+		// 	$scope.post.date = $filter('date')(timestamp, $rootScope.DATETIME_FORMATS.shortDate);
+		// });
+	
+		// var dateToConvert = new Date();
+		// alert(dateToConvert.toISOString());
 
-		$scope.$watch('languageCode', function() {
-			var timestamp = dateToTimestamp($scope.post.date, true);
-			$scope.post.date = $filter('date')(timestamp, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
-		});
 
 		$scope.showError = function(err, isError) {
 			var modalWindow = $(".ngdialog-content"),
@@ -71,36 +76,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.post = angular.copy($scope.defaultPost);
 		};
 
-		function dateToTimestamp(dateToFormat, withOffset) {
-			var outDate, dateCs, dateEn, zoneOffset;
-
-			if (dateToFormat) {
-				dateCs = dateToFormat.match(/(^\d{2})\.(\d{2})\.(\d{4})$/),
-				dateEn = dateToFormat.match(/(^\d{2})\/(\d{2})\/(\d{4})$/),
-				zoneOffset = (new Date()).getTimezoneOffset();
-
-				if (dateCs) {
-					outDate = new Date(parseInt(dateCs[3], 10), parseInt(dateCs[2], 10) - 1, parseInt(dateCs[1], 10), 0, 0, 0).getTime();
-				} else if (dateEn) {
-					outDate = new Date(parseInt(dateEn[3], 10), parseInt(dateEn[1], 10) - 1, parseInt(dateEn[2], 10), 0, 0, 0).getTime();
-				} else {
-					console.error('Unable to parse date ' + dateToFormat);
-				}
-				if (!withOffset) {
-					outDate = outDate + zoneOffset * 60000; // remove timezone offset
-				}
-			}
-			return outDate;
-		}
-
 		$scope.dateUnlimitedToggle = function() {
 
-			$scope.showError.date = false;
+			$scope.showError.valid_until = false;
 
 			// $scope.post.valid_until_unlimited = !$scope.post.valid_until_unlimited;
 			if (!$scope.post.valid_until_unlimited) {
 
-				$scope.post.date = "";
+				$scope.post.valid_until = '';
 			}
 		}
 
@@ -190,9 +173,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.showError.text = true;
 			}
 
-			if(post.date == '' && !post.valid_until_unlimited) {
+			if(post.valid_until == '' && !post.valid_until_unlimited) {
 				res = false;
-				$scope.showError.date = true;
+				$scope.showError.valid_until = true;
 			}
 			
 			if(post.locations && ! post.location_unlimited) {
@@ -209,8 +192,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return res;
 		};
 
+		function convertDateToIso(datetime, format) {
+
+			// make dates format same as moment.js format
+			// create moment object from our date and add 1 hour because of timezones and return iso string
+			return moment($scope.post.valid_until, format.toUpperCase()).add(1, 'hour').toISOString();
+		}
+
 		$scope.save = function() {
 			var postData, postDataCopy;
+
+			// hide top "action failed" message
+			$scope.showInvalidPostMessage = false;
 
 			if(! $scope.testForm($scope.post)) {
 				return false;
@@ -219,11 +212,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			//we need copy, because we change data and don't want to show these changes to user
 			postData = angular.extend(
 				angular.copy($scope.post), {
-					date: dateToTimestamp($scope.post.date, true),
+					valid_until: convertDateToIso($scope.post.valid_until, $rootScope.DATETIME_FORMATS.shortDate),
 					id: $scope.post._id
 				}
 			);
-
+			
 			postData = $scope.transformDataOut(postData);
 			
 			postDataCopy = angular.extend(
@@ -274,10 +267,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		function transformDataIn(post) {
 			if (post) {
-				post.dateOrig = post.date;
-				post.date = $filter('date')(post.date, LanguageSwitch.uses().code === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy');
+				post.dateOrig = post.valid_until;
+				post.valid_until = $filter('date')(post.valid_until, $rootScope.DATETIME_FORMATS.shortDate);
 				if(post.valid_until_unlimited) {
-					post.date = '';
+					post.valid_until = '';
 				}
 
 				post.name = $.trim(post.name);
@@ -308,6 +301,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.init = function() {
 			$scope.post = transformDataIn($scope.post) || $scope.defaultPost;
+
+			// if post is invalid, show message and run validation (it will show errors in invalid fields)
+			if($scope.isInvalid) {
+				$scope.showInvalidPostMessage = true;
+				$timeout(function() {
+					$scope.testForm($scope.post);
+				}, 1000);
+			}
 		};
 
         $scope.refreshItemInfo = function($event, item) {

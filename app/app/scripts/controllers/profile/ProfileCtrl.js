@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$translate',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $translate) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma) {
 		$scope.loaded = false;
 		$scope.info = false;
 

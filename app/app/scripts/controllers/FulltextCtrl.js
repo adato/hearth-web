@@ -121,7 +121,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             Fulltext.stats({query: params.query}, $scope.processStatsData);
         };
 
-
         $scope.init = function() {
             $scope.languageCode = $rootScope.language;
             // ========================= DEPRECATED ==========================

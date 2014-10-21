@@ -1,8 +1,8 @@
 'use strict';
 /**
  * @ngdoc directive
- * @name hearth.directives.datepicker
- * @description Solves UI for selecting date
+ * @name hearth.directives.autosizeTextarea
+ * @description Makes textarea autoresizing based on content
  * @restrict A
  */
 angular.module('hearth.directives').directive('autosizeTextarea',

@@ -185,6 +185,7 @@
     "EMAIL_CONFIRMATION_TEXT": "Potvrzen\u00ed emailu",
     "EMAIL_INPUT_PLACEHOLDER": "Email",
     "EMAIL_TEXT_PLACEHOLDER": "Text zpr\u00e1vy",
+    "ERR_ACTION_FAILED_DUE_TO_ERRORS": "Inzerát obsahuje chyby, takže akci nebylo možné dokončit. Opravte ho a pak to zkuste znova.",
     "ERR_AD_TITLE_LEN": "Titulek p\u0159\u00edsp\u011bvku je p\u0159\u00edli\u0161 dlouh\u00fd.",
     "ERR_AD_TITLE_MIN_LEN": "Titulek p\u0159\u00edsp\u011bvku je p\u0159\u00edli\u0161 kr\u00e1tk\u00fd.",
     "ERR_AD_TEXT_LEN": "V\u00e1\u0161 p\u0159\u00edsp\u011bvek je p\u0159\u00edli\u0161 dlouh\u00fd, pane Shakespeare. To n\u00e1s mrz\u00ed, na\u0161e maxim\u00e1ln\u00ed d\u00e9lka je 2500 znak\u016f.",

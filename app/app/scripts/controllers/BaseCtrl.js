@@ -173,13 +173,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // open modal window for item edit
-        $rootScope.editItem = function(post) {
+        $rootScope.editItem = function(post, isInvalid) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
             var scope = $scope.$new();
             scope.post = angular.copy(post);
             scope.postOrig = post;
+            scope.isInvalid = isInvalid;
 
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
@@ -295,6 +296,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(modal) $('#'+modal).foundation('reveal', 'close');
                     if(cb) cb(item);
                     $rootScope.$broadcast('updatedItem', res);
+                }, function(err) {
+                    if( err.status == 422) {
+
+                        // somethings went wrong - post is not valid
+                        // open edit box and show error
+                        if(modal) $('#'+modal).foundation('reveal', 'close');
+                        $rootScope.editItem(item, true);
+                    }
             });
         };
 
