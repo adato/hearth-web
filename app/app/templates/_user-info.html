@@ -7,7 +7,7 @@
 			<div class="author-about" ng-if="item.author.about">
 				<div>{{item.author.about | ellipsis:50}}</div>
 			</div>
-			<div ng-if="item.author.interests.length"><i class="fa fa-heart"></i> {{item.author.interests.join(', ')}}</div>
+			<div ng-if="item.author.interests.length && item.author.interests[0]"><i class="fa fa-heart"></i> {{item.author.interests.join(', ')}}</div>
 			<div ng-if="item.author.work"><i class="fa fa-suitcase"></i> {{item.author.work}}</div>
 			<div ng-if="item.author.locations.length">
 				<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
