@@ -50,7 +50,7 @@
                     <div class="breadcrumb" ng-switch-when="Post">
                         <a href="#!/">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
                         <a ng-href="#!/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
-                        <span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : languageCode === 'cs' ? 'dd.MM.yyyy' : 'MM/dd/yyyy'}}
+                        <span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : DATETIME_FORMATS.mediumDate}}
                     </div>
                     <div class="breadcrumb" ng-switch-when="User">
                         {{'people' | translate}} &gt;

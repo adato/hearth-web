@@ -7,7 +7,7 @@
 				<img ng-if="item.user_to_avatar.normal" ng-src="{{item.user_to_avatar.normal}}" />
 			</div>
 		</a>
-		<small class="date" title="{{item.updated_at | date:'dd.MM.yyyy HH:mm:ss'}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</small>
+		<small class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</small>
 		<div class="rating-text">
 			{{ item.text }}			
 			<br>

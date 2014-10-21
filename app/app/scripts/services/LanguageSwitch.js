@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.services').service('LanguageSwitch', [
-	'$feature', '$translate', '$http', 'ipCookie', '$rootScope',
-	function($feature, $translate, $http, ipCookie, $rootScope) {
+	'$feature', '$translate', '$http', 'ipCookie', '$rootScope', 'tmhDynamicLocale',
+	function($feature, $translate, $http, ipCookie, $rootScope, tmhDynamicLocale) {
 		var self = this,
 			languages = [{
 				code: 'en',
@@ -63,7 +63,12 @@ angular.module('hearth.services').service('LanguageSwitch', [
 				expires: 21*30
 			});
 			$http.defaults.headers.common['Accept-Language'] = language.code;
-			return $translate.uses(language.code);
+			$translate.uses(language.code);
+			tmhDynamicLocale.set(language.code);
+
+			$rootScope.language = language.code;
+			$rootScope.$broadcast("initLanguageSuccess", language.code);
+			return language.code;
 		};
 		this.load = function() {
 			return $.cookie('language');

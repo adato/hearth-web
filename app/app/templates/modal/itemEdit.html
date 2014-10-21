@@ -18,9 +18,9 @@
     <form ng-submit="save()" name="createAdForm" novalidate class="create-ad">
         <div>
             <div class="messageBox" ng-if="!isPostActive(post)">
-                <span ng-if="post.is_expired && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.date | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+                <span ng-if="post.is_expired && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.date | date:DATETIME_FORMATS.medium }}</span>
                 <span ng-if="post.is_expired && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
-                <span ng-if="!post.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+                <span ng-if="!post.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
             </div>
             <needofferselector class="fleft" model="post.type" community="loggedCommunity"></needofferselector>
             <div class="name" ng-class="{'community-style-name': loggedCommunity}">

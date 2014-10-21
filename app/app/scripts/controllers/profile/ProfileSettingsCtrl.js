@@ -28,6 +28,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			newPass: false
 		};
 
+		$scope.d = new Date();
+
 		$scope.validateDeleteAccount = function(data) {
 			var res = true;
 
@@ -154,20 +156,14 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.init = function() {
-			console.log("==== LANGUAGE 1 ==== ");
-			$scope.lang = LanguageSwitch.uses();
-			console.log("==== LANGUAGE 2 ==== ", $scope.lang);
+			console.log("Using language: ", $rootScope.language);
 		};
 
 		$scope.switchLang = function(lang) {
-
 			LanguageSwitch.swicthTo(lang);
-			window.location.reload();
 		};
 
-		setInterval(function() {
-			$scope.init();
-		}, 1000);
+		$rootScope.$on('initLanguageSuccess', $scope.init);
 		$rootScope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
 	}

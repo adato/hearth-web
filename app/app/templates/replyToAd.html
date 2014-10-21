@@ -32,7 +32,7 @@
         <span ng-show="ad.location.name" ng-cloak>{{ ad.location.name }}</span>
         <br>
     </span>
-    <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.created_at | date:'dd.MM.yyyy'}}</span>
+    <span><i class="fa fa-clock-o" style="display:inline-block; width:20px;"></i> {{ ad.created_at | date:DATETIME_FORMATS.mediumDate}}</span>
     <br><br>
     <div signed-out>
         <div class="round login-prompt" ng-cloak translate>
