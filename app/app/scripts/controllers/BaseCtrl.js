@@ -140,6 +140,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             }
 
             $rootScope.pluralCat = $locale.pluralCat;
+            $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);

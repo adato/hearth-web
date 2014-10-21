@@ -56,6 +56,9 @@
 				<div class="text-container">
 					<div class="expandable">
 						<p ng-bind-html="item.name | linky:'_blank'"></p>
+						{{item.updated_at | date:DATETIME_FORMATS.medium}}
+						<br />
+						{{item.updated_at | date:DATETIME_FORMATS.short}}
 					</div>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
