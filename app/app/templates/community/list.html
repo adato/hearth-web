@@ -1,31 +1,33 @@
 <div class="communities">
-    <h2 ng-if="myCommunities.length">{{ 'COMMUNITIES' | translate }}</h2>
-    <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button2 fright community-list-add-button">
-        <span class="fa fa-pencil"></span>
-        {{'CREATE_COMMUNITY' | translate}}
-    </a>
-    <div class="community-list-add-form hide">
-        <community-create-edit close="toggleForm()"></community-create-edit>
-    </div>
+    <div class="myCommunities" ng-if="!loggedCommunity">
+        <h2 ng-if="myCommunities.length">{{ 'COMMUNITIES' | translate }}</h2>
+        
+        <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button2 fright community-list-add-button">
+            <span class="fa fa-pencil"></span>
+            {{'CREATE_COMMUNITY' | translate}}
+        </a>
+        <div class="community-list-add-form hide">
+            <community-create-edit close="toggleForm()"></community-create-edit>
+        </div>
 
-    <div class="my-communities" ng-if="myCommunities.length">
-        <h3 class="fleft iblock">
-            {{ 'YOU_ARE_MEMBER' | translate}}
-            {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
-            <span ng-if="myAdminCommunities.length">
-                {{ 'FROM_THAT' | translate }}
-                {{'IN_X.'+pluralCat(myAdminCommunities.length)  | translate:'{count:'+myAdminCommunities.length+'}'}}
-                {{ 'ADMIN_7_CASE' | translate }}
-            </span>
-        </h3>
-        <div class="clear"></div>
-        <br />
-        <div class="community-list">
-            <community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
-            <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div> -->
+        <div class="my-communities" ng-if="myCommunities.length">
+            <h3 class="fleft iblock">
+                {{ 'YOU_ARE_MEMBER' | translate}}
+                {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
+                <span ng-if="myAdminCommunities.length">
+                    {{ 'FROM_THAT' | translate }}
+                    {{'IN_X.'+pluralCat(myAdminCommunities.length)  | translate:'{count:'+myAdminCommunities.length+'}'}}
+                    {{ 'ADMIN_7_CASE' | translate }}
+                </span>
+            </h3>
+            <div class="clear"></div>
+            <br />
+            <div class="community-list">
+                <community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
+                <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div> -->
+            </div>
         </div>
     </div>
-
     <div class="random-communities">
         <h3 class="fleft iblock">{{ 'SUGGESTED_COMMUNITIES' | translate }}</h3>
         <div class="clear"></div>
