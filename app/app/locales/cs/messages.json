@@ -290,6 +290,8 @@
     "LOGIN_BAD_CREDENTIALS": "Jméno nebo heslo nesedí. Zkuste to ještě jednou.",
     "LOGIN_REQUIRED": "Pro provedení této akce je potřeba být přihlášený.",
     "HAVE_YOU_FORGOT_PASS": "Zapomněli jste heslo?",
+    "HAVE_YOU_REMEMBERED_PASS": "Vzpomněl jste si na heslo?",
+    "LETS_LOGIN": "Přihlašte se.",
     "ALREADY_HAVE_AN_ACCOUNT": "Už máte účet?",
     "YOU_ARE_ACCEPTING_TERMS": "Registrací souhlasíte s ",
     "CONTINUE": "Pokračovat",

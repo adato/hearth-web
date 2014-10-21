@@ -111,8 +111,9 @@ $max-modal-window-width:23em;
 	border-bottom-right-radius:$global-radius;
 	border-left:1px solid color(3);
 	position:absolute;
-	left:100%;
-	top:5em;
+	left:99%;
+	top:0px;
+	bottom: 0px;
 	width:$terms-width;
 	font-size:.7rem;
 	padding:1rem;
@@ -127,7 +128,7 @@ $max-modal-window-width:23em;
 
 	.scroll {
 		overflow-y:scroll;
-		height:36em;
+		height:31em;
 	}
 
 	p {

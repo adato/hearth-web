@@ -1,15 +1,14 @@
 <div class="communities">
-    <div class="myCommunities" ng-if="!loggedCommunity">
-        <h2 ng-if="myCommunities.length">{{ 'COMMUNITIES' | translate }}</h2>
-        
-        <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button2 fright community-list-add-button">
-            <span class="fa fa-pencil"></span>
-            {{'CREATE_COMMUNITY' | translate}}
-        </a>
-        <div class="community-list-add-form hide">
-            <community-create-edit close="toggleForm()"></community-create-edit>
-        </div>
+    <h2>{{ 'COMMUNITIES' | translate }}</h2>
+    <a ng-if="loggedUser._id && !loggedCommunity" ng-click="toggleForm()" class="button2 fright community-list-add-button">
+        <span class="fa fa-pencil"></span>
+        {{'CREATE_COMMUNITY' | translate}}
+    </a>
+    <div class="community-list-add-form hide">
+        <community-create-edit close="toggleForm()"></community-create-edit>
+    </div>
 
+    <div class="myCommunities" ng-if="!loggedCommunity">
         <div class="my-communities" ng-if="myCommunities.length">
             <h3 class="fleft iblock">
                 {{ 'YOU_ARE_MEMBER' | translate}}
@@ -30,6 +29,7 @@
     </div>
     <div class="random-communities">
         <h3 class="fleft iblock">{{ 'SUGGESTED_COMMUNITIES' | translate }}</h3>
+
         <div class="clear"></div>
         <br />
         <div class="community-list">
