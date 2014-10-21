@@ -102,8 +102,7 @@
 				</div>
 				
 			    <section ng-include="'templates/modals.html'" id="modals"></section>
-			    
-				<button ng-if="!mine" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
+				<button ng-if="!mine && isPostActive(item)" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
