@@ -56,7 +56,6 @@
 					<div class="expandable">
 						<p ng-bind-html="item.name | linky:'_blank'"></p>
 						Inzerat expiruje: {{item.valid_until}}
-
 					</div>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
@@ -85,7 +84,7 @@
 				</a>
 				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" data-reveal-id="confirm-report-{{item._id}}">
 				</a>
-				<div class="share">
+				<div class="share" ng-if="isPostActive(item)">
 					<div class="fa fa-share-square-o"></div>
 					<div class="sharing">
 						<div>

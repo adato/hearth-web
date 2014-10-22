@@ -42,8 +42,9 @@ angular.module('hearth.directives').directive('item', [
                 scope.reportNotLoggedIn = 0;
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
                 scope.keywords = scope.keywordsActive || [];
-                
+                    
                 // public methods from rootScope
+                scope.loggedUser = $rootScope.loggedUser;
                 scope.isPostActive = $rootScope.isPostActive;
                 scope.loggedUser = $rootScope.loggedUser;
                 scope.showLoginBox = $rootScope.showLoginBox;

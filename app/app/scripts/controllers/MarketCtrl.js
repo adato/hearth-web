@@ -95,6 +95,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				return $location.search($scope.filter);
 			}
 
+			$scope.loading = false;
 			$scope.items = [];
 			$scope.load();
 		});
@@ -103,6 +104,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			
 			$scope.$broadcast('resetFilterData');
 
+			$scope.loading = false;
 			$scope.filter = {};
 			$scope.user.filter = {};
 			$scope.items = [];

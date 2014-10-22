@@ -7,15 +7,11 @@ $$config = {
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
 	defaultUserImage: 'images/no-avatar.png',
-	gApiKey: 'AIzaSyDArE48iXuR16XEp8zEUDo4g6E7GSqGJgc',
-	// fbAppId: '277542219089599', // production
-	// fbAppId: '769756073037691', // staging
-	fbAppId: '1495788017321716', // dev
 	sharingEndpoints: {
-				facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
-				gplus: 'https://plus.google.com/share?url=',
-				twitter: 'https://twitter.com/share?url=',
-				linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
+		facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+		gplus: 'https://plus.google.com/share?url=',
+		twitter: 'https://twitter.com/share?url=',
+		linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
 	},
 	features: {
 		aboutPage: false,
@@ -30,3 +26,8 @@ $$config = {
 		newCreateEditForm: false
 	}
 };
+
+// copy data from localConfig
+if($$localConfig) {
+	for(var key in $$localConfig) $$config[key]=$$localConfig[key];
+}

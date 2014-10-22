@@ -477,6 +477,23 @@ module.exports = function(grunt) {
 
 		// Copies remaining files to places other tasks can use
 		copy: {
+			// develop: {
+			// 	cwd: '<%= yeoman.app %>/../',
+			// 	dest: 'app/config-local.js',
+			// 	src: ['configuration/stage.js']
+			// },
+			// stage: {
+			// 	expand: true,
+			// 	cwd: '<%= yeoman.app %>/../',
+			// 	dest: 'app/config-local.js',
+			// 	src: ['configuration/stage.js']
+			// },
+			// production: {
+			// 	expand: true,
+			// 	cwd: '<%= yeoman.app %>/../',
+			// 	dest: 'app/config-local.js',
+			// 	src: ['configuration/production.js']
+			// },
 			dist: {
 				files: [{
 					expand: true,
