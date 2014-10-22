@@ -28,6 +28,7 @@ $max-modal-window-width:23em;
 	    font-weight: normal;
 	    text-align: center;
 	}
+	
 	hr {
 		margin-bottom:.5rem;
 	}
@@ -38,7 +39,8 @@ $max-modal-window-width:23em;
 		text-align: center;
 	}
 
-	a {
+	a,
+	a:visited {
 		color: color(5);
 	}
 	
