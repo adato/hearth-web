@@ -194,9 +194,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		function convertDateToIso(datetime, format) {
 
+			if(!$scope.post.valid_until)
+				return $scope.post.valid_until;
+			
 			// make dates format same as moment.js format
 			// create moment object from our date and add 1 hour because of timezones and return iso string
-			return moment($scope.post.valid_until, format.toUpperCase()).add(1, 'hour').toISOString();
+			return moment($scope.post.valid_until, format.toUpperCase()).format();
 		}
 
 		$scope.save = function() {

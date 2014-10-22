@@ -22,6 +22,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $scope.segment = $route.current.segment;
         });
 
+        // ================== DEPRECATED =================
+        // var timezone =  new Date().getTimezoneOffset();
+        // console.log(timezone);
+        // console.log("-"+timezone);
+        
+        // var isoTime = moment("10/22/14", "M/D/YY").utc().zone(timezone).format();
+        // console.log(isoTime);
+
+
         $scope.closeDropdown = function(id) {
             Foundation.libs.dropdown.close($('#'+id));
         };

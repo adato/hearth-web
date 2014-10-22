@@ -4,7 +4,7 @@
             <input placeholder="{{ placeholder | translate}}" ng-blur="testEmptyLocation(location)" ng-focus="hideError(location)" ng-disabled="limit == true" ng-model="locations[$index].name" class="map-input" type='text'>
             <div class="remove" ng-hide="$first">
                 <!-- <span class="fa fa-times-circle" ng-click="remove($event, $index)"></span> -->
-                <span class="remove" ng-click="remove($event, $index)">smazat</span>
+                <span class="remove" ng-click="remove($event, $index)">{{ 'DELETE_LOCATION' | translate }}</span>
             </div>
         </div>
         <div class="fleft mapIcon" ng-show="!hideMap" ng-class="{selected: mapDisplay == $index}">
@@ -20,7 +20,7 @@
     </div>
     <div class="clear"></div>
     <div class="controll">
-        <a ng-click="add()" ng-show="locations.length > 0 && !locations[locations.length-1].name && maxCount > locations.length">
+        <a ng-click="add()" ng-show="locations.length > 0 && locations[locations.length-1].name && maxCount > locations.length">
             <span class="fa fa-plus-square"></span>{{ 'ADD' | translate }} &nbsp; &nbsp;
         </a>
         <checkbox ng-show="limit != -1" model="limit" on-update="locationDoesNotMatter()" value="true" value-off="false">

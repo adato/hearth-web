@@ -21,6 +21,15 @@
 		} 
 	}
 
+	.disabled {
+		.mapIcon {
+			a:hover {
+				opacity: 1;
+				cursor: default;
+			}
+		}
+	}
+
 	.row {
 		.locInput {
 			width: 94%;

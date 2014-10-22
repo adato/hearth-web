@@ -32,9 +32,8 @@ angular.module('hearth.geo').directive('locations', [
                 scope.errorMsg = scope.errorMessage || 'LOCATIONS_IS_EMPTY';
                 scope.placeholder = scope.placeholderKey || "MY_PLACE";
                 scope.maxCount = scope.maxCount || 30;
-
+                
                 function getDefaultLocation() {
-
                     return angular.copy({
                         type: 'Point',
                         name: '',
