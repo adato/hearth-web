@@ -11,12 +11,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
     function($scope, $routeParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
         var deleteOffset = false;
-
-        $scope.addresses = {
-            "Community": "community",
-            "User": "profile",
-            "Post": "ad",
-        };
+        $scope.readedAllData = false;
 
         $scope.$on('$destroy', function() {
             $scope.topArrowText.top = '';
@@ -52,6 +47,10 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
         $scope.processData = function(params) {
             return function(response) {
                 var i, item, data = response.data;
+
+                // if there is no more results (no items or smaller items then limit), stop lazy loading for next events
+                if(data.length < params.limit)
+                    $scope.readedAllData = true;
 
                 $("#fulltextSearchResults").removeClass("searchInProgress");
 
@@ -92,9 +91,15 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
         $scope.load = function(addOffset) {
             var params = {
+                limit: 15,
                 query: $routeParams.q || "",
                 offset: (addOffset) ? $scope.items.length : 0
             };
+
+            // if there is no more result data, dont load
+            if($scope.readedAllData) {
+                return false;
+            }
 
             if (params.query === '') {
                 // dont search empty query and redirect to marketplace
@@ -123,12 +128,11 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
         $scope.init = function() {
             $scope.languageCode = $rootScope.language;
-            // ========================= DEPRECATED ==========================
-            // $scope.languageCode = LanguageSwitch.uses().code;
             $scope.load();
         }
 
         $scope.$on("fulltextSearch", function(text) {
+            $scope.readedAllData = false;
             $scope.offset = 0;
             $scope.load();
         });
