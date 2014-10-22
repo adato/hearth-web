@@ -54,22 +54,22 @@
     <div class="right-pane" ng-if="!mine">
         <div class="user-about">
             <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
-            <div class="line">
-                <span class="descr mtop fleft small-6" ng-if="info.cities"><i class="fa fa-map-marker"></i> {{info.cities}}</span>
-                <span class="descr mtop fleft small-6" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</span>
-                <div class="clear"></div>
+            <div class="mbot line">
+                <div class="descr" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about}}</div>
+                <div class="descr" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</div> 
+                <div class="descr" ng-if="info.cities"><i class="fa fa-map-marker"></i> {{info.cities}}</div>
+                <div class="descr" ng-if="info.interests && info.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</div>
+                <div class="descr" ng-if="info.user_languages"><i class="fa fa-comments"></i>
+                    <span ng-repeat="(languageCode, enabled) in info.user_languages">
+                        {{ 'MY_LANG_' + languageCode.toUpperCase() | translate }}<span ng-if="!$last">,</span>
+                    </span>
+                 </div>
             </div>
-            <div class=" mtop mbot line" ng-if="info.interests && info.interests[0] != ''">
-                <span class="descr mtop"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</span>
-            </div>
-
 <!--
              ============= VYPIS VSEHO =============
             {{ info | json }}
  -->            
-            Popis: {{ info.about }}
-            <br />
-            Jazyky: {{ info.user_languages }}
+<!--             Jazyky: {{ info.user_languages }}
             <br />
             Down votes: {{ info.down_votes }}
             <br />
@@ -82,13 +82,14 @@
             Email: {{ info.email }}
             <br />
             Mesto: {{ info.cities }}
-            <br />
+            <br /> -->
 
             <span class="descr reg-date fleft"><i class="fa fa-asterisk"></i> {{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
             <span class="social fright">
                 <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
                 <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
                 <a target="_blank" ng-if="info.googleplus" href="{{info.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
+                <a target="_blank" ng-if="info.linkedin" href="{{info.linkedin}}"><i class="fa fa-linkedin"></i></a>
                 <a target="_blank" class="link" ng-if="info.webs.length && info.webs[0]" href="{{info.webs[0]}}"><i class="fa fa-link"></i></a>
             </span>
         </div>

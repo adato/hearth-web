@@ -415,16 +415,6 @@ $medium-avatar-size: 80px;
         
         .user-about {
             @extend .box;
-            span {
-                &.descr {
-                    .fa {
-                        width: 8px;
-                        color:color(1);
-                        margin-right:15px;
-                    }
-                }
-
-            }
             .mtop {
                 margin-top: 20px;
             }
@@ -432,15 +422,32 @@ $medium-avatar-size: 80px;
                 margin-bottom: 20px;
             }
             .line {
-                span {
+                margin-left:20px;
+                margin-right:20px;
+/*                span {
                     &:nth-child(1) {
                         padding-left: 20px;
                         padding-right: 20px;
                     }
+                }*/
+                div.descr {
+                    margin-top:10px;
+                    margin-bottom:10px;
+                    margin-left:27px;   
+                    .fa {
+                        margin-left:-27px;
+                    }                 
+                }
+            }
+            .descr {
+                .fa {
+                    width: 8px;
+                    color:color(1);
+                    margin-right:15px;
                 }
             }
 
-            span { display:block; }
+            /*span { display:block; }*/
             .social { 
                 font-size: 1.5rem;
                 text-align: right;
