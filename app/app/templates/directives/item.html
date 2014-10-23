@@ -55,7 +55,7 @@
 				<div class="text-container">
 					<div class="expandable">
 						<p ng-bind-html="item.name | linky:'_blank'"></p>
-						Inzerat expiruje: {{item.valid_until}}
+						Inzerat expiruje: {{item.valid_until | date:DATETIME_FORMATS.mediumDate}}
 					</div>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
@@ -91,7 +91,7 @@
 							<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
-							<a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a>
+							<!-- <a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a> -->
 						</div>
 					</div>
 				</div>
