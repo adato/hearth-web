@@ -53,7 +53,8 @@
 
     <div class="right-pane">
         <div class="user-about">
-            <h3>{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
+            <h3 ng-if="!mine">{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
+            <h3 ng-if="mine">{{ 'MY_PROFILE' | translate }}</h3>
             <div class="mbot line">
                 <div class="descr" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about}}</div>
                 <div class="descr" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</div> 
@@ -65,32 +66,7 @@
                         {{ 'MY_LANG_' + languageCode.toUpperCase() | translate }}<span ng-if="!$last">,</span>
                     </span>
                  </div>
-            <h3 ng-if="!mine">{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
-            <h3 ng-if="mine">{{ 'MY_PROFILE' | translate }}</h3>
-            <div class="line">
-                <span class="descr mtop fleft small-6" ng-if="info.cities"><i class="fa fa-map-marker"></i> {{info.cities}}</span>
-                <span class="descr mtop fleft small-6" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</span>
-                <div class="clear"></div>
-            </div>
-<!--
-             ============= VYPIS VSEHO =============
-            {{ info | json }}
- -->            
-<!--             Jazyky: {{ info.user_languages }}
-            <br />
-            Down votes: {{ info.down_votes }}
-            <br />
-            Up votes: {{ info.up_votes }}
-            <br />
-            Lokace: {{ info.locations }}
-            <br />
-            Tel: {{ info.phone }}
-            <br />
-            Email: {{ info.email }}
-            <br />
-            Mesto: {{ info.cities }}
-            <br /> -->
-
+             </div>
             <span class="descr reg-date fleft"><i class="fa fa-asterisk"></i> {{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
             <span class="social fright">
                 <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
