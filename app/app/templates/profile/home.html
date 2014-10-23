@@ -65,6 +65,12 @@
                         {{ 'MY_LANG_' + languageCode.toUpperCase() | translate }}<span ng-if="!$last">,</span>
                     </span>
                  </div>
+            <h3 ng-if="!mine">{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
+            <h3 ng-if="mine">{{ 'MY_PROFILE' | translate }}</h3>
+            <div class="line">
+                <span class="descr mtop fleft small-6" ng-if="info.cities"><i class="fa fa-map-marker"></i> {{info.cities}}</span>
+                <span class="descr mtop fleft small-6" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</span>
+                <div class="clear"></div>
             </div>
 <!--
              ============= VYPIS VSEHO =============
@@ -97,8 +103,8 @@
     </div>
     <div class="right-pane">
         <div class="activities">
-            
-            <h3>{{ 'COMMUNITY_LAST_ACTIVITY' | translate }}</h3>
+            <h3 ng-if="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
+            <h3 ng-if="!mine">{{ 'USER_ACTIVITY' | translate }}</h3>
             
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">
