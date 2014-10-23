@@ -13,16 +13,13 @@
 		</div>
 	</section>
 	<section class="large-10 columns community-section">
-		<div class="item">
+		<div class="item community">
 			<div class="overlap"> </div>
 			<div class="arrowbox"></div>
 			<div class="arrow"></div>
 			<div class="content">
-				<header>
-					<div class="locations" ng-if="item.location && item.location.short_address">
-						<span class="fa fa-map-marker"></span>&nbsp;&nbsp;{{ item.location.short_address }}
-					</div>
-					<span class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span> {{ 'COMMUNITY_CREATED' | translate }} {{item.created_at | ago}}</span>
+				<header class="fright">
+					<span class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span> {{ 'COMMUNITY_CREATED' | translate }} {{item.created_at | ago}}</span>				
 				</header>
 				<h3>
 					<a ng-if="user" ng-href="#!/community/{{item._id}}">{{item.name}}</a>

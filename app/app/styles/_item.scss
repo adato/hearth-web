@@ -599,6 +599,19 @@ article.row.inactive {
             }
         }
     }
+    &.community {
+        & .arrowbox {
+            height: 40px;
+            width: 40px;
+            left: -20px;
+            top: 20px;;
+            border-radius: 50%;
+        }
+        & .arrow {
+            border-radius:100%;
+            color:color(2);
+        }
+    }    
 }
 
 #confirm-delete, #confirm-report {
