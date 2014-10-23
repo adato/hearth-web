@@ -45,6 +45,14 @@
   </head>
 
   <body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
+
+<div class="ngdialog ngdialog-theme-default" id="maitenancePage">
+  <div class="ngdialog-overlay"></div>
+  <div class="ngdialog-content" ng-cloak>
+      <h2 translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
+  </div>
+</div>
+
   <div id="all">
   <div id="fb-root"></div>
   <script src="//connect.facebook.net/en_US/all.js"></script>
@@ -231,7 +239,9 @@
      <script src="scripts/services/Post.js"></script>
      <script src="scripts/services/TermsAgreement.js"></script>
      <script src="scripts/services/HearthLoginInterceptor.js"></script>
+     <script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
      <script src="scripts/services/Auth.js"></script>
+     <script src="scripts/services/ApiHealthChecker.js"></script>
      <script src="scripts/services/CommunityService.js"></script>
      <script src="scripts/services/KeywordsService.js"></script>
      <script src="scripts/services/ProfileProgress.js"></script>

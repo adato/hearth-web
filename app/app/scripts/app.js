@@ -57,6 +57,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
 
             // ======== Watch for unauth responses
             $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
+            $httpProvider.responseInterceptors.push('ApiMaintenanceInterceptor');
 
             // ======== ?? wtf is this?
             $httpProvider.responseInterceptors.push('TermsAgreement');

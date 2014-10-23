@@ -32,3 +32,5 @@ angular.module('hearth.services').factory('HearthLoginInterceptor', [
         };
     }
 ]);
+
+'use strict';
