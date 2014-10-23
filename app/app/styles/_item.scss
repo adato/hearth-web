@@ -1,6 +1,6 @@
 $size: 30px;
 $border: $size / 10;
-$arrowTop: 30px;
+$arrowTop: 25px;
 $imageSize: 80px;
 
 
@@ -601,15 +601,12 @@ article.row.inactive {
     }
     &.community {
         & .arrowbox {
-            height: 40px;
-            width: 40px;
-            left: -20px;
-            top: 30px;;
-            border-radius: 50%;
-        }
-        & .arrow {
-            border-radius:100%;
-            color:color(2);
+            height: $size;
+            width: $size;
+            left: $border - $size / 2;
+            top: $arrowTop;
+            @include rotate(45deg);
+            -webkit-transform-origin: 50% 50%;
         }
     }    
 }

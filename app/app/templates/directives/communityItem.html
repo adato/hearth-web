@@ -23,9 +23,12 @@
 				<div class="text-container">
 					<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>
 				</div>
+				<div class="fright" ng-if="user && item.admin == user._id">
+					<i class="fa fa-wrench" title="{{ 'ADMIN' | translate }}"></i>
+				</div>
 				<div class="clear"></div>
 			</div>
-			<footer>
+<!-- 			<footer>
 				<div class="fleft" ng-if="user && item.admin == user._id">
 					<br>{{'ADMIN' | translate}}
 				</div>
@@ -40,7 +43,6 @@
 							<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
-							<!-- <a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a> -->
 						</div>
 					</div>
 				</div>
@@ -48,7 +50,7 @@
 					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click=""></div>
 				</div>
 				<div class="clear"></div>
-			</footer>
+			</footer> -->
 		</div>
 	</section>
 	<!-- <div class="community-list-item">
