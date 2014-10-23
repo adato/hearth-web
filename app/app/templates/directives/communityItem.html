@@ -13,10 +13,10 @@
 			<div class="arrowbox"></div>
 			<div class="arrow"></div>
 			<div class="content">
-				<header>
+<!-- 				<header>
 					<span class="fa fa-map-marker" ng-if="item.location && item.location.short_address">&nbsp;&nbsp;{{ item.location.short_address }}</span>
 					<span class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span> {{ 'COMMUNITY_CREATED' | translate }} {{item.created_at | ago}}</span>				
-				</header>
+				</header> -->
 				<h3>
 					<a ng-href="#!/community/{{item._id}}">{{item.name}}</a>
 				</h3>
@@ -26,7 +26,6 @@
 				<div class="fright" ng-if="user && item.admin == user._id">
 					<i class="fa fa-wrench" title="{{ 'ADMIN' | translate }}"></i>
 				</div>
-				<div class="clear"></div>
 			</div>
 <!-- 			<footer>
 				<div class="fleft" ng-if="user && item.admin == user._id">
