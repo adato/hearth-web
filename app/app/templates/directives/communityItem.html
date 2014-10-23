@@ -1,4 +1,57 @@
-<div class="community-list-item">
+<article class="row community-item community_{{ item._id }}">
+	<section ng-if="!hideAvatar" class="large-2 columns photo">
+		<!-- <div ng-if="loggedUser._id" ng-include="'templates/_user-info.html'"></div> -->
+		{{ loggedUser._id }}
+		<a ng-href="#!/community/{{item._id}}">
+			<div class="avatar community-avatar">
+				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+			</div>
+		</a>
+	</section>
+	<section class="large-10 columns community-section">
+		<div class="item need">
+			<div class="overlap"> </div>
+			<div class="arrowbox"></div>
+			<div class="arrow"></div>
+			<div class="content">
+				<header>
+					<span class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span> {{ 'COMMUNITY_CREATED' | translate }} {{item.created_at | ago}}</span>
+				</header>
+				<h3>
+					<a ng-href="#!/community/{{item._id}}">{{item.name}}</a>
+				</h3>
+				<div class="text-container">
+					<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<footer>
+				<div class="fleft" ng-if="item.location && item.location.short_address">
+					<br><span class="fa fa-map-marker"></span>&nbsp;&nbsp;{{ item.location.short_address }}
+				</div>
+				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_COMMUNITY' | translate}}" ng-click="showLoginBox(true)">
+				</a>
+				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_COMMUNITY' | translate}}" data-reveal-id="confirm-report-{{item._id}}">
+				</a>
+				<div class="share">
+					<div class="fa fa-share-square-o"></div>
+					<div class="sharing">
+						<div>
+							<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
+							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
+							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
+							<!-- <a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a> -->
+						</div>
+					</div>
+				</div>
+				<div class="controll-buttons" ng-if="mine">
+					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click=""></div>
+				</div>
+				<div class="clear"></div>
+			</footer>
+		</div>
+	</section>
+	<!-- <div class="community-list-item">
 	<a href="#!/community/{{item._id}}">
 		<div class="avatar community-avatar">
 			<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
@@ -13,4 +66,5 @@
 		</small>
 		<p>{{ item.description | ellipsis }}</p>
 	 </div>
-</div>
+	</div> -->
+</article>

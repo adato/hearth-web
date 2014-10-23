@@ -255,6 +255,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 template: $$config.modalTemplates + 'inviteBox.html',
                 controller: 'InviteBox',
                 scope: $scope.$new(),
+                className: 'ngdialog-invite-box',
                 closeByDocument: false,
                 // showClose: false
             });

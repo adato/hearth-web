@@ -1,6 +1,7 @@
 .communities {
     width: 960px; /* ==== set general width === */
     margin: 0px auto;
+    margin-top:-40px;
     
     .community-list-add-form {
         transition: opacity 0.4s ease-in-out;
@@ -8,8 +9,11 @@
         .community-edit {
             margin-bottom: 20px;
         }
+   }
+    .avatar {
+        margin-left:-20px;
     }
-
+/* 
     .community-list {
         @extend .clearfix;
         clear:both;
@@ -76,5 +80,5 @@
                 }
             }
         }
-    }
+    } */
 }
