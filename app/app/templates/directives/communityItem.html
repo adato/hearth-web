@@ -1,16 +1,11 @@
 <article class="row community-item community_{{ item._id }}">
 	<section ng-if="!hideAvatar" class="large-2 columns photo">
 		<!-- <div ng-if="loggedUser._id" ng-include="'templates/_user-info.html'"></div> -->
-		<a ng-if="user" ng-href="#!/community/{{item._id}}">
+		<a ng-href="#!/community/{{item._id}}">
 			<div class="avatar community-avatar">
 				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
 			</div>
 		</a>
-		<div ng-if="!user">
-			<div class="avatar community-avatar">
-				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
-			</div>
-		</div>
 	</section>
 	<section class="large-10 columns community-section">
 		<div class="item community">
@@ -18,12 +13,12 @@
 			<div class="arrowbox"></div>
 			<div class="arrow"></div>
 			<div class="content">
-				<header class="fright">
+				<header>
+					<span class="fa fa-map-marker" ng-if="item.location && item.location.short_address">&nbsp;&nbsp;{{ item.location.short_address }}</span>
 					<span class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span> {{ 'COMMUNITY_CREATED' | translate }} {{item.created_at | ago}}</span>				
 				</header>
 				<h3>
-					<a ng-if="user" ng-href="#!/community/{{item._id}}">{{item.name}}</a>
-					<span ng-if="!user">{{item.name}}</span>
+					<a ng-href="#!/community/{{item._id}}">{{item.name}}</a>
 				</h3>
 				<div class="text-container">
 					<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>
@@ -32,7 +27,7 @@
 			</div>
 			<footer>
 				<div class="fleft" ng-if="user && item.admin == user._id">
-				<br>{{'ADMIN' | translate}}
+					<br>{{'ADMIN' | translate}}
 				</div>
 				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_COMMUNITY' | translate}}" ng-click="showLoginBox(true)">
 				</a>
