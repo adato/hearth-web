@@ -17,11 +17,17 @@ angular.module('hearth.directives').directive('datepicker', [
 				attrs.$observe('datepicker', function() {
 					var now = new Date(),
 						limit = (new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)).getTime();
-					
+					var dateFormat = attrs.datepickerFormat || 'd. M. y';
+					// var dateFormat = 'd. M. y';
+
 					// datepicker has different format for dates - use m as Month number
 					// for more info: http://api.jqueryui.com/datepicker/
-					var dateFormat = $rootScope.DATETIME_FORMATS.shortDate.replace(/M/g, 'm');
-
+					dateFormat = dateFormat.toLowerCase();
+					
+					// also make year longer - from 14 to 2014 and so on
+					dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1yyyy');
+					dateFormat = dateFormat.replace(/([^y]|^)y(?!y)/g, '$1yyyy');
+					
 					$(element).fdatepicker({
 						onRender: function(date) {
 							return date.getTime() < limit ? 'disabled' : '';

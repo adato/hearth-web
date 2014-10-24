@@ -10,11 +10,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout',
 	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout) {
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
-
+		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
+		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.defaultPost = {
 			type: 'offer',
 			keywords: [],
-			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $rootScope.DATETIME_FORMATS.shortDate),
+			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [{
 				name: ''
 			}],
@@ -43,7 +44,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		// $scope.$watch('languageCode', function() {
 		// 	var timestamp = dateToTimestamp($scope.post.date, true);
-		// 	$scope.post.date = $filter('date')(timestamp, $rootScope.DATETIME_FORMATS.shortDate);
+		// 	$scope.post.date = $filter('date')(timestamp, $scope.dateFormat);
 		// });
 	
 		// var dateToConvert = new Date();
@@ -199,7 +200,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			
 			// make dates format same as moment.js format
 			// create moment object from our date and add 1 hour because of timezones and return iso string
-			return moment($scope.post.valid_until, format.toUpperCase()).format();
+			format = format.toUpperCase();
+        	format = format.replace(/([^Y]|Y)YY(?!Y)/g, '$1YYYY');
+			format = format.replace(/([^Y]|^)Y(?!Y)/g, '$1YYYY');
+			
+			// console.log("Using format: ",format);
+
+			return moment($scope.post.valid_until, format).format();
 		}
 
 		$scope.save = function() {
@@ -215,7 +222,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			//we need copy, because we change data and don't want to show these changes to user
 			postData = angular.extend(
 				angular.copy($scope.post), {
-					valid_until: convertDateToIso($scope.post.valid_until, $rootScope.DATETIME_FORMATS.shortDate),
+					valid_until: convertDateToIso($scope.post.valid_until, $scope.dateFormat),
 					id: $scope.post._id
 				}
 			);
@@ -268,10 +275,17 @@ angular.module('hearth.controllers').controller('ItemEdit', [
         	$scope.postOrig.is_expired = post.is_expired;
         };
 
+        function modifyDateFormat(dateFormat) {
+
+        	dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
+			dateFormat = dateFormat.replace(/([^y]|^)yyyy(?!y)/g, '$1y');
+			return dateFormat;
+        }
 		function transformDataIn(post) {
 			if (post) {
 				post.dateOrig = post.valid_until;
-				post.valid_until = $filter('date')(post.valid_until, $rootScope.DATETIME_FORMATS.shortDate);
+				post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
+
 				if(post.valid_until_unlimited) {
 					post.valid_until = '';
 				}
