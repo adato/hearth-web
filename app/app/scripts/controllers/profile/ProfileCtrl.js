@@ -7,11 +7,21 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings) {
 		$scope.loaded = false;
 		$scope.info = false;
+
+		// ratings
+		$scope.sendingRating = false;
+		$scope.rating = {
+			score: 1,
+			text: ''
+		};
+		$scope.showError = {
+			text: false
+		}
 
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
@@ -82,6 +92,63 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.fetchUser();
 		};
 		
+
+		// will redirect user to user ratings and open rating form
+		$scope.openUserRatingForm = function(score) {
+			$scope.showError.text = false;
+			
+			// set default values
+			$scope.rating.score = score;
+			$scope.rating.text = '';
+
+			// show form
+			$scope.showUserRatingForm = true;
+
+			// refresh to ratings page
+			$location.url('/profile/'+$scope.info._id+'/received-ratings');
+		};
+
+		// will close form and set to default state
+		$scope.closeUserRatingForm = function() {
+			$scope.showUserRatingForm = false;
+		};
+
+		$scope.sendRating = function(rating) {
+			$scope.showError.text = false;
+
+			if(!rating.text) {
+				return $scope.showError.text = true;
+			}
+
+			if($scope.sendingRating)
+				return false;
+			$scope.sendingRating = true;
+
+			// send rating to API
+			UserRatings.add({id: $scope.info._id, rating: rating}, function(res) {
+
+				// remove lock
+				$scope.sendingRating = false;
+
+				// close form
+				$scope.closeUserRatingForm();
+
+				// refresh user counters
+				$scope.refreshUser();
+
+				// broadcast new rating - this will add rating to list
+				$scope.$broadcast('userRatingsAdded', res);
+			}, function(err) {
+				// remove lock
+				$scope.sendingRating = false;
+
+				// handle error
+				console.log(err);
+				alert("ERROR");
+			});
+
+		}
+
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
 		$rootScope.initFinished && $scope.refreshUser();

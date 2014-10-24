@@ -80,7 +80,33 @@ $medium-avatar-size: 80px;
             }
         }
     }
+
+    .user-rating-link {
+        margin: auto;
+    }
+    
+    .user-rating-form {
+        margin-top: 30px;
+        margin: auto;
+
+        label {
+            margin-bottom: 15px;
+        }
+        textarea {
+            min-height: 120px;
+        }
+
+        .moveUp {
+            position: relative;
+
+            span {
+                position: absolute;
+                top: -30px;
+            }
+        }
+    }
     .rating-listing {
+        margin-top: 30px;
         @extend .clearfix;
         clear:both;
         .rating {

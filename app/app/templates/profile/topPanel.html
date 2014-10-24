@@ -39,6 +39,10 @@
                 {{ 'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
             </a>
             <div class="karma-bar" ng-if="info.karma != null" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}"><span class="positive bar" style="width:{{info.karma}}%;" ng-if="info.karma > 0">{{ info.karma }}% <i class="fa fa-sun-o"></i></span><span class="negative bar" style="width:{{100 - info.karma}}%;"  ng-if="info.karma < 100"><i class="fa fa-moon-o"></i> {{100 - info.karma}}%</span></div>
+
+            <span ng-if="!mine">
+                Pošlete uživateli <a ng-click="openUserRatingForm(1)">kladne</a> / <a ng-click="openUserRatingForm(-1)">zaporne</a> hodnoceni
+            </span>
         </div>
     </header>
     <div class="clear"></div>

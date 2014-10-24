@@ -135,7 +135,12 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $( ".post_"+item._id ).slideUp( "slow", function() {});
         };
 
+        // will add new rating to data array
+        $scope.addUserRating = function($event, item) {
+            $scope.data.unshift(item);
+        };
 
+        $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);
         $scope.loaded && init();
