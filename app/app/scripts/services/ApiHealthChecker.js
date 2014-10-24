@@ -39,7 +39,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 */
 		this.sendHealthCheck = function(res) {
 			console.log("Testing health");
-			$.getJSON(appConfig.apiPath + '/heath').done(self.processHealthCheckResult).fail(self.processHealthCheckFailResult);
+			$.getJSON(appConfig.apiPath + '/health').done(self.processHealthCheckResult).fail(self.processHealthCheckFailResult);
 		};
 
 		/**
