@@ -67,7 +67,11 @@
                     </span>
                  </div>
              </div>
-            <span class="descr reg-date fleft"><i class="fa fa-asterisk"></i> {{ 'USER_HAS_REGISTERED' | translate }} {{info.created_at | ago}}</span>
+            <span class="descr reg-date fleft"><i class="fa fa-asterisk"></i>
+                <span ng-if="!mine">{{ 'USER_HAS_REGISTERED' | translate }}</span>
+                <span ng-if="mine">{{ 'YOU_HAVE_REGISTERED' | translate }}</span>
+                 {{info.created_at | ago}}
+             </span>
             <span class="social fright">
                 <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
                 <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
