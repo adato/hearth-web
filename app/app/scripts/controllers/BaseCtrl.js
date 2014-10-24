@@ -132,9 +132,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // try to load tutorial pages - if there is any, show tutorial
         $scope.checkTutorial = function() {
             // check only after login
-            if($.cookie('logged') === '1') {
+            if($.cookie('tutorial') === '1') {
 
-                $.removeCookie('logged');
+                $.removeCookie('tutorial');
                 Tutorial.get({user_id: $rootScope.loggedUser._id}, function(res) {
                     if(res.length) $rootScope.showTutorial(res);
                 });
@@ -146,6 +146,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if($rootScope.loggedUser._id) {
                 $scope.checkTutorial();
                 $scope.loadMyCommunities();
+            } else {
+                // set to check tutorial after next login
+                $.cookie('tutorial', 1);
             }
 
             $rootScope.pluralCat = $locale.pluralCat;
