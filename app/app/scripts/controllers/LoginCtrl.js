@@ -32,9 +32,6 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		
 		function processLoginResult(res) {
 			if(res.data && res.data.ok === true) {
-				// set cookie for tutorial check and all actions after login
-				$.cookie('logged', 1);
-
 				window.location = window.location.pathname;
 			} else {
 				showErrorCredentials();

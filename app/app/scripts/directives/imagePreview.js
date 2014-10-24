@@ -24,6 +24,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 						+ '</div>'
 	                    + '<div ng-if="error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
 	                    + '<div ng-if="error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
+	                    + '<div ng-if="error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate }}</div>'
 						+'</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
@@ -81,11 +82,24 @@ angular.module('hearth.directives').directive('imagePreview', [
 							scope.error.badSize = true;
 						} else {
 
-							if(scope.singleFile) {
-								scope.files = {file:src};
-							} else {
-								scope.files.push({file:src});
-							}
+							// this will check image size
+							var image = new Image();
+							image.src = e.target.result;
+
+							image.onload = function() {
+
+								if(this.width < 400 || this.height < 400) {
+									scope.error.badSizePx = true;
+								} else {
+
+									if(scope.singleFile) {
+										scope.files = {file:src};
+									} else {
+										scope.files.push({file:src});
+									}
+								}
+								scope.$apply();
+							};
 						}
 						scope.$apply();
 					};

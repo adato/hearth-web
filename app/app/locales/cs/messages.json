@@ -612,7 +612,7 @@
     "people": "Lid\u00e9",
     "place": "M\u00edsto",
     "UNLIMITED": "Neomezeně",
-    "total-count": "{{value}} celkem",
+    "TOTAL_COUNT": "{{value}} celkem",
     "required": "Toto pole je povinn\u00e9. Nechceme si hr\u00e1t na \u010detn\u00edka, ale zn\u00e1te tahle pole...",
     "return-the-filter-to-original-settings": "Vr\u00e1tit filtr do p\u016fvodn\u00edho nastaven\u00ed",
     "run-filter": "Filtrovat",

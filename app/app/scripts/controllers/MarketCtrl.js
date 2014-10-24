@@ -36,7 +36,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.topArrowText.top = $translate('ads-has-been-read', {
 				value: $scope.items.length
 			});
-			$scope.topArrowText.bottom = $translate('total-count', {
+			$scope.topArrowText.bottom = $translate('TOTAL_COUNT', {
 				value: data.total
 			});
 
@@ -150,51 +150,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('sendReply', function($event, data) {
 			PostReplies.add(data);
 		});
-		
-
-		// $scope.$on('report', function($event, data) {
-		// 	Post.spam(data);
-		// });
-
-		// ======================= DEPRECATED =======================
-
-		// $scope.$on('suspend', function($event, data) {
-		// 	Post.suspend(data);
-		// });
-		// $scope.$on('resume', function($event, data) {
-		// 	Post.resume(data);
-		// });
-
-		// $scope.$on('adSaved', function($event, data) {
-		// 	var phantomRecord, i;
-
-		// 	for (i = 0; i < $scope.items.length; i++) {
-		// 		if ($scope.items[i].isPhantom) {
-		// 			phantomRecord = $scope.items[i];
-		// 			break;
-		// 		}
-		// 	}
-		// 	if (phantomRecord) {
-		// 		phantomRecord = angular.extend(phantomRecord, data);
-		// 		phantomRecord.isPhantom = false;
-		// 		$scope.items[i] = phantomRecord;
-		// 	}
-		// });
-
-		// $scope.$on('removeAd', function($event, id) {
-		// 	var i, item;
-
-		// 	for (i = 0; i < $scope.items.length; i++) {
-		// 		item = $scope.items[i];
-		// 		if (item._id === id) {
-		// 			$scope.items.splice(i, 1);
-		// 			break;
-		// 		}
-		// 	}
-		// 	Post.remove({
-		// 		postId: id
-		// 	});
-		// });
 		
 		$scope.removeItemFromList = function($event, item) {
             $( ".post_"+item._id ).slideUp( "slow", function() {});

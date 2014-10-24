@@ -71,7 +71,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
                 $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
                 $scope.loaded = true;
 
-                $scope.topArrowText.bottom = $translate('total-count', {
+                $scope.topArrowText.bottom = $translate('TOTAL_COUNT', {
                     value: response.total
                 });
                 $scope.topArrowText.top = $translate('ads-has-been-read', {
