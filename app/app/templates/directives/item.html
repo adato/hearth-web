@@ -55,7 +55,6 @@
 				<div class="text-container">
 					<div class="expandable">
 						<p ng-bind-html="item.name | linky:'_blank'"></p>
-						Inzerat expiruje: {{item.valid_until | date:DATETIME_FORMATS.mediumDate}}
 					</div>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>

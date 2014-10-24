@@ -16,6 +16,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 			scope: {
 				files: "=?",
 				limit: "=",
+				limitPixelSize: "=",
 				singleFile: "=",
 			},
 			template: '<div class="image-preview-container"><div class="image-preview  image-upload">'
@@ -88,7 +89,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 							image.onload = function() {
 
-								if(this.width < 400 || this.height < 400) {
+								if(this.width < scope.limitPixelSize || this.height < scope.limitPixelSize) {
 									scope.error.badSizePx = true;
 								} else {
 

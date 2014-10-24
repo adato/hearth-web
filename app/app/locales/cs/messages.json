@@ -598,6 +598,7 @@
     "day7": "T\u00fdden",
     "ERROR_BAD_IMAGE_FORMAT": "Obr\u00e1zek m\u00e1 \u0161patn\u00fd form\u00e1t!",
     "ERROR_BAD_IMAGE_SIZE": "Obr\u00e1zek je moc velik\u00fd.",
+    "ERROR_BAD_IMAGE_SIZE_PX": "Obr\u00e1zek má malé rozlišení. Minimum je 400x400 pixelů.",
     "evaluation-bad": "<b>{{value}}<\/b> se moc <b>nepovedlo<\/b>",
     "evaluation-cool": "<b>{{value}} super<\/b> hodnocen\u00ed",
     "filter-ads": "Filtrovat inzer\u00e1ty",
