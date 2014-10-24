@@ -10,7 +10,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 	'$rootScope', 'appConfig',
 	function($rootScope, appConfig) {
 		var self = this;
-		var healthCheckTimeout = 4000;
+		var healthCheckTimeout = 2000;
 		var healthCheckTimeoutPointer = 0;
 
 		/**
@@ -18,7 +18,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 */
 		this.processHealthCheckResult = function(res) {
 			console.log("Health check result: ", res);
-			if(res.responseText && res.responseText.ok && res.responseText.ok == true){
+			if(res && res.ok && res.ok == true){
 				return self.turnOff();
 			}
 

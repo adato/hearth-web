@@ -1,10 +1,12 @@
 #maitenancePage {
   
   display: none;
+  
   .ngdialog-content {
     background-color: transparent;
     height: 100px;
-    margin: -50px auto 0;
+    margin:15% auto;
+    margin-top: -50px;
     padding: 10px;
     position: relative;
     text-align: center;
@@ -15,3 +17,4 @@
     }
   }
 }
+
