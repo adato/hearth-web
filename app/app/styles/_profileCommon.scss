@@ -7,12 +7,12 @@ $medium-avatar-size: 80px;
     header {
         .user-basic {
             @extend .columns;
-            width:60%;
             padding:0;
             margin-left:1rem;
             margin-right:-1rem;
             h1 {
                 overflow: hidden;
+                line-height: 1.5;
                 padding: {
                     left:1rem;
                     right:1rem;
@@ -31,8 +31,9 @@ $medium-avatar-size: 80px;
             }
         }
         .buttons {
-            @extend .columns;
-            width:40%;
+            margin-left:1rem;
+            max-width:40%;
+            float:right;
             padding-left: 0px;
             padding-right: 0px;
             button {
@@ -44,6 +45,7 @@ $medium-avatar-size: 80px;
                 padding-right:1rem;
                 margin-right:1rem;
                 margin-top:0 !important;
+                margin-bottom:0;
                 &.invite-button {
                     @extend .blue-color;
                     white-space:nowrap;
@@ -51,6 +53,9 @@ $medium-avatar-size: 80px;
                 .fa {
                     display:inline-block;
                     margin-right:10px;
+                }
+                &.blue.follow-button {
+                    margin-bottom:0;
                 }
             }
             .success {

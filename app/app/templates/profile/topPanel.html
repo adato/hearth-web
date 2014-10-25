@@ -5,16 +5,18 @@
     </div>
     <header ng-show="info">
         <div class="user-basic">
-            <h1><a href="#!/profile/{{info._id}}"><span>{{ info.name }}</span></a></h1>
+            <h1>
+                <div class="buttons" ng-if="!loggedCommunity">
+                    <a href="#!/profile-edit" class="mine right"><button><i class="fa fa-gears"></i> {{ 'SETTINGS' | translate}}</button></a>
+                    <button ng-if="!info.is_followed" class="others follow-button blue right" ng-click="toggleFollow(info._id)"><i class="fa fa-plus"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}</button>
+                    <button ng-if="info.is_followed" class="others follow-button blue right" ng-click="toggleFollow(info._id)"><i class="fa fa-times"></i> {{ 'UNFOLLOW_BUTTON_CAPTION' | translate}}</button>
+                    <button ng-if="mine" ng-click="openInviteBox()" class="invite-button right">
+                        <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
+                    </button>            
+                </div>
+                <a href="#!/profile/{{info._id}}"><span>{{ info.name }}</span></a>
+            </h1>
             <p ng-if="info.about"><span class="fa fa-quote-right"></span>{{info.about | ellipsis}}</p>
-        </div>
-        <div class="buttons" ng-if="!loggedCommunity">
-            <a href="#!/profile-edit" class="mine right"><button><i class="fa fa-gears"></i> {{ 'SETTINGS' | translate}}</button></a>
-            <button ng-if="!info.is_followed" class="others follow-button blue right" ng-click="toggleFollow(info._id)"><i class="fa fa-plus"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}</button>
-            <button ng-if="info.is_followed" class="others follow-button blue right" ng-click="toggleFollow(info._id)"><i class="fa fa-times"></i> {{ 'UNFOLLOW_BUTTON_CAPTION' | translate}}</button>
-            <button ng-if="mine" ng-click="openInviteBox()" class="invite-button right">
-                <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
-            </button>            
         </div>
         <div class="highlights">
             <a href="#!/profile/{{info._id}}" class="profile-photo">

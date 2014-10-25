@@ -6,31 +6,31 @@
 	<header ng-show="info">
 		<div class="user-basic">
 			<h1>
+				<div class="buttons" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
+					<a ng-if="mine" href="#!/community/{{info._id}}/edit">
+						<button class="follow-button blue right">
+							<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
+						</button>
+					</a>
+					<button class="follow-button right" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
+						<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
+					</button>
+					<a ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="right">
+						<button class="follow-button blue right"><i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}</button>
+					</a>
+					<span class="right" ng-if="!mine && info.is_applicant" >
+						<br />
+						<div class="success"><span class="fa fa-smile-o"></span> {{'COMMUNITY_APPLICATION_SENT' | translate}}</div>
+					</span>
+
+					<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
+						<button class="follow-button blue right"><i class="fa fa-share"></i> {{'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
+					</a>
+				</div>			
 				<a href="#!/community/{{info._id}}">
 					{{ info.name }}
 				</a>
 			</h1>
-		</div>
-		<div class="buttons" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
-			<a ng-if="mine" href="#!/community/{{info._id}}/edit">
-				<button class="follow-button blue right">
-					<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
-				</button>
-			</a>
-			<button class="follow-button right" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
-				<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
-			</button>
-			<a ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="right">
-				<button class="follow-button blue right"><i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}</button>
-			</a>
-			<span class="right" ng-if="!mine && info.is_applicant" >
-				<br />
-				<div class="success"><span class="fa fa-smile-o"></span> {{'COMMUNITY_APPLICATION_SENT' | translate}}</div>
-			</span>
-
-			<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
-				<button class="follow-button blue right"><i class="fa fa-share"></i> {{'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
-			</a>
 		</div>
 		<div class="highlights">
 			<a href="#!/community/{{info._id}}" class="profile-photo">
