@@ -80,6 +80,9 @@ $max-modal-window-width:23em;
 		a:hover {
 			background:lighten(color(5), 20%);
 		}
+		a:visited {
+			background:color(5);
+		}
 	}
 	button {
 		text-transform:none;
