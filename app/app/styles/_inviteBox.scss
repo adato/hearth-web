@@ -1,7 +1,14 @@
 
+.ngdialog-invite-box {
+	@extend .ngdialog-theme-default;
+	.ngdialog-content {
+		margin-top:240px !important;
+		margin-left:320px !important;
+	}
+}
 .invite-box {
 	text-align: left;
-    min-width: 500px;
+    min-width: 600px;
 	
 	h2 {
 	    font-size: 20px;
@@ -12,8 +19,11 @@
 	ul {
 	   	list-style: none;
     	text-align: center;
+    	margin-top:3rem;
+    	margin-bottom:3rem;
 
     	li {
+    		padding:.5rem;
     		display: inline;
     		text-align: center;
     	}
