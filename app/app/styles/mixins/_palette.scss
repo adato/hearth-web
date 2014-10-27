@@ -8,6 +8,7 @@
         $grad: append($grad, $color $i);
     }
     body:before {
+        display: none;
         position: fixed;
         z-index: 10000;
         width: length($color) * $size;

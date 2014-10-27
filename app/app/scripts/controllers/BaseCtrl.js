@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', '$templateCache', 'Post', 'Tutorial',
+    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify',
 
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, $templateCache, Post, Tutorial) {
+    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
         var timeout;
         $scope.segment = false;
         $scope.addresses = {
@@ -30,6 +30,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // var isoTime = moment("10/22/14", "M/D/YY").utc().zone(timezone).format();
         // console.log(isoTime);
 
+        setTimeout(function() {
+            // Notify.add("Ahooooooj");
+            // Notify.add("Ahooooooj 2 ", Notify.T_SUCCESS);
+            // Notify.add("Ahooooooj 3 ", Notify.T_INFO, "#notify-container-market");
+            // Notify.add("Ahooooooj 4 ", Notify.T_WARNING, null, 2000);
+            // Notify.add("Ahooooooj 5 ", Notify.T_ERROR, null, null, 4000);
+
+        }, 2000);
 
         $scope.closeDropdown = function(id) {
             Foundation.libs.dropdown.close($('#'+id));

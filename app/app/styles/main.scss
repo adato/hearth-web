@@ -102,6 +102,7 @@ $fontSize: rem-calc(18);
 @import "communities";
 @import "communityProfile";
 @import "communityEdit";
+@import "notifyAreas";
 
 body {
     background-image: inline-image("bg.png");
@@ -1468,4 +1469,12 @@ img.blur {
 
 .margin-top {
     margin-top: 10px;
+}
+
+.alert-box {
+    transition-property: none;
+
+    &.error {
+        color: white;
+    }
 }

@@ -5,6 +5,11 @@
     "%d MONTHS_AGO": "p\u0159ed %d m\u011bs\u00edci",
     "%d YEARS_AGO": "p\u0159ed %d lety",
     "3-days": "3 dny",
+    "NOTIFY": {
+        "POST_CREATED_SUCCESFULLY": "Inzerát byl úspěšně uložen.",
+        "POST_UPDATED_SUCCESFULLY": "Inzerát byl úspěšně upraven.",
+        "POST_DELETED_SUCCESFULLY": "Inzerát byl úspěšně smazán."
+    },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
     "404_NOT_FOUND_TEXT": "Je n\u00e1m to l\u00edto, ale str\u00e1nka, kterou hled\u00e1te, pravd\u011bpodobn\u011b neexistuje.",
     "404_NOT_FOUND_TITLE": "404 Nenalezeno",

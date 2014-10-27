@@ -55,6 +55,7 @@
 
   <div id="all">
   <div id="fb-root"></div>
+  <div id="notifyArea"></div>
   <script src="//connect.facebook.net/en_US/all.js"></script>
   <script type='text/javascript'>
   <!--
@@ -174,7 +175,7 @@
       $(function() { 
         
         function resizeMenuBar() {
-          $('.navigation').css("width", $(".main-container").width()+"px");
+          // $('.navigation').css("width", $(".main-container").width()+"px");
         }
 
         $(window).scroll(function() {
@@ -198,6 +199,7 @@
     <script src="scripts/routes.js"></script>
     <script src="scripts/appConfig.js"></script>
 
+     <script src="scripts/services/Notify.js"></script>
      <script src="scripts/services/UsersService.js"></script>
      <script src="scripts/services/FulltextService.js"></script>
      <script src="scripts/services/FolloweesSearchService.js"></script>

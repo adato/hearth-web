@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout', 'Filter',
+	'$scope', '$rootScope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout', 'Filter', 'Notify',
 
-	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter) {
+	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter, Notify) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.showMap = false;
@@ -137,7 +137,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.load();
 		});
 		$scope.$on('postCreated', function($event, post) {
-			console.log("Post was created: ", post);
+			Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 4000);
 
 			$scope.showMap = false;
 			$scope.items.unshift(post);
@@ -145,13 +145,18 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('sendReply', function($event, data) {
 			PostReplies.add(data);
+            Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_INFO, '#notify-container-market', 4000);
 		});
-		
-		$scope.removeItemFromList = function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {});
-        };
 
-		$scope.$on('itemDeleted', $scope.removeItemFromList);
+		$scope.$on('itemDeleted', function($event, item) {
+            $( ".post_"+item._id ).slideUp( "slow", function() {});
+            Notify.addTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO, '#notify-container-market', 4000);
+        });
+
+        $scope.$on('updatedItem', function($event, item) {
+
+            Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 4000);
+        });
 
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
