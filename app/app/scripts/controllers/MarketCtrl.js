@@ -155,7 +155,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
         $scope.$on('updatedItem', function($event, item) {
 
-            Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 4000);
+            Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 1114000);
         });
 
 		$scope.$on('$destroy', function() {

@@ -23,13 +23,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         });
 
         // ================== DEPRECATED =================
-        // var timezone =  new Date().getTimezoneOffset();
-        // console.log(timezone);
-        // console.log("-"+timezone);
-        
-        // var isoTime = moment("10/22/14", "M/D/YY").utc().zone(timezone).format();
-        // console.log(isoTime);
-
         setTimeout(function() {
             // Notify.add("Ahooooooj");
             // Notify.add("Ahooooooj 2 ", Notify.T_SUCCESS);

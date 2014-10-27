@@ -1,0 +1,18 @@
+.alert-box {
+	.close {
+		cursor: pointer;
+	}
+}
+
+/** above filter bar */
+#notify-container-market {
+    left: 50%;
+    margin-left: -310px;
+    position: absolute;
+    right: 0;
+    width: 780px;
+    top: -55px;
+
+    .alert-box {
+    }
+}
