@@ -69,6 +69,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         $scope.refreshItemInfo = function($event, itemNew) {
+            // load new posts
             $scope.posts.data.forEach(function(item, key) {
                 if(item._id === itemNew._id) {
                     $scope.posts.data[key] = itemNew;
@@ -125,14 +126,16 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             if ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts') {
 
                 $scope.$on('postCreated', function() {
-                    loadServices[$scope.pageSegment](params, processData, processDataErr);
+                    $scope.refreshUser();
                 });
             }
         }
 
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {});
+            $( ".post_"+item._id ).slideUp( "slow", function() {
+            });
+            $scope.$emit("profileRefreshUser");
         };
 
         // will add new rating to data array

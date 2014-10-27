@@ -124,6 +124,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {
             $( ".post_"+item._id ).slideUp( "slow", function() {});
+            $scope.init();
         };
 
 
@@ -134,7 +135,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             // refresh after new post created
             if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
                 $scope.$on('postCreated', function() {
-                    loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+                    // refresh whole page - load new counters, activity feed, posts list
+                    $scope.init();
+                    // loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
                 });
             }
         }

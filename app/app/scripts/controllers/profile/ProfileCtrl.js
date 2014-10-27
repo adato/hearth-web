@@ -88,6 +88,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.refreshUser = function() {
+			console.log("Loading user info");
 			$scope.refreshDataFeed();
 			$scope.fetchUser();
 		};
@@ -149,6 +150,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		}
 
+		$scope.$on('profileRefreshUser', $scope.refreshUser);
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
 		$rootScope.initFinished && $scope.refreshUser();

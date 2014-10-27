@@ -37,13 +37,21 @@
             </h3>
             <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
 
-            <p class="mine" ng-if="posts.data.length && loggedCommunity">{{ 'SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
-            <p class="mine" ng-if="! posts.data.length">{{ 'YOU_HAVE_NO_POSTS_YET' | translate}}</p>
-            <p class="others" ng-if="! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
+            <p class="mine" ng-if="info.post_count > 0 && loggedCommunity">{{ 'SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
+            
+            <div ng-if="! loggedCommunity">
 
-            <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = loggedCommunity"></div>
+                <!-- === No posts active & inactive === -->
+                <p class="mine" ng-if="! posts.data.length">{{ 'YOU_HAVE_NO_ACTIVE_POSTS_YET' | translate}}</p>
+                <p class="others" ng-if="! posts.data.length && info.post_count <= 0">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
+                
+                <!-- === No active posts but some inactive === -->
+                <p class="mine" ng-if="! posts.data.length && info.post_count > 0">{{ 'YOU_HAVE_NO_ACTIVE_POSTS_YET_BUT_SOME_INACTIVE' | translate }}</p>
 
-            <div class="buttons" ng-if="posts.data.length">
+                <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = loggedCommunity"></div>
+            </div>
+
+            <div class="buttons" ng-if="info.post_count > 0">
                 <a href="#!/profile/{{info._id}}/posts">
                     <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
