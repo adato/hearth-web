@@ -8,6 +8,19 @@ $medium-avatar-size: 80px;
         top:-40px; // moved whole page a little bit up to avoid blank space on top
     }
 
+    .ratings-given {
+        .profile-edit-common {
+            h3 {
+                position: relative;
+                top: -20px;
+            }
+
+            .score-select {
+                position: relative;
+                top: -15px;   
+            }
+        }
+    }
 
     .medium-avatar {
         .avatar {

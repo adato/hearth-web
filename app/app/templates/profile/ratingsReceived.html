@@ -1,45 +1,52 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
-<div class="large-10 animate-show user-rating-form" ng-show="showUserRatingForm">
-	<h3>{{ 'ADD_USER_RATING' | translate }}</h3>
-	<span ng-class="{bold: rating.score == 1}" ng-click="rating.score = 1">Kladne</span>
-	<span ng-class="{bold: rating.score == -1}" ng-click="rating.score = -1">Zaporne</span>
-    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate>
-        <p class="success" ng-if="sent">{{ 'USER_RATING_WAS_SENT' | translate }}</p>
-        <label>
-            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input"></textarea>
-			<max-len-counter max-len="300" value="rating.text"></max-len-counter>
 
-            <div class="moveUp error" ng-show="showError.text">
-                <span ng-show="ratingForm.text.$error.required">{{ 'ERR_NOT_FILLED_RATING' | translate }}</span>
-            </div>
-			<div class="clear"></div>
-        </label>
-        <a ng-click="closeUserRatingForm()">{{ 'CANCEL' | translate }}</a>
-        <button type="submit" class="button-send right">{{ 'SEND_USER_RATING' | translate }}</button>
-    </form>
-</div>
+<div class="ratings-given">
+	<div class="row community-edit profile-edit-common large-10 animate-show user-rating-form" ng-show="showUserRatingForm">
+		<h3>{{ 'ADD_USER_RATING' | translate }}</h3>
+		
+		<div class="score-select">
+			<span ng-class="{bold: rating.score == 1}" ng-click="rating.score = 1">Kladne</span>
+			<span ng-class="{bold: rating.score == -1}" ng-click="rating.score = -1">Zaporne</span>
+		</div>
+	    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate>
+	        <p class="success" ng-if="sent">{{ 'USER_RATING_WAS_SENT' | translate }}</p>
+	        <label>
+	            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input"></textarea>
+				<max-len-counter max-len="300" value="rating.text"></max-len-counter>
+
+	            <div class="moveUp error" ng-show="showError.text">
+	                <span ng-show="ratingForm.text.$error.required">{{ 'ERR_NOT_FILLED_RATING' | translate }}</span>
+	            </div>
+				<div class="clear"></div>
+	        </label>
+	        <a ng-click="closeUserRatingForm()">{{ 'CANCEL' | translate }}</a>
+	        <button type="submit" class="button-send right">{{ 'SEND_USER_RATING' | translate }}</button>
+	    </form>
+	</div>
 
 
-<div class="large-10 user-rating-link" ng-if="!mine && !showUserRatingForm">
-	<span class="right">
-	    Pošlete uživateli <a ng-click="openUserRatingForm(1)">kladne</a> / <a ng-click="openUserRatingForm(-1)">zaporne</a> hodnoceni
-	</span>
+
+	<div class="large-10 user-rating-link" ng-if="!mine && !showUserRatingForm">
+		<span class="right">
+		    Pošlete uživateli <a ng-click="openUserRatingForm(1)">kladne</a> / <a ng-click="openUserRatingForm(-1)">zaporne</a> hodnoceni
+		</span>
+		<div class="clear"></div>
+	</div>
+
 	<div class="clear"></div>
-</div>
-
-<div class="clear"></div>
-<div class="rating-listing">
-	<div class="rating" ng-repeat="(id, item) in data track by $index">
-		<a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
-			<div class="avatar">
-				<img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
+	<div class="rating-listing">
+		<div class="rating" ng-repeat="(id, item) in data track by $index">
+			<a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
+				<div class="avatar">
+					<img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
+				</div>
+			</a>
+			<small class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</small>
+			<div class="rating-text">
+				{{ item.text }}
+				<br>
+				<small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a></small>
 			</div>
-		</a>
-		<small class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</small>
-		<div class="rating-text">
-			{{ item.text }}
-			<br>
-			<small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a></small>
 		</div>
 	</div>
 </div>

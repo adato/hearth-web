@@ -112,10 +112,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		});
 
 		// ======================= REVIEW ==============================
-		$scope.$on('adCreated', function($event, data) {
-			$scope.items.unshift(data);
-		});
-		// ======================= REVIEW ==============================
 		$scope.$on('adUpdated', function($event, data) {
 			var item, i;
 
@@ -140,11 +136,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.showMap = false;
 			$scope.load();
 		});
-		$scope.$on('postCreated', function() {
-			
-			$scope.items = [];
+		$scope.$on('postCreated', function($event, post) {
+			console.log("Post was created: ", post);
+
 			$scope.showMap = false;
-			$scope.load();
+			$scope.items.unshift(post);
 		});
 
 		$scope.$on('sendReply', function($event, data) {

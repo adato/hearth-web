@@ -251,7 +251,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				// $scope.$emit('adSaved', data);
 				
-				$rootScope.$broadcast('postCreated');
+				$rootScope.$broadcast('postCreated', data);
 				$(document.body).scrollTop(0);
 				$scope.closeThisDialog();
 			}, function() {
