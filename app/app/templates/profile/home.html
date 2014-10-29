@@ -64,6 +64,7 @@
             <h3 ng-if="!mine">{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
             <h3 ng-if="mine">{{ 'YOUR_PROFILE' | translate }}</h3>
             <div class="line">
+                <div class="descr" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about}}</div> 
                 <div class="descr" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</div> 
                 <div class="descr" ng-if="info.cities"><i class="fa fa-map-marker"></i> {{info.cities}}</div>
                 <div class="descr" ng-if="info.interests && info.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</div>
