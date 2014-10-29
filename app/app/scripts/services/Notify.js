@@ -26,7 +26,7 @@ angular.module('hearth.services').service('Notify', [
 			// if not set delay, set it to 0ms
 			delay = delay || 0;
 			// time to live - timeout to autoclose notify
-			ttl = ttl || 0;
+			ttl = ttl || 4000;
 			// default time is info box
 			type = type || this.T_INFO;
 			// default container is top center contaimer

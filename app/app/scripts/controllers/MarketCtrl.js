@@ -137,20 +137,29 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.load();
 		});
 		$scope.$on('postCreated', function($event, post) {
-			Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 4000);
+			Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market');
 
 			$scope.showMap = false;
+			
+			// hide him and show with some effect
+			post.hidden = true;
 			$scope.items.unshift(post);
+
+			$timeout(function() {
+				$(".post_"+post._id).slideDown(function() {
+					post.hidden = false;
+				});
+			});
 		});
 
 		$scope.$on('sendReply', function($event, data) {
 			PostReplies.add(data);
-            Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_INFO, '#notify-container-market', 4000);
+            Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_INFO, '#notify-container-market');
 		});
 
 		$scope.$on('itemDeleted', function($event, item) {
             $( ".post_"+item._id ).slideUp( "slow", function() {});
-            Notify.addTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO, '#notify-container-market', 4000);
+            Notify.addTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO, '#notify-container-market');
         });
 
         $scope.$on('updatedItem', function($event, item) {

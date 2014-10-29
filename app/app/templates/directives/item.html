@@ -1,4 +1,4 @@
-<article class="row post_{{ item._id }}" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine, inactive: !isPostActive(item)}">
+<article class="row post_{{ item._id }}" ng-style="{display: item.hidden ? 'none' : 'block'}" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine, inactive: !isPostActive(item)}">
 	<section ng-if="! hideAvatar" class="large-2 columns photo">
 		<div ng-if="loggedUser._id" ng-include="'templates/_user-info.html'"></div>
 		<a ng-if="loggedUser._id" ng-href="#!/{{profileLinkType[item.author._type]}}/{{ item.author._id }}">
