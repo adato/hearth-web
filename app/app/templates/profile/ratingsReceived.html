@@ -18,12 +18,13 @@
 			<br>
 			<div class="rating-notify-box"></div>
 			<div class="score-select">
-				<span ng-class="{bold: rating.score == 1}" ng-click="rating.score = 1">Kladne</span>
-				<span ng-class="{bold: rating.score == -1}" ng-click="rating.score = -1">Zaporne</span>
+				<needofferselector class="fleft" model="rating.score" text-true="{{ 'NEGATIVE' | translate}}" text-false="{{ 'POSITIVE' | translate}}"></needofferselector>
+				<p class="fleft">
+					{{ 'USER_RATING_SCORE_SELECT_TEXT' | translate }}
+				</p>
+				<div class="clear"></div>
 			</div>
-			<br>
 		    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
-		        <p class="success" ng-if="sent">{{ 'USER_RATING_WAS_SENT' | translate }}</p>
 		        <label>
 		            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input"></textarea>
 					<max-len-counter max-len="300" value="rating.text"></max-len-counter>

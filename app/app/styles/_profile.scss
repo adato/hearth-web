@@ -18,6 +18,12 @@ $medium-avatar-size: 80px;
             .score-select {
                 position: relative;
                 top: -15px;   
+
+                p {
+                    left: 20px;
+                    position: relative;
+                    top: 8px;
+                }
             }
         }
     }

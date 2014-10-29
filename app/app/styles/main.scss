@@ -1173,43 +1173,7 @@ input[disabled].text-input {
     }
 }
 
-.alert-box.error {
-    position: relative;
-    z-index: 1;
-    &.connect-top {
-        margin-top: -$global-radius;
-        padding-top: $alert-padding-top + emCalc($global-radius);
-    }
-    &.connect-bottom {
-        margin-bottom: -$global-radius;
-        padding-bottom: $alert-padding-bottom + emCalc($global-radius);
-    }
-    &.alert-error,
-    &.alert-success {
-        padding-top: emCalc(2 * $grid-size);
-        padding-bottom: emCalc(2 * $grid-size);
-    }
-    &.alert-error {
-        color: $alert-color;
-        background: darken($body-alt-bg, 5%);
-        border: 0px;
-        border-bottom: 1px solid lighten($alert-color, 40%);
-        &::before {
-            font-family: FontAwesome;
-            content: "\f057";
-        }
-    }
-    &.alert-success {
-        color: $success-color;
-        background: darken($body-alt-bg, 5%);
-        border: 0px;
-        border-bottom: 1px solid lighten(desaturate($success-color, 50%), 40%);
-        &::before {
-            font-family: FontAwesome;
-            content: "\f058";
-        }
-    }
-}
+
 
 .error small,
 small.error {

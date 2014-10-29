@@ -114,13 +114,24 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-		$scope.sendRating = function(rating) {
+		$scope.sendRating = function(ratingOrig) {
+			var rating;
+			var ratings = {
+				true: -1,
+				false: 1
+			};
+
 			$scope.showError.text = false;
 
-			if(!rating.text) {
+			if(!ratingOrig.text) {
 				return $scope.showError.text = true;
 			}
 
+			// transform rating.score value from true/false to -1 and +1
+			rating = angular.copy(ratingOrig);
+			rating.score = ratings[rating.score];
+
+			// lock
 			if($scope.sendingRating)
 				return false;
 			$scope.sendingRating = true;
@@ -150,8 +161,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 					Notify.addTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 				});
 			});
-
-		}
+		};
 
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);

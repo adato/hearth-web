@@ -13,7 +13,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.defaultPost = {
-			type: 'offer',
+			type: false,
 			keywords: [],
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [{
@@ -158,6 +158,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.valid_until_unlimited = false;
 			}
 
+
+			var values = {
+				false: 'offer',
+				true: 'need'
+			};
+
+			data.type = values[data.type];
+
 			return data;
 		};
 
@@ -299,6 +307,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 						name: ''
 					}];
 				}
+
+				post.type = post.type == 'need';
+
 			}
 			return post;
 		}
