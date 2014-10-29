@@ -63,7 +63,7 @@
         <div class="user-about">
             <h3 ng-if="!mine">{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
             <h3 ng-if="mine">{{ 'YOUR_PROFILE' | translate }}</h3>
-            <div class="mbot line">
+            <div class="line">
                 <div class="descr" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</div> 
                 <div class="descr" ng-if="info.cities"><i class="fa fa-map-marker"></i> {{info.cities}}</div>
                 <div class="descr" ng-if="info.interests && info.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</div>
@@ -72,20 +72,29 @@
                         <i class="fa fa-comments" ng-if="$first"></i>
                         {{ 'MY_LANG_' + languageCode.toUpperCase() | translate }}<span ng-if="!$last">,</span>
                     </span>
-                 </div>
-             </div>
-            <span class="descr reg-date fleft"><i class="fa fa-asterisk"></i>
-                <span ng-if="!mine">{{ 'USER_HAS_REGISTERED' | translate }}</span>
-                <span ng-if="mine">{{ 'YOU_HAVE_REGISTERED' | translate }}</span>
-                 {{info.created_at | ago}}
-             </span>
-            <span class="social fright">
-                <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
-                <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
-                <a target="_blank" ng-if="info.googleplus" href="{{info.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
-                <a target="_blank" ng-if="info.linkedin" href="{{info.linkedin}}"><i class="fa fa-linkedin"></i></a>
-                <a target="_blank" class="link" ng-if="info.webs.length && info.webs[0]" href="{{info.webs[0]}}"><i class="fa fa-link"></i></a>
-            </span>
+                </div>
+                <div class="descr" ng-if="info.webs.length && info.webs[0]">
+                    <i class="fa fa-link"></i> 
+                    <span ng-repeat="(code, web) in info.webs">
+                        <a target="_blank" class="link" ng-href="{{ web }}">{{ web | ellipsis }}</a><span ng-if="!$last">,</span>
+                    </span>
+                </div>
+                <div class="descr reg-date fleft">
+                    <i class="fa fa-asterisk"></i>
+                    <span ng-if="!mine">{{ 'USER_HAS_REGISTERED' | translate }}</span>
+                    <span ng-if="mine">{{ 'YOU_HAVE_REGISTERED' | translate }}</span>
+                     {{info.created_at | ago}}
+                </div>
+            </div>
+            <div class="line">
+                <div class="social fright">
+                    <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
+                    <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
+                    <a target="_blank" ng-if="info.googleplus" href="{{info.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
+                    <a target="_blank" ng-if="info.linkedin" href="{{info.linkedin}}"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="clear">&nbsp;</div>
         </div>
     </div>
     <div class="right-pane">

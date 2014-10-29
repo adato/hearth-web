@@ -255,6 +255,9 @@ $medium-avatar-size: 80px;
             margin:1.25rem;
             margin-left: 0px;
             margin-right: 0px;
+            i + div:not(.fa) {
+                background-color:green;
+            }
         }
         padding: {
             top:10px;
@@ -448,7 +451,7 @@ $medium-avatar-size: 80px;
             .social { 
                 font-size: 1.5rem;
                 text-align: right;
-                margin-top:10px;
+                margin-top:4px;
                 margin-bottom: 5px;
                 padding-right: 5px;
                 .fa {
@@ -470,14 +473,6 @@ $medium-avatar-size: 80px;
 
             .reg-date {
                 font-size: 14px;
-                position: relative;
-                height: 30px;
-                left: 18px;
-                margin-bottom: 5px;
-                padding-top: 15px;
-                .fa {
-                    margin-right: 10px !important;
-                }
             }
         }
         .activities {
