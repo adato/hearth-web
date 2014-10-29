@@ -12,7 +12,8 @@
                     <button ng-if="info.is_followed" class="others follow-button blue right" ng-click="toggleFollow(info._id)"><i class="fa fa-times"></i> {{ 'UNFOLLOW_BUTTON_CAPTION' | translate}}</button>
                     <button ng-if="mine" ng-click="openInviteBox()" class="invite-button right">
                         <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
-                    </button>            
+                    </button>
+                    <button ng-if="!mine" class="button-flat" ng-click="openUserRatingForm(1)"><i class="fa fa-thumbs-up"></i> {{ 'THANK_YOU' | translate }}</button>
                 </div>
                 <a href="#!/profile/{{info._id}}"><span>{{ info.name }}</span></a>
             </h1>
@@ -41,12 +42,9 @@
                 {{ 'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
             </a>
             <div class="karma-bar" ng-if="info.karma != null" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}"><span class="positive bar" style="width:{{info.karma}}%;" ng-if="info.karma > 0">{{ info.karma }}% <i class="fa fa-sun-o"></i></span><span class="negative bar" style="width:{{100 - info.karma}}%;"  ng-if="info.karma < 100"><i class="fa fa-moon-o"></i> {{100 - info.karma}}%</span></div>
-
-            <span ng-if="!mine">
-                Pošlete uživateli <a ng-click="openUserRatingForm(1)">kladne</a> / <a ng-click="openUserRatingForm(-1)">zaporne</a> hodnoceni
-            </span>
+            <div class="clear"></div>
         </div>
     </header>
-    <div class="clear"></div>
+    <div class="clear"></div>   
     <div ng-show="info" ng-cloak app-view-segment="1"></div>
 </div>

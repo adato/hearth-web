@@ -429,12 +429,6 @@ $medium-avatar-size: 80px;
             .line {
                 margin-left:20px;
                 margin-right:20px;
-/*                span {
-                    &:nth-child(1) {
-                        padding-left: 20px;
-                        padding-right: 20px;
-                    }
-                }*/
                 div.descr {
                     margin-top:10px;
                     margin-bottom:10px;
@@ -451,8 +445,6 @@ $medium-avatar-size: 80px;
                     margin-right:15px;
                 }
             }
-
-            /*span { display:block; }*/
             .social { 
                 font-size: 1.5rem;
                 text-align: right;
@@ -460,6 +452,7 @@ $medium-avatar-size: 80px;
                 margin-bottom: 5px;
                 padding-right: 5px;
                 .fa {
+                    color:color(5);
                     margin:1px;
                 }
                 .fa:hover {

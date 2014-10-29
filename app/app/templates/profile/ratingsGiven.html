@@ -1,5 +1,4 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
-
 <div class="rating-listing">
 	<div class="rating" ng-repeat="(id, item) in data track by $index">
 		<a href="#!/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to}}">

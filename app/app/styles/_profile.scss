@@ -99,6 +99,7 @@ $medium-avatar-size: 80px;
     }
     
     .user-rating-form {
+        overflow:visible;
         margin-top: 30px;
         margin: auto;
 
@@ -121,11 +122,11 @@ $medium-avatar-size: 80px;
     .rating-listing {
         margin-top: 30px;
         @extend .clearfix;
-        clear:both;
         .rating {
             @extend .large-10, .large-centered, .clearfix, .medium-avatar;
             margin: {
-                bottom: 5px;
+                top:1rem;
+                bottom:1rem;
                 left:auto;
                 right:auto;
             }
@@ -135,7 +136,9 @@ $medium-avatar-size: 80px;
                 left:20px;
                 right:20px;
             }
-            background:lighten(color(5), 45%);
+            background:#fff;
+            border-radius:$global-radius;
+            box-shadow: 1px 1px 6px gray;
             small {
                 font-size:0.85rem;
                 line-height:125%;
