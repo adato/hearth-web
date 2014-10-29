@@ -9,21 +9,21 @@ $medium-avatar-size: 80px;
     }
 
     .ratings-given {
+
+        .score-select {
+            position: relative;
+            top: -15px;   
+
+            p {
+                left: 20px;
+                position: relative;
+                top: 8px;
+            }
+        }
         .profile-edit-common {
             h3 {
                 position: relative;
                 top: -20px;
-            }
-
-            .score-select {
-                position: relative;
-                top: -15px;   
-
-                p {
-                    left: 20px;
-                    position: relative;
-                    top: 8px;
-                }
             }
         }
     }
