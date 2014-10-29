@@ -13,7 +13,7 @@
                     <button ng-if="mine" ng-click="openInviteBox()" class="invite-button right">
                         <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
                     </button>
-                    <button ng-if="!mine" class="button-flat" ng-click="openUserRatingForm(1)"><i class="fa fa-thumbs-up"></i> {{ 'THANK_YOU' | translate }}</button>
+                    <button ng-if="!mine" class="button-flat" ng-click="openUserRatingForm(false)"><i class="fa fa-thumbs-up"></i> {{ 'THANK_YOU' | translate }}</button>
                 </div>
                 <a href="#!/profile/{{info._id}}"><span>{{ info.name }}</span></a>
             </h1>
