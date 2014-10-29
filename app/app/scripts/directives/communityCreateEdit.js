@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-    '$rootScope', '$location', '$routeParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin',
-    function($rootScope, $location, $routeParams, Community, CommunityMembers, CommunityDelegateAdmin) {
+    '$rootScope', '$location', '$routeParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify',
+    function($rootScope, $location, $routeParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify) {
         return {
             restrict: 'E',
             replace: true,
@@ -122,17 +122,30 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     service(transformedData, function(res) {
                         $rootScope.$broadcast("reloadCommunities");
                         $location.path('/community/'+res._id);
+
+                        if ($scope.community._id)
+                            Notify.addTranslate('NOTIFY.COMMUNITY_UPDATE_SUCCESS', Notify.T_SUCCESS);
+                        else
+                            Notify.addTranslate('NOTIFY.COMMUNITY_CREATE_SUCCESS', Notify.T_SUCCESS);
+
                     }, function(res) {
-                        alert("Operace se nezdařila :-(");
-                        $scope.sending = false;;
+                        $scope.sending = false;
+
+                        // hide previous notify
+                        Notify.hideAll('.communities-notify-area', function() {
+
+                            // and show another based on what we wanted to do
+                            if ($scope.community._id)
+                                Notify.addTranslate('NOTIFY.COMMUNITY_UPDATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
+                            else
+                                Notify.addTranslate('NOTIFY.COMMUNITY_CREATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
+                        });
                     });
                 };
                 
                 $scope.change = function(id) {
 
                     if(!id) {
-
-                        alert("Musíte vybrat člena komunity.");
                         return false;
                     }
 
@@ -140,11 +153,11 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         function(res) {
                             $rootScope.$broadcast("reloadCommunities");
                             $location.path('/community/'+$scope.community._id);
+                            Notify.addTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
                         }, function(res) {
-
-                            alert("There was an error while processing this request");
+                            Notify.addTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED', Notify.T_ERROR);
                         });
-                }
+                };
 
                 $scope.delete = function() {
 
@@ -153,13 +166,14 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     Community.remove({communityId: $scope.community._id}, function(res) {
 
                         $scope.sendingDelete = false;
-                        alert("KOMUNITA BYLA SMAZANA");
+                        Notify.addTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
 
                         $rootScope.$broadcast("reloadCommunities");
                         $location.path("/communities");
                     }, function(res) {
 
-                        alert("Při mazání komunity došlo k chybě.");
+
+                        Notify.addTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
                         $scope.sendingDelete = false;
                     });
                 };

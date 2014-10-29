@@ -1,4 +1,5 @@
 <div class="row community-edit profile-edit-common" ng-show="loaded">
+  <div class="communities-notify-area"></div>
   <form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
       <div image-preview files="community.avatar" limit-pixel-size="400" limit="1" single-file="true">
@@ -23,9 +24,10 @@
         <div class="name margin">
           <label>
             {{ 'COMMUNITY_NAME' | translate }}
-            <input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="community.name" class="text-input" type='text' ng-required="true">
+            <input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="community.name" class="text-input" type='text' ng-required="true" ng-maxlength="75" />
             <div class="absolute error" ng-show="showError.name">
               <span ng-show="communityForm.name.$error.required">{{ 'ERR_COMMUNITY_NAME_NOT_FILLED' | translate }}</span>
+              <span ng-show="communityForm.name.$error.maxlength">{{ 'ERR_COMMUNITY_NAME_MAX_LENGTH' | translate }}</span>
             </div>
           </label>
         </div>

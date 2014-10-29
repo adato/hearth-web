@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window',
-	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify',
+	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify) {
 		$scope.loaded = false;
 		$scope.info = {};
 
@@ -46,42 +46,45 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.applyForCommunity = function() {
 
 			CommunityApplicants.add({communityId: $scope.info._id}, function(res) {
-				
-    			alert("FLASH MESSAGE");
 				$scope.init();
-			}, handleApiError);
+				Notify.addTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
+			}, function() {
+				Notify.addTranslate('NOTIFY.COMMUNITY_APPLY_FAILED', Notify.T_ERROR);
+			});
 		};
 
         $scope.rejectApplication = function(id)  {
 
         	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
-    			alert("FLASH MESSAGE");
         		$scope.init();
-        	}, handleApiError);
+				Notify.addTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
+        	}, function() {
+				Notify.addTranslate('NOTIFY.COMMUNITY_REJECT_FAILED', Notify.T_ERROR);
+        	});
         };
 
         $scope.leaveCommunity = function() {
         	CommunityLeave.leave({community_id: $scope.info._id}, function(res) {
 
-        		alert("FLASH MESSAGE");
-        		$window.reload();
+				Notify.addTranslate('NOTIFY.COMMUNITY_LEAVE_SUCCESS', Notify.T_SUCCESS);
+        		$scope.init();
         		$rootScope.$broadcast("reloadCommunities");
         	}, function(res) {
 
-        		alert("There was an error while processing this request.");
+				Notify.addTranslate('NOTIFY.COMMUNITY_LEAVE_FAILED', Notify.T_ERROR);
         	});
-        }
+        };
+
         $scope.approveApplication = function(id) {
 
         	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
-    			alert("FLASH MESSAGE");
-        		$scope.init();
-        	}, handleApiError);
-        };
 
-        function handleApiError(res) {
-    		alert("There was an error while processing this post.");
-        }
+				Notify.addTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_SUCCESS', Notify.T_SUCCESS);
+        		$scope.init();
+        	}, function() {
+				Notify.addTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
+        	});
+        };
 
 		$scope.init = function() {
 			$scope.refreshDataFeed();

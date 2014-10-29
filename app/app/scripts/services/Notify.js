@@ -65,6 +65,7 @@ angular.module('hearth.services').service('Notify', [
 			}, delay);
 		};
 
+		// hide all messages in given container
 		this.hideAll = function(container, cb) {
 			if(!$(container).children().length)
 				return cb && cb();
@@ -75,22 +76,40 @@ angular.module('hearth.services').service('Notify', [
 			});
 		};
 
+		// this will close all messages in given container and show given message
+		this.addSingle = function(text, type, container, ttl, delay) {
+
+			self.hideAll(container, function() {
+				return self.add(text, type, container, ttl, delay);
+			});
+		};
+
+		// this will close all messages in given container and show given message with translate
+		this.addSingleTranslate = function(text, type, container, ttl, delay) {
+
+			self.hideAll(container, function() {
+				return self.addTranslate(text, type, container, ttl, delay);
+			});
+		};
+
 		// add notification and translate given text with ng-translate
 		this.addTranslate = function(text, type, container, ttl, delay) {
 			return self.add(self.translate(text), type, container, ttl, delay);
 		};
 
+		// translate given message
 		this.translate = function(text) {
 			return $translate(text);
-		}
+		};
 
+		// close notify on some event
 		this.closeNotify = function(ev) {
 
 			$(ev.target).slideUp('fast', function() {
 				$(ev.target).remove();	
 			});
 			return false;
-		}
+		};
 
 		return this;
 	}
