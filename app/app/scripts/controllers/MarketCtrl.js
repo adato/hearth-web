@@ -137,7 +137,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.load();
 		});
 		$scope.$on('postCreated', function($event, post) {
-			Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market');
 
 			$scope.showMap = false;
 			
