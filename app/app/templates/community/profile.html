@@ -17,8 +17,7 @@
 					<a ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="right">
 						<button class="follow-button blue right"><i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}</button>
 					</a>
-					<span class="right" ng-if="!mine && info.is_applicant" >
-						<br />
+					<span class="right" ng-if="!mine && info.is_applicant">
 						<div class="success"><span class="fa fa-smile-o"></span> {{'COMMUNITY_APPLICATION_SENT' | translate}}</div>
 					</span>
 
