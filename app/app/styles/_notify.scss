@@ -1,0 +1,40 @@
+.alert-box {
+	.close {
+		cursor: pointer;
+	}
+}
+
+
+#notify-top {
+    left: 50%;
+    margin-left: -310px;
+    position: fixed;
+    right: 0;
+    width: 780px;
+    top: 70px;
+    z-index: 2000;
+    
+
+    .alert-box {
+    }
+}
+
+/** above filter bar */
+#notify-container-market {
+    left: 50%;
+    margin-left: -310px;
+    position: absolute;
+    right: 0;
+    width: 780px;
+    top: -55px;
+
+    .alert-box {
+    }
+}
+
+.ratings-given {
+    .rating-notify-box {
+        position: relative;
+        top: -15px;
+    }
+}

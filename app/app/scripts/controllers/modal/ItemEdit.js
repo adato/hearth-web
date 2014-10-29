@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify) {
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
@@ -247,10 +247,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.sending = false;
 
 				postDataCopy = $scope.transformImagesStructure(postDataCopy);
-				// $rootScope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
-
-				// $scope.$emit('adSaved', data);
 				
+				if($scope.post._id)
+					Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+				else
+					Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
+
 				$rootScope.$broadcast('postCreated', data);
 				$(document.body).scrollTop(0);
 				$scope.closeThisDialog();

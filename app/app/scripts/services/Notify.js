@@ -20,17 +20,19 @@ angular.module('hearth.services').service('Notify', [
 		this.T_ERROR = 4;
 		this.T_TEXT = 5;
 
+		this.TOP = '#notify-top';
+
 		// add notification with plain text
 		this.add = function(text, type, container, ttl, delay) {
 			
 			// if not set delay, set it to 0ms
 			delay = delay || 0;
 			// time to live - timeout to autoclose notify
-			ttl = ttl || 4000;
+			ttl = ttl || 114000;
 			// default time is info box
 			type = type || this.T_INFO;
 			// default container is top center contaimer
-			container = container || '#notify-area';
+			container = container || self.TOP;
 
 			console.log("Adding notify: ", [text, type, container, ttl, delay]);
 			
@@ -63,14 +65,28 @@ angular.module('hearth.services').service('Notify', [
 			}, delay);
 		};
 
+		this.hideAll = function(container, cb) {
+			if(!$(container).children().length)
+				return cb && cb();
+
+			$(container).children().slideUp(function() {
+				$(this).remove();
+				cb && cb();
+			});
+		};
+
 		// add notification and translate given text with ng-translate
 		this.addTranslate = function(text, type, container, ttl, delay) {
-			return self.add($translate(text), type, container, ttl, delay);
+			return self.add(self.translate(text), type, container, ttl, delay);
 		};
+
+		this.translate = function(text) {
+			return $translate(text);
+		}
 
 		this.closeNotify = function(ev) {
 
-			$(ev.target).fadeOut('fast', function() {
+			$(ev.target).slideUp('fast', function() {
 				$(ev.target).remove();	
 			});
 			return false;

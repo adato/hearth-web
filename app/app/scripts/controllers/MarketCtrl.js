@@ -154,17 +154,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('sendReply', function($event, data) {
 			PostReplies.add(data);
-            Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_INFO, '#notify-container-market');
 		});
 
 		$scope.$on('itemDeleted', function($event, item) {
             $( ".post_"+item._id ).slideUp( "slow", function() {});
-            Notify.addTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO, '#notify-container-market');
         });
 
         $scope.$on('updatedItem', function($event, item) {
-
-            Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 1114000);
         });
 
 		$scope.$on('$destroy', function() {

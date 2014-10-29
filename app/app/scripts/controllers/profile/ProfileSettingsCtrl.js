@@ -9,8 +9,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
-	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User',
-	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User) {
+	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify',
+	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify) {
 		$scope.loaded = true;
 		$scope.lang = false;
 		$scope.changeSubmitted = false;
@@ -44,10 +44,10 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.processDeleteUserResult = function(res) {
 
 			if (res.ok) {
-				alert("Váš účet byl smazán :-(");
+				alert(Notify.translate('NOTIFY.ACCOUNT_DELETE_SUCCESS'));
 				window.location.replace("/app/");
 			} else {
-				alert("Při mazání účtu došlo k chybě.");
+				Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
 			}
 		};
 
@@ -91,7 +91,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		$scope.testOldPassword = function(pass, form, error, done) {
 
-			if (pass == '') {
+			if (!pass) {
+				$scope[form][error].$error.notValid = false;
 				return false;
 			}
 
@@ -99,10 +100,14 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				user_id: $rootScope.loggedUser._id,
 				password: pass
 			}, function(res) {
-				$scope[form][error].$error.notValid = !res.valid;
-				$scope.showError[error] = !res.valid;
+				$scope[form][error].$error.notValid = !res.ok;
+				$scope.showError[error] = !res.ok;
 
-				done && done(res.valid);
+				done && done(res.ok);
+			}, function() {
+				$scope[form][error].$error.notValid = true;
+				$scope.showError[error] = true;
+				done && done(false);
 			});
 		};
 
@@ -117,10 +122,11 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					$scope.showError.oldPass = false;
 					$scope.showError.newPass = false;
 				});
-				alert("heslo bylo změněno.. A tady bude nějaká pretty notifikace");
+				
+				Notify.addTranslate('NOTIFY.PASS_CHANGE_SUCCES', Notify.T_SUCCESS);
 			} else {
 
-				alert("Při měnění hesla došlo k chybě.");
+				Notify.addTranslate('NOTIFY.PASS_CHANGE_FAILED', Notify.T_ERROR);
 			}
 		};
 
@@ -141,7 +147,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.changePassword = function(pass) {
-
+			
 			if (!$scope.validateChangePasswordError(pass)) {
 				return;
 			}

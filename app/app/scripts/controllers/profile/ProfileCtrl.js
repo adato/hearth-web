@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify) {
 		$scope.loaded = false;
 		$scope.info = false;
 
@@ -139,13 +139,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				// broadcast new rating - this will add rating to list
 				$scope.$broadcast('userRatingsAdded', res);
+				Notify.addTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
+
 			}, function(err) {
 				// remove lock
 				$scope.sendingRating = false;
 
-				// handle error
-				console.log(err);
-				alert("ERROR");
+				Notify.hideAll('.rating-notify-box', function() {
+					// handle error
+					Notify.addTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
+				});
 			});
 
 		}

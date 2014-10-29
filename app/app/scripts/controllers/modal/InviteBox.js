@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-    '$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook',
-    function($scope, $rootScope, Invitation, OpenGraph, Facebook) {
+    '$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify',
+    function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify) {
         $scope.showEmailForm = false;
         $scope.url = '';
 
@@ -102,10 +102,12 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
                 $scope.initForm();
                 $scope.sent = true;
+                Notify.addTranslate('NOTIFY.EMAIL_INVITATION_SUCCESS', Notify.T_SUCCESS);
                 return true;
                 
             } else {
 
+                Notify.addTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR);
                 alert("FLASH MESSAGE");
             }
         }

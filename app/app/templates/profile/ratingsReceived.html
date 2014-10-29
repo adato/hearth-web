@@ -4,6 +4,8 @@
 	<div class="row community-edit profile-edit-common large-10 animate-show user-rating-form" ng-show="showUserRatingForm">
 		<h3>{{ 'ADD_USER_RATING' | translate }}</h3>
 		
+		<div class="rating-notify-box"></div>
+
 		<div class="score-select">
 			<span ng-class="{bold: rating.score == 1}" ng-click="rating.score = 1">Kladne</span>
 			<span ng-class="{bold: rating.score == -1}" ng-click="rating.score = -1">Zaporne</span>

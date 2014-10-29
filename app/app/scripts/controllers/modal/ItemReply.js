@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemReply', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$element', 'PostReplies',
-	function($scope, $rootScope, Auth, Errors, $element, PostReplies) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$element', 'PostReplies', 'Notify',
+	function($scope, $rootScope, Auth, Errors, $element, PostReplies, Notify) {
 		$scope.sending = false;
 		$scope.showErrors = false;
 		$scope.reply = {
@@ -49,9 +49,11 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				$scope.sending = false;
 				$scope.closeThisDialog();
 				$scope.post.reply_count += 1;
+	            Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
+
 			}, function(res) {
 
-				alert("There was an error while sending request to api.");
+				Notify.addTranslate('NOTIFY.POST_EDIT_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
 		};

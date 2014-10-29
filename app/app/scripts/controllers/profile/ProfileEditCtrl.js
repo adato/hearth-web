@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout',
+	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout', 'Notify',
 
-	function($scope, $route, User, $location, $rootScope, $timeout) {
+	function($scope, $route, User, $location, $rootScope, $timeout, Notify) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -138,9 +138,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			var transformedData;
 				
 			if(! $scope.validateData($scope.profile)) {
-				$timeout(function() {
-					$scope.messageBottom = 'ERR_FORM_NOT_VALID';
-				});
+				Notify.addTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
 				return false;
 			}
 
@@ -151,10 +149,12 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			User.edit(transformedData, function(res) {
 				$scope.sending = false;
 				$location.path('/profile/'+$scope.profile._id);
+
+				Notify.addTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+				
 			}, function(res) {
 
-				console.log(res);
-				$scope.messageBottom = 'ERR_FORM_PUT_ERROR';
+				Notify.addTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
 		}
