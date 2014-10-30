@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email',
-    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email) {
+    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify',
+    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify) {
 
         $scope.user = new User();
         $scope.sent = false; // show result msg
@@ -89,6 +89,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
                 $scope.sent = true;
                 $scope.sending = false;
                 $scope.hideForm();
+
+                Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
+                $location.path('/');
+
                 return $analytics.eventTrack('registration email sent', {
                     category: 'registration',
                     label: 'registration email sent'
@@ -100,6 +104,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
                 $scope.apiErrors = new ResponseErrors(err);
                 if ($scope.apiErrors.email)
                     $scope.showError.email = true;
+
+                Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_ERROR', Notify.T_ERROR, '.register-notify-area');
 
                 return $analytics.eventTrack('error during registration', {
                     category: 'registration',

@@ -7,7 +7,8 @@
         </div>
         <hr />
         <form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
-            <p class="error" ng-if="showError.topError">{{ 'SIGNUP_PROCESS_ERROR' | translate }}</p>
+            <div class="register-notify-area"></div>
+            
             <p>{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
             <input type="text" class="register_name" name="name" ng-model="user.name" ng-focus="showError.name = false" ng-blur="showError.name = true" placeholder="Jméno a příjmení" class="form-control text-input top" required />
             <div class="moveUp error" ng-show="showError.name">

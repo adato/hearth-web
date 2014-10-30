@@ -28,7 +28,7 @@ angular.module('hearth.services').service('Notify', [
 			// if not set delay, set it to 0ms
 			delay = delay || 0;
 			// time to live - timeout to autoclose notify
-			ttl = ttl || 114000;
+			ttl = ttl || 4000;
 			// default time is info box
 			type = type || this.T_INFO;
 			// default container is top center contaimer
@@ -60,7 +60,9 @@ angular.module('hearth.services').service('Notify', [
 				newNotify.fadeIn(300);
 
 				// if timeout is set, trigger close event after given time
-				if(ttl) setTimeout(newNotify.click, ttl);
+				if(ttl) setTimeout(function() {
+					newNotify.click();
+				}, ttl);
 
 			}, delay);
 		};

@@ -28,13 +28,17 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
             // Check if email is in our DB
             Email.exists({email: email}, function(res) {
                 if (!res.ok) {
-                   
                     // show error when email does not exist
                     $scope.showError.email = true;
                     $scope[form][inputName].$error.unknown = true;
                 }
                 // call callbeck
                 cb && cb(res.ok);
+            }, function(res) {
+        
+                $scope.showError.email = true;
+                $scope[form][inputName].$error.unknown = true;
+                cb && cb(false);
             });
         };
 
@@ -52,18 +56,25 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
         $scope.resetPassword = function() {
             // is email valid?
             $scope.validateEmail($scope.data, function(res) {
-                if(!res) return false;
+                console.log("AA", res);
+                if(!res.ok) return false;
 
-                if ($scope.sending) return false;
+                console.log("BB", res);
+                if ($scope.sending)
+                    return false;
                 $scope.sending = true;
 
+                console.log("AA");
                 return Auth.requestPasswordReset($scope.data.email).success(function() {
                     $scope.sent = true;
                     $scope.sending = false;
-
+                    Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
+                    
                 }).error(function(data, status) {
                     $scope.sending = false;
-                    console.log(data, status);
+                    
+                    Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_FAILED', Notify.T_ERROR, '.forgot-pass-notify-container');
+                
                 });
             });
         };

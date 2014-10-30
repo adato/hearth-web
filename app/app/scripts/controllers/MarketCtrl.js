@@ -111,10 +111,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.load();
 		});
 
-		// ======================= REVIEW ==============================
-		$scope.$on('adUpdated', function($event, data) {
+		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
 
+			console.log(data);
+			
 			for (i = 0; i < $scope.items.length; i++) {
 				item = $scope.items[i];
 				if (data._id === item._id) {
@@ -136,6 +137,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.showMap = false;
 			$scope.load();
 		});
+
 		$scope.$on('postCreated', function($event, post) {
 
 			$scope.showMap = false;
@@ -157,9 +159,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('itemDeleted', function($event, item) {
             $( ".post_"+item._id ).slideUp( "slow", function() {});
-        });
-
-        $scope.$on('updatedItem', function($event, item) {
         });
 
 		$scope.$on('$destroy', function() {

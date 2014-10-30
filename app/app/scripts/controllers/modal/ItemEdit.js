@@ -261,7 +261,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				else
 					Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 
-				$rootScope.$broadcast('postCreated', data);
+				if($scope.post._id) {
+					$rootScope.$broadcast('postUpdated', postData);
+				} else {
+					$rootScope.$broadcast('postCreated', data);
+				}
+
 				$(document.body).scrollTop(0);
 				$scope.closeThisDialog();
 			}, function() {
