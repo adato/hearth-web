@@ -93,23 +93,40 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.fetchUser();
 		};
 		
+		$scope.scrollToUserRatingForm = function() {
+			// scroll to form
+			setTimeout(function() {
+				$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
+			}, 200);
+		};
 
 		// will redirect user to user ratings and open rating form
 		$scope.openUserRatingForm = function(score) {
-			$scope.showError.text = false;
-
-			// scroll to form
-			$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
+			var ratingUrl = '/profile/'+$scope.info._id+'/received-ratings';
+			var removeListener;
 
 			// set default values
+			$scope.showError.text = false;
 			$scope.rating.score = score;
 			$scope.rating.text = '';
 
 			// show form
 			$scope.showUserRatingForm = true;
 
+			// if we are on rating URL just jump down
+			if($location.url() == ratingUrl) {
+				$scope.scrollToUserRatingForm();
+			} else {
+			// else jump to the righ address and there jump down
+				removeListener = $scope.$on('$routeChangeSuccess', function() {
+					removeListener();
+					$scope.scrollToUserRatingForm();
+				});
+				$location.url(ratingUrl);
+			}
+
+
 			// refresh to ratings page
-			$location.url('/profile/'+$scope.info._id+'/received-ratings');
 		};
 
 		// will close form and set to default state

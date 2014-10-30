@@ -27,7 +27,9 @@
 			<div>
 		</section>
 		<section class="columns large-5">
-			<div class="profil-link text-right"><a ng-href="#!/{{ profileLinkType[item.author._type] }}/{{item.author._id}}">Celý profil</a></div>
+			<div class="profil-link text-right">
+				<a ng-href="#!/{{ profileLinkType[item.author._type] }}/{{item.author._id}}">{{ 'WHOLE_PROFILE' | translate}}</a>
+			</div>
 		</section>
 	</article>
 </div>

@@ -14,6 +14,7 @@ angular.module('hearth').config([
 			.when('/terms', 'terms')
 			.when('/about', 'about')
 			.when('/feedback', 'feedback')
+			.when('/feedback', 'feedback')
 			
 			// ======= User routes
 			.when('/register', 'reg')
@@ -48,6 +49,7 @@ angular.module('hearth').config([
 			.when('/community/:id/applications', 'community.applications')
 			.when('/community/:id/about', 'community.about')
 			.when('/community/:id/activity-feed', 'community.activity-feed')
+			.when('/not-found', 'error404')
 
 			// ====== Route settings =========
 			.segment('market', {
@@ -97,6 +99,9 @@ angular.module('hearth').config([
 			}).segment('ad', {
 				controller: 'ItemDetail',
 				templateUrl: 'templates/itemDetail.html'
+			}).segment('error404', {
+				controller: 'Error404Ctrl',
+				templateUrl: 'templates/error404.html'
 
 			}).segment('communityList', {
 			    templateUrl: 'templates/community/list.html',
@@ -241,10 +246,14 @@ angular.module('hearth').config([
 				});
 
 
-		$routeProvider.otherwise({
-			redirectTo: '/'
-		});
+			// $routeProvider.otherwise({
+		 //        controller: 'Error404Controller',
+		 //        templateUrl: 'templates/profile/Error404.html'
+	  //   	});
 
+			$routeProvider.otherwise({
+				redirectTo: '/not-found'
+			});
 	
 	}
 ]);

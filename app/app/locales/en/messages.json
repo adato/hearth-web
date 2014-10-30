@@ -334,10 +334,10 @@
 	"YOU_HAVE_NOT_BEEN_RATED": "You have not been rated by others yet",
 	"YOU_HAVE_NO_WISHES": "You have no wishes so far.",
 	"required": "This field is required. We hate to play the bad cop but you know these fields...",
-	"LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
+	"LOCATION_DOES_NOT_MATTER": "Location doesn't matter",
     "OG_DEFAULT_TITLE": "Hearth.net",
 	"OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc",
-	"AD_REPORT_CONFIRM": "Nahlásit inzerát",
-    "AD_REPORT_ARE_YOU_SURE": "Doopravdy chcete nahlásit tento inzerát jako škodlivý?",
+	"AD_REPORT_CONFIRM": "Mark as a spam",
+    "AD_REPORT_ARE_YOU_SURE": "Do you really want to mark this ad as spam?",
 	"SEND_FB_INVITATION": "Invitate your friends on Facebook"
 }

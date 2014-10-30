@@ -114,8 +114,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
 
-			console.log(data);
-			
 			for (i = 0; i < $scope.items.length; i++) {
 				item = $scope.items[i];
 				if (data._id === item._id) {
