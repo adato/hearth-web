@@ -97,7 +97,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		// will redirect user to user ratings and open rating form
 		$scope.openUserRatingForm = function(score) {
 			$scope.showError.text = false;
-			
+
+			// scroll to form
+			$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
+
 			// set default values
 			$scope.rating.score = score;
 			$scope.rating.text = '';
