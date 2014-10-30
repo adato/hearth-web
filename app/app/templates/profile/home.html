@@ -66,7 +66,12 @@
             <div class="line">
                 <div class="descr" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about}}</div> 
                 <div class="descr" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</div> 
-                <div class="descr" ng-if="info.cities"><i class="fa fa-map-marker"></i> {{info.cities}}</div>
+                <div class="descr" ng-if="info.locations[0].short_address">
+                    <i class="fa fa-map-marker"></i> 
+                    <span ng-repeat="(locationId, location) in info.locations">
+                        {{location.short_address}}<span ng-if="!$last">;</span>
+                    </span>
+                </div>
                 <div class="descr" ng-if="info.interests && info.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</div>
                 <div class="descr" ng-if="info.user_languages">
                     <span ng-repeat="(languageCode, enabled) in info.user_languages">
