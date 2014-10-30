@@ -21,7 +21,7 @@ angular.module('hearth').config([
 			.when('/login', 'login')
 			.when('/reset-password', 'reset-pass')
 			.when('/forgotten-password', 'forgot-pass')
-			.when('/confirmEmail', 'confirm-email')
+			.when('/confirm-email', 'confirm-email')
 			.when('/change-password', 'change-pass')
 
 			// ======= Profile routes & subroutes
@@ -69,7 +69,7 @@ angular.module('hearth').config([
 				controller: 'LoginCtrl',
 				pageType: 'login'
 			}).segment('confirm-email', {
-				templateUrl: 'templates/confirmEmail.html',
+				templateUrl: 'templates/userForms/confirmEmail.html',
 				controller: 'ConfirmEmailCtrl'
 			}).segment('change-pass', {
 				templateUrl: 'templates/userForms/changePassword.html',

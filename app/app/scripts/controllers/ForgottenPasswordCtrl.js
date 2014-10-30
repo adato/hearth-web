@@ -7,9 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
-    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email',
-    function($scope, Auth, $location, ResponseErrors, Email) {
-        $scope.sent = false;
+    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify',
+    function($scope, Auth, $location, ResponseErrors, Email, Notify) {
         $scope.data = {
             email: ''
         };
@@ -56,29 +55,22 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
         $scope.resetPassword = function() {
             // is email valid?
             $scope.validateEmail($scope.data, function(res) {
-                console.log("AA", res);
-                if(!res.ok) return false;
+                if(!res) return false;
 
-                console.log("BB", res);
                 if ($scope.sending)
                     return false;
                 $scope.sending = true;
 
-                console.log("AA");
                 return Auth.requestPasswordReset($scope.data.email).success(function() {
-                    $scope.sent = true;
                     $scope.sending = false;
                     Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
-                    
+                    $location.url("/login");
+
                 }).error(function(data, status) {
                     $scope.sending = false;
-                    
                     Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_FAILED', Notify.T_ERROR, '.forgot-pass-notify-container');
-                
                 });
             });
         };
-
-        // $(".fg_email").focus();
     }
 ]);

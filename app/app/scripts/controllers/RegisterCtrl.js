@@ -69,11 +69,12 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
         // };
 
         // when registration is successfull - hide form and show success message
-        $scope.hideForm = function() {
-            $(".register-login-form").fadeOut('slow', function() {
-                $(".register-successful").fadeIn('slow', function() {});
-            });
-        };
+        // ================ DEPRECATED ================
+        // $scope.hideForm = function() {
+        //     $(".register-login-form").fadeOut('slow', function() {
+        //         $(".register-successful").fadeIn('slow', function() {});
+        //     });
+        // };
 
         $scope.sendRegistration = function(user) {
 
@@ -86,9 +87,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
             return $scope.user.$save(function() {
 
-                $scope.sent = true;
                 $scope.sending = false;
-                $scope.hideForm();
 
                 Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
                 $location.path('/');

@@ -8,8 +8,8 @@
  */
  
  angular.module('hearth.controllers').controller('ResetPwdCtrl', [
-	'$scope', 'Auth', '$location',
-	function($scope, Auth, $location) {
+	'$scope', 'Auth', '$location', 'Notify',
+	function($scope, Auth, $location, Notify) {
 		$scope.token = true;
 		$scope.sent = false;
 		$scope.tokenVerified = false;
@@ -45,17 +45,21 @@
         };
         
 
+       	/**
+       	 * This will reset users password, throw notify and refresh him on /login page
+       	 */
 		$scope.resetPassword = function(data) {
 			$scope.showError.topError = false;
 			if(!$scope.validateData(data))
 				return false;
 
 			function onSuccess() {
-				$scope.sent = true;
+                Notify.addSingleTranslate('NOTIFY.NEW_PASS_SUCCESS', Notify.T_SUCCESS);
+                $location.url("/login");
 			}
 
 			function onError() {
-				$scope.showError.topError = true;
+                Notify.addSingleTranslate('NOTIFY.NEW_PASS_FAILED', Notify.T_ERROR, '.reset-pass-notify-container');
 			}
 
 			return Auth.resetPassword($scope.token, data.password, onSuccess, onError);
