@@ -244,6 +244,13 @@ $medium-avatar-size: 80px;
             background:darken(color(5), 20%);
         }
     }
+    .green-color {
+        background:color(2);
+        background: linear-gradient(180deg, lighten(color(2), 5%) 30%, color(2) 70%);
+        &:hover {
+            background:darken(color(2), 10%);
+        }
+    }
     .button-flat {
         font-weight:bold;
         border:0;
@@ -256,6 +263,9 @@ $medium-avatar-size: 80px;
             margin:1.25rem;
             margin-left: 0px;
             margin-right: 0px;
+        }
+        &.green {
+            @extend .green-color;
         }
         padding: {
             top:10px;
@@ -356,7 +366,7 @@ $medium-avatar-size: 80px;
                     line-height:125%;
                 }
                 .avatar {
-                    margin-top:0;
+                    margin-top:0 !important;
                 }
                 .rating-text {
                     font-size:1.2rem;

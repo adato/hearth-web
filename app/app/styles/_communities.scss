@@ -2,15 +2,38 @@
     width: 960px; /* ==== set general width === */
     margin: 0px auto;
     margin-top:-40px;
-    
+
     .community-list-add-form {
         transition: opacity 0.4s ease-in-out;
 
         .community-edit {
             margin-bottom: 20px;
         }
-   }
-    .avatar {
-        margin-left:-20px;
+    }
+
+    .community-list {
+        @extend .row, .clearfix;
+        .community-item {
+            .photo {
+                float:left;
+                margin:2rem;
+                .avatar {
+                    left:initial;
+                    margin-left:0;
+                }
+            }
+            .content {
+                margin-left:9rem;
+            }
+        }
+        &.small {
+            .community-item {
+                @extend .large-6, .columns;
+                width:46.5%;
+                margin:1rem;
+                height:7rem;
+                overflow:hidden;
+            }
+        }
     }
 }

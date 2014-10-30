@@ -26,13 +26,11 @@
             </div>
         </div>
     </div>
-    <div class="random-communities">
-        <h4>{{ 'SUGGESTED_COMMUNITIES' | translate }}</h4>
-        <div class="clear"></div>
-        <br />
-        <div class="community-list">
-            <community-item item="item" ng-repeat="(id, item) in randomCommunities track by $index"></community-item>
-            <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in randomCommunities track by $index"></div> -->
-        </div>
+    <h4>{{ 'SUGGESTED_COMMUNITIES' | translate }}</h4>
+    <div class="clear"></div>
+    <br />
+    <div class="community-list small">
+        <community-item item="item" ng-repeat="(id, item) in randomCommunities track by $index"></community-item>
+        <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in randomCommunities track by $index"></div> -->
     </div>
 </div>
