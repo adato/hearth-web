@@ -34,7 +34,7 @@
 		            </div>
 					<div class="clear"></div>
 		        </label>
-		        <a ng-click="closeUserRatingForm()">{{ 'CANCEL' | translate }}</a>
+		        <strong><a ng-click="closeUserRatingForm()" class="revert-change"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
 		        <button type="submit" class="button-send right">{{ 'SEND_USER_RATING' | translate }}</button>
 		    </form>
 	    </div>
@@ -60,8 +60,8 @@
 			<div class="name">{{ item.user_from_full_name}}</div>
 		</a>
 	</section>
-	<section class="large-10 columns community-section">
-		<div class="item community">
+	<section class="large-10 columns">
+		<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
 			<div class="overlap"> </div>
 			<div class="arrowbox"></div>
 			<div class="arrow"></div>
@@ -70,7 +70,12 @@
 					<div class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</div>
 				</div>			
 				<div class="text-container clear clearfix">
-					<p ng-bind-html="item.text | linky:'_blank'"></p>
+				<br>
+				<p>
+					<i class="fa fa-sun-o" ng-if="item.score == 1"></i>
+					<i class="fa fa-moon-o" ng-if="item.score == -1"></i>
+					&nbsp;&nbsp;<span ng-bind-html="item.text | linky:'_blank'"></span>
+				</p>
 				</div>
 			</div>
 		</div>

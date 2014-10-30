@@ -5,7 +5,7 @@
             <h3 class="mine">{{ 'YOUR_RATING' | translate}}</h3>
             <h3 class="others">{{ 'USERS_RATINGS' | translate}}</h3>
 
-            <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating">
+            <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
                 <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">
                     <div class="avatar">
                         <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
@@ -15,7 +15,11 @@
                 <div class="rating-text">
                     {{item.text | ellipsis}}
                     <br>
-                    <small class="rating-from">{{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.</small>
+                    <small class="rating-from">
+                        <i class="fa fa-sun-o" ng-if="item.score == 1"></i>
+                        <i class="fa fa-moon-o" ng-if="item.score == -1"></i>
+                        {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.
+                    </small>
                 </div>
             </div>
             <p class="mine" ng-if="! receivedRatings.length">{{ 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>

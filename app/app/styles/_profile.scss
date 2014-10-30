@@ -142,9 +142,14 @@ $medium-avatar-size: 80px;
                 left:20px;
                 right:20px;
             }
-            background:#fff;
             border-radius:$global-radius;
-            box-shadow: 1px 1px 6px gray;
+            box-shadow: 1px 1px 6px gray;            
+            &.positive {
+                background:lighten(color(2), 45%);
+            }
+            &.negative {
+                background:lighten(color(5), 45%);
+            }
             small {
                 font-size:0.85rem;
                 line-height:125%;

@@ -360,7 +360,12 @@ $medium-avatar-size: 80px;
                     left:20px;
                     right:20px;
                 }
-                background:lighten(color(5), 45%);
+                &.positive {
+                    background:lighten(color(2), 45%);
+                }
+                &.negative {
+                    background:lighten(color(5), 45%);
+                }
                 small {
                     font-size:0.85rem;
                     line-height:125%;
@@ -379,7 +384,7 @@ $medium-avatar-size: 80px;
                     .rating-from {
                         display:inline-block;
                         margin-top:10px;
-                    }
+                    }               
                 }
                 .date {
                     float:right;

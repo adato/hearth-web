@@ -1,18 +1,20 @@
-<article class="community-item item community_{{ item._id }}">
-	<a ng-href="#!/community/{{item._id}}" class="photo">
-		<div class="avatar community-avatar">
-			<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+<article class="community-item community_{{ item._id }}">
+	<section class="item">
+		<a ng-href="#!/community/{{item._id}}" class="photo">
+			<div class="avatar community-avatar">
+				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+			</div>
+		</a>
+		<div class="content">
+			<div class="fright" ng-if="user && item.admin == user._id">
+				{{ 'ADMIN' | translate }}
+			</div>
+			<h3>
+				<a ng-href="#!/community/{{item._id}}">{{item.name}}</a>
+			</h3>
+			<div class="text-container">
+				<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>
+			</div>
 		</div>
-	</a>
-	<div class="content">
-		<div class="fright" ng-if="user && item.admin == user._id">
-			{{ 'ADMIN' | translate }}
-		</div>
-		<h3>
-			<a ng-href="#!/community/{{item._id}}">{{item.name}}</a>
-		</h3>
-		<div class="text-container">
-			<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>
-		</div>
-	</div>
+	</section>
 </article>

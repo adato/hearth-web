@@ -599,7 +599,7 @@ article.row.inactive {
             }
         }
     }
-    &.community {
+    &.rating-received {
         & .arrowbox {
             height: $size;
             width: $size;
@@ -608,6 +608,13 @@ article.row.inactive {
             @include rotate(45deg);
             -webkit-transform-origin: 50% 50%;
         }
+
+        &.positive, &.positive>.overlap, &.positive>.arrowbox {
+            background:lighten(color(2), 45%);
+        }
+        &.negative, &.negative>.overlap, &.negative>.arrowbox {
+            background:lighten(color(5), 45%);
+        }        
     }    
 }
 
