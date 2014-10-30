@@ -156,7 +156,7 @@
     },
     "COMMUNITY_MEMBERS": {
         "one": "člen",
-        "few": "členi",
+        "few": "členové",
         "other": "členů"
     },
     "COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE": "Komunita nemá žádného dalšího člena, nechcete do ní spíše dotáhnout více lidí?",
