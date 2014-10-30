@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.services').service('LanguageSwitch', [
-	'$feature', '$translate', '$http', 'ipCookie', '$rootScope', 'tmhDynamicLocale',
-	function($feature, $translate, $http, ipCookie, $rootScope, tmhDynamicLocale) {
+	'$feature', '$translate', '$http', 'ipCookie', '$rootScope', 'tmhDynamicLocale', 'Session',
+	function($feature, $translate, $http, ipCookie, $rootScope, tmhDynamicLocale, Session) {
 		var self = this,
 			languages = [{
 				code: 'en',
@@ -47,6 +47,8 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			var lang = self.getLanguage(lang);
 
 			if(lang) {
+
+				Session.update({language: lang.code});
 				return self.use(lang);
 			}
 			return false;
