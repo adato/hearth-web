@@ -63,6 +63,11 @@
       top.location = self.location;
     }
 
+    // fb login redirects to this URL
+    if (window.location.hash && window.location.hash == '#_=_') {
+        window.location.hash = '';
+    }
+
     if (window.location.hash.indexOf('#!') === -1){
       window.location.hash = '#!' + window.location.hash.slice(1);
     }

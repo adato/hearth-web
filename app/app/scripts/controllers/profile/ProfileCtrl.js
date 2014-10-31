@@ -97,7 +97,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// scroll to form
 			setTimeout(function() {
 				$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
-			}, 200);
+			}, 300);
 		};
 
 		// will redirect user to user ratings and open rating form
