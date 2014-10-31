@@ -1,4 +1,4 @@
-<div class="ad post_{{item._id}}">
+<div class="ad post_{{item._id}}" ng-class="{inactive: !isPostActive(item)}">
     <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
     <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
     <span>
