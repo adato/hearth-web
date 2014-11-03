@@ -147,7 +147,6 @@
     <script src="vendor/moment/moment.js"></script>
     <!-- endbower -->
     <script src="vendor/angularitics/src/angulartics-ga.js"></script>
-    <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
     <!-- endbuild -->
     
     <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
@@ -168,12 +167,14 @@
       preferredLanguage = $.cookie('language');
     </script>
     <script>
-      document.write(
-          '<script src="//maps.googleapis.com/maps/api/js?' +
+      var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
           ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-          'sensor=true&libraries=places,geometry&language='+preferredLanguage+'"><\/script>'
-      );
+          'sensor=true&libraries=places,geometry&language=';
+
+      document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
+      
     </script>
+    <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
 
     <script>
       $(function() { 

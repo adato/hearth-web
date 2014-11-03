@@ -49,6 +49,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			if(lang) {
 
 				Session.update({language: lang.code});
+				// changeGoogleApiLanguage(lang.code);
 				return self.use(lang);
 			}
 			return false;
