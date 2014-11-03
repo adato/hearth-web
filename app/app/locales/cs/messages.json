@@ -227,6 +227,8 @@
     "CREATE_NEW_ADD": "Vytvo\u0159it",
     "CREATE_NEW_COMMUNITY_TEXT": "Vytvo\u0159en\u00ed komunity",
     "CREATE_POST": "Vytvo\u0159it",
+    "EDIT_POST_SUCCESS": "Inzerát byl úspěšně upraven.",
+    "CREATE_POST_SUCCESS": "Inzerát byl úspěšně vytvořen.",
     "ERR_USER_NOT_FOUND": "Uživatel nebyl nalezen.",
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
     "POST_WAS_DELETED": "Inzerát byl vymazán.",

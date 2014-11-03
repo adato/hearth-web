@@ -51,6 +51,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// alert(dateToConvert.toISOString());
 
 
+		$scope.showFinished = function() {
+
+			$(".create-ad").slideToggle();
+			setTimeout(function() {
+				$scope.closeThisDialog();
+			}, 10000);
+		};
+
 		$scope.showError = function(err, isError) {
 			var modalWindow = $(".ngdialog-content"),
 				messageBox = $(".headMessage", $element);
@@ -86,7 +94,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				$scope.post.valid_until = '';
 			}
-		}
+		};
 
 		$scope.removeImage = function(index) {
 			var files = $scope.post.attachments_attributes;
@@ -97,7 +105,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				files[index].deleted = true;
 			}
 			$scope.$apply();
-		}
+		};
 
 		function recountImages() {
 			var files = $scope.post.attachments_attributes;
@@ -111,7 +119,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 			}
 			$scope.showFiles = res;
-		}
+		};
+
 		$scope.$watch('post', recountImages, true);
 
 		$scope.transformImagesStructure = function(postDataCopy) {
@@ -256,10 +265,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				postDataCopy = $scope.transformImagesStructure(postDataCopy);
 				
-				if($scope.post._id)
-					Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
-				else
-					Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
+				// if($scope.post._id)
+				// 	Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+				// else
+				// 	Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
+				$scope.showFinished();
 
 				if($scope.post._id) {
 					$rootScope.$broadcast('postUpdated', data);
@@ -268,7 +278,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 
 				$(document.body).scrollTop(0);
-				$scope.closeThisDialog();
+				// $scope.closeThisDialog();
 			}, function() {
 
 				alert("There was an error while saving this post");
