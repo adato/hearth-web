@@ -7,7 +7,7 @@
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
     </div>
     <hr />
-    <form ng-submit="save()" name="replyForm" novalidate class="reply-ad">
+    <form ng-submit="sendReply()" name="replyForm" novalidate class="reply-ad">
         <div>
             <textarea autosize-textarea required ng-focus="showErrors.text = false" ng-blur="showErrors.text = true" placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.text" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-cloak class="reply-ad-textarea text-input middle"></textarea>
             <div class="moveUp error" ng-show="showErrors.text">
@@ -26,8 +26,13 @@
                 <a href="" ng-click="closeThisDialog()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
-                <button class="primary button-send fright pointer" type="submit" analytics-event="click on send" ng-click="sendReply()" analytics-category="Add" analytics-label="NP" translate>SUBMIT</button>
+                <button class="primary button-send fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SUBMIT</button>
             </div>
         </div>
     </form>
+    <div class="reply-ad success success-msg hidden">
+        <p>{{ 'SEND_REPLY_SUCCESS' | translate }}</p>
+
+        <button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>
+    </div>
 </div>

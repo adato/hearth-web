@@ -26,7 +26,15 @@ angular.module('hearth.controllers').controller('ItemReply', [
 		$scope.toggleMail = function() {
 			$scope.reply.agree = !$scope.reply.agree;
 			$scope.showErrors.agree = ! $scope.reply.agree;
-		}
+		};
+
+		$scope.showFinished = function() {
+
+			$(".reply-ad").slideToggle();
+			setTimeout(function() {
+				$scope.closeThisDialog();
+			}, 10000);
+		};
 
 		$scope.sendReply = function() {
 			var data = {
@@ -47,9 +55,9 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			PostReplies.add(data, function(res) {
 
 				$scope.sending = false;
-				$scope.closeThisDialog();
+				$scope.showFinished();
 				$scope.post.reply_count += 1;
-	            Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
+	            // Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
 
 			}, function(res) {
 
