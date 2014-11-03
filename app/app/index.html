@@ -113,14 +113,6 @@
       EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
       EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.png"'.slice(11, -1);
     </script>
-    <script>
-      document.write(
-        '' +
-          '<script src="//maps.googleapis.com/maps/api/js?' +
-          ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-          'sensor=true&libraries=places,geometry"><\/script>'
-      );
-    </script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -174,6 +166,13 @@
 
     <script>
       preferredLanguage = $.cookie('language');
+    </script>
+    <script>
+      document.write(
+          '<script src="//maps.googleapis.com/maps/api/js?' +
+          ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+          'sensor=true&libraries=places,geometry&language='+preferredLanguage+'"><\/script>'
+      );
     </script>
 
     <script>
