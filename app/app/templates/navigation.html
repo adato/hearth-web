@@ -22,18 +22,10 @@
 				<div class="fa fa-recycle"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
-			<a href="#!/communities" ng-class="{active: segment == 'communityList'}" title="{{ 'COMMUNITIES' | translate }}">
+			<a ng-if="loggedUser._id" href="#!/communities" ng-class="{active: segment == 'communityList'}" title="{{ 'COMMUNITIES' | translate }}">
 				<div class="fa fa-users"></div>
 				<label>{{ 'COMMUNITIES' | translate }}</label>
 			</a>
-			
-			<!-- ===================== DEPRECATED ================ -->
-			<!--
-			<a ng-click="showTutorial()" title="click me if you can">
-				<div class="fa fa-spoon"></div>
-				<label>{{ 'TUTORIAL' | translate }}</label>
-			</a>
-			-->
 			<div class="separator"></div>
 			
 			<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
