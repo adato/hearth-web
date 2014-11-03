@@ -1,18 +1,6 @@
-<div class="needOfferSelector">
-	<ul class="button-group radius">
-		<li>
-			<a class="small button left" ng-class="{pressed: !model}" ng-click="toggle()">
-				<div>
-					<span>{{ textFalse }}</span>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a class="small button right" ng-class="{pressed: model}" ng-click="toggle()"> 
-				<div>
-					<span>{{ textTrue }}</span>
-				</div>
-			</a>
-		</li>
-	</ul>
+<div class="need-offer-selector button-group radius">
+	<a class="small button left" ng-class="{pressed: !model}" ng-click="toggle()"><span ng-hide="!iconFalse"><i class="fa" ng-class="iconFalse"></i> </span>{{ textFalse }}
+	</a>
+	<a class="small button right" ng-class="{pressed: model}" ng-click="toggle()"><span ng-hide="!iconTrue"><i class="fa" ng-class="iconTrue"></i> </span>{{ textTrue }}
+	</a>
 </div>

@@ -12,7 +12,10 @@ angular.module('hearth.directives').directive('needofferselector',
 			scope: {
 				model: '=',
 				textTrue: '@',
+				iconTrue: '@',
 				textFalse: '@',
+				iconFalse: '@',
+
 			},
 			templateUrl: 'templates/directives/needOfferSelector.html',
 			link: function(scope) {

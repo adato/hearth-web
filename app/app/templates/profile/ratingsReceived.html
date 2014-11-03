@@ -1,5 +1,5 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
-<div class="ratings-given row rating-item animate-show" id="received-rating-form" ng-show="showUserRatingForm">
+<div class="ratings-received row rating-item animate-show" id="received-rating-form" ng-show="showUserRatingForm">
 	<section class="large-2 columns photo">
 		<a>
 			<div class="avatar">
@@ -9,7 +9,7 @@
 		</a>
 	</section>
 	<section class="large-10 columns user-rating-form">
-	<div class="item community">
+	<div class="item rating-received">
 		<div class="overlap"> </div>
 		<div class="arrowbox"></div>
 		<div class="arrow"></div>
@@ -18,7 +18,7 @@
 			<br>
 			<div class="rating-notify-box"></div>
 			<div class="score-select">
-				<needofferselector class="fleft" model="rating.score" text-true="{{ 'NEGATIVE' | translate}}" text-false="{{ 'POSITIVE' | translate}}"></needofferselector>
+				<needofferselector class="fleft" model="rating.score" text-true="{{ 'NEGATIVE' | translate}}" text-false="{{ 'POSITIVE' | translate}}" icon-true="fa-moon-o" icon-false="fa-sun-o"></needofferselector>
 				<p class="fleft">
 					{{ 'USER_RATING_SCORE_SELECT_TEXT' | translate }}
 				</p>
@@ -69,14 +69,10 @@
 				<div class="fright">
 					<div class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</div>
 				</div>			
-				<div class="text-container clear clearfix">
-				<br>
-				<p>
-					<i class="fa fa-sun-o" ng-if="item.score == 1"></i>
-					<i class="fa fa-moon-o" ng-if="item.score == -1"></i>
-					&nbsp;&nbsp;<span ng-bind-html="item.text | linky:'_blank'"></span>
-				</p>
+				<div class="text-container clearfix">
+					<p ng-bind-html="item.text | linky:'_blank'"></p>
 				</div>
+				<small>{{ 'SAYING' | translate}} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a></small>				
 			</div>
 		</div>
 	</section>

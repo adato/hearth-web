@@ -16,7 +16,8 @@ $medium-avatar-size: 80px;
                 padding: {
                     left:1rem;
                     right:1rem;
-                } 
+                }
+                text-shadow:1px 1px 8px rgba(50, 50, 50, .5);
                 a {
                     color:darken(color(3), 40%);
                 }

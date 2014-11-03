@@ -160,7 +160,7 @@ $imageSize: 80px;
 
 .item {
     background-color: white;
-    min-height: 150px;
+    min-height: 100px;
     position: relative;
     margin: auto;
     box-shadow: $defaultShadow;
@@ -339,6 +339,9 @@ $imageSize: 80px;
                 border-color: transparent;
             }
         }
+        small {
+            font-size:rem;
+        }
     }
     .show-more {
         color: #20B1EA;
@@ -433,8 +436,10 @@ $imageSize: 80px;
                    /* max-height: 100em; */
                 }
             }
-            
         }
+        small {
+            font-size:.8rem;
+        }        
         .attachments {
             margin-top:20px;
             margin-bottom:20px;
