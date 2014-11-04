@@ -44,6 +44,7 @@ $medium-avatar-size: 80px;
             display:block;
             min-height:320px;
             padding:0;
+            padding-top:1rem;
             padding-left:1rem;
             padding-right:1rem;
             .profile-photo {
@@ -156,6 +157,7 @@ $medium-avatar-size: 80px;
             .karma-bar {
                 @extend .large-8, .columns, .pull-right;
                 height:30px;
+                margin-top:1.5rem;
                 padding:0;
                 float:right;
                 text-shadow:1px 1px 8px rgba(50, 50, 50, .5);
