@@ -133,7 +133,7 @@ $medium-avatar-size: 80px;
         }
     }
     .rating-listing {
-        margin-top: 30px;
+        
         @extend .clearfix;
         .rating {
             @extend .large-10, .large-centered, .clearfix, .medium-avatar;
