@@ -14,11 +14,18 @@ angular.module('hearth.services').service('Notify', [
 		var notifyTypes = { 1: 'success', 2: 'info', 3: 'warning', 4: 'error', 5: '' };
 		var self = this;
 
-		this.T_SUCCESS = 1;
-		this.T_INFO = 2;
-		this.T_WARNING = 3;
-		this.T_ERROR = 4;
-		this.T_TEXT = 5;
+		this.T_SUCCESS 	= 1;
+		this.T_INFO 	= 2;
+		this.T_WARNING 	= 3;
+		this.T_ERROR 	= 4;
+		this.T_TEXT 	= 5;
+
+		this.icons = {};
+		this.icons[this.T_SUCCESS] 	= 'fa-check';
+		this.icons[this.T_INFO] 	= 'fa-info-circle';
+		this.icons[this.T_WARNING] 	= 'fa-exclamation-triangle';
+		this.icons[this.T_ERROR] 	= 'fa-times';
+		this.icons[this.T_TEXT] 	= '';
 
 		this.TOP = '#notify-top';
 
@@ -28,14 +35,18 @@ angular.module('hearth.services').service('Notify', [
 			// if not set delay, set it to 0ms
 			delay = delay || 0;
 			// time to live - timeout to autoclose notify
-			ttl = ttl || 4000;
+			ttl = ttl || 400000;
 			// default time is info box
 			type = type || this.T_INFO;
 			// default container is top center contaimer
 			container = container || self.TOP;
 
-			console.log("Adding notify: ", [text, type, container, ttl, delay]);
+			// add icon before text			
+			if(self.icons[type])
+				text = '<i class="fa '+self.icons[type]+'"></i>' + text;
 			
+			console.log("Adding notify: ", [text, type, container, ttl, delay]);
+
 			// create notify with given type and text
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
 				// hide it at start

@@ -104,6 +104,7 @@ $medium-avatar-size: 80px;
                 @extend .large-3, .columns, .bubble;
                 width:120px;
                 height:120px;
+                margin: 0px auto;
                 margin-top:100px;
             }
             .ratings {

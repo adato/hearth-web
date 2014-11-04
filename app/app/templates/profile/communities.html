@@ -13,9 +13,11 @@
 		{{'OF_X_COMMUNITIES.'+pluralCat(data.length) | translate:'{count:'+data.length+'}' }}
 	</h2>
 </div>
+<div class="clear"></div>
 <div class="communities">
 	<div class="community-list">
 	    <community-item item="item" ng-repeat="(id, item) in data track by $index" user="mine && info"></community-item>
+		<div class="clear"></div>
 	</div>
 </div>
 <div ng-if="! data.length">

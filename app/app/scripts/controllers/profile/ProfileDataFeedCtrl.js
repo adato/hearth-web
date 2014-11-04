@@ -128,6 +128,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 $scope.$on('postCreated', function() {
                     $scope.refreshUser();
                 });
+                $scope.$on('postUpdated', function() {
+                    $scope.refreshUser();
+                });
+
             }
         }
 

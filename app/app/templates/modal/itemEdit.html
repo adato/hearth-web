@@ -15,7 +15,7 @@
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
     </div>
     <hr />
-    <form ng-submit="save()" name="createAdForm" novalidate class="create-ad">
+    <form ng-submit="save(post)" name="createAdForm" novalidate class="create-ad">
         <div>
             <p class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</p>
             <div class="messageBox" ng-if="!isPostActive(post)">
@@ -70,14 +70,14 @@
                     <i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
                 </label>
                 <div ng-class="{disabled: post.valid_until_unlimited == true}">
-                    <input type="text" ng-focus="showError.valid_until = false" ng-blur="showError.valid_until = true" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" placeholder="{{'UNLIMITED' | translate}}" required>
+                    <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" placeholder="{{'UNLIMITED' | translate}}" required>
                     <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
                     <div class="clear error" ng-show="showError.valid_until">
                         <span ng-show="createAdForm.valid_until.$error.required">{{ 'DATE_IS_EMPTY' | translate }}</span>
+                        <span ng-show="createAdForm.valid_until.$error.invalid">{{ 'ERR_DATE_IS_OLD' | translate }}</span>
                     </div>
                 </div>
             </div>
-            
             <hr />
             <div class="files" ng-class="{withFiles: showFiles}">
 

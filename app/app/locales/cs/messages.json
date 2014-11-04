@@ -78,6 +78,7 @@
     "WRITE_USER_SOME_RATING": "Napište uživateli nějaké hodnocení",
     "SEND_USER_RATING": "Odeslat hodnocení",
     "ERR_NOT_FILLED_RATING": "Pošlete uživateli s hodnocením i nějaký text",
+    "ERR_DATE_IS_OLD": "Doba platnosti je v minulosti.",
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
     "ADD_USER_RATING": "Přidejte uživateli hodnocení",
     "LEAVE_COMMUNITY": "Opustit komunitu",
