@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location) {
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
@@ -262,6 +262,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				// 	Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 				$scope.closeThisDialog();
 
+
 				if($scope.post._id) {
 					$rootScope.$broadcast('postUpdated', data);
 				} else {
@@ -269,6 +270,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 
 				$(document.body).scrollTop(0);
+				$location.path("/");
+				setTimeout(function() {
+					$rootScope.blinkPost(data);
+				}, 200);
 				// $scope.closeThisDialog();
 			}, function() {
 

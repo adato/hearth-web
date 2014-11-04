@@ -33,7 +33,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			$(".reply-ad").slideToggle();
 			setTimeout(function() {
 				$scope.closeThisDialog();
-			}, 10000);
+			}, 5000);
 		};
 
 		$scope.sendReply = function() {

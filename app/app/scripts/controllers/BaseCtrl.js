@@ -290,6 +290,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+        // this will flash post box with some background color
+        $rootScope.blinkPost = function(item) {
+            var delayIn = 200;
+            var delayOut = 2000;
+            var color = "#FFB697";
+            $(".post_"+item._id+" .item").animate({backgroundColor: color}, delayIn );
+            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: color}, delayIn );
+            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: color}, delayIn );
+
+            $(".post_"+item._id+" .item").animate({backgroundColor: "#FFF"}, delayOut );
+            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: "#FFF"}, delayOut );
+            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: "#FFF"}, delayOut );
+        };
+
         // == deactivate / prolong / activate post item
         // and close modal or call given callback
         $rootScope.pauseToggle = function(item, modal, cb) {
