@@ -91,7 +91,8 @@ angular.module('hearth.services').service('Notify', [
 
 		// this will close all messages in given container and show given message
 		this.addSingle = function(text, type, container, ttl, delay) {
-
+			container = container || self.TOP;
+			
 			self.hideAll(container, function() {
 				return self.add(text, type, container, ttl, delay);
 			});
@@ -99,6 +100,7 @@ angular.module('hearth.services').service('Notify', [
 
 		// this will close all messages in given container and show given message with translate
 		this.addSingleTranslate = function(text, type, container, ttl, delay) {
+			container = container || self.TOP;
 
 			self.hideAll(container, function() {
 				return self.addTranslate(text, type, container, ttl, delay);

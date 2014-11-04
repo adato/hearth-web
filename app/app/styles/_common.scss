@@ -78,6 +78,15 @@ button {
 .reveal-modal {
     border-radius: $global-radius;
     min-height: 100px !important;
+
+    position: absolute;
+    left: 50%;
+    width: 420px;
+    margin-left: -210px;
+
+    .text-right a {
+        margin-top: 25px;
+    }
 }
 
 .link-button {
