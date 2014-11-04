@@ -303,12 +303,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				// $(document.body).scrollTop(0);
 
 				if($rootScope.isPostActive(data) && $location.path() != '/') {
-
 					// wait for refresh to 
 					var deleteEventListener = $rootScope.$on('postsLoaded', function() {
 						deleteEventListener();
 
-						$rootScope.blinkPost(data);
+						setTimeout(function() {
+							$rootScope.blinkPost(data);
+						}, 100);
 					});
 
 					// if post is visible on marketplace - refresh user there

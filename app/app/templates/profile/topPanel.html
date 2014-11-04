@@ -52,8 +52,8 @@
             <a href="#!/profile/{{info._id}}/received-ratings" ng-if="info.karma != null">
                 <div class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}"><span class="positive bar" style="width:{{info.karma}}%;" ng-if="info.karma > 0">{{ info.karma }}% <i class="fa fa-sun-o"></i></span><span class="negative bar" style="width:{{100 - info.karma}}%;"  ng-if="info.karma < 100"><i class="fa fa-moon-o"></i> {{100 - info.karma}}%</span></div>
             </a>
-            <div class="clear"></div>
         </div>
+        <div class="clear"></div>
     </header>
     <div class="clear"></div>   
     <div ng-show="info" ng-cloak app-view-segment="1"></div>
