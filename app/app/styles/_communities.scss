@@ -44,7 +44,20 @@
                     height:8.5rem;
                     overflow:hidden;
                     margin:1rem;
+
+                    .content {
+                        height: 145px;
+                    }
                 }
+
+
+                .fadeout {
+                    position: relative; 
+                    bottom: 24px;
+                    height: 15px;
+                    
+                    background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+                } 
             }
         }
     }
