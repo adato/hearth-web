@@ -28,7 +28,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             // ===============================
             
             // get preferred language from cookies or config
-            preferredLanguage = preferredLanguage || $$config.defaultLanguage;
             console.log("Setting preffered language", preferredLanguage);
             
             // configure dynamic locale - dates && pluralization && etc

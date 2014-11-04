@@ -16,7 +16,8 @@
                     {{item.text | ellipsis}}
                     <br>
                     <small class="rating-from">
-<!--                         <i class="fa fa-sun-o" ng-if="item.score == 1"></i>
+                        <!--
+                         <i class="fa fa-sun-o" ng-if="item.score == 1"></i>
                         <i class="fa fa-moon-o" ng-if="item.score == -1"></i> -->
                         {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.
                     </small>
@@ -106,8 +107,6 @@
             </div>
             <div class="clear">&nbsp;</div>
         </div>
-    </div>
-    <div class="right-pane">
         <div class="activities">
             <h3 ng-if="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
             <h3 ng-if="!mine">{{ 'USER_ACTIVITY' | translate }}</h3>
@@ -115,11 +114,13 @@
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">
                 <div ng-include="'templates/_activityList.html'">
-<!--                 <div class="buttons">
-                    <a href="#!/profile/{{info._id}}/activity-feed">
-                        <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
-                    </a>
-                </div> -->
+                    <!--                 
+                        <div class="buttons">
+                            <a href="#!/profile/{{info._id}}/activity-feed">
+                                <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
+                            </a>
+                        </div>
+                     -->
             </div>
         </div>
     </div>

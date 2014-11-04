@@ -78,24 +78,24 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         };
 
         function loadUserHome(params) {
-            var fulltextParams = {
-                type: 'post',
-                related: 'user',
-                author_id: params.user_id,
-            }
+            // var fulltextParams = {
+            //     type: 'post',
+            //     related: 'user',
+            //     author_id: params.user_id,
+            // }
 
-            params.limit = 5;
-            UserRatings.received(params, function(res) {
-                $scope.receivedRatings = res;
-            });
-            UsersActivityLog.get(params, function(res) {
-                $scope.activityLog = res;
-            });
-            Fulltext.query(fulltextParams, function(res) {
-                $scope.posts = res;
-            });
+            // params.limit = 5;
+            // UserRatings.received(params, function(res) {
+            //     $scope.receivedRatings = res;
+            // });
+            // UsersActivityLog.get(params, function(res) {
+            //     $scope.activityLog = res;
+            // });
+            // Fulltext.query(fulltextParams, function(res) {
+            //     $scope.posts = res;
+            // });
 
-            $scope.$on('updatedItem', $scope.refreshItemInfo);
+            // $scope.$on('updatedItem', $scope.refreshItemInfo);
         }
 
 

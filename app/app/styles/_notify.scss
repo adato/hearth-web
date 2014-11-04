@@ -2,12 +2,31 @@
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     text-align: center;
+    color: white;
 
     i {
         margin-right: 10px;
     }
+    
     .close {
         cursor: pointer;
+    }
+
+    &.success {
+        background-color: #8DC321;
+    }
+    
+    &.info {
+        background-color: #4EB2E7;
+    }
+    
+    &.warning {
+        background-color: #FFED00;
+        color: black;
+    }
+
+    &.error {
+        background-color: #FF0000;
     }
 }
 
@@ -17,11 +36,14 @@
     margin-left: -475px;
     position: fixed;
     right: 0;
-    top: 70px;
-    z-index: 2000;
+    top: 60px;
+    z-index: 80; /** under navigation bar */
     
 
     .alert-box {
+        font-size: 16px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
     }
 }
 
@@ -34,8 +56,6 @@
     width: 780px;
     top: -55px;
 
-    .alert-box {
-    }
 }
 
 .ratings-given {

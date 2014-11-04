@@ -81,8 +81,8 @@ button {
 
     position: absolute;
     left: 50%;
-    width: 420px;
-    margin-left: -210px;
+    width: 420px !important;
+    margin-left: -210px !important;
 
     .text-right a {
         margin-top: 25px;

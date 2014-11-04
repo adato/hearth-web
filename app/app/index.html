@@ -101,7 +101,7 @@
       <script src="vendor/json3/lib/json3.js"></script>
     <![endif]-->
 
-    <section ng-include="'templates/navigation.html'" id="navigation"></section>
+    <section translate-cloak ng-include="'templates/navigation.html'" id="navigation"></section>
     <div app-view-segment="0" class="main-container" translate-cloak></div>
     <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
         {{topArrowText.top}}
@@ -165,7 +165,7 @@
     <link rel="stylesheet" type="text/css" href="vendor/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 
     <script>
-      preferredLanguage = $.cookie('language');
+      preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
     </script>
     <script>
       var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
