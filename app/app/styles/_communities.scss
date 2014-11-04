@@ -36,6 +36,8 @@
             }
         }
         &.small {
+            clear: both;
+            
             .community-item {
                 @extend .large-6, .columns;
                 margin:0;

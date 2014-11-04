@@ -7,13 +7,13 @@ angular.module('hearth').config([
 			
 			// ====== General routes
 			.when('/', 'market')
+			.when('/market', 'market-refresh')
 			.when('/search/?', 'search')
 			.when('/ad/:id', 'ad')
 			.when('/404', 'err404')
 			.when('/setup', 'setup')
 			.when('/terms', 'terms')
 			.when('/about', 'about')
-			.when('/feedback', 'feedback')
 			.when('/feedback', 'feedback')
 			
 			// ======= User routes
@@ -55,6 +55,13 @@ angular.module('hearth').config([
 			.segment('market', {
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
+				reloadOnSearch: false,
+				disableCache: true,
+				pageType: 'search'
+			}).segment('market-refresh', {
+				controller: ['$location', function($location) {
+											$location.path('/'); // just for refresh purposes
+										}],
 				reloadOnSearch: false,
 				disableCache: true,
 				pageType: 'search'
