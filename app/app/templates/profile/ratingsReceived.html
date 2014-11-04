@@ -26,11 +26,12 @@
 			</div>
 		    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
 		        <label>
-		            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input"></textarea>
+		            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
 					<max-len-counter max-len="300" value="rating.text"></max-len-counter>
 
 		            <div class="moveUp error" ng-show="showError.text">
 		                <span ng-show="ratingForm.text.$error.required">{{ 'ERR_NOT_FILLED_RATING' | translate }}</span>
+		                <span ng-show="ratingForm.text.$error.minlength">{{ 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
 		            </div>
 					<div class="clear"></div>
 		        </label>

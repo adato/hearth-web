@@ -35,17 +35,21 @@ angular.module('hearth.services').service('Notify', [
 			// if not set delay, set it to 0ms
 			delay = delay || 0;
 			// time to live - timeout to autoclose notify
-			ttl = ttl || 4000;
+			var ttlCustom = ttl || 4000;
 			// default time is info box
 			type = type || this.T_INFO;
 			// default container is top center contaimer
 			container = container || self.TOP;
 
+			// if there is an error shown in its own container without ttl, we will show him for longer time
+			if(container !== self.TOP && type == self.T_ERROR && ! ttl) {
+				ttlCustom = 9999000;
+			}
 			// add icon before text			
 			if(self.icons[type])
 				text = '<i class="fa '+self.icons[type]+'"></i>' + text;
 			
-			console.log("Adding notify: ", [text, type, container, ttl, delay]);
+			console.log("Adding notify: ", [text, type, container, ttlCustom, delay]);
 
 			// create notify with given type and text
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
@@ -71,9 +75,9 @@ angular.module('hearth.services').service('Notify', [
 				newNotify.fadeIn(300);
 
 				// if timeout is set, trigger close event after given time
-				if(ttl) setTimeout(function() {
+				if(ttlCustom) setTimeout(function() {
 					newNotify.click();
-				}, ttl);
+				}, ttlCustom);
 
 			}, delay);
 		};
