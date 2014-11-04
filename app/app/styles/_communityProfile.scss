@@ -15,26 +15,6 @@
     .avatar {
         overflow: hidden;
     }
-    .button-flat {
-        font-weight:bold;
-        border:0;
-        &.blue {
-            background:color(5);
-            i {
-                display:inline-block;
-                margin-right:10px;
-            }
-            &:hover {
-                background:darken(color(5), 20%);
-            }
-            margin:1.25rem;
-        }
-        padding: {
-            top:10px;
-            bottom:10px;
-        }
-    }
-
     .clearfix {
         &:after {
             content: "";

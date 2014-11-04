@@ -17,7 +17,7 @@ $medium-avatar-size: 80px;
                     left:1rem;
                     right:1rem;
                 }
-                text-shadow:1px 1px 8px rgba(50, 50, 50, .5);
+                text-shadow:1px 1px 8px rgba(50, 50, 50, .3);
                 a {
                     color:darken(color(3), 40%);
                 }
@@ -31,41 +31,13 @@ $medium-avatar-size: 80px;
                 }
             }
         }
-        .buttons {
+        .button-bar {
             font-size:1rem;
             margin-left:1rem;
             max-width:40%;
             float:right;
             padding-left: 0px;
             padding-right: 0px;
-            button {
-                @extend .button-flat;
-                vertical-align:top;
-                height:60px;
-                top:0;
-                padding-left:1rem;
-                padding-right:1rem;
-                margin-right:1rem;
-                margin-top:0 !important;
-                margin-bottom:0;
-                &.invite-button {
-                    @extend .blue-color;
-                    white-space:nowrap;
-                }
-                .fa {
-                    display:inline-block;
-                    margin-right:10px;
-                }
-                &.blue.follow-button {
-                    margin-bottom:0;
-                }
-            }
-            .success {
-                color:color(2);
-                padding:1rem;
-                border-radius:$global-radius;
-                border:1px solid color(2);
-            }
         }
         .highlights {
             @extend .columns;
@@ -74,7 +46,6 @@ $medium-avatar-size: 80px;
             padding:0;
             padding-left:1rem;
             padding-right:1rem;
-            margin-top:10px;
             .profile-photo {
                 @extend .large-3, .columns;
                 width:300px;
@@ -173,6 +144,7 @@ $medium-avatar-size: 80px;
                 height:30px;
                 padding:0;
                 float:right;
+                text-shadow:1px 1px 8px rgba(50, 50, 50, .5);
 
                 .bar:first-child {
                     border-top-left-radius:$global-radius;
@@ -189,7 +161,7 @@ $medium-avatar-size: 80px;
                     padding:10px;
                     color:color(4);
                     font-weight:bold;
-                    box-shadow: inset 0px 0px 10px 0px rgba(color(4), 0.75);
+                    box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
                     white-space:nowrap;
                 }
                 .positive {
@@ -238,42 +210,6 @@ $medium-avatar-size: 80px;
             }
         }
     }
-    .blue-color {
-        background:color(5);
-        background: linear-gradient(180deg, lighten(color(5), 10%) 30%, color(5) 70%);
-        &:hover {
-            background:darken(color(5), 20%);
-        }
-    }
-    .green-color {
-        background:color(2);
-        background: linear-gradient(180deg, lighten(color(2), 5%) 30%, color(2) 70%);
-        &:hover {
-            background:darken(color(2), 10%);
-        }
-    }
-    .button-flat {
-        font-weight:bold;
-        border:0;
-        &.blue {
-            @extend .blue-color;            
-            i {
-                display:inline-block;
-                margin-right:10px;
-            }
-            margin:1.25rem;
-            margin-left: 0px;
-            margin-right: 0px;
-        }
-        &.green {
-            @extend .green-color;
-        }
-        padding: {
-            top:10px;
-            bottom:10px;
-        }
-    }
-
     .clearfix {
         &:after {
             content: "";
@@ -389,13 +325,6 @@ $medium-avatar-size: 80px;
                 }
                 .date {
                     float:right;
-                }
-            }
-            button {
-                @extend .button-flat;
-                margin: {
-                    left:auto;
-                    right:auto;
                 }
             }
         }
@@ -552,8 +481,8 @@ $medium-avatar-size: 80px;
 .bottom-tabs {
     @extend .large-12, .columns, .clearfix;
     text-align:center;
-    border-top:3px solid color(1);
-    padding-top:2px;
+    border-bottom:4px solid color(1);
+    padding-bottom:2px;
     font-weight: bold;
     margin: {
         top:30px;
@@ -567,10 +496,12 @@ $medium-avatar-size: 80px;
     ul {
         @include inline-list;
         li>a {
-            background:darken(color(4), 40%);
+            background:darken(color(4), 30%);
             color:lighten(color(4), 20%);
+            border-top:4px solid darken(color(4), 20%);
+            text-shadow:1px 1px 8px rgba(50, 50, 50, .3);
             min-width:250px;
-            font-size:1.2rem;
+            font-size:1.1rem;
             padding: {
                 left:30px;
                 right:30px;
@@ -582,13 +513,15 @@ $medium-avatar-size: 80px;
                 right:5px;
                 top:5px;
             }
-            border-bottom-left-radius:$global-radius / 2;
-            border-bottom-right-radius:$global-radius / 2;
+            border-top-left-radius:$global-radius / 2;
+            border-top-right-radius:$global-radius / 2;
             &:hover {
-                background:darken(color(1), 10%);
+                border-top:4px solid darken(color(4), 30%);
+                background:darken(color(4), 40%);
             }
             &.selected {
                 background:color(1);
+                border-top:4px solid lighten(color(1), 20%);
             }
         }
     }
@@ -628,3 +561,83 @@ $medium-avatar-size: 80px;
         margin:20px;
     }
 }
+
+
+.profile-button {
+    background:color(5);
+    border-color:color(5);
+    top:0;
+    vertical-align:bottom;
+    padding:10px;
+    padding-left:1rem;
+    padding-right:1rem;
+    border-width:0;
+    font-weight: bold;
+    margin:0;
+    margin-left:.5rem;
+    margin-right:.5rem;
+    transition:.5s;
+    border-radius:$global-radius;
+    .fa {
+        display:inline-block;
+        margin-right:10px;
+    }
+
+    &:hover {
+        background:darken(color(5), 20%);
+        border-color:darken(color(5), 20%);
+    }
+
+    &.red {
+        background:color(1);
+        border-color:color(1);
+        &:hover {
+            background:darken(color(1), 20%);
+            border-color:darken(color(1), 20%);
+        }
+    }
+
+    &.outline {
+        color:color(5);
+        opacity:.8;
+        background:white;
+        border-width:2px;
+        border-style:solid;
+        &.tall {
+            padding: {
+                top:8px;
+                bottom:8px;
+            }
+        }
+        &:hover {
+            color:darken(color(5), 20%);
+        }
+    }
+    &.tall {
+        height:60px;
+        padding: {
+            top:10px;
+            bottom:10px;
+        }
+    }
+    &.spacy {
+        padding-left:2rem;
+        padding-right:2rem;
+    }
+    &.big-margin {
+        margin-top:1.25rem;
+        margin-bottom:1.25rem;
+    }
+    &.centered {
+        margin-left:auto;
+        margin-right:auto;
+    }
+    &.no-wrap {
+        white-space:nowrap;
+    }
+    &.without-icon-text .fa {
+        margin:0;
+    }
+}
+
+

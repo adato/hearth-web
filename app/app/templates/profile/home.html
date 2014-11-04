@@ -24,9 +24,9 @@
             </div>
             <p class="mine" ng-if="! receivedRatings.length">{{ 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
             <p class="others" ng-if="! receivedRatings.length">{{ 'USER_HAS_NO_RATINGS_YET' | translate}}</p>
-            <div class="buttons" ng-if=" receivedRatings.length">
+            <div class="buttons" ng-if="receivedRatings.length">
                 <a href="#!/profile/{{info._id}}/received-ratings">
-                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_RATINGS' | translate }}</button>
+                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_RATINGS' | translate }}</button>
                 </a>
             </div>
         </div>
@@ -55,9 +55,9 @@
                 <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = loggedCommunity"></div>
             </div>
 
-            <div class="buttons" ng-if="info.post_count > 0">
+            <div class="buttons" ng-if="posts.data.length > 0">
                 <a href="#!/profile/{{info._id}}/posts">
-                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
+                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
             </div>
         </div>
@@ -115,11 +115,11 @@
             <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
             <div ng-if="activityLog.length">
                 <div ng-include="'templates/_activityList.html'">
-                <div class="buttons">
+<!--                 <div class="buttons">
                     <a href="#!/profile/{{info._id}}/activity-feed">
                         <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

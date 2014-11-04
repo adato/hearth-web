@@ -42,10 +42,12 @@
 	</section>
 </div>
 <div class="clear"></div>
-<div class="large-10 user-rating-link" ng-if="!mine && !showUserRatingForm && loggedUser._id">
-	<div class="center text-center">
-	    <button class="button-flat blue green" ng-click="openUserRatingForm(false)"><i class="fa fa-sun-o"></i> {{ 'THUMB_UP' | translate }}</button>
-	    <button class="button-flat blue" ng-click="openUserRatingForm(true)"><i class="fa fa-moon-o"></i></button>
+<div class="large-12" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+	<div class="text-center rating-received-bar">
+		Znáte uživatele {{ info.name }}? Chcete mu 
+	    <button class="profile-button outline" ng-click="openUserRatingForm(false)"><i class="fa fa-sun-o"></i> {{ 'THUMB_UP' | translate }}</button>
+	    nebo upozornit na chybu 
+	    <button class="profile-button outline without-icon-text" ng-click="openUserRatingForm(true)"><i class="fa fa-moon-o"></i></button>
 	</div>
 	<div class="clear"></div>
 </div>

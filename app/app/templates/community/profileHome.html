@@ -44,7 +44,7 @@
 	            </div>
 	            <div class="buttons">
 	                <a href="#!/community/{{info._id}}/applications">
-	                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}</button>
+	                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}</button>
 	                </a>
 	            </div>
 	        </div>
@@ -71,7 +71,7 @@
 
             <div class="buttons" ng-if="info.post_count > 0">
                 <a href="#!/community/{{info._id}}/posts">
-                    <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
+                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
             </div>
         </div>
@@ -84,7 +84,7 @@
                 <div ng-include="'templates/_activityList.html'">
                 <div class="buttons">
                     <a href="#!/community/{{info._id}}/activity-feed">
-                        <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
+                        <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
                     </a>
                 </div>
             </div>

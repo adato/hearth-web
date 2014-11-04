@@ -196,3 +196,12 @@ $medium-avatar-size: 80px;
         display: none;
     }
 }
+
+.rating-received-bar {
+    background:rgba(color(4), .5);
+    padding:.5rem;
+    margin-top:-30px; // move just under bottom-tabs
+    button {
+        vertical-align:baseline;
+    }
+}
