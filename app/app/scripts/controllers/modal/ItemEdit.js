@@ -325,7 +325,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				// $scope.closeThisDialog();
 			}, function() {
 
-				alert("There was an error while saving this post");
+                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
 				$scope.sending = false;
 			});
 

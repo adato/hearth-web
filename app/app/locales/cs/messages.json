@@ -8,6 +8,7 @@
     "NOTIFY": {
         "POST_CREATED_SUCCESFULLY": "Inzerát byl úspěšně uložen.",
         "POST_UPDATED_SUCCESFULLY": "Inzerát byl úspěšně upraven.",
+        "POST_UPDATE_FAILED": "Ukládání inzerátu se nezdařilo.",
         "POST_DELETED_SUCCESFULLY": "Inzerát byl úspěšně smazán.",
         "EMAIL_INVITATION_SUCCESS": "Pozvánka byla úspěšně odeslána.",
         "EMAIL_INVITATION_FAILED": "Při odesílání pozvánky došlo k chybě.",
