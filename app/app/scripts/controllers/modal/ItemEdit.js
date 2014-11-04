@@ -50,15 +50,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// var dateToConvert = new Date();
 		// alert(dateToConvert.toISOString());
 
-
-		$scope.showFinished = function() {
-
-			$(".create-ad").slideToggle();
-			setTimeout(function() {
-				$scope.closeThisDialog();
-			}, 10000);
-		};
-
 		$scope.showError = function(err, isError) {
 			var modalWindow = $(".ngdialog-content"),
 				messageBox = $(".headMessage", $element);
@@ -269,7 +260,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				// 	Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
 				// else
 				// 	Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
-				$scope.showFinished();
+				$scope.closeThisDialog();
 
 				if($scope.post._id) {
 					$rootScope.$broadcast('postUpdated', data);
