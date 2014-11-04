@@ -124,15 +124,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				});
 				$location.url(ratingUrl);
 			}
-
-
-			// refresh to ratings page
 		};
 
 		// will close form and set to default state
 		$scope.closeUserRatingForm = function() {
 			$scope.showUserRatingForm = false;
 		};
+
 
 		$scope.sendRating = function(ratingOrig) {
 			var rating;

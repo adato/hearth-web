@@ -22,16 +22,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $scope.segment = $route.current.segment;
         });
 
-        // ================== DEPRECATED =================
-        setTimeout(function() {
-            // Notify.add("Ahooooooj");
-            // Notify.add("Ahooooooj 2 ", Notify.T_SUCCESS);
-            // Notify.add("Ahooooooj 3 ", Notify.T_INFO, "#notify-container-market");
-            // Notify.add("Ahooooooj 4 ", Notify.T_WARNING, null, 2000);
-            // Notify.add("Ahooooooj 5 ", Notify.T_ERROR, null, null, 4000);
-
-        }, 2000);
-
         $scope.closeDropdown = function(id) {
             Foundation.libs.dropdown.close($('#'+id));
         };

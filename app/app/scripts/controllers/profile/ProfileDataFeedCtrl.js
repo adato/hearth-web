@@ -142,9 +142,24 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.$emit("profileRefreshUser");
         };
 
+
+        // this will flash rating box with some background color
+        $scope.flashRatingBackground = function(rating) {
+            var delayIn = 200;
+            var delayOut = 2000;
+            var color = "#FFB697";
+            console.log("RR: ", rating);
+
+            $('.rating_'+rating._id).animate({backgroundColor: color}, delayIn );
+            $('.rating_'+rating._id).animate({backgroundColor: colorOut}, delayOut );
+            
+        };
+
         // will add new rating to data array
         $scope.addUserRating = function($event, item) {
             $scope.data.unshift(item);
+
+            $scope.flashRatingBackground(item);
         };
 
         $scope.$on('userRatingsAdded', $scope.addUserRating);
