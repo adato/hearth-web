@@ -23,8 +23,12 @@ textarea:focus,
 
 
 #searchBox {
-    margin: 0;
-    margin-left:1rem;
+    margin: {
+    	top:1px;
+    	left:1rem;
+    	right:0;
+    	bottom:0;
+    }
     background:color(4) !important;
     &:focus {
         background:lighten(color(4), 20%) !important;
