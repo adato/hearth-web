@@ -5,6 +5,7 @@ $medium-avatar-size: 80px;
     margin: {
         left: auto;
         right: auto;
+        top:-40px; // moved whole page a little bit up to avoid blank space on top
     }
 
     .ratings-received {

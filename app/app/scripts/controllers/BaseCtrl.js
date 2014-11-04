@@ -171,10 +171,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 if(modal) $('#'+modal).foundation('reveal', 'close');
                 $rootScope.$broadcast('reportItem', item);
 
-                Notify.addTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
+                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
             }, function(err) {
                 
-                Notify.addTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
+                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
             });
         };
 
@@ -217,7 +217,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
-                Notify.addTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO);
+                Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO);
 
                 cb && cb(post); // if callback given, call it
             });
@@ -285,13 +285,18 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             var delayIn = 200;
             var delayOut = 2000;
             var color = "#FFB697";
-            $(".post_"+item._id+" .item").animate({backgroundColor: color}, delayIn );
-            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: color}, delayIn );
-            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: color}, delayIn );
+            $(".post_"+item._id+" .item").animate({backgroundColor: color}, delayIn, function() {
+                $(".post_"+item._id+" .item").animate({backgroundColor: "#FFF"}, delayOut );
+            });
+    
+            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: color}, delayIn, function() {
+                $(".post_"+item._id+" .item .overlap").animate({backgroundColor: "#FFF"}, delayOut );
+            });
 
-            $(".post_"+item._id+" .item").animate({backgroundColor: "#FFF"}, delayOut );
-            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: "#FFF"}, delayOut );
-            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: "#FFF"}, delayOut );
+            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: color}, delayIn, function() {
+                $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: "#FFF"}, delayOut );
+            });
+
         };
 
         // == deactivate / prolong / activate post item
@@ -320,7 +325,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(modal) $('#'+modal).foundation('reveal', 'close');
                     if(cb) cb(item);
                     $rootScope.$broadcast('updatedItem', res);
-                    Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+                    Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
 
                 }, function(err) {
                     if( err.status == 422) {
@@ -331,7 +336,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                         $rootScope.editItem(item, true);
                     } else {
 
-                        Notify.addTranslate('NOTIFY.POST_UPDAT_FAILED', Notify.T_ERROR);
+                        Notify.addSingleTranslate('NOTIFY.POST_UPDAT_FAILED', Notify.T_ERROR);
                     }
             });
         };

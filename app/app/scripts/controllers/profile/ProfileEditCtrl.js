@@ -138,7 +138,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			var transformedData;
 				
 			if(! $scope.validateData($scope.profile)) {
-				Notify.addTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
 				return false;
 			}
 
@@ -150,11 +150,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.sending = false;
 				$location.path('/profile/'+$scope.profile._id);
 
-				Notify.addTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
 				
 			}, function(res) {
 
-				Notify.addTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
 		}

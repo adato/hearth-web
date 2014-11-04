@@ -42,11 +42,11 @@
 	</section>
 </div>
 <div class="clear"></div>
-<div class="large-12" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+<div class="large-12 rate-user-text" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 	<div class="text-center rating-received-bar">
-		Znáte uživatele {{ info.name }}? Chcete mu 
+		{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}
 	    <button class="profile-button outline" ng-click="openUserRatingForm(false)"><i class="fa fa-sun-o"></i> {{ 'THUMB_UP' | translate }}</button>
-	    nebo upozornit na chybu 
+	    {{ 'OR_GIVE_NEGATIVE_RATING' | translate }}
 	    <button class="profile-button outline without-icon-text" ng-click="openUserRatingForm(true)"><i class="fa fa-moon-o"></i></button>
 	</div>
 	<div class="clear"></div>

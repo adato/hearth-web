@@ -168,7 +168,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				// broadcast new rating - this will add rating to list
 				$scope.$broadcast('userRatingsAdded', res);
-				Notify.addTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
+				// Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
 
 			}, function(err) {
 				// remove lock
@@ -176,7 +176,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				Notify.hideAll('.rating-notify-box', function() {
 					// handle error
-					Notify.addTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
+					Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 				});
 			});
 		};

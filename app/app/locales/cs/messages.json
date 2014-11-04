@@ -68,6 +68,8 @@
     "ACTIVATE_ACCOUNT_BROKEN_LINK": "Jejda! Tento odkaz na aktivaci účtu není platný.",
     "NEGATIVE": "Záporné",
     "POSITIVE": "Kladné",
+    "DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Znáte uživatele {{name}}? Chcete mu ",
+    "OR_GIVE_NEGATIVE_RATING": " nebo upozornit na chybu ",
     "GO_BACK_TO_MARKET": "Zpět na tržiště",
     "NO_SIGNAL_ON_THIS_PAGE": "Na této stránce není žádný signál",
     "ERROR_404_SUBHEADER": " - stránka nenalezena -",

@@ -47,9 +47,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			CommunityApplicants.add({communityId: $scope.info._id}, function(res) {
 				$scope.init();
-				Notify.addTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
 			}, function() {
-				Notify.addTranslate('NOTIFY.COMMUNITY_APPLY_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -57,21 +57,21 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
         	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
         		$scope.init();
-				Notify.addTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
         	}, function() {
-				Notify.addTranslate('NOTIFY.COMMUNITY_REJECT_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_FAILED', Notify.T_ERROR);
         	});
         };
 
         $scope.leaveCommunity = function() {
         	CommunityLeave.leave({community_id: $scope.info._id}, function(res) {
 
-				Notify.addTranslate('NOTIFY.COMMUNITY_LEAVE_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_SUCCESS', Notify.T_SUCCESS);
         		$scope.init();
         		$rootScope.$broadcast("reloadCommunities");
         	}, function(res) {
 
-				Notify.addTranslate('NOTIFY.COMMUNITY_LEAVE_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_FAILED', Notify.T_ERROR);
         	});
         };
 
@@ -79,10 +79,10 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
         	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
 
-				Notify.addTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_SUCCESS', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_SUCCESS', Notify.T_SUCCESS);
         		$scope.init();
         	}, function() {
-				Notify.addTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
         	});
         };
 

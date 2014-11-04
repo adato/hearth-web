@@ -148,18 +148,26 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             var delayIn = 200;
             var delayOut = 2000;
             var color = "#FFB697";
-            console.log("RR: ", rating);
+            var colorOut = $('.rating_'+rating._id + ' .item').css("background-color");
 
-            $('.rating_'+rating._id).animate({backgroundColor: color}, delayIn );
-            $('.rating_'+rating._id).animate({backgroundColor: colorOut}, delayOut );
-            
+            $('.rating_'+rating._id + ' .item').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .item').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: colorOut}, delayOut );
+            });
+
         };
 
         // will add new rating to data array
         $scope.addUserRating = function($event, item) {
             $scope.data.unshift(item);
-
-            $scope.flashRatingBackground(item);
+            setTimeout(function() {
+                $scope.flashRatingBackground(item);
+            });
         };
 
         $scope.$on('userRatingsAdded', $scope.addUserRating);

@@ -124,9 +124,9 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         $location.path('/community/'+res._id);
 
                         if ($scope.community._id)
-                            Notify.addTranslate('NOTIFY.COMMUNITY_UPDATE_SUCCESS', Notify.T_SUCCESS);
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_UPDATE_SUCCESS', Notify.T_SUCCESS);
                         else
-                            Notify.addTranslate('NOTIFY.COMMUNITY_CREATE_SUCCESS', Notify.T_SUCCESS);
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_CREATE_SUCCESS', Notify.T_SUCCESS);
 
                     }, function(res) {
                         $scope.sending = false;
@@ -136,9 +136,9 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
                             // and show another based on what we wanted to do
                             if ($scope.community._id)
-                                Notify.addTranslate('NOTIFY.COMMUNITY_UPDATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
+                                Notify.addSingleTranslate('NOTIFY.COMMUNITY_UPDATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
                             else
-                                Notify.addTranslate('NOTIFY.COMMUNITY_CREATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
+                                Notify.addSingleTranslate('NOTIFY.COMMUNITY_CREATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
                         });
                     });
                 };
@@ -153,9 +153,9 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         function(res) {
                             $rootScope.$broadcast("reloadCommunities");
                             $location.path('/community/'+$scope.community._id);
-                            Notify.addTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
                         }, function(res) {
-                            Notify.addTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED', Notify.T_ERROR);
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED', Notify.T_ERROR);
                         });
                 };
 
@@ -166,14 +166,14 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     Community.remove({communityId: $scope.community._id}, function(res) {
 
                         $scope.sendingDelete = false;
-                        Notify.addTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
+                        Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
 
                         $rootScope.$broadcast("reloadCommunities");
                         $location.path("/communities");
                     }, function(res) {
 
 
-                        Notify.addTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
+                        Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
                         $scope.sendingDelete = false;
                     });
                 };

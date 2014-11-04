@@ -100,11 +100,11 @@ angular.module('hearth.controllers').controller('InviteBox', [
         function handleEmailResult(res) {
             if(res.ok) {
 
-                Notify.addTranslate('NOTIFY.EMAIL_INVITATION_SUCCESS', Notify.T_SUCCESS);
+                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_SUCCESS', Notify.T_SUCCESS);
                 $scope.closeThisDialog();
             } else {
                 Notify.hideAll(".invite-box-notify", function() {
-                    Notify.addTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
+                    Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
                 });
             }
         }

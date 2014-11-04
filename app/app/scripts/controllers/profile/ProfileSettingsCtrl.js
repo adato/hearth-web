@@ -47,7 +47,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				alert(Notify.translate('NOTIFY.ACCOUNT_DELETE_SUCCESS'));
 				window.location.replace("/app/");
 			} else {
-				Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
 			}
 		};
 
@@ -123,10 +123,10 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					$scope.showError.newPass = false;
 				});
 				
-				Notify.addTranslate('NOTIFY.PASS_CHANGE_SUCCES', Notify.T_SUCCESS);
+				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_SUCCES', Notify.T_SUCCESS);
 			} else {
 
-				Notify.addTranslate('NOTIFY.PASS_CHANGE_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_FAILED', Notify.T_ERROR);
 			}
 		};
 

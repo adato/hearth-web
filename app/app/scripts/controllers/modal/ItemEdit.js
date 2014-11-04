@@ -288,9 +288,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				postDataCopy = $scope.transformImagesStructure(postDataCopy);
 				
 				// if($scope.post._id)
-				// 	Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+				// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
 				// else
-				// 	Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
+				// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 				$scope.closeThisDialog();
 
 
