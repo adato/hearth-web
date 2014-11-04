@@ -1,7 +1,11 @@
 .alert-box {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+    text-align: center;
 
+    i {
+        margin-right: 10px;
+    }
     .close {
         cursor: pointer;
     }

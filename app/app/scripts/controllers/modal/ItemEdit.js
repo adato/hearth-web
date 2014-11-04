@@ -300,15 +300,27 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					$rootScope.$broadcast('postCreated', data);
 				}
 
-				$(document.body).scrollTop(0);
+				// $(document.body).scrollTop(0);
 
-				// if post is visible on marketplace - refresh user there
-				if(data.is_active && !data.is_expired)
-					$location.path("/");
+				if($rootScope.isPostActive(data) && $location.path() != '/') {
 
-				setTimeout(function() {
-					$rootScope.blinkPost(data);
-				}, 200);
+					// wait for refresh to 
+					var deleteEventListener = $rootScope.$on('postsLoaded', function() {
+						deleteEventListener();
+
+						$rootScope.blinkPost(data);
+					});
+
+					// if post is visible on marketplace - refresh user there
+					$location.path('/');
+				} else {
+					// flash post immediatelly
+					setTimeout(function() {
+						$rootScope.blinkPost(data);
+					}, 200);
+				}
+
+
 				// $scope.closeThisDialog();
 			}, function() {
 

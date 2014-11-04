@@ -137,11 +137,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {
-            });
+            $( ".post_"+item._id ).slideUp( "slow", function() {});
             $scope.$emit("profileRefreshUser");
         };
-
 
         // this will flash rating box with some background color
         $scope.flashRatingBackground = function(rating) {

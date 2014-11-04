@@ -101,7 +101,7 @@ angular.module('hearth.services').service('Notify', [
 		this.addSingleTranslate = function(text, type, container, ttl, delay) {
 
 			self.hideAll(container, function() {
-				return self.addSingleTranslate(text, type, container, ttl, delay);
+				return self.addTranslate(text, type, container, ttl, delay);
 			});
 		};
 

@@ -66,6 +66,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						$scope.items = data.data;
 						$scope.finishLoading(data);
 					}
+
+					$rootScope.$broadcast('postsLoaded');
 				});
 			}
 		};
