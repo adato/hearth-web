@@ -23,6 +23,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             params = {
                 user_id: $routeParams.id
             };
+        var inited = false;
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";
@@ -123,8 +124,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             loadServices[$scope.pageSegment](params, processData, processDataErr);
 
             // refresh after new post created
-            if ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts') {
-
+            if (! inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
+                console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
                     $scope.refreshUser();
                 });
@@ -132,7 +133,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     $scope.refreshUser();
                 });
 
+                // added event listeners - dont add them again
+                inited = true;
             }
+
         }
 
         // only hide post .. may be used later for delete revert

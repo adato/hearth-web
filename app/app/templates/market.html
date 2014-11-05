@@ -11,7 +11,7 @@
 					<div translate class="padding-2" ng-show="pageType == 'my'">MY_HEARTH_NOTHING_FOUND</div>
 				</section>
 			</article>
-			<item keywords-active="keywordsActive" item=item ng-repeat="(id, item) in items  track by $index | orderBy:orderByPostSort" user="user" community="loggedCommunity"></item>
+			<item keywords-active="keywordsActive" item="item" ng-repeat="(id, item) in items track by $index" user="user" community="loggedCommunity"></item>
 		</div>
 	</div>
 	<div class="large-12 columns" ng-show="showMap">
