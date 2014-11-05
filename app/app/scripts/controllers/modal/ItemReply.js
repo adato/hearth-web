@@ -57,11 +57,13 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				$scope.sending = false;
 				$scope.showFinished();
 				$scope.post.reply_count += 1;
+				$scope.post.is_replied = true;
+
 	            // Notify.addSingleTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
 
 			}, function(res) {
 
-				Notify.addSingleTranslate('NOTIFY.POST_EDIT_FAILED', Notify.T_ERROR);
+				Notify.addSingleTranslate('NOTIFY.REPLY_FAILED', Notify.T_ERROR, '.notify-reply-container');
 				$scope.sending = false;
 			});
 		};

@@ -109,7 +109,7 @@ body {
     background-image: inline-image("bg.png");
     background-repeat: no-repeat;
     background-position: 50% top;
-    background-attachment:fixed;
+    /* background-attachment:fixed;  -- changed based on design */
     .main-container {
         display: block;
         min-width:960px;

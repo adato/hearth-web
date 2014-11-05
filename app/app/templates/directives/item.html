@@ -102,12 +102,19 @@
 				</div>
 				
 			    <section ng-include="'templates/modals.html'" id="modals"></section>
-				<button ng-if="!mine && isPostActive(item)" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
+				<button ng-if="! item.is_replied && !mine && isPostActive(item)" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
-				<span class="margin" ng-if="item.type == 'offer' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_WISH' | translate: {value: item.reply_count}"></span>
-				<span class="margin" ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
+				<span class="" ng-if="item.is_replied && !mine">
+					{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+				</span>
+
+				<span ng-if="item.reply_count">
+					{{'TOTAL_ALREADY' | translate}}
+					<span class="margin" ng-if="item.type == 'offer'" ng-bind-html="'PEOPLE_COUNT_WISH_PL.'+pluralCat(item.reply_count) | translate: {value: item.reply_count}"></span>
+					<span class="margin" ng-if="item.type == 'need'" ng-bind-html="'PEOPLE_COUNT_OFFER_PL.'+pluralCat(item.reply_count) | translate: {value: item.reply_count}"></span>
+				</span>
 				<span class="margin" ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 				<span ng-if="!isPostActive(item)">
 					&nbsp;&nbsp;&nbsp;

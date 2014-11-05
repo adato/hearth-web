@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify',
+	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify) {
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
@@ -108,9 +108,13 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         $scope.removeMember = function(id) {
         	CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
-        		alert("Člen byl vyhozen z komunity");
-        		$scope.init();
-        	});
+
+                Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_SUCCESS', Notify.T_SUCCESS);
+                $scope.init();
+            }, function(res) {
+                
+                Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED', Notify.T_ERROR);
+            });
         };
 
         function processData(res) {
@@ -126,7 +130,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $( ".post_"+item._id ).slideUp( "slow", function() {});
             $scope.init();
         };
-
 
         function init() {
             console.log("Calling load service for segment ", $scope.pageSegment);

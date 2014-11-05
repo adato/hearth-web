@@ -42,12 +42,12 @@
             </h3>
             <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
 
-            <p class="mine" ng-if="info.post_count > 0 && loggedCommunity">{{ 'SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
+            <p class="mine" ng-if="loggedCommunity">{{ 'SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
 
             <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = loggedCommunity"></div>
 
             <!-- === No posts active & inactive === -->
-            <p class="mine" ng-if="! posts.data.length && !info.post_count">
+            <p class="mine" ng-if="! posts.data.length && !info.post_count && ! loggedCommunity">
                 {{ 'YOU_HAVE_NO_ACTIVE_POSTS_YET' | translate}}
                 <a ng-if="!loggedCommunity" ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}">{{ 'HERE_LINK' | translate }}</a>.
             </p>

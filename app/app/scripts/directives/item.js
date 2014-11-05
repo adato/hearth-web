@@ -45,12 +45,14 @@ angular.module('hearth.directives').directive('item', [
                     
                 // public methods from rootScope
                 scope.loggedUser = $rootScope.loggedUser;
+                scope.loggedUser = $rootScope.loggedUser;
                 scope.isPostActive = $rootScope.isPostActive;
                 scope.loggedUser = $rootScope.loggedUser;
                 scope.showLoginBox = $rootScope.showLoginBox;
                 scope.reportItem = $rootScope.reportItem;
                 scope.pauseToggle = $rootScope.pauseToggle;
                 scope.closeModal = $rootScope.closeModal;
+                scope.pluralCat = $rootScope.pluralCat;
                 scope.deleteItem = $rootScope.deleteItem;
                 scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
 
