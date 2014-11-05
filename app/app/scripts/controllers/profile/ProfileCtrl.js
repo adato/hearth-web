@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 		$scope.showError = {
 			text: false
-		}
+		};
 
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
@@ -57,6 +57,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
+
 				$scope.loaded = true;
 			});
 		};
@@ -79,7 +80,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 			
 			$scope.info.is_followed = !$scope.info.is_followed;
-		}
+		};
 
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
@@ -131,7 +132,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
 			var ratings = {
@@ -174,10 +174,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				// remove lock
 				$scope.sendingRating = false;
 
-				Notify.hideAll('.rating-notify-box', function() {
-					// handle error
-					Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
-				});
+				// handle error
+				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 			});
 		};
 

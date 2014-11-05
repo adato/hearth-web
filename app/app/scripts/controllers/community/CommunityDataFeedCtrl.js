@@ -144,6 +144,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('communityTopPanelLoaded', init);
-        $scope.loaded && init();
+        // $scope.loaded && init();
     }
 ]);
