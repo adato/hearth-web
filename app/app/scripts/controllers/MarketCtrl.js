@@ -12,6 +12,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter, Notify) {
 		$scope.limit = 15;
 		$scope.items = [];
+		$scope.sent = false;
 		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
@@ -48,6 +49,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				return;
 
 			$scope.loading = true;
+			$scope.sent = true;
 
 			if ($scope.showMap === false) {
 				var params = angular.extend(angular.copy($location.search()), {
