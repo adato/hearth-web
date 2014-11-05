@@ -43,20 +43,20 @@
             <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
 
             <p class="mine" ng-if="info.post_count > 0 && loggedCommunity">{{ 'SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
+
+            <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = loggedCommunity"></div>
+
+            <!-- === No posts active & inactive === -->
+            <p class="mine" ng-if="! posts.data.length && !info.post_count">
+                {{ 'YOU_HAVE_NO_ACTIVE_POSTS_YET' | translate}}
+                <a ng-if="!loggedCommunity" ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}">{{ 'HERE_LINK' | translate }}</a>.
+            </p>
+            <p class="others" ng-if="! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
             
-            <div ng-if="! loggedCommunity">
-
-                <!-- === No posts active & inactive === -->
-                <p class="mine" ng-if="! posts.data.length">{{ 'YOU_HAVE_NO_ACTIVE_POSTS_YET' | translate}}</p>
-                <p class="others" ng-if="! posts.data.length && info.post_count <= 0">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
-                
-                <!-- === No active posts but some inactive === -->
-                <p class="mine" ng-if="! posts.data.length && info.post_count > 0">{{ 'YOU_HAVE_NO_ACTIVE_POSTS_YET_BUT_SOME_INACTIVE' | translate }}</p>
-
-                <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = loggedCommunity"></div>
-            </div>
-
-            <div class="buttons" ng-if="posts.data.length > 0">
+            <!-- === No active posts but some inactive === -->
+            <p class="mine" ng-if="! posts.data.length && info.post_count > 0">{{ 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
+            
+            <div class="buttons" ng-if="posts.data.length > 0 || (info.post_count > 0 &&  mine)">
                 <a href="#!/profile/{{info._id}}/posts">
                     <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'ads-all' | translate }}</button>
                 </a>
