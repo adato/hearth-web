@@ -42,14 +42,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 
 			$scope.loading = false;
-		}
+		};
 
 		$scope.load = function() {
 			if ($scope.loading == true)
 				return;
 
 			$scope.loading = true;
-			$scope.sent = true;
 
 			if ($scope.showMap === false) {
 				var params = angular.extend(angular.copy($location.search()), {
@@ -68,7 +67,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						$scope.items = data.data;
 						$scope.finishLoading(data);
 					}
-
+		
+					$scope.sent = true;
 					$rootScope.$broadcast('postsLoaded');
 				});
 			}

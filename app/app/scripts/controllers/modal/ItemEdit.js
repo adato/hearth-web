@@ -283,7 +283,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.sending = true;
 
 			Post[post._id ? 'update' : 'add'](postData, function(data) {
-				$scope.sending = false;
 
 				postDataCopy = $scope.transformImagesStructure(postDataCopy);
 				
