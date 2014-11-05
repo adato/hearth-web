@@ -106,8 +106,9 @@ $fontSize: rem-calc(18);
 @import "notify";
 
 body {
-    background-image: inline-image("bg.png");
-    background-repeat: no-repeat;
+    background-image: inline-image("bg.jpg");
+    background-color: #FAF8EB;
+    background-repeat: repeat-x;
     background-position: 50% top;
     /* background-attachment:fixed;  -- changed based on design */
     .main-container {
