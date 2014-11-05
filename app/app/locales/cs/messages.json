@@ -67,7 +67,6 @@
     "COMMUNITIES_IN_HEARTH": "Pojďte mezi nás! V komunitách se můžete potkat s lidmi podobného zaměření, získat pomoc, či podporu pro váš projekt.",
     "COMMUNITIES_PL": {
         "few": "komunity",
-        "many": "komunit",
         "one": "komunita",
         "other": "komunit"
     },
@@ -692,7 +691,6 @@
     "WITH_TERMS_OF_USE": "podmínkami používání",
     "WITH_X_7_CASE": {
         "few": "mi",
-        "many": "ti",
         "one": "ním",
         "other": "ti"
     },
@@ -772,7 +770,7 @@
     "send_fb_invitation": "Pozvěte přátele na Facebooku",
     "show-ads-on-map": "Zobrazit inzeráty na mapě",
     "show-less": "Skrýt",
-    "show-more": "Celý text inzerátu",
+    "show-more": "Zobrazit celý inzerát",
     "time": "Čas",
     "title-maxlength": "Titulek je příliš dlouhý, pane Shakespeare. To nás mrzí, naše maximální délka je {{value}} znaků.",
     "title-required": "Titulek je příliš krátký. Přidejte ještě aspoň pár slov..",
