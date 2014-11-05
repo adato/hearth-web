@@ -120,9 +120,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
             if(!$scope.validateInvitationForm(data))
                 return false;
 
-
-            return handleEmailResult({ok: true});
-
             // split emails to array and copy it to new object
             dataOut = $scope.transformInvitationOut(angular.copy(data));
             Invitation.add({invitation: dataOut}, handleEmailResult);
