@@ -11,10 +11,20 @@ angular.module('hearth.controllers').controller('InviteBox', [
     function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify) {
         $scope.showEmailForm = false;
         $scope.url = '';
+        var timeoutClose = false;
 
         $scope.fbInvite = function() {
             Facebook.inviteFriends();
             return false;
+        };
+
+
+        $scope.showFinished = function() {
+
+            $(".invite-form").slideToggle();
+            timeoutClose = setTimeout(function() {
+                $scope.closeThisDialog();
+            }, 5000);
         };
 
         $scope.init = function() {
@@ -50,7 +60,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
          */
         $scope.testEmailsFormat = function(data) {
             var emails = data;
-            $scope.inviteForm.to_email.$error.format = false; 
+            $scope.inviteForm.to_email.$error.format = false;
 
             if(!data) return false;
 
@@ -63,7 +73,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
                 $scope.showError.to_email = true;
                 $scope.inviteForm.to_email.$error.format = true;
-                return false
+                return false;
             }
             return true;
         };
@@ -93,19 +103,14 @@ angular.module('hearth.controllers').controller('InviteBox', [
             if(data.to_email) {
                 data.to_email = data.to_email.split(",");
             }
-
             return data;
         };
 
         function handleEmailResult(res) {
             if(res.ok) {
-
-                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_SUCCESS', Notify.T_SUCCESS);
-                $scope.closeThisDialog();
+                $scope.showFinished();
             } else {
-                Notify.hideAll(".invite-box-notify", function() {
-                    Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
-                });
+                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
             }
         }
 
@@ -114,6 +119,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
             if(!$scope.validateInvitationForm(data))
                 return false;
+
+
+            return handleEmailResult({ok: true});
 
             // split emails to array and copy it to new object
             dataOut = $scope.transformInvitationOut(angular.copy(data));
@@ -125,6 +133,12 @@ angular.module('hearth.controllers').controller('InviteBox', [
               $scope.showError[key] = false;
             });
             
+            $("form.invite-form").show();
+            $("div.invite-form").hide();
+    
+            if(timeoutClose)
+                clearTimeout(timeoutClose);
+
             $scope.inv = {
                 message: '',
                 to_email: '',

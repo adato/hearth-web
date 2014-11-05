@@ -136,7 +136,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 // added event listeners - dont add them again
                 inited = true;
             }
-
         }
 
         // only hide post .. may be used later for delete revert

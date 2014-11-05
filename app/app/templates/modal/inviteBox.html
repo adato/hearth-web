@@ -36,7 +36,7 @@
     </div>
     <div class="emailForm register-login-dialog" ng-show="showEmailForm">
         <i class="fa fa-chevron-left toggle-form" ng-click="toggleEmailForm()"></i>
-        <form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="register-login-form" novalidate>
+        <form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="register-login-form invite-form" novalidate>
             <label>
                 {{ 'FILL_FRIENDS_EMAILS' | translate }}
                 <input name="to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" ng-focus="showError.to_email = false" ng-blur="showError.to_email = true; testEmailsFormat(inv.to_email)" ng-model="inv.to_email" class="text-input" type='text' ng-required="true">
@@ -57,6 +57,13 @@
             </label>
             <button type="submit" class="button-send right" analytics-on analytics-event="send email invitation" analytics-category="General" analytics-value="5">{{ 'SEND_EMAIL_INVITATION' | translate }}</button>
         </form>
+        <div class="invite-form success hidden">
+            <h3>{{ 'FRIEND_INVITATION' | translate }}</h3>
+            <span>{{ 'SEND_INVITE_SUCCESS' | translate }}</span>
+            <br />
+            <br />
+            <button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>
+        </div>
     </div>
     <div class="clear"></div>
     <div class="invite-box-notify"></div>
