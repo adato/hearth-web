@@ -490,7 +490,8 @@
         "USER_PROFILE_CHANGE_SUCCES": "Úprava profilu byla úspěšná.",
         "USER_PROFILE_FORM_HAS_ERRORS": "Ve formuláři jsou chyby.",
         "USER_RATING_FAILED": "Při hodnocení uživatele došlo k chybě.",
-        "USER_RATING_SUCCESS": "Hodnocení uživatele bylo přidáno"
+        "USER_RATING_SUCCESS": "Hodnocení uživatele bylo přidáno",
+        "CHANGE_LANGUAGE_FAILED": "Změna jazyka se nepovedla :-("
     },
     "NO_DONT_DELETE_ACCOUNT": "Ne",
     "NO_REPLY": "Zatím nikdo nic.",

@@ -11,7 +11,6 @@ angular.module('hearth').config([
 			.when('/search/?', 'search')
 			.when('/ad/:id', 'ad')
 			.when('/404', 'err404')
-			.when('/setup', 'setup')
 			.when('/terms', 'terms')
 			.when('/about', 'about')
 			.when('/feedback', 'feedback')
@@ -22,8 +21,8 @@ angular.module('hearth').config([
 			.when('/reset-password', 'reset-pass')
 			.when('/forgotten-password', 'forgot-pass')
 			.when('/confirm-email', 'confirm-email')
-			.when('/change-password', 'change-pass')
-
+			// .when('/change-password', 'change-pass')
+			
 			// ======= Profile routes & subroutes
 			.when('/profile/:id', 'profile')
 			.when('/profile/:id/posts', 'profile.posts')
@@ -78,10 +77,10 @@ angular.module('hearth').config([
 			}).segment('confirm-email', {
 				templateUrl: 'templates/userForms/confirmEmail.html',
 				controller: 'ConfirmEmailCtrl'
-			}).segment('change-pass', {
-				templateUrl: 'templates/userForms/changePassword.html',
-				controller: 'ChangePwdCtrl',
-				access: 'private'
+			// }).segment('change-pass', {
+			// 	templateUrl: 'templates/userForms/changePassword.html',
+			// 	controller: 'ChangePwdCtrl',
+			// 	access: 'private'
 			}).segment('forgot-pass', {
 				templateUrl: 'templates/userForms/forgottenPassword.html',
 				controller: 'ForgottenPasswordCtrl'
@@ -94,9 +93,6 @@ angular.module('hearth').config([
 				pageType: 'feedback'
 			}).segment('404', {
 				templateUrl: 'templates/404.html'
-			}).segment('setup', {
-				templateUrl: 'templates/setup.html',
-				controller: 'SetupCtrl'
 			}).segment('terms', {
 				controller: 'TermsCtrl',
 				templateUrl: 'templates/terms.html'
@@ -259,6 +255,8 @@ angular.module('hearth').config([
 	  //   	});
 
 			$routeProvider.otherwise({
+		  //       controller: 'Error404Ctrl',
+				// templateUrl: 'templates/error404.html'
 				redirectTo: '/not-found'
 			});
 	

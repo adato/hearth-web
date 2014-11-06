@@ -104,6 +104,7 @@
     <div class="all-visible" ng-show="initFinished">
       <section ng-include="'templates/navigation.html'" id="navigation"></section>
       <div app-view-segment="0" class="main-container"></div>
+      <ng-view style="position: relative;top:10em;"></ng-view>
       <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
           {{topArrowText.top}}
           <span class="fa fa-caret-square-o-up"></span>
@@ -115,7 +116,6 @@
       EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
       EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.png"'.slice(11, -1);
     </script>
-
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="vendor/modernizr/modernizr.js"></script>
