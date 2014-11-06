@@ -33,17 +33,17 @@
 			<a href="#!/community/{{info._id}}" class="profile-photo">
 				<img ng-if="info.avatar.large" ng-src="{{info.avatar.large}}" />
 			</a>
-			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(9) == 'posts')}" class="posts-count">
+			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(10) == 'posts')}" class="posts-count">
 				<b>{{info.post_count}}</b>
 				<br />
 				{{'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
 			</a>
-			<a href="#!/community/{{info._id}}/members" class="members-count" ng-class="{'active': (pageSegment.substr(9) == 'members')}">
+			<a href="#!/community/{{info._id}}/members" class="members-count" ng-class="{'active': (pageSegment.substr(10) == 'members' || pageSegment.substr(10) == 'applications')}">
 				<b>{{info.member_count}}</b> 
 				<br />
 				{{'COMMUNITY_MEMBERS.'+pluralCat(info.member_count) | translate }}
             </a>
-			<a href="#!/community/{{info._id}}/about" class="about" ng-class="{'active': (pageSegment.substr(9) == 'about')}">
+			<a href="#!/community/{{info._id}}/about" class="about" ng-class="{'active': (pageSegment.substr(10) == 'about')}">
 				<span>{{ 'COMMUNITY_ABOUT_SHORT' | translate}}</span>
             </a>
 		</div>
