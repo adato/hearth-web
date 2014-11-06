@@ -406,7 +406,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(postCopy.is_expired) {
 
 				postCopy.is_active = true;
-				postCopy.is_expired = true;
+				postCopy.is_expired = false;
 			} else {
 				// pause / play
 				postCopy.is_active = !postCopy.is_active;
