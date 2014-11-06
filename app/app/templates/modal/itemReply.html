@@ -17,7 +17,8 @@
                 <span ng-show="replyForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
             <div class="mail">
-                <checkbox model="reply.agree" on-update="toggleMail()" value="true">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:translationData }}</checkbox>
+                 <checkbox ng-show="false" model="reply.agree" on-update="toggleMail()" value="true">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:translationData }}</checkbox>
+                <span>{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:translationData }}</span>
             </div>
             <div class="moveUp error" ng-show="! reply.agree && showErrors.agree">
                 <span ng-show="! reply.agree">{{ 'ERR_AD_REPLY_NOT_AGREE' | translate }}</span>
