@@ -34,7 +34,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
         $scope.logout = function() {
             Auth.logout(function() {
-                window.location = window.location.pathname;
+                window.location.hash = '#!/';
+                location.reload();
             });
         };
         $scope.search = function(text) {

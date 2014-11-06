@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout', 'Notify',
+	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload',
 
-	function($scope, $route, User, $location, $rootScope, $timeout, Notify) {
+	function($scope, $route, User, $location, $rootScope, $timeout, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -26,10 +26,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
 
 		$scope.init = function() {
-			if (!$rootScope.loggedUser) {
-				$route.repload("#!/");
-			}
-
+			
+			UnauthReload.check();
+			
 			// $scope.initLocations();
 			User.get({
 				user_id: $rootScope.loggedUser._id

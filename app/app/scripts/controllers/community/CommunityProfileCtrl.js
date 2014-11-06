@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify',
-	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload',
+	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = {};
 
@@ -87,6 +87,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         };
 
 		$scope.init = function() {
+
+			UnauthReload.check();
+
 			$scope.refreshDataFeed();
 			$scope.fetchCommunity();
 		};

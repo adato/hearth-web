@@ -9,8 +9,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
-	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify',
-	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify) {
+	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload',
+	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify, UnauthReload) {
 		$scope.loaded = true;
 		$scope.lang = false;
 		$scope.changeSubmitted = false;
@@ -162,6 +162,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.init = function() {
+
+			UnauthReload.check();
 			console.log("Using language: ", $rootScope.language);
 		};
 

@@ -62,8 +62,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             $httpProvider.responseInterceptors.push('TermsAgreement');
         }
     ]).run([
-        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph',
-        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph) {
+        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
+        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
             $rootScope.appInitialized = false;
 
@@ -134,6 +134,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
 
                 $rootScope.initFinished = true;
                 $rootScope.$broadcast("initFinished");
+                UnauthReload.checkLocation();
             });
         }
     ]);

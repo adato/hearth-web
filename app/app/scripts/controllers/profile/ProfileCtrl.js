@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = false;
 
@@ -89,6 +89,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.refreshUser = function() {
+
+			UnauthReload.check();
+			
 			console.log("Loading user info");
 			$scope.refreshDataFeed();
 			$scope.fetchUser();
