@@ -137,7 +137,7 @@ $imageSize: 80px;
 
 .karma {
     height: 5px;
-    width: $imageSize;
+    width: $imageSize + 30px;
     margin: {
         top: $fontSize / 4;
         bottom: $fontSize / 2;
@@ -315,24 +315,24 @@ $imageSize: 80px;
                 right: 2 * $fontSize;
             };
             min-width: 10 * $fontSize;
-            transition: background-color 1s, border-color 1s;
+            transition: background-color .5s, border-color .5s, color .5s;
             &.main {
-                background-color: lighten(color(1), 45%);
-                color: color(1);
+                background-color: white;
+                color: darken(color(1), 10%);
                 border-color: lighten(color(1), 20%);
                 &:hover:not([disabled]) {
-                    background-color: lighten(color(1), 25%);
-                    text-shadow: -1px -1px 2px white, 1px 1px 2px white;
+                    background-color: lighten(color(1), 30%);
+                    color: darken(color(1), 10%);
                     border-color: color(1);
                 }
             }
             &.main.secondary {
-                background-color: lighten(color(2), 50%);
-                color: color(2);
+                background-color: white;
+                color: darken(color(2), 10%);
                 border-color: lighten(color(2), 20%);
                 &:hover:not([disabled]) {
-                    background-color: lighten(color(2), 25%);
-                    text-shadow: -1px -1px 2px white, 1px 1px 2px white;
+                    background-color: lighten(color(2), 30%);
+                    color: darken(color(2), 10%);
                     border-color: color(2);
                 }
             }
