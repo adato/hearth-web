@@ -43,10 +43,7 @@ $medium-avatar-size: 80px;
             @extend .columns;
             display:block;
             min-height:320px;
-            padding:0;
-            padding-top:1rem;
-            padding-left:1rem;
-            padding-right:1rem;
+            padding:1rem;
             .profile-photo {
                 @extend .large-3, .columns;
                 width:300px;
@@ -78,6 +75,7 @@ $medium-avatar-size: 80px;
                 }
             }
             .bubble {
+                position:relative;
                 border-radius:50%;
                 border:none;
                 background:color(3);
@@ -86,12 +84,7 @@ $medium-avatar-size: 80px;
                 color:color(4);
                 box-shadow:inset 0px -1px 50px 30px rgba(50, 50, 50, 0.75);
                 text-shadow: 0px 0px 13px rgba(50, 50, 50, 1);
-                margin: {
-                    top: 20px; 
-                    left:40px;
-                    right:40px;
-                    bottom:30px;
-                }
+                margin:10px;
                 b {
                     font-size:46px;
                     font-weight:bold;
@@ -110,57 +103,59 @@ $medium-avatar-size: 80px;
                 @extend .large-2, .columns, .bubble;
                 width:170px;
                 height:170px;
-                margin-top:-5px;
-                margin-left:60px;
+                top:-1rem;
+                left:4rem;
             }
             .communities {
                 @extend .large-3, .columns, .bubble;
                 width:120px;
                 height:120px;
-                margin: 0px auto;
-                margin-top:100px;
+                left:7rem;
+                top:6rem;
             }
             .ratings {
                 @extend .large-3, .columns, .bubble;
                 width:130px;
                 height:130px;
-                margin-top:40px;
-                margin-right:0;
-                margin-left:28px;
+                top:2rem;
+                left:10rem;
             }
             .posts-count {
                 @extend .large-3, .columns, .bubble;
                 width:140px;
                 height:140px;
+                top:1rem;
+                left:4rem;
             }
             .members-count {
                 @extend .large-3, .columns, .bubble;
                 width:130px;
                 height:130px;
-                margin-top:100px;
                 b {
                     display:inline-block;
                     margin-top:.5rem;
                 }
+                top:7rem;
+                left:7rem;
             }
             .about {
                 @extend .large-3, .columns, .bubble;
                 width:130px;
                 height:130px;
-                margin-top:40px;
-                margin-right:20px;
                 span {
                     display:inline-block;
                     margin-top:1.8rem;
                 }
+                top:2rem;
+                left:11rem;
             }
             .karma-bar {
                 @extend .large-8, .columns, .pull-right;
                 height:30px;
-                margin-top:1.5rem;
                 padding:0;
-                margin-top: 30px;
-                float:right;
+                position:relative;
+                top:4em;
+                left:1em;
                 text-shadow:1px 1px 8px rgba(50, 50, 50, .5);
 
                 .bar:first-child {
@@ -601,7 +596,7 @@ $medium-avatar-size: 80px;
         margin-right:10px;
     }
 
-    &:hover {
+    &:hover, &:focus, &:visited {
         background:darken(color(5), 20%);
         border-color:darken(color(5), 20%);
     }
