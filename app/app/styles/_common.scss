@@ -4,7 +4,7 @@
     border-radius: 50%;
     background-size: cover;
     left: 50%;
-    position: relative !important; 
+    position: relative !important;
     background-image: inline-image("no-avatar.jpg");
     &::before {
         content: '';
@@ -14,7 +14,7 @@
         box-shadow: inset -3px 3px 6px rgba(black, 0.5);
         width: 45px;
         height: 45px;
-        left:0;
+        left: 0;
     }
 }
 
@@ -77,16 +77,13 @@ button {
     }
 }
 
-
 .reveal-modal {
     border-radius: $global-radius;
     min-height: 100px !important;
-
     position: absolute;
     left: 50%;
     width: 420px !important;
     margin-left: -210px !important;
-
     .text-right a {
         margin-top: 25px;
     }
@@ -99,8 +96,6 @@ button {
         text-decoration: underline;
     }
 }
-
-
 
 .button-send {
     border: none;
@@ -115,7 +110,7 @@ button {
     cursor: pointer;
     background-color: color(5);
     &:hover, &:focus {
-         background-color: darken(color(5), abs($button-function-factor));
+        background-color: darken(color(5), abs($button-function-factor));
     }
 }
 
@@ -201,7 +196,6 @@ button {
     padding-left: 2px;
 }
 
-
 .show-for-scrolled {
     display: none;
 }
@@ -219,7 +213,6 @@ button {
     }
 }
 
-
 .scrolled {
     .move2top.show-for-scrolled {
         display: block;
@@ -228,6 +221,7 @@ button {
         display: none;
     }
 }
+
 .move2top.show-for-scrolled {
     display: none;
 }
@@ -313,5 +307,5 @@ textarea {
 input::-ms-clear,
 input::-ms-reveal,
 textarea::-ms-clear {
-  display: none;
+    display: none;
 }

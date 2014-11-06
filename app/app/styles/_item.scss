@@ -3,12 +3,10 @@ $border: $size / 10;
 $arrowTop: 25px;
 $imageSize: 80px;
 
-
-/* article.row */    
+/* article.row */
 .inactive {
     opacity: 0.55;
 }
-
 
 .photo {
     position: relative;
@@ -64,20 +62,17 @@ $imageSize: 80px;
         .summary {
             margin-left: 2em;
         }
-
         .count_accomplished {
             color: color(1);
             text-align: center;
-            margin-bottom: 20px
+            margin-bottom: 20px;
         }
-
         .social {
             a {
                 font-size: 20px;
                 color: color(5);
             }
         }
-
         .profil-link {
             font-weight: 600;
             position: relative;
@@ -86,17 +81,14 @@ $imageSize: 80px;
                 color: color(5);
             }
         }
-
         .links {
             margin-top: 10px;
             height: 18px;
             .fa {
-
                 font-size: 20px;
                 margin-right: 3px;
             }
         }
-
         .author-about {
             color: black;
             border-top: 1px solid color(1);
@@ -132,7 +124,6 @@ $imageSize: 80px;
     };
     width: 5px;
     border-radius: 5px;
-
 }
 
 .karma {
@@ -145,7 +136,6 @@ $imageSize: 80px;
         right: auto;
     };
     background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to right, darken(color(5), 30%) 0%, darken(color(5), 30%) 80%, color(5) 100%);
-    
     &.empty {
         background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten(color(3), 20%);
         .positive {
@@ -157,7 +147,6 @@ $imageSize: 80px;
         background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken(color(2), 10%) 0%, color(2) 80%, lighten(color(2), 5%) 100%);
     }
 }
-
 
 .item {
     background-color: white;
@@ -204,15 +193,12 @@ $imageSize: 80px;
                     bottom: 0.5em;
                 };
             }
-
         }
         .location-dropdown {
-
             margin-left: 0;
             margin-right: 0;
             left: -7px !important;
             top: -11px !important;
-            
             width: 100%;
             background-color: white;
             border: 1px solid #e3e3e3;
@@ -227,14 +213,13 @@ $imageSize: 80px;
             }
             div {
                 margin-bottom: 20px;
-                .fa {
-                }
+                .fa {}
                 &:last-child {
                     margin-bottom: 0px;
                 }
             }
         }
-     }
+    }
     footer {
         height: 60px;
         border-radius: 0 0 $global-radius $global-radius;
@@ -341,7 +326,7 @@ $imageSize: 80px;
             }
         }
         small {
-            font-size:rem;
+            font-size: rem;
         }
     }
     .show-more {
@@ -435,17 +420,16 @@ $imageSize: 80px;
                     };
                 }
                 &.expanded {
-                   /* max-height: 100em; */
+                    /* max-height: 100em; */
                 }
             }
         }
         small {
-            font-size:.8rem;
-        }        
+            font-size: .8rem;
+        }
         .attachments {
-            margin-top:20px;
-            margin-bottom:20px;
-
+            margin-top: 20px;
+            margin-bottom: 20px;
             .expandable {
                 max-height: 190px;
                 overflow: hidden;
@@ -459,7 +443,7 @@ $imageSize: 80px;
                     max-width: 185px;
                     max-height: 185px;
                     margin-right: 20px;
-                    margin-bottom:20px;
+                    margin-bottom: 20px;
                     border-radius: 10px;
                 }
             }
@@ -494,9 +478,7 @@ $imageSize: 80px;
             top: 0;
             z-index: 3000;
             height: 33px;
-
-            padding: {
-            };
+            padding:;
             a {
                 &:first-child {
                     margin-left: 0px;
@@ -615,14 +597,13 @@ $imageSize: 80px;
             @include rotate(45deg);
             -webkit-transform-origin: 50% 50%;
         }
-
-        &.positive, &.positive>.overlap, &.positive>.arrowbox {
-            background:lighten(color(2), 45%);
+        &.positive, &.positive > .overlap, &.positive > .arrowbox {
+            background: lighten(color(2), 45%);
         }
-        &.negative, &.negative>.overlap, &.negative>.arrowbox {
-            background:lighten(color(5), 45%);
-        }        
-    }    
+        &.negative, &.negative > .overlap, &.negative > .arrowbox {
+            background: lighten(color(5), 45%);
+        }
+    }
 }
 
 #confirm-delete, #confirm-report {
@@ -648,7 +629,7 @@ $imageSize: 80px;
         margin: {
             bottom: 0px;
             left: 0px;
-        }
+        };
         li {
             border: 1px solid #C2C2C2;
             border-radius: 8px;
@@ -660,8 +641,6 @@ $imageSize: 80px;
             margin-right: 6px;
             margin-bottom: 5px;
             text-transform: capitalize;
-            
-            
         }
     }
 }
@@ -679,7 +658,6 @@ $imageSize: 80px;
 }
 
 .mineItem {
-
     .avatar:before,
     .item,
     .arrowbox {
