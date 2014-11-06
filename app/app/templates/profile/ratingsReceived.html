@@ -43,17 +43,21 @@
 	</section>
 </div>
 <div class="clear"></div>
-<div class="large-12 rate-user-text" ng-if="!mine && !showUserRatingForm && loggedUser._id">
-	<div class="text-center rating-received-bar">
-		{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}
-	    <button class="profile-button outline" ng-click="openUserRatingForm(false)"><i class="fa fa-sun-o"></i> {{ 'THUMB_UP' | translate }}</button>
-	    {{ 'OR_GIVE_NEGATIVE_RATING' | translate }}
-	    <button class="profile-button outline without-icon-text" ng-click="openUserRatingForm(true)"><i class="fa fa-moon-o"></i></button>
-	</div>
-	<div class="clear"></div>
-</div>
 
 <div class="rating-listing">
+	<section class="large-10 fright columns" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+		<div class="item rating-received-bar">
+			<div class="content">
+				{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}
+			    <a href="" ng-click="openUserRatingForm(false)"><i class="fa fa-sun-o"></i> {{ 'THUMB_UP' | translate }}</a>
+			    {{ 'OR' | translate }}
+			    <a href="" ng-click="openUserRatingForm(true)"><i class="fa fa-moon-o"></i> {{ 'GIVE_NEGATIVE_RATING' | translate }}</a>
+			</div>
+		</div>
+	</section>
+	<div class="clear"></div>
+
+
 <article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index">
 	<section class="large-2 columns photo">
 		<a ng-href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">

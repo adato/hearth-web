@@ -120,9 +120,12 @@ $medium-avatar-size: 80px;
     }
     
     .user-rating-form {
-        overflow:visible;
-        margin-top: 30px;
+        overflow:visible!important;
         margin: auto;
+
+        .item {
+            margin-top:5px;
+        }
 
         label {
             margin-bottom: 15px;
@@ -155,16 +158,14 @@ $medium-avatar-size: 80px;
     }
 }
 
-.rating-received-bar {
-    background:rgba(color(4), .5);
-    padding:.5rem;
-    margin-top:-30px; // move just under bottom-tabs
-    button {
-        vertical-align:baseline;
-    }
-}
 
 .rating-listing {
+
+    .rating-received-bar {
+        min-height:50px;
+        text-align:center;
+    }
+
     .rating-item {
         margin-top:1rem;
         .date {
