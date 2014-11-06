@@ -280,8 +280,9 @@
       right: 0;
       top: 0px;
       cursor: pointer;
+      transition: color, 0.8s;
       &:hover {
-       color: #CCC;
+        color: darken(#ddd, abs($button-function-factor));
       }
     }
   }
