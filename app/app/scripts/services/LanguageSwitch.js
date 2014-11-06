@@ -47,7 +47,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			var lang = self.getLanguage(lang);
 
 			if(lang) {
-				ipCookie('language', language.code, {
+				ipCookie('language', lang.code, {
 					expires: 21*30
 				});
 					
