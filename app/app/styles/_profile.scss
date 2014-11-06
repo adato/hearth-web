@@ -140,56 +140,7 @@ $medium-avatar-size: 80px;
             }
         }
     }
-    .rating-listing {
-        
-        @extend .clearfix;
-        .rating {
-            @extend .large-10, .large-centered, .clearfix, .medium-avatar;
-            margin: {
-                top:1rem;
-                bottom:1rem;
-                left:auto;
-                right:auto;
-            }
-            padding: {
-                top:20px;
-                bottom:20px;
-                left:20px;
-                right:20px;
-            }
-            border-radius:$global-radius;
-            box-shadow: 1px 1px 6px gray;            
-            &.positive {
-                background:lighten(color(2), 45%);
-            }
-            &.negative {
-                background:lighten(color(5), 45%);
-            }
-            small {
-                font-size:0.85rem;
-                line-height:125%;
-            }
-            .avatar {
-                margin:.5rem;
-            }
-            .rating-text {
-                font-size:1.2rem;
-                line-height:125%;
-                margin: {
-                    top:15px;
-                    bottom:10px;
-                    left:6.5rem; 
-                }
-                .rating-from {
-                    display:inline-block;
-                    margin-top:10px;
-                }
-            }
-            .date {
-                float:right;
-            }
-        }
-    }
+
 }
 
 .mine-profile {
@@ -210,5 +161,14 @@ $medium-avatar-size: 80px;
     margin-top:-30px; // move just under bottom-tabs
     button {
         vertical-align:baseline;
+    }
+}
+
+.rating-listing {
+    .rating-item {
+        margin-top:1rem;
+        .date {
+            font-size:.8rem;
+        }
     }
 }

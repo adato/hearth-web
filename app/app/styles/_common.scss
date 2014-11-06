@@ -68,9 +68,12 @@
 
 button {
     -webkit-transition: -webkit-filter 1s;
-    outline: none;
     &[disabled=disabled] {
         filter: blur(1px) grayscale(70%);
+    }
+    outline: none;
+    &:focus {
+        outline: 1px dotted darken(color(4), 30%);
     }
 }
 
@@ -104,10 +107,9 @@ button {
     color: white;
     font-weight: bold;
     display: inline-block;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin: 0 0 1.25rem;
     padding: 0.5rem 2rem;
-    text-transform: uppercase;
     transition: background-color 300ms ease-out 0s;
     opacity: 1;
     cursor: pointer;
@@ -115,7 +117,7 @@ button {
     background: rgb(64,172,236); /* Old browsers */
     background: linear-gradient(to bottom, rgba(64,172,236,1) 1%,rgba(32,124,202,1) 100%); /* W3C */
 
-    &:hover {
+    &:hover, &:focus {
         opacity: 0.7;
         background: rgb(64,172,236); /* Old browsers */
         background: linear-gradient(to bottom, rgba(64,172,236,1) 1%,rgba(32,124,202,1) 100%); /* W3C */

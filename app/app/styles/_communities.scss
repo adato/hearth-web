@@ -1,6 +1,8 @@
 .communities {
     width: 960px; /* ==== set general width === */
     margin: 0px auto;
+    padding-left:1rem;
+    padding-right:1rem;
 
     .community-list-add-form {
         @extend .clearfix;
@@ -31,34 +33,32 @@
             .content {
                 margin-left:9rem;
             }
-            section {
-                margin:1rem;
-            }
         }
         &.small {
             clear: both;
-            
             .community-item {
                 @extend .large-6, .columns;
                 margin:0;
                 padding:0;
                 section {
-                    height:8.5rem;
+                    height:9rem;
                     overflow:hidden;
                     margin:1rem;
-
                     .content {
                         height: 145px;
                     }
                 }
-
-
+                &:nth-child(2n)>section {
+                    margin-left:0;
+                }
+                &:nth-child(2n-1)>section {
+                    margin-right:0;
+                }
                 .fadeout {
                     position: relative; 
                     bottom: 24px;
-                    height: 15px;
-                    
-                    background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+                    height: 23px;
+                    background-image: linear-gradient(to top, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
                 } 
             }
         }
