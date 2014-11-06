@@ -312,3 +312,8 @@ textarea {
 .tright {
     text-align: right;
 }
+
+input::-ms-clear,
+textarea::-ms-clear {
+  display: none;
+}
