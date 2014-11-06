@@ -47,8 +47,12 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			var lang = self.getLanguage(lang);
 
 			if(lang) {
-
+				ipCookie('language', language.code, {
+					expires: 21*30
+				});
+					
 				Session.update({language: lang.code}, function(res) {
+					
 					location.reload();
 					// return self.use(lang);
 				}, function() {
