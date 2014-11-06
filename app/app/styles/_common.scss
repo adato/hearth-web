@@ -215,15 +215,15 @@ button {
 
 .scrolled {
     .move2top.show-for-scrolled {
-        display: block;
+        opacity: 1;
     }
     .move2top.hide-for-scrolled {
-        display: none;
+        opacity: 0;
     }
 }
 
 .move2top.show-for-scrolled {
-    display: none;
+    opacity: 0;
 }
 
 .move2top {
@@ -235,11 +235,14 @@ button {
     text-align: center;
     bottom: 10%;
     font-size: 10px;
+    opacity: 1;
+    display: block;
     .fa {
         font-size: 2 * $fontSize;
         display: block;
     }
     color: color(3);
+    transition: opacity 0.8s;
     &:hover {
         color: darken(color(3), 20%);
     }
