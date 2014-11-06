@@ -136,7 +136,7 @@ $topBarImageSize: 1.8em;
             margin-right: 5px;
             border-radius: 50%;
             background-size: cover;
-            background-image: inline-image("no-avatar.png");
+            background-image: inline-image("no-avatar.jpg");
             &.community {
                 background-image: inline-image("no-cm-avatar.png");
             }
@@ -159,7 +159,7 @@ $topBarImageSize: 1.8em;
         margin: {
             left: -$topBarImageSize / 2;
         };
-        background-image: inline-image("no-avatar.png");
+        background-image: inline-image("no-avatar.jpg");
     }
     .search-button {
         position: absolute;

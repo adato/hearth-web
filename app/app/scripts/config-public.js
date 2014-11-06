@@ -6,7 +6,7 @@ $$config = {
 	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
-	defaultUserImage: 'images/no-avatar.png',
+	defaultUserImage: 'images/no-avatar.jpg',
 	sharingEndpoints: {
 		facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
 		gplus: 'https://plus.google.com/share?url=',
