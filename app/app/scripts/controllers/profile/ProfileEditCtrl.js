@@ -156,7 +156,26 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
-		}
+		};
+
+		// when blur event on input - wait with displaying errors - if we clicked also on remove contcat email
+		// remove him instead
+		$scope.contactEmailBlur = function() {
+			$timeout(function() {
+				$scope.showError.contact_email = true;
+			});
+		};
+
+		$scope.hideContactEmail = function() {
+			// hide input & set him empty and dont show any errors
+			$scope.showContactMail = false;
+			$scope.profile.contact_email ='';
+
+			$timeout(function() {
+				$scope.showError.contact_email = false;
+			}, 100);
+		};
+
 
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();

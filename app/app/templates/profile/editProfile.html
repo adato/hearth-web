@@ -97,7 +97,7 @@
           <div ng-show="showContactMail">
             <label>
               {{ 'MY_CONTACT_EMAIL' | translate }}
-              <input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="showError.contact_email = true" class="text-input" name="contact_email" type='email' ng-required="true">
+              <input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email' ng-required="true">
               <div class="error" ng-show="showError.contact_email">
                   <span ng-show="profileEditForm.contact_email.$error.email">{{ 'ERR_NOT_VALID_EMAIL' | translate }}</span>
                   <span ng-show="profileEditForm.contact_email.$error.required">{{ 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
@@ -105,7 +105,7 @@
               <em>{{ 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
             </label>
             <div>
-              <a ng-click="showContactMail = false; profile.contact_email =''" class="controll">
+              <a ng-click="hideContactEmail()" class="controll">
                 <span class="fa fa-minus-square"></span>{{ 'REMOVE' | translate }}
               </a>
             </div>
