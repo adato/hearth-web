@@ -13,20 +13,20 @@
     .scrolled & {
         top: 20px;
     }
-       text-align: center;
+    text-align: center;
     dl {
         display: inline-block;
         margin: {
-        	bottom: 0;
-        }
+            bottom: 0;
+        };
         dt,
         dd {
             display: inline;
             color: white;
             margin: {
-            	left: 0.5em;
-            	right: 0.5em;
-            }
+                left: 0.5em;
+                right: 0.5em;
+            };
         }
     }
 }

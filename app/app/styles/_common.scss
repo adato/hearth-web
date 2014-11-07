@@ -92,7 +92,7 @@ button {
         bottom: 11px;
         left: 0;
         right: 0;
-    }
+    };
     .fa {
         color: color(5);
         font-size: 2em;
@@ -103,13 +103,13 @@ button {
         background-color: color(5);
         border-color: color(5);
         padding: {
-            top:8px;
-            bottom:8px;
-        }
+            top: 8px;
+            bottom: 8px;
+        };
         margin: {
-           bottom: 0;
-        }
-        transition: background-color 0.8s, border-color 0.8s; 
+            bottom: 0;
+        };
+        transition: background-color 0.8s, border-color 0.8s;
         &:hover {
             background-color: darken(color(5), abs($button-function-factor));
             border-color: darken(color(5), abs($button-function-factor));

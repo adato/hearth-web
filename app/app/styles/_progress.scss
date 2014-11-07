@@ -1,5 +1,5 @@
 .progress {
-    position:relative;
+    position: relative;
     margin: {
         top: 1em;
         bottom: 1em;
@@ -12,14 +12,14 @@
         @include border-radius(0 !important);
     }
     .text {
-         white-space: nowrap;
+        white-space: nowrap;
         color: color(4);
-        position:absolute;
+        position: absolute;
         @include text-shadow(1px 1px 2px $progress-bar-border-color, -1px -1px 2px $progress-bar-border-color, -1px 1px 2px $progress-bar-border-color, 1px -1px 2px $progress-bar-border-color);
         margin: {
             margin-left: 1em;
         };
-        width:100%;
+        width: 100%;
         position: absolute;
         background-color: transparent;
         text-align: center;

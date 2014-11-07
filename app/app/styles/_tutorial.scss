@@ -1,224 +1,195 @@
 .ngdialog-tutorial {
-	text-align: center;
-	height: 100%;
-	background-color: rgba(0,0,0,0.6) !important;
-	
-	.ngdialog-overlay {
-		background-color: rgba(0,0,0,0.8);
-	}
-
-	.ngdialog-content {
-		height: 100%;
-		background-color: transparent;
-
-		.tutorial-container {
-
-			.controlls {
-				.fa  {
-				    position: absolute;
-				    cursor: pointer;
-				    &:hover {
-				    	color: #FE4300;
-				    	text-shadow: -1px 0px 8px #FE4300;
-			    	}
-				}
-
-				.fa-angle-left,
-				.fa-angle-right {
-					font-size: 100px;
-					background-color: white;
-					padding: 10px;
-					box-shadow: 0 0 10px white,  0 0 40px white;
-					border-radius: $global-radius;
-				}
-
-				.fa-angle-left {
-				    left: -60px;
-				    top: 25px;
-				    padding-right: 30px!important;
-				}
-				.fa-angle-right {
-				    right: -60px;
-				    top: 25px;
-				    padding-left: 30px!important;
-				}
-
-				.close-button {
-					z-index: 1000;
-					color: #c5c6c7;
-				    cursor: pointer;
-				    font-size: 30px;
-				    position: absolute;
-			        right: 10px;
-					top: 10px;
-				}
-			}
-			.tutorial {
-				width: 650px;
-
-			    display: inline-block;
-			    position: absolute;
-			    bottom: 0;
-			    right: 0;
-			    left: 0;
-			    top: 0;
-			    margin: auto;
-			    vertical-align: middle;
-			    border-radius: $global-radius;
-
-
-				.opening {
-					width: 600px;
-				    height: 290px;
-					margin: 0px auto;
-	    			margin-top: -145px;
-
+    text-align: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    .ngdialog-overlay {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    .ngdialog-content {
+        height: 100%;
+        background-color: transparent;
+        .tutorial-container {
+            .controlls {
+                .fa {
+                    position: absolute;
+                    cursor: pointer;
+                    &:hover {
+                        color: #FE4300;
+                        text-shadow: -1px 0px 8px #FE4300;
+                    }
+                }
+                .fa-angle-left,
+                .fa-angle-right {
+                    font-size: 100px;
+                    background-color: white;
+                    padding: 10px;
+                    box-shadow: 0 0 10px white,  0 0 40px white;
+                    border-radius: $global-radius;
+                }
+                .fa-angle-left {
+                    left: -60px;
+                    top: 25px;
+                    padding-right: 30px !important;
+                }
+                .fa-angle-right {
+                    right: -60px;
+                    top: 25px;
+                    padding-left: 30px !important;
+                }
+                .close-button {
+                    z-index: 1000;
+                    color: #c5c6c7;
+                    cursor: pointer;
+                    font-size: 30px;
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                }
+            }
+            .tutorial {
+                width: 650px;
+                display: inline-block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                top: 0;
+                margin: auto;
+                vertical-align: middle;
+                border-radius: $global-radius;
+                .opening {
+                    width: 600px;
+                    height: 290px;
+                    margin: 0px auto;
+                    margin-top: -145px;
                     background-color: white;
                     color: black;
-					border-radius: $global-radius;
-					box-shadow: 0 0 10px white,  0 0 40px white;
-					position: absolute;
-				    top: 50%;
-					right: 0;
-					left: 0;
-					top: 50%;
-					padding:25px;
-
-					h2 {
-						font-weight: bold;
-						font-size: 25px;
-					}
-					.tbutton {
-						background-color: white;
-						border: 5px solid desaturate(color(1), 100%);
-						font-weight: bold;
-						font-size: 25px;
-						border-radius: 15px;
-						color: desaturate(color(1), 100%);
-						transition: color 0.8s, border-color 0.8s, background-color 0.8s;
-
-						&:hover {
-							color: color(1);
-							border-color: color(1);
-							background-color: lighten(color(1), 40%);
-						}
-					}
-
-					a {
-						color: color(1);
-						text-decoration: underline;
-						&:hover {
-							text-decoration: none;
-						}
-					}
-				}
-
-				.slider {
-					position: absolute;
-					top: 0px;
-					bottom: 0px;
-					height: 100%;
-
-					.flex-viewport {
-						width: 650px;
-					}
-
-					.flexslider {
-					    background: white;
-					    box-shadow: 0 0 10px white,  0 0 40px white;
-		    			border-width: 0px;
-				
-	
-					    position: relative;
-					    top: 50%;
-					    width: 650px;
-					    margin: auto;
-					    margin-top: -270px;
-					    padding: {
-					    	bottom:20px;
-					    }
-
-						.closeAll {
-						    bottom: 10px;
-						    position: absolute;
-						    right: 25px;
-						    z-index: 150;
-						}
-					}
-
-					.rn-carousel-container {
-						margin: 0px auto;
-					}
-					
-					ol {
-						list-style: none;
-						display: inline-block;
-						margin: auto;
-						position: absolute;
-						top: 140px;
-						bottom: unset;
-						left: 0px;
-						li {
-							display: inline-block;
-							a {
-								background-color: lightgray;
-								box-shadow: none;
-								width: 13px;
-								height: 13px;
-
-								&.flex-active {
-									background-color: color(1);
-									box-shadow: 0 0 4px color(1);
-								}
-							}
-						}
-					}
-
-				    .slider-image {
-				    	width: 600px;
-				    	text-align: center;
-				    	padding-bottom: 10px;
-				    }
-
-					.slider-item {
-						width: 650px !important;
-				    	min-width: 650px !important;
-
-						padding-left: 25px;
-						padding-right: 25px;
-
-						header {
-							
-							margin: {
-								top: 42px;
-								bottom: 50px;
-							}
-
-							i {
-							    border-right: 2px solid color(1);
-							    color: color(1);
-							    display: inline-block;
-							    float: left;
-							    font-size: 80px;
-							    padding-bottom: 5px;
-							    padding-right: 20px;
-							    padding-top: 5px;
-							    margin-left: 5px;
-							}
-							p {
-							    display: inline;
-							    float: left;
-							    font-size: 25px;
-							    line-height: 1.1;
-							    margin-left: 20px;
-							    text-align: left;
-							    width: 370px;
-							    margin-bottom: 0px;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+                    border-radius: $global-radius;
+                    box-shadow: 0 0 10px white,  0 0 40px white;
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    left: 0;
+                    top: 50%;
+                    padding: 25px;
+                    h2 {
+                        font-weight: bold;
+                        font-size: 25px;
+                    }
+                    .tbutton {
+                        background-color: white;
+                        border: 5px solid desaturate(color(1), 100%);
+                        font-weight: bold;
+                        font-size: 25px;
+                        border-radius: 15px;
+                        color: desaturate(color(1), 100%);
+                        transition: color 0.8s, border-color 0.8s, background-color 0.8s;
+                        &:hover {
+                            color: color(1);
+                            border-color: color(1);
+                            background-color: lighten(color(1), 40%);
+                        }
+                    }
+                    a {
+                        color: color(1);
+                        text-decoration: underline;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+                .slider {
+                    position: absolute;
+                    top: 0px;
+                    bottom: 0px;
+                    height: 100%;
+                    .flex-viewport {
+                        width: 650px;
+                    }
+                    .flexslider {
+                        background: white;
+                        box-shadow: 0 0 10px white,  0 0 40px white;
+                        border-width: 0px;
+                        position: relative;
+                        top: 50%;
+                        width: 650px;
+                        margin: auto;
+                        margin-top: -270px;
+                        padding: {
+                            bottom: 20px;
+                        };
+                        .closeAll {
+                            bottom: 10px;
+                            position: absolute;
+                            right: 25px;
+                            z-index: 150;
+                        }
+                    }
+                    .rn-carousel-container {
+                        margin: 0px auto;
+                    }
+                    ol {
+                        list-style: none;
+                        display: inline-block;
+                        margin: auto;
+                        position: absolute;
+                        top: 140px;
+                        bottom: unset;
+                        left: 0px;
+                        li {
+                            display: inline-block;
+                            a {
+                                background-color: lightgray;
+                                box-shadow: none;
+                                width: 13px;
+                                height: 13px;
+                                &.flex-active {
+                                    background-color: color(1);
+                                    box-shadow: 0 0 4px color(1);
+                                }
+                            }
+                        }
+                    }
+                    .slider-image {
+                        width: 600px;
+                        text-align: center;
+                        padding-bottom: 10px;
+                    }
+                    .slider-item {
+                        width: 650px !important;
+                        min-width: 650px !important;
+                        padding-left: 25px;
+                        padding-right: 25px;
+                        header {
+                            margin: {
+                                top: 42px;
+                                bottom: 50px;
+                            };
+                            i {
+                                border-right: 2px solid color(1);
+                                color: color(1);
+                                display: inline-block;
+                                float: left;
+                                font-size: 80px;
+                                padding-bottom: 5px;
+                                padding-right: 20px;
+                                padding-top: 5px;
+                                margin-left: 5px;
+                            }
+                            p {
+                                display: inline;
+                                float: left;
+                                font-size: 25px;
+                                line-height: 1.1;
+                                margin-left: 20px;
+                                text-align: left;
+                                width: 370px;
+                                margin-bottom: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

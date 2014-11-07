@@ -4,7 +4,6 @@
     box-shadow: -1px 1px 10px #777;
     margin-bottom: 200px;
     padding: 40px 30px 30px;
-
     h2 {
         font-size: 1.7em;
         font-weight: normal;
@@ -15,7 +14,6 @@
         color: black;
         height: 30px;
         margin-bottom: 30px;
-
         &.hide-border {
             border-width: 0px;
         }
@@ -24,7 +22,6 @@
             padding-right: 20px;
             position: relative;
             top: -33px;
-
             span {
                 &.fa {
                     font-size: 1.3em;
@@ -36,12 +33,10 @@
                     margin-right: 15px;
                     text-align: center;
                 }
-
                 &.fa-envelop {
                     font-size: 1.15em;
                     padding-top: 10px;
                 }
-
                 &.fa-heart {
                     font-size: 1.2em;
                     padding-top: 11px;
@@ -49,60 +44,47 @@
             }
         }
     }
-
     section {
         margin-left: 55px;
         clear: both;
-
         &.who {
             margin-left: 70px;
         }
-
         .error {
             color: red;
         }
-
         .absolute {
             position: absolute;
         }
-
         &.location {
-
             position: relative;
             left: 30px;
             width: 93%;
-
             .row {
                 margin-top: 10px;
                 &:first-child {
                     margin-top: 0px;
                 }
             }
-
             .controll,
             .error {
                 position: relative;
                 right: 15px;
             }
-
             span {
                 &.remove {
                     top: 6px;
                 }
             }
         }
-
         &.languages {
             margin-left: 70px;
-
             .fa-check-square {
                 color: rgb(156, 199, 6);
             }
-
             .checkbox {
                 padding-left: 0px;
                 padding-right: 1em;
-
                 span {
                     margin: 0;
                 }
@@ -120,27 +102,22 @@
                 }
             }
         }
-
         .margin {
             margin-bottom: 30px;
         }
-
         .web-item {
             margin-bottom: 10px;
             &:last-child {
                 margin-bottom: 0px;
             }
         }
-
         .controll {
             margin-top: 6px;
         }
-
         .fa-plus-square,
         .fa-minus-square {
             margin-right: 3px;
         }
-
         .contact {
             .controll {
                 position: relative;
@@ -148,7 +125,6 @@
             }
         }
     }
-
     input {
         margin: {
             bottom: 0;
@@ -159,17 +135,13 @@
         -moz-box-shadow: inset 0px 0px 10px #AAA;
         -webkit-box-shadow: inset 0px 0px 10px #AAA;
         box-shadow: 0 0 7px #DDD inset;
-        border: 1px solid #d7d7d7   ;
-
+        border: 1px solid #d7d7d7;
         &:focus {
             border: 2px solid #FF6D1F;
             box-shadow: none;
         }
         resize: none;
     }
-
-
-
     textarea {
         line-height: 1.33 !important;
         padding: 15px;
@@ -188,8 +160,7 @@
     .languages {
         label {
             white-space: nowrap;
-            margin: {
-            };
+            margin:;
             display: inline-block;
         }
         ul {
@@ -209,7 +180,6 @@
             };
         }
     }
-
     .revert-changes {
         color: #3FACED;
         font-weight: bold;
@@ -219,7 +189,6 @@
             margin-right: 5px;
         }
     }
-
     .down-error {
         display: inline-block;
         margin-top: 15px;
@@ -230,5 +199,5 @@
 .profile-settings {
     input {
         margin-bottom: $fontSize / 2;
-    }   
+    }
 }

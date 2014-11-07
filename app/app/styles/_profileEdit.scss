@@ -2,12 +2,9 @@
     section {
         &.languages {
             margin-left: 70px;
-
-
             .checkbox {
                 padding-left: 0px;
                 padding-right: 1em;
-
                 span {
                     margin: 0;
                 }
@@ -46,7 +43,6 @@
             }
         }
     }
-
     .webs {
         .web-item {
             position: relative;
@@ -57,8 +53,6 @@
             }
         }
     }
-
-
     .revert-changes {
         color: #3FACED;
         font-weight: bold;
@@ -68,7 +62,6 @@
             margin-right: 5px;
         }
     }
-
     .down-error {
         display: inline-block;
         margin-top: 15px;
@@ -77,5 +70,5 @@
 }
 
 .profile-settings {
-    @extend .common-profile-settings;   
+    @extend .common-profile-settings;
 }
