@@ -177,7 +177,7 @@ angular.module('hearth.directives').directive('filter', [
                 };
 
                 scope.$on('initFinished', scope.init);
-                rootScope.initFinished && scope.init();
+                $rootScope.initFinished && scope.init();
             }
         };
     }

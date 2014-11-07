@@ -22,6 +22,14 @@ angular.module('hearth.services').service('UnauthReload', [
 				// set return path and refresh on login
 				$.cookie(cookieName, $location.path());
 				$location.path('/login');
+
+        		var destroy = $rootScope.$on('$routeChangeSuccess', function() {
+		            setTimeout(function() {
+		            	$rootScope.$broadcast('loginRequired');
+
+	        			destroy();
+		            });
+		        });
 			}
 		};
 
@@ -35,12 +43,16 @@ angular.module('hearth.services').service('UnauthReload', [
 		};
 
 		this.checkLocation = function() {
-			var loc = $.cookie(cookieName);
+			var loc = self.getLocation();
 
 			if(loc) {
 				$location.path(loc);
 				$.cookie(cookieName, '');
 			}
+		};
+
+		this.getLocation = function() {
+			return $.cookie(cookieName);
 		};
 
 		return this;

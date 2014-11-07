@@ -92,10 +92,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.refreshUser = function() {
 
 			UnauthReload.check();
-			
-			console.log("Loading user info");
 			$scope.refreshDataFeed();
 			$scope.fetchUser();
+
 		};
 		
 		$scope.scrollToUserRatingForm = function() {
@@ -183,9 +182,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		$scope.$on('$routeChangeSuccess', $scope.refreshDataFeed);
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
-		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
 		$rootScope.initFinished && $scope.refreshUser();
+
 	}
 ]);

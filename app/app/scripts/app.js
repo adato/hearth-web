@@ -134,7 +134,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
 
                 $rootScope.initFinished = true;
                 $rootScope.$broadcast("initFinished");
-                UnauthReload.checkLocation();
             });
         }
     ]);
