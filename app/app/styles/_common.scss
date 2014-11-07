@@ -163,12 +163,12 @@ button {
     position: absolute;
     top: rem-calc(18 / 3);
     right: rem-calc(7);
-    color: color(1);
+    color: color(3);
     cursor: pointer;
     font-size: rem-calc(18);
     transition: color 0.8s;
     &:hover {
-        color: darken(color(1), 20%);
+        color: darken(color(3), 20%);
     }
 }
 
