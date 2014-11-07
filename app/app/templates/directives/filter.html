@@ -1,4 +1,4 @@
-<div class="filter">
+<div class="filter" ng-show="inited">
 	<article class="row">
 		<section ng-if="inited" class="large-12 columns" style="padding-bottom:0;padding-top:0">
 			<tags-input ng-model="filter.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
