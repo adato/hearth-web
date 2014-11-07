@@ -91,7 +91,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		$scope.refreshUser = function() {
 
-			UnauthReload.check();
 			$scope.refreshDataFeed();
 			$scope.fetchUser();
 
@@ -182,7 +181,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
-		$scope.$on('$routeChangeSuccess', $scope.refreshDataFeed);
+		UnauthReload.check();
+		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
 		$rootScope.initFinished && $scope.refreshUser();

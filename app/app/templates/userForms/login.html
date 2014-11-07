@@ -7,12 +7,10 @@
     </div>
     <hr />
     <form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form">
-        <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
-        <div ng-if="showMsgOnlyLoggeg">
-            <div class="alert-box info radius" style=""><i class="fa fa-info-circle"></i>
-            {{ 'LOGIN_REQUIRED' | translate }}
-         </div>
+        <div ng-if="showMsgOnlyLogged">
+            <div class="alert-box info radius" style=""><i class="fa fa-info-circle"></i>{{ 'LOGIN_REQUIRED' | translate }}</div>
         </div>
+        <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
         <input type="text" name="username" class="login_name" ng-model="data.username" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">
         <input type="password" class="login_password" name="password" ng-model="data.password" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top">
         <p><a ng-click="closeModal()" href="#!/forgotten-password">{{ 'HAVE_YOU_FORGOT_PASS' | translate }}</a></p>

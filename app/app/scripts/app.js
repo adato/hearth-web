@@ -106,6 +106,12 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
                     // enrich rootScope with user/community credentials
                     angular.extend($rootScope, Auth.getSessionInfo());
 
+                    // if is logged, check if he wanted to see some restricted page
+                    if($rootScope.loggedUser._id) {
+
+                        UnauthReload.checkLocation();
+                    }
+
                     $rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
                     done(null, $rootScope.loggedUser);
                 });

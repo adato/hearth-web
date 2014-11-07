@@ -32,8 +32,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		
 		function processLoginResult(res) {
 			if(res.data && res.data.ok === true) {
-				window.location.hash = '#!/login';
-                location.reload();
+				window.location = window.location.pathname;
 			} else {
 				showErrorCredentials();
 			}
@@ -58,14 +57,14 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 		$scope.init = function() {
 			if (Auth.isLoggedIn()) {
-				return $location.path(UnauthReload.getLocation() || $rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+				return $location.path( $rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
 			}
 
 			$(".login_name").focus();
 		};
 
 		$scope.setLoginRequired = function() {
-			$scope.showMsgOnlyLoggeg = true;
+			$scope.showMsgOnlyLogged = true;
 		};
 
 		$scope.$on('loginRequired', $scope.setLoginRequired);

@@ -89,12 +89,11 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 		$scope.init = function() {
 
-			UnauthReload.check();
-
 			$scope.refreshDataFeed();
 			$scope.fetchCommunity();
 		};
 
+		UnauthReload.check();
 		$scope.$on('$routeChangeSuccess', $scope.init);
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
