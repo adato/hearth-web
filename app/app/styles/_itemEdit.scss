@@ -52,6 +52,12 @@
     }
     
     .tags {
+ 
+        input {
+            padding: {
+                left: 0;
+            }
+        }
     }
     .date {
         margin-bottom: 15px;
@@ -72,6 +78,12 @@
         .controll {
             position: relative;
             top: -8px;
+            a {
+                font-size: 16px;
+                display: block;
+                float: left;
+                margin-top: -3px;
+            }
         }
     }
     .files {
