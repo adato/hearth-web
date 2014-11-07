@@ -55,6 +55,7 @@
         "other": "lidmi"
     },
     "CANCEL": "Zrušit",
+    "TEST": "AAAA <a ng-click='test()'>TEST</a> ... wjdkwjdk",
     "CANCEL_ADD_COMMUNITY": "Zrušit přidání komunity",
     "CANCEL_CHANGES": "Zrušit změny",
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",

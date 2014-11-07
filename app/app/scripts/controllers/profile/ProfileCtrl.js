@@ -23,6 +23,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			text: false
 		};
 
+		$scope.test = function() {
+			alert("AA");
+		};
+
+
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
 			var _mineCommunity = ($rootScope.loggedCommunity) ? $rootScope.loggedCommunity._id == $routeParams.id: false;

@@ -176,7 +176,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}, 100);
 		};
 
-
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
 		$scope.$watch('showError', function() {
