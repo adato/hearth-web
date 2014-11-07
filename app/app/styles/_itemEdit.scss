@@ -68,6 +68,10 @@
         }
     }
     .locations {
+
+        .remove {
+            top: unset !important;
+        }
         .controll {
             position: relative;
             top: -8px;

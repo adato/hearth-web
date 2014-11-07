@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-    'geo', 'KeywordsService', '$location', 'Auth', '$timeout', 'Filter',
+    'geo', 'KeywordsService', '$location', 'Auth', '$timeout', 'Filter', '$rootScope',
 
-    function(geo, KeywordsService, $location, Auth, $timeout, Filter) {
+    function(geo, KeywordsService, $location, Auth, $timeout, Filter, $rootScope) {
         return {
             restrict: 'E',
             replace: true,
@@ -39,6 +39,7 @@ angular.module('hearth.directives').directive('filter', [
                 });
 
                 scope.loggedUser = Auth.isLoggedIn();
+                scope.inited = false;
 
                 scope.applyFilter = function() {
 
@@ -171,6 +172,12 @@ angular.module('hearth.directives').directive('filter', [
                 };
                 scope.updateFilterByRoute();
 
+                scope.init = function() {
+                    scope.inited = true;
+                };
+
+                scope.$on('initFinished', scope.init);
+                rootScope.initFinished && scope.init();
             }
         };
     }
