@@ -154,6 +154,13 @@ $medium-avatar-size: 80px;
                 @extend .large-8, .columns, .pull-right;
                 padding: 0;
                 position: relative;
+
+                /* ==== PRAZDNA KARMA === */
+                min-height: 29px;
+                background-color: #7c766a;
+                border-radius: $global-radius;
+                box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
+
                 top: 4em;
                 left: 1em;
                 text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
