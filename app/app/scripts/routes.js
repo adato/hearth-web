@@ -255,9 +255,9 @@ angular.module('hearth').config([
 	  //   	});
 
 			$routeProvider.otherwise({
-		  //       controller: 'Error404Ctrl',
-				// templateUrl: 'templates/error404.html'
-				redirectTo: '/not-found'
+		        controller: 'Error404Ctrl',
+				templateUrl: 'templates/error404.html'
+				// redirectTo: '/not-found'
 			});
 	
 	}

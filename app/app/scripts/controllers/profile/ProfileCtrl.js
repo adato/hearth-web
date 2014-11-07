@@ -85,7 +85,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
     		$scope.pagePath = $route.current.originalPath;
-    		$scope.pageSegment = $route.current.$$route.segment;
+    		if($route.current.$$route)
+	    		$scope.pageSegment = $route.current.$$route.segment;
 		};
 
 		$scope.refreshUser = function() {
