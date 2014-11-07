@@ -27,11 +27,13 @@ angular.module('hearth.directives').directive('filter', [
 
                 $timeout(function () {
                     $(".tags input", element).keypress(function(e) {
-                        if (e.keyCode == 9) {
-                            var self = this;
-                            setTimeout(function() {
-                                $(".tags input", element).focus();
-                            });
+                        if($(e.target).val() != '') {
+                            if (e.keyCode == 9) {
+                                var self = this;
+                                setTimeout(function() {
+                                    $(".tags input", element).focus();
+                                });
+                            }
                         }
                     });
                 });
