@@ -640,11 +640,11 @@
             "NO_POSTS_ME": "Zatím jste nevytvořili žádný inzerát, pojďme s tím něco udělat - můžete darovat či přijmou co jen vás napadne."
         },
         "POSTS": {
-            "NO_GIVEN_RATINGS_ME": "Zatím jste tu nikoho nehodnotil(a). To jde ale rychle napravit na profilu některého z vašich přátel.",
-            "NO_GIVEN_RATINGS_OTHER": "Uživatel zatím nikoho nehodnotil.",
+            "NO_GIVEN_RATINGS_ME": "Asi jste zatím nikomu nic nedaroval(a) ani nic nepřijal(a), tak jste ještě ani nemohl(a) mít příležitost, popovídat o tom, jak to všechno šlo.",
+            "NO_GIVEN_RATINGS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout, tak neměl zatím ani příležitost někomu napsat hodnocení.",
             "NO_POSTS_ME": "Zatím jste nevytvořili žádný inzerát, pojďme s tím něco udělat - můžete darovat či přijmou co jen vás napadne.",
-            "NO_POSTS_OTHER": "Uživatel zde zatím nemá žádné inzeráty. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
-            "NO_RECEIVED_RATINGS_ME": "Zatím vás nikdo nehodnotil. Ozvěte se svým přátelům, aby vám hodnocení vyplnili."
+            "NO_POSTS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
+            "NO_RECEIVED_RATINGS_ME": "Patrně za sebou ještě nemáte žádnou odvážnou odpověď na inzerát, tak sem neměl nikdo příležitost napsat nic pěkného :("
         }
     },
     "PROFILE_EDIT": "Upravit profil",

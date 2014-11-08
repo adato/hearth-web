@@ -1,7 +1,8 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
 
 <div class="profile-edit-common no-content" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
-	{{ 'PROFILE.POSTS.NO_POSTS_ME' | translate }} <a ng-if="!loggedCommunity" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a>
+	{{ 'PROFILE.POSTS.NO_POSTS_ME' | translate }}<br /><br />
+	<a ng-if="!loggedCommunity" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a>
 </div>
 <div class="profile-edit-common no-content" ng-if="loaded && ! mine && ! postsActive.length">
 	{{ 'PROFILE.POSTS.NO_POSTS_OTHER' | translate }}
