@@ -112,7 +112,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     var service = ($scope.community._id) ? Community.edit : Community.add;
                     var transformedData;
                     // validate data
-                    if(!$scope.validate($scope.community)) return false;
+                    if(!$scope.validate($scope.community)) {
+                        $rootScope.scrollToError();
+                        return false;
+                    }
 
                     // lock
                     if($scope.sending) return false;

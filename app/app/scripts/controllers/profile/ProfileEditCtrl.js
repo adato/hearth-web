@@ -145,6 +145,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				
 			if(! $scope.validateData($scope.profile)) {
 				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
+				$rootScope.scrollToError();
 				return false;
 			}
 

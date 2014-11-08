@@ -347,6 +347,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        // this will scroll to given element in given container (if not setted take body as default)
+        $rootScope.scrollToElement = function(el, cont) {
+            var offset = 200;
+            var container = cont || 'html, body';
+            var elementPos;
+
+            if(! $(el).first().length)
+                return false;
+
+            elementPos = Math.max($(el).first().offset().top - offset, 0);
+            $(container).animate({scrollTop: elementPos}, 'slow');
+        };
+
+        // this will scroll to given element or first error message on page
+        $rootScope.scrollToError = function(el, cont) {
+            setTimeout(function() {
+                $rootScope.scrollToElement(el || $('.error').not('.alert-box'), cont);
+            });
+        };
+
         // return false if post is inactive
         $rootScope.isPostActive = function(item) {
             return item.is_active && !item.is_expired;
