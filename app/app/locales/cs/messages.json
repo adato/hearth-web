@@ -287,7 +287,7 @@
     "FULLTEXT_FILTER_SEARCH_RESULTS": "Filtrovat výsledky",
     "FULLTEXT_MARKET": "Tržiště",
     "FULLTEXT_NOTHING_FOUND": "Ajtakrajta, nic jsme nenašli.",
-    "FULLTEXT_NOTHING_FOUND_RELATED_TO": "Ajtakrajta, nic co by odpovídalo <b>{{value}}</b> jsme nenašli. Buď se tenhle výraz někde schovává, nebo ještě neexistuje.",
+    "FULLTEXT_NOTHING_FOUND_RELATED_TO": "Ajtakrajta, nic co by odpovídalo <b>{{value}}</b> jsme nenašli.<br />Buď se tenhle výraz někde schovává, nebo ještě neexistuje.",
     "FULLTEXT_SEARCH_IN": "mezi",
     "FULLTEXT_USERS": "Lidé",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}</b>",

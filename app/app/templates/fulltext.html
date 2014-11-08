@@ -29,7 +29,7 @@
             </section>
         </article>
 
-        <div ng-if="!items.length && loaded" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
+        <div ng-if="!items.length && loaded" class="large-8 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
         <section id="fulltextSearchResults">
             <article ng-repeat="item in items" class="row search-item" ng-switch="item._type">
                 <section class="large-2 columns">
