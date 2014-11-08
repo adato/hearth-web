@@ -79,8 +79,13 @@
         },
         "COMMUNITY_HAS_X_MEMBERS": {
             "few": "Komunita má {{count}} členy",
-            "one": "Komunita jednoho člena",
+            "one": "Komunita má jednoho člena",
             "other": "Komunita má {{count}} členů"
+        },
+        "POSTS": {
+            "NO_POSTS_ADMIN": "Zatím jste nevytvořili žádný inzerát, pojďme s tím něco udělat - můžete darovat či přijmou co jen vás napadne.",
+            "NO_POSTS_MEMBER": "V komunitě ještě nemáte žádné inzeráty.",
+            "NO_POSTS_OTHER": "Komunita zatím nic nevěnovala ani nepotřebovala přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních."
         },
         "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
         "X_GIVES_AND_WISHES": {
@@ -638,6 +643,11 @@
             "NO_ACTIVITY_ME": "Jste tu krátce, nemáme vám zatím co ukázat :)",
             "NO_ACTIVITY_OTHER": "Uživatel je tady nový, nemáme vám tady zatím co ukázat.",
             "NO_POSTS_ME": "Zatím jste nevytvořili žádný inzerát, pojďme s tím něco udělat - můžete darovat či přijmou co jen vás napadne."
+        },
+        "INVITATION": {
+            "ADDRESSES": "Adresy",
+            "MESSAGE": "Zpráva",
+            "SEND_EMAIL_INVITATION": "Odeslat"
         },
         "POSTS": {
             "NO_GIVEN_RATINGS_ME": "Asi jste zatím nikomu nic nedaroval(a) ani nic nepřijal(a), tak jste ještě ani nemohl(a) mít příležitost, popovídat o tom, jak to všechno šlo.",
