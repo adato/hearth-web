@@ -390,6 +390,11 @@
     "LOG_IN_TO_POST_RATING": "Než budete hodnotit jiného uživatele, <a href=\"#/login\">přihlaste se</a> prosím.",
     "LOG_IN_TO_REPLY": "Před odesláním vaší odpovědi se prosím <a href=\"#/login\">přihlaste</a>.",
     "MAP": "Mapa",
+    "MARKETPLACE": {
+        "EDIT_FILTER": "Upravit filtr",
+        "NOT_FOUND": "Ajtakrajta, zadané kombinaci neodpovídá vůbec, ale vůbec žádný inzerát.<br />Co takhle nějaké to kritérium ubrat?",
+        "RESET_FILTER": "Vymazat filtr"
+    },
     "MEET_USER": "Poznejte uživatele",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členem komunit",
     "MESSAGES": "Zprávy",
