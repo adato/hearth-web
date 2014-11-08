@@ -7,18 +7,18 @@
             </a>
         </li>
         <li>
+            <a href="#!/profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'profile.followers'}">
+
+                <span ng-if="mine && info" ng-bind-html="'PROFILE.FOLLOWERS.IM_INSPIRING_X_PEOPLE.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
+                <span ng-if="!mine && info" ng-bind-html="'PROFILE.FOLLOWERS.HE_IS_INSPIRING_X_PEOPLE.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
+            </a>
+        </li>
+        <li>
             <a href="#!/profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'profile.following'}">
 
                 <span ng-if="mine && info" ng-bind-html="'PROFILE.FOLLOWEES.IM_INSPIRED_BY_X_PEOPLE.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
                 <span ng-if="!mine && info" ng-bind-html="'PROFILE.FOLLOWEES.HE_IS_INSPIRED_BY_X_PEOPLE.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
             </a>
-        </li>
-        <li>
-            <a href="#!/profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'profile.followers'}">
-
-                <span ng-if="mine && info" ng-bind-html="'PROFILE.FOLLOWERS.IM_INSPIRING_X_PEOPLE.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
-                <span ng-if="!mine && info" ng-bind-html="'PROFILE.FOLLOWERS.HE_IS_INSPIRING_X_PEOPLE.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
-        	</a>
         </li>
     </ul>
 </div>
