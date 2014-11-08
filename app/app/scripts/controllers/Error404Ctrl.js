@@ -14,6 +14,9 @@ angular.module('hearth.controllers').controller('Error404Ctrl', [
 		$scope.goToMarket = function() {
 			$location.url('/');
 		};
+		$scope.goToFeedback = function() {
+			$location.url('/feedback');
+		};
 
 		// hide route segment container when user comes to e404 page
 		$(container).hide();
