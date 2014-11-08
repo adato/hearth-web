@@ -134,7 +134,10 @@ angular.module('hearth.geo').directive('locations', [
 
                 scope.clearLocation = function(index) {
                     scope.locations[index] = getDefaultLocation();
-                    scope.$apply();
+                    
+                    if(!scope.$$phase) {
+                        scope.$apply();
+                    }
                 };
 
                 scope.fillLocation = function(index, pos, addr, info) {
@@ -148,7 +151,13 @@ angular.module('hearth.geo').directive('locations', [
                             scope.locations[index][key] = info[key];
                         });
                     }
-                    scope.$apply();
+
+                    scope.error = false;
+                    scope.testAllEmptyLocation();
+
+                    if(!scope.$$phase) {
+                        scope.$apply();
+                    }
                 };
 
                 scope.closeMap = function() {
