@@ -23,8 +23,8 @@
     "ADD_KEYWORDS": "Klíčová slova, oddělená čárkou",
     "ADD_NEXT_WEB": "Přidat další web",
     "ADD_OTHER_LANG": "Přidat další jazyky",
-    "ADD_USER_RATING": "Přidejte uživateli hodnocení",
-    "ADMIN": "správce",
+    "ADD_USER_RATING": "Ohodnoťte komunikaci s uživatelem",
+    "ADMIN": "Správce",
     "ADMIN_7_CASE": "správce",
     "AD_ADD_LABEL": "Přidat inzerát",
     "AD_EDIT_LABEL": "Editovat inzerát",
@@ -42,6 +42,7 @@
     "AGREE_WITH_TERMS_POPUP": "Souhlasím s <a href=\"\">podmínkami použití</a>",
     "ALL_POSTS": "Všechny příspěvky",
     "ALREADY_HAVE_AN_ACCOUNT": "Už máte účet?",
+    "ALREADY_USED_EMAIL": "Email je již použitý v aplikaci",
     "ATTACH_PHOTO_LINK": "Přiložit fotografii",
     "AVATAR_UPLOAD_FAILED": "Bohužel se nepodařilo nahrát profilový obrázek. Co na něm vlastně máte?!",
     "AVATAR_UPLOAD_SUCCESS": "Nový profilový obrázek byl úspěšně nahrán. Teda, sekne vám to!",
@@ -50,12 +51,11 @@
     "BLOG": "Blog",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máte několik neaktivních inzerátů.",
     "BY_PEOPLE": {
-        "few": "lidmi",
         "one": "člověkem",
+        "few": "lidmi",
         "other": "lidmi"
     },
     "CANCEL": "Zrušit",
-    "TEST": "AAAA <a ng-click='test()'>TEST</a> ... wjdkwjdk",
     "CANCEL_ADD_COMMUNITY": "Zrušit přidání komunity",
     "CANCEL_CHANGES": "Zrušit změny",
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
@@ -67,9 +67,32 @@
     "COMMUNITIES": "Komunity",
     "COMMUNITIES_IN_HEARTH": "Pojďte mezi nás! V komunitách se můžete potkat s lidmi podobného zaměření, získat pomoc, či podporu pro váš projekt.",
     "COMMUNITIES_PL": {
-        "few": "komunity",
         "one": "komunita",
+        "few": "komunity",
         "other": "komunit"
+    },
+    "COMMUNITY": {
+        "APPROVE_REQUESTS": {
+            "one": "Jeden člověk čeká na schválení",
+            "few": "{{count}} lidi čekají na schválení",
+            "other": "{{count}} lidí čeká na schválení"
+        },
+        "COMMUNITY_HAS_X_MEMBERS": {
+            "one": "Komunita jednoho člena",
+            "few": "Komunita má {{count}} členy",
+            "other": "Komunita má {{count}} členů"
+        },
+        "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
+        "X_GIVES_AND_WISHES": {
+            "one": "<b>{{count}}</b><br /> inzerát",
+            "few": "<b>{{count}}</b><br /> inzeráty",
+            "other": "<b>{{count}}</b><br /> inzerátů"
+        },
+        "X_MEMBERS": {
+            "one": "<b>{{count}}</b><br /> člen",
+            "few": "<b>{{count}}</b><br /> členové",
+            "other": "<b>{{count}}</b><br /> členů"
+        }
     },
     "COMMUNITY_ABOUT": "Další info o komunitě",
     "COMMUNITY_ABOUT_SHORT": "O komunitě",
@@ -105,8 +128,8 @@
     "COMMUNITY_LOCATION_INPUT_PLACEHOLDER": "Kde působíte",
     "COMMUNITY_MEMBER": "Člen",
     "COMMUNITY_MEMBERS": {
-        "few": "členové",
         "one": "člen",
+        "few": "členové",
         "other": "členů"
     },
     "COMMUNITY_MEMBERSHIP_REQUESTED": "Odeslal jste žádost o přijetí",
@@ -117,6 +140,7 @@
     "COMMUNITY_MY": "Moje",
     "COMMUNITY_NAME": "Název komunity",
     "COMMUNITY_NEW_APPLICATIONS": "Nové žádosti o přijetí",
+    "COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS": "Změnit správce komunity můžete jen v případě, kdy má komunita více členů. Pozvěte do ní někoho dalšího...",
     "COMMUNITY_PLACE": "Místo komunity",
     "COMMUNITY_POSTS": "Inzeráty komunity",
     "COMMUNITY_PROFILE_ADMIN": "Správce",
@@ -131,7 +155,7 @@
     "COMMUNITY_SEE_ALL_APPLICATIONS": "Zobrazit všechny přihlášky do komunity",
     "COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN": "Vyberte osobu, které chcete předat správcovství komunity a klikněte na odeslat.",
     "COMMUNITY_UPDATED_DONE": "Komunita byla aktualizována.",
-    "COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS": "Změnit správce komunity můžete jen v případě, kdy má komunita více členů. Pozvěte do ní někoho dalšího...",
+    "COMPLETE": "Odeslat",
     "CONFIRM": "Potvrdit",
     "CONTACTS": "Kontakty",
     "CONTINUE": "Pokračovat",
@@ -159,7 +183,7 @@
     "DOING_AS_COMMUNITY": "Za komunitu",
     "DONT_HAVE_ACCOUNT_YET": "Nemáte účet?",
     "DONT_SHOW_ANYMORE": "Znovu neukazovat",
-    "DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Znáte uživatele {{name}}? Chcete mu ",
+    "DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Komunikovali jste s {{name}}? Dejte světu vědět, že všechno klaplo nebo že se naopak něco nepovedlo...",
     "DO_YOU_REALLY_WANT_TO_DELETE_ACCOUNT": "Tak toho jsme se báli. Nerozmyslíte si to? Opravdu chcete z Hearth smazat všechny svoje stopy?",
     "EDIT_BUTTON_CAPTION": "Upravit",
     "EDIT_POST": "Upravit",
@@ -231,8 +255,10 @@
     "FEEDBACK_FORM_SPEECH_BUBBLE": "Nejsme perfektní, ale s vaší pomocí můžeme být. \r\nNapište nám a my vám dáme lepší Hearth.\r\nUvidíte...",
     "FEEDBACK_LINK": "Hodnocení",
     "FEEDBACK_TEXT_PLACEHOLDER": "Napište nám, co se vám v Hearth líbí i nelíbí. Pořád je co zlepšovat...",
+    "FILL_CONTACT_EMAIL": "Doplňte nám Váš kontaktní email",
     "FILL_CURRENT_PASS": "Zadejte současné heslo",
     "FILL_EMAIL_INVITATION_MESSAGE": "Je libo nějaká slova do emailu?",
+    "FILL_EMAIL_TO_COMPLETE_REGISTRATION": "Dokončení registrace",
     "FILL_EMAIL_TO_RESET_PASSWORD": "Stačí nám vaše e-mailová adresa. Na ní vám zašleme instrukce, co dál.",
     "FILL_FRIENDS_EMAILS": "Emailové adresy přátel",
     "FILL_NEW_PASS": "Zadejte nové heslo",
@@ -261,8 +287,8 @@
     "FULLTEXT_USERS": "Lidé",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}</b>",
     "GIVES_AND_WISHES": {
-        "few": "inzeráty",
         "one": "inzerát",
+        "few": "inzeráty",
         "other": "inzerátů"
     },
     "GIVE_US_FEEDBACK": "Váš názor",
@@ -282,13 +308,13 @@
     "HOMEPAGE_SUBHEADING": "pro sdílení darů a zkušeností",
     "HOUR_AGO": "před hodinou",
     "HOW_MANY_PEOPLE": {
-        "few": "lidi",
         "one": "člověka",
+        "few": "lidi",
         "other": "lidí"
     },
     "HOW_MANY_PEOPLE_1_COND": {
-        "few": "lidi",
         "one": "člověk",
+        "few": "lidi",
         "other": "lidí"
     },
     "INDEX_ABOUT": "O Hearthu",
@@ -303,89 +329,11 @@
     "INDEX_TERMS": "Podmínky použití",
     "INDEX_TOMAS_HAJZLER_TEXT": "Hearth.net mě nadchlo svojí jednoduchostí. Přestěhoval jsem se teď do nové čtvrti a myslím, že by mi to mohlo pomoci vybudovat zde nějaké vztahy. Vždyť dávání bylo a bude základ každé rodiny a zároveň to je v podstatě technika, jak se cítit skvěle. Myslím, že dnešní doba sociálních sítí a toho jak jsme globálně propojeni nám k tomu ideálně nahrává.",
     "INDEX_TOMAS_HAJZLER_TITLE": "zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou.",
-    "COMMUNITY": {
-        "X_GIVES_AND_WISHES": {
-            "few": "<b>{{count}}</b><br /> inzeráty",
-            "one": "<b>{{count}}</b><br /> inzerát",
-            "other": "<b>{{count}}</b><br /> inzerátů"
-        },
-        "X_MEMBERS": {
-            "few": "<b>{{count}}</b><br /> členové",
-            "one": "<b>{{count}}</b><br /> člen",
-            "other": "<b>{{count}}</b><br /> členů"
-        },
-        "COMMUNITY_HAS_X_MEMBERS": {
-            "few": "Komunita má {{count}} členy",
-            "one": "Komunita jednoho člena",
-            "other": "Komunita má {{count}} členů"
-        },
-        "APPROVE_REQUESTS": {
-            "few": "{{count}} lidi čekají na schválení",
-            "one": "Jeden člověk čeká na schválení",
-            "other": "{{count}} lidí čeká na schválení"
-        }
-    },
-    "PROFILE": {
-        "FRIENDS": {
-            "YOU_HAVE_X_FRIENDS": {
-                "few": "Máte {{count}} kamarády",
-                "one": "Máte {{count}} kamaráda",
-                "other": "Máte {{count}} přátel"
-            },
-            "HE_HAS_X_FRIENDS": {
-                "few": "Uživatel má {{count}} kamarády",
-                "one": "Uživatel má {{count}} kamaráda",
-                "other": "Uživatel má {{count}} přátel"
-            }
-        },
-        "FOLLOWEES": {
-            "IM_INSPIRED_BY_X_PEOPLE": {
-                "few": "Inspirují vás {{count}} lidi",
-                "one": "Inspiruje vás {{count}} člověk",
-                "other": "Inspiruje vás {{count}} lidí"
-            },
-            "HE_IS_INSPIRED_BY_X_PEOPLE": {
-                "few": "Je inspirován {{count}} lidmi",
-                "one": "Je inspirován {{count}} člověkem",
-                "other": "Je inspirován {{count}} lidmi"
-            }
-        },
-        "FOLLOWERS": {
-            "IM_INSPIRING_X_PEOPLE": {
-                "few": "Inspirujete {{count}} lidi",
-                "one": "Inspirujete {{count}} člověka",
-                "other": "Inspirujete {{count}} lidí"
-            },
-            "HE_IS_INSPIRING_X_PEOPLE": {
-                "few": "Inspiruje {{count}} lidi",
-                "one": "Inspiruje {{count}} člověka",
-                "other": "Inspiruje {{count}} lidí"
-            }
-        }
-    },
-    "X_PEOPLE_INSPIRED_BY_ME": {
-        "few": "<b>{{count}}</b><br /> lidí inspiruji",
-        "one": "<b>{{count}}</b><br /> člověka inspiruji",
-        "other": "<b>{{count}}</b><br /> lidí inspiruji"
-    },
-    "X_PEOPLE_INSPIRING_ME": {
-        "one": "{{count}} člověkem<br /> inspirován",
-        "few": "{{count}} lidmi<br /> inspirován",
-        "other": "{{count}} lidmi<br /> inspirován"
-    },
-    "X_PEOPLE_INSPIRING_HIM": {
-        "one": "{{count}} člověkem<br /> inspirován",
-        "few": "{{count}} lidmi<br /> inspirován",
-        "other": "{{count}} lidmi<br /> inspirován"
-    },
-    "X_PEOPLE_INSPIRED_BY_HIM": {
-        "few": "<b>{{count}}</b><br /> lidí inspiruje",
-        "one": "<b>{{count}}</b><br /> člověka inspiruje",
-        "other": "<b>{{count}}</b><br /> lidí inspiruje"
-    },
+    "INSPIRED_BY_HIM": "inspiruje",
+    "INSPIRED_BY_ME": "inspiruji",
     "INSPIRING_PL": {
-        "few": "inspirují",
         "one": "inspiruje",
+        "few": "inspirují",
         "other": "inspiruje"
     },
     "INTERESTS": "Co mne zajímá",
@@ -401,8 +349,8 @@
     "INVITE_TWITTER": "Twitter",
     "INVITE_YOUR_FRIENDS_TO_HEARTH": "Pozvěte své přátele do Hearth",
     "IN_X": {
-        "few": "ve {{count}} jste",
         "one": "v jedné jste",
+        "few": "ve {{count}} jste",
         "other": "v {{count}} jste"
     },
     "IS_INSPIRED": "inspirován",
@@ -447,7 +395,7 @@
     "MESSAGES_NEW": "Nová zpráva",
     "MESSAGES_SEND": "Odeslané zprávy",
     "ME_WROTE": "Napsal jsem",
-    "ME_WROTE_THEM": "Napsal jsem ostatním",
+    "ME_WROTE_THEM": "Ohodnotil(a) jsem",
     "MINUTE_AGO": "1 minuta",
     "MISSING_ABOUT": "něco o vás",
     "MISSING_CONTACT": "kontakty",
@@ -511,7 +459,7 @@
     "NAME_PLACEHOLDER": "Jméno a příjmení",
     "NEAREST": "Mapa",
     "NEED": "Přijmu",
-    "NEGATIVE": "Záporné",
+    "NEGATIVE": "Něco se nepovedlo",
     "NEGATIVE_FEEDBACK_PLACEHOLDER": "Tohle se... úplně nepovedlo. Ale příště už může! Stačí, když dáte uživateli vědět, co zlepšit.",
     "NEWEST": "Nejnovější",
     "NEW_COMMUNITY_CREATED_TEXT": "Zde se můžete přepnout do pohledu správce. Budete pak v Hearth vystupovat za celou komunitu",
@@ -580,8 +528,8 @@
     "OFFER_GIFT": "<b>Nabídnout</b> dar",
     "OF_FRIENDS": "přátel",
     "OF_X_COMMUNITIES": {
-        "few": "{{count}} komunit",
         "one": "jedné komunity",
+        "few": "{{count}} komunit",
         "other": "{{count}} komunit"
     },
     "OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc",
@@ -608,13 +556,13 @@
     "PASSWORD_WAS_CHANGED": "Změna Vašeho hesla proběhla úspěšně. **** jo!",
     "PASS_PLACEHOLDER": "Heslo",
     "PEOPLE_COUNT_OFFER_PL": {
-        "few": "nabídli {{value}} lidi.",
         "one": "nabídl jeden člověk.",
+        "few": "nabídli {{value}} lidi.",
         "other": "nabídlo {{value}} lidí."
     },
     "PEOPLE_COUNT_WISH_PL": {
-        "few": "požádali {{value}} lidi.",
         "one": "požádal jeden člověk.",
+        "few": "požádali {{value}} lidi.",
         "other": "požádalo {{value}} lidí."
     },
     "PEOPLE_FIRST_CASE": "lidé",
@@ -625,13 +573,13 @@
     "PLURAL_OFFERS": "nabídkami",
     "PLURAL_USERS": "uživateli a komunitami",
     "POPULAR_KEYWORDS": "Populární klíčová slova",
-    "POSITIVE": "Kladné",
+    "POSITIVE": "Všechno klaplo",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Vše proběhlo jak mělo? Jste nadšeni? Tak šup... dejte to uživateli vědět.",
     "POSTS": "inzeráty",
     "POSTS_INACTIVE": "Neaktivní inzeráty",
     "POSTS_PL": {
-        "few": "inzeráty",
         "one": "inzerát",
+        "few": "inzeráty",
         "other": "inzerátů"
     },
     "POST_HAS_ALREADY_EXPIRED": "Platnost inzerátu již skončila",
@@ -639,6 +587,50 @@
     "POST_HAS_EXPIRED": "Platnost inzerátu skončila",
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
     "POST_WAS_DELETED": "Inzerát byl vymazán.",
+    "PROFILE": {
+        "FOLLOWEES": {
+            "HE_IS_INSPIRED_BY_X_PEOPLE": {
+                "one": "Sleduje {{count}} člověka",
+                "few": "Sleduje {{count}} lidi",
+                "other": "Sleduje {{count}} lidí"
+            },
+            "IM_INSPIRED_BY_X_PEOPLE": {
+                "one": "Sledujete {{count}} člověka",
+                "few": "Sledujete {{count}} lidi",
+                "other": "Sledujete {{count}} lidí"
+            },
+            "NO_FOLLOWEES_ME": "Zatím nikoho nesledujete. Tak šup k někomu na profil a dát sledovat...",
+            "NO_FOLLOWEES_OTHER": "Uživatel u nás zatím nikoho nesleduje. Tak ho můžete sledovat vy a třeba vám to oplatí..."
+        },
+        "FOLLOWERS": {
+            "HE_IS_INSPIRING_X_PEOPLE": {
+                "one": "Je sledován {{count}} člověkem",
+                "few": "Je sledován {{count}} lidmi",
+                "other": "Je sledován {{count}} lidmi"
+            },
+            "IM_INSPIRING_X_PEOPLE": {
+                "one": "Sleduje vás {{count}} člověk",
+                "few": "Sledují vás {{count}} lidé",
+                "other": "Sleduje vás {{count}} lidí"
+            },
+            "NO_FOLLOWERS_ME": "Zatím vás tu nikdo nesleduje. Tak zatím sledujte aspoň někoho vy...",
+            "NO_FOLLOWERS_OTHER": "Uživatele u nás zatím nikdo nesleduje. Můžete být první!"
+        },
+        "FRIENDS": {
+            "HE_HAS_X_FRIENDS": {
+                "one": "Je přítel s {{count}} člověkem",
+                "few": "Je přítel se {{count}} lidmi",
+                "other": "Je přítel s {{count}} lidmi"
+            },
+            "YOU_HAVE_X_FRIENDS": {
+                "one": "Máte {{count}} přítele",
+                "few": "Máte {{count}} přátele",
+                "other": "Máte {{count}} přátel"
+            },
+            "NO_FRIENDS_ME": "Zatím u nás nemáte žádné přátele. Sledujte někoho, kdo sleduje vás, a přátelství je na světě!",
+            "NO_FRIENDS_OTHER": "Uživatel zde zatím nemá žádné přátele. Sledujte se navzájem a stanou se z vás přátelé."
+        }
+    },
     "PROFILE_EDIT": "Upravit profil",
     "PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",
     "PROFILE_UPDATE_FAILED": "Změny ve vašem profilu se bohužel nepodařilo uložit. Dřív než vyskočíte z\nokna, zkuste to prosím ještě jednou.",
@@ -688,10 +680,6 @@
     "SIGN_UP_WITH_FACEBOOK": "přihlásit přes Facebook",
     "SIGN_UP_WITH_GOOGLE": "přihlásit přes Google",
     "SIGN_UP_WITH_TWITTER": "přihlásit přes Twitter",
-    "FILL_EMAIL_TO_COMPLETE_REGISTRATION": "Dokončení registrace",
-    "ALREADY_USED_EMAIL": "Email je již použitý v aplikaci",
-    "COMPLETE": "Odeslat",
-    "FILL_CONTACT_EMAIL": "Doplňte nám Váš kontaktní email",
     "SUBMIT": "Odeslat",
     "SUGGESTED_COMMUNITIES": "Doporučené komunity",
     "SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS": "Před úpravou vašich inzerátů se nejprve přepněte v horním menu na svůj učet.",
@@ -704,8 +692,9 @@
     "TELL_WHAT": "Jednoduše sdělte co např. tutorství",
     "TERMS": "Podmínky použití",
     "TERMS_OF_USE_ON_HEARTH": "Podmínky použití štědré sociální sítě - Hearth.net",
+    "TEST": "AAAA <a ng-click='test()'>TEST</a> ... wjdkwjdk",
     "THANKS_FOR_REPORT": "Děkujeme za udání, tento příspěvek prověříme.",
-    "THEY_WROTE_ME": "Napsali mi",
+    "THEY_WROTE_ME": "Ohodnotili mne",
     "THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvěte i své přátele do Hearth.net, do štědré sociální sítě!",
     "THUMB_UP": "Ohodnotit",
     "TITLE": "Hearth",
@@ -747,9 +736,9 @@
     "USER_IS_MEMBER": "Uživatel je členem",
     "USER_LANGUAGE": "Jazyk",
     "USER_POSTS": "Inzeráty uživatele",
-    "USER_RATING_SCORE_SELECT_TEXT": "Vyberte skóre, které chcete uživateli dát.",
+    "USER_RATING_SCORE_SELECT_TEXT": "Jak komunikace s uživatelem probíhala?",
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
-    "USER_RECEIVED_RATINGS": "Obdržená hodnocení",
+    "USER_RECEIVED_RATINGS": "Přijatá hodnocení",
     "USE_FACEBOOK": "Použít Facebook",
     "USE_GOOGLE": "Použít Google",
     "USE_MY_CURRENT_LOCATION_LINK": "Použít mou aktuální lokalitu",
@@ -774,8 +763,8 @@
     "WISH_GIFT": "<b>Požádat</b> o dar",
     "WITH_TERMS_OF_USE": "podmínkami používání",
     "WITH_X_7_CASE": {
-        "few": "mi",
         "one": "ním",
+        "few": "mi",
         "other": "ti"
     },
     "WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS": "Napište svým přátelům nějakou zprávu do pozvánky.",
@@ -785,14 +774,34 @@
     "WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "WRONG_NAME_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "X_FRIENDS": {
-        "few": "kamarády",
         "one": "kamaráda",
+        "few": "kamarády",
         "other": "přátel"
     },
     "X_MEMBERS": {
-        "few": "členy",
         "one": "člena",
+        "few": "členy",
         "other": "členů"
+    },
+    "X_PEOPLE_INSPIRED_BY_HIM": {
+        "one": "<b>{{count}}</b><br /> člověkem sledován",
+        "few": "<b>{{count}}</b><br /> lidmi sledován",
+        "other": "<b>{{count}}</b><br /> lidmi sledován"
+    },
+    "X_PEOPLE_INSPIRED_BY_ME": {
+        "one": "<b>{{count}}</b><br /> člověk mě sleduje",
+        "few": "<b>{{count}}</b><br /> lidé mě sledují",
+        "other": "<b>{{count}}</b><br /> lidí mě sleduje"
+    },
+    "X_PEOPLE_INSPIRING_HIM": {
+        "few": "{{count}} lidi<br /> sleduje",
+        "one": "{{count}} člověka<br /> sleduje",
+        "other": "{{count}} lidí<br /> sleduje"
+    },
+    "X_PEOPLE_INSPIRING_ME": {
+        "few": "{{count}} lidi<br /> sleduji",
+        "one": "{{count}} člověka<br /> sleduji",
+        "other": "{{count}} lidí<br /> sleduji"
     },
     "YEAR_AGO": "před rokem",
     "YES_DELETE_ACCOUNT": "Ano",
@@ -829,7 +838,7 @@
     "by-type": "Podle typu",
     "cancel-filter": "Zrušit filtr",
     "community": "komunity",
-    "count-of-wished-and-gifts": "<p><strong>{{value}}</strong>&nbsp;inzer&aacute;tů</p>",
+    "count-of-wished-and-gifts": "<p>Aktuálně<strong> {{value}}</strong> aktivn&iacute;ch inzer&aacute;tů</p>",
     "create-new-ad": "Vytvořit nový inzerát",
     "day1": "Dnes",
     "day3": "3 dny",
