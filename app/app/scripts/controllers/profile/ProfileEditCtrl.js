@@ -94,7 +94,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		};
 
 		$scope.transferDataOut = function(data) {
+			var webs = [];
 
+			// remove empty webs
+			data.webs.forEach(function(web) {
+				if(web) webs.push(web);
+			});
+
+			data.webs = webs;
 			data.interests = data.interests.split(",");
 			return data;
 		}

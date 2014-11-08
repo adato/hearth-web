@@ -48,8 +48,11 @@
 	<section class="large-10 fright columns" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
-				{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
-				<a href="" ng-click="openUserRatingForm(false)"><b>{{ 'THUMB_UP' | translate }}</b></a>
+				{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}
+
+			    <a href="" ng-click="openUserRatingForm(false)"><i class="fa fa-sun-o"></i> {{ 'THUMB_UP' | translate }}</a>
+			    {{ 'OR' | translate }}
+			    <a href="" ng-click="openUserRatingForm(true)"><i class="fa fa-moon-o"></i> {{ 'GIVE_NEGATIVE_RATING' | translate }}</a>
 			</div>
 		</div>
 	</section>
