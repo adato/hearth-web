@@ -8,7 +8,7 @@
             <h1>
                 <div class="button-bar text-right" ng-if="!loggedCommunity">
                     <button ng-if="!mine" class="profile-button tall" ng-click="openUserRatingForm(false)">
-                        <i class="fa fa-sun-o"></i> {{ 'THUMB_UP' | translate }}
+                        {{ 'THUMB_UP' | translate }}
                     </button>
                     <button ng-if="!info.is_followed" class="others profile-button tall outline" ng-click="toggleFollow(info._id)">
                         <i class="fa fa-plus"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}
