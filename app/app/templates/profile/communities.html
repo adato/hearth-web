@@ -1,3 +1,13 @@
+<div ng-if="! data.length" class="bottom-tabs"></div>
+<div ng-if="! data.length" class="clear"></div>
+
+<div class="terms-page row profile-edit profile-edit-common" ng-if="mine && ! data.length">
+	{{ 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_ME' | translate }}
+</div>
+<div class="terms-page row profile-edit profile-edit-common" ng-if="! mine && ! data.length">
+	{{ 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_OTHER' | translate }}
+</div>
+
 <div ng-if="data.length" class="bottom-tabs">
 	<h2 ng-if="mine">
 		{{ 'YOU_ARE_MEMBER' | translate}}
