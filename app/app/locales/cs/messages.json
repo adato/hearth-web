@@ -303,8 +303,64 @@
     "INDEX_TERMS": "Podmínky použití",
     "INDEX_TOMAS_HAJZLER_TEXT": "Hearth.net mě nadchlo svojí jednoduchostí. Přestěhoval jsem se teď do nové čtvrti a myslím, že by mi to mohlo pomoci vybudovat zde nějaké vztahy. Vždyť dávání bylo a bude základ každé rodiny a zároveň to je v podstatě technika, jak se cítit skvěle. Myslím, že dnešní doba sociálních sítí a toho jak jsme globálně propojeni nám k tomu ideálně nahrává.",
     "INDEX_TOMAS_HAJZLER_TITLE": "zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou.",
-    "INSPIRED_BY_HIM": "inspiruje",
-    "INSPIRED_BY_ME": "inspiruji",
+    "PROFILE": {
+        "FRIENDS": {
+            "YOU_HAVE_X_FRIENDS": {
+                "few": "Máte {{count}} kamarády",
+                "one": "Máte {{count}} kamaráda",
+                "other": "Máte {{count}} přátel"
+            },
+            "HE_HAS_X_FRIENDS": {
+                "few": "Uživatel má {{count}} kamarády",
+                "one": "Uživatel má {{count}} kamaráda",
+                "other": "Uživatel má {{count}} přátel"
+            }
+        },
+        "FOLLOWEES": {
+            "IM_INSPIRED_BY_X_PEOPLE": {
+                "few": "Inspirují vás {{count}} lidi",
+                "one": "Inspiruje vás {{count}} člověk",
+                "other": "Inspiruje vás {{count}} lidí"
+            },
+            "HE_IS_INSPIRED_BY_X_PEOPLE": {
+                "few": "Je inspirován {{count}} lidmi",
+                "one": "Je inspirován {{count}} člověkem",
+                "other": "Je inspirován {{count}} lidmi"
+            }
+        },
+        "FOLLOWERS": {
+            "IM_INSPIRING_X_PEOPLE": {
+                "few": "Inspirujete {{count}} lidi",
+                "one": "Inspirujete {{count}} člověka",
+                "other": "Inspirujete {{count}} lidí"
+            },
+            "HE_IS_INSPIRING_X_PEOPLE": {
+                "few": "Inspiruje {{count}} lidi",
+                "one": "Inspiruje {{count}} člověka",
+                "other": "Inspiruje {{count}} lidí"
+            }
+        }
+    },
+    "X_PEOPLE_INSPIRED_BY_ME": {
+        "few": "<b>{{count}}</b><br /> lidí inspiruji",
+        "one": "<b>{{count}}</b><br /> člověka inspiruji",
+        "other": "<b>{{count}}</b><br /> lidí inspiruji"
+    },
+    "X_PEOPLE_INSPIRING_ME": {
+        "one": "{{count}} člověkem<br /> inspirován",
+        "few": "{{count}} lidmi<br /> inspirován",
+        "other": "{{count}} lidmi<br /> inspirován"
+    },
+    "X_PEOPLE_INSPIRING_HIM": {
+        "one": "{{count}} člověkem<br /> inspirován",
+        "few": "{{count}} lidmi<br /> inspirován",
+        "other": "{{count}} lidmi<br /> inspirován"
+    },
+    "X_PEOPLE_INSPIRED_BY_HIM": {
+        "few": "<b>{{count}}</b><br /> lidí inspiruje",
+        "one": "<b>{{count}}</b><br /> člověka inspiruje",
+        "other": "<b>{{count}}</b><br /> lidí inspiruje"
+    },
     "INSPIRING_PL": {
         "few": "inspirují",
         "one": "inspiruje",

@@ -32,16 +32,14 @@
                 <img ng-src="{{info.avatar.large}}" ng-if="info.avatar.large" />
             </a>
             <a href="#!/profile/{{info._id}}/following" ng-class="{'active': (pageSegment.substr(8) == 'friends' || pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers_count')}" class="friends-and-follows">
-                <b>{{info.followers_count}}</b>
-                <br />
-                {{ 'HOW_MANY_PEOPLE.'+pluralCat(info.followers_count) | translate }}
-                <span ng-if="mine">{{ 'INSPIRED_BY_ME' | translate }}</span>
-                <span ng-if="!mine">{{ 'INSPIRED_BY_HIM' | translate }}</span>
+                
+                <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
+                <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
                 <hr>
-                {{info.followees_count}}
-                {{ 'BY_PEOPLE.'+pluralCat(info.followees_count) | translate }}
-                <br />
-                {{ 'IS_INSPIRED' | translate }}
+
+                <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_ME.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
+
+                <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_HIM.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
             </a>
             <a href="#!/profile/{{info._id}}/communities" class="communities" ng-class="{'active': (pageSegment.substr(8) == 'communities')}"><b>{{info.communities_count}}</b> 
                 {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
