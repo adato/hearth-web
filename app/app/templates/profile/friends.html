@@ -1,5 +1,12 @@
 <div ng-include="'templates/profile/followingPanel.html'"></div>
 
+<div class="terms-page row profile-edit profile-edit-common" ng-if="mine && ! data.length">
+	{{ 'PROFILE.FRIENDS.NO_FRIENDS_ME' | translate }}
+</div>
+<div class="terms-page row profile-edit profile-edit-common" ng-if="! mine && ! data.length">
+	{{ 'PROFILE.FRIENDS.NO_FRIENDS_OTHER' | translate }}
+</div>
+
 <div class="people-listing">
 	<div class="person" ng-repeat="(id, item) in data track by $index">
 		<a href="#!/{{ getProfileLinkByType(item.user_type) }}/{{ item.user_id }}">
