@@ -65,9 +65,15 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 		$scope.setLoginRequired = function() {
 			$scope.showMsgOnlyLogged = true;
+			$rootScope.loginRequired = false;
 		};
 
-		$scope.$on('loginRequired', $scope.setLoginRequired);
+		if($rootScope.loginRequired) {
+			$scope.setLoginRequired();
+		} else {
+			$scope.$on('loginRequired', $scope.setLoginRequired);
+		}
+
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
 	}

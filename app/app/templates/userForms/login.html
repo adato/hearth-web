@@ -6,9 +6,9 @@
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
     </div>
     <hr />
-    <form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form">
+    <form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form login-form">
         <div ng-if="showMsgOnlyLogged">
-            <div class="alert-box info radius" style=""><i class="fa fa-info-circle"></i>{{ 'LOGIN_REQUIRED' | translate }}</div>
+            <div class="alert-box alert radius" style=""><i class="fa fa-exclamation-triangle"></i>{{ 'LOGIN_REQUIRED' | translate }}</div>
         </div>
         <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
         <input type="text" name="username" class="login_name" ng-model="data.username" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">

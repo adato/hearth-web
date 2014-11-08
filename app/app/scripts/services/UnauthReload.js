@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('UnauthReload', [
-	'$translate', '$location', '$rootScope',
-	function($translate, $location, $rootScope) {
+	'$translate', '$location', '$rootScope', '$timeout',
+	function($translate, $location, $rootScope, $timeout) {
 		var self = this;
 		var cookieName = 'reloadPath';
 
@@ -18,15 +18,15 @@ angular.module('hearth.services').service('UnauthReload', [
 		this.checkAuth = function() {
 			// if not logged
 			if(!$rootScope.loggedUser || ! $rootScope.loggedUser._id) {
+            	$rootScope.loginRequired = true;
 
 				// set return path and refresh on login
 				$.cookie(cookieName, $location.path());
 				$location.path('/login');
 
         		var destroy = $rootScope.$on('$routeChangeSuccess', function() {
-		            setTimeout(function() {
+		            $timeout(function() {
 		            	$rootScope.$broadcast('loginRequired');
-
 	        			destroy();
 		            });
 		        });

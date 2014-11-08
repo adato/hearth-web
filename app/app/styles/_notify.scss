@@ -1,9 +1,9 @@
 .alert-box {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    text-align: center;
     color: white  !important;
     font-size: 15px;
+
     i {
         margin-right: 10px;
     }
@@ -27,6 +27,16 @@
         background-color: #FF0000 !important;
     }
 }
+
+.login-form {
+    .alert-box {
+    
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        text-align: center;
+    }
+}
+
 
 #notify-top {
     left: 50%;
