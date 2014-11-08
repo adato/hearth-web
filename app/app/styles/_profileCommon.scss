@@ -176,7 +176,10 @@ $medium-avatar-size: 80px;
                     border-bottom-right-radius: $global-radius;
                 }
                 .positive, .negative {
+
                     display: inline-block;
+                    float: left;
+                    
                     padding: {
                         left: 1rem;
                         right: 1rem;
