@@ -74,6 +74,13 @@ angular.module('hearth.geo').directive('locations', [
                             }
                         });
 
+                        $(this).on( "keypress", function(event) {
+                            if (event.which == 13 && !event.shiftKey) {
+                                // dont send form when selected place by enter
+                                event.preventDefault();
+                            }
+                        });
+
                         $(this).blur(function() {
                             if (!this.value) {
                                 scope.clearLocation(index);

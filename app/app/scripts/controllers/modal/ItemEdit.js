@@ -196,8 +196,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(post.locations && ! post.location_unlimited) {
 
 				post.locations.forEach(function(item) {
-
-					if(item.name == '') {
+					if(item.name == '' || !item.coordinates) {
 						res = $scope.showError.locations = true;
 					}
 				});
@@ -292,12 +291,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 				$scope.closeThisDialog();
 
-
-				if(post._id) {
-					$rootScope.$broadcast('postUpdated', data);
-				} else {
-					$rootScope.$broadcast('postCreated', data);
-				}
+				// emit event into whole app
+				$rootScope.$broadcast( post._id ? 'postUpdated' : 'postCreated', data);
 
 				// $(document.body).scrollTop(0);
 
