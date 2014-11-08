@@ -19,14 +19,15 @@
             @extend .large-12, .columns;
             margin:0;
             padding:0;            
-            margin-left:auto;
-            margin-right:auto;
+            margin:auto;
             float:none;
             .photo {
                 float:left;
-                margin:2rem;
+                margin-left:2rem;
+                margin-bottom:2rem;
+                margin-top:2rem;
                 .avatar {
-                    left:initial;
+                    left:0px;
                     margin-left:0;
                 }
             }

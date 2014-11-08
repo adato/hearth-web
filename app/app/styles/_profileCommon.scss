@@ -154,9 +154,9 @@ $medium-avatar-size: 80px;
                 @extend .large-8, .columns, .pull-right;
 
                 padding: 0;
-                width: 64.667%;
+                width: 600px;
 
-                min-height: 29px;
+                height: 25px;
                 background-color: #7c766a;
                 border-radius: $global-radius;
                 box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
@@ -167,6 +167,10 @@ $medium-avatar-size: 80px;
                 right: 0px;
                 float: right;
 
+                color: color(4);
+                font-weight: bold;
+                    
+
                 .bar:first-child {
                     border-top-left-radius: $global-radius;
                     border-bottom-left-radius: $global-radius;
@@ -175,21 +179,41 @@ $medium-avatar-size: 80px;
                     border-top-right-radius: $global-radius;
                     border-bottom-right-radius: $global-radius;
                 }
-                .positive, .negative {
 
+                .empty {
+                    display: block;
+                    text-align: center;
+                    margin-top: 4px;
+                }
+
+                .full {
+                    max-width: 100% !important;
+                }
+
+                .positive, .negative {
+                    
+                    height: 25px;
                     display: inline-block;
                     float: left;
-                    
+                    min-width: 70px;
+                    max-width: 530px;
+
+                    /*
                     padding: {
                         left: 1rem;
                         right: 1rem;
                         top: .4rem;
                         bottom: .4rem;
                     };
+                    */
                     color: color(4);
                     font-weight: bold;
                     box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
                     white-space: nowrap;
+                    span {
+                        position: relative;
+                        top: 4px;
+                    }
                 }
                 .positive {
                     background: #58af08;
@@ -199,13 +223,26 @@ $medium-avatar-size: 80px;
                         display: inline-block;
                         margin-left: 5px;
                     }
+                    span {
+                        margin-right: 10px;
+                    }
                 }
                 .negative {
                     background: #275f80;
                     background: linear-gradient(30deg, #275f80, #4ca5c7);
-                    .fa {
+                    position: relative;
+                    overflow: hidden;
+
+                    img {
                         display: inline-block;
+                        left: -20px;
                         margin-right: 5px;
+                        max-height: 16px;
+                        position: absolute;
+                        top: 3px;
+                    }
+                    span {
+                        margin-left: 34px;
                     }
                 }
             }
@@ -583,7 +620,7 @@ $medium-avatar-size: 80px;
 }
 
 .profile-button {
-    background: color(5);
+    background-color: color(5);
     border-color: color(5);
     top: 0;
     vertical-align: bottom;
@@ -613,6 +650,11 @@ $medium-avatar-size: 80px;
             border-color: darken(color(1), 20%);
         }
     }
+
+    &.solid {
+        opacity: 0.99;
+    }
+
     &.outline {
         color: color(5);
         opacity: .8;

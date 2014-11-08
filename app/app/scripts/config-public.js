@@ -28,6 +28,6 @@ $$config = {
 };
 
 // copy data from localConfig
-if($$localConfig) {
-	for(var key in $$localConfig) $$config[key]=$$localConfig[key];
-}
+// if($$localConfig) {
+// 	for(var key in $$localConfig) $$config[key]=$$localConfig[key];
+// }
