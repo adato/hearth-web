@@ -22,8 +22,8 @@
 						<button class="profile-button red tall">
 							<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
 						</button>
-					</a>					
-				</div>			
+					</a>
+				</div>
 				<a href="#!/community/{{info._id}}">
 					{{ info.name }}
 				</a>
@@ -34,14 +34,10 @@
 				<img ng-if="info.avatar.large" ng-src="{{info.avatar.large}}" />
 			</a>
 			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(10) == 'posts')}" class="posts-count">
-				<b>{{info.post_count}}</b>
-				<br />
-				{{'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
+                <span ng-if="info" ng-bind-html="'COMMUNITY.X_GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate: '{count: '+info.post_count+'}'"></span>
 			</a>
 			<a href="#!/community/{{info._id}}/members" class="members-count" ng-class="{'active': (pageSegment.substr(10) == 'members' || pageSegment.substr(10) == 'applications')}">
-				<b>{{info.member_count}}</b> 
-				<br />
-				{{'COMMUNITY_MEMBERS.'+pluralCat(info.member_count) | translate }}
+                <span ng-if="info" ng-bind-html="'COMMUNITY.X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
             </a>
 			<a href="#!/community/{{info._id}}/about" class="about" ng-class="{'active': (pageSegment.substr(10) == 'about')}">
 				<span>{{ 'COMMUNITY_ABOUT_SHORT' | translate}}</span>

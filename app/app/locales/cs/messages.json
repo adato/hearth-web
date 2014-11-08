@@ -303,6 +303,28 @@
     "INDEX_TERMS": "Podmínky použití",
     "INDEX_TOMAS_HAJZLER_TEXT": "Hearth.net mě nadchlo svojí jednoduchostí. Přestěhoval jsem se teď do nové čtvrti a myslím, že by mi to mohlo pomoci vybudovat zde nějaké vztahy. Vždyť dávání bylo a bude základ každé rodiny a zároveň to je v podstatě technika, jak se cítit skvěle. Myslím, že dnešní doba sociálních sítí a toho jak jsme globálně propojeni nám k tomu ideálně nahrává.",
     "INDEX_TOMAS_HAJZLER_TITLE": "zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou.",
+    "COMMUNITY": {
+        "X_GIVES_AND_WISHES": {
+            "few": "<b>{{count}}</b><br /> inzeráty",
+            "one": "<b>{{count}}</b><br /> inzerát",
+            "other": "<b>{{count}}</b><br /> inzerátů"
+        },
+        "X_MEMBERS": {
+            "few": "<b>{{count}}</b><br /> členové",
+            "one": "<b>{{count}}</b><br /> člen",
+            "other": "<b>{{count}}</b><br /> členů"
+        },
+        "COMMUNITY_HAS_X_MEMBERS": {
+            "few": "Komunita má {{count}} členy",
+            "one": "Komunita jednoho člena",
+            "other": "Komunita má {{count}} členů"
+        },
+        "APPROVE_REQUESTS": {
+            "few": "{{count}} lidi čekají na schválení",
+            "one": "Jeden člověk čeká na schválení",
+            "other": "{{count}} lidí čeká na schválení"
+        }
+    },
     "PROFILE": {
         "FRIENDS": {
             "YOU_HAVE_X_FRIENDS": {

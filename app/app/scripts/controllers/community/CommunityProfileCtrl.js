@@ -10,7 +10,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload',
 	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
 		$scope.loaded = false;
-		$scope.info = {};
+		$scope.info = false;
 
 		$scope.isMine = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
