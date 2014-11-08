@@ -14,7 +14,7 @@
 			<item keywords-active="keywordsActive" item="item" ng-repeat="(id, item) in items track by $index" user="user" community="loggedCommunity"></item>
 		</div>
 	</div>
-	<div class="large-12 columns" ng-show="showMap">
+	<div class="large-12 columns" ng-if="showMap">
 		<search-map show-map="showMap" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>
