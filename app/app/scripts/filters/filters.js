@@ -83,6 +83,24 @@ angular.module('hearth.filters', [])
 	}
 ])
 
+.filter('nl2br', function(){
+	return function(text) {
+		return text.replace(/&#10;/g, '<br/>').replace(/\n/g, '<br/>');
+	};
+})
+
+// /**
+//  * @ngdoc filter
+//  * @name hearth.filters.nl2br
+//  * @description Returns nl2br text
+//  */
+// .filter('nl2br', [ '$filter', function($filter) {
+// 	    return function(text) {
+// 	    	var t = text.replace(/\n/g, '<br>');
+// 	      return t;
+// 	    }
+// 	}
+// ])
 
 /**
  * @ngdoc filter

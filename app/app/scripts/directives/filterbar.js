@@ -20,7 +20,6 @@ angular.module('hearth.directives').directive('filterbar', [
 					filterSelected: false,
 					newItemSelected: false
 				});
-				console.log(scope.filterSelected);
 
 				scope.toggleNewItem = function() {
 					if (!scope.filterSelected) {

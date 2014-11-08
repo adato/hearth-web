@@ -80,7 +80,7 @@
 					<div class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</div>
 				</div>			
 				<div class="text-container clearfix">
-					<p ng-bind-html="item.text | linky:'_blank'"></p>
+					<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 				</div>
 				<small>{{ 'SAYING' | translate}} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a></small>				
 			</div>
