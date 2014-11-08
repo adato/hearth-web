@@ -1,9 +1,15 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
 
+<div class="profile-edit-common no-content" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
+	{{ 'PROFILE.POSTS.NO_POSTS_ME' | translate }} <a ng-if="!loggedCommunity" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a>
+</div>
+<div class="profile-edit-common no-content" ng-if="loaded && ! mine && ! postsActive.length">
+	{{ 'PROFILE.POSTS.NO_POSTS_OTHER' | translate }}
+</div>
+
 <div class="ads-listing active">
 	<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsActive track by $index" user="loggedUser" community="loggedCommunity" inactivate-tags='true'></item>
 </div>
-
 
 <div ng-if="mine && postsInactive" class="ads-listing">
 	<h3>{{ 'POSTS_INACTIVE' | translate }}</h3>

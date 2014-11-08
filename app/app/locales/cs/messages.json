@@ -183,7 +183,7 @@
     "DOING_AS_COMMUNITY": "Za komunitu",
     "DONT_HAVE_ACCOUNT_YET": "Nemáte účet?",
     "DONT_SHOW_ANYMORE": "Znovu neukazovat",
-    "DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Komunikovali jste s {{name}}? Dejte světu vědět, že všechno klaplo nebo že se naopak něco nepovedlo...",
+    "DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Komunikovali jste spolu? Dejte světu vědět, že všechno klaplo nebo že se naopak něco nepovedlo...",
     "DO_YOU_REALLY_WANT_TO_DELETE_ACCOUNT": "Tak toho jsme se báli. Nerozmyslíte si to? Opravdu chcete z Hearth smazat všechny svoje stopy?",
     "EDIT_BUTTON_CAPTION": "Upravit",
     "EDIT_POST": "Upravit",
@@ -588,7 +588,7 @@
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
     "POST_WAS_DELETED": "Inzerát byl vymazán.",
     "PROFILE": {
-        "COMMUNITTsIES": {
+        "COMMUNITTIES": {
             "NO_COMMUNITTIES_ME": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
             "NO_COMMUNITTIES_OTHER": "Uživatel u nás zatím není členem žádné komunity."
         },
@@ -633,6 +633,13 @@
                 "one": "Máte {{count}} přítele",
                 "other": "Máte {{count}} přátel"
             }
+        },
+        "POSTS": {
+            "NO_GIVEN_RATINGS_ME": "Zatím jste tu nikoho nehodnotil(a). To jde ale rychle napravit na profilu některého z vašich přátel.",
+            "NO_GIVEN_RATINGS_OTHER": "Uživatel zatím nikoho nehodnotil.",
+            "NO_POSTS_ME": "Zatím u nás nemáte žádné inzeráty. To ale můžete hned napravit.",
+            "NO_POSTS_OTHER": "Uživatel zde zatím nemá žádné inzeráty. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
+            "NO_RECEIVED_RATINGS_ME": "Zatím vás nikdo nehodnotil. Ozvěte se svým přátelům, aby vám hodnocení vyplnili."
         }
     },
     "PROFILE_EDIT": "Upravit profil",

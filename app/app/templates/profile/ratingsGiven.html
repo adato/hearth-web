@@ -1,4 +1,12 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
+
+<div class="profile-edit-common no-content" ng-if="loaded && mine && ! data.length">
+	{{ 'PROFILE.POSTS.NO_GIVEN_RATINGS_ME' | translate }}
+</div>
+<div class="profile-edit-common no-content" ng-if="loaded && ! mine && ! data.length">
+	{{ 'PROFILE.POSTS.NO_GIVEN_RATINGS_OTHER' | translate }}
+</div>
+
 <div class="rating-listing">
 	<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index">
 		<section class="large-2 columns photo">
