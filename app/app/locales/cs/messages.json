@@ -634,10 +634,15 @@
                 "other": "Máte {{count}} přátel"
             }
         },
+        "HOME": {
+            "NO_ACTIVITY_ME": "Jste tu krátce, nemáme vám zatím co ukázat :)",
+            "NO_ACTIVITY_OTHER": "Uživatel je tady nový, nemáme vám tady zatím co ukázat.",
+            "NO_POSTS_ME": "Zatím jste nevytvořili žádný inzerát, pojďme s tím něco udělat - můžete darovat či přijmou co jen vás napadne."
+        },
         "POSTS": {
             "NO_GIVEN_RATINGS_ME": "Zatím jste tu nikoho nehodnotil(a). To jde ale rychle napravit na profilu některého z vašich přátel.",
             "NO_GIVEN_RATINGS_OTHER": "Uživatel zatím nikoho nehodnotil.",
-            "NO_POSTS_ME": "Zatím u nás nemáte žádné inzeráty. To ale můžete hned napravit.",
+            "NO_POSTS_ME": "Zatím jste nevytvořili žádný inzerát, pojďme s tím něco udělat - můžete darovat či přijmou co jen vás napadne.",
             "NO_POSTS_OTHER": "Uživatel zde zatím nemá žádné inzeráty. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
             "NO_RECEIVED_RATINGS_ME": "Zatím vás nikdo nehodnotil. Ozvěte se svým přátelům, aby vám hodnocení vyplnili."
         }
