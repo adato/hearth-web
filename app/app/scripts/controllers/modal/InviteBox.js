@@ -18,7 +18,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
             return false;
         };
 
-
         $scope.showFinished = function() {
 
             $(".invite-form").slideToggle();
