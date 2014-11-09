@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout',
+	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout) {
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
@@ -19,7 +19,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function finishLoading() {
-            $scope.subPageLoaded = true;
+            $timeout(function(){
+               $scope.subPageLoaded = true;
+            });
         }
 
         function processData(res) {
@@ -85,15 +87,26 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 community_id: id
             };
 
-            CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
-                $scope.activityLog = res;
-            });
-            CommunityApplicants.query({communityId: id}, function(res) {
-                $scope.applications = res;
-            });
-            Fulltext.query(fulltextParams, function(res) {
-                $scope.posts = res;
-            });
+            async.parallel([
+                function(done) {
+                    CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
+                        $scope.activityLog = res;
+                        done(null);
+                    });
+                },
+                function(done) {
+                    CommunityApplicants.query({communityId: id}, function(res) {
+                        $scope.applications = res;
+                        done(null);
+                    });
+                },
+                function(done) {
+                    Fulltext.query(fulltextParams, function(res) {
+                        $scope.posts = res;
+                        done(null);
+                    });
+                }
+            ], finishLoading);
 
             $scope.$on('updatedItem', $scope.refreshItemInfo);
         }

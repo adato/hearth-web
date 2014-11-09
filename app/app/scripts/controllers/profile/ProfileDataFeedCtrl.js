@@ -89,15 +89,28 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             }
 
             params.limit = 5;
-            UserRatings.received(params, function(res) {
-                $scope.receivedRatings = res;
-            });
-            UsersActivityLog.get(params, function(res) {
-                $scope.activityLog = res;
-            });
-            Fulltext.query(fulltextParams, function(res) {
-                $scope.posts = res;
-            });
+
+            async.parallel([
+                function(done) {
+                    UserRatings.received(params, function(res) {
+                        $scope.receivedRatings = res;
+                        done(null);
+                    });
+                },
+                function(done) {
+                    UsersActivityLog.get(params, function(res) {
+                        $scope.activityLog = res;
+                        done(null);
+                    });
+                },
+                function(done) {
+                    Fulltext.query(fulltextParams, function(res) {
+                        $scope.posts = res;
+                        done(null);
+                    });
+                }
+            ], finishLoading);
+
 
             $scope.$on('updatedItem', $scope.refreshItemInfo);
         }
