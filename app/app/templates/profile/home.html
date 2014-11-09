@@ -120,14 +120,7 @@
             <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME' | translate }}</p>
             <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
             <div ng-if="activityLog.length">
-                <div ng-include="'templates/_activityList.html'">
-                    <!--                 
-                        <div class="buttons">
-                            <a href="#!/profile/{{info._id}}/activity-feed">
-                                <button class="button-flat blue spacy"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
-                            </a>
-                        </div>
-                     -->
+                <div ng-include="'templates/_activityList.html'"></div>
             </div>
         </div>
     </div>
