@@ -111,7 +111,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 }
             ], finishLoading);
 
-
             $scope.$on('updatedItem', $scope.refreshItemInfo);
         }
 

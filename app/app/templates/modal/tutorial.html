@@ -1,16 +1,16 @@
-<div class="tutorial-container">
-	<span class="controlls"><i class="fa fa-times close-button" ng-click="close()"></i></span>
-	<section class="tutorial tcenter">
-		<article class="opening" ng-if="! slider">
-			<h2>{{ 'TUTORIAL_HEADER' | translate }}</h2>
+<div class="modal">
+    <header class="text-center">
+        <span class="controlls">
+        	<span ng-click="close()" class="close fa fa-times"></span>
+        </span>
+    </header>
+	<section class="tutorial">
+		<article class="opening text-center" ng-if="! slider">
+			<h3>{{ 'TUTORIAL_HEADER' | translate }}</h3>
 			<br />
-			<br />
-			<button class="tbutton" ng-click="showMeMagic()">{{ 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
-			<br />
-			<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
+			<button ng-click="showMeMagic()">{{ 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
 		</article>
-
-		<section class="slider" ng-if="slider">
+		<section class="slider" ng-show="slider">
 			<div class="flexslider" flexslider ng-if="loaded">
 				<span class="controlls">
 					<i ng-if="tutorials.length > 1" class="leftButton fa fa-angle-left" ng-click="prev()"></i>
@@ -28,10 +28,15 @@
 						</div>
 					</li>
 				</ul>
-				<div class="tright closeAll">
-					<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING_BELOW_SLIDE' | translate }}</a>
-				</div>
 			</div>
 		</section>
 	</section>
+    <footer>
+    	<span ng-if="!slider">
+			<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
+    	</span>
+    	<div ng-if="slider" class="text-center closeAll">
+			<a ng-click="closeAll()">{{ 'TUTORIAL_DONT_SHOW_ANYTHING_BELOW_SLIDE' | translate }}</a>
+		</div>
+    </footer>
 </div>

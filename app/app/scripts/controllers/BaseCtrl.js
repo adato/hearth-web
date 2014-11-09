@@ -144,6 +144,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $.cookie('tutorial', 1);
             }
 
+            $scope.showTutorial();
+
             $rootScope.pluralCat = $locale.pluralCat;
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
         };
@@ -278,7 +280,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 template: $$config.modalTemplates + 'tutorial.html',
                 controller: 'Tutorial',
                 scope: scope,
-                className: 'ngdialog-tutorial',
+                className: 'ngdialog-tutorial ngdialog-theme-default',
                 closeByDocument: false,
                 closeByEscape: false,
                 showClose: false

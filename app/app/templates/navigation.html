@@ -27,6 +27,11 @@
 				<label>{{ 'COMMUNITIES' | translate }}</label>
 			</a>
 			
+			<a ng-show="loggedUser._id" ng-click="showTutorial()">
+				<div class="fa fa-spoon"></div>
+				<label>{{ 'TUTORIAL' | translate }}</label>
+			</a>
+			
 			<div class="separator"></div>
 			
 			<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" data-dropdown="profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
