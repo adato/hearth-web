@@ -14,6 +14,14 @@
     "ABOUT_LINK": "Profil",
     "ABOUT_ME": "Více o mě",
     "ABOUT_TEXT": "Hearth.net spojuje aktivní lidi, kteří pro ostatní rádi udělají, co umí a ocení, když se jim to z jiné strany vrátí.",
+    "ACCOUNT": {
+        "LOGIN": {
+            "VIA_SOCIAL_NETWORKS": "Nebo se přihlašte pomocí sociální sítě."
+        },
+        "REGISTER": {
+            "VIA_SOCIAL_NETWORKS": "Nebo se registrujte pomocí sociální sítě."
+        }
+    },
     "ACTIVATE": "Obnovit",
     "ACTIVATE_ACCOUNT_BROKEN_LINK": "Jejda! Tento odkaz na aktivaci účtu není platný.",
     "ACTIVE_KEYWORDS_FILTER": "Filtr klíčových slov",

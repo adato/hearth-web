@@ -31,14 +31,18 @@
                 <span ng-show="registerForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
             </div>
 
+            <div class="text-center">
+                <button class="primary button-send pointer" type="submit"><i class="fa fa-user"></i> {{ 'SIGNUP_BUTTON' | translate }}</button>
+            </div>
+
             <div class="clear"></div>
             <hr />
             <div class="social-login">
+                <p>{{ 'ACCOUNT.REGISTER.VIA_SOCIAL_NETWORKS' | translate }}</p>
                 <a ng-href="{{ '/users/auth/facebook' | apiPrefix }}" class="fa fa-facebook"></a> <a ng-href="{{ '/users/auth/twitter' | apiPrefix }}" class="fa fa-twitter"></a> <a ng-href="{{ '/users/auth/google_oauth2' | apiPrefix }}" class="fa fa-google"></a>
             </div>
             <hr />
             <div class="bottom">
-                <button class="primary button-send pointer center" type="submit"><i class="fa fa-user"></i> {{ 'SIGNUP_BUTTON' | translate }}</button>
                 <p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }} <a href="" ng-click="showTerms = !showTerms">{{ 'WITH_TERMS_OF_USE' | translate }}</a></p>
                 <p>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }} <a href="#!/login">{{ 'LOGIN_TO_HEARTH' | translate }}</a></p>
             </div>
