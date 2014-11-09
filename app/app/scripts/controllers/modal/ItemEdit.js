@@ -254,7 +254,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.showInvalidPostMessage = false;
 
 			if(! $scope.testForm(post)) {
-				$rootScope.scrollToError('.create-ad .error', '.ngdialog');
+				$timeout(function() {
+					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
+				}, 50);
 				return false;
 			}
 
