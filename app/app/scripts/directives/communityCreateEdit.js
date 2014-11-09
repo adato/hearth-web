@@ -17,6 +17,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
             templateUrl: 'templates/directives/communityEditForm.html',
             link: function($scope, element) {
                 $scope.communityMembers = false;
+                $scope.loaded = false;
                 $scope.sendingDelete = false;
                 $scope.defaultCommunity = {
                     name: '',

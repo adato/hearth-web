@@ -1,7 +1,5 @@
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
   <form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
-
-
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
       <div image-preview files="profile.avatar" limit="1" limit-pixel-size="400" single-file="true">
         <img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image />
@@ -12,8 +10,6 @@
         </div>
       </div>
     </div>
-
-
     <div class="fleft small-12 large-7 pull-5 alt-bg">
       <h2 class="hide-border">
         <span class="content">
