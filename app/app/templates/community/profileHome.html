@@ -79,7 +79,8 @@
     <div class="right-pane">
         <div class="activities">
             <h3>{{ 'COMMUNITY_ACTIVITY' | translate }}</h3>
-            <p ng-hide="activityLog.length">{{ 'NOTICE_EMPTY_DATA' | translate }}</p>
+            <p ng-if="mine && ! activityLog.length">{{ 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
+            <p ng-if="! mine && ! activityLog.length">{{ 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
             <div ng-if="activityLog.length">
                 <div ng-include="'templates/_activityList.html'">
                 <div class="buttons">

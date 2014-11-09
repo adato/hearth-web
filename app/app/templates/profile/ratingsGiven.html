@@ -1,10 +1,10 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
 
-<div class="profile-edit-common no-content" ng-if="loaded && mine && ! data.length">
-	{{ 'PROFILE.POSTS.NO_GIVEN_RATINGS_ME' | translate }}
+<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && mine && ! data.length">
+	<p>{{ 'PROFILE.POSTS.NO_GIVEN_RATINGS_ME' | translate }}</p>
 </div>
-<div class="profile-edit-common no-content" ng-if="loaded && ! mine && ! data.length">
-	{{ 'PROFILE.POSTS.NO_GIVEN_RATINGS_OTHER' | translate }}
+<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && ! mine && ! data.length">
+	<p>{{ 'PROFILE.POSTS.NO_GIVEN_RATINGS_OTHER' | translate }}</p>
 </div>
 
 <div class="rating-listing">

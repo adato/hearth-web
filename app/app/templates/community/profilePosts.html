@@ -1,13 +1,13 @@
 <div class="bottom-tabs"></div>
 <div class="clear"></div>
 
-<div class="profile-edit-common no-content" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
-	{{ 'COMMUNITY.POSTS.NO_POSTS_ADMIN' | translate }}<br /><br />
-	<a ng-if="loggedCommunity" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a>
+<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
+	<p>{{ 'COMMUNITY.POSTS.NO_POSTS_ADMIN' | translate }}</p>
+	<p><a ng-if="loggedCommunity" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a></p>
 	<p ng-if="! loggedCommunity">{{ 'SWITCH_TO_COMMUNITY_TO_MANAGE_POSTS' | translate }}</p>
 </div>
-<div class="profile-edit-common no-content" ng-if="loaded && ! mine && ! postsActive.length && ! postsInactive.length">
-	{{ 'COMMUNITY.POSTS.NO_POSTS_OTHER' | translate }}
+<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && ! mine && ! postsActive.length && ! postsInactive.length">
+	<p>{{ 'COMMUNITY.POSTS.NO_POSTS_OTHER' | translate }}</p>
 </div>
 
 <div class="ads-listing active">

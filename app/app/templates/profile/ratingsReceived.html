@@ -1,7 +1,7 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
 
-<div class="profile-edit-common no-content" ng-if="loaded && mine && ! data.length">
-	{{ 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}
+<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && mine && ! data.length">
+	<p>{{ 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
 </div>
 
 <div class="ratings-received row rating-item animate-show" id="received-rating-form" ng-show="showUserRatingForm">

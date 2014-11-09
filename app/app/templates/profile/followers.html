@@ -1,10 +1,10 @@
 <div ng-include="'templates/profile/followingPanel.html'"></div>
 
-<div class="terms-page row profile-edit profile-edit-common" ng-if="mine && ! data.length">
-	{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}
+<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
+	<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}</p>
 </div>
-<div class="terms-page row profile-edit profile-edit-common" ng-if="! mine && ! data.length">
-	{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}
+<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
+	<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}</p>
 </div>
 
 <div class="people-listing">

@@ -82,6 +82,10 @@
             "one": "Komunita má jednoho člena",
             "other": "Komunita má {{count}} členů"
         },
+        "HOME": {
+            "NO_ACTIVITY_ME": "Jste tu krátce, nemáme vám zatím co ukázat :)",
+            "NO_ACTIVITY_OTHER": "Komunita je tady nová, nemáme vám tady zatím co ukázat."
+        },
         "POSTS": {
             "NO_POSTS_ADMIN": "Zatím jste nevytvořili žádný inzerát, pojďme s tím něco udělat - můžete darovat či přijmou co jen vás napadne.",
             "NO_POSTS_MEMBER": "V komunitě ještě nemáte žádné inzeráty.",
