@@ -3,7 +3,6 @@
         <article class="row">
             <section class="large-12 columns">
                 <header>
-                    <div ng-if="!items.length && loaded">{{ 'FULLTEXT_NOTHING_FOUND' | translate }}</div>
                     <div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {value: queryText}"></div>
                 </header>
             </section>
