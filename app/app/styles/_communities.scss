@@ -42,11 +42,11 @@
                 margin:0;
                 padding:0;
                 section {
-                    height:9rem;
+                    height:11.5rem;
                     overflow:hidden;
                     margin:1rem;
                     .content {
-                        height: 145px;
+                        height: 11.6rem;
                     }
                 }
                 &:nth-child(2n)>section {
@@ -57,9 +57,9 @@
                 }
                 .fadeout {
                     position: relative; 
-                    bottom: 24px;
-                    height: 23px;
-                    background-image: linear-gradient(to top, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+                    bottom: 4rem;
+                    height: 4rem;
+                    background-image: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
                 } 
             }
         }
