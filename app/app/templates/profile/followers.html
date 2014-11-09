@@ -1,23 +1,26 @@
 <div ng-include="'templates/profile/followingPanel.html'"></div>
 
-<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
-	<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}</p>
-</div>
-<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
-	<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}</p>
-</div>
+<div ng-if="subPageLoaded">
 
-<div class="people-listing">
-	<div class="person" ng-repeat="(id, item) in data track by $index">
-		<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">
-			<div class="avatar">
-				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+	<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
+		<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}</p>
+	</div>
+	<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
+		<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}</p>
+	</div>
+
+	<div class="people-listing">
+		<div class="person" ng-repeat="(id, item) in data track by $index">
+			<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">
+				<div class="avatar">
+					<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+				</div>
+			</a>
+			<div class="name">
+				<h4>
+					<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">{{ item.name | ellipsis:24 }}</a>
+				</h4>
 			</div>
-		</a>
-		<div class="name">
-			<h4>
-				<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">{{ item.name | ellipsis:24 }}</a>
-			</h4>
 		</div>
 	</div>
 </div>

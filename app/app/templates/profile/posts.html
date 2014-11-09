@@ -1,10 +1,10 @@
 <div ng-include="'templates/profile/subPanel.html'"></div>
 
-<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
+<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! postsActive.length && ! postsInactive.length">
 	<p>{{ 'PROFILE.POSTS.NO_POSTS_ME' | translate }}</p>
 	<p><a ng-if="!loggedCommunity" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a></p>
 </div>
-<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && ! mine && ! postsActive.length">
+<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! mine && ! postsActive.length">
 	<p>{{ 'PROFILE.POSTS.NO_POSTS_OTHER' | translate }}</p>
 </div>
 

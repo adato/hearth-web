@@ -161,9 +161,17 @@ $medium-avatar-size: 80px;
         text-align: center;
     }
     .rating-item {
-        margin-top: 1rem;
+        margin-top: 0rem;
+        margin-bottom: 1rem;
         .date {
             font-size: .8rem;
         }
     }
 }
+
+.ratings-given {
+    .photo {
+        margin-top: 5px;
+    }
+}
+

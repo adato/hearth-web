@@ -68,7 +68,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                         $scope.postsInactive.push(item);
                 });
 
-                finishLoaded();
+                finishLoading();
             }, doneErr);
         }
 
@@ -110,19 +110,18 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.close();
         };
 
-        function finishLoaded() {
-            console.log("finished");
-            $rootScope.subPageLoaded = true;
+        function finishLoading() {
+            $scope.subPageLoaded = true;
         }
 
         function processData(res) {
             $scope.data = res;
-            finishLoaded();
+            finishLoading();
         }
 
         function processDataErr(res) {
             console.log("Err", res);
-            finishLoaded();
+            finishLoading();
         }
 
         function init() {
