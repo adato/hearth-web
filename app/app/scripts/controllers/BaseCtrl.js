@@ -144,8 +144,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $.cookie('tutorial', 1);
             }
 
-            $scope.showTutorial();
-
             $rootScope.pluralCat = $locale.pluralCat;
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
         };
