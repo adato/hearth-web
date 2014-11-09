@@ -33,11 +33,8 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 					$(el).fadeIn('fast');
 				} else {
 					// hide
-					$(el).slideUp(function() {
-
-						$scope.display = $scope.showSchedule;
-						$scope.$apply();
-					});
+					$(el).hide();
+					$scope.display = $scope.showSchedule;
 				}
 			}
 
