@@ -1,5 +1,5 @@
 <div ng-include="'templates/community/profileMembersPanel.html'"></div>
-<div class="community-applications-list">
+<div class="community-applications-list" ng-if="subPageLoaded">
 	<div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 
 		<h5 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h5>
@@ -26,26 +26,6 @@
 		</div>
 	</div>
 </div>
-
-<!--
-
-<div class="people-listing">
-	<div class="person" ng-repeat="(id, item) in data track by $index">
-		<div class="avatar">
-			<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
-		</div>
-		<div class="name">
-			<h4>
-				<a href="#!/profile/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
-			</h4>
-		</div>
-		<div ng-if="mine" class="community-applications-buttons.small">
-				<a ng-click="approveApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
-				<a ng-click="rejectApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
-		</div>
-	</div>
-</div>
--->
-<div class="profile-edit-common no-content" ng-if="loaded && ! data.length">
+<div class="profile-edit-common no-content" ng-if="subPageLoaded && ! data.length">
 	{{ 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}
 </div>

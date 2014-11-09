@@ -18,22 +18,32 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             'community.activity-feed': loadCommunityActivityLog,
         };
 
+        function finishLoading() {
+            $scope.subPageLoaded = true;
+        }
+
+        function processData(res) {
+            $scope.data = res;
+            finishLoading();
+        }
+
+        function processDataErr(res) {
+            console.log("Err", res);
+            finishLoading();
+        }
+        
         function loadCommunityAbout(id, done, doneErr) {
         	// do nothing
         }
 
         function loadCommunityMember(id, doneErr) {
 
-            CommunityMembers.query({communityId: id}, function(res) {
-                $scope.data = res;
-            }, doneErr);
+            CommunityMembers.query({communityId: id}, processData, doneErr);
         }
 
         function loadCommunityApplications(id, doneErr) {
 
-            CommunityApplicants.query({communityId: id}, function(res) {
-                $scope.data = res;
-            }, doneErr);
+            CommunityApplicants.query({communityId: id}, processData, doneErr);
         }
 
         function loadCommunityPosts(id, doneErr) {
@@ -56,6 +66,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     else
                         $scope.postsInactive.push(item);
                 });
+
+                finishLoading();
             }, doneErr);
         }
 
@@ -88,9 +100,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         function loadCommunityActivityLog(id) {
 
-            CommunityActivityLog.get({communityId: id}, function(res) {
-                $scope.data = res;
-            }, processDataErr);
+            CommunityActivityLog.get({communityId: id}, processData, processDataErr);
         }
         // =================================== Public Methods ====================================
 
@@ -117,13 +127,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             });
         };
 
-        function processData(res) {
-            $scope.data = res;
-        }
-
-        function processDataErr(res) {
-            console.log("Err", res);
-        }
 
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {

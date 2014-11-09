@@ -65,7 +65,6 @@ angular.module('hearth.services').factory('Filter', [
             reset: function() {
                 $location.search('');
                 if ($rootScope.loggedUser._id) {
-                    console.log("Resetting user filter");
                     User.edit({
                         _id: $rootScope.loggedUser._id,
                         filter: {}

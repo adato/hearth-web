@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
     function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
         var timeout;
+        $rootScope.myCommunities = false;
         $scope.segment = false;
         $scope.addresses = {
             "Community": "community",

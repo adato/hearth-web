@@ -5,7 +5,7 @@
     <div class="community-list-add-form hide">
         <community-create-edit close="toggleForm()"></community-create-edit>
     </div>
-    <div class="myCommunities" ng-if="!loggedCommunity">
+    <div class="myCommunities" ng-if="!loggedCommunity && myCommunities !== false">
         <h4>{{ 'YOUR_COMMUNITIES' | translate }}</h4>
         <div class="my-communities" ng-if="myCommunities.length">
             <h5>
@@ -21,7 +21,6 @@
             <br />
             <div class="community-list">
                 <community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
-                <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div> -->
             </div>
         </div>
         <div class="my-communities" ng-if="! myCommunities.length">
@@ -29,9 +28,8 @@
             <div class="clear"></div>
         </div>
     </div>
-    <div class="community-list small">
+    <div ng-if="randomCommunities.length" class="community-list small">
         <h4>{{ 'SUGGESTED_COMMUNITIES' | translate }}</h4>
         <community-item item="item" ng-repeat="(id, item) in randomCommunities track by $index"></community-item>
-        <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in randomCommunities track by $index"></div> -->
     </div>
 </div>

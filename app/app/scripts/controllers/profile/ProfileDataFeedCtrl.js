@@ -24,6 +24,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 user_id: $routeParams.id
             };
         var inited = false;
+        $scope.subPageLoaded = false;
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";
@@ -53,7 +54,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 include_expired: +$scope.mine, // cast bool to int
                 author_id: params.user_id,
                 limit: 1000
-            }
+            };
 
             Fulltext.query(fulltextParams, function(res) {
 
@@ -66,6 +67,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     else
                         $scope.postsInactive.push(item);
                 });
+
+                finishLoaded();
             }, doneErr);
         }
 
@@ -99,7 +102,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.$on('updatedItem', $scope.refreshItemInfo);
         }
 
-
         $scope.cancelEdit = function() {
             init();
         };
@@ -108,16 +110,24 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.close();
         };
 
-        function processData(res) {
+        function finishLoaded() {
+            console.log("finished");
             $rootScope.subPageLoaded = true;
+        }
+
+        function processData(res) {
             $scope.data = res;
+            finishLoaded();
         }
 
         function processDataErr(res) {
             console.log("Err", res);
+            finishLoaded();
         }
 
         function init() {
+
+            $scope.subPageLoaded = false;
 
             console.log("Calling load service", $scope.pageSegment);
             console.log("Calling load service", loadServices[$scope.pageSegment]);
