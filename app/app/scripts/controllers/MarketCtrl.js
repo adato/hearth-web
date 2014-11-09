@@ -16,10 +16,25 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
+		$scope.filterIsOn = false;
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
+
+		$scope.testFilter = function() {
+
+			$scope.filterIsOn = Filter.isSet();
+		};
+
+		$scope.resetFilter = function() {
+			Filter.reset();
+			$scope.loaded = false;
+		};
+
+		$scope.toggleFilter = function() {
+			$rootScope.$broadcast("filterOpen");
+		};
 
 		$scope.addItemsToList = function(data, index) {
 			if (data.data.length > index) {
@@ -77,6 +92,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		function init() {
 
 			refreshTags();
+			$scope.testFilter();
 
 			$scope.$on('authorize', function() {
 				$scope.load();
@@ -167,6 +183,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 		});
+
+
+		// show different nothing found error message when filter is changed / removed
+        $scope.$on("filterApplied", $scope.testFilter);
+        $scope.$on("filterReseted", $scope.testFilter);
 
 		// ==== Global event fired when init process is finished
 		$scope.$on('initFinished', init);

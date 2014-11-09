@@ -6,15 +6,20 @@
 	<div class="large-12 columns" ng-hide="showMap">
 		<div when-scrolled="load()" class="wish-list">
 			
-			<div ng-show="!items.length && loaded" class="row">
+			<div ng-show="!items.length && loaded && filterIsOn" class="row">
 				<div class="large-8 large-centered columns box text-center" style="padding:1em">
-					<p translate class="padding-2">MARKETPLACE.NOT_FOUND</p>
+					<p translate class="padding-2"><MARKETPLACE class="FILTER_NOT_FOUND"></MARKETPLACE></p>
 					<div class="large-6 columns text-center">
-						<a>{{ "MARKETPLACE.EDIT_FILTER" | translate}}</a>
+						<a ng-click="toggleFilter()">{{ "MARKETPLACE.EDIT_FILTER" | translate}}</a>
 					</div>
-					<div class="large-6 columns text-center">
-						<a>{{ "MARKETPLACE.RESET_FILTER" | translate}}</a>
+					<div  class="large-6 columns text-center">
+						<a ng-click="resetFilter()">{{ "MARKETPLACE.RESET_FILTER" | translate}}</a>
 					</div>
+				</div>
+			</div>
+			<div ng-show="!items.length && loaded && !filterIsOn" class="row">
+				<div class="large-8 large-centered columns box text-center" style="padding:1em">
+					<p translate class="padding-2">MARKETPLACE.NOTHING_FOUND</p>
 				</div>
 			</div>
 			<item keywords-active="keywordsActive" item="item" ng-repeat="(id, item) in items track by $index" user="user" community="loggedCommunity"></item>
