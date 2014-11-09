@@ -3,7 +3,6 @@
     .ngdialog-content {
 
         width: 650px !important;
-        transition: width 1s ease 0s;
 
         hr {
             margin-bottom: 0px;
@@ -73,6 +72,7 @@
 
             .flexslider {
                 min-height: 590px;
+
                 box-shadow: none;
                 margin: auto;
                 background-color: inherit;

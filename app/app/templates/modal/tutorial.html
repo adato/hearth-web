@@ -10,7 +10,7 @@
 			<br />
 			<button ng-click="showMeMagic()">{{ 'TUTORIAL_SHOW_NEW_FUNCTIONS' | translate }}</button>
 		</article>
-		<section class="slider" ng-show="slider">
+		<section class="slider" ng-if="slider">
 			<div class="flexslider" flexslider ng-if="loaded">
 				<span class="controlls">
 					<i ng-if="tutorials.length > 1" class="leftButton fa fa-angle-left" ng-click="prev()"></i>
