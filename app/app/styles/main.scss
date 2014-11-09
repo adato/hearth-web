@@ -1443,3 +1443,13 @@ img.blur {
         color: white;
     }
 }
+
+.loading {
+    font-size: 2rem;
+    opacity: 0.7;
+
+    .fa {
+      margin-right: 0.5rem;
+      animation: 1.5s linear 0s normal none infinite spin;
+    }
+} 

@@ -72,6 +72,9 @@
     "CHOOSE_AVATAR_FILE": "Nahrát novou fotku",
     "CLICK_TO_REMOVE_PHOTO_HINT": "Smazat fotku",
     "CLOSE": "Zavřít",
+    "COMMON": {
+        "LOADING": "Načítám ..."
+    },
     "COMMUNITIES": "Komunity",
     "COMMUNITIES_IN_HEARTH": "Pojďte mezi nás! V komunitách se můžete potkat s lidmi podobného zaměření, získat pomoc, či podporu pro váš projekt.",
     "COMMUNITIES_PL": {
