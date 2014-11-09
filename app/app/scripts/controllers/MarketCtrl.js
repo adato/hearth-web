@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter, Notify) {
 		$scope.limit = 15;
 		$scope.items = [];
-		$scope.sent = false;
+		$scope.loaded = false;
 		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
@@ -68,7 +68,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						$scope.finishLoading(data);
 					}
 		
-					$scope.sent = true;
+					$scope.loaded = true;
 					$rootScope.$broadcast('postsLoaded');
 				});
 			}
