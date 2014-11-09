@@ -19,4 +19,6 @@
 		<h3>{{ 'POSTS_INACTIVE' | translate }}</h3>
 		<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsInactive track by $index" community="loggedCommunity" user="loggedUser" inactivate-tags='true'></item>
 	</div>
-<div>
+</div>
+
+<div loading show="!subPageLoaded" text="{{ 'COMMON.LOADING' | translate }}"></div>
