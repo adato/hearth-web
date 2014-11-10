@@ -111,9 +111,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 			refreshTags();
 			
-			if ($scope.filter && $.isEmptyObject($location.search())) {
-				return $location.search($scope.filter);
-			}
+			// if ($scope.filter && $.isEmptyObject($location.search())) {
+			// 	return $location.search($scope.filter);
+			// }
 
 			$scope.loaded = false;
 			$scope.loading = false;
@@ -125,6 +125,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			
 			$scope.$broadcast('resetFilterData');
 
+			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.filter = {};
 			$scope.user.filter = {};
