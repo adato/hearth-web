@@ -9,7 +9,7 @@
 angular.module('hearth.controllers').controller('FillEmailCtrl', [
     '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify', '$routeParams',
     function($scope, Auth, $location, ResponseErrors, Email, Notify, $routeParams) {
-        $scope.token = false;
+        $scope.twitter_token = false;
 		$scope.data = {
             email: ''
         };
@@ -82,6 +82,6 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
             });
         };
 
-        $scope.data.token = $routeParams.token;
+        $scope.data.twitter_token = $routeParams.twitter_token;
 	}
 ]);
