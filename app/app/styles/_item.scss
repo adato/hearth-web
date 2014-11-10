@@ -156,7 +156,7 @@ $imageSize: 80px;
     box-shadow: $defaultShadow;
     border-radius: $global-radius;
     margin: {
-        bottom: $fontSize;
+        bottom: 2rem;
     };
     header {
         text-align: right;
@@ -226,10 +226,11 @@ $imageSize: 80px;
         background-color: color(4);
         padding: {
             left: 2rem;
-            right: 2rem;
+            right: 1rem;
             top: .5rem;
             bottom: .5rem;
         };
+        font-size:.9rem;
         span {
             &.margin {
                 display: inline-block;
@@ -240,7 +241,7 @@ $imageSize: 80px;
             font-size: 1.8em;
             float: right;
             margin: {
-                top: rem-calc(10);
+                top: .7rem;
             };
             color: color(5);
         }
@@ -264,7 +265,7 @@ $imageSize: 80px;
             font-size: 1.5em;
             float: right;
             margin: {
-                top: rem-calc(10);
+                top: .7rem;
             };
             opacity: 0.3;
             display: inline-block;
