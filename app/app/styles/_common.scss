@@ -81,27 +81,59 @@ button {
 }
 
 .reveal-modal {
+    background-color: white;
     border-radius: $global-radius;
     min-height: 100px !important;
     position: absolute;
     left: 50%;
     width: 420px !important;
     margin-left: -210px !important;
+    padding: 15px;
+    padding-top: 10px;
+
+    header {
+        position: relative;
+        h2 {
+            font-size: 25px;
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .close {
+            display: none;
+            color: #ddd;
+            cursor: pointer;
+            font-size: 35px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: color 0s ease 0s, all 0.8s ease 0s;
+            &:hover {
+                color: #aaa;
+            }
+        }
+    }
+    hr {
+        margin-bottom: 10px;
+        border: 1px solid #bbb8b1;
+    }
     .text-right a {
         margin-top: 11px;
     }
-    padding: {
-        top: 0;
-        bottom: 11px;
-        left: 0;
-        right: 0;
-    };
+
+    .columns {
+        padding: 0px;
+    }
+
+    /*
     .fa {
         color: color(5);
         font-size: 2em;
         float: left;
         padding-right: 0.5em;
     }
+    */
     button {
         background-color: color(5);
         border-color: color(5);
