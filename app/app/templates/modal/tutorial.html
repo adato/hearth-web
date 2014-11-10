@@ -12,10 +12,6 @@
 		</article>
 		<section class="slider" ng-if="slider">
 			<div class="flexslider" flexslider ng-if="loaded">
-				<span class="controlls">
-					<i ng-if="tutorials.length > 1" class="leftButton fa fa-angle-left" ng-click="prev()"></i>
-					<i ng-if="tutorials.length > 1" class="rightButton fa fa-angle-right" ng-click="next()"></i>
-				</span>
 				<ul class="slides">
 					<li class="slider-item" ng-repeat="item in tutorials">
 						<header>
@@ -29,6 +25,10 @@
 					</li>
 				</ul>
 			</div>
+			<span class="controlls">
+				<i ng-if="tutorials.length > 1" class="leftButton fa fa-angle-left" ng-click="prev()"></i>
+				<i ng-if="tutorials.length > 1" class="rightButton fa fa-angle-right" ng-click="next()"></i>
+			</span>
 		</section>
 	</section>
     <footer>
