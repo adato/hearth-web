@@ -124,6 +124,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function finishLoading() {
             $scope.subPageLoaded = true;
+            $scope.$parent.loaded = true;
         }
 
         function processData(res) {

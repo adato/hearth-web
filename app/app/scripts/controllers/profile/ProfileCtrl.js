@@ -53,7 +53,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $scope.isMine();
-				$scope.loaded = true;
+				// $scope.loaded = true;
 
 				$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {

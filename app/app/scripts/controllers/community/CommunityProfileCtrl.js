@@ -27,7 +27,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			Community.get({ communityId: $routeParams.id }, function(res) {
 
 				$scope.info = res;
-				$scope.loaded = true;
+				// $scope.loaded = true;
 				$scope.mine = $scope.isMine(res); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
