@@ -115,6 +115,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				return $location.search($scope.filter);
 			}
 
+			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.items = [];
 			$scope.load();

@@ -100,7 +100,7 @@ button {
             font-weight: normal;
             text-align: center;
             margin-bottom: 4px;
-            text-align: left;
+            text-align: center;
         }
         .close {
             display: none;
@@ -121,7 +121,11 @@ button {
         border: 1px solid #bbb8b1;
     }
     .text-right a {
+        color: color(5);
         margin-top: 11px;
+        &:hover {
+            color: darken(color(5), 20%);
+        }
     }
 
     .columns {
