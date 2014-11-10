@@ -42,6 +42,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.processDeleteUserResult = function(res) {
+			$rootScope.globalLoading = false;
 
 			if (res.ok) {
 				alert(Notify.translate('NOTIFY.ACCOUNT_DELETE_SUCCESS'));
@@ -63,6 +64,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					reason: data.reason
 				};
 
+				$rootScope.globalLoading = true;
 				User.remove(out, $scope.processDeleteUserResult);
 			}
 		};
@@ -113,7 +115,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		$scope.processChangeResult = function(res) {
 			$scope.changeSubmitted = false;
-			
+			$rootScope.globalLoading = false;
+
 			if (res.ok) {
 				$scope.pass.old = '';
 				$scope.pass.changed = '';
@@ -137,6 +140,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					return false;
 				}
 
+				$rootScope.globalLoading = true;
 				ChangePassword.change({
 					user_id: $rootScope.loggedUser._id,
 					password: pass.changed,

@@ -151,16 +151,19 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			if($scope.sending) return false;
 			$scope.sending = true;
-			
+			$rootScope.globalLoading = true;
+
 			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
 			User.edit(transformedData, function(res) {
 				$scope.sending = false;
-				$location.path('/profile/'+$scope.profile._id);
+				$rootScope.globalLoading = false;
 
+				$location.path('/profile/'+$scope.profile._id);
 				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
 				
 			}, function(res) {
-
+				$rootScope.globalLoading = false;
+				
 				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
