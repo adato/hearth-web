@@ -225,10 +225,10 @@ $imageSize: 80px;
         border-radius: 0 0 $global-radius $global-radius;
         background-color: color(4);
         padding: {
-            left: sqrt(2) * $size;
-            right: $fontSize;
-            top: $fontSize / 2;
-            bottom: $fontSize / 2;
+            left: 2rem;
+            right: 2rem;
+            top: .5rem;
+            bottom: .5rem;
         };
         span {
             &.margin {
@@ -399,7 +399,7 @@ $imageSize: 80px;
         h1 {
             font-size: 1.2em;
             font-weight: bold;
-            span {
+            span>span {
                 position: relative;
                 z-index: 50;
                 left: -$size / 2;
@@ -482,7 +482,7 @@ $imageSize: 80px;
                     margin-left: 0px;
                 }
             }
-            @include transition(max-width 2s ease);
+            @include transition(max-width .5s ease);
             div {
                 text-align: right;
                 white-space: nowrap;
@@ -499,8 +499,8 @@ $imageSize: 80px;
                     background-color: color(5);
                     border-radius: 50%;
                     text-shadow: 0 -1px 1px darken(color(5), 15%);
-                    @include transition(color 1s);
-                    @include transition(background-color 0.8s);
+                    @include transition(color .5s);
+                    @include transition(background-color 0.5s);
                     &:hover {
                         color: white;
                         background-color: darken(color(5), abs($button-function-factor));

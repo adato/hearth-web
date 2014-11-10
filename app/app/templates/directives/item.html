@@ -42,14 +42,14 @@
 					<span class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
 				</header>
 				<h1>
-					<spam ng-if="item.author._type == 'User'">
+					<span ng-if="item.author._type == 'User'">
 						<span ng-if="item.type == 'need'">{{ 'DOES_WISH' | translate }}</span>
 						<span ng-if="item.type == 'offer'">{{ 'DOES_GIVE' | translate }}</span>
-					</spam>
-					<spam ng-if="item.author._type == 'Community'">
+					</span>
+					<span ng-if="item.author._type == 'Community'">
 						<span ng-if="item.type == 'need'">{{ 'WE_NEED' | translate }}</span>
 						<span ng-if="item.type == 'offer'">{{ 'WE_GIVE' | translate }}</span>
-					</spam>
+					</span>
 					{{item.title}}
 				</h1>
 				<div class="text-container">
