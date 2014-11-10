@@ -597,6 +597,7 @@ $medium-avatar-size: 80px;
 .people-listing {
     @extend .clearfix;
     .person {
+        word-wrap: break-word;
         @extend .large-4, .columns, .medium-avatar;
         a {
             color: darken(color(3), 20%);
