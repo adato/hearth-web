@@ -73,7 +73,8 @@
     "CLICK_TO_REMOVE_PHOTO_HINT": "Smazat fotku",
     "CLOSE": "Zavřít",
     "COMMON": {
-        "LOADING": "Načítám ..."
+        "LOADING": "Načítám ...",
+        "STILL_WORKING": "Makám na tom..."
     },
     "COMMUNITIES": "Komunity",
     "COMMUNITIES_IN_HEARTH": "Pojďte mezi nás! V komunitách se můžete potkat s lidmi podobného zaměření, získat pomoc, či podporu pro váš projekt.",

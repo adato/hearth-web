@@ -51,9 +51,11 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				return false;
 			}
 
+			$rootScope.globalLoading = true;
 			$scope.sending = true;
 			PostReplies.add(data, function(res) {
 
+				$rootScope.globalLoading = false;
 				$scope.sending = false;
 				$scope.showFinished();
 				$scope.post.reply_count += 1;
@@ -65,6 +67,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 
 				Notify.addSingleTranslate('NOTIFY.REPLY_FAILED', Notify.T_ERROR, '.notify-reply-container');
 				$scope.sending = false;
+				$rootScope.globalLoading = false;
 			});
 		};
 

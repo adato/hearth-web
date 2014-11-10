@@ -19,6 +19,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             "Post": "ad",
         };
 
+        // init globalLoading 
+        $rootScope.globalLoading = false;
+
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
         });
@@ -170,13 +173,16 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
+            $rootScope.globalLoading = true;
             Post.spam({id: item._id}, function(res) {
                 if(modal) $('#'+modal).foundation('reveal', 'close');
                 $rootScope.$broadcast('reportItem', item);
 
+                $rootScope.globalLoading = false;
                 Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
             }, function(err) {
                 
+                $rootScope.globalLoading = false;
                 Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
             });
         };
@@ -217,13 +223,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
+            $rootScope.globalLoading = true;
             Post.remove({postId:post._id}, function(res) {
                 if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
                 Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO);
+                $rootScope.globalLoading = false;
 
                 cb && cb(post); // if callback given, call it
+            }, function() {
+                $rootScope.globalLoading = false;
             });
         };
 
@@ -322,7 +332,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 Action = (item.is_expired) ? Post.prolong : Post.resume;
                 actionType = 'activate';
             }
-            
+
+            $rootScope.globalLoading = true;
             // call service
             Action({
                     id: item._id
@@ -333,8 +344,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(cb) cb(item);
                     $rootScope.$broadcast('updatedItem', res);
                     Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+                    $rootScope.globalLoading = false;
 
                 }, function(err) {
+                    $rootScope.globalLoading = false;
+
                     if( err.status == 422) {
 
                         // somethings went wrong - post is not valid

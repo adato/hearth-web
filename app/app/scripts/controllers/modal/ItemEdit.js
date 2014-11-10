@@ -283,9 +283,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				return false;
 			}
 			$scope.sending = true;
+			$rootScope.globalLoading = true;
 
 			Post[post._id ? 'update' : 'add'](postData, function(data) {
-
+				$rootScope.globalLoading = false;
 				postDataCopy = $scope.transformImagesStructure(postDataCopy);
 				
 				// if($scope.post._id)
@@ -324,6 +325,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
                 Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
 				$scope.sending = false;
+				$rootScope.globalLoading = false;
 			});
 
 			/*$analytics.eventTrack(eventName, {

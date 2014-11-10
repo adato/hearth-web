@@ -106,6 +106,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
         };
 
         function handleEmailResult(res) {
+            $rootScope.globalLoading = false;
+
             if(res.ok) {
                 $scope.showFinished();
             } else {
@@ -118,6 +120,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
             if(!$scope.validateInvitationForm(data))
                 return false;
+
+            $rootScope.globalLoading = true;
 
             // split emails to array and copy it to new object
             dataOut = $scope.transformInvitationOut(angular.copy(data));

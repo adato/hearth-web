@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 		},
 		template: '<div ng-if="display" class="text-center loading">' + '<i class="fa fa-spinner fa-spin"></i>{{msg}}</div>',
 		link: function($scope, el, attrs) {
-			$scope.timeout = 200;
+			$scope.timeout = $scope.delayed || 200;
 			$scope.show = $scope.show || false;
 			$scope.showTimeout = 0;
 			$scope.showSchedule = false;
@@ -29,9 +29,11 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 			function processScheduled() {
 				// show
 				if($scope.showSchedule) {
+					console.log("SHOW LOADING");
 					$scope.display = $scope.showSchedule;
 					$(el).fadeIn('fast');
 				} else {
+					console.log("HIDE LOADING");
 					// hide
 					$(el).hide();
 					$scope.display = $scope.showSchedule;
@@ -49,14 +51,17 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 			$scope.$watch('show', function(show) {
 				
 				// if not show - cancel scheduled timeout if exists
-				if(!show && $scope.showTimeout)
+				if(!show && $scope.showTimeout) {
+					console.log("REJECT LOADING");
 					$timeout.cancel($scope.showTimeout);
+				}
 
 				// schedule timeout
 				$scope.showSchedule = show;
 
 				// display or hide
 				if($scope.delayed) {
+					console.log("SCHEDULE LOADING", $scope.timeout);
 					$scope.showTimeout = $timeout(processScheduled, $scope.timeout);
 				} else {
 					processScheduled();

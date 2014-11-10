@@ -376,3 +376,23 @@ input::-ms-reveal,
 textarea::-ms-clear {
     display: none;
 }
+
+.globalLoading {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.43);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+
+    .loading {
+        color: white;
+        width: 100%;
+        text-align: center;
+        margin-top: -20px;
+        position: absolute;
+        top: 50%;
+    }
+}
