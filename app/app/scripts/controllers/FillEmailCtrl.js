@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('FillEmailCtrl', [
-    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify',
-    function($scope, Auth, $location, ResponseErrors, Email, Notify) {
+    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify', '$routeParams',
+    function($scope, Auth, $location, ResponseErrors, Email, Notify, $routeParams) {
+        $scope.token = false;
 		$scope.data = {
             email: ''
         };
@@ -69,16 +70,18 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
                 	return false;
                 }
 
-                // return Auth.requestPasswordReset($scope.data.email).success(function() {
-                //     $scope.sending = false;
-                //     Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
-                //     $location.url("/login");
-
-                // }).error(function(data, status) {
+                return Auth.completeTwitterRegistration($scope.data).success(function() {
                     $scope.sending = false;
-                    Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_FAILED', Notify.T_ERROR, '.fill-email-notify-container');
-                // });
+                    Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
+                    $location.url("/");
+
+                }).error(function(data, status) {
+                    $scope.sending = false;
+                    Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_FAILED', Notify.T_ERROR, '.fill-email-notify-container');
+                });
             });
         };
+
+        $scope.data.token = $routeParams.token;
 	}
 ]);

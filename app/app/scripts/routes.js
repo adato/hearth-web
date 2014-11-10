@@ -21,7 +21,7 @@ angular.module('hearth').config([
 			.when('/reset-password', 'reset-pass')
 			.when('/forgotten-password', 'forgot-pass')
 			.when('/confirm-email', 'confirm-email')
-			.when('/fill-email', 'fill-email')
+			.when('/fill-email/:token', 'fill-email')
 			// .when('/change-password', 'change-pass')
 			
 			// ======= Profile routes & subroutes
