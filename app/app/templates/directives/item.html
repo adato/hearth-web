@@ -111,7 +111,6 @@
 				</span>
 
 				<span ng-if="item.reply_count">
-					{{'TOTAL_ALREADY' | translate}}
 					<span class="margin" ng-if="item.type == 'offer'" ng-bind-html="'PEOPLE_COUNT_WISH_PL.'+pluralCat(item.reply_count) | translate: {value: item.reply_count}"></span>
 					<span class="margin" ng-if="item.type == 'need'" ng-bind-html="'PEOPLE_COUNT_OFFER_PL.'+pluralCat(item.reply_count) | translate: {value: item.reply_count}"></span>
 				</span>
