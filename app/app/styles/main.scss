@@ -181,13 +181,16 @@ body {
 @import "progress";
 */
 
+/* 
+Signika is not needed anymore, right?
 @include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
-
 @include font-face("Signika", font-files("Signika-Semibold.woff", "Signika-Semibold.ttf", "Signika-Semibold.svg#signikasemibold"), "Signika-Semibold.eot", bold);
+ */
 
+@import "hearthIcons";
 @include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
-
 @include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold);
+
 
 meta.foundation-data-attribute-namespace {
     font-family: false;

@@ -55,6 +55,9 @@ $topBarImageSize: 1.8em;
             };
             .fa {
                 font-size: $topBarHeight - $topBarLabelSize;
+                &.icon-community {
+                    margin-left:-13px;
+                }
             }
             .img {
                 opacity: 0.8;

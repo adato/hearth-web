@@ -53,12 +53,11 @@
             <a href="#!/profile/{{info._id}}/received-ratings">
                 <div ng-if="info" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
                     <span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
-                        <span>{{ info.karma }}% <i class="fa fa-sun-o"></i></span>
+                        <span>{{ info.karma }}% <i class="fa icon-rating-positive"></i></span>
                     </span>
                     <span class="negative bar" ng-style="{width: (100 - info.karma)+'%'}" ng-class="{full: info.karma == 0}" ng-if="info.karma != null && info.karma < 100">
                         <span>
-                            <img src="/app/images/snowflake.png" height="15" />
-                            {{100 - info.karma}}%
+                            <i class="fa icon-rating-negative"></i> {{100 - info.karma}}%
                         </span>
                     </span>
                     <span class="empty" ng-if="info.karma == null && mine">
