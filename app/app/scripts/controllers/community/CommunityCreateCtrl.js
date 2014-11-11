@@ -7,9 +7,12 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityCreateCtrl', [
-	'$scope', '$rootScope',
-	function($scope, $rootScope) {
+	'$scope', '$rootScope', 'UnauthReload',
+	function($scope, $rootScope, UnauthReload) {
 
 		// using directive communityCreateEdit
+	
+		
+		UnauthReload.check();
 	}
 ]);

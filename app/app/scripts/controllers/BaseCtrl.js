@@ -140,7 +140,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.initHearthbeat = function() {
 
             if($rootScope.loggedUser._id) {
-                $scope.checkTutorial();
                 $scope.loadMyCommunities();
             } else {
                 // set to check tutorial after next login

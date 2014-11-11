@@ -123,18 +123,35 @@
       <br />
       <section class="delete">
         <p class="small-8 fleft" ng-if="community.member_count > 1">
-          {{ 'COMMUNITY_HAS_MEMBERS_COUNT' | translate }}
-          {{ community.member_count }}
-          {{'X_MEMBERS.'+pluralCat(community.member_count) | translate }}, {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
+          {{'COMMUNITY.COMMUNITY_HAS_X_MEMBERS.'+pluralCat(community.member_count) | translate:'{count: '+community.member_count+'}' }}, {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
         </p>
         <p class="small-8 fleft" ng-if="community.member_count == 1">
           {{ 'COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE' | translate }}
         </p>
-        <button ng-click="delete()" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
+        <!-- ng-click="delete()" -->
+        <button  data-reveal-id="confirm-delete-community" class="button-send right" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
       </section>
     </div>
     <div class="clear"></div>
   </div>    
   <div loading show="!loaded"></div>
-</div>
 
+
+  <div id="confirm-delete-community" class="reveal-modal tiny" data-reveal>
+      <header>
+          <h2 class="large-12">{{'COMMUNITY.COMMUNITY_REMOVE_LABEL' | translate}}</h2>
+      </header>
+      <article class="row">
+          <hr />
+          <p class="large-12 text-center"> {{'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE' | translate}}</p>
+      </article>
+      <article class="row">
+          <section class="large-6 columns">
+              <button ng-click="delete()">{{'OK' | translate}}</button>
+          </section>
+          <section class="large-6 columns text-right">
+              <a class="link-button" ng-click="closeModal(community, 'confirm-delete-community')">{{'CANCEL' | translate}}</a>
+          </section>
+      </article>
+  </div>
+</div>

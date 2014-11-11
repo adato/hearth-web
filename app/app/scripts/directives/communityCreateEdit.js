@@ -31,7 +31,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     description: false,
                 };
                 $scope.community = {};
-
+                
                 $scope.fillDefaultCommunity = function() {
                     
                     $scope.community = angular.copy($scope.defaultCommunity);
@@ -174,6 +174,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     Community.remove({communityId: $scope.community._id}, function(res) {
                         $rootScope.globalLoading = false;
                         $scope.sendingDelete = false;
+                        $scope.closeModal(null, 'confirm-delete-community');
                         Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
 
                         $rootScope.$broadcast("reloadCommunities");
@@ -191,6 +192,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 };
 
                 $scope.init = function() {
+                    $scope.pluralCat = $rootScope.pluralCat;
+                    $scope.closeModal = $rootScope.closeModal;
 
                     if($scope.getCommunityId()) {
                         $scope.loadCommunity($scope.getCommunityId());

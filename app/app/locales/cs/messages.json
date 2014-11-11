@@ -113,7 +113,9 @@
             "few": "<b>{{count}}</b><br /> členové",
             "one": "<b>{{count}}</b><br /> člen",
             "other": "<b>{{count}}</b><br /> členů"
-        }
+        },
+        "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
+        "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?"
     },
     "COMMUNITY_ABOUT": "Další info o komunitě",
     "COMMUNITY_ABOUT_SHORT": "O komunitě",
