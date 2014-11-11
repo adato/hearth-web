@@ -735,7 +735,7 @@
     "SIGNUP_HEADING_TEXT": "Váš profil je již jen pár kliků odsud. Šup šup.",
     "SIGNUP_PASSWORD_DOES_NOT_MATCH": "Zadaná hesla nesouhlasí.",
     "SIGNUP_PROCESS_ERROR": "Něco se pokazilo. Registraci nebylo možno dokončit.",
-    "SIGNUP_WAS_SUCCESSFUL": "Registrace byla úspěšná. Na zadaný email jsme Vám odeslali další instrukce.",
+    "SIGNUP_WAS_SUCCESSFUL": "Děkujeme za registraci, už jste skoro u nás!<br /><br />Na e-mail jsme vám odeslali zprávu s odkazem, kterým svůj účet aktivujete. To je kvůli potvrzení vašeho e-mailu, aby se tu za vás někdo nemohl vydávat.<br /><br />Chvíli počkejte, než e-mail dorazí. Mezitím se můžete mrknout na tržiště, jaké inzeráty na vás u nás čekají.",
     "SIGN_UP_WITH_FACEBOOK": "přihlásit přes Facebook",
     "SIGN_UP_WITH_GOOGLE": "přihlásit přes Google",
     "SIGN_UP_WITH_TWITTER": "přihlásit přes Twitter",
