@@ -85,7 +85,7 @@
     },
     "COMMUNITY": {
         "APPROVE_REQUESTS": {
-            "few": "{{count}} lidi čekají na schválení",
+            "few": "{{count}} lidé čekají na schválení",
             "one": "Jeden člověk čeká na schválení",
             "other": "{{count}} lidí čeká na schválení"
         },
@@ -334,12 +334,12 @@
     "HOMEPAGE_SUBHEADING": "pro sdílení darů a zkušeností",
     "HOUR_AGO": "před hodinou",
     "HOW_MANY_PEOPLE": {
-        "few": "lidi",
+        "few": "lidé",
         "one": "člověka",
         "other": "lidí"
     },
     "HOW_MANY_PEOPLE_1_COND": {
-        "few": "lidi",
+        "few": "lidé",
         "one": "člověk",
         "other": "lidí"
     },
@@ -590,14 +590,14 @@
     "PASSWORD_WAS_CHANGED": "Změna Vašeho hesla proběhla úspěšně. **** jo!",
     "PASS_PLACEHOLDER": "Heslo",
     "PEOPLE_COUNT_OFFER_PL": {
-        "few": "nabídli {{value}} lidi.",
-        "one": "nabídl jeden člověk.",
-        "other": "nabídlo {{value}} lidí."
+        "few": "Už nabídli {{value}} lidé.",
+        "one": "Už nabídl jeden člověk.",
+        "other": "Už nabídlo {{value}} lidí."
     },
     "PEOPLE_COUNT_WISH_PL": {
-        "few": "požádali {{value}} lidi.",
-        "one": "požádal jeden člověk.",
-        "other": "požádalo {{value}} lidí."
+        "few": "Už požádali {{value}} lidé.",
+        "one": "Už požádal jeden člověk.",
+        "other": "Už požádalo {{value}} lidí."
     },
     "PEOPLE_FIRST_CASE": "lidé",
     "PEOPLE_SECOND_CASE": "lidí",
