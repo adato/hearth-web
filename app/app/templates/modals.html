@@ -1,11 +1,10 @@
 <div id="confirm-delete-{{item._id}}" class="reveal-modal tiny" data-reveal>
     <header>
         <h2 class="large-12">{{'AD_REMOVE_LABEL' | translate}}</h2>
-        <!-- <span class="close fa fa-times" ng-click="closeModal(item, 'confirm-delete-'+item._id)"></span> -->
     </header>
     <article class="row">
         <hr />
-        <p class="large-12"> {{'AD_REMOVE_ARE_YOU_SURE' | translate}}</p>
+        <p class="large-12 text-center"> {{'AD_REMOVE_ARE_YOU_SURE' | translate}}</p>
     </article>
     <article class="row">
         <section class="large-6 columns">
@@ -22,16 +21,8 @@
     </header>
     <article class="row">
         <hr />
-        <p class="large-12"> {{'AD_PAUSE_ARE_YOU_SURE' | translate}}</p>
+        <p class="large-12 text-center"> {{'AD_PAUSE_ARE_YOU_SURE' | translate}}</p>
     </article>
-    <!-- 
-    <article class="row">
-        <section class="large-12 columns">
-            <h2>{{'AD_PAUSE_LABEL' | translate}}</h2>
-            <hr />
-            <p> {{'AD_PAUSE_ARE_YOU_SURE' | translate}}</p>
-        </section>
-    </article> -->
     <article class="row">
         <section class="large-6 columns">
             <button ng-click="pauseToggle(item, 'confirm-pause-'+item._id, setPostActiveStateCallback)">{{'OK' | translate}}</button>
@@ -48,16 +39,8 @@
     </header>
     <article class="row">
         <hr />
-        <p class="large-12"> {{'AD_REPORT_ARE_YOU_SURE' | translate}}</p>
+        <p class="large-12 text-center"> {{'AD_REPORT_ARE_YOU_SURE' | translate}}</p>
     </article>
-    
-<!--     <article class="row">
-        <section class="large-12 columns">
-            <h2>{{'AD_REPORT_CONFIRM' | translate}}</h2>
-            <hr />
-            <p> {{'AD_REPORT_ARE_YOU_SURE' | translate}}</p>
-        </section>
-    </article> -->
     <article class="row">
         <section class="large-6 columns">
             <button ng-click="reportItem(item, 'confirm-report-'+item._id)">{{'OK' | translate}}</button>

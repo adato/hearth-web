@@ -224,6 +224,7 @@
     "ERROR_BAD_IMAGE_SIZE_PX_200": "Obrázek má malé rozlišení. Minimum je 200x200 pixelů.",
     "ERROR_BAD_IMAGE_SIZE_PX_400": "Obrázek má malé rozlišení. Minimum je 400x400 pixelů.",
     "ERR_ACTION_FAILED_DUE_TO_ERRORS": "Inzerát obsahuje chyby, takže akci nebylo možné dokončit. Opravte ho a pak to zkuste znova.",
+    "ERR_LOCATION_UNKNOWN_PLACE": "Takové místo neznáme.. Zkuste vybrat místo spíše ze seznamu.",
     "ERR_AD_NOT_FOUND": "To ne! Nabídka/potřeba nebyla nalezena. Kde se toulá?",
     "ERR_AD_REPLY_NOT_AGREE": "Pošlete uživateli i vaši emailovou adresu, ať vás může kontaktovat.",
     "ERR_AD_TEXT_LEN": "Váš příspěvek je příliš dlouhý, pane Shakespeare. To nás mrzí, naše maximální délka je 2500 znaků.",

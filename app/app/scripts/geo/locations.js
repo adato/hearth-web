@@ -29,6 +29,7 @@ angular.module('hearth.geo').directive('locations', [
                 var map, marker;
                 scope.mapDisplay = -1;
                 scope.error = false;
+                scope.errorWrongPlace = false;
                 scope.errorMsg = scope.errorMessage || 'LOCATIONS_IS_EMPTY';
                 scope.placeholder = scope.placeholderKey || "MY_PLACE";
                 scope.maxCount = scope.maxCount || 30;
@@ -49,24 +50,42 @@ angular.module('hearth.geo').directive('locations', [
                     map.panTo(position);
                 };
 
+                function removePlacesAutocompleteListener(input) {
+
+                    google.maps.event.clearListeners(input, "focus");
+                    google.maps.event.clearListeners(input, "blur");
+                    google.maps.event.clearListeners(input, "keydown");
+                }
+
+                function addPlacesAutocompleteListener(input, index) {
+
+                    var sBox = new google.maps.places.SearchBox(input);
+                    google.maps.event.addListener(sBox, 'places_changed', function() {
+                        var places = sBox.getPlaces();
+                        if (places && places.length) {
+
+                            var location = places[0].geometry.location,
+                                name = places[0].formatted_address,
+                                info = scope.translateLocation(places[0].address_components);
+
+                            scope.fillLocation(index, location, name, info);
+                        }
+                    });
+
+                    return sBox;
+                }
+
                 function initSearchBoxes() {
                     $('.map-input', baseElement).each(function(index) {
+                        var input = this;
+                        var sBox = null;
+
                         if ($(this).hasClass("inited")) {
                             return true;
                         }
                         $(this).addClass("inited");
 
-                        var sBox = new google.maps.places.SearchBox(this);
-                        google.maps.event.addListener(sBox, 'places_changed', function() {
-                            var places = sBox.getPlaces();
-                            if (places && places.length) {
-                                var location = places[0].geometry.location,
-                                    name = places[0].formatted_address,
-                                    info = scope.translateLocation(places[0].address_components);
-
-                                scope.fillLocation(index, places[0].geometry.location, name, info);
-                            }
-                        });
+                        sBox = addPlacesAutocompleteListener(input, index);
 
                         $(this).keyup(function() {
                             if (!this.value) {
@@ -84,13 +103,35 @@ angular.module('hearth.geo').directive('locations', [
                         $(this).blur(function() {
                             if (!this.value) {
                                 scope.clearLocation(index);
+                            } else {
+
+                                new google.maps.Geocoder().geocode( { 'address': input.value}, function(places, status) {
+                                    if(status != 'OK') {
+
+                                        scope.clearLocation(index);
+
+                                        removePlacesAutocompleteListener(input);
+                                        sBox = addPlacesAutocompleteListener(input, index);
+
+                                        scope.errorWrongPlace = true;
+                                        scope.apply();
+                                    } else {
+                                        
+                                        var location = places[0].geometry.location,
+                                            name = places[0].formatted_address,
+                                            info = scope.translateLocation(places[0].address_components);
+
+                                        scope.fillLocation(index, places[0].geometry.location, name, info);
+                                    }
+                                });
                             }
                         });
                     });
                 };
 
                 scope.hideError = function(loc) {
-
+                    scope.errorWrongPlace = false;
+                    
                     if (loc && loc.name == '') {
                         scope.error = false;
                     }
@@ -102,7 +143,6 @@ angular.module('hearth.geo').directive('locations', [
                 };
 
                 scope.testAllEmptyLocation = function () {
-
 
                     scope.locations.forEach(function (item) {
                         scope.testEmptyLocation(item);
@@ -119,7 +159,6 @@ angular.module('hearth.geo').directive('locations', [
                             long[loc[key].types[0]] = loc[key].long_name;
                         });
                     }
-
                     return {
                         street_number: long.street_number, // cislo baraku
                         street_premise: long.premise, // cislo popisne
@@ -132,12 +171,16 @@ angular.module('hearth.geo').directive('locations', [
                     };
                 };
 
-                scope.clearLocation = function(index) {
-                    scope.locations[index] = getDefaultLocation();
-                    
+                scope.apply = function() {
+
                     if(!scope.$$phase) {
                         scope.$apply();
                     }
+                };
+
+                scope.clearLocation = function(index) {
+                    scope.locations[index] = getDefaultLocation();
+                    scope.apply();
                 };
 
                 scope.fillLocation = function(index, pos, addr, info) {
@@ -235,6 +278,11 @@ angular.module('hearth.geo').directive('locations', [
                     }
                 };
 
+                function hideWrongPlaceError () {
+                    scope.errorWrongPlace = false;
+                }
+
+                scope.$watch('error', hideWrongPlaceError);
                 scope.$watch('locations', initSearchBoxes);
                 setTimeout(initSearchBoxes);
             }
