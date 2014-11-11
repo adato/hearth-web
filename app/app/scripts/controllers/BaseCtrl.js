@@ -138,16 +138,18 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $scope.initHearthbeat = function() {
+            $rootScope.pluralCat = $locale.pluralCat;
+            $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
 
             if($rootScope.loggedUser._id) {
                 $scope.loadMyCommunities();
+                $scope.checkTutorial();
             } else {
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
-
-            $rootScope.pluralCat = $locale.pluralCat;
-            $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
+            
+            Notify.checkRefreshMessage();
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);

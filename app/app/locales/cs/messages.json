@@ -115,7 +115,9 @@
             "other": "<b>{{count}}</b><br /> členů"
         },
         "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
-        "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?"
+        "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?",
+        "DELEGATE_ADMIN_LABEL": "Předání správcovství",
+        "DELEGATE_ADMIN_ARE_YOU_SURE": "Doopravdy chcete předat správcovství této skupiny?"
     },
     "COMMUNITY_ABOUT": "Další info o komunitě",
     "COMMUNITY_ABOUT_SHORT": "O komunitě",
