@@ -42,6 +42,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
                 }
                 // call callbeck
                 cb && cb(res.ok);
+            }, function() {
+                cb && cb(false);
             });
         };
 
@@ -70,11 +72,11 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
         // when registration is successfull - hide form and show success message
         // ================ DEPRECATED ================
-        // $scope.hideForm = function() {
-        //     $(".register-login-form").fadeOut('slow', function() {
-        //         $(".register-successful").fadeIn('slow', function() {});
-        //     });
-        // };
+        $scope.hideForm = function() {
+            $(".register-login-form").slideUp('slow', function() {
+            });
+                $(".register-successful").slideDown('slow', function() {});
+        };
 
         $scope.sendRegistration = function(user) {
 
@@ -89,8 +91,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
                 $scope.sending = false;
 
-                Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
-                $location.path('/');
+                // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
+                // $location.path('/');
+                
+                $scope.hideForm();
 
                 return $analytics.eventTrack('registration email sent', {
                     category: 'registration',
@@ -118,14 +122,14 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
             if (!$scope.validateData(user)) return false;
 
-            // $scope.checkUsedEmail(user.email, function(isUsed) {
-            //     if (isUsed) {
-            //         $scope.registerForm.email.$error.used = true;
-            //         return $scope.showError.email = true;
-            //     }
+            $scope.checkEmailExists(user.email, 'registerForm', 'email', function(isUsed) {
+                if (isUsed) {
+                    $scope.registerForm.email.$error.used = true;
+                    return $scope.showError.email = true;
+                }
 
-            $scope.sendRegistration(user);
-            // });
+                $scope.sendRegistration(user);
+            });
         };
 
         $scope.init = function() {
