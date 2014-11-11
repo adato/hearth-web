@@ -69,11 +69,12 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
                     $scope.sending = false;
                 	return false;
                 }
+                console.log($scope.data);
 
                 return Auth.completeTwitterRegistration($scope.data).success(function() {
                     $scope.sending = false;
                     Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
-                    $location.url("/");
+                    // $location.url("/");
 
                 }).error(function(data, status) {
                     $scope.sending = false;
@@ -82,6 +83,6 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
             });
         };
 
-        $scope.data.twitter_token = $routeParams.twitter_token;
+        $scope.data.twitter_token = $routeParams.token;
 	}
 ]);
