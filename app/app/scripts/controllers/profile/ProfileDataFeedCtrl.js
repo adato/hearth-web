@@ -95,19 +95,19 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     UserRatings.received(params, function(res) {
                         $scope.receivedRatings = res;
                         done(null);
-                    });
+                    }, done);
                 },
                 function(done) {
                     UsersActivityLog.get(params, function(res) {
                         $scope.activityLog = res;
                         done(null);
-                    });
+                    }, done);
                 },
                 function(done) {
                     Fulltext.query(fulltextParams, function(res) {
                         $scope.posts = res;
                         done(null);
-                    });
+                    }, done);
                 }
             ], finishLoading);
 

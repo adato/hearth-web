@@ -93,19 +93,19 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
                         $scope.activityLog = res;
                         done(null);
-                    });
+                    }, done);
                 },
                 function(done) {
                     CommunityApplicants.query({communityId: id}, function(res) {
                         $scope.applications = res;
                         done(null);
-                    });
+                    }, done);
                 },
                 function(done) {
                     Fulltext.query(fulltextParams, function(res) {
                         $scope.posts = res;
                         done(null);
-                    });
+                    }, done);
                 }
             ], finishLoading);
 

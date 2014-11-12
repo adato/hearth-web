@@ -146,7 +146,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					password: pass.changed,
 					password_confirmation: pass.changed,
 					current_password: pass.old
-				}, $scope.processChangeResult);
+				}, $scope.processChangeResult, $scope.processChangeResult);
 			}
 		};
 
