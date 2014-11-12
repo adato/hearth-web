@@ -120,8 +120,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
         $scope.register = function(user) {
             user.language = LanguageSwitch.uses();
 
-            return $scope.hideForm();
-            
             if (!$scope.validateData(user)) return false;
 
             $scope.checkEmailExists(user.email, 'registerForm', 'email', function(isUsed) {

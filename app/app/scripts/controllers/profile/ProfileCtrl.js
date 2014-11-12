@@ -62,13 +62,22 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		$scope.toggleFollowerSuccess = function() {
+			$scope.info.is_followed = !$scope.info.is_followed;
+
+			if($scope.info.is_followed)
+				$scope.info.followers_count++;
+			else
+				$scope.info.followers_count--;
+		};
+
 		$scope.removeFollower = function(user_id) {
 
-			UsersService.removeFollower(user_id, $rootScope.loggedUser._id);
+			UsersService.removeFollower(user_id, $rootScope.loggedUser._id).then($scope.toggleFollowerSuccess);
 		};
 		
 		$scope.addFollower = function(user_id) {
-			UsersService.addFollower(user_id);
+			UsersService.addFollower(user_id).then($scope.toggleFollowerSuccess);
 		};
 
 		$scope.toggleFollow = function(user_id) {
@@ -78,8 +87,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			} else {
 				$scope.addFollower(user_id);
 			}
-			
-			$scope.info.is_followed = !$scope.info.is_followed;
 		};
 
 		$scope.refreshDataFeed = function() {
