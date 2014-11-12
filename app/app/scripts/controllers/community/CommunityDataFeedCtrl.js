@@ -131,16 +131,18 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         $scope.removeMember = function(id) {
-        	CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
 
+            CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
+
+                $rootScope.closeModal('confirm-remove-member-'+id);
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_SUCCESS', Notify.T_SUCCESS);
                 $scope.init();
             }, function(res) {
                 
+                $rootScope.closeModal('confirm-remove-member-'+id);
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED', Notify.T_ERROR);
             });
         };
-
 
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {

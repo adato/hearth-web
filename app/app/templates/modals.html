@@ -11,7 +11,7 @@
             <button ng-click="deleteItem(item, 'confirm-delete-'+item._id, deleteItemCallback)">{{'OK' | translate}}</button>
         </section>
         <section class="large-6 columns text-right">
-            <a class="link-button" ng-click="closeModal(item, 'confirm-delete-'+item._id)">{{'CANCEL' | translate}}</a>
+            <a class="link-button" ng-click="closeModal('confirm-delete-'+item._id)">{{'CANCEL' | translate}}</a>
         </section>
     </article>
 </div>
@@ -28,7 +28,7 @@
             <button ng-click="pauseToggle(item, 'confirm-pause-'+item._id, setPostActiveStateCallback)">{{'OK' | translate}}</button>
         </section>
         <section class="large-6 columns text-right">
-            <a class="link-button" ng-click="closeModal(item, 'confirm-pause-'+item._id)">{{'CANCEL' | translate}}</a>
+            <a class="link-button" ng-click="closeModal('confirm-pause-'+item._id)">{{'CANCEL' | translate}}</a>
         </section>
     </article>
 </div>
@@ -46,7 +46,7 @@
             <button ng-click="reportItem(item, 'confirm-report-'+item._id)">{{'OK' | translate}}</button>
         </section>
         <section class="large-6 columns text-right">
-            <a class="link-button" ng-click="closeModal(item, 'confirm-report-'+item._id)">{{'CANCEL' | translate}}</a>
+            <a class="link-button" ng-click="closeModal('confirm-report-'+item._id)">{{'CANCEL' | translate}}</a>
         </section>
     </article>
 </div>

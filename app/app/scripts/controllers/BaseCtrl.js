@@ -238,9 +238,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
-        $rootScope.closeModal = function(item, modal) {
+        $rootScope.closeModal = function(modal) {
+
+            console.log("Removing modal: ", modal);
             // if opened close modal window
             if(modal) $('#'+modal).foundation('reveal', 'close');
+        };
+
+        $rootScope.revealModal = function(id) {
+            $("#"+id).foundation('reveal', 'open');
         };
         
         $rootScope.replyItem = function(post) {

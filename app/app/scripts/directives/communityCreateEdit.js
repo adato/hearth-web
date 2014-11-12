@@ -168,7 +168,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         CommunityDelegateAdmin.delegate({community_id: $scope.community._id, new_admin_id: id},
                             function(res) {
                                 $rootScope.globalLoading = false;
-                                $scope.closeModal(null, 'confirm-delete-community');
+                                $scope.closeModal('confirm-delete-community');
                                 
                                 if(needReload) {
 
@@ -223,7 +223,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         Community.remove({communityId: $scope.community._id}, function(res) {
                             $rootScope.globalLoading = false;
                             $scope.sendingDelete = false;
-                            $scope.closeModal(null, 'confirm-delete-community');
+                            $scope.closeModal('confirm-delete-community');
                             
                             if(!needReload) {
                                 
@@ -239,7 +239,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         }, function(res) {
 
                             $rootScope.globalLoading = false;
-                            $scope.closeModal(null, 'confirm-delete-community');
+                            $scope.closeModal('confirm-delete-community');
                             Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
                             $scope.sendingDelete = false;
                         });

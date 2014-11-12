@@ -114,6 +114,8 @@
             "one": "<b>{{count}}</b><br /> člen",
             "other": "<b>{{count}}</b><br /> členů"
         },
+        "REMOVE_MEMBER_ARE_YOU_SURE": "Doopravdy chcete odebrat tohoto člena z komunity?",
+        "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
         "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?",
         "DELEGATE_ADMIN_LABEL": "Předání správcovství",
