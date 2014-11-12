@@ -690,7 +690,9 @@
         "TOP": {
             "KARMA_NO_RATING_ME": "S prvním hodnocením vám to tady obarvíme :)",
             "KARMA_NO_RATING_OTHER": "Ohodnoťte uživatele, ať mu tady máme co zobrazit :)"
-        }
+        },
+        "REMOVE_FOLOWEESE_LABEL": "Přestat sledovat uživatele",
+        "REMOVE_FOLOWEESE_TEXT": "Opravdu chcete přestat sledovat tohoto uživatele?"
     },
     "PROFILE_EDIT": "Upravit profil",
     "PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",
