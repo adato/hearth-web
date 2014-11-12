@@ -401,6 +401,7 @@ $imageSize: 80px;
         h1 {
             font-size: 1.2em;
             font-weight: bold;
+            word-wrap: break-word;
             span>span {
                 position: relative;
                 z-index: 50;

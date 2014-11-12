@@ -65,7 +65,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				};
 
 				$rootScope.globalLoading = true;
-				User.remove(out, $scope.processDeleteUserResult);
+				User.remove(out, $scope.processDeleteUserResult, $scope.processDeleteUserResult);
 			}
 		};
 
