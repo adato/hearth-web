@@ -516,8 +516,15 @@ $medium-avatar-size: 80px;
                     /* padding-top:10px; */
                     display: table-cell;
                     height: 60px;
+                    max-width: 300px;
+                    word-wrap: break-word;
+                    
                     vertical-align: middle;
                     margin-left: $medium-avatar-size;
+
+                    p {
+                        margin: 0px !important;
+                    }
                 }
             }
             .timeline-container {
