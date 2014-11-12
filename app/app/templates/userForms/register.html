@@ -51,7 +51,8 @@
             </div>
         </form>
         <div class="register-successful success">
-            <p>{{ 'SIGNUP_WAS_SUCCESSFUL' | translate }}</p>
+            <p ng-bind-html="'SIGNUP_WAS_SUCCESSFUL' | translate"></p>
+            <p class="text-center"><a href="#!/">{{ 'GO_BACK_TO_MARKET' | translate}}</a></p>
         </div>
     </div>
 </div>
