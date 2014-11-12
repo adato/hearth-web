@@ -88,10 +88,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				});
 			}
 		};
-
+		
 		function init() {
 
 			refreshTags();
+			Filter.checkUserFilter();
 			$scope.testFilter();
 
 			$scope.$on('authorize', function() {

@@ -54,13 +54,23 @@ angular.module('hearth.services').factory('Filter', [
             apply: function(filterData, save){
                 $location.search(filterData);
                 if (save) {
+
+                    console.log("SAVING");
                     User.edit(angular.extend({
-                        _id: $rootScope.loggedUser,
+                        _id: $rootScope.loggedUser._id,
                         filter: filterData
                     }));
                 }
 
                 $rootScope.$broadcast("filterApplied", filterData);
+            },
+            checkUserFilter: function() {
+                // if user has saved filter, load him
+                if($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter)) {
+                    console.log($rootScope.user.filter);
+                    this.apply($rootScope.user.filter);
+                }
+
             },
             reset: function() {
                 $location.search('');
