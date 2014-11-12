@@ -669,17 +669,19 @@ $imageSize: 80px;
         a {
             text-shadow: none !important;
             background-color: #f95800 !important;
-            color: white !important;
+            color: lighten(#f95800, 50%) !important;
             &:hover {
-                background-color: #B6B6B6 !important;
+                color: white !important;
+                background-color: darken(#f95800, 20%) !important;
             }
         }
     }
     .controll-buttons {
         div {
             color: #f95800 !important;
+            @include transition(color 0.5s);
             &:hover {
-                color: #B6B6B6 !important;
+                color: darken(#f95800, 20%) !important;
             }
         }
     }
