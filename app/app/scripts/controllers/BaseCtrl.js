@@ -239,8 +239,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.closeModal = function(modal) {
-
-            console.log("Removing modal: ", modal);
             // if opened close modal window
             if(modal) $('#'+modal).foundation('reveal', 'close');
         };

@@ -12,7 +12,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = false;
-
+		$scope.sendingRemoveFollower = false;
+		$scope.sendingAddFollower = false;
+		
 		// ratings
 		$scope.sendingRating = false;
 		$scope.rating = {
@@ -71,13 +73,36 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.info.followers_count--;
 		};
 
-		$scope.removeFollower = function(user_id) {
+		// remove follower - if I manage mine, set myFollowees to true
+		$scope.removeFollower = function(user_id, myFollowees) {
 
-			UsersService.removeFollower(user_id, $rootScope.loggedUser._id).then($scope.toggleFollowerSuccess);
+			if($scope.sendingRemoveFollower) return false;
+			$scope.sendingRemoveFollower = true;
+
+			UsersService.removeFollower(user_id, $rootScope.loggedUser._id).then(function(res) {
+
+				$scope.sendingRemoveFollower = false;
+
+				// if my profile - refresh, else change basic stats only
+				if(!myFollowees)
+					$scope.toggleFollowerSuccess(res);
+				else {
+					$rootScope.closeModal('confirm-remove-following-'+user_id);
+					$scope.$broadcast('profileRefreshUser');
+				}
+			});
 		};
 		
 		$scope.addFollower = function(user_id) {
-			UsersService.addFollower(user_id).then($scope.toggleFollowerSuccess);
+
+			if($scope.sendingAddFollower) return false;
+			$scope.sendingAddFollower = true;
+
+			UsersService.addFollower(user_id).then(function(res) {
+				$scope.sendingAddFollower = false;
+
+				$scope.toggleFollowerSuccess(res);
+			});
 		};
 
 		$scope.toggleFollow = function(user_id) {
