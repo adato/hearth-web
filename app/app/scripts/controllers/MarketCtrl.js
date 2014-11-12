@@ -108,7 +108,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		$scope.$on('filterApplied', function($event, filterData) {
-			$scope.user.filter = filterData;
+			// $scope.user.filter = filterData;
 
 			refreshTags();
 			

@@ -42,11 +42,11 @@ angular.module('hearth.directives').directive('filter', [
                 scope.inited = false;
 
                 scope.applyFilter = function() {
-
+                    
                     if ($.isEmptyObject(scope.filter)) {
                         scope.reset();
                     } else {
-                        Filter.apply(scope.convertFilterToParams(scope.filter), scope.filterSave);
+                        Filter.apply(scope.convertFilterToParams(scope.filter), scope.filterSave, true);
                         scope.close();
                     }
                 };
@@ -174,6 +174,9 @@ angular.module('hearth.directives').directive('filter', [
 
                 scope.init = function() {
                     scope.inited = true;
+
+                    if($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length)
+                        scope.filterSave = true;
                 };
 
                 scope.$on('initFinished', scope.init);
