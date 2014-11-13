@@ -2,7 +2,6 @@
 <div class="community-applications-list" ng-if="subPageLoaded">
 	<div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 
-		<h5 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h5>
 		<div class="application">
 			<div class="applications-item">
 		        <a href="#!/profile/{{item._id}} ">
