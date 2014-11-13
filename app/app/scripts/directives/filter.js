@@ -51,6 +51,14 @@ angular.module('hearth.directives').directive('filter', [
                     }
                 };
 
+                // when (un)checked checkbox for save filter - send request also to api
+                scope.toggleSaveFilter = function(save) {
+                    if(save)
+                        Filter.setUserFilter(scope.convertFilterToParams(scope.filter));
+                    else
+                        Filter.deleteUserFilter();
+                };
+
                 scope.convertFilterToParams = function(filter) {
                     var related = [],
                         params = {};
@@ -179,6 +187,7 @@ angular.module('hearth.directives').directive('filter', [
                         scope.filterSave = true;
                 };
 
+                scope.$watch('filterSave', scope.toggleSaveFilter);
                 scope.$on('initFinished', scope.init);
                 $rootScope.initFinished && scope.init();
             }
