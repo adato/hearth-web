@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = false;
+		$scope.sendingApplication = false;
 
 		$scope.isMine = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
@@ -45,12 +46,16 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		$scope.applyForCommunity = function() {
+			if($scope.sendingApplication) return false;
+			$scope.sendingApplication = true;
 
 			CommunityApplicants.add({communityId: $scope.info._id}, function(res) {
 				$scope.init();
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
+				$scope.sendingApplication = false;
 			}, function() {
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_FAILED', Notify.T_ERROR);
+				$scope.sendingApplication = false;
 			});
 		};
 

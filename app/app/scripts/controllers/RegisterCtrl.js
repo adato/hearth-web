@@ -10,7 +10,11 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
     '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify',
     function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify) {
 
-        $scope.user = new User();
+        $scope.user = {
+            email: '',
+            name: '',
+            password: ''
+        };
         $scope.sent = false; // show result msg
         $scope.sending = false; // lock - send user only once
         $scope.termsPath = false;
@@ -70,12 +74,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
         //     cb(false);
         // };
 
-        // when registration is successfull - hide form and show success message
-        // ================ DEPRECATED ================
         $scope.hideForm = function() {
             $(".register-login-form").slideUp('slow', function() {
             });
-                $(".register-successful").slideDown('slow', function() {});
+            $(".register-successful").slideDown('slow', function() {});
         };
 
         $scope.sendRegistration = function(user) {
@@ -87,12 +89,12 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             if ($scope.sending) return false;
             $scope.sending = true;
 
-            return $scope.user.$save(function() {
+            User.add($scope.user, function() {
 
                 $scope.sending = false;
 
-                // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
-                // $location.path('/');
+            //     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
+            //     // $location.path('/');
                 
                 $scope.hideForm();
 
