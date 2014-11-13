@@ -328,3 +328,8 @@
 
     top: -38px;
  */
+
+.ngdialog-content {
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+}
