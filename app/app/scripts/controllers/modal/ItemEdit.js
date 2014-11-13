@@ -241,6 +241,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					if(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat) < 0) {
 						$scope.createAdForm.valid_until.$error.invalid = true;
 					}
+			$rootScope.globalLoading = true;
 				});
 			}
 		};
