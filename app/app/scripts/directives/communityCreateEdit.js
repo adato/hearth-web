@@ -18,6 +18,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
             link: function($scope, element) {
                 $scope.communityMembers = false;
                 $scope.loaded = false;
+                $scope.adminChangeId = null;
                 $scope.sendingDelete = false;
                 $scope.defaultCommunity = {
                     name: '',
@@ -264,6 +265,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     }
                 };
 
+                $scope.changeSelectValue = function(val) {
+                    $scope.adminChangeId = val;
+                };
+                
                 $scope.$on('initFinished', $scope.init);
                 $rootScope.initFinished && $scope.init();
             }
