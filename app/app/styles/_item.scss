@@ -410,7 +410,6 @@ $imageSize: 80px;
             }
         }
         .text-container {
-            margin-bottom: $fontSize;
             .expandable {
                 max-height: 5em;
                 overflow: hidden;
@@ -430,8 +429,7 @@ $imageSize: 80px;
             font-size: .8rem;
         }
         .attachments {
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: $fontSize;
             .expandable {
                 max-height: 190px;
                 overflow: hidden;
@@ -630,6 +628,7 @@ $imageSize: 80px;
         margin: {
             bottom: 0px;
             left: 0px;
+            top: $fontSize;
         };
         li {
             border: 1px solid #C2C2C2;
