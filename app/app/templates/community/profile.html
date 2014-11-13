@@ -6,30 +6,31 @@
 	</div>
 	<header ng-show="info">
 		<div class="user-basic">
+			<div class="button-bar text-right" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
+				<button class="profile-button tall outline" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
+					<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
+				</button>
+				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="profile-button tall">
+					<i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}
+				</button>
+				<button ng-if="!mine && info.is_applicant" class="profile-button tall outline">
+					<i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLICATION_SENT' | translate}}
+				</button>
+				<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
+					<button class="profile-button tall"><i class="fa fa-share"></i> {{'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
+				</a>
+				<a ng-if="mine" href="#!/community/{{info._id}}/edit">
+					<button class="profile-button red tall">
+						<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
+					</button>
+				</a>
+			</div>
 			<h1>
-				<div class="button-bar text-right" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
-					<button class="profile-button tall outline" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
-						<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
-					</button>
-					<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="profile-button tall">
-						<i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}
-					</button>
-					<button ng-if="!mine && info.is_applicant" class="profile-button tall outline">
-						<i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLICATION_SENT' | translate}}
-					</button>
-					<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
-						<button class="profile-button tall"><i class="fa fa-share"></i> {{'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
-					</a>
-					<a ng-if="mine" href="#!/community/{{info._id}}/edit">
-						<button class="profile-button red tall">
-							<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
-						</button>
-					</a>
-				</div>
 				<a href="#!/community/{{info._id}}">
 					{{ info.name }}
 				</a>
 			</h1>
+			<div class="clear"></div>
 		</div>
 		<div class="highlights">
 			<a href="#!/community/{{info._id}}" class="profile-photo">
