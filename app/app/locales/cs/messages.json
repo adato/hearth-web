@@ -532,6 +532,7 @@
         "PASS_CHANGE_SUCCES": "Úprava hesla byla úspěšná.",
         "POST_CREATED_SUCCESFULLY": "Inzerát byl úspěšně uložen.",
         "POST_DELETED_SUCCESFULLY": "Inzerát byl úspěšně smazán.",
+        "POST_DELETED_FAILED": "Inzerát se nepodařilo smazat.",
         "POST_EDIT_FAILED": "Při úpravě inzerátu došlo k chybě.",
         "POST_SPAM_REPORT_FAILED": "Nahlášení inzerátu se nepovedlo.",
         "POST_SPAM_REPORT_SUCCESS": "Inzerát byl nahlášen.",

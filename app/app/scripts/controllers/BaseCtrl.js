@@ -235,6 +235,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 cb && cb(post); // if callback given, call it
             }, function() {
                 $rootScope.globalLoading = false;
+                Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_INFO);
             });
         };
 
