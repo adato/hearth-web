@@ -21,14 +21,14 @@
             .fa-angle-right {
                 font-size: 100px;
                 padding: 10px;
+                padding-left: 15px;
+                top: 280px;
             }
             .fa-angle-left {
                 left: 0px;
-                top: 300px;
             }
             .fa-angle-right {
                 right: 0px;
-                top: 300px;
             }
             .close {
                 z-index: 1000;
@@ -66,7 +66,7 @@
             padding: 0px;
 
             .flexslider {
-                min-height: 590px;
+                min-height: 520px;
 
                 box-shadow: none;
                 margin: auto;
@@ -90,7 +90,7 @@
                     display: inline-block;
                     margin: auto;
                     position: absolute;
-                    bottom: 425px;
+                    bottom: 355px;
                     left: 0px;
                     li {
                         display: inline-block;
