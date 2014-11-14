@@ -148,7 +148,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
-            
+
             Notify.checkRefreshMessage();
         };
 

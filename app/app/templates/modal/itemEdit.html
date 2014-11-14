@@ -22,16 +22,18 @@
                 <span ng-if="post.is_expired && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
                 <span ng-if="!post.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
             </div>
-            <needofferselector ng-if="loggedCommunity" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
-            <needofferselector ng-if="!loggedCommunity" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
+            <div class="nameFiled">
+                <needofferselector ng-if="loggedCommunity" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
+                <needofferselector ng-if="!loggedCommunity" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
 
-            <div class="name" ng-class="{'community-style-name': loggedCommunity}">
-                <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+                <div class="name" ng-class="{'community-style-name': loggedCommunity}">
+                    <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 
-                <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
-                    <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
-                    <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
-                    <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
+                    <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
+                        <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
+                        <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
+                        <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
+                    </div>
                 </div>
             </div>
             <div class="clear"></div>
