@@ -255,6 +255,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.save = function(post) {
 			var postData, postDataCopy;
 
+			// return $rootScope.globalLoading = true;
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
 

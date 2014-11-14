@@ -43,7 +43,7 @@ angular.module('hearth.services').service('Notify', [
 
 			// if there is an error shown in its own container without ttl, we will show him for longer time
 			if(container !== self.TOP && type == self.T_ERROR && ! ttl) {
-				ttlCustom = 9999000;
+				ttlCustom = -1;
 			}
 			// add icon before text			
 			if(self.icons[type])
@@ -75,7 +75,7 @@ angular.module('hearth.services').service('Notify', [
 				newNotify.fadeIn(300);
 
 				// if timeout is set, trigger close event after given time
-				if(ttlCustom) setTimeout(function() {
+				if(ttlCustom >= 0) setTimeout(function() {
 					newNotify.click();
 				}, ttlCustom);
 
@@ -147,7 +147,6 @@ angular.module('hearth.services').service('Notify', [
 
 		// close notify on some event
 		this.closeNotify = function(ev) {
-
 			$(ev.target).slideUp('fast', function() {
 				$(ev.target).remove();	
 			});

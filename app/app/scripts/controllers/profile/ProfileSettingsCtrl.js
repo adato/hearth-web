@@ -41,12 +41,20 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			return res;
 		};
 
+		$scope.processDeleteUserResultError = function(res) {
+			$scope.processDeleteUserResult(res.data);
+		};
+
 		$scope.processDeleteUserResult = function(res) {
 			$rootScope.globalLoading = false;
 
 			if (res.ok) {
 				alert(Notify.translate('NOTIFY.ACCOUNT_DELETE_SUCCESS'));
 				window.location.replace("/app/");
+			} else if( res.reason == 'community admin' ) {
+				setTimeout(function() {
+					return Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED_COMMUNITY', Notify.T_ERROR, '.notify-container-delete-user');
+				}, 1000);
 			} else {
 				Notify.addSingleTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
 			}
@@ -65,7 +73,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				};
 
 				$rootScope.globalLoading = true;
-				User.remove(out, $scope.processDeleteUserResult, $scope.processDeleteUserResult);
+				User.remove(out, $scope.processDeleteUserResult, $scope.processDeleteUserResultError);
 			}
 		};
 
@@ -168,7 +176,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.init = function() {
 
 			UnauthReload.check();
-			console.log("Using language: ", $rootScope.language);
 		};
 
 		$scope.switchLang = function(lang) {

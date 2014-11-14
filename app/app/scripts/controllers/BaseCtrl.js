@@ -149,6 +149,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $.cookie('tutorial', 1);
             }
 
+            // $rootScope.editItem(null);
+            
             Notify.checkRefreshMessage();
         };
 
