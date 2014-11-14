@@ -1,71 +1,93 @@
 $medium-avatar-size: 80px;
+
 .profile-view {
-    max-width:960px;
+    max-width: 960px;
     padding-bottom: 100px;
     margin: {
         left: auto;
         right: auto;
-        top:-40px; // moved whole page a little bit up to avoid blank space on top
+        margin-top: -30px;
+    };
+
+    h1 {
+        display: inline;
     }
 
-    .ratings-given {
+    .profile-listings {
+        padding-top: 20px;
+    }
+    .ratings-received {
+        .score-select {
+            position: relative;
+            top: -15px;
+            p {
+                left: 20px;
+                position: relative;
+                top: 8px;
+            }
+            .need-offer-selector .button {
+                &.left.pressed {
+                    background-color: color(2);
+                    //positive
+               
+                }
+                &.right.pressed {
+                    background-color: color(5);
+                    //negative
+               
+                }
+            }
+        }
         .profile-edit-common {
             h3 {
                 position: relative;
                 top: -20px;
             }
-
-            .score-select {
-                position: relative;
-                top: -15px;   
-            }
         }
     }
-
     .medium-avatar {
         .avatar {
-            left:0;
-            width:$medium-avatar-size;
-            height:$medium-avatar-size;
+            left: 0;
+            width: $medium-avatar-size;
+            height: $medium-avatar-size;
             margin: {
-                top:20px;
-                left:0px;
-                right:20px;
-                bottom:0px;
-            }
-            float:left;
+                top: 20px;
+                left: 0px;
+                right: 20px;
+                bottom: 0px;
+            };
+            float: left;
             &::before {
-                width:$medium-avatar-size;
-                height:$medium-avatar-size;
+                width: $medium-avatar-size;
+                height: $medium-avatar-size;
             }
             img {
                 border-radius: 50%;
-                background:color(4);
+                background: color(4);
             }
         }
     }
-
     .community-listing {
         @extend .clearfix, .medium-avatar;
-        clear:both;
+        clear: both;
         .community {
             @extend .large-10, .large-centered, .clearfix;
             margin: {
                 bottom: 5px;
-                left:auto;
-                right:auto;
-            }
+                left: auto;
+                right: auto;
+            };
             padding: {
-                top:20px;
-                bottom:20px;
-                left:20px;
-                right:20px;
-            }
-            background:lighten(color(5), 45%);
+                top: 20px;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+            };
+            background: lighten(color(5), 45%);
             small {
-                font-size:0.85rem;
+                font-size: 0.85rem;
                 float: right;
-                line-height:125%;
+                line-height: 125%;
                 a {
                     color: black;
                     opacity: 0.7;
@@ -76,88 +98,46 @@ $medium-avatar-size: 80px;
                 }
             }
             .avatar {
-                margin-top:0;
+                margin-top: 0;
             }
             .community-text {
-                font-size:1.2rem;
-                line-height:125%;
+                font-size: 1.2rem;
+                line-height: 125%;
                 margin: {
-                    top:10px;
-                    bottom:10px;
-                    left:100px; 
-                }
+                    top: 10px;
+                    bottom: 10px;
+                    left: 100px;
+                };
                 .rating-from {
-                    display:inline-block;
-                    margin-top:10px;
+                    display: inline-block;
+                    margin-top: 10px;
                 }
             }
         }
     }
-
     .user-rating-link {
         margin: auto;
     }
-    
+    .rate-user-text {
+        margin-bottom: 20px;
+    }
     .user-rating-form {
-        margin-top: 30px;
+        overflow: visible !important;
         margin: auto;
-
+        .item {
+            margin-top: 5px;
+        }
         label {
             margin-bottom: 15px;
         }
         textarea {
             min-height: 120px;
         }
-
         .moveUp {
             position: relative;
-
             span {
                 position: absolute;
                 top: -30px;
-            }
-        }
-    }
-    .rating-listing {
-        margin-top: 30px;
-        @extend .clearfix;
-        clear:both;
-        .rating {
-            @extend .large-10, .large-centered, .clearfix, .medium-avatar;
-            margin: {
-                bottom: 5px;
-                left:auto;
-                right:auto;
-            }
-            padding: {
-                top:20px;
-                bottom:20px;
-                left:20px;
-                right:20px;
-            }
-            background:lighten(color(5), 45%);
-            small {
-                font-size:0.85rem;
-                line-height:125%;
-            }
-            .avatar {
-                margin-top:0;
-            }
-            .rating-text {
-                font-size:1.2rem;
-                line-height:125%;
-                margin: {
-                    top:15px;
-                    bottom:10px;
-                    left:100px; 
-                }
-                .rating-from {
-                    display:inline-block;
-                    margin-top:10px;
-                }
-            }
-            .date {
-                float:right;
             }
         }
     }
@@ -174,3 +154,25 @@ $medium-avatar-size: 80px;
         display: none;
     }
 }
+
+.rating-listing {
+    .rating-received-bar {
+        min-height: 50px;
+        text-align: center;
+    }
+    .rating-item {
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+        .date {
+            font-size: .8rem;
+        }
+
+    }
+}
+
+.ratings-given {
+    .photo {
+        margin-top: 5px;
+    }
+}
+

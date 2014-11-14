@@ -1,17 +1,18 @@
 #maitenancePage {
   
   display: none;
-  
+  z-index: 10000 !important;
+
   .ngdialog-content {
     background-color: transparent;
     height: 100px;
-    margin:15% auto;
-    margin-top: -50px;
+    left: 0;
+    margin: 15% auto;
     padding: 10px;
-    position: relative;
+    position: fixed;
+    right: 0;
     text-align: center;
-    top: 50%;
-
+    
     h2 {
       color: white;
     }

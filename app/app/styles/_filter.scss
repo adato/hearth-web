@@ -14,6 +14,15 @@
             bottom: $fontSize;
         };
     }
+    .footer {
+        .link-button {
+            margin-top: 1rem;
+        }
+
+        .checkbox {
+            padding-top: 0.4em;
+        }
+    }
     .bars {
         margin: 0;
         .columns {

@@ -3,38 +3,17 @@
     padding-bottom: 100px;
     
     .profile-photo {
-        background-image: inline-image("no-cm-avatar.png") !important;
+        background-image: inline-image("no-cm-avatar.jpg") !important;
 
     }
     margin: {
         left: auto;
         right: auto;
-        top:-40px; // hack, remove when whole site is updated
     }
 
     .avatar {
         overflow: hidden;
     }
-    .button-flat {
-        font-weight:bold;
-        border:0;
-        &.blue {
-            background:color(5);
-            i {
-                display:inline-block;
-                margin-right:10px;
-            }
-            &:hover {
-                background:darken(color(5), 20%);
-            }
-            margin:1.25rem;
-        }
-        padding: {
-            top:10px;
-            bottom:10px;
-        }
-    }
-
     .clearfix {
         &:after {
             content: "";

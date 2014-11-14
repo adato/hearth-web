@@ -51,25 +51,40 @@ angular.module('hearth.services').factory('Filter', [
             isSet: function() {
                 return !$.isEmptyObject($location.search());
             },
-            apply: function(filterData, save){
+            apply: function(filterData, save, applySave){
+
                 $location.search(filterData);
-                if (save) {
-                    User.edit(angular.extend({
-                        _id: $rootScope.loggedUser,
-                        filter: filterData
-                    }));
+                if(applySave && $rootScope.loggedUser._id) {
+                    if (save) {
+                        this.setUserFilter(filterData);
+                    } else {
+                        this.deleteUserFilter();
+                    }
                 }
 
                 $rootScope.$broadcast("filterApplied", filterData);
             },
+            checkUserFilter: function() {
+                // if user has saved filter, load it
+                if($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length) {
+                    this.apply($rootScope.user.filter);
+                }
+            },
+            setUserFilter: function(filter) {
+                User.edit({
+                    _id: $rootScope.loggedUser._id,
+                    filter: filter
+                });
+                $rootScope.user.filter = filter;
+            },
+            deleteUserFilter: function() {
+                this.setUserFilter({});
+            },
             reset: function() {
                 $location.search('');
+
                 if ($rootScope.loggedUser._id) {
-                    console.log("Resetting user filter");
-                    User.edit({
-                        _id: $rootScope.loggedUser._id,
-                        filter: {}
-                    });
+                    this.deleteUserFilter();
                 }
 
                 $rootScope.$broadcast("filterReseted");

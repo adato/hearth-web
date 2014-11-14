@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemReply', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$element', 'PostReplies',
-	function($scope, $rootScope, Auth, Errors, $element, PostReplies) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$element', 'PostReplies', 'Notify',
+	function($scope, $rootScope, Auth, Errors, $element, PostReplies, Notify) {
 		$scope.sending = false;
 		$scope.showErrors = false;
 		$scope.reply = {
@@ -26,7 +26,15 @@ angular.module('hearth.controllers').controller('ItemReply', [
 		$scope.toggleMail = function() {
 			$scope.reply.agree = !$scope.reply.agree;
 			$scope.showErrors.agree = ! $scope.reply.agree;
-		}
+		};
+
+		$scope.showFinished = function() {
+
+			$(".reply-ad").slideToggle();
+			setTimeout(function() {
+				$scope.closeThisDialog();
+			}, 5000);
+		};
 
 		$scope.sendReply = function() {
 			var data = {
@@ -43,16 +51,23 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				return false;
 			}
 
+			$rootScope.globalLoading = true;
 			$scope.sending = true;
 			PostReplies.add(data, function(res) {
 
+				$rootScope.globalLoading = false;
 				$scope.sending = false;
-				$scope.closeThisDialog();
+				$scope.showFinished();
 				$scope.post.reply_count += 1;
+				$scope.post.is_replied = true;
+
+	            // Notify.addSingleTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
+
 			}, function(res) {
 
-				alert("There was an error while sending request to api.");
+				Notify.addSingleTranslate('NOTIFY.REPLY_FAILED', Notify.T_ERROR, '.notify-reply-container');
 				$scope.sending = false;
+				$rootScope.globalLoading = false;
 			});
 		};
 

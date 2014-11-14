@@ -7,7 +7,6 @@ $topBarImageSize: 1.8em;
         .scrolled & {
             padding: 2px;
         }
-
         .columns {
             > a {
                 .fa {
@@ -26,14 +25,13 @@ $topBarImageSize: 1.8em;
         }
     }
 }
+
 .navigation {
     box-shadow: 0 2px 2px rgba(black, 0.3);
     background-color: color(1);
     padding: $fontSize / 2;
-
     // ============ Odstraneni responzivity ======
-    min-width:950px;
-
+    min-width: 950px;
     .columns {
         >.separator {
             width: $topBarHeight;
@@ -57,6 +55,9 @@ $topBarImageSize: 1.8em;
             };
             .fa {
                 font-size: $topBarHeight - $topBarLabelSize;
+                &.icon-community {
+                    margin-left:-13px;
+                }
             }
             .img {
                 opacity: 0.8;
@@ -82,8 +83,9 @@ $topBarImageSize: 1.8em;
                 display: block;
                 height: $topBarHeight !important;
                 margin: {
-                    bottom:0;right:0;
-                    top:-2px;
+                    bottom: 0;
+                    right: 0;
+                    top: -2px;
                     left: -32px;
                 };
             }
@@ -100,7 +102,7 @@ $topBarImageSize: 1.8em;
             }
         }
         li {
-            &.no-hover:hover{
+            &.no-hover:hover {
                 background-color: inherit;
                 a {
                     color: inherit;
@@ -136,9 +138,9 @@ $topBarImageSize: 1.8em;
             margin-right: 5px;
             border-radius: 50%;
             background-size: cover;
-            background-image: inline-image("no-avatar.png");
+            background-image: inline-image("no-avatar.jpg");
             &.community {
-                background-image: inline-image("no-cm-avatar.png");
+                background-image: inline-image("no-cm-avatar.jpg");
             }
         }
         span {
@@ -159,7 +161,7 @@ $topBarImageSize: 1.8em;
         margin: {
             left: -$topBarImageSize / 2;
         };
-        background-image: inline-image("no-avatar.png");
+        background-image: inline-image("no-avatar.jpg");
     }
     .search-button {
         position: absolute;
@@ -168,5 +170,4 @@ $topBarImageSize: 1.8em;
         color: color(1);
         cursor: pointer;
     }
-
 }

@@ -3,8 +3,7 @@
         <div class="fleft locInput">
             <input placeholder="{{ placeholder | translate}}" ng-blur="testEmptyLocation(location)" ng-focus="hideError(location)" ng-disabled="limit == true" ng-model="locations[$index].name" class="map-input" type='text'>
             <div class="remove" ng-hide="$first">
-                <!-- <span class="fa fa-times-circle" ng-click="remove($event, $index)"></span> -->
-                <span class="remove" ng-click="remove($event, $index)">{{ 'DELETE_LOCATION' | translate }}</span>
+              <span class="fa fa-times-circle" ng-click="remove($event, $index)"></span>
             </div>
         </div>
         <div class="fleft mapIcon" ng-show="!hideMap" ng-class="{selected: mapDisplay == $index}">
@@ -16,7 +15,6 @@
             </a>
         </div>
         <div id="map-{{$index}}" class="location-map hidden"></div>
-
     </div>
     <div class="clear"></div>
     <div class="controll">
@@ -29,5 +27,8 @@
     </div>
     <div class="error moveUp" ng-show="error">
         <span>{{ errorMsg | translate }}</span>
+    </div>
+    <div class="error moveUp" ng-show="errorWrongPlace">
+        <span>{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
     </div>
 </div>

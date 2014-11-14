@@ -1,25 +1,6 @@
-<div class="needOfferSelector">
-	<ul class="button-group radius">
-		<li>
-			<a class="small button left" ng-class="{pressed: !needSelected}" ng-click="toggleNeed()">
-				<div ng-if="community">
-					<span>{{ 'WE_GIVE' | translate }}</span>
-				</div>
-				<div ng-if="!community">
-					<span>{{ 'OFFER' | translate }}</span>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a class="small button right" ng-class="{pressed: needSelected}" ng-click="toggleNeed()"> 
-				<div ng-if="community">
-					<span>{{ 'WE_NEED' | translate }}</span>
-				</div>
-				<div ng-if="!community">
-					<span>{{ 'NEED' | translate }}</span>
-				</div>
-			</a>
-		</li>
-		
-	</ul>
+<div class="need-offer-selector button-group radius">
+	<a class="small button left" ng-class="{pressed: !model}" ng-click="toggle()"><span ng-hide="!iconFalse"><i class="fa" ng-class="iconFalse"></i> </span>{{ textFalse }}
+	</a>
+	<a class="small button right" ng-class="{pressed: model}" ng-click="toggle()"><span ng-hide="!iconTrue"><i class="fa" ng-class="iconTrue"></i> </span>{{ textTrue }}
+	</a>
 </div>

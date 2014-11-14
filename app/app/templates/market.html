@@ -2,19 +2,31 @@
 <div>
 	<filter-status></filter-status>
 	<filterbar filter=filter></filterbar>
-
+	<div loading show="!loaded" text="{{ 'COMMON.LOADING' | translate }}"></div>
+	
 	<div class="large-12 columns" ng-hide="showMap">
 		<div when-scrolled="load()" class="wish-list">
-			<article ng-show="!items.length && sent" class="row ">
-				<section class="large-6 large-centered columns box text-center" style="padding:1em">
-					<div translate class="padding-2" ng-show="pageType != 'my'">NOTHING_FOUND</div>
-					<div translate class="padding-2" ng-show="pageType == 'my'">MY_HEARTH_NOTHING_FOUND</div>
-				</section>
-			</article>
-			<item keywords-active="keywordsActive" item=item ng-repeat="(id, item) in items  track by $index | orderBy:orderByPostSort" user="user" community="loggedCommunity"></item>
+			
+			<div ng-show="!items.length && loaded && filterIsOn" class="row">
+				<div class="large-8 large-centered columns box text-center" style="padding:1em">
+					<p translate class="padding-2">MARKETPLACE.FILTER_NOT_FOUND</p>
+					<div class="large-6 columns text-center">
+						<a ng-click="toggleFilter()">{{ "MARKETPLACE.EDIT_FILTER" | translate}}</a>
+					</div>
+					<div  class="large-6 columns text-center">
+						<a ng-click="resetFilter()">{{ "MARKETPLACE.RESET_FILTER" | translate}}</a>
+					</div>
+				</div>
+			</div>
+			<div ng-show="!items.length && loaded && !filterIsOn" class="row">
+				<div class="large-8 large-centered columns box text-center" style="padding:1em">
+					<p translate class="padding-2">MARKETPLACE.NOTHING_FOUND</p>
+				</div>
+			</div>
+			<item keywords-active="keywordsActive" item="item" ng-repeat="(id, item) in items track by $index" user="user" community="loggedCommunity"></item>
 		</div>
 	</div>
-	<div class="large-12 columns" ng-show="showMap">
+	<div class="large-12 columns" ng-if="showMap">
 		<search-map show-map="showMap" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>

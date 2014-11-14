@@ -25,7 +25,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 						+ '</div>'
 	                    + '<div ng-if="error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
 	                    + '<div ng-if="error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
-	                    + '<div ng-if="error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate }}</div>'
+	                    + '<div ng-if="error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX_"+limitPixelSize | translate }}</div>'
 						+'</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];

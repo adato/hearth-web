@@ -14,11 +14,20 @@ angular.module('hearth.services').service('Notify', [
 		var notifyTypes = { 1: 'success', 2: 'info', 3: 'warning', 4: 'error', 5: '' };
 		var self = this;
 
-		this.T_SUCCESS = 1;
-		this.T_INFO = 2;
-		this.T_WARNING = 3;
-		this.T_ERROR = 4;
-		this.T_TEXT = 5;
+		this.T_SUCCESS 	= 1;
+		this.T_INFO 	= 2;
+		this.T_WARNING 	= 3;
+		this.T_ERROR 	= 4;
+		this.T_TEXT 	= 5;
+
+		this.icons = {};
+		this.icons[this.T_SUCCESS] 	= 'fa-check';
+		this.icons[this.T_INFO] 	= 'fa-info-circle';
+		this.icons[this.T_WARNING] 	= 'fa-exclamation-triangle';
+		this.icons[this.T_ERROR] 	= 'fa-times';
+		this.icons[this.T_TEXT] 	= '';
+
+		this.TOP = '#notify-top';
 
 		// add notification with plain text
 		this.add = function(text, type, container, ttl, delay) {
@@ -26,14 +35,22 @@ angular.module('hearth.services').service('Notify', [
 			// if not set delay, set it to 0ms
 			delay = delay || 0;
 			// time to live - timeout to autoclose notify
-			ttl = ttl || 0;
+			var ttlCustom = ttl || 4000;
 			// default time is info box
 			type = type || this.T_INFO;
 			// default container is top center contaimer
-			container = container || '#notify-area';
+			container = container || self.TOP;
 
-			console.log("Adding notify: ", [text, type, container, ttl, delay]);
+			// if there is an error shown in its own container without ttl, we will show him for longer time
+			if(container !== self.TOP && type == self.T_ERROR && ! ttl) {
+				ttlCustom = -1;
+			}
+			// add icon before text			
+			if(self.icons[type])
+				text = '<i class="fa '+self.icons[type]+'"></i>' + text;
 			
+			console.log("Adding notify: ", [text, type, container, ttlCustom, delay]);
+
 			// create notify with given type and text
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
 				// hide it at start
@@ -58,23 +75,83 @@ angular.module('hearth.services').service('Notify', [
 				newNotify.fadeIn(300);
 
 				// if timeout is set, trigger close event after given time
-				if(ttl) setTimeout(newNotify.click, ttl);
+				if(ttlCustom >= 0) setTimeout(function() {
+					newNotify.click();
+				}, ttlCustom);
 
 			}, delay);
 		};
 
-		// add notification and translate given text with ng-translate
-		this.addTranslate = function(text, type, container, ttl, delay) {
-			return self.add($translate(text), type, container, ttl, delay);
+		// hide all messages in given container
+		this.hideAll = function(container, cb) {
+			if(!$(container).children().length)
+				return cb && cb();
+
+			$(container).children().slideUp(function() {
+				$(this).remove();
+				cb && cb();
+			});
 		};
 
-		this.closeNotify = function(ev) {
+		// this will close all messages in given container and show given message
+		this.addSingle = function(text, type, container, ttl, delay) {
+			container = container || self.TOP;
+			
+			self.hideAll(container, function() {
+				return self.add(text, type, container, ttl, delay);
+			});
+		};
 
-			$(ev.target).fadeOut('fast', function() {
+		// this will close all messages in given container and show given message with translate
+		this.addSingleTranslate = function(text, type, container, ttl, delay) {
+			container = container || self.TOP;
+
+			self.hideAll(container, function() {
+				return self.addTranslate(text, type, container, ttl, delay);
+			});
+		};
+
+		// add notification and translate given text with ng-translate
+		this.addTranslate = function(text, type, container, ttl, delay) {
+			return self.add(self.translate(text), type, container, ttl, delay);
+		};
+
+		// this will save message to cookies - will be retrieved after next refresh
+		this.addTranslateAfterRefresh = function(text, type, container, ttl, delay) {
+
+			$.cookie("notify.afterRefresh", JSON.stringify(arguments));
+		};
+
+		// this will take cookie and if not empty - it will show containing notification 
+		this.checkRefreshMessage = function() {
+			// if not empty
+			if($.cookie("notify.afterRefresh")) {
+				var cookie = JSON.parse($.cookie("notify.afterRefresh"));
+
+				// take cookie and parse him to array
+				var args = $.map(cookie, function(value, index) {
+				    return [value];
+				});
+
+				// apply given arguments on this function
+				self.addSingleTranslate.apply(self, args);
+
+				// and delete cookie
+				$.removeCookie("notify.afterRefresh");
+			}
+		};
+		// translate given message
+		this.translate = function(text) {
+			return $translate(text);
+		};
+
+		// close notify on some event
+		this.closeNotify = function(ev) {
+			$(ev.target).slideUp('fast', function() {
 				$(ev.target).remove();	
 			});
 			return false;
-		}
+		};
 
 		return this;
 	}

@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-    'geo', 'KeywordsService', '$location', 'Auth', '$timeout', 'Filter',
+    'geo', 'KeywordsService', '$location', 'Auth', '$timeout', 'Filter', '$rootScope',
 
-    function(geo, KeywordsService, $location, Auth, $timeout, Filter) {
+    function(geo, KeywordsService, $location, Auth, $timeout, Filter, $rootScope) {
         return {
             restrict: 'E',
             replace: true,
@@ -27,25 +27,36 @@ angular.module('hearth.directives').directive('filter', [
 
                 $timeout(function () {
                     $(".tags input", element).keypress(function(e) {
-                        if (e.keyCode == 9) {
-                            var self = this;
-                            setTimeout(function() {
-                                $(".tags input", element).focus();
-                            });
+                        if($(e.target).val() != '') {
+                            if (e.keyCode == 9) {
+                                var self = this;
+                                setTimeout(function() {
+                                    $(".tags input", element).focus();
+                                });
+                            }
                         }
                     });
                 });
 
                 scope.loggedUser = Auth.isLoggedIn();
+                scope.inited = false;
 
                 scope.applyFilter = function() {
-
+                    
                     if ($.isEmptyObject(scope.filter)) {
                         scope.reset();
                     } else {
-                        Filter.apply(scope.convertFilterToParams(scope.filter), scope.filterSave);
+                        Filter.apply(scope.convertFilterToParams(scope.filter), scope.filterSave, true);
                         scope.close();
                     }
+                };
+
+                // when (un)checked checkbox for save filter - send request also to api
+                scope.toggleSaveFilter = function(save) {
+                    if(save)
+                        Filter.setUserFilter(scope.convertFilterToParams(scope.filter));
+                    else
+                        Filter.deleteUserFilter();
                 };
 
                 scope.convertFilterToParams = function(filter) {
@@ -169,6 +180,16 @@ angular.module('hearth.directives').directive('filter', [
                 };
                 scope.updateFilterByRoute();
 
+                scope.init = function() {
+                    scope.inited = true;
+
+                    if($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length)
+                        scope.filterSave = true;
+                };
+
+                scope.$watch('filterSave', scope.toggleSaveFilter);
+                scope.$on('initFinished', scope.init);
+                $rootScope.initFinished && scope.init();
             }
         };
     }

@@ -1,6 +1,6 @@
-<div class="filter">
+<div class="filter" ng-show="inited">
 	<article class="row">
-		<section class="large-12 columns" style="padding-bottom:0;padding-top:0">
+		<section ng-if="inited" class="large-12 columns" style="padding-bottom:0;padding-top:0">
 			<tags-input ng-model="filter.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
 				<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 			</tags-input>
@@ -30,7 +30,7 @@
 				</section>
 				<section class="large-3 columns">
 					<header>{{'by-place' | translate}}</header>
-					<input type="text" id="geolocation" ng-model="filter.name">
+					<input type="text" id="geolocation" ng-model="filter.name" />
 					<div ng-show="filter.lat && filter.lon && filter.name">
 						<input type="range" ng-model="filter.distance" step="25"  min="25" max="100" >
 						<div class="text-center">{{filter.distance}} km</div>

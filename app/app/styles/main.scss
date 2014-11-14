@@ -2,7 +2,7 @@
 
 //@import "variables";
 
-$color: #fa5800, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8;
+$color: #fa5800, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8, #26AF34;
 $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 $webWidth: 960px;
@@ -102,22 +102,23 @@ $fontSize: rem-calc(18);
 @import "communities";
 @import "communityProfile";
 @import "communityEdit";
-@import "notifyAreas";
+@import "404";
+@import "notify";
 
 body {
-    background-image: inline-image("bg.png");
+    background-image: inline-image("bg.jpg");
+    background-color: #FAF8EB;
     background-repeat: no-repeat;
     background-position: 50% top;
-    background-attachment:fixed;
     .main-container {
         display: block;
         min-width:960px;
         margin: 0px auto;
         position: relative;
-        .scrolled & {
+/*         .scrolled & {
             top: 6em;
-        }
-        top: 8em;
+        } */
+        top: 6em;
     }
 }
 
@@ -180,13 +181,16 @@ body {
 @import "progress";
 */
 
+/* 
+Signika is not needed anymore, right?
 @include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
-
 @include font-face("Signika", font-files("Signika-Semibold.woff", "Signika-Semibold.ttf", "Signika-Semibold.svg#signikasemibold"), "Signika-Semibold.eot", bold);
+ */
 
+@import "hearthIcons";
 @include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
-
 @include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold);
+
 
 meta.foundation-data-attribute-namespace {
     font-family: false;
@@ -1173,43 +1177,7 @@ input[disabled].text-input {
     }
 }
 
-.alert-box.error {
-    position: relative;
-    z-index: 1;
-    &.connect-top {
-        margin-top: -$global-radius;
-        padding-top: $alert-padding-top + emCalc($global-radius);
-    }
-    &.connect-bottom {
-        margin-bottom: -$global-radius;
-        padding-bottom: $alert-padding-bottom + emCalc($global-radius);
-    }
-    &.alert-error,
-    &.alert-success {
-        padding-top: emCalc(2 * $grid-size);
-        padding-bottom: emCalc(2 * $grid-size);
-    }
-    &.alert-error {
-        color: $alert-color;
-        background: darken($body-alt-bg, 5%);
-        border: 0px;
-        border-bottom: 1px solid lighten($alert-color, 40%);
-        &::before {
-            font-family: FontAwesome;
-            content: "\f057";
-        }
-    }
-    &.alert-success {
-        color: $success-color;
-        background: darken($body-alt-bg, 5%);
-        border: 0px;
-        border-bottom: 1px solid lighten(desaturate($success-color, 50%), 40%);
-        &::before {
-            font-family: FontAwesome;
-            content: "\f058";
-        }
-    }
-}
+
 
 .error small,
 small.error {
@@ -1391,7 +1359,7 @@ textarea:focus {
     position: absolute;
     top: 11px;
     right: 24px;
-    color: color(1);
+    color: color(3);
     cursor: pointer;
 }
 
@@ -1478,3 +1446,14 @@ img.blur {
         color: white;
     }
 }
+
+.loading {
+    @extend .clearfix;
+    font-size: 2rem;
+    opacity: 0.7;
+
+    .fa {
+      margin-right: 0.5rem;
+      animation: 1.5s linear 0s normal none infinite spin;
+    }
+} 

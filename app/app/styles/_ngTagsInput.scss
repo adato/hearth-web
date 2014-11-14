@@ -50,12 +50,10 @@ tags-input .host {
             .remove-button {
                 margin: 0 0 0 5px;
                 position: relative;
-                top: -1px;
                 padding: 0;
                 border: none;
                 background: none;
                 cursor: pointer;
-                vertical-align: middle;
                 font: bold 16px Arial, sans-serif;
                 color: white;
             }
@@ -224,19 +222,19 @@ tags-input {
  */
 
 tags-input *, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 tags-input {
     .host {
-      position: relative;
-      margin-top: 5px;
-      margin-bottom: 5px;
+        position: relative;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     .host:active {
-      outline: none;
+        outline: none;
     }
     .tags {
         -moz-appearance: textfield;
@@ -246,24 +244,21 @@ tags-input {
         word-wrap: break-word;
         cursor: text;
         background-color: white;
-
         padding: 4px 4px 4px 8px;
-
         border-radius: $global-radius $global-radius $global-radius $global-radius;
         background: none repeat scroll 0 0 transparent !important;
         border: 1px solid #d7d7d7 !important;
         box-shadow: 0 0 5px #d7d7d7 inset !important;
-
         .focused {
-          outline: none;
-          -webkit-box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
-          -moz-box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
-          box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
+            outline: none;
+            -webkit-box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
+            -moz-box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
+            box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
         }
         .tag-list {
-          margin: 0;
-          padding: 0;
-          list-style-type: none;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
         }
         .tag-item {
             margin: 2px;
@@ -275,8 +270,6 @@ tags-input {
             border: 1px solid #acacac;
             border-radius: 8px;
             background-color: white;
-
-            
             .remove-button {
                 margin: 0 0 0 5px;
                 padding: 0;
@@ -286,14 +279,12 @@ tags-input {
                 vertical-align: middle;
                 color: #585858;
                 font-weight: bold;
-                
                 position: relative;
-                top: -3px;
+                top: -2px;
                 &:active {
-                  color: red;
+                    color: red;
                 }
             }
-
             &:hover {
                 background-color: #7AD0F1;
                 color: white;
@@ -303,27 +294,28 @@ tags-input {
             }
         }
         .input {
-          border: 0 !important;
-          box-shadow: none !important;
-          outline: none;
-          margin: 2px;
-          padding: 0;
-          padding-left: 5px;
-          float: left;
-          height: 26px;
+            border: 0 !important;
+            box-shadow: none !important;
+            outline: none;
+            margin: 2px;
+            padding: 0;
+            float: left;
+            height: 26px;
+            font-size: 16px;
+            min-width: 220px;
         }
         .input.invalid-tag {
-          /* color: red; */
+            /* color: red; */
         }
         .input::-ms-clear {
-          display: none;
+            display: none;
         }
     }
     .ng-invalid {
         .tags {
-          -webkit-box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
-          -moz-box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
-          box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
+            -webkit-box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
+            -moz-box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
+            box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
         }
     }
     .autocomplete {
@@ -338,35 +330,32 @@ tags-input {
         -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         .suggestion-list {
-          margin: 0;
-          padding: 0;
-          list-style-type: none;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
         }
         .suggestion-item {
-          padding: 5px 10px;
-          cursor: pointer;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-          color: black;
-          background-color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: black;
+            background-color: white;
         }
         .suggestion-item.selected {
-          color: white;
-          background-color: #0097cf;
+            color: white;
+            background-color: #0097cf;
         }
         .suggestion-item.selected em {
-          color: white;
-          background-color: #0097cf;
+            color: white;
+            background-color: #0097cf;
         }
         .suggestion-item em {
-          font: normal bold 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-          color: black;
-          background-color: white;
+            font: normal bold 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: black;
+            background-color: white;
         }
     }
 }
-
-
-

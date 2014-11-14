@@ -1,4 +1,4 @@
-<article class="row post_{{ item._id }}" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine, inactive: !isPostActive(item)}">
+<article class="row post_{{ item._id }}" ng-style="{display: item.hidden ? 'none' : 'block'}" ng-class="{offer: item.type == 'offer', need: item.type == 'need', edit: edit, mineItem: mine, inactive: !isPostActive(item)}">
 	<section ng-if="! hideAvatar" class="large-2 columns photo">
 		<div ng-if="loggedUser._id" ng-include="'templates/_user-info.html'"></div>
 		<a ng-if="loggedUser._id" ng-href="#!/{{profileLinkType[item.author._type]}}/{{ item.author._id }}">
@@ -42,19 +42,19 @@
 					<span class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span>{{item.updated_at | ago}}</span>
 				</header>
 				<h1>
-					<spam ng-if="item.author._type == 'User'">
+					<span ng-if="item.author._type == 'User'">
 						<span ng-if="item.type == 'need'">{{ 'DOES_WISH' | translate }}</span>
 						<span ng-if="item.type == 'offer'">{{ 'DOES_GIVE' | translate }}</span>
-					</spam>
-					<spam ng-if="item.author._type == 'Community'">
+					</span>
+					<span ng-if="item.author._type == 'Community'">
 						<span ng-if="item.type == 'need'">{{ 'WE_NEED' | translate }}</span>
 						<span ng-if="item.type == 'offer'">{{ 'WE_GIVE' | translate }}</span>
-					</spam>
+					</span>
 					{{item.title}}
 				</h1>
 				<div class="text-container">
 					<div class="expandable">
-						<p ng-bind-html="item.name | linky:'_blank'"></p>
+						<p ng-bind-html="item.name| linky:'_blank' | nl2br  "></p>
 					</div>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
@@ -62,7 +62,7 @@
 						<a class="fancy" ng-href="{{ photo.file }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes track by $index">
 							<img ng-if="$index < 3" ng-src="{{ photo.normal }}">
 							<img ng-if="$index >= 3" data-src="{{ photo.normal }}" class="lazyLoad">
-						</a>	
+						</a>
 					</div>
 				</div>
 				<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
@@ -102,12 +102,18 @@
 				</div>
 				
 			    <section ng-include="'templates/modals.html'" id="modals"></section>
-				<button ng-if="!mine && isPostActive(item)" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
+				<button ng-if="! item.is_replied && !mine && isPostActive(item)" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 				</button>
-				<span class="margin" ng-if="item.type == 'offer' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_WISH' | translate: {value: item.reply_count}"></span>
-				<span class="margin" ng-if="item.type == 'need' &&  item.reply_count" ng-bind-html="'PEOPLE_COUNT_OFFER' | translate: {value: item.reply_count}"></span>
+				<span class="" ng-if="item.is_replied && !mine">
+					{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+				</span>
+
+				<span ng-if="item.reply_count">
+					<span class="margin" ng-if="item.type == 'offer'" ng-bind-html="'PEOPLE_COUNT_WISH_PL.'+pluralCat(item.reply_count) | translate: {value: item.reply_count}"></span>
+					<span class="margin" ng-if="item.type == 'need'" ng-bind-html="'PEOPLE_COUNT_OFFER_PL.'+pluralCat(item.reply_count) | translate: {value: item.reply_count}"></span>
+				</span>
 				<span class="margin" ng-if="item.reply_count==0">{{'NO_REPLY' | translate}}</span>
 				<span ng-if="!isPostActive(item)">
 					&nbsp;&nbsp;&nbsp;

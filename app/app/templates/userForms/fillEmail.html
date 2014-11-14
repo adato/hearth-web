@@ -1,0 +1,20 @@
+<div class="register-login-dialog">
+    <div class="head">
+        <h2>{{ 'FILL_EMAIL_TO_COMPLETE_REGISTRATION' | translate }}</h2>
+    </div>
+    <hr />
+    <div class="fill-email-notify-container"></div>
+    <form ng-submit="fillEmail()" name="fillEmailForm" novalidate class="register-login-form">
+        <label for="email">{{ 'FILL_CONTACT_EMAIL' | translate }}</label>
+        <input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="validateEmail(data)" ng-focus="fillEmailForm.email.$error.unknown = false; showError.email = false" required placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">
+        <div class="moveUp error" ng-show="showError.email">
+            <span ng-show="fillEmailForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
+            <span ng-show="fillEmailForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+            <span ng-show="fillEmailForm.email.$error.used">{{ 'ALREADY_USED_EMAIL' | translate }}</span>
+        </div>
+        <hr />
+        <div class="bottom">
+            <button class="primary button-send pointer center" type="submit"><i class="fa fa-sign-in"></i> {{ 'COMPLETE' | translate }}</button>
+        </div>
+    </form>
+</div>

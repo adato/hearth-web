@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
-	'$scope', '$location', '$routeParams', 'Auth', '$rootScope',
-	function($scope, $location, $routeParams, Auth, $rootScope) {
+	'$scope', '$location', '$routeParams', 'Auth', '$rootScope', 'UnauthReload',
+	function($scope, $location, $routeParams, Auth, $rootScope, UnauthReload) {
 		$scope.data = {
 			username: '',
 			password: ''
@@ -57,11 +57,22 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 		$scope.init = function() {
 			if (Auth.isLoggedIn()) {
-				return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+				return $location.path( $rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
 			}
 
 			$(".login_name").focus();
 		};
+
+		$scope.setLoginRequired = function() {
+			$scope.showMsgOnlyLogged = true;
+			$rootScope.loginRequired = false;
+		};
+
+		if($rootScope.loginRequired) {
+			$scope.setLoginRequired();
+		} else {
+			$scope.$on('loginRequired', $scope.setLoginRequired);
+		}
 
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();

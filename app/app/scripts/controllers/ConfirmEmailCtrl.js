@@ -7,31 +7,37 @@
  */
  
 angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
-	'$scope', '$location', 'Auth', 'flash', '$analytics',
-	function($scope, $location, Auth, flash, $analytics) {
+	'$scope', '$location', 'Auth', 'flash', '$analytics', 'Notify',
+	function($scope, $location, Auth, flash, $analytics, Notify) {
 		var search;
-		$scope.hashIsValid = false;
-		$scope.loaded = false;
-		$scope.missingHash = true;
+		$scope.brokenLink = false;
 		search = $location.search();
-		if (search.hash) {
-			$scope.missingHash = false;
-			return Auth.confirmRegistration(search.hash, function() {
-				flash.success = 'EMAIL_CONFIRMATION_SUCCESS';
-				$analytics.eventTrack('registration email confirmed', {
-					category: 'registration',
-					label: 'registration email confirmed'
-				});
-				return $location.path('login');
-			}, function() {
-				flash.error = 'EMAIL_CONFIRMATION_FAILURE';
-				$analytics.eventTrack('registration email failed', {
-					category: 'registration',
-					label: 'registration email failed'
-				});
-				$scope.loaded = true;
-				return $scope.loaded;
+	
+		function onError(res) {
+			$analytics.eventTrack('registration email failed', {
+				category: 'registration',
+				label: 'registration email failed'
 			});
+
+			if(res.name && res.name == 'ValidationError')
+				return $scope.brokenLink = true;
+			else
+				Notify.addSingleTranslate('NOTIFY.ACCOUNT_ACTIVATE_FAILED', Notify.T_ERROR, '.activate-account-notify-container');
 		}
+
+		function onSuccess(res) {
+			// flash.success = 'EMAIL_CONFIRMATION_SUCCESS';
+			$analytics.eventTrack('registration email confirmed', {
+				category: 'registration',
+				label: 'registration email confirmed'
+			});
+			Notify.addSingleTranslate('NOTIFY.ACCOUNT_ACTIVATE_SUCCESS', Notify.T_SUCCESS);
+			return $location.path('login');
+		}
+		
+		if(!search.hash)
+			$scope.brokenLink = true;
+		else
+			Auth.confirmRegistration(search.hash, onSuccess, onError);
 	}
 ]);

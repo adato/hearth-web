@@ -86,6 +86,10 @@ angular.module('hearth.services').factory('Auth', [
 					return err(data);
 				});
 			},
+			completeTwitterRegistration: function(data, success, err) {
+				return $http.put($$config.apiPath + '/users/email_for_twitter_users', data);
+				// .success(success).error(err);
+			},
 			requestPasswordReset: function(email) {
 				return $http.post($$config.apiPath + '/reset_password', {
 					email: email

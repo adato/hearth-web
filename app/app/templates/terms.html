@@ -1,12 +1,3 @@
-<form method="post" action="/terms" class="terms-container" ng-cloak>
-  <div class="row">
-      <div class="small-10 small-centered columns scroll">
-          <span ng-include="termsPath"></span>
-      </div>
-  </div>
-   <div class="row" ng-show="showButton">
-	<p class="small-12 large-centered text-center">
-		<button type="submit" class="primary button" analytics-on analytics-event="terms of use accepted" analytics-category="registration">{{ 'AGREE_WITH_TERMS_BUTTON_LABEL' | translate }}</button>
-	</p>
+<div class="terms-page row profile-edit profile-edit-common" ng-if="termsPath">
+	<ng-include src="termsPath"></ng-include>
 </div>
-</form>

@@ -1,7 +1,5 @@
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
   <form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
-
-
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
       <div image-preview files="profile.avatar" limit="1" limit-pixel-size="400" single-file="true">
         <img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image />
@@ -12,8 +10,6 @@
         </div>
       </div>
     </div>
-
-
     <div class="fleft small-12 large-7 pull-5 alt-bg">
       <h2 class="hide-border">
         <span class="content">
@@ -97,7 +93,7 @@
           <div ng-show="showContactMail">
             <label>
               {{ 'MY_CONTACT_EMAIL' | translate }}
-              <input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="showError.contact_email = true" class="text-input" name="contact_email" type='email' ng-required="true">
+              <input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email' ng-required="true">
               <div class="error" ng-show="showError.contact_email">
                   <span ng-show="profileEditForm.contact_email.$error.email">{{ 'ERR_NOT_VALID_EMAIL' | translate }}</span>
                   <span ng-show="profileEditForm.contact_email.$error.required">{{ 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
@@ -105,7 +101,7 @@
               <em>{{ 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
             </label>
             <div>
-              <a ng-click="showContactMail = false; profile.contact_email =''" class="controll">
+              <a ng-click="hideContactEmail()" class="controll">
                 <span class="fa fa-minus-square"></span>{{ 'REMOVE' | translate }}
               </a>
             </div>
@@ -216,6 +212,7 @@
         </div>
       </section>
   </form>
-
   </div>
 </div>
+
+<div loading show="!loaded" text="{{ 'COMMON.LOADING' | translate }}"></div>

@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
     function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
         var timeout;
+        $rootScope.myCommunities = false;
         $scope.segment = false;
         $scope.addresses = {
             "Community": "community",
@@ -18,19 +19,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             "Post": "ad",
         };
 
+        // init globalLoading 
+        $rootScope.globalLoading = false;
+
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
         });
-
-        // ================== DEPRECATED =================
-        setTimeout(function() {
-            // Notify.add("Ahooooooj");
-            // Notify.add("Ahooooooj 2 ", Notify.T_SUCCESS);
-            // Notify.add("Ahooooooj 3 ", Notify.T_INFO, "#notify-container-market");
-            // Notify.add("Ahooooooj 4 ", Notify.T_WARNING, null, 2000);
-            // Notify.add("Ahooooooj 5 ", Notify.T_ERROR, null, null, 4000);
-
-        }, 2000);
 
         $scope.closeDropdown = function(id) {
             Foundation.libs.dropdown.close($('#'+id));
@@ -44,7 +38,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
         $scope.logout = function() {
             Auth.logout(function() {
-                window.location = window.location.pathname;
+                window.location.hash = '#!/';
+                location.reload();
             });
         };
         $scope.search = function(text) {
@@ -143,17 +138,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $scope.initHearthbeat = function() {
+            $rootScope.pluralCat = $locale.pluralCat;
+            $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
 
             if($rootScope.loggedUser._id) {
-                $scope.checkTutorial();
                 $scope.loadMyCommunities();
+                $scope.checkTutorial();
             } else {
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
 
-            $rootScope.pluralCat = $locale.pluralCat;
-            $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
+            // $rootScope.editItem(null);
+            
+            Notify.checkRefreshMessage();
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);
@@ -163,11 +161,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function(showMsgOnlyLogged) {
             
-            $scope.showMsgOnlyLoggeg = showMsgOnlyLogged;
+            $scope.showMsgOnlyLogged = showMsgOnlyLogged;
             ngDialog.open({
                 template: $$config.templates + 'userForms/login.html',
                 controller: 'LoginCtrl',
                 scope: $scope,
+                closeByEscape: false,
                 showClose: false
             });
         };
@@ -177,11 +176,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
+            $rootScope.globalLoading = true;
             Post.spam({id: item._id}, function(res) {
                 if(modal) $('#'+modal).foundation('reveal', 'close');
                 $rootScope.$broadcast('reportItem', item);
 
-                alert("FLASH MESSAGE");
+                $rootScope.globalLoading = false;
+                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
+            }, function(err) {
+                
+                $rootScope.globalLoading = false;
+                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
             });
         };
 
@@ -200,6 +205,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemEdit',
                 scope: scope,
                 closeByDocument: false,
+                closeByEscape: false,
                 showClose: false
             });
             dialog.closePromise.then(function(data) {});
@@ -220,16 +226,28 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
+            $rootScope.globalLoading = true;
             Post.remove({postId:post._id}, function(res) {
                 if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
+
+                Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO);
+                $rootScope.globalLoading = false;
+
                 cb && cb(post); // if callback given, call it
+            }, function() {
+                $rootScope.globalLoading = false;
+                Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_INFO);
             });
         };
 
-        $rootScope.closeModal = function(item, modal) {
+        $rootScope.closeModal = function(modal) {
             // if opened close modal window
             if(modal) $('#'+modal).foundation('reveal', 'close');
+        };
+
+        $rootScope.revealModal = function(id) {
+            $("#"+id).foundation('reveal', 'open');
         };
         
         $rootScope.replyItem = function(post) {
@@ -244,6 +262,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemReply',
                 scope: scope,
                 closeByDocument: false,
+                closeByEscape: false,
                 showClose: false
             });
 
@@ -261,6 +280,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: $scope.$new(),
                 className: 'ngdialog-invite-box',
                 closeByDocument: false,
+                closeByEscape: false,
                 // showClose: false
             });
 
@@ -276,12 +296,32 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 template: $$config.modalTemplates + 'tutorial.html',
                 controller: 'Tutorial',
                 scope: scope,
-                className: 'ngdialog-tutorial',
+                className: 'ngdialog-tutorial ngdialog-theme-default',
                 closeByDocument: false,
+                closeByEscape: false,
                 showClose: false
             });
 
             dialog.closePromise.then(function(data) {});
+        };
+
+        // this will flash post box with some background color
+        $rootScope.blinkPost = function(item) {
+            var delayIn = 200;
+            var delayOut = 2000;
+            var color = "#FFB697";
+            $(".post_"+item._id+" .item").animate({backgroundColor: color}, delayIn, function() {
+                $(".post_"+item._id+" .item").animate({backgroundColor: "#FFF"}, delayOut );
+            });
+    
+            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: color}, delayIn, function() {
+                $(".post_"+item._id+" .item .overlap").animate({backgroundColor: "#FFF"}, delayOut );
+            });
+
+            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: color}, delayIn, function() {
+                $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: "#FFF"}, delayOut );
+            });
+
         };
 
         // == deactivate / prolong / activate post item
@@ -300,7 +340,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 Action = (item.is_expired) ? Post.prolong : Post.resume;
                 actionType = 'activate';
             }
-            
+
+            $rootScope.globalLoading = true;
             // call service
             Action({
                     id: item._id
@@ -310,14 +351,42 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(modal) $('#'+modal).foundation('reveal', 'close');
                     if(cb) cb(item);
                     $rootScope.$broadcast('updatedItem', res);
+                    Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+                    $rootScope.globalLoading = false;
+
                 }, function(err) {
+                    $rootScope.globalLoading = false;
+
                     if( err.status == 422) {
 
                         // somethings went wrong - post is not valid
                         // open edit box and show error
                         if(modal) $('#'+modal).foundation('reveal', 'close');
                         $rootScope.editItem(item, true);
+                    } else {
+
+                        Notify.addSingleTranslate('NOTIFY.POST_UPDAT_FAILED', Notify.T_ERROR);
                     }
+            });
+        };
+
+        // this will scroll to given element in given container (if not setted take body as default)
+        $rootScope.scrollToElement = function(el, cont) {
+            var offset = 200;
+            var container = cont || 'html, body';
+            var elementPos;
+
+            if(! $(el).first().length)
+                return false;
+
+            elementPos = Math.max($(el).first().offset().top - offset, 0);
+            $(container).animate({scrollTop: elementPos}, 'slow');
+        };
+
+        // this will scroll to given element or first error message on page
+        $rootScope.scrollToError = function(el, cont) {
+            setTimeout(function() {
+                $rootScope.scrollToElement(el || $('.error').not('.alert-box'), cont);
             });
         };
 

@@ -12,13 +12,29 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter, Notify) {
 		$scope.limit = 15;
 		$scope.items = [];
+		$scope.loaded = false;
 		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
+		$scope.filterIsOn = false;
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
+
+		$scope.testFilter = function() {
+
+			$scope.filterIsOn = Filter.isSet();
+		};
+
+		$scope.resetFilter = function() {
+			Filter.reset();
+			$scope.loaded = false;
+		};
+
+		$scope.toggleFilter = function() {
+			$rootScope.$broadcast("filterOpen");
+		};
 
 		$scope.addItemsToList = function(data, index) {
 			if (data.data.length > index) {
@@ -41,7 +57,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 
 			$scope.loading = false;
-		}
+		};
 
 		$scope.load = function() {
 			if ($scope.loading == true)
@@ -66,13 +82,18 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						$scope.items = data.data;
 						$scope.finishLoading(data);
 					}
+		
+					$scope.loaded = true;
+					$rootScope.$broadcast('postsLoaded');
 				});
 			}
 		};
-
+		
 		function init() {
 
 			refreshTags();
+			Filter.checkUserFilter();
+			$scope.testFilter();
 
 			$scope.$on('authorize', function() {
 				$scope.load();
@@ -87,14 +108,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		$scope.$on('filterApplied', function($event, filterData) {
-			$scope.user.filter = filterData;
+			// $scope.user.filter = filterData;
 
 			refreshTags();
 			
-			if ($scope.filter && $.isEmptyObject($location.search())) {
-				return $location.search($scope.filter);
-			}
+			// if ($scope.filter && $.isEmptyObject($location.search())) {
+			// 	return $location.search($scope.filter);
+			// }
 
+			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.items = [];
 			$scope.load();
@@ -104,6 +126,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			
 			$scope.$broadcast('resetFilterData');
 
+			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.filter = {};
 			$scope.user.filter = {};
@@ -111,14 +134,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.load();
 		});
 
-		// ======================= REVIEW ==============================
-		$scope.$on('adUpdated', function($event, data) {
+		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
 
 			for (i = 0; i < $scope.items.length; i++) {
 				item = $scope.items[i];
 				if (data._id === item._id) {
-					$scope.items[i] = $.extend(item, data);
+					$scope.items[i] =  data;
 					break;
 				}
 			}
@@ -136,32 +158,39 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.showMap = false;
 			$scope.load();
 		});
+
 		$scope.$on('postCreated', function($event, post) {
-			Notify.addTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 4000);
 
 			$scope.showMap = false;
+			
+			// hide him and show with some effect
+			post.hidden = true;
 			$scope.items.unshift(post);
+
+			$timeout(function() {
+				$(".post_"+post._id).slideDown(function() {
+					post.hidden = false;
+				});
+			});
 		});
 
 		$scope.$on('sendReply', function($event, data) {
 			PostReplies.add(data);
-            Notify.addTranslate('NOTIFY.REPLY_SENT', Notify.T_INFO, '#notify-container-market', 4000);
 		});
 
 		$scope.$on('itemDeleted', function($event, item) {
             $( ".post_"+item._id ).slideUp( "slow", function() {});
-            Notify.addTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO, '#notify-container-market', 4000);
-        });
-
-        $scope.$on('updatedItem', function($event, item) {
-
-            Notify.addTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS, '#notify-container-market', 1114000);
         });
 
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 		});
+
+
+		// show different nothing found error message when filter is changed / removed
+        $scope.$on("filterApplied", $scope.testFilter);
+        $scope.$on("filterReseted", $scope.testFilter);
 
 		// ==== Global event fired when init process is finished
 		$scope.$on('initFinished', init);

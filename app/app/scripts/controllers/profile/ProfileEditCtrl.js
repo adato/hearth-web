@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout',
+	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload',
 
-	function($scope, $route, User, $location, $rootScope, $timeout) {
+	function($scope, $route, User, $location, $rootScope, $timeout, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -26,10 +26,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
 
 		$scope.init = function() {
-			if (!$rootScope.loggedUser) {
-				$route.repload("#!/");
-			}
-
+			
+			UnauthReload.check();
+			
 			// $scope.initLocations();
 			User.get({
 				user_id: $rootScope.loggedUser._id
@@ -95,7 +94,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		};
 
 		$scope.transferDataOut = function(data) {
+			var webs = [];
 
+			// remove empty webs
+			data.webs.forEach(function(web) {
+				if(web) webs.push(web);
+			});
+
+			data.webs = webs;
 			data.interests = data.interests.split(",");
 			return data;
 		}
@@ -138,26 +144,48 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			var transformedData;
 				
 			if(! $scope.validateData($scope.profile)) {
-				$timeout(function() {
-					$scope.messageBottom = 'ERR_FORM_NOT_VALID';
-				});
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
+				$rootScope.scrollToError();
 				return false;
 			}
 
 			if($scope.sending) return false;
 			$scope.sending = true;
-			
+			$rootScope.globalLoading = true;
+
 			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
 			User.edit(transformedData, function(res) {
 				$scope.sending = false;
-				$location.path('/profile/'+$scope.profile._id);
-			}, function(res) {
+				$rootScope.globalLoading = false;
 
-				console.log(res);
-				$scope.messageBottom = 'ERR_FORM_PUT_ERROR';
+				$location.path('/profile/'+$scope.profile._id);
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+				
+			}, function(res) {
+				$rootScope.globalLoading = false;
+				
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
-		}
+		};
+
+		// when blur event on input - wait with displaying errors - if we clicked also on remove contcat email
+		// remove him instead
+		$scope.contactEmailBlur = function() {
+			$timeout(function() {
+				$scope.showError.contact_email = true;
+			});
+		};
+
+		$scope.hideContactEmail = function() {
+			// hide input & set him empty and dont show any errors
+			$scope.showContactMail = false;
+			$scope.profile.contact_email ='';
+
+			$timeout(function() {
+				$scope.showError.contact_email = false;
+			}, 100);
+		};
 
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();

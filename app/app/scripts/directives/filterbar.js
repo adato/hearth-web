@@ -15,7 +15,6 @@ angular.module('hearth.directives').directive('filterbar', [
 			templateUrl: 'templates/directives/filterbar.html',
 			scope: true,
 			link: function(scope) {
-				
 				angular.extend(scope, {
 					mapSelected: false,
 					filterSelected: false,
@@ -41,6 +40,8 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.$on('filterClose', function() {
 					scope.filterSelected = false;
 				});
+
+				scope.$on('filterOpen', scope.toggleFilter);
 
 				scope.$on('closeEditItem', function() {
 					scope.newItemSelected = false;

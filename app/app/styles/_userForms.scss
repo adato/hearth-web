@@ -7,10 +7,8 @@ $max-modal-window-width:23em;
 
 }
 .register-login-dialog {
-
    	background: none repeat scroll 0 0 #fff;
     border-radius: 8px;
-    color: black;
     font-size: 1.1em;
     line-height: 1.5em;
     margin: 4% auto 0;
@@ -33,7 +31,7 @@ $max-modal-window-width:23em;
 		margin-bottom:.5rem;
 	}
 	.success {
-		color:color(2);
+		color:color(6);
 	}
 	p {
 		text-align: center;
@@ -65,23 +63,29 @@ $max-modal-window-width:23em;
 
 	}
 
-	.social {
+	.social-login {
 		text-align:center;
 		padding:10px;
 		padding-bottom:1rem;
 		a {
 			border: 2px solid color(5);
-			padding: 5px;
+			border-radius:50%;
+			padding:8px;
 			font-size:150%;
 			line-height:150%;
-			margin-left:10px !important; /* uff, ugly! but because in @social is redefined */
-			margin-right:10px !important;
+			margin-left:10px;
+			margin-right:10px;
+			color:color(5);
+			display:inline-block;
+			width:55px;
+			height:55px;
+			transition: background-color .5s;
 		}
 		a:hover {
-			background:lighten(color(5), 20%);
+			background:lighten(color(5), 30%);
 		}
 		a:visited {
-			background:color(5);
+			color:color(5);
 		}
 	}
 	button {

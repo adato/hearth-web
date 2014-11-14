@@ -7,9 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
-    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email',
-    function($scope, Auth, $location, ResponseErrors, Email) {
-        $scope.sent = false;
+    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify',
+    function($scope, Auth, $location, ResponseErrors, Email, Notify) {
         $scope.data = {
             email: ''
         };
@@ -28,13 +27,17 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
             // Check if email is in our DB
             Email.exists({email: email}, function(res) {
                 if (!res.ok) {
-                   
                     // show error when email does not exist
                     $scope.showError.email = true;
                     $scope[form][inputName].$error.unknown = true;
                 }
                 // call callbeck
                 cb && cb(res.ok);
+            }, function(res) {
+        
+                $scope.showError.email = true;
+                $scope[form][inputName].$error.unknown = true;
+                cb && cb(false);
             });
         };
 
@@ -54,20 +57,20 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
             $scope.validateEmail($scope.data, function(res) {
                 if(!res) return false;
 
-                if ($scope.sending) return false;
+                if ($scope.sending)
+                    return false;
                 $scope.sending = true;
 
                 return Auth.requestPasswordReset($scope.data.email).success(function() {
-                    $scope.sent = true;
                     $scope.sending = false;
+                    Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
+                    $location.url("/login");
 
                 }).error(function(data, status) {
                     $scope.sending = false;
-                    console.log(data, status);
+                    Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_FAILED', Notify.T_ERROR, '.forgot-pass-notify-container');
                 });
             });
         };
-
-        // $(".fg_email").focus();
     }
 ]);

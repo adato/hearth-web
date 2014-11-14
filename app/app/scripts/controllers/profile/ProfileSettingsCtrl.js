@@ -9,8 +9,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
-	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User',
-	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User) {
+	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload',
+	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify, UnauthReload) {
 		$scope.loaded = true;
 		$scope.lang = false;
 		$scope.changeSubmitted = false;
@@ -41,13 +41,22 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			return res;
 		};
 
+		$scope.processDeleteUserResultError = function(res) {
+			$scope.processDeleteUserResult(res.data);
+		};
+
 		$scope.processDeleteUserResult = function(res) {
+			$rootScope.globalLoading = false;
 
 			if (res.ok) {
-				alert("Váš účet byl smazán :-(");
+				alert(Notify.translate('NOTIFY.ACCOUNT_DELETE_SUCCESS'));
 				window.location.replace("/app/");
+			} else if( res.reason == 'community admin' ) {
+				setTimeout(function() {
+					return Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED_COMMUNITY', Notify.T_ERROR, '.notify-container-delete-user');
+				}, 1000);
 			} else {
-				alert("Při mazání účtu došlo k chybě.");
+				Notify.addSingleTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
 			}
 		};
 
@@ -63,7 +72,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					reason: data.reason
 				};
 
-				User.remove(out, $scope.processDeleteUserResult);
+				$rootScope.globalLoading = true;
+				User.remove(out, $scope.processDeleteUserResult, $scope.processDeleteUserResultError);
 			}
 		};
 
@@ -91,7 +101,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		$scope.testOldPassword = function(pass, form, error, done) {
 
-			if (pass == '') {
+			if (!pass) {
+				$scope[form][error].$error.notValid = false;
 				return false;
 			}
 
@@ -99,16 +110,21 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				user_id: $rootScope.loggedUser._id,
 				password: pass
 			}, function(res) {
-				$scope[form][error].$error.notValid = !res.valid;
-				$scope.showError[error] = !res.valid;
+				$scope[form][error].$error.notValid = !res.ok;
+				$scope.showError[error] = !res.ok;
 
-				done && done(res.valid);
+				done && done(res.ok);
+			}, function() {
+				$scope[form][error].$error.notValid = true;
+				$scope.showError[error] = true;
+				done && done(false);
 			});
 		};
 
 		$scope.processChangeResult = function(res) {
 			$scope.changeSubmitted = false;
-			
+			$rootScope.globalLoading = false;
+
 			if (res.ok) {
 				$scope.pass.old = '';
 				$scope.pass.changed = '';
@@ -117,10 +133,11 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					$scope.showError.oldPass = false;
 					$scope.showError.newPass = false;
 				});
-				alert("heslo bylo změněno.. A tady bude nějaká pretty notifikace");
+				
+				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_SUCCES', Notify.T_SUCCESS);
 			} else {
 
-				alert("Při měnění hesla došlo k chybě.");
+				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_FAILED', Notify.T_ERROR);
 			}
 		};
 
@@ -131,17 +148,18 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					return false;
 				}
 
+				$rootScope.globalLoading = true;
 				ChangePassword.change({
 					user_id: $rootScope.loggedUser._id,
 					password: pass.changed,
 					password_confirmation: pass.changed,
 					current_password: pass.old
-				}, $scope.processChangeResult);
+				}, $scope.processChangeResult, $scope.processChangeResult);
 			}
 		};
 
 		$scope.changePassword = function(pass) {
-
+			
 			if (!$scope.validateChangePasswordError(pass)) {
 				return;
 			}
@@ -156,7 +174,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.init = function() {
-			console.log("Using language: ", $rootScope.language);
+
+			UnauthReload.check();
 		};
 
 		$scope.switchLang = function(lang) {

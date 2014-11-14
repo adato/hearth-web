@@ -54,7 +54,7 @@
 
             <div class="clear"></div>
             <br />
-            <button type="submit" class="button-send right" ng-click="changePassword(pass)" analytics-on analytics-event="edit password" analytics-category="Profile settings" analytics-value="1">{{ 'SAVE' | translate }}</button>
+            <button type="submit" class="button-send right" analytics-on analytics-event="edit password" analytics-category="Profile settings" analytics-value="1">{{ 'SAVE' | translate }}</button>
           </div>
         </section>
         <br />
@@ -67,10 +67,11 @@
             <span class="fa fa-times"></span>{{ 'USER_DELETE_PROFILE' | translate }}
           </span>
         </h2>
+        <div class="notify-container-delete-user"></div>
+        
         <section class="delete-account">
           <label for="text">{{ 'WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE' | translate }}</label>
           <textarea ng-model="leave.reason" autosize-textarea></textarea>
-
           <div class="fleft large-6">
             <div class="fleft large-11">
               <label for="oldPassLeave">{{ 'FILL_CURRENT_PASS' | translate }}</label>
@@ -81,14 +82,17 @@
               </div>
             </div>
           </div>
-          
           <div class="fright tright large-6">
             <br />
-            <button ng-click="deleteAccount(leave)" type="submit" class="button-send" analytics-on analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1">{{ 'USER_DELETE_PROFILE' | translate }}</button>
+            <button type="submit" class="button-send" analytics-on analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1">{{ 'USER_DELETE_PROFILE' | translate }}</button>
           </div>
+
+          <div class="clear"></div>
         </section>
         <div class="clear"></div>
       </form>
 
   </div>
 </div>
+
+<div loading show="!loaded" text="{{ 'COMMON.LOADING' | translate }}"></div>

@@ -1,73 +1,46 @@
-@import "compass/css3/font-face";
-
-$default-hi-prefix: "hearthicon-" !default;
-$default-hi-font-name: "Hearth Icons" !default;
-$default-hi-font-files: font-files(
-  "HearthIcons-Regular.woff",
-  "HearthIcons-Regular.ttf",
-  "HearthIcons-Regular.svg#HearthIcons"
-) !default;
-$default-hi-font-eol: "HearthIcons-Regular.eot" !default;
-
-@mixin hi-init($prefix: $default-hi-prefix,
-               $font-name: $default-hi-font-name,
-               $font-files: $default-hi-font-files,
-               $font-eol: $default-hi-font-eol) {
-  $font-weight: normal;
-  $font-style: normal;
-
-  @include font-face(
-    $font-name,
-    $font-files,
-    $font-eol,
-    $font-weight,
-    $font-style
-  );
-  [class*="#{$prefix}"] {
-    display: inline;
-    width: auto;
-    height: auto;
-    line-height: inherit;
-    vertical-align: baseline;
-    background-image: none;
-    background-position: 0 0;
-    background-repeat: repeat;    
-  }
-
-  [class*="#{$prefix}"]:before {
-    font-family: $font-name;
-    font-weight: $font-weight;
-    font-style: $font-style;
-    text-decoration: inherit;
-  }
-  
+@font-face {
+  font-family: 'fontello';
+  src: url('../fonts/fontello.eot?4614204');
+  src: url('../fonts/fontello.eot?4614204#iefix') format('embedded-opentype'),
+       url('../fonts/fontello.woff?4614204') format('woff'),
+       url('../fonts/fontello.ttf?4614204') format('truetype'),
+       url('../fonts/fontello.svg?4614204#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-
-@mixin hi-class($name, $char, $prefix: $default-hi-prefix) {
-  .#{$prefix}#{$name}:before { 
-    content: "\00E#{$char}";
-  }
+ 
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
-
-
-@include hi-init();
-
-@include hi-class(hate, '000');
-@include hi-class(appreciate, '001');
-@include hi-class(user, '002');
-@include hi-class(settings, '003');
-@include hi-class(market, '004');
-@include hi-class(locate, '005');
-@include hi-class(offer, '006');
-@include hi-class(need, '007');
-@include hi-class(reply, '008');
-@include hi-class(follow, '009');
-@include hi-class(network, '00A');
-@include hi-class(logout, '00B');
-@include hi-class(trash, '00C');
-@include hi-class(remove, '00D');
-@include hi-class(create, '00E');
-@include hi-class(time, '00F');
-@include hi-class(location, '010');
-@include hi-class(compass, '011');
-@include hi-class(search, '012');
+ 
+.icon-rating-negative:before { content: '\e800'; }
+.icon-rating-positive:before { content: '\e801'; }
+.icon-community:before { content: '\e802'; }
+.icon-marketplace:before { content: '\e803'; }

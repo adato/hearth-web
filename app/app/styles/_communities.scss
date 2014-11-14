@@ -1,16 +1,71 @@
 .communities {
     width: 960px; /* ==== set general width === */
     margin: 0px auto;
-    margin-top:-40px;
-    
+    padding-left:1rem;
+    padding-right:1rem;
+
     .community-list-add-form {
+        @extend .clearfix;
         transition: opacity 0.4s ease-in-out;
 
         .community-edit {
             margin-bottom: 20px;
         }
-   }
-    .avatar {
-        margin-left:-20px;
+    }
+
+    .community-list {
+        @extend .row, .clearfix;
+        .community-item {
+            @extend .large-12, .columns;
+            margin:0;
+            padding:0;            
+            margin:auto;
+            float:none;
+            word-wrap: break-word;
+            .photo {
+                float:left;
+                margin-left:2rem;
+                margin-bottom:2rem;
+                margin-top:2rem;
+                .avatar {
+                    left:0px;
+                    margin-left:0;
+                }
+            }
+            .content {
+                margin-left:9rem;
+            }
+        }
+        &.small {
+            clear: both;
+            .community-item {
+                @extend .large-6, .columns;
+                margin:0;
+                padding:0;
+                section {
+                    height:11.5rem;
+                    overflow:hidden;
+                    margin:1rem;
+                    .content {
+                        height: 10.6rem;
+                        overflow: hidden;
+                        word-wrap: break-word;
+                    }
+                    padding-bottom:1rem;
+                }
+                &:nth-child(2n)>section {
+                    margin-left:0;
+                }
+                &:nth-child(2n-1)>section {
+                    margin-right:0;
+                }
+                .fadeout {
+                    position: relative; 
+                    bottom: 4rem;
+                    height: 4rem;
+                    background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0% ,rgba(255,255,255,1) 70%);
+                } 
+            }
+        }
     }
 }

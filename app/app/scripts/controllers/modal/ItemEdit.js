@@ -7,13 +7,13 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.defaultPost = {
-			type: 'offer',
+			type: false,
 			keywords: [],
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [{
@@ -50,6 +50,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// var dateToConvert = new Date();
 		// alert(dateToConvert.toISOString());
 
+		$scope.queryKeywords = function($query) {
+			return KeywordsService.queryKeywords($query);
+		};
 
 		$scope.showError = function(err, isError) {
 			var modalWindow = $(".ngdialog-content"),
@@ -80,13 +83,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.dateUnlimitedToggle = function() {
 
 			$scope.showError.valid_until = false;
+			$scope.createAdForm.valid_until.$error.invalid = false;
 
 			// $scope.post.valid_until_unlimited = !$scope.post.valid_until_unlimited;
 			if (!$scope.post.valid_until_unlimited) {
 
 				$scope.post.valid_until = '';
 			}
-		}
+		};
 
 		$scope.removeImage = function(index) {
 			var files = $scope.post.attachments_attributes;
@@ -97,7 +101,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				files[index].deleted = true;
 			}
 			$scope.$apply();
-		}
+		};
 
 		function recountImages() {
 			var files = $scope.post.attachments_attributes;
@@ -111,7 +115,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 			}
 			$scope.showFiles = res;
-		}
+		};
+
 		$scope.$watch('post', recountImages, true);
 
 		$scope.transformImagesStructure = function(postDataCopy) {
@@ -158,71 +163,113 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.valid_until_unlimited = false;
 			}
 
+
+			var values = {
+				false: 'offer',
+				true: 'need'
+			};
+
+			data.type = values[data.type];
+
 			return data;
 		};
 
 		$scope.testForm = function(post) {
-			var res = true;
+			var res = false;
 			
 			if($scope.createAdForm.title.$invalid) {
-				res = false;
-				$scope.showError.title = true;
+				res = $scope.showError.title = true;
 			}
 
 			if($scope.createAdForm.text.$invalid) {
-				res = false;
-				$scope.showError.text = true;
+				res = $scope.showError.text = true;
 			}
 
-			if(post.valid_until == '' && !post.valid_until_unlimited) {
-				res = false;
-				$scope.showError.valid_until = true;
+			if(!post.valid_until_unlimited) {
+
+				if(post.valid_until == '') {
+					res = $scope.showError.valid_until = true;
+				} else if( getDateDiffFromNow(post.valid_until, $scope.dateFormat) < 0) {
+
+					// test for old date in past
+					res = $scope.showError.valid_until = true;
+					$scope.createAdForm.valid_until.$error.invalid = true;
+				}
 			}
 			
 			if(post.locations && ! post.location_unlimited) {
 
 				post.locations.forEach(function(item) {
-
-					if(item.name == '') {
-						res = false;
-						$scope.showError.locations = true;
+					if(item.name == '' || !item.coordinates) {
+						res = $scope.showError.locations = true;
 					}
 				});
 			}
 
-			return res;
+			return ! res;
 		};
 
-		function convertDateToIso(datetime, format) {
+		function getMomentTimeObject(datetime, format) {
 
-			if(!$scope.post.valid_until)
-				return $scope.post.valid_until;
-			
 			// make dates format same as moment.js format
 			// create moment object from our date and add 1 hour because of timezones and return iso string
 			format = format.toUpperCase();
-        	format = format.replace(/([^Y]|Y)YY(?!Y)/g, '$1YYYY');
+			format = format.replace(/([^Y]|Y)YY(?!Y)/g, '$1YYYY');
 			format = format.replace(/([^Y]|^)Y(?!Y)/g, '$1YYYY');
 			
-			// console.log("Using format: ",format);
-
-			return moment($scope.post.valid_until, format).format();
+			return moment(datetime, format);
 		}
 
-		$scope.save = function() {
+		function convertDateToIso(datetime, format) {
+			
+			return getMomentTimeObject(datetime, format).format();
+		}
+
+		function getDateDiffFromNow(datetime, format) {
+			var today = moment(moment().format('DD.MM.YYYY'), 'DD.MM.YYYY');
+
+			// console.log(getMomentTimeObject(datetime, format).format() + " <=> "+ today.format() + " : " + diff );
+			return getMomentTimeObject(datetime, format).diff(today, 'minutes');
+		}
+
+		$scope.blurDate = function(datetime) {
+			$scope.showError.valid_until = true;
+
+			if(datetime != '') {
+				
+				$timeout(function() {
+					if(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat) < 0) {
+						$scope.createAdForm.valid_until.$error.invalid = true;
+					}
+			$rootScope.globalLoading = true;
+				});
+			}
+		};
+		
+		$scope.focusDate = function(datetime) {
+
+			$scope.createAdForm.valid_until.$error.invalid = false;
+			$scope.showError.valid_until = false;
+		};
+
+		$scope.save = function(post) {
 			var postData, postDataCopy;
 
+			// return $rootScope.globalLoading = true;
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
 
-			if(! $scope.testForm($scope.post)) {
+			if(! $scope.testForm(post)) {
+				$timeout(function() {
+					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
+				}, 50);
 				return false;
 			}
 
 			//we need copy, because we change data and don't want to show these changes to user
 			postData = angular.extend(
-				angular.copy($scope.post), {
-					valid_until: convertDateToIso($scope.post.valid_until, $scope.dateFormat),
+				angular.copy(post), {
+					valid_until: (post.valid_until) ? convertDateToIso(post.valid_until, $scope.dateFormat) : post.valid_until,
 					id: $scope.post._id
 				}
 			);
@@ -242,22 +289,49 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				return false;
 			}
 			$scope.sending = true;
+			$rootScope.globalLoading = true;
 
-			Post[$scope.post._id ? 'update' : 'add'](postData, function(data) {
-				$scope.sending = false;
-
+			Post[post._id ? 'update' : 'add'](postData, function(data) {
+				$rootScope.globalLoading = false;
 				postDataCopy = $scope.transformImagesStructure(postDataCopy);
-				// $rootScope.$broadcast($scope.post._id ? 'adUpdated' : 'adCreated', postDataCopy);
-
-				// $scope.$emit('adSaved', data);
 				
-				$rootScope.$broadcast('postCreated', data);
-				$(document.body).scrollTop(0);
+				// if($scope.post._id)
+				// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+				// else
+				// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 				$scope.closeThisDialog();
+
+				// emit event into whole app
+				$rootScope.$broadcast( post._id ? 'postUpdated' : 'postCreated', data);
+
+				// $(document.body).scrollTop(0);
+
+				if($rootScope.isPostActive(data) && $location.path() != '/') {
+					// wait for refresh to 
+					var deleteEventListener = $rootScope.$on('postsLoaded', function() {
+						deleteEventListener();
+
+						setTimeout(function() {
+							$rootScope.blinkPost(data);
+						}, 100);
+					});
+
+					// if post is visible on marketplace - refresh user there
+					$location.path('/');
+				} else {
+					// flash post immediatelly
+					setTimeout(function() {
+						$rootScope.blinkPost(data);
+					}, 200);
+				}
+
+
+				// $scope.closeThisDialog();
 			}, function() {
 
-				alert("There was an error while saving this post");
+                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
 				$scope.sending = false;
+				$rootScope.globalLoading = false;
 			});
 
 			/*$analytics.eventTrack(eventName, {
@@ -268,19 +342,20 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		};
 
-        // when edited, we should change also original post
-        $scope.setPostActiveStateCallback = function(post) {
+		// when edited, we should change also original post
+		$scope.setPostActiveStateCallback = function(post) {
 
-        	$scope.postOrig.is_active = post.is_active;
-        	$scope.postOrig.is_expired = post.is_expired;
-        };
+			$scope.postOrig.is_active = post.is_active;
+			$scope.postOrig.is_expired = post.is_expired;
+		};
 
-        function modifyDateFormat(dateFormat) {
+		function modifyDateFormat(dateFormat) {
 
-        	dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
+			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
 			dateFormat = dateFormat.replace(/([^y]|^)yyyy(?!y)/g, '$1y');
 			return dateFormat;
-        }
+		}
+		
 		function transformDataIn(post) {
 			if (post) {
 				post.dateOrig = post.valid_until;
@@ -297,6 +372,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 						name: ''
 					}];
 				}
+
+				post.type = post.type == 'need';
 			}
 			return post;
 		}
@@ -328,14 +405,30 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		};
 
-        $scope.refreshItemInfo = function($event, item) {
-            // if renewed item is this item, refresh him!
-            if(item._id === $scope.post._id) {
-                $scope.post = transformDataIn(item);
-            }
-        };
+		$scope.pauseToggle = function(post) {
+			var postCopy = angular.copy(post);
+
+			// prolong
+			if(postCopy.is_expired) {
+
+				postCopy.is_active = true;
+				postCopy.is_expired = false;
+			} else {
+				// pause / play
+				postCopy.is_active = !postCopy.is_active;
+			}
+
+			$scope.save(postCopy);
+		};
+
+		$scope.refreshItemInfo = function($event, item) {
+			// if renewed item is this item, refresh him!
+			if(item._id === $scope.post._id) {
+				$scope.post = transformDataIn(item);
+			}
+		};
 		$scope.init();
-        $rootScope.$on('updatedItem', $scope.refreshItemInfo);
+		$rootScope.$on('updatedItem', $scope.refreshItemInfo);
 		$rootScope.$on("itemDeleted", $scope.itemDeleted);
 	}
 ]);

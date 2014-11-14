@@ -1,71 +1,22 @@
-<article class="row community-item community_{{ item._id }}">
-	<section ng-if="!hideAvatar" class="large-2 columns photo">
-		<!-- <div ng-if="loggedUser._id" ng-include="'templates/_user-info.html'"></div> -->
-		<a ng-href="#!/community/{{item._id}}">
+<article class="community-item community_{{ item._id }}">
+	<section class="item">
+		<a ng-href="#!/community/{{item._id}}" class="photo">
 			<div class="avatar community-avatar">
 				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
 			</div>
 		</a>
-	</section>
-	<section class="large-10 columns community-section">
-		<div class="item community">
-			<div class="overlap"> </div>
-			<div class="arrowbox"></div>
-			<div class="arrow"></div>
-			<div class="content">
-<!-- 				<header>
-					<span class="fa fa-map-marker" ng-if="item.location && item.location.short_address">&nbsp;&nbsp;{{ item.location.short_address }}</span>
-					<span class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><span class="fa fa-clock-o"></span> {{ 'COMMUNITY_CREATED' | translate }} {{item.created_at | ago}}</span>				
-				</header> -->
-				<h3>
-					<a ng-href="#!/community/{{item._id}}">{{item.name}}</a>
-				</h3>
-				<div class="text-container">
-					<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>
-				</div>
-				<div class="fright" ng-if="user && item.admin == user._id">
-					<i class="fa fa-wrench" title="{{ 'ADMIN' | translate }}"></i>
-				</div>
+		<div class="content">
+			<div class="fright" ng-if="user && item.admin == user._id">
+				{{ 'ADMIN' | translate }}
 			</div>
-<!-- 			<footer>
-				<div class="fleft" ng-if="user && item.admin == user._id">
-					<br>{{'ADMIN' | translate}}
-				</div>
-				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_COMMUNITY' | translate}}" ng-click="showLoginBox(true)">
-				</a>
-				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_COMMUNITY' | translate}}" data-reveal-id="confirm-report-{{item._id}}">
-				</a>
-				<div class="share">
-					<div class="fa fa-share-square-o"></div>
-					<div class="sharing">
-						<div>
-							<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
-							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
-							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
-						</div>
-					</div>
-				</div>
-				<div class="controll-buttons" ng-if="mine">
-					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click=""></div>
-				</div>
-				<div class="clear"></div>
-			</footer> -->
+			<h3>
+				<a ng-href="#!/community/{{item._id}}">{{item.name}}</a>
+			</h3>
+			<div class="text-container">
+				<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>
+			</div>
 		</div>
+		<div class="clear"></div>
+    	<div class="fadeout"></div>
 	</section>
-	<!-- <div class="community-list-item">
-	<a href="#!/community/{{item._id}}">
-		<div class="avatar community-avatar">
-			<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
-		</div>
-	</a>
-	<div class="community-list-item-data">
-		<h4 class="small-8 fleft"><a href="#!/community/{{item._id}}">{{ item.name }}</a></h4>
-		<small class="tright fright">
-			<span ng-if="user && item.admin == user._id">
-				{{'ADMIN' | translate}}
-			</span>
-		</small>
-		<p>{{ item.description | ellipsis }}</p>
-	 </div>
-	</div> -->
 </article>

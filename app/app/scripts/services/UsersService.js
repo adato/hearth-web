@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('UsersService', [
-	'User', 'UserPosts', 'UserRatings', '$q', 'Followers', 'Friends', 'Followees', '$analytics', 'CommunityMemberships',
-	function(User, UserPosts, UserRatings, $q, UserFollowers, UserFriends, UserFollowees, $analytics, CommunityMemberships) {
+	'User', 'UserPosts', 'UserRatings', '$q', 'Followers', 'Friends', 'Followees', '$analytics', 'CommunityMemberships', 'Notify',
+	function(User, UserPosts, UserRatings, $q, UserFollowers, UserFriends, UserFollowees, $analytics, CommunityMemberships, Notify) {
 
 		this.clone = function(profile) {
 			return new User(angular.extend({}, profile));
@@ -84,7 +84,6 @@ angular.module('hearth.services').service('UsersService', [
 
 		this.addFollower = function(user_id) {
 			var deferred = $q.defer();
-
 			UserFollowers.add({
 				user_id: user_id
 			}, function(data) {
@@ -92,8 +91,12 @@ angular.module('hearth.services').service('UsersService', [
 					category: 'followers',
 					label: 'add follower'
 				});
+
+				Notify.addSingleTranslate('NOTIFY.ADD_FOLLOWER_SUCCES', Notify.T_SUCCESS);
 				return deferred.resolve(data);
 			}, function(err) {
+				
+				Notify.addSingleTranslate('NOTIFY.ADD_FOLLOWER_FAILED', Notify.T_ERROR);
 				return deferred.reject(err);
 			});
 			return deferred.promise;
@@ -110,8 +113,11 @@ angular.module('hearth.services').service('UsersService', [
 					category: 'followers',
 					label: 'remove follower'
 				});
+
+				Notify.addSingleTranslate('NOTIFY.REMOVE_FOLLOWER_SUCCES', Notify.T_SUCCESS);
 				return deferred.resolve(data);
 			}, function(err) {
+				Notify.addSingleTranslate('NOTIFY.REMOVE_FOLLOWER_FAILED', Notify.T_ERROR);
 				return deferred.reject(err);
 			});
 			return deferred.promise;

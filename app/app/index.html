@@ -52,15 +52,21 @@
       <h2 translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
   </div>
 </div>
+<div loading class="globalLoading" show="globalLoading" delayed="1000" text="{{ 'COMMON.STILL_WORKING' | translate }}"></div>
 
-  <div id="all">
+<div id="all">
   <div id="fb-root"></div>
-  <div id="notifyArea"></div>
+  <div id="notify-top"></div>
   <script src="//connect.facebook.net/en_US/all.js"></script>
   <script type='text/javascript'>
   <!--
     if (top.location!= self.location) {
       top.location = self.location;
+    }
+
+    // fb login redirects to this URL
+    if (window.location.hash && window.location.hash == '#_=_') {
+        window.location.hash = '';
     }
 
     if (window.location.hash.indexOf('#!') === -1){
@@ -96,27 +102,21 @@
       <script src="vendor/json3/lib/json3.js"></script>
     <![endif]-->
 
-    <section ng-include="'templates/navigation.html'" id="navigation"></section>
-    <div app-view-segment="0" class="main-container"></div>
-    <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
-        {{topArrowText.top}}
-        <span class="fa fa-caret-square-o-up"></span>
-        {{topArrowText.bottom}}
+    <div class="all-visible" ng-show="initFinished">
+      <section ng-include="'templates/navigation.html'" id="navigation"></section>
+      <div app-view-segment="0" class="main-container"></div>
+      <ng-view style="position: relative;top:10em;"></ng-view>
+      <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
+          {{topArrowText.top}}
+          <span class="fa fa-caret-square-o-up"></span>
+          {{topArrowText.bottom}}
+      </div>
     </div>
 
     <script>
-      EMPTY_AVATAR_URL = 'data-main="images/no-avatar.png"'.slice(11, -1);
-      EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.png"'.slice(11, -1);
+      EMPTY_AVATAR_URL = 'data-main="images/no-avatar.jpg"'.slice(11, -1);
+      EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.jpg"'.slice(11, -1);
     </script>
-    <script>
-      document.write(
-        '' +
-          '<script src="//maps.googleapis.com/maps/api/js?' +
-          ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-          'sensor=true&libraries=places,geometry"><\/script>'
-      );
-    </script>
-
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="vendor/modernizr/modernizr.js"></script>
@@ -150,26 +150,31 @@
     <script src="vendor/moment/moment.js"></script>
     <!-- endbower -->
     <script src="vendor/angularitics/src/angulartics-ga.js"></script>
-    <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
     <!-- endbuild -->
     
     <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
-    <!-- <link href="vendor/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css" /> -->
-
-    <!-- <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog-theme-default.css" media="screen" /> -->
-    <script src="vendor/ngDialog/js/ngDialog.min.js"></script>
-    <script src="vendor/async/lib/async.js"></script>
-
     <link rel="stylesheet" type="text/css" href="vendor/flexslider/flexslider.css">
+    <script src="vendor/async/lib/async.js"></script>
     <script type="text/javascript" src="vendor/flexslider/jquery.flexslider-min.js"></script>
+    
+    <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     
     <!-- Add fancyBox main JS and CSS files -->
     <script type="text/javascript" src="vendor/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
     <link rel="stylesheet" type="text/css" href="vendor/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 
     <script>
-      preferredLanguage = $.cookie('language');
+      preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
     </script>
+    <script>
+      var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
+          ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+          'sensor=true&libraries=places,geometry&language=';
+
+      document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
+      
+    </script>
+    <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
 
     <script>
       $(function() { 
@@ -189,7 +194,7 @@
             fixedHeader.css('right', 0);
         });
        
-        $(window).resize(resizeMenuBar);
+        // $(window).resize(resizeMenuBar);
       });
     </script>
 
@@ -257,9 +262,9 @@
      <script src="scripts/services/Karma.js"></script>
      <script src="scripts/services/Tutorial.js"></script>
      <script src="scripts/services/Email.js"></script>
+     <script src="scripts/services/UnauthReload.js"></script>
 
      <script src="scripts/filters/filters.js"></script>
-
 
       <script src="scripts/directives/invitationForm.js"></script>
       <script src="scripts/directives/avatar.js"></script>
@@ -300,6 +305,7 @@
       <script src="scripts/directives/ngPluralize.js"></script>
       <script src="scripts/directives/communityCreateEdit.js"></script>
       <script src="scripts/directives/flexslider.js"></script>
+      <script src="scripts/directives/loading.js"></script>
 
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>
@@ -317,8 +323,6 @@
       <script src="scripts/controllers/BaseCtrl.js"></script>
       <script src="scripts/controllers/SearchCtrl.js"></script>
       <script src="scripts/controllers/MarketCtrl.js"></script>
-      <script src="scripts/controllers/CreatePostCtrl.js"></script>
-      <script src="scripts/controllers/ListViewStateCtrl.js"></script>
       <script src="scripts/controllers/profile/ProfileCtrl.js"></script>
       <script src="scripts/controllers/profile/ProfileSettingsCtrl.js"></script>
       <script src="scripts/controllers/profile/ProfileEditCtrl.js"></script>
@@ -326,7 +330,6 @@
       <script src="scripts/controllers/profile/ProfileDataFeedCtrl.js"></script>
       <script src="scripts/controllers/RegisterCtrl.js"></script>
       <script src="scripts/controllers/ConfirmEmailCtrl.js"></script>
-      <script src="scripts/controllers/ChangePwdCtrl.js"></script>
       <script src="scripts/controllers/ForgottenPasswordCtrl.js"></script>
       <script src="scripts/controllers/ResetPwdCtrl.js"></script>
       <script src="scripts/controllers/FeedbackCtrl.js"></script>
@@ -342,6 +345,8 @@
       <script src="scripts/controllers/modal/ItemReply.js"></script>
       <script src="scripts/controllers/modal/Tutorial.js"></script>
       <script src="scripts/controllers/modal/InviteBox.js"></script>
+      <script src="scripts/controllers/Error404Ctrl.js"></script>
+      <script src="scripts/controllers/FillEmailCtrl.js"></script>
 
       <script src="scripts/messages/Messages.js"></script>      
 

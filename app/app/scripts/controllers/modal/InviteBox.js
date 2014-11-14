@@ -7,14 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-    '$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook',
-    function($scope, $rootScope, Invitation, OpenGraph, Facebook) {
+    '$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify',
+    function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify) {
         $scope.showEmailForm = false;
         $scope.url = '';
+        var timeoutClose = false;
 
         $scope.fbInvite = function() {
             Facebook.inviteFriends();
             return false;
+        };
+
+        $scope.showFinished = function() {
+
+            $(".invite-form").slideToggle();
+            timeoutClose = setTimeout(function() {
+                $scope.closeThisDialog();
+            }, 5000);
         };
 
         $scope.init = function() {
@@ -30,7 +39,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
         function validateEmail(email) { 
             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
-            return email.match(re);
+            return email.trim().match(re);
         }
 
         $scope.validateEmails = function(emails) {
@@ -50,7 +59,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
          */
         $scope.testEmailsFormat = function(data) {
             var emails = data;
-            $scope.inviteForm.to_email.$error.format = false; 
+            $scope.inviteForm.to_email.$error.format = false;
 
             if(!data) return false;
 
@@ -63,7 +72,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
                 $scope.showError.to_email = true;
                 $scope.inviteForm.to_email.$error.format = true;
-                return false
+                return false;
             }
             return true;
         };
@@ -93,20 +102,16 @@ angular.module('hearth.controllers').controller('InviteBox', [
             if(data.to_email) {
                 data.to_email = data.to_email.split(",");
             }
-
             return data;
         };
 
         function handleEmailResult(res) {
+            $rootScope.globalLoading = false;
+
             if(res.ok) {
-
-                $scope.initForm();
-                $scope.sent = true;
-                return true;
-                
+                $scope.showFinished();
             } else {
-
-                alert("FLASH MESSAGE");
+                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
             }
         }
 
@@ -115,6 +120,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
             if(!$scope.validateInvitationForm(data))
                 return false;
+
+            $rootScope.globalLoading = true;
 
             // split emails to array and copy it to new object
             dataOut = $scope.transformInvitationOut(angular.copy(data));
@@ -126,6 +133,12 @@ angular.module('hearth.controllers').controller('InviteBox', [
               $scope.showError[key] = false;
             });
             
+            $("form.invite-form").show();
+            $("div.invite-form").hide();
+    
+            if(timeoutClose)
+                clearTimeout(timeoutClose);
+
             $scope.inv = {
                 message: '',
                 to_email: '',

@@ -7,10 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window',
-	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload',
+	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
 		$scope.loaded = false;
-		$scope.info = {};
+		$scope.info = false;
+		$scope.sendingApplication = false;
 
 		$scope.isMine = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
@@ -27,7 +28,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			Community.get({ communityId: $routeParams.id }, function(res) {
 
 				$scope.info = res;
-				$scope.loaded = true;
+				// $scope.loaded = true;
 				$scope.mine = $scope.isMine(res); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
@@ -40,54 +41,64 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
 			$scope.pagePath = $route.current.originalPath;
-			$scope.pageSegment = $route.current.$$route.segment;
+			if($route.current.$$route)
+				$scope.pageSegment = $route.current.$$route.segment;
 		};
 
 		$scope.applyForCommunity = function() {
+			if($scope.sendingApplication) return false;
+			$scope.sendingApplication = true;
 
 			CommunityApplicants.add({communityId: $scope.info._id}, function(res) {
-				
-    			alert("FLASH MESSAGE");
 				$scope.init();
-			}, handleApiError);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
+				$scope.sendingApplication = false;
+			}, function() {
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_FAILED', Notify.T_ERROR);
+				$scope.sendingApplication = false;
+			});
 		};
 
         $scope.rejectApplication = function(id)  {
 
         	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
-    			alert("FLASH MESSAGE");
         		$scope.init();
-        	}, handleApiError);
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
+        	}, function() {
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_FAILED', Notify.T_ERROR);
+        	});
         };
 
         $scope.leaveCommunity = function() {
         	CommunityLeave.leave({community_id: $scope.info._id}, function(res) {
 
-        		alert("FLASH MESSAGE");
-        		$window.reload();
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_SUCCESS', Notify.T_SUCCESS);
+        		$scope.init();
         		$rootScope.$broadcast("reloadCommunities");
         	}, function(res) {
 
-        		alert("There was an error while processing this request.");
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_FAILED', Notify.T_ERROR);
         	});
-        }
+        };
+
         $scope.approveApplication = function(id) {
 
         	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
-    			alert("FLASH MESSAGE");
+
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_SUCCESS', Notify.T_SUCCESS);
         		$scope.init();
-        	}, handleApiError);
+        	}, function() {
+				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
+        	});
         };
 
-        function handleApiError(res) {
-    		alert("There was an error while processing this post.");
-        }
-
 		$scope.init = function() {
+
 			$scope.refreshDataFeed();
 			$scope.fetchCommunity();
 		};
 
+		UnauthReload.check();
 		$scope.$on('$routeChangeSuccess', $scope.init);
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();

@@ -1,52 +1,48 @@
-<div class="community-view profile-common" ng-show="loaded" ng-class="{'mine': mine, 'others': ! mine}">
+<div loading show="!loaded"></div>
 
+<div class="community-view profile-common" ng-show="loaded" ng-class="{'mine': mine, 'others': ! mine}">
 	<div class="user" ng-show="! info">
 		<p>{{ 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
 	</div>
 	<header ng-show="info">
 		<div class="user-basic">
-			<h1>
-				<div class="buttons" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
-					<a ng-if="mine" href="#!/community/{{info._id}}/edit">
-						<button class="follow-button blue right">
-							<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
-						</button>
-					</a>
-					<button class="follow-button right" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
-						<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
+			<div class="button-bar text-right" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
+				<button class="profile-button tall outline" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
+					<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
+				</button>
+				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="profile-button tall">
+					<i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}
+				</button>
+				<button ng-if="!mine && info.is_applicant" class="profile-button tall outline">
+					<i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLICATION_SENT' | translate}}
+				</button>
+				<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
+					<button class="profile-button tall"><i class="fa fa-share"></i> {{'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
+				</a>
+				<a ng-if="mine" href="#!/community/{{info._id}}/edit">
+					<button class="profile-button red tall">
+						<i class="fa fa-gears"></i> {{ 'PROFILE_EDIT' | translate}}
 					</button>
-					<a ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="right">
-						<button class="follow-button blue right"><i class="fa fa-smile-o"></i> {{'COMMUNITY_APPLY' | translate}}</button>
-					</a>
-					<span class="right" ng-if="!mine && info.is_applicant" >
-						<br />
-						<div class="success"><span class="fa fa-smile-o"></span> {{'COMMUNITY_APPLICATION_SENT' | translate}}</div>
-					</span>
-
-					<a href="#!/community/{{info._id}}/invite-friends" class="right" ng-if="false">
-						<button class="follow-button blue right"><i class="fa fa-share"></i> {{'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
-					</a>
-				</div>			
+				</a>
+			</div>
+			<h1>
 				<a href="#!/community/{{info._id}}">
 					{{ info.name }}
 				</a>
 			</h1>
+			<div class="clear"></div>
 		</div>
 		<div class="highlights">
 			<a href="#!/community/{{info._id}}" class="profile-photo">
 				<img ng-if="info.avatar.large" ng-src="{{info.avatar.large}}" />
 			</a>
-			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(9) == 'posts')}" class="posts-count">
-				<b>{{info.post_count}}</b>
-				<br />
-				{{'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
+			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(10) == 'posts')}" class="posts-count">
+                <span ng-if="info" ng-bind-html="'COMMUNITY.X_GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate: '{count: '+info.post_count+'}'"></span>
 			</a>
-			<a href="#!/community/{{info._id}}/members" class="members-count" ng-class="{'active': (pageSegment.substr(9) == 'members')}">
-				<b>{{info.member_count}}</b> 
-				<br />
-				{{'COMMUNITY_MEMBERS.'+pluralCat(info.member_count) | translate }}
+			<a href="#!/community/{{info._id}}/members" class="members-count" ng-class="{'active': (pageSegment.substr(10) == 'members' || pageSegment.substr(10) == 'applications')}">
+                <span ng-if="info" ng-bind-html="'COMMUNITY.X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
             </a>
-			<a href="#!/community/{{info._id}}/about" class="about" ng-class="{'active': (pageSegment.substr(9) == 'about')}">
+			<a href="#!/community/{{info._id}}/about" class="about" ng-class="{'active': (pageSegment.substr(10) == 'about')}">
 				<span>{{ 'COMMUNITY_ABOUT_SHORT' | translate}}</span>
             </a>
 		</div>
@@ -54,4 +50,3 @@
 	<div class="clear"></div>
 	<div app-view-segment="1"></div>
 </div>
-

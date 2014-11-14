@@ -23,6 +23,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             params = {
                 user_id: $routeParams.id
             };
+        var inited = false;
+        $scope.subPageLoaded = false;
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";
@@ -52,7 +54,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 include_expired: +$scope.mine, // cast bool to int
                 author_id: params.user_id,
                 limit: 1000
-            }
+            };
 
             Fulltext.query(fulltextParams, function(res) {
 
@@ -65,6 +67,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     else
                         $scope.postsInactive.push(item);
                 });
+
+                finishLoading();
             }, doneErr);
         }
 
@@ -85,19 +89,30 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             }
 
             params.limit = 5;
-            UserRatings.received(params, function(res) {
-                $scope.receivedRatings = res;
-            });
-            UsersActivityLog.get(params, function(res) {
-                $scope.activityLog = res;
-            });
-            Fulltext.query(fulltextParams, function(res) {
-                $scope.posts = res;
-            });
+
+            async.parallel([
+                function(done) {
+                    UserRatings.received(params, function(res) {
+                        $scope.receivedRatings = res;
+                        done(null);
+                    }, done);
+                },
+                function(done) {
+                    UsersActivityLog.get(params, function(res) {
+                        $scope.activityLog = res;
+                        done(null);
+                    }, done);
+                },
+                function(done) {
+                    Fulltext.query(fulltextParams, function(res) {
+                        $scope.posts = res;
+                        done(null);
+                    }, done);
+                }
+            ], finishLoading);
 
             $scope.$on('updatedItem', $scope.refreshItemInfo);
         }
-
 
         $scope.cancelEdit = function() {
             init();
@@ -107,45 +122,80 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.close();
         };
 
+        function finishLoading() {
+            $scope.subPageLoaded = true;
+            $scope.$parent.loaded = true;
+        }
+
         function processData(res) {
-            $rootScope.subPageLoaded = true;
             $scope.data = res;
+            finishLoading();
         }
 
         function processDataErr(res) {
             console.log("Err", res);
+            finishLoading();
         }
 
         function init() {
+
+            $scope.subPageLoaded = false;
 
             console.log("Calling load service", $scope.pageSegment);
             console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);
 
             // refresh after new post created
-            if ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts') {
-
+            if (! inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
+                console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
                     $scope.refreshUser();
                 });
+                $scope.$on('postUpdated', function() {
+                    $scope.refreshUser();
+                });
+
+                // added event listeners - dont add them again
+                inited = true;
             }
         }
 
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {
-            });
+            $( ".post_"+item._id ).slideUp( "slow", function() {});
             $scope.$emit("profileRefreshUser");
+        };
+
+        // this will flash rating box with some background color
+        $scope.flashRatingBackground = function(rating) {
+            var delayIn = 200;
+            var delayOut = 2000;
+            var color = "#FFB697";
+            var colorOut = $('.rating_'+rating._id + ' .item').css("background-color");
+
+            $('.rating_'+rating._id + ' .item').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .item').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: colorOut}, delayOut );
+            });
+
         };
 
         // will add new rating to data array
         $scope.addUserRating = function($event, item) {
             $scope.data.unshift(item);
+            setTimeout(function() {
+                $scope.flashRatingBackground(item);
+            });
         };
 
         $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
+        // $scope.loaded && init();
         $scope.$on('profileTopPanelLoaded', init);
-        $scope.loaded && init();
     }
 ]);

@@ -1,17 +1,47 @@
 <div ng-include="'templates/profile/followingPanel.html'"></div>
 
-<div class="people-listing">
-	<div class="person" ng-repeat="(id, item) in data track by $index">
-		<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">
-			<div class="avatar">
-				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+<div ng-if="subPageLoaded">
+	<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
+		<p>{{ 'PROFILE.FOLLOWEES.NO_FOLLOWEES_ME' | translate }}</p>
+	</div>
+	<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
+		<p>{{ 'PROFILE.FOLLOWEES.NO_FOLLOWEES_OTHER' | translate }}</p>
+	</div>
+
+	<div class="people-listing">
+		<div class="person" ng-repeat="(id, item) in data track by $index">
+			<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">
+				<div class="avatar">
+					<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
+				</div>
+			</a>
+			<div class="name">
+				<h4>
+					<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
+				</h4>
+				<a class="mine" ng-click="revealModal('confirm-remove-following-'+item._id)">{{ 'UNFOLLOW_BUTTON_CAPTION' | translate }}</a>
 			</div>
-		</a>
-		<div class="name">
-			<h4>
-				<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
-			</h4>
-			<a class="mine" ng-click="removeFollower(item._id)">{{ 'UNFOLLOW_BUTTON_CAPTION' | translate }}</a>
+
+			<div id="confirm-remove-following-{{item._id}}" class="reveal-modal tiny" data-reveal>
+			  <header>
+			      <h2 class="large-12">{{'PROFILE.REMOVE_FOLOWEESE_LABEL' | translate}}</h2>
+			  </header>
+			  <article class="row">
+			      <hr />
+			      <p class="large-12 text-center"> {{'PROFILE.REMOVE_FOLOWEESE_TEXT' | translate}}</p>
+			  </article>
+			  <article class="row">
+			      <section class="large-6 columns">
+			          <button ng-click="removeFollower(item._id, true)">{{'OK' | translate}}</button>
+			      </section>
+			      <section class="large-6 columns text-right">
+			          <a class="link-button" ng-click="closeModal('confirm-remove-following-'+item._id)">{{'CANCEL' | translate}}</a>
+			      </section>
+			  </article>
+			</div>
+
 		</div>
 	</div>
 </div>
+
+<div loading show="!subPageLoaded" text="{{ 'COMMON.LOADING' | translate }}"></div>

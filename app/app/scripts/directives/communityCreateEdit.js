@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-    '$rootScope', '$location', '$routeParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin',
-    function($rootScope, $location, $routeParams, Community, CommunityMembers, CommunityDelegateAdmin) {
+    '$rootScope', '$location', '$routeParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth',
+    function($rootScope, $location, $routeParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth) {
         return {
             restrict: 'E',
             replace: true,
@@ -17,6 +17,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
             templateUrl: 'templates/directives/communityEditForm.html',
             link: function($scope, element) {
                 $scope.communityMembers = false;
+                $scope.loaded = false;
+                $scope.adminChangeId = null;
                 $scope.sendingDelete = false;
                 $scope.defaultCommunity = {
                     name: '',
@@ -30,7 +32,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     description: false,
                 };
                 $scope.community = {};
-
+                
                 $scope.fillDefaultCommunity = function() {
                     
                     $scope.community = angular.copy($scope.defaultCommunity);
@@ -70,10 +72,20 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     return arr;
                 };
 
+                $scope.checkOwnership = function(community) {
+
+                    return $scope.community.admin === $rootScope.loggedUser._id;
+                };
                 $scope.loadCommunity = function(id) {
                     Community.get({communityId: id}, function(res) {
                         $scope.community = $scope.transformDataIn(res);
-                        $scope.loaded = true;
+
+                        if($scope.checkOwnership($scope.community)) {
+
+                            $scope.loaded = true;
+                        } else {
+                            $location.path('/community/'+$scope.community._id);
+                        }
                     });
 
                     CommunityMembers.query({communityId: id}, function(res) {
@@ -105,70 +117,146 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     }
 
                     return ! err; // return true if valid
-                }
+                };
 
                 $scope.save = function() {
                     // if we have community ID - then edit
                     var service = ($scope.community._id) ? Community.edit : Community.add;
                     var transformedData;
                     // validate data
-                    if(!$scope.validate($scope.community)) return false;
+                    if(!$scope.validate($scope.community)) {
+                        $rootScope.scrollToError();
+                        return false;
+                    }
 
                     // lock
                     if($scope.sending) return false;
                     $scope.sending = true;
+                    $rootScope.globalLoading = true;
 
                     transformedData = $scope.transformDataOut(angular.copy($scope.community));
                     service(transformedData, function(res) {
+                        $rootScope.globalLoading = false;
                         $rootScope.$broadcast("reloadCommunities");
                         $location.path('/community/'+res._id);
+
+                        if ($scope.community._id)
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_UPDATE_SUCCESS', Notify.T_SUCCESS);
+                        else
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_CREATE_SUCCESS', Notify.T_SUCCESS);
+
                     }, function(res) {
-                        alert("Operace se nezdařila :-(");
-                        $scope.sending = false;;
+                        $scope.sending = false;
+                        $rootScope.globalLoading = false;
+                        
+                        // and show another based on what we wanted to do
+                        if ($scope.community._id)
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_UPDATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
+                        else
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_CREATE_FAILED', Notify.T_ERROR, '.communities-notify-area');
                     });
                 };
                 
                 $scope.change = function(id) {
 
                     if(!id) {
-
-                        alert("Musíte vybrat člena komunity.");
                         return false;
                     }
 
-                    CommunityDelegateAdmin.delegate({community_id: $scope.community._id, new_admin_id: id},
-                        function(res) {
-                            $rootScope.$broadcast("reloadCommunities");
-                            $location.path('/community/'+$scope.community._id);
-                        }, function(res) {
+                    $scope.leaveCommunityIdentity(function(needReload) {
 
-                            alert("There was an error while processing this request");
-                        });
-                }
+                        $rootScope.globalLoading = true;
+                        CommunityDelegateAdmin.delegate({community_id: $scope.community._id, new_admin_id: id},
+                            function(res) {
+                                $rootScope.globalLoading = false;
+                                $scope.closeModal('confirm-delete-community');
+                                
+                                if(needReload) {
 
-                $scope.delete = function() {
+                                    Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
+                                } else {
+                                    
+                                    $rootScope.$broadcast("reloadCommunities");
+                                    Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
+                                }
+                                
+                                $scope.reloadToPath('/community/'+$scope.community._id, needReload);
 
-                    if($scope.sendingDelete) return false;
-                    $scope.sendingDelete = true;
-                    Community.remove({communityId: $scope.community._id}, function(res) {
-
-                        $scope.sendingDelete = false;
-                        alert("KOMUNITA BYLA SMAZANA");
-
-                        $rootScope.$broadcast("reloadCommunities");
-                        $location.path("/communities");
-                    }, function(res) {
-
-                        alert("Při mazání komunity došlo k chybě.");
-                        $scope.sendingDelete = false;
+                            }, function(res) {
+                                $rootScope.globalLoading = false;
+                                Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED', Notify.T_ERROR);
+                            });
                     });
                 };
 
+                // this will switch identity from community if user is logegd as community
+                $scope.leaveCommunityIdentity = function(cb) {
+                    if($rootScope.loggedCommunity && $rootScope.loggedCommunity._id == $scope.community._id) {
+                        // cb(true)
+                        Auth.switchIdentityBack($scope.community._id).then(function() {
+                            cb(true);
+                        });
+                    } else {
+                        cb(false);
+                    }
+                };
+
+                $scope.reloadToPath = function(path, hard) {
+
+                    if(hard) {
+                        window.location.hash = '#!'+path;
+                        location.reload();
+                    } else {
+
+                        $rootScope.$broadcast("reloadCommunities");
+                        $location.path(path);
+                    }
+                };
+
+                $scope.delete = function() {
+
+                    $scope.leaveCommunityIdentity(function(needReload) {
+
+                        if($scope.sendingDelete) return false;
+                        $scope.sendingDelete = true;
+                        $rootScope.globalLoading = true;
+
+                        Community.remove({communityId: $scope.community._id}, function(res) {
+                            $rootScope.globalLoading = false;
+                            $scope.sendingDelete = false;
+                            $scope.closeModal('confirm-delete-community');
+                            
+                            if(!needReload) {
+                                
+                                Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
+                                $rootScope.$broadcast("reloadCommunities");
+                            } else {
+
+                                Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
+                            }
+
+                            $scope.reloadToPath('/communities', needReload);
+                        
+                        }, function(res) {
+
+                            $rootScope.globalLoading = false;
+                            $scope.closeModal('confirm-delete-community');
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
+                            $scope.sendingDelete = false;
+                        });
+                    });
+                };
+
+                $scope.revealModal = function(id) {
+                    $("#"+id).foundation('reveal', 'open');
+                };
                 $scope.close2 = function() {
                     $scope.close();
                 };
 
                 $scope.init = function() {
+                    $scope.pluralCat = $rootScope.pluralCat;
+                    $scope.closeModal = $rootScope.closeModal;
 
                     if($scope.getCommunityId()) {
                         $scope.loadCommunity($scope.getCommunityId());
@@ -177,6 +265,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     }
                 };
 
+                $scope.changeSelectValue = function(val) {
+                    $scope.adminChangeId = val;
+                };
+                
                 $scope.$on('initFinished', $scope.init);
                 $rootScope.initFinished && $scope.init();
             }

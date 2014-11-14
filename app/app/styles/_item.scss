@@ -3,9 +3,8 @@ $border: $size / 10;
 $arrowTop: 25px;
 $imageSize: 80px;
 
-
-    
-article.row.inactive {
+/* article.row */
+.inactive {
     opacity: 0.55;
 }
 
@@ -32,6 +31,7 @@ article.row.inactive {
         };
         text-shadow: 0px 0px 1px gray;
         color: #383838;
+        word-wrap: break-word;
     }
     .user-info {
         background-color: white;
@@ -63,20 +63,17 @@ article.row.inactive {
         .summary {
             margin-left: 2em;
         }
-
         .count_accomplished {
             color: color(1);
             text-align: center;
-            margin-bottom: 20px
+            margin-bottom: 20px;
         }
-
         .social {
             a {
                 font-size: 20px;
                 color: color(5);
             }
         }
-
         .profil-link {
             font-weight: 600;
             position: relative;
@@ -85,17 +82,14 @@ article.row.inactive {
                 color: color(5);
             }
         }
-
         .links {
             margin-top: 10px;
             height: 18px;
             .fa {
-
                 font-size: 20px;
                 margin-right: 3px;
             }
         }
-
         .author-about {
             color: black;
             border-top: 1px solid color(1);
@@ -131,12 +125,11 @@ article.row.inactive {
     };
     width: 5px;
     border-radius: 5px;
-
 }
 
 .karma {
     height: 5px;
-    width: $imageSize;
+    width: $imageSize + 30px;
     margin: {
         top: $fontSize / 4;
         bottom: $fontSize / 2;
@@ -144,7 +137,6 @@ article.row.inactive {
         right: auto;
     };
     background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to right, darken(color(5), 30%) 0%, darken(color(5), 30%) 80%, color(5) 100%);
-    
     &.empty {
         background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), lighten(color(3), 20%);
         .positive {
@@ -157,16 +149,15 @@ article.row.inactive {
     }
 }
 
-
 .item {
     background-color: white;
-    min-height: 150px;
+    min-height: 100px;
     position: relative;
     margin: auto;
     box-shadow: $defaultShadow;
     border-radius: $global-radius;
     margin: {
-        bottom: $fontSize;
+        bottom: 2rem;
     };
     header {
         text-align: right;
@@ -203,15 +194,12 @@ article.row.inactive {
                     bottom: 0.5em;
                 };
             }
-
         }
         .location-dropdown {
-
             margin-left: 0;
             margin-right: 0;
             left: -7px !important;
             top: -11px !important;
-            
             width: 100%;
             background-color: white;
             border: 1px solid #e3e3e3;
@@ -226,24 +214,24 @@ article.row.inactive {
             }
             div {
                 margin-bottom: 20px;
-                .fa {
-                }
+                .fa {}
                 &:last-child {
                     margin-bottom: 0px;
                 }
             }
         }
-     }
+    }
     footer {
-        height: 60px;
+        height: 64px;
         border-radius: 0 0 $global-radius $global-radius;
         background-color: color(4);
         padding: {
-            left: sqrt(2) * $size;
-            right: $fontSize;
-            top: $fontSize / 2;
-            bottom: $fontSize / 2;
+            left: 2rem;
+            right: 1rem;
+            top: .5rem;
+            bottom: .5rem;
         };
+        font-size:.9rem;
         span {
             &.margin {
                 display: inline-block;
@@ -254,7 +242,7 @@ article.row.inactive {
             font-size: 1.8em;
             float: right;
             margin: {
-                top: rem-calc(10);
+                top: .7rem;
             };
             color: color(5);
         }
@@ -278,7 +266,7 @@ article.row.inactive {
             font-size: 1.5em;
             float: right;
             margin: {
-                top: rem-calc(10);
+                top: .7rem;
             };
             opacity: 0.3;
             display: inline-block;
@@ -314,30 +302,33 @@ article.row.inactive {
                 right: 2 * $fontSize;
             };
             min-width: 10 * $fontSize;
-            transition: background-color 1s, border-color 1s;
+            transition: background-color .5s, border-color .5s, color .5s;
             &.main {
-                background-color: lighten(color(1), 45%);
-                color: color(1);
+                background-color: white;
+                color: darken(color(1), 10%);
                 border-color: lighten(color(1), 20%);
                 &:hover:not([disabled]) {
-                    background-color: lighten(color(1), 25%);
-                    text-shadow: -1px -1px 2px white, 1px 1px 2px white;
+                    background-color: lighten(color(1), 30%);
+                    color: darken(color(1), 10%);
                     border-color: color(1);
                 }
             }
             &.main.secondary {
-                background-color: lighten(color(2), 50%);
-                color: color(2);
+                background-color: white;
+                color: darken(color(2), 10%);
                 border-color: lighten(color(2), 20%);
                 &:hover:not([disabled]) {
-                    background-color: lighten(color(2), 25%);
-                    text-shadow: -1px -1px 2px white, 1px 1px 2px white;
+                    background-color: lighten(color(2), 30%);
+                    color: darken(color(2), 10%);
                     border-color: color(2);
                 }
             }
             &[disabled] {
                 border-color: transparent;
             }
+        }
+        small {
+            font-size: rem;
         }
     }
     .show-more {
@@ -410,7 +401,8 @@ article.row.inactive {
         h1 {
             font-size: 1.2em;
             font-weight: bold;
-            span {
+            word-wrap: break-word;
+            span>span {
                 position: relative;
                 z-index: 50;
                 left: -$size / 2;
@@ -418,7 +410,6 @@ article.row.inactive {
             }
         }
         .text-container {
-            margin-bottom: $fontSize;
             .expandable {
                 max-height: 5em;
                 overflow: hidden;
@@ -430,15 +421,15 @@ article.row.inactive {
                     };
                 }
                 &.expanded {
-                   /* max-height: 100em; */
+                    /* max-height: 100em; */
                 }
             }
-            
+        }
+        small {
+            font-size: .8rem;
         }
         .attachments {
-            margin-top:20px;
-            margin-bottom:20px;
-
+            margin-bottom: 5px;
             .expandable {
                 max-height: 190px;
                 overflow: hidden;
@@ -452,7 +443,7 @@ article.row.inactive {
                     max-width: 185px;
                     max-height: 185px;
                     margin-right: 20px;
-                    margin-bottom:20px;
+                    margin-top: $fontSize;
                     border-radius: 10px;
                 }
             }
@@ -487,15 +478,12 @@ article.row.inactive {
             top: 0;
             z-index: 3000;
             height: 33px;
-
-            padding: {
-            };
             a {
                 &:first-child {
                     margin-left: 0px;
                 }
             }
-            @include transition(max-width 2s ease);
+            @include transition(max-width .5s ease);
             div {
                 text-align: right;
                 white-space: nowrap;
@@ -512,8 +500,8 @@ article.row.inactive {
                     background-color: color(5);
                     border-radius: 50%;
                     text-shadow: 0 -1px 1px darken(color(5), 15%);
-                    @include transition(color 1s);
-                    @include transition(background-color 0.8s);
+                    @include transition(color .5s);
+                    @include transition(background-color 0.5s);
                     &:hover {
                         color: white;
                         background-color: darken(color(5), abs($button-function-factor));
@@ -599,7 +587,7 @@ article.row.inactive {
             }
         }
     }
-    &.community {
+    &.rating-received {
         & .arrowbox {
             height: $size;
             width: $size;
@@ -608,7 +596,13 @@ article.row.inactive {
             @include rotate(45deg);
             -webkit-transform-origin: 50% 50%;
         }
-    }    
+        &.positive, &.positive > .overlap, &.positive > .arrowbox {
+            background: lighten(color(2), 45%);
+        }
+        &.negative, &.negative > .overlap, &.negative > .arrowbox {
+            background: lighten(color(5), 45%);
+        }
+    }
 }
 
 #confirm-delete, #confirm-report {
@@ -631,7 +625,11 @@ article.row.inactive {
 .tags {
     .tagList {
         list-style: none;
-        margin-bottom: 0px;
+        margin: {
+            bottom: 0px;
+            left: 0px;
+            top: $fontSize;
+        };
         li {
             border: 1px solid #C2C2C2;
             border-radius: 8px;
@@ -641,10 +639,9 @@ article.row.inactive {
             padding-right: 7px;
             display: inline-block;
             margin-right: 6px;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
+            margin-top: 2px;
             text-transform: capitalize;
-            
-            
         }
     }
 }
@@ -662,7 +659,6 @@ article.row.inactive {
 }
 
 .mineItem {
-
     .avatar:before,
     .item,
     .arrowbox {
@@ -673,17 +669,19 @@ article.row.inactive {
         a {
             text-shadow: none !important;
             background-color: #f95800 !important;
-            color: white !important;
+            color: lighten(#f95800, 50%) !important;
             &:hover {
-                background-color: #B6B6B6 !important;
+                color: white !important;
+                background-color: darken(#f95800, 20%) !important;
             }
         }
     }
     .controll-buttons {
         div {
             color: #f95800 !important;
+            @include transition(color 0.5s);
             &:hover {
-                color: #B6B6B6 !important;
+                color: darken(#f95800, 20%) !important;
             }
         }
     }

@@ -7,10 +7,10 @@ angular.module('hearth').config([
 			
 			// ====== General routes
 			.when('/', 'market')
+			.when('/market', 'market-refresh')
 			.when('/search/?', 'search')
 			.when('/ad/:id', 'ad')
 			.when('/404', 'err404')
-			.when('/setup', 'setup')
 			.when('/terms', 'terms')
 			.when('/about', 'about')
 			.when('/feedback', 'feedback')
@@ -20,9 +20,10 @@ angular.module('hearth').config([
 			.when('/login', 'login')
 			.when('/reset-password', 'reset-pass')
 			.when('/forgotten-password', 'forgot-pass')
-			.when('/confirmEmail', 'confirm-email')
-			.when('/change-password', 'change-pass')
-
+			.when('/confirm-email', 'confirm-email')
+			.when('/fill-email/:token', 'fill-email')
+			// .when('/change-password', 'change-pass')
+			
 			// ======= Profile routes & subroutes
 			.when('/profile/:id', 'profile')
 			.when('/profile/:id/posts', 'profile.posts')
@@ -48,11 +49,19 @@ angular.module('hearth').config([
 			.when('/community/:id/applications', 'community.applications')
 			.when('/community/:id/about', 'community.about')
 			.when('/community/:id/activity-feed', 'community.activity-feed')
+			.when('/not-found', 'error404')
 
 			// ====== Route settings =========
 			.segment('market', {
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
+				reloadOnSearch: false,
+				disableCache: true,
+				pageType: 'search'
+			}).segment('market-refresh', {
+				controller: ['$location', function($location) {
+											$location.path('/'); // just for refresh purposes
+										}],
 				reloadOnSearch: false,
 				disableCache: true,
 				pageType: 'search'
@@ -67,12 +76,15 @@ angular.module('hearth').config([
 				controller: 'LoginCtrl',
 				pageType: 'login'
 			}).segment('confirm-email', {
-				templateUrl: 'templates/confirmEmail.html',
+				templateUrl: 'templates/userForms/confirmEmail.html',
 				controller: 'ConfirmEmailCtrl'
-			}).segment('change-pass', {
-				templateUrl: 'templates/userForms/changePassword.html',
-				controller: 'ChangePwdCtrl',
-				access: 'private'
+			}).segment('fill-email', {
+				templateUrl: 'templates/userForms/fillEmail.html',
+				controller: 'FillEmailCtrl'
+			// }).segment('change-pass', {
+			// 	templateUrl: 'templates/userForms/changePassword.html',
+			// 	controller: 'ChangePwdCtrl',
+			// 	access: 'private'
 			}).segment('forgot-pass', {
 				templateUrl: 'templates/userForms/forgottenPassword.html',
 				controller: 'ForgottenPasswordCtrl'
@@ -85,9 +97,6 @@ angular.module('hearth').config([
 				pageType: 'feedback'
 			}).segment('404', {
 				templateUrl: 'templates/404.html'
-			}).segment('setup', {
-				templateUrl: 'templates/setup.html',
-				controller: 'SetupCtrl'
 			}).segment('terms', {
 				controller: 'TermsCtrl',
 				templateUrl: 'templates/terms.html'
@@ -97,6 +106,9 @@ angular.module('hearth').config([
 			}).segment('ad', {
 				controller: 'ItemDetail',
 				templateUrl: 'templates/itemDetail.html'
+			}).segment('error404', {
+				controller: 'Error404Ctrl',
+				templateUrl: 'templates/error404.html'
 
 			}).segment('communityList', {
 			    templateUrl: 'templates/community/list.html',
@@ -241,10 +253,16 @@ angular.module('hearth').config([
 				});
 
 
-		$routeProvider.otherwise({
-			redirectTo: '/'
-		});
+			// $routeProvider.otherwise({
+		 //        controller: 'Error404Controller',
+		 //        templateUrl: 'templates/profile/Error404.html'
+	  //   	});
 
+			$routeProvider.otherwise({
+		        controller: 'Error404Ctrl',
+				templateUrl: 'templates/error404.html'
+				// redirectTo: '/not-found'
+			});
 	
 	}
 ]);

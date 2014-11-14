@@ -7,10 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email',
-    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email) {
+    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify',
+    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify) {
 
-        $scope.user = new User();
+        $scope.user = {
+            email: '',
+            name: '',
+            password: ''
+        };
         $scope.sent = false; // show result msg
         $scope.sending = false; // lock - send user only once
         $scope.termsPath = false;
@@ -42,6 +46,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
                 }
                 // call callbeck
                 cb && cb(res.ok);
+            }, function() {
+                cb && cb(false);
             });
         };
 
@@ -68,11 +74,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
         //     cb(false);
         // };
 
-        // when registration is successfull - hide form and show success message
         $scope.hideForm = function() {
-            $(".register-login-form").fadeOut('slow', function() {
-                $(".register-successful").fadeIn('slow', function() {});
+            $(".register-login-form").slideUp('slow', function() {
             });
+            $(".register-successful").slideDown('slow', function() {});
         };
 
         $scope.sendRegistration = function(user) {
@@ -84,11 +89,15 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             if ($scope.sending) return false;
             $scope.sending = true;
 
-            return $scope.user.$save(function() {
+            User.add($scope.user, function() {
 
-                $scope.sent = true;
                 $scope.sending = false;
+
+            //     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
+            //     // $location.path('/');
+                
                 $scope.hideForm();
+
                 return $analytics.eventTrack('registration email sent', {
                     category: 'registration',
                     label: 'registration email sent'
@@ -100,6 +109,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
                 $scope.apiErrors = new ResponseErrors(err);
                 if ($scope.apiErrors.email)
                     $scope.showError.email = true;
+
+                Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_ERROR', Notify.T_ERROR, '.register-notify-area');
 
                 return $analytics.eventTrack('error during registration', {
                     category: 'registration',
@@ -113,14 +124,14 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
             if (!$scope.validateData(user)) return false;
 
-            // $scope.checkUsedEmail(user.email, function(isUsed) {
-            //     if (isUsed) {
-            //         $scope.registerForm.email.$error.used = true;
-            //         return $scope.showError.email = true;
-            //     }
+            $scope.checkEmailExists(user.email, 'registerForm', 'email', function(isUsed) {
+                if (isUsed) {
+                    $scope.registerForm.email.$error.used = true;
+                    return $scope.showError.email = true;
+                }
 
-            $scope.sendRegistration(user);
-            // });
+                $scope.sendRegistration(user);
+            });
         };
 
         $scope.init = function() {

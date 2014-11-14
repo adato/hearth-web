@@ -28,7 +28,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             // ===============================
             
             // get preferred language from cookies or config
-            preferredLanguage = preferredLanguage || $$config.defaultLanguage;
             console.log("Setting preffered language", preferredLanguage);
             
             // configure dynamic locale - dates && pluralization && etc
@@ -63,8 +62,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             $httpProvider.responseInterceptors.push('TermsAgreement');
         }
     ]).run([
-        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph',
-        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph) {
+        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
+        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
             $rootScope.appInitialized = false;
 
@@ -106,6 +105,12 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
 
                     // enrich rootScope with user/community credentials
                     angular.extend($rootScope, Auth.getSessionInfo());
+
+                    // if is logged, check if he wanted to see some restricted page
+                    if($rootScope.loggedUser._id) {
+
+                        UnauthReload.checkLocation();
+                    }
 
                     $rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
                     done(null, $rootScope.loggedUser);

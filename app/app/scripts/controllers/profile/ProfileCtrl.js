@@ -7,12 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = false;
-
+		$scope.sendingRemoveFollower = false;
+		$scope.sendingAddFollower = false;
+		
 		// ratings
 		$scope.sendingRating = false;
 		$scope.rating = {
@@ -21,7 +23,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 		$scope.showError = {
 			text: false
-		}
+		};
 
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
@@ -53,21 +55,54 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $scope.isMine();
-				$scope.loaded = true;
+				// $scope.loaded = true;
 
 				$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
+
 				$scope.loaded = true;
 			});
 		};
 
-		$scope.removeFollower = function(user_id) {
+		$scope.toggleFollowerSuccess = function() {
+			$scope.info.is_followed = !$scope.info.is_followed;
 
-			UsersService.removeFollower(user_id, $rootScope.loggedUser._id);
+			if($scope.info.is_followed)
+				$scope.info.followers_count++;
+			else
+				$scope.info.followers_count--;
+		};
+
+		// remove follower - if I manage mine, set myFollowees to true
+		$scope.removeFollower = function(user_id, myFollowees) {
+
+			if($scope.sendingRemoveFollower) return false;
+			$scope.sendingRemoveFollower = true;
+
+			UsersService.removeFollower(user_id, $rootScope.loggedUser._id).then(function(res) {
+
+				$scope.sendingRemoveFollower = false;
+
+				// if my profile - refresh, else change basic stats only
+				if(!myFollowees)
+					$scope.toggleFollowerSuccess(res);
+				else {
+					$rootScope.closeModal('confirm-remove-following-'+user_id);
+					$scope.$broadcast('profileRefreshUser');
+				}
+			});
 		};
 		
 		$scope.addFollower = function(user_id) {
-			UsersService.addFollower(user_id);
+
+			if($scope.sendingAddFollower) return false;
+			$scope.sendingAddFollower = true;
+
+			UsersService.addFollower(user_id).then(function(res) {
+				$scope.sendingAddFollower = false;
+
+				$scope.toggleFollowerSuccess(res);
+			});
 		};
 
 		$scope.toggleFollow = function(user_id) {
@@ -77,36 +112,53 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			} else {
 				$scope.addFollower(user_id);
 			}
-			
-			$scope.info.is_followed = !$scope.info.is_followed;
-		}
+		};
 
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
     		$scope.pagePath = $route.current.originalPath;
-    		$scope.pageSegment = $route.current.$$route.segment;
+    		if($route.current.$$route)
+	    		$scope.pageSegment = $route.current.$$route.segment;
 		};
 
 		$scope.refreshUser = function() {
-			console.log("Loading user info");
+
 			$scope.refreshDataFeed();
 			$scope.fetchUser();
+
 		};
 		
+		$scope.scrollToUserRatingForm = function() {
+			// scroll to form
+			setTimeout(function() {
+				$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
+			}, 300);
+		};
 
 		// will redirect user to user ratings and open rating form
 		$scope.openUserRatingForm = function(score) {
-			$scope.showError.text = false;
-			
+			var ratingUrl = '/profile/'+$scope.info._id+'/received-ratings';
+			var removeListener;
+
 			// set default values
+			$scope.showError.text = false;
 			$scope.rating.score = score;
 			$scope.rating.text = '';
 
 			// show form
 			$scope.showUserRatingForm = true;
 
-			// refresh to ratings page
-			$location.url('/profile/'+$scope.info._id+'/received-ratings');
+			// if we are on rating URL just jump down
+			if($location.url() == ratingUrl) {
+				$scope.scrollToUserRatingForm();
+			} else {
+			// else jump to the righ address and there jump down
+				removeListener = $scope.$on('$routeChangeSuccess', function() {
+					removeListener();
+					$scope.scrollToUserRatingForm();
+				});
+				$location.url(ratingUrl);
+			}
 		};
 
 		// will close form and set to default state
@@ -114,13 +166,24 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-		$scope.sendRating = function(rating) {
+		$scope.sendRating = function(ratingOrig) {
+			var rating;
+			var ratings = {
+				true: -1,
+				false: 1
+			};
+
 			$scope.showError.text = false;
 
-			if(!rating.text) {
+			if(!ratingOrig.text) {
 				return $scope.showError.text = true;
 			}
 
+			// transform rating.score value from true/false to -1 and +1
+			rating = angular.copy(ratingOrig);
+			rating.score = ratings[rating.score];
+
+			// lock
 			if($scope.sendingRating)
 				return false;
 			$scope.sendingRating = true;
@@ -139,20 +202,22 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 				// broadcast new rating - this will add rating to list
 				$scope.$broadcast('userRatingsAdded', res);
+				// Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
+
 			}, function(err) {
 				// remove lock
 				$scope.sendingRating = false;
 
 				// handle error
-				console.log(err);
-				alert("ERROR");
+				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 			});
+		};
 
-		}
-
-		$scope.$on('profileRefreshUser', $scope.refreshUser);
+		UnauthReload.check();
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
+		$scope.$on('profileRefreshUser', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
 		$rootScope.initFinished && $scope.refreshUser();
+
 	}
 ]);

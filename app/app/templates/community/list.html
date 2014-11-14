@@ -5,9 +5,9 @@
     <div class="community-list-add-form hide">
         <community-create-edit close="toggleForm()"></community-create-edit>
     </div>
-    <div class="myCommunities" ng-if="!loggedCommunity">
+    <div class="myCommunities" ng-if="!loggedCommunity && myCommunities !== false">
+        <h4>{{ 'YOUR_COMMUNITIES' | translate }}</h4>
         <div class="my-communities" ng-if="myCommunities.length">
-            <h4>{{ 'YOUR_COMMUNITIES' | translate }}</h4>
             <h5>
                 {{ 'YOU_ARE_MEMBER' | translate}}
                 {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
@@ -21,17 +21,17 @@
             <br />
             <div class="community-list">
                 <community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
-                <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in myCommunities track by $index"></div> -->
             </div>
         </div>
-    </div>
-    <div class="random-communities">
-        <h4>{{ 'SUGGESTED_COMMUNITIES' | translate }}</h4>
-        <div class="clear"></div>
-        <br />
-        <div class="community-list">
-            <community-item item="item" ng-repeat="(id, item) in randomCommunities track by $index"></community-item>
-            <!-- <div ng-include="'templates/community/listItem.html'" ng-repeat="(id, item) in randomCommunities track by $index"></div> -->
+        <div class="my-communities" ng-if="! myCommunities.length">
+            <h5>{{ 'COMMUNITY.USER_ISNT_MEMBER_OF_ANY_COMMUNITY' | translate }}</h5>
+            <div class="clear"></div>
         </div>
     </div>
+    <div ng-if="randomCommunities.length" class="community-list small">
+        <h4>{{ 'SUGGESTED_COMMUNITIES' | translate }}</h4>
+        <community-item item="item" ng-repeat="(id, item) in randomCommunities track by $index"></community-item>
+    </div>
 </div>
+
+<div loading show="!loaded" text="{{ 'COMMON.LOADING' | translate }}"></div>
