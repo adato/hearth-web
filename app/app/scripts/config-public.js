@@ -5,6 +5,7 @@ $$config = {
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',
+	fbAppId: '277542219089599', // production
 	defaultLanguage: 'cs',
 	defaultUserImage: 'images/no-avatar.jpg',
 	sharingEndpoints: {
