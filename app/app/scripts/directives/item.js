@@ -98,7 +98,7 @@ angular.module('hearth.directives').directive('item', [
                         typeText = $translate(item.community_id ? type.community[item.type] : type.user[item.type]);
 
                     if (item) {
-                        url += '%23/ad/' + item._id;
+                        url += '%23!/ad/' + item._id;
                     }
 
                     angular.extend(scope, {
