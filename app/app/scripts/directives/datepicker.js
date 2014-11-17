@@ -39,6 +39,7 @@ angular.module('hearth.directives').directive('datepicker', [
                         language: attrs.datepicker === 'cs' ? 'cz' : attrs.datepicker
                     }).on('changeDate', function(ev) {
                         if (ev.date.getTime() < limit) {
+                            console.log("AA");
                             datepick.fdatepicker('update', now);
                         }
                     }).on('show', function() {
