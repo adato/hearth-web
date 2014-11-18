@@ -35,6 +35,10 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.$broadcast("communityTopPanelLoaded");
 			}, function(res) {
 				$scope.loaded = true;
+				$scope.info = false;
+				$scope.mine = false;
+				$scope.managing = false;
+
 			});
 		};
 		
