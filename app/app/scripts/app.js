@@ -109,7 +109,21 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
                     // if is logged, check if he wanted to see some restricted page
                     if($rootScope.loggedUser._id) {
 
+                        if(!$.cookie('forceRefresh')) {
+                            
+                            var cookies = $.cookie();
+                            for(var cookie in cookies) {
+                               $.removeCookie(cookie);
+                            }
+                            $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });   
+                            Auth.logout(function() {
+                                location.reload("#!/login");
+                            });
+                        }
+
                         UnauthReload.checkLocation();
+                    } else {
+                        $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });   
                     }
 
                     $rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
