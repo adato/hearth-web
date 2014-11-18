@@ -129,7 +129,7 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleCollapsed = function() {
                     $('.show-more', element).toggleClass('expanded');
                     $('.text-container .expandable', element).css("max-height", (scope.expanded) ? 80 : 3000);
-                    $('.attachments .expandable', element).css("max-height", (scope.expanded) ? 190 : 3000);
+                    $('.attachments .expandable', element).css("max-height", (scope.expanded) ? 205 : 3000);
                     $('.attachments .lazyLoad', element).each(function() {
                         $(this).attr("src", $(this).attr("data-src"));
                         $(this).fadeIn();
