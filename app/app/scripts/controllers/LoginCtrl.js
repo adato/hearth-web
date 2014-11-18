@@ -14,6 +14,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			password: ''
 		};
 
+		$scope.loginError = false;
 		$scope.showError = {
 			badCredentials: false
 		};
@@ -48,6 +49,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		};
 
 		$scope.login = function(data) {
+			$scope.loginError = false;
 			// $scope.showError.badCredentials = false;
 			if(! $scope.validateLogin(data))
 				return showErrorCredentials();
@@ -56,6 +58,11 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		};
 
 		$scope.init = function() {
+
+			var params = $location.search();
+			if(params.error)
+				$scope.loginError = true;
+			
 			if (Auth.isLoggedIn()) {
 				return $location.path( $rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
 			}
@@ -66,6 +73,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.setLoginRequired = function() {
 			$scope.showMsgOnlyLogged = true;
 			$rootScope.loginRequired = false;
+			$scope.loginError = false;
 		};
 
 		if($rootScope.loginRequired) {

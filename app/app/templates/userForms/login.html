@@ -8,7 +8,10 @@
     <hr />
     <form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form login-form">
         <div ng-if="showMsgOnlyLogged">
-            <div class="alert-box alert radius" style=""><i class="fa fa-exclamation-triangle"></i>{{ 'LOGIN_REQUIRED' | translate }}</div>
+            <div class="alert-box alert radius"><i class="fa fa-exclamation-triangle"></i>{{ 'LOGIN_REQUIRED' | translate }}</div>
+        </div>
+        <div ng-if="loginError">
+            <div class="alert-box alert radius"><i class="fa fa-exclamation-triangle"></i>{{ 'ACCOUNT.LOGIN.LOGIN_FAILED' | translate }}</div>
         </div>
         <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
         <input type="text" name="username" class="login_name" ng-model="data.username" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">

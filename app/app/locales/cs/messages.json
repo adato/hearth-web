@@ -16,7 +16,8 @@
     "ABOUT_TEXT": "Hearth.net spojuje aktivní lidi, kteří pro ostatní rádi udělají, co umí a ocení, když se jim to z jiné strany vrátí.",
     "ACCOUNT": {
         "LOGIN": {
-            "VIA_SOCIAL_NETWORKS": "Nebo se přihlašte pomocí sociální sítě."
+            "VIA_SOCIAL_NETWORKS": "Nebo se přihlašte pomocí sociální sítě.",
+            "LOGIN_FAILED": "Při přihlašování došlo k chybě."
         },
         "REGISTER": {
             "VIA_SOCIAL_NETWORKS": "Nebo se registrujte pomocí sociální sítě."
