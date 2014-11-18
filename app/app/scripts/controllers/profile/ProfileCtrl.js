@@ -59,6 +59,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.loaded = false;
 			}
 
+			console.log("nacitam: ",$routeParams.id);
+
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;
 				$scope.info.cities = $scope.citiesToString(res);
@@ -71,6 +73,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}, function (res) {
 
 				$scope.loaded = true;
+				$scope.info = false;
+				$scope.mine = false;
 			});
 		};
 
