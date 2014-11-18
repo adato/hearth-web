@@ -123,7 +123,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             function initOpenGraph(done) {
 
                 $rootScope.$on('$translateChangeSuccess', function() {
-                    OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'));
+                    var defaultHearthImage = 'https://www.hearth.net/app/images/default_avatar.png';
+                    OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'), defaultHearthImage);
                     OpenGraph.setDefault();
                 });
 
