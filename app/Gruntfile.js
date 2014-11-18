@@ -186,7 +186,7 @@ module.exports = function(grunt) {
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-				host: process.env.GRUNT_HOST || 'dev.hearth.net',  // wherever the data service is running,
+				host: process.env.GRUNT_HOST || 'stage.hearth.net',  // wherever the data service is running,
 				https: process.env.GRUNT_SSL == null, // true,
 				port: process.env.GRUNT_PORT || 443  // the port that the data service is running on
 			}],
