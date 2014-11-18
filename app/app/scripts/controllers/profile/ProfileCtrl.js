@@ -10,19 +10,25 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload',
 
 	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload) {
-		$scope.loaded = false;
-		$scope.info = false;
-		$scope.sendingRemoveFollower = false;
-		$scope.sendingAddFollower = false;
-		
-		// ratings
-		$scope.sendingRating = false;
-		$scope.rating = {
-			score: 1,
-			text: ''
-		};
-		$scope.showError = {
-			text: false
+		$scope.initPage = function() {
+			$scope.loaded = false;
+			$scope.info = false;
+			$scope.paramId = false;
+			$scope.sendingRemoveFollower = false;
+			$scope.sendingAddFollower = false;
+			
+			// ratings
+			$scope.sendingRating = false;
+
+			// ratings
+			$scope.sendingRating = false;
+			$scope.rating = {
+				score: 1,
+				text: ''
+			};
+			$scope.showError = {
+				text: false
+			};
 		};
 
 		$scope.isMine = function () {
@@ -44,6 +50,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.fetchUser = function () {
 			// dont load user when there is no ID in params
 			if(! $routeParams.id) return false;
+
+			// if we are loading new user init
+			if($scope.paramId && $scope.paramId != $routeParams.id) 
+				$scope.initPage();
 			
 			if($scope.info._id !== $routeParams.id) {
 				$scope.loaded = false;
@@ -213,6 +223,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		$scope.initPage();
 		UnauthReload.check();
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
