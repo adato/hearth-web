@@ -408,6 +408,9 @@ $imageSize: 80px;
                 left: -$size / 2;
                 font-size: 0.8em;
             }
+            div {
+                display: inline;
+            }
             a {
                 color: black;
                 &:hover {

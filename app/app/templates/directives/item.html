@@ -50,7 +50,8 @@
 						<span ng-if="item.type == 'need'">{{ 'WE_NEED' | translate }}</span>
 						<span ng-if="item.type == 'offer'">{{ 'WE_GIVE' | translate }}</span>
 					</span>
-					<a ng-href="#!/ad/{{item._id}}">{{item.title}}</a>
+					<div ng-if="itemDetail">{{item.title}}</div>
+					<a ng-if="! itemDetail" ng-href="#!/ad/{{item._id}}">{{item.title}}</a>
 				</h1>
 				<div class="text-container">
 					<div class="expandable">

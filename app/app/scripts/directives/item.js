@@ -18,6 +18,7 @@ angular.module('hearth.directives').directive('item', [
                 item: '=',
                 user: '=',
                 community: '=',
+                itemDetail: '=',
                 hideAvatar: '=',
                 keywordsActive: '=',
                 inactivateTags: '=',
@@ -26,6 +27,7 @@ angular.module('hearth.directives').directive('item', [
             link: function(scope, element) {
                 var pauseProgress = false;
                 var timeout = 6000;
+                console.log(scope.itemDetail);
                 var type = {
                     user: {
                         need: 'I_WISH',
