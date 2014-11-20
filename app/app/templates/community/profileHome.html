@@ -83,11 +83,11 @@
             <p ng-if="! mine && ! activityLog.length">{{ 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
             <div ng-if="activityLog.length">
                 <div ng-include="'templates/_activityList.html'"></div>
-                <div class="buttons">
+                <!-- <div class="buttons">
                     <a href="#!/community/{{info._id}}/activity-feed">
                         <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
