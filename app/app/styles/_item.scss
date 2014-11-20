@@ -408,6 +408,13 @@ $imageSize: 80px;
                 left: -$size / 2;
                 font-size: 0.8em;
             }
+            a {
+                color: black;
+                &:hover {
+                    color: black;
+                    text-decoration: underline;
+                }
+            }
         }
         .text-container {
             .expandable {
