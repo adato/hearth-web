@@ -13,6 +13,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
+        $rootScope.addressOld = '';
+        $rootScope.addressNew = '';
         $scope.segment = false;
         $scope.addresses = {
             "Community": "community",
@@ -23,8 +25,16 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // init globalLoading 
         $rootScope.globalLoading = false;
 
+        $rootScope.$on("$routeChangeStart", function(event, next) {
+            $rootScope.addressOld = $rootScope.addressNew;
+            $rootScope.addressNew = next.originalPath;
+        });
+
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
+
+            if($rootScope.addressOld.substring(0, 3) != $rootScope.addressNew.substring(0, 3))
+                $scope.top(0, 1);
         });
 
         $scope.closeDropdown = function(id) {
@@ -66,10 +76,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             //     $rootScope.$apply();
             // }
         };
-        $scope.top = function() {
+        $scope.top = function(offset, delay) {
             $('html, body').animate({
-                scrollTop: 0
-            }, 1000);
+                scrollTop: offset || 0
+            }, delay || 1000);
         };
 
         $scope.getProfileLinkByType = function(type) {
