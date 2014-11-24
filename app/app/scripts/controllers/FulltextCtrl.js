@@ -96,6 +96,8 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
                 offset: (addOffset) ? $scope.items.length : 0
             };
 
+            $rootScope.setFulltextSearch($routeParams.q);
+
             // if there is no more result data, dont load
             if($scope.readedAllData) {
                 return false;
@@ -135,6 +137,10 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
             $scope.readedAllData = false;
             $scope.offset = 0;
             $scope.load();
+        });
+
+        $scope.$on("$destroy", function() {
+            $rootScope.setFulltextSearch('');
         });
 
         $scope.$on('initFinished', $scope.init);

@@ -7,11 +7,12 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify',
+    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify',
 
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
+    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
         var timeout;
         $rootScope.myCommunities = false;
+        $rootScope.searchText = '';
         $scope.segment = false;
         $scope.addresses = {
             "Community": "community",
@@ -51,6 +52,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $timeout(function() {
                 $scope.$broadcast("fulltextSearch");
             });
+        };
+
+        $rootScope.setFulltextSearch = function(val) {
+            console.log("Set: ", val);
+            $timeout(function() {
+                // $rootScope.searchText = val;
+                $("#searchBox").val(val);
+            });
+
+            // if(!$rootScope.$$phase) {
+            //     console.log("apply");
+            //     $rootScope.$apply();
+            // }
         };
         $scope.top = function() {
             $('html, body').animate({
