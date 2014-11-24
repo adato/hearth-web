@@ -49,7 +49,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			$rootScope.globalLoading = false;
 
 			if (res.ok) {
-				alert(Notify.translate('NOTIFY.ACCOUNT_DELETE_SUCCESS'));
+
+				Notify.addTranslateAfterRefresh('NOTIFY.ACCOUNT_DELETE_SUCCESS', Notify.T_SUCCESS);
 				window.location.replace("/app/");
 			} else if( res.reason == 'community admin' ) {
 				setTimeout(function() {
@@ -73,6 +74,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				};
 
 				$rootScope.globalLoading = true;
+
 				User.remove(out, $scope.processDeleteUserResult, $scope.processDeleteUserResultError);
 			}
 		};
