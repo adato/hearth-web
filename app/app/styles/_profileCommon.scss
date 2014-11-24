@@ -612,11 +612,12 @@ $medium-avatar-size: 80px;
                 color: color(5);
             }
         }
-        min-height: 110px;
+        min-height: 115px;
         .name {
             margin-left: 100px;
         }
         h4 {
+            line-height: 28px;
             margin-top: 30px;
         }
     }
