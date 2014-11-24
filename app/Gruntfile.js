@@ -659,7 +659,7 @@ module.exports = function(grunt) {
 			'clean:server',
 			'bower-install-simple',
 			'bowerInstall',
-			'search',
+			// 'search',
 			'copy:fonts',
 			'concurrent:server',
 			'autoprefixer',
