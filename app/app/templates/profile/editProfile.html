@@ -1,4 +1,9 @@
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
+
+  <tags-input refocus-input-on-tab class="tags" ng-model="testKeywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+  </tags-input>
+  {{ testKeywords }}
+  
   <form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
       <div image-preview files="profile.avatar" limit="1" limit-pixel-size="400" single-file="true">
@@ -10,6 +15,7 @@
         </div>
       </div>
     </div>
+
     <div class="fleft small-12 large-7 pull-5 alt-bg">
       <h2 class="hide-border">
         <span class="content">
@@ -34,7 +40,7 @@
         </div>
       </section>
     </div>
-    
+
     <div class="clear"></div>
 
     <div class="large-12">
