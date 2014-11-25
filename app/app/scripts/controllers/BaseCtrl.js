@@ -32,8 +32,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $rootScope.$on("$routeChangeSuccess", function() {
             $scope.segment = $route.current.segment;
+            var r1 = $rootScope.addressOld.split("/");
+            var r2 = $rootScope.addressNew.split("/");
 
-            if($rootScope.addressOld.substring(0, 3) != $rootScope.addressNew.substring(0, 3))
+            // if first element in URL of old page is not same as first element in URL of new page
+            // scroll to top - (alias scroll when we come to new URL)
+            if(r1.length < 2 || r2.length < 2 || r1[1] != r2[1])
                 $scope.top(0, 1);
         });
 
