@@ -90,8 +90,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             async.parallel([
                 function(done) {
+                    console.log("Loading activity");
                     CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
-                        $scope.activityLog = res;
+                        // $scope.activityLog = [];
+                        $timeout(function() {
+                            console.log("Loaded activity");
+                            $scope.activityLog = res;
+                        });
+                        
                         done(null);
                     }, done);
                 },
@@ -153,7 +159,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function init() {
             console.log("Calling load service for segment ", $scope.pageSegment);
             loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
-
+            
             // refresh after new post created
             if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
                 $scope.$on('postCreated', function() {
