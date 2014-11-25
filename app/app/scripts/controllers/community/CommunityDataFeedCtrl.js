@@ -9,6 +9,8 @@
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout',
 	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout) {
+        $scope.activityShow = false;
+
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
@@ -92,10 +94,13 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 function(done) {
                     console.log("Loading activity");
                     CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
-                        // $scope.activityLog = [];
+
+                        $scope.activityShow = false;
+                        $scope.activityLog = [];
                         $timeout(function() {
                             console.log("Loaded activity");
                             $scope.activityLog = res;
+                            $scope.activityShow = true;
                         });
                         
                         done(null);
@@ -159,7 +164,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function init() {
             console.log("Calling load service for segment ", $scope.pageSegment);
             loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
-            
+
             // refresh after new post created
             if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
                 $scope.$on('postCreated', function() {

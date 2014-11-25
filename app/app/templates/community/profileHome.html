@@ -82,7 +82,7 @@
             <p ng-if="mine && ! activityLog.length">{{ 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
             <p ng-if="! mine && ! activityLog.length">{{ 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
             <div ng-if="activityLog.length">
-                <div class="timeline-container">
+                <div class="timeline-container" ng-if="activityShow">
                     <div class="profile-timeline"></div>
                     <div ng-repeat="(id, item) in activityLog track by $index" ng-init="item.prevDate = ($index > 0) ? activityLog[$index-1].created_at : null">
                         <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
