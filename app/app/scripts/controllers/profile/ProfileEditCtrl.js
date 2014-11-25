@@ -51,7 +51,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.testKeywords = [];
 		$timeout(function(){
-			// $scope.testKeywords = [{text: "aa", p: 1}, {text: "VV", p: 2}];
+			$scope.testKeywords = [{"text":"Praha, CZ","info":{"country":"Česká republika","country_code":"CZ","city":"Praha","area":"Hlavní město Praha"},"loc":{"k":50.0755381,"B":14.43780049999998}},{"text":"Praha, CZ","info":{"country":"Česká republika","country_code":"CZ","city":"Praha","area":"Hlavní město Praha"},"loc":{"k":50.0755381,"B":14.43780049999998}},{"text":"Las Vegas, US","info":{"country":"Spojené státy americké","country_code":"US","city":"Las Vegas","area":"Nevada"},"loc":{"k":36.1699412,"B":-115.13982959999998}},{"text":"Dubaj, AE","info":{"country":"Spojené arabské emiráty","country_code":"AE","city":"Dubaj","area":"Dubai"},"loc":{"k":25.0476643,"B":55.18174069999998}}] ;
 
 			$(document).on('keyup keypress', '.tags input', function(e) {
 			  if(e.keyCode == 13) {
@@ -59,7 +59,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			    return false;
 			  }
 			});
-			
+
 			$('.tags input').each(function(index) {
 
 	            var input = this;
