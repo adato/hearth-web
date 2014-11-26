@@ -1,5 +1,5 @@
 <div id="notify-container-market"></div>
-<div>
+<div class="market">
 	<filter-status></filter-status>
 	<filterbar filter=filter></filterbar>
 	<div loading show="!loaded"></div>
@@ -26,6 +26,6 @@
 		</div>
 	</div>
 	<div class="large-12 columns" ng-if="showMap">
-		<search-map show-map="showMap" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
+		<search-map show-map="showMap" location="myLocation" set-loading-fn="setLoadingComplete()" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>

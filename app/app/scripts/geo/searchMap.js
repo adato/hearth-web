@@ -20,6 +20,7 @@ angular.module('hearth.geo').directive('searchMap', [
             scope: {
                 location: '=',
                 setLocationFn: '&',
+                setLoadingFn: '&',
                 items: '=',
                 showMap: '='
             },
@@ -84,6 +85,7 @@ angular.module('hearth.geo').directive('searchMap', [
                     // search only when map is shown
                     if (scope.showMap) {
                         Post.mapQuery(scope.getSearchParams(), function(data) {
+                            scope.setLoadingFn(true);
                             scope.$broadcast('showMarkersOnMap', data);
                         });
                     }
