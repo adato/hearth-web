@@ -42,7 +42,6 @@ angular.module('hearth.directives').directive('filter', [
                 scope.inited = false;
 
                 scope.applyFilter = function() {
-                    
                     if ($.isEmptyObject(scope.filter)) {
                         scope.reset();
                     } else {
@@ -53,6 +52,10 @@ angular.module('hearth.directives').directive('filter', [
 
                 // when (un)checked checkbox for save filter - send request also to api
                 scope.toggleSaveFilter = function(save) {
+
+                    if(!$rootScope.loggedUser._id)
+                        return false;
+                    
                     if(save)
                         Filter.setUserFilter(scope.convertFilterToParams(scope.filter));
                     else
