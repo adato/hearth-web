@@ -70,7 +70,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.setFulltextSearch = function(val) {
-            console.log("Set: ", val);
             $timeout(function() {
                 // $rootScope.searchText = val;
                 $("#searchBox").val(val);
