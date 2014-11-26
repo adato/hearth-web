@@ -1,34 +1,36 @@
-<div class="locations">
-    <div class="row" id="row-{{$index}}" ng-repeat="location in locations track by $index" ng-class="{disabled: limit == true}">
-        <div class="fleft locInput">
-            <input placeholder="{{ placeholder | translate}}" ng-blur="testEmptyLocation(location)" ng-focus="hideError(location)" ng-disabled="limit == true" ng-model="locations[$index].name" class="map-input" type='text'>
-            <div class="remove" ng-hide="$first">
-              <span class="fa fa-times-circle" ng-click="remove($event, $index)"></span>
-            </div>
-        </div>
-        <div class="fleft mapIcon" ng-show="!hideMap" ng-class="{selected: mapDisplay == $index}">
-            <a ng-click="toggleMap($index)">
+<div class="location-picker">
+
+    <div class="location-input" ng-class="{disabled: disabled}">
+
+        <div class="fright mapIcon" ng-show="!hideMap">
+            <a ng-click="toggleMap()">
                 <i class="fa fa-map-marker">
-                    <span ng-show="mapDisplay == $index" class="fa fa-times"></span>
+                    <span class="fa fa-times hidden"></span>
                 </i>
                 {{ 'MAP' | translate }}
             </a>
         </div>
-        <div id="map-{{$index}}" class="location-map hidden"></div>
+        
+        <tags-input refocus-input-on-tab display-property="name" class="tags" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}" replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30">
+        </tags-input>
+
+        <div class="clear"></div>
+        <div class="location-map hidden"></div>
     </div>
-    <div class="clear"></div>
+
     <div class="controll">
-        <a ng-click="add()" ng-show="locations.length > 0 && locations[locations.length-1].name && maxCount > locations.length">
-            <span class="fa fa-plus-square"></span>{{ 'ADD' | translate }} &nbsp; &nbsp;
-        </a>
-        <checkbox ng-show="limit != -1" model="limit" on-update="locationDoesNotMatter()" value="true" value-off="false">
+        <checkbox ng-show="!required" model="disabled" on-update="locationDoesNotMatter()" value="true" value-off="false">
             {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
         </checkbox>
     </div>
+
+<!-- 
     <div class="error moveUp" ng-show="error">
         <span>{{ errorMsg | translate }}</span>
     </div>
     <div class="error moveUp" ng-show="errorWrongPlace">
         <span>{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
-    </div>
+    </div> -->
+
+  {{ locations }}
 </div>

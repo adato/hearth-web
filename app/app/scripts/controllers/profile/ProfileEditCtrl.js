@@ -21,71 +21,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			contact_email: false,
 			message: false,
 		};
-
+		
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
-
-
-
-        $scope.translateLocation = function(loc) {
-            var short = {},
-                long = {};
-
-            if (loc) {
-                Object.keys(loc).forEach(function(key) {
-                    short[loc[key].types[0]] = loc[key].short_name;
-                    long[loc[key].types[0]] = loc[key].long_name;
-                });
-            }
-            return {
-                street_number: long.street_number, // cislo baraku
-                street_premise: long.premise, // cislo popisne
-                street: long.route, // ulice
-                country: long.country, // zeme
-                country_code: short.country, // kod zeme - CZ
-                zipcode: long.postal_code, // PSC
-                city: long.postal_town || long.locality || long.administrative_area_level_1 || long.sublocality_level_1, // mestska cast nebo jen mesto nebo kraj
-                area: long.administrative_area_level_1, // kraj
-            };
-        };
-
-		$scope.testKeywords = [];
-		$timeout(function(){
-			// $scope.testKeywords = [{"text":"Praha, CZ","info":{"country":"Česká republika","country_code":"CZ","city":"Praha","area":"Hlavní město Praha"},"loc":{"k":50.0755381,"B":14.43780049999998}},{"text":"Praha, CZ","info":{"country":"Česká republika","country_code":"CZ","city":"Praha","area":"Hlavní město Praha"},"loc":{"k":50.0755381,"B":14.43780049999998}},{"text":"Las Vegas, US","info":{"country":"Spojené státy americké","country_code":"US","city":"Las Vegas","area":"Nevada"},"loc":{"k":36.1699412,"B":-115.13982959999998}},{"text":"Dubaj, AE","info":{"country":"Spojené arabské emiráty","country_code":"AE","city":"Dubaj","area":"Dubai"},"loc":{"k":25.0476643,"B":55.18174069999998}}] ;
-
-			$(document).on('keyup keypress', '.tags input', function(e) {
-			  if(e.keyCode == 13) {
-			    e.preventDefault();
-			    return false;
-			  }
-			});
-
-			$('.tags input').each(function(index) {
-
-	            var input = this;
-
-				var sBox = new google.maps.places.SearchBox(input);
-	            google.maps.event.addListener(sBox, 'places_changed', function() {
-	            	console.log("Place change");
-	                var places = sBox.getPlaces();
-	                if (places && places.length) {
-
-	                    var location = places[0].geometry.location,
-	                        name = places[0].formatted_address,
-	                        info = $scope.translateLocation(places[0].address_components);
-
-	                    console.log(places[0]);
-	                    console.log(info);
-
-	                    $scope.testKeywords.push({text: info.city+", "+info.country_code, info: info, loc: location});
-	                    $scope.$apply();
-
-	                    $('.tags input').val("");
-	                }
-            	});
-	        });
-
-		}, 100);
 
 		$scope.init = function() {
 			
