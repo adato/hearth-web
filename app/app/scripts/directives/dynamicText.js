@@ -15,7 +15,12 @@ angular.module('hearth.directives').directive('dynamicText',
 			},
 			template: '<span ng-bind-html="text"></span>',
 			link: function(scope, element, attrs) {
-				scope.text = $interpolate(scope.dynamicText)(scope.dynamicData);
+				function refresh() {
+					scope.text = $interpolate(scope.dynamicText)(scope.dynamicData);
+				}
+				scope.$watch("dynamicText", refresh);
+				scope.$watch("dynamicData", refresh);
+				refresh();
 			}
 		};
 	}]

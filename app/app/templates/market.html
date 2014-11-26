@@ -1,12 +1,11 @@
 <div id="notify-container-market"></div>
-<div>
+<div class="market">
 	<filter-status></filter-status>
 	<filterbar filter=filter></filterbar>
 	<div loading show="!loaded"></div>
 	
 	<div class="large-12 columns" ng-hide="showMap">
 		<div when-scrolled="load()" class="wish-list">
-			
 			<div ng-show="!items.length && loaded && filterIsOn" class="row">
 				<div class="large-8 large-centered columns box text-center" style="padding:1em">
 					<p translate class="padding-2">MARKETPLACE.FILTER_NOT_FOUND</p>
@@ -27,6 +26,6 @@
 		</div>
 	</div>
 	<div class="large-12 columns" ng-if="showMap">
-		<search-map show-map="showMap" location="myLocation" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
+		<search-map show-map="showMap" location="myLocation" set-loading-fn="setLoadingComplete()" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>
 </div>

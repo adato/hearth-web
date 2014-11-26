@@ -1,3 +1,4 @@
+/*
 .profile-edit {
     background-color: white;
     border-radius: 10px;
@@ -58,14 +59,9 @@
         }
         &.location {
             position: relative;
-            left: 30px;
+            left: 10px;
             width: 93%;
-            .row {
-                margin-top: 10px;
-                &:first-child {
-                    margin-top: 0px;
-                }
-            }
+
             .controll,
             .error {
                 position: relative;
@@ -201,3 +197,5 @@
         margin-bottom: $fontSize / 2;
     }
 }
+
+*/

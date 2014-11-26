@@ -11,8 +11,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = false;
+		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
-
+		
 		$scope.isMine = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
@@ -25,15 +26,20 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			if(!$routeParams.id) return false;
 			if ($scope.info._id !== $routeParams.id) $scope.loaded = false;
 
+			$scope.loadingCounter++;
 			Community.get({ communityId: $routeParams.id }, function(res) {
 
+				$scope.loadingCounter--;
 				$scope.info = res;
 				// $scope.loaded = true;
 				$scope.mine = $scope.isMine(res); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
-				$scope.$broadcast("communityTopPanelLoaded");
+				if(!$scope.loadingCounter)
+					$scope.$broadcast("communityTopPanelLoaded");
 			}, function(res) {
+
+				$scope.loadingCounter--;
 				$scope.loaded = true;
 				$scope.info = false;
 				$scope.mine = false;

@@ -12,7 +12,7 @@
 				<a href="#!/profile/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
 			</h4>
 			<a ng-if="managing && item._id != loggedUser._id" ng-click="revealModal('confirm-remove-member-'+item._id)">{{ 'COMMUNITY_KICK_MEMBER' | translate }}</a>
-			<a href="#!/community/{{info._id}}/edit" ng-if="managing && item._id == loggedUser._id">{{ 'COMMUNITY_ADMIN' | translate }}</a>
+			<span ng-if="(managing && item._id == loggedUser._id) || item.community_admin">{{ 'COMMUNITY_ADMIN' | translate }}</span>
 		</div>
 
 		<div id="confirm-remove-member-{{item._id}}" class="reveal-modal tiny" data-reveal>
@@ -32,7 +32,6 @@
 		      </section>
 		  </article>
 		</div>
-
 	</div>
 </div>
 

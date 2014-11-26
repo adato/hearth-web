@@ -68,7 +68,6 @@ angular.module('hearth.directives').directive('item', [
                     return [element[0].clientWidth, element[0].clientHeight].join('x');
                 }, drawTimeline);
 
-                
                 scope.init = function() {
                     angular.extend(scope, {
                         replyEdit: false,

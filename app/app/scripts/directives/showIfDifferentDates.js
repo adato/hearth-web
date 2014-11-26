@@ -17,9 +17,19 @@ angular.module('hearth.directives').directive('showIfDifferentDates', [
 				oldDate: "=",
 				newDate: "=",
 			},
-			template: '<div ng-show="showMe" ng-transclude></div>',
+			template: '<div ng-show="showMe" old="{{oldDate}}" new="{{newDate}}" ng-transclude></div>',
 			link: function($scope, el, attrs) {
-				$scope.showMe = ! $scope.oldDate || $filter('ago')($scope.oldDate) != $filter('ago')($scope.newDate);
+				$scope.showMe = false;
+
+				function refresh() {
+					// ! $scope.oldDate || 
+					$scope.showMe = $filter('ago')($scope.oldDate) != $filter('ago')($scope.newDate);
+					console.log("Compare: ", $filter('ago')($scope.oldDate), $filter('ago')($scope.newDate));
+				}
+
+				$scope.$watch("oldDate", refresh);
+				$scope.$watch("newDate", refresh);
+				refresh();
 			}
 		};
 	}

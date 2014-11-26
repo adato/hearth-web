@@ -59,6 +59,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.loading = false;
 		};
 
+		$scope.setLoadingComplete = function() {
+			$scope.loaded = true;
+		};
+
 		$scope.load = function() {
 			if ($scope.loading == true)
 				return;

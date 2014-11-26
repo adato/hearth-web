@@ -9,6 +9,8 @@
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout',
 	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout) {
+        $scope.activityShow = false;
+
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
@@ -90,8 +92,17 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             async.parallel([
                 function(done) {
+                    console.log("Loading activity");
                     CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
-                        $scope.activityLog = res;
+
+                        $scope.activityShow = false;
+                        $scope.activityLog = [];
+                        $timeout(function() {
+                            console.log("Loaded activity");
+                            $scope.activityLog = res;
+                            $scope.activityShow = true;
+                        });
+                        
                         done(null);
                     }, done);
                 },

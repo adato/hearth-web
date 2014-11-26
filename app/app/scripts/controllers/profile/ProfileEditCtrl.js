@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			contact_email: false,
 			message: false,
 		};
-
+		
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'fi', 'tk', 'ar', 'ko', 'zh'];
 
