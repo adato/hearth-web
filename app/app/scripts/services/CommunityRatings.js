@@ -20,7 +20,6 @@ angular.module('hearth.services').factory('CommunityRatings', [
 				method: 'GET',
 				isArray: true,
 				params: {
-					sort: '-created_at',
 					r: Math.random()
 				}
 			}

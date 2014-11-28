@@ -27,7 +27,6 @@ angular.module('hearth.services').factory('Followers', [
 				method: 'GET',
 				isArray: true,
 				params: {
-					sort: '-created_at',
 					r: Math.random()
 				}
 			}

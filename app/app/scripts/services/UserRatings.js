@@ -22,7 +22,6 @@ angular.module('hearth.services').factory('UserRatings', [
 				params: {
 					limit: 10,
 					offset: 0,
-					sort: '-created_at',
 					r: Math.random()
 				}
 			},

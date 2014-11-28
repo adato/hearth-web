@@ -49,11 +49,11 @@
 		    <ul class="f-dropdown user-dropdown" data-dropdown-content id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
 		       
 		       <li ng-if="! loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
-		       <li ng-if="! loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT'| translate }}</a></li>
+		       <li ng-if="! loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
 		       <li ng-if="! loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
 		       
 		       <li ng-if="loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/community/{{ loggedCommunity._id }}"><i class="fa fa-users"></i> {{ 'TOP_BAR_COMMUNITY_PROFILE'| translate }}</a></li>
-		       <li ng-if="loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/community/{{ loggedCommunity._id }}/edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT'| translate }}</a></li>
+		       <li ng-if="loggedCommunity._id"><a ng-click="closeDropdown('profile-drop')" ng-href="#!/community/{{ loggedCommunity._id }}/edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
 	          <li class="divider" ng-if="myAdminCommunities.length"></li>
 		       <li class="no-hover" ng-if="myAdminCommunities.length"><p class="heading"><i class="fa fa-share"></i> {{ 'SWITCH_TO' | translate }}:</p></li>
 		       <li ng-if="loggedCommunity._id">

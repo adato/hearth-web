@@ -92,8 +92,8 @@
                 </div>
 
                 <div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
-                <p>Váš profil je smutný a prázný - řekněte něco více o tom, co vás zajímá a baví.</p>
-                <p><a href="#!/profile-edit">{{ 'PROFILE_EDIT' | translate}}</a></p>
+                <p>{{ 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
+                <p><a href="#!/profile-edit">{{ 'PROFILE_EDIT.HEADER' | translate}}</a></p>
                 </div>
                 
                 <div class="descr reg-date fleft">

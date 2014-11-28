@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('avatar', [
 			normal: 50,
 			follow: 60,
 			'user-search': 80,
-			'large': 90
+			large: 90
 		};
 
 		return {

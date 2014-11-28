@@ -10,9 +10,10 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post',
 
 	function($scope, $routeParams, $rootScope, OpenGraph, Post) {
-		$scope.ad = {};
+		$scope.item = {};
 		$scope.itemDeleted = false;
 		$scope.show = false;
+		$scope.loaded = false;
 
 		// load post data
 		$scope.load = function() {
@@ -24,27 +25,30 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					title += " - " + data.title;
 				OpenGraph.set(title, data.name || "");
 
-				$scope.ad = data;
+				$scope.item = data;
 				$scope.profile = data.author;
 				$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
 				$scope.agreeTranslationData = {
 					name: data.author.name
 				};
 
+				$scope.loaded = true;
 				$scope.show = true;
 			}, function() {
 				$scope.show = true;
-				$scope.ad = false;
+				$scope.item = false;
+				$scope.loaded = true;
 			});
 		};
 
 		// fade out post and set him as deleted
 		$scope.removeAd = function($event, item) {
-
-			$(".post_"+item._id).fadeOut("slow", function() {
-				$scope.itemDeleted = true;
-				$scope.$apply();
-			});
+			if($scope.item._id == item._id) {
+				$(".post-detail .post").fadeOut("slow", function() {
+					$scope.itemDeleted = true;
+					$scope.$apply();
+				});
+			}
 		};
 
 		$scope.$on('postCreated', $scope.load);
