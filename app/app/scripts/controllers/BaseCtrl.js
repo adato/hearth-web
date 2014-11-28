@@ -350,7 +350,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: color}, delayIn, function() {
                 $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: "#FFF"}, delayOut );
             });
-
         };
 
         // == deactivate / prolong / activate post item
@@ -400,8 +399,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // this will scroll to given element in given container (if not setted take body as default)
-        $rootScope.scrollToElement = function(el, cont) {
-            var offset = 200;
+        $rootScope.scrollToElement = function(el, cont, off) {
+            var offset = off || 200;
             var container = cont || 'html, body';
             var elementPos;
 

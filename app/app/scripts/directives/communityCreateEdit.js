@@ -22,13 +22,13 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.sendingDelete = false;
                 $scope.defaultCommunity = {
                     name: '',
-                    location: [{name:''}],
+                    locations: [],
                     description: '',
                     terms: '',
                 };
                 $scope.showError = {
                     name: false,
-                    location: false,
+                    locations: false,
                     description: false,
                 };
                 $scope.community = {};
@@ -41,16 +41,16 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
                 $scope.transformDataOut = function(data) {
 
-                    data.location = data.location[0];
+                    if(!data.locations || !data.locations.length)
+                        data.locations = false;
+
                     return data;
                 };
 
                 $scope.transformDataIn = function(data) {
 
-                    if(data.location === null) {
-                        data.location = [{name:''}];
-                    } else {
-                        data.location = [data.location];
+                    if(!data.locations) {
+                        data.locations = [];
                     }
                     return data;
                 };
@@ -112,8 +112,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         $scope.showError.description = err = true;
                     }
 
-                    if(data.location[0].name == '') {
-                        $scope.showError.location = err = true;
+                    if(!data.locations || !data.locations.length) {
+                        $scope.showError.locations = err = true;
                     }
 
                     return ! err; // return true if valid

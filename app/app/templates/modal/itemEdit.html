@@ -59,11 +59,7 @@
                 <label>
                     <i class="fa fa-map-marker"></i> {{ 'place' | translate}}
                 </label>
-                <locations locations="post.locations" error="showError.locations" limit="post.location_unlimited"></locations>
-
-                <div class="clear error" ng-show="createAdForm.emptyLocations && showError.locations">
-                    <span ng-show="createAdForm.emptyLocations">{{ 'LOCATIONS_ARE_EMPTY' | translate }}</span>
-                </div>
+                <locations locations="post.locations" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </div>
             <div class="date">
                 <label>

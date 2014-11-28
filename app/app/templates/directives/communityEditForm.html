@@ -43,7 +43,11 @@
           </span>
         </h2>
         <section class="location">
-          <locations locations="community.location" error="showError.location" placeholder-key="'COMMUNITY_LOCATION_INPUT_PLACEHOLDER'" error-message="'COMMUNITY_LOCATIONS_IS_EMPTY_STRICT'" required="true"></locations>
+          <locations locations="community.location" required="true"></locations>
+      
+          <div class="error margin-top" ng-show="showError.locations">
+            <span>{{ 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
+          </div>
         </section>
 
         <h2>

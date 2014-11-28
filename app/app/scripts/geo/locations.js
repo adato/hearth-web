@@ -10,21 +10,26 @@
  * @requires geo
  */
 angular.module('hearth.geo').directive('locations', [
-    'geo', '$timeout',
-    function(geo, $timeout) {
+    'geo', '$timeout', '$rootScope',
+    function(geo, $timeout, $rootScope) {
         return {
             restrict: 'A',
             replace: true,
             scope: {
                 locations: "=",
-                required: "="
+                required: "=",
+                disabled: "=limit",
+                showError: "=",
+                errorCode: "@"
             },
             templateUrl: 'templates/geo/locations.html',
             link: function($scope, baseElement) {
                 var map, sBox, tagsInput, marker = false;
                 $scope.mapPoint = false;
-                $scope.disabled = false;
                 $scope.errorWrongPlace = false;
+
+                if(!$scope.errorCode)
+                    $scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
                  var markerImage = {
                     url: 'images/pin.png',
@@ -42,6 +47,7 @@ angular.module('hearth.geo').directive('locations', [
                     var sBox = new google.maps.places.SearchBox(input);
                     google.maps.event.addListener(sBox, 'places_changed', function() {
                         var places = sBox.getPlaces();
+                        $scope.showError = false;
 
                         if (places && places.length) {
                             $scope.errorWrongPlace = false;
@@ -52,7 +58,6 @@ angular.module('hearth.geo').directive('locations', [
 
                             $scope.fillLocation(location, name, info, true);
                         } else {
-
                             $scope.errorWrongPlace = true;
                             $scope.apply();
                         }
@@ -104,7 +109,7 @@ angular.module('hearth.geo').directive('locations', [
 
                 $scope.apply = function() {
                     if(!$scope.$$phase) {
-                        $scope.$apply();
+                        $scope.$digest();
                     }
                 };
 
@@ -128,6 +133,9 @@ angular.module('hearth.geo').directive('locations', [
                         info.coordinates = [pos.lng(), pos.lat()];
                         $scope.locations.push(info);
 
+                        tagsInput.focus();
+
+
                         if(apply)
                             $scope.apply();
                     }
@@ -146,8 +154,10 @@ angular.module('hearth.geo').directive('locations', [
 
                 // slide up 
                 $scope.closeMap = function() {
-                    marker.setMap(null);
-                    marker = false;
+                    if(marker) {
+                        marker.setMap(null);
+                        marker = false;
+                    }
 
                     $scope.mapPoint = false;
 
@@ -214,15 +224,16 @@ angular.module('hearth.geo').directive('locations', [
                         $scope.showMap();
                 };
 
-                $scope.locationDoesNotMatter = function() {
-                    $scope.closeMap();
-                    $scope.locations = [];
+                $scope.locationDoesNotMatter = function(val) {
                     $scope.errorWrongPlace = false;
+                    $scope.closeMap();
+                    $scope.showError = false;
 
-                    if(tagsInput.attr("disabled")  === "disabled")
-                        tagsInput.removeAttr("disabled");
-                    else {
+                    if($scope.disabled) {
+                        $scope.locations = [];
                         tagsInput.attr("disabled", "disabled");
+                    } else {
+                        tagsInput.removeAttr("disabled");
                     }
                 };
 
@@ -230,8 +241,13 @@ angular.module('hearth.geo').directive('locations', [
 
                     tagsInput = $(".tags input", baseElement);
                     sBox = addPlacesAutocompleteListener($('.tags input', baseElement)[0]);
+                    $scope.$watch('disabled', $scope.locationDoesNotMatter);
                 };
 
+                $scope.$watch("showError", function(val) {
+                    if(val)
+                        $scope.errorWrongPlace = false;
+                });
                 $timeout($scope.init);
             }
         };

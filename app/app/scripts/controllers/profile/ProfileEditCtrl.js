@@ -75,9 +75,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				data.webs = [''];
 			}
 			if (!data.locations || !data.locations.length) {
-				data.locations = [{
-					name: ''
-				}];
+				data.locations = [];
 			}
 
 			data.interests = (data.interests) ? data.interests.join(",") : '';
@@ -114,15 +112,17 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.showError.name = true;
 			}
 			
-			if(data.locations) {
+			if(data.locations && data.locations.length) {
 				data.locations.forEach(function(item) {
 					if(item.name == '') {
 						res = false;
 						$scope.showError.locations = true;
 					}
 				});
+			} else {
+				data.locations = false;
 			}
-			
+
 			if($scope.profileEditForm.email.$invalid) {
 				res = false;
 				$scope.showError.email = true;

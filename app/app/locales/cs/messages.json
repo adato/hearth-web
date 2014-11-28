@@ -396,7 +396,7 @@
     "LETS_LOGIN": "Přihlašte se.",
     "LIST": "Seznam",
     "LOCATE": "Kde jsem",
-    "LOCATIONS_IS_EMPTY": "Doplňte prázdné místo a nebo zaškrtněte, že na místě nezáleží.",
+    "LOCATIONS_ARE_EMPTY": "Doplňte prázdné místo a nebo zaškrtněte, že na místě nezáleží.",
     "LOCATIONS_IS_EMPTY_STRICT": "Vyplňte všechna místa.",
     "LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
     "LOCATION_GO_CURRENT": "Najít vaši aktuální polohu",

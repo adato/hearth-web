@@ -15,7 +15,7 @@
         <div class="clear"></div>
         <div class="location-map hidden">
             <div class="map-container"></div>
-            <div class="map-controll" ng-if="mapPoint && mapPoint.name">
+            <div class="map-controll" ng-show="mapPoint && mapPoint.name">
                 <button type="button" class="button-send right ng-show-binding" ng-click="chooseMapLocation()">{{ 'INSERT_LOCATION' | translate }}</button>
                 <span>
                     {{ mapPoint.name }}
@@ -24,14 +24,13 @@
             </div>
         </div>
     </div>
-
     <div class="controll">
-        <checkbox ng-show="!required" model="disabled" on-update="locationDoesNotMatter()" value="true" value-off="false">
+        <checkbox ng-show="!required" model="disabled" value="true" value-off="false">
             {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
         </checkbox>
     </div>
-
-    <div class="error moveUp" ng-show="errorWrongPlace">
-        <span>{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
+    <div class="error moveUp" ng-if="errorWrongPlace || showError">
+        <span ng-show="errorWrongPlace">{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
+        <span ng-show="showError">{{ errorCode | translate }}</span>
     </div>
 </div>
