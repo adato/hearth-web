@@ -55,6 +55,7 @@ angular.module('hearth.directives').directive('item', [
                 scope.closeModal = $rootScope.closeModal;
                 scope.pluralCat = $rootScope.pluralCat;
                 scope.deleteItem = $rootScope.deleteItem;
+                scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
                 scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
 
                 function drawTimeline() {

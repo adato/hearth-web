@@ -44,33 +44,36 @@ $medium-avatar-size: 80px;
             display: block;
             min-height: 320px;
             padding: 1rem;
-            .profile-photo {
+            .photo {
                 @extend .large-3, .columns;
-                width: 300px;
-                height: 300px;
-                overflow: hidden;
-                background-repeat: no-repeat;
-                background-size: 300px 300px;
-                border-radius: 50%;
-                /* border: 2px solid color(4); */
-                box-shadow: 1px 0px 16px 0px rgba(255, 255, 255, 1);
-                background-image: inline-image("no-avatar.jpg");
-                padding: 0;
-                img {
-                    min-width: 300px;
-                    min-height: 300px;
+
+                .avatar {
                     position: relative;
-                    background: color(4);
-                }
-                &:before {
-                    display: block;
-                    position: absolute;
-                    content: ' ';
-                    box-shadow: inset -3px 3px 6px rgba(black, 0.5);
-                    z-index: 10;
-                    border-radius: 50%;
+                    left: 3em;
                     width: 300px;
                     height: 300px;
+                    overflow: hidden;
+                    background-repeat: no-repeat;
+                    background-size: 300px 300px;
+                    border-radius: 50%;
+                    box-shadow: 1px 0px 16px 0px rgba(255, 255, 255, 1);
+                    padding: 0;
+                    img {
+                        min-width: 300px;
+                        min-height: 300px;
+                        position: relative;
+                        background: color(4);
+                    }
+                    &:before {
+                        display: block;
+                        position: absolute;
+                        content: ' ';
+                        box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+                        z-index: 10;
+                        border-radius: 50%;
+                        width: 300px;
+                        height: 300px;
+                    }
                 }
             }
             .bubble {
@@ -105,13 +108,13 @@ $medium-avatar-size: 80px;
                 width: 170px;
                 height: 170px;
                 top: -1rem;
-                left: 4rem;
+                left: 7rem;
             }
             .communities {
                 @extend .large-3, .columns, .bubble;
                 width: 120px;
                 height: 120px;
-                left: 7rem;
+                left: 10rem;
                 top: 6rem;
             }
             .ratings {
@@ -119,14 +122,14 @@ $medium-avatar-size: 80px;
                 width: 130px;
                 height: 130px;
                 top: 2rem;
-                left: 10rem;
+                left: 13rem;
             }
             .posts-count {
                 @extend .large-3, .columns, .bubble;
                 width: 140px;
                 height: 140px;
                 top: 1rem;
-                left: 4rem;
+                left: 8rem;
             }
             .members-count {
                 @extend .large-3, .columns, .bubble;
@@ -137,7 +140,7 @@ $medium-avatar-size: 80px;
                     margin-top: .5rem;
                 }
                 top: 7rem;
-                left: 7rem;
+                left: 11rem;
             }
             .about {
                 @extend .large-3, .columns, .bubble;
@@ -148,7 +151,7 @@ $medium-avatar-size: 80px;
                     margin-top: 1.8rem;
                 }
                 top: 2rem;
-                left: 11rem;
+                left: 15rem;
             }
             .karma-bar {
                 @extend .large-8, .columns, .pull-right;

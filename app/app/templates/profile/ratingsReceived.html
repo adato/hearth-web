@@ -6,12 +6,8 @@
 
 <div class="ratings-received row rating-item animate-show" id="received-rating-form" ng-show="showUserRatingForm">
 	<section class="large-2 columns photo">
-		<a>
-			<div class="avatar">
-				<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
-			</div>
-			<div class="name">{{ item.user_from_full_name}}</div>
-		</a>
+		<avatar src="loggedUser.avatar.normal" type="loggedUser._type" size="80"></avatar>
+		<div class="name">{{ loggedUser.name}}</div>
 	</section>
 	<section class="large-10 columns user-rating-form">
 	<div class="item rating-received">
@@ -60,13 +56,10 @@
 	</section>
 	<div class="clear"></div>
 
-
 	<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index">
 		<section class="large-2 columns photo">
+			<avatar href="'#!/'+getProfileLinkByType(item.user_from_type)+'/'+item.user_from" src="item.user_from_avatar.normal" type="item.user_from_type" size="80"></avatar>
 			<a ng-href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
-				<div class="avatar">
-					<img ng-src="{{item.user_from_avatar.normal}}" ng-if="item.user_from_avatar.normal" />
-				</div>
 				<div class="name">{{ item.user_from_full_name}}</div>
 			</a>
 		</section>

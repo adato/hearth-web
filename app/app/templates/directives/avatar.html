@@ -1,3 +1,10 @@
-<span ng-class="extraClass" ng-click="clickFn()">
-	<img ng-src="{{ image.src }}" height="{{ image.px }}" width="{{ image.px }}">
-</span>
+<div>
+	<a class="photo" ng-if="href" ng-href="{{ href }}">
+		<div class="avatar {{ classType }}" ng-class="class">
+			<img ng-src="{{ image }}" width="{{size}}" height="{{size}}" />
+		</div>
+	</a>
+	<div ng-if="! href" class="photo avatar {{ classType }}" ng-class="class">
+		<img ng-if="! href" ng-src="{{ image }}" width="{{size}}" height="{{size}}" />
+	</div>
+</div>

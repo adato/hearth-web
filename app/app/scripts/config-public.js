@@ -9,7 +9,8 @@ $$config = {
 	lengthUnit: 'km',
 	fbAppId: '277542219089599', // production
 	defaultLanguage: 'cs',
-	defaultUserImage: 'images/no-avatar.jpg',
+	defaultUserAvatar: 'images/no-avatar.jpg',
+	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
 	sharingEndpoints: {
 		facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
 		gplus: 'https://plus.google.com/share?url=',
