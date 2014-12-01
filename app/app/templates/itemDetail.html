@@ -1,7 +1,7 @@
 <div>
 	<div loading show="!loaded"></div>
 
-	<div ng-if="loaded" class="post-detail box web-width">
+	<div ng-if="loaded" class="item-detail box web-width">
 
 		<article class="row">
 			<section ng-show="! itemDeleted && show && item === false" class="item-not-found">
@@ -11,9 +11,6 @@
 				{{ 'POST_WAS_DELETED' | translate }}
 			</section>
 			<section ng-if="! itemDeleted && show && item" class="large-12 post">
-				<!-- {{ item }} -->
-				<!-- <item keywords-active="{}" item-detail="true" user="user" item="item" community="loggedCommunity" inactivate-tags="true"></item> -->
-
 				<div class="padding-top">
 					<a href="#!/"><i class="fa fa-chevron-left"></i> {{ 'GO_BACK_TO_MARKET' | translate }}</a>
 				</div>
@@ -86,7 +83,6 @@
 										<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
 										<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 										<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
-										<!-- <a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a> -->
 									</div>
 								</div>
 							</div>
@@ -102,7 +98,7 @@
 								<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 								<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
 							</button>
-							<span class="" ng-if="item.is_replied && !mine">
+							<span ng-if="item.is_replied && !mine">
 								{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 							</span>
 
@@ -119,31 +115,52 @@
 							</span>
 							<div class="clear"></div>
 						</footer>
+
+						<mapitems class="map" items="item.locations"></mapitems>
 					</div>
 
-					<div class="columns large-3 post-author">
+					<div class="columns large-3 item-author">
 						<h2>{{ item.author.name}}</h2>
 						
-						<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="'/'+getProfileLinkByType(item.author._type)+'/'+item._id" />
+						<avatar type="item.author._type" src="item.author.avatar.large" size="200" href="'/'+getProfileLinkByType(item.author._type)+'/'+item._id" />
 
 						<p ng-if="item.author.description">
 							{{ item.author.description }}
 						</p>
-						<div ng-if="item.author.interests.length">
-							<i class="fa fa-heart"></i>
-							Zajímám se o <b>{{ item.author.interests.join(",") }}</b>
-						</div>
-						<div ng-if="item.author.work">
-							<i class="fa fa-briefcase"></i>
-							{{ item.author.work }}
-						</div>
-						<div ng-if="item.author.locations.length">
-							<i class="fa fa-map-marker"></i>
-							Najdete me ve městech:
-							<span ng-repeat="location in item.author.locations track by $index">
-								{{ location.city }},
-							</span>
-						</div>
+
+						<div class="descr" ng-if="item.author.about"><i class="fa fa-quote-right"></i> {{item.author.about}}</div> 
+		                <div class="descr" ng-if="item.author.work"><i class="fa fa-briefcase"></i> {{item.author.work}}</div> 
+		                <div class="descr" ng-if="item.author.locations[0].short_address">
+		                    <i class="fa fa-map-marker"></i> 
+		                    <span ng-repeat="(locationId, location) in item.author.locations">
+		                        {{location.short_address}}<span ng-if="!$last">;</span>
+		                    </span>
+		                </div>
+		                <div class="descr" ng-if="item.author.interests && item.author.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ item.author.interests.join(", ") }}</div>
+		                <div class="descr" ng-if="item.author.user_languages">
+		                    <span ng-repeat="(languageCode, enabled) in item.author.user_languages">
+		                        <i class="fa fa-comments" ng-if="$first"></i>
+		                        {{ 'MY_LANG_' + languageCode.toUpperCase() | translate }}<span ng-if="!$last">,</span>
+		                    </span>
+		                </div>
+		                <div class="descr" ng-if="item.author.webs.length && item.author.webs[0]">
+		                    <i class="fa fa-link"></i> 
+		                    <span ng-repeat="(code, web) in item.author.webs">
+		                        <a target="_blank" rel="nofollow" class="link" ng-href="{{ web }}">{{ web | ellipsis }}</a><span ng-if="!$last">,</span>
+		                    </span>
+		                </div>
+
+		                <div ng-if="mine && ! item.author.about && ! item.author.work && ! item.author.interests && ! item.author.webs.length && ! item.author.locations.length && ! item.author.user_languages.length">
+		                <p>{{ 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
+		                <p><a href="#!/profile-edit">{{ 'PROFILE_EDIT.HEADER' | translate}}</a></p>
+		                </div>
+		                
+		                <div class="descr reg-date fleft">
+		                    <i class="fa fa-asterisk"></i>
+		                    <span ng-if="!mine">{{ 'USER_HAS_REGISTERED' | translate }}</span>
+		                    <span ng-if="mine">{{ 'YOU_HAVE_REGISTERED' | translate }}</span>
+		                     {{item.author.created_at | ago}}
+		                </div>
 					</div>
 				</div>
 			</section>

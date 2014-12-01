@@ -1,4 +1,4 @@
-.post-detail {
+.item-detail {
 
     .green {
         color: color(2);
@@ -6,6 +6,11 @@
 
     .red {
         color: color(1);
+    }
+
+    .map {
+        height: 300px;
+        width: 100%;
     }
 
     header {
@@ -30,7 +35,7 @@
         }
     }
 
-    .post-author {
+    .item-author {
         position: relative;
         top: -10px;
         border-left: 1px solid black;
