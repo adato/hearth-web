@@ -26,6 +26,7 @@ angular.module('hearth').config([
 			
 			// ======= Profile routes & subroutes
 			.when('/profile/:id', 'profile')
+			.when('/profile/:id/feedback', 'profile-ratings-refresh')
 			.when('/profile/:id/posts', 'profile.posts')
 			.when('/profile/:id/communities', 'profile.communities')
 			.when('/profile/:id/given-ratings', 'profile.given')
@@ -58,13 +59,18 @@ angular.module('hearth').config([
 				reloadOnSearch: false,
 				disableCache: true,
 				pageType: 'search'
+			}).segment('profile-ratings-refresh', {
+				controller: ['$location', '$routeParams', function($location, $routeParams) {
+									$location.path('/profile/'+$routeParams.id+'/received-ratings'); // just for refresh purposes
+								}],
+				reloadOnSearch: false,
+				disableCache: true,
 			}).segment('market-refresh', {
 				controller: ['$location', function($location) {
 											$location.path('/'); // just for refresh purposes
 										}],
 				reloadOnSearch: false,
 				disableCache: true,
-				pageType: 'search'
 			}).segment('search', {
 				templateUrl: 'templates/fulltext.html',
 				controller: 'FulltextCtrl'
