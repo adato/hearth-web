@@ -30,7 +30,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will schedule next health check
 		 */
 		this.processHealthCheckFailResult = function(res) {
-			console.log("Health check failed :-(");
 			healthCheckTimeoutPointer = setTimeout(self.sendHealthCheck, healthCheckTimeout);
 		};
 
@@ -38,7 +37,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will send health check request and process result
 		 */
 		this.sendHealthCheck = function(res) {
-			console.log("Testing health");
 			$.getJSON(appConfig.apiPath + '/health').done(self.processHealthCheckResult).fail(self.processHealthCheckFailResult);
 		};
 

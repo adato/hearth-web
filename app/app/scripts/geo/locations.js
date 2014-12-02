@@ -27,7 +27,8 @@ angular.module('hearth.geo').directive('locations', [
                 var map, sBox, tagsInput, marker = false;
                 $scope.mapPoint = false;
                 $scope.errorWrongPlace = false;
-
+                if(!$scope.locations)
+                    $scope.locations = [];
                 if(!$scope.errorCode)
                     $scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
@@ -51,7 +52,7 @@ angular.module('hearth.geo').directive('locations', [
 
                         if (places && places.length) {
                             $scope.errorWrongPlace = false;
-
+                            console.log("PL: ", places)
                             var location = places[0].geometry.location,
                                 name = places[0].formatted_address,
                                 info = $scope.translateLocation(places[0].address_components);
@@ -136,8 +137,10 @@ angular.module('hearth.geo').directive('locations', [
                         tagsInput.focus();
 
 
-                        if(apply)
+                        if(apply) {
+                            console.log("AA");
                             $scope.apply();
+                        }
                     }
  
                     // and erase input for next location
