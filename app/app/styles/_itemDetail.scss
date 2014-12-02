@@ -1,4 +1,4 @@
-.post-detail {
+.item-detail {
 
     .green {
         color: color(2);
@@ -8,6 +8,10 @@
         color: color(1);
     }
 
+    .map {
+        height: 300px;
+        width: 100%;
+    }
     header {
         font-size: 0.8em;
         text-align: right;

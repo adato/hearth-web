@@ -9,12 +9,6 @@
 
 angular.module('hearth.directives').directive('avatar', [
 	function() {
-		// var sizes = {
-		// 	small: 45,
-		// 	normal: 80,
-		// 	big: 200,
-		// 	large: 300,
-		// };
 		return {
 			restrict: 'E',
 			replace: true,

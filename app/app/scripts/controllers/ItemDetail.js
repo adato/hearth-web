@@ -34,7 +34,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 				$scope.loaded = true;
 				$scope.show = true;
-			}, function() {
+			}, function() {post
 				$scope.show = true;
 				$scope.item = false;
 				$scope.loaded = true;
@@ -50,6 +50,10 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				});
 			}
 		};
+
+		$scope.replyItem = function() {
+            $rootScope.replyItem($scope.item);
+        };
 
 		$scope.$on('postCreated', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
