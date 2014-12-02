@@ -103,7 +103,7 @@
         <span>
           {{ 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }}
           &nbsp;
-          <select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
+          <select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
         </span>
         <button ng-click="revealModal('delegate-admin-community')"  class="button-send right" analytics-on analytics-event="delegate admin community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
       </section>

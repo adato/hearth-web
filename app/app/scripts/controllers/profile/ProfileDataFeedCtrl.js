@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'profile.posts': loadUserPosts,
                 'profile.communities': loadCommunities,
                 'profile.given': UserRatings.given,
-                'profile.received': UserRatings.received,
+                'profile.received': loadReceivedRatings,
                 'profile.following': loadFollowees,
                 'profile.followers': loadFollowers,
                 'profile.friends': loadFriends,
@@ -25,6 +25,19 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             };
         var inited = false;
         $scope.subPageLoaded = false;
+        $scope.ratingPosts = [];
+
+        function loadReceivedRatings(params, done, doneErr) {
+
+            UserRatings.received(params, done, doneErr);
+
+            if(!$scope.mine)
+                UserRatings.possiblePosts({userId: params.user_id}, function(res) {
+                    $scope.ratingPosts = res
+                }, function(res) {
+                    $scope.ratingPosts = [];
+                });
+        }
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";

@@ -47,7 +47,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return list.join(", ");
 		};
 
-		$scope.fetchUser = function () {
+		$scope.fetchUser = function (fetchSubpage) {
 			// dont load user when there is no ID in params
 			if(! $routeParams.id) return false;
 
@@ -69,7 +69,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.mine = $scope.isMine();
 				// $scope.loaded = true;
 
-				$scope.$broadcast("profileTopPanelLoaded");
+				if(fetchSubpage)
+					$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
 
 				$scope.loaded = true;
@@ -135,10 +136,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 	    		$scope.pageSegment = $route.current.$$route.segment;
 		};
 
-		$scope.refreshUser = function() {
+		$scope.refreshUser = function(fetchSubpage) {
 
-			$scope.refreshDataFeed();
-			$scope.fetchUser();
+			if(fetchSubpage)
+				$scope.refreshDataFeed();
+			$scope.fetchUser(fetchSubpage);
 
 		};
 		
@@ -158,6 +160,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showError.text = false;
 			$scope.rating.score = score;
 			$scope.rating.text = '';
+			$scope.rating.post_id = null;
+			
+			// select first option in posts select - eg default value			
+			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 
 			// show form
 			$scope.showUserRatingForm = true;
@@ -180,6 +186,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
+		$scope.changeRatingPostValue = function(option) {
+			console.log(option);
+			$scope.rating.post_id = option;
+		};
+
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
 			var ratings = {
@@ -196,6 +207,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);
 			rating.score = ratings[rating.score];
+			if(rating.post_id)
+				rating.post_id = rating.post_id._id;
 
 			// lock
 			if($scope.sendingRating)
@@ -212,7 +225,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.closeUserRatingForm();
 
 				// refresh user counters
-				$scope.refreshUser();
+				$scope.refreshUser(false);
 
 				// broadcast new rating - this will add rating to list
 				$scope.$broadcast('userRatingsAdded', res);

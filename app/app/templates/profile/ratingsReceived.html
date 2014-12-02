@@ -40,6 +40,15 @@
 		            </div>
 					<div class="clear"></div>
 		        </label>
+
+				<span ng-if="ratingPosts.length">
+					{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
+				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id" ng-options="post.name for post in ratingPosts">
+				      <option value="">{{ 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
+				    </select>
+				</span>
+				<div class="clear"></div>
+				{{ rating }}
 		        <strong><a ng-click="closeUserRatingForm()" class="revert-change"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
 		        <button type="submit" class="button-send right">{{ 'SEND_USER_RATING' | translate }}</button>
 		    </form>
@@ -82,7 +91,10 @@
 					<div class="text-container clearfix">
 						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 					</div>
-					<small>{{ 'SAYING' | translate}} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a></small>				
+					<small>
+						{{ 'SAYING' | translate}}
+						<a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a><span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:60}}</a></span>.
+					</small>			
 				</div>
 			</div>
 		</section>
