@@ -245,7 +245,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
-		$rootScope.initFinished && $scope.refreshUser();
+		$rootScope.initFinished && $scope.refreshUser(true);
 
 	}
 ]);
