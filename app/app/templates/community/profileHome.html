@@ -1,6 +1,7 @@
 <br />
 <br />
 
+<!-- two columns displayed in main page of user profile -->
 <div class="community-listings" ng-if="subPageLoaded">
     <div class="left-pane">
         <!-- <div class="messages">
@@ -21,8 +22,11 @@
 	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 	            	<!--<h5 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h5>-->
 	            	<div class="applications-item">
-                        <avatar href="'#!/profile/'+item._id" src="item.avatar.normal" type="item.autor._type" size="80"></avatar>
-
+	                    <a href="#!/profile/{{item._id}} ">
+                            <div class="avatar">
+                                <img ng-if="item.avatar.normal" ng-src="{{item.avatar.normal}}" />
+                            </div>
+                        </a>
                         <div class="applications-text">
                             <a href="#!/profile/{{item._id}} ">
 		                    	{{item.name | ellipsis}}

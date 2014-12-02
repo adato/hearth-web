@@ -5,6 +5,7 @@
     background-size: cover;
     left: 50%;
     position: relative !important;
+    background-image: inline-image("no-avatar.jpg");
     &::before {
         content: '';
         position: absolute;

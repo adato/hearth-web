@@ -7,55 +7,30 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$translate',
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $translate) {
+	function($scope, $routeParams, $rootScope, OpenGraph, Post) {
 		$scope.item = {};
 		$scope.itemDeleted = false;
 		$scope.show = false;
 		$scope.loaded = false;
-        var type = {
-            user: {
-                need: 'I_WISH',
-                offer: 'I_GIVE'
-            },
-            community: {
-                need: 'WE_NEED',
-                offer: 'WE_GIVE'
-            }
-        };
-        
-                
-		// load post item
+
+		// load post data
 		$scope.load = function() {
 
-			Post.get({postId: $routeParams.id}, function(item) {
-				var title = item.author.name;
+			Post.get({postId: $routeParams.id}, function(data) {
+				var title = data.author.name;
 
-				if (item.title)
-					title += " - " + item.title;
-				OpenGraph.set(title, item.name || "");
+				if (data.title)
+					title += " - " + data.title;
+				OpenGraph.set(title, data.name || "");
 
-				$scope.item = item;
-				$scope.profile = item.author;
-				$scope.isMine = $scope.loggedUser && item.author._id === $scope.loggedUser._id;
+				$scope.item = data;
+				$scope.profile = data.author;
+				$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
 				$scope.agreeTranslationData = {
-					name: item.author.name
+					name: data.author.name
 				};
-
-                var url = window.location.href.replace(window.location.hash, ''),
-                    typeText = $translate(item.community_id ? type.community[item.type] : type.user[item.type]);
-
-                if (item) {
-                    url += '%23!/ad/' + item._id;
-                }
-
-                angular.extend($scope, {
-                    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
-                    gplus: 'https://plus.google.com/share?url=' + url,
-                    twitter: 'https://twitter.com/share?url=' + url,
-                    mail: 'mailto:?subject=' + typeText + ': ' + item.title + '&body=' + item.name
-                });
 
 				$scope.loaded = true;
 				$scope.show = true;
@@ -66,10 +41,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
-	    $scope.replyItem = function() {
-	        $rootScope.replyItem($scope.item);
-	    };
-
+		// fade out post and set him as deleted
 		$scope.removeAd = function($event, item) {
 			if($scope.item._id == item._id) {
 				$(".post-detail .post").fadeOut("slow", function() {
@@ -83,5 +55,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
         $rootScope.initFinished && $scope.load();
+
 	}
+
 ]);

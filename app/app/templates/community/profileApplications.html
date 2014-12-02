@@ -4,8 +4,11 @@
 
 		<div class="application">
 			<div class="applications-item">
-        		<avatar href="'#!/profile/'+item._id" src="item.avatar.normal" type="item.autor._type" size="80"></avatar>
-
+		        <a href="#!/profile/{{item._id}} ">
+		            <div class="avatar">
+		                <img ng-if="item.avatar.normal" ng-src="{{item.avatar.normal}}" />
+		            </div>
+		        </a>
 		        <div class="applications-text">
 		            <a href="#!/profile/{{item._id}} ">
 		            	{{item.name | ellipsis}}

@@ -33,7 +33,9 @@
 			<div class="clear"></div>
 		</div>
 		<div class="highlights">
-			<avatar href="'#!/community/'+info._id" src="info.avatar.large" type="info._type" size="300"></avatar>
+			<a href="#!/community/{{info._id}}" class="profile-photo">
+				<img ng-if="info.avatar.large" ng-src="{{info.avatar.large}}" />
+			</a>
 			<a href="#!/community/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(10) == 'posts')}" class="posts-count">
                 <span ng-if="info" ng-bind-html="'COMMUNITY.X_GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate: '{count: '+info.post_count+'}'"></span>
 			</a>
