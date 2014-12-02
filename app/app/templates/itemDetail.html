@@ -1,7 +1,7 @@
 <div>
 	<div loading show="!loaded"></div>
 
-	<div ng-if="loaded" class="item-detail box web-width">
+	<div ng-if="loaded" class="item item-detail box web-width">
 
 		<article class="row">
 			<section ng-show="! itemDeleted && show && item === false" class="item-not-found">
@@ -12,7 +12,7 @@
 			</section>
 			<section ng-if="! itemDeleted && show && item" class="large-12 post">
 				<div class="padding-top">
-					<a href="#!/"><i class="fa fa-chevron-left"></i> {{ 'GO_BACK_TO_MARKET' | translate }}</a>
+					<a href="#!/" class="go-back"><i class="fa fa-chevron-left"></i> {{ 'GO_BACK_TO_MARKET' | translate }}</a>
 				</div>
 				<div class="content row">
 					<div class="columns large-9">
@@ -122,7 +122,7 @@
 					<div class="columns large-3 item-author">
 						<h2>{{ item.author.name}}</h2>
 						
-						<avatar type="item.author._type" src="item.author.avatar.large" size="200" href="'/'+getProfileLinkByType(item.author._type)+'/'+item._id" />
+						<avatar type="item.author._type" src="item.author.avatar.large" size="400" href="'/'+getProfileLinkByType(item.author._type)+'/'+item._id" />
 
 						<p ng-if="item.author.description">
 							{{ item.author.description }}
