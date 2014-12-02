@@ -13,7 +13,7 @@ angular.module('hearth.geo').directive('locations', [
     'geo', '$timeout', '$rootScope',
     function(geo, $timeout, $rootScope) {
         return {
-            restrict: 'A',
+            restrict: 'E',
             replace: true,
             scope: {
                 locations: "=",
@@ -27,18 +27,19 @@ angular.module('hearth.geo').directive('locations', [
                 var map, sBox, tagsInput, marker = false;
                 $scope.mapPoint = false;
                 $scope.errorWrongPlace = false;
-                if(!$scope.locations)
-                    $scope.locations = [];
+
                 if(!$scope.errorCode)
                     $scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
+                $scope.$watch("locations", function(val) {
+                    if(!val)
+                        $scope.locations = [];
+                });
+
                  var markerImage = {
                     url: 'images/pin.png',
-                    // This marker is 20 pixels wide by 32 pixels tall.
                     size: new google.maps.Size(49, 49),
-                    // The origin for this image is 0,0.
                     origin: new google.maps.Point(0,0),
-                    // The anchor for this image is the base of the flagpole at 0,32.
                     anchor: new google.maps.Point(14, 34)
                   };
 
@@ -52,7 +53,6 @@ angular.module('hearth.geo').directive('locations', [
 
                         if (places && places.length) {
                             $scope.errorWrongPlace = false;
-                            console.log("PL: ", places)
                             var location = places[0].geometry.location,
                                 name = places[0].formatted_address,
                                 info = $scope.translateLocation(places[0].address_components);
@@ -109,9 +109,8 @@ angular.module('hearth.geo').directive('locations', [
                 };
 
                 $scope.apply = function() {
-                    if(!$scope.$$phase) {
+                    if(!$scope.$$phase)
                         $scope.$digest();
-                    }
                 };
 
                 // go throught all places and compare new location
@@ -138,7 +137,6 @@ angular.module('hearth.geo').directive('locations', [
 
 
                         if(apply) {
-                            console.log("AA");
                             $scope.apply();
                         }
                     }
@@ -248,6 +246,8 @@ angular.module('hearth.geo').directive('locations', [
                 };
 
                 $scope.$watch("showError", function(val) {
+                    if(!val)
+                        $scope.showError = false;
                     if(val)
                         $scope.errorWrongPlace = false;
                 });

@@ -79,7 +79,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.loadCommunity = function(id) {
                     Community.get({communityId: id}, function(res) {
                         $scope.community = $scope.transformDataIn(res);
-
                         if($scope.checkOwnership($scope.community)) {
 
                             $scope.loaded = true;
