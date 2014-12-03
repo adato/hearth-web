@@ -16,9 +16,6 @@
                     {{item.text | ellipsis}}
                     <br>
                     <small class="rating-from">
-                        <!--
-                         <i class="fa fa-sun-o" ng-if="item.score == 1"></i>
-                        <i class="fa fa-moon-o" ng-if="item.score == -1"></i> -->
                         {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
                     </small>
                 </div>
