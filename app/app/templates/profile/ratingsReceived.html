@@ -43,7 +43,7 @@
 
 				<span ng-if="ratingPosts.length">
 					{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
-				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id" ng-options="post.name |ellipsis:20 for post in ratingPosts">
+				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id" ng-options="post.title |ellipsis:20 for post in ratingPosts">
 				      <option value="">{{ 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				    </select>
 				</span>
@@ -92,7 +92,7 @@
 					</div>
 					<small>
 						{{ 'SAYING' | translate}}
-						<a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a><span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:60}}</a></span>.
+						<a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a><span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
 					</small>			
 				</div>
 			</div>
