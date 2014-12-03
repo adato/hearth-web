@@ -70,6 +70,9 @@ $topBarImageSize: 1.8em;
                 overflow: hidden;
                 transition: opacity 1s;
                 border: 2px solid lighten(color(1), 25%);
+                img {
+                    border-radius:50%;
+                }
             }
             &.active,
             &:hover {
