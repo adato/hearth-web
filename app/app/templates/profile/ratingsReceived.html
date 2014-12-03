@@ -43,7 +43,7 @@
 
 				<span ng-if="ratingPosts.length">
 					{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
-				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id" ng-options="post.name for post in ratingPosts">
+				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id" ng-options="post.name |ellipsis:20 for post in ratingPosts">
 				      <option value="">{{ 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				    </select>
 				</span>
