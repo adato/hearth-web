@@ -9,8 +9,8 @@
                     margin: 0;
                 }
             }
-            label {
-                &.dropdown {
+            .dropdown-container {
+                .trigger {
                     border: 3px solid #f3a17c;
                     border-radius: 13px;
                     color: #f3a17c;
@@ -19,6 +19,16 @@
                     position: relative;
                     top: -10px;
                     margin-top: 20px;
+                }
+                .dropdown {
+                    li {
+                        margin: {
+                            bottom: 1em;
+                        };
+                    }
+                    padding: {
+                        bottom: 1em;
+                    };
                 }
             }
             label {
@@ -29,16 +39,6 @@
                 padding: 1em;
                 padding: {
                     bottom: 0;
-                };
-            }
-            .f-dropdown {
-                li {
-                    margin: {
-                        bottom: 1em;
-                    };
-                }
-                padding: {
-                    bottom: 1em;
                 };
             }
         }

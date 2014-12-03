@@ -34,7 +34,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 				$scope.loaded = true;
 				$scope.show = true;
-			}, function() {post
+			}, function() {
 				$scope.show = true;
 				$scope.item = false;
 				$scope.loaded = true;

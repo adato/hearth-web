@@ -200,7 +200,7 @@ $imageSize: 80px;
             margin-right: 0;
             left: -7px !important;
             top: -11px !important;
-            width: 100%;
+            width: 110%;
             background-color: white;
             border: 1px solid #e3e3e3;
             border-radius: 10px;
@@ -209,9 +209,7 @@ $imageSize: 80px;
             padding-left: 0px;
             position: absolute;
             display: none;
-            &.open {
-                display: inline-block;
-            }
+            z-index: 5;
             div {
                 margin-bottom: 20px;
                 .fa {}

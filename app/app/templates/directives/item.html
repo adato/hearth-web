@@ -25,11 +25,11 @@
 			<div class="arrow"></div>
 			<div class="content">
 				<header>
-					<div class="locations" ng-if="item.locations.length && item.locations[0].short_address">
+					<div class="locations dropdown-container" ng-if="item.locations.length && item.locations[0].short_address">
 						<span class="fa fa-map-marker"></span>
 						{{ item.locations[0].short_address }}
-						<a ng-if="item.locations.length > 1" data-dropdown="{{'locations' + item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
-						<div id="{{'locations' + item._id}}" class="location-dropdown content" data-dropdown-content>
+						<a ng-if="item.locations.length > 1" dropdown="#locations-{{item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
+						<div id="locations-{{item._id}}" class="location-dropdown content">
 							<div ng-repeat="location in item.locations track by $index">
 								&nbsp;&nbsp;<span class="fa fa-map-marker"></span> {{ location.short_address }}
 							</div>

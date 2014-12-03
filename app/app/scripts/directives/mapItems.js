@@ -71,7 +71,6 @@ angular.module('hearth.directives').directive('mapitems', [
 
 				    // dont zoom so close when in map is only one marker
 			    	var listener = google.maps.event.addListener(map, "idle", function() { 
-				    	console.log(map.getZoom());
 					  if (map.getZoom() > 16) map.setZoom(16); 
 					  google.maps.event.removeListener(listener); 
 					});

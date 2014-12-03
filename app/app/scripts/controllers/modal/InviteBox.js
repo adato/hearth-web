@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.Tutorial
+ * @name hearth.controllers.InviteBox
  * @description
  */
 

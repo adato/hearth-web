@@ -17,11 +17,11 @@
 				<div class="content row">
 					<div class="columns large-9">
 						<header>
-							<div class="locations" ng-if="item.locations.length && item.locations[0].short_address">
+							<div dropdown="#all-locations" class="locations dropdown-container" ng-if="item.locations.length && item.locations[0].short_address">
 								<span class="fa fa-map-marker"></span>
 								{{ item.locations[0].short_address }}
-								<a ng-if="item.locations.length > 1" data-dropdown="all-locations">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
-								<div id="all-locations" class="location-dropdown content" data-dropdown-content>
+								<a ng-if="item.locations.length > 1">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
+								<div id="all-locations" class="location-dropdown content">
 									<div ng-repeat="location in item.locations track by $index">
 										&nbsp;&nbsp;<span class="fa fa-map-marker"></span> {{ location.short_address }}
 									</div>
@@ -116,7 +116,7 @@
 							<div class="clear"></div>
 						</footer>
 
-						<mapitems class="map" items="item.locations"></mapitems>
+						<mapitems ng-if="item.locations && item.locations.length" class="map" items="item.locations"></mapitems>
 					</div>
 
 					<div class="columns large-3 item-author">

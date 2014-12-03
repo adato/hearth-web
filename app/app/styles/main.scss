@@ -104,6 +104,7 @@ $fontSize: rem-calc(18);
 @import "communityEdit";
 @import "404";
 @import "notify";
+@import "dropdown";
 
 body {
     background-image: inline-image("bg.jpg");
@@ -1245,14 +1246,6 @@ hr {
     margin: 0;
     border-left: 1px solid $body-border-color;
     color: $negative-font-color;
-}
-
-.reveal-modal-bg {
-    z-index: 10000;
-}
-
-.reveal-modal {
-    z-index: 10001;
 }
 
 .hyphenate {
