@@ -25,13 +25,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // init globalLoading 
         $rootScope.globalLoading = false;
 
+        $scope.resfreshWithResize = function() {
+            $(".main-container").css("min-height", $(".main-container").height()+"px");
+        };
+
+        $rootScope.$on("subPageLoaded", function() {
+            $(".main-container").css("min-height", "unset");
+        });
+
         $rootScope.$on("$routeChangeStart", function(event, next) {
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
-        });
-
-        $rootScope.$on("$routeChangeSuccess", function() {
-            $scope.segment = $route.current.segment;
 
             var r1 = $rootScope.addressOld.split("/");
             var r2 = $rootScope.addressNew.split("/");
@@ -40,6 +44,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             // scroll to top - (alias scroll when we come to new URL)
             if(r1.length < 2 || r2.length < 2 || r1[1] != r2[1])
                 $scope.top(0, 1);
+            else
+                // dont 
+                $scope.resfreshWithResize();
+        });
+
+        $rootScope.$on("$routeChangeSuccess", function() {
+            $scope.segment = $route.current.segment;
         });
 
         $scope.closeDropdown = function(id) {

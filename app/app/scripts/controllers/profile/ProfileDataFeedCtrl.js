@@ -99,7 +99,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 type: 'post',
                 related: 'user',
                 author_id: params.user_id,
-            }
+            };
 
             params.limit = 5;
 
@@ -138,6 +138,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         function finishLoading() {
             $scope.subPageLoaded = true;
             $scope.$parent.loaded = true;
+            $rootScope.$emit("subPageLoaded");
         }
 
         function processData(res) {
