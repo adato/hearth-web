@@ -16,7 +16,13 @@ $medium-avatar-size: 80px;
     .profile-listings {
         padding-top: 20px;
     }
+    
     .ratings-received {
+        .revert-changes {
+            position: relative;
+            top: 20px;
+        }
+
         .score-select {
             position: relative;
             top: -15px;

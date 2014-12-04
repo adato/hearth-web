@@ -33,7 +33,18 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
             if(!$scope.mine)
                 UserRatings.possiblePosts({userId: params.user_id}, function(res) {
-                    $scope.ratingPosts = res
+                    var posts = [];
+                    
+                    res.needed.forEach(function(item) {
+                        item.post_type = "needed";
+                        posts.push(item);
+                    });
+                    res.needed.forEach(function(item) {
+                        item.post_type = "offered";
+                        posts.push(item);
+                    });
+
+                    $scope.ratingPosts = posts;
                 }, function(res) {
                     $scope.ratingPosts = [];
                 });

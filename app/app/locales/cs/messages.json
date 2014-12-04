@@ -811,6 +811,12 @@
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
     "USER_RATING_JOIN_REALIZED_GIFT": "Pokud chcete, vyberte dar, ke kterému se hodnocení váže.",
     "USER_RATING_CHOOSE_POST_TO_JOIN": "vybrat dar",
+    "RATING_POST_TYPES": {
+        "offered": "Věnoval(a) jsem",
+        "needed": "Přijal(a) jsem"
+    },
+    "RATING_NO_COMMON_POST_IN_3_MONTHS": "S tímto uživatelem nemáte realizované žádné inzeráty za poslední 3 měsíce.",
+    "RATING_COMMON_POSTS_TOP": "Přidejte k hodnocení i inzerát, kterého se to týká.",
     "RATING_TO_POST": "k inzerátu",
     "USER_RECEIVED_RATINGS": "Přijatá hodnocení",
     "USE_FACEBOOK": "Použít Facebook",

@@ -42,13 +42,22 @@
 		        </label>
 
 				<span ng-if="ratingPosts.length">
+					{{ 'RATING_COMMON_POSTS_TOP' | translate}}
+					<br />
 					{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
-				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id" ng-options="post.title |ellipsis:20 for post in ratingPosts">
+				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 				      <option value="">{{ 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
+				      <option ng-options="post.title |ellipsis:20 for post in ratingPosts" ng-value="post">
+				      	{{ 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:20 }}
+				      </option>
 				    </select>
 				</span>
+				<div ng-if="!ratingPosts.length" class="padding-bottom">
+					{{ 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
+				</div>
+				
 				<div class="clear"></div>
-		        <strong><a ng-click="closeUserRatingForm()" class="revert-change"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
+		        <strong><a ng-click="closeUserRatingForm()" class="revert-changes"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
 		        <button type="submit" class="button-send right">{{ 'SEND_USER_RATING' | translate }}</button>
 		    </form>
 	    </div>
