@@ -10,8 +10,8 @@
  * @requires geo
  */
 angular.module('hearth.geo').directive('locations', [
-    'geo', '$timeout', '$rootScope',
-    function(geo, $timeout, $rootScope) {
+    'geo', '$timeout', '$rootScope', 'Viewport',
+    function(geo, $timeout, $rootScope, Viewport) {
         return {
             restrict: 'E',
             replace: true,
@@ -26,6 +26,7 @@ angular.module('hearth.geo').directive('locations', [
             link: function($scope, baseElement) {
                 var map, sBox, tagsInput, marker = false;
                 $scope.mapPoint = false;
+                $scope.mapPointShowName = true;  // due to chrome bug with rerendering
                 $scope.errorWrongPlace = false;
 
                 if(!$scope.errorCode)
@@ -83,7 +84,7 @@ angular.module('hearth.geo').directive('locations', [
                      });
 
                     return sBox;
-                }
+                };
 
                 // this will translate info from location to used format
                 $scope.translateLocation = function(loc) {
@@ -134,11 +135,7 @@ angular.module('hearth.geo').directive('locations', [
                         $scope.locations.push(info);
 
                         tagsInput.focus();
-
-
-                        if(apply) {
-                            $scope.apply();
-                        }
+                        apply && $scope.apply();
                     }
  
                     // and erase input for next location
@@ -167,7 +164,6 @@ angular.module('hearth.geo').directive('locations', [
                 };
 
                 $scope.chooseMapLocation = function() {
-
                     if(! $scope.mapPoint)
                         return false;
                     
@@ -177,12 +173,24 @@ angular.module('hearth.geo').directive('locations', [
 
                 $scope.refreshMapPoint = function() {
                     geo.getAddress(marker.getPosition()).then(function(info) {
-                            
+                        $scope.mapPointShowName = false;
+
                         $scope.mapPoint = {
                             latLng: marker.getPosition(),
                             name: info.formatted_address,
                             info: $scope.translateLocation(info.address_components)
                         };
+
+                        // chrome has problem with rerendering point
+                        // after location change - hide location and show again after.
+                        $timeout(function() {
+                            $scope.mapPointShowName = true;
+
+                            // let address to display on page and then scroll to it if it is not visible
+                            $timeout(function() {
+                                Viewport.scrollIfHidden(".mapPoint", 60);
+                            });
+                        });
                     });
                 };
                 

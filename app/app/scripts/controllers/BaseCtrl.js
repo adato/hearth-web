@@ -69,6 +69,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 location.reload();
             });
         };
+        
         $scope.search = function(text) {
             if (!text) return false;
             $location.path('/search');
