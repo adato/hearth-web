@@ -346,6 +346,31 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+        $rootScope.testCallback = function(param1, param2) {
+
+            console.log("PARAMS: ", param1, param2);
+            alert("OK");
+        };
+        
+        $rootScope.confirmBox = function(title, text, callback, params) {
+
+            var scope = $scope.$new();
+            scope.title = title;
+            scope.text = text;
+            scope.callback = callback;
+            scope.params = params;
+
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'confirmBox.html',
+                controller: 'ConfirmBox',
+                scope: scope,
+                className: 'ngdialog-confirm-box',
+                closeByDocument: false,
+                showClose: false
+                // closeByEscape: false,
+            });
+        };
+
         // this will flash post box with some background color
         $rootScope.blinkPost = function(item) {
             var delayIn = 200;

@@ -46,9 +46,9 @@
 					<br />
 					{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
 				    <select class="select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
-				      <option value="">{{ 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
-				      <option ng-options="post.title |ellipsis:20 for post in ratingPosts" ng-value="post">
-				      	{{ 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:20 }}
+				      <option value="null">{{ 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
+				      <option ng-repeat="post in ratingPosts" value="{{ post._id }}">
+				      	{{ 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:10 }}
 				      </option>
 				    </select>
 				</span>

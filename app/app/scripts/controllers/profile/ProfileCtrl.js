@@ -163,7 +163,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.rating.post_id = null;
 			
 			// select first option in posts select - eg default value			
-			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
+			// $("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 
 			// show form
 			$scope.showUserRatingForm = true;
@@ -186,11 +186,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-		$scope.changeRatingPostValue = function(option) {
-			console.log(option);
-			$scope.rating.post_id = option;
-		};
-
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
 			var ratings = {
@@ -210,6 +205,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			if(rating.post_id)
 				rating.post_id = rating.post_id._id;
 
+			console.log(rating);
+			return;
+			
 			// lock
 			if($scope.sendingRating)
 				return false;

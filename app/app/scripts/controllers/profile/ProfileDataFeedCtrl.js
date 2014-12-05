@@ -39,7 +39,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                         item.post_type = "needed";
                         posts.push(item);
                     });
-                    res.needed.forEach(function(item) {
+                    res.offered.forEach(function(item) {
                         item.post_type = "offered";
                         posts.push(item);
                     });

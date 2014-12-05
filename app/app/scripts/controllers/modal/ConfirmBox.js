@@ -7,9 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('ConfirmBox', [
-    '$scope', '$rootScope',
-    function($scope, $rootScope) {
+	'$scope', '$rootScope',
+	function($scope, $rootScope) {
 
-    	console.log($scope);
-    }
+		$scope.confirm = function() {
+			
+			console.log($scope.callback);
+			console.log($scope.params);
+			// $scope.callback.apply($scope.requestedScope, $scope.params);
+		};
+	}
 ]);

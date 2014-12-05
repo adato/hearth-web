@@ -51,9 +51,8 @@ angular.module('hearth.services').service('Viewport', [
 			var viewport = self.getViewportPos();
 			var target = self.getTargetViewportPos(target);
 
-			if(viewport.min < target.min) {
+			if(viewport.min < target.min)
 				return -1 * (viewport.max - target.max);
-			}
 			else
 				return (target.min - viewport.min);
 		};
@@ -70,8 +69,7 @@ angular.module('hearth.services').service('Viewport', [
 
 		// test if target element is in viewport, if not, scroll to it
 		this.scrollIfHidden = function(target, offset) {
-			var isIn = self.isInViewport(target);
-			if(!isIn) {
+			if(!self.isInViewport(target)) {
 				self.scroll(self.getTargetsDistance(target), offset);
 			}
 		};

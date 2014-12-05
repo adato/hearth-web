@@ -44,7 +44,6 @@ angular.module('hearth.services').factory('UserRatings', [
 				url: appConfig.apiPath +'/users/:userId/ratings/possible_posts',
 				params: {'userId': '@userId'},
 				method: 'GET',
-				isArray: true
 			}
 		});
 	}
