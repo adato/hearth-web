@@ -202,5 +202,19 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			init();
 			$scope.load();
 		}
+
+
+		// ===================== FIXME - TEST =======================
+		function isOnScreenBottom ( padding ) {
+		    return ($(window).scrollTop() > $(document).height() - $(window).height() - (padding || 40) );
+		}
+	    
+	    function testBottom () {
+	        if ( isOnScreenBottom ( 400 ) )
+	            $scope.load();
+	    }
+
+		$(window).scroll( testBottom );
+        $(window).resize( testBottom );
 	}
 ]);
