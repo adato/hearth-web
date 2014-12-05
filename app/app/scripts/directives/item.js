@@ -46,15 +46,13 @@ angular.module('hearth.directives').directive('item', [
                     
                 // public methods from rootScope
                 scope.loggedUser = $rootScope.loggedUser;
-                scope.loggedUser = $rootScope.loggedUser;
                 scope.isPostActive = $rootScope.isPostActive;
-                scope.loggedUser = $rootScope.loggedUser;
                 scope.showLoginBox = $rootScope.showLoginBox;
                 scope.reportItem = $rootScope.reportItem;
                 scope.pauseToggle = $rootScope.pauseToggle;
-                scope.closeModal = $rootScope.closeModal;
                 scope.pluralCat = $rootScope.pluralCat;
                 scope.deleteItem = $rootScope.deleteItem;
+                scope.confirmBox = $rootScope.confirmBox;
                 scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
 
                 function drawTimeline() {
@@ -165,10 +163,6 @@ angular.module('hearth.directives').directive('item', [
 
                 scope.replyItem = function() {
                     $rootScope.replyItem(scope.item);
-                };
-
-                scope.cancel = function() {
-                    $('#confirm-delete-'+scope.item._id).foundation('reveal', 'close');
                 };
 
                 scope.refreshItemInfo = function($event, item) {

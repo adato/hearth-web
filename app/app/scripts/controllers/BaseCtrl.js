@@ -213,13 +213,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // send report to API and close modal.. maybe fire some notification too?
-        $rootScope.reportItem = function(item, modal) {
+        $rootScope.reportItem = function(item) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
             $rootScope.globalLoading = true;
             Post.spam({id: item._id}, function(res) {
-                if(modal) $('#'+modal).foundation('reveal', 'close');
                 $rootScope.$broadcast('reportItem', item);
 
                 $rootScope.globalLoading = false;
@@ -263,13 +262,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // delete item
-        $rootScope.deleteItem = function(post, modal, cb) {
+        $rootScope.deleteItem = function(post, cb) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
             $rootScope.globalLoading = true;
             Post.remove({postId:post._id}, function(res) {
-                if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
                 Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO);
@@ -281,16 +279,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_INFO);
             });
         };
-
-        $rootScope.closeModal = function(modal) {
-            // if opened close modal window
-            if(modal) $('#'+modal).foundation('reveal', 'close');
-        };
-
-        $rootScope.revealModal = function(id) {
-            $("#"+id).foundation('reveal', 'open');
-        };
         
+        /**
+         * Function will show modal window with reply form to given post
+         */
         $rootScope.replyItem = function(post) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
@@ -328,6 +320,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+        /**
+         * Function will open modal window and show tutorial
+         * - accepts param with array of slide items
+         */
         $rootScope.showTutorial = function(slides) {
 
             var scope = $scope.$new();
@@ -346,20 +342,34 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+        $scope.test123 = function(param) {
+            alert(param);
+        }
         $rootScope.testCallback = function(param1, param2) {
-
-            console.log("PARAMS: ", param1, param2);
-            alert("OK");
+            $scope.test123(param2);
         };
         
-        $rootScope.confirmBox = function(title, text, callback, params) {
+        /**
+         * ConfirmBox reveal function has this params:
+         * title: $translate code for box head title
+         * text: $translate code for box text
+         * callback: function to call when confirmed
+         * params: array of params to pass into callback when confirmed
+         * callbackScope: if callback should be called with some scope
+         */
+        $rootScope.confirmBox = function(title, text, callback, params, callbackScope) {
 
+            // create new scope of confirmBox
             var scope = $scope.$new();
             scope.title = title;
             scope.text = text;
             scope.callback = callback;
-            scope.params = params;
+            scope.params = angular.isArray(params) ? params : [params];
 
+            if(callbackScope)
+                scope.callbackScope = callbackScope;
+
+            // open dialog window and inject new scope
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'confirmBox.html',
                 controller: 'ConfirmBox',
@@ -376,22 +386,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             var delayIn = 200;
             var delayOut = 2000;
             var color = "#FFB697";
-            $(".post_"+item._id+" .item").animate({backgroundColor: color}, delayIn, function() {
-                $(".post_"+item._id+" .item").animate({backgroundColor: "#FFF"}, delayOut );
-            });
-    
-            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: color}, delayIn, function() {
-                $(".post_"+item._id+" .item .overlap").animate({backgroundColor: "#FFF"}, delayOut );
-            });
+            // select elements which we will be changing (item, item arrow, etc..)
+            var elements = $(".post_"+item._id+" .item, .post_"+item._id+" .item .overlap, .post_"+item._id+" .item .arrowbox");
 
-            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: color}, delayIn, function() {
-                $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: "#FFF"}, delayOut );
+            elements.animate({backgroundColor: color}, delayIn, function() {
+                elements.animate({backgroundColor: "#FFF"}, delayOut );
             });
         };
 
         // == deactivate / prolong / activate post item
         // and close modal or call given callback
-        $rootScope.pauseToggle = function(item, modal, cb) {
+        $rootScope.pauseToggle = function(item, cb) {
             var Action, actionType;
 
             // suspend or play based on post active state
@@ -413,7 +418,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 },
                 function(res) {
 
-                    if(modal) $('#'+modal).foundation('reveal', 'close');
                     if(cb) cb(item);
                     $rootScope.$broadcast('updatedItem', res);
                     Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
@@ -425,8 +429,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if( err.status == 422) {
 
                         // somethings went wrong - post is not valid
-                        // open edit box and show error
-                        if(modal) $('#'+modal).foundation('reveal', 'close');
+                        // open edit box and show errors
                         $rootScope.editItem(item, true);
                     } else {
 

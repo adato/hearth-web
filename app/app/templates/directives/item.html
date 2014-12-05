@@ -82,7 +82,7 @@
 			<footer>
 				<a signed-out class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)">
 				</a>
-				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" data-reveal-id="confirm-report-{{item._id}}">
+				<a signed-in class="report-link spam fa fa-flag" ng-if="! mine" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="confirmBox('AD_REPORT_CONFIRM', 'AD_REPORT_ARE_YOU_SURE', reportItem, item, this)">
 				</a>
 				<div class="share" ng-if="isPostActive(item)">
 					<div class="fa fa-share-square-o"></div>
@@ -91,18 +91,15 @@
 							<a class="fa fa-facebook" title="Facebook" ng-href="{{facebook}}" target="_blank"></a>
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{gplus}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{twitter}}" target="_blank"></a>
-							<!-- <a class="fa fa-envelope" ng-href="{{mail}}" title="Email"></a> -->
 						</div>
 					</div>
 				</div>
 				<div class="controll-buttons" ng-if="mine">
 					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"></div>
 					<div class="fa " ng-class="{'fa-refresh': item.is_expired, 'fa-play': !item.is_expired}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></div>
-					<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" data-reveal-id="confirm-pause-{{item._id}}"></div>
-					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></div>
+					<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, [item, setPostActiveStateCallback], this)"></div>
+					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></div>
 				</div>
-				
-			    <section ng-include="'templates/modals.html'" id="modals"></section>
 				<button ng-if="! item.is_replied && !mine && isPostActive(item)" ng-click="replyItem()" class="small main" ng-class="{secondary: item.type == 'offer'}">
 					<span ng-if="item.type == 'offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
 					<span ng-if="item.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
