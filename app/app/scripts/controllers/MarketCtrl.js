@@ -210,7 +210,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 	    
 	    function testBottom () {
-	        if ( isOnScreenBottom ( 400 ) )
+	        if ( !$scope.loading && isOnScreenBottom ( 400 ) )
 	            $scope.load();
 	    }
 
