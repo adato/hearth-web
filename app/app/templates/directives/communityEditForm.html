@@ -105,7 +105,7 @@
           &nbsp;
           <select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
         </span>
-        <button ng-click="revealModal('delegate-admin-community')"  class="button-send right" analytics-on analytics-event="delegate admin community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+        <button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-on analytics-event="delegate admin community" analytics-category="My community" analytics-value="5">{{ 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
       </section>
       <section class="change-admin" ng-if="community.member_count == 1">
           <br />
@@ -115,7 +115,6 @@
       </section>
     </div>
     <div class="clear"></div>
-
     <!-- ==================================== Delete community ================================ -->
     <div ng-if="community._id">
       <h2>
@@ -132,44 +131,10 @@
         <p class="small-8 fleft" ng-if="community.member_count == 1">
           {{ 'COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE' | translate }}
         </p>
-        <button ng-click="revealModal('confirm-delete-community')" class="button-send right">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
+        <button ng-click="confirmBox('COMMUNITY.COMMUNITY_REMOVE_LABEL', 'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE', delete, null, this)" class="button-send right">{{ 'COMMUNITY_DELETE_BUTTON_ANYWAY' | translate }}</button>
       </section>
     </div>
     <div class="clear"></div>
   </div>    
   <div loading show="!loaded"></div>
-  <div id="confirm-delete-community" class="reveal-modal tiny confirm-delete-community" data-reveal>
-      <header>
-          <h2 class="large-12">{{'COMMUNITY.COMMUNITY_REMOVE_LABEL' | translate}}</h2>
-      </header>
-      <article class="row">
-          <hr />
-          <p class="large-12 text-center"> {{'COMMUNITY.COMMUNITY_REMOVE_ARE_YOU_SURE' | translate}}</p>
-      </article>
-      <article class="row">
-          <section class="large-6 columns">
-              <button ng-click="delete()">{{'OK' | translate}}</button>
-          </section>
-          <section class="large-6 columns text-right">
-              <a class="link-button" ng-click="closeModal('confirm-delete-community')" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="1">{{'CANCEL' | translate}}</a>
-          </section>
-      </article>
-  </div>
-  <div id="delegate-admin-community" class="reveal-modal tiny delegate-admin-community" data-reveal>
-      <header>
-          <h2 class="large-12">{{'COMMUNITY.DELEGATE_ADMIN_LABEL' | translate}}</h2>
-      </header>
-      <article class="row">
-          <hr />
-          <p class="large-12 text-center"> {{'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE' | translate}}</p>
-      </article>
-      <article class="row">
-          <section class="large-6 columns">
-              <button ng-click="change(adminChangeId)">{{'OK' | translate}}</button>
-          </section>
-          <section class="large-6 columns text-right">
-              <a class="link-button" ng-click="closeModal('delegate-admin-community')" analytics-on analytics-event="delete community" analytics-category="My community" analytics-value="1">{{'CANCEL' | translate}}</a>
-          </section>
-      </article>
-  </div>
 </div>

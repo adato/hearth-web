@@ -11,26 +11,8 @@
 			<h4>
 				<a href="#!/profile/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
 			</h4>
-			<a ng-if="managing && item._id != loggedUser._id" ng-click="revealModal('confirm-remove-member-'+item._id)">{{ 'COMMUNITY_KICK_MEMBER' | translate }}</a>
+			<a ng-if="managing && item._id != loggedUser._id" ng-click="confirmBox('COMMUNITY.REMOVE_MEMBER_LABEL', 'COMMUNITY.REMOVE_MEMBER_ARE_YOU_SURE', removeMember, item._id, this)">{{ 'COMMUNITY_KICK_MEMBER' | translate }}</a>
 			<span ng-if="(managing && item._id == loggedUser._id) || item.community_admin">{{ 'COMMUNITY_ADMIN' | translate }}</span>
-		</div>
-
-		<div id="confirm-remove-member-{{item._id}}" class="reveal-modal tiny" data-reveal>
-		  <header>
-		      <h2 class="large-12">{{'COMMUNITY.REMOVE_MEMBER_LABEL' | translate}}</h2>
-		  </header>
-		  <article class="row">
-		      <hr />
-		      <p class="large-12 text-center"> {{'COMMUNITY.REMOVE_MEMBER_ARE_YOU_SURE' | translate}}</p>
-		  </article>
-		  <article class="row">
-		      <section class="large-6 columns">
-		          <button ng-click="removeMember(item._id)">{{'OK' | translate}}</button>
-		      </section>
-		      <section class="large-6 columns text-right">
-		          <a class="link-button" ng-click="closeModal('confirm-remove-member-'+item._id)">{{'CANCEL' | translate}}</a>
-		      </section>
-		  </article>
 		</div>
 	</div>
 </div>

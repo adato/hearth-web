@@ -9,9 +9,8 @@
     </span>
     <div class="ad-controls mine" ng-if="!hidePost">
         <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
-        <i class="fa" ng-class="{'fa-refresh': item.is_expired, 'fa-play': !item.is_expired}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></i>
-        <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" data-reveal-id="confirm-pause-{{item._id}}"></i>
-        <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" data-reveal-id="confirm-delete-{{item._id}}"></i>
+        <i class="fa" ng-class="{'fa-refresh': item.is_expired, 'fa-play': !item.is_expired}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)"></i>
+        <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"></i>
+        <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></i>
     </div>
-    <section ng-include="'templates/modals.html'" id="modals"></section>
 </div>

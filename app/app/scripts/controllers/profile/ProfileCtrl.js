@@ -31,6 +31,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			};
 		};
 
+		/**
+		 * Return true if this profile is mine - like it is my user profile or am I community admin
+		 */
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
 			var _mineCommunity = ($rootScope.loggedCommunity) ? $rootScope.loggedCommunity._id == $routeParams.id: false;
@@ -38,6 +41,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return _mineCommunity || _mineUser;
 		};
 
+		/**
+		 * Push cities to concatenated string.
+		 * Expects info.locations = [{city: ...}, ...]
+		 */
 		$scope.citiesToString = function(info) {
 			var list = [];
 			info.locations.forEach(function(item) {
@@ -47,6 +54,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return list.join(", ");
 		};
 
+		/**
+		 * Fetch user of this profile
+		 */
 		$scope.fetchUser = function (fetchSubpage) {
 			// dont load user when there is no ID in params
 			if(! $routeParams.id) return false;
@@ -59,26 +69,31 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.loaded = false;
 			}
 
-			console.log("nacitam: ",$routeParams.id);
-
+			// get user data
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;
 				$scope.info.cities = $scope.citiesToString(res);
 
+				// count karma values
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $scope.isMine();
 				// $scope.loaded = true;
 
+				// broadcast event for load subpages
 				if(fetchSubpage)
 					$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
 
+				// when something is wrong..
 				$scope.loaded = true;
 				$scope.info = false;
 				$scope.mine = false;
 			});
 		};
 
+		/**
+		 * When toggled following user, update his followers count in bubble
+		 */
 		$scope.toggleFollowerSuccess = function() {
 			$scope.info.is_followed = !$scope.info.is_followed;
 
@@ -102,12 +117,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				if(!myFollowees)
 					$scope.toggleFollowerSuccess(res);
 				else {
-					$rootScope.closeModal('confirm-remove-following-'+user_id);
 					$scope.$broadcast('profileRefreshUser');
 				}
 			});
 		};
 		
+		// add follower 
 		$scope.addFollower = function(user_id) {
 
 			if($scope.sendingAddFollower) return false;
@@ -120,6 +135,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		// toggle follow - unfollow if is followed and opposite
 		$scope.toggleFollow = function(user_id) {
 			
 			if($scope.info.is_followed) {
@@ -129,6 +145,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 		};
 
+		// when changed URL, save actual segment name to pageSegment value
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
     		$scope.pagePath = $route.current.originalPath;
@@ -136,6 +153,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 	    		$scope.pageSegment = $route.current.$$route.segment;
 		};
 
+		// refresh user info and if fetchSubpage == true also fetch new subpage
 		$scope.refreshUser = function(fetchSubpage) {
 
 			if(fetchSubpage)
@@ -144,6 +162,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		};
 		
+		// scroll to user Rating form when opened
 		$scope.scrollToUserRatingForm = function() {
 			// scroll to form
 			setTimeout(function() {
@@ -185,6 +204,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
+		// send rating to API
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
 			var ratings = {
@@ -201,7 +221,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			rating = angular.copy(ratingOrig);
 			rating.score = ratings[rating.score];
 
-			// lock
+			// lock - dont send twice
 			if($scope.sendingRating)
 				return false;
 			$scope.sendingRating = true;
@@ -231,8 +251,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		// first init
 		$scope.initPage();
+		// check if we are allowed to see this page
 		UnauthReload.check();
+		$scope.$on('profileRefreshUserNoSubpage', function() {
+			$scope.refreshUser(false);
+		});
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);

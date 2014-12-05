@@ -380,11 +380,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.closeEdit = function() {
 			// == close all modal windows 
-			if($scope.post._id) {
-				$('#confirm-delete-'+$scope.post._id).foundation('reveal', 'close');
-				$('#confirm-pause-'+$scope.post._id).foundation('reveal', 'close');
-			}
-			
 			$scope.closeThisDialog();
 		};
 

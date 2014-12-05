@@ -27,7 +27,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 				$scope.item = data;
 				$scope.profile = data.author;
-				$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
+				$scope.mine = data.author._id === (($rootScope.user) ? $rootScope.user._id : null);
+
 				$scope.agreeTranslationData = {
 					name: data.author.name
 				};

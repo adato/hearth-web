@@ -27,12 +27,6 @@
 				<label>{{ 'COMMUNITIES' | translate }}</label>
 			</a>
 
-
-			<a ng-class="{active: segment == 'communityList'}" title="{{ 'COMMUNITIES' | translate }}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', testCallback, [1,2,3,4], this)">
-				<div class="fa fa-spoon"></div>
-				<label>{{ 'COMMUNITIES' | translate }}</label>
-			</a>
-
 			<div class="separator"></div>
 		    <span class="dropdown-container">
 				<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
