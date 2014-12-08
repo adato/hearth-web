@@ -31,15 +31,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$rootScope.$broadcast("filterOpen");
 		};
 
-		$scope.addItemsToList = function(data, index) {
+		$scope.addItemsToList = function(data, index, done) {
 			if (data.data.length > index) {
 				$scope.items.push(data.data[index]);
 
 				return $timeout(function() {
-					$scope.addItemsToList(data, index + 1);
+					$scope.addItemsToList(data, index + 1, done);
 				}, 10);
 			}
-			$scope.finishLoading(data);
+			done();
 		};
 
 		/**
@@ -48,16 +48,19 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.showHidden = function(done) {
 			var timeout = 0;
 			var items = $(".wish-list .post:hidden");
-			var lastItemIndex = items.length - 1;
-			
+			var index = 0;
 			// each element fade in with increasing delay
 			// after all items will be displayed, call done callback
 			async.each(items, function(item, done) {
-				$(item).delay(timeout).fadeIn(done);
+				if($scope.items.length == $scope.limit && ++index < 4)
+					$(item).delay(timeout).fadeIn(done);
+				else
+					$(item).delay(timeout).slideDown(done);
+
 				timeout += 200;
 			}, done);
 		};
-		
+
 		$scope.finishLoading = function(data) {
 			$scope.topArrowText.top = $translate('ads-has-been-read', {
 				value: $scope.items.length
@@ -92,14 +95,18 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				}
 
 				Post.query(params, function(data) {
-					if (params.offset > 0) {
-						// $scope.addItemsToList(data, 0);
-						$scope.items = $scope.items.concat(data.data);
-					} else {
-						$scope.items = data.data;
-					}
+					// if (params.offset > 0) {
+						$scope.addItemsToList(data, 0, function() {
+							$scope.finishLoading(data);
+						});
+						// $scope.items = $scope.items.concat(data.data);
+					// } else {
+					// 	$scope.items = data.data;
+					// 	$timeout(function() {
+					// 		$scope.finishLoading(data);
+					// 	});
+					// }
 
-					$scope.finishLoading(data);
 		
 					$scope.loaded = true;
 					$rootScope.$broadcast('postsLoaded');
