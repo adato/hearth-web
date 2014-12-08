@@ -56,7 +56,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						if(index == lastItemIndex)
 							done();
 					});
-					timeout += 50;
+					timeout += 200;
 
 				});
 			});
