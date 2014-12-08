@@ -2,11 +2,9 @@
 <div class="market">
 	<filter-status></filter-status>
 	<filterbar filter=filter></filterbar>
-	<div loading show="!loaded"></div>
 	
 	<div class="large-12 columns" ng-hide="showMap">
-		<!-- when-scrolled="load()"  -->
-		<div class="wish-list">
+		<div when-scrolled="load()" loading-in-progress="loading" class="wish-list">
 			<div ng-show="!items.length && loaded && filterIsOn" class="row">
 				<div class="large-8 large-centered columns box text-center" style="padding:1em">
 					<p translate class="padding-2">MARKETPLACE.FILTER_NOT_FOUND</p>
@@ -23,9 +21,12 @@
 					<p translate class="padding-2">MARKETPLACE.NOTHING_FOUND</p>
 				</div>
 			</div>
-			<item keywords-active="keywordsActive" item="item" ng-repeat="(id, item) in items track by $index" user="user" community="loggedCommunity"></item>
+			<item keywords-active="keywordsActive" hidden-init="true" item="item" ng-repeat="(id, item) in items track by $index" user="user" community="loggedCommunity"></item>
 		</div>
 	</div>
+	<div class="clear"></div>
+	<div loading show="loading"></div>
+
 	<div class="large-12 columns" ng-if="showMap">
 		<search-map show-map="showMap" location="myLocation" set-loading-fn="setLoadingComplete()" logged-user="loggedUser" set-location-fn="updateLocation(location)"></search-map>
 	</div>

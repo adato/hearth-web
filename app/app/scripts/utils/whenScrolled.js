@@ -10,32 +10,41 @@
 angular.module('hearth.utils').directive('whenScrolled', function() {
 	return {
 		restrict: 'A',
+		scope: {
+			loadingInProgress: '=',
+			whenScrolled: '&'
+		},
 		link: function(scope, element, attr) {
-			var lastRun = null,
-				raw = element[0],
-				offset = 1000;
+			var raw = element[0],
+				offset = 1000,
+				innerHeight = parseInt(window.innerHeight);
+
 
 			function process ($event) {
+				if(scope.loadingInProgress)
+					return false;
+				
 				var rectObject = raw.getBoundingClientRect(),
 					bottom = parseInt(rectObject.bottom, 10),
 					lock = false;
 
-				if (bottom > 0 && bottom - offset <= parseInt(window.innerHeight) ) {
-					$event.stopPropagation();
-					$event.preventDefault();
-					if (lastRun + 2000 < new Date().getTime() && ! lock) {
+				if (bottom > 0 && bottom - offset <= innerHeight) {
+					if (! lock) {
 						lock = true;
-						scope.$apply(attr.whenScrolled);
-						lastRun = new Date().getTime();
-						return lastRun;
+						return scope.$apply(scope.whenScrolled);
 					}
 				} else {
 					lock = false;
 				}
 			}
 
+			function processWithResite () {
+				innerHeight = parseInt(window.innerHeight);
+				process();
+			}
+
 			angular.element(window).bind('scroll', process);
-			angular.element(window).bind('resize', process);
+			angular.element(window).bind('resize', processWithResite);
 		}
 	};
 });

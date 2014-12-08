@@ -8,9 +8,5 @@
 
 angular.module('hearth.controllers').controller('ProfileInviteCtrl', [
 	'$scope', 
-
-	function($scope) {
-
-		// console.log("ProfileCtrl invite inited");
-	}
+	function($scope) {}
 ]);

@@ -19,9 +19,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			
 			// ratings
 			$scope.sendingRating = false;
-
-			// ratings
-			$scope.sendingRating = false;
 			$scope.rating = {
 				score: 1,
 				text: ''

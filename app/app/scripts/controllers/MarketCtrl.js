@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout', 'Filter', 'Notify',
+	'$scope', '$rootScope', 'Post', '$location', 'User', '$translate', '$timeout', 'Filter', 'Notify',
 
-	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter, Notify) {
+	function($scope, $rootScope, Post, $location, User, $translate, $timeout, Filter, Notify) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -21,11 +21,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
-
-		$scope.testFilter = function() {
-
-			$scope.filterIsOn = Filter.isSet();
-		};
 
 		$scope.resetFilter = function() {
 			Filter.reset();
@@ -44,8 +39,27 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					$scope.addItemsToList(data, index + 1);
 				}, 10);
 			}
-
 			$scope.finishLoading(data);
+		};
+
+		/**
+		 * Will go throught loaded and hidden posts and display them with some effect
+		 */
+		$scope.showHidden = function(done) {
+			$timeout(function() {
+				var timeout = 0;
+				var items = $(".wish-list .post:hidden");
+				var lastItemIndex = items.length - 1;
+
+				items.each(function(index) {
+					$(this).delay(timeout).fadeIn(500, function() {
+						if(index == lastItemIndex)
+							done();
+					});
+					timeout += 50;
+
+				});
+			});
 		};
 
 		$scope.finishLoading = function(data) {
@@ -56,20 +70,17 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			$scope.loading = false;
-		};
-
-		$scope.setLoadingComplete = function() {
-			$scope.loaded = true;
+			$scope.showHidden(function() {
+				$scope.loading = false;
+			});
 		};
 
 		$scope.load = function() {
 			if ($scope.loading == true)
 				return;
-
 			$scope.loading = true;
 
-			if ($scope.showMap === false) {
+			if (!$scope.showMap) {
 				var params = angular.extend(angular.copy($location.search()), {
 					offset: $scope.items.length,
 					limit: $scope.limit
@@ -81,11 +92,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				Post.query(params, function(data) {
 					if (params.offset > 0) {
-						$scope.addItemsToList(data, 0);
+						// $scope.addItemsToList(data, 0);
+						$scope.items = $scope.items.concat(data.data);
 					} else {
 						$scope.items = data.data;
-						$scope.finishLoading(data);
 					}
+					$scope.finishLoading(data);
 		
 					$scope.loaded = true;
 					$rootScope.$broadcast('postsLoaded');
@@ -97,7 +109,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 			refreshTags();
 			Filter.checkUserFilter();
-			$scope.testFilter();
+			$scope.filterIsOn = Filter.isSet();
 
 			$scope.$on('authorize', function() {
 				$scope.load();
@@ -111,31 +123,25 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		}
 
-		$scope.$on('filterApplied', function($event, filterData) {
-			// $scope.user.filter = filterData;
-
+		/**
+		 * When applied filter - refresh post on marketplace
+		 */
+		function refreshPosts() {
+			$scope.filterIsOn = Filter.isSet();
 			refreshTags();
-			
-			// if ($scope.filter && $.isEmptyObject($location.search())) {
-			// 	return $location.search($scope.filter);
-			// }
 
 			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.items = [];
 			$scope.load();
-		});
+		}
 
+		$scope.$on('filterApplied', refreshPosts);
 		$scope.$on('filterReseted', function() {
-			
-			$scope.$broadcast('resetFilterData');
 
-			$scope.loaded = false;
-			$scope.loading = false;
 			$scope.filter = {};
 			$scope.user.filter = {};
-			$scope.items = [];
-			$scope.load();
+			refreshPosts();
 		});
 
 		$scope.$on('postUpdated', function($event, data) {
@@ -178,23 +184,20 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		});
 
-		$scope.$on('sendReply', function($event, data) {
-			PostReplies.add(data);
-		});
-
+		/**
+		 * When item is deleted - slide up his post and remove 
+		 * post class so we won't manipulate with him in future
+		 */
 		$scope.$on('itemDeleted', function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {});
-        });
+			$( ".post_"+item._id ).slideUp( "slow", function() {
+				$(this).removeClass("post");
+			});
+		});
 
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 		});
-
-
-		// show different nothing found error message when filter is changed / removed
-        $scope.$on("filterApplied", $scope.testFilter);
-        $scope.$on("filterReseted", $scope.testFilter);
 
 		// ==== Global event fired when init process is finished
 		$scope.$on('initFinished', init);
@@ -202,19 +205,5 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			init();
 			$scope.load();
 		}
-
-
-		// ===================== FIXME - TEST =======================
-		function isOnScreenBottom ( padding ) {
-		    return ($(window).scrollTop() > $(document).height() - $(window).height() - (padding || 40) );
-		}
-	    
-	    function testBottom () {
-	        if ( !$scope.loading && isOnScreenBottom ( 400 ) )
-	            $scope.load();
-	    }
-
-		$(window).scroll( testBottom );
-        $(window).resize( testBottom );
 	}
 ]);

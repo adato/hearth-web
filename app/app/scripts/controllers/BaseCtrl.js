@@ -13,6 +13,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
+        $rootScope.appUrl = '';
         $rootScope.addressOld = '';
         $rootScope.addressNew = '';
         $scope.segment = false;
@@ -21,18 +22,35 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             "User": "profile",
             "Post": "ad",
         };
+        $rootScope.socialLinks = {
+            facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+            gplus: 'https://plus.google.com/share?url=',
+            twitter: 'https://twitter.com/share?url='
+        };
 
         // init globalLoading 
         $rootScope.globalLoading = false;
+        $rootScope.topArrowText = {};
+        $scope.isScrolled = false;
 
+        /**
+         * This will set fixed height of document for current height
+         */
         $scope.resfreshWithResize = function() {
             $(".main-container").css("min-height", $(".main-container").height()+"px");
         };
 
+        /**
+         * This will unset fixed height of document
+         */
         $rootScope.$on("subPageLoaded", function() {
             $(".main-container").css("min-height", "unset");
         });
 
+        /**
+         * When started routing to another page, compare routes and if they differ
+         * scroll to top of the page, if not, refresh page with fixed height
+         */
         $rootScope.$on("$routeChangeStart", function(event, next) {
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
@@ -49,16 +67,24 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $scope.resfreshWithResize();
         });
 
-        $rootScope.$on("$routeChangeSuccess", function() {
+        /**
+         * After routing finished, set current page segment to variable - used somewhere else
+         * and add class of given controller to wrapping div container
+         */
+        $rootScope.$on("$routeChangeSuccess", function(next, current) {
             $scope.segment = $route.current.segment;
-        });
 
-        $rootScope.topArrowText = {};
-        $scope.isScrolled = false;
+            $("#all").removeClass();
+            $("#all").addClass(current.controller);
+        });
 
         $scope.showUI = function(ui) {
             $scope.$broadcast('showUI', ui);
         };
+        
+        /**
+         * When clicked on logout button
+         */
         $scope.logout = function() {
             Auth.logout(function() {
                 window.location.hash = '#!/';
@@ -66,6 +92,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
         
+        /**
+         * When subbmitet fulltext search
+         */
         $scope.search = function(text) {
             if (!text) return false;
             $location.path('/search');
@@ -77,44 +106,44 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        /**
+         * Set value of fulltext search
+         */
         $rootScope.setFulltextSearch = function(val) {
             $timeout(function() {
-                // $rootScope.searchText = val;
                 $("#searchBox").val(val);
             });
         };
+
+        /**
+         * This will scroll up on page
+         */
         $rootScope.top = function(offset, delay) {
             $('html, body').animate({
                 scrollTop: offset || 0
             }, delay || 1000);
         };
 
-        $scope.getProfileLinkByType = function(type) {
+        /**
+         * Return profile of item based on its type (community, user, post)
+         */
+        $rootScope.getProfileLinkByType = function(type) {
             return $scope.addresses[type];
         };
 
+        /**
+         * Refresh user to given path
+         */
         $scope.refreshToPath = function(path) {
             window.location.hash = '#!/' + path;
             location.reload();
         };
 
-        $scope.$watch('user', function() {
-            var user = $scope.user.get_logged_in_user;
-        });
-
         $scope.$on('$includeContentLoaded', function() {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
+            timeout && clearTimeout(timeout);
             timeout = setTimeout(function() {
                 $(document).foundation();
             }, 1000);
-        });
-
-        $scope.$on('$routeChangeSuccess', function(next, current) {
-
-            $("#all").removeClass();
-            $("#all").addClass(current.controller);
         });
 
         angular.element(window).bind('scroll', function() {
@@ -123,10 +152,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $scope.isScrolled = !$scope.isScrolled;
             }
         });
-
-        $scope.getRandom = function() {
-            return Math.random();
-        };
 
         $scope.loadMyCommunities = function() {
 
@@ -171,6 +196,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.initHearthbeat = function() {
             $rootScope.pluralCat = $locale.pluralCat;
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
+            $rootScope.appUrl = window.location.href.replace(window.location.hash, '');
 
             if($rootScope.loggedUser._id) {
                 $scope.loadMyCommunities();
@@ -179,9 +205,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
-
-            // $rootScope.editItem(null);
-            
             Notify.checkRefreshMessage();
         };
 
@@ -410,7 +433,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
                     if(angular.isFunction(cb))
                         cb(item);
-                    
+
                     $rootScope.$broadcast('updatedItem', res);
                     Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
                     $rootScope.globalLoading = false;

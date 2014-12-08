@@ -431,27 +431,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			});
 		});
 
-		$scope.$on('adCreated', function($event, data) {
-			$scope.items.unshift(data);
-		});
-
-		// ================== REVIEW =================
-		// $scope.$on('adSaved', function($event, data) {
-		// 	var phantomRecord;
-
-		// 	for (var i = 0; i < $scope.items.length; i++) {
-		// 		if ($scope.items[i].isPhantom) {
-		// 			phantomRecord = $scope.items[i];
-		// 			break;
-		// 		}
-		// 	}
-		// 	if (phantomRecord) {
-		// 		phantomRecord = angular.extend(phantomRecord, data);
-		// 		phantomRecord.isPhantom = false;
-		// 		$scope.items[i] = phantomRecord;
-		// 	}
-		// });
-
 		$scope.$on('searchMap', function($event) {
 			$scope.setOrderBy('location');
 		});
