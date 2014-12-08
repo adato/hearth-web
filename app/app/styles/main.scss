@@ -1452,8 +1452,13 @@ img.blur {
 }
 
 .market {
+    padding-bottom: 50px;
     .loading {
-        margin-bottom: 15px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        border: 0 none;
+        margin-bottom: 10px;
         height: 40px;
     }
 }

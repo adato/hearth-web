@@ -19,22 +19,19 @@ angular.module('hearth.utils').directive('whenScrolled', function() {
 				offset = 1000,
 				innerHeight = parseInt(window.innerHeight);
 
+			scope.$watch('loadingInProgress', function(val) {
+				!val && process();
+			});
 
 			function process ($event) {
 				if(scope.loadingInProgress)
 					return false;
 				
 				var rectObject = raw.getBoundingClientRect(),
-					bottom = parseInt(rectObject.bottom, 10),
-					lock = false;
+					bottom = parseInt(rectObject.bottom, 10);
 
 				if (bottom > 0 && bottom - offset <= innerHeight) {
-					if (! lock) {
-						lock = true;
-						return scope.$apply(scope.whenScrolled);
-					}
-				} else {
-					lock = false;
+					scope.whenScrolled();
 				}
 			}
 

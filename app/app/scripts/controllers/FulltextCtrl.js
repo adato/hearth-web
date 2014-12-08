@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-    '$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate', '$rootScope',
+    '$scope', '$timeout', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate', '$rootScope',
 
-    function($scope, $routeParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
+    function($scope, $timeout, $routeParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
         var deleteOffset = false;
         $scope.readedAllData = false;
 
@@ -69,13 +69,16 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
                 }
 
                 $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
-                $scope.loaded = true;
-
+                
                 $scope.topArrowText.bottom = $translate('TOTAL_COUNT', {
                     value: response.total
                 });
                 $scope.topArrowText.top = $translate('ads-has-been-read', {
                     value: $scope.items.length
+                });
+
+                $timeout(function() {
+                    $scope.loaded = true;
                 });
             }
         };

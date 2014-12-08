@@ -46,22 +46,18 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		 * Will go throught loaded and hidden posts and display them with some effect
 		 */
 		$scope.showHidden = function(done) {
-			$timeout(function() {
-				var timeout = 0;
-				var items = $(".wish-list .post:hidden");
-				var lastItemIndex = items.length - 1;
-
-				items.each(function(index) {
-					$(this).delay(timeout).fadeIn(500, function() {
-						if(index == lastItemIndex)
-							done();
-					});
-					timeout += 200;
-
-				});
-			});
+			var timeout = 0;
+			var items = $(".wish-list .post:hidden");
+			var lastItemIndex = items.length - 1;
+			
+			// each element fade in with increasing delay
+			// after all items will be displayed, call done callback
+			async.each(items, function(item, done) {
+				$(item).delay(timeout).fadeIn(done);
+				timeout += 200;
+			}, done);
 		};
-
+		
 		$scope.finishLoading = function(data) {
 			$scope.topArrowText.top = $translate('ads-has-been-read', {
 				value: $scope.items.length
@@ -70,8 +66,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			$scope.showHidden(function() {
-				$scope.loading = false;
+			$(".loading").slideUp(function() {
+				$scope.showHidden(function() {
+					$timeout(function() {
+						$(".loading").show();
+						$scope.loading = false;
+					})
+				});
 			});
 		};
 
@@ -97,6 +98,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					} else {
 						$scope.items = data.data;
 					}
+
 					$scope.finishLoading(data);
 		
 					$scope.loaded = true;
