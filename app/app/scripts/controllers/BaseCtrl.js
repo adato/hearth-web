@@ -43,7 +43,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             // if first element in URL of old page is not same as first element in URL of new page
             // scroll to top - (alias scroll when we come to new URL)
             if(r1.length < 2 || r2.length < 2 || r1[1] != r2[1])
-                $scope.top(0, 1);
+                $rootScope.top(0, 1);
             else
                 // dont 
                 $scope.resfreshWithResize();
@@ -53,11 +53,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $scope.segment = $route.current.segment;
         });
 
-        $scope.closeDropdown = function(id) {
-            Foundation.libs.dropdown.close($('#'+id));
-        };
-
-        $scope.topArrowText = {};
+        $rootScope.topArrowText = {};
         $scope.isScrolled = false;
 
         $scope.showUI = function(ui) {
@@ -82,18 +78,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.setFulltextSearch = function(val) {
-            console.log("Set: ", val);
             $timeout(function() {
                 // $rootScope.searchText = val;
                 $("#searchBox").val(val);
             });
-
-            // if(!$rootScope.$$phase) {
-            //     console.log("apply");
-            //     $rootScope.$apply();
-            // }
         };
-        $scope.top = function(offset, delay) {
+        $rootScope.top = function(offset, delay) {
             $('html, body').animate({
                 scrollTop: offset || 0
             }, delay || 1000);
@@ -418,7 +408,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 },
                 function(res) {
 
-                    if(cb) cb(item);
+                    if(angular.isFunction(cb))
+                        cb(item);
+                    
                     $rootScope.$broadcast('updatedItem', res);
                     Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
                     $rootScope.globalLoading = false;

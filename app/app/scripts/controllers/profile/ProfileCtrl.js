@@ -62,10 +62,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			if(! $routeParams.id) return false;
 
 			// if we are loading new user init
-			if($scope.paramId && $scope.paramId != $routeParams.id) 
+			if($scope.paramId && $scope.paramId != $routeParams.id) {
 				$scope.initPage();
+			}
 			
+			// if we load profile of another user (there are different IDs) scroll to top
 			if($scope.info._id !== $routeParams.id) {
+				$rootScope.top(0, 1);
 				$scope.loaded = false;
 			}
 

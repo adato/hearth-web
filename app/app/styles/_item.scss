@@ -484,8 +484,10 @@ $imageSize: 80px;
             position: absolute;
             right: 30px;
             top: 0;
-            z-index: 3000;
+            z-index: 10;
             height: 33px;
+            background-color: color(4);
+            padding-left: 5px;
             a {
                 &:first-child {
                     margin-left: 0px;
