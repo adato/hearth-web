@@ -1,0 +1,98 @@
+$mini-avatar-size: 24px;
+$small-avatar-size: 45px;
+$medium-avatar-size: 80px;
+$large-avatar-size: 300px;
+
+.avatar {
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    &>* {
+        display: inline-block;
+        position: relative;
+        img {
+            border-radius: 50%;
+            width: $medium-avatar-size;
+            height: $medium-avatar-size;
+        }
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            border-radius: 50%;
+            box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+            width: $medium-avatar-size;
+            height: $medium-avatar-size;
+            left: 0;
+        }
+    }
+}
+
+/* ===== USED IN NAVIGATION ===== */
+.avatar-mini {
+    &>* {
+        img {
+            width: $mini-avatar-size;
+            height: $mini-avatar-size;
+        }
+        &::before {
+            display: none;
+        }
+    }
+}
+
+.avatar-small {
+    &>* {
+        img {
+            width: $small-avatar-size;
+            height: $small-avatar-size;
+        }
+        &::before {
+            width: $small-avatar-size;
+            height: $small-avatar-size;
+        }
+    }
+}
+
+.avatar-large {
+    &>* {
+        img {
+            width: $large-avatar-size;
+            height: $large-avatar-size;
+        }
+        &::before {
+            width: $large-avatar-size;
+            height: $large-avatar-size;
+        }
+    }
+}
+
+/*
+.avatar {
+    @extend .large-3, .columns;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 1px 0px 16px 0px rgba(255, 255, 255, 1);
+    padding: 0;
+    img {
+        min-width: 300px;
+        min-height: 300px;
+        position: relative;
+        background: color(4);
+        border-radius: 50%;
+    }
+    &:before {
+        display: block;
+        position: absolute;
+        content: ' ';
+        box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+        z-index: 10;
+        border-radius: 50%;
+        width: 300px;
+        height: 300px;
+    }
+}
+            
+*/

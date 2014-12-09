@@ -30,15 +30,11 @@
 			<div class="separator"></div>
 		    <span class="dropdown-container">
 				<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
-		            <div class="img">
-		            	<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" />
-		            </div>
+                    <avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 		            <label>{{ loggedUser.name | ellipsis:9}}</label>
 			    </a>
 				<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' }" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
-		            <div class="img">
-		            	<img ng-src="{{loggedCommunity.avatar.normal}}" ng-if="loggedCommunity.avatar.normal" />
-		            </div>
+                    <avatar class="img" size="mini" src="loggedCommunity.avatar.normal" type="'Community'"></avatar>
 		            <label>{{ loggedCommunity.name | ellipsis:9}}</label>
 			    </a>
 			    <ul class="dropdown user-dropdown" id="profile-drop" title="{{ loggedCommunity.name || loggedUser.name }} ">
@@ -53,18 +49,14 @@
 			       <li class="no-hover" ng-if="myAdminCommunities.length"><p class="heading"><i class="fa fa-share"></i> {{ 'SWITCH_TO' | translate }}:</p></li>
 			       <li ng-if="loggedCommunity._id">
 						<a class="user-switch-item" ng-click="leaveIdentity(loggedUser._id);" title="{{ loggedUser.name }}">
-							<div class="av-img">
-								<img ng-src="{{loggedUser.avatar.normal}}" ng-if="loggedUser.avatar.normal" title="{{ loggedUser.name }}" />
-							</div>
-							<span>{{ loggedUser.name | ellipsis:12}}</span>
+							<avatar size="mini" class="img" src="loggedUser.avatar.normal" type="'User'"></avatar>
+							<span class="name">{{ loggedUser.name | ellipsis:12}}</span>
 						</a>
 			       </li>
 			       <li ng-repeat="item in myAdminCommunities" ng-if="loggedCommunity._id != item._id">
 						<a class="user-switch-item" ng-click="switchIdentity(item._id);" title="{{ item.name}}">
-							<div class="av-img community">
-								<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" title="{{ item.normal }}" />
-							</div>
-							<span>{{ item.name | ellipsis:12}}</span>
+							<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+							<span class="name">{{ item.name | ellipsis:12}}</span>
 						</a>
 			       </li>
 		          <li class="divider" ng-if="myAdminCommunities.length"></li>

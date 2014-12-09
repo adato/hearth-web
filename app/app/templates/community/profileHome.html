@@ -1,14 +1,9 @@
 <br />
 <br />
 
-<!-- two columns displayed in main page of user profile -->
 <div class="community-listings" ng-if="subPageLoaded">
     <div class="left-pane">
-        <!-- <div class="messages">
-                <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
-            </div> -->
         <div class="applications" ng-if="mine">
-            
             <div ng-if="!applications.length">
                 <h3>{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
                 <p>{{ 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
@@ -20,13 +15,8 @@
 	            <div class="clear"></div>
 
 	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
-	            	<!--<h5 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h5>-->
 	            	<div class="applications-item">
-	                    <a href="#!/profile/{{item._id}} ">
-                            <div class="avatar">
-                                <img ng-if="item.avatar.normal" ng-src="{{item.avatar.normal}}" />
-                            </div>
-                        </a>
+                        <avatar class="left margin-bottom-20" href="'#!/profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
                         <div class="applications-text">
                             <a href="#!/profile/{{item._id}} ">
 		                    	{{item.name | ellipsis}}

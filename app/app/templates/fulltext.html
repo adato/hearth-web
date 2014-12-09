@@ -1,5 +1,5 @@
 <article class="row fulltext" when-scrolled="load(1)" loading-in-progress="!loaded">
-    <section class="large-12  columns box">
+    <section class="large-12  columns box  margin-bottom-20">
         <article class="row">
             <section class="large-12 columns">
                 <header>
@@ -31,8 +31,8 @@
         <div ng-if="!items.length && loaded" class="large-8 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
         <section id="fulltextSearchResults">
             <article ng-repeat="item in items" class="row search-item" ng-switch="item._type">
-                <section class="large-2 columns">
-                    <div class="avatar" ng-style="item.avatarStyle"></div>
+                <section class="large-2 columns text-center">
+                    <avatar src="item.avatar.normal" href="'#!/'+getProfileLinkByType(item._type)+'/'+item._id" type="item.item_type"></avatar>
                 </section>
                 <section class="large-10 columns">
                     <i class="fa" ng-class="{'icon-marketplace' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>

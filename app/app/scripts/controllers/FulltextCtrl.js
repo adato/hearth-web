@@ -54,19 +54,15 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
                 $("#fulltextSearchResults").removeClass("searchInProgress");
 
-                for (i = 0; i < data.length; i++) {
-                    item = data[i];
-                    if (item.author && item.author.avatar.normal) {
-                        data[i].avatarStyle = {
-                            'background-image': 'url(' + item.author.avatar.normal + ')'
-                        };
-                    }
-                    if (item.avatar && item.avatar.normal) {
-                        data[i].avatarStyle = {
-                            'background-image': 'url(' + item.avatar.normal + ')'
-                        };
-                    }
-                }
+                data.forEach(function(item, i) {
+                    console.log(i, item);
+                    data[i].item_type = item._type;
+
+                    if (item._type == 'Post') {
+                        data[i].avatar = item.author.avatar;
+                        data[i].item_type = item.author._type;
+                    };
+                });
 
                 $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
                 

@@ -1,10 +1,7 @@
 <article class="community-item community_{{ item._id }}">
 	<section class="item">
-		<a ng-href="#!/community/{{item._id}}" class="photo">
-			<div class="avatar community-avatar">
-				<img ng-src="{{item.avatar.normal}}" ng-if="item.avatar.normal" />
-			</div>
-		</a>
+		<avatar href="'#!/community/'+item._id" src="item.avatar.normal" type="item._type" class="fleft"></avatar>
+			
 		<div class="content">
 			<div class="fright" ng-if="user && item.admin == user._id">
 				{{ 'ADMIN' | translate }}

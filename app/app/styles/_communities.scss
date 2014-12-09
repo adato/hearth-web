@@ -4,13 +4,13 @@
     padding-left:1rem;
     padding-right:1rem;
 
+    .avatar {
+        margin: 2em;
+    }
+
     .community-list-add-form {
         @extend .clearfix;
         transition: opacity 0.4s ease-in-out;
-
-        .community-edit {
-            margin-bottom: 20px;
-        }
     }
 
     .community-list {
@@ -22,16 +22,6 @@
             margin:auto;
             float:none;
             word-wrap: break-word;
-            .photo {
-                float:left;
-                margin-left:2rem;
-                margin-bottom:2rem;
-                margin-top:2rem;
-                .avatar {
-                    left:0px;
-                    margin-left:0;
-                }
-            }
             .content {
                 margin-left:9rem;
             }

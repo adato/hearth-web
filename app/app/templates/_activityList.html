@@ -4,9 +4,7 @@
     <div ng-repeat="(id, item) in activityLog track by $index" ng-init="item.prevDate = ($index > 0) ? activityLog[$index-1].created_at : null">
         <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
         <div class="activity">
-            <div class="avatar" ng-class="{'no-avatar': item.avatar}">
-            	<img ng-src="{{ item.avatar }}" ng-if="item.avatar" />
-            </div>
+            <avatar class="left" size="small" src="item.avatar"></avatar>
             <div class="activity-text" dynamic-text="item.text" dynamic-data="item.data"></div>
         </div>
     </div>

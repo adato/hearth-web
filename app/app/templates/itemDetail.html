@@ -119,8 +119,9 @@
 
 					<div class="columns large-3 item-author">
 						<h2>{{ item.author.name}}</h2>
-						
-						<avatar type="item.author._type" src="item.author.avatar.large" size="400" href="'#!/'+getProfileLinkByType(item.author._type)+'/'+item.author._id" />
+						<div class="text-center">
+							<avatar type="item.author._type" src="item.author.avatar.large" size="medium" href="'#!/'+getProfileLinkByType(item.author._type)+'/'+item.author._id" /></avatar>
+						</div>
 
 						<p ng-if="item.author.description">
 							{{ item.author.description }}

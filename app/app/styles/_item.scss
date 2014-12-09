@@ -3,27 +3,15 @@ $border: $size / 10;
 $arrowTop: 25px;
 $imageSize: 80px;
 
-
-.photo {
+.user {
     position: relative;
     text-align: center;
     font-weight: bold;
     font-size: 0.8em;
-    .avatar {
-        width: $imageSize;
-        height: $imageSize;
-        overflow: hidden;
-        margin: {
-            left: -$imageSize / 2;
-        };
-        &:before {
-            width: $imageSize;
-            height: $imageSize;
-        }
-    }
+   
     div.name {
         margin: {
-            top: $fontSize;
+            top: 1rem;
         };
         text-shadow: 0px 0px 1px gray;
         color: #383838;

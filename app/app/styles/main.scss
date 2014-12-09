@@ -33,44 +33,45 @@ $fontSize: rem-calc(18);
 @import "font-awesome";
 @import
   "foundation/components/grid",
-  "foundation/components/accordion",
+//  "foundation/components/accordion",
   "foundation/components/alert-boxes",
   "foundation/components/block-grid",
-  "foundation/components/breadcrumbs",
+//  "foundation/components/breadcrumbs",
   "foundation/components/button-groups",
   "foundation/components/buttons",
   "foundation/components/clearing",
-  "foundation/components/dropdown",
-  "foundation/components/dropdown-buttons",
-  "foundation/components/flex-video",
+//  "foundation/components/dropdown",
+//  "foundation/components/dropdown-buttons",
+//  "foundation/components/flex-video",
   "foundation/components/forms",
   "foundation/components/inline-lists",
-  "foundation/components/joyride",
-  "foundation/components/keystrokes",
+//  "foundation/components/joyride",
+//  "foundation/components/keystrokes",
   "foundation/components/labels",
-  "foundation/components/magellan",
+//  "foundation/components/magellan",
   "foundation/components/orbit",
-  "foundation/components/pagination",
-  "foundation/components/panels",
-  "foundation/components/pricing-tables",
-  "foundation/components/progress-bars",
-  "foundation/components/range-slider",
+//  "foundation/components/pagination",
+//  "foundation/components/panels",
+//  "foundation/components/pricing-tables",
+//  "foundation/components/progress-bars",
+//  "foundation/components/range-slider",
 //  "foundation/components/reveal",
-  "foundation/components/side-nav",
-  "foundation/components/split-buttons",
+//  "foundation/components/side-nav",
+//  "foundation/components/split-buttons",
   "foundation/components/sub-nav",
   "foundation/components/switch",
   "foundation/components/tables",
-  "foundation/components/tabs",
-  "foundation/components/thumbs",
-  "foundation/components/tooltips",
+//  "foundation/components/tabs",
+//  "foundation/components/thumbs",
+//  "foundation/components/tooltips",
   "foundation/components/top-bar",
   "foundation/components/type",
-  "foundation/components/offcanvas",
+//  "foundation/components/offcanvas",
   "foundation/components/visibility";
 
 @import "mixins/social";
 
+@import "avatar";
 @import "navigation";
 @import "forms";
 @import "item";
@@ -116,77 +117,15 @@ body {
         min-width:960px;
         margin: 0px auto;
         position: relative;
-/*         .scrolled & {
+        /*      
+       .scrolled & {
             top: 6em;
-        } */
+        }
+        */
         top: 6em;
     }
 }
 
-// ============ Odstraneni responzivity ======
-#all {
-}
-
-/*
-@import "foundation/components/global";
-@import "foundation/components/grid";
-@import "foundation/components/visibility";
-@import "foundation/components/block-grid";
-@import "foundation/components/type";
-@import "foundation/components/buttons";
-
-//@import "foundation/components/forms";
-//@import "foundation/components/custom-forms";
-@import "foundation/components/button-groups";
-@import "foundation/components/dropdown-buttons";
-
-//@import "foundation/components/split-buttons";
-//@import "foundation/components/flex-video";
-//@import "foundation/components/section";
-@import "foundation/components/top-bar";
-
-//@import "foundation/components/orbit";
-//@import "foundation/components/reveal";
-
-//@import "foundation/components/joyride";
-//@import "foundation/components/clearing";
-@import "foundation/components/alert-boxes";
-
-//@import "foundation/components/breadcrumbs";
-//@import "foundation/components/keystrokes";
-//@import "foundation/components/labels";
-@import "foundation/components/inline-lists";
-
-//@import "foundation/components/pagination";
-//@import "foundation/components/panels";
-//@import "foundation/components/pricing-tables";
-@import "foundation/components/progress-bars";
-
-//@import "foundation/components/side-nav";
-@import "foundation/components/sub-nav";
-
-//@import "foundation/components/switch";
-//@import "foundation/components/magellan";
-//@import "foundation/components/tables";
-//@import "foundation/components/thumbs";
-//@import "foundation/components/tooltips";
-@import "foundation/components/dropdown";
-
-
-
-
-/*@import "foundationImprovements";
-@import "hearthIcons";
-
-@import "mixins/social";
-@import "progress";
-*/
-
-/* 
-Signika is not needed anymore, right?
-@include font-face("Signika", font-files("Signika-Light.woff", "Signika-Light.ttf", "Signika-Light.svg#signikalight"), "Signika-Light.eot", 300);
-@include font-face("Signika", font-files("Signika-Semibold.woff", "Signika-Semibold.ttf", "Signika-Semibold.svg#signikasemibold"), "Signika-Semibold.eot", bold);
- */
 
 @import "hearthIcons";
 @include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
@@ -198,8 +137,8 @@ meta.foundation-data-attribute-namespace {
 }
 
 
-
-/*@function emCalc($pxWidth, $base: $em-base) {
+/*
+@function emCalc($pxWidth, $base: $em-base) {
     @return $pxWidth / $base * 1em;
 }
 
@@ -327,8 +266,6 @@ nav.left-pad {
     position: relative;
     left: $left-bar-width;
 }
-
-
 
 .content {
     @media #{$small} {
@@ -511,46 +448,8 @@ p {
     font-size: 32px;
 }
 
-.bob {
-    p {
-        position: absolute;
-        right: 5%;
-        bottom: 40%;
-        opacity: 0.5;
-        width: 90%;
-    }
-    img {
-        position: absolute;
-        right: 5%;
-        bottom: 30px;
-        height: 40%;
-        opacity: 0.2;
-    }
-}
-
-.show-on-hover {
-    @include transition(opacity 1s);
-    opacity: 0;
-    display: block;
-    @media #{$mobile} {
-        display: inherit;
-        opacity: 1;
-    }
-}
-
-.touch .show-on-hover {
-    display: inherit;
-}
-
 .listing,
 .profile {
-    .photo {
-        position: relative;
-    }
-    .photo img {
-        @include border-radius($global-radius);
-        border: 2px solid lighten(color(3), 20%);
-    }
     .followee, .follower, .friend {
         overflow: hidden;
         &:before {
@@ -578,13 +477,6 @@ p {
         margin-left: $listing-image-size * -1;
         padding-left: $listing-image-size + emCalc($grid-size * 1.5);
         float: left;
-    }
-    .wish-text, .profile-wish-text {
-        .photo>img {
-            @include border-radius($global-radius);
-            margin-top: emCalc(2 * $grid-size);
-            margin-bottom: emCalc(2 * $grid-size);
-        }
     }
     .user .wish-text {
         color: #AA9B69;
@@ -768,129 +660,6 @@ p {
 .need {
     text-decoration: underline;
     color: $need-text-color;
-}
-
-.profile {
-    h1 {
-        color: color(1);
-        margin-bottom: 0;
-    }
-    .more-notification {
-        background-color: darken(color(5), 5%);
-        background: linear-gradient(top, color(5), darken(color(5), 3%));
-        cursor: pointer;
-        position: relative;
-        h1 {
-            text-align: center;
-            font-weight: bold;
-        }
-        a {
-            color: darken(color(5), 15%);
-            @include text-shadow(0 -1px 0 darken(color(5), 35%));
-            position: absolute;
-            right: 0.5em;
-            top: 0.5em;
-            &:hover {
-                color: darken(color(5), 25%);
-            }
-            font-size: 2em;
-        }
-    }
-    .profile-header,
-    .profile-rate {
-        @include reset-box-model;
-        padding: emCalc($grid-size * 1);
-        padding-bottom: 0;
-        @media #{$small} {
-            padding: emCalc($grid-size * 2);
-            padding-bottom: 0;
-        }
-    }
-    .profile-header {
-        $margin-base: 12px;
-        .avatar img {
-            @include border-radius($global-radius);
-            float: left;
-            margin-right: emCalc($grid-size);
-        }
-        .action,
-        .ratings-bar {
-            margin-top: emCalc($margin-base);
-            @media #{$small} {
-                margin-top: emCalc($margin-base, $desktop-font-size);
-            }
-        }
-        .ratings-bar {
-            margin-left: emCalc($profile-image-size + $grid-size);
-            @media #{$small} {
-                margin-left: emCalc($profile-image-size + $grid-size, $desktop-font-size);
-            }
-        }
-        h1.username {
-            $username-font-size: 22px;
-            @include reset-box-model;
-            padding-top: emCalc($margin-base / 2);
-            font-size: emCalc($username-font-size, $desktop-font-size);
-            line-height: emCalc($desktop-line-height, $username-font-size);
-        }
-    }
-    .desktop-about {
-        margin: 0;
-    }
-    min-height: 100%;
-    height: 100%;
-    .profile-links {
-        a {
-            padding: emCalc($grid-size);
-            display: block;
-            text-align: center;
-        }
-        border-bottom: 1px solid color(1);
-        margin-top: emCalc($grid-size * 2);
-    }
-    .follow-box {
-        padding-left: emCalc($grid-size * 2);
-        padding-right: emCalc($grid-size * 2);
-        ul {
-            margin-left: 0;
-            li {
-                float: left;
-                margin: 0;
-                margin-right: emCalc($grid-size);
-                margin-bottom: emCalc($grid-size);
-            }
-        }
-    }
-}
-
-.underliner {
-    position: relative;
-    display: inline-block;
-    z-index: 0;
-    &:after, &:before {
-        width: 0;
-        height: 0;
-        content: "";
-        display: block;
-        position: absolute;
-        bottom: -1px;
-        left: 45%;
-    }
-    &:after {
-        border-bottom: 9px solid $body-alt-bg;
-        border-left: 9px solid transparent;
-        border-right: 9px solid transparent;
-        z-index: 1;
-        margin-top: 1px;
-    }
-    &:before {
-        border-bottom: 10px solid color(1);
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        margin-top: -1px;
-        margin-left: -1px;
-        z-index: -100;
-    }
 }
 
 .fulltext {
@@ -1135,16 +904,6 @@ h1.green {
     margin-bottom: 1.25em;
 }
 
-.reply-to-ad {
-    & input {
-        float: left;
-    }
-    & label {
-        display: block;
-        padding-left: 28px;
-    }
-}
-
 label {
     display: inline;
     font-size: 100%;
@@ -1153,7 +912,6 @@ label {
 input[disabled].text-input {
     background: $body-bg;
 }
-
 
 
 .round,
@@ -1196,21 +954,6 @@ small.error {
     }
 }
 
-.invitation-link {
-    display: block;
-    position: fixed;
-    z-index: 50;
-    top: $topbar-height;
-    right: 0;
-    height: 33px;
-    background: $body-alt-bg;
-    border-bottom-left-radius: $global-radius;
-    border-left: 1px solid;
-    border-bottom: 1px solid;
-    padding: 3px 15px 15px 15px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-}
-
 @import "terms";
 
 hr {
@@ -1248,77 +991,6 @@ hr {
     color: $negative-font-color;
 }
 
-.hyphenate {
-    -ms-word-break: break-word;
-    word-break: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-}
-
-.notification {
-    &.new-community {
-        position: absolute;
-        top: 52px;
-        left: 134px;
-        padding: emCalc($grid-size);
-        border-radius: $global-radius;
-        border: 1px solid;
-        background: $body-alt-bg;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        font-size: smaller;
-        z-index: 9999;
-        h5 {
-            text-transform: uppercase;
-            margin: 0;
-            padding: 0;
-            padding-bottom: emCalc($grid-size / 2);
-        }
-        p {
-            text-transform: lowercase;
-            margin: 0;
-            padding: 0;
-            line-height: 150%;
-        }
-        .close {
-            color: color(1);
-            text-align: right;
-            float: right;
-        }
-        .arrow {
-            display: block;
-            position: relative;
-            width: 0;
-            left: -42px;
-            top: 18px;
-            &:after,
-            &:before {
-                width: 0;
-                height: 0;
-                content: "";
-                display: block;
-                position: absolute;
-                left: 22px;
-            }
-            &:after {
-                border-right: 12px solid $body-alt-bg;
-                border-top: 20px solid transparent;
-                border-bottom: 20px solid transparent;
-                z-index: 101;
-                margin-top: -1px;
-                margin-left: 1px;
-            }
-            &:before {
-                border-right: 11px solid $body-border-color;
-                border-top: 19px solid transparent;
-                border-bottom: 19px solid transparent;
-                z-index: 100;
-            }
-        }
-    }
-}
-
 #about-container {
     height: 100%;
     -webkit-background-size: cover;
@@ -1344,7 +1016,6 @@ textarea:focus {
         color: transparent;
     }
 }
-
 
 @import "unsupported";
 
@@ -1378,7 +1049,6 @@ input + .remove {
 }
 
 @import "messages";
-;
 
 
 form[name="replyForm"] {

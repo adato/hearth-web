@@ -108,6 +108,10 @@ $topBarImageSize: 1.8em;
             width: $fontSize;
         }
     }
+    .avatar {
+        margin: auto;
+        margin-bottom: -2px;
+    }
 
     .user-dropdown {
         p.heading {
@@ -120,38 +124,21 @@ $topBarImageSize: 1.8em;
             padding-top: 6px;
             padding-bottom: 3px;
         }
-        .av-img {
-            width: 25px;
-            height: 25px;
-            display: inline-block;
-            overflow: hidden;
+        .avatar {
             margin-right: 5px;
-            border-radius: 50%;
-            background-size: cover;
-            background-image: inline-image("no-avatar.jpg");
-            &.community {
-                background-image: inline-image("no-cm-avatar.jpg");
+            margin-bottom: 0px;
+            img {
+                width: 25px;
+                height: 25px;
             }
         }
-        span {
+        span.name {
             position: relative;
             top: -6px;
         }
         .user-switch-item {
             margin-left: 10px;
         }
-    }
-    .img {
-        width: $topBarImageSize;
-        height: $topBarImageSize;
-        border-radius: 50%;
-        background-size: cover;
-        position: relative;
-        left: 50%;
-        margin: {
-            left: -$topBarImageSize / 2;
-        };
-        background-image: inline-image("no-avatar.jpg");
     }
     .search-button {
         position: absolute;
