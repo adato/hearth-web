@@ -11,7 +11,7 @@
             </a>
         </div>
         
-        <tags-input refocus-input-on-tab display-property="name" class="tags" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}" replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30">
+        <tags-input refocus-input-on-tab display-property="address" class="tags" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}" replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30">
         </tags-input>
 
         <div class="clear"></div>
@@ -23,14 +23,4 @@
             {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
         </checkbox>
     </div>
-
-<!-- 
-    <div class="error moveUp" ng-show="error">
-        <span>{{ errorMsg | translate }}</span>
-    </div>
-    <div class="error moveUp" ng-show="errorWrongPlace">
-        <span>{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
-    </div> -->
-
-  {{ locations }}
 </div>

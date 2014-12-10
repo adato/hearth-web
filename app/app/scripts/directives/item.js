@@ -114,7 +114,7 @@ angular.module('hearth.directives').directive('item', [
                     else
                         scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 
-                    if (item.author.locations && item.author.locations[0] && !item.author.locations[0].name) {
+                    if (item.author.locations && item.author.locations[0] && !item.author.locations[0].address) {
                         item.author.locations = [];
                     }
                     if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0 || item.attachments_attributes.length > 3) {

@@ -16,9 +16,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			type: false,
 			keywords: [],
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
-			locations: [{
-				name: ''
-			}],
+			locations: [],
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
@@ -200,7 +198,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(post.locations && ! post.location_unlimited) {
 
 				post.locations.forEach(function(item) {
-					if(item.name == '' || !item.coordinates) {
+					if(item.address == '' || !item.coordinates) {
 						res = $scope.showError.locations = true;
 					}
 				});
@@ -367,9 +365,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				post.name = $.trim(post.name);
 
 				if (!post.locations || !post.locations.length || post.location_unlimited) {
-					post.locations = [{
-						name: ''
-					}];
+					post.locations = [];
 				}
 
 				post.type = post.type == 'need';

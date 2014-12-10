@@ -22,7 +22,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.sendingDelete = false;
                 $scope.defaultCommunity = {
                     name: '',
-                    location: [{name:''}],
+                    location: [],
                     description: '',
                     terms: '',
                 };
@@ -112,7 +112,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         $scope.showError.description = err = true;
                     }
 
-                    if(data.location[0].name == '') {
+                    if(data.location[0].address == '') {
                         $scope.showError.location = err = true;
                     }
 

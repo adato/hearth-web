@@ -75,9 +75,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				data.webs = [''];
 			}
 			if (!data.locations || !data.locations.length) {
-				data.locations = [{
-					name: ''
-				}];
+				data.locations = [];
 			}
 
 			data.interests = (data.interests) ? data.interests.join(",") : '';
@@ -116,7 +114,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			
 			if(data.locations) {
 				data.locations.forEach(function(item) {
-					if(item.name == '') {
+					if(item.address == '') {
 						res = false;
 						$scope.showError.locations = true;
 					}

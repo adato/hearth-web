@@ -130,7 +130,7 @@ angular.module('hearth.geo').directive('locations', [
                     // but only when it is now added yet
                     if(!$scope.locationExists(addr)) {
 
-                        info.name = addr;
+                        info.address = addr;
                         info.coordinates = [pos.lng(), pos.lat()];
                         $scope.locations.push(info);
 
@@ -205,11 +205,7 @@ angular.module('hearth.geo').directive('locations', [
                     // $scope.initMap();
                 };
 
-
-                $scope.$watch("locations", function() {
-                    console.log("Locations: ", $scope.locations);
-                    refreshMarkers();
-                }, true);
+                $scope.$watch("locations", refreshMarkers, true);
                 $timeout($scope.init);
             }
         };
