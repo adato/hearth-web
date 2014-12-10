@@ -39,7 +39,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					$scope.addItemsToList(data, index + 1, done);
 				}, 10);
 			}
-			done();
+			done(data);
 		};
 
 		/**
@@ -79,35 +79,32 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		};
 
+		/**
+		 * This will load new posts to marketplace
+		 */
 		$scope.load = function() {
+			// load only once in a time
 			if ($scope.loading == true)
 				return;
 			$scope.loading = true;
 
+			// load only if map is not shown
 			if (!$scope.showMap) {
 				var params = angular.extend(angular.copy($location.search()), {
 					offset: $scope.items.length,
 					limit: $scope.limit
 				});
 
+				// if there are keywords, add them to search
 				if ( $.isArray(params.keywords)) {
 					params.keywords = params.keywords.join(",");
 				}
 
+				// load based on given params
 				Post.query(params, function(data) {
-					// if (params.offset > 0) {
-						$scope.addItemsToList(data, 0, function() {
-							$scope.finishLoading(data);
-						});
-						// $scope.items = $scope.items.concat(data.data);
-					// } else {
-					// 	$scope.items = data.data;
-					// 	$timeout(function() {
-					// 		$scope.finishLoading(data);
-					// 	});
-					// }
-
-		
+					// iterativly add loaded data to the list and then call finishLoading
+					$scope.addItemsToList(data, 0, $scope.finishLoading);
+					
 					$scope.loaded = true;
 					$rootScope.$broadcast('postsLoaded');
 				});

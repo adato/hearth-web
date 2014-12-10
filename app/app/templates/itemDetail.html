@@ -1,8 +1,23 @@
 <div>
 	<div loading show="!loaded"></div>
 
-	<div ng-if="loaded" class="item item-detail box web-width">
+	<div ng-if="loaded" class="item-detail web-width">
 
+		<div class="detail">
+			<article class="row">
+				<section ng-if="! itemDeleted && ad" class="large-12 columns">
+					<item keywords-active="{}" user="user" item="ad" community="loggedCommunity" inactivate-tags="true"></item>
+				</section>
+				<section ng-show="! itemDeleted && ad === false" class="item-not-found">
+					{{ 'POST_NOT_FOUND' | translate }}
+				</section>
+				<section ng-show="itemDeleted" class="item-not-found">
+					{{ 'POST_WAS_DELETED' | translate }}
+				</section>
+			</article>
+		</div>
+
+<!-- 		
 		<article class="row">
 			<section ng-show="! itemDeleted && show && item === false" class="item-not-found">
 				{{ 'POST_NOT_FOUND' | translate }}
@@ -163,6 +178,6 @@
 					</div>
 				</div>
 			</section>
-		</article>
+		</article> -->
 	</div>
 </div>

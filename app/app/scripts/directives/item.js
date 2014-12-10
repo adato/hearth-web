@@ -50,6 +50,7 @@ angular.module('hearth.directives').directive('item', [
                 // default values
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
                 scope.keywords = scope.keywordsActive || [];
+                scope.recountedHeight = false;
 
                 // public methods from rootScope
                 scope.loggedUser = $rootScope.loggedUser;
@@ -75,7 +76,7 @@ angular.module('hearth.directives').directive('item', [
                     scope.expanded = false;
                     scope.isActive = false;
                 };
-
+                
                 /**
                  * When updated item, refresh its info
                  */
@@ -93,15 +94,21 @@ angular.module('hearth.directives').directive('item', [
                     else
                         scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 
-                    if ($('.expandable', element).height() - $('.expandable p ', element).height() < 0 || item.attachments_attributes.length > 3) {
-                        scope.showMore = true;
-                    }
+                    if(!scope.hiddenInit)
+                        scope.recountHeight();
 
                     item.karma = Karma.count(item.author.up_votes, item.author.down_votes);
                     if(item.karma) {
                         item.karma += "%";
                     }
                 });
+                
+                scope.recountHeight = function() {
+                    if(scope.recountedHeight)
+                        return;
+                    scope.recountedHeight = true;
+                    scope.showMore = $('.expandable', element).height() - $('.expandable p ', element).height() < 0 || scope.item.attachments_attributes.length > 3;
+                };
 
                 scope.toggleCollapsed = function() {
                     $('.show-more', element).toggleClass('expanded');
