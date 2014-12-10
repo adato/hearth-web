@@ -400,7 +400,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             var delayOut = 2000;
             var color = "#FFB697";
             // select elements which we will be changing (item, item arrow, etc..)
-            var elements = $(".post_"+item._id+" .item, .post_"+item._id+" .item .overlap, .post_"+item._id+" .item .arrowbox");
+            var elements = $("#post_"+item._id+" .item, #post_"+item._id+" .item .overlap, #post_"+item._id+" .item .arrowbox");
 
             elements.animate({backgroundColor: color}, delayIn, function() {
                 elements.animate({backgroundColor: "#FFF"}, delayOut );

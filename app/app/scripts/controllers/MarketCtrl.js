@@ -32,9 +32,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 
 		$scope.addItemsToList = function(data, index, done) {
-			if (data.data.length > index) {
-				$scope.items.push(data.data[index]);
+			var posts = data.data;
 
+			if (posts.length > index) {
+				$scope.items.push(posts[index]);
 				return $timeout(function() {
 					$scope.addItemsToList(data, index + 1, done);
 				}, 10);
@@ -45,17 +46,23 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		/**
 		 * Will go throught loaded and hidden posts and display them with some effect
 		 */
-		$scope.showHidden = function(done) {
+		$scope.showHidden = function(posts, done) {
 			var timeout = 0;
-			var items = $(".wish-list .post:hidden");
 			var index = 0;
+
 			// each element fade in with increasing delay
 			// after all items will be displayed, call done callback
-			async.each(items, function(item, done) {
-				if($scope.items.length == $scope.limit && ++index < 4)
-					$(item).delay(timeout).fadeIn(done);
-				else
-					$(item).delay(timeout).slideDown(done);
+			async.each(posts, function(post, done) {
+				var item = $("#post_"+post._id);
+				var fadeIn = $scope.items.length == $scope.limit && ++index < 4;
+				var showMethod = (fadeIn) ? item.fadeIn : item.slideDown;
+
+				setTimeout(function() {
+					showMethod.call(item, function() {
+						done();
+						$scope.$broadcast("recountPostHeight", post._id);
+					})
+				}, timeout);
 
 				timeout += 200;
 			}, done);
@@ -70,7 +77,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 
 			$(".loading").slideUp(function() {
-				$scope.showHidden(function() {
+				$scope.showHidden(data.data, function() {
 					$timeout(function() {
 						$(".loading").show();
 						$scope.loading = false;
@@ -184,7 +191,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.items.unshift(post);
 
 			$timeout(function() {
-				$(".post_"+post._id).slideDown(function() {
+				$("#post_"+post._id).slideDown(function() {
 					post.hidden = false;
 				});
 			});
@@ -195,7 +202,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		 * post class so we won't manipulate with him in future
 		 */
 		$scope.$on('itemDeleted', function($event, item) {
-			$( ".post_"+item._id ).slideUp( "slow", function() {
+			$( "#post_"+item._id ).slideUp( "slow", function() {
 				$(this).removeClass("post");
 			});
 		});

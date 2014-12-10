@@ -50,7 +50,6 @@ angular.module('hearth.directives').directive('item', [
                 // default values
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
                 scope.keywords = scope.keywordsActive || [];
-                scope.recountedHeight = false;
 
                 // public methods from rootScope
                 scope.loggedUser = $rootScope.loggedUser;
@@ -76,7 +75,7 @@ angular.module('hearth.directives').directive('item', [
                     scope.expanded = false;
                     scope.isActive = false;
                 };
-                
+
                 /**
                  * When updated item, refresh its info
                  */
@@ -94,19 +93,23 @@ angular.module('hearth.directives').directive('item', [
                     else
                         scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 
+                    // if the post is shown instantly (not with any effect) recount his height to show "show more" link
                     if(!scope.hiddenInit)
-                        scope.recountHeight();
+                        scope.recountHeight(null, item._id);
 
+                    // count Karma length
                     item.karma = Karma.count(item.author.up_votes, item.author.down_votes);
                     if(item.karma) {
                         item.karma += "%";
                     }
                 });
                 
-                scope.recountHeight = function() {
-                    if(scope.recountedHeight)
+                /**
+                 * When post is shown, recount his height and display link to show/hide more
+                 */
+                scope.recountHeight = function(ev, id) {
+                    if(scope.item._id != id)
                         return;
-                    scope.recountedHeight = true;
                     scope.showMore = $('.expandable', element).height() - $('.expandable p ', element).height() < 0 || scope.item.attachments_attributes.length > 3;
                 };
 
@@ -128,9 +131,14 @@ angular.module('hearth.directives').directive('item', [
                         scope.item = item;
                     }
                 };
-
+                
                 scope.init();
                 $rootScope.$on('updatedItem', scope.refreshItemInfo);
+
+                // when we hide item after init and then show him with some effect,
+                // we need to recount his height after displayed
+                if(scope.hiddenInit)
+                    scope.$on('recountPostHeight', scope.recountHeight);
             }
         };
     }
