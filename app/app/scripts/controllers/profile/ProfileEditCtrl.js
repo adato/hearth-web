@@ -114,7 +114,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			
 			if(data.locations && data.locations.length) {
 				data.locations.forEach(function(item) {
-					if(item.name == '') {
+					if(item.address == '') {
 						res = false;
 						$scope.showError.locations = true;
 					}

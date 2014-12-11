@@ -96,7 +96,7 @@ angular.module('hearth.directives').directive('item', [
                     // if the post is shown instantly (not with any effect) recount his height to show "show more" link
                     if(!scope.hiddenInit)
                         scope.recountHeight(null, item._id);
-
+                    
                     // count Karma length
                     item.karma = Karma.count(item.author.up_votes, item.author.down_votes);
                     if(item.karma) {

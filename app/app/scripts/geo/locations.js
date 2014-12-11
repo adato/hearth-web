@@ -131,7 +131,7 @@ angular.module('hearth.geo').directive('locations', [
                     // but only when it is now added yet
                     if(!$scope.locationExists(addr)) {
 
-                        info.name = addr;
+                        info.address = addr;
                         info.coordinates = [pos.lng(), pos.lat()];
                         $scope.locations.push(info);
 

@@ -373,6 +373,29 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return dateFormat;
 		}
 		
+<<<<<<< HEAD
+=======
+		function transformDataIn(post) {
+			if (post) {
+				post.dateOrig = post.valid_until;
+				post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
+
+				if(post.valid_until_unlimited) {
+					post.valid_until = '';
+				}
+
+				post.name = $.trim(post.name);
+
+				if (!post.locations || !post.locations.length || post.location_unlimited) {
+					post.locations = [];
+				}
+
+				post.type = post.type == 'need';
+			}
+			return post;
+		}
+
+>>>>>>> master
 		$scope.itemDeleted = function($event, item) {
 
 			if($scope.post._id == item._id) $scope.closeEdit();
