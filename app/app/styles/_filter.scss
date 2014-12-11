@@ -25,6 +25,9 @@
     }
     .bars {
         margin: 0;
+        .checkbox {
+            display: block;
+        }
         .columns {
             padding: {
                 left: 1px;

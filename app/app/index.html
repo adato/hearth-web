@@ -132,8 +132,6 @@
     <script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
     <script src="vendor/foundation/js/foundation.js"></script>
     <script src="vendor/angular-flash/dist/angular-flash.js"></script>
-    <script src="vendor/angular-translate/angular-translate.js"></script>
-    <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
     <script src="vendor/angular-mocks/angular-mocks.js"></script>
     <script src="vendor/angularitics/src/angulartics.js"></script>
     <script src="vendor/angular-loading-bar/src/loading-bar.js"></script>
@@ -152,6 +150,9 @@
     <script src="vendor/angularitics/src/angulartics-ga.js"></script>
     <!-- endbuild -->
     
+    <script src="vendor/angular-translate/angular-translate.js"></script>
+    <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
     <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="vendor/flexslider/flexslider.css">
     <script src="vendor/async/lib/async.js"></script>
@@ -264,13 +265,13 @@
      <script src="scripts/services/Tutorial.js"></script>
      <script src="scripts/services/Email.js"></script>
      <script src="scripts/services/UnauthReload.js"></script>
+     <script src="scripts/services/ViewPort.js"></script>
 
      <script src="scripts/filters/filters.js"></script>
 
       <script src="scripts/directives/invitationForm.js"></script>
       <script src="scripts/directives/avatar.js"></script>
       <script src="scripts/directives/addressAutocomplete.js"></script>
-      <script src="scripts/directives/feedback.js"></script>
       <script src="scripts/directives/scrollTo.js"></script>
       <script src="scripts/directives/htmlLabel.js"></script>
       <script src="scripts/directives/fileUpload.js"></script>
@@ -278,17 +279,12 @@
       <script src="scripts/directives/fileUploadOutput.js"></script>
       <script src="scripts/directives/signedOut.js"></script>
       <script src="scripts/directives/signedIn.js"></script>
-      <script src="scripts/directives/feature.js"></script>
-      <script src="scripts/directives/featureEnabled.js"></script>
-      <script src="scripts/directives/featureDisabled.js"></script>
-      <script src="scripts/directives/fulltextTypeahead.js"></script>
       <script src="scripts/directives/social.js"></script>
       <script src="scripts/directives/datepicker.js"></script>
       <script src="scripts/directives/needOfferSelector.js"></script>
       <script src="scripts/directives/filter.js"></script>
       <script src="scripts/directives/filterbar.js"></script>
       <script src="scripts/directives/filterStatus.js"></script>
-      <script src="scripts/directives/itemEdit.js"></script>
       <script src="scripts/directives/item.js"></script>
       <script src="scripts/directives/communityItem.js"></script>
       <script src="scripts/directives/radio.js"></script>
@@ -307,6 +303,8 @@
       <script src="scripts/directives/communityCreateEdit.js"></script>
       <script src="scripts/directives/flexslider.js"></script>
       <script src="scripts/directives/loading.js"></script>
+      <script src="scripts/directives/mapItems.js"></script>
+      <script src="scripts/directives/dropdown.js"></script>
 
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>
@@ -342,12 +340,15 @@
       <script src="scripts/controllers/community/CommunityDataFeedCtrl.js"></script>
       <script src="scripts/controllers/LoginCtrl.js"></script>
       <script src="scripts/controllers/FulltextCtrl.js"></script>
+      <script src="scripts/controllers/Error404Ctrl.js"></script>
+      <script src="scripts/controllers/FillEmailCtrl.js"></script>
+
       <script src="scripts/controllers/modal/ItemEdit.js"></script>
       <script src="scripts/controllers/modal/ItemReply.js"></script>
       <script src="scripts/controllers/modal/Tutorial.js"></script>
       <script src="scripts/controllers/modal/InviteBox.js"></script>
-      <script src="scripts/controllers/Error404Ctrl.js"></script>
-      <script src="scripts/controllers/FillEmailCtrl.js"></script>
+      <script src="scripts/controllers/modal/ConfirmBox.js"></script>
+
 
       <script src="scripts/messages/Messages.js"></script>      
 

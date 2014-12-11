@@ -16,7 +16,6 @@ angular.module('hearth.directives').directive('htmlLabel', function() {
 			});
 			return element.bind('click', function(event) {
 				if (event.target.nodeName.toLowerCase() === 'a') {
-					$('#terms').foundation('reveal', 'open');
 					event.preventDefault();
 					return event.stopPropagation();
 				}

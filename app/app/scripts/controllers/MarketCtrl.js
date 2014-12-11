@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', 'PostReplies', 'User', '$translate', '$timeout', 'Filter', 'Notify',
+	'$scope', '$rootScope', 'Post', '$location', 'User', '$translate', '$timeout', 'Filter', 'Notify',
 
-	function($scope, $rootScope, Post, $location, PostReplies, User, $translate, $timeout, Filter, Notify) {
+	function($scope, $rootScope, Post, $location, User, $translate, $timeout, Filter, Notify) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -22,11 +22,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
 
-		$scope.testFilter = function() {
-
-			$scope.filterIsOn = Filter.isSet();
-		};
-
 		$scope.resetFilter = function() {
 			Filter.reset();
 			$scope.loaded = false;
@@ -36,58 +31,88 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$rootScope.$broadcast("filterOpen");
 		};
 
-		$scope.addItemsToList = function(data, index) {
-			if (data.data.length > index) {
-				$scope.items.push(data.data[index]);
+		$scope.addItemsToList = function(data, index, done) {
+			var posts = data.data;
 
+			if (posts.length > index) {
+				$scope.items.push(posts[index]);
 				return $timeout(function() {
-					$scope.addItemsToList(data, index + 1);
+					$scope.addItemsToList(data, index + 1, done);
 				}, 10);
 			}
+			done(data);
+		};
 
-			$scope.finishLoading(data);
+		/**
+		 * Will go throught loaded and hidden posts and display them with some effect
+		 */
+		$scope.showHidden = function(posts, done) {
+			var timeout = 0;
+			var index = 0;
+
+			// each element fade in with increasing delay
+			// after all items will be displayed, call done callback
+			async.each(posts, function(post, done) {
+				var item = $("#post_"+post._id);
+				var fadeIn = $scope.items.length == $scope.limit && ++index < 4;
+				var showMethod = (fadeIn) ? item.fadeIn : item.slideDown;
+
+				setTimeout(function() {
+					showMethod.call(item, function() {
+						done();
+						$scope.$broadcast("recountPostHeight", post._id);
+					})
+				}, timeout);
+
+				timeout += 200;
+			}, done);
 		};
 
 		$scope.finishLoading = function(data) {
-			$scope.topArrowText.top = $translate('ads-has-been-read', {
+			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
 				value: $scope.items.length
 			});
-			$scope.topArrowText.bottom = $translate('TOTAL_COUNT', {
+			$scope.topArrowText.bottom = $translate.instant('TOTAL_COUNT', {
 				value: data.total
 			});
 
-			$scope.loading = false;
+			$(".loading").fadeOut('fast', function() {
+				$scope.showHidden(data.data, function() {
+					$timeout(function() {
+						$(".loading").show();
+						$scope.loading = false;
+						//show result wen  on bottom page only when there are any posts
+					})
+				});
+			});
 		};
 
-		$scope.setLoadingComplete = function() {
-			$scope.loaded = true;
-		};
-
+		/**
+		 * This will load new posts to marketplace
+		 */
 		$scope.load = function() {
-			if ($scope.loading == true)
-				return;
-
+			// load only once in a time
+			if ($scope.loading) return;
 			$scope.loading = true;
 
-			if ($scope.showMap === false) {
+			// load only if map is not shown
+			if (!$scope.showMap) {
 				var params = angular.extend(angular.copy($location.search()), {
 					offset: $scope.items.length,
 					limit: $scope.limit
 				});
 
+				// if there are keywords, add them to search
 				if ( $.isArray(params.keywords)) {
 					params.keywords = params.keywords.join(",");
 				}
 
+				// load based on given params
 				Post.query(params, function(data) {
-					if (params.offset > 0) {
-						$scope.addItemsToList(data, 0);
-					} else {
-						$scope.items = data.data;
-						$scope.finishLoading(data);
-					}
-		
 					$scope.loaded = true;
+
+					// iterativly add loaded data to the list and then call finishLoading
+					$scope.addItemsToList(data, 0, $scope.finishLoading);
 					$rootScope.$broadcast('postsLoaded');
 				});
 			}
@@ -97,7 +122,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 			refreshTags();
 			Filter.checkUserFilter();
-			$scope.testFilter();
+			$scope.filterIsOn = Filter.isSet();
 
 			$scope.$on('authorize', function() {
 				$scope.load();
@@ -111,31 +136,25 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		}
 
-		$scope.$on('filterApplied', function($event, filterData) {
-			// $scope.user.filter = filterData;
-
+		/**
+		 * When applied filter - refresh post on marketplace
+		 */
+		function refreshPosts() {
+			$scope.filterIsOn = Filter.isSet();
 			refreshTags();
-			
-			// if ($scope.filter && $.isEmptyObject($location.search())) {
-			// 	return $location.search($scope.filter);
-			// }
 
 			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.items = [];
 			$scope.load();
-		});
+		}
 
+		$scope.$on('filterApplied', refreshPosts);
 		$scope.$on('filterReseted', function() {
-			
-			$scope.$broadcast('resetFilterData');
 
-			$scope.loaded = false;
-			$scope.loading = false;
 			$scope.filter = {};
 			$scope.user.filter = {};
-			$scope.items = [];
-			$scope.load();
+			refreshPosts();
 		});
 
 		$scope.$on('postUpdated', function($event, data) {
@@ -172,29 +191,26 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.items.unshift(post);
 
 			$timeout(function() {
-				$(".post_"+post._id).slideDown(function() {
+				$("#post_"+post._id).slideDown(function() {
 					post.hidden = false;
 				});
 			});
 		});
 
-		$scope.$on('sendReply', function($event, data) {
-			PostReplies.add(data);
-		});
-
+		/**
+		 * When item is deleted - slide up his post and remove 
+		 * post class so we won't manipulate with him in future
+		 */
 		$scope.$on('itemDeleted', function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {});
-        });
+			$( "#post_"+item._id ).slideUp( "slow", function() {
+				$(this).removeClass("post");
+			});
+		});
 
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 		});
-
-
-		// show different nothing found error message when filter is changed / removed
-        $scope.$on("filterApplied", $scope.testFilter);
-        $scope.$on("filterReseted", $scope.testFilter);
 
 		// ==== Global event fired when init process is finished
 		$scope.$on('initFinished', init);

@@ -1,33 +1,13 @@
-.avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-size: cover;
-    left: 50%;
-    position: relative !important;
-    background-image: inline-image("no-avatar.jpg");
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        border-radius: 50%;
-        box-shadow: inset -3px 3px 6px rgba(black, 0.5);
-        width: 45px;
-        height: 45px;
-        left: 0;
-    }
-
-    img {
-        border-radius: 50%;
-    }
-}
-
-.community-avatar {
-    background-image: inline-image("no-cm-avatar.jpg");
-}
-
-.avatar-isset {
-    background-image: none;
+.select-style {
+    position: relative;
+    top: 2px;
+    width: unset;
+    min-width: 120px;
+    background-color: white;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    box-shadow: 0 0 7px #ddd inset;
+    z-index: 20;
 }
 
 .bold {
@@ -36,6 +16,10 @@
 
 .error {
     color: red;
+}
+
+.margin-auto {
+    margin: auto;
 }
 
 .box {
@@ -81,84 +65,6 @@ button {
     outline: none;
     &:focus {
         outline: 1px dotted darken(color(4), 30%);
-    }
-}
-
-.reveal-modal {
-    background-color: white;
-    border: none;
-    border-radius: $global-radius;
-    min-height: 100px !important;
-    position: absolute;
-    left: 50%;
-    width: 420px !important;
-    margin-left: -210px !important;
-    padding: 15px;
-    padding-top: 10px;
-
-    header {
-        position: relative;
-        h2 {
-            text-align: center;
-            font-size: 25px;
-            font-weight: normal;
-            text-align: center;
-            margin-bottom: 4px;
-            text-align: center;
-        }
-        .close {
-            display: none;
-            color: #ddd;
-            cursor: pointer;
-            font-size: 35px;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: color 0s ease 0s, all 0.8s ease 0s;
-            &:hover {
-                color: #aaa;
-            }
-        }
-    }
-    hr {
-        margin-bottom: 10px;
-        border: 1px solid #bbb8b1;
-    }
-    .text-right a {
-        color: color(5);
-        margin-top: 11px;
-        &:hover {
-            color: darken(color(5), 20%);
-        }
-    }
-
-    .columns {
-        padding: 0px;
-    }
-
-    /*
-    .fa {
-        color: color(5);
-        font-size: 2em;
-        float: left;
-        padding-right: 0.5em;
-    }
-    */
-    button {
-        background-color: color(5);
-        border-color: color(5);
-        padding: {
-            top: 8px;
-            bottom: 8px;
-        };
-        margin: {
-            bottom: 0;
-        };
-        transition: background-color 0.8s, border-color 0.8s;
-        &:hover {
-            background-color: darken(color(5), abs($button-function-factor));
-            border-color: darken(color(5), abs($button-function-factor));
-        }
     }
 }
 
@@ -404,4 +310,24 @@ textarea::-ms-clear {
         position: absolute;
         top: 50%;
     }
+}
+
+.padding-top {
+    padding-top: 1rem;
+}
+
+.padding-bottom {
+    padding-bottom: 1rem;
+}
+
+.hyphenate {
+    -ms-word-break: break-word;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;   
 }

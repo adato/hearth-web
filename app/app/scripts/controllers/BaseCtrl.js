@@ -13,6 +13,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
+        $rootScope.appUrl = '';
         $rootScope.addressOld = '';
         $rootScope.addressNew = '';
         $scope.segment = false;
@@ -21,17 +22,38 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             "User": "profile",
             "Post": "ad",
         };
+        $rootScope.socialLinks = {
+            facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+            gplus: 'https://plus.google.com/share?url=',
+            twitter: 'https://twitter.com/share?url='
+        };
 
         // init globalLoading 
         $rootScope.globalLoading = false;
+        $rootScope.topArrowText = {};
+        $scope.isScrolled = false;
 
+        /**
+         * This will set fixed height of document for current height
+         */
+        $scope.resfreshWithResize = function() {
+            $(".main-container").css("min-height", $(".main-container").height()+"px");
+        };
+
+        /**
+         * This will unset fixed height of document
+         */
+        $rootScope.$on("subPageLoaded", function() {
+            $(".main-container").css("min-height", "unset");
+        });
+
+        /**
+         * When started routing to another page, compare routes and if they differ
+         * scroll to top of the page, if not, refresh page with fixed height
+         */
         $rootScope.$on("$routeChangeStart", function(event, next) {
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
-        });
-
-        $rootScope.$on("$routeChangeSuccess", function() {
-            $scope.segment = $route.current.segment;
 
             var r1 = $rootScope.addressOld.split("/");
             var r2 = $rootScope.addressNew.split("/");
@@ -39,25 +61,40 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             // if first element in URL of old page is not same as first element in URL of new page
             // scroll to top - (alias scroll when we come to new URL)
             if(r1.length < 2 || r2.length < 2 || r1[1] != r2[1])
-                $scope.top(0, 1);
+                $rootScope.top(0, 1);
+            else
+                // dont 
+                $scope.resfreshWithResize();
         });
 
-        $scope.closeDropdown = function(id) {
-            Foundation.libs.dropdown.close($('#'+id));
-        };
+        /**
+         * After routing finished, set current page segment to variable - used somewhere else
+         * and add class of given controller to wrapping div container
+         */
+        $rootScope.$on("$routeChangeSuccess", function(next, current) {
+            $scope.segment = $route.current.segment;
 
-        $scope.topArrowText = {};
-        $scope.isScrolled = false;
+            $("#all").removeClass();
+            $("#all").addClass(current.controller);
+        });
 
         $scope.showUI = function(ui) {
             $scope.$broadcast('showUI', ui);
         };
+        
+        /**
+         * When clicked on logout button
+         */
         $scope.logout = function() {
             Auth.logout(function() {
                 window.location.hash = '#!/';
                 location.reload();
             });
         };
+        
+        /**
+         * When subbmitet fulltext search
+         */
         $scope.search = function(text) {
             if (!text) return false;
             $location.path('/search');
@@ -69,49 +106,44 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        /**
+         * Set value of fulltext search
+         */
         $rootScope.setFulltextSearch = function(val) {
             $timeout(function() {
-                // $rootScope.searchText = val;
                 $("#searchBox").val(val);
             });
-
-            // if(!$rootScope.$$phase) {
-            //     console.log("apply");
-            //     $rootScope.$apply();
-            // }
         };
-        $scope.top = function(offset, delay) {
+
+        /**
+         * This will scroll up on page
+         */
+        $rootScope.top = function(offset, delay) {
             $('html, body').animate({
                 scrollTop: offset || 0
             }, delay || 1000);
         };
 
-        $scope.getProfileLinkByType = function(type) {
+        /**
+         * Return profile of item based on its type (community, user, post)
+         */
+        $rootScope.getProfileLinkByType = function(type) {
             return $scope.addresses[type];
         };
 
+        /**
+         * Refresh user to given path
+         */
         $scope.refreshToPath = function(path) {
             window.location.hash = '#!/' + path;
             location.reload();
         };
 
-        $scope.$watch('user', function() {
-            var user = $scope.user.get_logged_in_user;
-        });
-
         $scope.$on('$includeContentLoaded', function() {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
+            timeout && clearTimeout(timeout);
             timeout = setTimeout(function() {
                 $(document).foundation();
             }, 1000);
-        });
-
-        $scope.$on('$routeChangeSuccess', function(next, current) {
-
-            $("#all").removeClass();
-            $("#all").addClass(current.controller);
         });
 
         angular.element(window).bind('scroll', function() {
@@ -120,10 +152,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $scope.isScrolled = !$scope.isScrolled;
             }
         });
-
-        $scope.getRandom = function() {
-            return Math.random();
-        };
 
         $scope.loadMyCommunities = function() {
 
@@ -167,7 +195,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.initHearthbeat = function() {
             $rootScope.pluralCat = $locale.pluralCat;
+            console.log("Setting plural cat: ", $locale.pluralCat);
+            
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
+            $rootScope.appUrl = window.location.href.replace(window.location.hash, '');
 
             if($rootScope.loggedUser._id) {
                 $scope.loadMyCommunities();
@@ -176,9 +207,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
-
-            // $rootScope.editItem(null);
-            
             Notify.checkRefreshMessage();
         };
 
@@ -200,13 +228,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // send report to API and close modal.. maybe fire some notification too?
-        $rootScope.reportItem = function(item, modal) {
+        $rootScope.reportItem = function(item) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
             $rootScope.globalLoading = true;
             Post.spam({id: item._id}, function(res) {
-                if(modal) $('#'+modal).foundation('reveal', 'close');
                 $rootScope.$broadcast('reportItem', item);
 
                 $rootScope.globalLoading = false;
@@ -250,13 +277,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // delete item
-        $rootScope.deleteItem = function(post, modal, cb) {
+        $rootScope.deleteItem = function(post, cb) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
             $rootScope.globalLoading = true;
             Post.remove({postId:post._id}, function(res) {
-                if(modal) $('#'+modal).foundation('reveal', 'close'); // if opened close modal window
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
                 Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO);
@@ -268,16 +294,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_INFO);
             });
         };
-
-        $rootScope.closeModal = function(modal) {
-            // if opened close modal window
-            if(modal) $('#'+modal).foundation('reveal', 'close');
-        };
-
-        $rootScope.revealModal = function(id) {
-            $("#"+id).foundation('reveal', 'open');
-        };
         
+        /**
+         * Function will show modal window with reply form to given post
+         */
         $rootScope.replyItem = function(post) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
@@ -315,6 +335,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+        /**
+         * Function will open modal window and show tutorial
+         * - accepts param with array of slide items
+         */
         $rootScope.showTutorial = function(slides) {
 
             var scope = $scope.$new();
@@ -333,28 +357,61 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+        $scope.test123 = function(param) {
+            alert(param);
+        }
+        $rootScope.testCallback = function(param1, param2) {
+            $scope.test123(param2);
+        };
+        
+        /**
+         * ConfirmBox reveal function has this params:
+         * title: $translate code for box head title
+         * text: $translate code for box text
+         * callback: function to call when confirmed
+         * params: array of params to pass into callback when confirmed
+         * callbackScope: if callback should be called with some scope
+         */
+        $rootScope.confirmBox = function(title, text, callback, params, callbackScope) {
+
+            // create new scope of confirmBox
+            var scope = $scope.$new();
+            scope.title = title;
+            scope.text = text;
+            scope.callback = callback;
+            scope.params = angular.isArray(params) ? params : [params];
+
+            if(callbackScope)
+                scope.callbackScope = callbackScope;
+
+            // open dialog window and inject new scope
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'confirmBox.html',
+                controller: 'ConfirmBox',
+                scope: scope,
+                className: 'ngdialog-confirm-box',
+                closeByDocument: false,
+                showClose: false
+                // closeByEscape: false,
+            });
+        };
+
         // this will flash post box with some background color
         $rootScope.blinkPost = function(item) {
             var delayIn = 200;
             var delayOut = 2000;
             var color = "#FFB697";
-            $(".post_"+item._id+" .item").animate({backgroundColor: color}, delayIn, function() {
-                $(".post_"+item._id+" .item").animate({backgroundColor: "#FFF"}, delayOut );
-            });
-    
-            $(".post_"+item._id+" .item .overlap").animate({backgroundColor: color}, delayIn, function() {
-                $(".post_"+item._id+" .item .overlap").animate({backgroundColor: "#FFF"}, delayOut );
-            });
+            // select elements which we will be changing (item, item arrow, etc..)
+            var elements = $("#post_"+item._id+" .item, #post_"+item._id+" .item .overlap, #post_"+item._id+" .item .arrowbox");
 
-            $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: color}, delayIn, function() {
-                $(".post_"+item._id+" .item .arrowbox").animate({backgroundColor: "#FFF"}, delayOut );
+            elements.animate({backgroundColor: color}, delayIn, function() {
+                elements.animate({backgroundColor: "#FFF"}, delayOut );
             });
-
         };
 
         // == deactivate / prolong / activate post item
         // and close modal or call given callback
-        $rootScope.pauseToggle = function(item, modal, cb) {
+        $rootScope.pauseToggle = function(item, cb) {
             var Action, actionType;
 
             // suspend or play based on post active state
@@ -376,8 +433,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 },
                 function(res) {
 
-                    if(modal) $('#'+modal).foundation('reveal', 'close');
-                    if(cb) cb(item);
+                    if(angular.isFunction(cb))
+                        cb(item);
+
                     $rootScope.$broadcast('updatedItem', res);
                     Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
                     $rootScope.globalLoading = false;
@@ -388,8 +446,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if( err.status == 422) {
 
                         // somethings went wrong - post is not valid
-                        // open edit box and show error
-                        if(modal) $('#'+modal).foundation('reveal', 'close');
+                        // open edit box and show errors
                         $rootScope.editItem(item, true);
                     } else {
 
@@ -399,8 +456,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // this will scroll to given element in given container (if not setted take body as default)
-        $rootScope.scrollToElement = function(el, cont) {
-            var offset = 200;
+        $rootScope.scrollToElement = function(el, cont, off) {
+            var offset = off || 200;
             var container = cont || 'html, body';
             var elementPos;
 

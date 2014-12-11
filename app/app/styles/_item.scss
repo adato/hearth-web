@@ -3,31 +3,15 @@ $border: $size / 10;
 $arrowTop: 25px;
 $imageSize: 80px;
 
-/* article.row */
-.inactive {
-    opacity: 0.55;
-}
-
-.photo {
+.user {
     position: relative;
     text-align: center;
     font-weight: bold;
     font-size: 0.8em;
-    .avatar {
-        width: $imageSize;
-        height: $imageSize;
-        overflow: hidden;
-        margin: {
-            left: -$imageSize / 2;
-        };
-        &:before {
-            width: $imageSize;
-            height: $imageSize;
-        }
-    }
+   
     div.name {
         margin: {
-            top: $fontSize;
+            top: 1rem;
         };
         text-shadow: 0px 0px 1px gray;
         color: #383838;
@@ -200,7 +184,7 @@ $imageSize: 80px;
             margin-right: 0;
             left: -7px !important;
             top: -11px !important;
-            width: 100%;
+            width: 110%;
             background-color: white;
             border: 1px solid #e3e3e3;
             border-radius: 10px;
@@ -209,9 +193,7 @@ $imageSize: 80px;
             padding-left: 0px;
             position: absolute;
             display: none;
-            &.open {
-                display: inline-block;
-            }
+            z-index: 5;
             div {
                 margin-bottom: 20px;
                 .fa {}
@@ -275,7 +257,6 @@ $imageSize: 80px;
             width: 2em;
             padding-top: 0.05em;
             text-align: center;
-            //@include transition(opacity 0.5s);
             &:hover {
                 color: black;
                 opacity: 0.2;
@@ -313,18 +294,15 @@ $imageSize: 80px;
                     border-color: color(1);
                 }
             }
-            &.main.secondary {
+            &.main.offer {
                 background-color: white;
                 color: darken(color(2), 10%);
                 border-color: lighten(color(2), 20%);
-                &:hover:not([disabled]) {
+                &:hover {
                     background-color: lighten(color(2), 30%);
                     color: darken(color(2), 10%);
                     border-color: color(2);
                 }
-            }
-            &[disabled] {
-                border-color: transparent;
             }
         }
         small {
@@ -332,6 +310,7 @@ $imageSize: 80px;
         }
     }
     .show-more {
+        margin-top: 25px;
         color: #20B1EA;
         font-weight: bold;
         display: inline-block;
@@ -399,10 +378,12 @@ $imageSize: 80px;
             bottom: $fontSize;
         };
         h1 {
+            position: relative;
+            top: -5px;
             font-size: 1.2em;
             font-weight: bold;
             word-wrap: break-word;
-            span>span {
+            span {
                 position: relative;
                 z-index: 50;
                 left: -$size / 2;
@@ -459,7 +440,7 @@ $imageSize: 80px;
             }
         }
         .tags {
-            width: 80%;
+            width: 76%;
             float: left;
         }
     }
@@ -482,12 +463,13 @@ $imageSize: 80px;
             max-width: 0;
             overflow: hidden;
             font-size: 0.5em;
-            background-color: #f4f4f4;
             position: absolute;
             right: 30px;
             top: 0;
-            z-index: 3000;
+            z-index: 10;
             height: 33px;
+            background-color: color(4);
+            padding-left: 5px;
             a {
                 &:first-child {
                     margin-left: 0px;
@@ -702,6 +684,19 @@ $imageSize: 80px;
         .item,
         .arrowbox {
             border: 2px solid #f95800;
+        }
+    }
+}
+
+
+.post {
+    &.hidden-init {
+        display: none;
+    }
+    &.inactive {
+        opacity: 0.55;
+        .share {
+            display: none;
         }
     }
 }

@@ -19,9 +19,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			
 			// ratings
 			$scope.sendingRating = false;
-
-			// ratings
-			$scope.sendingRating = false;
 			$scope.rating = {
 				score: 1,
 				text: ''
@@ -31,6 +28,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			};
 		};
 
+		/**
+		 * Return true if this profile is mine - like it is my user profile or am I community admin
+		 */
 		$scope.isMine = function () {
 			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
 			var _mineCommunity = ($rootScope.loggedCommunity) ? $rootScope.loggedCommunity._id == $routeParams.id: false;
@@ -38,6 +38,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return _mineCommunity || _mineUser;
 		};
 
+		/**
+		 * Push cities to concatenated string.
+		 * Expects info.locations = [{city: ...}, ...]
+		 */
 		$scope.citiesToString = function(info) {
 			var list = [];
 			info.locations.forEach(function(item) {
@@ -47,37 +51,49 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return list.join(", ");
 		};
 
-		$scope.fetchUser = function () {
+		/**
+		 * Fetch user of this profile
+		 */
+		$scope.fetchUser = function (fetchSubpage) {
 			// dont load user when there is no ID in params
 			if(! $routeParams.id) return false;
 
 			// if we are loading new user init
-			if($scope.paramId && $scope.paramId != $routeParams.id) 
+			if($scope.paramId && $scope.paramId != $routeParams.id) {
 				$scope.initPage();
+			}
 			
+			// if we load profile of another user (there are different IDs) scroll to top
 			if($scope.info._id !== $routeParams.id) {
+				$rootScope.top(0, 1);
 				$scope.loaded = false;
 			}
 
-			console.log("nacitam: ",$routeParams.id);
-
+			// get user data
 			User.get({user_id: $routeParams.id}, function(res) {
 				$scope.info = res;
 				$scope.info.cities = $scope.citiesToString(res);
 
+				// count karma values
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $scope.isMine();
 				// $scope.loaded = true;
 
-				$scope.$broadcast("profileTopPanelLoaded");
+				// broadcast event for load subpages
+				if(fetchSubpage)
+					$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
 
+				// when something is wrong..
 				$scope.loaded = true;
 				$scope.info = false;
 				$scope.mine = false;
 			});
 		};
 
+		/**
+		 * When toggled following user, update his followers count in bubble
+		 */
 		$scope.toggleFollowerSuccess = function() {
 			$scope.info.is_followed = !$scope.info.is_followed;
 
@@ -101,12 +117,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				if(!myFollowees)
 					$scope.toggleFollowerSuccess(res);
 				else {
-					$rootScope.closeModal('confirm-remove-following-'+user_id);
 					$scope.$broadcast('profileRefreshUser');
 				}
 			});
 		};
 		
+		// add follower 
 		$scope.addFollower = function(user_id) {
 
 			if($scope.sendingAddFollower) return false;
@@ -119,6 +135,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		// toggle follow - unfollow if is followed and opposite
 		$scope.toggleFollow = function(user_id) {
 			
 			if($scope.info.is_followed) {
@@ -128,6 +145,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 		};
 
+		// when changed URL, save actual segment name to pageSegment value
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
     		$scope.pagePath = $route.current.originalPath;
@@ -135,13 +153,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 	    		$scope.pageSegment = $route.current.$$route.segment;
 		};
 
-		$scope.refreshUser = function() {
+		// refresh user info and if fetchSubpage == true also fetch new subpage
+		$scope.refreshUser = function(fetchSubpage) {
 
-			$scope.refreshDataFeed();
-			$scope.fetchUser();
+			if(fetchSubpage)
+				$scope.refreshDataFeed();
+			$scope.fetchUser(fetchSubpage);
 
 		};
 		
+		// scroll to user Rating form when opened
 		$scope.scrollToUserRatingForm = function() {
 			// scroll to form
 			setTimeout(function() {
@@ -158,6 +179,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showError.text = false;
 			$scope.rating.score = score;
 			$scope.rating.text = '';
+			$scope.rating.post_id = 0;
+			// select first option in posts select - eg default value			
+			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 
 			// show form
 			$scope.showUserRatingForm = true;
@@ -180,6 +204,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
+		// send rating to API
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
 			var ratings = {
@@ -189,15 +214,14 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 			$scope.showError.text = false;
 
-			if(!ratingOrig.text) {
+			if(!ratingOrig.text)
 				return $scope.showError.text = true;
-			}
 
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);
 			rating.score = ratings[rating.score];
 
-			// lock
+			// lock - dont send twice
 			if($scope.sendingRating)
 				return false;
 			$scope.sendingRating = true;
@@ -212,7 +236,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.closeUserRatingForm();
 
 				// refresh user counters
-				$scope.refreshUser();
+				$scope.refreshUser(false);
 
 				// broadcast new rating - this will add rating to list
 				$scope.$broadcast('userRatingsAdded', res);
@@ -227,12 +251,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		// first init
 		$scope.initPage();
+		// check if we are allowed to see this page
 		UnauthReload.check();
+		$scope.$on('profileRefreshUserNoSubpage', function() {
+			$scope.refreshUser(false);
+		});
 		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
 		$scope.$on('initFinished', $scope.refreshUser);
-		$rootScope.initFinished && $scope.refreshUser();
-
+		$rootScope.initFinished && $scope.refreshUser(true);
 	}
 ]);

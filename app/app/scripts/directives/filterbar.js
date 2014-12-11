@@ -43,10 +43,6 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.$on('filterOpen', scope.toggleFilter);
 
-				scope.$on('closeEditItem', function() {
-					scope.newItemSelected = false;
-				});
-
 				scope.$on('showUI', function($event, ui) {
 					scope.filterSelected = ui === 'filter';
 					scope.newItemSelected = ui === 'newAd';

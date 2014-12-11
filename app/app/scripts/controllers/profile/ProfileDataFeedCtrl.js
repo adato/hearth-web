@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'profile.posts': loadUserPosts,
                 'profile.communities': loadCommunities,
                 'profile.given': UserRatings.given,
-                'profile.received': UserRatings.received,
+                'profile.received': loadReceivedRatings,
                 'profile.following': loadFollowees,
                 'profile.followers': loadFollowers,
                 'profile.friends': loadFriends,
@@ -25,6 +25,30 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             };
         var inited = false;
         $scope.subPageLoaded = false;
+        $scope.ratingPosts = [];
+
+        function loadReceivedRatings(params, done, doneErr) {
+
+            UserRatings.received(params, done, doneErr);
+
+            if(!$scope.mine)
+                UserRatings.possiblePosts({userId: params.user_id}, function(res) {
+                    var posts = [];
+                    
+                    res.needed.forEach(function(item) {
+                        item.post_type = "needed";
+                        posts.push(item);
+                    });
+                    res.offered.forEach(function(item) {
+                        item.post_type = "offered";
+                        posts.push(item);
+                    });
+
+                    $scope.ratingPosts = posts;
+                }, function(res) {
+                    $scope.ratingPosts = [];
+                });
+        }
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";
@@ -86,7 +110,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 type: 'post',
                 related: 'user',
                 author_id: params.user_id,
-            }
+            };
 
             params.limit = 5;
 
@@ -125,6 +149,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         function finishLoading() {
             $scope.subPageLoaded = true;
             $scope.$parent.loaded = true;
+            $rootScope.$emit("subPageLoaded");
         }
 
         function processData(res) {
@@ -162,8 +187,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {});
-            $scope.$emit("profileRefreshUser");
+            $( "#post_"+item._id ).slideUp( "slow", function() {});
+            $scope.$emit("profileRefreshUserNoSubpage");
         };
 
         // this will flash rating box with some background color

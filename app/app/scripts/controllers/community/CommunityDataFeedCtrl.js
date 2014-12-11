@@ -24,6 +24,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $timeout(function(){
                $scope.subPageLoaded = true;
                $scope.$parent.loaded = true;
+               $rootScope.$emit("subPageLoaded");
             });
         }
 
@@ -129,10 +130,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
         // =================================== Public Methods ====================================
 
-        $scope.cancel = function(item) {
-            $('#confirm-delete-' + item._id).foundation('reveal', 'close');
-        };
-
         $scope.remove = function(item) {
             Post.remove({postId: item._id}, function (res) {
 
@@ -144,20 +141,16 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         $scope.removeMember = function(id) {
 
             CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
-
-                $rootScope.closeModal('confirm-remove-member-'+id);
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_SUCCESS', Notify.T_SUCCESS);
                 $scope.init();
             }, function(res) {
-                
-                $rootScope.closeModal('confirm-remove-member-'+id);
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED', Notify.T_ERROR);
             });
         };
 
         // only hide post .. may be used later for delete revert
         $scope.removeItemFromList = function($event, item) {
-            $( ".post_"+item._id ).slideUp( "slow", function() {});
+            $( "#post_"+item._id ).slideUp( "slow", function() {});
             $scope.init();
         };
 

@@ -19,7 +19,6 @@ angular.module('hearth.services').factory('UserPosts', [
 				params: {
 					limit: 10,
 					offset: 0,
-					sort: '-created_at',
 					r: Math.random()
 				}
 			}

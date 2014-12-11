@@ -59,11 +59,7 @@
                 <label>
                     <i class="fa fa-map-marker"></i> {{ 'place' | translate}}
                 </label>
-                <locations locations="post.locations" error="showError.locations" limit="post.location_unlimited"></locations>
-
-                <div class="clear error" ng-show="createAdForm.emptyLocations && showError.locations">
-                    <span ng-show="createAdForm.emptyLocations">{{ 'LOCATIONS_ARE_EMPTY' | translate }}</span>
-                </div>
+                <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </div>
             <div class="date">
                 <label>
@@ -115,7 +111,7 @@
                 </a>
                 <button class="primary button-send fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SUBMIT</button>
 
-                <a class="fright deleteLink" ng-if="post._id" data-reveal-id="confirm-delete-{{post._id}}">
+                <a class="fright deleteLink" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
                 <a class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle(post, false, setPostActiveStateCallback)">

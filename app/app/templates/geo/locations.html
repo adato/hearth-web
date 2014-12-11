@@ -1,7 +1,5 @@
 <div class="location-picker">
-
     <div class="location-input" ng-class="{disabled: disabled}">
-
         <div class="fright mapIcon" ng-show="!hideMap">
             <a ng-click="toggleMap()">
                 <i class="fa fa-map-marker">
@@ -15,12 +13,24 @@
         </tags-input>
 
         <div class="clear"></div>
-        <div class="location-map hidden"></div>
+        <div class="location-map hidden">
+            <div class="map-container"></div>
+            <div class="map-controll mapPoint" ng-show="mapPoint && mapPoint.name">
+                <button type="button" class="button-send right ng-show-binding" ng-click="chooseMapLocation()">{{ 'INSERT_LOCATION' | translate }}</button>
+                <span ng-if="mapPointShowName">
+                    {{ mapPoint.name }}
+                </span>
+                <div class="clear"></div>
+            </div>
+        </div>
     </div>
-
     <div class="controll">
-        <checkbox ng-show="!required" model="disabled" on-update="locationDoesNotMatter()" value="true" value-off="false">
+        <checkbox ng-show="!required" model="disabled" value="true" value-off="false">
             {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
         </checkbox>
+    </div>
+    <div class="error moveUp" ng-if="errorWrongPlace || showError">
+        <span ng-show="errorWrongPlace">{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>
+        <span ng-show="showError">{{ errorCode | translate }}</span>
     </div>
 </div>

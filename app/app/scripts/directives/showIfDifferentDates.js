@@ -22,9 +22,7 @@ angular.module('hearth.directives').directive('showIfDifferentDates', [
 				$scope.showMe = false;
 
 				function refresh() {
-					// ! $scope.oldDate || 
 					$scope.showMe = $filter('ago')($scope.oldDate) != $filter('ago')($scope.newDate);
-					console.log("Compare: ", $filter('ago')($scope.oldDate), $filter('ago')($scope.newDate));
 				}
 
 				$scope.$watch("oldDate", refresh);

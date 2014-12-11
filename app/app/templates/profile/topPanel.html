@@ -22,7 +22,7 @@
                     <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
                 </button>
                 <a href="#!/profile-edit" class="mine">
-                    <button class="profile-button red tall"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT' | translate}}</button>
+                    <button class="profile-button red tall"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER' | translate}}</button>
                 </a>
             </div>
             <h1 style="display: inline;">
@@ -31,9 +31,7 @@
             <p ng-if="info.about"><span class="fa fa-quote-right"></span>{{info.about | ellipsis}}</p>
         </div>
         <div class="highlights">
-            <a href="#!/profile/{{info._id}}" class="profile-photo">
-                <img ng-src="{{info.avatar.large}}" ng-if="info.avatar.large" />
-            </a>
+            <avatar size="large" class="left" src="info.avatar.large" href="'#!/profile/'+info._id" type="info._type"></avatar>
             <a href="#!/profile/{{info._id}}/followers" ng-class="{'active': (pageSegment.substr(8) == 'friends' || pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers')}" class="friends-and-follows">
                 
                 <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>

@@ -10,23 +10,40 @@
  * @requires geo
  */
 angular.module('hearth.geo').directive('locations', [
-    'geo', '$timeout',
-    function(geo, $timeout) {
+    'geo', '$timeout', '$rootScope', 'Viewport',
+    function(geo, $timeout, $rootScope, Viewport) {
         return {
-            restrict: 'A',
+            restrict: 'E',
             replace: true,
             scope: {
                 locations: "=",
-                required: "="
+                required: "=",
+                disabled: "=limit",
+                showError: "=",
+                errorCode: "@",
+                base: "@"
             },
             templateUrl: 'templates/geo/locations.html',
             link: function($scope, baseElement) {
-                var map, markers, sBox, tagsInput;
+                var map, sBox, tagsInput, marker = false;
+                $scope.mapPoint = false;
+                $scope.mapPointShowName = true;  // due to chrome bug with rerendering
+                $scope.errorWrongPlace = false;
 
-                $scope.disabled = false;
+                if(!$scope.errorCode)
+                    $scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
-                // scope.errorMsg = scope.errorMessage || 'LOCATIONS_IS_EMPTY';
-                // scope.placeholder = scope.placeholderKey || "MY_PLACE";
+                $scope.$watch("locations", function(val) {
+                    if(!val)
+                        $scope.locations = [];
+                });
+
+                 var markerImage = {
+                    url: 'images/pin.png',
+                    size: new google.maps.Size(49, 49),
+                    origin: new google.maps.Point(0,0),
+                    anchor: new google.maps.Point(14, 34)
+                  };
 
                 // init google places search box
                 function addPlacesAutocompleteListener(input) {
@@ -34,23 +51,27 @@ angular.module('hearth.geo').directive('locations', [
                     var sBox = new google.maps.places.SearchBox(input);
                     google.maps.event.addListener(sBox, 'places_changed', function() {
                         var places = sBox.getPlaces();
-                        if (places && places.length) {
+                        $scope.showError = false;
 
+                        if (places && places.length) {
+                            $scope.errorWrongPlace = false;
                             var location = places[0].geometry.location,
                                 name = places[0].formatted_address,
                                 info = $scope.translateLocation(places[0].address_components);
 
                             $scope.fillLocation(location, name, info, true);
+                        } else {
+                            $scope.errorWrongPlace = true;
+                            $scope.apply();
                         }
                     });
 
                     $(input).on('keyup keypress', function(e) {
-                      if(e.keyCode == 13) {
+                      if(e.keyCode == 13 && $(input).val() != '') {
                         e.preventDefault();
                         return false;
                       }
                     });
-
 
                     $(document).on('focusout', input, function(e) {
                         $timeout(function() {
@@ -58,32 +79,13 @@ angular.module('hearth.geo').directive('locations', [
                         });
                      });
 
+                    $(document).on('focusin', input, function(e) {
+                        $scope.errorWrongPlace = false;
+                        $scope.apply();
+                     });
+
                     return sBox;
-                }
-
-                function refreshMarkers() {
-
-                    if(! $(".location-map", baseElement).hasClass("inited"))
-                        return false;
-
-                    for(var m in markers) {
-                        markers[m].setMap(null);
-                    }
-                    markers = [];
-
-                    for(var l in $scope.locations) {
-                        var latlng = new google.maps.LatLng($scope.locations[l].coordinates[1], $scope.locations[l].coordinates[0]);
-                        markers.push(geo.placeMarker(latlng, 'pin', null, map));
-                    }
                 };
-
-                // scope.hideError = function(loc) {
-                //     scope.errorWrongPlace = false;
-                    
-                //     if (loc && loc.name == '') {
-                //         scope.error = false;
-                //     }
-                // };
 
                 // this will translate info from location to used format
                 $scope.translateLocation = function(loc) {
@@ -109,9 +111,8 @@ angular.module('hearth.geo').directive('locations', [
                 };
 
                 $scope.apply = function() {
-                    if(!$scope.$$phase) {
-                        $scope.$apply();
-                    }
+                    if(!$scope.$$phase)
+                        $scope.$digest();
                 };
 
                 // go throught all places and compare new location
@@ -134,11 +135,10 @@ angular.module('hearth.geo').directive('locations', [
                         info.coordinates = [pos.lng(), pos.lat()];
                         $scope.locations.push(info);
 
-                        if(apply)
-                            $scope.apply();
-                        // refreshMarkers();
+                        tagsInput.focus();
+                        apply && $scope.apply();
                     }
-
+ 
                     // and erase input for next location
                     tagsInput.val('');
                 };
@@ -153,29 +153,76 @@ angular.module('hearth.geo').directive('locations', [
 
                 // slide up 
                 $scope.closeMap = function() {
+                    if(marker) {
+                        marker.setMap(null);
+                        marker = false;
+                    }
+
+                    $scope.mapPoint = false;
+
                     $(".location-map", baseElement).slideUp();
                     $(".mapIcon .fa-times", baseElement).hide();
                 };
 
+                $scope.chooseMapLocation = function() {
+                    if(! $scope.mapPoint)
+                        return false;
+                    
+                    $scope.fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, false);
+                    $scope.closeMap();
+                };
+
+                $scope.refreshMapPoint = function() {
+                    geo.getAddress(marker.getPosition()).then(function(info) {
+                        $scope.mapPointShowName = false;
+
+                        $scope.mapPoint = {
+                            latLng: marker.getPosition(),
+                            name: info.formatted_address,
+                            info: $scope.translateLocation(info.address_components)
+                        };
+
+                        // chrome has problem with rerendering point
+                        // after location change - hide location and show again after.
+                        $timeout(function() {
+                            $scope.mapPointShowName = true;
+
+                            // let address to display on page and then scroll to it if it is not visible
+                            $timeout(function() {
+                                Viewport.scrollIfHidden(".mapPoint", 60, $scope.base);
+                            });
+                        });
+                    });
+                };
+                
                 $scope.initMap = function() {
+
                     if($(".location-map", baseElement).hasClass("inited"))
                         return false;
 
-                    map = geo.createMap($(".location-map", baseElement)[0], {
+                    map = geo.createMap($(".map-container", baseElement)[0], {
                         draggableCursor: 'url(images/pin.png) 14 34, default'
                     });
 
                     google.maps.event.addListener(map, 'click', function(e) {
                         map.panTo(e.latLng);
 
-                        geo.getAddress(e.latLng).then(function(info) {
-                            $scope.fillLocation(e.latLng, info.formatted_address, $scope.translateLocation(info.address_components), false);
-                            // $scope.closeMap();
+                        if($scope.mapPoint)
+                            return marker.setPosition(e.latLng);
+
+                        marker = new google.maps.Marker({
+                            map: map,
+                            draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            position: e.latLng,
+                            icon: markerImage
                         });
+
+                        $scope.refreshMapPoint();
+                        google.maps.event.addListener(marker, "position_changed", $scope.refreshMapPoint);
                     });
 
                     $(".location-map", baseElement).addClass("inited");
-                    refreshMarkers();
                 };
 
                 $scope.toggleMap = function() {
@@ -187,25 +234,32 @@ angular.module('hearth.geo').directive('locations', [
                         $scope.showMap();
                 };
 
-                $scope.locationDoesNotMatter = function() {
+                $scope.locationDoesNotMatter = function(val) {
+                    $scope.errorWrongPlace = false;
                     $scope.closeMap();
-                    $scope.locations = [];
-                    // refreshMarkers();
+                    $scope.showError = false;
 
-                    if(tagsInput.attr("disabled")  === "disabled")
-                        tagsInput.removeAttr("disabled");
-                    else
+                    if($scope.disabled) {
+                        $scope.locations = [];
                         tagsInput.attr("disabled", "disabled");
+                    } else {
+                        tagsInput.removeAttr("disabled");
+                    }
                 };
 
                 $scope.init = function() {
 
                     tagsInput = $(".tags input", baseElement);
                     sBox = addPlacesAutocompleteListener($('.tags input', baseElement)[0]);
-                    // $scope.initMap();
+                    $scope.$watch('disabled', $scope.locationDoesNotMatter);
                 };
 
-                $scope.$watch("locations", refreshMarkers, true);
+                $scope.$watch("showError", function(val) {
+                    if(!val)
+                        $scope.showError = false;
+                    if(val)
+                        $scope.errorWrongPlace = false;
+                });
                 $timeout($scope.init);
             }
         };

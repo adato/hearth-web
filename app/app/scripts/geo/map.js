@@ -137,7 +137,7 @@ angular.module('hearth.geo').directive('map', [
                         postId: marker.info._id
                     }, function(data) {
 
-                        data.author.avatar.normal = data.author.avatar.normal || EMPTY_AVATAR_URL;
+                        data.author.avatar.normal = data.author.avatar.normal || $$config.defaultUserAvatar;
                         map.panTo(marker.position);
 
                         if (data.community_id) {

@@ -22,17 +22,19 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.sendingDelete = false;
                 $scope.defaultCommunity = {
                     name: '',
-                    location: [],
+                    locations: [],
                     description: '',
                     terms: '',
                 };
                 $scope.showError = {
                     name: false,
-                    location: false,
+                    locations: false,
                     description: false,
                 };
                 $scope.community = {};
                 
+                $scope.confirmBox = $rootScope.confirmBox;
+
                 $scope.fillDefaultCommunity = function() {
                     
                     $scope.community = angular.copy($scope.defaultCommunity);
@@ -41,16 +43,16 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
                 $scope.transformDataOut = function(data) {
 
-                    data.location = data.location[0];
+                    if(!data.locations || !data.locations.length)
+                        data.locations = false;
+
                     return data;
                 };
 
                 $scope.transformDataIn = function(data) {
 
-                    if(data.location === null) {
-                        data.location = [{name:''}];
-                    } else {
-                        data.location = [data.location];
+                    if(!data.locations) {
+                        data.locations = [];
                     }
                     return data;
                 };
@@ -79,7 +81,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.loadCommunity = function(id) {
                     Community.get({communityId: id}, function(res) {
                         $scope.community = $scope.transformDataIn(res);
-
                         if($scope.checkOwnership($scope.community)) {
 
                             $scope.loaded = true;
@@ -112,8 +113,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         $scope.showError.description = err = true;
                     }
 
-                    if(data.location[0].address == '') {
-                        $scope.showError.location = err = true;
+                    if(!data.locations || !data.locations.length) {
+                        $scope.showError.locations = err = true;
                     }
 
                     return ! err; // return true if valid
@@ -169,7 +170,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         CommunityDelegateAdmin.delegate({community_id: $scope.community._id, new_admin_id: id},
                             function(res) {
                                 $rootScope.globalLoading = false;
-                                $scope.closeModal('confirm-delete-community');
                                 
                                 if(needReload) {
 
@@ -224,7 +224,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         Community.remove({communityId: $scope.community._id}, function(res) {
                             $rootScope.globalLoading = false;
                             $scope.sendingDelete = false;
-                            $scope.closeModal('confirm-delete-community');
                             
                             if(!needReload) {
                                 
@@ -240,23 +239,18 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         }, function(res) {
 
                             $rootScope.globalLoading = false;
-                            $scope.closeModal('confirm-delete-community');
                             Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
                             $scope.sendingDelete = false;
                         });
                     });
                 };
 
-                $scope.revealModal = function(id) {
-                    $("#"+id).foundation('reveal', 'open');
-                };
                 $scope.close2 = function() {
                     $scope.close();
                 };
 
                 $scope.init = function() {
                     $scope.pluralCat = $rootScope.pluralCat;
-                    $scope.closeModal = $rootScope.closeModal;
 
                     if($scope.getCommunityId()) {
                         $scope.loadCommunity($scope.getCommunityId());

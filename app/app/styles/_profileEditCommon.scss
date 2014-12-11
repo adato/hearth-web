@@ -57,11 +57,6 @@
             position: relative;
             left: 10px;
             width: 93%;
-            .controll,
-            .error {
-                position: relative;
-                right: 15px;
-            }
             span {
                 &.remove {
                     top: 6px;
@@ -124,7 +119,6 @@
             text-align: center;
             border-radius: 50%;
             box-shadow: -3px 3px 6px rgba(0, 0, 0, 1) inset;
-            background-image: url("/app/images/default_avatar.png");
             background-repeat: no-repeat;
             background-position: center center;
             img {

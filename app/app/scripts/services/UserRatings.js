@@ -22,7 +22,6 @@ angular.module('hearth.services').factory('UserRatings', [
 				params: {
 					limit: 10,
 					offset: 0,
-					sort: '-created_at',
 					r: Math.random()
 				}
 			},
@@ -40,6 +39,11 @@ angular.module('hearth.services').factory('UserRatings', [
 				params: {
 					type: 'given',
 				}
+			},
+			possiblePosts: {
+				url: appConfig.apiPath +'/users/:userId/ratings/possible_posts',
+				params: {'userId': '@userId'},
+				method: 'GET',
 			}
 		});
 	}

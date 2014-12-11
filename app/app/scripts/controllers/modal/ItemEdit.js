@@ -141,6 +141,26 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
+		$scope.transformDataIn = function(post) {
+			if (post) {
+				post.dateOrig = post.valid_until;
+				post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
+
+				if(post.valid_until_unlimited) {
+					post.valid_until = '';
+				}
+
+				post.name = $.trim(post.name);
+
+				if (!post.locations || !post.locations.length || post.location_unlimited) {
+					post.locations = [];
+				}
+
+				post.type = post.type == 'need';
+			}
+			return post;
+		}
+
 		$scope.transformDataOut = function(data) {
 			// clear locations from null values
 			data.locations = $scope.cleanNullLocations(data.locations);
@@ -195,13 +215,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				}
 			}
 			
-			if(post.locations && ! post.location_unlimited) {
+			// locations are not unlimited
+			if(! post.location_unlimited ) {
 
-				post.locations.forEach(function(item) {
-					if(item.address == '' || !item.coordinates) {
-						res = $scope.showError.locations = true;
-					}
-				});
+				// and are empty
+				if(!post.locations || !post.locations.length) {
+					res = $scope.showError.locations = true;
+				}
 			}
 
 			return ! res;
@@ -353,26 +373,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return dateFormat;
 		}
 		
-		function transformDataIn(post) {
-			if (post) {
-				post.dateOrig = post.valid_until;
-				post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
-
-				if(post.valid_until_unlimited) {
-					post.valid_until = '';
-				}
-
-				post.name = $.trim(post.name);
-
-				if (!post.locations || !post.locations.length || post.location_unlimited) {
-					post.locations = [];
-				}
-
-				post.type = post.type == 'need';
-			}
-			return post;
-		}
-
 		$scope.itemDeleted = function($event, item) {
 
 			if($scope.post._id == item._id) $scope.closeEdit();
@@ -380,16 +380,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.closeEdit = function() {
 			// == close all modal windows 
-			if($scope.post._id) {
-				$('#confirm-delete-'+$scope.post._id).foundation('reveal', 'close');
-				$('#confirm-pause-'+$scope.post._id).foundation('reveal', 'close');
-			}
-			
 			$scope.closeThisDialog();
 		};
 
 		$scope.init = function() {
-			$scope.post = transformDataIn($scope.post) || $scope.defaultPost;
+			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
 
 			// if post is invalid, show message and run validation (it will show errors in invalid fields)
 			if($scope.isInvalid) {
@@ -419,7 +414,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.refreshItemInfo = function($event, item) {
 			// if renewed item is this item, refresh him!
 			if(item._id === $scope.post._id) {
-				$scope.post = transformDataIn(item);
+				$scope.post = $scope.transformDataIn(item);
 			}
 		};
 		$scope.init();

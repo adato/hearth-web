@@ -6,20 +6,13 @@
             <h3 class="others">{{ 'USERS_RATINGS' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
-                <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">
-                    <div class="avatar">
-                        <img ng-if="item.user_from_avatar.normal" ng-src="{{item.user_from_avatar.normal}}" />
-                    </div>
-                </a>
+                <avatar class="left" href="'#!/'+getProfileLinkByType(item.user_from_type)+'/'+item.user_from" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
                 <small class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
                 <div class="rating-text">
                     {{item.text | ellipsis}}
                     <br>
                     <small class="rating-from">
-                        <!--
-                         <i class="fa fa-sun-o" ng-if="item.score == 1"></i>
-                        <i class="fa fa-moon-o" ng-if="item.score == -1"></i> -->
-                        {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a>.
+                        {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
                     </small>
                 </div>
             </div>
@@ -92,8 +85,8 @@
                 </div>
 
                 <div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
-                <p>Váš profil je smutný a prázný - řekněte něco více o tom, co vás zajímá a baví.</p>
-                <p><a href="#!/profile-edit">{{ 'PROFILE_EDIT' | translate}}</a></p>
+                <p>{{ 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
+                <p><a href="#!/profile-edit">{{ 'PROFILE_EDIT.HEADER' | translate}}</a></p>
                 </div>
                 
                 <div class="descr reg-date fleft">

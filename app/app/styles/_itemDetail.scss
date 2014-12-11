@@ -1,26 +1,57 @@
 /*
 
-.detail {
-    h1 {
+.item-detail {
+
+    .go-back {
+        i {
+            font-size:2rem;
+            vertical-align:middle;
+            margin-right:1rem;
+        }
     }
-    height: 100%;
-    min-height: 100;
-    .locations {
-        margin: {
-        };
+
+    .map {
+        height: 300px;
+        width: 100%;
     }
-    .reply {
-        margin: {
-            bottom: 1em;
-        };
-        img {
-            @include border-radius;
-             border: 2px solid lighten(color(3), 20%);
-            margin: {
-                right:0.5em;
+
+    .content {
+        margin-left:1rem;
+        margin-right:0rem;
+
+        .green {
+            color: color(2);
+        }
+
+        .red {
+            color: color(1);
+        }
+
+        h1 span.red, h1 span.green {
+            // very specific selector due to previous declaration in item.scss
+            left:0;
+            font-size:inherit;
+        }
+
+    }
+
+    .columns {
+        padding-left:0;
+        padding-right:0;
+
+        &.item-author {
+            padding-left:2rem;
+            h2 {
+                text-align:center;
+                font-size:1.2rem;
             }
         }
     }
-}
 
+    footer {
+        padding-left:0;
+        border-radius:0;
+        background:transparent;
+    }
+}
 */

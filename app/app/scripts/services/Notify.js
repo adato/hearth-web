@@ -142,7 +142,7 @@ angular.module('hearth.services').service('Notify', [
 		};
 		// translate given message
 		this.translate = function(text) {
-			return $translate(text);
+			return $translate.instant(text);
 		};
 
 		// close notify on some event

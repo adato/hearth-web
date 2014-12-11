@@ -1,0 +1,17 @@
+<div class="confirm-box">
+    <header>
+        <h2 class="large-12">{{title | translate}}</h2>
+    </header>
+    <article class="row">
+        <hr />
+        <p class="large-12 text-center"> {{text | translate}}</p>
+    </article>
+    <article class="row">
+        <section class="large-6 columns">
+            <button ng-click="confirm()">{{'OK' | translate}}</button>
+        </section>
+        <section class="large-6 columns text-right">
+            <a class="link-button" ng-click="closeThisDialog()">{{'CANCEL' | translate}}</a>
+        </section>
+    </article>
+</div>

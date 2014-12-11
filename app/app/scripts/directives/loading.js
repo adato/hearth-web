@@ -42,14 +42,7 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 				if(val) {
 					$scope.msg = val;
 				} else {
-				    var translation = $translate($scope.defaultMessage, function(val) {
-				    	$scope.msg = val;
-				    });
-
-				    if(translation == $scope.defaultMessage)
-				    	translation = 'Načítám ...';
-
-				    $scope.msg = translation;
+				    $scope.msg = $translate.instant($scope.defaultMessage);
 				}
 			});
 

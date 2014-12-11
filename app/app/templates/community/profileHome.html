@@ -1,14 +1,9 @@
 <br />
 <br />
 
-<!-- two columns displayed in main page of user profile -->
 <div class="community-listings" ng-if="subPageLoaded">
     <div class="left-pane">
-        <!-- <div class="messages">
-                <i class="fa fa-bell"></i> <a href="">Máte 3 nové odpovědi na inzerát 'Věnuji hlídání dětí'</a>
-            </div> -->
         <div class="applications" ng-if="mine">
-            
             <div ng-if="!applications.length">
                 <h3>{{ 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
                 <p>{{ 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
@@ -20,14 +15,8 @@
 	            <div class="clear"></div>
 
 	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
-
-	            	<!--<h5 show-if-different-dates old-date="item.prevDate" new-date="item.followed_since">{{ item.followed_since | ago }}</h5>-->
 	            	<div class="applications-item">
-	                    <a href="#!/profile/{{item._id}} ">
-                            <div class="avatar">
-                                <img ng-if="item.avatar.normal" ng-src="{{item.avatar.normal}}" />
-                            </div>
-                        </a>
+                        <avatar class="left margin-bottom-20" href="'#!/profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
                         <div class="applications-text">
                             <a href="#!/profile/{{item._id}} ">
 		                    	{{item.name | ellipsis}}
@@ -83,25 +72,6 @@
             <p ng-if="! mine && ! activityLog.length">{{ 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
             <div ng-if="activityLog.length">
                 <div ng-include="'templates/_activityList.html'"></div>
-<!--                 <div class="timeline-container" ng-if="activityShow">
-                    <div class="profile-timeline"></div>
-                    <div ng-repeat="(id, item) in activityLog track by $index" ng-init="item.prevDate = ($index > 0) ? activityLog[$index-1].created_at : null">
-                        <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
-
-                         <div class="activity">
-                            <div class="avatar" ng-class="{'no-avatar': item.avatar}">
-                                <img ng-src="{{ item.avatar }}" ng-if="item.avatar" />
-                            </div>
-                            <div class="activity-text" dynamic-text="item.text" dynamic-data="item.data"></div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- 
-                <div class="buttons">
-                    <a href="#!/community/{{info._id}}/activity-feed">
-                        <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_ACTIVITY' | translate}}</button>
-                    </a>
-                </div> -->
             </div>
         </div>
     </div>

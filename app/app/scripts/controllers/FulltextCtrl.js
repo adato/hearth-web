@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-    '$scope', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate', '$rootScope',
+    '$scope', '$timeout', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate', '$rootScope',
 
-    function($scope, $routeParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
+    function($scope, $timeout, $routeParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
         var deleteOffset = false;
         $scope.readedAllData = false;
 
@@ -54,28 +54,27 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
                 $("#fulltextSearchResults").removeClass("searchInProgress");
 
-                for (i = 0; i < data.length; i++) {
-                    item = data[i];
-                    if (item.author && item.author.avatar.normal) {
-                        data[i].avatarStyle = {
-                            'background-image': 'url(' + item.author.avatar.normal + ')'
-                        };
-                    }
-                    if (item.avatar && item.avatar.normal) {
-                        data[i].avatarStyle = {
-                            'background-image': 'url(' + item.avatar.normal + ')'
-                        };
-                    }
-                }
+                data.forEach(function(item, i) {
+                    console.log(i, item);
+                    data[i].item_type = item._type;
+
+                    if (item._type == 'Post') {
+                        data[i].avatar = item.author.avatar;
+                        data[i].item_type = item.author._type;
+                    };
+                });
 
                 $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
-                $scope.loaded = true;
-
-                $scope.topArrowText.bottom = $translate('TOTAL_COUNT', {
+                
+                $scope.topArrowText.bottom = $translate.instant('TOTAL_COUNT', {
                     value: response.total
                 });
-                $scope.topArrowText.top = $translate('ads-has-been-read', {
+                $scope.topArrowText.top = $translate.instant('ads-has-been-read', {
                     value: $scope.items.length
+                });
+
+                $timeout(function() {
+                    $scope.loaded = true;
                 });
             }
         };

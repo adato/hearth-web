@@ -22,8 +22,10 @@ angular.module('hearth.directives').directive('maxLenCounter', [
 				$scope.len = 0;
 
 				$scope.$watch("value",function(val) {
-					if($scope.value)
-						$scope.len = $scope.value.length;
+					if(val)
+						$scope.len = val.length;
+					else
+						$scope.len = 0;
 				});
 			}
 		};

@@ -6,16 +6,3 @@
         overflow: hidden;
     }
 }
-
-.f-dropdown {
-    @include border-radius;
-    @include box-shadow(0 0px 2px 1px rgba(black, 0.2));
-    overflow: hidden;
-    a {
-	    &:hover,
-	    &:focus {
-	        color: color(4) !important;
-	    }
-    	
-    }
-}
