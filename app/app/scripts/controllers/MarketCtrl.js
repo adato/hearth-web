@@ -81,6 +81,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					$timeout(function() {
 						$(".loading").show();
 						$scope.loading = false;
+						//show result wen  on bottom page only when there are any posts
 					})
 				});
 			});
@@ -91,8 +92,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		 */
 		$scope.load = function() {
 			// load only once in a time
-			if ($scope.loading == true)
-				return;
+			if ($scope.loading) return;
 			$scope.loading = true;
 
 			// load only if map is not shown
@@ -109,10 +109,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				// load based on given params
 				Post.query(params, function(data) {
+					$scope.loaded = true;
+
 					// iterativly add loaded data to the list and then call finishLoading
 					$scope.addItemsToList(data, 0, $scope.finishLoading);
-					
-					$scope.loaded = true;
 					$rootScope.$broadcast('postsLoaded');
 				});
 			}
