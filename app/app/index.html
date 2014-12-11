@@ -117,51 +117,68 @@
       EMPTY_AVATAR_URL = 'data-main="images/no-avatar.jpg"'.slice(11, -1);
       EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.jpg"'.slice(11, -1);
     </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-flexslider.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-sanitize.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-resource.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-route-segment/1.3.3/angular-route-segment.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
+    <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+    
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
+
+
+    <!-- // <script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script> -->
+
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="vendor/modernizr/modernizr.js"></script>
-    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/jquery/jquery.js"></script>
     <script src="vendor/angular/angular.js"></script>
-    <script src="vendor/json3/lib/json3.min.js"></script>
-    <script src="vendor/angular-resource/angular-resource.js"></script>
-    <script src="vendor/angular-cookies/angular-cookies.js"></script>
-    <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
-    <script src="vendor/angular-route/angular-route.js"></script>
-    <script src="vendor/fastclick/lib/fastclick.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"></script>
-    <script src="vendor/jquery-placeholder/jquery.placeholder.js"></script>
-    <script src="vendor/foundation/js/foundation.js"></script>
-    <script src="vendor/angular-flash/dist/angular-flash.js"></script>
-    <script src="vendor/angular-translate/angular-translate.js"></script>
-    <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-    <script src="vendor/angular-mocks/angular-mocks.js"></script>
-    <script src="vendor/angularitics/src/angulartics.js"></script>
-    <script src="vendor/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="vendor/angular-cookie/angular-cookie.js"></script>
-    <script src="vendor/ng-tags-input/ng-tags-input.min.js"></script>
-    <script src="vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
     <script src="vendor/ngDialog/js/ngDialog.js"></script>
-    <script src="vendor/jquery-autosize/jquery.autosize.js"></script>
-    <script src="vendor/angular-route-segment/build/angular-route-segment.js"></script>
-    <script src="vendor/angular-touch/angular-touch.js"></script>
-    <script src="vendor/angular-carousel/dist/angular-carousel.js"></script>
-    <script src="vendor/angular-flexslider/angular-flexslider.js"></script>
     <script src="vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-    <script src="vendor/moment/moment.js"></script>
+    <script src="vendor/angular-flexslider/angular-flexslider.js"></script>
+    <script src="vendor/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="vendor/angular-translate/angular-translate.js"></script>
+    <script src="vendor/jquery-waypoints/waypoints.js"></script>
+    <script src="vendor/SHA-1/sha1.js"></script>
+    <script src="vendor/angulartics/src/angulartics.js"></script>
+    <script src="vendor/angulartics/src/angulartics-adobe.js"></script>
+    <script src="vendor/angulartics/src/angulartics-chartbeat.js"></script>
+    <script src="vendor/angulartics/src/angulartics-cnzz.js"></script>
+    <script src="vendor/angulartics/src/angulartics-flurry.js"></script>
+    <script src="vendor/angulartics/src/angulartics-ga-cordova.js"></script>
+    <script src="vendor/angulartics/src/angulartics-ga.js"></script>
+    <script src="vendor/angulartics/src/angulartics-gtm.js"></script>
+    <script src="vendor/angulartics/src/angulartics-kissmetrics.js"></script>
+    <script src="vendor/angulartics/src/angulartics-mixpanel.js"></script>
+    <script src="vendor/angulartics/src/angulartics-piwik.js"></script>
+    <script src="vendor/angulartics/src/angulartics-scroll.js"></script>
+    <script src="vendor/angulartics/src/angulartics-segmentio.js"></script>
+    <script src="vendor/angulartics/src/angulartics-splunk.js"></script>
+    <script src="vendor/angulartics/src/angulartics-woopra.js"></script>
+    <script src="vendor/angulartics/src/angulartics-marketo.js"></script>
+    <script src="vendor/angulartics/src/angulartics-intercom.js"></script>
+    <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="vendor/fastclick/lib/fastclick.js"></script>
     <!-- endbower -->
-    <script src="vendor/angularitics/src/angulartics-ga.js"></script>
+    <script src="vendor/angulartics/dist/angulartics-ga.min.js"></script>
     <!-- endbuild -->
     
     <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="vendor/flexslider/flexslider.css">
-    <script src="vendor/async/lib/async.js"></script>
     <script type="text/javascript" src="vendor/flexslider/jquery.flexslider-min.js"></script>
     
-    <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     
-    <!-- Add fancyBox main JS and CSS files -->
-    <script type="text/javascript" src="vendor/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-    <link rel="stylesheet" type="text/css" href="vendor/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 
     <script>
       preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
@@ -245,7 +262,7 @@
      <script src="scripts/services/User.js"></script>
      <script src="scripts/services/PostReplies.js"></script>
      <script src="scripts/services/Post.js"></script>
-     <script src="scripts/services/TermsAgreement.js"></script>
+     <!-- // <script src="scripts/services/TermsAgreement.js"></script> -->
      <script src="scripts/services/HearthLoginInterceptor.js"></script>
      <script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
      <script src="scripts/services/Auth.js"></script>
@@ -308,10 +325,10 @@
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>
       <script src="scripts/utils/validatedCheckbox.js"></script>
-      <script src="scripts/utils/monkPlaceholder.js"></script>
+      <!-- // <script src="scripts/utils/monkPlaceholder.js"></script> -->
       <script src="scripts/utils/whenScrolled.js"></script>
       <script src="scripts/utils/withErrors.js"></script>
-      <script src="scripts/utils/emails.js"></script>
+      <!-- // <script src="scripts/utils/emails.js"></script> -->
       
       <script src="scripts/geo/geo.js"></script>
       <script src="scripts/geo/locations.js"></script>
@@ -348,13 +365,10 @@
       <script src="scripts/controllers/modal/InviteBox.js"></script>
       <script src="scripts/controllers/modal/ConfirmBox.js"></script>
 
-
       <script src="scripts/messages/Messages.js"></script>      
 
       <script src="scripts/controllers/ItemDetail.js"></script>
       <script src="scripts/services/ItemDetailResource.js"></script>
-      
-      <script src="scripts/foundation.topbar.js"></script>
     <!-- endbuild -->
 
     <script>

@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.services').service('LanguageSwitch', [
-	'$feature', '$translate', '$http', 'ipCookie', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
-	function($feature, $translate, $http, ipCookie, $rootScope, tmhDynamicLocale, Session, Notify) {
+	'$feature', '$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
+	function($feature, $translate, $http, $rootScope, tmhDynamicLocale, Session, Notify) {
 		var self = this,
 			languages = [{
 				code: 'en',
@@ -47,8 +47,8 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			var lang = self.getLanguage(lang);
 
 			if(lang) {
-				ipCookie('language', lang.code, {
-					expires: 21*30
+				$.cookie('language', lang.code, {
+					expires: 21*30*20
 				});
 					
 				Session.update({language: lang.code}, function(res) {
@@ -69,8 +69,8 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			})[0];
 		};
 		this.use = function(language) {
-			ipCookie('language', language.code, {
-				expires: 21*30
+			$.cookie('language', language.code, {
+				expires: 21*30*20
 			});
 			$http.defaults.headers.common['Accept-Language'] = language.code;
 			$translate.uses(language.code);

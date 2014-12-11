@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-flexslider', 'route-segment', 'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'hearth.services', 'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.ga', 'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
+angular.module('hearth', [
+    'ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-flexslider', 'route-segment',
+    'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
+    'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
+    'chieffancypants.loadingBar', 'ngTagsInput', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {
 
@@ -31,7 +35,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             console.log("Setting preffered language", preferredLanguage);
             
             // configure dynamic locale - dates && pluralization && etc
-            tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
+            // tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
+            tmhDynamicLocaleProvider.localeLocationPattern('//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_{{locale}}.js');
             
             // configure translate provider - where language constants are
             $translateProvider.preferredLanguage(preferredLanguage);
@@ -54,16 +59,16 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
 
-            // ======== Watch for unauth responses
-            $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
-            $httpProvider.responseInterceptors.push('ApiMaintenanceInterceptor');
+            // // ======== Watch for unauth responses
+            // $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
+            // $httpProvider.responseInterceptors.push('ApiMaintenanceInterceptor');
 
-            // ======== ?? wtf is this?
-            $httpProvider.responseInterceptors.push('TermsAgreement');
+            // // ======== ?? wtf is this?
+            // $httpProvider.responseInterceptors.push('TermsAgreement');
         }
     ]).run([
-        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
-        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
+        '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
+        function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
             $rootScope.appInitialized = false;
 
@@ -170,7 +175,7 @@ var __indexOf = [].indexOf || function(item) {
 
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
-angular.module('hearth.services', ['ivpusic.cookie']);
+angular.module('hearth.services', []);
 angular.module('hearth.utils', []);
 
 /**
