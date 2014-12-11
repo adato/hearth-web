@@ -76,7 +76,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			$(".loading").slideUp(function() {
+			$(".loading").fadeOut('fast', function() {
 				$scope.showHidden(data.data, function() {
 					$timeout(function() {
 						$(".loading").show();
