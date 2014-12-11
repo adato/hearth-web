@@ -43,8 +43,6 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 					$scope.msg = val;
 				} else {
 				    $scope.msg = $translate.instant($scope.defaultMessage);
-				    console.log($scope.msg);
-				    
 				}
 			});
 
