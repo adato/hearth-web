@@ -14,12 +14,13 @@ angular.module('hearth.services').service('Viewport', [
 		var self = this;
 
 		// this will get browser viewport position
-		this.getViewportPos = function() {
+		this.getViewportPos = function(base) {
+			base = base || 'html';
             return {
-            	min: $('html').scrollTop(),
-            	max: viewportHeight + $('html').scrollTop(),
+            	min: $(base).scrollTop(),
+            	max: viewportHeight + $(base).scrollTop(),
             	height: viewportHeight,
-            	mid: $('html').scrollTop() + viewportHeight / 2,
+            	mid: $(base).scrollTop() + viewportHeight / 2,
             };
 		};
 		
@@ -37,8 +38,8 @@ angular.module('hearth.services').service('Viewport', [
 		};
 		
 		// test if given element is in browser viewport
-		this.isInViewport = function(target) {
-			var viewport = self.getViewportPos();
+		this.isInViewport = function(target, base) {
+			var viewport = self.getViewportPos(base);
 			var target = self.getTargetViewportPos(target);
 
 			return (viewport.min <= target.min && viewport.max >= target.max)
@@ -47,8 +48,8 @@ angular.module('hearth.services').service('Viewport', [
 		// This will return distance from
 		// bottom of viewport and bottom of target element if the viewport is above element
 		// top of viewport and top of target element if the viewport is below element
-		this.getTargetsDistance = function(target) {
-			var viewport = self.getViewportPos();
+		this.getTargetsDistance = function(target, base) {
+			var viewport = self.getViewportPos(base);
 			var target = self.getTargetViewportPos(target);
 
 			if(viewport.min < target.min)
@@ -58,19 +59,20 @@ angular.module('hearth.services').service('Viewport', [
 		};
 
 		// smooth scroll given pixels with offset
-		this.scroll = function(h, offset) {
+		this.scroll = function(h, offset, base) {
+			base = base || 'html';
 			if(h > 0) 
 				h += offset; // if we scroll bot, add offset
 			else	
 				h -= offset; // if we scroll up, substract offset
 
-			$("html, body").animate({ scrollTop: ($("html").scrollTop()+h)+"px" });
+			$(base).animate({ scrollTop: ($(base).scrollTop()+h)+"px" });
 		};
 
 		// test if target element is in viewport, if not, scroll to it
-		this.scrollIfHidden = function(target, offset) {
-			if(!self.isInViewport(target)) {
-				self.scroll(self.getTargetsDistance(target), offset);
+		this.scrollIfHidden = function(target, offset, base) {
+			if(!self.isInViewport(target, base)) {
+				self.scroll(self.getTargetsDistance(target), offset, base);
 			}
 		};
 

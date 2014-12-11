@@ -66,10 +66,10 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
                 $scope.items = params.offset > 0 ? $scope.items.concat(data) : data;
                 
-                $scope.topArrowText.bottom = $translate('TOTAL_COUNT', {
+                $scope.topArrowText.bottom = $translate.instant('TOTAL_COUNT', {
                     value: response.total
                 });
-                $scope.topArrowText.top = $translate('ads-has-been-read', {
+                $scope.topArrowText.top = $translate.instant('ads-has-been-read', {
                     value: $scope.items.length
                 });
 

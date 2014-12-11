@@ -20,7 +20,8 @@ angular.module('hearth.geo').directive('locations', [
                 required: "=",
                 disabled: "=limit",
                 showError: "=",
-                errorCode: "@"
+                errorCode: "@",
+                base: "@"
             },
             templateUrl: 'templates/geo/locations.html',
             link: function($scope, baseElement) {
@@ -188,7 +189,7 @@ angular.module('hearth.geo').directive('locations', [
 
                             // let address to display on page and then scroll to it if it is not visible
                             $timeout(function() {
-                                Viewport.scrollIfHidden(".mapPoint", 60);
+                                Viewport.scrollIfHidden(".mapPoint", 60, $scope.base);
                             });
                         });
                     });

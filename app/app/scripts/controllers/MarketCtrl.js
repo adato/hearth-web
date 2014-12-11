@@ -69,10 +69,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 
 		$scope.finishLoading = function(data) {
-			$scope.topArrowText.top = $translate('ads-has-been-read', {
+			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
 				value: $scope.items.length
 			});
-			$scope.topArrowText.bottom = $translate('TOTAL_COUNT', {
+			$scope.topArrowText.bottom = $translate.instant('TOTAL_COUNT', {
 				value: data.total
 			});
 
