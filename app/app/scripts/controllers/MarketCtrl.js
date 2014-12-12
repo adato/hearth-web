@@ -44,7 +44,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				return $timeout(function() {
 					console.timeEnd("Single post ("+(index+1)+") builded");
 					$scope.addItemsToList(data, index + 1, done);
-				}, 10);
+				});
 			}
 			console.timeEnd("Posts pushed to array and builded");
 			done(data);
@@ -63,6 +63,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// fade out loading bar
 			$(".loading").fadeOut('fast', function() {
 				// show hidden posts and recount their height to show "show more" button
+
+				return;
 				$scope.$broadcast("showHiddenPosts", function(index) {
 
 					// if shown item is last one - finish loading
