@@ -67,7 +67,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$(".loading").fadeOut('fast', function() {
 				// show hidden posts and recount their height to show "show more" button
 
-				$scope.$broadcast("showHiddenPosts", function() {
+				$scope.$broadcast("showHiddenPosts", function(index) {
 
 					console.timeEnd("Posts displayed with some effect");
 					console.timeEnd("Market posts loaded and displayed");
