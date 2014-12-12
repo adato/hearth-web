@@ -38,11 +38,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			if (posts.length > index) {
 				posts[index].index = index+1; // index starting with 1
 
-				console.time("Single post builded");
+				console.time("Single post ("+(index+1)+") builded");
 				$scope.items.push(posts[index]);
 
 				return $timeout(function() {
-					console.timeEnd("Single post builded");
+					console.timeEnd("Single post ("+(index+1)+") builded");
 					$scope.addItemsToList(data, index + 1, done);
 				}, 10);
 			}
