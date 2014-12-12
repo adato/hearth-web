@@ -1,4 +1,4 @@
-<article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': hiddenInit}">
+<article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView}">
 	<section ng-if="! hideAvatar" class="large-2 columns user">
 		<div ng-if="loggedUser._id">
 			<div ng-include="'templates/_user-info.html'"></div>

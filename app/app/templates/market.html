@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<div when-scrolled="load()" ng-if="items.length" loading-in-progress="loading" class="wish-list">
-			<item keywords-active="keywordsActive" hidden-init="true" item="item" ng-repeat="item in items track by $index" user="user" community="loggedCommunity"></item>
+			<item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by $index" user="user" community="loggedCommunity"></item>
 		</div>
 	</div>
 	<div class="clear"></div>

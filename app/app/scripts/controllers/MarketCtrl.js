@@ -34,38 +34,20 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.addItemsToList = function(data, index, done) {
 			var posts = data.data;
 
+			console.timeEnd("Post builded");
 			if (posts.length > index) {
+				posts[index].index = index+1; // index starting with 1
+
+				console.time("Single post builded");
 				$scope.items.push(posts[index]);
+
 				return $timeout(function() {
+					console.timeEnd("Single post builded");
 					$scope.addItemsToList(data, index + 1, done);
 				}, 10);
 			}
+			console.timeEnd("Posts pushed to array and builded");
 			done(data);
-		};
-
-		/**
-		 * Will go throught loaded and hidden posts and display them with some effect
-		 */
-		$scope.showHidden = function(posts, done) {
-			var timeout = 0;
-			var index = 0;
-
-			// each element fade in with increasing delay
-			// after all items will be displayed, call done callback
-			async.each(posts, function(post, done) {
-				var item = $("#post_"+post._id);
-				var fadeIn = $scope.items.length == $scope.limit && ++index < 4;
-				var showMethod = (fadeIn) ? item.fadeIn : item.slideDown;
-
-				setTimeout(function() {
-					showMethod.call(item, function() {
-						done();
-						$scope.$broadcast("recountPostHeight", post._id);
-					})
-				}, timeout);
-
-				timeout += 200;
-			}, done);
 		};
 
 		$scope.finishLoading = function(data) {
@@ -76,13 +58,21 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
+			console.time("Posts displayed with some effect");
+
+			// fade out loading bar
 			$(".loading").fadeOut('fast', function() {
-				$scope.showHidden(data.data, function() {
-					$timeout(function() {
-						$(".loading").show();
+				// show hidden posts and recount their height to show "show more" button
+				$scope.$broadcast("showHiddenPosts", function(index) {
+
+					// if shown item is last one - finish loading
+					if(index == $scope.limit) {
+						console.timeEnd("Posts displayed with some effect");
+						console.timeEnd("Market posts loaded and displayed");
+						// finish loading and allow to show loading again
 						$scope.loading = false;
-						//show result wen  on bottom page only when there are any posts
-					})
+						$(".loading").show();
+					}
 				});
 			});
 		};
@@ -107,10 +97,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					params.keywords = params.keywords.join(",");
 				}
 
+				console.time("Market posts loaded and displayed");
+				console.time("Market posts loaded from API");
 				// load based on given params
 				Post.query(params, function(data) {
 					$scope.loaded = true;
-
+					console.timeEnd("Market posts loaded from API");
+					
+					
+					console.time("Posts pushed to array and builded");
 					// iterativly add loaded data to the list and then call finishLoading
 					$scope.addItemsToList(data, 0, $scope.finishLoading);
 					$rootScope.$broadcast('postsLoaded');

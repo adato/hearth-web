@@ -7,9 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('item', [
-    '$translate', '$rootScope', 'Filter', 'Karma',
+    '$translate', '$rootScope', 'Filter', 'Karma', '$timeout',
 
-    function($translate, $rootScope, Filter, Karma) {
+    function($translate, $rootScope, Filter, Karma, $timeout) {
         return {
             restrict: 'E',
             replace: true,
@@ -18,7 +18,7 @@ angular.module('hearth.directives').directive('item', [
                 item: '=',
                 user: '=',
                 community: '=',
-                hiddenInit: '=',
+                delayedView: '=',
                 itemDetail: '=',
                 hideAvatar: '=',
                 keywordsActive: '=',
@@ -50,6 +50,7 @@ angular.module('hearth.directives').directive('item', [
                 // default values
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
                 scope.keywords = scope.keywordsActive || [];
+                scope.showListener = false; // waiting to be called for show post
 
                 // public methods from rootScope
                 scope.loggedUser = $rootScope.loggedUser;
@@ -93,9 +94,9 @@ angular.module('hearth.directives').directive('item', [
                     else
                         scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
 
-                    // if the post is shown instantly (not with any effect) recount his height to show "show more" link
-                    if(!scope.hiddenInit)
-                        scope.recountHeight(null, item._id);
+                    // if the post is show instantly (without any effect) recount his height now
+                    if(!scope.delayedView)
+                        scope.recountHeight();
                     
                     // count Karma length
                     item.karma = Karma.count(item.author.up_votes, item.author.down_votes);
@@ -107,10 +108,26 @@ angular.module('hearth.directives').directive('item', [
                 /**
                  * When post is shown, recount his height and display link to show/hide more
                  */
-                scope.recountHeight = function(ev, id) {
-                    if(scope.item._id != id)
-                        return;
-                    scope.showMore = $('.expandable', element).height() - $('.expandable p ', element).height() < 0 || scope.item.attachments_attributes.length > 3;
+                scope.recountHeight = function() {
+                    return scope.showMore = $('.expandable', element).height() - $('.expandable p ', element).height() < 0 || scope.item.attachments_attributes.length > 3;
+                };
+
+                scope.displayDelayed = function(ev, done) {
+                    scope.showListener(); // stop listening for this event
+
+                    var item = $(element);
+                    // show first 3 items with fadeIn effect, then use slideDown
+                    var showMethod = (scope.item.index < 4) ? item.fadeIn : item.slideDown;
+                    
+                    setTimeout(function() {
+                        showMethod.call(item, 200, function() {
+                            $timeout(function() {
+                                scope.delayedView = false;
+                                scope.recountHeight();
+                                done(scope.item.index);
+                            });
+                        });
+                    }, 150 * (scope.item.index - 1));
                 };
 
                 scope.toggleCollapsed = function() {
@@ -137,8 +154,8 @@ angular.module('hearth.directives').directive('item', [
 
                 // when we hide item after init and then show him with some effect,
                 // we need to recount his height after displayed
-                if(scope.hiddenInit)
-                    scope.$on('recountPostHeight', scope.recountHeight);
+                if(scope.delayedView)
+                    scope.showListener = scope.$on('showHiddenPosts', scope.displayDelayed);
             }
         };
     }
