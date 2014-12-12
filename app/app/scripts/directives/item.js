@@ -117,7 +117,7 @@ angular.module('hearth.directives').directive('item', [
 
                     var item = $(element);
                     // show first 3 items with fadeIn effect, then use slideDown
-                    var showMethod = (scope.item.index < 4) ? item.fadeIn : item.slideDown;
+                    var showMethod = (scope.item.index < 3) ? item.fadeIn : item.slideDown;
                     
                     setTimeout(function() {
                         showMethod.call(item, 200, function() {
