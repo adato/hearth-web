@@ -38,14 +38,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $scope.resfreshWithResize = function() {
             $(".main-container").css("min-height", $(".main-container").height()+"px");
+            $timeout($scope.removePageMinHeight, 5000);
+        };
+
+        $scope.removePageMinHeight = function() {
+            $(".main-container").css("min-height", "unset");
         };
 
         /**
          * This will unset fixed height of document
          */
-        $rootScope.$on("subPageLoaded", function() {
-            $(".main-container").css("min-height", "unset");
-        });
+        $rootScope.$on("subPageLoaded", $scope.removePageMinHeight);
 
         /**
          * When started routing to another page, compare routes and if they differ
@@ -97,6 +100,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $scope.search = function(text) {
             if (!text) return false;
+            $rootScope.top(0, 1);
+
             $location.path('/search');
             $location.search('q=' + (text || ""));
             
