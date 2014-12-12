@@ -7,11 +7,15 @@
  */
 
 angular.module('hearth.services').service('Viewport', [
-	'$translate',
-	function($translate) {
+	'$translate', '$window',
+	function($translate, $window) {
 
-		var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+		var viewportHeight;
 		var self = this;
+
+		function recountHeight() {
+			viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+		}
 
 		// this will get browser viewport position
 		this.getViewportPos = function(base) {
@@ -75,6 +79,9 @@ angular.module('hearth.services').service('Viewport', [
 				self.scroll(self.getTargetsDistance(target), offset, base);
 			}
 		};
+
+		recountHeight();
+		angular.element($window).bind('resize', recountHeight);
 
 		return this;
 	}
