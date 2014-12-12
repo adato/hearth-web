@@ -37,6 +37,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			console.timeEnd("Post builded");
 			if (posts.length > index) {
 				posts[index].index = index+1; // index starting with 1
+				
+				if(posts.length == posts[index].index)
+					posts[index].isLast = true;
 
 				console.time("Single post ("+(index+1)+") builded");
 				$scope.items.push(posts[index]);
@@ -64,17 +67,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$(".loading").fadeOut('fast', function() {
 				// show hidden posts and recount their height to show "show more" button
 
-				return;
-				$scope.$broadcast("showHiddenPosts", function(index) {
+				$scope.$broadcast("showHiddenPosts", function() {
 
-					// if shown item is last one - finish loading
-					if(index == $scope.limit) {
-						console.timeEnd("Posts displayed with some effect");
-						console.timeEnd("Market posts loaded and displayed");
-						// finish loading and allow to show loading again
-						$scope.loading = false;
-						$(".loading").show();
-					}
+					console.timeEnd("Posts displayed with some effect");
+					console.timeEnd("Market posts loaded and displayed");
+					// finish loading and allow to show loading again
+					$scope.loading = false;
+					$(".loading").show();
 				});
 			});
 		};

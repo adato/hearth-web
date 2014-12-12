@@ -115,19 +115,26 @@ angular.module('hearth.directives').directive('item', [
                 scope.displayDelayed = function(ev, done) {
                     scope.showListener(); // stop listening for this event
 
-                    var item = $(element);
+                    // var item = $(element);
                     // show first 3 items with fadeIn effect, then use slideDown
-                    var showMethod = (scope.item.index < 3) ? item.fadeIn : item.slideDown;
+                    // var showMethod = (scope.item.index < 3) ? item.fadeIn : item.slideDown;
                     
-                    setTimeout(function() {
-                        showMethod.call(item, 200, function() {
-                            $timeout(function() {
-                                scope.delayedView = false;
-                                scope.recountHeight();
-                                done(scope.item.index);
-                            });
-                        });
-                    }, 150 * (scope.item.index - 1));
+                    $("#post_"+scope.item._id).show();
+                    $timeout(scope.recountHeight);
+                    // scope.delayedView = false;
+                    
+                    if(scope.item.isLast)
+                        done(scope.item.index);
+
+                    // setTimeout(function() {
+                    //     showMethod.call(item, 200, function() {
+                    //         $timeout(function() {
+                    //             scope.delayedView = false;
+                    //             scope.recountHeight();
+                    //             done(scope.item.index);
+                    //         });
+                    //     });
+                    // }, 150 * (scope.item.index - 1));
                 };
 
                 scope.toggleCollapsed = function() {
