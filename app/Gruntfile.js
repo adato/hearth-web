@@ -506,6 +506,7 @@ module.exports = function(grunt) {
 						'*.html',
 						'templates/{,*/}*.html',
 						'vendor/**/*',
+						'scripts/**/*',
 						'images/{,*/}*.{webp}',
 						'fonts/*',
 					]
@@ -686,7 +687,7 @@ module.exports = function(grunt) {
 		'clean:dist',
 		'bower-install-simple',
 		'bowerInstall',
-		'search',
+		// 'search',
 		'useminPrepare',
 		'concurrent:dist',
 		'compass:dist',
@@ -695,18 +696,18 @@ module.exports = function(grunt) {
 		'copy:dist',
 		'preprocess',
 		'ngmin',
-		//'cdnify',
+		'cdnify',
 		'cssmin',
 		'uglify',
 		//'rev',
 		'usemin',
 		'htmlmin',
 		'html2js', //  merge all templates to one js file
-		'replace:dist', // add angular module for merged templates
-		'concat:tmpl',
+		// 'replace:dist', // add angular module for merged templates
+		// 'concat:tmpl',
 		'concat:vendor',
-		'uglify:vendor',
-		'cacheBust'
+		'uglify:vendor'
+		// 'cacheBust'
 	]);
 
 	grunt.registerTask('default', [

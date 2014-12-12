@@ -34,22 +34,22 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.addItemsToList = function(data, index, done) {
 			var posts = data.data;
 
-			console.timeEnd("Post builded");
+			console.timeEnd("Post built");
 			if (posts.length > index) {
 				posts[index].index = index+1; // index starting with 1
 				
 				if(posts.length == posts[index].index)
 					posts[index].isLast = true;
 
-				console.time("Single post ("+(index+1)+") builded");
+				console.time("Single post ("+(index+1)+") built");
 				$scope.items.push(posts[index]);
 
 				return $timeout(function() {
-					console.timeEnd("Single post ("+(index+1)+") builded");
+					console.timeEnd("Single post ("+(index+1)+") built");
 					$scope.addItemsToList(data, index + 1, done);
 				});
 			}
-			console.timeEnd("Posts pushed to array and builded");
+			console.timeEnd("Posts pushed to array and built");
 			done(data);
 		};
 
@@ -106,7 +106,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					console.timeEnd("Market posts loaded from API");
 					
 					
-					console.time("Posts pushed to array and builded");
+					console.time("Posts pushed to array and built");
 					// iterativly add loaded data to the list and then call finishLoading
 					$scope.addItemsToList(data, 0, $scope.finishLoading);
 					$rootScope.$broadcast('postsLoaded');
