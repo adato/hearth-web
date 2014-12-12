@@ -26,11 +26,13 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         var inited = false;
         $scope.subPageLoaded = false;
         $scope.ratingPosts = [];
+        $scope.loadedRatingPosts = false;
 
         function loadReceivedRatings(params, done, doneErr) {
+            $scope.loadedRatingPosts = false;
+            $scope.ratingPosts = [];
 
             UserRatings.received(params, done, doneErr);
-
             if(!$scope.mine)
                 UserRatings.possiblePosts({userId: params.user_id}, function(res) {
                     var posts = [];
@@ -45,8 +47,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     });
 
                     $scope.ratingPosts = posts;
+                    $scope.loadedRatingPosts = true;
                 }, function(res) {
-                    $scope.ratingPosts = [];
+                    $scope.loadedRatingPosts = true;
                 });
         }
 
