@@ -83,7 +83,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
              */
             function initLanguage(done) {
                 
-                // $translate.uses(preferredLanguage); // already loaded from config
+                // $translate.use(preferredLanguage); // already loaded from config
                 tmhDynamicLocale.set(preferredLanguage);
 
                 var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data){

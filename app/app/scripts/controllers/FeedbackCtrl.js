@@ -16,6 +16,12 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 				text: '',
 				email: ''
 			};
+
+			$scope.showError = {
+				email: false,
+				text: false,
+			};
+			
 			$scope.errors = new ResponseErrors();
 			if ($location.search().fromDelete) {
 				$scope.fromAccountDelete = true;
@@ -30,16 +36,16 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 		};
 
 		$scope.submit = function() {
-			if (!$scope.feedbackForm.$valid) {
-				return;
-			}
+			if (!$scope.feedbackForm.$valid || $scope.sending) return;
 			$scope.sending = true;
+
 			return Feedback.add($scope.feedback, function() {
-				$scope.feedbackForm.$setPristine();
 				$scope.sent = true;
+				$scope.sending = false;
+
 				return $scope.sent;
 			}, function() {
-				$scope.feedbackForm.$setPristine();
+				$scope.sending = false;
 				return $scope.init();
 			});
 		};
