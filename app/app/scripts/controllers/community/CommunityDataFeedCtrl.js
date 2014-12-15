@@ -23,6 +23,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function finishLoading() {
             $timeout(function(){
                $scope.subPageLoaded = true;
+               
+                if(!$scope.$parent)
+                    $scope.$parent = {};
+
                $scope.$parent.loaded = true;
                $rootScope.$emit("subPageLoaded");
             });

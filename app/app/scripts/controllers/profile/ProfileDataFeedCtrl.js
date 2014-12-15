@@ -151,6 +151,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function finishLoading() {
             $scope.subPageLoaded = true;
+            if(!$scope.$parent)
+                $scope.$parent = {};
             $scope.$parent.loaded = true;
             $rootScope.$emit("subPageLoaded");
         }
