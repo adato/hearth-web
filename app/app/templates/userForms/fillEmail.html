@@ -5,7 +5,7 @@
     <hr />
     <div class="fill-email-notify-container"></div>
     <form ng-submit="fillEmail()" name="fillEmailForm" novalidate class="register-login-form">
-        <label for="email">{{ 'FILL_CONTACT_EMAIL' | translate }}</label>
+        <span ng-bind-html="'FILL_EMAIL_FOR_TWITTER_LOGIN' | translate"></span>
         <input type="email" class="fg_email" name="email" ng-model="data.email" ng-blur="validateEmail(data)" ng-focus="fillEmailForm.email.$error.unknown = false; showError.email = false" required placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top">
         <div class="moveUp error" ng-show="showError.email">
             <span ng-show="fillEmailForm.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
@@ -17,4 +17,7 @@
             <button class="primary button-send pointer center" type="submit"><i class="fa fa-sign-in"></i> {{ 'COMPLETE' | translate }}</button>
         </div>
     </form>
+    <div class="register-successful success">
+            <p ng-bind-html="'SIGNUP_WAS_SUCCESSFUL' | translate"></p>
+        </div>
 </div>
