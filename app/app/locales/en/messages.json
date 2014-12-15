@@ -206,6 +206,7 @@
     "DELETE": "smazat",
     "DELETE_ACCOUNT_BUTTON_CAPTION": "Smazat účet",
     "DELETE_LOCATION": "smazat",
+    "ADD_LOCATION": "Napište místo",
     "DOES_GIVE": "Věnuje",
     "DOES_WISH": "Přijme",
     "DOING_AS_COMMUNITY": "Za komunitu",
@@ -395,7 +396,7 @@
     "LETS_LOGIN": "Přihlašte se.",
     "LIST": "Seznam",
     "LOCATE": "Kde jsem",
-    "LOCATIONS_IS_EMPTY": "Doplňte prázdné místo a nebo zaškrtněte, že na místě nezáleží.",
+    "LOCATIONS_ARE_EMPTY": "Doplňte prázdné místo a nebo zaškrtněte, že na místě nezáleží.",
     "LOCATIONS_IS_EMPTY_STRICT": "Vyplňte všechna místa.",
     "LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
     "LOCATION_GO_CURRENT": "Najít vaši aktuální polohu",
@@ -627,6 +628,7 @@
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
     "POST_WAS_DELETED": "Inzerát byl vymazán.",
     "PROFILE": {
+        "YOUR_PROFILE_IS_EMPTY": "Váš profil je smutný a prázný - řekněte něco více o tom, co vás zajímá a baví.",
         "COMMUNITTIES": {
             "NO_COMMUNITTIES_ME": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
             "NO_COMMUNITTIES_OTHER": "Uživatel u nás zatím není členem žádné komunity."
@@ -697,7 +699,10 @@
         "REMOVE_FOLOWEESE_LABEL": "Přestat sledovat uživatele",
         "REMOVE_FOLOWEESE_TEXT": "Opravdu chcete přestat sledovat tohoto uživatele?"
     },
-    "PROFILE_EDIT": "Upravit profil",
+    "PROFILE_EDIT": {
+        "HEADER": "Upravit profil"
+    },
+    "INSERT_LOCATION": "Vložit lokaci",
     "PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",
     "PROFILE_UPDATE_FAILED": "Změny ve vašem profilu se bohužel nepodařilo uložit. Dřív než vyskočíte z\nokna, zkuste to prosím ještě jednou.",
     "PROFILE_WAS_UPDATED": "Změny ve vašem profilu byly uloženy. Jste teď jako úplně nový člověk!",
@@ -758,7 +763,6 @@
     "TELL_WHAT": "Jednoduše sdělte co např. tutorství",
     "TERMS": "Podmínky použití",
     "TERMS_OF_USE_ON_HEARTH": "Podmínky použití štědré sociální sítě - Hearth.net",
-    "TEST": "AAAA <a ng-click='test()'>TEST</a> ... wjdkwjdk",
     "THANKS_FOR_REPORT": "Děkujeme za udání, tento příspěvek prověříme.",
     "THEY_WROTE_ME": "Ohodnotili mne",
     "THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvěte i své přátele do Hearth.net, do štědré sociální sítě!",
@@ -804,6 +808,16 @@
     "USER_POSTS": "Inzeráty uživatele",
     "USER_RATING_SCORE_SELECT_TEXT": "Jak komunikace s uživatelem probíhala?",
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
+    "USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžete spojit s konkrétní transakcí, která mezi vámi za poslední 3 měsíce proběhla.",
+    "USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte transakci",
+    "RATING_LOADING_COMMON_POSTS": "Načítám seznam realizovaných transakcí",
+    "RATING_POST_TYPES": {
+        "offered": "Věnoval(a) jsem",
+        "needed": "Přijal(a) jsem"
+    },
+    "RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce mezi vámi neproběhla žádná transakce, kterou byste mohli ohodnotit. No není to škoda? :)",
+    "RATING_COMMON_POSTS_TOP": "Ohodnoťte konkrétní transakci",
+    "RATING_TO_POST": "k inzerátu",
     "USER_RECEIVED_RATINGS": "Přijatá hodnocení",
     "USE_FACEBOOK": "Použít Facebook",
     "USE_GOOGLE": "Použít Google",
