@@ -33,6 +33,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			$scope.loadingCounter++;
 			Community.get({ communityId: $routeParams.id }, function(res) {
+				console.log(res);
 
 				$scope.loadingCounter--;
 				$scope.info = res;
@@ -40,8 +41,11 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.mine = $scope.isMine(res); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
-				if(!$scope.loadingCounter)
+				if(!$scope.loadingCounter) {
+					$rootScope.communityLoaded = true;	
 					$scope.$broadcast("communityTopPanelLoaded");
+				}
+
 			}, function(res) {
 
 				$scope.loadingCounter--;

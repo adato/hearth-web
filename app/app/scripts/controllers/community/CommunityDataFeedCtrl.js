@@ -173,7 +173,13 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         $scope.$on('itemDeleted', $scope.removeItemFromList);
-        $scope.$on('communityTopPanelLoaded', init);
-        // $scope.loaded && init();
+        if($rootScope.communityLoaded)
+            init();
+        else
+            $scope.$on('communityTopPanelLoaded', init);
+
+        $scope.$on('$destroy', function() {
+            $rootScope.communityLoaded = false;
+        });   
     }
 ]);
