@@ -200,7 +200,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.initHearthbeat = function() {
             $rootScope.pluralCat = $locale.pluralCat;
-            console.log("Setting plural cat: ", $locale.pluralCat);
+            // console.log("Setting plural cat: ", $locale.pluralCat);
             
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
             $rootScope.appUrl = window.location.href.replace(window.location.hash, '');

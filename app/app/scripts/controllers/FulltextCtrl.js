@@ -55,7 +55,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
                 $("#fulltextSearchResults").removeClass("searchInProgress");
 
                 data.forEach(function(item, i) {
-                    console.log(i, item);
                     data[i].item_type = item._type;
 
                     if (item._type == 'Post') {

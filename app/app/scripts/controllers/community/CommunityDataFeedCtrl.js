@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function processDataErr(res) {
-            console.log("Err", res);
+            // console.log("Err", res);
             finishLoading();
         }
         
@@ -97,13 +97,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             async.parallel([
                 function(done) {
-                    console.log("Loading activity");
                     CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
 
                         $scope.activityShow = false;
                         $scope.activityLog = [];
                         $timeout(function() {
-                            console.log("Loaded activity");
+                            // console.log("Loaded activity");
                             $scope.activityLog = res;
                             $scope.activityShow = true;
                         });
@@ -159,7 +158,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function init() {
-            console.log("Calling load service for segment ", $scope.pageSegment);
+            // console.log("Calling load service for segment ", $scope.pageSegment);
             loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
 
             // refresh after new post created
