@@ -19,7 +19,7 @@
 			<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
 				<div class="content">
 					<div class="fright">
-						<div class="date" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.updated_at | ago }}</div>
+						<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
 					</div>			
 					<div class="text-container clear clearfix">
 						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
