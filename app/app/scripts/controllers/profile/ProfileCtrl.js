@@ -16,6 +16,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.paramId = false;
 			$scope.sendingRemoveFollower = false;
 			$scope.sendingAddFollower = false;
+			$rootScope.profileLoaded = false;
 			
 			// ratings
 			$scope.sendingRating = false;
@@ -78,6 +79,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $scope.isMine();
 				// $scope.loaded = true;
+
+				$rootScope.profileLoaded = true;
 
 				// broadcast event for load subpages
 				if(fetchSubpage)
@@ -251,6 +254,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
+		$scope.$on('$destroy', function() {
+            $rootScope.profileLoaded = false;
+        });
+        
 		// first init
 		$scope.initPage();
 		// check if we are allowed to see this page
