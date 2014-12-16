@@ -33,6 +33,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             // configure dynamic locale - dates && pluralization && etc
             tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
             
+
             // configure translate provider - where language constants are
             $translateProvider.preferredLanguage(preferredLanguage);
             
@@ -84,7 +85,9 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             function initLanguage(done) {
                 
                 // $translate.uses(preferredLanguage); // already loaded from config
-                tmhDynamicLocale.set(preferredLanguage);
+                tmhDynamicLocale.set(preferredLanguage).then(function () {
+                    console.log("tmhDynamicLocale promise fired for language: " + preferredLanguage);
+                });
 
                 var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data){
                     offEvent(); // unregister event listener
