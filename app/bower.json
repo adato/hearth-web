@@ -6,7 +6,7 @@
     "angular-dynamic-locale": "~0.1.24",
     "angular-flexslider": "~1.3.0",
     "angular-loading-bar": "~0.6.0",
-    "angular-translate": "~2.5.0",
+    "angular-translate": "~2.5.2",
     "angulartics": "~0.17.1",
     "angular-translate-loader-static-files": "~2.5.0",
     "async": "~0.9.0",
