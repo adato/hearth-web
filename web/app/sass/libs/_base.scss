@@ -1,0 +1,514 @@
+/* =======================================================================*
+ * Universal mixin and library .SCSS source styles.                       *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+
+
+/* ===== INCLUDES & IMPORTS ========================== */
+
+@import "compass/css3";
+
+
+
+/* ===== GENERAL SETTINGS ============================ */
+
+$dir-img: '../img/';
+$dir-font: '../fonts/';
+$font-size: 14px;
+
+// Default settings
+$default-transition: all 0.2s ease;
+
+/* Pre-defined font families */
+$opensans: 'Open Sans', 'Helvetica', 'Arial', 'sans-serif';
+$helvetica: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+$verdana: 'Arial', 'Helvetica';
+$arial: 'Arial', 'Helvetica';
+$lato: 'Lato', 'sans-serif';
+
+
+/* ===== MIX-INS/LIBRARIES ========================== */
+
+
+/* SIZING & POSITIONING */
+
+
+    /* = Block object centralizer.
+     * $height-margin   ~ top & bottom margins of the block.
+     * $height          ~ height of the block.
+     ============================================================== */
+    @mixin centralize ( $height: auto, $height-margin: 0 )
+    {
+        position: relative;
+        margin: $height-margin auto;
+        height: $height;
+    }
+
+
+    /* = Size of an element definition.
+       $w ~ width of an element.
+       $h ~ height of an element.
+    =============================================================== */
+    @mixin size ( $w, $h: null )
+    {
+        width: $w; 
+
+        @if $h == null { height: $w; } // Square size
+        @else { height: $h; } 
+    }
+
+
+    /* = Sets element positioning to absolute and positions it.
+       $l   ~ Dimension of the left position.
+       $t   ~ Dimension of the top position.
+       $r   ~ Dimension of the right position.
+       $n   ~ Dimension of the bottom position.
+    =============================================================== */
+    @mixin absolute ( $l: null, $t: null, $r: null, $b: null )
+    {
+        position: absolute;
+
+        @if $l != 'null' { left: $l; } 
+        @if $t != 'null' { top: $t; } 
+        @if $r != 'null' { right: $r; } 
+        @if $b != 'null' { bottom: $b; } 
+    }
+
+
+    /* = Sets element as fixed.
+       $z-index  ~ Z axis index (higher means more visible).
+    =============================================================== */
+    @mixin fixed-panel ( $z-index: 99999 )
+    {
+        z-index: $z-index;
+        position: fixed; 
+        width: 100%;
+    }
+
+
+    /* = Sets element positioning to relative and positions it to 
+         shift the element.
+       $top     ~ Dimension of the top position
+    =============================================================== */
+    @mixin relative-shift ( $top )
+    { 
+        position: relative; top: $top;
+    }  
+
+
+    @function calc-grid-size ( $index )
+    {
+        @return ( $index / $grid-columns ) * 100%;
+    }
+
+
+/* FONTS, TYPOGRAPHY & THEIR APPEARANCE */    
+
+
+    /* = Adds new font available to use on the web
+       $url     ~ Font file including suffix
+       $name    ~ Name of this font
+    =============================================================== */
+    @mixin font-import ( $url, $name )
+    {
+        @font-face {
+          font-family: $name;
+          src: url( '#{$dir-font}' + $url) format('truetype');
+        }
+    }
+
+
+    /* = Simple text shadow.
+       $color       ~ color of the shadow (default: #000)
+       $distance    ~ ditance from the text
+       $spread      ~ spread of the shadow
+       $opacity     ~ shadows' opacity from 0 to 1 (default: 0.5)
+    =============================================================== */
+    @mixin text-shadow-simple ( $distance, $spread, $opacity: 0.5, $color: #000 )
+    {
+        @include text-shadow ( rgba($color, $opacity) 0 $distance $spread ); 
+    }
+
+
+    /* = Full settings of the text. 
+       $color       ~ Colour of the text ( default: inherit )
+       $family      ~ Whole font family including backup/system fonts ( default: inherit )
+       $size        ~ Size of the font ( default: default size )
+       $lines       ~ Height of the text line, absolute or relative to size ( default: normal )
+       $weight      ~ Weight of the font, ie.: bold ( default: normal )
+       $style       ~ Style of the font, ie.: italic ( default: normal )
+    =============================================================== */
+    @mixin font ( $color: inherit, $family: inherit, $size: $font-size, $lines: normal, $weight: normal, $style: normal )
+    {
+        font: $style $weight #{$size}/#{$lines} $family;
+        color: $color;
+    }
+
+
+    /* = Custom text parameters.
+       $color       ~ Colour of the text.
+       $family      ~ Whole font family including backup/system fonts.
+       $size        ~ Size of the font.
+       $lines       ~ Height of the text line, absolute or relative to size.
+       $weight      ~ Weight of the font, ie.: bold.
+       $decoration  ~ Font decoration, ie.: underline.
+       $style       ~ Style of the font, ie.: italic.
+    =============================================================== */
+    @mixin font-params ( $color: null, $size: null, $lines: null, $weight: null, $decoration: null, $style: null)
+    {
+        @if $color      != 'null' { color: $color; } 
+        @if $size       != 'null' { font-size: $size; } 
+        @if $lines      != 'null' { line-height: $lines; } 
+        @if $weight     != 'null' { font-weight: $weight; } 
+        @if $decoration != 'null' { text-decoration: $decoration; } 
+        @if $style      != 'null' { font-style: $style; } 
+    }
+
+
+
+/* IMAGES & ICONS */
+
+
+    /* = Provides access to vector/font-based icons Font Awesome. 
+     * $size    ~ Size of the icon
+     * $color   ~ Icon's color
+    =============================================================== */
+    @mixin icons-awesome ( $size: $font-size, $color: inherit )
+    {
+        font: normal $size 'FontAwesome';
+        color: $color;
+    }
+
+
+    /* = Picture for background element.
+       $url             ~ picture's URI.
+       $bg-settings     ~ other background settings (default: no-repeat).
+    =============================================================== */
+    @mixin bg ( $url, $bg-settings: no-repeat )
+    {
+        background: url( '#{$dir-img}'+$url) $bg-settings;
+    }
+
+    /* = Image-only for a background element.
+       $url             ~ image's URI.
+    =============================================================== */
+    @mixin bg-img ( $url )
+    {
+        background-image: url( '#{$dir-img}'+$url);
+    }
+
+
+    /* = Picture for background element.
+     * $url             ~ picture's URI.
+     * $$bg-settings    ~ other background settings (default: no-repeat).
+    =============================================================== */
+    @mixin bg-base64 ( $basecode )
+    {
+        background: url(#{$basecode}) no-repeat; 
+    }
+
+
+    /* = Custom image for a unordered list bullet point.
+       $url             ~ custom image's URI.
+    =============================================================== */
+    @mixin bullet-img ( $url )
+    {
+        list-style-image: url( '#{$dir-img}'+$url);
+    }
+
+
+    /* = Turns element into image, sets up size and uncached URL.
+     * $img-name    ~ Name of the image, including image type suffix.
+    =============================================================== */
+    @mixin img ( $img-name )
+    {
+        @include img-size ( $img-name );
+        background: image-url( $img-name );
+    }
+    
+
+    /* = Set-ups size according to the real size of the image.
+       $img-name    ~ Name of the image, including image type suffix.
+    =============================================================== */
+    @mixin img-size ( $img-name )
+    {
+        @include size ( image-width( $img-name ), image-height( $img-name ) );
+    }
+
+
+    /* = Turns element into mobile-optimized image, sets up size and uncached URL.
+         Oposed to mixin img, there are additional cross-browser settings.
+       $img-name    ~ Name of the image, including image type suffix.
+    =============================================================== */
+    @mixin img-mobile ( $img-name, $img-width: auto, $img-height: auto )
+    {
+
+        // If width or height is not set, calculcate size automatically
+        @if $img-width == 'auto' { @include img-size ( $img-name ); } 
+        @else if ( $img-height == 'auto' ) { @include img-size ( $img-name ); }
+        @else { @include size ( $img-width, $img-height ); } // Or use fixed size
+
+        @include bg ( $img-name );
+        @include img-mobile-compatibility;
+    }
+
+
+    /* = Adds cross-browser background image attributes. Mostly used to  
+         deal with mobile browsers' background image incompatibility issues.
+    =============================================================== */
+    @mixin img-mobile-compatibility ()
+    {
+        background-position: center center;
+        background-size: 100% 100%;  
+    }
+
+    /* = Adds cross-browser cover. Mostly used to deal with mobile 
+         browsers' CSS background image incompatibility issues.
+    =============================================================== */
+    @mixin cover()
+    {
+         -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+
+/* BOX APPEREANCE */
+
+    /* = Creates triangle-like shape, mostly used as a dropdown button's icon.
+       $size            ~ Approximate size of the triangle's base.
+       $color           ~ Color of the triangle.
+       $direction       ~ In which direction should be the triangle pointing.
+    =============================================================== */
+    @mixin make-caret ( $size, $color, $direction: 'bottom' )
+    {
+        @if $direction == 'bottom' 
+        { 
+            border-left: $size solid transparent;
+            border-top: $size solid $color;
+            border-right: $size solid transparent;
+        } 
+
+        @if $direction == 'top' 
+        { 
+            border-left: $size solid transparent;
+            border-bottom: $size solid $color;
+            border-right: $size solid transparent;
+        } 
+
+        @if $direction == 'left' 
+        { 
+            border-bottom: $size solid transparent;
+            border-right: $size solid $color;
+            border-top: $size solid transparent;
+        } 
+
+        @if $direction == 'right' 
+        { 
+            border-bottom: $size solid transparent;
+            border-left: $size solid $color;
+            border-top: $size solid transparent;
+        } 
+    }
+
+    /* = Creates triangle-like shape, mostly used as a dropdown button's icon.
+       $color           ~ Color of the triangle.
+       $direction       ~ In which direction should be the triangle pointing.
+    =============================================================== */
+    @mixin caret-color ( $color, $direction: 'bottom' )
+    {
+        @if $direction == 'bottom' 
+        { 
+            border-left-color: transparent;
+            border-top-color: $color;
+            border-right-color: transparent;
+        } 
+
+        @if $direction == 'top' 
+        { 
+            border-left-color: transparent;
+            border-bottom-color: $color;
+            border-right-color: transparent;
+        } 
+
+        @if $direction == 'left' 
+        { 
+            border-bottom-color: transparent;
+            border-right-color: $color;
+            border-top-color: transparent;
+        } 
+
+        @if $direction == 'right' 
+        { 
+            border-bottom-color: transparent;
+            border-left-color: $color;
+            border-top-color: transparent;
+        } 
+    }
+
+
+    /* = Adds hover (+ focus & click) effects to the given element.
+       $color           ~ Text color after hover/focus/click.
+       $text-decoration ~ Which type of text-decoration should be 
+                          for text after hovering/focusing/clicking.
+       $selector        ~ Can add optional tag.
+       $content         ~ More options can be specified using {} after mixin call.
+    =============================================================== */
+    @mixin hoverify ( $color: none, $decoration: null, $selector: null )
+    {
+
+        $selectors: ();
+
+        $selectors: append( $selectors, unquote("&:hover, &:active, &:focus"), comma );
+        
+        // Add additional selector, if any
+        @if $selector != 'null' 
+        {
+            $selectors: append( $selectors, unquote("#{$selector}"), comma );
+        }
+
+
+        #{$selectors}
+        {
+            @if $color != 'none' { color: $color; } 
+            @if $decoration != 'null' { text-decoration: $decoration; } 
+            @content;
+        }
+    }
+
+    /* = Rounds the corners of the box.
+       $radius  ~ Radius of rounded corner in pxs (default: default 
+                  size of the template settings. )
+    =============================================================== */
+    @mixin rounded-corners ( $radius: $web-border-radius )
+    {
+       @include border-radius ( $radius );
+    }
+
+
+    /* = Simple linear gradient, from top to bottom, 2 colours.
+       $s-color     ~ starting color, on the top of the gradient
+       $e-color     ~ ending color, on the bottom of the gradient
+       $bg-color    ~ backward compatibility. Do NOT use
+    =============================================================== */
+    @mixin gradient-linear ( $s-color, $e-color )
+    {
+        background-color: ( $e-color - $s-color ) / 2 + $s-color;
+        @include background-image ( linear-gradient( $s-color, $e-color ) );
+    }
+
+
+    /* = Simple element shadow.
+       $color   ~ color of the shadow (default: #000)
+       $size    ~ size of the shadow
+       $opacity ~ shadows' opacity from 0 to 1 (default: 0.5)
+    =============================================================== */
+    @mixin shadow-simple ( $size, $opacity: 0.5, $color: #000 )
+    {
+        @include text-shadow ( rgba ( $color, $opacity ) $size $size 0, rgba($color, $opacity) $size $size 0, rgba($color, $opacity) $size $size 0); 
+    }
+
+
+
+/* VISUAL EFFECTS */
+
+   /* = Item's transition.
+      $params   ~ Style, duration and animation effect.
+    =============================================================== */
+    @mixin transition ( $params: $default-transition )
+    {
+        -webkit-transition: $params; 
+        -moz-transition: $params; 
+        -o-transition: $params; 
+        transition: $params; 
+    }
+
+
+/* BOX-MODEL */
+
+    /* = Creates an object form non-positionable pseudo-element 
+         (Typically being used for :before and :after).
+       $position    ~ Position. Must be non-static to work.
+       $display     ~ Display. Must be non-inline to work.
+       $content     ~ ASCII textual content. Must be non-NULL to work.
+    =============================================================== */
+    @mixin objectify ( $position: relative, $display: block, $content: " " )
+    {
+        position: $position; 
+        display: $display;
+        content: $content;
+    }
+
+    @mixin margins ( $vertical: none, $horizontal: none, $t: none, $b: none, $l: none, $r: none )
+    {
+        @if $vertical != 'none' { margin-top: $vertical; margin-bottom: $vertical; } 
+        @if $horizontal != 'none' { margin-left: $horizontal; margin-right: $horizontal; } 
+
+        @if $t != 'none' { margin-top: $t; } 
+        @if $b != 'none' { margin-bottom: $b; } 
+        @if $l != 'none' { margin-left: $l; } 
+        @if $r != 'none' { margin-right: $r; }
+    }
+
+    @mixin paddings ( $vertical: none, $horizontal: none, $t: none, $b: none, $l: none, $r: none )
+    {
+        @if $vertical != 'none' { padding-top: $vertical; padding-bottom: $vertical; } 
+        @if $horizontal != 'none' { padding-left: $horizontal; padding-right: $horizontal; } 
+
+        @if $t != 'none' { padding-top: $t; } 
+        @if $b != 'none' { padding-bottom: $b; } 
+        @if $l != 'none' { padding-left: $l; } 
+        @if $r != 'none' { padding-right: $r; }
+    }
+
+/* FORMS & INPUTS */
+
+
+   /* = Color of the text inside input 'placeholder'
+      $text-color   ~ Placeholder's text color
+      $opacity      ~ Opacity of the text (default: 1)
+    =============================================================== */
+    @mixin placeholder ( $text-color, $opacity: 1 )
+    {
+        &::-webkit-input-placeholder { color: $text-color; opacity: $opacity; }
+        &::-moz-placeholder { color: $text-color; opacity: $opacity; }
+        &:-ms-input-placeholder { color: $text-color; opacity: $opacity ; }
+        &.placeholder { color: $text-color; opacity: $opacity; }
+    } 
+
+
+   /* = Hack for overriding Chrome auto-complete layout force overlay.
+      $background   ~ Background color
+      $color        ~ Color of the text (default: inherit)
+      $box-shadows  ~ Additional inset or outter shadows (default: none)
+    =============================================================== */
+    @mixin chrome-autocomplete ( $background, $color: inherit, $box-shadows: none )
+    {
+        &:-webkit-autofill 
+        {
+            @if $box-shadows == 'none' 
+            {
+                @include box-shadow (  0 0 0 1000px $background inset !important );
+            } 
+            @else
+            {
+                @include box-shadow ( $box-shadows, 0 0 0 1000px $background inset !important );
+            }
+
+            -webkit-text-fill-color: $color !important;
+        }
+    } 
+
+
+   /* = Backface visiblity across all major browsers
+      $backface-visibility   ~ Attribute of parameter backface visibility.
+    =============================================================== */
+    @mixin backface-visibility ( $attribute: hidden )
+    {
+        backface-visibility: $attribute;
+        -webkit-backface-visibility: $attribute; 
+        -moz-backface-visibility: $attribute; 
+        -ms-backface-visibility: $attribute; 
+    }

@@ -1,0 +1,1092 @@
+@charset "UTF-8";
+/* =======================================================================*
+ * Main website template .SCSS source styles.                             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== INCLUDES & IMPORTS ========================== */
+/* =======================================================================*
+ * Universal mixin and library .SCSS source styles.                       *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== INCLUDES & IMPORTS ========================== */
+/* ===== GENERAL SETTINGS ============================ */
+/* Pre-defined font families */
+/* ===== MIX-INS/LIBRARIES ========================== */
+/* SIZING & POSITIONING */
+/* = Block object centralizer.
+ * $height-margin   ~ top & bottom margins of the block.
+ * $height          ~ height of the block.
+ ============================================================== */
+/* = Size of an element definition.
+   $w ~ width of an element.
+   $h ~ height of an element.
+=============================================================== */
+/* = Sets element positioning to absolute and positions it.
+   $l   ~ Dimension of the left position.
+   $t   ~ Dimension of the top position.
+   $r   ~ Dimension of the right position.
+   $n   ~ Dimension of the bottom position.
+=============================================================== */
+/* = Sets element as fixed.
+   $z-index  ~ Z axis index (higher means more visible).
+=============================================================== */
+/* = Sets element positioning to relative and positions it to 
+     shift the element.
+   $top     ~ Dimension of the top position
+=============================================================== */
+/* FONTS, TYPOGRAPHY & THEIR APPEARANCE */
+/* = Adds new font available to use on the web
+   $url     ~ Font file including suffix
+   $name    ~ Name of this font
+=============================================================== */
+/* = Simple text shadow.
+   $color       ~ color of the shadow (default: #000)
+   $distance    ~ ditance from the text
+   $spread      ~ spread of the shadow
+   $opacity     ~ shadows' opacity from 0 to 1 (default: 0.5)
+=============================================================== */
+/* = Full settings of the text. 
+   $color       ~ Colour of the text ( default: inherit )
+   $family      ~ Whole font family including backup/system fonts ( default: inherit )
+   $size        ~ Size of the font ( default: default size )
+   $lines       ~ Height of the text line, absolute or relative to size ( default: normal )
+   $weight      ~ Weight of the font, ie.: bold ( default: normal )
+   $style       ~ Style of the font, ie.: italic ( default: normal )
+=============================================================== */
+/* = Custom text parameters.
+   $color       ~ Colour of the text.
+   $family      ~ Whole font family including backup/system fonts.
+   $size        ~ Size of the font.
+   $lines       ~ Height of the text line, absolute or relative to size.
+   $weight      ~ Weight of the font, ie.: bold.
+   $decoration  ~ Font decoration, ie.: underline.
+   $style       ~ Style of the font, ie.: italic.
+=============================================================== */
+/* IMAGES & ICONS */
+/* = Provides access to vector/font-based icons Font Awesome. 
+ * $size    ~ Size of the icon
+ * $color   ~ Icon's color
+=============================================================== */
+/* = Picture for background element.
+   $url             ~ picture's URI.
+   $bg-settings     ~ other background settings (default: no-repeat).
+=============================================================== */
+/* = Image-only for a background element.
+   $url             ~ image's URI.
+=============================================================== */
+/* = Picture for background element.
+ * $url             ~ picture's URI.
+ * $$bg-settings    ~ other background settings (default: no-repeat).
+=============================================================== */
+/* = Custom image for a unordered list bullet point.
+   $url             ~ custom image's URI.
+=============================================================== */
+/* = Turns element into image, sets up size and uncached URL.
+ * $img-name    ~ Name of the image, including image type suffix.
+=============================================================== */
+/* = Set-ups size according to the real size of the image.
+   $img-name    ~ Name of the image, including image type suffix.
+=============================================================== */
+/* = Turns element into mobile-optimized image, sets up size and uncached URL.
+     Oposed to mixin img, there are additional cross-browser settings.
+   $img-name    ~ Name of the image, including image type suffix.
+=============================================================== */
+/* = Adds cross-browser background image attributes. Mostly used to  
+     deal with mobile browsers' background image incompatibility issues.
+=============================================================== */
+/* = Adds cross-browser cover. Mostly used to deal with mobile 
+     browsers' CSS background image incompatibility issues.
+=============================================================== */
+/* BOX APPEREANCE */
+/* = Creates triangle-like shape, mostly used as a dropdown button's icon.
+   $size            ~ Approximate size of the triangle's base.
+   $color           ~ Color of the triangle.
+   $direction       ~ In which direction should be the triangle pointing.
+=============================================================== */
+/* = Creates triangle-like shape, mostly used as a dropdown button's icon.
+   $color           ~ Color of the triangle.
+   $direction       ~ In which direction should be the triangle pointing.
+=============================================================== */
+/* = Adds hover (+ focus & click) effects to the given element.
+   $color           ~ Text color after hover/focus/click.
+   $text-decoration ~ Which type of text-decoration should be 
+                      for text after hovering/focusing/clicking.
+   $selector        ~ Can add optional tag.
+   $content         ~ More options can be specified using {} after mixin call.
+=============================================================== */
+/* = Rounds the corners of the box.
+   $radius  ~ Radius of rounded corner in pxs (default: default 
+              size of the template settings. )
+=============================================================== */
+/* = Simple linear gradient, from top to bottom, 2 colours.
+   $s-color     ~ starting color, on the top of the gradient
+   $e-color     ~ ending color, on the bottom of the gradient
+   $bg-color    ~ backward compatibility. Do NOT use
+=============================================================== */
+/* = Simple element shadow.
+   $color   ~ color of the shadow (default: #000)
+   $size    ~ size of the shadow
+   $opacity ~ shadows' opacity from 0 to 1 (default: 0.5)
+=============================================================== */
+/* VISUAL EFFECTS */
+/* = Item's transition.
+   $params   ~ Style, duration and animation effect.
+ =============================================================== */
+/* BOX-MODEL */
+/* = Creates an object form non-positionable pseudo-element 
+     (Typically being used for :before and :after).
+   $position    ~ Position. Must be non-static to work.
+   $display     ~ Display. Must be non-inline to work.
+   $content     ~ ASCII textual content. Must be non-NULL to work.
+=============================================================== */
+/* FORMS & INPUTS */
+/* = Color of the text inside input 'placeholder'
+   $text-color   ~ Placeholder's text color
+   $opacity      ~ Opacity of the text (default: 1)
+ =============================================================== */
+/* = Hack for overriding Chrome auto-complete layout force overlay.
+   $background   ~ Background color
+   $color        ~ Color of the text (default: inherit)
+   $box-shadows  ~ Additional inset or outter shadows (default: none)
+ =============================================================== */
+/* = Backface visiblity across all major browsers
+   $backface-visibility   ~ Attribute of parameter backface visibility.
+ =============================================================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* =======================================================================*
+ * Global variables and layout settings, .SCSS source styles.             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== VARIABLES ==================================== */
+/* Dimensions */
+/* Colours */
+/* Font weights */
+/* Project-related Mixins */
+/* ===== PROJECT-BASED MIXINS ========================= */
+/* ===== BASIC (DEFAULT) STYLES ======================= */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Open Sans", "Helvetica", "Arial", "sans-serif";
+  font-size: 16px;
+  color: #231f20;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a, input[type="submit"], a:before, a > img {
+  color: inherit;
+  outline: none !important;
+  text-decoration: none;
+}
+
+.face, .face > img, .menu > li > a, .links a {
+  -webkit-transition: all 0.35s ease;
+  -moz-transition: all 0.35s ease;
+  -o-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+/* =======================================================================*
+ * Custom fonts .SCSS source styles.                                      *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== INCLUDES & IMPORTS ========================== */
+/* Importing Font Awesome */
+@fa-font-path :   $dir-font;
+/*!
+ *  Font Awesome 4.2.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("../fonts/fontawesome-webfont.eot?v=4.2.0");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.2.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff?v=4.2.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.2.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* =======================================================================*
+ * UI items used across whole website, SCSS source styles.                *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== ICONS & IMAGES ========================== */
+.ico {
+  font-size: 40px;
+}
+.ico:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ico.fb:before {
+  content: "";
+}
+.ico.tw:before {
+  content: "";
+}
+.ico.yt:before {
+  content: "";
+}
+.ico.insta:before {
+  content: "";
+}
+.ico.mail:before {
+  content: "";
+}
+
+/* ===== BUTTONS ================================= */
+.content .btn {
+  color: #1fb1e8;
+  background-color: transparent;
+  border-color: #1fb1e8;
+  padding: 12px 30px;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 5px;
+  border: 2px solid #1fb1e8;
+  font-weight: 600;
+  font-size: 20px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.content .btn:hover, .content .btn:focus, .content .btn.focus, .content .btn:active, .content .btn.active, .open > .content .btn.dropdown-toggle {
+  color: #1fb1e8;
+  background-color: transparent;
+  border-color: #138ab7;
+}
+.content .btn:active, .content .btn.active, .open > .content .btn.dropdown-toggle {
+  background-image: none;
+}
+.content .btn.disabled, .content .btn.disabled:hover, .content .btn.disabled:focus, .content .btn.disabled.focus, .content .btn.disabled:active, .content .btn.disabled.active, .content .btn[disabled], .content .btn[disabled]:hover, .content .btn[disabled]:focus, .content .btn[disabled].focus, .content .btn[disabled]:active, .content .btn[disabled].active, fieldset[disabled] .content .btn, fieldset[disabled] .content .btn:hover, fieldset[disabled] .content .btn:focus, fieldset[disabled] .content .btn.focus, fieldset[disabled] .content .btn:active, fieldset[disabled] .content .btn.active {
+  background-color: transparent;
+  border-color: #1fb1e8;
+}
+.content .btn .badge {
+  color: transparent;
+  background-color: #1fb1e8;
+}
+.content .btn:hover, .content .btn:active, .content .btn:focus {
+  color: #1287b2;
+  background: rgba(133, 209, 237, 0.3);
+}
+
+.btn-close {
+  font-weight: 800;
+  font-size: 50px;
+  opacity: .6;
+}
+.btn-close:hover, .btn-close:active, .btn-close:focus {
+  opacity: 1;
+}
+
+/* =======================================================================*
+ * Site's dynamic content and static pages, .SCSS source styles.          *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== LANDING PAGE ============================ */
+.subpage {
+  overflow: hidden;
+  margin: 0px;
+  padding-top: 60px;
+}
+.subpage:before, .subpage:after {
+  content: " ";
+  display: table;
+}
+.subpage:after {
+  clear: both;
+}
+.subpage h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 700;
+}
+.subpage p {
+  margin-bottom: 20px;
+}
+.subpage .btns {
+  text-align: center;
+  margin-top: 30px;
+}
+.subpage .pic {
+  width: 800px;
+  height: auto;
+  margin: 10px 0;
+}
+.subpage .subpage-pic {
+  float: left;
+}
+.subpage:after {
+  position: relative;
+  display: block;
+  content: " ";
+  width: 980px;
+  height: 23px;
+  background: url("../img/subpage-delim.jpg");
+  margin-top: 60px;
+}
+.subpage:last-child:after {
+  display: none;
+}
+
+.illustrations {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.illustrations > li {
+  display: inline-block;
+  margin: 10px 0;
+}
+.illustrations > li > strong {
+  font-weight: 600;
+}
+.illustrations > li, .illustrations .pic {
+  width: 180px;
+}
+.illustrations .pic {
+  margin-bottom: 10px;
+}
+
+.people {
+  text-align: center;
+}
+
+.person {
+  display: inline-block;
+  vertical-align: top;
+  margin: 40px 0;
+  padding: 0 30px;
+  width: 49%;
+}
+.person .portrait {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+.person .name, .person .occupation {
+  font-weight: 600;
+}
+.person .name {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.person .name:after {
+  position: relative;
+  display: block;
+  content: " ";
+  width: 400px;
+  height: 4px;
+  background: url("../img/person-delim.png");
+  margin-top: 10px;
+}
+.person .occupation {
+  font-size: 18px;
+  line-height: 1.25;
+  height: 50px;
+}
+.person blockquote {
+  line-height: 1.5;
+}
+
+.social-pane {
+  float: right;
+  width: 400px;
+  height: 600px;
+}
+.social-pane iframe {
+  width: 100%;
+}
+
+.news-list {
+  float: left;
+  width: 400px;
+}
+
+.social-pane, .news-list {
+  margin-bottom: 40px;
+}
+
+.news-overview {
+  overflow: hidden;
+  border-bottom: 1px solid #ecebdf;
+  margin: 5px 0;
+  padding: 10px 0;
+}
+.news-overview:last-child {
+  border-bottom: 0;
+}
+.news-overview > header {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.news-overview > header > time {
+  float: right;
+  color: #383838;
+  font-size: 15px;
+  margin-left: 12px;
+}
+.news-overview > header > time:before {
+  position: relative;
+  display: inline-block;
+  content: " ";
+  position: relative;
+  top: 2px;
+  margin-right: 7px;
+  width: 14px;
+  height: 15px;
+  background: url('../img/ico-clock.png?1415714868');
+}
+.news-overview > header > h3 {
+  font-size: 23px;
+  font-weight: 600;
+}
+.news-overview .abstract {
+  line-height: 1.5;
+}
+.news-overview .abstract > p {
+  margin-bottom: 8px;
+}
+.news-overview .btns {
+  text-align: right;
+  margin-bottom: 20px;
+}
+.news-overview .more {
+  color: #1fb1e8;
+  text-decoration: underline;
+  font-weight: 600;
+}
+.news-overview .more:hover, .news-overview .more:active, .news-overview .more:focus {
+  color: #1491c0;
+  text-decoration: none;
+}
+
+.gallery {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ===== STORIES ================================= */
+/* Single story page */
+.story > header {
+  z-index: 9999;
+  top: 0;
+  height: 120px;
+  position: absolute;
+}
+.story img.logo {
+  margin-left: 30px;
+  width: 250px;
+  height: auto;
+}
+.story .btn-close {
+  line-height: 1.4;
+  font-size: 30px;
+  margin: 0 60px;
+  float: right;
+}
+
+.story-bg {
+  background: url("../img/story-bg.jpg") repeat;
+  z-index: 0;
+  position: absolute;
+  background-position: 0px 0px;
+  animation: animatedBackground 80s linear infinite;
+  -webkit-animation: animatedBackground 80s linear infinite;
+  width: 5700px;
+  height: 1800px;
+}
+
+@keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: -300px 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@-webkit-keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: -300px 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.story-board {
+  z-index: 99;
+  height: 100%;
+}
+
+.story-page {
+  position: relative;
+  float: left;
+  width: 1200px;
+  height: 800px;
+  margin-right: 0;
+}
+.story-page:last-child {
+  margin-right: 0;
+}
+.story-page .left, .story-page .right {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  float: left;
+  width: 50%;
+}
+.story-page .left {
+  text-align: right;
+}
+.story-page .left > h1 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0 0 30px 0;
+  padding-left: 25px;
+}
+.story-page .left .story-content {
+  padding-left: 25px;
+  margin-right: 45px;
+}
+.story-page .left .pic-container {
+  right: 0;
+}
+.story-page .face {
+  position: absolute;
+  left: 0;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  margin-top: -95px;
+  margin-left: -215px;
+}
+.story-page .item {
+  position: absolute;
+  left: 0;
+  margin-top: 40px;
+  margin-left: -120px;
+}
+.story-page .received {
+  width: 300px;
+  height: 139px;
+}
+.story-page > .story-content {
+  text-align: center;
+}
+.story-page > .story-content .about {
+  position: relative;
+  width: 30%;
+  text-align: left;
+  margin: 3% 45px 0 30%;
+  padding-left: 60px;
+}
+.story-page .btn-cta {
+  margin: 35px 0;
+  font-size: 30px;
+  padding: 20px 65px;
+}
+.story-page .right {
+  text-align: left;
+}
+.story-page .right .story-content {
+  margin-left: 45px;
+}
+.story-page .right .pic-container {
+  left: 0;
+}
+.story-page .right > h1 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0 0 30px 0;
+  padding-right: 25px;
+}
+.story-page .pic-container {
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  display: block;
+  margin-top: -360px;
+  width: 900px;
+  height: 900px;
+}
+.story-page .pic-container > img {
+  width: 900px;
+  height: 900px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.story-page h1 {
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.story-page h2, .story-page .about {
+  font-size: 16px;
+  margin-right: 11%;
+}
+.story-page h2 {
+  margin-bottom: 25px;
+  text-align: right;
+  font-weight: 700;
+}
+.story-page .about {
+  text-align: center;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  padding: 20px;
+  border: 3px solid #fa5800;
+}
+.story-page .btn-more, .story-page .btn-bottom-continue, .story-page .btn-continue {
+  position: absolute;
+  right: 0px;
+  bottom: 0;
+  margin: 0 5% 0 0;
+  padding: 20px 25px 2% 25px;
+  font-size: 20px;
+  font-weight: 700;
+  background: #fa5800;
+  color: #ffc9ac;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.story-page .btn-more:hover, .story-page .btn-bottom-continue:hover, .story-page .btn-continue:hover, .story-page .btn-more:active, .story-page .btn-bottom-continue:active, .story-page .btn-continue:active, .story-page .btn-more:focus, .story-page .btn-bottom-continue:focus, .story-page .btn-continue:focus {
+  color: #FFF;
+}
+.story-page .btn-bottom-continue {
+  position: absolute;
+  right: 220px;
+  bottom: 0;
+}
+.story-page .btn-continue {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  position: relative;
+  top: 50px;
+  padding: 15px;
+}
+
+.story-content {
+  position: relative;
+  top: 20%;
+}
+.story-content h1 {
+  margin-bottom: 5px;
+  border-bottom: 3px solid #fa5800;
+}
+
+.story-page .animated {
+  transition: all 1s linear;
+  visibility: hidden;
+}
+.story-page .animated.from-right {
+  transform: translateX(1000px);
+}
+.story-page .animated.from-left {
+  transform: translateX(-1000px);
+}
+.story-page .animated.from-top {
+  transform: translateY(-1000px);
+}
+.story-page .animated.from-bottom {
+  transform: translateY(1000px);
+}
+.story-page.active .animated {
+  visibility: inherit;
+}
+.story-page.active .animated.from-right, .story-page.active .animated.from-left {
+  transform: translateX(0px);
+}
+.story-page.active .animated.from-top, .story-page.active .animated.from-bottom {
+  transform: translateY(0px);
+}
+
+/* ===== OVERALL LAYOUT ============================= */
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: transparent;
+  width: 980px;
+}
+.container:before, .container:after {
+  content: " ";
+  display: table;
+}
+.container:after {
+  clear: both;
+}
+
+body > header {
+  min-width: 980px;
+  min-height: auto;
+  background-color: #98b56b;
+  background: url("../img/cover2.jpg") no-repeat center top;
+}
+body > header > div.header-content {
+  background: url("../img/dots-and-lines.png") no-repeat center top;
+}
+body > footer {
+  padding: 35px 0;
+  background: rgba(208, 207, 197, 0.6);
+  min-width: 980px;
+}
+body.story > header, body.story .body {
+  background: transparent;
+}
+body.stickify-down {
+  padding-bottom: 50px;
+}
+body.stickify-down .sticky-panel {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.45) -1px 0 14px;
+  box-shadow: rgba(0, 0, 0, 0.45) -1px 0 14px;
+}
+body.stickify-up {
+  padding-top: 50px;
+}
+body.stickify-up .sticky-panel {
+  top: 0;
+  z-index: 99999;
+  position: fixed;
+  width: 100%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.45) 1px 0 8px;
+  box-shadow: rgba(0, 0, 0, 0.45) 1px 0 8px;
+}
+
+/* ===== HEADER & INTRODUCTION ====================== */
+.logo-strip {
+  padding: 15px 0 5px;
+  border-bottom: 5px solid #fa5800;
+}
+.logo-strip .logo {
+  width: 321px;
+  height: 56px;
+}
+
+.strip-btns {
+  text-align: right;
+}
+.strip-btns .btn {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  padding: 5px 30px 8px;
+  background: #fa5800;
+  color: #EAEAEA;
+  font-size: 29px;
+  line-height: 1.3;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.strip-btns .btn:hover, .strip-btns .btn:active, .strip-btns .btn:focus {
+  color: #FFF;
+}
+
+.intro {
+  text-align: center;
+}
+.intro:before, .intro:after {
+  content: " ";
+  display: table;
+}
+.intro:after {
+  clear: both;
+}
+
+.face-deck {
+  position: relative;
+  width: 70%;
+  height: 460px;
+  margin: 0 auto;
+  text-align: center;
+}
+.face-deck .face {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  width: 190px;
+  height: 190px;
+  -moz-border-radius: 95px;
+  -webkit-border-radius: 95px;
+  border-radius: 95px;
+  border: 7px solid #FFF;
+}
+.face-deck .face > img {
+  display: inline-block;
+  width: 190px;
+  height: 190px;
+}
+.face-deck .face:hover, .face-deck .face:active, .face-deck .face:focus {
+  width: 200px;
+  height: 200px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  -webkit-box-shadow: #FFF 0 0 45px;
+  box-shadow: #FFF 0 0 45px;
+  transform: translate(-5px, -5px);
+}
+.face-deck .face:hover > img, .face-deck .face:active > img, .face-deck .face:focus > img {
+  width: 200px;
+  height: 200px;
+}
+.face-deck .face.first {
+  left: 5px;
+  top: 145px;
+}
+.face-deck .face.second {
+  left: 300px;
+  top: 0;
+}
+.face-deck .face.third {
+  left: 430px;
+  top: 225px;
+}
+
+.headline {
+  text-transform: uppercase;
+  color: #1c1c1b;
+  font-size: 60px;
+  line-height: normal;
+  font-weight: 700;
+}
+
+.claim {
+  font-size: 25px;
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: 25px 60px;
+  margin: 50px 0 70px;
+  text-transform: uppercase;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
+  background: #369edb;
+  background-color: #369edb;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM2OWVkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzI2OTJkMiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #369edb), color-stop(100%, #2692d2));
+  background-image: -moz-linear-gradient(#369edb, #2692d2);
+  background-image: -webkit-linear-gradient(#369edb, #2692d2);
+  background-image: linear-gradient(#369edb, #2692d2);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0 3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 3px 5px;
+  color: #FFF;
+  font-size: 24px;
+  line-height: normal;
+  font-weight: 700;
+}
+.btn-cta:hover, .btn-cta:active, .btn-cta:focus {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
+  background-color: #389fdb;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM2OWVkYiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhYTBkYyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #369edb), color-stop(100%, #3aa0dc));
+  background-image: -moz-linear-gradient(#369edb, #3aa0dc);
+  background-image: -webkit-linear-gradient(#369edb, #3aa0dc);
+  background-image: linear-gradient(#369edb, #3aa0dc);
+}
+
+/* ===== STICKY PANEL & MAIN MENU =================== */
+.sticky-panel {
+  background: #fa5800;
+  padding: 0 40px;
+  min-width: 980px;
+  height: 50px;
+}
+.sticky-panel:before, .sticky-panel:after {
+  content: " ";
+  display: table;
+}
+.sticky-panel:after {
+  clear: both;
+}
+.sticky-panel .logo-container {
+  display: inline-block;
+  line-height: 50px;
+  opacity: 0;
+}
+.sticky-panel .logo {
+  vertical-align: sub;
+  display: inline-block;
+  line-height: 50px;
+  width: 149px;
+  height: 26px;
+}
+.sticky-panel .menu-container {
+  float: right;
+}
+
+/* Main menu */
+.menu {
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
+}
+.menu > li {
+  display: inline-block;
+  color: #ffc9ac;
+}
+.menu > li:before {
+  position: static;
+  display: inline-block;
+  content: "|";
+  margin: 0 8px 0 12px;
+}
+.menu > li.active a {
+  color: #FFF;
+}
+.menu > li:first-child:before {
+  display: none;
+}
+.menu > li > a {
+  color: inherit;
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 600;
+  text-shadow: rgba(0, 0, 0, 0.15) 0 0 4px;
+}
+.menu > li > a:hover, .menu > li > a:active, .menu > li > a:focus {
+  color: #FFF;
+}
+
+/* ===== CONTENT ==================================== */
+/* Body & content */
+.body {
+  background: url("../img/bg.jpg") no-repeat top center;
+  background-color: #faf8eb;
+  min-height: 667px;
+  min-width: 980px;
+}
+
+.content p > strong {
+  font-weight: 700;
+}
+
+/* ===== FOOTER ===================================== */
+.links {
+  float: left;
+}
+.links > li {
+  display: inline-block;
+  font-weight: 700;
+  color: #838176;
+}
+.links > li > a:hover, .links > li > a:active, .links > li > a:focus {
+  color: #333;
+}
+.links.text {
+  float: left;
+  padding: 7px 0;
+}
+.links.text > li {
+  margin: 0 8px;
+}
+.links.text > li:after {
+  position: static;
+  display: inline-block;
+  content: "|";
+  margin-left: 16px;
+}
+.links.text > li:last-child:after {
+  display: none;
+}
+.links.icons {
+  float: right;
+}
+.links.icons > li {
+  margin: 0 12px;
+}
+
+/* ===== OVERRIDES (MUST BE AT THE END) ============= */

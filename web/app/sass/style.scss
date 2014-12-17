@@ -1,0 +1,366 @@
+/* =======================================================================*
+ * Main website template .SCSS source styles.                             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+
+
+/* ===== INCLUDES & IMPORTS ========================== */
+
+ // 1. BASE SETTINGS & MIX-INS
+ @import "libs/base";
+
+ // 2. RESETS IF NEEDED
+ @import "compass/reset";
+
+ // 3. PROJECT VARS, LIBS VAR OVERRIDES & FONTS
+ @import "app/vars";
+ @import "app/fonts";
+
+ // 4. FRAMEWORKS & EXTENSIONS
+ @import "vendors/bootstrap";
+ @import "vendors/font-awesome";
+
+ // 5. GLOBAL UI ITEMS
+ @import "app/globals";
+
+ // 6. OTHER LAYOUT PARTS
+ @import "app/pages";
+ //@import "app/admin";
+ //@import "app/forms";
+ //@import "app/plugins";
+
+ // 7. HELPERS
+ //@import "libs/helpers"; 
+
+ // 8. MEDIA & RESPONSIVENESS
+ //@import "app/media"; 
+ 
+
+/* ===== OVERALL LAYOUT ============================= */
+
+// Centralizing container 
+.container 
+{ 
+	@include container-fixed; 
+	background-color: transparent; 
+	width: $web-width;
+}
+
+body 
+{
+	& > header 
+	{
+		min-width: $web-width;
+		min-height: $header-height;
+		background-color:#98b56b;
+		@include bg ( "cover2.jpg", no-repeat center top );
+		& > div.header-content {
+			@include bg ( "dots-and-lines.png", no-repeat center top );
+		}
+	}
+
+	& > footer 
+	{
+		padding: 35px 0;
+		background: rgba( $footer-bg, .6 );
+		min-width: $web-width;
+	}
+
+	// Story background reset
+	&.story 
+	{
+		& > header, .body { background: transparent };
+	}
+
+	// Fixes menu to the bottom part of the page
+	&.stickify-down
+	{
+		padding-bottom: $sticky-panel-height;
+
+		.sticky-panel 
+		{
+		    bottom: 0;
+			position: fixed;
+		    width: 100%;
+
+		    @include box-shadow ( rgba( #000, .45 ) -1px 0 14px );
+		}
+	}
+
+	&.stickify-up
+	{
+		padding-top: $sticky-panel-height;
+
+		.sticky-panel 
+		{
+			top: 0;
+			@include fixed-panel;
+		    @include box-shadow ( rgba( #000, .45 ) 1px 0 8px );
+		}
+	}
+}
+
+
+/* ===== HEADER & INTRODUCTION ====================== */
+
+// Logo container
+.logo-strip
+{
+	padding: 15px 0 5px;
+	border-bottom: 5px solid $border-brand;
+
+	.logo { 
+		@include img-size ( "logo-dark.png" ); 
+	}
+} 
+
+	
+
+// Buttons under the strip
+.strip-btns 
+{
+	text-align: right;
+
+	.btn 
+	{
+		@include relative-shift ( -1px ); // 1px thin line fix
+		display: inline-block;
+		padding: 5px 30px 8px;
+		background: $bg-brand;
+		color: #EAEAEA;
+		font-size:29px;
+		line-height: 1.3;
+		@include border-bottom-radius( $web-radius );
+
+		@include hoverify ( #FFF );
+	}
+}
+
+
+// Landing page intro
+.intro 
+{
+	@include clearfix;
+	text-align: center;
+}
+
+// Pane with 3 story faces
+.face-deck 
+{
+	position: relative;
+	@include size ( 70%, 460px );
+	margin: 0 auto;
+	text-align: center;
+
+	// Single avatar
+	$face-size-hover: 200px;
+	$face-size: 190px;
+	$translate-size: -.5 * ($face-size-hover - $face-size);
+
+	.face
+		{
+		position: absolute;
+		display: inline-block;
+		overflow: hidden;
+		@include size ( $face-size, $face-size ); 
+		@include rounded-corners ( $face-size / 2 );
+		border: 7px solid #FFF;
+		
+		& > img 
+		{ 
+			display: inline-block;
+			@include size ( $face-size, $face-size ); 
+		}
+
+		@include hoverify 
+		{
+			@include size ( $face-size-hover, $face-size-hover );
+			@include rounded-corners ( $face-size-hover / 2 );
+			@include box-shadow ( #FFF 0 0 45px );
+			transform:translate($translate-size, $translate-size);
+
+			& > img 
+			{
+				@include size ( $face-size-hover, $face-size-hover );
+
+			}
+		}
+
+		// 1st person
+		&.first	{ left: 5px; top: 145px; }
+		&.second { left: 300px; top: 0; }
+		&.third	{ left: 430px; top: 225px; }
+	}
+}
+
+// Headline & Claim
+.headline
+{
+	text-transform: uppercase;
+	@include font-params ( $intro-headline, 60px, normal, $bold );
+}
+
+.claim { font-size: 25px; }
+
+// Call-to-action / Important action button
+.btn-cta 
+{
+	display: inline-block;
+	padding: 25px 60px;
+	margin: 50px 0 70px;
+	text-transform: uppercase;
+	@include text-shadow ( rgba( #000, .25) 0 1px 2px );
+	background: $intro-cta-btn-bg;
+	@include gradient-linear ( $intro-cta-btn-bg, darken( $intro-cta-btn-bg, 5 ) );
+	@include rounded-corners ( $web-radius );
+	@include box-shadow ( rgba( #000, .35 ) 0 3px 5px );
+	@include font-params ( #FFF, 24px, normal, $bold );
+
+	@include hoverify 
+	{
+		@include box-shadow ( rgba( #000, .2 ) 0 2px 4px );
+		@include gradient-linear (  $intro-cta-btn-bg, lighten( $intro-cta-btn-bg, 1 ) );
+	}
+}
+
+
+/* ===== STICKY PANEL & MAIN MENU =================== */
+
+.sticky-panel 
+{
+	@include clearfix;
+	background: $bg-brand;
+	padding: 0 $web-padding + 20;
+	min-width: $web-width;
+	height: $sticky-panel-height;
+
+	.logo-container 
+	{
+		display: inline-block; 
+		line-height: $sticky-panel-height; 
+		opacity: 0;
+	}
+
+	.logo
+	{
+		vertical-align: sub;
+		display: inline-block;
+		line-height: $sticky-panel-height;
+		@include img-size ( "logo.png" );
+	}
+
+	.menu-container { float: right; }
+}
+
+/* Main menu */
+.menu 
+{
+	height: $sticky-panel-height;
+	line-height: $sticky-panel-height;
+	text-align: right;
+
+	// 1st level
+	& > li 
+	{
+		display: inline-block;
+		color: $menu-text;
+
+		&:before 
+		{
+			@include objectify ( static, inline-block, "|" );
+			margin: 0 8px 0 12px;
+		}
+
+		&.active {
+			a {
+				color: $menu-text-hover; 
+			}
+		}
+
+		&:first-child:before { display: none; }
+
+		& > a 
+		{ 
+			@include font-params ( inherit, 18px, normal, $semibold );
+			@include text-shadow ( rgba( #000, .15) 0 0 4px );
+
+			@include hoverify ( $menu-text-hover );
+		}
+	}
+}
+
+
+/* ===== CONTENT ==================================== */
+
+/* Body & content */
+.body 
+{
+	@include bg ( "bg.jpg", no-repeat top center );
+	background-color: $web-bg;
+	min-height: 667px;
+	min-width: $web-width;
+}
+
+// All content HERE
+.content 
+{
+	p 
+	{
+		& > strong { font-weight: $bold; }
+	}
+}
+
+
+/* ===== FOOTER ===================================== */
+
+// Smaller links in the footer
+.links 
+{
+	float: left;
+
+	& > li 
+	{
+		display: inline-block;
+		font-weight: $bold;
+		color: $footer-links-text;
+
+		& > a 
+		{
+			@include hoverify ( $footer-links-hover-text );
+		}
+	}
+
+	$links-text-margin: 8px;
+
+	// Text-only footer links
+	&.text 
+	{ 
+		float: left;
+		padding: 7px 0;	
+
+		& > li { margin: 0 $links-text-margin };
+
+		& > li:after 
+		{
+			@include objectify ( static, inline-block, "|" );
+			margin-left: $links-text-margin * 2 ;
+		}
+
+		& > li:last-child:after { display: none; }
+	}
+
+	// Footer links based on icons
+	&.icons 
+	{ 
+		float: right;  
+
+		& > li { margin: 0 12px }; 
+	}
+}
+
+
+/* ===== OVERRIDES (MUST BE AT THE END) ============= */
+
+ // 9. OVERRIDES
+ //@import "app/overrides";
