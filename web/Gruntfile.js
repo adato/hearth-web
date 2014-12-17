@@ -265,6 +265,7 @@ module.exports = function(grunt) {
 						'*.html',
 						'img/{,*/}*',
 						'fonts/*',
+						'css/{,*/}*',
 						'pics/{,*/}*',
 						'vendor/{,*/}*',
 					]
@@ -356,16 +357,16 @@ module.exports = function(grunt) {
 		'clean:dist',
 		'useminPrepare',
 		'concurrent:dist',
-		'compass:dist',
+		// 'compass:dist',
 		'autoprefixer',
 		'concat',
 		'ngmin',
 		'copy:dist',
-		'cssmin',
+		// 'cssmin',
 		'uglify',
 		// 'rev',
 		'usemin',
-		// 'htmlmin'
+		'htmlmin'
 	]);
 	grunt.registerTask('default', [
 		'newer:jshint',
