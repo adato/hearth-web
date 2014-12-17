@@ -34,22 +34,22 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.addItemsToList = function(data, index, done) {
 			var posts = data.data;
 
-			console.timeEnd("Post built");
+			// console.timeEnd("Post built");
 			if (posts.length > index) {
 				posts[index].index = index+1; // index starting with 1
 				
 				if(posts.length == posts[index].index)
 					posts[index].isLast = true;
 
-				console.time("Single post ("+(index+1)+") built");
+				// console.time("Single post ("+(index+1)+") built");
 				$scope.items.push(posts[index]);
 
 				return $timeout(function() {
-					console.timeEnd("Single post ("+(index+1)+") built");
+					// console.timeEnd("Single post ("+(index+1)+") built");
 					$scope.addItemsToList(data, index + 1, done);
 				});
 			}
-			console.timeEnd("Posts pushed to array and built");
+			// console.timeEnd("Posts pushed to array and built");
 			done(data);
 		};
 
@@ -61,7 +61,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			console.time("Posts displayed with some effect");
+			// console.time("Posts displayed with some effect");
 
 			// fade out loading bar
 			$(".loading").fadeOut('fast', function() {
@@ -69,8 +69,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				$scope.$broadcast("showHiddenPosts", function(index) {
 
-					console.timeEnd("Posts displayed with some effect");
-					console.timeEnd("Market posts loaded and displayed");
+					// console.timeEnd("Posts displayed with some effect");
+					// console.timeEnd("Market posts loaded and displayed");
 					// finish loading and allow to show loading again
 					$scope.loading = false;
 					$(".loading").show();
@@ -98,15 +98,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					params.keywords = params.keywords.join(",");
 				}
 
-				console.time("Market posts loaded and displayed");
-				console.time("Market posts loaded from API");
+				// console.time("Market posts loaded and displayed");
+				// console.time("Market posts loaded from API");
 				// load based on given params
 				Post.query(params, function(data) {
 					$scope.loaded = true;
-					console.timeEnd("Market posts loaded from API");
+					// console.timeEnd("Market posts loaded from API");
 					
 					
-					console.time("Posts pushed to array and built");
+					// console.time("Posts pushed to array and built");
 					// iterativly add loaded data to the list and then call finishLoading
 					$scope.addItemsToList(data, 0, $scope.finishLoading);
 					$rootScope.$broadcast('postsLoaded');
