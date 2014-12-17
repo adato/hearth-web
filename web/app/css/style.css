@@ -396,7 +396,7 @@ a, input[type="submit"], a:before, a > img {
   content: " ";
   width: 980px;
   height: 23px;
-  background: url("../img/subpage-delim.jpg");
+  background: url("../img/subpage-delim.png");
   margin-top: 60px;
 }
 .subpage:last-child:after {
