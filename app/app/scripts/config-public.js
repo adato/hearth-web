@@ -5,7 +5,7 @@ $$config = {
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',
-	fbAppId: '769756073037691', // stage
+	fbAppId: '277542219089599', // stage
 	defaultLanguage: 'cs',
 	defaultUserAvatar: 'images/no-avatar.jpg',
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
