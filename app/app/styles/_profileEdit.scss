@@ -73,7 +73,7 @@
     @extend .common-profile-settings;
 
     .language-select {
-        width: unset;
+        width: initial !important;
         min-width: 200px;
     }
 }

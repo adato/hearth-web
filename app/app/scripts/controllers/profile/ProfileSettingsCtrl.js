@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload',
 	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify, UnauthReload) {
 		$scope.loaded = true;
-		$scope.lang = false;
+		$scope.lang = false; // used in view
 		$scope.changeSubmitted = false;
 		$scope.languages = LanguageSwitch.getLanguages();
 		$scope.pass = {
@@ -30,43 +30,57 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 		$scope.d = new Date();
 
+		/**
+		 * Validate delete account form
+		 */
 		$scope.validateDeleteAccount = function(data) {
-			var res = true;
+			var invalid = false;
 
 			if ($scope.profileDeleteForm.oldPassLeave.$invalid) {
-				res = false;
-				$scope.showError.oldPassLeave = true;
+				invalid = $scope.showError.oldPassLeave = true;
 			}
 
-			return res;
+			return !invalid;
 		};
 
+		/**
+		 * When user delete request fails
+		 */
 		$scope.processDeleteUserResultError = function(res) {
 			$scope.processDeleteUserResult(res.data);
 		};
 
+		/**
+		 * Proces result of delete user request
+		 */
 		$scope.processDeleteUserResult = function(res) {
 			$rootScope.globalLoading = false;
 
+			// if ok, reload browser and show notify
 			if (res.ok) {
 
 				Notify.addTranslateAfterRefresh('NOTIFY.ACCOUNT_DELETE_SUCCESS', Notify.T_SUCCESS);
 				window.location.replace("/app/");
 			} else if( res.reason == 'community admin' ) {
+				// when user has community, show notify - hack for problem with view handling
 				setTimeout(function() {
 					return Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED_COMMUNITY', Notify.T_ERROR, '.notify-container-delete-user');
 				}, 1000);
 			} else {
+				// when there is general error
 				Notify.addSingleTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
 			}
 		};
 
+		/**
+		 * Send request to delete user
+		 */
 		$scope.sendDeleteRequest = function(data) {
 			return function(validationResult) {
 
-				if (!validationResult) {
-					return false;
-				}
+				if (!validationResult) return false;
+				
+				// serialize
 				var out = {
 					user_id: $rootScope.loggedUser._id,
 					current_password: data.pass,
@@ -75,19 +89,25 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 				$rootScope.globalLoading = true;
 
+				// send request
 				User.remove(out, $scope.processDeleteUserResult, $scope.processDeleteUserResultError);
 			}
 		};
 
+		/**
+		 * Delete account
+		 */
 		$scope.deleteAccount = function(data) {
 
-			if (!$scope.validateDeleteAccount(data)) {
-				return;
-			}
+			if (!$scope.validateDeleteAccount(data)) return false;
 
+			// test password first
 			$scope.testOldPassword(data.pass, 'profileDeleteForm', 'oldPassLeave', $scope.sendDeleteRequest(data));
 		};
 
+		/**
+		 * Validate password change form
+		 */
 		$scope.validateChangePasswordError = function(data) {
 			var invalid = false;
 
@@ -101,6 +121,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			return !invalid;
 		};
 
+		/**
+		 * Validate old password
+		 */
 		$scope.testOldPassword = function(pass, form, error, done) {
 
 			if (!pass) {
@@ -123,6 +146,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			});
 		};
 
+		/**
+		 * Process result of change password request
+		 */
 		$scope.processChangeResult = function(res) {
 			$scope.changeSubmitted = false;
 			$rootScope.globalLoading = false;
@@ -143,6 +169,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			}
 		};
 
+		/**
+		 * Send request for password change
+		 */
 		$scope.sendChangeRequest = function(pass) {
 			return function(validationResult) {
 
@@ -160,15 +189,12 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			}
 		};
 
+		/**
+		 * Change password and validate old pass
+		 */
 		$scope.changePassword = function(pass) {
 			
-			if (!$scope.validateChangePasswordError(pass)) {
-				return;
-			}
-			
-			if($scope.changeSubmitted) {
-				return false;
-			}
+			if ($scope.changeSubmitted || !$scope.validateChangePasswordError(pass)) return false;
 			$scope.changeSubmitted = true;
 
 			// validate old pass
@@ -177,14 +203,14 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		$scope.init = function() {
 
+			// for authorized only
 			UnauthReload.check();
-			LanguageSwitch.uses().code
 		};
 
+		// switch language to given lang code
 		$scope.switchLang = function(lang) {
 			LanguageSwitch.swicthTo(lang);
 		};
-
 
 		$rootScope.$on('initLanguageSuccess', $scope.init);
 		$rootScope.$on('initFinished', $scope.init);
