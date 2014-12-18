@@ -71,4 +71,9 @@
 
 .profile-settings {
     @extend .common-profile-settings;
+
+    .language-select {
+        width: unset;
+        min-width: 200px;
+    }
 }

@@ -14,6 +14,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.loaded = true;
 		$scope.lang = false;
 		$scope.changeSubmitted = false;
+		$scope.languages = LanguageSwitch.getLanguages();
 		$scope.pass = {
 			old: '',
 			changed: ''
@@ -27,7 +28,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			oldPass: false,
 			newPass: false
 		};
-
 		$scope.d = new Date();
 
 		$scope.validateDeleteAccount = function(data) {
@@ -178,11 +178,13 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.init = function() {
 
 			UnauthReload.check();
+			LanguageSwitch.uses().code
 		};
 
 		$scope.switchLang = function(lang) {
 			LanguageSwitch.swicthTo(lang);
 		};
+
 
 		$rootScope.$on('initLanguageSuccess', $scope.init);
 		$rootScope.$on('initFinished', $scope.init);

@@ -7,51 +7,35 @@
  */
  
 angular.module('hearth.services').service('LanguageSwitch', [
-	'$feature', '$translate', '$http', 'ipCookie', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
-	function($feature, $translate, $http, ipCookie, $rootScope, tmhDynamicLocale, Session, Notify) {
-		var self = this,
-			languages = [{
-				code: 'en',
-				name: 'English'
-			}, {
-				code: 'cs',
-				name: 'Česky'
-			}];
+	'$feature', '$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
+	function($feature, $translate, $http, $rootScope, tmhDynamicLocale, Session, Notify) {
+		var self = this;
+		this.languages = $$config.languages;
 
 		this.init = function() {
-			if ($feature.isEnabled('german')) {
-				return languages.push({
-					code: 'de',
-					name: 'Deutsch'
-				});
-			}
-
-			console.log("Language Inited");
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
 		};
 		
 		this.getLanguages = function() {
-			return languages;
+			return self.languages;
 		};
-		this.getLanguage = function(code) {
+		
+		
+		// test if language exists
+		this.langExists = function(lang) {
+			return !!~self.languages.indexOf(lang);
+		};
 
-			for(var i = 0; i< languages.length; i++) {
-				if(languages[i].code == code) {
-					return languages[i];
-				}
-			}
-			return false;
-		};
+		// switch to given language code
 		this.swicthTo = function(lang) {
-			var lang = self.getLanguage(lang);
 
-			if(lang) {
-				ipCookie('language', lang.code, {
-					expires: 21*30
-				});
-					
-				Session.update({language: lang.code}, function(res) {
+			if(self.langExists(lang)) {
+				// save to cookie
+				$.cookie('language', lang, {expires: 21*30*100});
+				
+				// update language on API
+				Session.update({language: lang}, function(res) {
 					
 					location.reload();
 					// return self.use(lang);
@@ -62,24 +46,25 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			return false;
 		}
 		this.uses = function() {
-			return $.map(languages, function(item) {
-				if (item.code === $translate.use()) {
+			return $.map(self.languages, function(item) {
+				if (item === $translate.use()) {
 					return item;
 				}
 			})[0];
 		};
-		this.use = function(language) {
-			ipCookie('language', language.code, {
+		this.use = function(lang) {
+			$.cookie('language', lang, {
 				expires: 21*30
 			});
-			$http.defaults.headers.common['Accept-Language'] = language.code;
-			$translate.use(language.code);
-			tmhDynamicLocale.set(language.code);
+			$http.defaults.headers.common['Accept-Language'] = lang;
+			$translate.use(lang);
+			tmhDynamicLocale.set(lang);
 			
-			$rootScope.language = language.code;
-			$rootScope.$broadcast("initLanguageSuccess", language.code);
-			return language.code;
+			$rootScope.language = lang;
+			$rootScope.$broadcast("initLanguageSuccess", lang);
+			return lang;
 		};
+
 		this.load = function() {
 			return $.cookie('language');
 		};
