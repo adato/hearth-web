@@ -39,7 +39,7 @@ $(function ()
 	});
 
     // load blog data
-    $.get('http://blog.hearth.net/feed/', function(data) {
+    $.get('//blog.hearth.net/feed/', function(data) {
         var $xml = $(data);
         var cntr = 0;
         $xml.find("item").each(function() {
