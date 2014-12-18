@@ -5,7 +5,7 @@
  * =======================================================================*/
 
 // to stop XX pixels above the target
-var readabilityOffset = 0; 
+var readabilityOffset = 80; 
 
 var header = $( 'header.header>div.header-content' );
 var headerHeight = header.innerHeight();

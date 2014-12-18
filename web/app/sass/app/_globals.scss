@@ -30,7 +30,7 @@
 {
 	@include button-variant ( $btn-text, $btn-bg, $btn-border );
 	@include button-size ( 12px, 30px, 15px, 1, $web-radius );
-	border: 2px solid $btn-border;
+	//border: 2px solid $btn-border;
 	font-weight: $semibold;
 	font-size: 20px;
 
