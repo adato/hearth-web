@@ -443,7 +443,17 @@ $story-height: 800px; // Default
 		text-align: center;
 		@include rounded-corners ( 25px );
 		padding: 20px;
+	}
+
+	.orange-border
+	{
+
 		border: 3px solid $brand; 
+	}
+
+	.next-button
+	{
+		margin-top: 20px;
 	}
 
 	.btn-more 

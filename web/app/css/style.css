@@ -822,6 +822,17 @@ body > header {
   min-height: auto;
   background-color: #98b56b;
   background: url("../img/cover2.jpg") no-repeat center top;
+
+  background: rgba(139,121,71,1);
+  background: -moz-linear-gradient(left, rgba(139,121,71,1) 0%, rgba(140,115,68,1) 19%, rgba(99,129,82,1) 74%, rgba(119,161,98,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(139,121,71,1)), color-stop(19%, rgba(140,115,68,1)), color-stop(74%, rgba(99,129,82,1)), color-stop(100%, rgba(119,161,98,1)));
+  background: -webkit-linear-gradient(left, rgba(139,121,71,1) 0%, rgba(140,115,68,1) 19%, rgba(99,129,82,1) 74%, rgba(119,161,98,1) 100%);
+  background: -o-linear-gradient(left, rgba(139,121,71,1) 0%, rgba(140,115,68,1) 19%, rgba(99,129,82,1) 74%, rgba(119,161,98,1) 100%);
+  background: -ms-linear-gradient(left, rgba(139,121,71,1) 0%, rgba(140,115,68,1) 19%, rgba(99,129,82,1) 74%, rgba(119,161,98,1) 100%);
+  background: linear-gradient(to right, rgba(139,121,71,1) 0%, rgba(140,115,68,1) 19%, rgba(99,129,82,1) 74%, rgba(119,161,98,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8b7947', endColorstr='#77a162', GradientType=1 );
+
+
 }
 body > header > div.header-content {
   background: url("../img/dots-and-lines.png") no-repeat center top;

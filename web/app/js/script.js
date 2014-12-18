@@ -15,7 +15,7 @@ var viewportWidth = $(window).width();
 var viewportRatio = viewportHeight / viewportWidth;	
 var logoWidth = $( '.logo-strip>.container' ).innerWidth();
 setHeaderHeight();
-window.onresize = setHeaderHeight;
+// window.onresize = setHeaderHeight;
 stickifyPanel( $( '.sticky-panel' ), '.logo-container')
 
 $(function () 
@@ -68,7 +68,6 @@ function setHeaderHeight() {
 	$( '.logo-strip>.container' ).width(logoWidth * (1/height));
 	$( '.strip-btns>.container' ).width(logoWidth * (1/height));
 	$( '.strip-btns .btn').css({ 'font-size': 18 * (1/height) + 'px' });
-
 }
 
 // Creates stickyfying behavior to the given panel
@@ -155,6 +154,7 @@ function stickifyPanel( stickyPanel, logoClass )
 
 		// Set it as scroll listener
 		$(window).scroll(positionPanel);
+		$(window).resize(positionPanel);
 
 		// Call it for the first time, even before all scroll handlers fire
 		positionPanel();
