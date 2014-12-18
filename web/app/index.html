@@ -14,12 +14,11 @@
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/style.css?p=r6">
   <!--[if gt IE 7]> <link rel="stylesheet" href="css/ie.css">  <![endif]-->
-
   <script src="vendor/js/modernizr.js"></script>
 </head>
 
 <body class="landing">
-  <!--[if lt IE 7]>
+  <!--[if lt IE 7]>23
     <p class=chromeframe>Váš internetový prohlížeč je <em>z pravěku!</em> <a href="//browsehappy.com/">Nainstalujte si lepší</a>, nebo <a href="//www.google.com/chromeframe/?redirect=true">si nainstalujte Google Chrome Frame</a>, abyste mohli tuto stránku vidět jako ostatní.</p><![endif]-->
 
   <div id="fb-root"></div>
@@ -27,7 +26,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=133986903478472&version=v2.0";
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&appId=133986903478472&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -65,7 +64,7 @@
           </div>
           <h1 class="headline">Objevujte štěstí</h1>
           <p class="claim">Naplňte svůj den štědrostí a poznávejte lidi na stejné vlně</p>
-          <a class="btn-cta" href="/app/#!/register" title="Register to the Hearth.net">Připojit se</a>
+          <a class="btn-cta" href="/app/#!/register" title="Registrujte se do Hearth.net">Připojit se</a>
         </div>
       </section> 
       </div>
@@ -74,7 +73,7 @@
   <div class="sticky-panel">
     <div class="container">
       <a href="/" title="To the main page" class="logo-container">
-        <img src="img/logo.png" class="logo" alt="Hearth.net - Main page">
+        <img src="img/logo.png" class="logo" alt="Hearth.net - Úvodní strana">
       </a>
 
       <!-- Main menu -->
@@ -185,10 +184,10 @@
         </section>
 
         <section class="subpage" id="subpage-news">
-          <h2>Děje se (Aktuálně)</h2>
+          <h2>Právě se děje</h2>
 
           <div class="social-pane">
-            <div class="fb-like-box" data-href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" data-width="50%" data-height="700" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="true" data-show-border="false"></div>
+            <div class="fb-like-box" data-href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" data-width="500" data-height="700" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="true" data-show-border="false"></div>
           </div>
 
           <div class="news-list">
@@ -203,9 +202,25 @@
           <p>Na začátku byla spoustu otázek. Jak pojmenovat místo, kde lidé fungují na principu vzájemné spolupráce? Při hledání odpovědi nás napadla dvě slova – Heart (srdce) a Earth (Země). Obě mají stejný slovní základ. Když je spojíme, je tu <strong>Hearth</strong> – rodinný krb, ohniště.<br><br>
           Vznikl symbol hodnot, které jsou pro nás důležité a které chceme šířit dál.<br><br>
           Hearth.net začíná na internetu, ale míří dál. Je to náš online nástroj pro lepší fungování ekonomiky daru v reálném prostředí. Díky Hearth.net chceme vytvářet skutečné vztahy i komunity a mít z nich radost. Spolu s vámi. Přidejte se.</p>
-          <div class="gallery">
-            <img src="pics/pic-philosophy.png" alt="Filosofie Hearth.netu" class="pic">
-          </div>
+          
+          <div class="values">
+            <div class="values-list">
+              <ul>
+                <li>Radost</li>
+                <li>Dar/Štědrost</li>
+                <li>Hodnota/Cena</li>
+                <li>Odpovědnost</li>
+                <li>Transparentnost</li>
+                <li>Důvěra</li>
+                <li>Spolupráce</li>
+                <li>Laskavost</li>
+                <li>Zpětná vazba</li>
+                <li>Zásluhy</li>
+              </ul>
+            </div>
+            <div class="values-image">
+              <img src="pics/pic-philosophy.png" alt="Filosofie Hearth.netu" class="pic">
+            </div>
         </section>
       </div>
     </div>
@@ -252,7 +267,6 @@
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
   <!-- endbuild -->
-
   <script>
     var _gaq=[['_setAccount','UA-40070733-1'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

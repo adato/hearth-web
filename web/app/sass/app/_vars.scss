@@ -61,10 +61,10 @@
 		// Forms
 
 		// Buttons
-		$btn-text: 			$blue;
-		$btn-text-hover: 	darken( $blue, 13 );
-		$btn-bg: 			transparent;
-		$btn-bg-hover: 		rgba( #85d1ed, .3 );
+		$btn-text: 			$menu-text-hover;
+		$btn-text-hover: 	#fff;
+		$btn-bg: 			$intro-cta-btn-bg;
+		$btn-bg-hover: 		lighten( $intro-cta-btn-bg, 13);
 		$btn-border: 		$blue;
 
 		// Flash messages, notifications

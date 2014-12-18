@@ -309,38 +309,37 @@ a, input[type="submit"], a:before, a > img {
 
 /* ===== BUTTONS ================================= */
 .content .btn {
-  color: #1fb1e8;
-  background-color: transparent;
+  color: #FFF;
+  background-color: #369edb;
   border-color: #1fb1e8;
   padding: 12px 30px;
   font-size: 15px;
   line-height: 1;
   border-radius: 5px;
-  border: 2px solid #1fb1e8;
   font-weight: 600;
   font-size: 20px;
   display: inline-block;
   white-space: nowrap;
 }
 .content .btn:hover, .content .btn:focus, .content .btn.focus, .content .btn:active, .content .btn.active, .open > .content .btn.dropdown-toggle {
-  color: #1fb1e8;
-  background-color: transparent;
+  color: #FFF;
+  background-color: #2283bc;
   border-color: #138ab7;
 }
 .content .btn:active, .content .btn.active, .open > .content .btn.dropdown-toggle {
   background-image: none;
 }
 .content .btn.disabled, .content .btn.disabled:hover, .content .btn.disabled:focus, .content .btn.disabled.focus, .content .btn.disabled:active, .content .btn.disabled.active, .content .btn[disabled], .content .btn[disabled]:hover, .content .btn[disabled]:focus, .content .btn[disabled].focus, .content .btn[disabled]:active, .content .btn[disabled].active, fieldset[disabled] .content .btn, fieldset[disabled] .content .btn:hover, fieldset[disabled] .content .btn:focus, fieldset[disabled] .content .btn.focus, fieldset[disabled] .content .btn:active, fieldset[disabled] .content .btn.active {
-  background-color: transparent;
+  background-color: #369edb;
   border-color: #1fb1e8;
 }
 .content .btn .badge {
-  color: transparent;
-  background-color: #1fb1e8;
+  color: #369edb;
+  background-color: #FFF;
 }
 .content .btn:hover, .content .btn:active, .content .btn:focus {
-  color: #1287b2;
-  background: rgba(133, 209, 237, 0.3);
+  color: #fff;
+  background: #6eb9e5;
 }
 
 .btn-close {
@@ -360,8 +359,7 @@ a, input[type="submit"], a:before, a > img {
 /* ===== LANDING PAGE ============================ */
 .subpage {
   overflow: hidden;
-  margin: 0px;
-  padding-top: 60px;
+  margin: 60px 0;
 }
 .subpage:before, .subpage:after {
   content: " ";
@@ -383,8 +381,6 @@ a, input[type="submit"], a:before, a > img {
   margin-top: 30px;
 }
 .subpage .pic {
-  width: 800px;
-  height: auto;
   margin: 10px 0;
 }
 .subpage .subpage-pic {
@@ -396,7 +392,7 @@ a, input[type="submit"], a:before, a > img {
   content: " ";
   width: 980px;
   height: 23px;
-  background: url("../img/subpage-delim.png");
+  background: url('../img/subpage-delim.png?1418814375');
   margin-top: 60px;
 }
 .subpage:last-child:after {
@@ -450,7 +446,7 @@ a, input[type="submit"], a:before, a > img {
   content: " ";
   width: 400px;
   height: 4px;
-  background: url("../img/person-delim.png");
+  background: url('../img/person-delim.png?1418814375');
   margin-top: 10px;
 }
 .person .occupation {
@@ -464,7 +460,7 @@ a, input[type="submit"], a:before, a > img {
 
 .social-pane {
   float: right;
-  width: 400px;
+  width: 500px;
   height: 600px;
 }
 .social-pane iframe {
@@ -508,7 +504,7 @@ a, input[type="submit"], a:before, a > img {
   margin-right: 7px;
   width: 14px;
   height: 15px;
-  background: url('../img/ico-clock.png?1415714868');
+  background: url('../img/ico-clock.png?1418814375');
 }
 .news-overview > header > h3 {
   font-size: 23px;
@@ -537,6 +533,26 @@ a, input[type="submit"], a:before, a > img {
 .gallery {
   text-align: center;
   margin-bottom: 20px;
+}
+
+#subpage-about .values {
+  clear: both;
+}
+#subpage-about .values .values-list {
+  float: right;
+  width: 20%;
+  margin-top: 2.5rem;
+}
+#subpage-about .values .values-list li {
+  list-style-type: none;
+  font-weight: bold;
+  margin-bottom: .3rem;
+}
+#subpage-about .values .values-image {
+  float: left;
+}
+#subpage-about .values .values-image img {
+  max-width: 700px;
 }
 
 /* ===== STORIES ================================= */
