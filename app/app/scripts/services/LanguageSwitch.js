@@ -63,7 +63,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		}
 		this.uses = function() {
 			return $.map(languages, function(item) {
-				if (item.code === $translate.uses()) {
+				if (item.code === $translate.use()) {
 					return item;
 				}
 			})[0];
@@ -73,7 +73,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 				expires: 21*30
 			});
 			$http.defaults.headers.common['Accept-Language'] = language.code;
-			$translate.uses(language.code);
+			$translate.use(language.code);
 			tmhDynamicLocale.set(language.code);
 			
 			$rootScope.language = language.code;
