@@ -1,0 +1,544 @@
+/* =======================================================================*
+ * Site's dynamic content and static pages, .SCSS source styles.          *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+
+
+/* ===== LANDING PAGE ============================ */
+
+// One-page subsections
+.subpage
+{
+	overflow: hidden;
+	@include clearfix;
+	margin: 60px 0;
+
+	h2 
+	{
+		margin-bottom: 25px;
+		font-size: 28px;
+		font-weight: $bold;
+	}
+
+	p { margin-bottom: 20px; }
+	.btns { text-align: center; margin-top:30px;}
+
+	.pic 
+	{
+//		@include size ( $web-pic-width, auto );
+		margin: 10px 0;
+	}
+	.subpage-pic 
+	{
+		float:left;
+	}
+
+
+	// Delimiter
+	&:after 
+	{
+		@include objectify;
+		@include img ( "subpage-delim.png" );
+		margin-top: 60px;
+	}
+
+	&:last-child 
+	{
+		&:after { display: none }
+	}
+}
+
+// Pictures illustrating the process
+$illustration-width: 180px;
+$illustration-height: 165px;
+
+.illustrations
+{
+	text-align: center; 
+	margin-bottom: 40px;
+
+	& > li 
+	{
+		display: inline-block;
+		margin: 10px 0;
+	
+		& > strong { font-weight: $semibold; }
+	}
+
+	& > li, .pic { width: $illustration-width; }
+
+	.pic { margin-bottom: 10px; }
+}
+
+// People
+.people { text-align: center; }
+
+// General info about single person
+$person-portrait-size: 150px;
+
+.person 
+{	
+	display: inline-block;
+	vertical-align: top;
+	margin: 40px 0;
+	padding: 0 30px;
+	width: 49%;
+
+	// User's picture
+	.portrait 
+	{ 
+		@include size ( $person-portrait-size, $person-portrait-size ); 
+		margin-bottom: 10px;
+	}
+
+	.name, .occupation { font-weight: $semibold; }
+
+	.name 
+	{
+		font-size: 28px; 
+		margin-bottom: 10px;
+		
+		// Delim 
+		&:after 
+		{
+			@include objectify;
+			@include img ( "person-delim.png" );
+			margin-top: 10px;
+		}
+	}
+
+	.occupation 
+	{
+		font-size: 18px;
+		line-height: 1.25;
+		height: 50px;
+	}
+
+	blockquote { line-height: 1.5; }
+}
+
+// Social media feed pane
+$social-pane-width: 500px; // Defined by default width of FB!
+$social-pane-height: 600px; // Custom
+
+.social-pane 
+{
+	float: right;
+	@include size ( $social-pane-width, $social-pane-height );
+
+	iframe { width: 100%; }
+}
+
+// Pane with news overviews
+.news-list 
+{
+	float: left;
+	width: 400px;
+}
+
+.social-pane, .news-list { margin-bottom: 40px; }
+
+// Blog posts overview
+.news-overview
+{
+	overflow: hidden;
+	border-bottom: 1px solid #ecebdf;
+	margin: 5px 0;
+	padding: 10px 0;
+
+	&:last-child { border-bottom: 0; }
+
+	& > header 
+	{
+		overflow: hidden;
+		margin-bottom: 10px;	
+
+		& > time 
+		{
+			float: right;
+			@include font-params ( #383838, 15px );
+			margin-left: 12px;
+
+			// Icon
+			&:before 
+			{
+				@include objectify ( $display: inline-block );
+				@include relative-shift ( 2px );
+				margin-right: 7px;
+				@include img ( "ico-clock.png" ); 
+			}
+		}
+
+		& > h3 
+		{
+			font-size: 23px;
+			font-weight: $semibold;
+		}
+	}
+
+	// Short news text
+	.abstract 
+	{
+		line-height: 1.5;
+
+		& > p { margin-bottom: 8px; }
+	}
+
+	.btns 
+	{ 
+		text-align: right; 
+		margin-bottom: 20px;  
+	}
+
+	// 'Read more' link
+	.more 
+	{ 
+		color: $blue;
+		text-decoration: underline;
+		font-weight: $semibold;
+
+		@include hoverify ( darken( $blue, 10 ), none );
+	}
+}
+
+// Pic/Illustration/Photo gallery
+.gallery 
+{ 
+	text-align: center; 
+	margin-bottom: 20px; 
+}
+
+
+#subpage-about {
+	.values {
+		clear:both;
+		.values-list {
+			float:right;
+			width:20%;
+			margin-top:2.5rem;
+			li { 
+				list-style-type: none; 
+				font-weight:bold; 
+				margin-bottom:.3rem;
+			}
+		}
+		.values-image {
+			float:left;
+			img { max-width: 700px; }
+		}
+	}
+}
+
+
+/* ===== STORIES ================================= */
+
+/* Single story page */
+$story-margin: 0;
+$story-width: 1200px;
+$story-height: 800px; // Default
+
+.story
+{
+	& > header 
+	{
+		z-index: 9999;
+		top: 0;
+		height: 120px;
+		position:absolute;
+	}
+
+	img.logo 
+	{ 
+		margin-left: 30px; 
+		width:250px;
+		height:auto;
+	}
+
+	.btn-close 
+	{	
+		line-height: 1.4;
+		font-size:30px;
+		margin:0 60px;
+		float:right;		
+	}
+}
+
+.story-bg
+{
+	@include bg ( "story-bg.jpg", repeat );
+	z-index: 0;
+	position: absolute;
+	background-position: 0px 0px;
+	animation: animatedBackground 80s linear infinite;
+	-webkit-animation: animatedBackground 80s linear infinite;
+
+	// Default - override using JS
+	width: 5700px;
+	height: 1800px;
+}
+
+@keyframes animatedBackground {
+	0% { background-position: 0 0; }
+	50% { background-position: -300px 0; }
+	100% { background-position: 0 0; }
+}
+
+@-webkit-keyframes animatedBackground {
+	0% { background-position: 0 0; }
+	50% { background-position: -300px 0; }
+	100% { background-position: 0 0; }
+}
+
+// Board containing all the pages
+.story-board
+{
+	z-index: 99;
+	height: 100%;
+}
+
+// Single pages
+.story-page 
+{
+	position: relative;
+	float: left;
+
+	// Default - override using JS
+	width: $story-width;
+	height: $story-height;
+	margin-right: $story-margin;
+
+	&:last-child { margin-right: 0; }
+
+	.left, .right 
+	{ 
+		overflow: hidden;
+		height: 100%;
+		position: relative; 
+		float: left; 
+		width: 50%; 
+	}
+
+	.left 
+	{ 
+		text-align: right; 
+
+		& > h1 
+		{
+			@include absolute ( $l: 0, $b: 0 );
+			margin: 0 0 30px 0;
+			padding-left: 25px;
+		}
+
+		.story-content 
+		{ 
+			padding-left: 25px;
+			margin-right: 45px;
+		}
+
+		.pic-container { right: 0; }
+	}
+
+	// Face /w fruit picture
+	$face-pic-size: 240px;
+	.face 
+	{
+		@include absolute ( $l: 0 );
+		@include size ( $face-pic-size, $face-pic-size );
+		border-radius: 50%;
+		margin-top: -95px;
+		margin-left: -215px;
+	}
+	.item // fruit
+	{
+		@include absolute ( $l: 0 );
+		margin-top: 40px;
+		margin-left: -120px;
+	}
+
+	// Picture with gifts received (types)
+
+	$received-pic-width: 300px; 
+	$received-pic-height: 139px;
+
+	.received 
+	{
+		@include size ( $received-pic-width, $received-pic-height );
+	}
+
+	& > .story-content 
+	{
+		text-align: center;
+		.about 
+		{ 
+			position: relative;
+			width: 30%;
+			text-align: left;
+			margin: 3% 45px 0 30%; 
+			padding-left: 60px;
+		}
+	}
+
+	.btn-cta 
+	{
+		margin: 35px 0;
+		font-size: 30px;
+		padding: 20px 65px;
+	}
+
+	.right 
+	{ 
+		text-align: left; 
+
+
+		.story-content { margin-left: 45px; }
+		.pic-container { left: 0; }
+
+		& > h1 
+		{
+			@include absolute ( $r: 0, $b: 0 );
+			margin: 0 0 30px 0;
+			padding-right: 25px;
+		}
+	}
+
+	$pic-size: 900px;
+	.pic-container
+	{
+		overflow: hidden;
+		position: absolute; top: 50%;
+		display: block;
+		margin-top: -.8 * $pic-size / 2;
+		@include size ( $pic-size, $pic-size  );
+
+		& > img 
+		{
+			@include size ( $pic-size, $pic-size );
+			@include rounded-corners (50%);
+		}
+	}
+
+	h1 
+	{
+		font-size: 50px;
+		font-weight: $extrabold;
+		line-height: 1.2;
+	}
+
+	h2, .about 
+	{
+		font-size: 16px;
+		margin-right: 11%;
+	}
+
+	h2 
+	{
+		margin-bottom: 25px;
+		text-align: right;
+		font-weight: $bold;
+	}
+
+	.about 
+	{
+		text-align: center;
+		@include rounded-corners ( 25px );
+		padding: 20px;
+	}
+
+	.orange-border
+	{
+
+		border: 3px solid $brand; 
+	}
+
+	.next-button
+	{
+		margin-top: 20px;
+	}
+
+	.btn-more 
+	{
+		@include absolute ( $b: 0, $r: 0px);
+		margin: 0 5% 0 0;
+		padding: 20px 25px 2% 25px;
+		font-size: 20px;
+		font-weight: $bold;
+		background: $bg-brand;
+		color: $menu-text;
+
+		@include border-top-radius ( 15px );
+
+		@include hoverify ( $menu-text-hover );
+	}
+  	.btn-bottom-continue 
+	{
+		@extend .btn-more;
+		@include absolute ( $b: 0, $r: 220px);
+	}  
+
+	.btn-continue
+	{
+		@extend .btn-more;
+		@include border-radius ( 8px );
+		position:relative;
+		top:50px;
+		padding:15px;
+	}
+
+} 
+
+$story-content-height: 40%;
+
+.story-content 
+{
+	@include relative-shift ( 20% ); 
+	//height: $story-content-height;
+
+	h1 
+	{
+		margin-bottom: 5px;
+		border-bottom: 3px solid $brand; 
+	}
+}
+
+
+.story-page 
+{
+	.animated 
+	{
+		transition: all 1s linear;
+		visibility:hidden;
+		&.from-right 
+		{
+			transform: translateX(1000px);
+		}
+		&.from-left
+		{
+			transform: translateX(-1000px);
+		}
+		&.from-top
+		{
+			transform: translateY(-1000px);
+		}
+		&.from-bottom
+		{
+			transform: translateY(1000px);
+		}		
+	}	
+	&.active 
+	{
+		.animated
+		{
+			visibility:inherit;
+			&.from-right, &.from-left
+			{
+				transform: translateX(0px);
+			}
+			&.from-top, &.from-bottom 
+			{
+				transform: translateY(0px);
+			}
+
+		}
+	}
+}

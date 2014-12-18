@@ -1,0 +1,53 @@
+/* =======================================================================*
+ * UI items used across whole website, SCSS source styles.                *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+
+/* ===== ICONS & IMAGES ========================== */
+
+
+.ico
+{
+	font-size: 40px;
+
+	// Using font awesome for icons
+	&:before { @include fa-icon(); }
+
+	// Used
+	&.fb:before { content: $fa-var-facebook-square; }
+	&.tw:before { content: $fa-var-twitter-square; }
+	&.yt:before { content: $fa-var-youtube-square; }
+	&.insta:before { content: $fa-var-instagram; }
+	&.mail:before { content: $fa-var-envelope; }
+}
+
+
+/* ===== BUTTONS ================================= */
+
+// General button
+.content .btn
+{
+	@include button-variant ( $btn-text, $btn-bg, $btn-border );
+	@include button-size ( 12px, 30px, 15px, 1, $web-radius );
+	//border: 2px solid $btn-border;
+	font-weight: $semibold;
+	font-size: 20px;
+
+	@include hoverify ( $btn-text-hover )
+	{
+		background: $btn-bg-hover;
+	} 
+
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.btn-close 
+{
+	font-weight: $extrabold;
+	font-size: 50px;
+	opacity: .6;
+
+	@include hoverify { opacity: 1; }
+}

@@ -1,358 +1,277 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth.index" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hearth.index" class="no-js lt-ie10 lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <html ng-app="hearth.index" class="no-js lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!--> <html ng-app="hearth.index" class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <title>HEARTH.net</title>
-        <meta name="description" content="Hearth.net - Prostor, kde dávat znamená dostat mnohem víc.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta property="og:title" content="Hearth.net">
-        <meta property="og:description" content="Prostor, kde dávat znamená dostat mnohem víc">
-        <meta property="og:image" content="http://www.hearth.net/apple-touch-icon-114x114-precomposed.png">
-        <meta property="og:image:type" content="image/png">
-        <meta property="og:image:width" content="114">
-        <meta property="og:image:height" content="114">
-      
-        <meta http-equiv="pragma" content="no-cache" />
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hearth.net | Společně pro štědrost</title>
+  <meta name="description" content="Hearth.net - Společně pro štědrost">
+  <meta content="code: Codevels; &#105;&#110;&#102;&#111;&#64;&#99;&#111;&#100;&#101;&#118;&#11101;&#108;&#115;&#46;&#99;&#111;&#109;" name="author" />
+  <meta name="viewport" content="width=device-width">
+  <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css?p=r6">
+  <!--[if gt IE 7]> <link rel="stylesheet" href="css/ie.css">  <![endif]-->
+  <script src="vendor/js/modernizr.js"></script>
+</head>
 
-        <!-- build:css({.tmp,app}) index.css -->
-        <link rel="stylesheet" type="text/css" href="styles/index.css">
-        <!-- endbuild -->
-       
-        <!-- build:css vendor.css -->
-        <!-- bower:css -->
-        <link rel="stylesheet" href="vendor/ng-tags-input/ng-tags-input.min.css" />
-        <link rel="stylesheet" href="vendor/foundation-icon-fonts/foundation-icons.css" />
-        <!-- endbower -->
-        <!-- endbuild -->
-        
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+<body class="landing">
+  <!--[if lt IE 7]>23
+    <p class=chromeframe>Váš internetový prohlížeč je <em>z pravěku!</em> <a href="//browsehappy.com/">Nainstalujte si lepší</a>, nebo <a href="//www.google.com/chromeframe/?redirect=true">si nainstalujte Google Chrome Frame</a>, abyste mohli tuto stránku vidět jako ostatní.</p><![endif]-->
 
-        <!-- build:js config.js -->
-        <script src="scripts/config.js"></script>
-        <script src="scripts/googleAnalytics.js"></script>
-        <!-- endbuild -->
-        
-    </head>
-    <body ng-controller="IndexCtrl" ng-cloak ng-show="appLoaded">
-    <!-- ClickTale Top part -->
-    <script type="text/javascript">
-        var WRInitTime=(new Date()).getTime();
-    </script>
-    <!-- ClickTale end of Top part -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&appId=133986903478472&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=277542219089599"; // 154458194699750
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-        <!--[if lt IE 10]>
-          <div class="chromeframe">
-            <div class="reason">
-              <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
-              <p>In the meantime, look at some nice green woods, because our whole site is orange. We hope you'll be able to see it soon yourself.</p>
-            </div>
-            <div class="woods">
-              <a href="http://www.flickr.com/photos/zanthia/7381482708/" title="woods by Zanthia, on Flickr"><img src="http://farm8.staticflickr.com/7095/7381482708_4f3d629d6b_b.jpg" width="1024" height="680" alt="woods"></a>
-              <span>woods by Zanthia, on Flickr</span>
-            </div>
+  <!-- Header & login -->
+  <header role="banner" class="header">
+    <div class="header-content">
+        <div class="logo-strip">
+          <div class="container" style="">
+            <a href="/" title="To the main page">
+              <img src="img/logo-dark.png" class="logo" alt="Hearth.net - Main page">
+            </a>
           </div>
-        <![endif]-->
-
-        <!--[if lt IE 9]>
-          <script src="../components/es5-shim/es5-shim.js"></script>
-          <script src="../components/json3/lib/json3.js"></script>
-        <![endif]-->
-        <div class="container">
-            <header class="">
-                <div class="row">
-                    <div class="small-12 large-4 columns">
-                        <a href="/">
-                            <img id="logo" title="Hearth.net" src="images/logo_basic.png">
-                        </a>
-                    </div>
-                    <div class="small-12 large-8 columns links text-right">
-                        <a href="app?new/#!/login" translate class="login">INDEX_LOGIN</a>
-                        
-                        <span ng-repeat="language in languages">
-                            <a ng-click="useLanguage(language)" ng-hide="languageCode.code==language.code" href="">{{language.name}}</a>
-                        </span>
-                    </div>
-                </div>
-            </header>
-            <section class="invert hero small-gap">
-                <div class="row">
-                    <div class="large-6 small-12 columns">
-                        <img src="images/index/imac.png" style="padding-right:40px; padding-top:20px;">
-                    </div>
-                    <div class="small-12 large-6 columns">
-                        <h2 translate>INDEX_GENEROUS_NETWORK</h2>
-                        <a href="app?new/#!/register" class="large primary button" translate>INDEX_REGISTER_NOW</a>
-                    </div>
-                </div>
-            </section>
-            <section class="with-space">
-                <div class="row">
-                    <a name="learnmore" id="learnmore"></a>
-                    <div class="small-12 columns">
-                        <h3 translate>INDEX_SHARE_SKILLS</h3>
-                    </div>
-                    <div class="small-12 large-9 columns">
-                        <p translate>INDEX_SHARE_SKILLS_TEXT</p>
-                        <br>
-                        <div class="row-fluid task-list">
-                            <div class="small-6 columns">
-                                <h4><i class="icon-heart"></i> {{ 'INDEX_EXPRESS_OFFER' | translate }}</h4>
-                                <p translate>INDEX_LET_OTHER_KNOW</p>
-                            </div>
-                            <div class="small-6 columns">
-                                <h4><i class="icon-list"></i> {{ 'INDEX_EXPLORE_MARKETPLACE' | translate }}</h4>
-                                <p translate>INDEX_MORE_OFFERS</p>
-                            </div>
-                            <br style="clear:both;">
-                            <div class="small-6 columns">
-                                <img src="images/index/offer.png">
-                            </div>
-                            <div class="small-6 columns">
-                                <img src="images/index/market.png">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="large-3 hide-for-small columns text-right">
-                        <img src="images/hitchhiking.svg" style="height:300px; margin-top:120px;">
-                    </div>
-                </div>
-            </section>
-            <section class="with-space brown">
-                <div class="row">
-                    <div class="large-5 hide-for-small columns text-left">
-                        <img src="images/bee_keeper.svg" style="height:300px; margin-top:100px;">
-                    </div>
-                    <div class="large-7 small-12 columns">
-                        <h3 translate>INDEX_GET_HELP</h3>
-                        <p translate>INDEX_GET_HELP_TEXT</p>
-                        <br>
-                        <div class="row-fluid task-list">
-                            <div class="small-6 columns">
-                                <h4><i class="icon-edit"></i> {{ 'INDEX_WRITE_WISH' | translate }}</h4>
-                                <p translate>INDEX_WRITE_WISH_TEXT</p>
-                            </div>
-                            <div class="small-6 columns">
-                                <h4><i class="icon-thumbs-up-alt"></i> {{ 'INDEX_SAY_THANKS' | translate }}</h4>
-                                <p translate>INDEX_RATE_USERS</p>
-                            </div>
-                            <br style="clear:both;">
-                            <div class="small-6 columns">
-                                <img src="images/index/need.png">
-                            </div>
-                            <div class="small-6 columns">
-                                <img src="images/index/thanks.png">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="with-space">
-                <div class="row">
-                    <div class="small-12 large-8 columns">
-                        <h3 translate>INDEX_FIND_TEAMMATES</h3>
-                        <p translate>INDEX_PROJECTS_TEXT</p>
-                        <br>
-                        <div class="row-fluid task-list">
-                            <div class="small-6 columns">
-                                <h4><i class="icon-random"></i> {{ 'INDEX_CONNECT' | translate }}</h4>
-                                <p translate>INDEX_CONNECT_TEXT</p>
-                            </div>
-                            <div class="small-6 columns">
-                                <h4><i class="icon-umbrella"></i> {{ 'INDEX_TRUST' | translate }}</h4>
-                                <p translate>INDEX_TRUST_TEXT</p>
-                            </div>
-                            <br style="clear:both;">
-                            <div class="small-6 columns">
-                                <img src="images/index/follow.png">
-                            </div>
-                            <div class="small-6 columns">
-                                <img src="images/index/my-hearth.png">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="large-4 hide-for-small columns text-right">
-                        <img src="images/group.svg" style="height:250px; margin-top:100px;">
-                    </div>
-                </div>
-            </section>
-            <section class="invert small-gap">
-                <div class="row">
-                    <div class="small-12 large-9 columns"><h3 translate>INDEX_JOIN_US</h3></div>
-                    <div class="small-12 large-3 columns"><a href="app?new/#!/register" class="primary button" translate>INDEX_REGISTER_NOW</a></div>
-                </div>
-            </section>
-            <section class="heads">
-                <div class="row text-center">
-                    <h3 style="margin-bottom:50px;" translate>INDEX_WHAT_THEY_SAY</h3>
-
-                    <div class="small-12 large-6 columns text-center">
-                        <div><img src="images/index/jiribarta.png" alt="Jiří Bárta"></div>
-                        <strong>Jiří Bárta</strong>
-                        <p translate>INDEX_JIRI_BARTA_VIA</p>
-                        <p><em translate>INDEX_JIRI_BARTA_TITLE</em></p>
-                        <p><em translate>INDEX_JIRI_BARTA_TEXT</em></p>
-                    </div>
-                    <div class="small-12 large-6 columns text-center">
-                        <div><img src="images/index/simon-panek.png" alt="Šimon Pánek"></div>
-                        <strong>Šimon Pánek</strong>
-                        <p translate>INDEX_SIMON_PANEK_TITLE</p>
-                        <p><em translate>INDEX_SIMON_PANEK_TEXT</em></p>
-                    </div>
-                    <div style="clear:both; border-top:1px solid #fafafa; margin:20px"></div>
-
-                    <div class="small-12 large-6 columns text-center">
-                        <div><img src="images/index/tomashajzler.png" alt="Tomáš Hajzler"></div>
-                        <strong>Tomáš Hajzler</strong>
-                        <p translate>INDEX_TOMAS_HAJZLER_TITLE</p>
-                        <p><em translate>INDEX_TOMAS_HAJZLER_TEXT</em></p>
-                    </div>
-                    <div class="small-12 large-6 columns text-center">
-                        <div><img src="images/index/petrvaclavek.png" alt="Petr Václavek"></div>
-                        <strong>Petr Václavek</strong>
-                        <p translate>INDEX_PETR_VACLAVEK_TITLE</p>
-                        <p><em translate>INDEX_PETR_VACLAVEK_TEXT</em></p>
-                    </div>
-                    
-                </div>
-            </section>
-            <section class="grey">
-                <div class="row">
-                    <div class="small-12 columns text-center press-list">
-                        <a href="http://adato.cz/wp-content/uploads/2012/06/forbes-03-2012.pdf"><img src="images/index/logo-forbes.png"></a>
-                        <a href="http://adato.cz/wp-content/uploads/2012/06/respekt-18-2012.pdf"><img src="images/index/logo-respekt.png"></a>
-                        <a href="http://www.parlamentnilisty.cz/zpravy/ekonomika/Uspesny-podnikatel-rozjel-svet-bez-penez-Ted-vypravi-jak-se-projektu-dari-284276"><img src="images/index/logo-pl.png" style="background:#5e5e5e;"></a>
-                        <a href="http://ekonom.ihned.cz/c1-55489250-svet-bez-penez-utopie-nebo-budoucnost"><img src="images/index/logo-ekonom.png" style="padding:5px;padding-top:10px;"></a>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="row text-center">
-                    <div class="small-12 columns ">
-                        <h3 style="margin-bottom:50px;" translate>INDEX_WAIT</h3>
-                        <iframe width="640" height="360" src="//www.youtube.com/embed/ZRbTp8UiN4Y?rel=0" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </section>
-            <section class="grey footer small-gap">
-                <div class="row">
-                    <div class="small-6 large-3 columns footer-icons">
-                        <p translate>INDEX_FOLLOW_US</p>
-                        <a href="https://twitter.com/hearth_net"><i class="icon-twitter-sign" style="color:#55ACEE; font-size:30px;"></i> <span>Twitter</span></a><br>
-                        <a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko"><i class="icon-facebook-sign" style="color:#3b5998; font-size:30px;"></i> <span>Facebook</span></a><br>
-                        <a href="https://plus.google.com/105519310550753411853/posts"><i class="icon-google-plus-sign" style="color:#d34836; font-size:30px;"></i> <span>Google+</span></a><br>
-                        <a href="http://instagram.com/artofhearth"><i class="icon-instagram" style="color:rgb(81, 127, 164); font-size:30px;"></i> <span>Instagram</span></a><br>
-                        <a href="http://www.youtube.com/user/hearthnetcrsr"><i class="icon-youtube-sign" style="color:#d02525; font-size:30px;"></i> <span>YouTube</span></a>
-                    </div>
-                    <div class="small-6 large-3 columns footer-icons">
-                        <p translate>HEARTH.NET</p>
-                        <ul>
-                            <li><a href="app?new/#!/login" translate>INDEX_LOGIN</a></li>
-                            <li><a href="app?new/#!/register" translate>INDEX_REGISTER</a></li>
-                            <li><a href="app?new/#!/" translate>INDEX_MARKETPLACE</a></li>
-                            <li><a href="app?new/#!/about" translate>INDEX_ABOUT</a></li>
-                            <li><a href="app?new/#!/terms" translate>INDEX_TERMS</a></li>
-                        </ul>
-                        <ul>
-                            <li ng-repeat="language in languages">
-                                <a ng-click="useLanguage(language)" ng-if="languageCode.code!==language.code" href="">{{language.name}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="small-6 large-3 columns footer-icons">
-                        <p translate>INDEX_READ_MORE</p>
-                        <ul>
-                            <li><a href="http://blog.hearth.net/">Blog Hearth.net</a></li>
-                        </ul>
-                    </div>
-                    <div class="small-12 large-3 columns text-right about">
-                        <strong translate>INDEX_CREATED</strong><br><br>
-                        <p>{{ 'INDEX_BY' | translate }} <a href="http://www.adato.cz/" style="color:#5c5c5c; text-decoration:underline;">Adato Paradigma</a> {{ 'INDEX_IN' | translate }} 2013<br> {{ 'INDEX_IN_PRAGUE' | translate }} <a href="http://www.adato.cz/"><i class="icon-heart"></i></a><br><br></p>
-                    </div>
-                    <div class="small-12 large-6 columns">
-                        <div class="fb-like-box" data-href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" data-width="400" data-height="100" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
-                    </div>
-                </div>
-            </section>
         </div>
-    
 
-        <!-- build:js vendor.js -->
-        <!-- bower:js -->
-        <script src="vendor/jquery/jquery.js"></script>
-        <script src="vendor/es5-shim/es5-shim.js"></script>
-        <script src="vendor/angular/angular.js"></script>
-        <script src="vendor/json3/lib/json3.min.js"></script>
-        <script src="vendor/angular-resource/angular-resource.js"></script>
-        <script src="vendor/angular-cookies/angular-cookies.js"></script>
-        <script src="vendor/angular-sanitize/angular-sanitize.js"></script>
-        <script src="vendor/angular-route/angular-route.js"></script>
-        <script src="vendor/angular-flash/dist/angular-flash.js"></script>
-        <script src="vendor/angular-translate/angular-translate.js"></script>
-        <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-        <script src="vendor/fastclick/lib/fastclick.js"></script>
-        <script src="vendor/angular-mocks/angular-mocks.js"></script>
-        <script src="vendor/angularitics/src/angulartics.js"></script>
-        <script src="vendor/angular-cookie/angular-cookie.js"></script>
-        <script src="vendor/ng-tags-input/ng-tags-input.min.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
+        <div class="strip-btns">
+          <div class="container">
+            <a href="/app/#!/login" title="Sign into Hearth" class="btn">Přihlásit se</a>
+          </div>
+        </div>
 
-        <script>
-                var preferredLanguage, translations = {};
-                function defaultTranslation(args) {
-                    preferredLanguage = args[0];
-                    translations[preferredLanguage] = args[1];
-                }
-        </script>
-        <script src="locales/default?callback=defaultTranslation"></script>
+      <section class="intro">  
+        <div class="container">
+          <div class="face-deck">
+            <a href="story-cecilie.html" title="Cecíliin příběh" class="face first">
+              <img src="pics/facedeck-avatar1.jpg" alt="Cecílie">
+            </a>
 
-        <!-- build:js scripts/index.js -->
-            <script src="scripts/services/services.js"></script>
-            <script src="scripts/services/LanguageSwitch.js"></script>
-            <script src="scripts/services/$feature.js"></script>
-            <script src="scripts/services/ResponseErrors.js"></script>
-            <script src="scripts/services/SessionLanguageStorage.js"></script>
-            <script src="scripts/services/$session.js"></script>
-            <script src="scripts/services/Session.js"></script>
-            <script src="scripts/services/Auth.js"></script>
-            <script src="scripts/filters/filters.js"></script>
-            <script src="scripts/index.js"></script>
-        <!-- endbuild -->
+            <a href="story-michal.html" title="Michalův příběh" class="face second">
+              <img src="pics/facedeck-avatar2.jpg" alt="Michal">
+            </a>
 
-        <!-- Crazy Egg tracking script -->
-        <script type="text/javascript">
-                setTimeout(function() {
-                    var a = document.createElement("script");
-                    var b = document.getElementsByTagName("script")[0];
-                    a.src = document.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?" + Math.floor(new Date().getTime() / 3600000);
-                    a.async = true;
-                    a.type = "text/javascript";
-                    b.parentNode.insertBefore(a, b)
-                }, 1);
-        </script>
-        <!-- ClickTale Bottom part -->
-        <script type='text/javascript'>
-            document.write(unescape("%3Cscript%20src='"+
-            (document.location.protocol=='https:'?
-            "https://clicktalecdn.sslcs.cdngc.net/www02/ptc/cafc802a-788d-4890-b42b-c27eace6ded3.js":
-            "http://cdn.clicktale.net/www02/ptc/cafc802a-788d-4890-b42b-c27eace6ded3.js")+"'%20type='text/javascript'%3E%3C/script%3E"));
-        </script>
-        <!-- ClickTale end of Bottom part -->        
-    </body>
-</html>
+            <a href="story-jana.html" title="Jany příběh" class="face third">
+              <img src="pics/facedeck-avatar4.jpg" alt="Jana">
+            </a>
+          </div>
+          <h1 class="headline">Objevujte štěstí</h1>
+          <p class="claim">Naplňte svůj den štědrostí a poznávejte lidi na stejné vlně</p>
+          <a class="btn-cta" href="/app/#!/register" title="Registrujte se do Hearth.net">Připojit se</a>
+        </div>
+      </section> 
+      </div>
+  </header>
+
+  <div class="sticky-panel">
+    <div class="container">
+      <a href="/" title="To the main page" class="logo-container">
+        <img src="img/logo.png" class="logo" alt="Hearth.net - Úvodní strana">
+      </a>
+
+      <!-- Main menu -->
+      <nav role="navigation" class="menu-container">
+          <ul class="menu" role="menubar">
+
+            <li>
+              <a tabindex="0" href="#subpage-what" title="Jak funguje Hearth?" role="menuitem">O co jde</a>
+            </li><li> 
+              <a href="#subpage-how" tabindex="-1" title="Jak ovládat Hearth?" role="menuitem">Jak na to</a> 
+            </li><li> 
+              <a href="#subpage-supporters" tabindex="-1" title="Podporovatelé Hearthu" role="menuitem">Mají nás rádi</a> 
+            </li><li> 
+              <a href="#subpage-news" tabindex="-1" title="Aktuality" role="menuitem">Děje se</a> 
+            </li><li> 
+              <a href="#subpage-about" tabindex="-1" title="Lidé v Hearthu a jejich kontakty" role="menuitem">O Hearth</a> 
+            </li>
+
+          </ul>
+      </nav>
+    </div>  
+  </div>
+
+  <!-- Main content -->
+  <div class="body" role="main">
+    <div class="container">
+      <div class="content">
+
+        <section class="subpage" id="subpage-what">
+          <h2>O co jde</h2>
+          <p>Jsme štědrá sociální síť, kde dáváte dary a vzájemně si plníte svá přání. Od legračních maličkostí až po velké věci, zkušenosti i životní moudrost. Co vás baví a naplňuje, posíláte dál. A co sami potřebujete, se vám vrací od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.</p>
+          <div class="btns">
+            <a class="btn" href="/app/#!/market" title="Tržiště Hearthu">Podívat se na tržiště</a>
+          </div>
+        </section>
+
+        <section class="subpage" id="subpage-how">
+          <h2>Jak na to</h2>
+          <p>Je to hračka. Během pár minut si založíte profil a už jste mezi námi! Doplňte si celý profil, ať jste šik a vrhněte se na DARiště, naše pulzující srdce. Zde nabízíte své dary a žádáte druhé o splnění svých přání. Zajímáte se o něco? Najděte si svou komunitu a získejte inspiraci od lidí, kteří jsou vám blíž. Radujte se a seznamujte, dávejte a přijímejte, děkujte a hodnoťte. Ocení to všichni. A nejlepší na konec? Je to jen začátek. Směle do toho.</p>
+          <ol class="illustrations">
+            <li>
+              <img src="pics/subpage-howto1.png" alt="Přihlaš se do Hearthu" class="pic">
+              <strong>Zaregistruj se</strong>
+            </li>
+            <li>
+              <img src="pics/subpage-howto2.png" alt="Sdílej" class="pic">
+              <strong>Sdílej dary</strong>
+            </li>
+            <li>
+              <img src="pics/subpage-howto3.png" alt="Podej nabídku">
+              <strong>Najdi dary</strong>
+            </li>
+            <li>
+              <img src="pics/subpage-howto4.png" alt="Vytvoř si přátele" class="pic">
+              <strong>Vytvoř si přátele</strong>
+            </li>
+            <li>
+              <img src="pics/subpage-howto5.png" alt="Buď šťastný" class="pic">
+              <strong>Buď šťastný</strong>
+            </li>
+          </ol>
+          <div class="btns">
+            <a class="btn" href="/app/#!/register" title="Registrace do Hearth.netu">Zaregistrovat se</a>
+          </div>
+        </section>
+
+        <section class="subpage" id="subpage-supporters">
+          <h2>Mají nás rádi</h2>
+          <div class="people">
+
+            <article class="person">
+              <img src="pics/supporter1.png" class="portrait" alt="Jiří Bárta">
+              <h3 class="name">Jiří Bárta</h3>
+              <p class="occupation">Nadace Via</p>
+              <blockquote>
+                Parádní nápad. Dar je radost i starost. Je projevem zájmu, příležitost pomoci anebo pomoc přijmout. Pro někoho příležitost naděje, pro jiného závazek pomoci. Držím vám palce a přeju, aby se díky Hearth.net potkávalo co nejvíc lidí a darů ve správný čas.
+              </blockquote>
+            </article>
+
+            <article class="person">
+              <img src="pics/supporter2.png" class="portrait" alt="Šimon Pánek">
+              <h3 class="name">Šimon Pánek</h3>
+              <p class="occupation">Ředitel humanitární organizace Člověk v tísni</p>
+              <blockquote>
+                Zajímavá možnost jak se ve složitém a uspěchaném světě vrátit k prostému aktu někomu něco darovat, pomoci mu, seznámit se s ním. Dřív to šlo v rámci komunity a širšího příbuzenstva či kmene. Dnes máme Hearth.net a to je skvělé.
+              </blockquote>
+            </article>
+
+            <article class="person">
+              <img src="pics/supporter3.png" class="portrait" alt="Tomáš Hajzler">
+              <h3 class="name">Tomáš Hajzler</h3>
+              <p class="occupation">Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou</p>
+              <blockquote>
+                Nadchla mě vaše jednoduchost. Přestěhoval jsem se a myslím, že mi Hearth.net pomůže vybudovat vztahy v novém místě. Dávání bylo a bude základ každé rodiny a navíc vám přináší skvělý pocit. Dnešní doba sociálních sítí k tomu ideálně nahrává.
+              </blockquote>
+            </article>
+
+            <article class="person">
+              <img src="pics/supporter4.png" class="portrait" alt="Petr Václavek">
+              <h3 class="name">Petr Václavek</h3>
+              <p class="occupation">Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</p>
+              <blockquote>
+                Hearth.net je skvělé místo pro každého, kdo se chce spojit se světem jiným, novým a smysluplným způsobem. Dává možnost jak uplatnit svůj dar-talent, a dělat tak, co nás naplňuje radostí.
+              </blockquote>
+            </article>
+
+          </div>
+        </section>
+
+        <section class="subpage" id="subpage-news">
+          <h2>Právě se děje</h2>
+
+          <div class="social-pane">
+            <div class="fb-like-box" data-href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" data-width="500" data-height="700" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="true" data-show-border="false"></div>
+          </div>
+
+          <div class="news-list">
+            <!-- News short overview -->
+          </div>
+        </section>
+
+        <section class="subpage" id="subpage-about">
+          <h2>O Hearthu</h2>
+          <p>Myšlenka sítě pro sdílení darů a zkušeností se zrodila v hlavě Libora Malého už v roce 2008 při nástupu globální ekonomické krize.</p>
+          <h3 style="font-weight:bold;">Jak vznikl název Hearth?</h3>
+          <p>Na začátku byla spoustu otázek. Jak pojmenovat místo, kde lidé fungují na principu vzájemné spolupráce? Při hledání odpovědi nás napadla dvě slova – Heart (srdce) a Earth (Země). Obě mají stejný slovní základ. Když je spojíme, je tu <strong>Hearth</strong> – rodinný krb, ohniště.<br><br>
+          Vznikl symbol hodnot, které jsou pro nás důležité a které chceme šířit dál.<br><br>
+          Hearth.net začíná na internetu, ale míří dál. Je to náš online nástroj pro lepší fungování ekonomiky daru v reálném prostředí. Díky Hearth.net chceme vytvářet skutečné vztahy i komunity a mít z nich radost. Spolu s vámi. Přidejte se.</p>
+          
+          <div class="values">
+            <div class="values-list">
+              <ul>
+                <li>Radost</li>
+                <li>Dar/Štědrost</li>
+                <li>Hodnota/Cena</li>
+                <li>Odpovědnost</li>
+                <li>Transparentnost</li>
+                <li>Důvěra</li>
+                <li>Spolupráce</li>
+                <li>Laskavost</li>
+                <li>Zpětná vazba</li>
+                <li>Zásluhy</li>
+              </ul>
+            </div>
+            <div class="values-image">
+              <img src="pics/pic-philosophy.png" alt="Filosofie Hearth.netu" class="pic">
+            </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <footer role="contentinfo"> 
+    <div class="container">
+      <ul class="links text">
+        <li><a href="//blog.hearth.net/" title="Hearthí Blog">Blog</a></li><li>
+        <a href="//www.adato.cz/" title="O našem sdružení Adato Paradigma">Adato</a></li>
+      </ul>
+      <ul class="links icons">
+        <li>
+          <a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" title="Hearthí Facebook fanpage">
+            <span class="ico fb"></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/hearth_net" title="Hearthí Twitter účet">
+            <span class="ico tw"></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/user/hearthnetcrsr" title="Náš YouTube kanál">
+            <span class="ico yt"></span>
+          </a>
+        </li>
+        <li>
+          <a href="//instagram.com/artofhearth" title="Účet na Instagramu">
+            <span class="ico insta"></span>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:info@hearth.net" title="Napište nám e-mail">
+            <span class="ico mail"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- build:js js/app.min.js -->
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+  <!-- endbuild -->
+  <script>
+    var _gaq=[['_setAccount','UA-40070733-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script> 
+</body>
+</html>  

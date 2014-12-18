@@ -1,0 +1,155 @@
+/* =======================================================================*
+ * IE-specific settings, .SCSS source styles.                             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== INCLUDES & IMPORTS ========================== */
+/* =======================================================================*
+ * Universal mixin and library .SCSS source styles.                       *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+/* ===== INCLUDES & IMPORTS ========================== */
+/* ===== GENERAL SETTINGS ============================ */
+/* Pre-defined font families */
+/* ===== MIX-INS/LIBRARIES ========================== */
+/* SIZING & POSITIONING */
+/* = Block object centralizer.
+ * $height-margin   ~ top & bottom margins of the block.
+ * $height          ~ height of the block.
+ ============================================================== */
+/* = Size of an element definition.
+   $w ~ width of an element.
+   $h ~ height of an element.
+=============================================================== */
+/* = Sets element positioning to absolute and positions it.
+   $l   ~ Dimension of the left position.
+   $t   ~ Dimension of the top position.
+   $r   ~ Dimension of the right position.
+   $n   ~ Dimension of the bottom position.
+=============================================================== */
+/* = Sets element as fixed.
+   $z-index  ~ Z axis index (higher means more visible).
+=============================================================== */
+/* = Sets element positioning to relative and positions it to 
+     shift the element.
+   $top     ~ Dimension of the top position
+=============================================================== */
+/* FONTS, TYPOGRAPHY & THEIR APPEARANCE */
+/* = Adds new font available to use on the web
+   $url     ~ Font file including suffix
+   $name    ~ Name of this font
+=============================================================== */
+/* = Simple text shadow.
+   $color       ~ color of the shadow (default: #000)
+   $distance    ~ ditance from the text
+   $spread      ~ spread of the shadow
+   $opacity     ~ shadows' opacity from 0 to 1 (default: 0.5)
+=============================================================== */
+/* = Full settings of the text. 
+   $color       ~ Colour of the text ( default: inherit )
+   $family      ~ Whole font family including backup/system fonts ( default: inherit )
+   $size        ~ Size of the font ( default: default size )
+   $lines       ~ Height of the text line, absolute or relative to size ( default: normal )
+   $weight      ~ Weight of the font, ie.: bold ( default: normal )
+   $style       ~ Style of the font, ie.: italic ( default: normal )
+=============================================================== */
+/* = Custom text parameters.
+   $color       ~ Colour of the text.
+   $family      ~ Whole font family including backup/system fonts.
+   $size        ~ Size of the font.
+   $lines       ~ Height of the text line, absolute or relative to size.
+   $weight      ~ Weight of the font, ie.: bold.
+   $decoration  ~ Font decoration, ie.: underline.
+   $style       ~ Style of the font, ie.: italic.
+=============================================================== */
+/* IMAGES & ICONS */
+/* = Provides access to vector/font-based icons Font Awesome. 
+ * $size    ~ Size of the icon
+ * $color   ~ Icon's color
+=============================================================== */
+/* = Picture for background element.
+   $url             ~ picture's URI.
+   $bg-settings     ~ other background settings (default: no-repeat).
+=============================================================== */
+/* = Image-only for a background element.
+   $url             ~ image's URI.
+=============================================================== */
+/* = Picture for background element.
+ * $url             ~ picture's URI.
+ * $$bg-settings    ~ other background settings (default: no-repeat).
+=============================================================== */
+/* = Custom image for a unordered list bullet point.
+   $url             ~ custom image's URI.
+=============================================================== */
+/* = Turns element into image, sets up size and uncached URL.
+ * $img-name    ~ Name of the image, including image type suffix.
+=============================================================== */
+/* = Set-ups size according to the real size of the image.
+   $img-name    ~ Name of the image, including image type suffix.
+=============================================================== */
+/* = Turns element into mobile-optimized image, sets up size and uncached URL.
+     Oposed to mixin img, there are additional cross-browser settings.
+   $img-name    ~ Name of the image, including image type suffix.
+=============================================================== */
+/* = Adds cross-browser background image attributes. Mostly used to  
+     deal with mobile browsers' background image incompatibility issues.
+=============================================================== */
+/* = Adds cross-browser cover. Mostly used to deal with mobile 
+     browsers' CSS background image incompatibility issues.
+=============================================================== */
+/* BOX APPEREANCE */
+/* = Creates triangle-like shape, mostly used as a dropdown button's icon.
+   $size            ~ Approximate size of the triangle's base.
+   $color           ~ Color of the triangle.
+   $direction       ~ In which direction should be the triangle pointing.
+=============================================================== */
+/* = Creates triangle-like shape, mostly used as a dropdown button's icon.
+   $color           ~ Color of the triangle.
+   $direction       ~ In which direction should be the triangle pointing.
+=============================================================== */
+/* = Adds hover (+ focus & click) effects to the given element.
+   $color           ~ Text color after hover/focus/click.
+   $text-decoration ~ Which type of text-decoration should be 
+                      for text after hovering/focusing/clicking.
+   $selector        ~ Can add optional tag.
+   $content         ~ More options can be specified using {} after mixin call.
+=============================================================== */
+/* = Rounds the corners of the box.
+   $radius  ~ Radius of rounded corner in pxs (default: default 
+              size of the template settings. )
+=============================================================== */
+/* = Simple linear gradient, from top to bottom, 2 colours.
+   $s-color     ~ starting color, on the top of the gradient
+   $e-color     ~ ending color, on the bottom of the gradient
+   $bg-color    ~ backward compatibility. Do NOT use
+=============================================================== */
+/* = Simple element shadow.
+   $color   ~ color of the shadow (default: #000)
+   $size    ~ size of the shadow
+   $opacity ~ shadows' opacity from 0 to 1 (default: 0.5)
+=============================================================== */
+/* VISUAL EFFECTS */
+/* = Item's transition.
+   $params   ~ Style, duration and animation effect.
+ =============================================================== */
+/* BOX-MODEL */
+/* = Creates an object form non-positionable pseudo-element 
+     (Typically being used for :before and :after).
+   $position    ~ Position. Must be non-static to work.
+   $display     ~ Display. Must be non-inline to work.
+   $content     ~ ASCII textual content. Must be non-NULL to work.
+=============================================================== */
+/* FORMS & INPUTS */
+/* = Color of the text inside input 'placeholder'
+   $text-color   ~ Placeholder's text color
+   $opacity      ~ Opacity of the text (default: 1)
+ =============================================================== */
+/* = Hack for overriding Chrome auto-complete layout force overlay.
+   $background   ~ Background color
+   $color        ~ Color of the text (default: inherit)
+   $box-shadows  ~ Additional inset or outter shadows (default: none)
+ =============================================================== */
+/* = Backface visiblity across all major browsers
+   $backface-visibility   ~ Attribute of parameter backface visibility.
+ =============================================================== */

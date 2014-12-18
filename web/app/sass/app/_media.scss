@@ -1,0 +1,26 @@
+/* =======================================================================*
+ * Responsive design .SCSS source styles.                                 *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+
+
+/* ===== RESPONSIVE VIEWS ============================== */
+
+// *NOTE* Order of views is IMPORTANT, ranging from lower to biger screens! 
+
+/* Tablets to landscape - NOT SUPPORTED */
+
+
+/* Medium-resolution desktops */
+@media (max-width: $screen-desktop) 
+{
+	.container { min-width: $container-desktop; }
+}
+
+/* High-resolution desktops and bigger */
+@media (min-width: $screen-lg-desktop) 
+{
+	.container { max-width: $container-large-desktop; }
+}
+

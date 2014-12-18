@@ -1,0 +1,37 @@
+/* =======================================================================*
+ * Helpers .SCSS source styles.                                           *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2013                                  *
+ * =======================================================================*/
+
+
+/* ===== CSS HELPERS =================================== */
+
+.clear { clear: both }
+.center { text-align: center; }
+.italic { font-style: italic; }
+.strong { font-weight: bold; }
+.float-left { float: left; }
+.float-right {float: right; }
+
+.boldless { font-weight: normal; }
+
+
+/* ===== INSTANT ALTERATIONS =========================== */
+
+	/* Top & Bottom margins */
+
+	.mb5 { margin-bottom: 5px; } 
+	.mb10 { margin-bottom: 10px; }
+	.mb15 { margin-bottom: 15px; }
+	.mb20 { margin-bottom: 20px; }
+	.mb25 { margin-bottom: 25px; }
+	.mb30 { margin-bottom: 30px; }
+
+	.mt5 { margin-top: 5px; }
+	.mt10 { margin-top: 10px; }
+	.mt15 { margin-top: 15px; }
+	.mt20 { margin-top: 20px; }
+	.mt25 { margin-top: 25px; }
+	.mt30 { margin-top: 30px; }
+

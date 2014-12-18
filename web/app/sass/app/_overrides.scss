@@ -1,0 +1,26 @@
+/* =======================================================================*
+ * Override directives, .SCSS source styles.                              *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+
+
+/* ===== GENERAL LAYOUT OVERRIDES ================ */
+
+
+/* ===== BROWSERS-SPECIFIC OVERRIDES ============= */
+
+// Turn-off Gecko-based outlining
+a:focus, textarea:focus, input:focus, select:focus { outline: 0; }
+
+/* Sticky footer
+body, html { height: 100%; }
+
+body 
+{
+  display: table;
+  width: 100%;
+}
+
+body > header, body > footer, .body { display: table-row; }
+body > footer { height: 1px; }  */  

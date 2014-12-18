@@ -1,0 +1,118 @@
+/* =======================================================================*
+ * Global variables and layout settings, .SCSS source styles.             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2014                                  *
+ * =======================================================================*/
+
+
+/* ===== VARIABLES ==================================== */
+
+	/* Dimensions */
+
+		// General
+		$web-width: 		980px;
+		$web-padding: 		20px;
+		$web-radius: 		5px;
+		$web-text-size: 	16px;
+		$web-text-lines: 	25px;
+
+		$web-pic-width:		800px;
+
+		// Boxes
+
+		// Header 
+		$header-height: 	auto;
+		$sticky-panel-height: 50px;
+
+
+	/* Colours */
+
+		// General 
+		$brand: 	#fa5800;
+		$text: 		#231f20;
+		$blue: 		#1fb1e8;
+
+		// Backgrounds
+		$bg-brand: $brand;
+
+		$web-bg: #faf8eb;
+
+		// Texts, fonts and font-based icons
+
+		// Borders 
+		$border-brand: $brand;
+
+		// Shadows and lights 
+
+		// Layout
+		$intro-headline: 	#1c1c1b;
+		$intro-cta-btn-bg: 	#369edb;
+		$intro-cta-btn-text:#FFF;
+		
+		$menu-text: 		#ffc9ac;
+		$menu-text-hover: 	#FFF;
+
+		$footer-bg: 		      #d0cfc5;
+		$footer-links-text: 	  #838176;
+		$footer-links-hover-text: #333;
+
+		// Content
+
+		// Forms
+
+		// Buttons
+		$btn-text: 			$menu-text-hover;
+		$btn-text-hover: 	#fff;
+		$btn-bg: 			$intro-cta-btn-bg;
+		$btn-bg-hover: 		lighten( $intro-cta-btn-bg, 13);
+		$btn-border: 		$blue;
+
+		// Flash messages, notifications
+
+		// Forms and inputs
+
+		// Miscalleneous
+
+		// 3rd party
+
+	/* Font weights */
+	$regular: 	300;
+	$semibold: 	600;
+	$bold: 		700;
+	$extrabold:	800;
+
+	/* Project-related Mixins */
+
+
+/* ===== PROJECT-BASED MIXINS ========================= */
+
+
+/* ===== BASIC (DEFAULT) STYLES ======================= */
+
+html, body { height: 100%; }
+
+body 
+{
+	font-family: $opensans;
+	font-size: $web-text-size;	
+	@include font-params ( $text, $web-text-size, $web-text-lines )
+}
+
+// Use border-box for more precise positioning
+* { @include box-sizing ( border-box ); }
+
+// Links hover fade-away
+a, input[type="submit"], a:before, a > img
+{ 	
+	color: inherit;
+	outline: none !important; // Chrome reset
+	text-decoration: none;
+}
+
+// Links hover fade-away
+.face, .face > img, .menu > li > a, .links a 
+{ 	
+	@include transition ( all .35s ease );
+}
+
+
