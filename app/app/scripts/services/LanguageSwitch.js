@@ -47,9 +47,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			var lang = self.getLanguage(lang);
 
 			if(lang) {
-				ipCookie('language', lang.code, {
-					expires: 21*30
-				});
+				self.setCookie(lang.code);
 					
 				Session.update({language: lang.code}, function(res) {
 					
@@ -68,10 +66,14 @@ angular.module('hearth.services').service('LanguageSwitch', [
 				}
 			})[0];
 		};
+		
+		this.setCookie = function(lang) {
+			ipCookie('language', lang, {expires: 21*30*100});
+		};
+		
 		this.use = function(language) {
-			ipCookie('language', language.code, {
-				expires: 21*30
-			});
+			self.setCookie(language.code);
+
 			$http.defaults.headers.common['Accept-Language'] = language.code;
 			$translate.use(language.code);
 			tmhDynamicLocale.set(language.code);
