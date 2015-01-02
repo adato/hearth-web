@@ -22,21 +22,21 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
     ]).config([
         'tmhDynamicLocaleProvider', '$translateProvider',
         function(tmhDynamicLocaleProvider, $translateProvider) {
-            
+
             // ===============================
             // === Localization
             // ===============================
-            
+
             // get preferred language from cookies or config
             // console.log("Setting preffered language", preferredLanguage);
-            
+
             // configure dynamic locale - dates && pluralization && etc
             tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
-            
+
 
             // configure translate provider - where language constants are
             $translateProvider.preferredLanguage(preferredLanguage);
-            
+
             //  ====================== REVIEW ================
             // $translateProvider.useStorage('SessionLanguageStorage');
             $translateProvider.useStaticFilesLoader({
@@ -51,7 +51,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             // ===============================
             // === Configure ajax calls
             // ===============================
-            
+
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
 
@@ -83,10 +83,9 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
              * This will init app language
              */
             function initLanguage(done) {
-                
+
                 // $translate.use(preferredLanguage); // already loaded from config
                 tmhDynamicLocale.set(preferredLanguage);
-
 
                 var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data){
                     offEvent(); // unregister event listener
@@ -96,7 +95,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
                     done(null, data);
                 });
             }
-            
+
             /**
              * This will init session of user
              */
@@ -111,12 +110,12 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
                     if($rootScope.loggedUser._id) {
 
                         if(!$.cookie('forceRefresh')) {
-                            
+
                             var cookies = $.cookie();
                             for(var cookie in cookies) {
                                $.removeCookie(cookie);
                             }
-                            $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });   
+                            $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });
                             Auth.logout(function() {
                                 location.reload("#!/login");
                             });
@@ -124,7 +123,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
 
                         UnauthReload.checkLocation();
                     } else {
-                        $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });   
+                        $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });
                     }
 
                     $rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
@@ -145,7 +144,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
 
                 done(null);
             }
-            
+
             // === Init hearth core parts
             async.parallel({
                 language: initLanguage, // download language files
