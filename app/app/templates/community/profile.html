@@ -7,7 +7,7 @@
 	<header ng-show="info">
 		<div class="user-basic">
 			<div class="button-bar text-right" ng-if="!loggedCommunity || loggedCommunity._id == info._id">
-				<button class="profile-button tall outline" ng-if="! mine && info.is_member" ng-click="leaveCommunity()">
+				<button class="profile-button tall outline" ng-if="! mine && info.is_member" ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
 					<i class="fa fa-minus"></i> {{ 'LEAVE_COMMUNITY' | translate}}
 				</button>
 				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="profile-button tall">
