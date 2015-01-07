@@ -64,7 +64,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				$scope.loginError = true;
 			
 			if (Auth.isLoggedIn()) {
-				return $location.path( $rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+				return $location.path( $rootScope.referrerUrl || '/');
 			}
 
 			$(".login_name").focus();
