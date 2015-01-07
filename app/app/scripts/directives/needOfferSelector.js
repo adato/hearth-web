@@ -20,8 +20,9 @@ angular.module('hearth.directives').directive('needofferselector',
 			templateUrl: 'templates/directives/needOfferSelector.html',
 			link: function(scope) {
 				
-				scope.toggle = function() {
-					scope.model = !scope.model;
+				scope.toggle = function(state) {
+					// scope.model = !scope.model;
+					scope.model = state;
 				};
 				scope.$watch('model', function(value) {
 					scope.model = value;
