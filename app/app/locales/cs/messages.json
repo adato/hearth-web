@@ -120,6 +120,10 @@
             "one": "<b>{{count}}</b><br /> člen",
             "other": "<b>{{count}}</b><br /> členů"
         },
+        "CONFIRM_LEAVE": {
+            "TEXT": "Doopravdy chcete opustit komunitu?",
+            "TITLE": "Opuštění komunity"
+        },
         "REMOVE_MEMBER_ARE_YOU_SURE": "Doopravdy chcete odebrat tohoto člena z komunity?",
         "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
         "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
