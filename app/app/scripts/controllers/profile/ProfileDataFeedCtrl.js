@@ -77,7 +77,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             var fulltextParams = {
                 type: 'post',
                 related: 'user',
-                include_not_active: +$scope.mine, // cast bool to int
+                include_posponed: +$scope.mine, // cast bool to int
                 include_expired: +$scope.mine, // cast bool to int
                 author_id: params.user_id,
                 limit: 1000
