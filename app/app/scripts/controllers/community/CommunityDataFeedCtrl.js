@@ -56,7 +56,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             var fulltextParams = {
                 type: 'post',
-                include_not_active: +$scope.mine, // cast bool to int
+                include_posponed: +$scope.mine, // cast bool to int
                 include_expired: +$scope.mine, // cast bool to int
                 community_id: id,
                 limit: 1000
@@ -67,7 +67,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 $scope.postsInactive = [];
 
                 res.data.forEach(function(item) {
-                    if(item.is_active && !item.is_expired)
+                    // if(item.is_active && !item.is_expired)
+                    if($rootScope.isPostActive(item))
                         $scope.postsActive.push(item);
                     else
                         $scope.postsInactive.push(item);

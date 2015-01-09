@@ -482,7 +482,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         // return false if post is inactive
         $rootScope.isPostActive = function(item) {
-            return item.is_active && !item.is_expired;
+            return item.state === 'active';
+            // return item.is_active && !item.is_expired;
         };
     }
 ]);
