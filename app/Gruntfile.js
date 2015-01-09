@@ -636,6 +636,15 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+		fetch_locales: {
+			locales: {
+				options: {
+					sourceConfig: "<%= yeoman.envFolder %>/<%= yeoman.env %>.js",
+					sourceUrl: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ",
+					destFilepath: "app/locales/{langKey}/messages.json"
+				}
+			}
+	    },
 	});
 
 	grunt.registerTask('serve', function(target) {
