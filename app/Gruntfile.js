@@ -34,7 +34,8 @@ module.exports = function(grunt) {
 			app: require('./bower.json').appPath || 'app',
 			dist: 'dist',
 			env: env,
-			envFolder: envFolder
+			envFolder: envFolder,
+			api: (env == 'staging') ? 'stage' : 'dev'
 		},
 
 		// Watches files for changes and runs tasks based on the changed files
@@ -199,7 +200,7 @@ module.exports = function(grunt) {
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-				host: process.env.GRUNT_HOST || 'stage.hearth.net',  // wherever the data service is running,
+				host: process.env.GRUNT_HOST || '<%= yeoman.api %>.hearth.net',  // wherever the data service is running,
 				https: process.env.GRUNT_SSL == null, // true,
 				port: process.env.GRUNT_PORT || 443  // the port that the data service is running on
 			}],
