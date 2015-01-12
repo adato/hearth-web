@@ -9,10 +9,10 @@
       <section class="change-language">
 
         {{ 'USING_HEARTH_IN_LANG' | translate }} <b>{{ 'HEARTH_IN_THIS_LANG' | translate }}</b>.
-         {{ 'SWITCH_TO_LANGUAGE' | translate }}
+         {{ 'CHOOSE_LANGUAGE' | translate }}
          &nbsp;
       <select class="language-select" ng-model="lang" ng-init="lang = language" ng-change="switchLang(lang)">
-        <option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'TO_LANG.'+lang | translate }}</option>
+        <option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
       </select>
 
       </section>

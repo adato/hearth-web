@@ -17,7 +17,7 @@ $$config = {
 		twitter: 'https://twitter.com/share?url=',
 		linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
 	},
-	languages: ["cs", "en", "preklady"],
+	languages: ["cs", "en", "clean"],
 	features: {
 		aboutPage: false,
 		searchImage: false,
