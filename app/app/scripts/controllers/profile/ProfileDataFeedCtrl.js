@@ -151,6 +151,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function finishLoading() {
             $scope.subPageLoaded = true;
+            if(!$scope.$parent)
+                $scope.$parent = {};
             $scope.$parent.loaded = true;
             $rootScope.$emit("subPageLoaded");
         }
@@ -161,7 +163,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function processDataErr(res) {
-            console.log("Err", res);
+            // console.log("Err", res);
             finishLoading();
         }
 
@@ -169,13 +171,13 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
             $scope.subPageLoaded = false;
 
-            console.log("Calling load service", $scope.pageSegment);
-            console.log("Calling load service", loadServices[$scope.pageSegment]);
+            // console.log("Calling load service", $scope.pageSegment);
+            // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);
 
             // refresh after new post created
             if (! inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
-                console.log("Adding listeners");
+                // console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
                     $scope.refreshUser();
                 });
@@ -224,6 +226,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         // $scope.loaded && init();
-        $scope.$on('profileTopPanelLoaded', init);
+        if($rootScope.profileLoaded)
+            init();
+        else
+            $scope.$on('profileTopPanelLoaded', init);
     }
 ]);

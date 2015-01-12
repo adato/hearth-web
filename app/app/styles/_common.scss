@@ -335,3 +335,15 @@ textarea::-ms-clear {
 .margin-bottom-20 {
     margin-bottom: 20px;   
 }
+
+button.disabled,
+button[disabled],
+.button.disabled,
+.button[disabled] {
+    background-color: lighten(color(5), 30%);
+    &:hover {
+        background-color: lighten(color(5), 30%);
+    }
+}
+
+

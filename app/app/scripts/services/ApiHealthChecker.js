@@ -17,7 +17,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will process health check result
 		 */
 		this.processHealthCheckResult = function(res) {
-			console.log("Health check result: ", res);
+			// console.log("Health check result: ", res);
 			if(res && res.ok && res.ok == true){
 				return self.turnOff();
 			}

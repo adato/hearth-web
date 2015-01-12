@@ -174,7 +174,7 @@ angular.module('hearth.geo').directive('map', [
                         };
                     }
 
-                    console.log("Nacetl jsem: " + ads.length);
+                    // console.log("Nacetl jsem: " + ads.length);
                     for (i = 0; i < ads.length; i++) {
                         ad = ads[i];
 

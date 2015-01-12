@@ -31,7 +31,7 @@ angular.module('hearth.services').service('OpenGraph', [
 
 		this.getDefaultInfo = function() {
 			return defaults;
-		}
+		};
 
 		/**
 		 * Nastavi info do opengraph meta tagu

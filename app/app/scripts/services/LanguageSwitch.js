@@ -13,6 +13,14 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		this.languages = $$config.languages;
 
 		this.init = function() {
+			if ($feature.isEnabled('german')) {
+				return languages.push({
+					code: 'de',
+					name: 'Deutsch'
+				});
+			}
+
+			// console.log("Language Inited");
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
 		};
@@ -20,7 +28,6 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		this.getLanguages = function() {
 			return self.languages;
 		};
-		
 		
 		// test if language exists
 		this.langExists = function(lang) {
@@ -30,12 +37,10 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		// switch to given language code
 		this.swicthTo = function(lang) {
 
-			if(self.langExists(lang)) {
-				// save to cookie
-				$.cookie('language', lang, {expires: 21*30*100});
-				
-				// update language on API
-				Session.update({language: lang}, function(res) {
+			if(lang) {
+				self.setCookie(lang.code);
+					
+				Session.update({language: lang.code}, function(res) {
 					
 					location.reload();
 					// return self.use(lang);
@@ -46,19 +51,24 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			return false;
 		}
 		this.uses = function() {
-			return $.map(self.languages, function(item) {
-				if (item === $translate.use()) {
+
+			return $.map(languages, function(item) {
+				if (item.code === $translate.use()) {
 					return item;
 				}
 			})[0];
 		};
-		this.use = function(lang) {
-			$.cookie('language', lang, {
-				expires: 21*30
-			});
-			$http.defaults.headers.common['Accept-Language'] = lang;
-			$translate.use(lang);
-			tmhDynamicLocale.set(lang);
+		
+		this.setCookie = function(lang) {
+			ipCookie('language', lang, {expires: 21*30*100});
+		};
+		
+		this.use = function(language) {
+			self.setCookie(language.code);
+
+			$http.defaults.headers.common['Accept-Language'] = language.code;
+			$translate.use(language.code);
+			tmhDynamicLocale.set(language.code);
 			
 			$rootScope.language = lang;
 			$rootScope.$broadcast("initLanguageSuccess", lang);

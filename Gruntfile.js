@@ -47,6 +47,14 @@ module.exports = function(grunt) {
 					dest: 'dist/app/',
 					src: ['**/*']
 				}]
+			},
+			dist: {
+				files: [{
+					expand: true,
+					cwd: 'dist/',
+					dest: '../public/',
+					src: ['**/*']
+				}]
 			}
 		},
 
@@ -101,7 +109,8 @@ module.exports = function(grunt) {
 		'hub:web',
 		'hub:app',
 		'copy:web',
-		'copy:app'
+		'copy:app',
+		'copy:dist'
 	]);
 
 };

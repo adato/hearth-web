@@ -49,8 +49,6 @@ angular.module('hearth.services').service('Notify', [
 			if(self.icons[type])
 				text = '<i class="fa '+self.icons[type]+'"></i>' + text;
 			
-			console.log("Adding notify: ", [text, type, container, ttlCustom, delay]);
-
 			// create notify with given type and text
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
 				// hide it at start
