@@ -60,7 +60,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 		
 		this.setCookie = function(lang) {
-			ipCookie('language', lang, {expires: 21*30*100});
+			$.cookie('language', lang, {expires: 21*30*100});
 		};
 		
 		this.use = function(language) {

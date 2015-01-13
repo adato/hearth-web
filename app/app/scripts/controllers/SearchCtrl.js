@@ -9,9 +9,9 @@
  */
 
 angular.module('hearth.controllers').controller('SearchCtrl', [
-	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'ipCookie', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
+	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
 
-	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, ipCookie, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
+	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
 		$scope.orderByPostSort = '';
 		$scope.adEditing = false;
 		$scope.location = $location;
@@ -72,7 +72,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$scope.initMyLocation();
 			$scope.orderBy = order;
 			$scope.offset = 0;
-			ipCookie('orderBy', order);
+			$.cookie('orderBy', order);
 			$rootScope.$broadcast('cancelCreatingAd');
 			$rootScope.$broadcast('cancelReplyingAd');
 			$rootScope.$broadcast('cancelEditingAd');
@@ -420,7 +420,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 
 		$scope.$on('$routeChangeSuccess', function() {
 			var orderCookie;
-			orderCookie = ipCookie('orderBy') || 'time';
+			orderCookie = $.cookie('orderBy') || 'time';
 			return $scope.setOrderBy(orderCookie);
 		});
 

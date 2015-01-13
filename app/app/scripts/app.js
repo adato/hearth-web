@@ -52,6 +52,10 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             // === Configure ajax calls
             // ===============================
 
+            // Allow CORS
+            $httpProvider.defaults.useXDomain = true;
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
 
@@ -59,12 +63,10 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
             $httpProvider.responseInterceptors.push('ApiMaintenanceInterceptor');
 
-            // ======== ?? wtf is this?
-            $httpProvider.responseInterceptors.push('TermsAgreement');
         }
     ]).run([
-        '$rootScope', 'Auth', '$location', 'ipCookie', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
-        function($rootScope, Auth, $location, ipCookie, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
+        '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
+        function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
 
             /**
@@ -170,7 +172,7 @@ var __indexOf = [].indexOf || function(item) {
 
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
-angular.module('hearth.services', ['ivpusic.cookie']);
+angular.module('hearth.services', []);
 angular.module('hearth.utils', []);
 
 /**
