@@ -7,10 +7,10 @@
  */
 
 angular.module('hearth.services').factory('CommunityActivityLog', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/communities/:communityId/activity_feed', {
+	function($resource) {
+		return $resource($$config.apiPath + '/communities/:communityId/activity_feed', {
 			communityId: '@communityId'
 		}, {
 			get: {

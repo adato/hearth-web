@@ -7,10 +7,10 @@
  */
  
 angular.module('hearth.services').factory('CommunityMemberships', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/users/:user_id/communities', {
+	function($resource) {
+		return $resource($$config.apiPath + '/users/:user_id/communities', {
 			user_id: '@id'
 		}, {
 			get: {

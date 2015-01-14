@@ -1,12 +1,9 @@
 var $$config;
 
 $$config = {
-	apiPath: '/api',
-	fbAppId: '277542219089599', // production
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',
-	fbAppId: '277542219089599', // production
 	defaultLanguage: 'cs',
 	defaultUserAvatar: 'images/no-avatar.jpg',
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
@@ -16,18 +13,18 @@ $$config = {
 		twitter: 'https://twitter.com/share?url=',
 		linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
 	},
-	features: {
-		aboutPage: false,
-		searchImage: false,
-		german: false,
-		follow: true,
-		myHearth: true,
-		myHearthSearch: true,
-		searchTypeahead: true,
-		deleteAccount: true,
-		uploadFiles: false,
-		newCreateEditForm: false
-	}
+	// features: {
+	// 	aboutPage: false,
+	// 	searchImage: false,
+	// 	german: false,
+	// 	follow: true,
+	// 	myHearth: true,
+	// 	myHearthSearch: true,
+	// 	searchTypeahead: true,
+	// 	deleteAccount: true,
+	// 	uploadFiles: false,
+	// 	newCreateEditForm: false
+	// }
 };
 
 // copy data from localConfig

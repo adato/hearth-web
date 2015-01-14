@@ -5,5 +5,6 @@ $$localConfig = {
 	languages: {
 		"cs": "cs_CZ",
 		"en": "en_US"
-	}
+	},
+	apiPath: '/api'
 };

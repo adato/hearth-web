@@ -7,10 +7,10 @@
  */
  
 angular.module('hearth.services').factory('CommunityDelegateAdmin', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/communities/:community_id/delegate_admin', {
+	function($resource) {
+		return $resource($$config.apiPath + '/communities/:community_id/delegate_admin', {
 			community_id: '@community_id'
 		}, {
 			delegate: {

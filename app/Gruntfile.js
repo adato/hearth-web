@@ -458,6 +458,20 @@ module.exports = function(grunt) {
 					src: ['*.html', 'views/{,*/}*.html'],
 					dest: '<%= yeoman.dist %>'
 				}]
+			},
+			distTemplates: {
+				options: {
+					collapseWhitespace: true,
+					collapseBooleanAttributes: true,
+					removeCommentsFromCDATA: true,
+					removeOptionalTags: true
+				},
+				files: [{
+					expand: true,
+					cwd: '.tmp/templates',
+					src: ['**/*.html'],
+					dest: '.tmp/templates'
+				}]
 			}
 		},
 
@@ -467,9 +481,9 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '.tmp/concat/scripts',
+					cwd: '.tmp/scripts',
 					src: '*.js',
-					dest: '.tmp/concat/scripts'
+					dest: '.tmp/scripts'
 				}]
 			}
 		},
@@ -498,15 +512,23 @@ module.exports = function(grunt) {
 						'*.{ico,png,txt}',
 						'.htaccess',
 						'*.html',
-						'templates/{,*/}*.html',
 						'vendor/**/*',
-						'scripts/**/*',
 						'images/{,*/}*.{webp}',
 						'fonts/*',
 					]
 				}, {
+					expand: true,
+					cwd: '<%= yeoman.app %>/templates',
+					dest: '.tmp/templates',
+					src: ['**/*']
+				}, {
+					expand: true,
+					cwd: '<%= yeoman.app %>/scripts',
+					dest: '.tmp/scripts',
+					src: ['**/*']
+				}, {
 					cwd: '<%= yeoman.app %>/../',
-					dest: '<%= yeoman.dist %>/scripts/config-local.js',
+					dest: '.tmp/concat/config-local.js',
 					src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
 				}, {
 					expand: true,
@@ -549,6 +571,12 @@ module.exports = function(grunt) {
 				src: ['*.*']
 			}
 		},
+		rename: {
+			configDist: {
+				src: '.tmp/scripts/config-global.js',
+				dest: '.tmp/concat/config-global.js'
+			}
+		},
 
 		// Run some tasks in parallel to speed up the build process
 		concurrent: {
@@ -578,20 +606,28 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			dist: {},
+			dist: {
+				files: {
+					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
+					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
+				}
+			},       
 		},
 		concat: {
 			options: {
 				separator: ';',
 			},
-			dist: {},
+			scripts: {
+				src: ['.tmp/scripts/**/*.js'],
+				dest: '.tmp/concat/scripts.js',
+			},
 			config: {
-				src: ['<%= yeoman.dist %>/scripts/config-local.js', '<%= yeoman.dist %>/scripts/config-global.js'],
-				dest: '<%= yeoman.dist %>/scripts/config.js',
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
+				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
-				src: ['<%= yeoman.dist %>/scripts/templates.js', '<%= yeoman.dist %>/scripts/scripts.js'],
-				dest: '<%= yeoman.dist %>/scripts/scripts.js',
+				src: ['.tmp/concat/templates.js', '.tmp/concat/scripts.js'],
+				dest: '.tmp/concat/scripts.js',
 			},
 		},
 
@@ -604,23 +640,22 @@ module.exports = function(grunt) {
 		},
 		html2js: {
 			options: {
-				base: '<%= yeoman.dist %>'
+				base: '.tmp'
 			},
 			main: {
-				// src: ['app/**/*.html'],							 // original source
-				src: ['<%= yeoman.dist %>/**/*.html'], // compiled source
-				dest: '<%= yeoman.dist %>/scripts/templates.js'
+				src: ['.tmp/templates/**/*.html'], 	// compiled source
+				dest: '.tmp/concat/templates.js'
 			},
 		},
 
 		// Add angular module for merged templates
 		replace: {
 			dist: {
-				src: ['<%= yeoman.dist %>/scripts/scripts.js'],
+				src: ['.tmp/concat/scripts.js'],
 				overwrite: true,
 				replacements: [{
-					from: 'module("hearth",["',
-					to: 'module("hearth",["templates-main","'
+					from: "angular.module('hearth', [",
+					to: "angular.module('hearth', ['templates-main',"
 				}]
 			}
 		},
@@ -642,10 +677,14 @@ module.exports = function(grunt) {
 				options: {
 					sourceConfig: "<%= yeoman.envFolder %>/<%= yeoman.env %>.js",
 					sourceUrl: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ",
-					destFilepath: "app/locales/{langKey}/messages.json"
+					destFilepath: "app/locales/{langKey}/messages.json",
+					parseFunction: function parseDefault(conf) {
+						// this will take local config for given environment and parse language codes in format: {cs: cs_CZ, ...}
+						return JSON.parse(conf.replace(/[ \t\n]/g, '').match(/languages:(\{.*?\})/)[1]);
+					}
 				}
 			}
-	    },
+		},
 	});
 
 	grunt.registerTask('serve', function(target) {
@@ -688,27 +727,29 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
-		'clean:dist',
-		'bower-install-simple',
-		'useminPrepare',
-		// 'concurrent:dist',
-		// 'compass:dist',
-		// 'autoprefixer',
-		'copy:dist',
-		'preprocess',
-		'ngmin', // not used?
+		'clean:dist',			// remove .tmp and dist folder
+		'bower-install-simple',	// install vendor scripts with bower
+		'useminPrepare',		// scan index.html file for usemin marks
+		'concurrent:dist',		// minify images to dist folder
+		'compass:dist',			// process compass scss styles
+		'autoprefixer',			// autoprefix css3 styles
+		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
+		'rename:configDist',	// move config-global to .tmp/concat folder
+		'preprocess',			
+		'ngmin',
 		'cdnify',
-		'cssmin',
-		//'rev',
+		'cssmin',				// minify css files
+		'rev',
 		'usemin',
 		'htmlmin',
-		'html2js', //  merge all templates to one js file
-		'replace:dist', // add angular module for merged templates
-		'concat:dist',
-		// 'concat:config',
-		// 'concat:tmpl',
+		'htmlmin:distTemplates', // minify template files before concatenation
+		'html2js', 				// merge all templates to one js file
+		'concat:scripts',
+		'concat:config',
+		'concat:tmpl',
+		'replace:dist', 		// inject angular module for merged templates
 		'uglify',
-		// 'cacheBust'
+		'cacheBust'
 	]);
 
 	grunt.registerTask('default', [

@@ -7,33 +7,33 @@
  */
 
 angular.module('hearth.services').factory('Post', [
-	'$resource', 'appConfig',
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/posts/:postId', {
+	'$resource',
+	function($resource) {
+		return $resource($$config.apiPath + '/posts/:postId', {
 			postId: '@id'
 		}, {
 			query: {
 				method: 'GET',
-				url: appConfig.apiPath + '/search/',
+				url: $$config.apiPath + '/search/',
 				params: {
 					type: 'post'
 				},
 			},
 			suspend: {
-				url: appConfig.apiPath + '/posts/:postId/suspend',
+				url: $$config.apiPath + '/posts/:postId/suspend',
 				method: 'PUT'
 			},
 			resume: {
-				url: appConfig.apiPath + '/posts/:postId/resume',
+				url: $$config.apiPath + '/posts/:postId/resume',
 				method: 'PUT'
 			},
 			prolong: {
-				url: appConfig.apiPath + '/posts/:postId/prolong',
+				url: $$config.apiPath + '/posts/:postId/prolong',
 				method: 'PUT'
 			},
 			mapQuery: {
 				method: 'GET',
-				url: appConfig.apiPath + '/search/',
+				url: $$config.apiPath + '/search/',
 				params: {
 					type: 'post'
 				},
@@ -49,7 +49,7 @@ angular.module('hearth.services').factory('Post', [
 				method: 'DELETE'
 			},
 			spam: {
-				url: appConfig.apiPath + '/posts/:postId/spam',
+				url: $$config.apiPath + '/posts/:postId/spam',
 				method: 'PUT'
 			}
 		});

@@ -7,10 +7,10 @@
  */
 
 angular.module('hearth.services').factory('CommunityApplicants', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/communities/:communityId/applicants/:applicantId', {
+	function($resource) {
+		return $resource($$config.apiPath + '/communities/:communityId/applicants/:applicantId', {
 			communityId: '@communityId',
 			applicantId: '@applicantId'
 		}, {

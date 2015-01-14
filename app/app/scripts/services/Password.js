@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.services').factory('Password', [
-	'$resource', 'appConfig',
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/users/:user_id/validate_password', {
+	'$resource',
+	function($resource) {
+		return $resource($$config.apiPath + '/users/:user_id/validate_password', {
 			user_id: '@_id'
 		}, {
 			validate: {

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('ApiHealthChecker', [
-	'$rootScope', 'appConfig',
-	function($rootScope, appConfig) {
+	'$rootScope',
+	function($rootScope) {
 		var self = this;
 		var healthCheckTimeout = 2000;
 		var healthCheckTimeoutPointer = 0;
@@ -37,7 +37,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will send health check request and process result
 		 */
 		this.sendHealthCheck = function(res) {
-			$.getJSON(appConfig.apiPath + '/health').done(self.processHealthCheckResult).fail(self.processHealthCheckFailResult);
+			$.getJSON($$config.apiPath + '/health').done(self.processHealthCheckResult).fail(self.processHealthCheckFailResult);
 		};
 
 		/**
