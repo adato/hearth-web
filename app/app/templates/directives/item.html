@@ -16,7 +16,7 @@
 		</div>
 		<div class="timeline"></div>
 	</section>
-	<section class="large-10 columns">
+	<section class="item-container columns" ng-class="foundationColumnsClass">
 		<div class="item" ng-class="item.type">
 			<div class="overlap"> </div>
 			<div class="arrowbox"></div>
@@ -49,12 +49,12 @@
 					<a ng-if="! itemDetail" ng-href="#!/ad/{{item._id}}">{{item.title}}</a>
 				</h1>
 				<div class="text-container">
-					<div class="expandable">
+					<div ng-class="{ 'expandable' : !postExpanded }">
 						<p ng-bind-html="item.name | linky:'_blank' | nl2br"></p>
 					</div>
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
-					<div class="expandable">
+					<div ng-class="{ 'expandable' : !postExpanded }">
 						<a class="fancy" ng-href="{{ photo.file }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes track by $index">
 							<img ng-if="$index < 3" ng-src="{{ photo.normal }}">
 							<img ng-if="$index >= 3" data-src="{{ photo.normal }}" class="lazyLoad">

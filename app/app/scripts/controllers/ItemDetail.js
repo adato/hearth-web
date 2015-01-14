@@ -7,16 +7,15 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post',
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post) {
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout) {
 		$scope.ad = {};
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
 
 		// load post data
 		$scope.load = function() {
-
 			Post.get({postId: $routeParams.id}, function(data) {
 				var title = data.author.name;
 
@@ -27,6 +26,12 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.ad = data;
 				$scope.profile = data.author;
 				$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
+
+				$timeout(function() {
+					$scope.$broadcast('initMap');
+					$scope.$broadcast('showMarkersOnMap');
+				});
+
 
 				$scope.loaded = true;
 			}, function() {
@@ -47,6 +52,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.$on('postCreated', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
+
+
         $rootScope.initFinished && $scope.load();
 	}
 ]);
