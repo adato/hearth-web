@@ -52,6 +52,11 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
             // === Configure ajax calls
             // ===============================
 
+            // Allow CORS
+            $httpProvider.defaults.useXDomain = true;
+            $httpProvider.defaults.withCredentials=true;
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
 
