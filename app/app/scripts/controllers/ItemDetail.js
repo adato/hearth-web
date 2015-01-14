@@ -26,12 +26,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.ad = data;
 				$scope.profile = data.author;
 				$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
-
-				$timeout(function() {
-					$scope.$broadcast('initMap');
-					$scope.$broadcast('showMarkersOnMap');
-				});
-
+		
+				$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
+				$scope.initMap();
 
 				$scope.loaded = true;
 			}, function() {
@@ -48,6 +45,17 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.$apply();
 			});
 		};
+
+		$scope.initMap = function () {
+			$timeout(function() {
+				$scope.$broadcast('initMap');
+				$scope.$broadcast('showMarkersOnMap');
+			});
+		}
+
+		$scope.$watch('page.currentPageSegment', function (newval, oldval) {
+			if (newval == 'detail.map') $scope.initMap();
+		});
 
 		$scope.$on('postCreated', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);

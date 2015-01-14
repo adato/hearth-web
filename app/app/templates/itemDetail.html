@@ -31,12 +31,6 @@
 								</span>
 								<span class="negative bar" ng-style="{width: (100 - info.karma)+'%'}" ng-class="{full: info.karma == 0}" ng-if="info.karma != null && info.karma < 100">
 								</span>
-								<span class="empty" ng-if="info.karma == null && isMine">
-									{{ 'PROFILE.TOP.KARMA_NO_RATING_ME' | translate }}
-								</span>
-								<span class="empty" ng-if="info.karma == null && !isMine">
-									{{ 'PROFILE.TOP.KARMA_NO_RATING_OTHER' | translate }}
-								</span>
 							</div>
 						</a>
 
@@ -79,9 +73,24 @@
 						<item keywords-active="{}" item-detail="true" user="user" item="ad" community="loggedCommunity" inactivate-tags="true" hide-avatar="true" not-expandable="true" foundation-columns-classname="'large-12'"></item>
 					</div>
 
-					<div class="large-8 rating-listing ratings-received left" ng-if="isMine">
-						<h3>{{ 'AD_REPLIES' | translate }}</h3>
-						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in fakeReplies">
+					<div class="large-8 columns no-padding" ng-if="isMine && (ad.locations.length && !ad.location_unlimited)">
+						<div class="bottom-tabs">
+							<ul>
+								<li>
+									<a href="" ng-click="page.currentPageSegment='detail.replies'" ng-class="{selected: page.currentPageSegment =='detail.replies'}">
+										{{ 'AD_REPLIES' | translate }}
+									</a>
+								</li>
+								<li>
+									<a href="" ng-click="page.currentPageSegment='detail.map'" ng-class="{selected: page.currentPageSegment =='detail.map'}">
+										{{ 'AD_PLACES' | translate }}
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="large-8 rating-listing ratings-received left" ng-if="isMine && page.currentPageSegment == 'detail.replies'">
+						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in fakeReplies"><!--fakereplies!!-->
 							<section class="large-2 columns user">
 								<a ng-href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
 									<avatar src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
@@ -100,13 +109,14 @@
 										<div class="text-container clearfix">
 											<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 										</div>
+										<small ng-bind-html="'REPLY_EMAIL_PLACEHOLDER'"></small>
 									</div>
 								</div>
 							</section>
 						</article>
 					</div>
 
-					<div class="large-8 box map-box" ng-if="ad.locations.length && !ad.location_unlimited">
+					<div class="large-8 box map-box" ng-if="(ad.locations.length && !ad.location_unlimited) && (!isMine || page.currentPageSegment == 'detail.map')">
 						<ul class="address">
 							<li ng-repeat="(locationId, location) in ad.locations">
 								{{location.address}}
