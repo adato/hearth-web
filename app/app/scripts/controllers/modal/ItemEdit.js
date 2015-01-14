@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
-			is_active: true
+			state: 'active'
 		};
 
 		$scope.showFiles = false;
@@ -361,9 +361,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		// when edited, we should change also original post
 		$scope.setPostActiveStateCallback = function(post) {
-
-			$scope.postOrig.is_active = post.is_active;
-			$scope.postOrig.is_expired = post.is_expired;
+			$scope.postOrig.state = post.state;
 		};
 
 		function modifyDateFormat(dateFormat) {
@@ -398,15 +396,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.pauseToggle = function(post) {
 			var postCopy = angular.copy(post);
 
-			// prolong
-			if(postCopy.is_expired) {
-
-				postCopy.is_active = true;
-				postCopy.is_expired = false;
-			} else {
-				// pause / play
-				postCopy.is_active = !postCopy.is_active;
-			}
+			// active -> postponed
+			if(postCopy.state == 'active')
+				postCopy.state = 'postponed';
+			else
+			// expired / postponed -> active
+				postCopy.state = 'active';
 
 			$scope.save(postCopy);
 		};
