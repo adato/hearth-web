@@ -60,7 +60,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             var fulltextParams = {
                 type: 'post',
-                include_posponed: +$scope.mine, // cast bool to int
+                include_suspended: +$scope.mine, // cast bool to int
                 include_expired: +$scope.mine, // cast bool to int
                 community_id: id,
                 limit: 1000
