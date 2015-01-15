@@ -42,7 +42,7 @@
 								<div class="descr" ng-if="ad.author.user_languages">
 									<span ng-repeat="(languageCode, enabled) in ad.author.user_languages">
 										<i class="fa fa-comments" ng-if="$first"></i>
-										{{ 'MY_LANG_' + languageCode.toUpperCase() | translate }}<span ng-if="!$last">,</span>
+										{{ 'MY_LANG.' + languageCode | translate }}<span ng-if="!$last">,</span>
 									</span>
 								</div>
 								<div class="descr" ng-if="ad.author.webs.length && ad.author.webs[0]">

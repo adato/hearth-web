@@ -36,8 +36,6 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 				$scope.initMap();
 				
-				console.log($scope.ad);
-
 				$timeout(function() {
 					$scope.$broadcast('initMap');
 					$scope.$broadcast('showMarkersOnMap');
