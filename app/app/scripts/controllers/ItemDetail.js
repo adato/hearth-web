@@ -7,12 +7,18 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout) {
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies) {
 		$scope.ad = {};
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
+
+		$scope.loadReplies = function() {
+			PostReplies.get({user_id: $routeParams.id}, function(data) {
+				$scope.replies = data.replies;
+			});
+		}
 
 		// load post data
 		$scope.load = function() {
@@ -29,6 +35,16 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		
 				$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 				$scope.initMap();
+
+				$timeout(function() {
+					$scope.$broadcast('initMap');
+					$scope.$broadcast('showMarkersOnMap');
+				});
+
+				if($scope.isMine) {
+
+					$scope.loadReplies();
+				}
 
 				$scope.loaded = true;
 			}, function() {

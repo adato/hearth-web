@@ -1,6 +1,3 @@
-<!-- !!!! naive  init, TODO relace with correct replies and remove the DIV !!!! -->
-<DIV ng-init="fakeReplies = [{ '_id': 1231231, 'user_from_type': 'User', 'user_to_type': 'User', 'user_from': '12312312312', 'user_to': '123123123', 'text': 'Ahoj, mel bych zajem, v kolik a kde?', 'user_from_full_name': 'Karel Poláček', 'created_at': '2013-03-30T03:03:03.440'}]"></DIV>
-
 <div id="item-detail">
 	<div loading show="!loaded"></div>
 
@@ -90,11 +87,12 @@
 						</div>
 					</div>
 					<div class="large-8 rating-listing ratings-received left" ng-if="isMine && page.currentPageSegment == 'detail.replies'">
-						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in fakeReplies"><!--fakereplies!!-->
+						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in replies">
 							<section class="large-2 columns user">
-								<a ng-href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
-									<avatar src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
-									<div class="name">{{ item.user_from_full_name}}</div>
+								<a ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
+									<avatar src="item.author._id" type="item.author._type"></avatar>
+									<div class="name">{{ item.author.name}}</div>
+									{{ item.author}}
 								</a>
 							</section>
 							<section class="large-10 columns">
@@ -107,9 +105,9 @@
 											<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
 										</div>
 										<div class="text-container clearfix">
-											<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+											<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
 										</div>
-										<small ng-bind-html="'REPLY_EMAIL_PLACEHOLDER'"></small>
+										<small ng-bind-html="item.author_email"></small>
 									</div>
 								</div>
 							</section>
