@@ -7,12 +7,18 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout) {
-		$scope.ad = {};
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
+		$scope.ad = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
+
+		$scope.loadReplies = function() {
+			PostReplies.get({user_id: $routeParams.id}, function(data) {
+				$scope.replies = data.replies;
+			});
+		};
 
 		// load post data
 		$scope.load = function() {
@@ -26,9 +32,20 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.ad = data;
 				$scope.profile = data.author;
 				$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
-		
+				$scope.ad.author.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
 				$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 				$scope.initMap();
+				
+				console.log($scope.ad);
+
+				$timeout(function() {
+					$scope.$broadcast('initMap');
+					$scope.$broadcast('showMarkersOnMap');
+				});
+
+				if($scope.isMine) {
+					$scope.loadReplies();
+				}
 
 				$timeout(function() {
 					$scope.$broadcast('initMap');

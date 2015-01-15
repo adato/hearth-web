@@ -1,6 +1,3 @@
-<!-- !!!! naive  init, TODO relace with correct replies and remove the DIV !!!! -->
-<DIV ng-init="fakeReplies = [{ '_id': 1231231, 'user_from_type': 'User', 'user_to_type': 'User', 'user_from': '12312312312', 'user_to': '123123123', 'text': 'Ahoj, mel bych zajem, v kolik a kde?', 'user_from_full_name': 'Karel Poláček', 'created_at': '2013-03-30T03:03:03.440'}]"></DIV>
-
 <div id="item-detail">
 	<div loading show="!loaded"></div>
 
@@ -22,14 +19,11 @@
 						</div>
 						<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}"><h2>{{ ad.author.name}}</h2></a>
 
-						<!-- !!!! naive ng-init, TODO replace with correct karma init and delete the div -->
-						<DIV ng-init="info = { 'karma': 100-((ad.author.up_votes+ad.author.down_votes) / ad.author.up_votes), 'up_votes': ad.author.up_votes, 'down_votes': ad.author.down_votes }"></DIV>
-
 						<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id+'/received-ratings'}}">
-							<div ng-if="info" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
-								<span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
+							<div ng-if="ad.author" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ ad.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ ad.author.down_votes }}">
+								<span class="positive bar" ng-style="{width: (ad.author.karma)+'%'}" ng-class="{full: ad.author.karma == 100}" ng-if="ad.author.karma != null && ad.author.karma > 0">
 								</span>
-								<span class="negative bar" ng-style="{width: (100 - info.karma)+'%'}" ng-class="{full: info.karma == 0}" ng-if="info.karma != null && info.karma < 100">
+								<span class="negative bar" ng-style="{width: (100 - ad.author.karma)+'%'}" ng-class="{full: ad.author.karma == 0}" ng-if="ad.author.karma != null && ad.author.karma < 100">
 								</span>
 							</div>
 						</a>
@@ -90,11 +84,11 @@
 						</div>
 					</div>
 					<div class="large-8 rating-listing ratings-received left" ng-if="isMine && page.currentPageSegment == 'detail.replies'">
-						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in fakeReplies"><!--fakereplies!!-->
+						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in replies">
 							<section class="large-2 columns user">
-								<a ng-href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
-									<avatar src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
-									<div class="name">{{ item.user_from_full_name}}</div>
+								<a ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
+									<avatar src="item.author.avatar.normal" type="item.author._type"></avatar>
+									<div class="name">{{ item.author.name }}</div>
 								</a>
 							</section>
 							<section class="large-10 columns">
@@ -107,9 +101,9 @@
 											<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
 										</div>
 										<div class="text-container clearfix">
-											<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+											<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
 										</div>
-										<small ng-bind-html="'REPLY_EMAIL_PLACEHOLDER'"></small>
+										<small ng-bind-html="item.author_email"></small>
 									</div>
 								</div>
 							</section>
@@ -119,11 +113,9 @@
 					<div class="large-8 box map-box" ng-if="(ad.locations.length && !ad.location_unlimited) && (!isMine || page.currentPageSegment == 'detail.map')">
 						<ul class="address">
 							<li ng-repeat="(locationId, location) in ad.locations">
-								{{location.address}}
 							</li>
 						</ul>
-						<div ng-init="ads = [ad];">
-							<map ads="ads" class="map"></map>
+							<mapitems ng-if="ad.locations && ad.locations.length" class="map" items="ad.locations"></mapitems>
 						</div>
 					</div>
 

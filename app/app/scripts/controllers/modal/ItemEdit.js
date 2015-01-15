@@ -396,11 +396,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.pauseToggle = function(post) {
 			var postCopy = angular.copy(post);
 
-			// active -> postponed
+			// active -> suspended
 			if(postCopy.state == 'active')
-				postCopy.state = 'postponed';
+				postCopy.state = 'suspended';
 			else
-			// expired / postponed -> active
+			// expired / suspended -> active
 				postCopy.state = 'active';
 
 			$scope.save(postCopy);
