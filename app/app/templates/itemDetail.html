@@ -113,11 +113,10 @@
 					<div class="large-8 box map-box" ng-if="(ad.locations.length && !ad.location_unlimited) && (!isMine || page.currentPageSegment == 'detail.map')">
 						<ul class="address">
 							<li ng-repeat="(locationId, location) in ad.locations">
-								{{location.address}}
 							</li>
 						</ul>
-						<div ng-init="ads = [ad];">
-							<map ads="ads" class="map"></map>
+						<div>
+							<mapitems ng-if="ad.locations && ad.locations.length" class="map" items="ad.locations"></mapitems>
 						</div>
 					</div>
 

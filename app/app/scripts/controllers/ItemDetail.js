@@ -10,7 +10,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma',
 
 	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
-		$scope.ad = {};
+		$scope.ad = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
 
@@ -36,6 +36,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 				$scope.initMap();
 				
+				console.log($scope.ad);
+
 				$timeout(function() {
 					$scope.$broadcast('initMap');
 					$scope.$broadcast('showMarkersOnMap');
