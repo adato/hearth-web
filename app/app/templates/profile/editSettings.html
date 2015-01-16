@@ -12,7 +12,7 @@
          {{ 'CHOOSE_LANGUAGE' | translate }}
          &nbsp;
       <select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
-        <option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'TO_LANG.'+lang | translate }}</option>
+        <option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
       </select>
 
       </section>

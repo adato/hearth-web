@@ -55,7 +55,6 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 		
 		this.use = function(language) {
-
 			self.setCookie(language);
 
 			$http.defaults.headers.common['Accept-Language'] = language;
