@@ -179,10 +179,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             if (! inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
                 // console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
-                    $scope.refreshUser();
+                    $scope.refreshUser(true);
                 });
                 $scope.$on('postUpdated', function() {
-                    $scope.refreshUser();
+                    $scope.refreshUser(true);
                 });
 
                 // added event listeners - dont add them again

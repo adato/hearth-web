@@ -10,6 +10,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout',
 	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout) {
         $scope.activityShow = false;
+        var inited = false;
 
 		 var loadServices = {
             'community': loadCommunityHome,
@@ -170,6 +171,21 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     // loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
                 });
             }
+
+            // refresh after new post created
+            if (! inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts')) {
+                // console.log("Adding listeners");
+                $scope.$on('postCreated', function() {
+                    loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+                });
+                $scope.$on('postUpdated', function() {
+                    loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+                });
+
+                // added event listeners - dont add them again
+                inited = true;
+            }
+
         }
 
         $scope.$on('itemDeleted', $scope.removeItemFromList);
@@ -179,6 +195,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $scope.$on('communityTopPanelLoaded', init);
 
         $scope.$on('$destroy', function() {
+            console.log("DESTROY");
             $rootScope.communityLoaded = false;
         });   
     }

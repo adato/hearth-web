@@ -341,9 +341,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 						$rootScope.blinkPost(data);
 					}, 200);
 				}
-
-
-				// $scope.closeThisDialog();
 			}, function() {
 
                 Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
