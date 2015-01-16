@@ -13,13 +13,6 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		this.languages = $$config.languages;
 
 		this.init = function() {
-			if ($feature.isEnabled('german')) {
-				return languages.push({
-					code: 'de',
-					name: 'Deutsch'
-				});
-			}
-
 			// console.log("Language Inited");
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
@@ -38,12 +31,10 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		this.swicthTo = function(lang) {
 
 			if(lang) {
-				self.setCookie(lang.code);
+				self.setCookie(lang);
 					
-				Session.update({language: lang.code}, function(res) {
-					
+				Session.update({language: lang}, function(res) {
 					location.reload();
-					// return self.use(lang);
 				}, function() {
 					Notify.addSingleTranslate('NOTIFY.CHANGE_LANGUAGE_FAILED', Notify.T_ERROR);
 				});
@@ -64,15 +55,16 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 		
 		this.use = function(language) {
-			self.setCookie(language.code);
 
-			$http.defaults.headers.common['Accept-Language'] = language.code;
-			$translate.use(language.code);
-			tmhDynamicLocale.set(language.code);
+			self.setCookie(language);
+
+			$http.defaults.headers.common['Accept-Language'] = language;
+			$translate.use(language);
+			tmhDynamicLocale.set(language);
 			
-			$rootScope.language = lang;
-			$rootScope.$broadcast("initLanguageSuccess", lang);
-			return lang;
+			$rootScope.language = language;
+			$rootScope.$broadcast("initLanguageSuccess", language);
+			return language;
 		};
 
 		this.load = function() {

@@ -73,6 +73,11 @@
     "CHOOSE_AVATAR_FILE": "Nahrát novou fotku",
     "CLICK_TO_REMOVE_PHOTO_HINT": "Smazat fotku",
     "CLOSE": "Zavřít",
+    "TO_LANG": {
+        "cs": "češtiny",
+        "en": "angličtiny",
+        "clean": "překladů"
+    },
     "COMMON": {
         "LOADING": "Načítám ...",
         "STILL_WORKING": "Makám na tom..."
