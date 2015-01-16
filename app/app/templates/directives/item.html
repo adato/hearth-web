@@ -90,7 +90,7 @@
 				</div>
 				<div class="controll-buttons" ng-if="mine">
 					<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"></div>
-					<div class="fa " ng-class="{'fa-refresh': item.is_expired, 'fa-play': !item.is_expired}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></div>
+					<div class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"></div>
 					<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"></div>
 					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></div>
 				</div>
@@ -109,11 +109,11 @@
 				<span class="margin" ng-if="!item.reply_count">{{'NO_REPLY' | translate}}</span>
 				<span ng-if="!isActive">
 					&nbsp;&nbsp;&nbsp;
-					<span ng-if="item.is_expired">
+					<span ng-if="item.state == 'expired'">
 						<span ng-if="item.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
 						<span ng-if="!item.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
 					</span>
-					<span ng-if="!item.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ item.suspended_at | date:DATETIME_FORMATS.medium }}</span>
+					<span ng-if="item.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ item.suspended_at | date:DATETIME_FORMATS.medium }}</span>
 				</span>
 				<div class="clear"></div>
 			</footer>
