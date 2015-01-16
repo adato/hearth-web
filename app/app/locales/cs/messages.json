@@ -718,6 +718,7 @@
     "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bylo úspěšně změněno.<br />Nyní se můžete <a href='#!/login'>přihlásit</a>.",
     "RESET_PASSWORD_TEXT": "Zde si můžete nastavit nové přihlašovací heslo.",
     "SAVE": "Uložit",
+    "SAVE_AND_ACTIVATE": "Uložit a aktivovat",
     "SAYING": "Říká",
     "SEARCH_LINK": "Hledat",
     "SEND": "Odeslat",

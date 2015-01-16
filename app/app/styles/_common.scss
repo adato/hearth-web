@@ -22,10 +22,6 @@
     color: red;
 }
 
-.margin-auto {
-    margin: auto;
-}
-
 .box {
     background-color: white;
     border-radius: $global-radius;
@@ -347,3 +343,11 @@ button[disabled],
 }
 
 
+
+.margin-auto {
+    margin: auto;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
