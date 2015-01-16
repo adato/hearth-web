@@ -180,9 +180,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 // console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
                     $scope.refreshUser(true);
+                    loadServices[$scope.pageSegment](params, processData, processDataErr);
                 });
                 $scope.$on('postUpdated', function() {
                     $scope.refreshUser(true);
+                    loadServices[$scope.pageSegment](params, processData, processDataErr);
                 });
 
                 // added event listeners - dont add them again
