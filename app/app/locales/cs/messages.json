@@ -76,7 +76,7 @@
     "TO_LANG": {
         "cs": "češtiny",
         "en": "angličtiny",
-        "preklady": "překladů"
+        "clean": "překladů"
     },
     "COMMON": {
         "LOADING": "Načítám ...",

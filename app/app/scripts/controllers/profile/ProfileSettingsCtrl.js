@@ -29,7 +29,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			newPass: false
 		};
 		$scope.d = new Date();
-
+		
 		/**
 		 * Validate delete account form
 		 */
@@ -211,6 +211,10 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.switchLang = function(lang) {
 			LanguageSwitch.swicthTo(lang);
 		};
+
+		$rootScope.$watch("language", function(lang) {
+			$scope.lang = lang;
+		});
 
 		$rootScope.$on('initLanguageSuccess', $scope.init);
 		$rootScope.$on('initFinished', $scope.init);

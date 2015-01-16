@@ -13,6 +13,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		this.languages = $$config.languages;
 
 		this.init = function() {
+			// console.log("Language Inited");
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
 		};
@@ -30,15 +31,11 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		// switch to given language code
 		this.swicthTo = function(lang) {
 
-			if(self.langExists(lang)) {
-				// save to cookie
-				$.cookie('language', lang, {expires: 21*30*100});
-				
-				// update language on API
-				Session.update({language: lang}, function(res) {
+			if(lang) {
+				self.setCookie(lang);
 					
+				Session.update({language: lang}, function(res) {
 					location.reload();
-					// return self.use(lang);
 				}, function() {
 					Notify.addSingleTranslate('NOTIFY.CHANGE_LANGUAGE_FAILED', Notify.T_ERROR);
 				});
@@ -52,17 +49,21 @@ angular.module('hearth.services').service('LanguageSwitch', [
 				}
 			})[0];
 		};
-		this.use = function(lang) {
-			$.cookie('language', lang, {
-				expires: 21*30
-			});
-			$http.defaults.headers.common['Accept-Language'] = lang;
-			$translate.use(lang);
-			tmhDynamicLocale.set(lang);
+		
+		this.setCookie = function(lang) {
+			$.cookie('language', lang, {expires: 21*30*100});
+		};
+		
+		this.use = function(language) {
+			self.setCookie(language);
+
+			$http.defaults.headers.common['Accept-Language'] = language;
+			$translate.use(language);
+			tmhDynamicLocale.set(language);
 			
-			$rootScope.language = lang;
-			$rootScope.$broadcast("initLanguageSuccess", lang);
-			return lang;
+			$rootScope.language = language;
+			$rootScope.$broadcast("initLanguageSuccess", language);
+			return language;
 		};
 
 		this.load = function() {
