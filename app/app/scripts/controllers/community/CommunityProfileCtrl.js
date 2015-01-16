@@ -13,7 +13,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.info = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
-		
+
 		$scope.isMine = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};

@@ -151,9 +151,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		// when changed URL, save actual segment name to pageSegment value
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
-    		$scope.pagePath = $route.current.originalPath;
-    		if($route.current.$$route)
-	    		$scope.pageSegment = $route.current.$$route.segment;
+			$scope.pagePath = $route.current.originalPath;
+			if($route.current.$$route)
+				$scope.pageSegment = $route.current.$$route.segment;
 		};
 
 		// refresh user info and if fetchSubpage == true also fetch new subpage
@@ -162,7 +162,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			if(fetchSubpage)
 				$scope.refreshDataFeed();
 			$scope.fetchUser(fetchSubpage);
-
 		};
 		
 		// scroll to user Rating form when opened
@@ -255,9 +254,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		};
 
 		$scope.$on('$destroy', function() {
-            $rootScope.profileLoaded = false;
-        });
-        
+			$rootScope.profileLoaded = false;
+		});
+		
 		// first init
 		$scope.initPage();
 		// check if we are allowed to see this page
