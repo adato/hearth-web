@@ -427,7 +427,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             } else {
 
                 // if item is expired, then prolong him, or just resume
-                Action = (item.is_expired) ? Post.prolong : Post.resume;
+                Action = (item.state == "expired") ? Post.prolong : Post.resume;
                 actionType = 'activate';
             }
 
