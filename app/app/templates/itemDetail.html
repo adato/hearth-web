@@ -103,7 +103,7 @@
 										<div class="text-container clearfix">
 											<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
 										</div>
-										<small ng-bind-html="item.author_email"></small>
+										<div style="text-align: right;"><small ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></small></div>
 									</div>
 								</div>
 							</section>
