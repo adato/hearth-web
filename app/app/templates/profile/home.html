@@ -64,10 +64,10 @@
             <div class="line">
                 <div class="descr" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about}}</div> 
                 <div class="descr" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</div> 
-                <div class="descr" ng-if="info.locations[0].short_address">
-                    <i class="fa fa-map-marker"></i> 
+                <div class="descr" ng-if="info.locations.length">
+                    <i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
                     <span ng-repeat="(locationId, location) in info.locations">
-                        {{location.short_address}}<span ng-if="!$last">;</span>
+                        <span ng-if="location.short_address">{{location.short_address}}<span ng-if="!$last">;</span></span>
                     </span>
                 </div>
                 <div class="descr" ng-if="info.interests && info.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</div>
