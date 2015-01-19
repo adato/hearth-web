@@ -27,7 +27,7 @@
 						<span class="fa fa-map-marker"></span>
 						{{ 'LOCATION_UNLIMITED_MESSAGE' | translate }}
 					</div>
-					<div class="locations dropdown-container" ng-if="item.locations.length && item.locations[0].short_address">
+					<div class="locations dropdown-container" ng-if="!item.location_unlimited && item.locations.length && item.locations[0].short_address">
 						<span class="fa fa-map-marker"></span>
 						{{ item.locations[0].short_address }}
 						<a ng-if="item.locations.length > 1" dropdown="#locations-{{item._id}}">{{'and-next' | translate: {value: item.locations.length - 1} }}</a>
