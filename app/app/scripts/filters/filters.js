@@ -111,4 +111,15 @@ angular.module('hearth.filters', [])
     return function(input) {
       return parseInt(input, 10);
     }
+})
+
+/**
+ * @ngdoc filter
+ * @name hearth.filters.protocolfree
+ * @description Returns original string (url) without http(s):// protocol
+ */
+.filter('protocolfree', function() {
+    return function(input) {
+      return input.replace("http://", "").replace("https://", "");
+    }
 });

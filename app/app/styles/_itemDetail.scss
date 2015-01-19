@@ -4,6 +4,9 @@
         padding-left:0;
         padding-right:0;
 
+        // hide arrow -- it kinda pushes user to click it expecting going back one page
+        .arrow, .arrowbox { display: none; }
+
         h3 {
             font-size:1.3rem;
             border-bottom:1px solid;
@@ -119,7 +122,9 @@
         }
 
         .box {
-            margin-top:2rem;
+            box-shadow:none;
+            background:none;
+            margin: 1rem;
             padding: {
                 top:.5rem;
                 bottom:.5rem;
@@ -165,6 +170,10 @@
                 font-size: 14px;
             }
         }
+    }
+
+    .bottom-tabs {
+        margin-top:0;
     }
 
     .market-link { 
