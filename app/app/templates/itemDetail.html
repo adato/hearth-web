@@ -84,6 +84,7 @@
 						</div>
 					</div>
 					<div class="large-8 rating-listing ratings-received left" ng-if="isMine && page.currentPageSegment == 'detail.replies'">
+						<span class="margin" ng-if="!replies.length">{{'NO_REPLY' | translate}}</span>
 						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in replies">
 							<section class="large-2 columns user">
 								<a ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
