@@ -174,7 +174,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 
 			if(!data.locations.length) {
-				data.locations = false;
+				data.locations = [];
 			}
 
 			if(!data.valid_until_unlimited) {
