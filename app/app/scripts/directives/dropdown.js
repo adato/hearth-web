@@ -41,13 +41,13 @@ angular.module('hearth.directives').directive('dropdown', [
 				// on element click toggle dropdown
 				el.on('click', function($event) {
 					
-					getTarget().css("display") == 'block' ? hide() : show();
 					$event.stopPropagation();
+					getTarget().css("display") == 'block' ? hide() : show();
 				});
 
 				if($scope.hover) {
-					el.on('mouseenter', show);
-		            el.on('mouseleave', hide);
+					el.parent().on('mouseenter', show);
+		            el.parent().on('mouseleave', hide);
 				}
 
 				// when clicked somewhere else, hide dropdown
