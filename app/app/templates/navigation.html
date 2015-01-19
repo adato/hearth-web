@@ -29,11 +29,11 @@
 			
 			<div class="separator"></div>
 		    <span class="dropdown-container">
-				<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
+				<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
                     <avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 		            <label>{{ loggedUser.name | ellipsis:9}}</label>
 			    </a>
-				<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' }" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
+				<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' }" hover="true" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
                     <avatar class="img" size="mini" src="loggedCommunity.avatar.normal" type="'Community'"></avatar>
 		            <label>{{ loggedCommunity.name | ellipsis:9}}</label>
 			    </a>
@@ -64,7 +64,7 @@
 			    </ul> 
 		    </span>
 
-		    <span class="dropdown-container" dropdown="#about-drop">
+		    <span class="dropdown-container" dropdown="#about-drop" hover="true">
 				<a title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
 					<div class="fa fa-question-circle"></div>
 					<label>{{'TOP_BAR_ABOUT' | translate}}</label>
