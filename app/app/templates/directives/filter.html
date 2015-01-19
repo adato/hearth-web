@@ -9,32 +9,36 @@
 	<article class="row">
 		<section class="large-12 columns" style="padding-top:0">
 			<article class="row bars">
-				<section class="large-3 columns">
-					<header>{{'by-type' | translate}}</header>
+				<section class="clear">
+					<header>{{'by-type' | translate}}:</header>
 					<radio type="radio" model="filter.type" value="'offer'">{{'ads-offer' | translate}}</radio>
 					<radio type="radio" model="filter.type" value="'need'">{{'ads-need' | translate}}</radio>
 					<radio type="radio" model="filter.type" value="null">{{'ads-all' | translate}}</radio>
 				</section>
-				<section class="large-3 columns">
-					<header>{{'by-author' | translate}}</header>
+				<section class="clear">
+					<header>{{'by-author' | translate}}:</header>
 					<checkbox model="filter.user" value="true">{{'individuals' | translate}}</checkbox>
 					<checkbox model="filter.community" value="true">{{'COMMUNITIES' | translate}}</checkbox>
 					<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{'just-my-connection' | translate}}</checkbox>
 				</section>
-				<section class="large-3 columns">
-					<header>{{'by-time' | translate}}</header>
+				<section class="clear">
+					<header>{{'by-time' | translate}}:</header>
 					<radio type="radio" model="filter.days" value="'1'">{{'today' | translate}}</radio>
 					<radio type="radio" model="filter.days" value="'3'">{{'3-days' | translate}}</radio>
 					<radio type="radio" model="filter.days" value="'7'">{{'week' | translate}}</radio>
 					<radio type="radio" model="filter.days" value="null">{{'without-limit' | translate}}</radio>
 				</section>
-				<section class="large-3 columns">
-					<header>{{'by-place' | translate}}</header>
-					<input type="text" id="geolocation" ng-model="filter.name" />
-					<div ng-show="filter.lat && filter.lon && filter.name">
-						<input type="range" ng-model="filter.distance" step="25"  min="25" max="100" >
-						<div class="text-center">{{filter.distance}} km</div>
-					</div>
+				<section class="clear margin">
+					<header>{{'by-place' | translate}}:</header>
+					<section>
+						<div class="column large-7 padding-left-0">
+							<input type="text" id="geolocation" ng-model="filter.name" />
+						</div>
+						<div class="column large-5 rangeSelect"  ng-show="filter.lat && filter.lon && filter.name">
+							<input type="range" ng-model="filter.distance" step="25"  min="25" max="100" >
+							<div class="text-center">{{filter.distance}} km</div>
+						</div>
+					</section>
 				</section>
 			</article>
 		</section>
@@ -44,10 +48,8 @@
 		<div class="large-4 columns">
 			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> {{'return-the-filter-to-original-settings' | translate}}</a>
 		</div>
-		<div class="large-4 columns">
+		<div class="large-8 columns text-right">
 			<checkbox signed-in model="filterSave" value="true">{{'save-the-filter-for-future-use' | translate}}</checkbox>
-		</div>
-		<div class="large-4 columns text-right">
 			<button class="button" ng-click="applyFilter()"><span class="fa fa-filter"></span> {{'run-filter' | translate}}</button>
 		</div>
 	</div>
