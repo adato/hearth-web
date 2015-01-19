@@ -11,7 +11,7 @@
 			<div ng-if="item.author.work"><i class="fa fa-suitcase"></i> {{item.author.work}}</div>
 			<div ng-if="item.author.locations.length">
 				<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
-				<span ng-repeat="location in item.author.locations">{{location.short_address}}<span ng-if="!$last">; </span></span>.
+				<span ng-repeat="location in item.author.locations"><span ng-if="location.short_address">{{location.short_address}} <span ng-if="!$last">, </span> </span></span>.
 			</div>
 		</section>
 		<div class="cleaner"></div>

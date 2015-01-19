@@ -32,10 +32,10 @@
 							<div class="line">
 								<div class="descr" ng-if="ad.author.about"><i class="fa fa-quote-right"></i> {{ad.author.about|ellipsis}}</div>
 								<div class="descr" ng-if="ad.author.work"><i class="fa fa-briefcase"></i> {{ad.author.work|ellipsis}}</div>
-								<div class="descr" ng-if="ad.author.locations[0].short_address">
-									<i class="fa fa-map-marker"></i> 
+								<div class="descr" ng-if="ad.author.locations.length && ad.author.locations[0].short_address">
+									<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
 									<span ng-repeat="(locationId, location) in ad.author.locations">
-										{{location.short_address}}<span ng-if="!$last">;</span>
+										<span ng-if="location.short_address">{{location.short_address}}<span ng-if="!$last">;</span></span>
 									</span>
 								</div>
 								<div class="descr" ng-if="ad.author.interests && ad.author.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ ad.author.interests.join(", ") }}</div>
@@ -48,7 +48,7 @@
 								<div class="descr" ng-if="ad.author.webs.length && ad.author.webs[0]">
 									<i class="fa fa-link"></i> 
 									<span ng-repeat="(code, web) in ad.author.webs">
-										<a target="_blank" class="link" ng-href="{{ web }}">{{ web | ellipsis:20 }}</a><span ng-if="!$last">,</span>
+										<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a><span ng-if="!$last">,</span>
 									</span>
 								</div>
 							</div>
@@ -84,7 +84,7 @@
 						</div>
 					</div>
 					<div class="large-8 rating-listing ratings-received left" ng-if="isMine && page.currentPageSegment == 'detail.replies'">
-						<span class="margin" ng-if="!replies.length">{{'NO_REPLY' | translate}}</span>
+						<div class="large-12 large-centered columns box text-center no-result" ng-if="!replies.length"><p>{{'NO_REPLY' | translate}}</p></div>
 						<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in replies">
 							<section class="large-2 columns user">
 								<a ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
