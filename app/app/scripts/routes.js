@@ -87,10 +87,6 @@ angular.module('hearth').config([
 			}).segment('fill-email', {
 				templateUrl: 'templates/userForms/fillEmail.html',
 				controller: 'FillEmailCtrl'
-			// }).segment('change-pass', {
-			// 	templateUrl: 'templates/userForms/changePassword.html',
-			// 	controller: 'ChangePwdCtrl',
-			// 	access: 'private'
 			}).segment('forgot-pass', {
 				templateUrl: 'templates/userForms/forgottenPassword.html',
 				controller: 'ForgottenPasswordCtrl'
