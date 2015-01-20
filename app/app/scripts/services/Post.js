@@ -12,12 +12,16 @@ angular.module('hearth.services').factory('Post', [
 		return $resource(appConfig.apiPath + '/posts/:postId', {
 			postId: '@id'
 		}, {
+			get: {
+				nointercept: true,
+			},
 			query: {
 				method: 'GET',
 				url: appConfig.apiPath + '/search/',
 				params: {
 					type: 'post'
 				},
+				nointercept: true,
 			},
 			suspend: {
 				url: appConfig.apiPath + '/posts/:postId/suspend',

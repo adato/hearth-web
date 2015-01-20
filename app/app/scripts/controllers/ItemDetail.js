@@ -13,6 +13,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.ad = false;
 		$scope.adDeleted = false;
 		$scope.loaded = false;
+		$scope.isPrivate = false;
 
 		$scope.loadReplies = function() {
 			PostReplies.get({user_id: $routeParams.id}, function(data) {
@@ -50,7 +51,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 						$scope.loadReplies();
 					}
 				}
-			}, function() {
+			}, function(res) {
 				$scope.loaded = true;
 				$scope.ad = false;
 			});
