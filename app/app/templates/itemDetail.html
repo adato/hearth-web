@@ -29,9 +29,6 @@
 						</a>
 
 						<div class="box">
-							<div class="line text-center">
-								<a class="profile-link" ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">{{ 'SHOW_PROFILE' | translate }}</a>
-							</div>						
 							<div class="line">
 								<div class="descr" ng-if="ad.author.about"><i class="fa fa-quote-right"></i> {{ad.author.about|ellipsis}}</div>
 								<div class="descr" ng-if="ad.author.work"><i class="fa fa-briefcase"></i> {{ad.author.work|ellipsis}}</div>
@@ -56,11 +53,14 @@
 								</div>
 							</div>
 							<div class="line">
-								<div class="social fright">
+								<div class="social fleft">
 									<a target="_blank" ng-if="ad.author.twitter" href="{{ad.author.twitter}}"><i class="fa fa-twitter-square"></i></a>
 									<a target="_blank" ng-if="ad.author.facebook" href="{{ad.author.facebook}}"><i class="fa fa-facebook-square"></i></a>
 									<a target="_blank" ng-if="ad.author.googleplus" href="{{ad.author.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
 									<a target="_blank" ng-if="ad.author.linkedin" href="{{ad.author.linkedin}}"><i class="fa fa-linkedin"></i></a>
+								</div>
+								<div class="fright">
+									<a class="profile-link" ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">{{ 'WHOLE_PROFILE' | translate }}</a>
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 						<item keywords-active="{}" item-detail="true" user="user" item="ad" community="loggedCommunity" inactivate-tags="true" hide-avatar="true" not-expandable="true" foundation-columns-classname="'large-12'"></item>
 					</div>
 
-					<div class="large-8 columns no-padding">
+					<div class="large-8 columns no-padding" ng-if="isMine || (ad.locations.length && !ad.location_unlimited)">
 						<div class="bottom-tabs">
 							<ul>
 								<li ng-if="isMine">
