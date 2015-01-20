@@ -7,16 +7,21 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post',
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post) {
-		$scope.ad = {};
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
+		$scope.ad = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
 
+		$scope.loadReplies = function() {
+			PostReplies.get({user_id: $routeParams.id}, function(data) {
+				$scope.replies = data.replies;
+			});
+		};
+
 		// load post data
 		$scope.load = function() {
-
 			Post.get({postId: $routeParams.id}, function(data) {
 				var title = data.author.name;
 
@@ -27,6 +32,18 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.ad = data;
 				$scope.profile = data.author;
 				$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
+				$scope.ad.author.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
+				$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
+				$scope.initMap();
+				
+				$timeout(function() {
+					$scope.$broadcast('initMap');
+					$scope.$broadcast('showMarkersOnMap');
+				});
+
+				if($scope.isMine) {
+					$scope.loadReplies();
+				}
 
 				$scope.loaded = true;
 			}, function() {
@@ -44,9 +61,22 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
+		$scope.initMap = function () {
+			$timeout(function() {
+				$scope.$broadcast('initMap');
+				$scope.$broadcast('showMarkersOnMap');
+			});
+		}
+
+		$scope.$watch('page.currentPageSegment', function (newval, oldval) {
+			if (newval == 'detail.map') $scope.initMap();
+		});
+
 		$scope.$on('postCreated', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
+
+
         $rootScope.initFinished && $scope.load();
 	}
 ]);
