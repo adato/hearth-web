@@ -115,11 +115,18 @@ angular.module('hearth.geo').directive('locations', [
                         $scope.$digest();
                 };
 
-                // go throught all places and compare new location
-                $scope.locationExists = function(name) {
+                // go throught all places and compare them with new location
+                // if there is duplicity - dont add it
+                $scope.locationExists = function(lng, lat) {
+                    var precision = 7;
 
                     for(var loc in $scope.locations) {
-                        if($scope.locations[loc].name == name)
+                        var latlng = $scope.locations[loc].coordinates;
+                        if(
+                            latlng[0].toFixed(precision) == lng.toFixed(precision)
+                                &&
+                            latlng[1].toFixed(precision) == lat.toFixed(precision)
+                            )
                             return true;
                     }
                     return false;
@@ -127,9 +134,8 @@ angular.module('hearth.geo').directive('locations', [
 
                 // add location to list
                 $scope.fillLocation = function(pos, addr, info, apply) {
-
                     // but only when it is now added yet
-                    if(!$scope.locationExists(addr)) {
+                    if(!$scope.locationExists(pos.lng(), pos.lat())) {
 
                         info.address = addr;
                         info.coordinates = [pos.lng(), pos.lat()];
