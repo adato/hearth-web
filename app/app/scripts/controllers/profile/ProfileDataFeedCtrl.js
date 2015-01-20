@@ -17,7 +17,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'profile.received': loadReceivedRatings,
                 'profile.following': loadFollowees,
                 'profile.followers': loadFollowers,
-                'profile.friends': loadFriends,
                 'profile.activities': UsersActivityLog.get
             },
             params = {
@@ -61,11 +60,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         function loadFollowers(params, done, doneErr) {
             params.related = "user";
             Followers.query(params, done, doneErr);
-        }
-
-        function loadFriends(params, done, doneErr) {
-            params.related = "user";
-            Friends.query(params, done, doneErr);
         }
 
         function loadCommunities(params, done, doneErr) {
