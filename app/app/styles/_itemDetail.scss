@@ -34,13 +34,25 @@
         clear:left;
         padding-right:0;
         padding-left:2rem;
+
+        &:before {
+            content:"";
+            display:block;
+            position:absolute;
+            background:image-url("delimiter.png");
+            background-position:0 0;
+            width:20px;
+            height:500px;
+            background-size: 20px 500px;
+        }
+
         h2 {
             font-size:1rem;
             text-align:center;
             font-weight:bold;
         }
         .avatar {
-            a::before, img { width:200px; height:200px;}
+            a::before, img { width:150px; height:150px;}
         }
         .karma-bar {
             padding: 0;

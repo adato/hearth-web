@@ -28,7 +28,10 @@
 							</div>
 						</a>
 
-						<div class="box" ng-if="ad.author.about || ad.author.work || ad.author.locations.length || ad.author.interests || ad.author.webs.length || ad.author.twitter || ad.author.facebook || ad.author.googleplus || ad.author.linkedin">
+						<div class="box">
+							<div class="line text-center">
+								<a class="profile-link" ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">{{ 'SHOW_PROFILE' | translate }}</a>
+							</div>						
 							<div class="line">
 								<div class="descr" ng-if="ad.author.about"><i class="fa fa-quote-right"></i> {{ad.author.about|ellipsis}}</div>
 								<div class="descr" ng-if="ad.author.work"><i class="fa fa-briefcase"></i> {{ad.author.work|ellipsis}}</div>
@@ -67,10 +70,10 @@
 						<item keywords-active="{}" item-detail="true" user="user" item="ad" community="loggedCommunity" inactivate-tags="true" hide-avatar="true" not-expandable="true" foundation-columns-classname="'large-12'"></item>
 					</div>
 
-					<div class="large-8 columns no-padding" ng-if="isMine">
+					<div class="large-8 columns no-padding">
 						<div class="bottom-tabs">
 							<ul>
-								<li>
+								<li ng-if="isMine">
 									<a href="" ng-click="page.currentPageSegment='detail.replies'" ng-class="{selected: page.currentPageSegment =='detail.replies'}">
 										{{ 'AD_REPLIES' | translate }}
 									</a>
