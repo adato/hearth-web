@@ -7,17 +7,22 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post',
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post) {
-		$scope.ad = {};
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
+		$scope.ad = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
 		$scope.isPrivate = false;
 
+		$scope.loadReplies = function() {
+			PostReplies.get({user_id: $routeParams.id}, function(data) {
+				$scope.replies = data.replies;
+			});
+		};
+
 		// load post data
 		$scope.load = function() {
-
 			Post.get({postId: $routeParams.id}, function(data) {
 				$scope.ad = data;
 				$scope.loaded = true;
@@ -61,9 +66,22 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
+		$scope.initMap = function () {
+			$timeout(function() {
+				$scope.$broadcast('initMap');
+				$scope.$broadcast('showMarkersOnMap');
+			});
+		}
+
+		$scope.$watch('page.currentPageSegment', function (newval, oldval) {
+			if (newval == 'detail.map') $scope.initMap();
+		});
+
 		$scope.$on('postCreated', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
+
+
         $rootScope.initFinished && $scope.load();
 	}
 ]);

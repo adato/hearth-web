@@ -23,6 +23,8 @@ angular.module('hearth.directives').directive('item', [
                 hideAvatar: '=',
                 keywordsActive: '=',
                 inactivateTags: '=',
+                foundationColumnsClassname: '=',
+                notExpandable: '='
             },
             templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
             link: function(scope, element) {
@@ -51,6 +53,8 @@ angular.module('hearth.directives').directive('item', [
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
                 scope.keywords = scope.keywordsActive || [];
                 scope.showListener = false; // waiting to be called for show post
+                scope.foundationColumnsClass = scope.foundationColumnsClassname || 'large-10';
+                scope.postExpanded = scope.notExpandable || false;
 
                 // public methods from rootScope
                 scope.loggedUser = $rootScope.loggedUser;
