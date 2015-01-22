@@ -18,9 +18,9 @@
             <div class="edit-post-notify-container"></div>
             <p class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</p>
             <div class="messageBox" ng-if="!isPostActive(post)">
-                <span ng-if="post.is_expired && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
-                <span ng-if="post.is_expired && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
-                <span ng-if="!post.is_expired">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
+                <span ng-if="post.state == 'expired' && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
+                <span ng-if="post.state == 'expired' && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
+                <span ng-if="post.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
             </div>
             <div class="nameFiled">
                 <needofferselector ng-if="loggedCommunity" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
@@ -115,7 +115,7 @@
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
                 <a class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle(post, false, setPostActiveStateCallback)">
-                    <span ng-if="!isPostActive(post)"><i class="fa" ng-class="{'fa-refresh': post.is_expired, 'fa-play': !post.is_expired}"></i>{{ 'ACTIVATE' | translate }}</span>
+                    <span ng-if="!isPostActive(post)"><i class="fa" ng-class="{'fa-refresh': post.state == 'expired', 'fa-play': post.state == 'suspended'}"></i>{{ 'ACTIVATE' | translate }}</span>
                     <span ng-if="isPostActive(post)"><i class="fa fa-pause"></i>{{ 'DEACTIVATE' | translate }}</span>
                 </a>
             </div>
