@@ -1,5 +1,5 @@
 {
-	"name":"hearth-net",
+	"name":"hearth",
 	"root":"public",
 	"prerender":true
 }
