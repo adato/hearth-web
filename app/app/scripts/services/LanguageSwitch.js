@@ -10,7 +10,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 	'$feature', '$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
 	function($feature, $translate, $http, $rootScope, tmhDynamicLocale, Session, Notify) {
 		var self = this;
-		this.languages = $$config.languages;
+		this.languages = Object.keys($$config.languages);
 
 		// init languages
 		this.init = function() {
