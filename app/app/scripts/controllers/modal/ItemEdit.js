@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			attachments_attributes: [],
 			state: 'active'
 		};
-
+		$scope.newPost = false;
 		$scope.showFiles = false;
 		$scope.showError = {
 			title: false,
@@ -380,6 +380,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init = function() {
+			$scope.newPost = !$scope.post;
 			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
 
 			// if post is invalid, show message and run validation (it will show errors in invalid fields)
