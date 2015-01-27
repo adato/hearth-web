@@ -17,7 +17,7 @@
 	h2 
 	{
 		margin-bottom: 25px;
-		font-size: 28px;
+		font-size: 25px;
 		font-weight: $bold;
 	}
 
@@ -152,8 +152,8 @@ $social-pane-height: 600px; // Custom
 	& > header 
 	{
 		overflow: hidden;
-		margin-bottom: 10px;	
-
+		margin-bottom: 10px;
+		a { color: $footer-links-hover-text; }
 		& > time 
 		{
 			float: right;
@@ -172,7 +172,7 @@ $social-pane-height: 600px; // Custom
 
 		& > h3 
 		{
-			font-size: 23px;
+			font-size: 18px;
 			font-weight: $semibold;
 		}
 	}

@@ -29,9 +29,7 @@ module.exports = function(grunt) {
 			},
 			compass: {
 				files: ['<%= yeoman.app %>/sass/{,*/}*.{scss,sass}'],
-				tasks: ['compass:server',
-				// 'autoprefixer'
-				]
+				tasks: ['compass:server', 'autoprefixer']
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -139,21 +137,21 @@ module.exports = function(grunt) {
 			},
 			server: '.tmp'
 		},
-		// // Add vendor prefixed styles
-		// autoprefixer: {
-		// 	options: {
-		// 		browsers: ['last 2 versions']
-		// 	},
-		// 	dist: {
-		// 		files: [{
-		// 			expand: true,
-		// 			cwd: '.tmp/css/',
-		// 			src: '{,*/}*.css',
-		// 			dest: '.tmp/css/'
-		// 		}]
-		// 	}
-		// },
-		// // Compiles Sass to CSS and generates necessary files if requested
+		// Add vendor prefixed styles
+		autoprefixer: {
+			options: {
+				browsers: ['last 2 versions']
+			},
+			dist: {
+				files: [{
+					expand: true,
+					cwd: '.tmp/css/',
+					src: '{,*/}*.css',
+					dest: '.tmp/css/'
+				}]
+			}
+		},
+		// Compiles Sass to CSS and generates necessary files if requested
 		compass: {
 			options: {
 				sassDir: '<%= yeoman.app %>/sass',
@@ -348,7 +346,7 @@ module.exports = function(grunt) {
 		grunt.task.run([
 			'clean:server',
 			'concurrent:server',
-			// 'autoprefixer',
+			'autoprefixer',
 			'connect:livereload',
 			'watch'
 		]);
@@ -364,7 +362,7 @@ module.exports = function(grunt) {
 		'useminPrepare',
 		'concurrent:dist',
 		// 'compass:dist',
-		// 'autoprefixer',
+		'autoprefixer',
 		'concat',
 		'ngmin',
 		'copy:dist',
