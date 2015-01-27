@@ -16,7 +16,6 @@
 		<div class="arrow"></div>
 		<div class="content">
 			<h3>{{ 'ADD_USER_RATING' | translate }}</h3>
-			<br>
 			<div class="rating-notify-box"></div>
 			<div class="score-select">
 				<needofferselector class="fleft" model="rating.score" text-true="{{ 'NEGATIVE' | translate}}" text-false="{{ 'POSITIVE' | translate}}" icon-true="icon-rating-negative" icon-false="icon-rating-positive"></needofferselector>
@@ -26,18 +25,8 @@
 				<div class="clear"></div>
 			</div>
 		    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
-		        <label>
-		            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
-					<max-len-counter max-len="300" value="rating.text"></max-len-counter>
 
-		            <div class="moveUp error" ng-show="showError.text">
-		                <span ng-show="ratingForm.text.$error.required">{{ 'ERR_NOT_FILLED_RATING' | translate }}</span>
-		                <span ng-show="ratingForm.text.$error.minlength">{{ 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
-		            </div>
-					<div class="clear"></div>
-		        </label>
-
-				<h5>{{ 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
+				<h5>{{ 'RATING_COMMON_POSTS_TOP' | translate}}:</h5>
 				<span ng-if="ratingPosts.length && loadedRatingPosts">
 					{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
 				    <select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
@@ -53,6 +42,19 @@
 				<div ng-if="!loadedRatingPosts">
 					{{ 'RATING_LOADING_COMMON_POSTS' | translate }}
 				</div>
+				<br />
+
+		        <label>
+					<h5>{{ 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}:</h5>
+		            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
+					<max-len-counter max-len="300" value="rating.text"></max-len-counter>
+
+		            <div class="moveUp error" ng-show="showError.text">
+		                <span ng-show="ratingForm.text.$error.required">{{ 'ERR_NOT_FILLED_RATING' | translate }}</span>
+		                <span ng-show="ratingForm.text.$error.minlength">{{ 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
+		            </div>
+					<div class="clear"></div>
+		        </label>
 
 				<div class="clear"></div>
 		        <strong><a ng-click="closeUserRatingForm()" class="revert-changes"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
