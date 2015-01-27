@@ -7,10 +7,10 @@
  */
 
 angular.module('hearth.services').factory('FolloweeSearch', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/users/:user_id/followees/search', {
+	function($resource) {
+		return $resource($$config.apiPath + '/users/:user_id/followees/search', {
 			user_id: '@user_id'
 		}, {
 			query: {

@@ -1,6 +1,8 @@
 // Generated on 2014-03-17 using generator-angular 0.7.1
 'use strict';
 
+var fs = require('fs');
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -9,12 +11,21 @@
 
 module.exports = function(grunt) {
 
-	require('load-grunt-tasks')(grunt); // Load grunt tasks automatically
+	var envFolder = './configuration';
 
+	require('load-grunt-tasks')(grunt); // Load grunt tasks automatically
 	require('time-grunt')(grunt); // Time how long tasks take. Can help when optimizing build times
 	
 	var rewriteRulesSnippet = require('grunt-connect-rewrite/lib/utils').rewriteRequest;
-	
+	var env = grunt.option("target") || 'development';
+
+	// test if the environment file exists
+	if (!fs.existsSync(envFolder+'/'+env+'.js')) {
+		grunt.log.error("Unknown environment".red, env);
+		return -1;
+	}
+
+	// add configuration
 	grunt.initConfig({ // Define the configuration for all the tasks
 
 		// Project settings
@@ -22,7 +33,9 @@ module.exports = function(grunt) {
 			// configurable paths
 			app: require('./bower.json').appPath || 'app',
 			dist: 'dist',
-
+			env: env,
+			envFolder: envFolder,
+			api: (env == 'staging') ? 'stage' : 'dev'
 		},
 
 		// Watches files for changes and runs tasks based on the changed files
@@ -30,11 +43,13 @@ module.exports = function(grunt) {
 			js: {
 				files: [
 					'<%= yeoman.app %>/scripts/{,*/}*.js',
+					'<%= yeoman.envFolder %>/{,*/}*.js',
 					'<%= yeoman.app %>/locales/{,*/}*.json',
 					'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
 				tasks: [
 					// 'newer:jshint:all'
+					'copy:localConfig'
 				],
 				options: {
 					livereload: 3333
@@ -163,7 +178,6 @@ module.exports = function(grunt) {
 					}
 
 					middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
-
 					var directory = options.directory || options.base[options.base.length - 1];
 					options.base.forEach(function(base) {
 						// Serve static files.
@@ -186,7 +200,7 @@ module.exports = function(grunt) {
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-				host: process.env.GRUNT_HOST || 'dev.hearth.net',  // wherever the data service is running,
+				host: process.env.GRUNT_HOST || '<%= yeoman.api %>.hearth.net',  // wherever the data service is running,
 				https: process.env.GRUNT_SSL == null, // true,
 				port: process.env.GRUNT_PORT || 443  // the port that the data service is running on
 			}],
@@ -339,14 +353,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Automatically inject Bower components into the app
-		'bowerInstall': {
-			app: {
-				src: '<%= yeoman.app %>/index.html',
-				ignorePath: '<%= yeoman.app %>/'
-			}
-		},
-
 		// Compiles Sass to CSS and generates necessary files if requested
 		compass: {
 			options: {
@@ -452,6 +458,20 @@ module.exports = function(grunt) {
 					src: ['*.html', 'views/{,*/}*.html'],
 					dest: '<%= yeoman.dist %>'
 				}]
+			},
+			distTemplates: {
+				options: {
+					collapseWhitespace: true,
+					collapseBooleanAttributes: true,
+					removeCommentsFromCDATA: true,
+					removeOptionalTags: true
+				},
+				files: [{
+					expand: true,
+					cwd: '.tmp/templates',
+					src: ['**/*.html'],
+					dest: '.tmp/templates'
+				}]
 			}
 		},
 
@@ -461,9 +481,9 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '.tmp/concat/scripts',
+					cwd: '.tmp/scripts',
 					src: '*.js',
-					dest: '.tmp/concat/scripts'
+					dest: '.tmp/scripts'
 				}]
 			}
 		},
@@ -477,23 +497,11 @@ module.exports = function(grunt) {
 
 		// Copies remaining files to places other tasks can use
 		copy: {
-			// develop: {
-			// 	cwd: '<%= yeoman.app %>/../',
-			// 	dest: 'app/config-local.js',
-			// 	src: ['configuration/stage.js']
-			// },
-			// stage: {
-			// 	expand: true,
-			// 	cwd: '<%= yeoman.app %>/../',
-			// 	dest: 'app/config-local.js',
-			// 	src: ['configuration/stage.js']
-			// },
-			// production: {
-			// 	expand: true,
-			// 	cwd: '<%= yeoman.app %>/../',
-			// 	dest: 'app/config-local.js',
-			// 	src: ['configuration/production.js']
-			// },
+			localConfig: {
+				cwd: '<%= yeoman.app %>/../',
+				dest: '.tmp/scripts/config-local.js',
+				src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
+			},
 			dist: {
 				files: [{
 					expand: true,
@@ -504,15 +512,27 @@ module.exports = function(grunt) {
 						'*.{ico,png,txt}',
 						'.htaccess',
 						'*.html',
-						'templates/{,*/}*.html',
 						'vendor/**/*',
-						'scripts/**/*',
 						'images/{,*/}*.{webp}',
 						'fonts/*',
 					]
 				}, {
 					expand: true,
-					cwd: '.tmp/images',
+					cwd: '<%= yeoman.app %>/templates',
+					dest: '.tmp/templates',
+					src: ['**/*']
+				}, {
+					expand: true,
+					cwd: '<%= yeoman.app %>/scripts',
+					dest: '.tmp/scripts',
+					src: ['**/*']
+				}, {
+					cwd: '<%= yeoman.app %>/../',
+					dest: '.tmp/concat/config-local.js',
+					src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
+				}, {
+					expand: true,
+					cwd: '<%= yeoman.app %>',
 					dest: '<%= yeoman.dist %>/images',
 					src: ['generated/*']
 				}, {
@@ -551,6 +571,12 @@ module.exports = function(grunt) {
 				src: ['*.*']
 			}
 		},
+		rename: {
+			configDist: {
+				src: '.tmp/scripts/config-global.js',
+				dest: '.tmp/concat/config-global.js'
+			}
+		},
 
 		// Run some tasks in parallel to speed up the build process
 		concurrent: {
@@ -561,7 +587,6 @@ module.exports = function(grunt) {
 				'compass'
 			],
 			dist: [
-
 				'imagemin',
 				'svgmin'
 			]
@@ -581,25 +606,29 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			dist: {},
-			vendor: {
-				src: '<%= yeoman.dist %>/scripts/vendor.js',
-				dest: '<%= yeoman.dist %>/scripts/vendor.js',
-			}
+			dist: {
+				files: {
+					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
+					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
+				}
+			},       
 		},
 		concat: {
 			options: {
 				separator: ';',
 			},
-			dist: {},
-			tmpl: {
-				src: ['<%= yeoman.dist %>/scripts/templates.js', '<%= yeoman.dist %>/scripts/scripts.js'],
-				dest: '<%= yeoman.dist %>/scripts/scripts.js',
+			scripts: {
+				src: ['.tmp/scripts/**/*.js'],
+				dest: '.tmp/concat/scripts.js',
 			},
-			vendor: {
-				src: ['<%= yeoman.dist %>/scripts/vendor.js', '<%= yeoman.app %>/vendor/angularitics/src/angulartics-ga.js'],
-				dest: '<%= yeoman.dist %>/scripts/vendor.js',
-			}
+			config: {
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
+				dest: '.tmp/concat/config.js',
+			},
+			tmpl: {
+				src: ['.tmp/concat/templates.js', '.tmp/concat/scripts.js'],
+				dest: '.tmp/concat/scripts.js',
+			},
 		},
 
 		// Test settings
@@ -611,23 +640,22 @@ module.exports = function(grunt) {
 		},
 		html2js: {
 			options: {
-				base: '<%= yeoman.dist %>'
+				base: '.tmp'
 			},
 			main: {
-				// src: ['app/**/*.html'],							 // original source
-				src: ['<%= yeoman.dist %>/**/*.html'], // compiled source
-				dest: '<%= yeoman.dist %>/scripts/templates.js'
+				src: ['.tmp/templates/**/*.html'], 	// compiled source
+				dest: '.tmp/concat/templates.js'
 			},
 		},
 
 		// Add angular module for merged templates
 		replace: {
 			dist: {
-				src: ['<%= yeoman.dist %>/scripts/scripts.js'],
+				src: ['.tmp/concat/scripts.js'],
 				overwrite: true,
 				replacements: [{
-					from: 'module("hearth",["',
-					to: 'module("hearth",["templates-main","'
+					from: "angular.module('hearth', [",
+					to: "angular.module('hearth', ['templates-main',"
 				}]
 			}
 		},
@@ -644,9 +672,24 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+		fetch_locales: {
+			locales: {
+				options: {
+					sourceConfig: "<%= yeoman.envFolder %>/<%= yeoman.env %>.js",
+					sourceUrl: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ",
+					destFilepath: "app/locales/{langKey}/messages.json",
+					parseFunction: function parseDefault(conf) {
+						// this will take local config for given environment and parse language codes in format: {cs: cs_CZ, ...}
+						return JSON.parse(conf.replace(/[ \t\n]/g, '').match(/languages:(\{.*?\})/)[1]);
+					}
+				}
+			}
+		},
 	});
 
 	grunt.registerTask('serve', function(target) {
+
+		// if we run distribution build
 		if (target === 'dist') {
 			return grunt.task.run([
 				'build',
@@ -656,12 +699,12 @@ module.exports = function(grunt) {
 			]);
 		}
 
+		// if we run only local build for development
 		grunt.task.run([
 			'clean:server',
 			'bower-install-simple',
-			'bowerInstall',
-			// 'search',
 			'copy:fonts',
+			'copy:localConfig',
 			'concurrent:server',
 			'autoprefixer',
 			'configureProxies:server',
@@ -684,30 +727,29 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
-		'clean:dist',
-		'bower-install-simple',
-		'bowerInstall',
-		// 'search',
-		'useminPrepare',
-		'concurrent:dist',
-		'compass:dist',
-		'autoprefixer',
-		'concat',
-		'copy:dist',
-		'preprocess',
+		'clean:dist',			// remove .tmp and dist folder
+		'bower-install-simple',	// install vendor scripts with bower
+		'useminPrepare',		// scan index.html file for usemin marks
+		'concurrent:dist',		// minify images to dist folder
+		'compass:dist',			// process compass scss styles
+		'autoprefixer',			// autoprefix css3 styles
+		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
+		'rename:configDist',	// move config-global to .tmp/concat folder
+		'preprocess',			
 		'ngmin',
 		'cdnify',
-		'cssmin',
-		'uglify',
-		//'rev',
+		'cssmin',				// minify css files
+		'rev',
 		'usemin',
 		'htmlmin',
-		'html2js', //  merge all templates to one js file
-		// 'replace:dist', // add angular module for merged templates
-		// 'concat:tmpl',
-		'concat:vendor',
-		'uglify:vendor'
-		// 'cacheBust'
+		'htmlmin:distTemplates', // minify template files before concatenation
+		'html2js', 				// merge all templates to one js file
+		'concat:scripts',
+		'concat:config',
+		'concat:tmpl',
+		'replace:dist', 		// inject angular module for merged templates
+		'uglify',
+		'cacheBust'
 	]);
 
 	grunt.registerTask('default', [

@@ -7,10 +7,10 @@
  */
  
 angular.module('hearth.services').factory('CommunityLeave', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/communities/:community_id/leave', {
+	function($resource) {
+		return $resource($$config.apiPath + '/communities/:community_id/leave', {
 			community_id: '@community_id'
 		}, {
 			leave: {

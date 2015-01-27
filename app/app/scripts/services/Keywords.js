@@ -7,10 +7,10 @@
  */
 
 angular.module('hearth.services').factory('Keywords', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/keywords/:keyword', {}, {
+	function($resource) {
+		return $resource($$config.apiPath + '/keywords/:keyword', {}, {
 			get: {
 				method: 'GET',
 				isArray: true

@@ -54,6 +54,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-f
 
             // Allow CORS
             $httpProvider.defaults.useXDomain = true;
+            $httpProvider.defaults.withCredentials=true;
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
             // Add language header

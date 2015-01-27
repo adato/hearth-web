@@ -8,8 +8,7 @@
  */
 
 angular.module('hearth.utils').directive('apiPrefix', [
-	'appConfig',
-	function(appConfig) {
+	function() {
 		return {
 			scope: {
 				apiHref: '@',
@@ -23,7 +22,7 @@ angular.module('hearth.utils').directive('apiPrefix', [
 					['action', 'action']
 				].forEach(function(attr) {
 					if (attrs[attr[0]]) {
-						return element.attr(attr[1], '' + appConfig.apiPath + attrs[attr[0]]);
+						return element.attr(attr[1], '' + $$config.apiPath + attrs[attr[0]]);
 					}
 				});
 			}

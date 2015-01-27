@@ -7,10 +7,10 @@
  */
 
 angular.module('hearth.services').factory('Feedback', [
-	'$resource', 'appConfig',
+	'$resource',
 
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/feedback', {}, {
+	function($resource) {
+		return $resource($$config.apiPath + '/feedback', {}, {
 			add: {
 				method: 'POST'
 			}

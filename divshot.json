@@ -1,0 +1,5 @@
+{
+	"name":"hearth",
+	"root":"public",
+	"prerender":true
+}

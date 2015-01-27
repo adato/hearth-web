@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 					dot: true,
 					src: [
 						'.tmp',
-						'dist'
+						'divshot'
 					]
 				}]
 			},
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'web/dist/',
-					dest: 'dist/',
+					dest: 'divshot/public/',
 					src: ['**/*']
 				}]
 			},
@@ -44,16 +44,16 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'app/dist/',
-					dest: 'dist/app/',
+					dest: 'divshot/public/app/',
 					src: ['**/*']
 				}]
 			},
-			dist: {
+			divshotConf: {
 				files: [{
 					expand: true,
-					cwd: 'dist/',
-					dest: '../public/',
-					src: ['**/*']
+					cwd: './',
+					dest: 'divshot/',
+					src: ['divshot.json']
 				}]
 			}
 		},
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
 			}],
 			dist: {
 				options: {
-					base: 'dist'
+					base: 'divshot/public'
 				}
 			}
 		}
@@ -110,7 +110,7 @@ module.exports = function(grunt) {
 		'hub:app',
 		'copy:web',
 		'copy:app',
-		'copy:dist'
+		'copy:divshotConf'
 	]);
 
 };

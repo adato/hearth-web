@@ -6,10 +6,10 @@
  * @description 
  */
 angular.module('hearth.services').factory('Tutorial', [
-	'$resource', 'appConfig',
+	'$resource',
 	
-	function($resource, appConfig) {
-		return $resource(appConfig.apiPath + '/users/:user_id/tutorial', {
+	function($resource) {
+		return $resource($$config.apiPath + '/users/:user_id/tutorial', {
 			user_id: '@user_id',
 		}, {
 			getAll: {
@@ -24,7 +24,7 @@ angular.module('hearth.services').factory('Tutorial', [
 				isArray: true
 			},
 			ignore: {
-				url: appConfig.apiPath + '/users/:user_id/tutorial/ignore',
+				url: $$config.apiPath + '/users/:user_id/tutorial/ignore',
 				method: 'PUT'
 			}
 		});
