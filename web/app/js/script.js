@@ -160,3 +160,10 @@ function stickifyPanel( stickyPanel, logoClass )
 		positionPanel();
 	})
 }
+
+// === Test if we are logged in hearth
+// if yes, refresh user to /app
+$.get('/api/session', function(res) {
+	if(res._id)
+		location.reload('/app');
+});
