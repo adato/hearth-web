@@ -28,6 +28,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             twitter: 'https://twitter.com/share?url='
         };
 
+        $rootScope.missingPost = false;
+
         // init globalLoading 
         $rootScope.globalLoading = false;
         $rootScope.topArrowText = {};
@@ -230,6 +232,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 closeByEscape: false,
                 showClose: false
             });
+        };
+
+        // insert post if it was inserted/updated and insert him to marketplace if missing
+        // as temporary fix of #1010
+        $rootScope.insertPostIfMissing = function (data) {
+            $rootScope.missingPost = data;
+        };
+
+        // get last post if it was updated/inserted and delete it from cache
+        $rootScope.getPostIfMissing = function () {
+            var ret = $rootScope.missingPost;
+            $rootScope.missingPost = false;
+            return ret;
         };
 
         // send report to API and close modal.. maybe fire some notification too?

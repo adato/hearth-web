@@ -78,6 +78,27 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 		};
 
+		// As temporary fix of issue #1010, this will retrieve newly added post from cache
+		// and try if it in array of posts, if not, insert it, if yes delete it from cache
+		$scope.insertLastPostIfMissing = function(data) {
+			var newPost = $rootScope.getPostIfMissing();
+
+			// if there is not new post, dont do anything
+			if(!newPost)
+				return data;
+
+			// go throught post array and if there is new post already
+			// dont add him again
+			for(var i = 0;i < data.length; i++) {
+				if(data[i]._id == last._id)
+					return data;
+			}
+
+			// if there is not, add him to the top
+			data.unshift(newPost);
+			return data;
+		};
+
 		/**
 		 * This will load new posts to marketplace
 		 */
@@ -104,7 +125,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				Post.query(params, function(data) {
 					$scope.loaded = true;
 					// console.timeEnd("Market posts loaded from API");
-					
+					data = $scope.insertLastPostIfMissing(data);
 					
 					// console.time("Posts pushed to array and built");
 					// iterativly add loaded data to the list and then call finishLoading

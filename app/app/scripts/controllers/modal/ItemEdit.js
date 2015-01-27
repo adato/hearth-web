@@ -335,6 +335,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 					// if post is visible on marketplace - refresh user there
 					$location.path('/');
+					$rootScope.insertPostIfMissing(data);
 				} else {
 					// flash post immediatelly
 					setTimeout(function() {
