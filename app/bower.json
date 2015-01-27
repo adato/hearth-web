@@ -17,5 +17,8 @@
     "angular-translate-loader-static-files": "~2.5.2",
     "markerclustererplus": "~2.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "~1.3"
+  }
 }
