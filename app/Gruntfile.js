@@ -610,22 +610,17 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-<<<<<<< HEAD
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
 					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
 				}
 			},       
-=======
-			dist: {},
->>>>>>> grunt-environment-build
 		},
 		concat: {
 			options: {
 				separator: ';',
 			},
-<<<<<<< HEAD
 			scripts: {
 				src: ['.tmp/scripts/**/*.js'],
 				dest: '.tmp/concat/scripts.js',
@@ -633,12 +628,6 @@ module.exports = function(grunt) {
 			config: {
 				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
 				dest: '.tmp/concat/config.js',
-=======
-			dist: {},
-			config: {
-				src: ['<%= yeoman.dist %>/scripts/config-local.js', '<%= yeoman.dist %>/scripts/config-global.js'],
-				dest: '<%= yeoman.dist %>/scripts/config.js',
->>>>>>> grunt-environment-build
 			},
 			tmpl: {
 				src: ['.tmp/concat/templates.js', '.tmp/concat/scripts.js'],
@@ -692,6 +681,7 @@ module.exports = function(grunt) {
 				options: {
 					sourceConfig: "<%= yeoman.envFolder %>/<%= yeoman.env %>.js",
 					sourceUrl: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ",
+<<<<<<< HEAD
 					destFilepath: "app/locales/{langKey}/messages.json",
 					parseFunction: function parseDefault(conf) {
 						// this will take local config for given environment and parse language codes in format: {cs: cs_CZ, ...}
@@ -700,6 +690,12 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+=======
+					destFilepath: "app/locales/{langKey}/messages.json"
+				}
+			}
+	    },
+>>>>>>> remote-locales-818
 	});
 
 	grunt.registerTask('serve', function(target) {
