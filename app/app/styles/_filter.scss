@@ -4,15 +4,15 @@
         margin-bottom: 0;
     }
     header {
-        background-color: darken(white, 5%);
         text-align: center;
-        padding: $fontSize / 2;
         font-weight: bold;
-        color: lighten(color(3), 20%);
         font-size: rem-calc(14);
-        margin: {
-            bottom: $fontSize;
-        };
+        display: inline-block;
+        width: 7em;
+        text-align: left;
+        position: relative;
+        top: -5px;
+        padding-bottom: 5px;
     }
     .footer {
         .link-button {
@@ -20,19 +20,23 @@
         }
 
         .checkbox {
-            padding-top: 0.4em;
+            padding-top: 0px;
+            margin-right: 1em;
+            position: relative;
+            top: 7px;
         }
     }
     .bars {
         margin: 0;
-        .checkbox {
-            display: block;
-        }
-        .columns {
-            padding: {
-                left: 1px;
-                right: 1px;
-            };
+        &>section {
+            padding-bottom: 0.5em;
+            &.margin {
+                padding-top: 1em;
+            }
+            .rangeSelect {
+                position: relative;
+                top: 10px;
+            }
             &:first-child header {
                 border: {
                     top-left-radius: 8px;

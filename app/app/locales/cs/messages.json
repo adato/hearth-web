@@ -429,7 +429,9 @@
         "EDIT_FILTER": "Upravit filtr",
         "FILTER_NOT_FOUND": "Ajtakrajta, zadané kombinaci neodpovídá vůbec, ale vůbec žádný inzerát.<br />Co takhle nějaké to kritérium ubrat?",
         "RESET_FILTER": "Vymazat filtr",
-        "NOTHING_FOUND": "Ajtakrajta ... asi se někde stala chyba, protože tu nejsou žádné inzeráty"
+        "NOTHING_FOUND": "Ajtakrajta ... asi se někde stala chyba, protože tu nejsou žádné inzeráty",
+        "SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
+        "SHOW_POSTS_IN_LIST": "Zobrazit seznam inzerátů"
     },
     "MEET_USER": "Poznejte uživatele",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členem komunit",
