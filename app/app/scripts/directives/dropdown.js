@@ -14,8 +14,9 @@ angular.module('hearth.directives').directive('dropdown', [
 			restrict: 'A',
 			replace: false,
 			scope: {
-				dropdown: "@"
-			},
+				dropdown: "@",	// class or id of element to show/hide
+				hover: "="		// show/hide dropdown also on hover event
+			},	
 			link: function($scope, el, attrs) {
 				var target;
 
@@ -40,9 +41,14 @@ angular.module('hearth.directives').directive('dropdown', [
 				// on element click toggle dropdown
 				el.on('click', function($event) {
 					
-					getTarget().css("display") == 'block' ? hide() : show();
 					$event.stopPropagation();
+					getTarget().css("display") == 'block' ? hide() : show();
 				});
+
+				if($scope.hover) {
+					el.parent().on('mouseenter', show);
+		            el.parent().on('mouseleave', hide);
+				}
 
 				// when clicked somewhere else, hide dropdown
 				$document.on("click", hide);

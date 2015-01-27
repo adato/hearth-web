@@ -61,11 +61,11 @@
 	    display: block;
 	    padding: 0.5rem;
         text-align: left;
+        outline: 0 !important;
 
-	    &:hover,
-	    &:focus {
-	        color: color(4) !important;
-	    }
+        &:hover {
+            color: color(4) !important;
+        }
     }
 
     li {
