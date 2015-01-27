@@ -513,12 +513,13 @@ module.exports = function(grunt) {
 						'.htaccess',
 						'*.html',
 						'vendor/**/*',
+						'locales/**/*',
 						'images/{,*/}*.{webp}',
 						'fonts/*',
 					]
 				}, {
 					cwd: '<%= yeoman.app %>/../',
-					dest: '<%= yeoman.dist %>/scripts/config-local.js',
+					dest: '.tmp/concat/config-local.js',
 					src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
 				}, {
 					expand: true,
@@ -531,24 +532,10 @@ module.exports = function(grunt) {
 					dest: '.tmp/scripts',
 					src: ['**/*']
 				}, {
-					cwd: '<%= yeoman.app %>/../',
-					dest: '.tmp/concat/config-local.js',
-					src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
-				}, {
 					expand: true,
 					cwd: '<%= yeoman.app %>',
 					dest: '<%= yeoman.dist %>/images',
 					src: ['generated/*']
-				}, {
-					expand: true,
-					cwd: '<%= yeoman.app %>/app',
-					dest: '<%= yeoman.dist %>/app',
-					src: ['**']
-				}, {
-					expand: true,
-					cwd: '<%= yeoman.app %>/locales',
-					dest: '<%= yeoman.dist %>/locales',
-					src: ['**']
 				}, {
 					expand: true,
 					cwd: '.tmp/styles',
@@ -579,6 +566,10 @@ module.exports = function(grunt) {
 			configDist: {
 				src: '.tmp/scripts/config-global.js',
 				dest: '.tmp/concat/config-global.js'
+			},
+			googleAnalytics: {
+				src: '.tmp/scripts/googleAnalytics.js',
+				dest: '.tmp/concat/googleAnalytics.js'
 			}
 		},
 
@@ -626,7 +617,7 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
+				src: ['.tmp/concat/googleAnalytics.js', '.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
@@ -739,6 +730,7 @@ module.exports = function(grunt) {
 		'autoprefixer',			// autoprefix css3 styles
 		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
 		'rename:configDist',	// move config-global to .tmp/concat folder
+		'rename:googleAnalytics',	// move googleAnalytics.js to ./tmp concat folder
 		'preprocess',			
 		'ngmin',
 		'cdnify',
