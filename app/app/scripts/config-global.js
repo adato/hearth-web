@@ -2,11 +2,10 @@ var $$config;
 
 $$config = {
 	apiPath: '/api',
-	fbAppId: '277542219089599', // production
+	fbAppId: '1495788017321716', // dev
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',
-	fbAppId: '277542219089599', // production
 	defaultLanguage: 'cs',
 	defaultUserAvatar: 'images/no-avatar.jpg',
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
