@@ -517,6 +517,10 @@ module.exports = function(grunt) {
 						'fonts/*',
 					]
 				}, {
+					cwd: '<%= yeoman.app %>/../',
+					dest: '<%= yeoman.dist %>/scripts/config-local.js',
+					src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
+				}, {
 					expand: true,
 					cwd: '<%= yeoman.app %>/templates',
 					dest: '.tmp/templates',
@@ -606,17 +610,22 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
+<<<<<<< HEAD
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
 					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
 				}
 			},       
+=======
+			dist: {},
+>>>>>>> grunt-environment-build
 		},
 		concat: {
 			options: {
 				separator: ';',
 			},
+<<<<<<< HEAD
 			scripts: {
 				src: ['.tmp/scripts/**/*.js'],
 				dest: '.tmp/concat/scripts.js',
@@ -624,6 +633,12 @@ module.exports = function(grunt) {
 			config: {
 				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
 				dest: '.tmp/concat/config.js',
+=======
+			dist: {},
+			config: {
+				src: ['<%= yeoman.dist %>/scripts/config-local.js', '<%= yeoman.dist %>/scripts/config-global.js'],
+				dest: '<%= yeoman.dist %>/scripts/config.js',
+>>>>>>> grunt-environment-build
 			},
 			tmpl: {
 				src: ['.tmp/concat/templates.js', '.tmp/concat/scripts.js'],
@@ -727,6 +742,7 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
+<<<<<<< HEAD
 		'clean:dist',			// remove .tmp and dist folder
 		'bower-install-simple',	// install vendor scripts with bower
 		'useminPrepare',		// scan index.html file for usemin marks
@@ -750,6 +766,29 @@ module.exports = function(grunt) {
 		'replace:dist', 		// inject angular module for merged templates
 		'uglify',
 		'cacheBust'
+=======
+		'clean:dist',
+		'bower-install-simple',
+		'useminPrepare',
+		// 'concurrent:dist',
+		// 'compass:dist',
+		// 'autoprefixer',
+		'copy:dist',
+		'preprocess',
+		'ngmin', // not used?
+		'cdnify',
+		'cssmin',
+		//'rev',
+		'usemin',
+		'htmlmin',
+		'html2js', //  merge all templates to one js file
+		'replace:dist', // add angular module for merged templates
+		'concat:dist',
+		// 'concat:config',
+		// 'concat:tmpl',
+		'uglify',
+		// 'cacheBust'
+>>>>>>> grunt-environment-build
 	]);
 
 	grunt.registerTask('default', [
