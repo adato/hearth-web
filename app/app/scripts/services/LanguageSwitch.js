@@ -12,12 +12,14 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		var self = this;
 		this.languages = $$config.languages;
 
+		// init languages
 		this.init = function() {
 			// console.log("Language Inited");
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
 		};
 		
+		// get all languages
 		this.getLanguages = function() {
 			return self.languages;
 		};
@@ -32,7 +34,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 
 			if(lang) {
 				self.setCookie(lang);
-					
+	
 				Session.update({language: lang}, function(res) {
 					location.reload();
 				}, function() {
@@ -41,6 +43,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			}
 			return false;
 		}
+		// return current used language
 		this.uses = function() {
 
 			return $.map(languages, function(item) {
@@ -50,23 +53,25 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			})[0];
 		};
 		
+		// set cookie with language
 		this.setCookie = function(lang) {
 			$.cookie('language', lang, {expires: 21*30*100});
 		};
 		
+		// use language
 		this.use = function(language) {
 			self.setCookie(language);
 
 			$http.defaults.headers.common['Accept-Language'] = language;
 			$translate.use(language);
 			tmhDynamicLocale.set(language);
-			
 			$rootScope.language = language;
 			$rootScope.$broadcast("initLanguageSuccess", language);
 			return language;
 		};
 
-		this.load = function() {
+		// load used language from this
+		cookies.load = function() {
 			return $.cookie('language');
 		};
 	}

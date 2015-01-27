@@ -147,10 +147,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $scope.$on('$includeContentLoaded', function() {
-            timeout && clearTimeout(timeout);
-            timeout = setTimeout(function() {
-                $(document).foundation();
-            }, 1000);
+            // ================ FIX ME ===============
+            // timeout && clearTimeout(timeout);
+            // timeout = setTimeout(function() {
+            //     $(document).foundation();
+            // }, 1000);
         });
 
         angular.element(window).bind('scroll', function() {
