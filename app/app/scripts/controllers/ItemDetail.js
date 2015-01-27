@@ -11,7 +11,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
 		$scope.ad = false;
-		$scope.itemDeleted = false;
+		$scope.adDeleted = false;
 		$scope.loaded = false;
 		$scope.isPrivate = false;
 
@@ -59,9 +59,11 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 		// fade out post and set him as deleted
 		$scope.removeAd = function($event, item) {
+			if(item._id != $scope.ad._id)
+				return false;
 
-			$("#post_"+item._id).fadeOut("slow", function() {
-				$scope.itemDeleted = true;
+			$("#item_container_"+item._id).fadeOut("slow", function() {
+				$scope.adDeleted = true;
 				$scope.$apply();
 			});
 		};
@@ -80,7 +82,6 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.$on('postCreated', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
-
 
         $rootScope.initFinished && $scope.load();
 	}

@@ -3,13 +3,16 @@
 
 	<div ng-if="loaded" class="ad-detail web-width">
 		<article class="row">
-			<section ng-show="! adDeleted && ad === false" class="ad-not-found">
-				{{ 'POST_NOT_FOUND' | translate }}
+			<section ng-show="ad && ! ad.name && ad.state === 'suspended'" class="ad-not-found box large-6 margin-auto text-center">
+				<p class="margin-0 padding-top">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
 			</section>
-			<section ng-show="adDeleted" class="ad-not-found">
-				{{ 'POST_WAS_DELETED' | translate }}
+			<section ng-show="! adDeleted && ad === false" class="ad-not-found box large-6 margin-auto text-center">
+				<p class="margin-0 padding-top">{{ 'POST_NOT_FOUND' | translate }}</p>
 			</section>
-			<section ng-if="! adDeleted && ad" class="large-12 post">
+			<section ng-show="adDeleted" class="ad-not-found box large-6 margin-auto text-center">
+				<p class="margin-0 padding-top">{{ 'POST_WAS_DELETED' | translate }}</p>
+			</section>
+			<section ng-if="! adDeleted && ad && ad.name" class="large-12 post" id="item_container_{{ ad._id }}">
 
 				<div class="content row">
 
@@ -21,9 +24,9 @@
 
 						<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">
 							<div ng-if="ad.author" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ ad.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ ad.author.down_votes }}">
-								<span class="positive bar" ng-style="{width: (ad.author.karma)+'%'}" ng-class="{full: ad.author.karma == 100}" ng-if="ad.author.karma != null && ad.author.karma > 0">
+								<span class="positive bar" ng-style="{width: (karma)+'%'}" ng-class="{full: karma == 100}" ng-if="karma != null && karma > 0">
 								</span>
-								<span class="negative bar" ng-style="{width: (100 - ad.author.karma)+'%'}" ng-class="{full: ad.author.karma == 0}" ng-if="ad.author.karma != null && ad.author.karma < 100">
+								<span class="negative bar" ng-style="{width: (100 - karma)+'%'}" ng-class="{full: karma == 0}" ng-if="karma != null && karma < 100">
 								</span>
 							</div>
 						</a>
