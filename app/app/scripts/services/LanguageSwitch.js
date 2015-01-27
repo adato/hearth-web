@@ -71,7 +71,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 
 		// load used language from this
-		cookies.load = function() {
+		this.load = function() {
 			return $.cookie('language');
 		};
 	}
