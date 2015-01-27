@@ -681,7 +681,6 @@ module.exports = function(grunt) {
 				options: {
 					sourceConfig: "<%= yeoman.envFolder %>/<%= yeoman.env %>.js",
 					sourceUrl: "https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=frontend&fallback=cs_CZ",
-<<<<<<< HEAD
 					destFilepath: "app/locales/{langKey}/messages.json",
 					parseFunction: function parseDefault(conf) {
 						// this will take local config for given environment and parse language codes in format: {cs: cs_CZ, ...}
@@ -690,12 +689,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-=======
-					destFilepath: "app/locales/{langKey}/messages.json"
-				}
-			}
-	    },
->>>>>>> remote-locales-818
 	});
 
 	grunt.registerTask('serve', function(target) {
@@ -738,7 +731,6 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
-<<<<<<< HEAD
 		'clean:dist',			// remove .tmp and dist folder
 		'bower-install-simple',	// install vendor scripts with bower
 		'useminPrepare',		// scan index.html file for usemin marks
@@ -762,29 +754,6 @@ module.exports = function(grunt) {
 		'replace:dist', 		// inject angular module for merged templates
 		'uglify',
 		'cacheBust'
-=======
-		'clean:dist',
-		'bower-install-simple',
-		'useminPrepare',
-		// 'concurrent:dist',
-		// 'compass:dist',
-		// 'autoprefixer',
-		'copy:dist',
-		'preprocess',
-		'ngmin', // not used?
-		'cdnify',
-		'cssmin',
-		//'rev',
-		'usemin',
-		'htmlmin',
-		'html2js', //  merge all templates to one js file
-		'replace:dist', // add angular module for merged templates
-		'concat:dist',
-		// 'concat:config',
-		// 'concat:tmpl',
-		'uglify',
-		// 'cacheBust'
->>>>>>> grunt-environment-build
 	]);
 
 	grunt.registerTask('default', [
