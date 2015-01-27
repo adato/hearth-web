@@ -421,21 +421,20 @@ $imageSize: 80px;
         }
         .attachments {
             margin-bottom: 5px;
+            padding-left:50px;
+            img {
+                max-width: 185px;
+                max-height: 185px;
+                margin-right: 20px;
+                margin-top: $fontSize;
+                border-radius: 10px;
+            }
+
             .expandable {
                 max-height: 205px;
                 overflow: hidden;
-                a:nth-child(3n+1) {
-                    margin-left: 50px;
-                }
                 .lazyLoad {
                     display: none;
-                }
-                img {
-                    max-width: 185px;
-                    max-height: 185px;
-                    margin-right: 20px;
-                    margin-top: $fontSize;
-                    border-radius: 10px;
                 }
             }
         }
