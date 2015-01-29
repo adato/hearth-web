@@ -30,6 +30,7 @@
     "ACTUALLY_YOU_HAVE_ACTIVE": "Momentálně máte aktivní",
     "ADD": "Přidat",
     "ADD_KEYWORDS": "Klíčová slova, oddělená čárkou",
+    "ADD_LOCATION": "Napište místo",
     "ADD_NEXT_WEB": "Přidat další web",
     "ADD_OTHER_LANG": "Přidat další jazyky",
     "ADD_USER_RATING": "Ohodnoťte komunikaci s uživatelem",
@@ -82,14 +83,14 @@
     "COMMUNITIES_IN_HEARTH": "Pojďte mezi nás! V komunitách se můžete potkat s lidmi podobného zaměření, získat pomoc, či podporu pro váš projekt.",
     "COMMUNITIES_PL": {
         "few": "komunity",
-        "one": "komunity",
+        "one": "komunita",
         "other": "komunit"
     },
     "COMMUNITY": {
         "APPROVE_REQUESTS": {
-            "few": "{{count}} lidé čekají na schválení",
+            "few": "{{count}} lidí čeká na schválení",
             "one": "Jeden člověk čeká na schválení",
-            "other": "{{count}} lidí čeká na schválení"
+            "other": "{{count}} lidé čekají na schválení"
         },
         "COMMUNITY_HAS_X_MEMBERS": {
             "few": "Komunita má {{count}} členy",
@@ -359,6 +360,7 @@
     "INDEX_TERMS": "Podmínky použití",
     "INDEX_TOMAS_HAJZLER_TEXT": "Hearth.net mě nadchlo svojí jednoduchostí. Přestěhoval jsem se teď do nové čtvrti a myslím, že by mi to mohlo pomoci vybudovat zde nějaké vztahy. Vždyť dávání bylo a bude základ každé rodiny a zároveň to je v podstatě technika, jak se cítit skvěle. Myslím, že dnešní doba sociálních sítí a toho jak jsme globálně propojeni nám k tomu ideálně nahrává.",
     "INDEX_TOMAS_HAJZLER_TITLE": "zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou.",
+    "INSERT_LOCATION": "Vložit lokaci",
     "INSPIRED_BY_HIM": "inspiruje",
     "INSPIRED_BY_ME": "inspiruji",
     "INSPIRING_PL": {
@@ -396,6 +398,7 @@
     "LETS_LOGIN": "Přihlašte se.",
     "LIST": "Seznam",
     "LOCATE": "Kde jsem",
+    "LOCATIONS_ARE_EMPTY": "Doplňte prázdné místo a nebo zaškrtněte, že na místě nezáleží.",
     "LOCATIONS_IS_EMPTY": "Doplňte prázdné místo a nebo zaškrtněte, že na místě nezáleží.",
     "LOCATIONS_IS_EMPTY_STRICT": "Vyplňte všechna místa.",
     "LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
@@ -698,13 +701,25 @@
         "TOP": {
             "KARMA_NO_RATING_ME": "S prvním hodnocením vám to tady obarvíme :)",
             "KARMA_NO_RATING_OTHER": "Ohodnoťte uživatele, ať mu tady máme co zobrazit :)"
-        }
+        },
+        "YOUR_PROFILE_IS_EMPTY": "Váš profil je smutný a prázný - řekněte něco více o tom, co vás zajímá a baví."
     },
-    "PROFILE_EDIT": "Upravit profil",
+    "PROFILE_EDIT": {
+        "HEADER": "Upravit profil",
+        "PROFILE_EDIT": "Upravit profil"
+    },
     "PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",
     "PROFILE_UPDATE_FAILED": "Změny ve vašem profilu se bohužel nepodařilo uložit. Dřív než vyskočíte z\nokna, zkuste to prosím ještě jednou.",
     "PROFILE_WAS_UPDATED": "Změny ve vašem profilu byly uloženy. Jste teď jako úplně nový člověk!",
     "RANDOM_COMMUNITIES": "Náhodné komunity",
+    "RATING_COMMON_POSTS_TOP": "Ohodnoťte konkrétní transakci",
+    "RATING_LOADING_COMMON_POSTS": "Načítám seznam realizovaných transakcí",
+    "RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce mezi vámi neproběhla žádná transakce, kterou byste mohli ohodnotit. No není to škoda? :)",
+    "RATING_POST_TYPES": {
+        "needed": "Přijal(a) jsem",
+        "offered": "Věnoval(a) jsem"
+    },
+    "RATING_TO_POST": "k inzerátu",
     "RATING_WAS_SAVED": "Hodnocení bylo úspěšně uloženo. Co je doma, to se počítá.",
     "REGISTER_TO_HEARTH_TEXT": "Váš profil je už jen pár kliků odtud. Šup šup.",
     "REMOVE": "Odebrat",
@@ -805,6 +820,8 @@
     "USER_IS_MEMBER": "Uživatel je členem",
     "USER_LANGUAGE": "Jazyk",
     "USER_POSTS": "Inzeráty uživatele",
+    "USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte transakci",
+    "USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžete spojit s konkrétní transakcí, která mezi vámi za poslední 3 měsíce proběhla.",
     "USER_RATING_SCORE_SELECT_TEXT": "Jak komunikace s uživatelem probíhala?",
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
     "USER_RECEIVED_RATINGS": "Přijatá hodnocení",
@@ -831,11 +848,6 @@
     "WISHES_LINK": "Aktivity",
     "WISH_GIFT": "<b>Požádat</b> o dar",
     "WITH_TERMS_OF_USE": "podmínkami používání",
-    "WITH_X_7_CASE": {
-        "few": "mi",
-        "one": "mi",
-        "other": "ti"
-    },
     "WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS": "Napište svým přátelům nějakou zprávu do pozvánky.",
     "WRITE_US": "Spojte se s námi",
     "WRITE_USER_SOME_RATING": "Napište uživateli nějaké hodnocení",
