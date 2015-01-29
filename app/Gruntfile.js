@@ -513,6 +513,7 @@ module.exports = function(grunt) {
 						'.htaccess',
 						'*.html',
 						'vendor/**/*',
+						'templates/**/*',
 						'locales/**/*',
 						'images/{,*/}*.{webp}',
 						'fonts/*',
@@ -747,13 +748,13 @@ module.exports = function(grunt) {
 		'usemin',
 		'htmlmin',
 		'htmlmin:distTemplates', // minify template files before concatenation
-		'html2js', 				// merge all templates to one js file
+		// 'html2js', 				// merge all templates to one js file
 		'concat:scripts',
 		'concat:config',
-		'replace:dist', 		// inject angular module for merged templates
+		// 'replace:dist', 		// inject angular module for merged templates
 		'uglify',
-		'replace:tmplMinify', 		// minify merged templates
-		'concat:tmpl',			// concat templates merged to JS into scripts
+		// 'replace:tmplMinify', 		// minify merged templates
+		// 'concat:tmpl',			// concat templates merged to JS into scripts
 		'cacheBust'
 	]);
 
