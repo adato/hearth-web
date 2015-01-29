@@ -60,8 +60,8 @@
     "BLOG": "Blog",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máte několik neaktivních inzerátů.",
     "BY_PEOPLE": {
-        "few": "člověkem",
-        "one": "lidmi",
+        "one": "člověkem",
+        "few": "lidmi",
         "other": "lidmi"
     },
     "CANCEL": "Zrušit",
@@ -81,19 +81,19 @@
     "COMMUNITIES": "Komunity",
     "COMMUNITIES_IN_HEARTH": "Pojďte mezi nás! V komunitách se můžete potkat s lidmi podobného zaměření, získat pomoc, či podporu pro váš projekt.",
     "COMMUNITIES_PL": {
-        "few": "komunity",
         "one": "komunity",
+        "few": "komunity",
         "other": "komunit"
     },
     "COMMUNITY": {
         "APPROVE_REQUESTS": {
-            "few": "Jeden člověk čeká na schválení",
-            "one": "{{count}} lidé čekají na schválení",
+            "onw": "Jeden člověk čeká na schválení",
+            "few": "{{count}} lidé čekají na schválení",
             "other": "{{count}} lidí čeká na schválení"
         },
         "COMMUNITY_HAS_X_MEMBERS": {
-            "few": "Komunita má jednoho člena",
-            "one": "Komunita má {{count}} členy",
+            "one": "Komunita má jednoho člena",
+            "few": "Komunita má {{count}} členy",
             "other": "Komunita má {{count}} členů"
         },
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?",
@@ -113,13 +113,13 @@
         "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
         "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
         "X_GIVES_AND_WISHES": {
-            "few": "<b>{{count}}</b><br /> inzerát",
-            "one": "<b>{{count}}</b><br /> inzeráty",
+            "one": "<b>{{count}}</b><br /> inzerát",
+            "few": "<b>{{count}}</b><br /> inzeráty",
             "other": "<b>{{count}}</b><br /> inzerátů"
         },
         "X_MEMBERS": {
-            "few": "<b>{{count}}</b><br /> člen",
-            "one": "<b>{{count}}</b><br /> členové",
+            "one": "<b>{{count}}</b><br /> člen",
+            "few": "<b>{{count}}</b><br /> členové",
             "other": "<b>{{count}}</b><br /> členů"
         }
     },
@@ -157,8 +157,8 @@
     "COMMUNITY_LOCATION_INPUT_PLACEHOLDER": "Kde působíte",
     "COMMUNITY_MEMBER": "Člen",
     "COMMUNITY_MEMBERS": {
-        "few": "člen",
-        "one": "členové",
+        "one": "člen",
+        "few": "členové",
         "other": "členů"
     },
     "COMMUNITY_MEMBERSHIP_REQUESTED": "Odeslal jste žádost o přijetí",
@@ -317,8 +317,8 @@
     "FULLTEXT_USERS": "Lidé",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}</b>",
     "GIVES_AND_WISHES": {
-        "few": "inzerát",
-        "one": "inzeráty",
+        "one": "inzerát",
+        "few": "inzeráty",
         "other": "inzerátů"
     },
     "GIVE_US_FEEDBACK": "Váš názor",
@@ -338,13 +338,13 @@
     "HOMEPAGE_SUBHEADING": "pro sdílení darů a zkušeností",
     "HOUR_AGO": "před hodinou",
     "HOW_MANY_PEOPLE": {
-        "few": "člověka",
-        "one": "lidé",
+        "one": "člověka",
+        "few": "lidé",
         "other": "lidí"
     },
     "HOW_MANY_PEOPLE_1_COND": {
-        "few": "člověk",
-        "one": "lidé",
+        "one": "člověk",
+        "few": "lidé",
         "other": "lidí"
     },
     "INDEX_ABOUT": "O Hearthu",
@@ -362,8 +362,8 @@
     "INSPIRED_BY_HIM": "inspiruje",
     "INSPIRED_BY_ME": "inspiruji",
     "INSPIRING_PL": {
-        "few": "inspiruje",
-        "one": "inspirují",
+        "one": "inspiruje",
+        "few": "inspirují",
         "other": "inspiruje"
     },
     "INTERESTS": "Co mne zajímá",
@@ -379,8 +379,8 @@
     "INVITE_TWITTER": "Twitter",
     "INVITE_YOUR_FRIENDS_TO_HEARTH": "Pozvěte své přátele do Hearth",
     "IN_X": {
-        "few": "v jedné jste",
-        "one": "ve {{count}} jste",
+        "one": "v jedné jste",
+        "few": "ve {{count}} jste",
         "other": "v {{count}} jste"
     },
     "IS_INSPIRED": "inspirován",
@@ -570,8 +570,8 @@
     "OFFER_GIFT": "<b>Nabídnout</b> dar",
     "OF_FRIENDS": "přátel",
     "OF_X_COMMUNITIES": {
-        "few": "jedné komunity",
-        "one": "{{count}} komunit",
+        "one": "jedné komunity",
+        "few": "{{count}} komunit",
         "other": "{{count}} komunit"
     },
     "OG_DEFAULT_DESCRIPTION": "Prostor, kde dávat znamená dostat mnohem víc",
@@ -598,13 +598,13 @@
     "PASSWORD_WAS_CHANGED": "Změna Vašeho hesla proběhla úspěšně. **** jo!",
     "PASS_PLACEHOLDER": "Heslo",
     "PEOPLE_COUNT_OFFER_PL": {
-        "few": "Už nabídl jeden člověk.",
-        "one": "Už nabídli {{value}} lidé.",
+        "one": "Už nabídl jeden člověk.",
+        "few": "Už nabídli {{value}} lidé.",
         "other": "Už nabídlo {{value}} lidí."
     },
     "PEOPLE_COUNT_WISH_PL": {
-        "few": "Už požádal jeden člověk.",
-        "one": "Už požádali {{value}} lidé.",
+        "one": "Už požádal jeden člověk.",
+        "few": "Už požádali {{value}} lidé.",
         "other": "Už požádalo {{value}} lidí."
     },
     "PEOPLE_FIRST_CASE": "lidé",
@@ -620,8 +620,8 @@
     "POSTS": "inzeráty",
     "POSTS_INACTIVE": "Neaktivní inzeráty",
     "POSTS_PL": {
-        "few": "inzerát",
-        "one": "inzeráty",
+        "one": "inzerát",
+        "few": "inzeráty",
         "other": "inzerátů"
     },
     "POST_HAS_ALREADY_EXPIRED": "Platnost inzerátu již skončila",
@@ -636,13 +636,13 @@
         },
         "FOLLOWEES": {
             "HE_IS_INSPIRED_BY_X_PEOPLE": {
-                "few": "Sleduje {{count}} člověka",
-                "one": "Sleduje {{count}} lidi",
+                "one": "Sleduje {{count}} člověka",
+                "few": "Sleduje {{count}} lidi",
                 "other": "Sleduje {{count}} lidí"
             },
             "IM_INSPIRED_BY_X_PEOPLE": {
-                "few": "Sledujete {{count}} člověka",
-                "one": "Sledujete {{count}} lidi",
+                "one": "Sledujete {{count}} člověka",
+                "few": "Sledujete {{count}} lidi",
                 "other": "Sledujete {{count}} lidí"
             },
             "NO_FOLLOWEES_ME": "Zatím nikoho nesledujete. Tak šup k někomu na profil a dát sledovat...",
@@ -650,13 +650,13 @@
         },
         "FOLLOWERS": {
             "HE_IS_INSPIRING_X_PEOPLE": {
-                "few": "Je sledován {{count}} člověkem",
-                "one": "Je sledován {{count}} lidmi",
+                "one": "Je sledován {{count}} člověkem",
+                "few": "Je sledován {{count}} lidmi",
                 "other": "Je sledován {{count}} lidmi"
             },
             "IM_INSPIRING_X_PEOPLE": {
-                "few": "Sleduje vás {{count}} člověk",
-                "one": "Sledují vás {{count}} lidé",
+                "one": "Sleduje vás {{count}} člověk",
+                "few": "Sledují vás {{count}} lidé",
                 "other": "Sleduje vás {{count}} lidí"
             },
             "NO_FOLLOWERS_ME": "Zatím vás tu nikdo nesleduje. Tak zatím sledujte aspoň někoho vy...",
@@ -664,15 +664,15 @@
         },
         "FRIENDS": {
             "HE_HAS_X_FRIENDS": {
-                "few": "Je přítel s {{count}} člověkem",
-                "one": "Je přítel se {{count}} lidmi",
+                "one": "Je přítel s {{count}} člověkem",
+                "few": "Je přítel se {{count}} lidmi",
                 "other": "Je přítel s {{count}} lidmi"
             },
             "NO_FRIENDS_ME": "Zatím u nás nemáte žádné přátele. Sledujte někoho, kdo sleduje vás, a přátelství je na světě!",
             "NO_FRIENDS_OTHER": "Uživatel zde zatím nemá žádné přátele. Sledujte se navzájem a stanou se z vás přátelé.",
             "YOU_HAVE_X_FRIENDS": {
-                "few": "Máte {{count}} přítele",
-                "one": "Máte {{count}} přátele",
+                "one": "Máte {{count}} přítele",
+                "few": "Máte {{count}} přátele",
                 "other": "Máte {{count}} přátel"
             }
         },
@@ -816,7 +816,7 @@
     "VALIDATION_MAX_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "VALID_UNTIL": "Platnost do:",
     "VISIBLE_FOR_ALL": "Viditelné pro všechny",
-    "VISIBLE_FOR_FRIENDS": "Jen moje spojení",
+    "VISIBLE_FOR_FRIENDS": "Jen mnou sledovaní",
     "VISIBLE_FOR_MEMBERS": "Viditelné pouze pro členy",
     "WAITING_FOR_APPROVE": "čeká na schválení",
     "WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíte - budeme vděční, když nám povíte důvod:",
@@ -843,33 +843,33 @@
     "WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "WRONG_NAME_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "X_FRIENDS": {
-        "few": "kamaráda",
-        "one": "kamarády",
+        "one": "kamaráda",
+        "few": "kamarády",
         "other": "přátel"
     },
     "X_MEMBERS": {
-        "few": "člena",
-        "one": "členy",
+        "one": "člena",
+        "few": "členy",
         "other": "členů"
     },
     "X_PEOPLE_INSPIRED_BY_HIM": {
-        "few": "<b>{{count}}</b><br /> člověkem sledován",
-        "one": "<b>{{count}}</b><br /> lidmi sledován",
+        "one": "<b>{{count}}</b><br /> člověkem sledován",
+        "few": "<b>{{count}}</b><br /> lidmi sledován",
         "other": "<b>{{count}}</b><br /> lidmi sledován"
     },
     "X_PEOPLE_INSPIRED_BY_ME": {
-        "few": "<b>{{count}}</b><br /> člověk mě sleduje",
-        "one": "<b>{{count}}</b><br /> lidé mě sledují",
+        "one": "<b>{{count}}</b><br /> člověk mě sleduje",
+        "few": "<b>{{count}}</b><br /> lidé mě sledují",
         "other": "<b>{{count}}</b><br /> lidí mě sleduje"
     },
     "X_PEOPLE_INSPIRING_HIM": {
-        "few": "{{count}} člověka<br /> sleduje",
-        "one": "{{count}} lidi<br /> sleduje",
+        "one": "{{count}} člověka<br /> sleduje",
+        "few": "{{count}} lidi<br /> sleduje",
         "other": "{{count}} lidí<br /> sleduje"
     },
     "X_PEOPLE_INSPIRING_ME": {
-        "few": "{{count}} člověka<br /> sleduji",
-        "one": "{{count}} lidi<br /> sleduji",
+        "one": "{{count}} člověka<br /> sleduji",
+        "few": "{{count}} lidi<br /> sleduji",
         "other": "{{count}} lidí<br /> sleduji"
     },
     "YEAR_AGO": "před rokem",
@@ -918,8 +918,8 @@
     "filter-is-on": "Filtr je zapnutý",
     "in-area": "v okruhu",
     "individuals": "Jednotlivci",
-    "just-mine-connection": "jen moje spojení",
-    "just-my-connection": "Jen moje spojení",
+    "just-mine-connection": "jen mnou sledovaní",
+    "just-my-connection": "Jen mnou sledovaní",
     "market": "Tržiště",
     "og_default_description": "Prostor, kde dávat znamená dostat mnohem víc",
     "og_default_title": "Hearth.net",
