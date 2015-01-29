@@ -21,50 +21,51 @@ stickifyPanel( $( '.sticky-panel' ), '.logo-container')
 $(function () 
 {
 	/* Enable smooth scrolling on anchors */
-    $('a[href^="#"]').bind('click.smoothscroll', function (e) {
-		    // Stop classic behavior
-		    e.preventDefault();
+	$('a[href^="#"]').bind('click.smoothscroll', function (e) {
+			// Stop classic behavior
+			e.preventDefault();
 
-		    // Locals
-		    var target = this.hash;
-		        $target = $(target);
+			// Locals
+			var target = this.hash;
+				$target = $(target);
 
-		    $('html, body').stop().animate(
-		    {
-		        'scrollTop': $target.offset().top - readabilityOffset
-		    }, 1000, 'swing', function () 
-		    {
-		        window.location.hash = target;
-		    });
+			$('html, body').stop().animate(
+			{
+				'scrollTop': $target.offset().top - readabilityOffset
+			}, 1000, 'swing', function () 
+			{
+				window.location.hash = target;
+			});
 	});
 
-    // load blog data
-    $.get('//blog.hearth.net/feed/', function(data) {
-        var $xml = $(data);
-        var cntr = 0;
-        $xml.find("item").each(function() {
-        	cntr ++;
-            var $this = $(this),
-                item = {
-                    title: $this.find("title").text(),
-                    link: $this.find("link").text(),
-                    description: $this.find("description").text(),
-                    pubDate: $this.find("pubDate").text()
-            };
-            if (cntr > 3) return;
-            var html = '<article class="news-overview"><header><!--<time datetime="'+item.pubDate+'">..</time>--><h3>'+item.title+'</h3></header><div class="abstract"><p>'+item.description+'</p></div><div class="btns"><a title="Více z článku.." class="more" href="'+item.link+'">Přečíst na blogu</a></div></article>';
-            $('.news-list').append(html);
-        });
-    });
+	// load blog data
+	$.get('//blog.hearth.net/feed/', function(data) {
+		var $xml = $(data);
+		var cntr = 0;
+		$xml.find("item").each(function() {
+			cntr ++;
+			var $this = $(this),
+				item = {
+					title: $this.find("title").text(),
+					link: $this.find("link").text(),
+					description: $this.find("description").text(),
+					pubDate: $this.find("pubDate").text()
+			};
+			if (cntr > 3) return;
+			var html = '<article class="news-overview"><header><h3><a title="Více z článku.." href="'+item.link+'">'+item.title+'</a></h3></header><div class="abstract"><p>'+item.description+'</p></div><div class="btns"><a title="Více z článku.." class="more" href="'+item.link+'">Přečíst na blogu</a></div></article>';
+			$('.news-list').append(html);
+		});
+	});
 
 });
 
 function setHeaderHeight() {
 	// Set header part to fit viewport
-	var height = (( viewportHeight * window.devicePixelRatio) / headerHeight) * .93 ;
+	var height = (( viewportHeight * window.devicePixelRatio) / headerHeight) * .9; 
 	if (height > 1 || viewportRatio > 1) return;
 	header.css({ "transform-origin": "0% 0%", "transform": "scale(" + height + ", " + height + ")", "width": headerWidth * (1/height) + "px" });
-	header.height(viewportHeight * window.devicePixelRatio); 
+	//header.height(viewportHeight * window.devicePixelRatio); 
+	$('header.header').height(viewportHeight * window.devicePixelRatio);
 	$( '.logo-strip>.container' ).width(logoWidth * (1/height));
 	$( '.strip-btns>.container' ).width(logoWidth * (1/height));
 	$( '.strip-btns .btn').css({ 'font-size': 18 * (1/height) + 'px' });
@@ -88,7 +89,7 @@ function stickifyPanel( stickyPanel, logoClass )
 		var positionPanel = function() {
 
 			// set up scroll-spy adding .active class to right-over elements
-	    	var panelHeight = panelBottomY - panelTopY;
+			var panelHeight = panelBottomY - panelTopY;
 			var fromTop = $(this).scrollTop() + panelHeight;
 			var cur = scrollLinks.map(function() {
 				if ($(this).offset().top < fromTop)
@@ -101,55 +102,55 @@ function stickifyPanel( stickyPanel, logoClass )
 				panelLinks.parent().removeClass("active").end().filter("[href=#"+id+"]").parent().addClass("active");
 			}
 
-	    	var viewPortTopY = $( window ).scrollTop();
-	    	var viewPortBottomY = viewPortTopY + $(window).height();
-	    	var logo = $( logoClass );
-	    	var body = $( document.body );
+			var viewPortTopY = $( window ).scrollTop();
+			var viewPortBottomY = viewPortTopY + $(window).height();
+			var logo = $( logoClass );
+			var body = $( document.body );
 
-		    var opacityOffset = 100;
+			var opacityOffset = 100;
 
-	    	// Fixed panel scroll support
-	    	stickyPanel.css('left', -1 * $(this).scrollLeft() + "px");
-	    	if ( $(this).scrollLeft() != 0 )
-	    		stickyPanel.css('right', "auto");
-	    	else
-	    		stickyPanel.css('right', 0);
+			// Fixed panel scroll support
+			stickyPanel.css('left', -1 * $(this).scrollLeft() + "px");
+			if ( $(this).scrollLeft() != 0 )
+				stickyPanel.css('right', "auto");
+			else
+				stickyPanel.css('right', 0);
 
-	    	// Decide where to stick (top/bottom?) the panel
-		    if ( viewPortTopY > panelTopY ) 
-		    {
-		        body.addClass('stickify-up');
-		        readabilityOffset = 20 + panelHeight;
-		    } else 
-		    {
-		       	body.removeClass('stickify-up');
+			// Decide where to stick (top/bottom?) the panel
+			if ( viewPortTopY > panelTopY ) 
+			{
+				body.addClass('stickify-up');
+				readabilityOffset = 20 + panelHeight;
+			} else 
+			{
+				body.removeClass('stickify-up');
 
-		        readabilityOffset = 20;
+				readabilityOffset = 20;
 
-		       	if ( viewPortBottomY < panelBottomY )
-		       	{
-		        	body.addClass('stickify-down');
-		       	}
-		       	else 
-		       	{
-		        	body.removeClass('stickify-down');
-		       	}
-		    }
+				if ( viewPortBottomY < panelBottomY )
+				{
+					body.addClass('stickify-down');
+				}
+				else 
+				{
+					body.removeClass('stickify-down');
+				}
+			}
 
-		    // Logo fade-in/out
-		    if ( viewPortTopY < panelTopY - opacityOffset )
-		    {
-	    		logo.css({'opacity': 0 });
-		    }
-		    else if ( viewPortTopY > panelTopY)
-		    {
-	    		logo.css({'opacity': 1 });
-		    }
-		    else 
-		    {
-		    	var opacity = 1 + ( viewPortTopY - panelTopY ) / opacityOffset;
-	    		logo.css({'opacity': opacity });
-		    }
+			// Logo fade-in/out
+			if ( viewPortTopY < panelTopY - opacityOffset )
+			{
+				logo.css({'opacity': 0 });
+			}
+			else if ( viewPortTopY > panelTopY)
+			{
+				logo.css({'opacity': 1 });
+			}
+			else 
+			{
+				var opacity = 1 + ( viewPortTopY - panelTopY ) / opacityOffset;
+				logo.css({'opacity': opacity });
+			}
 		}
 
 		// Set it as scroll listener

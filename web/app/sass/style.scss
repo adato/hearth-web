@@ -54,16 +54,7 @@ body
 		min-width: $web-width;
 		min-height: $header-height;
 		background-color:#98b56b;
-		background: url('../img/cover2.jpg'), -moz-linear-gradient(left, rgba(154,129,76,1) 0%, rgba(154,129,76,1) 38%, rgba(183,201,126,1) 51%, rgba(119,150,90,1) 64%, rgba(119,150,90,1) 100%);
-		background: url('../img/cover2.jpg'), -webkit-gradient(left top, right top, color-stop(0%, rgba(154,129,76,1)), color-stop(38%, rgba(154,129,76,1)), color-stop(51%, rgba(183,201,126,1)), color-stop(64%, rgba(119,150,90,1)), color-stop(100%, rgba(119,150,90,1)));
-		background: url('../img/cover2.jpg'), -webkit-linear-gradient(left, rgba(154,129,76,1) 0%, rgba(154,129,76,1) 38%, rgba(183,201,126,1) 51%, rgba(119,150,90,1) 64%, rgba(119,150,90,1) 100%);
-		background: url('../img/cover2.jpg'), -o-linear-gradient(left, rgba(154,129,76,1) 0%, rgba(154,129,76,1) 38%, rgba(183,201,126,1) 51%, rgba(119,150,90,1) 64%, rgba(119,150,90,1) 100%);
-		background: url('../img/cover2.jpg'), -ms-linear-gradient(left, rgba(154,129,76,1) 0%, rgba(154,129,76,1) 38%, rgba(183,201,126,1) 51%, rgba(119,150,90,1) 64%, rgba(119,150,90,1) 100%);
 		background: url('../img/cover2.jpg'), linear-gradient(to right, rgba(154,129,76,1) 0%, rgba(154,129,76,1) 38%, rgba(183,201,126,1) 51%, rgba(119,150,90,1) 64%, rgba(119,150,90,1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9a814c', endColorstr='#77965a', GradientType=1 );
-
-
-
 		background-position: center top;
 		background-repeat: no-repeat;
 		& > div.header-content {
