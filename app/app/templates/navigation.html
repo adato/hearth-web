@@ -47,7 +47,7 @@
 		          <li class="divider" ng-if="myAdminCommunities.length"></li>
 			       <li class="no-hover" ng-if="myAdminCommunities.length"><p class="heading"><i class="fa fa-share"></i> {{ 'SWITCH_TO' | translate }}:</p></li>
 			       <li ng-if="loggedCommunity._id">
-						<a class="user-switch-item" ng-click="leaveIdentity(loggedUser._id);" title="{{:: loggedUser.name }}">
+						<a class="user-switch-item" ng-click="leaveIdentity(loggedUser._id);" title="{{ loggedUser.name }}">
 							<avatar size="mini" class="img" src="loggedUser.avatar.normal" type="'User'"></avatar>
 							<span class="name">{{:: loggedUser.name | ellipsis:12}}</span>
 						</a>
@@ -64,9 +64,9 @@
 		    </span>
 
 		    <span class="dropdown-container">
-				<a title="{{:: 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
+				<a title="{{ 'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
 					<div class="fa fa-question-circle"></div>
-					<label>{{:: 'TOP_BAR_ABOUT' | translate}}</label>
+					<label>{{:: "TOP_BAR_ABOUT" | translate}}</label>
 				</a>
 		        <ul class="dropdown" id="about-drop">
 		          <li><a href="http://blog.hearth.net" target="_blank">{{:: 'BLOG' | translate}}</a></li>
