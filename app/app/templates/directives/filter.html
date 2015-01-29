@@ -10,26 +10,26 @@
 		<section class="large-12 columns" style="padding-top:0">
 			<article class="row bars">
 				<section class="clear">
-					<header>{{'by-type' | translate}}:</header>
-					<radio type="radio" model="filter.type" value="'offer'">{{'ads-offer' | translate}}</radio>
-					<radio type="radio" model="filter.type" value="'need'">{{'ads-need' | translate}}</radio>
-					<radio type="radio" model="filter.type" value="null">{{'ads-all' | translate}}</radio>
+					<header>{{'BY_TYPE' | translate}}:</header>
+					<radio type="radio" model="filter.type" value="'offer'">{{'ADS_OFFER' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="'need'">{{'ADS_NEED' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="null">{{'ADS_ALL' | translate}}</radio>
 				</section>
 				<section class="clear">
-					<header>{{'by-author' | translate}}:</header>
-					<checkbox model="filter.user" value="true">{{'individuals' | translate}}</checkbox>
+					<header>{{'BY_AUTHOR' | translate}}:</header>
+					<checkbox model="filter.user" value="true">{{'INDIVIDUALS' | translate}}</checkbox>
 					<checkbox model="filter.community" value="true">{{'COMMUNITIES' | translate}}</checkbox>
-					<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{'just-my-connection' | translate}}</checkbox>
+					<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{'JUST_MY_CONNECTIONS' | translate}}</checkbox>
 				</section>
 				<section class="clear">
-					<header>{{'by-time' | translate}}:</header>
-					<radio type="radio" model="filter.days" value="'1'">{{'today' | translate}}</radio>
-					<radio type="radio" model="filter.days" value="'3'">{{'3-days' | translate}}</radio>
-					<radio type="radio" model="filter.days" value="'7'">{{'week' | translate}}</radio>
-					<radio type="radio" model="filter.days" value="null">{{'without-limit' | translate}}</radio>
+					<header>{{'BY_TIME' | translate}}:</header>
+					<radio type="radio" model="filter.days" value="'1'">{{'TODAY' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="'3'">{{'3_DAYS' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="'7'">{{'WEEK' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="null">{{'WITHOUT_LIMIT' | translate}}</radio>
 				</section>
 				<section class="clear margin">
-					<header>{{'by-place' | translate}}:</header>
+					<header>{{'BY_PLACE' | translate}}:</header>
 					<section>
 						<div class="column large-7 padding-left-0">
 							<input type="text" id="geolocation" ng-model="filter.name" />
@@ -46,11 +46,11 @@
 
 	<div class="row footer">
 		<div class="large-4 columns">
-			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> {{'return-the-filter-to-original-settings' | translate}}</a>
+			<a ng-click="reset()" class="link-button"><span class="fa fa-angle-double-up"></span> {{'RETURN_THE_FILTER_TO_ORIGINAL_SETTINGS' | translate}}</a>
 		</div>
 		<div class="large-8 columns text-right">
-			<checkbox signed-in model="filterSave" value="true">{{'save-the-filter-for-future-use' | translate}}</checkbox>
-			<button class="button" ng-click="applyFilter()"><span class="fa fa-filter"></span> {{'run-filter' | translate}}</button>
+			<checkbox signed-in model="filterSave" value="true">{{'SAVE_THE_FILTER_FOR_FUTURE_USE' | translate}}</checkbox>
+			<button class="button" ng-click="applyFilter()"><span class="fa fa-filter"></span> {{'RUN_FILTER' | translate}}</button>
 		</div>
 	</div>
 
