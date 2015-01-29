@@ -621,8 +621,8 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
-				src: ['.tmp/concat/templates.js', '.tmp/concat/scripts.js'],
-				dest: '.tmp/concat/scripts.js',
+				src: ['.tmp/concat/templates.js', '<%= yeoman.dist %>/scripts/scripts.min.js'],
+				dest: '<%= yeoman.dist %>/scripts/scripts.min.js',
 			},
 		},
 
@@ -651,6 +651,14 @@ module.exports = function(grunt) {
 				replacements: [{
 					from: "angular.module('hearth', [",
 					to: "angular.module('hearth', ['templates-main',"
+				}]
+			},
+			tmplMinify: {
+				src: ['.tmp/concat/templates.js'],
+				overwrite: true,
+				replacements: [{
+					from: "\n",
+					to: ""
 				}]
 			}
 		},
@@ -742,9 +750,10 @@ module.exports = function(grunt) {
 		'html2js', 				// merge all templates to one js file
 		'concat:scripts',
 		'concat:config',
-		'concat:tmpl',
 		'replace:dist', 		// inject angular module for merged templates
 		'uglify',
+		'replace:tmplMinify', 		// minify merged templates
+		'concat:tmpl',			// concat templates merged to JS into scripts
 		'cacheBust'
 	]);
 
