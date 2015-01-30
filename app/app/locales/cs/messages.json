@@ -96,9 +96,9 @@
     },
     "COMMUNITY": {
         "APPROVE_REQUESTS": {
-            "few": "{{count}} lidí čeká na schválení",
+            "few": "{{count}} lidé čekají na schválení",
             "one": "Jeden člověk čeká na schválení",
-            "other": "{{count}} lidé čekají na schválení"
+            "other": "{{count}} lidí čeká na schválení"
         },
         "COMMUNITY_HAS_X_MEMBERS": {
             "few": "Komunita má {{count}} členy",
@@ -844,7 +844,7 @@
     "USER_POSTS": "Inzeráty uživatele",
     "USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte inzerát",
     "USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžete spojit s konkrétním inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali.",
-    "USER_RATING_SCORE_SELECT_TEXT": "Jak komunikace s uživatelem probíhala?",
+    "USER_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
     "USER_RECEIVED_RATINGS": "Přijatá hodnocení",
     "USE_FACEBOOK": "Použít Facebook",
@@ -874,7 +874,7 @@
     "WITH_TERMS_OF_USE": "podmínkami používání",
     "WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS": "Napište svým přátelům nějakou zprávu do pozvánky.",
     "WRITE_US": "Spojte se s námi",
-    "WRITE_USER_SOME_RATING": "Napište uživateli nějaké hodnocení",
+    "WRITE_USER_SOME_RATING": "Napište uživateli k hodnocení pár slov...",
     "WRITTEN_FROM_ALLOWED": "Napsáno {{len}} z {{maxLen}} povolených znaků",
     "WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "WRONG_NAME_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
