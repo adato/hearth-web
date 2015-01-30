@@ -434,6 +434,7 @@
     "MARKETPLACE": {
         "EDIT_FILTER": "Upravit filtr",
         "FILTER_NOT_FOUND": "Ajtakrajta, zadané kombinaci neodpovídá vůbec, ale vůbec žádný inzerát.<br />Co takhle nějaké to kritérium ubrat?",
+        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http://www.svetylkaradosti.cz/\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.</a></p>",
         "NOTHING_FOUND": "Ajtakrajta ... asi se někde stala chyba, protože tu nejsou žádné inzeráty",
         "RESET_FILTER": "Vymazat filtr",
         "SHOW_POSTS_IN_LIST": "Zobrazit seznam inzerátů",
@@ -843,7 +844,7 @@
     "USER_LANGUAGE": "Jazyk",
     "USER_POSTS": "Inzeráty uživatele",
     "USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte inzerát",
-    "USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžete spojit s konkrétním inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali.",
+    "USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžete spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali.",
     "USER_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
     "USER_RECEIVED_RATINGS": "Přijatá hodnocení",
