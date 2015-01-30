@@ -4,7 +4,7 @@
 	<p>{{ 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
 </div>
 
-<div class="ratings-received row rating-item animate-show" id="received-rating-form" ng-show="showUserRatingForm">
+<div class="ratings-received row rating-item animate-show" id="received-rating-form" ng-if="!mine" ng-show="showUserRatingForm">
 	<section class="large-2 columns">
 		<avatar ng-if="!loggedCommunity" src="loggedUser.avatar.normal" type="loggedUser._type"></avatar>
 		<avatar ng-if="loggedCommunity" src="loggedCommunity.avatar.normal" type="loggedCommunity._type"></avatar>
