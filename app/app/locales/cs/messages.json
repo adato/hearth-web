@@ -419,6 +419,7 @@
     "LOG_IN_TO_REPLY": "Před odesláním vaší odpovědi se prosím <a href=\"#/login\">přihlaste</a>.",
     "MAP": "Mapa",
     "MARKETPLACE": {
+        "HEAD_MESSAGE": "<a href= \"http://www.svetylkaradosti.cz/\" title=\"Světýlka radosti\">Světýlka radosti - originální pohádka o darech a lidském štěstí.</a>",
         "EDIT_FILTER": "Upravit filtr",
         "FILTER_NOT_FOUND": "Ajtakrajta, zadané kombinaci neodpovídá vůbec, ale vůbec žádný inzerát.<br />Co takhle nějaké to kritérium ubrat?",
         "RESET_FILTER": "Vymazat filtr",
