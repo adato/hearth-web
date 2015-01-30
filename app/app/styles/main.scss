@@ -1137,3 +1137,12 @@ img.blur {
     margin: 0 auto;
     width: 940px;
 }
+
+.market-notify {
+    color: lighten(color(1), 25%);
+    border: 2px solid color(1);
+
+    position: relative;
+    top: -1em;
+    
+}
