@@ -59,7 +59,7 @@ angular.module('hearth', [
             $httpProvider.defaults.useXDomain = true;
             $httpProvider.defaults.withCredentials=true;
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+           
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
 

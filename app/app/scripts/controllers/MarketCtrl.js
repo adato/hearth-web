@@ -90,7 +90,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// go throught post array and if there is new post already
 			// dont add him again
 			for(var i = 0;i < data.length; i++) {
-				if(data[i]._id == last._id)
+				if(data[i]._id == newPost._id)
 					return data;
 			}
 
@@ -125,7 +125,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				Post.query(params, function(data) {
 					$scope.loaded = true;
 					// console.timeEnd("Market posts loaded from API");
-					data = $scope.insertLastPostIfMissing(data);
+					if(data.data)
+						data.data = $scope.insertLastPostIfMissing(data.data);
 					
 					// console.time("Posts pushed to array and built");
 					// iterativly add loaded data to the list and then call finishLoading
