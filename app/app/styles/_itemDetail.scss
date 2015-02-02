@@ -1,11 +1,12 @@
 
 #item-detail {
-    .ad-detail {
-        padding-left:0;
-        padding-right:0;
-
+    .ad-detail-page {
         // hide arrow -- it kinda pushes user to click it expecting going back one page
-        .arrow, .arrowbox { display: none; }
+        .ad-detail-column {
+            padding-left:0;
+            padding-right:0;
+            .arrow, .arrowbox { display: none; }
+        }
 
         h3 {
             font-size:1.3rem;
@@ -29,7 +30,7 @@
             }
         }
     }
-    .ad-author {
+    .ad-author-column {
         float:right;
         clear:left;
         padding-right:0;

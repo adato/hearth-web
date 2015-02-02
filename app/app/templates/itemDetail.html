@@ -1,7 +1,7 @@
 <div id="item-detail">
 	<div loading show="!loaded"></div>
 
-	<div ng-if="loaded" class="ad-detail web-width">
+	<div ng-if="loaded" class="ad-detail-page web-width">
 		<article class="row">
 			<section ng-show="ad && ! ad.name && ad.state === 'suspended'" class="ad-not-found box large-6 margin-auto text-center">
 				<p class="margin-0 padding-top">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
@@ -13,10 +13,8 @@
 				<p class="margin-0 padding-top">{{ 'POST_WAS_DELETED' | translate }}</p>
 			</section>
 			<section ng-if="! adDeleted && ad && ad.name" class="large-12 post" id="item_container_{{ ad._id }}">
-
 				<div class="content row">
-
-					<div class="columns large-4 ad-author">
+					<div class="columns large-4 ad-author-column">
 						<div class="text-center">
 							<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id" /></avatar>
 						</div>
@@ -69,7 +67,7 @@
 						</div>
 					</div>
 
-					<div class="ad-detail columns large-8">
+					<div class="columns large-8 ad-detail-column">
 						<item keywords-active="{}" item-detail="true" user="user" item="ad" community="loggedCommunity" inactivate-tags="true" hide-avatar="true" not-expandable="true" foundation-columns-classname="'large-12'"></item>
 					</div>
 
@@ -110,7 +108,7 @@
 										<div class="text-container clearfix">
 											<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
 										</div>
-										<div style="text-align: right;"><small ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></small></div>
+										<div style="text-right smaller"><small ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></small></div>
 									</div>
 								</div>
 							</section>
@@ -123,10 +121,8 @@
 								<i class="fa fa-map-marker"></i> &nbsp; {{ location.address }}
 							</li>
 						</ul>
-							<mapitems ng-if="ad.locations && ad.locations.length" class="map" items="ad.locations"></mapitems>
-						</div>
+						<mapitems ng-if="ad.locations && ad.locations.length" class="map" items="ad.locations"></mapitems>
 					</div>
-
 				</div>
 			</section>
 		</article>
