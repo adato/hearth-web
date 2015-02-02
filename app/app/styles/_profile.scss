@@ -27,16 +27,19 @@
                 position: relative;
                 top: 8px;
             }
-            .need-offer-selector .button {
-                &.left.pressed {
-                    background-color: color(2);
-                    //positive
-               
-                }
-                &.right.pressed {
-                    background-color: color(5);
-                    //negative
-               
+            .need-offer-selector {
+                margin: 0px;
+                .button {
+                    &.left.pressed {
+                        background-color: color(2);
+                        //positive
+                   
+                    }
+                    &.right.pressed {
+                        background-color: color(5);
+                        //negative
+                   
+                    }
                 }
             }
         }

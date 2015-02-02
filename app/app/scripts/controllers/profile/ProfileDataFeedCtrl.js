@@ -168,9 +168,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function init() {
-
             $scope.subPageLoaded = false;
-
+            $scope.closeUserRatingForm();
             // console.log("Calling load service", $scope.pageSegment);
             // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);

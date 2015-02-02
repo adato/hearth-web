@@ -4,8 +4,8 @@
 	<p>{{ 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
 </div>
 
-<div class="ratings-received row rating-item animate-show" id="received-rating-form" ng-if="!mine" ng-show="showUserRatingForm">
-	<section class="large-2 columns">
+<div class="ratings-received row rating-item" id="received-rating-form" ng-if="!mine" ng-show="showUserRatingForm">
+	<section class="large-2 columns user">
 		<avatar ng-if="!loggedCommunity" src="loggedUser.avatar.normal" type="loggedUser._type"></avatar>
 		<avatar ng-if="loggedCommunity" src="loggedCommunity.avatar.normal" type="loggedCommunity._type"></avatar>
 	</section>
@@ -26,7 +26,9 @@
 
 				<h5>{{ 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
 				<span ng-if="ratingPosts.length && loadedRatingPosts">
-					{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
+					<div class="padding-bottom-3">
+						{{ 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
+					</div>
 				    <select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 				      <option value="0">{{ 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				      <option ng-repeat="post in ratingPosts" title="{{post.title}}" value="{{ post._id }}">
