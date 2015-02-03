@@ -76,7 +76,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		 */
 		$scope.sendDeleteRequest = function(data) {
 			return function(validationResult) {
-
 				if (!validationResult) return false;
 				
 				// serialize
@@ -99,25 +98,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.deleteAccount = function(data) {
 
 			if (!$scope.validateDeleteAccount(data)) return false;
-
 			// test password first
 			$scope.testOldPassword(data.pass, 'profileDeleteForm', 'oldPassLeave', $scope.sendDeleteRequest(data));
-		};
-
-		/**
-		 * Validate password change form
-		 */
-		$scope.validateChangePasswordError = function(data) {
-			var invalid = false;
-
-			if ($scope.profileSettingsForm.newPass.$invalid) {
-				invalid = $scope.showError.newPass = true;
-			}
-
-			if ($scope.profileSettingsForm.oldPass.$invalid) {
-				invalid = $scope.showError.oldPass = true;
-			}
-			return !invalid;
 		};
 
 		/**
@@ -155,6 +137,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			if (res.ok) {
 				$scope.pass.old = '';
 				$scope.pass.changed = '';
+				$scope.profileSettingsForm.$setPristine();
+				$scope.profileSettingsForm.$setValidity();
 
 				$timeout(function() {
 					$scope.showError.oldPass = false;
@@ -189,10 +173,26 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		/**
+		 * Validate password change form
+		 */
+		$scope.validateChangePasswordError = function(data) {
+			var invalid = false;
+
+			if ($scope.profileSettingsForm.newPass.$invalid) {
+				invalid = $scope.showError.newPass = true;
+			}
+			
+			// async test
+			// if ($scope.profileSettingsForm.oldPass.$invalid) {
+			// 	invalid = $scope.showError.oldPass = true;
+			// }
+			return !invalid;
+		};
+
+		/**
 		 * Change password and validate old pass
 		 */
 		$scope.changePassword = function(pass) {
-			
 			if ($scope.changeSubmitted || !$scope.validateChangePasswordError(pass)) return false;
 			$scope.changeSubmitted = true;
 

@@ -33,7 +33,7 @@
             <div class="fleft large-6">
               <div class="fleft large-11">
                 <label for="oldPass">{{ 'FILL_CURRENT_PASS' | translate }}</label>
-                <input type="password" ng-focus="showError.oldPass = false; profileSettingsForm.oldPass.$error.notValid = false;" ng-blur="showError.oldPass = true; testOldPassword(pass.old, 'profileSettingsForm', 'oldPass')" name="oldPass" id="oldPass" ng-model="pass.old" required />
+                <input type="password" ng-focus="showError.oldPass = false;" ng-blur="showError.oldPass = true; testOldPassword(pass.old, 'profileSettingsForm', 'oldPass')" name="oldPass" id="oldPass" ng-model="pass.old" required />
                 <div class="absolute error" ng-show="showError.oldPass">
                     <span ng-show="profileSettingsForm.oldPass.$error.required">{{ 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
                     <span ng-show="profileSettingsForm.oldPass.$error.notValid">{{ 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
