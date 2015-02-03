@@ -45,12 +45,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		}
 		// return current used language
 		this.uses = function() {
-
-			return $.map(languages, function(item) {
-				if (item.code === $translate.use()) {
-					return item;
-				}
-			})[0];
+			return $rootScope.language;
 		};
 		
 		// set cookie with language
