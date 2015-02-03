@@ -17,7 +17,7 @@ angular.module('hearth.geo').directive('locations', [
             replace: true,
             scope: {
                 locations: "=",
-                required: "=",
+                required: "=isRequired",
                 disabled: "=limit",
                 showError: "=",
                 errorCode: "@",

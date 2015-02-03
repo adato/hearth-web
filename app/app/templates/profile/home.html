@@ -12,7 +12,7 @@
                     {{item.text | ellipsis}}
                     <br>
                     <small class="rating-from">
-                        {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
+                        {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a> <span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
                     </small>
                 </div>
             </div>

@@ -44,8 +44,8 @@
           <span class="fa fa-globe"></span>{{ 'WHERE' | translate }}
         </span>
       </h2>
-      <section class="location">
-        <locations locations="profile.locations" required="true" show-error="showError.locations"></locations>
+      <section class="location" ng-if="profile">
+        <locations locations="profile.locations" is-required="true" show-error="showError.locations"></locations>
       </section>
       <h2>
         <span class="content">
