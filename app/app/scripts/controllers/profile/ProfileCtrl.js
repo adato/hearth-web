@@ -81,7 +81,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				// $scope.loaded = true;
 
 				$rootScope.profileLoaded = true;
-
 				// broadcast event for load subpages
 				if(fetchSubpage)
 					$scope.$broadcast("profileTopPanelLoaded");
@@ -140,7 +139,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 		// toggle follow - unfollow if is followed and opposite
 		$scope.toggleFollow = function(user_id) {
-			
 			if($scope.info.is_followed) {
 				$scope.removeFollower(user_id);
 			} else {
