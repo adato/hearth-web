@@ -699,3 +699,13 @@ $imageSize: 80px;
         }
     }
 }
+
+// an exception for ignored <p> in <span> (as a by-product of a translation method)
+button>span.ng-binding>p, h2>span.ng-binding>p {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin-bottom: inherit;
+    
+}
