@@ -16,15 +16,15 @@ angular.module('hearth.services').service('timeAgoService', [
 				return {
 					seconds: $translate.instant('LESS_THAN_MINUTE_AGO'),
 					minute: $translate.instant('MINUTE_AGO'),
-					minutes: $translate.instant('%d MINUTES_AGO'),
+					minutes: $translate.instant('MINUTES_AGO'),
 					hour: $translate.instant('HOUR_AGO'),
-					hours: $translate.instant('%d HOURS_AGO'),
+					hours: $translate.instant('HOURS_AGO'),
 					day: $translate.instant('DAY_AGO'),
-					days: $translate.instant('%d DAYS_AGO'),
+					days: $translate.instant('DAYS_AGO'),
 					month: $translate.instant('MONTH_AGO'),
-					months: $translate.instant('%d MONTHS_AGO'),
+					months: $translate.instant('MONTHS_AGO'),
 					year: $translate.instant('YEAR_AGO'),
-					years: $translate.instant('%d YEARS_AGO'),
+					years: $translate.instant('YEARS_AGO'),
 					numbers: []
 				};
 			},
