@@ -4,9 +4,9 @@ $$localConfig = {
 	fbAppId: '1495788017321716', // dev
 	languages: {
 		"cs": "cs_CZ",
-		"de": "de_DE",
+		"sk": "sk_SK",
 		"en": "en_US",
-		"translation": false
+		"clean": false
 	},
 	apiPath: '/api'
 };
