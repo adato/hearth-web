@@ -16,8 +16,8 @@
     "ABOUT_TEXT": "Hearth.net spojuje aktivní lidi, kteří pro ostatní rádi udělají, co umí a ocení, když se jim to z jiné strany vrátí.",
     "ACCOUNT": {
         "LOGIN": {
-            "VIA_SOCIAL_NETWORKS": "Nebo se přihlašte pomocí sociální sítě.",
-            "LOGIN_FAILED": "Při přihlašování došlo k chybě."
+            "LOGIN_FAILED": "Při přihlašování došlo k chybě.",
+            "VIA_SOCIAL_NETWORKS": "Nebo se přihlašte pomocí sociální sítě."
         },
         "REGISTER": {
             "VIA_SOCIAL_NETWORKS": "Nebo se registrujte pomocí sociální sítě."
@@ -30,6 +30,7 @@
     "ACTUALLY_YOU_HAVE_ACTIVE": "Momentálně máte aktivní",
     "ADD": "Přidat",
     "ADD_KEYWORDS": "Klíčová slova, oddělená čárkou",
+    "ADD_LOCATION": "Napište místo",
     "ADD_NEXT_WEB": "Přidat další web",
     "ADD_OTHER_LANG": "Přidat další jazyky",
     "ADD_USER_RATING": "Ohodnoťte komunikaci s uživatelem",
@@ -95,6 +96,10 @@
             "one": "Komunita má jednoho člena",
             "other": "Komunita má {{count}} členů"
         },
+        "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?",
+        "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
+        "DELEGATE_ADMIN_ARE_YOU_SURE": "Doopravdy chcete předat správcovství této skupiny?",
+        "DELEGATE_ADMIN_LABEL": "Předání správcovství",
         "HOME": {
             "NO_ACTIVITY_ME": "Jste tu krátce, nemáme vám zatím co ukázat :)",
             "NO_ACTIVITY_OTHER": "Komunita je tady nová, nemáme vám tady zatím co ukázat."
@@ -104,6 +109,8 @@
             "NO_POSTS_MEMBER": "V komunitě ještě nemáte žádné inzeráty.",
             "NO_POSTS_OTHER": "Komunita zatím nic nevěnovala ani nepotřebovala přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních."
         },
+        "REMOVE_MEMBER_ARE_YOU_SURE": "Doopravdy chcete odebrat tohoto člena z komunity?",
+        "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
         "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
         "X_GIVES_AND_WISHES": {
             "few": "<b>{{count}}</b><br /> inzeráty",
@@ -114,13 +121,7 @@
             "few": "<b>{{count}}</b><br /> členové",
             "one": "<b>{{count}}</b><br /> člen",
             "other": "<b>{{count}}</b><br /> členů"
-        },
-        "REMOVE_MEMBER_ARE_YOU_SURE": "Doopravdy chcete odebrat tohoto člena z komunity?",
-        "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
-        "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
-        "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?",
-        "DELEGATE_ADMIN_LABEL": "Předání správcovství",
-        "DELEGATE_ADMIN_ARE_YOU_SURE": "Doopravdy chcete předat správcovství této skupiny?"
+        }
     },
     "COMMUNITY_ABOUT": "Další info o komunitě",
     "COMMUNITY_ABOUT_SHORT": "O komunitě",
@@ -206,7 +207,6 @@
     "DELETE": "smazat",
     "DELETE_ACCOUNT_BUTTON_CAPTION": "Smazat účet",
     "DELETE_LOCATION": "smazat",
-    "ADD_LOCATION": "Napište místo",
     "DOES_GIVE": "Věnuje",
     "DOES_WISH": "Přijme",
     "DOING_AS_COMMUNITY": "Za komunitu",
@@ -232,7 +232,6 @@
     "ERROR_BAD_IMAGE_SIZE_PX_200": "Obrázek má malé rozlišení. Minimum je 200x200 pixelů.",
     "ERROR_BAD_IMAGE_SIZE_PX_400": "Obrázek má malé rozlišení. Minimum je 400x400 pixelů.",
     "ERR_ACTION_FAILED_DUE_TO_ERRORS": "Inzerát obsahuje chyby, takže akci nebylo možné dokončit. Opravte ho a pak to zkuste znova.",
-    "ERR_LOCATION_UNKNOWN_PLACE": "Takové místo neznáme.. Zkuste vybrat místo spíše ze seznamu.",
     "ERR_AD_NOT_FOUND": "To ne! Nabídka/potřeba nebyla nalezena. Kde se toulá?",
     "ERR_AD_REPLY_NOT_AGREE": "Pošlete uživateli i vaši emailovou adresu, ať vás může kontaktovat.",
     "ERR_AD_TEXT_LEN": "Váš příspěvek je příliš dlouhý, pane Shakespeare. To nás mrzí, naše maximální délka je 2500 znaků.",
@@ -252,6 +251,7 @@
     "ERR_FORM_NOT_VALID": "Ve formuláři je chyba. Opravte ji a poté formulář uložte znovu.",
     "ERR_INVITE_EMAIL_INVALID": "Jeden nebo více emailů nemá správný formát.",
     "ERR_KEYWORD_LEN": "Vaše klíčové slovo je příliš dlouhé. Ale no tak. Je to jen slovo, ne povídka.",
+    "ERR_LOCATION_UNKNOWN_PLACE": "Takové místo neznáme.. Zkuste vybrat místo spíše ze seznamu.",
     "ERR_MISSING_PWD": "Prosím zadejte heslo. Počkat! Jste sami? Ok, můžete.",
     "ERR_NOT_AUTHN": "Ach ne! Přihlašovací jméno nebo heslo je neplatné. Tak které z nich?",
     "ERR_NOT_AUTHZ": "Hearth neobdržel autorizaci pro přístup k Vašemu profilu. Strašný pocit! Zkuste to prosím ještě jednou.",
@@ -286,6 +286,7 @@
     "FEEDBACK_LINK": "Hodnocení",
     "FEEDBACK_TEXT_PLACEHOLDER": "Napište nám, co se vám v Hearth líbí i nelíbí. Pořád je co zlepšovat...",
     "FILL_CURRENT_PASS": "Zadejte současné heslo",
+    "FILL_EMAIL_FOR_TWITTER_LOGIN": "Doplňte nám  <b>Váš kontaktní</b> email",
     "FILL_EMAIL_INVITATION_MESSAGE": "Je libo nějaká slova do emailu?",
     "FILL_EMAIL_TO_COMPLETE_REGISTRATION": "Dokončení registrace",
     "FILL_EMAIL_TO_RESET_PASSWORD": "Stačí nám vaše e-mailová adresa. Na ní vám zašleme instrukce, co dál.",
@@ -358,6 +359,7 @@
     "INDEX_TERMS": "Podmínky použití",
     "INDEX_TOMAS_HAJZLER_TEXT": "Hearth.net mě nadchlo svojí jednoduchostí. Přestěhoval jsem se teď do nové čtvrti a myslím, že by mi to mohlo pomoci vybudovat zde nějaké vztahy. Vždyť dávání bylo a bude základ každé rodiny a zároveň to je v podstatě technika, jak se cítit skvěle. Myslím, že dnešní doba sociálních sítí a toho jak jsme globálně propojeni nám k tomu ideálně nahrává.",
     "INDEX_TOMAS_HAJZLER_TITLE": "zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou.",
+    "INSERT_LOCATION": "Vložit lokaci",
     "INSPIRED_BY_HIM": "inspiruje",
     "INSPIRED_BY_ME": "inspiruji",
     "INSPIRING_PL": {
@@ -417,8 +419,8 @@
     "MARKETPLACE": {
         "EDIT_FILTER": "Upravit filtr",
         "FILTER_NOT_FOUND": "Ajtakrajta, zadané kombinaci neodpovídá vůbec, ale vůbec žádný inzerát.<br />Co takhle nějaké to kritérium ubrat?",
-        "RESET_FILTER": "Vymazat filtr",
-        "NOTHING_FOUND": "Ajtakrajta ... asi se někde stala chyba, protože tu nejsou žádné inzeráty"
+        "NOTHING_FOUND": "Ajtakrajta ... asi se někde stala chyba, protože tu nejsou žádné inzeráty",
+        "RESET_FILTER": "Vymazat filtr"
     },
     "MEET_USER": "Poznejte uživatele",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členem komunit",
@@ -505,6 +507,7 @@
         "ACCOUNT_ACTIVATE_FAILED": "Aktivace účtu se nezdařila...",
         "ACCOUNT_ACTIVATE_SUCCESS": "Váš účet byl aktivován. Nyní se můžete přihlásit.",
         "ACCOUNT_DELETE_FAILED": "Smazání účtu se nepovedlo.",
+        "ACCOUNT_DELETE_FAILED_COMMUNITY": "Před smazáním vašeho účtu prosím předejte někomu správcovství vašich komunit.",
         "ACCOUNT_DELETE_SUCCESS": "Váš účet byl smazán :-(",
         "ADD_FOLLOWER_FAILED": "Přidání uživatele do sledovaných bylo neúspěšné.",
         "ADD_FOLLOWER_SUCCES": "Přidání uživatele do sledovaných bylo úspěšné.",
@@ -525,6 +528,8 @@
         "COMMUNITY_REJECT_SUCCESS": "Přihláška byla zamítnuta.",
         "COMMUNITY_UPDATE_FAILED": "Úprava komunity se nezdařila.",
         "COMMUNITY_UPDATE_SUCCESS": "Úprava komunity byla úspěšná.",
+        "COMPLETE_TWITTER_REGISTRATION_FAILED": "Přidání emailu se nezdařilo.",
+        "COMPLETE_TWITTER_REGISTRATION_SUCCESS": "Email byl úspěšně uložen.",
         "EMAIL_INVITATION_FAILED": "Při odesílání pozvánky došlo k chybě.",
         "EMAIL_INVITATION_SUCCESS": "Pozvánka byla úspěšně odeslána.",
         "NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
@@ -532,8 +537,8 @@
         "PASS_CHANGE_FAILED": "Při úpravě hesla došlo k chybě.",
         "PASS_CHANGE_SUCCES": "Úprava hesla byla úspěšná.",
         "POST_CREATED_SUCCESFULLY": "Inzerát byl úspěšně uložen.",
-        "POST_DELETED_SUCCESFULLY": "Inzerát byl úspěšně smazán.",
         "POST_DELETED_FAILED": "Inzerát se nepodařilo smazat.",
+        "POST_DELETED_SUCCESFULLY": "Inzerát byl úspěšně smazán.",
         "POST_EDIT_FAILED": "Při úpravě inzerátu došlo k chybě.",
         "POST_SPAM_REPORT_FAILED": "Nahlášení inzerátu se nepovedlo.",
         "POST_SPAM_REPORT_SUCCESS": "Inzerát byl nahlášen.",
@@ -554,10 +559,7 @@
         "USER_PROFILE_CHANGE_SUCCES": "Úprava profilu byla úspěšná.",
         "USER_PROFILE_FORM_HAS_ERRORS": "Ve formuláři jsou chyby.",
         "USER_RATING_FAILED": "Při hodnocení uživatele došlo k chybě.",
-        "USER_RATING_SUCCESS": "Hodnocení uživatele bylo přidáno",
-        "ACCOUNT_DELETE_FAILED_COMMUNITY": "Před smazáním vašeho účtu prosím předejte někomu správcovství vašich komunit.",
-        "COMPLETE_TWITTER_REGISTRATION_FAILED": "Přidání emailu se nezdařilo.",
-        "COMPLETE_TWITTER_REGISTRATION_SUCCESS": "Email byl úspěšně uložen."
+        "USER_RATING_SUCCESS": "Hodnocení uživatele bylo přidáno"
     },
     "NO_DONT_DELETE_ACCOUNT": "Ne",
     "NO_REPLY": "Zatím nikdo nic.",
@@ -627,7 +629,6 @@
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
     "POST_WAS_DELETED": "Inzerát byl vymazán.",
     "PROFILE": {
-        "YOUR_PROFILE_IS_EMPTY": "Váš profil je smutný a prázný - řekněte něco více o tom, co vás zajímá a baví.",
         "COMMUNITTIES": {
             "NO_COMMUNITTIES_ME": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
             "NO_COMMUNITTIES_OTHER": "Uživatel u nás zatím není členem žádné komunity."
@@ -691,21 +692,29 @@
             "NO_POSTS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
             "NO_RECEIVED_RATINGS_ME": "Patrně za sebou ještě nemáte žádnou odvážnou odpověď na inzerát, tak neměl nikdo příležitost sem napsat nic pěkného :("
         },
+        "REMOVE_FOLOWEESE_LABEL": "Přestat sledovat uživatele",
+        "REMOVE_FOLOWEESE_TEXT": "Opravdu chcete přestat sledovat tohoto uživatele?",
         "TOP": {
             "KARMA_NO_RATING_ME": "S prvním hodnocením vám to tady obarvíme :)",
             "KARMA_NO_RATING_OTHER": "Ohodnoťte uživatele, ať mu tady máme co zobrazit :)"
         },
-        "REMOVE_FOLOWEESE_LABEL": "Přestat sledovat uživatele",
-        "REMOVE_FOLOWEESE_TEXT": "Opravdu chcete přestat sledovat tohoto uživatele?"
+        "YOUR_PROFILE_IS_EMPTY": "Váš profil je smutný a prázný - řekněte něco více o tom, co vás zajímá a baví."
     },
     "PROFILE_EDIT": {
         "HEADER": "Upravit profil"
     },
-    "INSERT_LOCATION": "Vložit lokaci",
     "PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",
     "PROFILE_UPDATE_FAILED": "Změny ve vašem profilu se bohužel nepodařilo uložit. Dřív než vyskočíte z\nokna, zkuste to prosím ještě jednou.",
     "PROFILE_WAS_UPDATED": "Změny ve vašem profilu byly uloženy. Jste teď jako úplně nový člověk!",
     "RANDOM_COMMUNITIES": "Náhodné komunity",
+    "RATING_COMMON_POSTS_TOP": "Ohodnoťte konkrétní transakci",
+    "RATING_LOADING_COMMON_POSTS": "Načítám seznam realizovaných transakcí",
+    "RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce mezi vámi neproběhla žádná transakce, kterou byste mohli ohodnotit. No není to škoda? :)",
+    "RATING_POST_TYPES": {
+        "needed": "Přijal(a) jsem",
+        "offered": "Věnoval(a) jsem"
+    },
+    "RATING_TO_POST": "k inzerátu",
     "RATING_WAS_SAVED": "Hodnocení bylo úspěšně uloženo. Co je doma, to se počítá.",
     "REGISTER_TO_HEARTH_TEXT": "Váš profil je už jen pár kliků odtud. Šup šup.",
     "REMOVE": "Odebrat",
@@ -750,7 +759,6 @@
     "SIGN_UP_WITH_FACEBOOK": "přihlásit přes Facebook",
     "SIGN_UP_WITH_GOOGLE": "přihlásit přes Google",
     "SIGN_UP_WITH_TWITTER": "přihlásit přes Twitter",
-    "FILL_EMAIL_FOR_TWITTER_LOGIN": "Doplňte nám  <b>Váš kontaktní</b> email",
     "SUBMIT": "Odeslat",
     "SUGGESTED_COMMUNITIES": "Doporučené komunity",
     "SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS": "Před úpravou vašich inzerátů se nejprve přepněte v horním menu na svůj učet.",
@@ -806,18 +814,10 @@
     "USER_IS_MEMBER": "Uživatel je členem",
     "USER_LANGUAGE": "Jazyk",
     "USER_POSTS": "Inzeráty uživatele",
+    "USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte transakci",
+    "USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžete spojit s konkrétní transakcí, která mezi vámi za poslední 3 měsíce proběhla.",
     "USER_RATING_SCORE_SELECT_TEXT": "Jak komunikace s uživatelem probíhala?",
     "USER_RATING_WAS_SENT": "Hodnocení bylo úspěšně odesláno",
-    "USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžete spojit s konkrétní transakcí, která mezi vámi za poslední 3 měsíce proběhla.",
-    "USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte transakci",
-    "RATING_LOADING_COMMON_POSTS": "Načítám seznam realizovaných transakcí",
-    "RATING_POST_TYPES": {
-        "offered": "Věnoval(a) jsem",
-        "needed": "Přijal(a) jsem"
-    },
-    "RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce mezi vámi neproběhla žádná transakce, kterou byste mohli ohodnotit. No není to škoda? :)",
-    "RATING_COMMON_POSTS_TOP": "Ohodnoťte konkrétní transakci",
-    "RATING_TO_POST": "k inzerátu",
     "USER_RECEIVED_RATINGS": "Přijatá hodnocení",
     "USE_FACEBOOK": "Použít Facebook",
     "USE_GOOGLE": "Použít Google",
