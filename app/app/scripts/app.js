@@ -62,6 +62,7 @@ angular.module('hearth', [
            
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
+            console.log($translateProvider.preferredLanguage());
 
             // // ======== Watch for unauth responses
             // $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
