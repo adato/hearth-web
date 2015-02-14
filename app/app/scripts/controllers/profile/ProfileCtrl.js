@@ -132,7 +132,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 			UsersService.addFollower(user_id).then(function(res) {
 				$scope.sendingAddFollower = false;
-
 				$scope.toggleFollowerSuccess(res);
 			});
 		};

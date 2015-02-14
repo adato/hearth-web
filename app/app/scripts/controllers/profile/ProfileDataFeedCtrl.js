@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.ratingPosts = [];
 
             UserRatings.received(params, done, doneErr);
-            if(!$scope.mine)
+            if(!$scope.mine) {
                 UserRatings.possiblePosts({userId: params.user_id}, function(res) {
                     var posts = [];
                     
@@ -56,6 +56,13 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 }, function(res) {
                     $scope.loadedRatingPosts = true;
                 });
+            }
+
+            var removeListener = $scope.$on('$routeChangeStart', function() {
+                $scope.closeUserRatingForm();
+                removeListener();
+            });
+
         }
 
         function loadFollowees(params, done, doneErr) {
@@ -169,7 +176,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function init() {
             $scope.subPageLoaded = false;
-            $scope.closeUserRatingForm();
             // console.log("Calling load service", $scope.pageSegment);
             // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);

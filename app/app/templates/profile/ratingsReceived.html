@@ -3,7 +3,6 @@
 <div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! data.length">
 	<p>{{ 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
 </div>
-
 <div class="ratings-received row rating-item" id="received-rating-form" ng-if="!mine" ng-show="showUserRatingForm">
 	<section class="large-2 columns user">
 		<avatar ng-if="!loggedCommunity" src="loggedUser.avatar.normal" type="loggedUser._type"></avatar>
