@@ -15,7 +15,8 @@
                 <span ng-show="registerForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
                 <span ng-show="registerForm.name.$error.used">{{ 'SIGNUP_ERR_BAD_NAME' | translate }}</span>
             </div>
-            <input type="email" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="checkEmailExists(user.email, 'registerForm', 'email'); showError.email = true" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" required />
+            <input type="email" email-validator ng-model-options="{ updateOn: 'blur' }" name="email" ng-model="user.email" ng-focus="showError.email = false" ng-blur="showError.email = true" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" required />
+
             <div class="moveUp error" ng-show="showError.email">
                 <span ng-show="registerForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
                 <span ng-show="registerForm.email.$error.used">{{ 'ERR_EMAIL_EXISTS' | translate }}</span>

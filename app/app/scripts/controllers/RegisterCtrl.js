@@ -27,29 +27,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             password: false,
         };
 
-        $scope.checkEmailExists = function(email, form, inputName, cb) {
-
-            $scope[form][inputName].$error.used = false;
-            $scope.apiErrors.email = false;
-            
-            // dont check when email is invalid
-            if ($scope[form][inputName].$invalid)
-                return false;
-
-            // Check if email is in our DB
-            Email.exists({email: email}, function(res) {
-                if (res.ok) {
-                   
-                    // show error when email does not exist
-                    $scope.showError.email = true;
-                    $scope[form][inputName].$error.used = true;
-                }
-                // call callbeck
-                cb && cb(res.ok);
-            }, function() {
-                cb && cb(false);
-            });
-        };
 
         $scope.validateData = function(user) {
             var invalid = false;
@@ -68,11 +45,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
             return !invalid;
         };
-
-        // no api endpoint for this reuqest yet        
-        // $scope.checkUsedEmail = function(email, cb) {
-        //     cb(false);
-        // };
 
         $scope.hideForm = function() {
             $(".register-login-form").slideUp('slow', function() {
@@ -123,15 +95,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             user.language = LanguageSwitch.uses();
 
             if (!$scope.validateData(user)) return false;
-
-            $scope.checkEmailExists(user.email, 'registerForm', 'email', function(isUsed) {
-                if (isUsed) {
-                    $scope.registerForm.email.$error.used = true;
-                    return $scope.showError.email = true;
-                }
-
-                $scope.sendRegistration(user);
-            });
+            
+            $scope.sendRegistration(user);
         };
 
         $scope.init = function() {
