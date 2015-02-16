@@ -1,11 +1,11 @@
 <div class="bottom-tabs">
     <ul>
-       <!--  <li>
+        <li>
             <a href="#!/profile/{{info._id}}/friends" ng-class="{selected: pageSegment == 'profile.friends'}">
-                <span ng-if="mine && info" ng-bind-html="'PROFILE.FRIENDS.YOU_HAVE_X_FRIENDS.'+pluralCat(info.friend_count) | translate: '{count: '+info.friend_count+'}'"></span>
-                <span ng-if="!mine && info" ng-bind-html="'PROFILE.FRIENDS.HE_HAS_X_FRIENDS.'+pluralCat(info.friend_count) | translate: '{count: '+info.friend_count+'}'"></span>
+                <span ng-if="mine && info" ng-bind-html="'PROFILE.FRIENDS.YOU_HAVE_X_FRIENDS.'+pluralCat(info.friends_count) | translate: '{count: '+info.friends_count+'}'"></span>
+                <span ng-if="!mine && info" ng-bind-html="'PROFILE.FRIENDS.HE_HAS_X_FRIENDS.'+pluralCat(info.friends_count) | translate: '{count: '+info.friends_count+'}'"></span>
             </a>
-        </li> -->
+        </li>
         <li>
             <a href="#!/profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'profile.followers'}">
 
