@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
-	'$scope', '$location', 'Auth', 'flash', '$analytics', 'Notify',
-	function($scope, $location, Auth, flash, $analytics, Notify) {
+	'$scope', '$location', 'Auth', '$analytics', 'Notify',
+	function($scope, $location, Auth, $analytics, Notify) {
 		var search;
 		$scope.brokenLink = false;
 		search = $location.search();
