@@ -65,8 +65,8 @@ angular.module('hearth', [
             console.log($translateProvider.preferredLanguage());
 
             // // ======== Watch for unauth responses
-            // $httpProvider.responseInterceptors.push('HearthLoginInterceptor');
-            // $httpProvider.responseInterceptors.push('ApiMaintenanceInterceptor');
+            $httpProvider.interceptors.push('HearthLoginInterceptor');
+            $httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 
             // // ======== ?? wtf is this?
             // $httpProvider.responseInterceptors.push('TermsAgreement');
