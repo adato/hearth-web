@@ -47,8 +47,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
         };
 
         $scope.hideForm = function() {
-            $(".register-login-form").slideUp('slow', function() {
-            });
+            $(".register-login-form").slideUp('slow', function() {});
             $(".register-successful").slideDown('slow', function() {});
         };
 
@@ -62,7 +61,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             $scope.sending = true;
 
             User.add($scope.user, function() {
-
                 $scope.sending = false;
 
             //     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
@@ -95,7 +93,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             user.language = LanguageSwitch.uses();
 
             if (!$scope.validateData(user)) return false;
-            
             $scope.sendRegistration(user);
         };
 
@@ -103,7 +100,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             if (Auth.isLoggedIn()) {
                 return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
             }
-            // $(".register_name").focus();
 
             $scope.termsPath = '/app/locales/' + $rootScope.language + '/terms.html';
         };

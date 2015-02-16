@@ -28,19 +28,5 @@ angular.module('hearth.services').factory('HearthLoginInterceptor', [
                 return $q.reject(rejection);
             }
         };
-
-        // middleware for handling ajax responses
-        // return function(promise) {
-        //     return promise.then(function(response) {
-        //         // when ok, it will pass
-        //         return response;
-        //     }, function(response) {
-        //         // when request failed and interceptor is turned on
-        //         } else {
-        //             // it will check 401 status (unauthorized)
-        //             return $q.reject(response);
-        //         }
-        //     });
-        // };
     }
 ]);
