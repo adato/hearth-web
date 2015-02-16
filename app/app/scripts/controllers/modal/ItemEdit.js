@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$upload', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
+	function($scope, $rootScope, Auth, Errors, $upload, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
@@ -52,32 +52,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return KeywordsService.queryKeywords($query);
 		};
 
-		$scope.showError = function(err, isError) {
-			var modalWindow = $(".ngdialog-content"),
-				messageBox = $(".headMessage", $element);
-
-			messageBox.hide();
-			messageBox.html("Hello Dolly");
-
-			modalWindow.removeClass("errorBox");
-			modalWindow.removeClass("msgBox");
-
-			// if(isError)
-			modalWindow.addClass("errorBox");
-
-			messageBox.toggle(
-				"slide", {
-					direction: 'up',
-					duration: 'slow',
-					easing: 'easeOutQuart'
-				}
-			);
-		};
-
-		$scope.setDefaultPost = function() {
-			$scope.post = angular.copy($scope.defaultPost);
-		};
-
 		$scope.dateUnlimitedToggle = function() {
 
 			$scope.showError.valid_until = false;
@@ -116,20 +90,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.$watch('post', recountImages, true);
-
-		$scope.transformImagesStructure = function(postDataCopy) {
-			postDataCopy.attachments = [];
-			postDataCopy.attachments_attributes.forEach(function(el) {
-				postDataCopy.attachments.push({
-					normal: el.file,
-					origin: el.file,
-					large: el.file
-				});
-			});
-
-			delete postDataCopy.attachments_attributes;
-			return postDataCopy;
-		};
 
 		$scope.cleanNullLocations = function(loc) {
 			for (var i = 0; i < loc.length; i++) {
@@ -269,6 +229,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.showError.valid_until = false;
 		};
 
+
+		$scope.processProgress = function(evt) {
+			console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '%');
+		};
+
+		$scope.processError = function() {
+			console.log(res);
+		};
+
+		$scope.processSuccess = function(res, status, headers, config) {
+			console.log(res);
+		};
+
 		$scope.save = function(post) {
 			var postData, postDataCopy;
 
@@ -292,15 +265,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			);
 			
 			postData = $scope.transformDataOut(postData);
-			
-			postDataCopy = angular.extend(
-				angular.copy(postData), {
-					author: Auth.getCredentials(),
-					updated_at: new Date().toISOString(),
-					reply_count: 0,
-					isPhantom: true,
-				}
-			);
 
 			if ($scope.sending) {
 				return false;
@@ -308,9 +272,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
+			// var config = {
+			// 	url: $$config.apiPath + '/posts/' + (post._id ? post._id : ''),
+			// 	data: postData,
+			// 	// file: $scope.attachments,
+			// };
+
+			// $scope.upload = $upload.upload(config)
+			// 	.progress($scope.processProgress)
+			// 	.success($scope.processSuccess)
+			// 	.error($scope.processError);
+
 			Post[post._id ? 'update' : 'add'](postData, function(data) {
 				$rootScope.globalLoading = false;
-				postDataCopy = $scope.transformImagesStructure(postDataCopy);
 				
 				// if($scope.post._id)
 				// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
@@ -348,13 +322,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 			});
-
-			/*$analytics.eventTrack(eventName, {
-				category: 'Posting',
-				label: 'NP',
-				value: 7
-			});*/
-
 		};
 
 		// when edited, we should change also original post
@@ -379,6 +346,20 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.closeThisDialog();
 		};
 
+		$scope.pauseToggle = function(post) {
+			var postCopy = angular.copy(post);
+
+			postCopy.state = (postCopy.state == 'active') ? 'suspended' : 'active';
+			$scope.save(postCopy);
+		};
+
+		$scope.refreshItemInfo = function($event, item) {
+			// if renewed item is this item, refresh him!
+			if(item._id === $scope.post._id) {
+				$scope.post = $scope.transformDataIn(item);
+			}
+		};
+
 		$scope.init = function() {
 			$scope.newPost = !$scope.post;
 			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
@@ -392,27 +373,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		};
 
-		$scope.pauseToggle = function(post) {
-			var postCopy = angular.copy(post);
-
-			// active -> suspended
-			if(postCopy.state == 'active')
-				postCopy.state = 'suspended';
-			else
-			// expired / suspended -> active
-				postCopy.state = 'active';
-
-			$scope.save(postCopy);
-		};
-
-		$scope.refreshItemInfo = function($event, item) {
-			// if renewed item is this item, refresh him!
-			if(item._id === $scope.post._id) {
-				$scope.post = $scope.transformDataIn(item);
-			}
-		};
 		$scope.init();
-		$rootScope.$on('updatedItem', $scope.refreshItemInfo);
-		$rootScope.$on("itemDeleted", $scope.itemDeleted);
+		$scope.$on('updatedItem', $scope.refreshItemInfo);
+		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}
 ]);

@@ -301,7 +301,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.deleteItem = function(post, cb) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
-
+            
             $rootScope.globalLoading = true;
             Post.remove({postId:post._id}, function(res) {
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
@@ -378,13 +378,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
-        $scope.test123 = function(param) {
-            alert(param);
-        }
-        $rootScope.testCallback = function(param1, param2) {
-            $scope.test123(param2);
-        };
-        
         /**
          * ConfirmBox reveal function has this params:
          * title: $translate code for box head title
@@ -446,7 +439,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 Action = (item.state == "expired") ? Post.prolong : Post.resume;
                 actionType = 'activate';
             }
-
+            
             $rootScope.globalLoading = true;
             // call service
             Action({

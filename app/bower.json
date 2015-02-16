@@ -15,7 +15,8 @@
     "foundation": "~5.2.3",
     "angular-translate": "~2.5.2",
     "angular-translate-loader-static-files": "~2.5.2",
-    "markerclustererplus": "~2.1.2"
+    "markerclustererplus": "~2.1.2",
+    "ng-file-upload": "~3.0.4"
   },
   "devDependencies": {},
   "resolutions": {

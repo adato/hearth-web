@@ -154,6 +154,7 @@
     <script src="vendor/angularitics/src/angulartics.js"></script>
     <script src="vendor/angularitics/dist/angulartics-ga.min.js"></script>
     <script src="vendor/fastclick/lib/fastclick.js"></script>
+    <script src="vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
     
     <script src="vendor/angular-translate/angular-translate.js"></script>
     <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
@@ -200,6 +201,41 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/routes.js"></script>
 
+     <script src="scripts/services/resources/Communities.js"></script>
+     <script src="scripts/services/resources/Community.js"></script>
+     <script src="scripts/services/resources/CommunityMembers.js"></script>
+     <script src="scripts/services/resources/Email.js"></script>
+     <script src="scripts/services/resources/CommunityApplicants.js"></script>
+     <script src="scripts/services/resources/Feedback.js"></script>
+     <script src="scripts/services/resources/FolloweeSearch.js"></script>
+     <script src="scripts/services/resources/FolloweePosts.js"></script>
+     <script src="scripts/services/resources/Followees.js"></script>
+     <script src="scripts/services/resources/Followers.js"></script>
+     <script src="scripts/services/resources/Friends.js"></script>
+     <script src="scripts/services/resources/Keywords.js"></script>
+     <script src="scripts/services/resources/Post.js"></script>
+     <script src="scripts/services/resources/Tutorial.js"></script>
+     <script src="scripts/services/resources/User.js"></script>
+     <script src="scripts/services/resources/UserPosts.js"></script>
+     <script src="scripts/services/resources/Info.js"></script>
+     <script src="scripts/services/resources/Session.js"></script>
+     <script src="scripts/services/resources/Invitation.js"></script>
+     <script src="scripts/services/resources/UserLocation.js"></script>
+     <script src="scripts/services/resources/UserRatings.js"></script>
+     <script src="scripts/services/resources/Fulltext.js"></script>
+     <script src="scripts/services/resources/CommunityRatings.js"></script>
+     <script src="scripts/services/resources/CommunityPosts.js"></script>
+     <script src="scripts/services/resources/CommunityMemberships.js"></script>
+     <script src="scripts/services/resources/CommunityDelegateAdmin.js"></script>
+     <script src="scripts/services/resources/CommunityLeave.js"></script>
+     <script src="scripts/services/resources/PostReplies.js"></script>
+     <script src="scripts/services/resources/Password.js"></script>
+     <script src="scripts/services/resources/ChangePassword.js"></script>
+     <script src="scripts/services/resources/UsersActivityLog.js"></script>
+     <script src="scripts/services/resources/CommunityActivityLog.js"></script>
+     <script src="scripts/services/resources/ItemDetailResource.js"></script>
+
+     
      <script src="scripts/services/Notify.js"></script>
      <script src="scripts/services/UsersService.js"></script>
      <script src="scripts/services/FulltextService.js"></script>
@@ -213,33 +249,7 @@
      <script src="scripts/services/Errors.js"></script>
      <script src="scripts/services/SessionLanguageStorage.js"></script>
      <script src="scripts/services/$session.js"></script>
-     <script src="scripts/services/FolloweeSearch.js"></script>
-     <script src="scripts/services/FolloweePosts.js"></script>
-     <script src="scripts/services/Followees.js"></script>
-     <script src="scripts/services/Friends.js"></script>
-     <script src="scripts/services/Followers.js"></script>
-     <script src="scripts/services/Info.js"></script>
-     <script src="scripts/services/Session.js"></script>
-     <script src="scripts/services/Invitation.js"></script>
-     <script src="scripts/services/Feedback.js"></script>
-     <script src="scripts/services/UserLocation.js"></script>
-     <script src="scripts/services/UserRatings.js"></script>
-     <script src="scripts/services/UserPosts.js"></script>
      <script src="scripts/services/UsersCommunitiesService.js"></script>
-     <script src="scripts/services/Keywords.js"></script>
-     <script src="scripts/services/Fulltext.js"></script>
-     <script src="scripts/services/Communities.js"></script>
-     <script src="scripts/services/CommunityRatings.js"></script>
-     <script src="scripts/services/CommunityPosts.js"></script>
-     <script src="scripts/services/CommunityMembers.js"></script>
-     <script src="scripts/services/CommunityApplicants.js"></script>
-     <script src="scripts/services/CommunityMemberships.js"></script>
-     <script src="scripts/services/Community.js"></script>
-     <script src="scripts/services/CommunityDelegateAdmin.js"></script>
-     <script src="scripts/services/CommunityLeave.js"></script>
-     <script src="scripts/services/User.js"></script>
-     <script src="scripts/services/PostReplies.js"></script>
-     <script src="scripts/services/Post.js"></script>
      <script src="scripts/services/HearthLoginInterceptor.js"></script>
      <script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
      <script src="scripts/services/Auth.js"></script>
@@ -250,13 +260,7 @@
      <script src="scripts/services/OpenGraph.js"></script>
      <script src="scripts/services/Facebook.js"></script>
      <script src="scripts/services/Filter.js"></script>
-     <script src="scripts/services/Password.js"></script>
-     <script src="scripts/services/ChangePassword.js"></script>
-     <script src="scripts/services/UsersActivityLog.js"></script>
-     <script src="scripts/services/CommunityActivityLog.js"></script>
      <script src="scripts/services/Karma.js"></script>
-     <script src="scripts/services/Tutorial.js"></script>
-     <script src="scripts/services/Email.js"></script>
      <script src="scripts/services/UnauthReload.js"></script>
      <script src="scripts/services/ViewPort.js"></script>
 
@@ -334,6 +338,7 @@
       <script src="scripts/controllers/FulltextCtrl.js"></script>
       <script src="scripts/controllers/Error404Ctrl.js"></script>
       <script src="scripts/controllers/FillEmailCtrl.js"></script>
+      <script src="scripts/controllers/ItemDetail.js"></script>
 
       <script src="scripts/controllers/modal/ItemEdit.js"></script>
       <script src="scripts/controllers/modal/ItemReply.js"></script>
@@ -342,9 +347,6 @@
       <script src="scripts/controllers/modal/ConfirmBox.js"></script>
 
       <script src="scripts/messages/Messages.js"></script>      
-
-      <script src="scripts/controllers/ItemDetail.js"></script>
-      <script src="scripts/services/ItemDetailResource.js"></script>
     <!-- endbuild -->
 
     <script>

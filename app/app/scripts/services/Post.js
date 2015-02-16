@@ -44,10 +44,12 @@ angular.module('hearth.services').factory('Post', [
 				isArray: true
 			},
 			add: {
-				method: 'POST'
+				method: 'POST',
+				headers: {'Content-Type': 'multipart/form-data'}
 			},
 			update: {
-				method: 'PUT'
+				method: 'PUT',
+				headers: {'Content-Type': 'multipart/form-data'}
 			},
 			remove: {
 				method: 'DELETE'
