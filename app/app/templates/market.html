@@ -1,13 +1,7 @@
 <div id="notify-container-market"></div>
 <div class="market" ng-if="initFinished">
 
-	<section class="row">
-		<div class="columns">
-			<div class="large-10 push-2 market-notify box text-center">
-				<p class="margin-0 padding-top" ng-bind-html="'MARKETPLACE.HEAD_MESSAGE' | translate"></p>
-			</div>
-		</div>
-	</section>
+	<marketplace-banner><!--see the directive--></marketplace-banner>
 
 	<filter-status></filter-status>
 	<filterbar filter=filter></filterbar>

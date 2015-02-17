@@ -106,6 +106,7 @@ $fontSize: rem-calc(18);
 @import "404";
 @import "notify";
 @import "dropdown";
+@import "marketplaceBanner";
 
 body {
     background-image: inline-image("bg.jpg");
@@ -216,15 +217,4 @@ img.blur {
 .web-width {
     margin: 0 auto;
     width: 940px;
-}
-
-.market-notify {
-    color: lighten(color(1), 25%);
-    border: 2px solid color(1);
-
-    position: relative;
-    top: -1em;
-    p {
-        margin: 0px;
-    }
 }
