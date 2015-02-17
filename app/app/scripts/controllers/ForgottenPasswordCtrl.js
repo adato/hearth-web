@@ -43,7 +43,6 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 
         $scope.validateEmail = function(form, cb) {
             $scope.showError.email = true;
-            console.log($scope.resetPasswordForm.email);
             // if form is not valid, return false
             if (!$scope.resetPasswordForm.email.$$success.email) {
                 cb && cb(false);
