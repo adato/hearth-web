@@ -31,6 +31,11 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
         $scope.validateData = function(user) {
             var invalid = false;
 
+            // invalidate when requests pending
+            if ($scope.registerForm.$pending && $scope.registerForm.$pending.used) {
+                invalid = $scope.showError.email = true;
+            }
+
             if ($scope.registerForm.name.$invalid) {
                 invalid = $scope.showError.name = true;
             }

@@ -156,17 +156,16 @@ img.blur {
     display: none;
 }
 
-.text-in-password {
+.text-in-input {
     position: relative;
-    .fa-eye {
+    .fa {
         position: absolute;
         top: 0.783rem;
         right: 0.5rem;
         cursor: pointer;
 
-        padding-left: 16px;
+        padding-left: 10px;
         padding-right: 10px;
-        position: absolute;
 
         &:hover {
             opacity: 0.7;

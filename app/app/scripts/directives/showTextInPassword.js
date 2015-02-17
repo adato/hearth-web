@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('showTextInPassword', [
 			replace:true,
 			scope: true,
 			// template: '<div class="text-in-password"><span class="fa fa-eye" ng-click="toggleShow()"></span><div ng-transclude></div></div>',
-			template: '<div class="text-in-password"><span ng-transclude></span><span class="fa fa-eye" ng-click="toggleShow()"></span></div>',
+			template: '<div class="text-in-input"><span ng-transclude></span><span class="fa fa-eye" ng-click="toggleShow()"></span></div>',
 			link: function($scope, el, attrs) {
 				var el = $('input', el);
 				$scope.toggleShow = function() {
