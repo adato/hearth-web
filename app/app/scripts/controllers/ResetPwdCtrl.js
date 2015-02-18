@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * @ngdoc controller
  * @name hearth.controllers.ResetPwdCtrl
@@ -22,7 +21,8 @@
 		$scope.showError = {
 			topError: false,
 			password: false,
-			password2: false,	
+			password2: false,
+			passwordMatch: false
 		};
 		
 		$scope.validateData = function(data) {
@@ -34,11 +34,9 @@
 
             if ($scope.resetPasswordForm.password2.$invalid) {
                 invalid = $scope.showError.password2 = true;
-            }
-
-            if (!invalid && data.password !== data.password2) {
+            } else if (data.password !== data.password2) {
             	$scope.showError.password2 = true;
-                invalid = $scope.resetPasswordForm.password2.$error.passwordDoesNotMatch = true;
+                invalid = $scope.showError.passwordMatch = true;
             }
             
             return !invalid;
@@ -61,7 +59,6 @@
 			function onError() {
                 Notify.addSingleTranslate('NOTIFY.NEW_PASS_FAILED', Notify.T_ERROR, '.reset-pass-notify-container');
 			}
-
 			return Auth.resetPassword($scope.token, data.password, onSuccess, onError);
 		};
 
@@ -89,7 +86,6 @@
 		// check token code if is valid
 		$scope.init = function() {
 			$scope.token = $location.search().hash;
-
 			$scope.validateToken($scope.token);
 		};
 

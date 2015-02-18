@@ -61,9 +61,8 @@ angular.module('hearth', [
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
            
             // Add language header
-            $httpProvider.defaults.headers.common['Accept-Language'] = $translateProvider.preferredLanguage();
-            console.log($translateProvider.preferredLanguage());
-
+            $httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
+            
             // // ======== Watch for unauth responses
             $httpProvider.interceptors.push('HearthLoginInterceptor');
             $httpProvider.interceptors.push('ApiMaintenanceInterceptor');
