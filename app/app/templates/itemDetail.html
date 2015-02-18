@@ -29,7 +29,7 @@
 							</div>
 						</a>
 
-						<div class="box">
+						<div class="box" ng-if="loggedUser._id">
 							<div class="line">
 								<div class="descr" ng-if="ad.author.about"><i class="fa fa-quote-right"></i> {{ad.author.about|ellipsis}}</div>
 								<div class="descr" ng-if="ad.author.work"><i class="fa fa-briefcase"></i> {{ad.author.work|ellipsis}}</div>
