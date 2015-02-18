@@ -146,13 +146,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             location.reload();
         };
 
-        $scope.$on('$includeContentLoaded', function() {
-            // ================ FIX ME ===============
-            // timeout && clearTimeout(timeout);
-            // timeout = setTimeout(function() {
-            //     $(document).foundation();
-            // }, 1000);
-        });
+        $rootScope.isMine = function (author) {
+            if($scope.loggedCommunity)
+                return $scope.loggedCommunity._id === author._id;
+            return $scope.loggedUser && author._id === $scope.loggedUser._id;
+        };
 
         angular.element(window).bind('scroll', function() {
             if ($(window).scrollTop() > 0 !== $scope.isScrolled) {
@@ -203,7 +201,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.initHearthbeat = function() {
             $rootScope.pluralCat = $locale.pluralCat;
-            // console.log("Setting plural cat: ", $locale.pluralCat);
             
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
             $rootScope.appUrl = window.location.href.replace(window.location.hash, '');

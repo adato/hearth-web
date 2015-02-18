@@ -37,7 +37,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					OpenGraph.set(title, data.name || "");
 
 					$scope.profile = data.author;
-					$scope.isMine = $scope.loggedUser && data.author._id === $scope.loggedUser._id;
+					$scope.isMine = $rootScope.isMine(data.author);
 					$scope.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
 					$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
