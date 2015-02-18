@@ -195,7 +195,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $scope.$on('communityTopPanelLoaded', init);
 
         $scope.$on('$destroy', function() {
-            console.log("DESTROY");
             $rootScope.communityLoaded = false;
         });   
     }

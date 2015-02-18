@@ -303,13 +303,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             Post.remove({postId:post._id}, function(res) {
                 $rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
-                Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_INFO);
+                Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_SUCCESS);
                 $rootScope.globalLoading = false;
 
                 cb && cb(post); // if callback given, call it
             }, function() {
                 $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_INFO);
+                Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_ERROR);
             });
         };
         

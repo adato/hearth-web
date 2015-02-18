@@ -43,11 +43,7 @@
           </span>
         </h2>
         <section class="location">
-          <locations locations="community.locations" is-required="true" show-error="showError.locations"></locations>
-      
-          <div class="error margin-top" ng-show="showError.locations">
-            <span>{{ 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
-          </div>
+          <locations locations="community.locations" is-required="true" error-code="ERR_COMMUNITY_LOCATION_NOT_FILLED" show-error="showError.locations"></locations>
         </section>
 
         <h2>
