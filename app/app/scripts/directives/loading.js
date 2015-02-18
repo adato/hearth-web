@@ -21,7 +21,8 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 			$scope.show = $scope.show || false;
 			$scope.showTimeout = 0;
 			$scope.showSchedule = false;
-			$scope.defaultMessage = 'COMMON.LOADING';
+			$scope.defaultMessage = 'Loading';
+			$scope.translateMessage = 'COMMON.LOADING';
 
 			// hide message on start
 			$(el).css('display', 'none ');
@@ -42,9 +43,7 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 				if(val) {
 					$scope.msg = val;
 				} else {
-				    $scope.msg = $translate.instant($scope.defaultMessage, function(val) {
-			    	 	$scope.msg = val;
-				    });
+				    $scope.msg = $translate.instant($scope.translateMessage);
 				}
 			});
 
