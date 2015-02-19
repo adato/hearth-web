@@ -116,9 +116,6 @@
                 <a class="fright deleteLink" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
-                <a ng-if="isPostActive(post) && ! newPost" class="fright pauseLink" ng-if="post._id" ng-click="pauseToggle(post, false, setPostActiveStateCallback)">
-                    <span><i class="fa fa-pause"></i>{{ 'DEACTIVATE' | translate }}</span>
-                </a>
             </div>
         </div>
     </form>
