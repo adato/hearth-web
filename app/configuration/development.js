@@ -8,5 +8,5 @@ $$localConfig = {
 		"en": "en_US",
 		"clean": false
 	},
-	apiPath: '/api'
+	apiPath: 'https://api.dev.hearth.net'
 };
