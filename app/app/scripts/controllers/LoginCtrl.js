@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
-	'$scope', '$location', '$routeParams', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch',
-	function($scope, $location, $routeParams, Auth, $rootScope, UnauthReload, LanguageSwitch) {
+	'$scope', '$location', '$routeParams', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth',
+	function($scope, $location, $routeParams, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth) {
 		$scope.data = {
 			username: '',
 			password: ''
@@ -18,6 +18,12 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.showError = {
 			badCredentials: false
 		};
+
+
+	    $scope.oauth = function(provider) {
+	      $auth.authenticate(provider);
+	    };
+
 
 		function showErrorCredentials() {
 			
@@ -37,6 +43,9 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				// when user logged, use his language configured on API
 				if(res.data.language)
 					LanguageSwitch.setCookie(res.data.language);
+
+				if(res.data.authToken)
+					Auth.setToken(res.data.authToken);
 
 				window.location = window.location.pathname;
 			} else {

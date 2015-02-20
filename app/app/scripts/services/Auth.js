@@ -9,6 +9,8 @@
 angular.module('hearth.services').factory('Auth', [
 	'$session', '$http', '$rootScope', '$q',
 	function($session, $http, $rootScope, $q) {
+		var TOKEN_NAME = "authToken";
+
 		return {
 			init: function(callback) {
 				$rootScope.user = {
@@ -38,9 +40,11 @@ angular.module('hearth.services').factory('Auth', [
 					}
 					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
 				}, function() {
-
 					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
 				});
+			},
+			setToken: function (token) {
+				$.cookie(TOKEN_NAME, token);
 			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;

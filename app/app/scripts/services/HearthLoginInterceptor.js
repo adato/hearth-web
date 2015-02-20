@@ -18,7 +18,7 @@ angular.module('hearth.services').factory('HearthLoginInterceptor', [
                 return response;
             },
             responseError: function(rejection) {
-                if (!rejection.config.nointercept) {
+                if (rejection.config && !rejection.config.nointercept) {
                     
                     if (rejection.status === 401) {
                         $rootScope.referrerUrl = $location.path();

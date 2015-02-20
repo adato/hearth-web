@@ -9,11 +9,13 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
     function($q, $location, $timeout, $rootScope, ApiHealthChecker) {
 
         return {
+            request: function(config) {
+                return config;
+            },
             responseError: function(rejection) {
                 // if (!rejection.config.nointercept) {}
-                if (rejection.status === 503) {
-                    if(!!~rejection.data.indexOf('Application Error'))
-                        ApiHealthChecker.turnOn();
+                if (rejection.status === 503 || rejection.status === 0) {
+                    ApiHealthChecker.turnOn();
                 }
                 return $q.reject(rejection);
             }

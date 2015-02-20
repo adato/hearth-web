@@ -4,7 +4,7 @@ angular.module('hearth', [
     'ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-flexslider', 'route-segment', 'angularFileUpload',
     'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
     'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
-    'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages'])
+    'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {
 
@@ -48,8 +48,21 @@ angular.module('hearth', [
             });
         }
     ]).config([
-        '$httpProvider', '$translateProvider',
-        function($httpProvider, $translateProvider) {
+        '$httpProvider', '$translateProvider', '$authProvider',
+        function($httpProvider, $translateProvider, $authProvider) {
+
+            $authProvider.tokenPrefix = 'Hearth.net';
+            $authProvider.facebook({
+              clientId: '1495788017321716'
+            });
+
+            $authProvider.twitter({
+              url: '/auth/twitter'
+            });
+
+            $authProvider.google({
+              clientId: '1090116646962-720t5edifghd7fqua7pn6hc5cpgbdiis.apps.googleusercontent.com'
+            });
 
             // ===============================
             // === Configure ajax calls
@@ -62,7 +75,8 @@ angular.module('hearth', [
            
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-            
+            $httpProvider.defaults.headers.common['Authorization'] = $.cookie("authToken");
+
             // // ======== Watch for unauth responses
             $httpProvider.interceptors.push('HearthLoginInterceptor');
             $httpProvider.interceptors.push('ApiMaintenanceInterceptor');
