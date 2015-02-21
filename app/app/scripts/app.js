@@ -76,7 +76,7 @@ angular.module('hearth', [
            
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-            $httpProvider.defaults.headers.common['HTTP_X_API_KEY'] = $.cookie("authToken");
+            $httpProvider.defaults.headers.common['X_API_KEY'] = $.cookie("authToken");
 
             // // ======== Watch for unauth responses
             $httpProvider.interceptors.push('HearthLoginInterceptor');
