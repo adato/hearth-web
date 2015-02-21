@@ -51,6 +51,8 @@ angular.module('hearth', [
         '$httpProvider', '$translateProvider', '$authProvider',
         function($httpProvider, $translateProvider, $authProvider) {
 
+            $authProvider.loginRedirect = false;
+            $authProvider.httpInterceptor = false;
             $authProvider.tokenName = 'api_token';
             $authProvider.facebook({
                 clientId: $$config.oauth.facebook,
