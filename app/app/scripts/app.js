@@ -51,9 +51,9 @@ angular.module('hearth', [
         '$httpProvider', '$translateProvider', '$authProvider',
         function($httpProvider, $translateProvider, $authProvider) {
 
-            $authProvider.tokenPrefix = 'Hearth.net';
             $authProvider.facebook({
-              clientId: '1495788017321716'
+                clientId: $$config.oauth.facebook,
+                url: $$config.apiPath+'/auth/facebook',
             });
 
             $authProvider.twitter({
@@ -61,7 +61,8 @@ angular.module('hearth', [
             });
 
             $authProvider.google({
-              clientId: '1090116646962-720t5edifghd7fqua7pn6hc5cpgbdiis.apps.googleusercontent.com'
+                clientId: $$config.oauth.google,
+                url: $$config.apiPath+'/auth/google',
             });
 
             // ===============================
@@ -75,7 +76,7 @@ angular.module('hearth', [
            
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-            $httpProvider.defaults.headers.common['Authorization'] = $.cookie("authToken");
+            $httpProvider.defaults.headers.common['HTTP_X_API_KEY'] = $.cookie("authToken");
 
             // // ======== Watch for unauth responses
             $httpProvider.interceptors.push('HearthLoginInterceptor');
