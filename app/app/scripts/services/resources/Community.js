@@ -26,6 +26,10 @@ angular.module('hearth.services').factory('Community', [
 					r: Math.random()
 				}
 			},
+			getPosts: {
+				url: $$config.apiPath + '/communities/:communityId/posts',
+				method: 'GET'
+			},
 			edit: {
 				method: 'PUT'
 			},

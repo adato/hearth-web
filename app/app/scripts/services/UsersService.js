@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('UsersService', [
-	'User', 'UserPosts', 'UserRatings', '$q', 'Followers', 'Friends', 'Followees', '$analytics', 'CommunityMemberships', 'Notify',
-	function(User, UserPosts, UserRatings, $q, UserFollowers, UserFriends, UserFollowees, $analytics, CommunityMemberships, Notify) {
+	'User', 'UserRatings', '$q', 'Followers', 'Friends', 'Followees', '$analytics', 'CommunityMemberships', 'Notify',
+	function(User, UserRatings, $q, UserFollowers, UserFriends, UserFollowees, $analytics, CommunityMemberships, Notify) {
 
 		this.clone = function(profile) {
 			return new User(angular.extend({}, profile));
@@ -42,17 +42,6 @@ angular.module('hearth.services').service('UsersService', [
 			var deferred = $q.defer();
 
 			profile.$remove(function(data) {
-				return deferred.resolve(data);
-			}, function(err) {
-				return deferred.reject(err);
-			});
-			return deferred.promise;
-		};
-
-		this.queryPosts = function(searchParams) {
-			var deferred = $q.defer();
-
-			UserPosts.get(searchParams, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
 				return deferred.reject(err);

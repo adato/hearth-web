@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		};
 
 		var fillEmailUrl = $$config.appUrl +'#!/fill-email/%{token}';
-		var twitterSuccessUrl  = $$config.appUrl +'#!/twitter-success/%{token}';
+		var twitterSuccessUrl  = $$config.appUrl +'#!/token-login/%{token}';
 		$scope.twitterAuthUrl = $$config.apiPath + '/users/auth/twitter?success_url='+encodeURIComponent(twitterSuccessUrl)+'&email_url='+encodeURIComponent(fillEmailUrl);
 
 	    $scope.oauth = function(provider) {
