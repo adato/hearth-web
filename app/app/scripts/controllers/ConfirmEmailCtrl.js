@@ -32,6 +32,12 @@ angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 				label: 'registration email confirmed'
 			});
 			Notify.addSingleTranslate('NOTIFY.ACCOUNT_ACTIVATE_SUCCESS', Notify.T_SUCCESS);
+
+			if(res.api_token) {
+				Auth.setToken(res.api_token);
+				window.location = window.location.pathname;
+				return true;
+			}
 			return $location.path('login');
 		}
 		
