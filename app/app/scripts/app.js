@@ -75,7 +75,7 @@ angular.module('hearth', [
            
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-            $httpProvider.defaults.headers.common['X-API-KEY'] = $.cookie("authToken");
+            $httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 
             // // ======== Watch for unauth responses
             $httpProvider.interceptors.push('HearthLoginInterceptor');
@@ -89,7 +89,7 @@ angular.module('hearth', [
         function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
             $rootScope.config = $$config;
-            
+
             /**
              * This will cache some files at start
              */
