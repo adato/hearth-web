@@ -1,6 +1,7 @@
 var $$config;
 
 $$config = {
+	appUrl: window.location.origin+window.location.pathname,
 	apiPath: '/api',
 	fbAppId: '1495788017321716', // dev
 	modalTemplates: 'templates/modal/',

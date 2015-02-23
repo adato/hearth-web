@@ -19,18 +19,11 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			badCredentials: false
 		};
 
-		function loginTwitterOauth() {
-			$.post("https://api.twitter.com/oauth2/token", {'grant_type':'client_credentials'},function (res) {
-				
-				console.log(res);
-			});
-		}
-		
+		var fillEmailUrl = $$config.appUrl +'#!/fill-email/%{token}';
+		var twitterSuccessUrl  = $$config.appUrl +'#!/twitter-success/%{token}';
+		$scope.twitterAuthUrl = $$config.apiPath + '/users/auth/twitter?success_url='+encodeURIComponent(twitterSuccessUrl)+'&email_url='+encodeURIComponent(fillEmailUrl);
+
 	    $scope.oauth = function(provider) {
-
-	    	if(provider == "twitterCustom")
-	    		return loginTwitterOauth();
-
       		$auth.authenticate(provider).then(function(response) {
          		if(response.status == 200)
 	         		processLoginResult(response);
