@@ -59,10 +59,6 @@ angular.module('hearth', [
                 url: $$config.apiPath+'/auth/facebook',
             });
 
-            $authProvider.twitter({
-              url: '/auth/twitter'
-            });
-
             $authProvider.google({
                 clientId: $$config.oauth.google,
                 url: $$config.apiPath+'/auth/google',
@@ -79,7 +75,7 @@ angular.module('hearth', [
            
             // Add language header
             $httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-            $httpProvider.defaults.headers.common['X_API_KEY'] = $.cookie("authToken");
+            $httpProvider.defaults.headers.common['X-API-KEY'] = $.cookie("authToken");
 
             // // ======== Watch for unauth responses
             $httpProvider.interceptors.push('HearthLoginInterceptor');
@@ -92,7 +88,8 @@ angular.module('hearth', [
         '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
         function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
-
+            $rootScope.config = $$config;
+            
             /**
              * This will cache some files at start
              */

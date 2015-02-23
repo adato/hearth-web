@@ -19,8 +19,18 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			badCredentials: false
 		};
 
-
+		function loginTwitterOauth() {
+			$.post("https://api.twitter.com/oauth2/token", {'grant_type':'client_credentials'},function (res) {
+				
+				console.log(res);
+			});
+		}
+		
 	    $scope.oauth = function(provider) {
+
+	    	if(provider == "twitterCustom")
+	    		return loginTwitterOauth();
+
       		$auth.authenticate(provider).then(function(response) {
          		if(response.status == 200)
 	         		processLoginResult(response);
