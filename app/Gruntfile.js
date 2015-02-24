@@ -611,7 +611,7 @@ module.exports = function(grunt) {
 					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
 					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
 				}
-			},       
+			},	   
 		},
 		concat: {
 			options: {
@@ -693,6 +693,12 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		jsbeautifier: {
+			locales: {
+				src: ["app/locales/*/messages.json"],
+				options: {}
+			}
+		},
 	});
 
 	grunt.registerTask('serve', function(target) {
@@ -719,6 +725,15 @@ module.exports = function(grunt) {
 			'configureRewriteRules',
 			'connect:livereload',
 			'watch'
+		]);
+	});
+
+	grunt.registerTask('locales', function(target) {
+
+		// if we run only local build for development
+		grunt.task.run([
+			'fetch_locales',
+			'jsbeautifier:locales'
 		]);
 	});
 

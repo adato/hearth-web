@@ -44,7 +44,7 @@
     "AD_REPORT_CONFIRM": "Report post",
     "AD_RESUME_LABEL": "Resume",
     "AGREE_WITH_TERMS_BUTTON_LABEL": "I agree with terms of use",
-    "AGREE_WITH_TERMS_POPUP": "I agree with <a href=\"\">terms of use</a>",
+    "AGREE_WITH_TERMS_POPUP": "I agree with <a href=\"\">terms of use<\/a>",
     "ALL_POSTS": "All posts",
     "ALREADY_HAVE_AN_ACCOUNT": "Already have an account?",
     "ALREADY_USED_EMAIL": "Email je již použitý v aplikaci",
@@ -90,8 +90,8 @@
             "other": "{{count}} people waiting for approval"
         },
         "COMMUNITY_HAS_X_MEMBERS": {
-            "one": "Community has <b>{{count}}</b><br /> member",
-            "other": "Community has <b>{{count}}</b><br /> members"
+            "one": "Community has <b>{{count}}<\/b><br \/> member",
+            "other": "Community has <b>{{count}}<\/b><br \/> members"
         },
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?",
         "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
@@ -110,12 +110,12 @@
         "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
         "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatím nejste součástí žádné komunity. Buď si můžete nějakou založit nebo se mrkněte do doporučených komunit, třeba vás tam nějaká zaujme.",
         "X_GIVES_AND_WISHES": {
-            "one": "<b>{{count}}</b><br /> post",
-            "other": "<b>{{count}}</b><br /> posts"
+            "one": "<b>{{count}}<\/b><br \/> post",
+            "other": "<b>{{count}}<\/b><br \/> posts"
         },
         "X_MEMBERS": {
-            "one": "<b>{{count}}</b><br /> member",
-            "other": "<p><strong>{{count}}</strong><br /> members</p>"
+            "one": "<b>{{count}}<\/b><br \/> member",
+            "other": "<p><strong>{{count}}<\/strong><br \/> members<\/p>"
         }
     },
     "COMMUNITY_ABOUT": "More about community",
@@ -311,10 +311,10 @@
     "FULLTEXT_FILTER_SEARCH_RESULTS": "Filtrovat výsledky",
     "FULLTEXT_MARKET": "Marketplace",
     "FULLTEXT_NOTHING_FOUND": "Ajtakrajta, nic jsme nenašli.",
-    "FULLTEXT_NOTHING_FOUND_RELATED_TO": "Ajtakrajta, nic co by odpovídalo <b>{{value}}</b> jsme nenašli.<br />Buď se tenhle výraz někde schovává, nebo ještě neexistuje.",
+    "FULLTEXT_NOTHING_FOUND_RELATED_TO": "Ajtakrajta, nic co by odpovídalo <b>{{value}}<\/b> jsme nenašli.<br \/>Buď se tenhle výraz někde schovává, nebo ještě neexistuje.",
     "FULLTEXT_SEARCH_IN": "between",
     "FULLTEXT_USERS": "Users",
-    "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}</b>",
+    "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>",
     "GIVES_AND_WISHES": {
         "one": "post",
         "other": "posts"
@@ -350,7 +350,7 @@
     "INVITE_EMAIL": "Emailem",
     "INVITE_EMAIL_WAS_SENT": "Pozvánka byla odeslána, děkujeme.",
     "INVITE_FACEBOOK": "Facebook",
-    "INVITE_FRIENDS_TO_HEARTH": "<p>Invite friend<br />to Hearth</p>",
+    "INVITE_FRIENDS_TO_HEARTH": "<p>Invite friend<br \/>to Hearth<\/p>",
     "INVITE_GOOGLE": "Google",
     "INVITE_LINKEDIN": "Linkedin",
     "INVITE_LINK_CAPTION": "Invite your friends",
@@ -389,16 +389,16 @@
     "LOGIN_TO_HEARTH": "Log in",
     "LOGOUT": "Sign out",
     "LOG_IN": "Log in",
-    "LOG_IN_BEFORE_REPORT": "Pro nahl&aacute;&scaron;en&iacute; inzer&aacute;tu se nejprve <a href='#!/login'>přihlaste</a> pros&iacute;m.",
+    "LOG_IN_BEFORE_REPORT": "Pro nahl&aacute;&scaron;en&iacute; inzer&aacute;tu se nejprve <a href='#!\/login'>přihlaste<\/a> pros&iacute;m.",
     "LOG_IN_TO_CREATE_COMMUNITY": "You must be logged in to create community",
-    "LOG_IN_TO_POST_NEW_WISHES": "Please, <a href=\"#/login\">log in</a> to post new wishes.",
-    "LOG_IN_TO_POST_RATING": "Please, <a href=\"#/login\">log in</a> to post feedback",
-    "LOG_IN_TO_REPLY": "Please, <a href=\"#/login\">log in</a> to reply.",
+    "LOG_IN_TO_POST_NEW_WISHES": "Please, <a href=\"#\/login\">log in<\/a> to post new wishes.",
+    "LOG_IN_TO_POST_RATING": "Please, <a href=\"#\/login\">log in<\/a> to post feedback",
+    "LOG_IN_TO_REPLY": "Please, <a href=\"#\/login\">log in<\/a> to reply.",
     "MAP": "Map",
     "MARKETPLACE": {
         "EDIT_FILTER": "Edit filter",
-        "FILTER_NOT_FOUND": "Gosh! Specified filter conditions don't match any posts.<br />What about remove some conditions?",
-        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http://www.svetylkaradosti.cz/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.</a></p>",
+        "FILTER_NOT_FOUND": "Gosh! Specified filter conditions don't match any posts.<br \/>What about remove some conditions?",
+        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
         "NOTHING_FOUND": "Gosh! Maybe anything went wrong, because there are no posts",
         "RESET_FILTER": "Reset filter",
         "SHOW_POSTS_IN_LIST": "Show posts in list",
@@ -467,7 +467,7 @@
     "MY_TELL_ABOUT_EXAMPLE": "Few words about yourself, your values and believes...",
     "MY_TWITTER": "Twitter",
     "MY_WEB": "Web",
-    "MY_WORK": "My work/What I do",
+    "MY_WORK": "My work\/What I do",
     "MY_WORK_EXAMPLE": "e.g. teacher, civic society development.",
     "NAME": "Firstname and surname",
     "NAME_PLACEHOLDER": "Name and surname",
@@ -543,7 +543,7 @@
     "NO_SIGNAL_ON_THIS_PAGE": "Jak jste se sem vůbec dostali? Pokud myslíte, že je to chybka, tak nám to prosím dejte vědět.",
     "NO_WISHES_FOUND": "no wishes so far.",
     "OFFER": "I can give",
-    "OFFER_GIFT": "<p><strong>Offer</strong> it</p>",
+    "OFFER_GIFT": "<p><strong>Offer<\/strong> it<\/p>",
     "OF_FRIENDS": "přátel",
     "OF_X_COMMUNITIES": {
         "one": "one community",
@@ -666,8 +666,8 @@
         "YOUR_PROFILE_IS_EMPTY": "Váš profil je smutný a prázný - řekněte něco více o tom, co vás zajímá a baví."
     },
     "PROFILE_EDIT": {
-        "HEADER": "Edit profile",
-        "PROFILE_EDIT": "Edit profile"
+        "PROFILE_EDIT": "Edit profile",
+        "HEADER": "Edit profile"
     },
     "PROFILE_PROGRESS": "Your profile is {{progress}}% complete.",
     "PROFILE_UPDATE_FAILED": "Unfortunately, the changes in your profile couldn't be saved at this time. Before you jump out of window, please try again.",
@@ -690,8 +690,8 @@
     "REPORT_HARMFUL_AD": "Report abuse post",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Při změně hesla došlo k chybě... Co teď?",
-    "RESET_PASSWORD_BROKEN_LINK": "Jejda, něco se pokazilo, tento odkaz není platný.<br />Nechte si vygenerovat nový na <a href='#!/forgotten-password'>této adrese.</a>",
-    "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bylo úspěšně změněno.<br />Nyní se můžete <a href='#!/login'>přihlásit</a>.",
+    "RESET_PASSWORD_BROKEN_LINK": "Jejda, něco se pokazilo, tento odkaz není platný.<br \/>Nechte si vygenerovat nový na <a href='#!\/forgotten-password'>této adrese.<\/a>",
+    "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bylo úspěšně změněno.<br \/>Nyní se můžete <a href='#!\/login'>přihlásit<\/a>.",
     "RESET_PASSWORD_TEXT": "Zde si můžete nastavit nové přihlašovací heslo.",
     "RETURN_THE_FILTER_TO_ORIGINAL_SETTINGS": "Reset filter",
     "RUN_FILTER": "Filter",
@@ -709,7 +709,7 @@
     "SEND_INVITE_SUCCESS": "Pozvánka přátelům byla odeslána.",
     "SEND_REPLY_SUCCESS": "Odpověď na inzerát byla odeslána.",
     "SEND_USER_RATING": "Odeslat hodnocení",
-    "SERVER_MAITENANCE_MESSAGE": "Právě přidáváme hromadu nových funkcí.<br />Za chviličku to bude hotové...",
+    "SERVER_MAITENANCE_MESSAGE": "Právě přidáváme hromadu nových funkcí.<br \/>Za chviličku to bude hotové...",
     "SETTINGS": "Settings",
     "SHARING_SOCIAL_DISABLED": "Sdílení na jiné sociální sítě je zakázáno",
     "SHARING_SOCIAL_ENABLED": "Ostatní mohou sdílet inzerát na jiné sociální sítě",
@@ -726,7 +726,7 @@
     "SIGNUP_HEADING_TEXT": "Please fill in few information for registration.",
     "SIGNUP_PASSWORD_DOES_NOT_MATCH": "Zadaná hesla nesouhlasí.",
     "SIGNUP_PROCESS_ERROR": "Něco se pokazilo. Registraci nebylo možno dokončit.",
-    "SIGNUP_WAS_SUCCESSFUL": "Děkujeme za registraci, už jste skoro u nás!<br /><br />Na e-mail jsme vám odeslali zprávu s odkazem, kterým svůj účet aktivujete. To je kvůli potvrzení vašeho e-mailu, aby se tu za vás někdo nemohl vydávat.<br /><br />Chvíli počkejte, než e-mail dorazí. Mezitím se můžete mrknout na tržiště, jaké inzeráty na vás u nás čekají.",
+    "SIGNUP_WAS_SUCCESSFUL": "Děkujeme za registraci, už jste skoro u nás!<br \/><br \/>Na e-mail jsme vám odeslali zprávu s odkazem, kterým svůj účet aktivujete. To je kvůli potvrzení vašeho e-mailu, aby se tu za vás někdo nemohl vydávat.<br \/><br \/>Chvíli počkejte, než e-mail dorazí. Mezitím se můžete mrknout na tržiště, jaké inzeráty na vás u nás čekají.",
     "SIGN_UP_WITH_FACEBOOK": "Log in with Facebook",
     "SIGN_UP_WITH_GOOGLE": "Log in with Google",
     "SIGN_UP_WITH_TWITTER": "přihlásit přes Twitter",
@@ -804,7 +804,7 @@
     "WHERE": "Places where I live",
     "WHO": "Who I am",
     "WHOLE_PROFILE": "Show profile",
-    "WISH_GIFT": "<p><strong>Ask for</strong> it</p>",
+    "WISH_GIFT": "<p><strong>Ask for<\/strong> it<\/p>",
     "WITHOUT_LIMIT": "Unlimited",
     "WITH_TERMS_OF_USE": "terms of use",
     "WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS": "Napište svým přátelům nějakou zprávu do pozvánky.",
@@ -822,20 +822,20 @@
         "other": "members"
     },
     "X_PEOPLE_INSPIRED_BY_HIM": {
-        "one": "<b>{{count}}</b><br /> follower",
-        "other": "<b>{{count}}</b><br /> followers"
+        "one": "<b>{{count}}<\/b><br \/> follower",
+        "other": "<b>{{count}}<\/b><br \/> followers"
     },
     "X_PEOPLE_INSPIRED_BY_ME": {
-        "one": "<b>{{count}}</b><br /> follower",
-        "other": "<b>{{count}}</b><br /> followers"
+        "one": "<b>{{count}}<\/b><br \/> follower",
+        "other": "<b>{{count}}<\/b><br \/> followers"
     },
     "X_PEOPLE_INSPIRING_HIM": {
-        "one": "{{count}}<br /> followee",
-        "other": "{{count}}<br /> followees"
+        "one": "{{count}}<br \/> followee",
+        "other": "{{count}}<br \/> followees"
     },
     "X_PEOPLE_INSPIRING_ME": {
-        "one": "{{count}}<br /> followee",
-        "other": "{{count}}<br /> followees"
+        "one": "{{count}}<br \/> followee",
+        "other": "{{count}}<br \/> followees"
     },
     "YEARS_AGO": "%d years ago",
     "YEAR_AGO": "one year",
@@ -848,7 +848,7 @@
     "YOU_ARE_ACCEPTING_TERMS": "By registration you are accepting with",
     "YOU_ARE_MEMBER": "You are member of",
     "YOU_ARE_MEMBER_OF_X_COMMUNITIES": "You are member of",
-    "YOU_CAN_CONTACT_USER": "<p>Do you want to contact this user? Send him an e-mail to <a href=\"mailto:{{email}}\">{{email}}</a>.</p>",
+    "YOU_CAN_CONTACT_USER": "<p>Do you want to contact this user? Send him an e-mail to <a href=\"mailto:{{email}}\">{{email}}<\/a>.<\/p>",
     "YOU_HAVE": "You have",
     "YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST": "You have already replied this post.",
     "YOU_HAVE_NOT_BEEN_RATED": "You have not been rated by others yet",
@@ -862,7 +862,7 @@
     "and-on-social-networks": "A na sociálních sítích",
     "author": "Autor",
     "community": "komunity",
-    "count-of-wished-and-gifts": "<p>Currently<strong> {{value}}</strong> active posts</p>",
+    "count-of-wished-and-gifts": "<p>Currently<strong> {{value}}<\/strong> active posts<\/p>",
     "in-area": "v okruhu",
     "market": "Marketplace",
     "og_default_description": "Prostor, kde dávat znamená dostat mnohem víc",
