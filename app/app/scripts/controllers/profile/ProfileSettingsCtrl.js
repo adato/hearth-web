@@ -36,7 +36,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.validateDeleteAccount = function(data) {
 			var invalid = false;
 
-			if ($scope.profileDeleteForm.oldPassLeave.$invalid) {
+			if ($scope.profileDeleteForm.oldPassLeave.$error.notValid) {
 				invalid = $scope.showError.oldPassLeave = true;
 			}
 			return !invalid;
