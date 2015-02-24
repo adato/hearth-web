@@ -63,8 +63,19 @@
         .host {
             margin: {
                 top: 1em;
-                bottom: 2em;
             };
+        }
+    }
+
+    .commonKeywords {
+        list-style: none;
+        margin-left: -10px;
+        margin-bottom: 0px;
+        
+        &>li {
+            padding-left: 10px;
+            padding-right: 10px;
+            display: inline-block;
         }
     }
 }

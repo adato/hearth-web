@@ -6,14 +6,13 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-    'geo', 'KeywordsService', '$location', 'Auth', '$timeout', 'Filter', '$rootScope',
+    'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope',
 
-    function(geo, KeywordsService, $location, Auth, $timeout, Filter, $rootScope) {
+    function(geo, $location, Auth, $timeout, Filter, $rootScope) {
         return {
             restrict: 'E',
             replace: true,
             scope: {
-
             },
             templateUrl: 'templates/directives/filter.html',
             link: function(scope, element) {
@@ -140,8 +139,24 @@ angular.module('hearth.directives').directive('filter', [
                     Filter.reset();
                 };
 
-                scope.queryKeywords = function($query) {
-                    return KeywordsService.queryKeywords($query);
+                scope.insertKeyword = function(keyword) {
+                    var exists = false;
+
+                    if(scope.filter.keywords) {
+                        scope.filter.keywords.forEach(function(val) {
+                            if(val.text === keyword)
+                                exists = true;
+                        });
+                    }
+                    
+                    if(!exists)
+                        scope.filter.keywords.push({text: keyword})
+                };
+
+                scope.loadKeywords = function() {
+                    Filter.getCommonKeywords(function(res) {
+                        scope.commonKeywords = res;
+                    })
                 };
 
                 scope.$on('filterReseted', function() {
@@ -185,6 +200,7 @@ angular.module('hearth.directives').directive('filter', [
 
                 scope.init = function() {
                     scope.inited = true;
+                    scope.loadKeywords();
 
                     if($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length)
                         scope.filterSave = true;

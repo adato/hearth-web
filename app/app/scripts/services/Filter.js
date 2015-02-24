@@ -7,9 +7,20 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-	'$location', '$rootScope', 'User',
-	function($location, $rootScope, User) {
+	'$location', '$rootScope', 'User', 'KeywordsService',
+	function($location, $rootScope, User, KeywordsService) {
 		return {
+            _commonKeywords: [],
+            getCommonKeywords: function(cb) {
+                var self = this;
+
+                if(this._commonKeywords.length)
+                    return cb(this._commonKeywords);
+                else
+                    KeywordsService.queryKeywords().then(function(res) {
+                        cb(self._commonKeywords = res);
+                    });
+            },
 			toggleTag: function(tag) {
 				var params, index;
 
