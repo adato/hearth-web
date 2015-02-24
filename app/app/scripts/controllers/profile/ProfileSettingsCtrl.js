@@ -164,7 +164,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 				$rootScope.globalLoading = true;
 				ChangePassword.change({
-					_id: $rootScope.loggedUser._id,
 					password: pass.changed,
 					password_confirmation: pass.changed,
 					current_password: pass.old
