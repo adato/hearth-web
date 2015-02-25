@@ -28,6 +28,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
         $scope.init = function() {
             var inviteInfo = OpenGraph.getDefaultInfo();
+            console.log(inviteInfo);
             var title = encodeURIComponent(inviteInfo.title);
             var description = encodeURIComponent(inviteInfo.description);
 

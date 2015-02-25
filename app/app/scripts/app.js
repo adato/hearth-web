@@ -159,7 +159,7 @@ angular.module('hearth', [
 
                 $rootScope.$on('$translateChangeSuccess', function() {
                     var defaultHearthImage = 'https://www.hearth.net/app/images/default_avatar.png';
-                    OpenGraph.setDefaultInfo($translate('OG_DEFAULT_TITLE'), $translate('OG_DEFAULT_DESCRIPTION'), defaultHearthImage);
+                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), defaultHearthImage);
                     OpenGraph.setDefault();
                 });
 
