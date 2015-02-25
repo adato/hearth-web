@@ -199,10 +199,27 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			$scope.testOldPassword(pass.old, 'profileSettingsForm', 'oldPass', $scope.sendChangeRequest(pass));
 		};
 
-		$scope.init = function() {
+		$scope.saveNotificationSettings = function(settings) {
+			var data = {
+				_id: $rootScope.loggedUser._id,
+				settings: {
+					send_emails: settings
+				}
+			};
 
+			User.edit(data, function(res) {
+				$rootScope.user.settings.send_emails = settings;
+				Notify.addSingleTranslate('NOTIFY.EMAIL_NOTIFY_CONFIG_SUCCESS', Notify.T_SUCCESS);
+			}, function(err) {
+				Notify.addSingleTranslate('NOTIFY.EMAIL_NOTIFY_CONFIG_FAILED', Notify.T_ERROR);
+			});
+			
+		};
+
+		$scope.init = function() {
 			// for authorized only
 			UnauthReload.check();
+			$scope.notify = $rootScope.user.settings.send_emails;
 		};
 
 		// switch language to given lang code

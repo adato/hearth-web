@@ -11,12 +11,43 @@
         {{ 'USING_HEARTH_IN_LANG' | translate }} <b>{{ 'HEARTH_IN_THIS_LANG' | translate }}</b>.
          {{ 'CHOOSE_LANGUAGE' | translate }}
          &nbsp;
-      <select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
-        <option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
-      </select>
+        <select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
+          <option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
+        </select>
 
       </section>
       <div class="clear"></div>
+
+      <h2>
+        <span class="content">
+          <span class="fa fa-bell"></span>{{ 'USER_NOTIFICATION' | translate }}
+        </span>
+      </h2>
+      <section class="configure-notifications">
+
+        <form ng-submit="saveNotificationSettings(notify)">
+          <checkbox model="notify.expiring" type="checkbox" value="true" value-off="false">
+            {{ 'NOTIFICATION.ALERT_EXPIRING_POSTS' | translate }}
+          </checkbox>
+          
+          <br />
+          <checkbox model="notify.expired" type="checkbox" value="true" value-off="false">
+            {{ 'NOTIFICATION.ALERT_EXPIRED_POSTS' | translate }}
+          </checkbox>
+          
+          <br />
+          <checkbox model="notify.not_expiring" type="checkbox" value="true" value-off="false">
+            {{ 'NOTIFICATION.ALERT_TIME_UNLIMITED_POSTS' | translate }}
+          </checkbox>
+
+          <br />
+          
+          <button type="submit" class="button-send right" analytics-on analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1">{{ 'SAVE' | translate }}</button>
+        </form>
+      </section>
+      <div class="clear"></div>
+
+
 
       <form id="profileSettingsForm" name="profileSettingsForm" ng-submit="changePassword(pass)" novalidate ng-show="loaded">
         <h2>
