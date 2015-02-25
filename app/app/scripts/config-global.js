@@ -16,12 +16,7 @@ $$config = {
 		twitter: 'https://twitter.com/share?url=',
 		linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
 	},
-	activitiesIcons: {
-		// : "edit_post.png",
-		// : "new_post.png",
-		// : "new_reply.png",
-		// : "resume_post.png",
-	},
+	activitiesIcons: ["new_post", "edit_post", "new_reply", "resume_post"],
 	features: {
 		aboutPage: false,
 		searchImage: false,
