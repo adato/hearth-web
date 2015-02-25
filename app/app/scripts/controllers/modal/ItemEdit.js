@@ -248,10 +248,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// return $rootScope.globalLoading = true;
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
-
+			console.log(post);
 			if(! $scope.testForm(post)) {
 				$timeout(function() {
 					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
+					$scope.showInvalidPostMessage = true;
 				}, 50);
 				return false;
 			}

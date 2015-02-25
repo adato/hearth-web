@@ -59,15 +59,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         function loadCommunityPosts(id, doneErr) {
 
-            var fulltextParams = {
-                type: 'post',
-                include_suspended: +$scope.mine, // cast bool to int
-                include_expired: +$scope.mine, // cast bool to int
-                community_id: id,
-                limit: 1000
-            };
-
-            Fulltext.query(fulltextParams, function(res) {
+            Community.getPosts({communityId: id}, function(res) {
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
 

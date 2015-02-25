@@ -21,6 +21,7 @@ angular.module('hearth').config([
 			.when('/reset-password', 'reset-pass')
 			.when('/forgotten-password', 'forgot-pass')
 			.when('/confirm-email', 'confirm-email')
+			.when('/token-login/:token', 'token-login')
 			.when('/fill-email/:token', 'fill-email')
 			// .when('/change-password', 'change-pass')
 			
@@ -87,6 +88,9 @@ angular.module('hearth').config([
 			}).segment('fill-email', {
 				templateUrl: 'templates/userForms/fillEmail.html',
 				controller: 'FillEmailCtrl'
+			}).segment('token-login', {
+				// templateUrl: 'templates/userForms/fillEmail.html',
+				controller: 'TokenLoginCtrl'
 			}).segment('forgot-pass', {
 				templateUrl: 'templates/userForms/forgottenPassword.html',
 				controller: 'ForgottenPasswordCtrl'

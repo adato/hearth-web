@@ -47,9 +47,11 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
         $scope.validateEmail = function(form, cb) {
             $scope.showError.email = true;
+            $scope.fillEmailForm.email.$error.used = false;
+
             // if form is not valid, return false
-            if ($scope.fillEmailForm.email.$invalid) {
-                cb && cb(false);
+            if ($scope.fillEmailForm.email.$error.email) {
+                cb && cb(true);
             } else {
                 // else test if email exists
                 $scope.testEmailExists(form.email, 'fillEmailForm', 'email',cb);
@@ -57,7 +59,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
         };
 
         $scope.fillEmail = function() {
-
+            console.log($scope.sending);
             if ($scope.sending)
                 return false;
             $scope.sending = true;
@@ -73,9 +75,18 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
                     Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
                     $scope.hideForm();
 
-                }).error(function(data, status) {
+                }).error(function(err, status) {
                     $scope.sending = false;
-                    Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_FAILED', Notify.T_ERROR, '.fill-email-notify-container');
+                    $scope.errors = new ResponseErrors({status: status, data: err});
+                    
+                    if($scope.errors.email) {
+                     
+                        $scope.fillEmailForm.email.$error.used = true;
+                        $scope.showError.email = true;
+                    } else {
+
+                        Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_FAILED', Notify.T_ERROR, '.fill-email-notify-container');
+                    }
                 });
             });
         };

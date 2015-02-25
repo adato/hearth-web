@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Friends', 'Followees', 'UserPosts', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
-    function($scope, $timeout, $rootScope, $routeParams, Followers, Friends, Followees, UserPosts, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
+    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
+    function($scope, $timeout, $rootScope, $routeParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
         var loadServices = {
                 'profile': loadUserHome,
                 'profile.posts': loadUserPosts,
@@ -81,16 +81,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadUserPosts(params, done, doneErr) {
 
-            var fulltextParams = {
-                type: 'post',
-                related: 'user',
-                include_suspended: +$scope.mine, // cast bool to int
-                include_expired: +$scope.mine, // cast bool to int
-                author_id: params.user_id,
-                limit: 1000
-            };
-
-            Fulltext.query(fulltextParams, function(res) {
+            User.getPosts(params, function(res) {
 
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
@@ -170,13 +161,12 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function processDataErr(res) {
-            // console.log("Err", res);
             finishLoading();
         }
 
-        function init() {
+        function init(e) {
             $scope.subPageLoaded = false;
-            // console.log("Calling load service", $scope.pageSegment);
+            // console.log("Calling load service", $scope.pageSegment, e);
             // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);
 
@@ -233,8 +223,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);
+        // if($rootScope.profileLoaded)
+        //     init();
         // $scope.loaded && init();
-        if($rootScope.profileLoaded)
-            init();
     }
 ]);

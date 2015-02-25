@@ -76,7 +76,10 @@
             overflow: hidden;
             border: {
                 bottom: 2px solid lighten(color(5), abs($button-function-factor));
-            };
+            }
+            &>.large-4 {
+                padding-right: 0px;
+            }
             .map-toggle a {
                 position: relative;
                 top: 10px;

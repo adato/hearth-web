@@ -9,8 +9,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
-	'$scope', 'UsersService', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload',
-	function($scope, UsersService, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify, UnauthReload) {
+	'$scope', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload',
+	function($scope, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify, UnauthReload) {
 		$scope.loaded = true;
 		$scope.lang = false; // used in view
 		$scope.changeSubmitted = false;
@@ -36,7 +36,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.validateDeleteAccount = function(data) {
 			var invalid = false;
 
-			if ($scope.profileDeleteForm.oldPassLeave.$invalid) {
+			if ($scope.profileDeleteForm.oldPassLeave.$error.notValid) {
 				invalid = $scope.showError.oldPassLeave = true;
 			}
 			return !invalid;
@@ -164,7 +164,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 				$rootScope.globalLoading = true;
 				ChangePassword.change({
-					user_id: $rootScope.loggedUser._id,
 					password: pass.changed,
 					password_confirmation: pass.changed,
 					current_password: pass.old

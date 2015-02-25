@@ -19,9 +19,17 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			badCredentials: false
 		};
 
+		var fillEmailUrl = $$config.appUrl +'#!/fill-email/%{token}';
+		var twitterSuccessUrl  = $$config.appUrl +'#!/token-login/%{token}';
+		$scope.twitterAuthUrl = $$config.apiPath + '/users/auth/twitter?success_url='+encodeURIComponent(twitterSuccessUrl)+'&email_url='+encodeURIComponent(fillEmailUrl);
 
 	    $scope.oauth = function(provider) {
-	      $auth.authenticate(provider);
+      		$auth.authenticate(provider).then(function(response) {
+         		if(response.status == 200)
+	         		processLoginResult(response);
+	         	else
+	         		$scope.loginError = true;
+      		});
 	    };
 
 
@@ -44,8 +52,9 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				if(res.data.language)
 					LanguageSwitch.setCookie(res.data.language);
 
-				if(res.data.authToken)
-					Auth.setToken(res.data.authToken);
+				if(res.data.api_token) {
+					Auth.setToken(res.data.api_token);
+				}
 
 				window.location = window.location.pathname;
 			} else {

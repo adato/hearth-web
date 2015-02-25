@@ -25,7 +25,8 @@
 						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 					</div>
 					<small>
-						{{ 'ME_WROTE' | translate}}
+						<span ng-if="mine">{{ 'ME_WROTE' | translate}}</span>
+						<span ng-if="!mine">{{ 'RATINGS_SAYING_FOR' | translate}}</span>
 						<a href="#!/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to}}">{{ item.user_to_full_name}}</a><span ng-if="item.post_id"> {{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
 					</small>
 				</div>
