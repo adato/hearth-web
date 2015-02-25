@@ -44,7 +44,7 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			setToken: function (token) {
-				$.cookie(TOKEN_NAME, token);
+				$.cookie(TOKEN_NAME, token, { expires: 30 * 12 * 30 });
 			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
