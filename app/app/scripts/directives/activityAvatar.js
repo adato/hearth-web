@@ -20,8 +20,8 @@ angular.module('hearth.directives').directive('activityAvatar', [
 				$scope.src = null;
 
 				$scope.$watch('type', function(val) {
-					if(!!~$$config.activitiesIcons.indexOf(val))
-						$scope.src = "images/icons/"+val+".png";
+					if($$config.activitiesIcons[val])
+						$scope.src = "images/icons/"+$$config.activitiesIcons[val]+".png";
 					else
 						$scope.src = null;
 				});
