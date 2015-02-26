@@ -136,7 +136,12 @@ angular.module('hearth.services').factory('Auth', [
 					return defer.reject(data);
 				});
 				return defer.promise;
-			}
+			},
+			getTwitterAuthUrl: function() {
+				var fillEmailUrl = $$config.appUrl +'#!/fill-email/%{token}';
+				var twitterSuccessUrl  = $$config.appUrl +'#!/token-login/%{token}';
+				return $$config.apiPath + '/users/auth/twitter?success_url='+encodeURIComponent(twitterSuccessUrl)+'&email_url='+encodeURIComponent(fillEmailUrl);
+			},
 		};
 	}
 ]);

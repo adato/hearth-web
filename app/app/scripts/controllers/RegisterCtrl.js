@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify',
-    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify) {
+    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
+    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
 
         $scope.user = {
             email: '',
@@ -27,6 +27,30 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             password: false,
         };
 
+
+        $scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
+        
+
+        function processOathLoginResult(res) {
+            // when user logged, use his language configured on API
+            if(res.data.language)
+                LanguageSwitch.setCookie(res.data.language);
+
+            if(res.data.api_token) {
+                Auth.setToken(res.data.api_token);
+            }
+
+            window.location = window.location.pathname;
+        }
+
+        $scope.oauth = function(provider) {
+            $auth.authenticate(provider).then(function(response) {
+                if(response.status == 200)
+                    processOathLoginResult(response);
+                else
+                    $scope.loginError = true;
+            });
+        };
 
         $scope.validateData = function(user) {
             var invalid = false;

@@ -18,32 +18,8 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.showError = {
 			badCredentials: false
 		};
-
-		var fillEmailUrl = $$config.appUrl +'#!/fill-email/%{token}';
-		var twitterSuccessUrl  = $$config.appUrl +'#!/token-login/%{token}';
-		$scope.twitterAuthUrl = $$config.apiPath + '/users/auth/twitter?success_url='+encodeURIComponent(twitterSuccessUrl)+'&email_url='+encodeURIComponent(fillEmailUrl);
-
-	    $scope.oauth = function(provider) {
-      		$auth.authenticate(provider).then(function(response) {
-         		if(response.status == 200)
-	         		processLoginResult(response);
-	         	else
-	         		$scope.loginError = true;
-      		});
-	    };
-
-
-		function showErrorCredentials() {
-			
-			// focus to password field
-			$(".login_password").focus();
-
-			// show top error message
-			$scope.showError.badCredentials = true;
-
-			// set blank password - try it again
-			$scope.data.password = '';
-		}
+		
+		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
 		
 		function processLoginResult(res) {
 			if(res.data && res.data.ok === true) {
@@ -60,6 +36,28 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			} else {
 				showErrorCredentials();
 			}
+		}
+
+		$scope.oauth = function(provider) {
+			$auth.authenticate(provider).then(function(response) {
+				if(response.status == 200)
+					processLoginResult(response);
+				else
+					$scope.loginError = true;
+			});
+		};
+
+
+		function showErrorCredentials() {
+			
+			// focus to password field
+			$(".login_password").focus();
+
+			// show top error message
+			$scope.showError.badCredentials = true;
+
+			// set blank password - try it again
+			$scope.data.password = '';
 		}
 
 		$scope.validateLogin = function(data) {
