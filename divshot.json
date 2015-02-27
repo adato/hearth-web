@@ -1,5 +1,6 @@
 {
 	"name":"hearth",
 	"root":"public",
-	"prerender":true
+	"prerender":true,
+	"error_page": "app/error404.html"
 }
