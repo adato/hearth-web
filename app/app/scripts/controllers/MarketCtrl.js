@@ -140,6 +140,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 			refreshTags();
 			Filter.checkUserFilter();
+			Filter.getCommonKeywords();
+
 			$scope.filterIsOn = Filter.isSet();
 
 			$scope.$on('authorize', function() {

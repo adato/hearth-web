@@ -13,7 +13,8 @@ angular.module('hearth.services').factory('Filter', [
             _commonKeywords: [],
             getCommonKeywords: function(cb) {
                 var self = this;
-
+                cb = cb || function() {};
+                
                 if(this._commonKeywords.length)
                     return cb(this._commonKeywords);
                 else

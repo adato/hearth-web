@@ -156,7 +156,7 @@ angular.module('hearth.directives').directive('filter', [
                 scope.loadKeywords = function() {
                     Filter.getCommonKeywords(function(res) {
                         scope.commonKeywords = res;
-                    })
+                    });
                 };
 
                 scope.$on('filterReseted', function() {
