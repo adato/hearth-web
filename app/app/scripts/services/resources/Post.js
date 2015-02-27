@@ -31,6 +31,10 @@ angular.module('hearth.services').factory('Post', [
 				url: $$config.apiPath + '/posts/:postId/resume',
 				method: 'PUT'
 			},
+			publish: {
+				url: $$config.apiPath + '/posts/:postId/publish',
+				method: 'PUT'
+			},
 			prolong: {
 				url: $$config.apiPath + '/posts/:postId/prolong',
 				method: 'PUT'

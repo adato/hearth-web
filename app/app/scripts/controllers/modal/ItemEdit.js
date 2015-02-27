@@ -199,14 +199,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		function convertDateToIso(datetime, format) {
-			
 			return getMomentTimeObject(datetime, format).format();
 		}
 
 		function getDateDiffFromNow(datetime, format) {
 			var today = moment(moment().format('DD.MM.YYYY'), 'DD.MM.YYYY');
-
-			// console.log(getMomentTimeObject(datetime, format).format() + " <=> "+ today.format() + " : " + diff );
 			return getMomentTimeObject(datetime, format).diff(today, 'minutes');
 		}
 
@@ -229,26 +226,65 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.showError.valid_until = false;
 		};
 
+		$scope.processResult = function(data, post) {
+			$rootScope.globalLoading = false;
+			
+			// if($scope.post._id)
+			// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
+			// else
+			// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
+			$scope.closeThisDialog();
+			
+			// emit event into whole app
+			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
 
-		$scope.processProgress = function(evt) {
-			console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '%');
+			// $(document.body).scrollTop(0);
+
+			if($rootScope.isPostActive(data) && $location.path() != '/') {
+				// wait for refresh to 
+				var deleteEventListener = $rootScope.$on('postsLoaded', function() {
+					deleteEventListener();
+
+					setTimeout(function() {
+						$rootScope.blinkPost(data);
+					}, 100);
+				});
+
+				// if post is visible on marketplace - refresh user there
+				$location.path('/');
+				$rootScope.insertPostIfMissing(data);
+			} else {
+				// flash post immediatelly
+				setTimeout(function() {
+					$rootScope.blinkPost(data);
+				}, 200);
+			}
 		};
 
-		$scope.processError = function() {
-			console.log(res);
+		$scope.processErrorResult = function() {
+			Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
+			$scope.sending = false;
+			$rootScope.globalLoading = false;
 		};
 
-		$scope.processSuccess = function(res, status, headers, config) {
-			console.log(res);
+		$scope.publishPost = function(data, post, done) {
+			Post.publish({id: post._id}, function() {
+				done(data, post);
+			}, $scope.processErrorResult);
 		};
 
-		$scope.save = function(post) {
+		$scope.resumePost = function(data, post, done) {
+			Post.resume({id: post._id}, function() {
+				done(data, post);
+			}, $scope.processErrorResult);
+		};
+
+		$scope.save = function(post, activate) {
 			var postData, postDataCopy;
 
 			// return $rootScope.globalLoading = true;
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
-			console.log(post);
 			if(! $scope.testForm(post)) {
 				$timeout(function() {
 					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
@@ -273,56 +309,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
-			// var config = {
-			// 	url: $$config.apiPath + '/posts/' + (post._id ? post._id : ''),
-			// 	data: postData,
-			// 	// file: $scope.attachments,
-			// };
-
-			// $scope.upload = $upload.upload(config)
-			// 	.progress($scope.processProgress)
-			// 	.success($scope.processSuccess)
-			// 	.error($scope.processError);
-
 			Post[post._id ? 'update' : 'add'](postData, function(data) {
-				$rootScope.globalLoading = false;
-				
-				// if($scope.post._id)
-				// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
-				// else
-				// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
-				$scope.closeThisDialog();
 
-				// emit event into whole app
-				$rootScope.$broadcast( post._id ? 'postUpdated' : 'postCreated', data);
-
-				// $(document.body).scrollTop(0);
-
-				if($rootScope.isPostActive(data) && $location.path() != '/') {
-					// wait for refresh to 
-					var deleteEventListener = $rootScope.$on('postsLoaded', function() {
-						deleteEventListener();
-
-						setTimeout(function() {
-							$rootScope.blinkPost(data);
-						}, 100);
-					});
-
-					// if post is visible on marketplace - refresh user there
-					$location.path('/');
-					$rootScope.insertPostIfMissing(data);
-				} else {
-					// flash post immediatelly
-					setTimeout(function() {
-						$rootScope.blinkPost(data);
-					}, 200);
+				// if it is save&activate button
+				// call prolong or resume endpoints first
+				switch(activate && post.state) {
+				    case 'expired':
+						return $scope.publishPost(data, post, $scope.processResult);
+				    case 'suspended':
+						return $scope.resumePost(data, post, $scope.processResult);
+				    default:
+						$scope.processResult(data, post);
 				}
-			}, function() {
-
-                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
-				$scope.sending = false;
-				$rootScope.globalLoading = false;
-			});
+			}, $scope.processErrorResult);
 		};
 
 		// when edited, we should change also original post
@@ -338,7 +337,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 		
 		$scope.itemDeleted = function($event, item) {
-
 			if($scope.post._id == item._id) $scope.closeEdit();
 		};
 
