@@ -62,6 +62,7 @@ angular.module('hearth', [
             $authProvider.google({
                 clientId: $$config.oauth.google,
                 url: $$config.apiPath+'/auth/google',
+                popupOptions: { width: 660, height: 500 }
             });
 
             // ===============================
