@@ -21,6 +21,9 @@ angular.module('hearth.services').factory('HearthLoginInterceptor', [
                 if (rejection.config && !rejection.config.nointercept) {
                     
                     if (rejection.status === 401) {
+                        $rootScope.loggedUser._id = false;
+                        $rootScope.loginRequired = true;
+                        $rootScope.user.loggedIn = false;
                         $rootScope.referrerUrl = $location.path();
                         $location.path('/login');
                     }

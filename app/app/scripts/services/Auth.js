@@ -46,6 +46,10 @@ angular.module('hearth.services').factory('Auth', [
 			setToken: function (token) {
 				$.cookie(TOKEN_NAME, token, { expires: 30 * 12 * 30 });
 			},
+			destroyLogin: function () {
+				$.removeCookie(TOKEN_NAME);
+				$rootScope.user.loggedIn = false;
+			},
 			isLoggedIn: function() {
 				return $rootScope.user.loggedIn;
 			},

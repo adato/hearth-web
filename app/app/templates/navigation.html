@@ -10,7 +10,7 @@
 			<a ng-click="showUI('map')"><span class="fa fa-map-marker"></span> {{'show-ads-on-map' | translate}}</a>
 		</section>
 		<section class="large-3 columns show-for-scrolled text-right">
-			<a ng-click="editItem(null)" signed-in ><span class="fa fa-edit"></span> {{'create-new-ad' | translate}}</a>
+			<a ng-click="editItem(null)" ng-if="loggedUser._id"><span class="fa fa-edit"></span> {{'create-new-ad' | translate}}</a>
 		</section>
 		<section class="large-4 columns hide-for-scrolled">
 			<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchText" ng-enter="search(searchText)">
@@ -28,11 +28,11 @@
 			</a>
 			<div class="separator"></div>
 		    <span class="dropdown-container">
-				<a signed-in ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
+				<a ng-if="loggedUser._id" ng-show="loggedUser.name && ! loggedCommunity._id" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
                     <avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 		            <label>{{ loggedUser.name | ellipsis:9}}</label>
 			    </a>
-				<a signed-in ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' }" hover="true" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
+				<a ng-show="loggedCommunity._id" ng-class="{active: segment.slice(0,9) == 'community' }" hover="true" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedCommunity.name}}">
                     <avatar class="img" size="mini" src="loggedCommunity.avatar.normal" type="'Community'"></avatar>
 		            <label>{{ loggedCommunity.name | ellipsis:9}}</label>
 			    </a>
@@ -80,7 +80,7 @@
 		          <li><a href="http://instagram.com/artofhearth" target="_blank"><span class="fa fa-instagram"></span> Instagram</a></li>
 		        </ul>
 			</span>		     
-			<a signed-out href="#!/login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
+			<a ng-if="!loggedUser._id" href="#!/login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
 				<div class="text">
 		            <div class="fa fa-sign-in"></div>
 		            <label>{{'TOP_BAR_SIGN_IN' | translate }}</label>
