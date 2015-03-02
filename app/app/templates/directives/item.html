@@ -55,7 +55,7 @@
 				</div>
 				<div class="attachments" ng-if="item.attachments_attributes.length" fancybox>
 					<div ng-class="{ 'expandable' : !postExpanded }">
-						<a class="fancy" ng-href="{{ photo.file }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes track by $index">
+						<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}" ng-repeat="photo in item.attachments_attributes track by $index">
 							<img ng-if="$index < 3" ng-src="{{ photo.normal }}">
 							<img ng-if="$index >= 3 && !postExpanded" data-src="{{ photo.normal }}" class="lazyLoad">
 							<img ng-if="$index >= 3 && postExpanded" ng-src="{{ photo.normal }}">
