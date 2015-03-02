@@ -11,18 +11,17 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 	return {
 		restrict: 'AE',
 		scope: {
-			text: "@",
+			code: "@",
 			show: "=",
 			delayed: "="
 		},
-		template: '<div ng-if="display" class="text-center loading">' + '<i class="fa fa-spinner fa-spin"></i>{{msg}}</div>',
+		template: '<div ng-if="display" class="text-center loading">' + '<i class="fa fa-spinner fa-spin"></i>{{msg | translate }}</div>',
 		link: function($scope, el, attrs) {
 			$scope.timeout = $scope.delayed || 200;
 			$scope.show = $scope.show || false;
 			$scope.showTimeout = 0;
 			$scope.showSchedule = false;
-			$scope.defaultMessage = 'Loading';
-			$scope.translateMessage = 'COMMON.LOADING';
+			$scope.defaultCode = 'COMMON.LOADING';
 
 			// hide message on start
 			$(el).css('display', 'none ');
@@ -39,12 +38,8 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 				}
 			}
 
-			$scope.$watch('text', function(val) {
-				if(val) {
-					$scope.msg = val;
-				} else {
-				    $scope.msg = $translate.instant($scope.translateMessage);
-				}
+			$scope.$watch('code', function(val) {
+				$scope.msg = (val) ? val : $scope.defaultCode;
 			});
 
 			$scope.$watch('show', function(show) {
