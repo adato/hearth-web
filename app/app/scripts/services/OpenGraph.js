@@ -50,7 +50,6 @@ angular.module('hearth.services').service('OpenGraph', [
 		 * Nastavi defaultni info do meta tagu
 		 */
 		this.setDefault = function() {
-
 			self.set();
 		};
 	}

@@ -8,7 +8,6 @@
 
 angular.module('hearth.controllers').controller('ItemDetail', [
 	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma',
-
 	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
 		$scope.ad = false;
 		$scope.adDeleted = false;
@@ -29,12 +28,18 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				
 				// if there are post data, process them
 				if(data.name) {
-					
+					var image = null;
 					var title = data.author.name;
+
+					if(data.attachments_attributes && data.attachments_attributes.length)
+						image = data.attachments_attributes[0].normal;
+					else if(data.author && data.author.avatar.normal)
+						image = data.author.avatar.normal;
+
 
 					if (data.title)
 						title += " - " + data.title;
-					OpenGraph.set(title, data.name || "");
+					OpenGraph.set(title, data.name || "", null, image);
 
 					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.author);
