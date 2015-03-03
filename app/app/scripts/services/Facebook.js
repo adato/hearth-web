@@ -28,7 +28,7 @@ angular.module('hearth.services').service('Facebook', [
 		this.inviteFriends = function() {
 			FB.ui({
 				method: 'apprequests',
-				message: $translate.instant('HOMEPAGE_HEADING')
+				message: $translate.instant('FACEBOOK_INVITATION_MESSAGE')
 			});
 		};
 
