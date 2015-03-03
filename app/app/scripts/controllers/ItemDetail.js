@@ -32,9 +32,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					var title = data.author.name;
 
 					if(data.attachments_attributes && data.attachments_attributes.length)
-						image = data.attachments_attributes[0].normal;
-					else if(data.author && data.author.avatar.normal)
-						image = data.author.avatar.normal;
+						image = data.attachments_attributes[0].large;
+					else if(data.author && data.author.avatar.large)
+						image = data.author.avatar.large;
 
 
 					if (data.title)
