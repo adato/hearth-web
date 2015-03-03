@@ -67,7 +67,7 @@
                 <div class="descr" ng-if="info.locations.length">
                     <i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
                     <span ng-repeat="(locationId, location) in info.locations">
-                        <span ng-if="location.short_address">{{location.short_address}}<span ng-if="!$last">; </span></span>
+                        <span ng-if="location.short_address">{{location.short_address}}<span ng-if="!$last">;&nbsp;</span></span>
                     </span>
                 </div>
                 <div class="descr" ng-if="info.interests && info.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ info.interests.join(", ") }}</div>
