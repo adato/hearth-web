@@ -72,7 +72,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			} else {
 				files[index].deleted = true;
 			}
-			$scope.$apply();
+			// $scope.$apply();
 		};
 
 		function recountImages() {
