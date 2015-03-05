@@ -37,6 +37,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 		};
 
 		$scope.sendReply = function() {
+			console.log("REPLY BUTTON");
 			var data = {
 				id: $scope.post._id,
 				message: $scope.reply.text,
@@ -48,12 +49,14 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			});
 
 			if ($scope.sending || !data.agreed || $scope.replyForm.text.$invalid) {
+				console.log("SENDING LOCK");
 				return false;
 			}
 
 			$rootScope.globalLoading = true;
 			$scope.sending = true;
 			PostReplies.add(data, function(res) {
+				console.log("SENDING RESPONSE", res);
 
 				$rootScope.globalLoading = false;
 				$scope.sending = false;
@@ -64,6 +67,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 	            // Notify.addSingleTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
 
 			}, function(res) {
+				console.log("SENDING RESPONSE ERR", res);
 
 				Notify.addSingleTranslate('NOTIFY.REPLY_FAILED', Notify.T_ERROR, '.notify-reply-container');
 				$scope.sending = false;
