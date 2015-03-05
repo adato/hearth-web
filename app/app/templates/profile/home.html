@@ -110,8 +110,15 @@
             <h3 ng-if="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
             <h3 ng-if="!mine">{{ 'USER_ACTIVITY' | translate }}</h3>
             
-            <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME' | translate }}</p>
-            <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
+            <span ng-if="info.created_at_days <= 30">
+                <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME' | translate }}</p>
+                <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
+            </span>
+            <span ng-if="info.created_at_days > 30">
+                <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME_30_DAYS' | translate }}</p>
+                <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER_30_DAYS' | translate }}</p>
+            </span>
+
             <div ng-if="activityLog.length">
                 <div ng-include="'templates/_activityList.html'"></div>
             </div>

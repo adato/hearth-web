@@ -669,7 +669,9 @@
         },
         "HOME": {
             "NO_ACTIVITY_ME": "Ste tu krátko, nemáme vám zatiaľ čo ukázať :)",
+            "NO_ACTIVITY_ME_30_DAYS": "Zatím zde nemáte žádnou aktivitu",
             "NO_ACTIVITY_OTHER": "Užívateľ je tu nový, nemáme vám tu zatiaľ čo ukázať.",
+            "NO_ACTIVITY_OTHER_30_DAYS": "Uživatel zde nemá zatím žádnou aktivitu",
             "NO_POSTS_ME": "Zatiaľ ste nevytvorili žiadny inzerát, poďme s tým niečo urobiť - môžete darovať či prijať, čokoľvek vám napadne."
         },
         "INVITATION": {

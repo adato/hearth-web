@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time) {
 		$scope.initPage = function() {
 			$scope.loaded = false;
 			$scope.info = false;
@@ -75,6 +75,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.info = res;
 				$scope.info.cities = $scope.citiesToString(res);
 
+				$scope.info.created_at_days = Time.getDateDiffToNow($scope.info.created_at);
 				// count karma values
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $scope.isMine();
