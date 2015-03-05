@@ -115,8 +115,8 @@
                 <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
             </span>
             <span ng-if="info.created_at_days > 30">
-                <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME_30_DAYS' | translate }}</p>
-                <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER_30_DAYS' | translate }}</p>
+                <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME_OVER_30_DAYS' | translate }}</p>
+                <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER_OVER_30_DAYS' | translate }}</p>
             </span>
 
             <div ng-if="activityLog.length">
