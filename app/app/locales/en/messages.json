@@ -649,9 +649,9 @@
         },
         "HOME": {
             "NO_ACTIVITY_ME": "You're new here. Not much to show for your activity :)",
-            "NO_ACTIVITY_ME_30_DAYS": "Zatím zde nemáte žádnou aktivitu",
+            "NO_ACTIVITY_ME_OLDER": "Zatím zde nemáte žádnou aktivitu.",
             "NO_ACTIVITY_OTHER": "User is new here. Not lazy but new so we cannot show you his activity.",
-            "NO_ACTIVITY_OTHER_30_DAYS": "Uživatel zde nemá zatím žádnou aktivitu",
+            "NO_ACTIVITY_OTHER_OLDER": "Uživatel zde nemá zatím žádnou aktivitu.",
             "NO_POSTS_ME": "You haven't created any ad. Let's do something about it, shall we. You can give or accept anything that comes to your beautiful mind."
         },
         "INVITATION": {
