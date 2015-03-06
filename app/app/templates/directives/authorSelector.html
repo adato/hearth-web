@@ -1,6 +1,6 @@
 <span class="authorSelector">
 	<avatar type="list[selectedIndex]._type" src="list[selectedIndex].avatar.normal" size="small" /></avatar>
 	<select ng-model="selected" ng-change="selectAuthor(selected)">
-		<option ng-value="$index" ng-repeat="item in list">{{ item.name | ellipsis:30 }}</option>
+		<option ng-if="item._id !== removeId" ng-value="$index" ng-selected="$index == selectedIndex" ng-repeat="item in list">{{ item.name | ellipsis:30 }}</option>
 	</select>
 </span>

@@ -8,36 +8,49 @@
  */
 
 angular.module('hearth.directives').directive('authorSelector', [
-	'$rootScope',
-	function($rootScope) {
+	'$rootScope', '$timeout',
+	function($rootScope, $timeout) {
 	return {
-		restrict: 'E',
+		restrict: 'AE',
 		replace: true,
 		scope: {
-			authorId: '=',
-			remove: '=',
+			author: '=',
+			removeId: '=remove',
+			onChange: '&',
 		},
 		templateUrl: 'templates/directives/authorSelector.html',
 		link: function($scope) {
+			$scope.selectedIndex = 0;
 			$scope.list = [];
+			if(!$scope.removeId)
+				$scope.removeId = -1;
 
+			console.log($scope.removeId);
 			$rootScope.$watch('myAdminCommunities', function(val) {
 				$scope.list = [$rootScope.loggedUser];
 				if($rootScope.myAdminCommunities)
 					$scope.list = $scope.list.concat($rootScope.myAdminCommunities);
 				
-				$scope.selectedIndex = $scope.setByIndex(0);
-				if($scope.authorId)
-					$scope.setByAuthorId($scope.authorId);
+				if($scope.author)
+					$scope.setByAuthorID($scope.author);
+				else
+					$scope.setByIndex(0);
 
 			}, true);
 			
 			$scope.selectAuthor = function(index) {
-				$scope.selectedIndex = index;
-				$scope.authorId = $scope.list[index]._id;
+				console.log("Selected "+$scope.list[index]._id+" with index: ", index);
+				// $scope.selectedIndex = index;
+
+				// if we select user, return null, else return ID of selected community
+				$scope.onChange()(index ? $scope.list[index]._id : null);
 			};
 
-			$scope.setByAuthorId = function(id) {
+			$scope.setByAuthorID = function(id) {
+				console.log("SelectById: ", id);
+				if(!id)
+					return $scope.setByIndex(0);
+
 				for(var i = 0; i < $scope.list.length; i++) {
 					if($scope.list[i]._id == id) {
 						return $scope.selectedIndex = i;
@@ -49,7 +62,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 				return $scope.selectedIndex = index;
 			};
 
-			$scope.$watch('authorId', $scope.setByAuthorId);
+			$scope.$watch('author', $scope.setByAuthorID);
 		}
 	};
 }]);

@@ -18,8 +18,23 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.keywordsActive = [];
 		$scope.filterIsOn = false;
 
-		$scope.ccc = null;
-		
+		$scope.authorId = null;
+		$scope.removeId = "54623c66396266000c270000";
+
+		$scope.changeAuthor = function(id) {
+			console.log("Changed to : ", id);
+			$scope.authorId = id;	
+		};
+
+		$timeout(function() {
+			console.log("ABCD");
+			$scope.authorId = null;
+		}, 8000);
+
+		setInterval(function() {
+			console.log("INT: ", $scope.authorId);
+		}, 4000);
+
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
