@@ -4,7 +4,6 @@ $$localConfig = {
 	fbAppId: '277542219089599',
 	languages: {
 		"cs": "cs_CZ",
-		"sk": "sk_SK",
 		"en": "en_US"
 	},
 	oauth: {
