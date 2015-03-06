@@ -8,7 +8,7 @@ $$localConfig = {
 	},
 	oauth: {
 		facebook: "277542219089599",
-		google: '498929272646.apps.googleusercontent.com'
+		google: '498929272646-pn752gcu0r0d783pn4i8k6iuatmvf6cm.apps.googleusercontent.com'
 	},
 	apiPath: 'https://api.hearth.net'
 };
