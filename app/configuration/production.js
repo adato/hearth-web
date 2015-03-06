@@ -1,7 +1,7 @@
 var $$localConfig; // production
 
 $$localConfig = {
-	fbAppId: '277542219089599', // stage
+	fbAppId: '277542219089599',
 	languages: {
 		"cs": "cs_CZ",
 		"sk": "sk_SK",
