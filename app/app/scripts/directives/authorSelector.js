@@ -33,7 +33,6 @@ angular.module('hearth.directives').directive('authorSelector', [
 			}, true);
 			
 			$scope.selectAuthor = function(index) {
-				console.log(index, $scope.list[index]);
 				$scope.selectedIndex = index;
 				$scope.authorId = $scope.list[index]._id;
 			};

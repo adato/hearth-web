@@ -19,9 +19,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.filterIsOn = false;
 
 		$scope.ccc = null;
-		function(argument) {
-			// body...
-		}
+		
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
