@@ -6,7 +6,7 @@ $$config = {
 	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
-	defaultHearthImage: 'images/default_avatar.png',
+	defaultHearthImage: 'images/facebook-sharing-image.png',
 	defaultUserAvatar: 'images/no-avatar.jpg',
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
 	sharingEndpoints: {
@@ -37,6 +37,7 @@ $$config = {
 	}
 };
 
+console.log($$config);
 // copy data from localConfig
 if($$localConfig) {
 	for(var key in $$localConfig) $$config[key]=$$localConfig[key];

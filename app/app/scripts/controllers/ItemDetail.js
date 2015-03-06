@@ -33,9 +33,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 					if(data.attachments_attributes && data.attachments_attributes.length)
 						image = data.attachments_attributes[0].large;
-					else if(data.author && data.author.avatar.large)
-						image = data.author.avatar.large;
-
+					
 
 					if (data.title)
 						title += " - " + data.title;
