@@ -6,9 +6,6 @@
 	<filter-status></filter-status>
 	<filterbar filter=filter></filterbar>
 	
-	{{ authorId }}
-	<author-selector remove="removeId" author="authorId" on-change="changeAuthor"></author-selector>
-	
 	<div class="large-12 columns" ng-hide="!loaded || showMap">
 		<div class="wish-list" ng-if="!items.length">
 			<div ng-show="filterIsOn" class="row">

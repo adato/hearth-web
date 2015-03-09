@@ -15,54 +15,59 @@ angular.module('hearth.directives').directive('authorSelector', [
 		replace: true,
 		scope: {
 			author: '=',
-			removeId: '=remove',
-			onChange: '&',
+			remove: '=remove',
 		},
 		templateUrl: 'templates/directives/authorSelector.html',
 		link: function($scope) {
-			$scope.selectedIndex = 0;
 			$scope.list = [];
-			if(!$scope.removeId)
-				$scope.removeId = -1;
+			$scope.selected = {};
+			$scope.selectedEntity = {};
 
-			console.log($scope.removeId);
-			$rootScope.$watch('myAdminCommunities', function(val) {
-				$scope.list = [$rootScope.loggedUser];
-				if($rootScope.myAdminCommunities)
-					$scope.list = $scope.list.concat($rootScope.myAdminCommunities);
-				
-				if($scope.author)
-					$scope.setByAuthorID($scope.author);
-				else
-					$scope.setByIndex(0);
-
-			}, true);
-			
-			$scope.selectAuthor = function(index) {
-				console.log("Selected "+$scope.list[index]._id+" with index: ", index);
-				// $scope.selectedIndex = index;
-
-				// if we select user, return null, else return ID of selected community
-				$scope.onChange()(index ? $scope.list[index]._id : null);
+			$scope.getIndexById = function(id) {
+				for(var i = 0; i < $scope.list.length; i++)
+					if($scope.list[i]._id == id)
+						return i;
+				return 0;
 			};
 
-			$scope.setByAuthorID = function(id) {
-				console.log("SelectById: ", id);
+			$scope.getByIndex = function(id) {
 				if(!id)
-					return $scope.setByIndex(0);
+					return $scope.list[0];
 
-				for(var i = 0; i < $scope.list.length; i++) {
-					if($scope.list[i]._id == id) {
-						return $scope.selectedIndex = i;
-					}
+				for(var i = 0; i < $scope.list.length; i++)
+					if($scope.list[i]._id == id)
+						return $scope.list[i];
+				return {};
+			};
+
+			$scope.buildAuthorList = function() {
+				$scope.list = [$rootScope.loggedUser];
+
+				for(var i = 0; i < $rootScope.myAdminCommunities.length; i++) {
+					if($rootScope.myAdminCommunities._id !== $scope.remove)
+						$scope.list.push($rootScope.myAdminCommunities[i]);
 				}
+	
+				var index = $scope.getIndexById($scope.author);
+				$scope.selected._id = $scope.list[index]._id;
 			};
 
-			$scope.setByIndex = function(index) {
-				return $scope.selectedIndex = index;
+			$scope.onChange = function(id) {
+				if(id === $rootScope.loggedUser._id)
+					id = null;
+				$scope.author = id;
+				$scope.selectedEntity = $scope.getByIndex(id);
+			};
+			
+			$scope.selectAuthor = function(id) {
+				$scope.selected._id = id || $scope.list[0]._id;
+				$scope.selectedEntity = $scope.getByIndex(id);
 			};
 
-			$scope.$watch('author', $scope.setByAuthorID);
+			$scope.$watch('author', $scope.selectAuthor);
+			$scope.$watch('remove', $scope.buildAuthorList);
+			$rootScope.$watch('myAdminCommunities', $scope.buildAuthorList, true);
+			$scope.buildAuthorList();
 		}
 	};
 }]);
