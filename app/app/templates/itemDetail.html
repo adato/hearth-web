@@ -20,7 +20,7 @@
 		<section ng-if="! adDeleted && ad && ad.name" class="large-12 content row" id="item_container_{{ ad._id }}">
 			<div class="large-4 ad-author-column text-center fright">
 				1
-				<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id" /></avatar>
+				<!-- <avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id" /></avatar> -->
 				2
 				<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}"><h2>{{ ad.author.name}}</h2></a>
 				3
