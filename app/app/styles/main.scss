@@ -129,8 +129,7 @@ body {
 
 
 @import "hearthIcons";
-@include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
-@include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold);
+@import "fonts";
 
 
 meta.foundation-data-attribute-namespace {

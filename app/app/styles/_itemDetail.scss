@@ -1,205 +1,262 @@
+$local-grid-size: 25px;
 
 #item-detail {
-    .ad-detail-page {
-        padding-bottom: 1em;
+	.box {
+		padding:$local-grid-size;
+		box-shadow:1px 1px 6px rgba(50,50,50,.5);
+	}
+	.ad-author-column {
+		float:right;
+		clear:left;
+		padding-right:0;
+		padding-left:$local-grid-size;
 
-        // hide arrow -- it kinda pushes user to click it expecting going back one page
-        .ad-detail-column {
-            padding-left:0;
-            padding-right:0;
-            .arrow, .arrowbox { display: none; }
-        }
+		&:before {
+			content:"";
+			display:block;
+			position:absolute;
+			background:image-url("delimiter.png");
+			opacity:.5;
+			background-position:0 0;
+			width:20px;
+			height:500px;
+			background-size: 20px 500px;
+		}
 
-        h3 {
-            font-size:1.3rem;
-            border-bottom:1px solid;
-            margin-bottom:1.5rem;
-        }
+		h2 {
+			font-size:1rem;
+			text-align:center;
+			font-weight:bold;
+		}
+		.avatar {
+			a::before, img { width:150px; height:150px; box-shadow:none;}
+		}
+		.karma-bar {
+			padding: 0;
+			width: 200px;
+			height: 10px;
+			background-color: #7c766a;
+			border-radius: $global-radius;
+			box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
+			text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
+			color: color(4);
+			margin-left:3rem;
 
-        .map-box {
-            padding-top:1rem;
-            margin-bottom:2rem;
-            .address {
-                margin-left:0;
-                li { 
-                    list-style-type:none; 
-                }
-            }
-            .map {
-                width:100%;
-                height:400px;
-                display:block;
-            }
-        }
-    }
-    .ad-author-column {
-        float:right;
-        clear:left;
-        padding-right:0;
-        padding-left:2rem;
+			.bar:first-child {
+				border-top-left-radius: $global-radius;
+				border-bottom-left-radius: $global-radius;
+			}
+			.bar:last-child {
+				border-top-right-radius: $global-radius;
+				border-bottom-right-radius: $global-radius;
+			}
 
-        &:before {
-            content:"";
-            display:block;
-            position:absolute;
-            background:image-url("delimiter.png");
-            background-position:0 0;
-            width:20px;
-            height:500px;
-            background-size: 20px 500px;
-        }
+			.empty {
+				display: block;
+				text-align: center;
+				margin-top: 4px;
+			}
 
-        h2 {
-            font-size:1rem;
-            text-align:center;
-            font-weight:bold;
-        }
-        .avatar {
-            a::before, img { width:150px; height:150px;}
-        }
-        .karma-bar {
-            padding: 0;
-            width: 200px;
-            height: 10px;
-            background-color: #7c766a;
-            border-radius: $global-radius;
-            box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
-            text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
-            color: color(4);
-            margin-left:3rem;
+			.full {
+				max-width: 100% !important;
+			}
 
-            .bar:first-child {
-                border-top-left-radius: $global-radius;
-                border-bottom-left-radius: $global-radius;
-            }
-            .bar:last-child {
-                border-top-right-radius: $global-radius;
-                border-bottom-right-radius: $global-radius;
-            }
+			.positive, .negative {
+				height: 10px;
+				display: inline-block;
+				float: left;
+				min-width: 20px;
+				max-width: 180px;
+				color: color(4);
+				font-weight: bold;
+				box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
+				white-space: nowrap;
+				span {
+					position: relative;
+					top: 4px;
+				}
+			}
+			.positive {
+				background: #58af08;
+				background: linear-gradient(210deg, #58af08, #b5f561);
+				text-align: right;
+				.fa {
+					display: inline-block;
+					margin-left: 5px;
+				}
+				span {
+					margin-right: 10px;
+				}
+			}
+			.negative {
+				background: #275f80;
+				background: linear-gradient(30deg, #275f80, #4ca5c7);
+				position: relative;
+				overflow: hidden;
 
-            .empty {
-                display: block;
-                text-align: center;
-                margin-top: 4px;
-            }
+				img {
+					display: inline-block;
+					left: -20px;
+					margin-right: 5px;
+					max-height: 16px;
+					position: absolute;
+					top: 3px;
+				}
+				span {
+					margin-left: 1rem;
+				}
+			}
+		}
 
-            .full {
-                max-width: 100% !important;
-            }
+		.box {
+			box-shadow:none;
+			background:none;
+			margin: 1rem;
+			margin-top:.5rem;
+			padding: {
+				top:.5rem;
+				bottom:.5rem;
+				left:1rem;
+				right:1rem;
+			}
+			.line {
+				div.descr {
+					margin-top: 10px;
+					margin-bottom: 10px;
+					margin-left: 27px;
+					.fa {
+						margin-left: -27px;
+					}
+				}
+			}
+			.descr .fa {
+				width: 8px;
+				color: color(1);
+				margin-right: 15px;
+			}
+			.social {
+				font-size: 1.5rem;
+				text-align: right;
+				margin-top: 4px;
+				margin-bottom: 5px;
+				padding-right: 5px;
+				.fa {
+					color: color(5);
+					margin: 1px;
+				}
+				.fa:hover {
+					opacity: 0.7;
+				}
+				.link {
+					i {
+						font-size: 21px;
+						height: 20px;
+						margin-left: 0;
+						width: 19px;
+					}
+				}
+			}
+			.reg-date {
+				font-size: 14px;
+			}
+		}
+		.profile-link {
+			line-height:2rem;
+		}
+	}
 
-            .positive, .negative {
-                height: 10px;
-                display: inline-block;
-                float: left;
-                min-width: 20px;
-                max-width: 180px;
-                color: color(4);
-                font-weight: bold;
-                box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
-                white-space: nowrap;
-                span {
-                    position: relative;
-                    top: 4px;
-                }
-            }
-            .positive {
-                background: #58af08;
-                background: linear-gradient(210deg, #58af08, #b5f561);
-                text-align: right;
-                .fa {
-                    display: inline-block;
-                    margin-left: 5px;
-                }
-                span {
-                    margin-right: 10px;
-                }
-            }
-            .negative {
-                background: #275f80;
-                background: linear-gradient(30deg, #275f80, #4ca5c7);
-                position: relative;
-                overflow: hidden;
+	.ad-detail-column {
+		margin-bottom:4em; 
+		.columns {
+			padding-left:0;
+			padding-right:0;
+		}
+		header {
+			margin-bottom:1em;
+			div.columns {
+				line-height:23px;
+			}
+			h1 {
+				font-size:1.1em;
+				font-weight:700;
+				word-wrap: break-word;
+				margin:0;
+			}
+			#ad-flag-container>a {
+				color:darken(color(4), 40%);
+				margin-left:$local-grid-size;
+			}
+		}
+		h4 {
+			font-size:1em;
+			font-weight:600;
+		}
+		.text-container {
+			p {
+				font-size:1em;
+			}
+		}
+		footer {
+			background:color(4);
+			margin: {
+				left: -1 * $local-grid-size;
+				right: -1 * $local-grid-size;
+				bottom:-1 * $local-grid-size;
+				top: $local-grid-size;
+			}
+			padding: {
+				top: $local-grid-size - 5px;
+				left: $local-grid-size;
+				right: $local-grid-size;
+				bottom: $local-grid-size;
+			}
+			.sharing a { 
+				color:color(4);
+				background:darken(color(4), 40%);
+				border-radius:50%;
+				padding:6px;
+				font-size:1em;
+				width:$local-grid-size;
+				height:$local-grid-size;
+				margin-left:10px;
+				margin-top:2px;
+			}
+			.reply-button-container {
+				button {
+					border:0;
+					color:lighten(color(4), 10%);
+					margin:0;
+					font-size:1em;
+					font-weight: 600;
+					padding:5px 50px;
+				}
+			}
+			.reply-count-container {
+				line-height: $local-grid-size;
+				margin:2px $local-grid-size;
+			}
+		}
+	}
 
-                img {
-                    display: inline-block;
-                    left: -20px;
-                    margin-right: 5px;
-                    max-height: 16px;
-                    position: absolute;
-                    top: 3px;
-                }
-                span {
-                    margin-left: 1rem;
-                }
-            }
-        }
+	.market-link { 
+		@extend .clearfix;
+		margin-bottom:2rem;
+		margin-left:-1rem;
+		padding:.5rem;
+	}
 
-        .box {
-            box-shadow:none;
-            background:none;
-            margin: 1rem;
-            margin-top:.5rem;
-            padding: {
-                top:.5rem;
-                bottom:.5rem;
-            }
-            .line {
-                div.descr {
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                    margin-left: 27px;
-                    .fa {
-                        margin-left: -27px;
-                    }
-                }
-            }
-            .descr .fa {
-                width: 8px;
-                color: color(1);
-                margin-right: 15px;
-            }
-            .social {
-                font-size: 1.5rem;
-                text-align: right;
-                margin-top: 4px;
-                margin-bottom: 5px;
-                padding-right: 5px;
-                .fa {
-                    color: color(5);
-                    margin: 1px;
-                }
-                .fa:hover {
-                    opacity: 0.7;
-                }
-                .link {
-                    i {
-                        font-size: 21px;
-                        height: 20px;
-                        margin-left: 0;
-                        width: 19px;
-                    }
-                }
-            }
-            .reg-date {
-                font-size: 14px;
-            }
-        }
-        .profile-link {
-            line-height:2rem;
-        }
-    }
 
-    .bottom-tabs {
-        margin-top:0;
-    }
+	*[data-item-type="need"] {
+		color:color(1);
+	}
+	*[data-item-type="offer"] {
+		color:color(2);
+	}
+	button[data-item-type="need"] {
+		background:color(1);
+	}
+	button[data-item-type="offer"] {
+		background:color(2);
+	}
 
-    .market-link { 
-        @extend .clearfix;
-        margin-bottom:2rem;
-        margin-left:-1rem;
-        padding:.5rem;
-    }
-    .red { color:color(1);}
-    .green { color:color(2);}
-    .no-padding { padding:0; }
 }
