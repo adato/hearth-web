@@ -55,6 +55,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 			$scope.onChange = function(id) {
 				if(id === $rootScope.loggedUser._id)
 					id = null;
+				
 				$scope.author = id;
 				$scope.selectedEntity = $scope.getByIndex(id);
 			};
