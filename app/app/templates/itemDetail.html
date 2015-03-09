@@ -19,13 +19,12 @@
 
 		<section ng-if="! adDeleted && ad && ad.name" class="large-12 content row" id="item_container_{{ ad._id }}">
 			<div class="large-4 ad-author-column text-center fright">
-				1
-				<!-- <avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id" /></avatar> -->
-				2
+				<div>
+					<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id" /></avatar>
+				</div>
 				<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}"><h2>{{ ad.author.name}}</h2></a>
-				3
+
 				<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">
-				4
 					<div ng-if="ad.author" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ ad.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ ad.author.down_votes }}">
 						<span class="positive bar" ng-style="{width: (karma)+'%'}" ng-class="{full: karma == 100}" ng-if="karma != null && karma > 0">
 						</span>
@@ -33,7 +32,7 @@
 						</span>
 					</div>
 				</a>
-				5
+
 				<div class="box text-left" ng-if="loggedUser._id">
 					<div class="line">
 						<div class="descr" ng-if="ad.author.about"><i class="fa fa-quote-right"></i> {{ad.author.about|ellipsis}}</div>
