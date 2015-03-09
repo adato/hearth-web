@@ -1,8 +1,8 @@
 <article id="item-detail" class="item-detail-page web-width">
 
-<!-- dummy init, remove -->
-<div ng-init="postTypes = { 'User': {'need': 'I need', 'offer': 'I offer'}, 'Community': {'need': 'We need', 'offer': 'We offer'}}; replyLabel = { 'need': 'Nabidnout <b>dar</b>', 'offer': 'Pozadat o <b>dar</b>' }"></div>
-<!-- // dummy init, remove -->
+	<!-- dummy init, remove -->
+	<div ng-init="postTypes = { 'User': {'need': 'I need', 'offer': 'I offer'}, 'Community': {'need': 'We need', 'offer': 'We offer'}}; replyLabel = { 'need': 'Nabidnout <b>dar</b>', 'offer': 'Pozadat o <b>dar</b>' }"></div>
+	<!-- // dummy init, remove -->
 
 	<div loading show="!loaded"></div>
 	
@@ -19,10 +19,13 @@
 
 		<section ng-if="! adDeleted && ad && ad.name" class="large-12 content row" id="item_container_{{ ad._id }}">
 			<div class="large-4 ad-author-column text-center fright">
+				1
 				<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id" /></avatar>
+				2
 				<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}"><h2>{{ ad.author.name}}</h2></a>
-
+				3
 				<a ng-href="{{'#!/'+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">
+				4
 					<div ng-if="ad.author" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ ad.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ ad.author.down_votes }}">
 						<span class="positive bar" ng-style="{width: (karma)+'%'}" ng-class="{full: karma == 100}" ng-if="karma != null && karma > 0">
 						</span>
@@ -30,7 +33,7 @@
 						</span>
 					</div>
 				</a>
-
+				5
 				<div class="box text-left" ng-if="loggedUser._id">
 					<div class="line">
 						<div class="descr" ng-if="ad.author.about"><i class="fa fa-quote-right"></i> {{ad.author.about|ellipsis}}</div>
@@ -122,15 +125,28 @@
 							<button ng-click="replyItem(ad)" class="reply-button" data-item-type="{{ ad.type }}" ng-bind-html="replyLabel[ad.type] | translate"></button>
 						</div>
 						<div ng-if="true || ad.reply_count" class="reply-count-container fleft" ng-bind-html="replyCountTexts[ad.type]+'.'+pluralCat(ad.reply_count) | translate:{value: ad.reply_count}"></div>
+					</footer>
+				</article>
+			</div>
+		</section>
+	</div>
+</article>
+
+
+
+
+
 
 <!-- 						<div class="controll-buttons" ng-if="mine">
 							<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"></div>
 							<div class="fa " ng-class="{'fa-refresh': ad.state == 'expired', 'fa-play': ad.state == 'suspended'}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+ad._id)"></div>
 							<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"></div>
 							<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></div>
-						</div> -->
+						</div>
 
-<!-- 						<span ng-if="!mine">
+
+
+						 						<span ng-if="!mine">
 							<button ng-if="! ad.is_replied && isActive" ng-click="replyItem(item)" class="small main" ng-class="ad.type">
 								<span ng-bind-html="replyLabel[ad.type] | translate"></span>
 							</button>
@@ -150,14 +166,8 @@
 								<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
 							</span>
 							<span ng-if="ad.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ ad.suspended_at | date:DATETIME_FORMATS.medium }}</span>
-						</span> -->
-					</footer>
-				</article>
-			</div>
+						</span>
 
-
-
-<!-- 
 <article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView}">
 	<section ng-if="! hideAvatar" class="large-2 columns user">
 		<div ng-if="loggedUser._id">
@@ -185,8 +195,7 @@
 		</div>
 	</section>
 </article>
- -->
-<!-- 			<div class="large-8 fleft no-padding" ng-if="isMine || (ad.locations.length && !ad.location_unlimited)">
+			<div class="large-8 fleft no-padding" ng-if="isMine || (ad.locations.length && !ad.location_unlimited)">
 				<div class="bottom-tabs">
 					<ul>
 						<li ng-if="isMine">
@@ -239,6 +248,3 @@
 				</ul>
 				<mapitems ng-if="ad.locations && ad.locations.length" class="map" items="ad.locations"></mapitems>
 			</div> -->
-		</section>
-	</div>
-</article>
