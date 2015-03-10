@@ -24,12 +24,15 @@
             </div>
             <div class="nameFiled">
                 
-                <author-selector class="fleft" id="author" author="rating.community_id" remove="info._id"></author-selector>
+                <author-selector class="fleft" id="author" author="rating.community_id"></author-selector>
                 
-                <needofferselector ng-if="loggedCommunity" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
-                <needofferselector ng-if="!loggedCommunity" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
+                <span class="postType">
+                    <needofferselector ng-if="loggedCommunity" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
+                    <needofferselector ng-if="!loggedCommunity" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
+                </span>
                 <div class="clear"></div>
                 
+                <label for="title">Sdělte stručně co*:</label>
                 <div class="name">
                     <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 
@@ -42,6 +45,7 @@
             </div>
             <div class="clear"></div>
 
+            <label for="text">Popište co věnujete, nebo přijmete*:</label>
             <textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
             <div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
                 <span ng-show="createAdForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
