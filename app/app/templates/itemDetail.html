@@ -1,9 +1,4 @@
 <article id="item-detail" class="item-detail-page web-width">
-
-	<!-- dummy init, remove -->
-	<div ng-init="postTypes = { 'User': {'need': 'I need', 'offer': 'I offer'}, 'Community': {'need': 'We need', 'offer': 'We offer'}}; replyLabel = { 'need': 'Nabidnout <b>dar</b>', 'offer': 'Pozadat o <b>dar</b>' }"></div>
-	<!-- // dummy init, remove -->
-
 	<div loading show="!loaded"></div>
 	
 	<div class="row" ng-if="loaded">
@@ -83,8 +78,8 @@
 						</div>
 						<div class="large-4 columns">
 							<span class="fright" id="ad-flag-container">
-								<a class="report-link spam fa fa-flag" ng-if="! mine && !loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)"></a>
-								<a class="report-link spam fa fa-flag" ng-if="! mine && loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="confirmBox('AD_REPORT_CONFIRM', 'AD_REPORT_ARE_YOU_SURE', reportItem, item, this)"></a>
+								<a class="report-link spam fa fa-flag" ng-if="! isMine && !loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)"></a>
+								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="confirmBox('AD_REPORT_CONFIRM', 'AD_REPORT_ARE_YOU_SURE', reportItem, item, this)"></a>
 							</span>
 							<span class="date fright" title="{{ad.updated_at | date:DATETIME_FORMATS.medium}}">
 								{{ad.updated_at | ago}}
@@ -94,19 +89,30 @@
 					<div class="text-container">
 						<p ng-bind-html="ad.name | linky:'_blank' | nl2br"></p>
 					</div>
-					<div class="attachments" ng-if="ad.attachments_attributes.length" fancybox>
+<!-- 					<div class="attachments" ng-if="ad.attachments_attributes.length" fancybox>
 						<a class="fancy" ng-href="{{ photo.large }}" rel="{{ ad._id }}" ng-repeat="photo in ad.attachments_attributes track by $index">
 							<img ng-if="$index" ng-src="{{ photo.normal }}">
 						</a>
+					</div> -->
+
+					<flex-slider slide="photo in ad.attachments_attributes track by $index" animation="slide" animation-loop="false" item-margin="15" item-width="205" class="carousel" fancybox direction-nav="true" control-nav="false" slideshow="false" prev-text="" next-text="">
+						<li>
+							<a class="fancy" ng-href="{{ photo.large }}" rel="{{ ad._id }}"><img ng-src="{{photo.normal}}"></a>
+						</li>
+					</flex-slider>
+
+					<div class="map-expand-toggle" ng-if="ad.locations.length && !ad.location_unlimited" ng-init="showMap = !isMine && ad.locations && ad.locations.length && !ad.location_unlimited">
+						<a ng-show="!showMap" ng-click="showMap = true">{{ 'POSTS.DETAIL.SHOW_MAP' | translate }} <i class="fa fa-chevron-down"></i></a>
+						<a ng-show="showMap" ng-click="showMap = false">{{ 'POSTS.DETAIL.HIDE_MAP' | translate }} <i class="fa fa-chevron-up"></i></a>
 					</div>
-					<h4>{{ 'post-places-heading' | translate }}</h4>
-					<ul class="address">
-						<li ng-if="ad.location_unlimited" class="location-anywhere">{{ 'anywhere' | translate }}</li>
+					<h4>{{ 'POSTS.DETAIL.LOCATION_HEADING' | translate }}</h4>
+					<ul class="address clearfix">
+						<li ng-if="ad.location_unlimited" class="location-anywhere">{{ 'POSTS.DETAIL.LOCATION_ANYWHERE' | translate }}</li>
 						<li ng-repeat="(locationId, location) in ad.locations">
 							{{ location.address }}
 						</li>
 					</ul>
-					<mapitems ng-if="ad.locations && ad.locations.length" class="map" style="height:300px;" items="ad.locations"></mapitems>
+					<mapitems ng-if="showMap" class="map" style="height:300px;" items="ad.locations" zoom-on-scroll="false"></mapitems>
 
 					<div class="tags" ng-if="ad.keywords.length">
 						<ul class="tagList">
@@ -121,129 +127,60 @@
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
 						</div>
 						<div class="reply-button-container fleft">
-							<button ng-click="replyItem(ad)" class="reply-button" data-item-type="{{ ad.type }}" ng-bind-html="replyLabel[ad.type] | translate"></button>
+							<button ng-if="!ad.is_replied" ng-click="replyItem(ad)" class="reply-button" data-item-type="{{ ad.type }}" ng-bind-html="replyLabel[ad.type] | translate"></button>
+							<div ng-if="ad.is_replied">
+								{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+							</div>
 						</div>
-						<div ng-if="true || ad.reply_count" class="reply-count-container fleft" ng-bind-html="replyCountTexts[ad.type]+'.'+pluralCat(ad.reply_count) | translate:{value: ad.reply_count}"></div>
+						<div class="reply-count-container fleft">
+							<div ng-if="ad.reply_count" ng-bind-html="replyCountTexts[ad.type]+'.'+pluralCat(ad.reply_count) | translate:{value: ad.reply_count}"></div>
+
+							<div ng-if="!ad.reply_count">{{'NO_REPLY' | translate}}</div>
+							<div ng-if="!isActive">
+								<span ng-if="ad.state == 'expired'">
+									<span ng-if="ad.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ ad.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
+									<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
+								</span>
+								<span ng-if="ad.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ ad.suspended_at | date:DATETIME_FORMATS.medium }}</span>
+							</div>
+						</div>
+
 					</footer>
 				</article>
+
+				<div class="box post-replies row" ng-if="isMine">
+					<h4>{{ 'POSTS.DETAIL.REPLIES' | translate }}</h4>
+					<div class="large-12 large-centered columns text-center no-result" ng-if="isMine && !replies.length"><p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p></div>
+					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies">
+						<section class="large-2 columns user">
+							<avatar src="item.author.avatar.normal" type="item.author._type" href="'#!/' + getProfileLinkByType(item.author._type) + '/' + item.author._id"></avatar>
+						</section>
+						<section class="large-10 columns">
+							<div class="content">
+								<div class="fright">
+									<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
+								</div>
+								<div class="text-container clearfix">
+									<span class="reply-author">{{ item.author.name }}</span> {{ 'POSTS.DETAIL.REPLIES.IS_SAYING' | translate}}
+									<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
+								</div>
+								<!-- <div class="reply-contact fright"><a ng-href="mailto:{{ item.author_email }}"><i class="fa fa-forward"></i></a></div> -->
+								<!-- <div class="reply-contact fright" ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></div> -->
+							</div>
+						</section>
+					</article>
+				</div>
 			</div>
 		</section>
 	</div>
 </article>
 
 
-
-
-
-
-<!-- 						<div class="controll-buttons" ng-if="mine">
+<!--
+ 						<div class="controll-buttons" ng-if="mine">
 							<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"></div>
 							<div class="fa " ng-class="{'fa-refresh': ad.state == 'expired', 'fa-play': ad.state == 'suspended'}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+ad._id)"></div>
 							<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"></div>
 							<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></div>
-						</div>
-
-
-
-						 						<span ng-if="!mine">
-							<button ng-if="! ad.is_replied && isActive" ng-click="replyItem(item)" class="small main" ng-class="ad.type">
-								<span ng-bind-html="replyLabel[ad.type] | translate"></span>
-							</button>
-							<span ng-if="ad.is_replied">
-								{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
-							</span>
-						</span>
-
-						<span ng-if="ad.reply_count">
-							<span class="margin" ng-bind-html="replyCountTexts[ad.type]+'.'+pluralCat(ad.reply_count) | translate:{value: ad.reply_count}"></span>
-						</span>
-						<span class="margin" ng-if="!ad.reply_count">{{'NO_REPLY' | translate}}</span>
-						<span ng-if="!isActive">
-							&nbsp;&nbsp;&nbsp;
-							<span ng-if="ad.state == 'expired'">
-								<span ng-if="ad.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ ad.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
-								<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
-							</span>
-							<span ng-if="ad.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ ad.suspended_at | date:DATETIME_FORMATS.medium }}</span>
-						</span>
-
-<article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView}">
-	<section ng-if="! hideAvatar" class="large-2 columns user">
-		<div ng-if="loggedUser._id">
-			<div ng-include="'templates/_user-info.html'"></div>
-			<a ng-href="#!/{{getProfileLinkByType(item.author._type)}}/{{ item.author._id }}">
-				<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
-				<div class="name">{{ item.author.name }}</div>
-			</a>
-		</div>
-		<div ng-if="!loggedUser._id">
-			<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
-			<div class="name">{{ item.author.name }}</div>
-		</div>
-		<div class="karma" ng-class="{empty: !item.karma}" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ item.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ item.author.down_votes }}">
-			<div class="positive" style="width:{{item.karma}}"></div>
-		</div>
-		<div class="timeline"></div>
-	</section>
-	<section class="item-container columns" ng-class="foundationColumnsClass">
-		<div class="item" ng-class="item.type">
-			<div class="overlap"> </div>
-			<div class="arrowbox"></div>
-			<div class="arrow"></div>
-			<div class="content">
-		</div>
-	</section>
-</article>
-			<div class="large-8 fleft no-padding" ng-if="isMine || (ad.locations.length && !ad.location_unlimited)">
-				<div class="bottom-tabs">
-					<ul>
-						<li ng-if="isMine">
-							<a href="" ng-click="page.currentPageSegment='detail.replies'" ng-class="{selected: page.currentPageSegment =='detail.replies'}">
-								{{ 'AD_REPLIES' | translate }}
-							</a>
-						</li>
-						<li ng-if="ad.locations.length && !ad.location_unlimited">
-							<a href="" ng-click="page.currentPageSegment='detail.map'" ng-class="{selected: page.currentPageSegment =='detail.map'}">
-								{{ 'AD_PLACES' | translate }}
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div> -->
-
-<!-- 			<div class="large-8 rating-listing ratings-received fleft" ng-if="isMine && page.currentPageSegment == 'detail.replies'">
-				<div class="large-12 large-centered columns box text-center no-result" ng-if="!replies.length"><p>{{'NO_REPLY' | translate}}</p></div>
-				<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in replies">
-					<section class="large-2 columns user">
-						<a ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
-							<avatar src="item.author.avatar.normal" type="item.author._type"></avatar>
-							<div class="name">{{ item.author.name }}</div>
-						</a>
-					</section>
-					<section class="large-10 columns">
-						<div class="item rating-received">
-							<div class="overlap"> </div>
-							<div class="arrowbox"></div>
-							<div class="arrow"></div>
-							<div class="content">
-								<div class="fright">
-									<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
-								</div>
-								<div class="text-container clearfix">
-									<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
-								</div>
-								<div style="text-right smaller"><small ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></small></div>
-							</div>
-						</div>
-					</section>
-				</article>
-			</div>
-
-			<div class="large-8 box map-box fleft" ng-if="(ad.locations.length && !ad.location_unlimited) && (!isMine || page.currentPageSegment == 'detail.map')">
-				<ul class="address">
-					<li ng-repeat="(locationId, location) in ad.locations">
-						<i class="fa fa-map-marker"></i> &nbsp; {{ location.address }}
-					</li>
-				</ul>
-				<mapitems ng-if="ad.locations && ad.locations.length" class="map" items="ad.locations"></mapitems>
-			</div> -->
+						</div> 
+-->

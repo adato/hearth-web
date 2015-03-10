@@ -1,6 +1,9 @@
 $local-grid-size: 25px;
 
 #item-detail {
+	a {
+		color:color(5);
+	}
 	.box {
 		padding:$local-grid-size;
 		box-shadow:1px 1px 6px rgba(50,50,50,.5);
@@ -121,6 +124,7 @@ $local-grid-size: 25px;
 			}
 			.line {
 				div.descr {
+					line-height:130%;
 					margin-top: 10px;
 					margin-bottom: 10px;
 					margin-left: 27px;
@@ -183,7 +187,7 @@ $local-grid-size: 25px;
 				margin:0;
 			}
 			#ad-flag-container>a {
-				color:darken(color(4), 40%);
+				color:color(3);
 				margin-left:$local-grid-size;
 			}
 		}
@@ -212,7 +216,7 @@ $local-grid-size: 25px;
 			}
 			.sharing a { 
 				color:color(4);
-				background:darken(color(4), 40%);
+				background:color(3);
 				border-radius:50%;
 				padding:6px;
 				font-size:1em;
@@ -229,22 +233,50 @@ $local-grid-size: 25px;
 					font-size:1em;
 					font-weight: 600;
 					padding:5px 50px;
+					p { margin:0; }
 				}
 			}
 			.reply-count-container {
 				line-height: $local-grid-size;
-				margin:2px $local-grid-size;
+				div {
+					line-height: $local-grid-size;
+					margin:5px $local-grid-size;
+				}
 			}
 		}
-	}
 
-	.market-link { 
-		@extend .clearfix;
-		margin-bottom:2rem;
-		margin-left:-1rem;
-		padding:.5rem;
-	}
+		.post-replies {
+			margin-top:$local-grid-size;
+			.reply-item { 
+				margin: {
+					left: -1 * $local-grid-size;
+					right: -1 * $local-grid-size;
+					top: 5px;
+				}
+				padding: $local-grid-size;
+				padding-bottom: 0;
+				background: #ebf5f7; // light blue, should be defined as lighten base
+				h4 { margin: 0px 0px 10px 0px; }
+				section.user { text-align:left; }
+				.reply-author { font-weight: 600; }
+				.reply-contact p { font-size: 1.5em; }
+				.text-container p { margin: $local-grid-size 0px; }
+			}
+		}
 
+		.carousel {
+			margin: $local-grid-size 0;
+			.flexslider {
+				margin:0;
+				box-shadow:none;
+				border:0;
+			}
+		}
+
+		.map-expand-toggle {
+			float:right;
+		}
+	}
 
 	*[data-item-type="need"] {
 		color:color(1);
@@ -259,4 +291,61 @@ $local-grid-size: 25px;
 		background:color(2);
 	}
 
+}
+
+
+
+// local flexslider tuning
+.ad-detail-column {
+	.flex-direction-nav a {
+		text-decoration:none;
+		display:block;
+		width:$local-grid-size;
+		height:2* $local-grid-size;
+		margin:0;
+		position:absolute;
+		top:40%;
+		z-index:10;
+		overflow:hidden;
+		cursor:pointer;
+		color:rgba(0,0,0,0.8);
+		background:white;
+		opacity:.8;
+	}
+	.flex-direction-nav .flex-prev {
+		left:0px;
+		border-top-right-radius:$global-radius;
+		border-bottom-right-radius:$global-radius;
+	}
+	.flex-direction-nav .flex-next{
+		border-top-left-radius:$global-radius;
+		border-bottom-left-radius:$global-radius;
+		right:0px;
+		text-align:right;
+	}
+	.flexslider:hover .flex-prev{
+		left:0;
+		opacity:.8;
+	}
+	.flexslider:hover .flex-next{
+		right:0;
+		opacity:.8;
+	}
+	.flexslider:hover .flex-next:hover,.flexslider:hover .flex-prev:hover {
+		opacity:1;
+	}
+ 	.flex-direction-nav .flex-disabled{
+ 		opacity:.8;
+	}
+	.flex-direction-nav a:before{
+		font-family:"flexslider-icon";
+		font-size:20px;
+		line-height: 2 * $local-grid-size;
+		display:inline-block;
+		content:'\f001';
+		color:darken(color(4), 30%);
+	}
+	.flex-direction-nav a.flex-next:before{
+		content:'\f002';
+	}
 }
