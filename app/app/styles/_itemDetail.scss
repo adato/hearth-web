@@ -1,4 +1,6 @@
 $local-grid-size: 25px;
+$local-font-size: 14px;
+$local-header-font-size: 16px;
 
 #item-detail {
 	a {
@@ -6,7 +8,7 @@ $local-grid-size: 25px;
 	}
 	.box {
 		padding:$local-grid-size;
-		box-shadow:1px 1px 6px rgba(50,50,50,.5);
+		box-shadow:1px 1px 6px rgba(100,100,100,.5);
 	}
 	.ad-author-column {
 		float:right;
@@ -27,7 +29,7 @@ $local-grid-size: 25px;
 		}
 
 		h2 {
-			font-size:1rem;
+			font-size:$local-font-size;
 			text-align:center;
 			font-weight:bold;
 		}
@@ -181,7 +183,7 @@ $local-grid-size: 25px;
 				line-height:23px;
 			}
 			h1 {
-				font-size:1.1em;
+				font-size:$local-header-font-size;
 				font-weight:700;
 				word-wrap: break-word;
 				margin:0;
@@ -192,12 +194,19 @@ $local-grid-size: 25px;
 			}
 		}
 		h4 {
-			font-size:1em;
+			font-size:$local-font-size;
 			font-weight:600;
 		}
 		.text-container {
 			p {
-				font-size:1em;
+				font-size:$local-font-size;
+			}
+		}
+		ul.address { 
+			margin-left:0; 
+			li {
+				list-style-type:none;
+				font-size:$local-font-size;
 			}
 		}
 		footer {
@@ -225,22 +234,22 @@ $local-grid-size: 25px;
 				margin-left:10px;
 				margin-top:2px;
 			}
+			.reply-button-container, .reply-count-container {
+				line-height: $local-grid-size;
+				div {
+					line-height: $local-grid-size;
+					margin:5px 5px;
+				}
+			}
 			.reply-button-container {
 				button {
 					border:0;
 					color:lighten(color(4), 10%);
 					margin:0;
-					font-size:1em;
+					font-size:$local-font-size;
 					font-weight: 600;
 					padding:5px 50px;
-					p { margin:0; }
-				}
-			}
-			.reply-button-container, .reply-count-container {
-				line-height: $local-grid-size;
-				div {
-					line-height: $local-grid-size;
-					margin:5px $local-grid-size;
+					p { margin:0; font-size:$local-font-size; }
 				}
 			}
 		}
