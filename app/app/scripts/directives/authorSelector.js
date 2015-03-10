@@ -41,6 +41,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 			};
 
 			$scope.buildAuthorList = function() {
+				console.log($rootScope.myAdminCommunities);
 				$scope.list = [$rootScope.loggedUser];
 
 				for(var i = 0; i < $rootScope.myAdminCommunities.length; i++) {

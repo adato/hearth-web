@@ -365,3 +365,17 @@ button[disabled],
 .padding-0 {
     margin: 0px;   
 }
+
+.label-block {
+    display: inline-block;
+    margin-right: 10px;
+    input {
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+    }
+}
+
+.label-checked {
+    font-weight: bold;
+}

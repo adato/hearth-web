@@ -21,7 +21,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// ratings
 			$scope.sendingRating = false;
 			$scope.rating = {
-				score: 1,
+				community_id: null,
+				score: true,
 				text: ''
 			};
 			$scope.showError = {
@@ -208,8 +209,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
 			var ratings = {
-				true: -1,
-				false: 1
+				false: -1,
+				true: 1
 			};
 
 			$scope.showError.text = false;
