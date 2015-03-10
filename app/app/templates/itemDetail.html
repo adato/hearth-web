@@ -35,20 +35,20 @@
 						<div class="descr" ng-if="ad.author.locations.length && ad.author.locations[0].short_address">
 							<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
 							<span ng-repeat="(locationId, location) in ad.author.locations">
-								<span ng-if="location.short_address">{{location.short_address}}<span ng-if="!$last">; </span></span>
+								<span ng-if="location.short_address">{{location.short_address}}<span ng-if="!$last">;&nbsp;</span></span>
 							</span>
 						</div>
 						<div class="descr" ng-if="ad.author.interests && ad.author.interests[0] != ''"><i class="fa fa-smile-o"></i> {{ ad.author.interests.join(", ") }}</div>
 						<div class="descr" ng-if="ad.author.user_languages">
 							<span ng-repeat="(languageCode, enabled) in ad.author.user_languages">
 								<i class="fa fa-comments" ng-if="$first"></i>
-								{{ 'MY_LANG.' + languageCode | translate }}<span ng-if="!$last">, </span>
+								{{ 'MY_LANG.' + languageCode | translate }}<span ng-if="!$last">,&nbsp;</span>
 							</span>
 						</div>
 						<div class="descr" ng-if="ad.author.webs.length && ad.author.webs[0]">
 							<i class="fa fa-link"></i> 
 							<span ng-repeat="(code, web) in ad.author.webs">
-								<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a><span ng-if="!$last">, </span>
+								<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a><span ng-if="!$last">,&nbsp;</span>
 							</span>
 						</div>
 					</div>
@@ -65,7 +65,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="large-8 fleft columns ad-detail-column">
+			<div class="large-8 fleft columns ad-detail-column" ng-init="local.showMap = false">
 				<article class="box post-detail row">
 					<header class="clearfix">
 						<div class="large-8 columns">
@@ -101,9 +101,9 @@
 						</li>
 					</flex-slider>
 
-					<div class="map-expand-toggle" ng-if="ad.locations.length && !ad.location_unlimited" ng-init="showMap = !isMine && ad.locations && ad.locations.length && !ad.location_unlimited">
-						<a ng-show="!showMap" ng-click="showMap = true">{{ 'POSTS.DETAIL.SHOW_MAP' | translate }} <i class="fa fa-chevron-down"></i></a>
-						<a ng-show="showMap" ng-click="showMap = false">{{ 'POSTS.DETAIL.HIDE_MAP' | translate }} <i class="fa fa-chevron-up"></i></a>
+					<div class="map-expand-toggle" ng-if="ad.locations.length && !ad.location_unlimited" ng-init="local.showMap = !isMine && ad.locations && ad.locations.length && !ad.location_unlimited">
+						<a ng-show="!local.showMap" ng-click="local.showMap = true">{{ 'POSTS.DETAIL.SHOW_MAP' | translate }} <i class="fa fa-chevron-down"></i></a>
+						<a ng-show="local.showMap" ng-click="local.showMap = false">{{ 'POSTS.DETAIL.HIDE_MAP' | translate }} <i class="fa fa-chevron-up"></i></a>
 					</div>
 					<h4>{{ 'POSTS.DETAIL.LOCATION_HEADING' | translate }}</h4>
 					<ul class="address clearfix">
@@ -112,7 +112,7 @@
 							{{ location.address }}
 						</li>
 					</ul>
-					<mapitems ng-if="showMap" class="map" style="height:300px;" items="ad.locations" zoom-on-scroll="false"></mapitems>
+					<mapitems ng-if="local.showMap" class="map" style="height:300px;" items="ad.locations" zoom-on-scroll="false"></mapitems>
 
 					<div class="tags" ng-if="ad.keywords.length">
 						<ul class="tagList">
@@ -127,7 +127,7 @@
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
 						</div>
 						<div class="reply-button-container fleft">
-							<button ng-if="!ad.is_replied" ng-click="replyItem(ad)" class="reply-button" data-item-type="{{ ad.type }}" ng-bind-html="replyLabel[ad.type] | translate"></button>
+							<button ng-if="!ad.is_replied && !isMine" ng-click="replyItem(ad)" class="reply-button" data-item-type="{{ ad.type }}" ng-bind-html="replyLabel[ad.type] | translate"></button>
 							<div ng-if="ad.is_replied">
 								{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 							</div>

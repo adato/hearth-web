@@ -236,7 +236,7 @@ $local-grid-size: 25px;
 					p { margin:0; }
 				}
 			}
-			.reply-count-container {
+			.reply-button-container, .reply-count-container {
 				line-height: $local-grid-size;
 				div {
 					line-height: $local-grid-size;
