@@ -11,7 +11,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 	function($scope, $rootScope, Auth, Errors, $element, PostReplies, Notify) {
 		$scope.sending = false;
 		$scope.showErrors = false;
-		$scope.author = null;
+		// $scope.author = null;
 		$scope.reply = {
 			id: $scope.post._id,
 			agreed: true,
@@ -22,13 +22,13 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			name: $scope.post.author.name
 		};
 		$scope.showErrors = {
-			text: false,
+			message: false,
 			agree: false
 		}
 
-		$scope.$watch("author", function(val) {
-			$scope.reply.current_community_id = val;
-		});
+		// $scope.$watch("author", function(val) {
+		// 	$scope.reply.current_community_id = val;
+		// });
 
 		$scope.toggleMail = function() {
 			$scope.reply.agree = !$scope.reply.agree;
@@ -49,7 +49,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				$scope.showErrors[key] = true;
 			});
 
-			if ($scope.sending || !$scope.reply.agreed || $scope.replyForm.text.$invalid) {
+			if ($scope.sending || !$scope.reply.agreed || $scope.replyForm.message.$invalid) {
 				return false;
 			}
 

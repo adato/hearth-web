@@ -10,12 +10,12 @@
     <form ng-submit="sendReply()" name="replyForm" novalidate class="reply-ad">
         <div class="notify-reply-container"></div>
         <div>
-            <author-selector id="author" author="author" remove="post.author._id"></author-selector>
-            <textarea autosize-textarea required ng-focus="showErrors.text = false" ng-blur="showErrors.text = true" placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.text" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-cloak class="reply-ad-textarea text-input middle"></textarea>
+            <author-selector id="author" author="reply.current_community_id" remove="post.author._id"></author-selector>
+            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-cloak class="reply-ad-textarea text-input middle"></textarea>
             <div class="moveUp error" ng-show="showErrors.text">
-                <span ng-show="replyForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="replyForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="replyForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+                <span ng-show="replyForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="replyForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="replyForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
             <div class="mail">
                  <checkbox ng-show="false" model="reply.agree" on-update="toggleMail()" value="true">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:translationData }}</checkbox>

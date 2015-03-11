@@ -46,13 +46,12 @@ angular.module('hearth.directives').directive('authorSelector', [
 					return false;
 
 				$scope.list = [$rootScope.loggedUser];
-
 				if($rootScope.myAdminCommunities)
 					for(var i = 0; i < $rootScope.myAdminCommunities.length; i++) {
-						if($rootScope.myAdminCommunities._id !== $scope.remove)
+						if($rootScope.myAdminCommunities[i]._id !== $scope.remove)
 							$scope.list.push($rootScope.myAdminCommunities[i]);
 					}
-	
+
 				var index = $scope.getIndexById($scope.author);
 				$scope.selected._id = $scope.list[index]._id;
 			};
@@ -72,6 +71,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 				$scope.selected._id = id;
 				$scope.selectedEntity = $scope.getByIndex(id);
 			};
+
 
 			$scope.$watch('author', $scope.selectAuthor);
 			$scope.$watch('remove', $scope.buildAuthorList);
