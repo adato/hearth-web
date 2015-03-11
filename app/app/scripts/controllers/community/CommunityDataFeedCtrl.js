@@ -106,7 +106,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     }, done);
                 },
                 function(done) {
-                    Community.getPosts({communityId:id, limit: 5}, function(res) {
+                    Community.getPosts({communityId:id, limit: 5, offset: 1}, function(res) {
                         $scope.posts = res;
                         done(null);
                     }, done);
