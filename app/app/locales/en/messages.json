@@ -19,6 +19,7 @@
     "ACTIVE_POSTS": "Active posts",
     "ACTUALLY_YOU_HAVE_ACTIVE": "Currently active",
     "ADD": "Add",
+    "ADD_CONTENT_AS": "za",
     "ADD_KEYWORDS": "Add keywords, separated by comma",
     "ADD_LOCATION": "Add location",
     "ADD_NEXT_WEB": "Add another web",
@@ -95,6 +96,10 @@
         },
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Do you really want to delete this community?",
         "COMMUNITY_REMOVE_LABEL": "Delete community",
+        "CONFIRM_LEAVE": {
+            "TEXT": "Doopravdy chcete opustit tuto komunitu?",
+            "TITLE": "Opustit komunitu"
+        },
         "DELEGATE_ADMIN_ARE_YOU_SURE": "Do you really want to hand over administration of the community?",
         "DELEGATE_ADMIN_LABEL": "Hand over administration",
         "HOME": {
@@ -594,7 +599,17 @@
     "POPULAR_KEYWORDS": "Popular keywords",
     "POSITIVE": "All clicked into place",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Everything went smoothly? Are you excited? Quick...share your joy with the user.",
-    "POSTS": "posts",
+    "POSTS": {
+        "POSTS": "posts",
+        "DETAIL": {
+            "HIDE_MAP": "Skrýt mapu",
+            "LOCATION_ANYWHERE": "Kdekoliv",
+            "LOCATION_HEADING": "Umístění inzerátu",
+            "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
+            "REPLIES": "Odpovědi uživatelů",
+            "SHOW_MAP": "Zobrazit mapu"
+        }
+    },
     "POSTS_INACTIVE": "Inactive posts",
     "POSTS_PL": {
         "one": "post",
