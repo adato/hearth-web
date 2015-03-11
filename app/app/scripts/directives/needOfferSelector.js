@@ -9,6 +9,7 @@ angular.module('hearth.directives').directive('needofferselector',
 	function() {
 		return {
 			restrict: 'E',
+			replace: true,
 			scope: {
 				model: '=',
 				textTrue: '@',

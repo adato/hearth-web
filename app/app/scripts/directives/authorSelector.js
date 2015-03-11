@@ -24,9 +24,10 @@ angular.module('hearth.directives').directive('authorSelector', [
 			$scope.selectedEntity = {};
 
 			$scope.getIndexById = function(id) {
-				for(var i = 0; i < $scope.list.length; i++)
+				for(var i = 0; i < $scope.list.length; i++) {
 					if($scope.list[i]._id == id)
 						return i;
+				}
 				return 0;
 			};
 
@@ -41,14 +42,16 @@ angular.module('hearth.directives').directive('authorSelector', [
 			};
 
 			$scope.buildAuthorList = function() {
-				console.log($rootScope.myAdminCommunities);
-				$scope.list = [$rootScope.loggedUser];
+				if(!$rootScope.loggedUser)
+					return false;
 
-				for(var i = 0; i < $rootScope.myAdminCommunities.length; i++) {
-					if($rootScope.myAdminCommunities._id !== $scope.remove)
-						$scope.list.push($rootScope.myAdminCommunities[i]);
-				}
-	
+				$scope.list = [$rootScope.loggedUser];
+				if($rootScope.myAdminCommunities)
+					for(var i = 0; i < $rootScope.myAdminCommunities.length; i++) {
+						if($rootScope.myAdminCommunities[i]._id !== $scope.remove)
+							$scope.list.push($rootScope.myAdminCommunities[i]);
+					}
+
 				var index = $scope.getIndexById($scope.author);
 				$scope.selected._id = $scope.list[index]._id;
 			};
@@ -62,9 +65,13 @@ angular.module('hearth.directives').directive('authorSelector', [
 			};
 			
 			$scope.selectAuthor = function(id) {
-				$scope.selected._id = id || $scope.list[0]._id;
+				if(!id && $scope.list.length)
+					id = $scope.list[0]._id;
+
+				$scope.selected._id = id;
 				$scope.selectedEntity = $scope.getByIndex(id);
 			};
+
 
 			$scope.$watch('author', $scope.selectAuthor);
 			$scope.$watch('remove', $scope.buildAuthorList);

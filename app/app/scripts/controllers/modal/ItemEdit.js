@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			keywords: [],
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [],
+			current_community_id: null,
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
@@ -40,14 +41,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		});
 
-		// $scope.$watch('languageCode', function() {
-		// 	var timestamp = dateToTimestamp($scope.post.date, true);
-		// 	$scope.post.date = $filter('date')(timestamp, $scope.dateFormat);
-		// });
-	
-		// var dateToConvert = new Date();
-		// alert(dateToConvert.toISOString());
-
 		$scope.queryKeywords = function($query) {
 			return KeywordsService.queryKeywords($query);
 		};
@@ -59,7 +52,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			// $scope.post.valid_until_unlimited = !$scope.post.valid_until_unlimited;
 			if (!$scope.post.valid_until_unlimited) {
-
 				$scope.post.valid_until = '';
 			}
 		};
