@@ -41,7 +41,7 @@
     "AD_REMOVE_LABEL": "Odstranit inzerát",
     "AD_REPLIES": "Odpovědi na inzerát",
     "AD_REPLY_PLACEHOLDER": "Máte zájem? Můžete odpovídat...",
-    "AD_REPORT_ARE_YOU_SURE": "Doopravdy chcete nahlásit tento inzerát jako škodlivý?",
+    "AD_REPORT_ARE_YOU_SURE": "Opravdu chcete nahlásit tento inzerát jako nevhodný?",
     "AD_REPORT_CONFIRM": "Nahlásit inzerát",
     "AD_RESUME_LABEL": "Obnovit inzerát",
     "AGREE_WITH_TERMS_BUTTON_LABEL": "Souhlasím s podmínkami použití",
@@ -100,6 +100,10 @@
         },
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Doopravdy chcete smazat tuto komunitu?",
         "COMMUNITY_REMOVE_LABEL": "Smazat komunitu",
+        "CONFIRM_LEAVE": {
+            "TEXT": "Doopravdy chcete opustit tuto komunitu?",
+            "TITLE": "Opustit komunitu"
+        },
         "DELEGATE_ADMIN_ARE_YOU_SURE": "Doopravdy chcete předat správcovství této skupiny?",
         "DELEGATE_ADMIN_LABEL": "Předání správcovství",
         "HOME": {
@@ -608,7 +612,17 @@
     "POPULAR_KEYWORDS": "Populární klíčová slova",
     "POSITIVE": "Všechno klaplo",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Vše proběhlo jak mělo? Jste nadšeni? Tak šup... dejte to uživateli vědět.",
-    "POSTS": "inzeráty",
+    "POSTS": {
+        "POSTS": "inzeráty",
+        "DETAIL": {
+            "HIDE_MAP": "Skrýt mapu",
+            "LOCATION_ANYWHERE": "Kdekoliv",
+            "LOCATION_HEADING": "Umístění inzerátu",
+            "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
+            "REPLIES": "Odpovědi uživatelů",
+            "SHOW_MAP": "Zobrazit mapu"
+        }
+    },
     "POSTS_INACTIVE": "Neaktivní inzeráty",
     "POSTS_PL": {
         "one": "inzerát",
@@ -717,7 +731,7 @@
     "REMOVE": "Odebrat",
     "REPLY_BUTTON_CAPTION": "Odpovědět",
     "REPLY_PUBLISH_EMAIL_AGREE": "Společně s touto zprávou uvidí uživatel {{name}} i Vaši emailovou adresu.",
-    "REPORT_HARMFUL_AD": "Nahlásit škodlivý inzerát",
+    "REPORT_HARMFUL_AD": "Nahlásit nevhodný inzerát",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Při změně hesla došlo k chybě... Co teď?",
     "RESET_PASSWORD_BROKEN_LINK": "Jejda, něco se pokazilo, tento odkaz není platný.<br \/>Nechte si vygenerovat nový na <a href='#!\/forgotten-password'>této adrese.<\/a>",

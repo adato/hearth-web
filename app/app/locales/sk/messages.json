@@ -100,6 +100,10 @@
         },
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Naozaj chcete zmazať túto komunitu?",
         "COMMUNITY_REMOVE_LABEL": "Zmazať komunitu",
+        "CONFIRM_LEAVE": {
+            "TEXT": "Doopravdy chcete opustit tuto komunitu?",
+            "TITLE": "Opustit komunitu"
+        },
         "DELEGATE_ADMIN_ARE_YOU_SURE": "Naozaj chcete odovzdať správcovstvo tejto skupiny?",
         "DELEGATE_ADMIN_LABEL": "Odovzdanie správcovstva",
         "HOME": {
@@ -608,7 +612,17 @@
     "POPULAR_KEYWORDS": "Populárne kľúčové slová",
     "POSITIVE": "Všetko klaplo",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Všetko prebehlo, ako malo? Ste nadšený? Tak šup...dajte to užívateľovi vedieť.",
-    "POSTS": "inzeráty",
+    "POSTS": {
+        "POSTS": "inzeráty",
+        "DETAIL": {
+            "HIDE_MAP": "Skrýt mapu",
+            "LOCATION_ANYWHERE": "Kdekoliv",
+            "LOCATION_HEADING": "Umístění inzerátu",
+            "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
+            "REPLIES": "Odpovědi uživatelů",
+            "SHOW_MAP": "Zobrazit mapu"
+        }
+    },
     "POSTS_INACTIVE": "Neaktívne inzeráty",
     "POSTS_PL": {
         "one": "inzerát",
