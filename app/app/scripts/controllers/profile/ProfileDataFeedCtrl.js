@@ -25,37 +25,12 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             };
         var inited = false;
         $scope.subPageLoaded = false;
-        $scope.ratingPosts = [];
-        $scope.loadedRatingPosts = false;
+        
 
         function loadFriends(params, done, doneErr) {
             params.related = "user";
             Friends.query(params, done, doneErr);
         }
-
-        $scope.$watch('rating.community_id', function(val) {
-
-            if(!$scope.mine) {
-                UserRatings.possiblePosts({userId: params.user_id, current_community_id: val}, function(res) {
-                    var posts = [];
-                    
-                    res.needed.forEach(function(item) {
-                        item.post_type = "needed";
-                        posts.push(item);
-                    });
-                    res.offered.forEach(function(item) {
-                        item.post_type = "offered";
-                        posts.push(item);
-                    });
-
-                    $scope.ratingPosts = posts;
-                    $scope.loadedRatingPosts = true;
-                }, function(res) {
-                    $scope.loadedRatingPosts = true;
-                });
-            }
-        });
-
 
         function loadReceivedRatings(params, done, doneErr) {
             $scope.loadedRatingPosts = false;
@@ -63,12 +38,33 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
             UserRatings.received(params, done, doneErr);
             
+            $scope.$watch('rating.current_community_id', function(val) {
+                if(!$scope.mine) {
+                    $scope.rating.post_id = 0;
+                    UserRatings.possiblePosts({userId: params.user_id, current_community_id: val}, function(res) {
+                        var posts = [];
+                        
+                        res.needed.forEach(function(item) {
+                            item.post_type = "needed";
+                            posts.push(item);
+                        });
+                        res.offered.forEach(function(item) {
+                            item.post_type = "offered";
+                            posts.push(item);
+                        });
+
+                        $scope.ratingPosts = posts;
+                        $scope.loadedRatingPosts = true;
+                    }, function(res) {
+                        $scope.loadedRatingPosts = true;
+                    });
+                }
+            });
 
             var removeListener = $scope.$on('$routeChangeStart', function() {
                 $scope.closeUserRatingForm();
                 removeListener();
             });
-
         }
 
         function loadFollowees(params, done, doneErr) {

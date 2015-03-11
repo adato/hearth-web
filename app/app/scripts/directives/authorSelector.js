@@ -24,10 +24,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 			$scope.selectedEntity = {};
 
 			$scope.getIndexById = function(id) {
-				console.log(id, $scope.list);
-
 				for(var i = 0; i < $scope.list.length; i++) {
-					console.log(i, $scope.list[i]);
 					if($scope.list[i]._id == id)
 						return i;
 				}

@@ -26,10 +26,7 @@
                 
                 <author-selector class="fleft" id="author" author="rating.community_id"></author-selector>
                 
-                <span class="postType">
-                    <needofferselector ng-if="loggedCommunity" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
-                    <needofferselector ng-if="!loggedCommunity" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
-                </span>
+                <needofferselector class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
                 <div class="clear"></div>
                 
                 <label for="title">Sdělte stručně co*:</label>
