@@ -22,25 +22,24 @@
                 <span ng-if="post.state == 'expired' && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
                 <span ng-if="post.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
             </div>
-            <div class="nameFiled">
-                
-                <author-selector class="fleft" id="author" author="post.current_community_id"></author-selector>
-                
-                <needofferselector class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
-                <div class="clear"></div>
-                
-                <label for="title">Sdělte stručně co*:</label>
-                <div class="name">
-                    <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 
-                    <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
-                        <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
-                        <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
-                        <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
-                    </div>
+            <div class="author">
+                <author-selector class="fleft" id="author" author="post.current_community_id"></author-selector>
+                <needofferselector class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
+            
+                <div class="clear"></div>
+            </div>
+                
+            <label for="title">Sdělte stručně co*:</label>
+            <div class="name">
+                <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+
+                <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
+                    <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
+                    <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
+                    <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
                 </div>
             </div>
-            <div class="clear"></div>
 
             <label for="text">Popište co věnujete, nebo přijmete*:</label>
             <textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
