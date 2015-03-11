@@ -33,13 +33,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             Friends.query(params, done, doneErr);
         }
 
-        function loadReceivedRatings(params, done, doneErr) {
-            $scope.loadedRatingPosts = false;
-            $scope.ratingPosts = [];
+        $scope.$watch('rating.community_id', function(val) {
 
-            UserRatings.received(params, done, doneErr);
             if(!$scope.mine) {
-                UserRatings.possiblePosts({userId: params.user_id}, function(res) {
+                UserRatings.possiblePosts({userId: params.user_id, current_community_id: val}, function(res) {
                     var posts = [];
                     
                     res.needed.forEach(function(item) {
@@ -57,6 +54,15 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     $scope.loadedRatingPosts = true;
                 });
             }
+        });
+
+
+        function loadReceivedRatings(params, done, doneErr) {
+            $scope.loadedRatingPosts = false;
+            $scope.ratingPosts = [];
+
+            UserRatings.received(params, done, doneErr);
+            
 
             var removeListener = $scope.$on('$routeChangeStart', function() {
                 $scope.closeUserRatingForm();
