@@ -107,12 +107,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         };
 
         function loadUserHome(params) {
-            var fulltextParams = {
-                type: 'post',
-                related: 'user',
-                author_id: params.user_id,
-            };
-
             params.limit = 5;
 
             async.parallel([
@@ -130,7 +124,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                     }, done);
                 },
                 function(done) {
-                    Fulltext.query(fulltextParams, function(res) {
+                    User.getPosts(params, function(res) {
                         $scope.posts = res;
                         done(null);
                     }, done);
