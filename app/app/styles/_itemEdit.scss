@@ -10,6 +10,9 @@
         -moz-transition: height 0.2s;
         transition: height 0.2s;
     }
+    .need-offer-selector {
+        top: 5px;
+    }
     .checkbox {
         color: #1fb1e8;
         padding-top: 0px;
@@ -26,13 +29,6 @@
             position: relative;
             top: -2px;
         }
-    }
-    .name {
-        display: block;
-        overflow: hidden;
-        padding-left: 10px;
-        position: relative;
-        top: 5px;
     }
     .tags {
         input {

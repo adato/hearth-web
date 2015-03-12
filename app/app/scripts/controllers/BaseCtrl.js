@@ -173,20 +173,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
-        $rootScope.switchIdentity = function(id) {
-            Auth.switchIdentity(id).then(function() {
-                window.location.hash = '#!/community/'+id;
-                location.reload();
-            });
-        };
-
-        $rootScope.leaveIdentity = function(id) {
-            Auth.switchIdentityBack(id).then(function() {
-                window.location.hash = '#!/profile/' + id
-                location.reload();
-            });
-        };
-
         // try to load tutorial pages - if there is any, show tutorial
         $scope.checkTutorial = function() {
             // check only after login

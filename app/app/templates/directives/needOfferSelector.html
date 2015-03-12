@@ -1,6 +1,10 @@
 <div class="need-offer-selector button-group radius">
-	<a class="small button left" ng-class="{pressed: !model}" ng-click="toggle(false)"><span ng-hide="!iconFalse"><i class="fa" ng-class="iconFalse"></i> </span>{{ textFalse }}
-	</a>
-	<a class="small button right" ng-class="{pressed: model}" ng-click="toggle(true)"><span ng-hide="!iconTrue"><i class="fa" ng-class="iconTrue"></i> </span>{{ textTrue }}
-	</a>
+	<label for="true" class="label-block" ng-class="{'label-checked':model}">
+		<input type="radio" id="true" name="needoffer" ng-value="true" ng-model="model" />
+		{{ textTrue }}
+	</label>
+	<label for="false" class="label-block" ng-class="{'label-checked':!model}">
+		<input type="radio" id="false" name="needoffer" ng-value="false" ng-model="model" />
+		{{ textFalse }}
+	</label>
 </div>

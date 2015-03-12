@@ -38,6 +38,13 @@ angular.module('hearth.services').factory('Community', [
 			},
 			add: {
 				method: 'POST'
+			},
+			random: {
+				method: 'GET',
+				isArray: true,
+				params: {
+					r: Math.random()
+				}
 			}
 		});
 	}

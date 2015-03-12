@@ -16,7 +16,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
+		$scope.author = null;
 		$scope.filterIsOn = false;
+
+		$scope.communities = [];
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
@@ -43,7 +46,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				// console.time("Single post ("+(index+1)+") built");
 				$scope.items.push(posts[index]);
-
+				
 				return $timeout(function() {
 					// console.timeEnd("Single post ("+(index+1)+") built");
 					$scope.addItemsToList(data, index + 1, done);

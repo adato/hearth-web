@@ -1,0 +1,11 @@
+<div class="community-picker">
+    <ui-select multiple ng-model="list.communities" theme="select2" ng-disabled="disabled">
+        <ui-select-match placeholder="{{ 'SELECT_COMMUNITIES_FOR_POST' | translate }}">{{$item.name}}</ui-select-match>
+        <ui-select-choices repeat="item in myCommunities | filter: {name: $select.search}">
+          <div ng-bind-html="item.name | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select>
+    <!-- <div class="error moveUp" ng-if="errorCommunity">
+        <span>{{ 'ERR_UNKNOWN_COMMUNITY' | translate }}</span>
+    </div> -->
+</div>

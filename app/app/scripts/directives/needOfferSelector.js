@@ -9,6 +9,7 @@ angular.module('hearth.directives').directive('needofferselector',
 	function() {
 		return {
 			restrict: 'E',
+			replace: true,
 			scope: {
 				model: '=',
 				textTrue: '@',
@@ -19,11 +20,6 @@ angular.module('hearth.directives').directive('needofferselector',
 			},
 			templateUrl: 'templates/directives/needOfferSelector.html',
 			link: function(scope) {
-				
-				scope.toggle = function(state) {
-					// scope.model = !scope.model;
-					scope.model = state;
-				};
 				scope.$watch('model', function(value) {
 					scope.model = value;
 				});

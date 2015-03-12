@@ -98,7 +98,7 @@
 					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></div>
 				</div>
 				<span ng-if="!mine">
-					<button ng-if="! item.is_replied && isActive" ng-click="replyItem(item)" class="small main" ng-class="item.type">
+					<button ng-if="! item.is_replied && isActive && item.owner_id != loggedUser._id" ng-click="replyItem(item)" class="small main" ng-class="item.type">
 						<span ng-bind-html="replyLabel[item.type] | translate"></span>
 					</button>
 					<span ng-if="item.is_replied">
