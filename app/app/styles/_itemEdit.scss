@@ -53,7 +53,6 @@
         }
     }
     .locations {
-
         .remove {
             top: 6px !important;
         }
@@ -70,100 +69,124 @@
     }
     .files {
         & > div {
-            width: 50%;
-            text-align: center;
-            font-weight: bold;
-        }
-    }
-    .lock {
-        & > a {
-            width: 50%;
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: bold;
-            span {
-                margin-right: 5px;
-            }
-        }
-    }
-    .withFiles {
-        .file-upload {
             text-align: left;
         }
-        .fileList {
-            border-bottom: 3px solid #bbb8b1;
-            clear: both;
+        ul.fileList {
             display: block;
             margin-bottom: 25px;
             text-align: left;
             width: 100%;
-            ul {
-                margin-left: 0px;
-                li.active {
-                    position: relative;
-                    display: inline-block;
-                    vertical-align: middle;
-                    width: 123px;
-                    height: 123px;
-                    overflow: hidden;
-                    margin: 10px;
-                    &:nth-child(4n) {
-                        margin-right: 0px;
+            margin-left: 0px;
+          
+            li {
+                margin-right: 10px;
+                margin-top: 10px;
+                width: 135px;
+                height: 100px;
+                display: inline-block;
+                float: left;
+                border-radius: $global-radius;
+                
+                &:nth-child(5n) {
+                    margin-right: 0px;
+                }
+                &:nth-child(1) {
+                    margin-right: 10px;
+                }
+            }
+            
+            li.file-upload {
+                border: 2px dashed #ccc;
+                color: rgb(31,176,231);
+                font-size: 35px;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+
+                div {
+                    text-align: center;
+                    span {
+                        position: relative;
+                        top: 20px;
                     }
-                    &:nth-child(1) {
-                        margin-right: 10px;
-                    }
-                    img {
-                        position: absolute;
-                        left: -100%;
-                        right: -100%;
-                        top: -100%;
-                        bottom: -100%;
-                        margin: auto;
+                }
+
+                input {
+                    margin: 0px;
+                    width: 135px;
+                    height: 100px;
+                }
+            }
+            li.active {
+                position: relative;
+                vertical-align: middle;
+                overflow: hidden;
+                img {
+                    position: absolute;
+                    left: -100%;
+                    right: -100%;
+                    top: -100%;
+                    bottom: -100%;
+                    margin: auto;
+                    width: auto;
+                    height: auto;
+                    &.landscape {
+                        height: 100%;
                         width: auto;
-                        height: auto;
-                        &.landscape {
-                            height: 100%;
-                            width: auto;
-                            max-width: initial;
-                        }
-                        &.portrait {
-                            width: 100%;
-                        }
+                        max-width: initial;
+                    }
+                    &.portrait {
+                        width: 100%;
+                    }
+                }
+                a {
+                    position: absolute;
+                    font-size: 26px;
+                    display: none;
+                    z-index: 200;
+                    right: 0px;
+                    left: 0px;
+                    top: 25px;
+                    color: rgb(85,85,85);
+                }
+                .overlay {
+                    transition: visibility 0s linear 0.5s,opacity 0.5s linear;
+                    background-color: white;
+                    position: absolute;
+                    opacity: 0.6;
+                    top: 0px;
+                    left: 0px;
+                    z-index: 2;
+                    right: 0px;
+                    bottom: 0px;
+                    display: none;
+                }
+                &:hover {
+                    .overlay {
+                        display: block;
                     }
                     a {
-                        position: absolute;
-                        font-size: 26px;
-                        display: none;
-                        color: white;
-                        z-index: 200;
-                        right: 5px;
-                        top: -5px;
-                        text-shadow: 0 0 4px #000;
-                    }
-                    .overlay {
-                        background-color: #0fb1d3;
-                        position: absolute;
-                        opacity: 0.4;
-                        top: 0px;
-                        left: 0px;
-                        right: 0px;
-                        bottom: 0px;
-                        display: none;
-                    }
-                    &:hover {
-                        .overlay {
-                            display: block;
-                        }
-                        a {
-                            display: inline-block;
-                        }
+                        display: inline-block;
                     }
                 }
             }
         }
-        .create-post-link {
+    }
+    .lock {
+        margin-top: 10px;
+        ul {
+            margin-left: 0px;
+            li {
+                list-style: none;
+                display: inline-block;
+            }
+        }
+        & > a {
             width: 100% !important;
+            span {
+                margin-right: 5px;
+            }
         }
     }
     .charsleft {

@@ -23,15 +23,15 @@
                 <span ng-if="post.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
             </div>
 
-            <div class="author">
+            <section class="author">
                 <author-selector class="fleft" id="author" author="post.current_community_id"></author-selector>
                 <needofferselector class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
             
                 <div class="clear"></div>
-            </div>
+            </section>
             
-            <div class="title">
-                <label for="title">{{ 'POST_TITLE_LABEL'}}</label>
+            <section class="title">
+                <label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
                 <div class="name">
                     <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 
@@ -41,9 +41,9 @@
                         <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="text">
+            <section class="text">
                 <label for="text">{{ 'POST_TEXT_LABEL' | translate }}</label>
                 <textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
                 <div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
@@ -51,16 +51,16 @@
                     <span ng-show="createAdForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
                     <span ng-show="createAdForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
                 </div>
-            </div>
+            </section>
 
-            <div class="text-input keywords field-container" ng-if="myCommunities.length">
+            <section class="text-input communitiy-selector keywords field-container" ng-if="myCommunities.length">
                 <label class="moveBot">
                     <i class="fa fa-users"></i> {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
                 <community-selector communities="post.related_community_ids"></community-selector>
-            </div>
+            </section>
 
-            <div class="text-input keywords field-container">
+            <section class="text-input keywords field-container">
                 <label class="moveBot">
                     <i class="fa fa-tags"></i> {{ 'POST_KEYWORDS_LABEL' | translate }}
                 </label>
@@ -68,15 +68,15 @@
                 <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
                     <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
                 </tags-input>
-            </div>
+            </section>
 
-            <div class="text-input middle field-container">
+            <section class="place text-input middle field-container">
                 <label>
                     <i class="fa fa-map-marker"></i> {{ 'POST_PLACE_LABEL' | translate}}
                 </label>
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
-            </div>
-            <div class="date">
+            </section>
+            <section class="date">
                 <label>
                     <i class="fa fa-clock-o"></i> {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
                 </label>
@@ -88,42 +88,49 @@
                         <span ng-show="createAdForm.valid_until.$error.invalid">{{ 'ERR_DATE_IS_OLD' | translate }}</span>
                     </div>
                 </div>
-            </div>
-            <hr />
-            <div class="files">
-                    <a class="create-post-link" ng-click="post.attachmentsEnabled = true">
-                        <i class="fa fa-picture-o" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
-                    </a>
-                <div class="fileList">
-                    <ul>
-                        <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
-                            <div class="overlay"></div>
-                            <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
-                                <i class="fa fa-times"></i>
-                            </a>
-                            <img resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
-                        </li>
-                        <li class="file-upload">
-                            <div image-preview no-encoding="true" class="file-upload" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
-                                <i class="fa fa-plus"></i>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            </section>
+            <section class="files">
+                <label class="create-post-link">
+                    <i class="fa fa-picture-o" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+                </label>
+                <ul class="fileList">
+                    <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
+                        <div class="overlay"></div>
+                        <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <img resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
+                    </li>
+                    <li class="file-upload">
+                        <div image-preview no-encoding="true" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </section>
 
-            <div class="lock">
-                <a class="create-post-link left" ng-click="post.is_private = !post.is_private">
-                    <span ng-show="!post.is_private">
-                        <span class="fa fa-unlock"></span>{{ 'VISIBLE_FOR_ALL' | translate }}</span>
-                    <span ng-show="post.is_private && !loggedCommunity._id">
-                        <span class="fa fa-lock"></span>{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-                    <span ng-show="post.is_private && loggedCommunity._id">
-                        <span class="fa fa-lock"></span>{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
-                </a>
-            </div>
-            <hr />
-            <div class="bottom">
+            <section class="lock">
+                <label for="lock">
+                    {{ 'POST_LOCK_LABEL' | translate }}
+                </label>
+                <ul>
+                    <li>
+                        <input type="radio" id="private_none" ng-model="post.private" value="0" ng-checked="post.private == 0" />
+                        <label for="private_none">{{ 'VISIBLE_FOR_ALL' | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="private_friends" ng-model="post.private" value="1" ng-checked="post.private == 1" />
+                        <label for="private_friends">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="private_members" ng-model="post.private" value="2" ng-checked="post.private == 2" />
+                        <label for="private_members">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="bottom">
                 <a href="" ng-click="closeEdit()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
@@ -134,7 +141,7 @@
                 <a class="fright deleteLink" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
-            </div>
+            </section>
         </div>
     </form>
 </div>
