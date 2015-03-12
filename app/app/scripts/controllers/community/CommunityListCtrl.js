@@ -7,15 +7,15 @@
  */
  
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', '$rootScope', 'CommunityMemberships', 'Communities', 'UnauthReload',
-	function($scope, $rootScope, CommunityMemberships, Communities, UnauthReload) {
+	'$scope', '$rootScope', 'CommunityMemberships', 'Community', 'UnauthReload',
+	function($scope, $rootScope, CommunityMemberships, Community, UnauthReload) {
 		$scope.randomCommunities = [];
 		$scope.loaded = false;
 		// my communities are loaded already in BaseCtrl for top navigation
 
 		$scope.fetchRandomCommunities = function() {
 			
-			Communities.random({}, function(res) {
+			Community.random({}, function(res) {
 				$scope.randomCommunities = res;
 				$scope.loaded = true;
 			});

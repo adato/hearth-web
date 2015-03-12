@@ -18,6 +18,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [],
 			current_community_id: null,
+			related_community_ids: [],
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
@@ -294,6 +295,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			);
 			
 			postData = $scope.transformDataOut(postData);
+
+			// if(post.related_community_ids.length) {
+			// 	postData.related_community_ids = [];
+			// 	post.related_community_ids.forEach(function(item) {
+			// 		postData.related_community_ids.push(item._id);
+			// 	});
+			// }
 
 			if ($scope.sending) {
 				return false;

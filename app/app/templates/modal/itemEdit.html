@@ -49,6 +49,13 @@
                 <span ng-show="createAdForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
 
+            <div class="text-input keywords field-container" ng-if="myCommunities.length">
+                <label class="moveBot">
+                    <i class="fa fa-users"></i> {{'COMMUNITIES' | translate }}
+                </label>
+                <community-selector communities="post.related_community_ids"></community-selector>
+            </div>
+
             <div class="text-input keywords field-container">
                 <label class="moveBot">
                     <i class="fa fa-tags"></i> {{'KEYWORDS' | translate }}
