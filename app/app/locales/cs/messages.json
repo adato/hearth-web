@@ -629,10 +629,17 @@
         "few": "inzeráty",
         "other": "inzerátů"
     },
+    "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity:",
+    "POST_EXPIRATION_DATE_LABEL": "Datum expirace inzerátu:",
     "POST_HAS_ALREADY_EXPIRED": "Platnost inzerátu již skončila",
     "POST_HAS_BEEN_DEACTIVATED": "Inzerát byl pozastavený",
     "POST_HAS_EXPIRED": "Platnost inzerátu skončila",
+    "POST_KEYWORDS_LABEL": "Klíčová slova inzerátu:",
+    "POST_LOCK_LABEL": "Nastavení soukromí:",
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
+    "POST_PLACE_LABEL": "Místa:",
+    "POST_TEXT_LABEL": "Text inerátu:",
+    "POST_TITLE_LABEL": "Stručný popis inzerátu:",
     "POST_WAS_DELETED": "Inzerát byl vymazán.",
     "POST_WAS_SUSPENDED": "Inzerát byl pozastaven",
     "PROFILE": {

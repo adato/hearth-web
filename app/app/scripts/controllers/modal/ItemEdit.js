@@ -22,7 +22,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
-			state: 'active'
+			state: 'active',
+			private: 1,
 		};
 		$scope.newPost = false;
 		$scope.showError = {
