@@ -29,36 +29,40 @@
             
                 <div class="clear"></div>
             </div>
-                
-            <label for="title">Sdělte stručně co*:</label>
-            <div class="name">
-                <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+            
+            <div class="title">
+                <label for="title">{{ 'POST_TITLE_LABEL'}}</label>
+                <div class="name">
+                    <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 
-                <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
-                    <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
-                    <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
-                    <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
+                    <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
+                        <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
+                        <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
+                        <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>
+                    </div>
                 </div>
             </div>
 
-            <label for="text">Popište co věnujete, nebo přijmete*:</label>
-            <textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
-            <div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
-                <span ng-show="createAdForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="createAdForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="createAdForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+            <div class="text">
+                <label for="text">{{ 'POST_TEXT_LABEL' | translate }}</label>
+                <textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
+                <div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
+                    <span ng-show="createAdForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                    <span ng-show="createAdForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                    <span ng-show="createAdForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+                </div>
             </div>
 
             <div class="text-input keywords field-container" ng-if="myCommunities.length">
                 <label class="moveBot">
-                    <i class="fa fa-users"></i> {{'COMMUNITIES' | translate }}
+                    <i class="fa fa-users"></i> {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
                 <community-selector communities="post.related_community_ids"></community-selector>
             </div>
 
             <div class="text-input keywords field-container">
                 <label class="moveBot">
-                    <i class="fa fa-tags"></i> {{'KEYWORDS' | translate }}
+                    <i class="fa fa-tags"></i> {{ 'POST_KEYWORDS_LABEL' | translate }}
                 </label>
 
                 <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
@@ -68,13 +72,13 @@
 
             <div class="text-input middle field-container">
                 <label>
-                    <i class="fa fa-map-marker"></i> {{ 'place' | translate}}
+                    <i class="fa fa-map-marker"></i> {{ 'POST_PLACE_LABEL' | translate}}
                 </label>
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </div>
             <div class="date">
                 <label>
-                    <i class="fa fa-clock-o"></i> {{ 'EXPIRATION_DATE' | translate}}
+                    <i class="fa fa-clock-o"></i> {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
                 </label>
                 <div ng-class="{disabled: post.valid_until_unlimited == true}">
                     <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" placeholder="{{'UNLIMITED' | translate}}" required>
@@ -86,14 +90,11 @@
                 </div>
             </div>
             <hr />
-            <div class="files" ng-class="{withFiles: showFiles}">
-
-                <div image-preview no-encoding="true" class="file-upload" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
+            <div class="files">
                     <a class="create-post-link" ng-click="post.attachmentsEnabled = true">
                         <i class="fa fa-picture-o" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
                     </a>
-                </div>
-                <div class="fileList" ng-show="showFiles">
+                <div class="fileList">
                     <ul>
                         <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
                             <div class="overlay"></div>
@@ -102,10 +103,16 @@
                             </a>
                             <img resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
                         </li>
+                        <li class="file-upload">
+                            <div image-preview no-encoding="true" class="file-upload" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="lock" ng-class="{withFiles: showFiles}">
+
+            <div class="lock">
                 <a class="create-post-link left" ng-click="post.is_private = !post.is_private">
                     <span ng-show="!post.is_private">
                         <span class="fa fa-unlock"></span>{{ 'VISIBLE_FOR_ALL' | translate }}</span>
