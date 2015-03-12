@@ -25,7 +25,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			state: 'active'
 		};
 		$scope.newPost = false;
-		$scope.showFiles = false;
 		$scope.showError = {
 			title: false,
 			text: false,
@@ -67,22 +66,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 			// $scope.$apply();
 		};
-
-		function recountImages() {
-			var files = $scope.post.attachments_attributes;
-			var res = false;
-
-			if (files) {
-				for (var i = 0; i < files.length; i++) {
-					if (!files[i]._id || !files[i].deleted) {
-						res = true;
-					}
-				}
-			}
-			$scope.showFiles = res;
-		};
-
-		$scope.$watch('post', recountImages, true);
 
 		$scope.cleanNullLocations = function(loc) {
 			for (var i = 0; i < loc.length; i++) {
