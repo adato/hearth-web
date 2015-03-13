@@ -25,8 +25,9 @@
 
             <section class="author">
                 <author-selector class="fleft" id="author" author="post.current_community_id"></author-selector>
-                <needofferselector class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
-            
+
+                <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
+                <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
                 <div class="clear"></div>
             </section>
             
@@ -116,14 +117,13 @@
                 </label>
                 <ul>
                     <li>
-                        <input type="radio" name="private" id="private_none" ng-model="post.is_private" ng-value="false" ng-checked="!post.is_private" />
+                        <input type="radio" id="private_none" name="private" ng-model="post.is_private" ng-value="false" ng-checked="!post.is_private" />
                         <label for="private_none">{{ 'VISIBLE_FOR_ALL' | translate }}</label>
                     </li>
                     <li>
-                        <input type="radio" name="private" id="private_post" ng-model="post.is_private" ng-value="true" ng-checked="post.private == 1" />
-
-                        <label for="private_post" ng-if="!post.current_community_id">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
-                        <label for="private_post" ng-if="post.current_community_id">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
+                        <input type="radio" id="private" name="private" ng-model="post.is_private" ng-value="true" ng-checked="post.is_private" />
+                        <label ng-if="!post.current_community_id" for="private">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
+                        <label for="private" ng-if="post.current_community_id">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
                     </li>
                 </ul>
             </section>
