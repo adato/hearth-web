@@ -29,6 +29,15 @@
         display: none;
     }
 
+    &.select2-container-disabled {
+        background-color: #ddd !important;
+
+        .select2-search-field, input {
+            display: block !important;
+            width: 100% !important;
+        }
+    }
+
     .select2-choices {
         min-height: 26px;
         cursor: text;

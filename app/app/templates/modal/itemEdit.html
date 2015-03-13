@@ -25,7 +25,9 @@
 
             <section class="author">
                 <author-selector class="fleft" id="author" author="post.current_community_id"></author-selector>
-                <needofferselector class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
+
+                <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
+                <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
                 <div class="clear"></div>
             </section>
             
@@ -56,7 +58,7 @@
                 <label class="moveBot">
                     <i class="fa fa-users"></i> {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
-                <community-selector communities="post.related_community_ids"></community-selector>
+                <community-selector disable="post.current_community_id" communities="post.related_community_ids"></community-selector>
             </section>
 
             <section class="text-input keywords field-container">
@@ -115,16 +117,13 @@
                 </label>
                 <ul>
                     <li>
-                        <input type="radio" id="private_none" ng-model="post.private" value="0" ng-checked="post.private == 0" />
+                        <input type="radio" id="private_none" name="private" ng-model="post.is_private" ng-value="false" ng-checked="!post.is_private" />
                         <label for="private_none">{{ 'VISIBLE_FOR_ALL' | translate }}</label>
                     </li>
                     <li>
-                        <input type="radio" id="private_friends" ng-model="post.private" value="1" ng-checked="post.private == 1" />
-                        <label for="private_friends">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="private_members" ng-model="post.private" value="2" ng-checked="post.private == 2" />
-                        <label for="private_members">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
+                        <input type="radio" id="private" name="private" ng-model="post.is_private" ng-value="true" ng-checked="post.is_private" />
+                        <label ng-if="!post.current_community_id" for="private">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
+                        <label for="private" ng-if="post.current_community_id">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
                     </li>
                 </ul>
             </section>
