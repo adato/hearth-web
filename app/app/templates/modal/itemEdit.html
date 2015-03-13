@@ -56,14 +56,14 @@
 
             <section class="text-input communitiy-selector keywords field-container" ng-if="myCommunities.length">
                 <label class="moveBot">
-                    <i class="fa fa-users"></i> {{ 'POST_COMMUNITIES_LABEL' | translate }}
+                    {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
                 <community-selector disable="post.current_community_id" communities="post.related_community_ids"></community-selector>
             </section>
 
             <section class="text-input keywords field-container">
                 <label class="moveBot">
-                    <i class="fa fa-tags"></i> {{ 'POST_KEYWORDS_LABEL' | translate }}
+                    {{ 'POST_KEYWORDS_LABEL' | translate }}
                 </label>
 
                 <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
@@ -73,13 +73,13 @@
 
             <section class="place text-input middle field-container">
                 <label>
-                    <i class="fa fa-map-marker"></i> {{ 'POST_PLACE_LABEL' | translate}}
+                    {{ 'POST_PLACE_LABEL' | translate}}
                 </label>
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </section>
             <section class="date">
                 <label>
-                    <i class="fa fa-clock-o"></i> {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
+                    {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
                 </label>
                 <div ng-class="{disabled: post.valid_until_unlimited == true}">
                     <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" placeholder="{{'UNLIMITED' | translate}}" required>
@@ -92,7 +92,7 @@
             </section>
             <section class="files">
                 <label class="create-post-link">
-                    <i class="fa fa-picture-o" style="padding-right:5px;"></i> {{ 'ATTACH_PHOTO_LINK' | translate }}
+                    {{ 'ATTACH_PHOTO_LINK' | translate }}
                 </label>
                 <ul class="fileList">
                     <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">

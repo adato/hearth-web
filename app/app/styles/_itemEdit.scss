@@ -1,5 +1,5 @@
 .itemEdit {
-    width: 800px;
+    width: 650px;
     padding: 15px;
     text-align: left;
     textarea {
@@ -12,6 +12,9 @@
     }
     .need-offer-selector {
         top: 5px;
+    }
+    label {
+        cursor: default;
     }
     .checkbox {
         color: #1fb1e8;
@@ -79,26 +82,23 @@
             margin-left: 0px;
           
             li {
-                margin-right: 10px;
-                margin-top: 10px;
-                width: 146px;
-                height: 105px;
+                margin-right: 5px;
+                margin-top: 5px;
+                width: 95px;
+                height: 61px;
                 display: inline-block;
                 float: left;
                 border-radius: $global-radius;
                 
-                &:nth-child(5n) {
+                &:nth-child(6n) {
                     margin-right: 0px;
-                }
-                &:nth-child(1) {
-                    margin-right: 10px;
                 }
             }
             
             li.file-upload {
                 border: 2px dashed #ccc;
                 color: rgb(31,176,231);
-                font-size: 35px;
+                font-size: 30px;
 
                 &:hover {
                     opacity: 0.7;
@@ -108,14 +108,14 @@
                     text-align: center;
                     span {
                         position: relative;
-                        top: 20px;
+                        top: 4px;
                     }
                 }
 
                 input {
                     margin: 0px;
-                    width: 135px;
-                    height: 100px;
+                    width: 95px;
+                    height: 61px;
                 }
             }
             li.active {
@@ -147,7 +147,7 @@
                     z-index: 200;
                     right: 0px;
                     left: 0px;
-                    top: 25px;
+                    top: 10px;
                     color: rgb(85,85,85);
                 }
                 .overlay {
