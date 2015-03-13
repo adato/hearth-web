@@ -15,6 +15,7 @@ angular.module('hearth.directives').directive('communitySelector', [
 		replace: true,
 		scope: {
 			communities: '=',
+			disable: '=',
 		},
 		templateUrl: 'templates/directives/communitySelector.html',
 		link: function($scope, baseElement) {

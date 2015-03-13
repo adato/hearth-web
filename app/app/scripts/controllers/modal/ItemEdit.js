@@ -23,7 +23,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			valid_until_unlimited: false,
 			attachments_attributes: [],
 			state: 'active',
-			private: 1,
 		};
 		$scope.newPost = false;
 		$scope.showError = {
@@ -357,6 +356,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init();
+		$scope.$watch('post.current_community_id', function(res) {
+			$scope.post.is_private = 0;
+			$scope.post.related_community_ids = [];
+		})
 		$scope.$on('updatedItem', $scope.refreshItemInfo);
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}

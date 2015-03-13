@@ -29,6 +29,15 @@
         display: none;
     }
 
+    &.select2-container-disabled {
+        background-color: #ddd !important;
+
+        .select2-search-field, .select2-search-field input {
+            display: block !important;
+            width: 100% !important;
+        }
+    }
+
     .select2-choices {
         min-height: 26px;
         cursor: text;
@@ -48,6 +57,11 @@
             box-shadow: unset !important;
             height: 30px;
             transition: none;
+
+            &.ng-hide {
+                display: block;
+                width: 100%;
+            }
         }
 
         .select2-search-choice {
@@ -60,6 +74,7 @@
             border: 1px solid #acacac;
             border-radius: 8px;
             background-color: white;
+
 
             &>span {
                 margin-right: 14px;
