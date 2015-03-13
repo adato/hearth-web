@@ -23,12 +23,15 @@ angular.module('hearth.directives').directive('communitySelector', [
 				communities: $scope.communities
 			};
 
+			$scope.$watch("communities", function(val) {
+            	$scope.list.communities = val;
+			});
+
 			$rootScope.$watch("myCommunities", function(val) {
             	$scope.myCommunities = val;
 			});
 
             $scope.$watch("list.communities", function(val) {
-                console.log(val);
                 $scope.communities = val;
             });
 		}
