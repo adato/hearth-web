@@ -25,6 +25,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			state: 'active',
 			is_private: false,
 		};
+		$scope.slide = {
+			keywords: false,
+			files: false,
+			date: false,
+			lock: false,
+		};
 		$scope.newPost = false;
 		$scope.showError = {
 			title: false,
