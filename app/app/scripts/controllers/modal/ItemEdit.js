@@ -18,7 +18,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [],
 			current_community_id: null,
-			related_community_ids: [],
+			related_communities: [],
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
@@ -360,7 +360,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.$watch('post.current_community_id', function(val, old) {
 			if(!!val !== !!old) {
 				$scope.post.is_private = 0;
-				$scope.post.related_community_ids = [];
+				$scope.post.related_communities = [];
 			}
 		});
 
