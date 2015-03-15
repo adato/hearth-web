@@ -268,9 +268,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
-        $timeout(function() {
-            $rootScope.editItem(null);
-        }, 3000);
+        // $timeout(function() {
+            // $rootScope.editItem(null);
+        // }, 3000);
 
         $rootScope.removeItemFromList = function(id, list) {
             for (var i = 0; i < list.length; i++) {
