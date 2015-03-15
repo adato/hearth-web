@@ -146,10 +146,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             location.reload();
         };
 
-        $rootScope.isMine = function (author) {
-            if($scope.loggedCommunity)
-                return $scope.loggedCommunity._id === author._id;
-            return $scope.loggedUser && author._id === $scope.loggedUser._id;
+        $rootScope.isMine = function (author_id) {
+            return $scope.loggedUser && author_id === $scope.loggedUser._id;
         };
 
         angular.element(window).bind('scroll', function() {
@@ -270,9 +268,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
-        $timeout(function() {
-            $rootScope.editItem(null);
-        }, 3000);
+        // $timeout(function() {
+            // $rootScope.editItem(null);
+        // }, 3000);
 
         $rootScope.removeItemFromList = function(id, list) {
             for (var i = 0; i < list.length; i++) {

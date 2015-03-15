@@ -63,7 +63,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					OpenGraph.set(title, data.name || "", null, image);
 
 					$scope.profile = data.author;
-					$scope.isMine = $rootScope.isMine(data.author);
+					$scope.isMine = $rootScope.isMine(data.owner_id);
 					$scope.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
 					$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
@@ -73,10 +73,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 						$scope.$broadcast('showMarkersOnMap');
 					});
 
-					if($scope.isMine) {
-						$scope.loadReplies();
-					}
-
+					$scope.isMine && $scope.loadReplies();
 					$scope.postAddress = $rootScope.appUrl+'%23!/ad/'+$scope.ad._id;
 					$scope.isActive = $rootScope.isPostActive($scope.ad);
 				}

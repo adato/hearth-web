@@ -1,14 +1,11 @@
 <div class="itemEdit modal">
     <div class="head">
         <h2 class="fa fa-pencil">
-            <span ng-if="post._id">
-                {{ 'EDIT_POST' | translate }}
-                <small ng-if="loggedCommunity">({{ 'DOING_AS_COMMUNITY' | translate }} <b>{{ loggedCommunity.name | ellipsis:30 }})</b></small>
-            </span>
-            <span ng-if="! post._id">
-                {{ 'CREATE_POST' | translate }}
-                <small ng-if="loggedCommunity">({{ 'DOING_AS_COMMUNITY' | translate }} <b>{{ loggedCommunity.name | ellipsis:30 }})</b></small>
-            </span>
+            <span ng-if="post._id">{{ 'EDIT_POST' | translate }}</span>
+            <span ng-if="! post._id">{{ 'CREATE_POST' | translate }}</span>
+            <small ng-if="post.current_community_id">
+                ({{ 'DOING_AS_COMMUNITY' | translate }} <b>{{ post.current_community.name | ellipsis:30 }})</b>
+            </small>
         </h2>
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
     </div>
@@ -24,7 +21,7 @@
             </div>
 
             <section class="author">
-                <author-selector class="fleft" id="author" author="post.current_community_id"></author-selector>
+                <author-selector class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
 
                 <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
                 <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
@@ -56,7 +53,7 @@
 
             <section class="text-input communitiy-selector keywords field-container" ng-if="myCommunities.length">
                 <label class="moveBot">
-                    <i class="fa fa-users"></i> {{ 'POST_COMMUNITIES_LABEL' | translate }}
+                    {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
                 <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
             </section>
@@ -98,21 +95,23 @@
                 <label slide-trigger="slide.files" class="create-post-link">
                     {{ 'ATTACH_PHOTO_LINK' | translate }}
                 </label>
-                <ul ng-slide-down="slide.files" lazy-render duration="0.5" class="fileList">
-                    <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
-                        <div class="overlay"></div>
-                        <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
-                            <i class="fa fa-times"></i>
-                        </a>
-                        <img resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
-                    </li>
-                    <li class="file-upload">
-                        <div image-preview no-encoding="true" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
-                            <i class="fa fa-plus"></i>
-                        </div>
-                    </li>
-                </ul>
-                <div class="clear"></div>
+                <div ng-slide-down="slide.files" lazy-render duration="0.5">
+                    <ul class="fileList">
+                        <li id="image-preview-{{$index}}" ng-if="! file._id || ! file.deleted" class="text-center" ng-class="{active: ! file._id || ! file.deleted}" ng-repeat="file in post.attachments_attributes track by $index">
+                            <div class="overlay"></div>
+                            <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <img resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
+                        </li>
+                        <li class="file-upload">
+                            <div image-preview no-encoding="true" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
             </section>
 
             <section class="lock">

@@ -14,7 +14,8 @@ angular.module('hearth.directives').directive('authorSelector', [
 		restrict: 'AE',
 		replace: true,
 		scope: {
-			author: '=',
+			selectedEntity: '=author',
+			authorId: '=',
 			remove: '=remove',
 		},
 		templateUrl: 'templates/directives/authorSelector.html',
@@ -52,15 +53,16 @@ angular.module('hearth.directives').directive('authorSelector', [
 							$scope.list.push($rootScope.myAdminCommunities[i]);
 					}
 
-				var index = $scope.getIndexById($scope.author);
+				var index = $scope.getIndexById($scope.authorId);
 				$scope.selected._id = $scope.list[index]._id;
+				$scope.selectedEntity = $scope.list[index];
 			};
 
 			$scope.onChange = function(id) {
 				if(id === $rootScope.loggedUser._id)
 					id = null;
 				
-				$scope.author = id;
+				$scope.authorId = id;
 				$scope.selectedEntity = $scope.getByIndex(id);
 			};
 			
@@ -73,7 +75,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 			};
 
 
-			$scope.$watch('author', $scope.selectAuthor);
+			$scope.$watch('authorId', $scope.selectAuthor);
 			$scope.$watch('remove', $scope.buildAuthorList);
 			$rootScope.$watch('myAdminCommunities', $scope.buildAuthorList, true);
 			$scope.buildAuthorList();

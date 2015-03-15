@@ -5,8 +5,7 @@
 </div>
 <div class="ratings-received row rating-item" id="received-rating-form" ng-if="!mine" ng-show="showUserRatingForm">
 	<section class="large-2 columns user">
-		<avatar ng-if="!loggedCommunity" src="loggedUser.avatar.normal" type="loggedUser._type"></avatar>
-		<avatar ng-if="loggedCommunity" src="loggedCommunity.avatar.normal" type="loggedCommunity._type"></avatar>
+		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
 	<section class="large-10 columns user-rating-form">
 	<div class="item rating-received">
@@ -18,7 +17,7 @@
 			<div class="rating-notify-box"></div>
 			<h5>{{ 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
 
-			<author-selector class="fleft" id="author" author="rating.current_community_id" remove="info._id"></author-selector>
+			<author-selector class="fleft" id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
 			<needofferselector class="fleft" model="rating.score" text-true="{{ 'POSITIVE' | translate}}" text-false="{{ 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
 			<div class="clear"></div>
 
@@ -58,7 +57,10 @@
 
 				<div class="clear"></div>
 		        <strong><a ng-click="closeUserRatingForm()" class="revert-changes"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
-		        <button type="submit" class="button-send right">{{ 'SEND_USER_RATING' | translate }}</button>
+		        <button type="submit" class="button-send right">
+		        	{{ 'SEND_USER_RATING' | translate }}
+			        &nbsp; <i class="score-icon fa" ng-class="{'icon-rating-negative':!rating.score,'icon-rating-positive':rating.score}"></i>
+				</button>
 		    </form>
 	    </div>
     </div>
