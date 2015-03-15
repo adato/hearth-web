@@ -14,10 +14,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
 
-		$scope.isMine = function(res) {
-			return $rootScope.loggedUser._id == res.admin;
-		};
-
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
@@ -37,7 +33,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.loadingCounter--;
 				$scope.info = res;
 				// $scope.loaded = true;
-				$scope.mine = $scope.isMine(res); // is community mine?
+				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
 				if(!$scope.loadingCounter) {

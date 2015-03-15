@@ -146,10 +146,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             location.reload();
         };
 
-        $rootScope.isMine = function (author) {
-            if($scope.loggedCommunity)
-                return $scope.loggedCommunity._id === author._id;
-            return $scope.loggedUser && author._id === $scope.loggedUser._id;
+        $rootScope.isMine = function (author_id) {
+            return $scope.loggedUser && author_id === $scope.loggedUser._id;
         };
 
         angular.element(window).bind('scroll', function() {

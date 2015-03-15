@@ -29,17 +29,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				text: false
 			};
 		};
-
-		/**
-		 * Return true if this profile is mine - like it is my user profile or am I community admin
-		 */
-		$scope.isMine = function () {
-			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
-			var _mineCommunity = ($rootScope.loggedCommunity) ? $rootScope.loggedCommunity._id == $routeParams.id: false;
-			
-			return _mineCommunity || _mineUser;
-		};
-
+		
 		/**
 		 * Push cities to concatenated string.
 		 * Expects info.locations = [{city: ...}, ...]
@@ -79,7 +69,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.info.created_at_days = Time.getDateDiffToNow($scope.info.created_at);
 				// count karma values
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
-				$scope.mine = $scope.isMine();
+				$scope.mine = $rootScope.isMine($routeParams.id);
 				// $scope.loaded = true;
 
 				$rootScope.profileLoaded = true;
