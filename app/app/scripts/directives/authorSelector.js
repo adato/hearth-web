@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 		restrict: 'AE',
 		replace: true,
 		scope: {
-			selectedEntity: '=author',
+			selectedEntity: '=?author',
 			authorId: '=',
 			remove: '=remove',
 		},
