@@ -123,6 +123,15 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         	});
         };
 
+        $scope.addItem = function() {
+        	var preset = {
+        		current_community_id: ($scope.mine) ? $scope.info._id : null,
+        		related_communities: (!$scope.mine) ? [{_id: $scope.info._id, name: $scope.info.name}] : [],
+        	}
+
+        	$rootScope.editItem(null, null, preset);
+        };
+
 		$scope.init = function() {
 
 			$scope.refreshDataFeed();
