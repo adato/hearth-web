@@ -51,7 +51,7 @@
                 </div>
             </section>
 
-            <section class="text-input communitiy-selector keywords field-container" ng-if="myCommunities.length">
+            <section ng-slide-down="!post.current_community_id" lazy-render duration="0.3" class="text-input communitiy-selector field-container" ng-if="myCommunities.length">
                 <label class="moveBot">
                     {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
@@ -65,21 +65,40 @@
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </section>
 
-            <section class="text-input keywords field-container">
-                <label slide-trigger="slide.keywords" class="moveBot">
-                    {{ 'POST_KEYWORDS_LABEL' | translate }}
+            <section class="lock">
+                <label slide-trigger="slide.lock" for="lock">
+                    {{ 'POST_LOCK_LABEL' | translate }}
+                    <span ng-if="!slide.lock">
+                        <span ng-if="!post.is_private">({{ 'SHOW_TO_ALL' | translate }})</span>
+                        <span ng-if="post.is_private && !post.current_community_id">({{ 'SHOW_TO_FRIENDS' | translate }})</span>
+                        <span ng-if="post.is_private && post.current_community_id">({{ 'SHOW_TO_COMMUNITY' | translate }})</span>
+                    </span>
                 </label>
-
-                <div ng-slide-down="slide.keywords" lazy-render duration="0.5">
-                    <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
-                        <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
-                    </tags-input>
-                </div>
+                <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
+                    <li>
+                        <input type="radio" id="private_none" name="private" ng-model="post.is_private" ng-value="false" ng-checked="!post.is_private" />
+                        <label for="private_none">{{ 'VISIBLE_FOR_ALL' | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="private" name="private" ng-model="post.is_private" ng-value="true" ng-checked="post.is_private" />
+                        <label ng-if="!post.current_community_id" for="private">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
+                        <label for="private" ng-if="post.current_community_id">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
+                    </li>
+                </ul>
             </section>
 
             <section class="date">
                 <label slide-trigger="slide.date">
                     {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
+                    <span ng-if="!slide.date">
+                        <span ng-if="!post.valid_until_unlimited && !post.valid_until">
+                            ({{'NOT_FILLED' | translate}})
+                        </span>
+                        <span ng-if="!post.valid_until_unlimited && post.valid_until">
+                            ({{'UNTIL' | translate }} {{ post.valid_until | date }})
+                        </span>
+                        <span ng-if="post.valid_until_unlimited" class="lowercase">({{'UNLIMITED' | translate }})</span>
+                    </span>
                 </label>
 
                 <div ng-slide-down="slide.date" lazy-render duration="0.3" ng-class="{disabled: post.valid_until_unlimited == true}">
@@ -91,9 +110,28 @@
                     </div>
                 </div>
             </section>
+
+            <section class="text-input keywords field-container">
+                <label slide-trigger="slide.keywords" class="moveBot">
+                    {{ 'POST_KEYWORDS_LABEL' | translate }}<span ng-if="slide.keywords">:</span><span ng-if="!slide.keywords">({{post.keywords.length}})</span>
+                </label>
+
+                <div ng-slide-down="slide.keywords" lazy-render duration="0.5">
+                    <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+                        <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+                    </tags-input>
+                </div>
+            </section>
+
             <section class="files">
                 <label slide-trigger="slide.files" class="create-post-link">
-                    {{ 'ATTACH_PHOTO_LINK' | translate }}
+                    <span ng-if="slide.files">
+                        {{ 'ATTACH_PHOTO_LINK' | translate }}
+                    </span>
+                    <span ng-if="!slide.files">
+                        {{ 'IMAGES' | translate }}
+                        ({{ post.attachments_attributes.length }})
+                    </span>
                 </label>
                 <div ng-slide-down="slide.files" lazy-render duration="0.5">
                     <ul class="fileList">
@@ -114,23 +152,6 @@
                 </div>
             </section>
 
-            <section class="lock">
-                <label slide-trigger="slide.lock" for="lock">
-                    {{ 'POST_LOCK_LABEL' | translate }}
-                </label>
-                <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
-                    <li>
-                        <input type="radio" id="private_none" name="private" ng-model="post.is_private" ng-value="false" ng-checked="!post.is_private" />
-                        <label for="private_none">{{ 'VISIBLE_FOR_ALL' | translate }}</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="private" name="private" ng-model="post.is_private" ng-value="true" ng-checked="post.is_private" />
-                        <label ng-if="!post.current_community_id" for="private">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
-                        <label for="private" ng-if="post.current_community_id">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
-                    </li>
-                </ul>
-            </section>
-
             <section class="bottom">
                 <a href="" ng-click="closeEdit()" class="fleft close">
                     {{ 'CLOSE' | translate }}
@@ -142,6 +163,7 @@
                 <a class="fright deleteLink" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
+                <div class="clear"></div>
             </section>
         </div>
     </form>

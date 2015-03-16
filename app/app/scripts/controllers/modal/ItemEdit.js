@@ -89,6 +89,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				post.dateOrig = post.valid_until;
 				post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
 
+				if(post.author._type == 'Community')
+					post.current_community_id = post.author._id;
+
 				if(post.valid_until_unlimited) {
 					post.valid_until = '';
 				}
