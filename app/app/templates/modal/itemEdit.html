@@ -51,7 +51,7 @@
                 </div>
             </section>
 
-            <section class="text-input communitiy-selector keywords field-container" ng-if="myCommunities.length">
+            <section ng-slide-down="!post.current_community_id" lazy-render duration="0.3" class="text-input communitiy-selector field-container" ng-if="myCommunities.length">
                 <label class="moveBot">
                     {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
@@ -142,6 +142,7 @@
                 <a class="fright deleteLink" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
                 </a>
+                <div class="clear"></div>
             </section>
         </div>
     </form>
