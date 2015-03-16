@@ -1,21 +1,71 @@
-.itemEdit {
+$local-title-font-size: 16px;
+$local-text-font-size: 14px;
+$local-grid-size: 25px;
+$local-small-grid-size: 15px;
+$local-border-style: 1px solid #eee; // or should be #ddd?
+$local-color-disabled: #999;
+
+.ngdialog .itemEdit {
+    * {
+        text-align:left;
+    }
+    font-size: $local-text-font-size;
     width: 650px;
-    padding: 15px;
-    text-align: left;
+    padding: $local-grid-size;
+    
     textarea {
         height: 85px;
         resize: vertical;
-        line-height: 1.33 !important;
-        -webkit-transition: height 0.2s;
-        -moz-transition: height 0.2s;
         transition: height 0.2s;
     }
     label {
         cursor: pointer;
     }
-    .need-offer-selector {
-        top: 5px;
+    select {
+        border-radius: $global-radius;
     }
+
+    // fix stuff
+    a {
+        font-weight: 600;
+        &.close-dialog { margin-top: -6px; font-size: $local-text-font-size; }
+    }    
+    input[type="radio"] {
+        box-shadow:none !important;
+    }
+    .head {
+        h1, h2 {
+            font-size: $local-title-font-size;
+            font-weight: 700;
+            word-wrap: break-word;
+            margin:0;
+            padding:0;
+            line-height:$local-title-font-size;
+            height:$local-title-font-size;
+            text-align:left;
+        }
+        hr {
+            border:0;
+            border-bottom:$local-border-style;
+            margin-top:$local-grid-size;
+            margin-bottom:$local-small-grid-size;
+        }
+        ul.message-line {
+            margin:0;
+            padding:0;
+            li {
+                list-style-type: none;
+                color:$local-color-disabled;
+                margin-bottom:$local-small-grid-size;
+                border-bottom:$local-border-style;
+                padding-bottom:$local-small-grid-size;
+            }
+        }
+    }
+    // end fix stuff
+
+
+
     .checkbox {
         color: #1fb1e8;
         padding-top: 0px;

@@ -1,24 +1,29 @@
 <div class="itemEdit modal">
     <div class="head">
-        <h2 class="fa fa-pencil">
+        <a ng-click="closeThisDialog()" class="fright close-dialog">{{ 'CLOSE' | translate }}</a>
+        <h2>
             <span ng-if="post._id">{{ 'EDIT_POST' | translate }}</span>
             <span ng-if="! post._id">{{ 'CREATE_POST' | translate }}</span>
-            <small ng-if="post.current_community_id">
-                ({{ 'DOING_AS_COMMUNITY' | translate }} <b>{{ post.current_community.name | ellipsis:30 }})</b>
-            </small>
         </h2>
-        <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+        <hr>
+
+        <ul class="message-line" ng-if="!isPostActive(post)">
+            <li ng-if="post.state == 'expired' && post.dateOrig">
+                {{ 'POST_HAS_EXPIRED' | translate  }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}
+            </li>
+            <li ng-if="post.state == 'expired' && !post.dateOrig ">
+                {{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}
+            </li>
+            <li ng-if="post.state == 'suspended'">
+                {{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}
+            </li>
+        </ul>
+
     </div>
-    <hr />
     <form ng-submit="save(post)" name="createAdForm" novalidate class="create-ad">
         <div>
             <div class="edit-post-notify-container"></div>
             <p class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</p>
-            <div class="messageBox" ng-if="!isPostActive(post)">
-                <span ng-if="post.state == 'expired' && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
-                <span ng-if="post.state == 'expired' && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
-                <span ng-if="post.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
-            </div>
 
             <section class="author">
                 <author-selector class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
