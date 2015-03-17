@@ -26,6 +26,7 @@ $local-input-height: 30px;
         font-weight: 600;
         &.fa::before {
             color:color(5);
+            margin-right:$local-small-grid-size / 2;
         }
     }
 
