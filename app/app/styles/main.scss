@@ -9,7 +9,7 @@ $webWidth: 960px;
 
 @import "settings";
 
-$fontSize: rem-calc(18);
+$fontSize: rem-calc(14);
 
 @import "compass";
 // import Compass mixins
@@ -74,8 +74,6 @@ $fontSize: rem-calc(18);
 @import "authorSelector";
 @import "navigation";
 @import "forms";
-@import "item";
-@import "itemEdit";
 @import "common";
 @import "buttons";
 @import "tutorial";
@@ -94,6 +92,8 @@ $fontSize: rem-calc(18);
 @import "checkbox";
 @import "map";
 @import "fulltext";
+@import "item";
+@import "itemEdit";
 @import "itemDetail";
 @import "modal";
 @import "inviteBox";

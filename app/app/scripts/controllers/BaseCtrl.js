@@ -248,7 +248,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // open modal window for item edit
-        $rootScope.editItem = function(post, isInvalid) {
+        $rootScope.editItem = function(post, isInvalid, preset) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
@@ -256,6 +256,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             scope.post = angular.copy(post);
             scope.postOrig = post;
             scope.isInvalid = isInvalid;
+            scope.preset = preset;
 
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
