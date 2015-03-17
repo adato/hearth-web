@@ -1,24 +1,29 @@
 <div class="itemEdit modal">
     <div class="head">
-        <h2 class="fa fa-pencil">
+        <a ng-click="closeThisDialog()" class="fright close-dialog">{{ 'CLOSE' | translate }}</a>
+        <h2>
             <span ng-if="post._id">{{ 'EDIT_POST' | translate }}</span>
             <span ng-if="! post._id">{{ 'CREATE_POST' | translate }}</span>
-            <small ng-if="post.current_community_id">
-                ({{ 'DOING_AS_COMMUNITY' | translate }} <b>{{ post.current_community.name | ellipsis:30 }})</b>
-            </small>
         </h2>
-        <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+        <hr>
+
+        <ul class="message-line" ng-if="!isPostActive(post)">
+            <li ng-if="post.state == 'expired' && post.dateOrig">
+                {{ 'POST_HAS_EXPIRED' | translate  }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}
+            </li>
+            <li ng-if="post.state == 'expired' && !post.dateOrig ">
+                {{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}
+            </li>
+            <li ng-if="post.state == 'suspended'">
+                {{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}
+            </li>
+        </ul>
+
     </div>
-    <hr />
     <form ng-submit="save(post)" name="createAdForm" novalidate class="create-ad">
         <div>
             <div class="edit-post-notify-container"></div>
             <p class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</p>
-            <div class="messageBox" ng-if="!isPostActive(post)">
-                <span ng-if="post.state == 'expired' && post.dateOrig">{{ 'POST_HAS_EXPIRED' | translate  }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
-                <span ng-if="post.state == 'expired' && !post.dateOrig ">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
-                <span ng-if="post.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}</span>
-            </div>
 
             <section class="author">
                 <author-selector class="fleft" id="author" disable="post." author-id="post.current_community_id" author="post.current_community"></author-selector>
@@ -52,7 +57,7 @@
             </section>
 
             <section ng-slide-down="!post.current_community_id" lazy-render duration="0.3" class="text-input communitiy-selector field-container" ng-if="myCommunities.length">
-                <label class="moveBot">
+                <label>
                     {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
                 <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
@@ -155,11 +160,11 @@
                 </a>
                 <button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE_AND_ACTIVATE</button>
 
-                <button class="primary button-send fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
+                <button class="primary button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
 
-                <a class="fright deleteLink" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
-                    <i class="fa fa-times"></i>{{ 'DELETE' | translate }}
-                </a>
+                <button class="button-send red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
+                    <i class="fa fa-times"></i> {{ 'DELETE' | translate }}
+                </button>
                 <div class="clear"></div>
             </section>
         </div>
