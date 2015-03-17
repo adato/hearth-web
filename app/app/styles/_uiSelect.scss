@@ -9,11 +9,9 @@
 
     word-wrap: break-word;
     background-color: white;
-    padding: 4px 4px 4px 8px;
-    border-radius: $global-radius $global-radius $global-radius $global-radius;
+    border-radius: $global-radius;
     background-color: white;
     border: 1px solid #d7d7d7; // !important;
-    box-shadow: 0 0 5px #d7d7d7 inset; // !important;
     ul {
         margin: 0px;
         li {
@@ -92,20 +90,15 @@
 
     .select2-drop {
         width: 100%;
-        margin-left: -8px;
-        margin-top: -2px;
         position: absolute;
         z-index: 9999;
         top: 100%;
 
         background: #fff;
-        color: #000;
         border: 1px solid #aaa;
         border-top: 0;
         overflow: hidden;
-        border-radius: 0 0 8px 8px;
-
-        box-shadow: 0 0 5px #d7d7d7;
+        border-radius: 0 0 $global-radius $global-radius;
         
         .select2-results .select2-highlighted {
             background: none repeat scroll 0 0 #3875d7;
@@ -114,17 +107,18 @@
 
         .select2-results .select2-result-label {
             -moz-user-select: none;
+            font-size:$global-font-size;
             cursor: pointer;
             margin: 0;
             min-height: 1em;
-            padding: 3px 7px 4px;
+  //          padding: 3px 7px 4px;
             
             div {
                 -moz-user-select: none;
                 cursor: pointer;
                 margin: 0;
                 min-height: 1em;
-                padding: 3px 7px 4px;
+//                padding: 3px 7px 4px;
             }
         }
     }

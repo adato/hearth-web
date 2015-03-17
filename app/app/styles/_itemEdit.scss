@@ -6,6 +6,7 @@ $local-border-style: 1px solid #e3e3e3; // exact by image
 $local-input-border-style: 1px solid #ddd; // or should be #ddd?
 $local-input-text-color: #333;
 $local-color-disabled: #999;
+$local-input-height: 30px;
 
 .ngdialog .itemEdit {
 
@@ -54,7 +55,7 @@ $local-color-disabled: #999;
     }
     select {
         border-radius: $global-radius;
-        height:30px;
+        height:$local-input-height;
         line-height:$local-text-font-size;
         padding:0 15px;
         font-weight:600;
@@ -63,6 +64,20 @@ $local-color-disabled: #999;
         font-size:$local-text-font-size;
         top: -1 * $local-small-grid-size;
         margin-bottom: $local-small-grid-size;
+    }
+    button.button-send {
+        min-width:15 * $local-small-grid-size;
+        padding: 0px $local-grid-size;
+        margin: 0;
+        margin-left:$local-small-grid-size;
+        font-weight:600;
+        height:$local-input-height;
+        text-align:center;
+        font-size:$local-text-font-size;
+        .red {
+            background:red;
+            color:white;
+        }
     }
     // end fix stuff
 
@@ -121,7 +136,7 @@ $local-color-disabled: #999;
             padding:0;
             box-shadow:none;
             margin-bottom:1rem;
-            height:30px;
+            height:$local-input-height;
             .select2-drop {
                 margin-left:0;
                 font-size:$local-text-font-size;
@@ -132,6 +147,9 @@ $local-color-disabled: #999;
                 line-height:20px;
                 font-size:$local-text-font-size;
                 span { color:$local-input-text-color; }
+            }
+            .select2-result-label {
+                padding:3px $local-small-grid-size;
             }
         }
     }
@@ -325,14 +343,14 @@ $local-color-disabled: #999;
         };
     }
     .bottom {
-        .deleteLink {
+/*         .deleteLink {
             color: red;
             font-weight: bold;
             text-transform: uppercase;
             margin-right: 30px;
             font-size: 20px;
         }
-        .pauseLink {
+ */        .pauseLink {
             text-transform: uppercase;
             margin-right: 30px;
             font-size: 20px;
