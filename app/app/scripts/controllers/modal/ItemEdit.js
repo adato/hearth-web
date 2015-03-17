@@ -108,6 +108,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.transformDataOut = function(data) {
+			var values = {
+				false: 'offer',
+				true: 'need'
+			};
+
 			// clear locations from null values
 			data.locations = $scope.cleanNullLocations(data.locations);
 			// transform keywords 
@@ -127,11 +132,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.valid_until_unlimited = false;
 			}
 
-
-			var values = {
-				false: 'offer',
-				true: 'need'
-			};
 
 			data.type = values[data.type];
 
