@@ -1,18 +1,17 @@
 $local-title-font-size: 16px;
 $local-text-font-size: 14px;
 $local-grid-size: 25px;
-$local-small-grid-size: 15px;
-$local-border-style: 1px solid #eee; // or should be #ddd?
+$local-small-grid-size: 10px;
+$local-border-style: 1px solid #e3e3e3; // exact by image
+$local-input-border-style: 1px solid #ddd; // or should be #ddd?
 $local-color-disabled: #999;
 
 .ngdialog .itemEdit {
-    * {
-        text-align:left;
-    }
+
     font-size: $local-text-font-size;
     width: 650px;
     padding: $local-grid-size;
-    
+
     textarea {
         height: 85px;
         resize: vertical;
@@ -20,20 +19,68 @@ $local-color-disabled: #999;
     }
     label {
         cursor: pointer;
-    }
-    select {
-        border-radius: $global-radius;
+        margin-bottom:10px;
+        line-height:1;
+        font-weight: 600;
     }
 
     // fix stuff
     a {
         font-weight: 600;
-        &.close-dialog { margin-top: -6px; font-size: $local-text-font-size; }
-    }    
+        &.close-dialog { font-size: $local-text-font-size; }
+    }
+    * {
+        text-align:left;
+    }
+    input, select, textarea {
+        border:$local-input-border-style;
+        font-family: $body-font-family;
+        box-shadow: none !important; // uh oh
+        font-size: $local-text-font-size;
+    }
     input[type="radio"] {
         box-shadow:none !important;
     }
+    input[type="text"], input[type="email"] {
+        box-shadow:none !important;
+        font-size: $local-text-font-size !important;
+        line-height:1.3;
+        height:3 * $local-small-grid-size;
+    }
+    select {
+        border-radius: $global-radius;
+        height:30px;
+        line-height:$local-text-font-size;
+        padding:0 15px;
+        font-weight:600;
+    }
+    div.moveUp.error {
+        font-size:$local-text-font-size;
+        top: -1 * $local-small-grid-size;
+        margin-bottom: $local-small-grid-size;
+    }
+    // end fix stuff
+
+    
+    #author {
+        margin-right:$local-grid-size;
+    }
+    .need-offer-selector {
+        display: inline-block;
+        margin-top: 18px;
+        label { margin:0; }
+        label:first-child {
+            margin-right:20px;
+            margin-bottom:0;
+        }
+        input {
+            margin:0;
+            margin-right:10px;
+        }
+    }
+
     .head {
+        top:0;
         h1, h2 {
             font-size: $local-title-font-size;
             font-weight: 700;
@@ -59,10 +106,10 @@ $local-color-disabled: #999;
                 margin-bottom:$local-small-grid-size;
                 border-bottom:$local-border-style;
                 padding-bottom:$local-small-grid-size;
+                font-size:14px;
             }
         }
     }
-    // end fix stuff
 
 
 
