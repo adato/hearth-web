@@ -21,7 +21,7 @@
             </div>
 
             <section class="author">
-                <author-selector class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
+                <author-selector class="fleft" id="author" disable="post." author-id="post.current_community_id" author="post.current_community"></author-selector>
 
                 <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
                 <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
@@ -113,7 +113,7 @@
 
             <section class="text-input keywords field-container">
                 <label slide-trigger="slide.keywords" class="moveBot">
-                    {{ 'POST_KEYWORDS_LABEL' | translate }} <span ng-if="!slide.keywords">({{post.keywords.length}})</span>
+                    {{ 'POST_KEYWORDS_LABEL' | translate }} <span ng-if="!slide.keywords && post.keywords.length">({{post.keywords.length}})</span>
                 </label>
 
                 <div ng-slide-down="slide.keywords" lazy-render duration="0.5">
@@ -125,12 +125,9 @@
 
             <section class="files">
                 <label slide-trigger="slide.files" class="create-post-link">
-                    <span ng-if="slide.files">
-                        {{ 'ATTACH_PHOTO_LINK' | translate }}
-                    </span>
-                    <span ng-if="!slide.files">
-                        {{ 'IMAGES' | translate }}
-                        ({{ post.attachments_attributes.length }})
+                    {{ 'IMAGES' | translate }}
+                    <span ng-if="!slide.files && imagesCount">
+                        ({{ imagesCount }})
                     </span>
                 </label>
                 <div ng-slide-down="slide.files" lazy-render duration="0.5">
