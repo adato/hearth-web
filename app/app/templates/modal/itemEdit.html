@@ -64,13 +64,10 @@
             </section>
 
             <section class="place text-input middle field-container">
-                <label>
-                    {{ 'POST_PLACE_LABEL' | translate}}
-                </label>
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </section>
 
-            <section class="lock">
+            <section class="collapse lock">
                 <label slide-trigger="slide.lock" for="lock">
                     {{ 'POST_LOCK_LABEL' | translate }}
                     <span ng-if="!slide.lock">
@@ -92,7 +89,7 @@
                 </ul>
             </section>
 
-            <section class="date">
+            <section class="collapse date">
                 <label slide-trigger="slide.date">
                     {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
                     <span ng-if="!slide.date">
@@ -116,8 +113,8 @@
                 </div>
             </section>
 
-            <section class="text-input keywords field-container">
-                <label slide-trigger="slide.keywords" class="moveBot">
+            <section class="collapse text-input keywords field-container">
+                <label slide-trigger="slide.keywords">
                     {{ 'POST_KEYWORDS_LABEL' | translate }} <span ng-if="!slide.keywords && post.keywords.length">({{post.keywords.length}})</span>
                 </label>
 
@@ -128,7 +125,7 @@
                 </div>
             </section>
 
-            <section class="files">
+            <section class="collapse files">
                 <label slide-trigger="slide.files" class="create-post-link">
                     {{ 'IMAGES' | translate }}
                     <span ng-if="!slide.files && imagesCount">

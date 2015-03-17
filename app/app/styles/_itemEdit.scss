@@ -74,7 +74,7 @@ $local-input-height: 30px;
         height:$local-input-height;
         text-align:center;
         font-size:$local-text-font-size;
-        .red {
+        &.red {
             background:red;
             color:white;
         }
@@ -154,33 +154,32 @@ $local-input-height: 30px;
         }
     }
 
+    section.collapse {
+        margin-top:15px;
+    }
+
 
     .checkbox {
-        color: #1fb1e8;
         padding-top: 0px;
         height: auto;
         padding-left: 0px;
         .fa {
             margin-left: 0px;
-            color: #1fb1e8;
-            font-size: 24px;
-            width: 21px;
+            width: 14px;
+            font-size:14px;
+            color:$local-input-text-color;
         }
         span {
-            margin-left: 0px;
-            position: relative;
-            top: -2px;
+            margin-left: 0;
+            top: 0;
         }
     }
     .tags {
         input {
-            padding: {
-                left: 0;
-            };
+            height:22px;
         }
     }
     .date {
-        margin-bottom: 15px;
         input {
             padding-left: 20px;
             padding-right: 20px;
@@ -197,16 +196,6 @@ $local-input-height: 30px;
     .locations {
         .remove {
             top: 6px !important;
-        }
-        .controll {
-            position: relative;
-            top: -8px;
-            a {
-                font-size: 16px;
-                display: block;
-                float: left;
-                margin-top: -3px;
-            }
         }
     }
     .files {
@@ -314,9 +303,9 @@ $local-input-height: 30px;
         }
     }
     .lock {
-        margin-top: 10px;
         ul {
             margin-left: 0px;
+            margin-bottom:0;
             li {
                 list-style: none;
                 display: inline-block;
@@ -329,6 +318,7 @@ $local-input-height: 30px;
             }
         }
     }
+
     .charsleft {
         text-align: right;
         margin: {
@@ -343,14 +333,8 @@ $local-input-height: 30px;
         };
     }
     .bottom {
-/*         .deleteLink {
-            color: red;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-right: 30px;
-            font-size: 20px;
-        }
- */        .pauseLink {
+        margin-top:$local-grid-size;
+        .pauseLink {
             text-transform: uppercase;
             margin-right: 30px;
             font-size: 20px;
