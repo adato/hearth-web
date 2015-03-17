@@ -1,7 +1,3 @@
-.community-picker {
-    margin-top: 7px;
-}
-
 .select2-container {
     margin: 0;
     position: relative;
@@ -16,8 +12,8 @@
     padding: 4px 4px 4px 8px;
     border-radius: $global-radius $global-radius $global-radius $global-radius;
     background-color: white;
-    border: 1px solid #d7d7d7 !important;
-    box-shadow: 0 0 5px #d7d7d7 inset !important;
+    border: 1px solid #d7d7d7; // !important;
+    box-shadow: 0 0 5px #d7d7d7 inset; // !important;
     ul {
         margin: 0px;
         li {
