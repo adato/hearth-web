@@ -26,7 +26,7 @@
             <p class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</p>
 
             <section class="author">
-                <author-selector class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
+                <author-selector class="fleft" id="author" disable="post." author-id="post.current_community_id" author="post.current_community"></author-selector>
 
                 <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
                 <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
@@ -64,13 +64,10 @@
             </section>
 
             <section class="place text-input middle field-container">
-                <label>
-                    {{ 'POST_PLACE_LABEL' | translate}}
-                </label>
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </section>
 
-            <section class="lock">
+            <section class="collapse lock">
                 <label slide-trigger="slide.lock" for="lock">
                     {{ 'POST_LOCK_LABEL' | translate }}
                     <span ng-if="!slide.lock">
@@ -92,7 +89,7 @@
                 </ul>
             </section>
 
-            <section class="date">
+            <section class="collapse date">
                 <label slide-trigger="slide.date">
                     {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
                     <span ng-if="!slide.date">
@@ -116,9 +113,9 @@
                 </div>
             </section>
 
-            <section class="text-input keywords field-container">
-                <label slide-trigger="slide.keywords" class="moveBot">
-                    {{ 'POST_KEYWORDS_LABEL' | translate }} <span ng-if="!slide.keywords">({{post.keywords.length}})</span>
+            <section class="collapse text-input keywords field-container">
+                <label slide-trigger="slide.keywords">
+                    {{ 'POST_KEYWORDS_LABEL' | translate }} <span ng-if="!slide.keywords && post.keywords.length">({{post.keywords.length}})</span>
                 </label>
 
                 <div ng-slide-down="slide.keywords" lazy-render duration="0.5">
@@ -128,14 +125,11 @@
                 </div>
             </section>
 
-            <section class="files">
+            <section class="collapse files">
                 <label slide-trigger="slide.files" class="create-post-link">
-                    <span ng-if="slide.files">
-                        {{ 'ATTACH_PHOTO_LINK' | translate }}
-                    </span>
-                    <span ng-if="!slide.files">
-                        {{ 'IMAGES' | translate }}
-                        ({{ post.attachments_attributes.length }})
+                    {{ 'IMAGES' | translate }}
+                    <span ng-if="!slide.files && imagesCount">
+                        ({{ imagesCount }})
                     </span>
                 </label>
                 <div ng-slide-down="slide.files" lazy-render duration="0.5">

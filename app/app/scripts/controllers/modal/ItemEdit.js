@@ -12,6 +12,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
+		$scope.imagesCount = 0;
 		$scope.defaultPost = {
 			type: false,
 			keywords: [],
@@ -63,6 +64,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		};
 
+		// this will recount all images which are not market to be deleted
+		$scope.recountImages = function() {
+			$scope.imagesCount = 0;
+			$scope.post.attachments_attributes.forEach(function(item) {
+				if(!item.deleted)
+					$scope.imagesCount++;
+			});
+		};
+
+		// remove image from attachments array
+		// if image is already uploaded - mark him to be deleted
+		// else remove from array
 		$scope.removeImage = function(index) {
 			var files = $scope.post.attachments_attributes;
 
@@ -71,6 +84,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			} else {
 				files[index].deleted = true;
 			}
+
+			$scope.recountImages();
 			// $scope.$apply();
 		};
 
@@ -84,6 +99,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
+		/**
+		 * Transform - deserialize post to object which can be used in application
+		 */
 		$scope.transformDataIn = function(post) {
 			if (post) {
 				post.dateOrig = post.valid_until;
@@ -101,6 +119,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				if (!post.locations || !post.locations.length || post.location_unlimited) {
 					post.locations = [];
 				}
+
+				$scope.slide.files = !!post.attachments_attributes.length;
+				$scope.slide.keywords = !!post.keywords.length;
 
 				post.type = post.type == 'need';
 			}
@@ -132,12 +153,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.valid_until_unlimited = false;
 			}
 
-
 			data.type = values[data.type];
-
 			return data;
 		};
 
+		/**
+		 * Validate form before submit to API
+		 */
 		$scope.testForm = function(post) {
 			var res = false;
 			
@@ -355,10 +377,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.init = function() {
 			$scope.newPost = !$scope.post;
 			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
+			$scope.recountImages();
 
 			if($scope.preset)
 				$scope.post = angular.extend($scope.post, $scope.preset);
-				// console.log($scope.preset);
 
 			// if post is invalid, show message and run validation (it will show errors in invalid fields)
 			if($scope.isInvalid) {
@@ -376,6 +398,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.post.related_communities = [];
 			}
 		});
+		$scope.$watch('post.attachments_attributes', $scope.recountImages, true);
 		$scope.$on('updatedItem', $scope.refreshItemInfo);
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}
