@@ -1,6 +1,15 @@
 <div class="location-picker">
     <div class="location-input" ng-class="{disabled: disabled}">
-        <div class="fright mapIcon" ng-show="!hideMap">
+
+        <label class="fleft">
+            {{ 'POST_PLACE_LABEL' | translate}}
+        </label>
+        <div class="controll fright">
+            <checkbox ng-show="!required" model="disabled" value="true" value-off="false">
+                {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
+            </checkbox>
+        </div>
+        <div class="fright map-icon" ng-show="!hideMap">
             <a ng-click="toggleMap()">
                 <i class="fa fa-map-marker">
                     <span class="fa fa-times hidden"></span>
@@ -8,6 +17,7 @@
                 {{ 'MAP' | translate }}
             </a>
         </div>
+        <div class="clearfix">&nbsp;</div>
         
         <tags-input allow-duplicate-tags="true" refocus-input-on-tab display-property="address" class="tags tags-input" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}" replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30">
         </tags-input>
@@ -15,19 +25,14 @@
         <div class="clear"></div>
         <div class="location-map hidden">
             <div class="map-container"></div>
-            <div class="map-controll mapPoint" ng-show="mapPoint && mapPoint.name">
-                <button type="button" class="button-send right ng-show-binding" ng-click="chooseMapLocation()">{{ 'INSERT_LOCATION' | translate }}</button>
-                <span ng-if="mapPointShowName">
+            <div class="map-controll map-point" ng-show="mapPoint && mapPoint.name">
+                <a class="right" ng-click="chooseMapLocation()">{{ 'INSERT_LOCATION' | translate }}</a>
+                <div class="map-point-name" ng-if="mapPointShowName">
                     {{ mapPoint.name }}
-                </span>
+                </div>
                 <div class="clear"></div>
             </div>
         </div>
-    </div>
-    <div class="controll">
-        <checkbox ng-show="!required" model="disabled" value="true" value-off="false">
-            {{ 'LOCATION_DOES_NOT_MATTER' | translate }}
-        </checkbox>
     </div>
     <div class="error moveUp" ng-if="errorWrongPlace || showError">
         <span ng-show="errorWrongPlace">{{ 'ERR_LOCATION_UNKNOWN_PLACE' | translate }}</span>

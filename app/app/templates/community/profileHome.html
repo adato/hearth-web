@@ -42,7 +42,7 @@
             <h3 class="iblock">
                 {{ 'COMMUNITY_POSTS' | translate }}
                 
-                <a ng-if="mine" class="create-ad-sig fright" ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}">
+                <a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{ 'AD_ADD_LABEL' | translate}}">
                     <i class="fa fa-plus-square"></i>
                 </a>
             </h3>
