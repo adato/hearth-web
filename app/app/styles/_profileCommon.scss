@@ -567,7 +567,7 @@
         float: unset;
         margin: 0px auto;
     }
-    & > article > section {
+    & > article.hiddenAvatar > section {
         @extend .large-centered;
     }
     h3 {
