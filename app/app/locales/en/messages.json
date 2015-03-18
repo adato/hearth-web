@@ -727,6 +727,7 @@
     "REMOVE": "Remove",
     "REPLY_BUTTON_CAPTION": "Reply",
     "REPLY_PUBLISH_EMAIL_AGREE": "I agree that my email address will be provided to {{name}}.",
+    "REPORT": "Nahlásit",
     "REPORT_HARMFUL_AD": "Report abuse post",
     "RESET_PASSWORD": "Reset password",
     "RESET_PASSWORD_API_ERROR": "Change of password has failed... What now?",

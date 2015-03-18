@@ -747,6 +747,7 @@
     "REMOVE": "Odobrať",
     "REPLY_BUTTON_CAPTION": "Odpovedať",
     "REPLY_PUBLISH_EMAIL_AGREE": "Spoločne s touto správou uvidí užívateľ {{name}} i Vašu emailovú adresu.",
+    "REPORT": "Nahlásit",
     "REPORT_HARMFUL_AD": "Nahlásiť škodlivý inzerát",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Pri zmene hesla došlo k chybe... Čo teraz?",

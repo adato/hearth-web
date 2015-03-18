@@ -11,10 +11,10 @@
         <div>
             <label>{{ 'POST_REPORT.REASON_LABEL' | translate }}</label>
             <textarea autosize-textarea required ng-focus="showErrors.text = false" ng-blur="showErrors.text = true" placeholder="{{ 'POST_REPORT.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
-            <div class="moveUp error" ng-show="showErrors.text">
-                <span ng-show="reportForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="reportForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="reportForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+            <div class="moveUp error" ng-show="showErrors.message">
+                <span ng-show="reportForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="reportForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="reportForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
             <div class="note">
                 <span>{{ 'POST_REPORT.NOTE' | translate }}</span>
