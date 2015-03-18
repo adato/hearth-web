@@ -232,6 +232,21 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        $rootScope.openReportBox = function(item) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/itemReport.html',
+                controller: 'ItemReport',
+                scope: scope,
+                closeByEscape: false,
+                showClose: false
+            });
+        };
+
         // insert post if it was inserted/updated and insert him to marketplace if missing
         // as temporary fix of #1010
         $rootScope.insertPostIfMissing = function (data) {
@@ -246,22 +261,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // send report to API and close modal.. maybe fire some notification too?
-        $rootScope.reportItem = function(item) {
-            if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox(true);
+        // $rootScope.reportItem = function(item) {
+        //     if (!Auth.isLoggedIn())
+        //         return $rootScope.showLoginBox(true);
 
-            $rootScope.globalLoading = true;
-            Post.spam({id: item._id}, function(res) {
-                $rootScope.$broadcast('reportItem', item);
+        //     $rootScope.globalLoading = true;
+        //     Post.spam({id: item._id}, function(res) {
+        //         $rootScope.$broadcast('reportItem', item);
 
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
-            }, function(err) {
+        //         $rootScope.globalLoading = false;
+        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
+        //     }, function(err) {
                 
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
-            });
-        };
+        //         $rootScope.globalLoading = false;
+        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
+        //     });
+        // };
 
         // open modal window for item edit
         $rootScope.editItem = function(post, isInvalid) {

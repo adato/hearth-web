@@ -19,6 +19,7 @@
     "ACTIVE_POSTS": "Aktívne inzeráty",
     "ACTUALLY_YOU_HAVE_ACTIVE": "Momentálne máte aktívne",
     "ADD": "Pridať",
+    "ADD_CONTENT_AS": "za",
     "ADD_KEYWORDS": "Kľúčové slová, oddelené čiarkou",
     "ADD_LOCATION": "Napíšte miesto",
     "ADD_NEXT_WEB": "Pridať ďalší web",
@@ -99,6 +100,10 @@
         },
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Naozaj chcete zmazať túto komunitu?",
         "COMMUNITY_REMOVE_LABEL": "Zmazať komunitu",
+        "CONFIRM_LEAVE": {
+            "TEXT": "Doopravdy chcete opustit tuto komunitu?",
+            "TITLE": "Opustit komunitu"
+        },
         "DELEGATE_ADMIN_ARE_YOU_SURE": "Naozaj chcete odovzdať správcovstvo tejto skupiny?",
         "DELEGATE_ADMIN_LABEL": "Odovzdanie správcovstva",
         "HOME": {
@@ -344,6 +349,7 @@
     "HOMEPAGE_SUBHEADING": "pre zdieľanie darov a skúseností",
     "HOURS_AGO": "pred %d hodinami",
     "HOUR_AGO": "pred hodinou",
+    "IMAGES": "Obrázky",
     "INDIVIDUALS": "Jednotlivci",
     "INSERT_LOCATION": "Vložiť lokáciu",
     "INSPIRED_BY_HIM": "inšpiruje",
@@ -555,6 +561,7 @@
         "USER_RATING_FAILED": "Pri hodnotení užívateľa došlo k chybe.",
         "USER_RATING_SUCCESS": "Hodnotenie užívateľa bolo pridané."
     },
+    "NOT_FILLED": "nevyplněno",
     "NO_DONT_DELETE_ACCOUNT": "Nie",
     "NO_REPLY": "Zatiaľ nikto nič.",
     "NO_SIGNAL_ON_THIS_PAGE": "Ako ste sa sem vôbec dostali? Pokiaľ si myslíte, že je to chyba, tak nám to prosím dajte vedieť.",
@@ -607,17 +614,41 @@
     "POPULAR_KEYWORDS": "Populárne kľúčové slová",
     "POSITIVE": "Všetko klaplo",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Všetko prebehlo, ako malo? Ste nadšený? Tak šup...dajte to užívateľovi vedieť.",
-    "POSTS": "inzeráty",
+    "POSTS": {
+        "POSTS": "inzeráty",
+        "DETAIL": {
+            "HIDE_MAP": "Skrýt mapu",
+            "LOCATION_ANYWHERE": "Kdekoliv",
+            "LOCATION_HEADING": "Umístění inzerátu",
+            "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
+            "REPLIES": "Odpovědi uživatelů",
+            "SHOW_MAP": "Zobrazit mapu"
+        }
+    },
     "POSTS_INACTIVE": "Neaktívne inzeráty",
     "POSTS_PL": {
         "one": "inzerát",
         "few": "inzeráty",
         "other": "inzerátov"
     },
+    "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity:",
+    "POST_EXPIRATION_DATE_LABEL": "Platnost do",
     "POST_HAS_ALREADY_EXPIRED": "Platnosť inzerátu už skončila",
     "POST_HAS_BEEN_DEACTIVATED": "Inzerát bol pozastavený",
     "POST_HAS_EXPIRED": "Platnosť inzerátu skončila",
+    "POST_KEYWORDS_LABEL": "Klíčová slova",
+    "POST_LOCK_LABEL": "Soukromí inzerátu",
     "POST_NOT_FOUND": "Inzerát nebol nájdený.",
+    "POST_PLACE_LABEL": "Místa:",
+    "POST_REPORT": {
+        "HEADING": "Nahlásit inzerát",
+        "NOTE": "Chcete opravdu nahlásit tento inzerát? Zpráva o nahlášení se pošle i vlastníkovi inzerátu.",
+        "REASON_LABEL": "Důvod nahlášení",
+        "REASON_PLACEHOLDER": "Napište nám pár slov, proč je inzerát špatný...",
+        "SUCCESS_MESSAGE": "Inzerát byl úspěšně nahlášen."
+    },
+    "POST_TEXT_LABEL": "Text inerátu:",
+    "POST_TITLE_LABEL": "Stručný popis inzerátu:",
     "POST_WAS_DELETED": "Inzerát bol vymazaný.",
     "POST_WAS_SUSPENDED": "Inzerát bol pozastavený",
     "PROFILE": {
@@ -669,7 +700,9 @@
         },
         "HOME": {
             "NO_ACTIVITY_ME": "Ste tu krátko, nemáme vám zatiaľ čo ukázať :)",
+            "NO_ACTIVITY_ME_OLDER": "Zatím zde nemáte žádnou aktivitu.",
             "NO_ACTIVITY_OTHER": "Užívateľ je tu nový, nemáme vám tu zatiaľ čo ukázať.",
+            "NO_ACTIVITY_OTHER_OLDER": "Uživatel zde nemá zatím žádnou aktivitu.",
             "NO_POSTS_ME": "Zatiaľ ste nevytvorili žiadny inzerát, poďme s tým niečo urobiť - môžete darovať či prijať, čokoľvek vám napadne."
         },
         "INVITATION": {
@@ -727,6 +760,7 @@
     "SAVE_THE_FILTER_FOR_FUTURE_USE": "Zapamätať filter",
     "SAYING": "Hovorí",
     "SEARCH_LINK": "Hľadať",
+    "SELECT_COMMUNITIES_FOR_POST": "Vyberte komunity, do kterých se má inzerát vložit.",
     "SEND": "Odoslať",
     "SENDING_FEEDBACK_SUCCESS": "Ďakujeme za názor. I vďaka vám budeme zas o niečo lepší.",
     "SENDING_MESSAGE_IN_PROGRESS": "Správa sa odosiela, prosím počkajte... Prečo sú všetci dnes tak netrpezliví? Hmm...",
@@ -742,6 +776,9 @@
     "SHARING_SOCIAL_ENABLED": "Ostatní môžu zdieľať inzerát na inej sociálnej sieti",
     "SHOW_PROFILE": "Zobraziť profil",
     "SHOW_PROFILE_BUTTON_CAPTION": "Zobraziť profil",
+    "SHOW_TO_ALL": "zobrazit všem",
+    "SHOW_TO_COMMUNITY": "zobrazit komunitě",
+    "SHOW_TO_FRIENDS": "zobrazit přátelům",
     "SIGNUP": "Zaregistrujte sa",
     "SIGNUP_BUTTON": "Registrovať",
     "SIGNUP_ERR_BAD_EMAIL_FORMAT": "Email nemá platný formát",
@@ -759,9 +796,7 @@
     "SIGN_UP_WITH_TWITTER": "prihlásiť cez Twitter",
     "SUBMIT": "Odoslať",
     "SUGGESTED_COMMUNITIES": "Odporúčané komunity",
-    "SWITCH_FROM_COMMUNITY_TO_MANAGE_POSTS": "Pred úpravou vašich inzerátov sa najprv prepnete v hornom menu na svoj účet.",
     "SWITCH_TO": "Prepnúť sa za",
-    "SWITCH_TO_COMMUNITY_TO_MANAGE_POSTS": "Pre spravovanie inzerátov komunity sa najprv prepnete v hornom menu na účet komunity.",
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadajte, čo vás zaujíma...",
     "TELL_MORE_ABOUT": "Povedzte svetu niečo o sebe:",
     "TELL_WHAT": "Jednoducho uveďte čo napr. tútorstvo",
@@ -788,6 +823,7 @@
     "UNFOLLOW_BUTTON_CAPTION": "Prestať sledovať",
     "UNKNOWN_EMAIL": "Tento email nepoznáme a nikdy sme ho nevideli.",
     "UNLIMITED": "Neobmedzene",
+    "UNTIL": "do",
     "UPLOADING_FILE": "Nahrávam...",
     "USERNAME_INPUT_PLACEHOLDER": "Váš email",
     "USERS_RATINGS": "Hodnotenie užívateľa",

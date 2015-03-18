@@ -76,8 +76,7 @@
 				<div class="clear"></div>
 			</div>
 			<footer>
-				<a class="report-link spam fa fa-flag" ng-if="! mine && !loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)"></a>
-				<a class="report-link spam fa fa-flag" ng-if="! mine && loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="confirmBox('AD_REPORT_CONFIRM', 'AD_REPORT_ARE_YOU_SURE', reportItem, item, this)">
+				<a class="report-link spam fa fa-flag" ng-if="! mine && loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">
 				</a>
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>
