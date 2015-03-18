@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemReply', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$element', 'PostReplies', 'Notify',
-	function($scope, $rootScope, Auth, Errors, $element, PostReplies, Notify) {
+	'$scope', '$rootScope', 'PostReplies', 'Notify',
+	function($scope, $rootScope, PostReplies, Notify) {
 		$scope.sending = false;
 		$scope.showErrors = false;
 		// $scope.author = null;

@@ -626,6 +626,13 @@
     "POST_LOCK_LABEL": "Soukromí inzerátu",
     "POST_NOT_FOUND": "Post was not found. Where is it?!",
     "POST_PLACE_LABEL": "Místa:",
+    "POST_REPORT": {
+        "HEADING": "Nahlásit inzerát",
+        "NOTE": "Chcete opravdu nahlásit tento inzerát? Zpráva o nahlášení se pošle i vlastníkovi inzerátu.",
+        "REASON_LABEL": "Důvod nahlášení",
+        "REASON_PLACEHOLDER": "Napište nám pár slov, proč je inzerát špatný...",
+        "SUCCESS_MESSAGE": "Inzerát byl úspěšně nahlášen."
+    },
     "POST_TEXT_LABEL": "Text inerátu:",
     "POST_TITLE_LABEL": "Stručný popis inzerátu:",
     "POST_WAS_DELETED": "Ad was deleted.",
@@ -720,6 +727,7 @@
     "REMOVE": "Remove",
     "REPLY_BUTTON_CAPTION": "Reply",
     "REPLY_PUBLISH_EMAIL_AGREE": "I agree that my email address will be provided to {{name}}.",
+    "REPORT": "Nahlásit",
     "REPORT_HARMFUL_AD": "Report abuse post",
     "RESET_PASSWORD": "Reset password",
     "RESET_PASSWORD_API_ERROR": "Change of password has failed... What now?",
