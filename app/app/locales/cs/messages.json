@@ -747,10 +747,7 @@
     "REMOVE": "Odebrat",
     "REPLY_BUTTON_CAPTION": "Odpovědět",
     "REPLY_PUBLISH_EMAIL_AGREE": "Společně s touto zprávou uvidí uživatel {{name}} i Vaši emailovou adresu.",
-<<<<<<< HEAD
-=======
     "REPORT": "Nahlásit",
->>>>>>> feature/web-10-add-reason-field-to-report-function
     "REPORT_HARMFUL_AD": "Nahlásit nevhodný inzerát",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Při změně hesla došlo k chybě... Co teď?",
