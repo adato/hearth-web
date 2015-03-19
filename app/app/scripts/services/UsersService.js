@@ -18,7 +18,7 @@ angular.module('hearth.services').service('UsersService', [
 			var deferred = $q.defer();
 
 			User.get({
-				user_id: id
+				_id: id
 			}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {

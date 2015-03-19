@@ -59,7 +59,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         function loadCommunityPosts(id, doneErr) {
 
-            Community.getPosts({communityId: id}, function(res) {
+            Community.getPosts({_id: id}, function(res) {
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
 

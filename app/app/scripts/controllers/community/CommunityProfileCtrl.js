@@ -28,7 +28,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}
 
 			$scope.loadingCounter++;
-			Community.get({ communityId: $routeParams.id }, function(res) {
+			Community.get({_id: $routeParams.id }, function(res) {
 
 				$scope.loadingCounter--;
 				$scope.info = res;

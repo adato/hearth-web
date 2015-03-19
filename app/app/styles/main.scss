@@ -74,12 +74,6 @@ $fontSize: rem-calc(14);
 @import "authorSelector";
 @import "navigation";
 @import "forms";
-<<<<<<< HEAD
-=======
-@import "item";
-@import "infoBox";
-@import "itemEdit";
->>>>>>> feature/web-16-user-info-ondemand
 @import "common";
 @import "buttons";
 @import "tutorial";
@@ -99,6 +93,7 @@ $fontSize: rem-calc(14);
 @import "map";
 @import "fulltext";
 @import "item";
+@import "infoBox";
 @import "itemEdit";
 @import "itemDetail";
 @import "modal";
