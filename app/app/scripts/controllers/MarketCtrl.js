@@ -230,6 +230,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
+			$rootScope.cacheInfoBox = {};
 		});
 
 		// ==== Global event fired when init process is finished

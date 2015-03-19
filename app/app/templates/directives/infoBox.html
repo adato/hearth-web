@@ -1,0 +1,41 @@
+<div class="info-box" ng-mouseover="hoverIn()" ng-mouseleave="show = false">
+	<div class="user-info" ng-if="show">
+		<div loading delayed="false" show="!info && !error" class="loading-bar"></div>
+		<article class="row text-center" ng-if="error">
+			<span class="text-error">{{ 'INFO_BOX_LOADING_ERROR' | translate }}</span>
+		</article>
+		<article class="row inner" ng-if="info">
+			<section class="post-count">
+				<div class="count_accomplished" ng-bind-html="'count-of-wished-and-gifts' | translate: {value: info.post_count}"></div>
+			</section>
+			<section class="columns user-info-text">
+				<div class="author-about" ng-if="info.about">
+					<div>{{info.about | ellipsis:50}}</div>
+				</div>
+				<div ng-if="info.interests.length && info.interests[0]"><i class="fa fa-heart"></i> {{info.interests.join(', ')}}</div>
+				<div ng-if="info.work"><i class="fa fa-suitcase"></i> {{info.work}}</div>
+				<div ng-if="info.locations.length">
+					<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}} 
+					<span ng-repeat="location in info.locations"><span ng-if="location.short_address">{{location.short_address}} <span ng-if="!$last">, </span> </span></span>.
+				</div>
+			</section>
+			<div class="cleaner"></div>
+			<section class="columns large-5 links">
+				<div ng-if="info.facebook || info.googleplus || info.twitter || info.linkedin">
+					<span class="social">
+						<a ng-if="info.facebook" class="fa fa-facebook-square" title="Facebook" href="{{info.facebook}}" target="_blank" ></a>
+						<a ng-if="info.googleplus" class="fa fa-google-plus-square" title="Google+" href="{{info.googleplus}}" target="_blank"></a>
+						<a ng-if="info.twitter" class="fa fa-twitter-square " title="Twitter" href="{{info.twitter}}" target="_blank"></a>
+						<a ng-if="info.linkedin" class="fa fa-linkedin-square" title="LinkedIn" href="{{info.linkedin}}" target="_blank"></a>
+					</span>
+				<div>
+			</section>
+			<section class="columns large-5">
+				<div class="profil-link text-right">
+					<a ng-href="#!/{{ getProfileLinkByType(info._type) }}/{{info._id}}">{{ 'WHOLE_PROFILE' | translate}}</a>
+				</div>
+			</section>
+		</article>
+	</div>
+	<ng-transclude></ng-transclude>
+</div>
