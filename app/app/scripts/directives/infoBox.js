@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('infoBox', [
-	'$rootScope', 'User', 'Community',
-	function($rootScope, User, Community) {
+	'$rootScope', 'UsersCommunitiesService',
+	function($rootScope, UsersCommunitiesService) {
 		return {
 			transclude: true,
 			replace: true,
@@ -27,7 +27,6 @@ angular.module('hearth.directives').directive('infoBox', [
 				 */
 				function fillUserInfo(info) {
 					scope.info = info;
-					$rootScope.cacheInfoBox[scope.infoBox._id] = info;
 				};
 
 				/**
@@ -37,18 +36,6 @@ angular.module('hearth.directives').directive('infoBox', [
 					scope.error = true;
 				};
 
-				function loadInfoBox(id) {
-					if($rootScope.cacheInfoBox[id])
-						return scope.info = $rootScope.cacheInfoBox[id];
-
-					if(!scope.info) {
-						if(scope.infoBox._type == 'User')
-							User.get({user_id: id}, fillUserInfo, displayError);
-						else
-							Community.get({communityId: id}, fillUserInfo, displayError);
-					}
-				}
-
 				/**
 				 * On mouse in, show info box
 				 */
@@ -57,7 +44,7 @@ angular.module('hearth.directives').directive('infoBox', [
 						scope.show = true;
 						scope.error = false;
 						
-						loadInfoBox(scope.infoBox._id);
+						UsersCommunitiesService.loadProfileInfo(scope.infoBox, fillUserInfo, displayError);
 					}
 				};
 				
