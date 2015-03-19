@@ -29,6 +29,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.missingPost = false;
+        $rootScope.cacheInfoBox = {};
 
         // init globalLoading 
         $rootScope.globalLoading = false;

@@ -1,15 +1,10 @@
 <article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<section ng-if="! hideAvatar" class="large-2 columns user">
-		<div ng-if="loggedUser._id">
-			<div ng-include="'templates/_user-info.html'"></div>
+		<div info-box="item.author">
 			<a ng-href="#!/{{getProfileLinkByType(item.author._type)}}/{{ item.author._id }}">
 				<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
 				<div class="name">{{ item.author.name }}</div>
 			</a>
-		</div>
-		<div ng-if="!loggedUser._id">
-			<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
-			<div class="name">{{ item.author.name }}</div>
 		</div>
 		<div class="karma" ng-class="{empty: !item.karma}" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ item.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ item.author.down_votes }}">
 			<div class="positive" style="width:{{item.karma}}"></div>
