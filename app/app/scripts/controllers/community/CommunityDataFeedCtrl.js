@@ -7,14 +7,16 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings',
+	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
         $scope.activityShow = false;
         var inited = false;
 
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
+            'community.given': loadGivenRatings,
+            'community.received': loadReceivedRatings,
             'community.members': loadCommunityMember,
             'community.about': loadCommunityAbout,
             'community.applications': loadCommunityApplications,
@@ -82,6 +84,42 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 }
             });
         };
+
+        function loadGivenRatings(id, done, doneErr) {
+            CommunityRatings.received({communityId: id}, done, doneErr);
+        }
+        
+        function loadReceivedRatings(params, done, doneErr) {
+            $scope.loadedRatingPosts = false;
+            $scope.ratingPosts = [];
+
+            CommunityRatings.received(params, done, doneErr);
+            if(!$scope.mine) {
+                CommunityRatings.possiblePosts({_id: params._id}, function(res) {
+                    var posts = [];
+                    
+                    res.needed.forEach(function(item) {
+                        item.post_type = "needed";
+                        posts.push(item);
+                    });
+                    res.offered.forEach(function(item) {
+                        item.post_type = "offered";
+                        posts.push(item);
+                    });
+
+                    $scope.ratingPosts = posts;
+                    $scope.loadedRatingPosts = true;
+                }, function(res) {
+                    $scope.loadedRatingPosts = true;
+                });
+            }
+
+            var removeListener = $scope.$on('$routeChangeStart', function() {
+                $scope.closeUserRatingForm();
+                removeListener();
+            });
+
+        }
 
         function loadCommunityHome(id) {
             var fulltextParams = {
