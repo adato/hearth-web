@@ -46,9 +46,13 @@ angular.module('hearth.directives').directive('authorSelector', [
 				if(!$rootScope.loggedUser)
 					return false;
 
+				console.log("Removing: ", $scope.remove);
+
 				$scope.list = [$rootScope.loggedUser];
 				if($rootScope.myAdminCommunities)
 					for(var i = 0; i < $rootScope.myAdminCommunities.length; i++) {
+						console.log($rootScope.myAdminCommunities[i]._id, $scope.remove);
+
 						if($rootScope.myAdminCommunities[i]._id !== $scope.remove)
 							$scope.list.push($rootScope.myAdminCommunities[i]);
 					}

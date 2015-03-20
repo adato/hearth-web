@@ -45,6 +45,8 @@ angular.module('hearth').config([
 			.when('/community-create', 'communityCreate')
 			.when('/community/:id/edit', 'communityEdit')
 			.when('/community/:id', 'community')
+			.when('/community/:id/given-ratings', 'community.given')
+			.when('/community/:id/received-ratings', 'community.received')
 			.when('/community/:id/invite-friends', 'community.inviteFriends')
 			.when('/community/:id/posts', 'community.posts')
 			.when('/community/:id/members', 'community.members')
@@ -152,6 +154,18 @@ angular.module('hearth').config([
 				.segment('applications', {
 					controller: 'CommunityDataFeedCtrl',
 					templateUrl: 'templates/community/profileApplications.html',
+					reloadOnSearch: false,
+					dependencies: ['id']
+				})
+				.segment('given', {
+					templateUrl: 'templates/community/ratingsGiven.html',
+					controller: 'CommunityDataFeedCtrl',
+					reloadOnSearch: false,
+					dependencies: ['id']
+				})
+				.segment('received', {
+					templateUrl: 'templates/community/ratingsReceived.html',
+					controller: 'CommunityDataFeedCtrl',
 					reloadOnSearch: false,
 					dependencies: ['id']
 				})

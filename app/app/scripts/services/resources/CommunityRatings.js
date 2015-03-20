@@ -16,12 +16,32 @@ angular.module('hearth.services').factory('CommunityRatings', [
 			add: {
 				method: 'POST'
 			},
+			received: {
+				method: 'GET',
+				isArray: true,
+				params: {
+					type: 'received',
+					r: Math.random()
+				}
+			},
+			given: {
+				method: 'GET',
+				isArray: true,
+				params: {
+					type: 'given',
+				}
+			},
 			get: {
 				method: 'GET',
 				isArray: true,
 				params: {
 					r: Math.random()
 				}
+			},
+			possiblePosts: {
+				url: $$config.apiPath +'/communities/:_id/ratings/possible_posts',
+				params: {'communityId': '@_id'},
+				method: 'GET',
 			}
 		});
 	}

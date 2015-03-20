@@ -7,14 +7,16 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout) {
+	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings',
+	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
         $scope.activityShow = false;
         var inited = false;
 
 		 var loadServices = {
             'community': loadCommunityHome,
             'community.posts': loadCommunityPosts,
+            'community.given': loadGivenRatings,
+            'community.received': loadReceivedRatings,
             'community.members': loadCommunityMember,
             'community.about': loadCommunityAbout,
             'community.applications': loadCommunityApplications,
@@ -80,6 +82,43 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 }
             });
         };
+
+        function loadGivenRatings(id, done, doneErr) {
+            CommunityRatings.received({communityId: id}, done, doneErr);
+        }
+
+
+        function loadReceivedRatings(id, done, doneErr) {
+            $scope.loadedRatingPosts = false;
+            $scope.ratingPosts = [];
+
+            CommunityRatings.received({communityId: id}, done, doneErr);
+            $scope.$watch('rating.current_community_id', function(val) {
+                $scope.rating.post_id = 0;
+                CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res) {
+                    var posts = [];
+                    
+                    res.needed.forEach(function(item) {
+                        item.post_type = "needed";
+                        posts.push(item);
+                    });
+                    res.offered.forEach(function(item) {
+                        item.post_type = "offered";
+                        posts.push(item);
+                    });
+
+                    $scope.ratingPosts = posts;
+                    $scope.loadedRatingPosts = true;
+                }, function(res) {
+                    $scope.loadedRatingPosts = true;
+                });
+            });
+
+            var removeListener = $scope.$on('$routeChangeStart', function() {
+                $scope.closeUserRatingForm();
+                removeListener();
+            });
+        }
 
         function loadCommunityHome(id) {
             async.parallel([
@@ -173,6 +212,36 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         }
 
+        
+        // this will flash rating box with some background color
+        $scope.flashRatingBackground = function(rating) {
+            var delayIn = 200;
+            var delayOut = 2000;
+            var color = "#FFB697";
+            var colorOut = $('.rating_'+rating._id + ' .item').css("background-color");
+
+            $('.rating_'+rating._id + ' .item').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .item').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: colorOut}, delayOut );
+            });
+
+        };
+
+        // will add new rating to data array
+        $scope.addCommunityRating = function($event, item) {
+            $scope.data.unshift(item);
+            setTimeout(function() {
+                $scope.flashRatingBackground(item);
+            });
+        };
+
+
+        $scope.$on('communityRatingsAdded', $scope.addCommunityRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         if($rootScope.communityLoaded)
             init();
