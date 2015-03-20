@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-    '$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify',
-    function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify) {
+    '$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators',
+    function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators) {
         $scope.showEmailForm = false;
         $scope.url = '';
         var timeoutClose = false;
@@ -37,21 +37,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
             $scope.endpoints = $$config.sharingEndpoints;
         };
 
-        function validateEmail(email) { 
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
-            return email.trim().match(re);
-        }
-
-        $scope.validateEmails = function(emails) {
-            var valid = true;
-            // are given emails valid?
-            jQuery.each(emails, function(key, email) {
-                // this will set false to valid and call break when not valid
-                return valid = !!validateEmail(email);
-            });
-            return valid;
-        };
-
         /**
          * This function will test given emails and if they are wrong
          * it will show error and return false
@@ -67,7 +52,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
                 emails = angular.copy(emails).split(",");
             }
             // validate emails 
-            if(!$scope.validateEmails(emails)) {
+            if(!Validators.emails(emails)) {
 
                 $scope.showError.to_email = true;
                 $scope.inviteForm.to_email.$error.format = true;
