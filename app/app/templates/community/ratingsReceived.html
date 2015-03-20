@@ -1,7 +1,6 @@
 <div class="ratings-received row rating-item" id="received-rating-form" ng-show="showUserRatingForm">
 	<section class="large-2 columns user">
-		<avatar ng-if="!loggedCommunity" src="loggedUser.avatar.normal" type="loggedUser._type"></avatar>
-		<avatar ng-if="loggedCommunity" src="loggedCommunity.avatar.normal" type="loggedCommunity._type"></avatar>
+		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
 	<section class="large-10 columns user-rating-form">
 	<div class="item rating-received">
@@ -14,10 +13,10 @@
 				<div class="rating-notify-box"></div>
 				<h5>{{ 'COMMUNITY_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
 
-				<author-selector id="author" remove="info._id" author="rating.current_community_id" remove="info._id"></author-selector>
+				<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
+			
 				<needofferselector model="rating.score" text-true="{{ 'POSITIVE' | translate}}" text-false="{{ 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
 				<div class="clear"></div>
-
 
 				<h5>{{ 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
 				<span ng-if="ratingPosts.length && loadedRatingPosts">

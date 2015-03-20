@@ -141,6 +141,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
         	$rootScope.editItem(null, null, preset);
         };
+
 		// scroll to user Rating form when opened
 		$scope.scrollToUserRatingForm = function() {
 			// scroll to form
