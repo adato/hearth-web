@@ -17,15 +17,10 @@
 			<div class="rating-notify-box"></div>
 			<h5>{{ 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
 
-<<<<<<< HEAD
-			<author-selector id="author" author="rating.current_community_id" remove="info._id"></author-selector>
+			<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
 			<needofferselector model="rating.score" text-true="{{ 'POSITIVE' | translate}}" text-false="{{ 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
-=======
-			<author-selector class="fleft" id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
-			<needofferselector class="fleft" model="rating.score" text-true="{{ 'POSITIVE' | translate}}" text-false="{{ 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
->>>>>>> feature/new-edit-form
+			
 			<div class="clear"></div>
-
 		    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
 
 				<h5>{{ 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
