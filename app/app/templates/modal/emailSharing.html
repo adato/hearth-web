@@ -6,23 +6,23 @@
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
     </div>
     <hr />
-    <form ng-submit="sendReport()" name="reportForm" novalidate class="email-sharing">
+    <form ng-submit="send()" name="emailForm" novalidate class="email-sharing">
         <div class="notify-report-container"></div>
         <div>
-            <label>{{ 'EMAIL_SHARING.EMAIL_LABEL' | translate }}</label>
+            <label>{{ 'EMAIL_SHARING.ADDRESS_LABEL' | translate }}</label>
             <br />
-            <input ng-focus="showErrors.emails = false" ng-blur="showErrors.emails = true" placeholder="{{ 'EMAIL_SHARING.ADDRESSES_PLACEHOLDER' | translate }}" ng-model="sharing.emails" name="emails" />
+            <input ng-focus="showErrors.emails = false" ng-blur="showErrors.emails = true; testEmailsFormat(sharing.emails)" placeholder="{{ 'EMAIL_SHARING.ADDRESS_PLACEHOLDER' | translate }}" ng-model="sharing.emails" name="emails" required />
             <div class="moveUp error" ng-show="showErrors.emails">
-                <span ng-show="reportForm.emails.$error.required">{{ 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
-                <span ng-show="reportForm.emails.$error.format">{{ 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
+                <span ng-show="emailForm.emails.$error.required">{{ 'ERR_NOT_FILLED_SHARING_EMAIL_ADDRS' | translate }}</span>
+                <span ng-show="emailForm.emails.$error.format">{{ 'ERR_SHARING_EMAIL_ADDRESS_INVALID' | translate }}</span>
             </div>
 
-            <label>{{ 'EMAIL_SHARING.REASON_LABEL' | translate }}</label>
-            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" placeholder="{{ 'EMAIL_SHARING.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
+            <label>{{ 'EMAIL_SHARING.TEXT_LABEL' | translate }}</label>
+            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" placeholder="{{ 'EMAIL_SHARING.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
             <div class="moveUp error" ng-show="showErrors.message">
-                <span ng-show="reportForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="reportForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="reportForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+                <span ng-show="emailForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="emailForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="emailForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
             <div class="note">
                 <span>{{ 'EMAIL_SHARING.NOTE' | translate }}</span>

@@ -7,10 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('EmailSharing', [
-	'$scope', '$rootScope', 'Notify', 'Sharing',
-	function($scope, $rootScope, Notify, Sharing) {
+	'$scope', '$rootScope', 'Notify', 'Post', 'Validators',
+	function($scope, $rootScope, Notify, Post, Validators) {
 		$scope.sending = false;
-		$scope.showErrors = false;
 		$scope.sharing = {
 			emails: '',
 			message: '',
@@ -28,12 +27,52 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 			}, 5000);
 		};
 
-		$scope.sendEmail = function() {
+		$scope.validate = function(data) {
+			var invalid = false;
+
+			if(data.emails.length == 0) {
+				invalid = $scope.showErrors.emails = true;
+
+			} else if (! Validators.emails(data.emails)) {
+			
+				invalid = $scope.showErrors.emails = true;
+				$scope.emailForm.emails.$error.format = true;
+			}
+
+			if($scope.emailForm.message.$invalid)
+				invalid = $scope.showErrors.message = true;
+
+			return !invalid;
+		};
+
+		$scope.testEmailsFormat = function(emails) {
+			$scope.emailForm.emails.$error.format = false;
+			
+			if(!Validators.emails(emails.split(","))) {
+                $scope.showErrors.emails = true;
+                $scope.emailForm.emails.$error.format = true;
+                return false;
+            }
+            return true;
+		};
+
+		$scope.resetForm = function() {
+			$scope.emailForm.emails.$error.format = false;
+		};
+		
+		$scope.send = function() {
+			$scope.resetForm();
+
+			var data = angular.copy($scope.sharing);
+			data.emails = data.emails.split(",");
+
+			if(!$scope.validate(data))
+				return false;
 
 			$rootScope.globalLoading = true;
 			$scope.sending = true;
 			
-			Sharing.emailPost($scope.sharing, function(res) {
+			Post.emailShare(data, function(res) {
                 
 				$scope.sending = false;
                 $rootScope.globalLoading = false;
@@ -43,7 +82,7 @@ angular.module('hearth.controllers').controller('EmailSharing', [
                 
 				$scope.sending = false;
                 $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR,  '.notify-report-container');
+                Notify.addSingleTranslate('NOTIFY.EMAIL_SHARING_FAILED', Notify.T_ERROR,  '.notify-report-container');
             });
 		};
 	}
