@@ -32,6 +32,11 @@ angular.module('hearth.services').service('Time', [
 			return self.getMomentTimeObject(datetime, format).diff(today, 'minutes');
 		};
 
+		// this will return count of days/minutes/seconds/etc.. from given date to now
+		this.getDateDiffToNow = function(date, type) {
+			return moment().diff(moment(date), type || 'days')
+		};
+
 		return this;
 	}
 ]);

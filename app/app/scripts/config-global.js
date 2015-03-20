@@ -6,6 +6,7 @@ $$config = {
 	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
+	defaultHearthImage: 'images/facebook-sharing-image.png',
 	defaultUserAvatar: 'images/no-avatar.jpg',
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
 	sharingEndpoints: {

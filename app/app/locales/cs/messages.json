@@ -19,6 +19,7 @@
     "ACTIVE_POSTS": "Aktivní inzeráty",
     "ACTUALLY_YOU_HAVE_ACTIVE": "Momentálně máte aktivní",
     "ADD": "Přidat",
+    "ADD_CONTENT_AS": "za",
     "ADD_KEYWORDS": "Klíčová slova, oddělená čárkou",
     "ADD_LOCATION": "Napište místo",
     "ADD_NEXT_WEB": "Přidat další web",
@@ -669,7 +670,9 @@
         },
         "HOME": {
             "NO_ACTIVITY_ME": "Jste tu krátce, nemáme vám zatím co ukázat :)",
+            "NO_ACTIVITY_ME_OLDER": "Zatím zde nemáte žádnou aktivitu.",
             "NO_ACTIVITY_OTHER": "Uživatel je tady nový, nemáme vám tady zatím co ukázat.",
+            "NO_ACTIVITY_OTHER_OLDER": "Uživatel zde nemá zatím žádnou aktivitu.",
             "NO_POSTS_ME": "Zatím jste nevytvořil(a) žádný inzerát. No toto! Pojďme s tím něco udělat. Můžete darovat či přijmout, co vás jen napadne."
         },
         "INVITATION": {

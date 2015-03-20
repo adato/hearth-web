@@ -17,10 +17,11 @@
 			<h3>{{ 'ADD_USER_RATING' | translate }}</h3>
 			<div class="rating-notify-box"></div>
 			<h5>{{ 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
-			<div class="score-select">
-				<needofferselector class="fleft" model="rating.score" text-true="{{ 'NEGATIVE' | translate}}" text-false="{{ 'POSITIVE' | translate}}" icon-true="icon-rating-negative" icon-false="icon-rating-positive"></needofferselector>
-				<div class="clear"></div>
-			</div>
+
+			<author-selector class="fleft" id="author" author="rating.current_community_id" remove="info._id"></author-selector>
+			<needofferselector class="fleft" model="rating.score" text-true="{{ 'POSITIVE' | translate}}" text-false="{{ 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
+			<div class="clear"></div>
+
 		    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
 
 				<h5>{{ 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
@@ -70,7 +71,7 @@
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
-				<a href="" ng-click="openUserRatingForm(false)"><b>{{ 'THUMB_UP' | translate }}</b></a>
+				<a href="" ng-click="openUserRatingForm(true)"><b>{{ 'THUMB_UP' | translate }}</b></a>
 			</div>
 		</div>
 	</section>

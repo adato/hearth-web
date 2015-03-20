@@ -7,7 +7,6 @@ $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 $webWidth: 960px;
 
-
 @import "settings";
 
 $fontSize: rem-calc(18);
@@ -72,6 +71,7 @@ $fontSize: rem-calc(18);
 @import "mixins/social";
 
 @import "avatar";
+@import "authorSelector";
 @import "navigation";
 @import "forms";
 @import "item";

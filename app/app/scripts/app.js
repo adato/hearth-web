@@ -159,9 +159,14 @@ angular.module('hearth', [
             function initOpenGraph(done) {
 
                 $rootScope.$on('$translateChangeSuccess', function() {
-                    var defaultHearthImage = 'https://www.hearth.net/app/images/default_avatar.png';
-                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), defaultHearthImage);
+                    
+                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), $$config.appUrl+$$config.defaultHearthImage);
                     OpenGraph.setDefault();
+
+                    // reset OG to default when changing location
+                    $rootScope.$on("$locationChangeStart", function(loc) {
+                        OpenGraph.setDefault();
+                    });
                 });
 
                 done(null);
