@@ -34,6 +34,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 		$scope.newPost = false;
 		$scope.showError = {
+			files: {},
 			title: false,
 			text: false,
 			locations: false,
