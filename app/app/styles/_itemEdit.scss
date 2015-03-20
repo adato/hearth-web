@@ -1,53 +1,190 @@
-.itemEdit {
-    width: 800px;
-    padding: 15px;
-    text-align: left;
+$local-title-font-size: 16px;
+$local-text-font-size: 14px;
+$local-grid-size: 25px;
+$local-small-grid-size: 10px;
+$local-border-style: 1px solid #e3e3e3; // exact by image
+$local-input-border-style: 1px solid #ddd; // or should be #ddd?
+$local-input-text-color: #333;
+$local-color-disabled: #999;
+$local-input-height: 30px;
+
+.ngdialog .itemEdit {
+
+    font-size: $local-text-font-size;
+    width: 650px;
+    padding: $local-grid-size;
+
     textarea {
         height: 85px;
         resize: vertical;
-        line-height: 1.33 !important;
-        -webkit-transition: height 0.2s;
-        -moz-transition: height 0.2s;
         transition: height 0.2s;
     }
-    .need-offer-selector {
-        position: relative;
-        top: 5px;
-        display: inline-block;
-        float: left;
-        margin: 0.25em;
-        margin-left: 10px;
+    label {
+        cursor: pointer;
+        margin-bottom:10px;
+        line-height:1;
+        font-weight: 600;
+        &.fa::before {
+            color:color(5);
+            margin-right:$local-small-grid-size / 2;
+        }
     }
+
+    // fix stuff
+    a {
+        font-weight: 600;
+        &.close-dialog { font-size: $local-text-font-size; }
+    }
+    * {
+        text-align:left;
+    }
+    input, select, textarea {
+        border:$local-input-border-style;
+        font-family: $body-font-family;
+        box-shadow: none !important; // uh oh
+        font-size: $local-text-font-size;
+        color:$local-input-text-color;
+    }
+    input[type="radio"] {
+        box-shadow:none !important;
+    }
+    input[type="text"], input[type="email"] {
+        box-shadow:none !important;
+        font-size: $local-text-font-size !important;
+        line-height:1.3;
+        height:3 * $local-small-grid-size;
+    }
+    select {
+        border-radius: $global-radius;
+        height:$local-input-height;
+        line-height:$local-text-font-size;
+        padding:0 15px;
+        font-weight:600;
+    }
+    div.moveUp.error {
+        font-size:$local-text-font-size;
+        top: -1 * $local-small-grid-size;
+        margin-bottom: $local-small-grid-size;
+    }
+    button.button-send {
+        min-width:15 * $local-small-grid-size;
+        padding: 0px $local-grid-size;
+        margin: 0;
+        margin-left:$local-small-grid-size;
+        font-weight:600;
+        height:$local-input-height;
+        text-align:center;
+        font-size:$local-text-font-size;
+        &.red {
+            background:red;
+            color:white;
+        }
+    }
+    // end fix stuff
+
+    
+    #author {
+        margin-right:$local-grid-size;
+    }
+    .need-offer-selector {
+        display: inline-block;
+        margin-top: 18px;
+        label { margin:0; }
+        label:first-child {
+            margin-right:20px;
+            margin-bottom:0;
+        }
+        input {
+            margin:0;
+            margin-right:10px;
+        }
+    }
+
+    .head {
+        top:0;
+        h1, h2 {
+            font-size: $local-title-font-size;
+            font-weight: 700;
+            word-wrap: break-word;
+            margin:0;
+            padding:0;
+            line-height:$local-title-font-size;
+            height:$local-title-font-size;
+            text-align:left;
+        }
+        hr {
+            border:0;
+            border-bottom:$local-border-style;
+            margin-top:$local-grid-size;
+            margin-bottom:$local-small-grid-size;
+        }
+        ul.message-line {
+            margin:0;
+            padding:0;
+            li {
+                list-style-type: none;
+                color:$local-color-disabled;
+                margin-bottom:$local-small-grid-size;
+                border-bottom:$local-border-style;
+                padding-bottom:$local-small-grid-size;
+                font-size:14px;
+            }
+        }
+    }
+
+    .community-picker {
+        .select2-container {
+            padding:0;
+            box-shadow:none;
+            margin-bottom:1rem;
+            height:$local-input-height;
+            .select2-drop {
+                margin-left:0;
+                font-size:$local-text-font-size;
+            }
+            .select2-choices .select2-search-choice {
+                margin:3px;
+                height:22px;
+                line-height:20px;
+                font-size:$local-text-font-size;
+                span { color:$local-input-text-color; }
+            }
+            .select2-result-label {
+                padding:3px $local-small-grid-size;
+            }
+        }
+    }
+
+    section.collapse {
+        margin-top:15px;
+    }
+
+
     .checkbox {
-        color: #1fb1e8;
         padding-top: 0px;
         height: auto;
         padding-left: 0px;
         .fa {
             margin-left: 0px;
-            color: #1fb1e8;
-            font-size: 24px;
-            width: 21px;
+            width: 14px;
+            font-size:14px;
+            color:$local-input-text-color;
         }
         span {
-            margin-left: 0px;
-            position: relative;
-            top: -2px;
+            margin-left: 0;
+            top: 0;
         }
     }
     .tags {
         input {
-            padding: {
-                left: 0;
-            };
+            height:22px;
         }
     }
     .date {
-        margin-bottom: 15px;
         input {
             padding-left: 20px;
             padding-right: 20px;
-            width: 124px;
+            width: 140px;
             margin-bottom: 0px !important;
             margin-right: 10px;
             display: inline-block;
@@ -58,119 +195,136 @@
         }
     }
     .locations {
-
         .remove {
             top: 6px !important;
-        }
-        .controll {
-            position: relative;
-            top: -8px;
-            a {
-                font-size: 16px;
-                display: block;
-                float: left;
-                margin-top: -3px;
-            }
         }
     }
     .files {
         & > div {
-            width: 50%;
-            text-align: center;
-            font-weight: bold;
+            text-align: left;
+        }
+        .error {
+            margin-top: 10px;
+        }
+
+        ul.fileList {
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin-left: 0px;
+            display: inline-block;
+            margin-bottom: 0px;
+
+            li {
+                margin-right: 5px;
+                margin-top: 5px;
+                width: 95px;
+                height: 61px;
+                display: inline-block;
+                float: left;
+                border-radius: $global-radius;
+                
+                &:nth-child(6n) {
+                    margin-right: 0px;
+                }
+            }
+            
+            li.file-upload {
+                border: 2px dashed #ccc;
+                color: rgb(31,176,231);
+                font-size: 30px;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+
+                div {
+                    text-align: center;
+                    span {
+                        position: relative;
+                        top: 4px;
+                    }
+                }
+
+                input {
+                    margin: 0px;
+                    width: 95px;
+                    height: 61px;
+                }
+            }
+            li.active {
+                position: relative;
+                vertical-align: middle;
+                overflow: hidden;
+                img {
+                    position: absolute;
+                    left: -100%;
+                    right: -100%;
+                    top: -100%;
+                    bottom: -100%;
+                    margin: auto;
+                    width: auto;
+                    height: auto;
+                    &.landscape {
+                        height: 100%;
+                        width: auto;
+                        max-width: initial;
+                    }
+                    &.portrait {
+                        width: 100%;
+                    }
+                }
+                a {
+                    position: absolute;
+                    font-size: 26px;
+                    display: none;
+                    z-index: 200;
+                    right: 0px;
+                    left: 0px;
+                    top: 10px;
+                    color: rgb(85,85,85);
+                    text-align: center;
+                }
+                .overlay {
+                    transition: visibility 0s linear 0.5s,opacity 0.5s linear;
+                    background-color: white;
+                    position: absolute;
+                    opacity: 0.6;
+                    top: 0px;
+                    left: 0px;
+                    z-index: 2;
+                    right: 0px;
+                    bottom: 0px;
+                    display: none;
+                }
+                &:hover {
+                    .overlay {
+                        display: block;
+                    }
+                    a {
+                        display: inline-block;
+                    }
+                }
+            }
         }
     }
     .lock {
+        ul {
+            margin-left: 0px;
+            margin-bottom:0;
+            li {
+                list-style: none;
+                display: inline-block;
+            }
+        }
         & > a {
-            width: 50%;
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: bold;
+            width: 100% !important;
             span {
                 margin-right: 5px;
             }
         }
     }
-    .withFiles {
-        .file-upload {
-            text-align: left;
-        }
-        .fileList {
-            border-bottom: 3px solid #bbb8b1;
-            clear: both;
-            display: block;
-            margin-bottom: 25px;
-            text-align: left;
-            width: 100%;
-            ul {
-                margin-left: 0px;
-                li.active {
-                    position: relative;
-                    display: inline-block;
-                    vertical-align: middle;
-                    width: 123px;
-                    height: 123px;
-                    overflow: hidden;
-                    margin: 10px;
-                    &:nth-child(4n) {
-                        margin-right: 0px;
-                    }
-                    &:nth-child(1) {
-                        margin-right: 10px;
-                    }
-                    img {
-                        position: absolute;
-                        left: -100%;
-                        right: -100%;
-                        top: -100%;
-                        bottom: -100%;
-                        margin: auto;
-                        width: auto;
-                        height: auto;
-                        &.landscape {
-                            height: 100%;
-                            width: auto;
-                            max-width: initial;
-                        }
-                        &.portrait {
-                            width: 100%;
-                        }
-                    }
-                    a {
-                        position: absolute;
-                        font-size: 26px;
-                        display: none;
-                        color: white;
-                        z-index: 200;
-                        right: 5px;
-                        top: -5px;
-                        text-shadow: 0 0 4px #000;
-                    }
-                    .overlay {
-                        background-color: #0fb1d3;
-                        position: absolute;
-                        opacity: 0.4;
-                        top: 0px;
-                        left: 0px;
-                        right: 0px;
-                        bottom: 0px;
-                        display: none;
-                    }
-                    &:hover {
-                        .overlay {
-                            display: block;
-                        }
-                        a {
-                            display: inline-block;
-                        }
-                    }
-                }
-            }
-        }
-        .create-post-link {
-            width: 100% !important;
-        }
-    }
+
     .charsleft {
         text-align: right;
         margin: {
@@ -185,13 +339,7 @@
         };
     }
     .bottom {
-        .deleteLink {
-            color: red;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-right: 30px;
-            font-size: 20px;
-        }
+        margin-top:$local-grid-size;
         .pauseLink {
             text-transform: uppercase;
             margin-right: 30px;

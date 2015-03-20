@@ -12,20 +12,29 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
+		$scope.imagesCount = 0;
 		$scope.defaultPost = {
 			type: false,
 			keywords: [],
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [],
 			current_community_id: null,
+			related_communities: [],
 			location_unlimited: false,
 			valid_until_unlimited: false,
 			attachments_attributes: [],
-			state: 'active'
+			state: 'active',
+			is_private: false,
+		};
+		$scope.slide = {
+			keywords: false,
+			files: false,
+			date: false,
+			lock: false,
 		};
 		$scope.newPost = false;
-		$scope.showFiles = false;
 		$scope.showError = {
+			files: {},
 			title: false,
 			text: false,
 			locations: false,
@@ -56,6 +65,23 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		};
 
+		// this will recount all images which are not market to be deleted
+		$scope.recountImages = function() {
+			$scope.imagesCount = 0;
+			$scope.post.attachments_attributes.forEach(function(item) {
+				if(!item.deleted)
+					$scope.imagesCount++;
+			});
+		};
+
+		$scope.updateImages = function() {
+			$scope.recountImages();
+			$scope.showError.files = {};
+		};
+
+		// remove image from attachments array
+		// if image is already uploaded - mark him to be deleted
+		// else remove from array
 		$scope.removeImage = function(index) {
 			var files = $scope.post.attachments_attributes;
 
@@ -64,24 +90,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			} else {
 				files[index].deleted = true;
 			}
+
+			$scope.recountImages();
 			// $scope.$apply();
 		};
-
-		function recountImages() {
-			var files = $scope.post.attachments_attributes;
-			var res = false;
-
-			if (files) {
-				for (var i = 0; i < files.length; i++) {
-					if (!files[i]._id || !files[i].deleted) {
-						res = true;
-					}
-				}
-			}
-			$scope.showFiles = res;
-		};
-
-		$scope.$watch('post', recountImages, true);
 
 		$scope.cleanNullLocations = function(loc) {
 			for (var i = 0; i < loc.length; i++) {
@@ -93,10 +105,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
+		/**
+		 * Transform - deserialize post to object which can be used in application
+		 */
 		$scope.transformDataIn = function(post) {
 			if (post) {
 				post.dateOrig = post.valid_until;
 				post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
+
+				if(post.author._type == 'Community')
+					post.current_community_id = post.author._id;
 
 				if(post.valid_until_unlimited) {
 					post.valid_until = '';
@@ -108,12 +126,20 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					post.locations = [];
 				}
 
+				$scope.slide.files = !!post.attachments_attributes.length;
+				$scope.slide.keywords = !!post.keywords.length;
+
 				post.type = post.type == 'need';
 			}
 			return post;
 		}
 
 		$scope.transformDataOut = function(data) {
+			var values = {
+				false: 'offer',
+				true: 'need'
+			};
+
 			// clear locations from null values
 			data.locations = $scope.cleanNullLocations(data.locations);
 			// transform keywords 
@@ -133,17 +159,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.valid_until_unlimited = false;
 			}
 
-
-			var values = {
-				false: 'offer',
-				true: 'need'
-			};
-
 			data.type = values[data.type];
-
 			return data;
 		};
 
+		/**
+		 * Validate form before submit to API
+		 */
 		$scope.testForm = function(post) {
 			var res = false;
 			
@@ -295,6 +317,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			
 			postData = $scope.transformDataOut(postData);
 
+			// if(post.related_community_ids.length) {
+			// 	postData.related_community_ids = [];
+			// 	post.related_community_ids.forEach(function(item) {
+			// 		postData.related_community_ids.push(item._id);
+			// 	});
+			// }
+
 			if ($scope.sending) {
 				return false;
 			}
@@ -354,6 +383,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.init = function() {
 			$scope.newPost = !$scope.post;
 			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
+			$scope.recountImages();
+
+			if($scope.preset)
+				$scope.post = angular.extend($scope.post, $scope.preset);
 
 			// if post is invalid, show message and run validation (it will show errors in invalid fields)
 			if($scope.isInvalid) {
@@ -365,6 +398,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init();
+		$scope.$watch('post.current_community_id', function(val, old) {
+			if(!!val !== !!old) {
+				$scope.post.is_private = 0;
+				$scope.post.related_communities = [];
+			}
+		});
+		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
 		$scope.$on('updatedItem', $scope.refreshItemInfo);
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}

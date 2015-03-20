@@ -93,10 +93,7 @@ angular.module('hearth.directives').directive('item', [
                     scope.isActive = scope.isPostActive(item);
 
                     // is this my post? if so, show controll buttons and etc
-                    if(scope.community)
-                        scope.mine = scope.item.author._id === scope.community._id;
-                    else
-                        scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
+                    scope.mine = scope.item.owner_id === ((scope.user) ? scope.user._id : null);
 
                     // if the post is show instantly (without any effect) recount his height now
                     if(!scope.delayedView)

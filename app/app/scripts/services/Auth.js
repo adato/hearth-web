@@ -82,7 +82,6 @@ angular.module('hearth.services').factory('Auth', [
 				return {
                     loggedUser: this.getCredentials(),
                     loggedEntity: this.getBaseCredentials(),
-                    loggedCommunity: this.getCommunityCredentials()
 				}
 			},
 			confirmRegistration: function(hash, success, err) {

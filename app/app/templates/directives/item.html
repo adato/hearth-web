@@ -18,9 +18,11 @@
 	</section>
 	<section class="item-container columns" ng-class="foundationColumnsClass">
 		<div class="item" ng-class="item.type">
-			<div class="overlap"> </div>
-			<div class="arrowbox"></div>
-			<div class="arrow"></div>
+			<div class="arrow-move">
+				<div class="overlap"> </div>
+				<div class="arrowbox"></div>
+				<div class="arrow"></div>
+			</div>
 			<div class="content">
 				<header>
 					<div class="locations" ng-if="item.location_unlimited">
@@ -74,6 +76,17 @@
 					<span>{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
 				</a>
 				<div class="clear"></div>
+
+				<div ng-if="item.related_communities.length">
+					<br />
+					<b>Inzerat je v komunitach:</b>
+				<ul>
+					<li ng-repeat="item in item.related_communities">
+						{{ item.name}}
+					</li>
+				</ul>
+				</div>
+
 			</div>
 			<footer>
 				<a class="report-link spam fa fa-flag" ng-if="! mine && !loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)"></a>

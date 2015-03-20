@@ -16,6 +16,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 			scope: {
 				files: "=?",
 				limit: "=",
+				error: "=",
 				limitPixelSize: "=",
 				singleFile: "=",
 			},
@@ -23,19 +24,26 @@ angular.module('hearth.directives').directive('imagePreview', [
 						+ '<input class="file-upload-input" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
 						+ '<span ng-transclude class="image-preview-content"></span>' 
 						+ '</div>'
-	                    + '<div ng-if="error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
-	                    + '<div ng-if="error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
-	                    + '<div ng-if="error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX_"+limitPixelSize | translate }}</div>'
+	                    + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
+	                    + '<div ng-if="showErrors && rror.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
+	                    + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX_"+limitPixelSize | translate }}</div>'
 						+'</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
-
+				scope.showErrors = true;
+					
 				// preview jen jednoho souboru? Nebo to budeme davat do pole
 				if(scope.singleFile) {
 					scope.files = scope.files || {};
 				} else {
 					scope.files = scope.files || [];
 				}
+
+				console.log(scope.error);
+				// if we want to show errors outside of directive
+				if(angular.isUndefined(scope.error))
+					scope.showErrors = false;
+
 
 				function previewImage(el, limitSize) {
 					var file = $(el).find(".file-upload-input")[0].files[0],

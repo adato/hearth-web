@@ -146,10 +146,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             location.reload();
         };
 
-        $rootScope.isMine = function (author) {
-            if($scope.loggedCommunity)
-                return $scope.loggedCommunity._id === author._id;
-            return $scope.loggedUser && author._id === $scope.loggedUser._id;
+        $rootScope.isMine = function (author_id) {
+            return $scope.loggedUser && author_id === $scope.loggedUser._id;
         };
 
         angular.element(window).bind('scroll', function() {
@@ -170,20 +168,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(item.admin == $rootScope.loggedUser._id)
                         $rootScope.myAdminCommunities.push(item);
                 });
-            });
-        };
-
-        $rootScope.switchIdentity = function(id) {
-            Auth.switchIdentity(id).then(function() {
-                window.location.hash = '#!/community/'+id;
-                location.reload();
-            });
-        };
-
-        $rootScope.leaveIdentity = function(id) {
-            Auth.switchIdentityBack(id).then(function() {
-                window.location.hash = '#!/profile/' + id
-                location.reload();
             });
         };
 
@@ -264,7 +248,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // open modal window for item edit
-        $rootScope.editItem = function(post, isInvalid) {
+        $rootScope.editItem = function(post, isInvalid, preset) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
@@ -272,6 +256,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             scope.post = angular.copy(post);
             scope.postOrig = post;
             scope.isInvalid = isInvalid;
+            scope.preset = preset;
 
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
@@ -283,6 +268,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
             dialog.closePromise.then(function(data) {});
         };
+
+        // $timeout(function() {
+            // $rootScope.editItem(null);
+        // }, 3000);
 
         $rootScope.removeItemFromList = function(id, list) {
             for (var i = 0; i < list.length; i++) {

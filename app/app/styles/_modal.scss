@@ -67,17 +67,17 @@
     .ngdialog-content {
         -webkit-animation: ngdialog-flyin .5s;
         animation: ngdialog-flyin .5s;
-        border-radius: 8px;
+        border-radius: $global-radius;
         color: black;
-        font-size: 1.1em;
-        line-height: 1.5em;
+        font-size: $global-font-size;
+        //line-height: $global-line-height;
         margin: 0 auto;
         max-width: 100%;
         display: inline-block;
-        padding: 0.2em;
+        //padding: 0.2em;
         position: relative;
         width: auto;
-        text-align: letf;
+        text-align: left;
         margin-top: 4%;
         margin-bottom: 4%;
     }
@@ -206,7 +206,7 @@
         display: none;
     }
     label {
-        font-size: 16px;
+        font-size: $global-font-size;
         display: inline-block;
         .fa {
             margin-right: 4px;
@@ -229,17 +229,14 @@
             background-color: #DDD !important;
         }
     }
-    .head {
+     .head {
         text-align: center;
         h2 {
             font-weight: normal;
             font-size: 25px;
             text-align: center;
-            span {
-                font-family: "SourceSansPro","Geneva","Tahoma",sans-serif;
-            }
         }
-    }
+    } 
     hr {
         border: 1px solid #bbb8b1;
         margin-bottom: 22px;

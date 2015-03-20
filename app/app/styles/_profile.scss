@@ -115,6 +115,16 @@
         min-height: 50px;
         text-align: center;
     }
+
+    .item {
+        position: relative;
+        .score-icon {
+            position: absolute;
+            right: 4px;
+            bottom: 8px;
+        }
+    }
+    
     .rating-item {
         margin-top: 0rem;
         margin-bottom: 1rem;

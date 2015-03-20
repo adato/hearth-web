@@ -123,11 +123,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function loadCommunityHome(id) {
-            var fulltextParams = {
-                type: 'post',
-                community_id: id
-            };
-
             async.parallel([
                 function(done) {
                     CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
@@ -150,7 +145,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     }, done);
                 },
                 function(done) {
-                    Fulltext.query(fulltextParams, function(res) {
+                    Community.getPosts({communityId:id, limit: 5, offset: 1}, function(res) {
                         $scope.posts = res;
                         done(null);
                     }, done);
