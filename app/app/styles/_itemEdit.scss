@@ -11,7 +11,12 @@
         transition: height 0.2s;
     }
     .need-offer-selector {
+        position: relative;
         top: 5px;
+        display: inline-block;
+        float: left;
+        margin: 0.25em;
+        margin-left: 10px;
     }
     .checkbox {
         color: #1fb1e8;

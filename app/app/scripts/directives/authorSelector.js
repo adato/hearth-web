@@ -15,7 +15,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 		replace: true,
 		scope: {
 			author: '=',
-			remove: '=remove',
+			remove: '=',
 		},
 		templateUrl: 'templates/directives/authorSelector.html',
 		link: function($scope) {
@@ -45,13 +45,19 @@ angular.module('hearth.directives').directive('authorSelector', [
 				if(!$rootScope.loggedUser)
 					return false;
 
+				console.log("Removing: ", $scope.remove);
+
 				$scope.list = [$rootScope.loggedUser];
 				if($rootScope.myAdminCommunities)
 					for(var i = 0; i < $rootScope.myAdminCommunities.length; i++) {
+						console.log($rootScope.myAdminCommunities[i]._id, $scope.remove);
+
 						if($rootScope.myAdminCommunities[i]._id !== $scope.remove)
 							$scope.list.push($rootScope.myAdminCommunities[i]);
 					}
 
+				console.log($scope.list);
+				
 				var index = $scope.getIndexById($scope.author);
 				$scope.selected._id = $scope.list[index]._id;
 			};

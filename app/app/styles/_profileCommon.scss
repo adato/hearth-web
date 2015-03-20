@@ -237,6 +237,16 @@
     a {
         color: color(5);
     }
+
+    .ratings-received {
+        .authorSelector select {
+            margin-bottom: 0px;
+        }
+
+        .need-offer-selector {
+            margin-bottom: 10px;
+        }
+    }
 }
 
 .profile-listings {

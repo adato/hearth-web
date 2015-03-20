@@ -20,29 +20,7 @@
             position: relative;
             top: 20px;
         }
-
-        .score-select {
-            p {
-                left: 20px;
-                position: relative;
-                top: 8px;
-            }
-            .need-offer-selector {
-                margin: 0px;
-                .button {
-                    &.left.pressed {
-                        background-color: color(2);
-                        //positive
-                   
-                    }
-                    &.right.pressed {
-                        background-color: color(5);
-                        //negative
-                   
-                    }
-                }
-            }
-        }
+        
         .profile-edit-common {
             h3 {
                 position: relative;
@@ -106,9 +84,6 @@
         margin: auto;
         .item {
             margin-top: 5px;
-        }
-        label {
-            margin-bottom: 15px;
         }
         textarea {
             min-height: 120px;

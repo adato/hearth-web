@@ -176,7 +176,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			var ratingUrl = '/profile/'+$scope.info._id+'/received-ratings';
 			var removeListener;
 
-			console.log("RESETL");
 			$scope.ratingPosts = [];
 	        $scope.loadedRatingPosts = false;
 			// set default values

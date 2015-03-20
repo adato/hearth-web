@@ -88,14 +88,16 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function loadGivenRatings(id, done, doneErr) {
             CommunityRatings.received({communityId: id}, done, doneErr);
         }
-        
-        function loadReceivedRatings(params, done, doneErr) {
+
+
+        function loadReceivedRatings(id, done, doneErr) {
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
-            CommunityRatings.received(params, done, doneErr);
-            if(!$scope.mine) {
-                CommunityRatings.possiblePosts({_id: params._id}, function(res) {
+            CommunityRatings.received({communityId: id}, done, doneErr);
+            $scope.$watch('rating.current_community_id', function(val) {
+                $scope.rating.post_id = 0;
+                CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res) {
                     var posts = [];
                     
                     res.needed.forEach(function(item) {
@@ -112,13 +114,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 }, function(res) {
                     $scope.loadedRatingPosts = true;
                 });
-            }
+            });
 
             var removeListener = $scope.$on('$routeChangeStart', function() {
                 $scope.closeUserRatingForm();
                 removeListener();
             });
-
         }
 
         function loadCommunityHome(id) {
@@ -218,6 +219,36 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         }
 
+        
+        // this will flash rating box with some background color
+        $scope.flashRatingBackground = function(rating) {
+            var delayIn = 200;
+            var delayOut = 2000;
+            var color = "#FFB697";
+            var colorOut = $('.rating_'+rating._id + ' .item').css("background-color");
+
+            $('.rating_'+rating._id + ' .item').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .item').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: colorOut}, delayOut );
+            });
+            $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: color}, delayIn, function() {
+                $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: colorOut}, delayOut );
+            });
+
+        };
+
+        // will add new rating to data array
+        $scope.addCommunityRating = function($event, item) {
+            $scope.data.unshift(item);
+            setTimeout(function() {
+                $scope.flashRatingBackground(item);
+            });
+        };
+
+
+        $scope.$on('communityRatingsAdded', $scope.addCommunityRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         if($rootScope.communityLoaded)
             init();
