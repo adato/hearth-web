@@ -48,8 +48,7 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 		$scope.testEmailsFormat = function(emails) {
 			$scope.emailForm.emails.$error.format = false;
 			
-			if(!Validators.emails(emails.split(","))) {
-                $scope.showErrors.emails = true;
+			if(emails !== '' && !Validators.emails(emails.split(","))) {
                 $scope.emailForm.emails.$error.format = true;
                 return false;
             }
