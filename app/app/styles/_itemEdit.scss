@@ -203,6 +203,10 @@ $local-input-height: 30px;
         & > div {
             text-align: left;
         }
+        .error {
+            margin-top: 10px;
+        }
+
         ul.fileList {
             display: block;
             text-align: left;
@@ -279,6 +283,7 @@ $local-input-height: 30px;
                     left: 0px;
                     top: 10px;
                     color: rgb(85,85,85);
+                    text-align: center;
                 }
                 .overlay {
                     transition: visibility 0s linear 0.5s,opacity 0.5s linear;

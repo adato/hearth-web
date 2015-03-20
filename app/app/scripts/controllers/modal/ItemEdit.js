@@ -74,6 +74,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			});
 		};
 
+		$scope.updateImages = function() {
+			$scope.recountImages();
+			$scope.showError.files = {};
+		};
+
 		// remove image from attachments array
 		// if image is already uploaded - mark him to be deleted
 		// else remove from array
@@ -399,7 +404,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.post.related_communities = [];
 			}
 		});
-		$scope.$watch('post.attachments_attributes', $scope.recountImages, true);
+		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
 		$scope.$on('updatedItem', $scope.refreshItemInfo);
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}
