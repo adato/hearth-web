@@ -151,7 +151,7 @@ angular.module('hearth.geo').directive('map', [
                         data.author.avatar.normal = data.author.avatar.normal || $$config.defaultUserAvatar;
                         map.panTo(marker.position);
 
-                        if (data.community_id) {
+                        if (data.author._type == 'Community') {
                             data.adType = data === 'need' ? 'WE_NEED' : 'WE_GIVE';
                         } else {
                             data.adType = data.type;
