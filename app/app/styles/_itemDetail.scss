@@ -6,6 +6,7 @@ $local-header-font-size: 16px;
 #item-detail {
 	a {
 		color:color(5);
+		font-weight:600;
 	}
 	.box {
 		padding:$local-large-grid-size;
@@ -262,7 +263,8 @@ $local-header-font-size: 16px;
 					margin:0;
 					font-size:$local-font-size;
 					font-weight: 600;
-					padding:$local-base-grid-size $local-large-grid-size*10;
+					padding:$local-base-grid-size $local-base-grid-size*10;
+					min-width: $local-base-grid-size * 30;
 					p { margin:0; font-size:$local-font-size; }
 				}
 			}
