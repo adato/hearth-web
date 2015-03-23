@@ -9,43 +9,43 @@
 		<div class="arrow"></div>
 		<div class="content">
 		    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
-				<h3>{{ 'ADD_COMMUNITY_RATING' | translate }}</h3>
+				<h3>{{:: 'ADD_COMMUNITY_RATING' | translate }}</h3>
 				<div class="rating-notify-box"></div>
-				<h5>{{ 'COMMUNITY_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
+				<h5>{{:: 'COMMUNITY_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
 
 				<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
 			
 				<needofferselector model="rating.score" text-true="{{ 'POSITIVE' | translate}}" text-false="{{ 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
 				<div class="clear"></div>
 
-				<h5>{{ 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
+				<h5>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
 				<span ng-if="ratingPosts.length && loadedRatingPosts">
 					<div class="padding-bottom-3">
-						{{ 'COMMUNITY_RATING_JOIN_REALIZED_GIFT' | translate }}
+						{{:: 'COMMUNITY_RATING_JOIN_REALIZED_GIFT' | translate }}
 					</div>
 				    <select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
-				      <option value="0">{{ 'COMMUNITY_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
+				      <option value="0">{{:: 'COMMUNITY_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				      <option ng-repeat="post in ratingPosts" title="{{post.title}}" value="{{ post._id }}">
 				      	{{ 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:40 }}
 				      </option>
 				    </select>
 				</span>
 				<div ng-if="!ratingPosts.length && loadedRatingPosts" class="padding-bottom">
-					{{ 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
+					{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
 				</div>
 				<div ng-if="!loadedRatingPosts">
-					{{ 'RATING_LOADING_COMMON_POSTS' | translate }}
+					{{:: 'RATING_LOADING_COMMON_POSTS' | translate }}
 				</div>
 				<br />
 
 		        <label>
-					<h5>{{ 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h5>
+					<h5>{{:: 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h5>
 		            <textarea autosize-textarea rows="4" style="height: 120px;" name="text" placeholder="{{'WRITE_COMMUNITY_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
 					<max-len-counter class="fright" max-len="300" value="rating.text"></max-len-counter>
 
 		            <div class="moveUp error" ng-show="showError.text">
-		                <span ng-show="ratingForm.text.$error.required">{{ 'ERR_NOT_FILLED_RATING' | translate }}</span>
-		                <span ng-show="ratingForm.text.$error.minlength">{{ 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
+		                <span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
+		                <span ng-show="ratingForm.text.$error.minlength">{{::'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
 		            </div>
 					<div class="clear"></div>
 		        </label>
@@ -53,7 +53,10 @@
 				<div class="clear"></div>
 				<br />
 		        <strong><a ng-click="closeUserRatingForm()" class="revert-changes"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
-		        <button type="submit" class="button-send right">{{ 'SEND_COMMUNITY_RATING' | translate }}</button>
+		        <button type="submit" class="button-send right" ng-class="{negative: !rating.scope, positive: rating.score}">
+		        	{{:: 'SEND_COMMUNITY_RATING' | translate }}
+			        &nbsp; <i class="score-icon fa" ng-class="{'icon-rating-negative':!rating.score,'icon-rating-positive':rating.score}"></i>
+				</button>
 		    </form>
 	    </div>
     </div>
@@ -67,7 +70,7 @@
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
-				<a href="" ng-click="openUserRatingForm(true)"><b>{{ 'THUMB_UP' | translate }}</b></a>
+				<a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a>
 			</div>
 		</div>
 	</section>
@@ -93,8 +96,8 @@
 						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 					</div>
 					<small>
-						{{ 'SAYING' | translate}}
-						<a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a><span ng-if="item.post_id">&nbsp;{{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
+						{{:: 'SAYING' | translate}}
+						<a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
 					</small>			
 				</div>
 			</div>
