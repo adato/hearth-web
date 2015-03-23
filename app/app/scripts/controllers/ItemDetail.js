@@ -68,7 +68,8 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					//$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
 
-					$scope.validityWarningShown = moment(data.valid_until).subtract(7, 'days').isBefore(new Date());
+					$scope.isExpiringSoon = moment(data.valid_until).subtract(7, 'days').isBefore(new Date())
+												&& moment(data.valid_until).isAfter(new Date());
 					
 					
 					$timeout(function() {
@@ -112,8 +113,10 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		});
 
 		$scope.$on('postCreated', $scope.load);
+		$scope.$on('updatedItem', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
+
 
 		$rootScope.initFinished && $scope.load();
 	}
