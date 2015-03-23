@@ -76,7 +76,7 @@
 								{{ad.title}}
 							</h1>
 							<div class="clearfix" style="height:5px;" ng-if="ad.title.length > 15">&nbsp;</div>
-							<span class="validity-warning" ng-if="validityWarningShown">{{ 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span><!-- TODO!!! add ngif and data -->
+							<span class="validity-warning" ng-if="isExpiringSoon">{{ 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span><!-- TODO!!! add ngif and data -->
 							<span class="fa fa-lock" ng-if="ad.is_private" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 						</div>
 						<div class="large-4 columns">
@@ -134,6 +134,14 @@
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
 						</div>
+						<div class="post-edit-buttons-container fleft">
+							<div class="controll-buttons" ng-if="isMine">
+								<a title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(ad)"><i class="fa fa-pencil"></i></a>
+								<a title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(ad, 'confirm-pause-'+ad._id)"><i class="fa " ng-class="{'fa-refresh': ad.state == 'expired', 'fa-play': ad.state == 'suspended'}"></i></a>
+								<a title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, ad, this)"><i class="fa fa-pause"></i></a>
+								<a title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, ad, this)"><i class="fa fa-times"></i></a>
+							</div>
+						</div>
 						<div class="reply-button-container fleft">
 							<button ng-if="!ad.is_replied && !isMine" ng-click="replyItem(ad)" class="reply-button" data-item-type="{{ ad.type }}" ng-bind-html="replyLabel[ad.type] | translate"></button>
 							<div ng-if="ad.is_replied">
@@ -149,7 +157,6 @@
 									<span ng-if="ad.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ ad.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
 									<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
 								</span>
-								<span ng-if="ad.state == 'suspended'">{{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ ad.suspended_at | date:DATETIME_FORMATS.medium }}</span>
 							</div>
 						</div>
 
