@@ -23,16 +23,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		
 		function processLoginResult(res) {
 			if(res.data && res.data.ok === true) {
-
-				// when user logged, use his language configured on API
-				if(res.data.language)
-					LanguageSwitch.setCookie(res.data.language);
-
-				if(res.data.api_token) {
-					Auth.setToken(res.data.api_token);
-				}
-
-				window.location = window.location.pathname;
+				Auth.processLoginResponse(res.data);
 			} else {
 				showErrorCredentials();
 			}
