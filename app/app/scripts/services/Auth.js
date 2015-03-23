@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q',
-	function($session, $http, $rootScope, $q) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -129,6 +129,20 @@ angular.module('hearth.services').factory('Auth', [
 					return defer.reject(data);
 				});
 				return defer.promise;
+			},
+			processLoginResponse: function(data) {
+				if(data.facebook_token)
+					return $location.path('/fill-email/'+data.facebook_token);
+				
+				// when user logged, use his language configured on API
+	            if(data.language)
+	                LanguageSwitch.setCookie(data.language);
+
+	            if(data.api_token) {
+	                this.setToken(data.api_token);
+	            }
+
+	            window.location = window.location.pathname;
 			},
 			switchIdentityBack: function() {
 				var defer;
