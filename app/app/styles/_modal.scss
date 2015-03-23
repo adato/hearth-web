@@ -318,16 +318,12 @@
         margin-left: -210px !important;
         padding: 15px;
         padding-top: 10px;
-
         header {
             position: relative;
             h2 {
-                text-align: center;
-                font-size: 25px;
-                font-weight: normal;
-                text-align: center;
-                margin-bottom: 4px;
-                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 5px;
             }
             .close {
                 display: none;
@@ -343,9 +339,13 @@
                 }
             }
         }
+        article {
+            font-size:$base-font-size;
+        }
         hr {
-            margin-bottom: 10px;
-            border: 1px solid #bbb8b1;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom:1px solid color(4);
         }
         .text-right a {
             color: color(5);
@@ -353,6 +353,11 @@
             &:hover {
                 color: darken(color(5), 20%);
             }
+        }
+        .link-button {
+            padding:5px;
+            padding-left:0;
+            font-weight:600;
         }
 
         .columns {
@@ -363,8 +368,8 @@
             background-color: color(5);
             border-color: color(5);
             padding: {
-                top: 8px;
-                bottom: 8px;
+                top: 5px;
+                bottom: 5px;
             };
             margin: {
                 bottom: 0;

@@ -4,14 +4,14 @@
     </header>
     <article class="row">
         <hr />
-        <p class="large-12 text-center"> {{text | translate}}</p>
+        <p class="large-12"> {{text | translate}}</p>
     </article>
     <article class="row">
         <section class="large-6 columns">
-            <button ng-click="confirm()">{{:: 'OK' | translate}}</button>
+            <a class="link-button" ng-click="closeThisDialog()">{{:: 'CANCEL' | translate}}</a>
         </section>
         <section class="large-6 columns text-right">
-            <a class="link-button" ng-click="closeThisDialog()">{{:: 'CANCEL' | translate}}</a>
+            <button class="btn" ng-click="confirm()">{{:: 'OK' | translate}}</button>
         </section>
     </article>
 </div>
