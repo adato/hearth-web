@@ -24,6 +24,9 @@ angular.module('hearth.geo').directive('map', [
             // transclude: true,
             link: function(scope, element) {
                 var markerCluster, oms, map,
+                    I_ID = 0,
+                    I_TYPE = 1,
+                    I_LOCATION = 2,
                     infoWindow = new google.maps.InfoWindow(),
                     template = "",
                     templateSource = $templateCache.get('templates/geo/markerTooltip.html'),
@@ -107,7 +110,7 @@ angular.module('hearth.geo').directive('map', [
 
                 scope.placeMarker = function(location, ad) {
 
-                    var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad.type, ad);
+                    var marker = geo.placeMarker(geo.getLocationFromCoords(location), ad[I_TYPE] == 0 ? 'need' : 'offer', ad);
                     oms.addMarker(marker);
                     markers.push(marker);
                 };
@@ -142,14 +145,14 @@ angular.module('hearth.geo').directive('map', [
                 scope.onMarkerClick = function(marker) {
 
                     Post.get({
-                        postId: marker.info._id
+                        postId: marker.info[I_ID]
                     }, function(data) {
 
                         data.author.avatar.normal = data.author.avatar.normal || $$config.defaultUserAvatar;
                         map.panTo(marker.position);
 
                         if (data.community_id) {
-                            data.adType = data.type === 'need' ? 'WE_NEED' : 'WE_GIVE';
+                            data.adType = data === 'need' ? 'WE_NEED' : 'WE_GIVE';
                         } else {
                             data.adType = data.type;
                         }
@@ -186,17 +189,17 @@ angular.module('hearth.geo').directive('map', [
                     for (i = 0; i < ads.length; i++) {
                         ad = ads[i];
 
-                        for (j = 0; j < ad.locations.length; j++) {
-                            if (ad.locations[j]) {
+                        for (j = 0; j < ad[I_LOCATION].length; j++) {
+                            if (ad[I_LOCATION][j]) {
 
                                 if (
-                                    (distance && !scope.isInDistance(distance, distanceBase, ad.locations[j]) )
+                                    (distance && !scope.isInDistance(distance, distanceBase, ad[I_LOCATION][j]) )
                                      ||
-                                    markerLimit && scope.testPositionLimit(ad.locations[j])
+                                    markerLimit && scope.testPositionLimit(ad[I_LOCATION][j])
                                 ){
                                     continue;
                                 }
-                                scope.placeMarker(ad.locations[j], ad);
+                                scope.placeMarker(ad[I_LOCATION][j], ad);
                             }
                         }
                     }
