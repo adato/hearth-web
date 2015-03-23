@@ -206,9 +206,12 @@ angular.module('hearth.geo').directive('locations', [
                     if($(".location-map", baseElement).hasClass("inited"))
                         return false;
 
+                    console.log('aiiiiia');
                     map = geo.createMap($(".map-container", baseElement)[0], {
-                        draggableCursor: 'url(images/pin.png) 14 34, default'
+                        draggableCursor: 'url(images/pin.png) 14 34, default',
+                        scrollwheel: false
                     });
+                    console.log('inited');
 
                     google.maps.event.addListener(map, 'click', function(e) {
                         map.panTo(e.latLng);

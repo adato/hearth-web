@@ -53,6 +53,8 @@ $local-input-height: 30px;
         font-size: $local-text-font-size !important;
         line-height:1.3;
         height:3 * $local-small-grid-size;
+        padding:$local-small-grid-size / 2;
+        padding-left:$local-small-grid-size;
     }
     select {
         border-radius: $global-radius;
@@ -176,8 +178,11 @@ $local-input-height: 30px;
         }
     }
     .tags {
+        min-height:30px;
         input {
-            height:22px;
+            height:28px;
+            padding-left:10px;
+            margin-left:0;
         }
     }
     .date {
