@@ -18,7 +18,8 @@ angular.module('hearth.geo').directive('map', [
             restrict: 'E',
             replace: true,
             scope: {
-                ads: "="
+                ads: "=",
+                center: "="
             },
             // transclude: true,
             link: function(scope, element) {
@@ -131,6 +132,13 @@ angular.module('hearth.geo').directive('map', [
                     });
                 };
 
+                // this will zoom to show all markers and center map view
+                scope.centerZoomToAll = function(markers) {
+                    map.fitBounds(markers.reduce(function(bounds, marker) {
+                        return bounds.extend(marker.getPosition());
+                    }, new google.maps.LatLngBounds()));
+                };
+
                 scope.onMarkerClick = function(marker) {
 
                     Post.get({
@@ -193,6 +201,8 @@ angular.module('hearth.geo').directive('map', [
                         }
                     }
 
+                    if(scope.center)
+                        scope.centerZoomToAll(markers);
                     markerCluster.addMarkers(markers);
                     markerCluster.repaint();
                 };
