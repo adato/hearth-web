@@ -76,8 +76,11 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.owner_id);
 					$scope.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
-					$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
+					//$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
+
+					$scope.validityWarningShown = moment(data.valid_until).subtract(7, 'days').isBefore(new Date());
+					
 					
 					$timeout(function() {
 						$scope.$broadcast('initMap');
