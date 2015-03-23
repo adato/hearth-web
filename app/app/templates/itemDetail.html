@@ -75,6 +75,9 @@
 								</span>
 								{{ad.title}}
 							</h1>
+							<div class="clearfix" style="height:5px;" ng-if="ad.title.length > 15">&nbsp;</div>
+							<span class="validity-warning" ng-if="validityWarningShown">{{ 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span><!-- TODO!!! add ngif and data -->
+							<span class="fa fa-lock" ng-if="ad.is_private"></span>
 						</div>
 						<div class="large-4 columns">
 							<span class="fright" id="ad-flag-container">
