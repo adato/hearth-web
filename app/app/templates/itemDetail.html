@@ -134,8 +134,8 @@
 							<a class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
 							<a class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
 						</div>
-						<div class="post-edit-buttons-container fleft">
-							<div class="controll-buttons" ng-if="isMine">
+						<div class="post-edit-buttons-container fleft" ng-if="isMine">
+							<div class="controll-buttons">
 								<a title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(ad)"><i class="fa fa-pencil"></i></a>
 								<a title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(ad, 'confirm-pause-'+ad._id)"><i class="fa " ng-class="{'fa-refresh': ad.state == 'expired', 'fa-play': ad.state == 'suspended'}"></i></a>
 								<a title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, ad, this)"><i class="fa fa-pause"></i></a>
