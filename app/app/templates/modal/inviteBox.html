@@ -1,35 +1,35 @@
 <section class="invite-box">
     <div class="social" ng-if="!showEmailForm">
-        <h2>{{ 'INVITE_YOUR_FRIENDS_TO_HEARTH' | translate }}</h2>
+        <h2>{{:: 'INVITE_YOUR_FRIENDS_TO_HEARTH' | translate }}</h2>
         <ul>
             <li>
                 <a ng-click="fbInvite()">
                     <i class="fa fa-facebook"></i>
-                    {{ 'INVITE_FACEBOOK' | translate }}
+                    {{:: 'INVITE_FACEBOOK' | translate }}
                 </a>
             </li>
             <li>
                 <a target="_blank" ng-href="{{endpoints.twitter + url}}">
                     <i class="fa fa-twitter"></i>
-                    {{ 'INVITE_TWITTER' | translate }}
+                    {{:: 'INVITE_TWITTER' | translate }}
                 </a>
             </li>
             <li>
                 <a target="_blank" ng-href="{{endpoints.gplus + url}}">
                     <i class="fa fa-google"></i>
-                    {{ 'INVITE_GOOGLE' | translate }}
+                    {{:: 'INVITE_GOOGLE' | translate }}
                 </a>
             </li>
             <li>
                 <a target="_blank" ng-href="{{endpoints.linkedin + urlLinkedin}}">
                     <i class="fa fa-linkedin"></i>
-                    {{ 'INVITE_LINKEDIN' | translate }}
+                    {{:: 'INVITE_LINKEDIN' | translate }}
                 </a>
             </li>
             <li>
                 <a ng-click="toggleEmailForm()">
                     <i class="fa fa-envelope"></i>
-                    {{ 'INVITE_EMAIL' | translate }}
+                    {{:: 'INVITE_EMAIL' | translate }}
                 </a>
             </li>
         </ul>
@@ -41,7 +41,7 @@
                 <tr>
                     <td valign="center">
                         <label>
-                            {{ 'PROFILE.INVITATION.ADDRESSES' | translate }}
+                            {{:: 'PROFILE.INVITATION.ADDRESSES' | translate }}
                         </label>
                     </td>
                     <td>
@@ -54,8 +54,8 @@
                     <td></td>
                     <td>
                         <div class="error" ng-show="showError.to_email">
-                            <span ng-show="inviteForm.to_email.$error.required">{{ 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
-                            <span ng-show="inviteForm.to_email.$error.format">{{ 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
+                            <span ng-show="inviteForm.to_email.$error.required">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
+                            <span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
                         </div>
                     </td>
                     <td></td>
@@ -63,7 +63,7 @@
                 <tr>
                     <td valign="top">
                         <label>
-                            {{ 'PROFILE.INVITATION.MESSAGE' | translate }}
+                            {{:: 'PROFILE.INVITATION.MESSAGE' | translate }}
                         </label>
                     </td>
                     <td>
@@ -73,7 +73,7 @@
                     <td valign="top">
                         <a class="submit" ng-click="sendEmailInvitation(inv)">
                             <i class="fa fa-envelope"></i>
-                            {{ 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}
+                            {{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}
                         </a>
                         <button type="submit" class="hidden button-send-by-email right" analytics-on analytics-event="send email invitation" analytics-category="General" analytics-value="1">
                         </button>
@@ -83,8 +83,8 @@
                     <td></td>
                     <td>
                         <div class="error" ng-show="showError.message">
-                            <span ng-show="inviteForm.message.$error.required">{{ 'ERR_NOT_FILLED_INVITE_TEXT' | translate }}</span>
-                            <span ng-show="inviteForm.message.$error.maxlength">{{ 'ERR_FILLED_INVITE_TEXT_TOO_LONG' | translate }}</span>
+                            <span ng-show="inviteForm.message.$error.required">{{:: 'ERR_NOT_FILLED_INVITE_TEXT' | translate }}</span>
+                            <span ng-show="inviteForm.message.$error.maxlength">{{:: 'ERR_FILLED_INVITE_TEXT_TOO_LONG' | translate }}</span>
                         </div>
                     </td>
                     <td></td>
@@ -92,8 +92,8 @@
             </table>
         </form>
         <div class="invite-form success hidden">
-            <h3>{{ 'FRIEND_INVITATION' | translate }}</h3>
-            <span>{{ 'SEND_INVITE_SUCCESS' | translate }}</span>
+            <h3>{{:: 'FRIEND_INVITATION' | translate }}</h3>
+            <span>{{:: 'SEND_INVITE_SUCCESS' | translate }}</span>
             <br />
             <br />
             <button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>

@@ -3,10 +3,10 @@
 <div ng-if="subPageLoaded">
 
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
-		<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}</p>
+		<p>{{:: 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}</p>
 	</div>
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
-		<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}</p>
+		<p>{{:: 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}</p>
 	</div>
 
 	<div class="people-listing">

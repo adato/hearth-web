@@ -4,25 +4,25 @@
 <div class="profile-view profile-common" ng-show="loaded" ng-class="{'mine-profile': mine, 'others-profile': ! mine}">
 
     <div class="user" ng-show="! info">
-        <p>{{ 'ERR_USER_NOT_FOUND' | translate }}</p>
+        <p>{{:: 'ERR_USER_NOT_FOUND' | translate }}</p>
     </div>
     <header ng-show="info">
         <div class="user-basic">
             <div class="button-bar text-right">
                 <button class="others profile-button tall solid" ng-click="openUserRatingForm(true)">
-                    {{ 'THUMB_UP' | translate }}
+                    {{:: 'THUMB_UP' | translate }}
                 </button>
                 <button ng-if="!info.is_followed" class="others profile-button tall outline" ng-click="toggleFollow(info._id)">
-                    <i class="fa fa-plus"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}
+                    <i class="fa fa-plus"></i> {{:: 'FOLLOW_BUTTON_CAPTION' | translate}}
                 </button>
                 <button ng-if="info.is_followed" class="others profile-button tall outline" ng-click="toggleFollow(info._id)">
-                    <i class="fa fa-times"></i> {{ 'UNFOLLOW_BUTTON_CAPTION' | translate}}
+                    <i class="fa fa-times"></i> {{:: 'UNFOLLOW_BUTTON_CAPTION' | translate}}
                 </button>
                 <button ng-if="mine" ng-click="openInviteBox()" class="profile-button no-wrap tall">
                     <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
                 </button>
                 <a href="#!/profile-edit" class="mine">
-                    <button class="profile-button red tall"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER' | translate}}</button>
+                    <button class="profile-button red tall"><i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
                 </a>
             </div>
             <h1 style="display: inline;">
@@ -59,10 +59,10 @@
                         </span>
                     </span>
                     <span class="empty" ng-if="info.karma == null && mine">
-                        {{ 'PROFILE.TOP.KARMA_NO_RATING_ME' | translate }}
+                        {{:: 'PROFILE.TOP.KARMA_NO_RATING_ME' | translate }}
                     </span>
                     <span class="empty" ng-if="info.karma == null && !mine">
-                        {{ 'PROFILE.TOP.KARMA_NO_RATING_OTHER' | translate }}
+                        {{:: 'PROFILE.TOP.KARMA_NO_RATING_OTHER' | translate }}
                     </span>
                 </div>
             </a>

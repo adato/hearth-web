@@ -4,18 +4,18 @@
 <div ng-if="subPageLoaded">
 
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
-		<p>{{ 'COMMUNITY.POSTS.NO_POSTS_ADMIN' | translate }}</p>
+		<p>{{:: 'COMMUNITY.POSTS.NO_POSTS_ADMIN' | translate }}</p>
 		<p><a ng-if="mine" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a></p>
 	</div>
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="loaded && ! mine && ! postsActive.length && ! postsInactive.length">
-		<p>{{ 'COMMUNITY.POSTS.NO_POSTS_OTHER' | translate }}</p>
+		<p>{{:: 'COMMUNITY.POSTS.NO_POSTS_OTHER' | translate }}</p>
 	</div>
 
 	<div class="ads-listing active">
 		<item item='item' ng-repeat="(id, item) in postsActive track by $index" community="null" user="loggedUser" inactivate-tags='true'></item>
 	</div>
 	<div ng-if="mine && postsInactive.length" class="ads-listing inactive">
-		<h3>{{ 'POSTS_INACTIVE' | translate }}</h3>
+		<h3>{{:: 'POSTS_INACTIVE' | translate }}</h3>
 		<item item='item' ng-repeat="(id, item) in postsInactive track by $index" community="loggedCommunity" user="loggedUser" inactivate-tags='true'></item>
 	</div>
 </div>

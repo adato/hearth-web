@@ -10,7 +10,7 @@
 		            	{{item.name | ellipsis}}
 		            </a><br>
 		            <a href="#!/profile/{{item._id}} ">
-		            	<small>{{ 'SHOW_PROFILE' | translate}}</small>
+		            	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
 		            </a>
 		        </div>
 		        <div class="applications-buttons">
@@ -22,7 +22,7 @@
 	</div>
 </div>
 <div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! data.length">
-	<p>{{ 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
+	<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
 </div>
 
 <div loading show="!subPageLoaded"></div>

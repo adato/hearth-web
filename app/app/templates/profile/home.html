@@ -2,8 +2,8 @@
 <div class="profile-listings" ng-show="subPageLoaded">
     <div class="left-pane">
         <div class="ratings" ng-if="receivedRatings.length">
-            <h3 class="mine">{{ 'YOUR_RATING' | translate}}</h3>
-            <h3 class="others">{{ 'USERS_RATINGS' | translate}}</h3>
+            <h3 class="mine">{{:: 'YOUR_RATING' | translate}}</h3>
+            <h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
                 <avatar class="left" href="'#!/'+getProfileLinkByType(item.user_from_type)+'/'+item.user_from" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
@@ -12,44 +12,44 @@
                     {{item.text | ellipsis}}
                     <br>
                     <small class="rating-from">
-                        {{ 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
+                        {{:: 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
                     </small>
                 </div>
             </div>
-            <p class="mine" ng-if="! receivedRatings.length">{{ 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
-            <p class="others" ng-if="loaded && ! receivedRatings.length">{{ 'USER_HAS_NO_RATINGS_YET' | translate}} <a href="" ng-click="openUserRatingForm(true)"><b>{{ 'THUMB_UP' | translate }}</b></a></p>
+            <p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
+            <p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}} <a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a></p>
             <div class="buttons" ng-if="receivedRatings.length">
                 <a href="#!/profile/{{info._id}}/received-ratings">
-                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'OLDER_RATINGS' | translate }}</button>
+                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'OLDER_RATINGS' | translate }}</button>
                 </a>
             </div>
         </div>
         <div class="ads">
             <h3 ng-if="mine">
-                <span ng-if="posts.data.length">{{ 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
+                <span ng-if="posts.data.length">{{:: 'ACTUALLY_YOU_HAVE_ACTIVE' | translate }} {{ posts.data.length }} 
                     {{'POSTS_PL.'+pluralCat(posts.data.length) | translate }}
                 </span>
-                <span ng-if="! posts.data.length">{{ 'ACTIVE_POSTS' | translate}}</span>
+                <span ng-if="! posts.data.length">{{:: 'ACTIVE_POSTS' | translate}}</span>
 
                 <a class="create-ad-sign" ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}"><i class="fa fa-plus-square"></i></a>
             </h3>
-            <h3 class="others">{{ 'USER_POSTS' | translate }}</h3>
+            <h3 class="others">{{:: 'USER_POSTS' | translate }}</h3>
 
             <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index"></div>
 
             <!-- === No posts active & inactive === -->
             <p class="mine" ng-if="! posts.data.length && !info.post_count">
-                {{ 'PROFILE.HOME.NO_POSTS_ME' | translate}}
-                <a ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}">{{ 'AD_ADD_LABEL' | translate }}</a>
+                {{:: 'PROFILE.HOME.NO_POSTS_ME' | translate}}
+                <a ng-click="editItem(null)" title="{{ 'AD_ADD_LABEL' | translate}}">{{:: 'AD_ADD_LABEL' | translate }}</a>
             </p>
-            <p class="others" ng-if="! posts.data.length">{{ 'USER_HAS_NO_POSTS_YET' | translate }}</p>
+            <p class="others" ng-if="! posts.data.length">{{:: 'USER_HAS_NO_POSTS_YET' | translate }}</p>
             
             <!-- === No active posts but some inactive === -->
-            <p class="mine" ng-if="! posts.data.length && info.post_count > 0">{{ 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
+            <p class="mine" ng-if="! posts.data.length && info.post_count > 0">{{:: 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
             
             <div class="buttons" ng-if="posts.data.length > 0 || (info.post_count > 0 &&  mine)">
                 <a href="#!/profile/{{info._id}}/posts">
-                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{ 'ADS_ALL' | translate }}</button>
+                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}</button>
                 </a>
             </div>
         </div>
@@ -57,8 +57,8 @@
 
     <div class="right-pane">
         <div class="user-about" ng-if="(! mine && (info.about || info.work || info.interests || info.webs.length || info.locations.length || info.user_languages.length)) || mine">
-            <h3 ng-if="!mine">{{ 'MEET_USER' | translate }} {{ info.name }}</h3>
-            <h3 ng-if="mine">{{ 'YOUR_PROFILE' | translate }}</h3>
+            <h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{ info.name }}</h3>
+            <h3 ng-if="mine">{{:: 'YOUR_PROFILE' | translate }}</h3>
             <div class="line">
                 <div class="descr" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about}}</div> 
                 <div class="descr" ng-if="info.work"><i class="fa fa-briefcase"></i> {{info.work}}</div> 
@@ -83,14 +83,14 @@
                 </div>
 
                 <div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
-                <p>{{ 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
-                <p><a href="#!/profile-edit">{{ 'PROFILE_EDIT.HEADER' | translate}}</a></p>
+                <p>{{:: 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
+                <p><a href="#!/profile-edit">{{:: 'PROFILE_EDIT.HEADER' | translate}}</a></p>
                 </div>
                 
                 <div class="descr reg-date fleft">
                     <i class="fa fa-asterisk"></i>
-                    <span ng-if="!mine">{{ 'USER_HAS_REGISTERED' | translate }}</span>
-                    <span ng-if="mine">{{ 'YOU_HAVE_REGISTERED' | translate }}</span>
+                    <span ng-if="!mine">{{:: 'USER_HAS_REGISTERED' | translate }}</span>
+                    <span ng-if="mine">{{:: 'YOU_HAVE_REGISTERED' | translate }}</span>
                      {{info.created_at | ago}}
                 </div>
             </div>
@@ -105,18 +105,17 @@
             <div class="clear">&nbsp;</div>
         </div>
         <div class="activities">
-            <h3 ng-if="mine">{{ 'YOUR_ACTIVITY' | translate }}</h3>
-            <h3 ng-if="!mine">{{ 'USER_ACTIVITY' | translate }}</h3>
+            <h3 ng-if="mine">{{:: 'YOUR_ACTIVITY' | translate }}</h3>
+            <h3 ng-if="!mine">{{:: 'USER_ACTIVITY' | translate }}</h3>
             
             <span ng-if="info.created_at_days <= 30">
-                <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME' | translate }}</p>
-                <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
+                <p ng-if="loaded && mine && ! activityLog.length">{{:: 'PROFILE.HOME.NO_ACTIVITY_ME' | translate }}</p>
+                <p ng-if="loaded && ! mine && ! activityLog.length">{{:: 'PROFILE.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
             </span>
             <span ng-if="info.created_at_days > 30">
-                <p ng-if="loaded && mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_ME_OLDER' | translate }}</p>
-                <p ng-if="loaded && ! mine && ! activityLog.length">{{ 'PROFILE.HOME.NO_ACTIVITY_OTHER_OLDER' | translate }}</p>
+                <p ng-if="loaded && mine && ! activityLog.length">{{:: 'PROFILE.HOME.NO_ACTIVITY_ME_OLDER' | translate }}</p>
+                <p ng-if="loaded && ! mine && ! activityLog.length">{{:: 'PROFILE.HOME.NO_ACTIVITY_OTHER_OLDER' | translate }}</p>
             </span>
-
             <div ng-if="activityLog.length">
                 <div ng-include="'templates/_activityList.html'"></div>
             </div>
