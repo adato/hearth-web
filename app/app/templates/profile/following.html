@@ -2,10 +2,10 @@
 
 <div ng-if="subPageLoaded">
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
-		<p>{{ 'PROFILE.FOLLOWEES.NO_FOLLOWEES_ME' | translate }}</p>
+		<p>{{:: 'PROFILE.FOLLOWEES.NO_FOLLOWEES_ME' | translate }}</p>
 	</div>
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
-		<p>{{ 'PROFILE.FOLLOWEES.NO_FOLLOWEES_OTHER' | translate }}</p>
+		<p>{{:: 'PROFILE.FOLLOWEES.NO_FOLLOWEES_OTHER' | translate }}</p>
 	</div>
 
 	<div class="people-listing">
@@ -15,7 +15,7 @@
 				<h4>
 					<a href="#!/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
 				</h4>
-				<a class="mine" ng-click="confirmBox('PROFILE.REMOVE_FOLOWEESE_LABEL', 'PROFILE.REMOVE_FOLOWEESE_TEXT', removeFollower, [item._id, true], this)">{{ 'UNFOLLOW_BUTTON_CAPTION' | translate }}</a>
+				<a class="mine" ng-click="confirmBox('PROFILE.REMOVE_FOLOWEESE_LABEL', 'PROFILE.REMOVE_FOLOWEESE_TEXT', removeFollower, [item._id, true], this)">{{:: 'UNFOLLOW_BUTTON_CAPTION' | translate }}</a>
 			</div>
 		</div>
 	</div>
