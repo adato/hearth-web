@@ -23,10 +23,10 @@
     <form ng-submit="save(post)" name="createAdForm" novalidate class="create-ad">
         <div>
             <div class="edit-post-notify-container"></div>
-            <p class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</p>
+            <div class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</div>
 
             <section class="author">
-                <author-selector class="fleft" id="author" disable="post." author-id="post.current_community_id" author="post.current_community"></author-selector>
+                <author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
 
                 <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
                 <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
@@ -56,14 +56,14 @@
                 </div>
             </section>
 
-            <section ng-slide-down="!post.current_community_id" lazy-render duration="0.3" class="text-input communitiy-selector field-container" ng-if="myCommunities.length">
+            <section ng-slide-down="!post.current_community_id" lazy-render duration="0.3" class="text-input communitiy-selector" ng-if="myCommunities.length">
                 <label>
                     {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
                 <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
             </section>
 
-            <section class="place text-input middle field-container">
+            <section class="place text-input">
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </section>
 
@@ -89,7 +89,7 @@
                 </ul>
             </section>
 
-            <section class="collapse date">
+            <section class="collapse date" ng-class="{ 'collapse-expanded': slide.date }">
                 <label slide-trigger="slide.date">
                     {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
                     <span ng-if="!slide.date">
@@ -113,7 +113,7 @@
                 </div>
             </section>
 
-            <section class="collapse text-input keywords field-container">
+            <section class="collapse keywords" ng-class="{ 'collapse-expanded': slide.keywords }">
                 <label slide-trigger="slide.keywords">
                     {{ 'POST_KEYWORDS_LABEL' | translate }} <span ng-if="!slide.keywords && post.keywords.length">({{post.keywords.length}})</span>
                 </label>
@@ -125,7 +125,7 @@
                 </div>
             </section>
 
-            <section class="collapse files">
+            <section class="collapse files" ng-class="{ 'collapse-expanded': slide.files }">
                 <label slide-trigger="slide.files" class="create-post-link">
                     {{ 'IMAGES' | translate }}
                     <span ng-if="!slide.files && imagesCount">
@@ -164,9 +164,9 @@
 
                 <button class="primary button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
 
-                <button class="button-send red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
-                    <i class="fa fa-times"></i> {{ 'DELETE' | translate }}
-                </button>
+<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
+                    {{ 'DELETE' | translate }}
+                </a> -->
                 <div class="clear"></div>
             </section>
         </div>

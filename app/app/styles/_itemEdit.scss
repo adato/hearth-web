@@ -1,7 +1,7 @@
 $local-title-font-size: 16px;
 $local-text-font-size: 14px;
-$local-grid-size: 25px;
-$local-small-grid-size: 10px;
+$local-small-grid-size: 5px;
+$local-grid-size: 5 * $local-small-grid-size;
 $local-border-style: 1px solid #e3e3e3; // exact by image
 $local-input-border-style: 1px solid #ddd; // or should be #ddd?
 $local-input-text-color: #333;
@@ -27,7 +27,7 @@ $local-input-error-color: #ea122a;
         font-weight: 600;
         &.fa::before {
             color:color(5);
-            margin-right:$local-small-grid-size / 2;
+            margin-right:$local-small-grid-size;
         }
     }
 
@@ -45,7 +45,7 @@ $local-input-error-color: #ea122a;
         box-shadow: none !important; // uh oh
         font-size: $local-text-font-size;
         color:$local-input-text-color;
-        &.ng-invalid:not(.ng-untouched) {
+        &.ng-invalid:not(.ng-untouched):not([disabled]) {
             border:1px solid $local-input-error-color !important;
         }
     }
@@ -56,9 +56,9 @@ $local-input-error-color: #ea122a;
         box-shadow:none !important;
         font-size: $local-text-font-size !important;
         line-height:1.3;
-        height:3 * $local-small-grid-size;
-        padding:$local-small-grid-size / 2;
-        padding-left:$local-small-grid-size;
+        height:6 * $local-small-grid-size;
+        padding:$local-small-grid-size;
+        padding-left:$local-small-grid-size * 2;
     }
     select {
         border-radius: $global-radius;
@@ -66,18 +66,22 @@ $local-input-error-color: #ea122a;
         line-height:$local-text-font-size;
         padding:0 15px;
         font-weight:600;
+
+        &:disabled {
+            background-color: #ddd !important;
+        }
     }
     div.error {
         font-size:$local-text-font-size;
-        top: -1 * $local-small-grid-size;
-        margin-bottom: $local-small-grid-size;
+        top: -2 * $local-small-grid-size;
+        margin-bottom: $local-small-grid-size * 2;
         color:$local-input-error-color;
     }
     button.button-send {
-        min-width:15 * $local-small-grid-size;
+        min-width:30 * $local-small-grid-size;
         padding: 0px $local-grid-size;
         margin: 0;
-        margin-left:$local-small-grid-size;
+        margin-left:$local-small-grid-size * 2;
         font-weight:600;
         height:$local-input-height;
         text-align:center;
@@ -123,7 +127,7 @@ $local-input-error-color: #ea122a;
             border:0;
             border-bottom:$local-border-style;
             margin-top:$local-grid-size;
-            margin-bottom:$local-small-grid-size;
+            margin-bottom:$local-small-grid-size * 2;
         }
         ul.message-line {
             margin:0;
@@ -131,9 +135,9 @@ $local-input-error-color: #ea122a;
             li {
                 list-style-type: none;
                 color:$local-color-disabled;
-                margin-bottom:$local-small-grid-size;
+                margin-bottom:$local-small-grid-size * 2;
                 border-bottom:$local-border-style;
-                padding-bottom:$local-small-grid-size;
+                padding-bottom:$local-small-grid-size * 2;
                 font-size:14px;
             }
         }
@@ -157,22 +161,31 @@ $local-input-error-color: #ea122a;
                 span { color:$local-input-text-color; }
             }
             .select2-result-label {
-                padding:3px $local-small-grid-size;
+                padding:3px $local-small-grid-size * 2;
             }
         }
+    }
+
+    section.place {
+        padding-bottom:$local-small-grid-size * 3;
     }
 
     .location-picker {
         .ng-invalid .tags { 
             border:1px solid $local-input-error-color !important; 
         }
+        .location-input.disabled .tags { border-color:#ddd !important; }
+        .location-map { margin-bottom: $local-small-grid-size * 2; }
         .error {
-            margin-top:2*$local-small-grid-size;
+            margin-top:4*$local-small-grid-size;
         }
     }
 
     section.collapse {
-        margin-top:15px;
+        //margin-top:$local-small-grid-size;
+        &.collapse-expanded {
+            margin-bottom:$local-small-grid-size * 3;
+        }
     }
 
 
@@ -353,7 +366,7 @@ $local-input-error-color: #ea122a;
         };
     }
     .bottom {
-        margin-top:$local-grid-size;
+        margin-top:$local-small-grid-size * 3;
         .pauseLink {
             text-transform: uppercase;
             margin-right: 30px;
@@ -364,7 +377,7 @@ $local-input-error-color: #ea122a;
             position: relative;
             top: 12px;
             &.close {
-                margin-left: 20px;
+                /* margin-left: 20px; */
             }
         }
     }
