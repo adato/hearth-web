@@ -150,6 +150,7 @@ $local-input-error-color: #ea122a;
     .need-offer-selector {
         display: inline-block;
         margin-top: 18px;
+        margin-bottom: 5*$local-small-grid-size;
         label { margin:0; }
         label:first-child {
             margin-right:20px;
