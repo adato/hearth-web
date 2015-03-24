@@ -58,6 +58,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * scroll to top of the page, if not, refresh page with fixed height
          */
         $rootScope.$on("$routeChangeStart", function(event, next) {
+            if(!$rootScope.addressNew)
+                return $rootScope.top(0, 1);;
+            
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
