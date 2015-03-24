@@ -70,7 +70,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
                     return $scope.sending = false;
                 }
 
-                return Auth.completeTwitterRegistration($scope.data).success(function() {
+                return Auth.completeEmailForRegistration($scope.data).success(function() {
                     $scope.sending = false;
                     Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
                     $scope.hideForm();

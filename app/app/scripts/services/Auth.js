@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q',
-	function($session, $http, $rootScope, $q) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -94,8 +94,8 @@ angular.module('hearth.services').factory('Auth', [
 					return err(data);
 				});
 			},
-			completeTwitterRegistration: function(data, success, err) {
-				return $http.put($$config.apiPath + '/users/email_for_twitter_users', data);
+			completeEmailForRegistration: function(data, success, err) {
+				return $http.put($$config.apiPath + '/users/email_for_token', data);
 				// .success(success).error(err);
 			},
 			requestPasswordReset: function(email) {
@@ -130,6 +130,20 @@ angular.module('hearth.services').factory('Auth', [
 					return defer.reject(data);
 				});
 				return defer.promise;
+			},
+			processLoginResponse: function(data) {
+				if(data.email_token)
+					return $location.path('/fill-email/'+data.email_token);
+				
+				// when user logged, use his language configured on API
+	            if(data.language)
+	                LanguageSwitch.setCookie(data.language);
+
+	            if(data.api_token) {
+	                this.setToken(data.api_token);
+	            }
+
+	            window.location = window.location.pathname;
 			},
 			switchIdentityBack: function() {
 				var defer;
