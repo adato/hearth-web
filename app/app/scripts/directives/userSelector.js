@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('userSelector', [
-	'$rootScope', '$timeout', 'Communities',
-	function($rootScope, $timeout, Communities) {
+	'$rootScope', '$q', 'Fulltext',
+	function($rootScope, $q, Fulltext) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -17,7 +17,7 @@ angular.module('hearth.directives').directive('userSelector', [
 			},
 			templateUrl: 'templates/directives/userSelector.html',
 			link: function($scope, baseElement) {
-				$scope.myCommunities = [];
+				$scope.userList = [];
 				$scope.list = {
 					users: $scope.users
 				};
@@ -27,9 +27,25 @@ angular.module('hearth.directives').directive('userSelector', [
 				$scope.$watch("list.users", function(val) {
 					$scope.users = val;
 				});
-				$rootScope.$watch("myCommunities", function(val) {
-					$scope.myCommunities = val;
-				});
+
+				$scope.search = function(s) {
+				  	// var deferred = $q.defer();
+					var params = {
+						limit: 10,
+						query: s,
+						q: s,
+						type: 'user'
+					};
+
+					if(!s || s.length < 2)
+						return;
+
+					Fulltext.query(params, function(res) {
+						$scope.userList = res.data;
+						// deferred.resolve(res.data);
+					});
+					// return deferred.promise;
+				};
 			}
 		};
 	}
