@@ -23,10 +23,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
             $scope[form][inputName].$error.used = false;
             // dont check when email is blank
-            if (!email) {
-                cb && cb(true);
-                return false;
-            }
+            if (!email) return false;
 
             // Check if email is in our DB
             Email.exists({email: email}, function(res) {
@@ -36,7 +33,7 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
                     $scope[form][inputName].$error.used = true;
                 }
                 // call callbeck
-                return cb && cb(true);
+                cb && cb(res.ok);
             }, function(res) {
 	        	if(res.ok) {
 	                $scope.showError.email = true;
@@ -69,10 +66,11 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
             // is email valid?
             $scope.validateEmail($scope.data, function(res) {
-                if(res)
+                if(res) {
                     return $scope.sending = false;
+                }
 
-                return Auth.completeTwitterRegistration($scope.data).success(function() {
+                return Auth.completeEmailForRegistration($scope.data).success(function() {
                     $scope.sending = false;
                     Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
                     $scope.hideForm();
