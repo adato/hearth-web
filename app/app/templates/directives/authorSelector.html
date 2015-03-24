@@ -1,6 +1,6 @@
 <span class="authorSelector" ng-show="list">
 	<avatar type="selectedEntity._type" src="selectedEntity.avatar.normal" size="small" /></avatar>
-	<select ng-model="selected._id" ng-change="onChange(selected._id)">
+	<select ng-disabled="ngDisabled" ng-model="selected._id" ng-change="onChange(selected._id)">
 		<option ng-repeat="item in list" ng-if="item._id !== remove" value="{{item._id}}" ng-selected="item._id==selected._id">{{ 'ADD_CONTENT_AS' | translate }} {{item.name | ellipsis:30 }}</option>
 	</select>
 </span>
