@@ -14,10 +14,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
 
-		$scope.isMine = function(res) {
-			return $rootScope.loggedUser._id == res.admin;
-		};
-
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
@@ -37,7 +33,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.loadingCounter--;
 				$scope.info = res;
 				// $scope.loaded = true;
-				$scope.mine = $scope.isMine(res); // is community mine?
+				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
 				if(!$scope.loadingCounter) {
@@ -78,36 +74,62 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
         $scope.rejectApplication = function(id)  {
+        	if($scope.rejectApplicationLock)
+        		return false;
+        	$scope.rejectApplicationLock = true;
+        	
 
         	CommunityApplicants.remove({communityId: $scope.info._id, applicantId: id}, function(res) {
+        		$scope.rejectApplicationLock = false;
         		$scope.init();
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
         	}, function() {
+        		$scope.rejectApplicationLock = false;
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_FAILED', Notify.T_ERROR);
         	});
         };
 
         $scope.leaveCommunity = function() {
-        	CommunityLeave.leave({community_id: $scope.info._id}, function(res) {
+        	if($scope.leaveCommunityLock)
+        		return false;
+        	$scope.leaveCommunityLock = true;
+
+			CommunityLeave.leave({community_id: $scope.info._id}, function(res) {
+        		$scope.leaveCommunityLock = false;
 
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_SUCCESS', Notify.T_SUCCESS);
         		$scope.init();
         		$rootScope.$broadcast("reloadCommunities");
         	}, function(res) {
 
+        		$scope.leaveCommunityLock = false;
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_FAILED', Notify.T_ERROR);
         	});
         };
 
         $scope.approveApplication = function(id) {
+        	if($scope.approveApplicationLock)
+        		return false;
+        	$scope.approveApplicationLock = true;
 
         	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
+        		$scope.approveApplicationLock = false;
 
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_SUCCESS', Notify.T_SUCCESS);
         		$scope.init();
         	}, function() {
+        		$scope.approveApplicationLock = false;
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
         	});
+        };
+
+        $scope.addItem = function() {
+        	var preset = {
+        		current_community_id: ($scope.mine) ? $scope.info._id : null,
+        		related_communities: (!$scope.mine) ? [{_id: $scope.info._id, name: $scope.info.name}] : [],
+        	}
+
+        	$rootScope.editItem(null, null, preset);
         };
 
 		$scope.init = function() {

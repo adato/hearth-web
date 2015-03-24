@@ -8,8 +8,8 @@
     </div>
     <header ng-show="info">
         <div class="user-basic">
-            <div class="button-bar text-right" ng-if="!loggedCommunity">
-                <button class="others profile-button tall solid" ng-click="openUserRatingForm(false)">
+            <div class="button-bar text-right">
+                <button class="others profile-button tall solid" ng-click="openUserRatingForm(true)">
                     {{ 'THUMB_UP' | translate }}
                 </button>
                 <button ng-if="!info.is_followed" class="others profile-button tall outline" ng-click="toggleFollow(info._id)">

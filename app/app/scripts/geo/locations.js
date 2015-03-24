@@ -29,6 +29,7 @@ angular.module('hearth.geo').directive('locations', [
                 $scope.mapPoint = false;
                 $scope.mapPointShowName = true;  // due to chrome bug with rerendering
                 $scope.errorWrongPlace = false;
+                $scope.mapIsVisible = false;
 
                 if(!$scope.errorCode)
                     $scope.errorCode = 'LOCATIONS_ARE_EMPTY';
@@ -154,6 +155,7 @@ angular.module('hearth.geo').directive('locations', [
 
                     $(".mapIcon .fa-times", baseElement).show();
                     $(".location-map", baseElement).slideDown();
+                    $scope.mapIsVisible = true;
                     $timeout($scope.initMap, 100);
                 };
 
@@ -165,6 +167,7 @@ angular.module('hearth.geo').directive('locations', [
                     }
 
                     $scope.mapPoint = false;
+                    $scope.mapIsVisible = false;
 
                     $(".location-map", baseElement).slideUp();
                     $(".mapIcon .fa-times", baseElement).hide();
@@ -207,7 +210,8 @@ angular.module('hearth.geo').directive('locations', [
                         return false;
 
                     map = geo.createMap($(".map-container", baseElement)[0], {
-                        draggableCursor: 'url(images/pin.png) 14 34, default'
+                        draggableCursor: 'url(images/pin.png) 14 34, default',
+                        scrollwheel: false
                     });
 
                     google.maps.event.addListener(map, 'click', function(e) {

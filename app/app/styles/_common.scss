@@ -167,14 +167,6 @@ button {
     }
 }
 
-.file-upload {
-    position: relative;
-    display: inline-block;
-    text-align: left;
-    float: left;
-    padding-left: 2px;
-}
-
 .show-for-scrolled {
     display: none;
 }
@@ -364,4 +356,18 @@ button[disabled],
 
 .padding-0 {
     margin: 0px;   
+}
+
+.label-block {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.label-checked {
+    font-weight: bold;
+}
+
+
+.lowercase {
+    text-transform: lowercase;
 }

@@ -3,19 +3,19 @@
 <div ng-if="subPageLoaded">
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! postsActive.length && ! postsInactive.length">
 		<p>{{ 'PROFILE.POSTS.NO_POSTS_ME' | translate }}</p>
-		<p><a ng-if="!loggedCommunity" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a></p>
+		<p><a class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a></p>
 	</div>
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! mine && ! postsActive.length">
 		<p>{{ 'PROFILE.POSTS.NO_POSTS_OTHER' | translate }}</p>
 	</div>
 
 	<div class="ads-listing active">
-		<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsActive track by $index" user="loggedUser" community="loggedCommunity" inactivate-tags='true'></item>
+		<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsActive track by $index" user="loggedUser" community="null" inactivate-tags='true'></item>
 	</div>
 
 	<div ng-if="mine && postsInactive.length" class="ads-listing">
 		<h3>{{ 'POSTS_INACTIVE' | translate }}</h3>
-		<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsInactive track by $index" user="loggedUser" community="loggedCommunity" inactivate-tags='true'></item>
+		<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsInactive track by $index" user="loggedUser" community="null" inactivate-tags='true'></item>
 	</div>
 </div>
 
