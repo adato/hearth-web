@@ -1,0 +1,46 @@
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name hearth.services.Messages
+ * @description 
+ */
+ 
+angular.module('hearth.services').factory('Messages', [
+	'$resource',
+	
+	function($resource) {
+		return $resource($$config.apiPath + '/messages/', {
+		}, {
+			get: {
+				method: 'GET',
+				isArray: true
+			},
+			getMessage: {
+				url: $$config.apiPath + '/messages/:_id',
+			},
+			unreaded {
+				params: {
+					state: 'unread'
+				}
+			},
+			readed {
+				params: {
+					state: 'read'
+				}
+			},
+			unreadedCount {
+				params: {
+					state: 'unread'
+					output: 'count'
+				}
+			},
+			readedCount {
+				params: {
+					state: 'read',
+					output: 'count'
+				}
+			}
+		});
+	}
+]);

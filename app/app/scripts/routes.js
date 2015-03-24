@@ -40,6 +40,10 @@ angular.module('hearth').config([
 			.when('/profile-edit', 'profileEdit')
 			.when('/profile-settings', 'profileSettings')
 
+			// ======= Messages & subroutes
+			.when('/messages', 'messages')
+			.when('/messages/new', 'messagesAdd')
+			
 			// ======= Communities & subroutes
 			.when('/communities', 'communityList')
 			.when('/community-create', 'communityCreate')
@@ -115,6 +119,16 @@ angular.module('hearth').config([
 			}).segment('error404', {
 				controller: 'Error404Ctrl',
 				templateUrl: 'templates/error404.html'
+
+			// ============ messages =============
+			}).segment('messages', {
+			    templateUrl: 'templates/messages/list.html',
+			    controller: 'MessagesCtrl',
+			    pageType: 'messages',
+			}).segment('messagesAdd', {
+			    templateUrl: 'templates/messages/add.html',
+			    controller: 'AddMessageCtrl',
+			    pageType: 'messages-add',
 
 			}).segment('communityList', {
 			    templateUrl: 'templates/community/list.html',

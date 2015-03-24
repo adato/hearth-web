@@ -1,0 +1,22 @@
+<div class="messages messages-add">
+	<h2>{{ 'MESSAGES.ADD.HEADING' | translate }}
+
+	<form ng-submit="addMessage(message)" name="addMessageForm" class="style-new">
+        <div class="recipient">
+          <label>
+            {{ 'MESSAGES.ADD.RECIPIENTS' | translate }} *
+            <input name="recipients" ng-model="message.recipients" class="text-input" type='text' />
+            <div class="absolute error" ng-show="showError.name">
+                <span ng-show="profileEditForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="subject">
+          <label>
+            {{ 'MESSAGES.ADD.SUBJECT' | translate }} *
+            <input name="subject" ng-model="message.subject" class="text-input" type='text' />
+          </label>
+        </div>
+	</form>
+</div>
