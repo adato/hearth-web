@@ -17,6 +17,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 			selectedEntity: '=?author',
 			authorId: '=',
 			remove: '=remove',
+			ngDisabled: '=',
 		},
 		templateUrl: 'templates/directives/authorSelector.html',
 		link: function($scope) {
