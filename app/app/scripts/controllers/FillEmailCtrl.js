@@ -97,6 +97,6 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
         };
 
 
-        $scope.data.twitter_token = $routeParams.token;
+        $scope.data.email_token = $routeParams.token;
 	}
 ]);
