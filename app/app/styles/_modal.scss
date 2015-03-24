@@ -260,10 +260,10 @@
         top: -5px;
         .close {
             color: #ddd;
-            font-size: 30px;
+            font-size: 25px;
             position: absolute;
             right: 0;
-            top: 0px;
+            top: -5px;
             cursor: pointer;
             transition: color, 0.8s;
             &:hover {
