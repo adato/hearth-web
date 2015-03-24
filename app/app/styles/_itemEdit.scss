@@ -66,6 +66,10 @@ $local-input-error-color: #ea122a;
         line-height:$local-text-font-size;
         padding:0 15px;
         font-weight:600;
+
+        &:disabled {
+            background-color: #ddd !important;
+        }
     }
     div.error {
         font-size:$local-text-font-size;

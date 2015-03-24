@@ -222,9 +222,11 @@
         }
     }
     .disabled {
-        a {
+        a, a:hover {
+            opacity: 1;
             color: #939393 !important;
         }
+
         input {
             background-color: #DDD !important;
         }
