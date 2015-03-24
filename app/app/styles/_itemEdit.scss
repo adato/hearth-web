@@ -7,6 +7,7 @@ $local-input-border-style: 1px solid #ddd; // or should be #ddd?
 $local-input-text-color: #333;
 $local-color-disabled: #999;
 $local-input-height: 30px;
+$local-input-error-color: #ea122a;
 
 .ngdialog .itemEdit {
 
@@ -44,6 +45,9 @@ $local-input-height: 30px;
         box-shadow: none !important; // uh oh
         font-size: $local-text-font-size;
         color:$local-input-text-color;
+        &.ng-invalid:not(.ng-untouched) {
+            border:1px solid $local-input-error-color !important;
+        }
     }
     input[type="radio"] {
         box-shadow:none !important;
@@ -63,10 +67,11 @@ $local-input-height: 30px;
         padding:0 15px;
         font-weight:600;
     }
-    div.moveUp.error {
+    div.error {
         font-size:$local-text-font-size;
         top: -1 * $local-small-grid-size;
         margin-bottom: $local-small-grid-size;
+        color:$local-input-error-color;
     }
     button.button-send {
         min-width:15 * $local-small-grid-size;
@@ -157,6 +162,15 @@ $local-input-height: 30px;
         }
     }
 
+    .location-picker {
+        .ng-invalid .tags { 
+            border:1px solid $local-input-error-color !important; 
+        }
+        .error {
+            margin-top:2*$local-small-grid-size;
+        }
+    }
+
     section.collapse {
         margin-top:15px;
     }
@@ -197,11 +211,6 @@ $local-input-height: 30px;
         .checkbox {
             position: relative;
             top: 2px;
-        }
-    }
-    .locations {
-        .remove {
-            top: 6px !important;
         }
     }
     .files {
