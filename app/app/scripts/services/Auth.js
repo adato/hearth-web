@@ -132,8 +132,8 @@ angular.module('hearth.services').factory('Auth', [
 				return defer.promise;
 			},
 			processLoginResponse: function(data) {
-				if(data.facebook_token)
-					return $location.path('/fill-email/'+data.facebook_token);
+				if(data.email_token)
+					return $location.path('/fill-email/'+data.email_token);
 				
 				// when user logged, use his language configured on API
 	            if(data.language)
