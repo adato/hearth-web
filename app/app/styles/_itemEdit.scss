@@ -9,7 +9,7 @@ $local-color-disabled: #999;
 $local-input-height: 30px;
 $local-input-error-color: #ea122a;
 
-.ngdialog .itemEdit {
+.ngdialog .itemReply, .ngdialog .itemEdit {
 
     font-size: $local-text-font-size;
     width: 650px;
@@ -92,25 +92,6 @@ $local-input-error-color: #ea122a;
         }
     }
     // end fix stuff
-
-    
-    #author {
-        margin-right:$local-grid-size;
-    }
-    .need-offer-selector {
-        display: inline-block;
-        margin-top: 18px;
-        label { margin:0; }
-        label:first-child {
-            margin-right:20px;
-            margin-bottom:0;
-        }
-        input {
-            margin:0;
-            margin-right:10px;
-        }
-    }
-
     .head {
         top:0;
         h1, h2 {
@@ -140,6 +121,43 @@ $local-input-error-color: #ea122a;
                 padding-bottom:$local-small-grid-size * 2;
                 font-size:14px;
             }
+        }
+    }
+    .bottom {
+        margin-top:$local-small-grid-size * 3;
+        .pauseLink {
+            text-transform: uppercase;
+            margin-right: 30px;
+            font-size: 20px;
+            width: 130px;
+        }
+        a {
+            position: relative;
+            top: 12px;
+            &.close {
+                /* margin-left: 20px; */
+            }
+        }
+    }
+}
+
+
+.ngdialog .itemEdit {
+    
+    #author {
+        margin-right:$local-grid-size;
+    }
+    .need-offer-selector {
+        display: inline-block;
+        margin-top: 18px;
+        label { margin:0; }
+        label:first-child {
+            margin-right:20px;
+            margin-bottom:0;
+        }
+        input {
+            margin:0;
+            margin-right:10px;
         }
     }
 
@@ -177,7 +195,7 @@ $local-input-error-color: #ea122a;
         .location-input.disabled .tags { border-color:#ddd !important; }
         .location-map { margin-bottom: $local-small-grid-size * 2; }
         .error {
-            margin-top:4*$local-small-grid-size;
+            margin-top:3*$local-small-grid-size;
         }
     }
 
@@ -365,22 +383,6 @@ $local-input-error-color: #ea122a;
             bottom: $fontSize / 2;
         };
     }
-    .bottom {
-        margin-top:$local-small-grid-size * 3;
-        .pauseLink {
-            text-transform: uppercase;
-            margin-right: 30px;
-            font-size: 20px;
-            width: 130px;
-        }
-        a {
-            position: relative;
-            top: 12px;
-            &.close {
-                /* margin-left: 20px; */
-            }
-        }
-    }
     .messageBox {
         position: relative;
         top: -10px;
@@ -391,13 +393,15 @@ $local-input-error-color: #ea122a;
     }
 }
 
-.itemReply {
+.ngdialog .itemReply {
     .mail {
         span {
-            color: #1fb1e8;
-            font-weight: bold;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 2 * $local-small-grid-size;
         }
+    }
+    .bottom {
+        height:6 * $local-small-grid-size;
+        margin-top: 5 * $local-small-grid-size;
     }
 }

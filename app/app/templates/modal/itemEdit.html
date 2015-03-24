@@ -18,8 +18,8 @@
                 {{ 'POST_HAS_BEEN_DEACTIVATED' | translate }} {{ post.suspended_at | date:DATETIME_FORMATS.medium }}
             </li>
         </ul>
-
     </div>
+
     <form ng-submit="save(post)" name="createAdForm" novalidate class="create-ad">
         <div>
             <div class="edit-post-notify-container"></div>
