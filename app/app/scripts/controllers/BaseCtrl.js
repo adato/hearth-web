@@ -263,7 +263,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemEdit',
                 scope: scope,
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
             dialog.closePromise.then(function(data) {});
@@ -317,7 +317,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemReply',
                 scope: scope,
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
 
