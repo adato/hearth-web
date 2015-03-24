@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('userSelector', [
 			replace: true,
 			scope: {
 				users: '=',
-				disable: '=',
+				ngDisabled: '=',
 			},
 			templateUrl: 'templates/directives/userSelector.html',
 			link: function($scope, baseElement) {
