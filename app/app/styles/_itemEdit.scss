@@ -25,10 +25,7 @@ $local-input-error-color: #ea122a;
         margin-bottom:10px;
         line-height:1;
         font-weight: 600;
-        &.fa::before {
-            color:color(5);
-            margin-right:$local-small-grid-size;
-        }
+        color:#333;
     }
 
     // fix stuff
@@ -45,7 +42,7 @@ $local-input-error-color: #ea122a;
         box-shadow: none !important; // uh oh
         font-size: $local-text-font-size;
         color:$local-input-text-color;
-        &.ng-invalid:not(.ng-untouched):not([disabled]) {
+        &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
             border:1px solid $local-input-error-color !important;
         }
     }
@@ -66,6 +63,7 @@ $local-input-error-color: #ea122a;
         line-height:$local-text-font-size;
         padding:0 15px;
         font-weight:600;
+        -moz-appearance:none;
 
         &:disabled {
             background-color: #ddd !important;
@@ -139,13 +137,30 @@ $local-input-error-color: #ea122a;
             }
         }
     }
+    .avatar-small { 
+        position:relative;
+        top:-1 * $local-small-grid-size;
+        img {
+            width:6*$local-small-grid-size;
+            height:6*$local-small-grid-size; 
+        }
+        *:before {
+            width:6*$local-small-grid-size;
+            height:6*$local-small-grid-size;
+            box-shadow:none !important;
+        }
+    }
 }
 
 
 .ngdialog .itemEdit {
     
-    #author {
+    .authorSelector {
         margin-right:$local-grid-size;
+        margin-top:3*$local-small-grid-size;
+        select {
+            min-width:60*$local-small-grid-size;
+        }
     }
     .need-offer-selector {
         display: inline-block;
@@ -204,6 +219,14 @@ $local-input-error-color: #ea122a;
         //margin-top:$local-small-grid-size;
         &.collapse-expanded {
             margin-bottom:$local-small-grid-size * 3;
+        }
+        &>label i.fa {
+            margin:0;
+            color:color(5);
+
+            &::before {
+                margin-right:$local-small-grid-size;
+            }
         }
     }
 
