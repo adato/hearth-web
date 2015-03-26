@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Messages', 'UnauthReload',
-	function($scope, $rootScope, Messages, UnauthReload) {
+	'$scope', '$rootScope', 'Messages', 'UnauthReload', '$timeout',
+	function($scope, $rootScope, Messages, UnauthReload, $timeout) {
 		$scope.messages = false;
 
 		$scope.showConversation = function(id) {
@@ -25,7 +25,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					{_id: 2, recipients: ['Ludmila Nováková', 'Radek Doutnal'], text: 'Mama mele maso'},
 					{_id: 3, recipients: ['Louskoták'], subject: 'Zahradní potřeby', text: 'Táta sbírá listí'},
 				];
-
 			}, 2000)
 			// Messages.get({}, function(res) {
 			// 	$scope.messages = res;
@@ -33,7 +32,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 		
 		$scope.loadConversationDetail = function(id) {
-			Messages.getDetail({_id: id}, function(res) {
+			Messages.getConversation({_id: id}, function(res) {
 				$scope.detail = res;
 			});
 		};

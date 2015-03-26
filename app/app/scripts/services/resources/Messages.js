@@ -19,7 +19,7 @@ angular.module('hearth.services').factory('Messages', [
 				method: 'GET',
 				isArray: true
 			},
-			getMessage: {
+			getConversation: {
 				url: $$config.apiPath + '/messages/:_id',
 			},
 			unreaded: {

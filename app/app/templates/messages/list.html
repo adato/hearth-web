@@ -1,8 +1,9 @@
-<div class="large-6 large-centered columns box text-center no-result">
-	<br />
-	<a ng-href="#!/messages/new">Add message</a>
-</div>
 <div class="large-12 large-centered columns box messages-list">
+	<a ng-href="#!/messages/new" class="button-send right">Add message</a>
+	<div class="clear"></div>
+	<button type="submit" class="button-send right">
+    	{{ 'SEND_USER_RATING' | translate }}
+	</button>
 	
 	<div class="collumn large-4">
 		<div class="message-item" ng-repeat="item in messages" ng-click="showConversation(item._id)">
