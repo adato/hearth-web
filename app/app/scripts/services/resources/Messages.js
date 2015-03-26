@@ -12,6 +12,9 @@ angular.module('hearth.services').factory('Messages', [
 	function($resource) {
 		return $resource($$config.apiPath + '/messages/', {
 		}, {
+			add: {
+				method: 'POST'
+			},
 			get: {
 				method: 'GET',
 				isArray: true
@@ -19,23 +22,23 @@ angular.module('hearth.services').factory('Messages', [
 			getMessage: {
 				url: $$config.apiPath + '/messages/:_id',
 			},
-			unreaded {
+			unreaded: {
 				params: {
 					state: 'unread'
 				}
 			},
-			readed {
+			readed: {
 				params: {
 					state: 'read'
 				}
 			},
-			unreadedCount {
+			unreadedCount: {
 				params: {
-					state: 'unread'
+					state: 'unread',
 					output: 'count'
 				}
 			},
-			readedCount {
+			readedCount: {
 				params: {
 					state: 'read',
 					output: 'count'

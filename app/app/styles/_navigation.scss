@@ -32,6 +32,9 @@ $topBarImageSize: 1.8em;
     padding: $fontSize / 2;
     // ============ Removed responzivity ======
     min-width: 950px;
+    .row {
+        margin: 0px auto;
+    }
     .columns {
 
         &.icons {

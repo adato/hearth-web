@@ -2,3 +2,16 @@
 	<br />
 	<a ng-href="#!/messages/new">Add message</a>
 </div>
+<div class="large-12 large-centered columns box messages-list">
+	
+	<div class="collumn large-4">
+		<div class="message-item" ng-repeat="item in messages" ng-click="showConversation(item._id)">
+			<h4 ng-if="item.subject">{{ item.subject | ellipsis:30 }}</h3>
+			<h4 ng-if="!item.subject">{{ item.recipients.join(", ") | ellipsis:30 }}</h3>
+			<p>{{ item.text | ellipsis:40 }}</p>
+		</div>
+	</div>
+	<div class="collumn large-8">
+		<div loading show="!messages"></div>		
+	</div>
+</div>

@@ -4,21 +4,37 @@
 	<form ng-submit="addMessage(message)" name="addMessageForm" class="style-new">
         <div class="recipient">
           <label>
-            {{ 'MESSAGES.ADD.RECIPIENTS' | translate }} *
+            {{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
             <user-selector users="message.recipients"></user-selector>
-            
-            <!-- <input name="recipients" ng-model="message.recipients" class="text-input" type='text' /> -->
             <div class="absolute error" ng-show="showError.name">
-                <span ng-show="profileEditForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
+                <span ng-show="addMessageForm.recipients.$error.required">{{ 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</span>
             </div>
           </label>
         </div>
 
         <div class="subject">
           <label>
-            {{ 'MESSAGES.ADD.SUBJECT' | translate }} *
-            <input name="subject" ng-model="message.subject" class="text-input" type='text' />
+            {{ 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
+            <input name="subject" ng-required="true" placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.subject" class="text-input" type='text' ng-minlength="5" />
           </label>
+        </div>
+
+
+        <div class="text">
+          <label>
+            {{ 'MESSAGES.ADD.TEXT_LABEL' | translate }}
+            <textarea name="text" placeholder="{{ 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="5" ng-model="message.text"></textarea>
+          </label>
+          <div class="absolute error" ng-show="showError.name">
+            <span ng-show="addMessageForm.recipients.$error.required">{{ 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</span>
+          </div>
+        </div>
+
+
+        <div class="bottom">
+          <button type="submit" class="button-send right">
+              {{ 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
+          </button>
         </div>
 	</form>
 </div>
