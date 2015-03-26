@@ -6,14 +6,16 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('userSelector', [
-	'$rootScope', '$q', 'Fulltext',
-	function($rootScope, $q, Fulltext) {
+	'$rootScope', '$q', 'Fulltext', '$timeout',
+	function($rootScope, $q, Fulltext, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
 			scope: {
 				users: '=',
 				ngDisabled: '=',
+				ngBlur: '&',
+				ngFocus: '&'
 			},
 			templateUrl: 'templates/directives/userSelector.html',
 			link: function($scope, baseElement) {
@@ -42,10 +44,19 @@ angular.module('hearth.directives').directive('userSelector', [
 
 					Fulltext.query(params, function(res) {
 						$scope.userList = res.data;
-						// deferred.resolve(res.data);
 					});
-					// return deferred.promise;
 				};
+
+				$timeout(function() {
+					var input = baseElement.find('input');
+
+					input.bind('blur', function() {
+					 	$scope.ngBlur && $scope.ngBlur();
+					});
+					input.bind('focus', function() {
+				 		$scope.ngFocus && $scope.ngFocus();
+					});
+				});
 			}
 		};
 	}
