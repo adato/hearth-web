@@ -3,7 +3,7 @@
     "404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáte, pravděpodobně neexistuje.",
     "404_NOT_FOUND_TITLE": "404 Nenalezeno",
     "ABOUT": "Napište pár slov o sobě. Hezky i česky.",
-    "ABOUT_ME": "Více o mě",
+    "ABOUT_ME": "Více o mně",
     "ACCOUNT": {
         "LOGIN": {
             "LOGIN_FAILED": "Při přihlašování došlo k chybě.",
@@ -22,7 +22,7 @@
     "ADD_COMMUNITY_RATING": "Hodnocení komunity",
     "ADD_CONTENT_AS": "za",
     "ADD_KEYWORDS": "Klíčová slova, oddělená čárkou",
-    "ADD_LOCATION": "Napište místo",
+    "ADD_LOCATION": "Zadejte místo",
     "ADD_NEXT_WEB": "Přidat další web",
     "ADD_OTHER_LANG": "Přidat další jazyky",
     "ADD_USER_RATING": "Ohodnoťte komunikaci s uživatelem",
@@ -112,7 +112,7 @@
             "NO_ACTIVITY_OTHER": "Komunita je zde nová. Asi zbrusu nová. Jinak by zde jistě bylo plno zajímavých a vtipných informací. Těšme se!"
         },
         "POSTS": {
-            "NO_POSTS_ADMIN": "Zatím jste nevytvořil(a) žádný inzerát. No toto! Pojďme s tím něco udělat. Můžete darovat či přijmout, co vás jen napadne.",
+            "NO_POSTS_ADMIN": "No toto! Zatím jste nevytvořili žádný inzerát. Pojďme s tím něco udělat. Můžete darovat či přijmout, co vás jen napadne.",
             "NO_POSTS_MEMBER": "V komunitě ještě nemáte žádné inzeráty.",
             "NO_POSTS_OTHER": "Komunita zatím nic nevěnovala ani nepotřebovala přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních. Zahřívá se..."
         },
@@ -303,7 +303,7 @@
     "ERR_WRONG_LOCATION_FORMAT": "Lokalita je ve špatném formátu. Zkuste ji prosím zadat znovu.  Nebo se zkuste přestěhovat...",
     "ERR_WRONG_PASSWORD": "Heslo musí mít alespoň 4 znaky. Jo jo, máme rádi matiku.",
     "EXPIRATION_DATE": "Doba platnosti",
-    "FACEBOOK_INVITATION_MESSAGE": "Jsem na Hearth.net - štědré sociální síti pro sdílení darů a zkušeností.",
+    "FACEBOOK_INVITATION_MESSAGE": "Jsem na Hearth.net - štědré sociální síti pro sdílení darů a zkušeností. Pojď to taky zkusit!",
     "FEEDBACK": "Napište nám",
     "FEEDBACK_FORM_SPEECH_BUBBLE": "Nejsme perfektní, ale s vaší pomocí můžeme být. \r\nNapište nám a my vám dáme lepší Hearth.\r\nČestné vývojářské.",
     "FEEDBACK_LINK": "Hodnocení",
@@ -548,7 +548,7 @@
         "EMAIL_INVITATION_SUCCESS": "Pozvánka byla úspěšně odeslána.",
         "EMAIL_NOTIFY_CONFIG_FAILED": "Při ukládání nastavení došlo k chybě.",
         "EMAIL_NOTIFY_CONFIG_SUCCESS": "Nastavení emailových notifikací bylo úspěšně uloženo.",
-        "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě..",
+        "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě...",
         "NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
         "NEW_PASS_SUCCESS": "Nové heslo bylo nastaveno. Nyní se můžete přihlásit.",
         "PASS_CHANGE_FAILED": "Při úpravě hesla došlo k chybě.",
@@ -658,13 +658,12 @@
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
     "POST_PLACE_LABEL": "Místa:",
     "POST_REPORT": {
-        "HEADING": "Nahlásit inzerát",
-        "NOTE": "Chcete opravdu nahlásit tento inzerát? Zpráva o nahlášení se pošle i vlastníkovi inzerátu.",
-        "REASON_LABEL": "Důvod nahlášení",
-        "REASON_PLACEHOLDER": "Napište nám pár slov, proč je inzerát špatný...",
+        "HEADING": "Označit za nevhodný",
+        "REASON_PLACEHOLDER": "Napište nám a autorovi pár slov, proč si myslíte, že by na Hearth.net takový inzerát neměl být...",
+        "REPORT_INFO": "<p>Mysl&iacute;te si, že nab&iacute;dka nebo popt&aacute;vka tohoto typu na Hearth.net nem&aacute; co dělat? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e označen&iacute; nevhodn&eacute;ho obsahu, spolu s v&aacute;mi uveden&yacute;m&nbsp;důvodem, za&scaron;leme i autorovi nab&iacute;dky nebo popt&aacute;vky.<\/p>",
         "SUCCESS_MESSAGE": "Inzerát byl úspěšně nahlášen."
     },
-    "POST_TEXT_LABEL": "Text inerátu:",
+    "POST_TEXT_LABEL": "Text inzerátu:",
     "POST_TITLE_LABEL": "Stručný popis inzerátu:",
     "POST_WAS_DELETED": "Inzerát byl vymazán.",
     "POST_WAS_SUSPENDED": "Inzerát byl pozastaven",
@@ -719,7 +718,7 @@
             "NO_ACTIVITY_ME": "Jste tu krátce, nemáme vám zatím co ukázat :)",
             "NO_ACTIVITY_ME_OLDER": "Zatím zde nemáte žádnou aktivitu.",
             "NO_ACTIVITY_OTHER": "Uživatel je tady nový, nemáme vám tady zatím co ukázat.",
-            "NO_ACTIVITY_OTHER_OLDER": "Uživatel zde nemá zatím žádnou aktivitu.",
+            "NO_ACTIVITY_OTHER_OLDER": "Uživatel zde nemá zatím žádnou aktivitu. Lenoch...",
             "NO_POSTS_ME": "Zatím jste nevytvořil(a) žádný inzerát. No toto! Pojďme s tím něco udělat. Můžete darovat či přijmout, co vás jen napadne."
         },
         "INVITATION": {
@@ -728,11 +727,11 @@
             "SEND_EMAIL_INVITATION": "Odeslat"
         },
         "POSTS": {
-            "NO_GIVEN_RATINGS_ME": "Zřejmě jste zatím nikomu nic nedaroval(a) ani nic nepřijal(a), proto jste ještě ani nemohl(a) mít příležitost, podělit se, jak to všechno šlo.",
+            "NO_GIVEN_RATINGS_ME": "Zřejmě jste zatím nikomu nic nedarovali, ani nic nepřijali. Proto jste se s námi nemohli podělit, jak to všechno šlo. To se dá ale snadno napravit!",
             "NO_GIVEN_RATINGS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout, tak neměl zatím ani příležitost někomu napsat hodnocení.",
             "NO_POSTS_ME": "Zatím jste nevytvořil(a) žádný inzerát. No toto! Pojďme s tím něco udělat. Můžete darovat či přijmout, co vás jen napadne.",
             "NO_POSTS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
-            "NO_RECEIVED_RATINGS_ME": "Patrně za sebou ještě nemáte žádnou odvážnou odpověď na inzerát, tak neměl nikdo příležitost sem napsat nic pěkného :("
+            "NO_RECEIVED_RATINGS_ME": "Patrně za sebou ještě nemáte žádnou odvážnou odpověď na inzerát. Nikdo tak neměl příležitost napsat sem něco pěkného..."
         },
         "REMOVE_FOLOWEESE_LABEL": "Přestat sledovat uživatele",
         "REMOVE_FOLOWEESE_TEXT": "Opravdu chcete přestat sledovat tohoto uživatele?",
@@ -764,8 +763,8 @@
     "REMOVE": "Odebrat",
     "REPLY_BUTTON_CAPTION": "Odpovědět",
     "REPLY_PUBLISH_EMAIL_AGREE": "Společně s touto zprávou uvidí uživatel {{name}} i Vaši emailovou adresu.",
-    "REPORT": "Nahlásit",
-    "REPORT_HARMFUL_AD": "Nahlásit nevhodný inzerát",
+    "REPORT": "Odeslat",
+    "REPORT_HARMFUL_AD": "Označit nevhodný inzerát",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Při změně hesla došlo k chybě... Co teď?",
     "RESET_PASSWORD_BROKEN_LINK": "Jejda, něco se pokazilo, tento odkaz není platný.<br \/>Nechte si vygenerovat nový na <a href='#!\/forgotten-password'>této adrese.<\/a>",
@@ -829,6 +828,7 @@
     "TODAY": "Dnes",
     "TOP_BAR_ABOUT": "O projektu",
     "TOP_BAR_COMMUNITY_PROFILE": "Náš profil",
+    "TOP_BAR_MESSAGES": "Zprávy",
     "TOP_BAR_PROFILE": "Můj profil",
     "TOP_BAR_SIGN_IN": "Přihlásit",
     "TOTAL_COUNT": "{{value}} celkem",
@@ -883,8 +883,8 @@
     "WE_HAVE_SENT_YOU_AN_EMAIL_TO_RESET_PASSWORD": "Hurá! Poslali jsme vám tajný ověřovací kód, najdete ho v e-mailu.",
     "WE_NEED": "Přijmeme",
     "WE_WILL_MISS_YOU__TELL_US_WHY_YOU_LEAVE": "Škoda, že odcházíte.  Budete nám chybět.  Napište nám, prosím, co vás k tomu vedlo i jak můžeme Hearth.net vylepšit a my se o to pokusíme. Uvidíte.",
-    "WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Sdělte světu, co věnujete či přijmete:",
-    "WHERE": "Místa kde se pohybuji",
+    "WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Zde povězte, co věnujete či přijmete:",
+    "WHERE": "Místa, kde se vyskytuji",
     "WHO": "Kdo jsem",
     "WHOLE_PROFILE": "Celý profil",
     "WISH_GIFT": "<p><strong>Pož&aacute;dat<\/strong> o dar<\/p>",
