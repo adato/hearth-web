@@ -129,7 +129,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
 
-				post.type = post.type == 'need';
+				post.type = post.type == 'offer';
 			}
 			return post;
 		}
