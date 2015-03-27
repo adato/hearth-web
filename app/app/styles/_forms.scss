@@ -32,3 +32,33 @@ textarea:focus {
     }
     transition: background .5s,  border-color .5s, box-shadow .5s;
 }
+
+.field-group {
+    display: table;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    &>* {
+        display: table-cell !important;
+        margin-bottom: 0px !important;
+    }
+
+    .no-left-radius {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    &>span {
+        border: 1px solid #dddddd;
+        background-color: #f2f3f3;
+        width: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        &.left-radius {
+            border-right-width: 0px;
+            border-bottom-left-radius: $global-radius;
+            border-top-left-radius: $global-radius;
+        }
+    }
+}
