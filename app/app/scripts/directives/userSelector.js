@@ -19,6 +19,7 @@ angular.module('hearth.directives').directive('userSelector', [
 			},
 			templateUrl: 'templates/directives/userSelector.html',
 			link: function($scope, baseElement) {
+				var timer = null;
 				$scope.userList = [];
 				$scope.list = {
 					users: $scope.users
@@ -28,10 +29,11 @@ angular.module('hearth.directives').directive('userSelector', [
 				});
 				$scope.$watch("list.users", function(val) {
 					$scope.users = val;
+					$scope.userList = [];
+					baseElement.find(".select2-drop").addClass("select2-display-none");
 				});
 
 				$scope.search = function(s) {
-				  	// var deferred = $q.defer();
 					var params = {
 						limit: 10,
 						query: s,
@@ -42,9 +44,15 @@ angular.module('hearth.directives').directive('userSelector', [
 					if(!s || s.length < 2)
 						return;
 
-					Fulltext.query(params, function(res) {
-						$scope.userList = res.data;
-					});
+					if(timer)
+						$timeout.cancel(timer);
+
+					// Search after while when user stops typing
+					timer = $timeout(function() {
+						Fulltext.query(params, function(res) {
+							$scope.userList = res.data;
+						});
+					}, 200);
 				};
 
 				$timeout(function() {

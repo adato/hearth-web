@@ -7,12 +7,18 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Messages', 'UnauthReload', '$timeout', 'Notify',
-	function($scope, $rootScope, Messages, UnauthReload, $timeout, Notify) {
-		$scope.messages = false;
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', '$timeout', 'Notify',
+	function($scope, $rootScope, Conversations, UnauthReload, $timeout, Notify) {
+		$scope.conversations = false;
 		$scope.detail = false;
 		$scope.reply = {
 			text: ''
+		};
+		$scope.replyForm = {
+			show: false
+		};
+		$scope.showError = {
+			text: false
 		};
 		
 		$scope.showConversation = function(id) {
@@ -20,52 +26,60 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.loadConversationDetail(id);
 		};
 
+		$scope.loadCounters = function() {
+			Conversations.getCounters({}, function(res) {
+				$scope.conversationsCounters = res;
+			});
+		};
+
+		$scope.deserialize = function(messages) {
+			return messages.map(function(msg) {
+				if(!msg.title) {
+					msg.title = [];
+
+					for(var id in msg.participants) {
+						var user = msg.participants[id];
+
+						if($rootScope.loggedUser._id !== user._id)
+							msg.title.push(user.name);
+					};
+					msg.title = msg.title.join(", ");
+					return msg;
+				}
+			});
+		};
+
 		$scope.loadConversations = function(conf, done) {
-
-			$timeout(function() {
-				$scope.messages = [
-					{_id: 1, recipients: ['Pepa Novák'], text: 'Ema má mísu..'},
-					{_id: 2, recipients: ['Ludmila Nováková', 'Radek Doutnal'], text: 'Mama mele maso'},
-					{_id: 3, recipients: ['Louskoták'], subject: 'Zahradní potřeby', text: 'Táta sbírá listí'},
-				];
-
-				done && done($scope.messages);
-			}, 500);
-			// Messages.get(conf, function(res) {
-			// 	$scope.messages = res;
-			// });
+			Conversations.get(conf, function(res) {
+				$scope.conversations = $scope.deserialize(res.conversations);
+				done && done($scope.conversations);
+			});
 		};
 		
+		$scope.deleteConversation = function(id) {
+			$scope.sendingDeleteRequest = true;
+			Conversations.remove({id: id}, function(res) {
+
+				init();
+				$scope.sendingDeleteRequest = false;
+				Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_SUCCESS', Notify.T_SUCCESS);
+			}, function(err) {
+				$scope.sendingDeleteRequest = false;
+				Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_FAILED', Notify.T_ERROR);
+			});
+		};
+
 		$scope.loadConversationDetail = function(id) {
 			$scope.detail = false;
 
-			$timeout(function() {
+			Conversations.get({id: id}, function(res) {
+				$scope.replyForm.text = false;
+				$scope.showError.text = false;
+				$scope.reply.text = '';
 
-				$scope.detail = {
-					 recipients: ['Ludmila Nováková', 'Radek Doutnal'],
-					 messages: [
-					 	{author: "Ludmila Nováková", text: "Cum sociis natoque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis. Proin sodales pulvinar tempor. Cum sociis natoque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. "},
-					 	{author: "Aleš Cvrk Nováková", text: "Cum sociis natoque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. "},
-					 	{author: "Lenka Kropenatá", text: "Iscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis. Proin sodales pulvinar tempor. Cum sociis natoque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. "},
-					 ]
-				};
-
-				$scope.replyForm = {
-					show: false
-				};
-				$scope.showError = {
-					text: false
-				};
-				$scope.reply = {
-					text: ''
-				};
-				
-			}, 200);
-
-			// Messages.getConversation({_id: id}, function(res) {
-			// 	$scope.detail = res;
-			// 	$scope.replyForm.show = false;
-			// });
+				$scope.detail = res;
+				$scope.replyForm.show = false;
+			});
 		};
 		
 		$scope.validateReply = function(reply) {
@@ -78,7 +92,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.sendReply = function(reply) {
-			reply._id = $scope.detail._id;
+			reply.id = $scope.detail._id;
 
 			console.log(reply);
 			if(!$scope.validateReply(reply))
@@ -88,7 +102,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				return false;
 			$scope.sendingReply = true;
 
-			Messages.reply(reply, function(res) {
+			Conversations.reply(reply, function(res) {
 
 				$scope.sendingReply = false;
 				Notify.addSingleTranslate('NOTIFY.MESSAGE_REPLY_SUCCESS', Notify.T_SUCCESS);
@@ -99,7 +113,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		function init() {
+			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {
+				// load first conversation on init
 				list.length && $scope.loadConversationDetail(list[0]._id);
 			});
 		};

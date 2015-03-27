@@ -6,25 +6,24 @@
  * @description 
  */
  
-angular.module('hearth.services').factory('Messages', [
+angular.module('hearth.services').factory('Conversations', [
 	'$resource',
 	
 	function($resource) {
-		return $resource($$config.apiPath + '/messages/', {
+		return $resource($$config.apiPath + '/conversations/:id', {
 		}, {
 			add: {
 				method: 'POST'
 			},
 			get: {
 				method: 'GET',
-				isArray: true
+			},
+			getCounters: {
+				url: $$config.apiPath + '/conversations/counter',
+				method: 'GET'
 			},
 			reply: {
 				method: 'POST',
-				url: $$config.apiPath + '/messages/:_id'
-			},
-			getConversation: {
-				url: $$config.apiPath + '/messages/:_id',
 			},
 			unreaded: {
 				params: {

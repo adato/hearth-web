@@ -1,8 +1,9 @@
 <div class="user-picker">
 	<ui-select multiple ng-model="list.users" theme="select2" ng-disabled="ngDisabled">
 		<ui-select-match placeholder="{{ 'SELECT_USERS' | translate }}">{{$item.name}}</ui-select-match>
-		<ui-select-choices repeat="item in userList track by $index" refresh="search($select.search)" refresh-delay="0">
-			<div ng-bind-html="item.name | highlight: $select.search"></div>
+		<ui-select-choices repeat="item in userList" refresh="search($select.search)" refresh-delay="0">
+			<!-- <avatar type="item._type" src="item.avatar.normal" size="small"></avatar> -->
+			<div ng-bind-html="item.name"></div>
 		</ui-select-choices>
 	</ui-select>
 </div>

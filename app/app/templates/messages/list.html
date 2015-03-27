@@ -1,32 +1,35 @@
 <div class="large-12 large-centered columns box messages-list">
 	<br />
 
-	<div class="messages-filer left" ng-if="messages">
+	<div class="messages-filer left" ng-if="conversationsCounters">
 		<a ng-click="loadConversations({type:'inbox'})">Inbox</a>		
 		<a ng-click="loadConversations({type:'archive'})">Archive</a>		
 		<a ng-click="loadConversations({type:'all'})">All</a>		
 	</div>
 	<a ng-href="#!/messages/new" class="button-send right">New message</a>
 	<div class="clear"></div>
-	<div loading show="!messages"></div>
-	
+	<div loading show="!conversations"></div>
+	<div class="text-center" ng-if="conversations && !conversations.length">
+		{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
+	</div>
 	<div class="collumn left large-4">
-		<div class="message-conversation" ng-repeat="item in messages" ng-click="showConversation(item._id)">
-			<h4 ng-if="item.subject">{{ item.subject | ellipsis:30 }}</h3>
-			<h4 ng-if="!item.subject">{{ item.recipients.join(", ") | ellipsis:30 }}</h3>
-			<p>{{ item.text | ellipsis:40 }}</p>
+		<div class="message-conversation" ng-repeat="item in conversations" ng-click="showConversation(item._id)">
+			<h4 ng-if="item.title">{{ item.title  }}</h3>
+			<h4 ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h3>
+			<p>{{ item.last_message_text | ellipsis:40 }}</p>
+			<i>{{ item.last_message_time | date:mediumTime }}</i>
 		</div>
 	</div>
-	<div class="collumn right large-8" ng-if="messages">
+	<div class="collumn right large-8" ng-if="conversations.length">
 		<div loading show="!detail"></div>
 		<div ng-if="detail">
 			<article class="message" ng-repeat="item in detail.messages" ng-init="item.show = $last">
 				<div class="message-head" ng-click="item.show = !item.show">
 					<span class="left large-10">
-						<avatar class="left" size="small"></avatar>
-						<h4>{{ item.author }}</h4>
+						<avatar class="left" src="detail.participants[item.author_id].avatar.normal" size="small"></avatar>
+						<h4>{{ detail.participants[item.author_id].name }}</h4>
 					</span>
-					<span class="right">před minutou</span>
+					<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}">{{ item.created_at | ago }}</span>
 					<div class="clear"></div>
 				</div>
 				<p ng-slide-down="item.show" lazy-render duration="0.5">
@@ -38,7 +41,7 @@
 					<div class="message-control-links left">
 						<a ng-click="confirmBox('MESSAGE.DELETE_CONFIRM.LABEL', 'MESSAGE.DELETE_CONFIRM.TEXT', deleteConversation, detail._id, this)" class="action-link">{{ 'DELETE' | translate }}</a>
 						&nbsp;&nbsp;
-						<a ng-click="confirmBox('MESSAGE.DELETE_CONFIRM.LABEL', 'MESSAGE.DELETE_CONFIRM.TEXT', archiveConversation, detail._id, this)" class="action-link">{{ 'ARCHIVE' | translate }}</a>
+						<!-- <a ng-click="confirmBox('MESSAGE.DELETE_CONFIRM.LABEL', 'MESSAGE.DELETE_CONFIRM.TEXT', archiveConversation, detail._id, this)" class="action-link">{{ 'ARCHIVE' | translate }}</a> -->
 					</div>
 					<button type="submit" class="button-send right" ng-click="replyForm.show = true">
 				    	{{ 'REPLY' | translate }}
@@ -47,8 +50,9 @@
 				</div>
 
 				<form novalidate name="msgReplyForm" ng-submit="sendReply(reply)" ng-slide-down="replyForm.show" lazy-render duration="0.5">
-					<label for="text">{{ 'MESSAGES.REPLY.TEXT_LABEL' | translate }}</label>
-					<textarea rows="3" name="text" ng-focus="showError.text = false" ng-blur="showError.text = true" autosize-textarea ng-required="true" placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-minlength="5" ng-model="reply.text"></textarea>
+					<label for="reply-text">{{ 'MESSAGES.REPLY.TEXT_LABEL' | translate }}
+						<textarea rows="3" id="reply-text" name="text" ng-focus="showError.text = false" ng-blur="showError.text = true" autosize-textarea ng-required="true" placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-minlength="5" ng-model="reply.text"></textarea>
+					</label>
 					<div class="error" ng-show="msgReplyForm.text.$invalid && showError.text">
 	                    <span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
 	                    <span ng-show="msgReplyForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>

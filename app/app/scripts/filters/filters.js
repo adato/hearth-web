@@ -109,6 +109,16 @@ angular.module('hearth.filters', [])
       return input.replace("http://", "").replace("https://", "");
     }
 })
+.filter('minMax', function() {
+    return function(input, min, max) {
+		var val = parseInt(input);
+		if(val < min)
+			return min;
+		if(val > max)
+			return max+'+';
+		return input;
+    }
+})
 
 .filter('highlight', function($sce) {
     return function(text, phrase) {
