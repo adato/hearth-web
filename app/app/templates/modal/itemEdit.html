@@ -36,7 +36,11 @@
             <section class="title">
                 <label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
                 <div class="name">
-                    <input type="text" name="title" class="form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+                    <div class="field-group">
+                        <span class="left-radius green bold" ng-if="post.type">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
+                        <span class="left-radius red bold" ng-if="!post.type">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
+                        <input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+                    </div>
 
                     <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
                         <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
