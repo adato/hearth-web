@@ -20,7 +20,8 @@
     "ACTUALLY_YOU_HAVE_ACTIVE": "Momentálne máte aktívne",
     "ADD": "Pridať",
     "ADD_COMMUNITY_RATING": "Hodnocení komunity",
-    "ADD_CONTENT_AS": "za",
+    "ADD_CONTENT_AS_COMMUNITY": "jako komunita",
+    "ADD_CONTENT_AS_USER": "jako",
     "ADD_KEYWORDS": "Kľúčové slová, oddelené čiarkou",
     "ADD_LOCATION": "Napíšte miesto",
     "ADD_NEXT_WEB": "Pridať ďalší web",
@@ -239,11 +240,11 @@
     "EMAIL_SHARING": {
         "ADDRESS_LABEL": "Email kamaráda\/kamarádky:",
         "ADDRESS_PLACEHOLDER": "Napište jednu nebo více emailových adres oddělených čárkou",
-        "HEADING": "Pošlete inzerát kamarádovi",
+        "HEADING": "Doporučte inzerát kamarádům",
         "NOTE": "Odešlete inzerát vašemu kamarádovi\/kamarádce.",
         "SUCCESS_MESSAGE": "Email byl úspěšně odeslán :-)",
-        "TEXT_LABEL": "Text zprávy:",
-        "TEXT_PLACEHOLDER": "Napište trochu textu..."
+        "TEXT_LABEL": "Vzkaz:",
+        "TEXT_PLACEHOLDER": "Napište kamarádovi\/kamarádce několik slov..."
     },
     "EMAIL_TEXT_PLACEHOLDER": "Text správy",
     "ERROR_404_SUBHEADER": "Toto tu nemáme :(",
@@ -438,7 +439,23 @@
     },
     "MEET_USER": "Spoznajte užívateľa",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členom komunít",
-    "MESSAGES": "Správy",
+    "MESSAGES": {
+        "MESSAGES": "Správy",
+        "ADD": {
+            "HEADING": "Nová zpráva",
+            "RECIPIENTS_LABEL": "Příjemce",
+            "SEND_MESSAGE": "Odeslat zprávu",
+            "SUBJECT_LABEL": "Předmět zprávy",
+            "SUBJECT_PLACEHOLDER": "Vyplňte předmět zprávy",
+            "TEXT_LABEL": "Text zprávy",
+            "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
+        },
+        "ADD_NEW_MESSAGE": "Nová zpráva",
+        "REPLY": {
+            "TEXT_LABEL": "Text odpovědi:",
+            "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+        }
+    },
     "MESSAGES_ARCHIVE": "Archív správ",
     "MESSAGES_ARCHIVE_MESSAGE": "Archivovať",
     "MESSAGES_DELETE": "Navždy zmazať",
@@ -631,8 +648,14 @@
     "POPULAR_KEYWORDS": "Populárne kľúčové slová",
     "POSITIVE": "Všetko klaplo",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Všetko prebehlo, ako malo? Ste nadšený? Tak šup...dajte to užívateľovi vedieť.",
+    "POST": {
+        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
+    },
     "POSTS": {
         "POSTS": "inzeráty",
+        "CREATE": {
+            "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
+        },
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
@@ -648,7 +671,7 @@
         "few": "inzeráty",
         "other": "inzerátov"
     },
-    "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity:",
+    "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity",
     "POST_EXPIRATION_DATE_LABEL": "Platnost do",
     "POST_HAS_ALREADY_EXPIRED": "Platnosť inzerátu už skončila",
     "POST_HAS_BEEN_DEACTIVATED": "Inzerát bol pozastavený",
@@ -658,10 +681,9 @@
     "POST_NOT_FOUND": "Inzerát nebol nájdený.",
     "POST_PLACE_LABEL": "Místa:",
     "POST_REPORT": {
-        "HEADING": "Nahlásit inzerát",
-        "NOTE": "Chcete opravdu nahlásit tento inzerát? Zpráva o nahlášení se pošle i vlastníkovi inzerátu.",
-        "REASON_LABEL": "Důvod nahlášení",
-        "REASON_PLACEHOLDER": "Napište nám pár slov, proč je inzerát špatný...",
+        "HEADING": "Označit za nevhodný",
+        "REASON_PLACEHOLDER": "Napište nám a autorovi pár slov, proč si myslíte, že by na Hearth.net takový inzerát neměl být...",
+        "REPORT_INFO": "<p>Mysl&iacute;te si, že nab&iacute;dka nebo popt&aacute;vka tohoto typu na Hearth.net nem&aacute; co dělat? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e označen&iacute; nevhodn&eacute;ho obsahu, spolu s v&aacute;mi uveden&yacute;m&nbsp;důvodem, za&scaron;leme i autorovi nab&iacute;dky nebo popt&aacute;vky. Nebojte, Va&scaron;e zpr&aacute;va nebude veřejně vidět, bude to jen mezi V&aacute;mi, n&aacute;mi a autorem.<\/p>",
         "SUCCESS_MESSAGE": "Inzerát byl úspěšně nahlášen."
     },
     "POST_TEXT_LABEL": "Text inzerátu:",
@@ -762,9 +784,10 @@
     "RATING_WAS_SAVED": "Hodnotenie bolo úspešne uložené. Čo je doma, to sa počíta.",
     "REGISTER_TO_HEARTH_TEXT": "Váš profil je už len pár klikov odtiaľto. Šup šup.",
     "REMOVE": "Odobrať",
+    "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Odpovedať",
     "REPLY_PUBLISH_EMAIL_AGREE": "Spoločne s touto správou uvidí užívateľ {{name}} i Vašu emailovú adresu.",
-    "REPORT": "Nahlásit",
+    "REPORT": "Odeslat",
     "REPORT_HARMFUL_AD": "Nahlásiť škodlivý inzerát",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Pri zmene hesla došlo k chybe... Čo teraz?",
@@ -779,6 +802,7 @@
     "SAYING": "Hovorí",
     "SEARCH_LINK": "Hľadať",
     "SELECT_COMMUNITIES_FOR_POST": "Vyberte komunity, do kterých se má inzerát vložit.",
+    "SELECT_USERS": "Vyberze příjemce",
     "SEND": "Odoslať",
     "SENDING_FEEDBACK_SUCCESS": "Ďakujeme za názor. I vďaka vám budeme zas o niečo lepší.",
     "SENDING_MESSAGE_IN_PROGRESS": "Správa sa odosiela, prosím počkajte... Prečo sú všetci dnes tak netrpezliví? Hmm...",

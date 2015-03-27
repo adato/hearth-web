@@ -6,19 +6,23 @@
 		<a ng-click="loadConversations({type:'archive'})">Archive</a>		
 		<a ng-click="loadConversations({type:'all'})">All</a>		
 	</div>
-	<a ng-href="#!/messages/new" class="button-send right">New message</a>
+	<a ng-href="#!/messages/new" class="button-send right">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
 	<div class="clear"></div>
 	<div loading show="!conversations"></div>
 	<div class="text-center" ng-if="conversations && !conversations.length">
 		{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
 	</div>
-	<div class="collumn left large-4">
+	<div class="collumn left large-3">
 		<div class="message-conversation" ng-repeat="item in conversations" ng-click="showConversation(item._id)">
 			<h4 ng-if="item.title">{{ item.title  }}</h3>
 			<h4 ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h3>
-			<p ng-if="item.last_message_text">{{ item.last_message_text | ellipsis:40 }}</p>
-			<i ng-if="item.last_message_time">{{ item.last_message_time | date:mediumTime }}</i>
+			<span ng-if="item.last_message_text">{{ item.last_message_text | ellipsis:40 }}</span>
+			<!-- <i ng-if="item.last_message_time">{{ item.last_message_time | date:mediumTime }}</i> -->
+			<br />
+			<br />
+			<hr />
 		</div>
+
 	</div>
 	<div class="collumn right large-8" ng-if="conversations.length">
 		<div loading show="!detail"></div>
@@ -51,12 +55,10 @@
 
 				<form novalidate name="msgReplyForm" ng-submit="sendReply(reply)" ng-slide-down="replyForm.show" lazy-render duration="0.5">
 					<label for="reply-text">{{ 'MESSAGES.REPLY.TEXT_LABEL' | translate }}
-						<textarea rows="3" id="reply-text" name="text" ng-focus="showError.text = false" ng-blur="showError.text = true" autosize-textarea ng-required="true" placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-minlength="5" ng-model="reply.text"></textarea>
+						<textarea rows="3" id="reply-text" name="text" ng-focus="showError.text = false" ng-blur="showError.text = true" autosize-textarea ng-required="true" placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
 					</label>
 					<div class="error" ng-show="msgReplyForm.text.$invalid && showError.text">
 	                    <span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-	                    <span ng-show="msgReplyForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-	                    <span ng-show="msgReplyForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
 	                </div>
                     <br />
 					<a class="left action-link" ng-click="replyForm.show = false">{{ 'CANCEL' | translate }}</a>
