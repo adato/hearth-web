@@ -5,9 +5,9 @@
         <div class="recipient">
           <label>
             {{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
-            <user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.recipients"></user-selector>
+            <user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.participant_ids"></user-selector>
           </label>
-          <div class="error" ng-show="showError.recipients">
+          <div class="error" ng-show="showError.participant_ids">
               <span>{{ 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</span>
           </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="subject">
           <label>
             {{ 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
-            <input name="subject" ng-required="true" placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.subject" class="text-input" type='text' />
+            <input name="title" ng-required="true" placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
           </label>
         </div>
 

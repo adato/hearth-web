@@ -39,7 +39,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 					scope.files = scope.files || [];
 				}
 
-				console.log(scope.error);
 				// if we want to show errors outside of directive
 				if(angular.isUndefined(scope.error))
 					scope.showErrors = false;
