@@ -239,11 +239,11 @@
     "EMAIL_SHARING": {
         "ADDRESS_LABEL": "Email kamaráda\/kamarádky:",
         "ADDRESS_PLACEHOLDER": "Napište jednu nebo více emailových adres oddělených čárkou",
-        "HEADING": "Pošlete inzerát kamarádovi",
+        "HEADING": "Doporučte inzerát kamarádům",
         "NOTE": "Odešlete inzerát vašemu kamarádovi\/kamarádce.",
         "SUCCESS_MESSAGE": "Email byl úspěšně odeslán :-)",
-        "TEXT_LABEL": "Text zprávy:",
-        "TEXT_PLACEHOLDER": "Napište trochu textu..."
+        "TEXT_LABEL": "Vzkaz:",
+        "TEXT_PLACEHOLDER": "Napište kamarádovi\/kamarádce několik slov..."
     },
     "EMAIL_TEXT_PLACEHOLDER": "Text zprávy",
     "ERROR_404_SUBHEADER": "Pardon. Tohle tady nemáme :(",
@@ -660,7 +660,7 @@
     "POST_REPORT": {
         "HEADING": "Označit za nevhodný",
         "REASON_PLACEHOLDER": "Napište nám a autorovi pár slov, proč si myslíte, že by na Hearth.net takový inzerát neměl být...",
-        "REPORT_INFO": "<p>Mysl&iacute;te si, že nab&iacute;dka nebo popt&aacute;vka tohoto typu na Hearth.net nem&aacute; co dělat? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e označen&iacute; nevhodn&eacute;ho obsahu, spolu s v&aacute;mi uveden&yacute;m&nbsp;důvodem, za&scaron;leme i autorovi nab&iacute;dky nebo popt&aacute;vky.<\/p>",
+        "REPORT_INFO": "<p>Mysl&iacute;te si, že nab&iacute;dka nebo popt&aacute;vka tohoto typu na Hearth.net nem&aacute; co dělat? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e označen&iacute; nevhodn&eacute;ho obsahu, spolu s v&aacute;mi uveden&yacute;m&nbsp;důvodem, za&scaron;leme i autorovi nab&iacute;dky nebo popt&aacute;vky. Nebojte, Va&scaron;e zpr&aacute;va nebude veřejně vidět, bude to jen mezi V&aacute;mi, n&aacute;mi a autorem.<\/p>",
         "SUCCESS_MESSAGE": "Inzerát byl úspěšně nahlášen."
     },
     "POST_TEXT_LABEL": "Text inzerátu:",

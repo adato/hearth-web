@@ -22,6 +22,11 @@
     color: red;
 }
 
+.action-link {
+    color: #20b1ea;
+    font-weight: bold;
+}
+
 .box {
     background-color: white;
     border-radius: $global-radius;
@@ -107,7 +112,7 @@ button {
 }
 
 .row {
-    max-width: 960px;
+    max-width: 960px !important;
 }
 
 .remove {

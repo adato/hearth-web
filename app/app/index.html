@@ -115,7 +115,7 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
     <![endif]-->
 
-    <div class="all-visible" ng-show="initFinished">
+    <div class="all-visible row max-width" ng-show="initFinished">
       <section ng-include="'templates/navigation.html'" id="navigation"></section>
       <div app-view-segment="0" class="main-container"></div>
       <ng-view style="position: relative;top:10em;"></ng-view>
@@ -242,7 +242,8 @@
     <script src="scripts/services/resources/UserLocation.js"></script>
     <script src="scripts/services/resources/UserRatings.js"></script>
     <script src="scripts/services/resources/UsersActivityLog.js"></script>
-
+    <script src="scripts/services/resources/Messages.js"></script>
+    
     <script src="scripts/services/$feature.js"></script>
     <script src="scripts/services/$session.js"></script>
     <script src="scripts/services/ApiHealthChecker.js"></script>
@@ -274,6 +275,7 @@
     <script src="scripts/services/Communities.js"></script>
     <script src="scripts/services/Validators.js"></script>
     
+
      <script src="scripts/filters/filters.js"></script>
 
       <script src="scripts/directives/communitySelector.js"></script>
@@ -318,6 +320,7 @@
       <script src="scripts/directives/dropdown.js"></script>
       <script src="scripts/directives/emailValidator.js"></script>
       <script src="scripts/directives/marketplaceBanner.js"></script>
+      <script src="scripts/directives/userSelector.js"></script>
       <script src="scripts/directives/authorSelector.js"></script>
       <script src="scripts/directives/infoBox.js"></script>
 
@@ -346,7 +349,6 @@
       <script src="scripts/controllers/ResetPwdCtrl.js"></script>
       <script src="scripts/controllers/FeedbackCtrl.js"></script>
       <script src="scripts/controllers/TermsCtrl.js"></script>
-      <script src="scripts/controllers/SetupCtrl.js"></script>
       <script src="scripts/controllers/community/CommunityProfileCtrl.js"></script>
       <script src="scripts/controllers/community/CommunityCreateCtrl.js"></script>
       <script src="scripts/controllers/community/CommunityListCtrl.js"></script>
@@ -357,6 +359,9 @@
       <script src="scripts/controllers/FillEmailCtrl.js"></script>
       <script src="scripts/controllers/ItemDetail.js"></script>
       <script src="scripts/controllers/TokenLoginCtrl.js"></script>
+      
+      <script src="scripts/controllers/messages/MessagesCtrl.js"></script>
+      <script src="scripts/controllers/messages/AddMessageCtrl.js"></script>
 
       <script src="scripts/controllers/modal/ItemReport.js"></script>
       <script src="scripts/controllers/modal/EmailSharing.js"></script>
@@ -365,8 +370,6 @@
       <script src="scripts/controllers/modal/Tutorial.js"></script>
       <script src="scripts/controllers/modal/InviteBox.js"></script>
       <script src="scripts/controllers/modal/ConfirmBox.js"></script>
-
-      <script src="scripts/messages/Messages.js"></script>      
     <!-- endbuild -->
 
     <script>
