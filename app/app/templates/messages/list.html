@@ -16,8 +16,8 @@
 		<div class="message-conversation" ng-repeat="item in conversations" ng-click="showConversation(item._id)">
 			<h4 ng-if="item.title">{{ item.title  }}</h3>
 			<h4 ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h3>
-			<p>{{ item.last_message_text | ellipsis:40 }}</p>
-			<i>{{ item.last_message_time | date:mediumTime }}</i>
+			<p ng-if="item.last_message_text">{{ item.last_message_text | ellipsis:40 }}</p>
+			<i ng-if="item.last_message_time">{{ item.last_message_time | date:mediumTime }}</i>
 		</div>
 	</div>
 	<div class="collumn right large-8" ng-if="conversations.length">
