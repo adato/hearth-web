@@ -26,10 +26,10 @@
             <div class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</div>
 
             <section class="author">
-                <author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
+                <author-selector title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
 
-                <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
-                <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
+                <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>
+                <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_GIVE' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
                 <div class="clear"></div>
             </section>
             
@@ -56,11 +56,13 @@
                 </div>
             </section>
 
-            <section ng-slide-down="!post.current_community_id" lazy-render duration="0.3" class="text-input communitiy-selector" ng-if="myCommunities.length">
+            <section class="text-input keywords">
                 <label>
-                    {{ 'POST_COMMUNITIES_LABEL' | translate }}
+                    {{ 'POST_KEYWORDS_LABEL' | translate }}
                 </label>
-                <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
+                <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+                    <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+                </tags-input>
             </section>
 
             <section class="place text-input">
@@ -113,15 +115,12 @@
                 </div>
             </section>
 
-            <section class="collapse keywords" ng-class="{ 'collapse-expanded': slide.keywords }">
-                <label slide-trigger="slide.keywords">
-                    {{ 'POST_KEYWORDS_LABEL' | translate }} <span ng-if="!slide.keywords && post.keywords.length">({{post.keywords.length}})</span>
+            <section class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
+                <label class="collapse-trigger" slide-trigger="slide.communities">
+                    {{ 'POST_COMMUNITIES_LABEL' | translate }}
                 </label>
-
-                <div ng-slide-down="slide.keywords" lazy-render duration="0.5">
-                    <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
-                        <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
-                    </tags-input>
+                <div ng-slide-down="slide.communities" lazy-render duration="0.5">
+                    <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
                 </div>
             </section>
 

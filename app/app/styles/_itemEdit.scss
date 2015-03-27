@@ -176,7 +176,9 @@ $local-input-error-color: #ea122a;
             margin-right:10px;
         }
     }
-
+    .keywords {
+        margin-bottom: 1rem;
+    }
     .community-picker {
         .select2-container {
             padding:0;
@@ -220,7 +222,7 @@ $local-input-error-color: #ea122a;
         &.collapse-expanded {
             margin-bottom:$local-small-grid-size * 3;
         }
-        &>label i.fa {
+        &>label i.fa, label.collapse-trigger i.fa {
             margin:0;
             color:color(5);
 
@@ -229,7 +231,6 @@ $local-input-error-color: #ea122a;
             }
         }
     }
-
 
     .checkbox {
         padding-top: 0px;

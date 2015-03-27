@@ -20,7 +20,8 @@
     "ACTUALLY_YOU_HAVE_ACTIVE": "Momentálně máte aktivní",
     "ADD": "Přidat",
     "ADD_COMMUNITY_RATING": "Hodnocení komunity",
-    "ADD_CONTENT_AS": "za",
+    "ADD_CONTENT_AS_COMMUNITY": "jako komunita",
+    "ADD_CONTENT_AS_USER": "jako",
     "ADD_KEYWORDS": "Klíčová slova, oddělená čárkou",
     "ADD_LOCATION": "Zadejte místo",
     "ADD_NEXT_WEB": "Přidat další web",
@@ -631,8 +632,14 @@
     "POPULAR_KEYWORDS": "Populární klíčová slova",
     "POSITIVE": "Všechno klaplo",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Vše proběhlo jak mělo? Jste nadšeni? Tak šup... dejte to uživateli vědět.",
+    "POST": {
+        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
+    },
     "POSTS": {
         "POSTS": "inzeráty",
+        "CREATE": {
+            "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
+        },
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
@@ -648,7 +655,7 @@
         "few": "inzeráty",
         "other": "inzerátů"
     },
-    "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity:",
+    "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity",
     "POST_EXPIRATION_DATE_LABEL": "Platnost do",
     "POST_HAS_ALREADY_EXPIRED": "Platnost inzerátu již skončila",
     "POST_HAS_BEEN_DEACTIVATED": "Inzerát byl pozastavený",

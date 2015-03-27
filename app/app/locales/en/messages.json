@@ -20,7 +20,8 @@
     "ACTUALLY_YOU_HAVE_ACTIVE": "Currently active",
     "ADD": "Add",
     "ADD_COMMUNITY_RATING": "Community rating",
-    "ADD_CONTENT_AS": "as",
+    "ADD_CONTENT_AS_COMMUNITY": "as",
+    "ADD_CONTENT_AS_USER": "jako",
     "ADD_KEYWORDS": "Add keywords, separated by comma",
     "ADD_LOCATION": "Add location",
     "ADD_NEXT_WEB": "Add another web",
@@ -618,8 +619,14 @@
     "POPULAR_KEYWORDS": "Popular keywords",
     "POSITIVE": "All clicked into place",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Everything went smoothly? Are you excited? Quick...share your joy with the user.",
+    "POST": {
+        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
+    },
     "POSTS": {
         "POSTS": "posts",
+        "CREATE": {
+            "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
+        },
         "DETAIL": {
             "HIDE_MAP": "Hide map",
             "LOCATION_ANYWHERE": "Anywhere",

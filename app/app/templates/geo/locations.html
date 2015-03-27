@@ -14,7 +14,8 @@
                 <i class="fa fa-map-marker">
                     <span class="fa fa-times hidden"></span>
                 </i>
-                {{ 'MAP' | translate }}
+                <span ng-if="mapIsVisible" ng-bind=" 'POSTS.DETAIL.HIDE_MAP' | translate"></span>
+                <span ng-if="!mapIsVisible" ng-bind=" 'POSTS.DETAIL.SHOW_MAP' | translate"></span>
             </a>
         </div>
         <div class="clearfix"></div>
