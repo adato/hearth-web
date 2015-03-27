@@ -26,10 +26,10 @@
             <div class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</div>
 
             <section class="author">
-                <author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
+                <author-selector title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
 
-                <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'NEED' | translate }}" text-false="{{ 'OFFER' | translate }}"></needofferselector>
-                <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_NEED' | translate }}" text-false="{{ 'WE_GIVE' | translate }}"></needofferselector>
+                <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>
+                <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_GIVE' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
                 <div class="clear"></div>
             </section>
             

@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.imagesCount = 0;
 		$scope.defaultPost = {
-			type: false,
+			type: true,
 			keywords: [],
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [],
@@ -136,8 +136,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.transformDataOut = function(data) {
 			var values = {
-				false: 'offer',
-				true: 'need'
+				true: 'offer',
+				false: 'need'
 			};
 
 			// clear locations from null values
