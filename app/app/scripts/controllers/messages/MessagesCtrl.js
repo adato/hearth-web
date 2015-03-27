@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', '$timeout', 'Notify',
-	function($scope, $rootScope, Conversations, UnauthReload, $timeout, Notify) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', '$timeout', 'Notify', 'Messenger',
+	function($scope, $rootScope, Conversations, UnauthReload, $timeout, Notify, Messenger) {
 		$scope.conversations = false;
 		$scope.detail = false;
 		$scope.reply = {
@@ -29,7 +29,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadCounters = function() {
-			Conversations.getCounters({}, function(res) {
+			Messenger.loadCounters(function(res) {
 				$scope.conversationsCounters = res;
 			});
 		};
@@ -46,8 +46,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 							msg.title.push(user.name);
 					};
 					msg.title = msg.title.join(", ");
-					return msg;
 				}
+				return msg;
 			});
 		};
 
@@ -122,6 +122,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		function init() {
 			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {
+				console.log(list);
 				// load first conversation on init
 				list.length && $scope.loadConversationDetail(list[0]._id);
 			});
