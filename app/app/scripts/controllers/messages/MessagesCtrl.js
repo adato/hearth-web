@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 		
 		$scope.showConversation = function(id) {
-			if(detail._id == id) return false;
+			if($scope.detail._id == id) return false;
 			
 			$scope.detail = false;
 			$scope.loadConversationDetail(id);
