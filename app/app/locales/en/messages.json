@@ -429,7 +429,23 @@
     },
     "MEET_USER": "Meet user",
     "MEMBER_OF_COMMUNITIES_LABEL": "Is member of communities",
-    "MESSAGES": "News",
+    "MESSAGES": {
+        "MESSAGES": "News",
+        "ADD": {
+            "HEADING": "Nová zpráva",
+            "RECIPIENTS_LABEL": "Příjemce",
+            "SEND_MESSAGE": "Odeslat zprávu",
+            "SUBJECT_LABEL": "Předmět zprávy",
+            "SUBJECT_PLACEHOLDER": "Vyplňte předmět zprávy",
+            "TEXT_LABEL": "Text zprávy",
+            "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
+        },
+        "ADD_NEW_MESSAGE": "Nová zpráva",
+        "REPLY": {
+            "TEXT_LABEL": "Text odpovědi:",
+            "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+        }
+    },
     "MESSAGES_ARCHIVE": "News archive",
     "MESSAGES_ARCHIVE_MESSAGE": "Archive",
     "MESSAGES_DELETE": "Delete for good",
@@ -748,6 +764,7 @@
     "RATING_WAS_SAVED": "Rating was successfully saved.",
     "REGISTER_TO_HEARTH_TEXT": "Your new profile is just few clicks away.  Clickity click!",
     "REMOVE": "Remove",
+    "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Reply",
     "REPLY_PUBLISH_EMAIL_AGREE": "I agree that my email address will be provided to {{name}}.",
     "REPORT": "Report",
@@ -765,6 +782,7 @@
     "SAYING": "Says",
     "SEARCH_LINK": "Search",
     "SELECT_COMMUNITIES_FOR_POST": "Select communities the ad should go into.",
+    "SELECT_USERS": "Vyberze příjemce",
     "SEND": "Send",
     "SENDING_FEEDBACK_SUCCESS": "Thanks for your response! You too are helping us getting better every day.",
     "SENDING_MESSAGE_IN_PROGRESS": "Spinning the wheels, please wait... Why are people so impatient these days? Hm...",

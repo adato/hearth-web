@@ -87,7 +87,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.validateReply = function(reply) {
 			var invalid = false;
 
-			if(!reply.text || reply.text.length < 5)
+			if(!reply.text)
 				invalid = $scope.showError.text = true;
 			
 			return !invalid;
