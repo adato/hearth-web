@@ -27,10 +27,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			is_private: false,
 		};
 		$scope.slide = {
-			keywords: false,
 			files: false,
 			date: false,
 			lock: false,
+			communities: false,
 		};
 		$scope.newPost = false;
 		$scope.showError = {
@@ -402,6 +402,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(!!val !== !!old) {
 				$scope.post.is_private = 0;
 				$scope.post.related_communities = [];
+				$scope.slide.communities = false;
 			}
 		});
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
