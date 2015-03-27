@@ -22,6 +22,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 		
 		$scope.showConversation = function(id) {
+			if(detail._id == id) return false;
+			
 			$scope.detail = false;
 			$scope.loadConversationDetail(id);
 		};
@@ -94,7 +96,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.sendReply = function(reply) {
 			reply.id = $scope.detail._id;
 
-			console.log(reply);
 			if(!$scope.validateReply(reply))
 				return false;
 
@@ -103,6 +104,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.sendingReply = true;
 
 			Conversations.reply(reply, function(res) {
+
+				$scope.reply.text = '';
+				$scope.showError.text = false;
+				$scope.replyForm.show = false;
+
+				$scope.detail.messages = res.messages;
 
 				$scope.sendingReply = false;
 				Notify.addSingleTranslate('NOTIFY.MESSAGE_REPLY_SUCCESS', Notify.T_SUCCESS);
