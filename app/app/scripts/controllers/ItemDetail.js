@@ -79,7 +79,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					//$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
 
-					$scope.isExpiringSoon = moment(data.valid_until).subtract(7, 'days').isBefore(new Date())
+					$scope.isExpiringSoon = !data.valid_until_unlimited && moment(data.valid_until).subtract(7, 'days').isBefore(new Date())
 												&& moment(data.valid_until).isAfter(new Date());
 					
 					
