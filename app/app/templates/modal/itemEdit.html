@@ -1,6 +1,6 @@
 <div class="itemEdit modal">
     <div class="head">
-        <a ng-click="closeThisDialog()" class="fright close-dialog">{{ 'CLOSE' | translate }}</a>
+        <a ng-click="closeThisDialog()" class="fright close-dialog"><i class="fa fa-close"></i></a>
         <h2>
             <span ng-if="post._id">{{ 'EDIT_POST' | translate }}</span>
             <span ng-if="! post._id">{{ 'CREATE_POST' | translate }}</span>
@@ -37,8 +37,8 @@
                 <label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
                 <div class="name">
                     <div class="field-group">
-                        <span class="left-radius green bold" ng-click="post.type = !post.type" ng-if="post.type">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
-                        <span class="left-radius red bold" ng-click="post.type = !post.type" ng-if="!post.type">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
+                        <span class="left-radius green bold" ng-if="post.type" ng-click="post.type = !post.type">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
+                        <span class="left-radius red bold" ng-if="!post.type" ng-click="post.type = !post.type">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
                         <input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
                     </div>
 
@@ -84,13 +84,15 @@
                 </label>
                 <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
                     <li>
-                        <input type="radio" id="private_none" name="private" ng-model="post.is_private" ng-value="false" ng-checked="!post.is_private" />
-                        <label for="private_none">{{ 'VISIBLE_FOR_ALL' | translate }}</label>
+                        <radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
+                            {{ 'VISIBLE_FOR_ALL' | translate }}
+                        </radio>
                     </li>
                     <li>
-                        <input type="radio" id="private" name="private" ng-model="post.is_private" ng-value="true" ng-checked="post.is_private" />
-                        <label ng-if="!post.current_community_id && !post.related_communities.length" for="private">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
-                        <label for="private" ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
+                        <radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
+                            <span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+                            <span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+                        </radio>
                     </li>
                 </ul>
             </section>
@@ -110,7 +112,7 @@
                 </label>
 
                 <div ng-slide-down="slide.date" lazy-render duration="0.3" ng-class="{disabled: post.valid_until_unlimited == true}">
-                    <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" placeholder="{{'UNLIMITED' | translate}}" required>
+                    <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" required>
                     <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
                     <div class="clear error" ng-show="showError.valid_until">
                         <span ng-show="createAdForm.valid_until.$error.required">{{ 'DATE_IS_EMPTY' | translate }}</span>
