@@ -32,13 +32,13 @@ $local-input-error-color: #ea122a;
     // fix stuff
     a {
         font-weight: 600;
-        &.close-dialog { 
+/*         &.close-dialog { 
             font-size:$local-text-font-size + ($local-text-font-size / 2);
             position:relative;
             top:-1 * $local-small-grid-size;
             right:-1 * $local-small-grid-size;
             color:$local-color-lighter;
-        }
+        } */
     }
     * {
         text-align:left;
@@ -144,33 +144,42 @@ $local-input-error-color: #ea122a;
             }
         }
     }
-    .avatar-small { 
-        position:relative;
-        top:-1 * $local-small-grid-size;
-        img {
-            width:6*$local-small-grid-size;
-            height:6*$local-small-grid-size; 
-        }
-        *:before {
-            width:6*$local-small-grid-size;
-            height:6*$local-small-grid-size;
-            box-shadow:none !important;
-        }
-    }
-}
-
-
-.ngdialog .itemEdit {
-    
-    .authorSelector {
+    .author-selector {
         margin-right:$local-grid-size;
-        margin-top:3*$local-small-grid-size;
+
+        .avatar-small { 
+            position:relative;
+            top:2 * $local-small-grid-size;
+            margin-right:2*$local-small-grid-size;
+            img {
+                width:6*$local-small-grid-size;
+                height:6*$local-small-grid-size; 
+            }
+            *:before {
+                width:6*$local-small-grid-size;
+                height:6*$local-small-grid-size;
+                box-shadow:none !important;
+            }
+        }
+
         select {
             width:60*$local-small-grid-size;
             outline:none;
             &:focus {
                 border:1px solid color(5);
             }
+        }
+    }
+}
+
+
+.ngdialog .itemEdit {
+    .author-selector {
+        margin-top:0;
+        .avatar-small { 
+            position:relative;
+            top:2 * $local-small-grid-size;
+            margin-right:2*$local-small-grid-size;
         }
     }
     .need-offer-selector {
