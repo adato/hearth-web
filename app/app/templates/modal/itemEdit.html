@@ -1,6 +1,6 @@
 <div class="itemEdit modal">
     <div class="head">
-        <a ng-click="closeThisDialog()" class="fright close-dialog">{{ 'CLOSE' | translate }}</a>
+        <a ng-click="closeThisDialog()" class="fright close-dialog"><i class="fa fa-close"></i></a>
         <h2>
             <span ng-if="post._id">{{ 'EDIT_POST' | translate }}</span>
             <span ng-if="! post._id">{{ 'CREATE_POST' | translate }}</span>
@@ -112,7 +112,7 @@
                 </label>
 
                 <div ng-slide-down="slide.date" lazy-render duration="0.3" ng-class="{disabled: post.valid_until_unlimited == true}">
-                    <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" placeholder="{{'UNLIMITED' | translate}}" required>
+                    <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" required>
                     <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
                     <div class="clear error" ng-show="showError.valid_until">
                         <span ng-show="createAdForm.valid_until.$error.required">{{ 'DATE_IS_EMPTY' | translate }}</span>
