@@ -248,6 +248,9 @@ $local-input-error-color: #ea122a;
         .error {
             margin-top:3*$local-small-grid-size;
         }
+        input {
+            transition: none;
+        }
     }
 
     section.lock {

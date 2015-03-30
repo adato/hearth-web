@@ -51,6 +51,7 @@
     "ALL_POSTS": "Všetky príspevky",
     "ALREADY_HAVE_AN_ACCOUNT": "Už máte účet?",
     "ALREADY_USED_EMAIL": "Email je už použitý v aplikácii",
+    "ATTACHE_IMAGES": "Přiložit obrázky",
     "ATTACH_PHOTO_LINK": "Priložiť fotografiu",
     "AVATAR_UPLOAD_FAILED": "Bohužiaľ sa nepodarilo nahrať profilový obrázok. Čo na ňom vlastne máte?!",
     "AVATAR_UPLOAD_SUCCESS": "Nový profilový obrázok bol úspešne nahraný. Teda, pristane vám to!",
@@ -439,7 +440,23 @@
     },
     "MEET_USER": "Spoznajte užívateľa",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členom komunít",
-    "MESSAGES": "Správy",
+    "MESSAGES": {
+        "MESSAGES": "Správy",
+        "ADD": {
+            "HEADING": "Nová zpráva",
+            "RECIPIENTS_LABEL": "Příjemce",
+            "SEND_MESSAGE": "Odeslat zprávu",
+            "SUBJECT_LABEL": "Předmět zprávy",
+            "SUBJECT_PLACEHOLDER": "Vyplňte předmět zprávy",
+            "TEXT_LABEL": "Text zprávy",
+            "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
+        },
+        "ADD_NEW_MESSAGE": "Nová zpráva",
+        "REPLY": {
+            "TEXT_LABEL": "Text odpovědi:",
+            "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+        }
+    },
     "MESSAGES_ARCHIVE": "Archív správ",
     "MESSAGES_ARCHIVE_MESSAGE": "Archivovať",
     "MESSAGES_DELETE": "Navždy zmazať",
@@ -768,6 +785,7 @@
     "RATING_WAS_SAVED": "Hodnotenie bolo úspešne uložené. Čo je doma, to sa počíta.",
     "REGISTER_TO_HEARTH_TEXT": "Váš profil je už len pár klikov odtiaľto. Šup šup.",
     "REMOVE": "Odobrať",
+    "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Odpovedať",
     "REPLY_PUBLISH_EMAIL_AGREE": "Spoločne s touto správou uvidí užívateľ {{name}} i Vašu emailovú adresu.",
     "REPORT": "Odeslat",
@@ -785,6 +803,7 @@
     "SAYING": "Hovorí",
     "SEARCH_LINK": "Hľadať",
     "SELECT_COMMUNITIES_FOR_POST": "Vyberte komunity, do kterých se má inzerát vložit.",
+    "SELECT_USERS": "Vyberze příjemce",
     "SEND": "Odoslať",
     "SENDING_FEEDBACK_SUCCESS": "Ďakujeme za názor. I vďaka vám budeme zas o niečo lepší.",
     "SENDING_MESSAGE_IN_PROGRESS": "Správa sa odosiela, prosím počkajte... Prečo sú všetci dnes tak netrpezliví? Hmm...",

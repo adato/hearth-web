@@ -124,6 +124,9 @@
             <section class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
                 <label class="collapse-trigger" slide-trigger="slide.communities">
                     {{ 'POST_COMMUNITIES_LABEL' | translate }}
+                    <span ng-if="post.related_communities.length">
+                    ({{ post.related_communities.length}})
+                    </span>
                 </label>
                 <div ng-slide-down="slide.communities" lazy-render duration="0.5">
                     <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
