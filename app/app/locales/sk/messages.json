@@ -297,6 +297,8 @@
     "ERR_RATING_TEXT_MIN_LEN": "Vaše hodnotenie je príliš stručné. Určite máte na viac!",
     "ERR_REPLY_EMPTY_MESSAGE": "Napíšte niečo, obsah správy je prázdny. Alebo nepoužívajte neviditeľný atrament.",
     "ERR_REPLY_PLEASE_AGREE": "Prosím potvrďte súhlas s odovzdaním emailovej adresy. Je to len formalita.",
+    "ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen.",
+    "ERR_REPORT_TEXT_MIN_LEN": "Napište prosím důvod nahlášení inzerátu",
     "ERR_SHARING_EMAIL_ADDRESS_INVALID": "Jedna nebo více adres nemá správný formát",
     "ERR_TOO_SHORT_NEW_PASS": "Nové heslo musí mať aspoň 5 znakov!",
     "ERR_USER_NOT_FOUND": "Užívateľ nebol nájdený.",
