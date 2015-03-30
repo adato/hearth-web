@@ -1,10 +1,9 @@
-<div class="need-offer-selector button-group radius">
-	<label for="true" class="label-block" ng-class="{'label-checked':model}">
-		<input type="radio" id="true" name="needoffer" ng-value="true" ng-model="model" />
+<div class="need-offer-selector">
+	<radio model="model" value="true" value-off="false" checked="model">
 		{{ textTrue }}
-	</label>
-	<label for="false" class="label-block" ng-class="{'label-checked':!model}">
-		<input type="radio" id="false" name="needoffer" ng-value="false" ng-model="model" />
+	</radio>
+
+	<radio model="model" value="false" value-off="true" checked="!model">
 		{{ textFalse }}
-	</label>
+	</radio>
 </div>

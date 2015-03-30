@@ -12,6 +12,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
+		$scope.limitPixelSize = 200;
 		$scope.imagesCount = 0;
 		$scope.defaultPost = {
 			type: true,
@@ -128,6 +129,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
+				$scope.slide.communities = !!post.related_communities.length
 
 				post.type = post.type == 'offer';
 			}
@@ -317,16 +319,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			
 			postData = $scope.transformDataOut(postData);
 
-			// if(post.related_community_ids.length) {
-			// 	postData.related_community_ids = [];
-			// 	post.related_community_ids.forEach(function(item) {
-			// 		postData.related_community_ids.push(item._id);
-			// 	});
-			// }
-
-			if ($scope.sending) {
+			if ($scope.sending)
 				return false;
-			}
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 

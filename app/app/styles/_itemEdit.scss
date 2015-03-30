@@ -6,6 +6,7 @@ $local-border-style: 1px solid #e3e3e3; // exact by image
 $local-input-border-style: 1px solid #ddd; // or should be #ddd?
 $local-input-text-color: #333;
 $local-color-disabled: #999;
+$local-color-lighter: #999;
 $local-input-height: 30px;
 $local-input-error-color: #ea122a;
 
@@ -31,7 +32,13 @@ $local-input-error-color: #ea122a;
     // fix stuff
     a {
         font-weight: 600;
-        &.close-dialog { font-size: $local-text-font-size; }
+        &.close-dialog { 
+            font-size:$local-text-font-size + ($local-text-font-size / 2);
+            position:relative;
+            top:-1 * $local-small-grid-size;
+            right:-1 * $local-small-grid-size;
+            color:$local-color-lighter;
+        }
     }
     * {
         text-align:left;
@@ -159,7 +166,11 @@ $local-input-error-color: #ea122a;
         margin-right:$local-grid-size;
         margin-top:3*$local-small-grid-size;
         select {
-            min-width:60*$local-small-grid-size;
+            width:60*$local-small-grid-size;
+            outline:none;
+            &:focus {
+                border:1px solid color(5);
+            }
         }
     }
     .need-offer-selector {
@@ -202,23 +213,8 @@ $local-input-error-color: #ea122a;
         }
     }
 
-    section.place {
-        padding-bottom:$local-small-grid-size * 3;
-    }
-
-    .location-picker {
-        .ng-invalid .tags { 
-            border:1px solid $local-input-error-color !important; 
-        }
-        .location-input.disabled .tags { border-color:#ddd !important; }
-        .location-map { margin-bottom: $local-small-grid-size * 2; }
-        .error {
-            margin-top:3*$local-small-grid-size;
-        }
-    }
-
+    // any collapsible section
     section.collapse {
-        //margin-top:$local-small-grid-size;
         &.collapse-expanded {
             margin-bottom:$local-small-grid-size * 3;
         }
@@ -230,22 +226,66 @@ $local-input-error-color: #ea122a;
                 margin-right:$local-small-grid-size;
             }
         }
+    }    
+
+    section.place {
+        padding-bottom:$local-small-grid-size * 3;
     }
+
+    section.date {
+        input.date {
+            width: 10*$local-grid-size;
+            text-align:center;
+        }
+    }
+
+    .location-picker {
+        .ng-invalid .tags { 
+            border:1px solid $local-input-error-color !important; 
+        }
+        .location-input.disabled .tags { border-color:#ddd !important; }
+        .location-map { margin-bottom: $local-small-grid-size * 2; }
+        .error {
+            margin-top:3*$local-small-grid-size;
+        }
+        input {
+            transition: none;
+        }
+    }
+
+    section.lock {
+        &>ul>div {
+            line-height:1;
+            margin-bottom:$local-small-grid-size;
+        }
+    }
+
+    section.title {
+        .name .field-group span {
+            cursor:pointer;
+        }
+    }
+
+
 
     .checkbox {
         padding-top: 0px;
         height: auto;
         padding-left: 0px;
+        font-weight: normal;
         .fa {
             margin-left: 0px;
             width: 14px;
             font-size:14px;
-            color:$local-input-text-color;
+            color:$local-color-lighter;
         }
         span {
             margin-left: 0;
             top: 0;
         }
+    }
+    label.checkbox.radio {
+        margin-right:$local-grid-size;
     }
     .tags {
         min-height:30px;
