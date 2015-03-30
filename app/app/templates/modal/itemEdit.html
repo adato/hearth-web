@@ -84,13 +84,15 @@
                 </label>
                 <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
                     <li>
-                        <input type="radio" id="private_none" name="private" ng-model="post.is_private" ng-value="false" ng-checked="!post.is_private" />
-                        <label for="private_none">{{ 'VISIBLE_FOR_ALL' | translate }}</label>
+                        <radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
+                            {{ 'VISIBLE_FOR_ALL' | translate }}
+                        </radio>
                     </li>
                     <li>
-                        <input type="radio" id="private" name="private" ng-model="post.is_private" ng-value="true" ng-checked="post.is_private" />
-                        <label ng-if="!post.current_community_id && !post.related_communities.length" for="private">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</label>
-                        <label for="private" ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</label>
+                        <radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
+                            <span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+                            <span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+                        </radio>
                     </li>
                 </ul>
             </section>

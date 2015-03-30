@@ -159,7 +159,7 @@ $local-input-error-color: #ea122a;
         margin-right:$local-grid-size;
         margin-top:3*$local-small-grid-size;
         select {
-            min-width:60*$local-small-grid-size;
+            width:60*$local-small-grid-size;
         }
     }
     .need-offer-selector {
@@ -232,20 +232,33 @@ $local-input-error-color: #ea122a;
         }
     }
 
+    section.lock {
+        &>ul>div {
+            line-height:1;
+            margin-bottom:$local-small-grid-size;
+        }
+    }
+
+
+
     .checkbox {
         padding-top: 0px;
         height: auto;
         padding-left: 0px;
+        font-weight: normal;
         .fa {
             margin-left: 0px;
             width: 14px;
             font-size:14px;
-            color:$local-input-text-color;
+            color:#999;
         }
         span {
             margin-left: 0;
             top: 0;
         }
+    }
+    label.checkbox.radio {
+        margin-right:$local-grid-size;
     }
     .tags {
         min-height:30px;
