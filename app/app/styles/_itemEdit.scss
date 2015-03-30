@@ -239,6 +239,12 @@ $local-input-error-color: #ea122a;
         }
     }
 
+    section.title {
+        .name .field-group span {
+            cursor:pointer;
+        }
+    }
+
 
 
     .checkbox {
