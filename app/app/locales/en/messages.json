@@ -20,7 +20,8 @@
     "ACTUALLY_YOU_HAVE_ACTIVE": "Currently active",
     "ADD": "Add",
     "ADD_COMMUNITY_RATING": "Community rating",
-    "ADD_CONTENT_AS": "as",
+    "ADD_CONTENT_AS_COMMUNITY": "as",
+    "ADD_CONTENT_AS_USER": "jako",
     "ADD_KEYWORDS": "Add keywords, separated by comma",
     "ADD_LOCATION": "Add location",
     "ADD_NEXT_WEB": "Add another web",
@@ -50,6 +51,7 @@
     "ALL_POSTS": "All posts",
     "ALREADY_HAVE_AN_ACCOUNT": "Already have an account?",
     "ALREADY_USED_EMAIL": "This email is being used already in our app. Yep.",
+    "ATTACHE_IMAGES": "Přiložit obrázky",
     "ATTACH_PHOTO_LINK": "Attach photo...",
     "AVATAR_UPLOAD_FAILED": "Profile picture upload failed. What's wrong with your picture?!",
     "AVATAR_UPLOAD_SUCCESS": "New profile picture was successfully uploaded. Wow, you look good!",
@@ -288,6 +290,8 @@
     "ERR_RATING_TEXT_MIN_LEN": "Your feedback is too short. Come on, you can do better!",
     "ERR_REPLY_EMPTY_MESSAGE": "Write something, the message is empty. Or do not use invisible ink.",
     "ERR_REPLY_PLEASE_AGREE": "Please confirm you agree with your e-mail being forwarded. It's just a formality.",
+    "ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen.",
+    "ERR_REPORT_TEXT_MIN_LEN": "Napište prosím důvod nahlášení inzerátu",
     "ERR_SHARING_EMAIL_ADDRESS_INVALID": "One or more adresses is not in correct format.",
     "ERR_TOO_SHORT_NEW_PASS": "New password has to have at least 5 characters! In words: five.",
     "ERR_USER_NOT_FOUND": "User was not found.",
@@ -428,7 +432,23 @@
     },
     "MEET_USER": "Meet user",
     "MEMBER_OF_COMMUNITIES_LABEL": "Is member of communities",
-    "MESSAGES": "News",
+    "MESSAGES": {
+        "MESSAGES": "News",
+        "ADD": {
+            "HEADING": "Nová zpráva",
+            "RECIPIENTS_LABEL": "Příjemce",
+            "SEND_MESSAGE": "Odeslat zprávu",
+            "SUBJECT_LABEL": "Předmět zprávy",
+            "SUBJECT_PLACEHOLDER": "Vyplňte předmět zprávy",
+            "TEXT_LABEL": "Text zprávy",
+            "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
+        },
+        "ADD_NEW_MESSAGE": "Nová zpráva",
+        "REPLY": {
+            "TEXT_LABEL": "Text odpovědi:",
+            "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+        }
+    },
     "MESSAGES_ARCHIVE": "News archive",
     "MESSAGES_ARCHIVE_MESSAGE": "Archive",
     "MESSAGES_DELETE": "Delete for good",
@@ -618,8 +638,14 @@
     "POPULAR_KEYWORDS": "Popular keywords",
     "POSITIVE": "All clicked into place",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Everything went smoothly? Are you excited? Quick...share your joy with the user.",
+    "POST": {
+        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
+    },
     "POSTS": {
         "POSTS": "posts",
+        "CREATE": {
+            "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
+        },
         "DETAIL": {
             "HIDE_MAP": "Hide map",
             "LOCATION_ANYWHERE": "Anywhere",
@@ -741,6 +767,7 @@
     "RATING_WAS_SAVED": "Rating was successfully saved.",
     "REGISTER_TO_HEARTH_TEXT": "Your new profile is just few clicks away.  Clickity click!",
     "REMOVE": "Remove",
+    "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Reply",
     "REPLY_PUBLISH_EMAIL_AGREE": "I agree that my email address will be provided to {{name}}.",
     "REPORT": "Report",
@@ -758,6 +785,7 @@
     "SAYING": "Says",
     "SEARCH_LINK": "Search",
     "SELECT_COMMUNITIES_FOR_POST": "Select communities the ad should go into.",
+    "SELECT_USERS": "Vyberze příjemce",
     "SEND": "Send",
     "SENDING_FEEDBACK_SUCCESS": "Thanks for your response! You too are helping us getting better every day.",
     "SENDING_MESSAGE_IN_PROGRESS": "Spinning the wheels, please wait... Why are people so impatient these days? Hm...",
