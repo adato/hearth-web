@@ -1,5 +1,5 @@
-$local-base-grid-size: 5px;
-$local-large-grid-size: 5 * $local-base-grid-size;
+$local-small-grid-size: 5px;
+$local-large-grid-size: 5 * $local-small-grid-size;
 $local-font-size: 14px;
 $local-header-font-size: 16px;
 
@@ -12,6 +12,16 @@ $local-header-font-size: 16px;
 		padding:$local-large-grid-size;
 		box-shadow:1px 1px 6px rgba(100,100,100,.5);
 	}
+
+	.item-status-bar {
+		background:red;
+		color:white;
+		border-radius:$global-radius;
+		margin:0 0 3*$local-small-grid-size;
+		padding:$local-small-grid-size $local-large-grid-size;
+		font-weight:600;
+	}
+
 	.ad-author-column {
 		float:right;
 		clear:left;
@@ -89,7 +99,7 @@ $local-header-font-size: 16px;
 				text-align: right;
 				.fa {
 					display: inline-block;
-					margin-left: $local-base-grid-size;
+					margin-left: $local-small-grid-size;
 				}
 				span {
 					margin-right: 10px;
@@ -104,7 +114,7 @@ $local-header-font-size: 16px;
 				img {
 					display: inline-block;
 					left: -20px;
-					margin-right: $local-base-grid-size;
+					margin-right: $local-small-grid-size;
 					max-height: 16px;
 					position: absolute;
 					top: 3px;
@@ -140,14 +150,14 @@ $local-header-font-size: 16px;
 			.descr .fa {
 				width: 8px;
 				color: color(1);
-				margin-right: 3 * $local-base-grid-size;
+				margin-right: 3 * $local-small-grid-size;
 			}
 			.social {
 				font-size: 1.5rem;
 				text-align: right;
 				margin-top: 4px;
-				margin-bottom: $local-base-grid-size;
-				padding-right: $local-base-grid-size;
+				margin-bottom: $local-small-grid-size;
+				padding-right: $local-small-grid-size;
 				.fa {
 					color: color(5);
 					margin: 1px;
@@ -189,7 +199,7 @@ $local-header-font-size: 16px;
 				font-weight:700;
 				word-wrap: break-word;
 				margin:0;
-				margin-right:3 * $local-base-grid-size;
+				margin-right:3 * $local-small-grid-size;
 				display:inline;
 			}
 			#ad-flag-container>a {
@@ -197,7 +207,7 @@ $local-header-font-size: 16px;
 				margin-left:$local-large-grid-size;
 			}
 			.validity-warning {
-				margin-right: 3 * $local-base-grid-size;
+				margin-right: 3 * $local-small-grid-size;
 			}
 		}
 		h4 {
@@ -218,17 +228,21 @@ $local-header-font-size: 16px;
 		}
 		footer {
 			background:color(4);
+			height:60px;
+			box-sizing: border-box;
+			position: relative;
+			top: $local-large-grid-size;
+			border-bottom-right-radius:$global-radius;
+			border-bottom-left-radius:$global-radius;
+
 			margin: {
 				left: -1 * $local-large-grid-size;
 				right: -1 * $local-large-grid-size;
-				bottom:-1 * $local-large-grid-size;
-				top: $local-large-grid-size;
 			}
 			padding: {
-				top: 4 * $local-base-grid-size;
+				top: 14px;
 				left: $local-large-grid-size;
 				right: $local-large-grid-size;
-				bottom: $local-large-grid-size;
 			}
 			.sharing a { 
 				color:color(4);
@@ -238,19 +252,28 @@ $local-header-font-size: 16px;
 				font-size:1em;
 				width:$local-large-grid-size;
 				height:$local-large-grid-size;
-				margin:$local-base-grid-size;
+				margin:$local-small-grid-size / 2;
+				&.fa-envelope {
+				   font-size: 13px;
+				    padding: 3px 0 11px;
+				    padding-left: 6px;
+				    padding-right: 3px;
+				    padding-top: 6px;
+				    position: relative;
+				    top: -2px;
+				}
 			}
 			.post-edit-buttons-container {
 				font-size:22px; // @@TODO
-				padding:$local-base-grid-size;
+				padding:$local-small-grid-size;
 				a {
 					color:color(3);
-					margin-right:$local-base-grid-size;
+					margin-right:$local-small-grid-size;
 				}
 			}
 			.reply-button-container, .reply-count-container {
 				line-height: $local-large-grid-size;
-				margin-right:3 * $local-base-grid-size;
+				margin-right:3 * $local-small-grid-size;
 				div {
 					line-height: $local-large-grid-size;
 					margin: $local-large-grid-size / 5;
@@ -263,8 +286,8 @@ $local-header-font-size: 16px;
 					margin:0;
 					font-size:$local-font-size;
 					font-weight: 600;
-					padding:$local-base-grid-size $local-base-grid-size*10;
-					min-width: $local-base-grid-size * 30;
+					padding:$local-small-grid-size $local-small-grid-size*10;
+					min-width: $local-small-grid-size * 30;
 					p { margin:0; font-size:$local-font-size; }
 				}
 			}
@@ -272,11 +295,15 @@ $local-header-font-size: 16px;
 
 		.post-replies {
 			margin-top:$local-large-grid-size;
+			h4 { 
+				position:relative; 
+				top:-2 * $local-small-grid-size;
+			}
 			.reply-item { 
 				margin: {
 					left: -1 * $local-large-grid-size;
 					right: -1 * $local-large-grid-size;
-					top: $local-base-grid-size;
+					top: 2 * $local-small-grid-size;
 				}
 				padding: $local-large-grid-size;
 				padding-bottom: 0;
@@ -284,11 +311,18 @@ $local-header-font-size: 16px;
 				h4 { margin: 0px 0px 10px 0px; }
 				section.user { 
 					text-align:left;
-					.avatar { margin-top: -2 * $local-base-grid-size; }
+					.avatar {
+						//margin-top: -2 * $local-small-grid-size; 
+						a::before, img { width:60px; height:60px; box-shadow:none;}
+					}
 				}
+				.content { margin-left:-3 * $local-small-grid-size; }
 				.reply-author { font-weight: 600; }
-				.reply-contact p { font-size: 1.5em; }
-				.text-container p { margin: $local-large-grid-size 0px; }
+				.reply-contact p { margin-top:0;margin-bottom:3*$local-small-grid-size; text-align:right; }
+				.text-container p { 
+					margin-top: 2 * $local-small-grid-size; 
+					margin-bottom: 3 * $local-small-grid-size;
+				}
 			}
 			.no-result p { margin-bottom:0; }
 		}
@@ -299,6 +333,11 @@ $local-header-font-size: 16px;
 				margin:0;
 				box-shadow:none;
 				border:0;
+				.slides img {
+					width:auto;
+					max-height: 5*$local-large-grid-size;
+					margin:0 auto;
+				}
 			}
 		}
 
@@ -333,7 +372,7 @@ $local-header-font-size: 16px;
 		height:2* $local-large-grid-size;
 		margin:0;
 		position:absolute;
-		top:40%;
+		top:35%;
 		z-index:10;
 		overflow:hidden;
 		cursor:pointer;

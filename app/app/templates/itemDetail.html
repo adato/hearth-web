@@ -2,7 +2,7 @@
 	<div loading show="!loaded"></div>
 	
 	<div class="row" ng-if="loaded">
-		<section ng-show="ad && !ad.name && ad.state === 'suspended'" class="ad-not-found box large-6 margin-auto text-center">
+		<section ng-show="ad && !isMine && ad.state === 'suspended'" class="ad-not-found box large-6 margin-auto text-center">
 			<p class="margin-0 padding-top">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
 		</section>
 		<section ng-show="!adDeleted && ad === false" class="ad-not-found box large-6 margin-auto text-center">
@@ -65,6 +65,16 @@
 					</div>
 				</div>
 			</div>
+
+
+			<div ng-if="!isActive" class="large-8 fleft columns item-status-bar">
+				<span ng-if="ad.state == 'expired'">
+					<span ng-if="ad.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ ad.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
+					<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
+				</span>
+				<span ng-if="ad.state == 'suspended'">{{ 'POST_WAS_SUSPENDED' | translate }}</span>
+			</div>
+
 			<div class="large-8 fleft columns ad-detail-column" ng-init="local.showMap = false">
 				<article class="box post-detail row">
 					<header class="clearfix">
@@ -98,7 +108,7 @@
 						</a>
 					</div> -->
 
-					<flex-slider slide="photo in ad.attachments_attributes track by $index" animation="slide" animation-loop="false" item-margin="15" item-width="205" class="carousel" fancybox direction-nav="true" control-nav="false" slideshow="false" prev-text="" next-text="">
+					<flex-slider slide="photo in ad.attachments_attributes track by $index" animation="slide" animation-loop="false" item-margin="15" item-width="200" max-items="5" class="carousel" keyboard="false" fancybox direction-nav="true" control-nav="false" slideshow="false" prev-text="" next-text="">
 						<li>
 							<a class="fancy" ng-href="{{ photo.large }}" rel="{{ ad._id }}"><img ng-src="{{photo.normal}}"></a>
 						</li>
@@ -130,6 +140,7 @@
 
 					<footer class="clearfix">
 						<div class="sharing fright">
+							<a class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(ad)"></a>
 							<a sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank"></a>
 							<a sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
 							<a sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
@@ -152,12 +163,6 @@
 							<div ng-if="ad.reply_count" ng-bind-html="replyCountTexts[ad.type]+'.'+pluralCat(ad.reply_count) | translate:{value: ad.reply_count}"></div>
 
 							<div ng-if="!ad.reply_count">{{'NO_REPLY' | translate}}</div>
-							<div ng-if="!isActive">
-								<span ng-if="ad.state == 'expired'">
-									<span ng-if="ad.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ ad.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
-									<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
-								</span>
-							</div>
 						</div>
 
 					</footer>
@@ -176,11 +181,10 @@
 									<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
 								</div>
 								<div class="text-container clearfix">
-									<span class="reply-author">{{ item.author.name }}</span> {{ 'POSTS.DETAIL.REPLIES.IS_SAYING' | translate}}
+									<span class="reply-author">{{ item.author.name }}</span>
 									<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
 								</div>
-								<!-- <div class="reply-contact fright"><a ng-href="mailto:{{ item.author_email }}"><i class="fa fa-forward"></i></a></div> -->
-								<!-- <div class="reply-contact fright" ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></div> -->
+								<div class="reply-contact fright" ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></div>
 							</div>
 						</section>
 					</article>
