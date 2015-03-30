@@ -253,6 +253,15 @@ $local-header-font-size: 16px;
 				width:$local-large-grid-size;
 				height:$local-large-grid-size;
 				margin:$local-small-grid-size / 2;
+				&.fa-envelope {
+				   font-size: 13px;
+				    padding: 3px 0 11px;
+				    padding-left: 6px;
+				    padding-right: 3px;
+				    padding-top: 6px;
+				    position: relative;
+				    top: -2px;
+				}
 			}
 			.post-edit-buttons-container {
 				font-size:22px; // @@TODO
