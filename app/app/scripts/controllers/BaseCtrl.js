@@ -350,6 +350,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             dialog.closePromise.then(function(data) {});
         };
 
+        $rootScope.openEmailSharingBox = function(item) {
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/emailSharing.html',
+                controller: 'EmailSharing',
+                scope: scope,
+                closeByEscape: false,
+                showClose: false
+            });
+        };
+
         // show modal window with invite options
         $rootScope.openInviteBox = function() {
             if (!Auth.isLoggedIn())
