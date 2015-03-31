@@ -4,8 +4,8 @@
             {{ 'POST_REPORT.HEADING' | translate}}
         </h2>
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+        <hr />
     </div>
-    <hr />
     <form ng-submit="sendReport()" name="reportForm" novalidate class="report-ad">
         <div class="notify-report-container"></div>
         <div>
@@ -19,8 +19,7 @@
             <div class="note">
                 <span>{{ 'POST_REPORT.NOTE' | translate }}</span>
             </div>
-            <hr />
-            <div class="bottom">
+            <div class="bottom clearfix">
                 <a href="" ng-click="closeThisDialog()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
