@@ -25,7 +25,12 @@ angular.module('hearth.services').service('Messenger', [
 			});
 		};
 
-		if($rootScope.loggedUser._id)
-			this.loadCounters();
+		function init() {
+			if($rootScope.loggedUser._id)
+				self.loadCounters();
+		};
+		
+		$rootScope.$on('initFinished', init);
+		$rootScope.initFinished && init();
 	}
 ]);
