@@ -1,17 +1,17 @@
-<div class="emailSharing itemEdit modal">
+<div class="itemShare itemEdit modal">
     <div class="head">
         <h2>
             {{ 'EMAIL_SHARING.HEADING' | translate}}
         </h2>
         <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+        <hr />
     </div>
-    <hr />
     <form ng-submit="send()" name="emailForm" novalidate class="email-sharing">
         <div class="notify-report-container"></div>
         <div>
             <label>{{ 'EMAIL_SHARING.ADDRESS_LABEL' | translate }}</label>
             <br />
-            <input ng-focus="showErrors.emails = false" ng-blur="showErrors.emails = true; testEmailsFormat(sharing.emails)" placeholder="{{ 'EMAIL_SHARING.ADDRESS_PLACEHOLDER' | translate }}" ng-model="sharing.emails" name="emails" required />
+            <input type="text" ng-focus="showErrors.emails = false" ng-blur="showErrors.emails = true; testEmailsFormat(sharing.emails)" placeholder="{{ 'EMAIL_SHARING.ADDRESS_PLACEHOLDER' | translate }}" ng-model="sharing.emails" name="emails" required />
             <div class="moveUp error" ng-show="showErrors.emails">
                 <span ng-show="emailForm.emails.$error.required">{{ 'ERR_NOT_FILLED_SHARING_EMAIL_ADDRS' | translate }}</span>
                 <span ng-show="emailForm.emails.$error.format">{{ 'ERR_SHARING_EMAIL_ADDRESS_INVALID' | translate }}</span>
@@ -24,7 +24,7 @@
                 <span ng-show="emailForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
                 <span ng-show="emailForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
-            <div class="bottom">
+            <div class="bottom clearfix">
                 <a href="" ng-click="closeThisDialog()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
