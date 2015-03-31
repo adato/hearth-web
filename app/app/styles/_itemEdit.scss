@@ -204,7 +204,7 @@ $local-input-error-color: #ea122a;
             padding:0;
             box-shadow:none;
             margin-bottom:1rem;
-            height:$local-input-height;
+            min-height:$local-input-height;
             .select2-drop {
                 margin-left:0;
                 font-size:$local-text-font-size;
