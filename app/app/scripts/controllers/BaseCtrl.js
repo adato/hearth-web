@@ -210,11 +210,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function(showMsgOnlyLogged) {
             
-            $scope.showMsgOnlyLogged = showMsgOnlyLogged;
+            var scope = $scope.$new();
+            scope.showMsgOnlyLogged = showMsgOnlyLogged;
             ngDialog.open({
                 template: $$config.templates + 'userForms/login.html',
                 controller: 'LoginCtrl',
-                scope: $scope,
+                scope: scope,
                 closeByEscape: false,
                 showClose: false
             });
