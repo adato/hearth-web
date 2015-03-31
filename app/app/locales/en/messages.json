@@ -772,6 +772,7 @@
     "REPLY_PUBLISH_EMAIL_AGREE": "I agree that my email address will be provided to {{name}}.",
     "REPORT": "Report",
     "REPORT_HARMFUL_AD": "Report abuse post",
+    "REPORT_HARMFUL_AD_ONLY_ONCE": "Inzerát byl již nahlášen.",
     "RESET_PASSWORD": "Reset password",
     "RESET_PASSWORD_API_ERROR": "Change of password has failed... What now?",
     "RESET_PASSWORD_BROKEN_LINK": "<p>Ouch, something is broken, this link is invalid.<br \/>Generate a new one <a href=\"#!\/forgotten-password\">clicking here<\/a>.<\/p>",

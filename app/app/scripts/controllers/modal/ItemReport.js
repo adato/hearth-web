@@ -44,6 +44,7 @@ angular.module('hearth.controllers').controller('ItemReport', [
 			Post.spam(data, function(res) {
                 $rootScope.$broadcast('reportItem', $scope.post);
                 
+				$scope.post.spam_reported = true;
 				$scope.sending = false;
                 $rootScope.globalLoading = false;
                 $scope.showFinished();

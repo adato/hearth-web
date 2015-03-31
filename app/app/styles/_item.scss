@@ -177,11 +177,13 @@ $imageSize: 80px;
             margin-left: 0.1em;
             color: black;
             width: 2em;
+            cursor: default;
             padding-top: 0.05em;
             text-align: center;
-            &:hover {
+            &.not-reported:hover {
                 color: black;
                 opacity: 0.2;
+                cursor: pointer;
             }
         }
         .remove-button {
