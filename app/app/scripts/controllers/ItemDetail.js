@@ -7,13 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma',
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService) {
 		$scope.ad = false;
 		$scope.adDeleted = false;
 		$scope.loaded = false;
 		$scope.isPrivate = false;
+		$scope.profile = false;
 
 		$scope.loadReplies = function() {
 			PostReplies.get({user_id: $routeParams.id}, function(data) {
@@ -21,12 +22,22 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
+		$scope.fillUserInfo = function(info) {
+			$scope.profile = info;
+			$scope.loaded = true;
+		};
+
 		// load post data
 		$scope.load = function() {
+
 			Post.get({postId: $routeParams.id}, function(data) {
 				$scope.ad = data;
-				$scope.loaded = true;
 				
+				if($rootScope.loggedUser._id)
+					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
+				else
+					$scope.loaded = true;
+
 				// if there are post data, process them
 				if(data.name) {
 					
@@ -36,7 +47,6 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 						title += " - " + data.title;
 					OpenGraph.set(title, data.name || "");
 
-					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.author);
 					$scope.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
 					$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };

@@ -792,6 +792,7 @@
     "REPLY_PUBLISH_EMAIL_AGREE": "Spoločne s touto správou uvidí užívateľ {{name}} i Vašu emailovú adresu.",
     "REPORT": "Odeslat",
     "REPORT_HARMFUL_AD": "Nahlásiť škodlivý inzerát",
+    "REPORT_HARMFUL_AD_ONLY_ONCE": "Inzerát byl již nahlášen",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Pri zmene hesla došlo k chybe... Čo teraz?",
     "RESET_PASSWORD_BROKEN_LINK": "Ajajaj, niečo sa pokazilo, tento odkaz nie je platný.<br \/>Nechajte si vygenerovať nový na <a href='#!\/forgotten-password'>tejto adrese.<\/a>",
