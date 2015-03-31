@@ -70,12 +70,8 @@ angular.module('hearth.directives').directive('item', [
                 scope.edit = $rootScope.editItem;
                 scope.socialLinks = $rootScope.socialLinks;
                 scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
-<<<<<<< HEAD
                 scope.openReportBox = $rootScope.openReportBox;
-=======
                 scope.openEmailSharingBox = $rootScope.openEmailSharingBox;
-                scope.openSharingBox = $rootScope.openSharingBox;
->>>>>>> feature/web-9-email-sharing-form
 
                 /**
                  * Init basic structure
