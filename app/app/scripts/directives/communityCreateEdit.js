@@ -136,6 +136,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     $rootScope.globalLoading = true;
 
                     transformedData = $scope.transformDataOut(angular.copy($scope.community));
+                    if($scope.community._id) transformedData.communityId = $scope.community._id;
+                    
                     service(transformedData, function(res) {
                         $rootScope.globalLoading = false;
                         $rootScope.$broadcast("reloadCommunities");
