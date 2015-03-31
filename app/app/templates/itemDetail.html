@@ -102,17 +102,12 @@
 					<div class="text-container">
 						<p ng-bind-html="ad.name | linky:'_blank' | nl2br"></p>
 					</div>
-<!-- 					<div class="attachments" ng-if="ad.attachments_attributes.length" fancybox>
-						<a class="fancy" ng-href="{{ photo.large }}" rel="{{ ad._id }}" ng-repeat="photo in ad.attachments_attributes track by $index">
-							<img ng-if="$index" ng-src="{{ photo.normal }}">
-						</a>
-					</div> -->
 
-					<flex-slider slide="photo in ad.attachments_attributes track by $index" animation="slide" animation-loop="false" item-margin="15" item-width="200" max-items="5" class="carousel" keyboard="false" fancybox direction-nav="true" control-nav="false" slideshow="false" prev-text="" next-text="">
-						<li>
+					<ul lemmon-slider fancybox>
+						<li ng-repeat="photo in ad.attachments_attributes track by $index">
 							<a class="fancy" ng-href="{{ photo.large }}" rel="{{ ad._id }}"><img ng-src="{{photo.normal}}"></a>
 						</li>
-					</flex-slider>
+					</ul>
 
 					<div ng-if="!ad.location_unlimited">
 						<div class="map-expand-toggle" ng-if="ad.locations.length && !ad.location_unlimited" ng-init="local.showMap = !isMine && ad.locations && ad.locations.length && !ad.location_unlimited">
