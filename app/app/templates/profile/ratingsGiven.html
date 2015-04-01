@@ -17,6 +17,8 @@
 		</section>
 		<section class="large-10 columns">
 			<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
+				<i class="score-icon fa icon-rating-negative" ng-if="item.score == -1"></i>
+				<i class="score-icon fa icon-rating-positive" ng-if="item.score == 1"></i>
 				<div class="content">
 					<div class="fright">
 						<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>

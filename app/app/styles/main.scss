@@ -7,10 +7,9 @@ $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 $webWidth: 960px;
 
-
 @import "settings";
 
-$fontSize: rem-calc(18);
+$fontSize: rem-calc(14);
 
 @import "compass";
 // import Compass mixins
@@ -72,10 +71,9 @@ $fontSize: rem-calc(18);
 @import "mixins/social";
 
 @import "avatar";
+@import "authorSelector";
 @import "navigation";
 @import "forms";
-@import "item";
-@import "itemEdit";
 @import "common";
 @import "buttons";
 @import "tutorial";
@@ -88,11 +86,14 @@ $fontSize: rem-calc(18);
 @import "filter";
 @import "needOfferSelector";
 @import "ngTagsInput";
+@import "uiSelect";
 @import "foundationDatepicker";
 @import "locations";
 @import "checkbox";
 @import "map";
 @import "fulltext";
+@import "item";
+@import "itemEdit";
 @import "itemDetail";
 @import "modal";
 @import "inviteBox";
@@ -129,8 +130,8 @@ body {
 
 
 @import "hearthIcons";
-@include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
-@include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold);
+/* @include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
+@include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold); */
 
 
 meta.foundation-data-attribute-namespace {

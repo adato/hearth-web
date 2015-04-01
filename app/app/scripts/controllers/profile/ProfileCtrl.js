@@ -21,24 +21,15 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// ratings
 			$scope.sendingRating = false;
 			$scope.rating = {
-				score: 1,
+				current_community_id: null,
+				score: true,
 				text: ''
 			};
 			$scope.showError = {
 				text: false
 			};
 		};
-
-		/**
-		 * Return true if this profile is mine - like it is my user profile or am I community admin
-		 */
-		$scope.isMine = function () {
-			var _mineUser = ($rootScope.loggedUser) ? $rootScope.loggedUser._id === $routeParams.id: false;
-			var _mineCommunity = ($rootScope.loggedCommunity) ? $rootScope.loggedCommunity._id == $routeParams.id: false;
-			
-			return _mineCommunity || _mineUser;
-		};
-
+		
 		/**
 		 * Push cities to concatenated string.
 		 * Expects info.locations = [{city: ...}, ...]
@@ -78,7 +69,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.info.created_at_days = Time.getDateDiffToNow($scope.info.created_at);
 				// count karma values
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
-				$scope.mine = $scope.isMine();
+				$scope.mine = $rootScope.isMine($routeParams.id);
 				// $scope.loaded = true;
 
 				$rootScope.profileLoaded = true;
@@ -175,8 +166,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			var ratingUrl = '/profile/'+$scope.info._id+'/received-ratings';
 			var removeListener;
 
+			$scope.ratingPosts = [];
+	        $scope.loadedRatingPosts = false;
 			// set default values
 			$scope.showError.text = false;
+			$scope.rating.current_community_id = null;
 			$scope.rating.score = score;
 			$scope.rating.text = '';
 			$scope.rating.post_id = 0;
@@ -208,8 +202,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
 			var ratings = {
-				true: -1,
-				false: 1
+				false: -1,
+				true: 1
 			};
 
 			$scope.showError.text = false;
@@ -220,6 +214,13 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);
 			rating.score = ratings[rating.score];
+			rating.post_id = rating.post_id || null;
+
+			var out = {
+				current_community_id: rating.current_community_id,
+				id: $scope.info._id,
+				rating: rating
+			};
 
 			// lock - dont send twice
 			if($scope.sendingRating)
@@ -227,7 +228,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.sendingRating = true;
 
 			// send rating to API
-			UserRatings.add({id: $scope.info._id, rating: rating}, function(res) {
+			UserRatings.add(out, function(res) {
 
 				// remove lock
 				$scope.sendingRating = false;

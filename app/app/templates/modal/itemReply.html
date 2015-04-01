@@ -1,40 +1,41 @@
-<div class="itemReply itemEdit modal">
+<div class="itemReply modal">
     <div class="head">
+        <span ng-click="closeThisDialog()" class="fright close fa fa-times"></span>
         <h2>
             <span ng-if="post.type =='offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
             <span ng-if="post.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
         </h2>
-        <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+        <hr />
     </div>
-    <hr />
     <form ng-submit="sendReply()" name="replyForm" novalidate class="reply-ad">
         <div class="notify-reply-container"></div>
         <div>
-            <textarea autosize-textarea required ng-focus="showErrors.text = false" ng-blur="showErrors.text = true" placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.text" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-cloak class="reply-ad-textarea text-input middle"></textarea>
-            <div class="moveUp error" ng-show="showErrors.text">
-                <span ng-show="replyForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="replyForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="replyForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+            <author-selector id="author" author-id="reply.current_community_id" remove="post.author._id"></author-selector>
+            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" placeholder="{{ 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-cloak class="reply-ad-textarea text-input middle"></textarea>
+            <div class="moveUp error" ng-show="showErrors.message">
+                <span ng-show="replyForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="replyForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="replyForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
             </div>
             <div class="mail">
                  <checkbox ng-show="false" model="reply.agree" on-update="toggleMail()" value="true">{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:translationData }}</checkbox>
                 <span>{{ 'REPLY_PUBLISH_EMAIL_AGREE' | translate:translationData }}</span>
             </div>
-            <div class="moveUp error" ng-show="! reply.agree && showErrors.agree">
-                <span ng-show="! reply.agree">{{ 'ERR_AD_REPLY_NOT_AGREE' | translate }}</span>
+            <div class="moveUp error" ng-show="! reply.agreed && showErrors.agreed">
+                <span ng-show="! reply.agreed">{{ 'ERR_AD_REPLY_NOT_AGREE' | translate }}</span>
             </div>
-            <hr />
-            <div class="bottom">
+            <section class="bottom">
                 <a href="" ng-click="closeThisDialog()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
                 <button class="primary button-send fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SUBMIT</button>
-            </div>
+            </section>
         </div>
     </form>
     <div class="reply-ad success success-msg hidden">
         <p>{{ 'SEND_REPLY_SUCCESS' | translate }}</p>
-
-        <button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>
+        <section class="bottom">
+            <button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>
+        </section>
     </div>
 </div>

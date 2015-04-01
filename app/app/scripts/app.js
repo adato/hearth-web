@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('hearth', [
-    'ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-flexslider', 'route-segment', 'angularFileUpload',
+    'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ngRoute', 'angular-flexslider', 'route-segment', 'angularFileUpload',
     'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
-    'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
+    'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
     'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {

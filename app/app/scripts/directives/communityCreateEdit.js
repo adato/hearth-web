@@ -164,41 +164,26 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         return false;
                     }
 
-                    $scope.leaveCommunityIdentity(function(needReload) {
+                    $rootScope.globalLoading = true;
+                    CommunityDelegateAdmin.delegate({community_id: $scope.community._id, new_admin_id: id},
+                        function(res) {
+                            $rootScope.globalLoading = false;
+                            
+                            if(needReload) {
 
-                        $rootScope.globalLoading = true;
-                        CommunityDelegateAdmin.delegate({community_id: $scope.community._id, new_admin_id: id},
-                            function(res) {
-                                $rootScope.globalLoading = false;
+                                Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
+                            } else {
                                 
-                                if(needReload) {
+                                $rootScope.$broadcast("reloadCommunities");
+                                Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
+                            }
+                            
+                            $scope.reloadToPath('/community/'+$scope.community._id, needReload);
 
-                                    Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
-                                } else {
-                                    
-                                    $rootScope.$broadcast("reloadCommunities");
-                                    Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
-                                }
-                                
-                                $scope.reloadToPath('/community/'+$scope.community._id, needReload);
-
-                            }, function(res) {
-                                $rootScope.globalLoading = false;
-                                Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED', Notify.T_ERROR);
-                            });
-                    });
-                };
-
-                // this will switch identity from community if user is logegd as community
-                $scope.leaveCommunityIdentity = function(cb) {
-                    if($rootScope.loggedCommunity && $rootScope.loggedCommunity._id == $scope.community._id) {
-                        // cb(true)
-                        Auth.switchIdentityBack($scope.community._id).then(function() {
-                            cb(true);
+                        }, function(res) {
+                            $rootScope.globalLoading = false;
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED', Notify.T_ERROR);
                         });
-                    } else {
-                        cb(false);
-                    }
                 };
 
                 $scope.reloadToPath = function(path, hard) {
@@ -215,33 +200,30 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
                 $scope.delete = function() {
 
-                    $scope.leaveCommunityIdentity(function(needReload) {
+                    if($scope.sendingDelete) return false;
+                    $scope.sendingDelete = true;
+                    $rootScope.globalLoading = true;
 
-                        if($scope.sendingDelete) return false;
-                        $scope.sendingDelete = true;
-                        $rootScope.globalLoading = true;
-
-                        Community.remove({communityId: $scope.community._id}, function(res) {
-                            $rootScope.globalLoading = false;
-                            $scope.sendingDelete = false;
-                            
-                            if(!needReload) {
-                                
-                                Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
-                                $rootScope.$broadcast("reloadCommunities");
-                            } else {
-
-                                Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
-                            }
-
-                            $scope.reloadToPath('/communities', needReload);
+                    Community.remove({communityId: $scope.community._id}, function(res) {
+                        $rootScope.globalLoading = false;
+                        $scope.sendingDelete = false;
                         
-                        }, function(res) {
+                        if(!needReload) {
+                            
+                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
+                            $rootScope.$broadcast("reloadCommunities");
+                        } else {
 
-                            $rootScope.globalLoading = false;
-                            Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
-                            $scope.sendingDelete = false;
-                        });
+                            Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
+                        }
+
+                        $scope.reloadToPath('/communities', needReload);
+                    
+                    }, function(res) {
+
+                        $rootScope.globalLoading = false;
+                        Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
+                        $scope.sendingDelete = false;
                     });
                 };
 

@@ -45,6 +45,8 @@
       <script src="scripts/googleAnalytics.js"></script>
       <!-- <script src="scripts/newRelic.js"></script> -->
     <!-- endbuild -->
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/flexslider-min.css">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
@@ -140,12 +142,15 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
     <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.11.1/select.min.js"></script>
+
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
     <script src="vendor/async/lib/async.js"></script>
+    <script src="vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
     <script src="vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
     <script src="vendor/ngDialog/js/ngDialog.js"></script>
     <script src="vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
@@ -208,7 +213,6 @@
 
 
     <script src="scripts/services/resources/ChangePassword.js"></script>
-    <script src="scripts/services/resources/Communities.js"></script>
     <script src="scripts/services/resources/Community.js"></script>
     <script src="scripts/services/resources/CommunityActivityLog.js"></script>
     <script src="scripts/services/resources/CommunityApplicants.js"></script>
@@ -267,10 +271,12 @@
     <script src="scripts/services/UsersCommunitiesService.js"></script>
     <script src="scripts/services/UsersService.js"></script>
     <script src="scripts/services/ViewPort.js"></script>
-
+    <script src="scripts/services/Communities.js"></script>
     
      <script src="scripts/filters/filters.js"></script>
 
+      <script src="scripts/directives/communitySelector.js"></script>
+      <script src="scripts/directives/slideTrigger.js"></script>
       <script src="scripts/directives/invitationForm.js"></script>
       <script src="scripts/directives/activityAvatar.js"></script>
       <script src="scripts/directives/avatar.js"></script>
@@ -310,6 +316,7 @@
       <script src="scripts/directives/dropdown.js"></script>
       <script src="scripts/directives/emailValidator.js"></script>
       <script src="scripts/directives/marketplaceBanner.js"></script>
+      <script src="scripts/directives/authorSelector.js"></script>
 
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>

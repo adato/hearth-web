@@ -14,10 +14,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
 
-		$scope.isMine = function(res) {
-			return $rootScope.loggedUser._id == res.admin;
-		};
-
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
@@ -37,7 +33,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.loadingCounter--;
 				$scope.info = res;
 				// $scope.loaded = true;
-				$scope.mine = $scope.isMine(res); // is community mine?
+				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
 				if(!$scope.loadingCounter) {
@@ -125,6 +121,15 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         		$scope.approveApplicationLock = false;
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
         	});
+        };
+
+        $scope.addItem = function() {
+        	var preset = {
+        		current_community_id: ($scope.mine) ? $scope.info._id : null,
+        		related_communities: (!$scope.mine) ? [{_id: $scope.info._id, name: $scope.info.name}] : [],
+        	}
+
+        	$rootScope.editItem(null, null, preset);
         };
 
 		$scope.init = function() {

@@ -76,6 +76,17 @@
 					<span>{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
 				</a>
 				<div class="clear"></div>
+
+				<div ng-if="item.related_communities.length">
+					<br />
+					<b>Inzerat je v komunitach:</b>
+				<ul>
+					<li ng-repeat="item in item.related_communities">
+						{{ item.name}}
+					</li>
+				</ul>
+				</div>
+
 			</div>
 			<footer>
 				<a class="report-link spam fa fa-flag" ng-if="! mine && !loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)"></a>
@@ -98,7 +109,7 @@
 					<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></div>
 				</div>
 				<span ng-if="!mine">
-					<button ng-if="! item.is_replied && isActive" ng-click="replyItem(item)" class="small main" ng-class="item.type">
+					<button ng-if="! item.is_replied && isActive && item.owner_id != loggedUser._id" ng-click="replyItem(item)" class="small main" ng-class="item.type">
 						<span ng-bind-html="replyLabel[item.type] | translate"></span>
 					</button>
 					<span ng-if="item.is_replied">
