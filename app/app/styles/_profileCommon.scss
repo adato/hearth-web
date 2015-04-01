@@ -603,6 +603,7 @@
     &.red {
         background: color(1);
         border-color: color(1);
+        color: white;
         &:hover {
             background: darken(color(1), 20%);
             border-color: darken(color(1), 20%);
