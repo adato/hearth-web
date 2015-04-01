@@ -237,7 +237,49 @@
     a {
         color: color(5);
     }
+        
+    .ratings-received {
+        .revert-changes {
+            position: relative;
+            top: 20px;
+        }
+
+        button {
+            &.positive {
+                background-color: #58af08;
+            }
+        }
+        .score-select {
+            p {
+                left: 20px;
+                position: relative;
+                top: 8px;
+            }
+            .need-offer-selector {
+                margin: 0px;
+                .button {
+                    &.left.pressed {
+                        background-color: color(2);
+                        //positive
+                   
+                    }
+                    &.right.pressed {
+                        background-color: color(5);
+                        //negative
+                   
+                    }
+                }
+            }
+        }
+        .profile-edit-common {
+            h3 {
+                position: relative;
+                top: -20px;
+            }
+        }
+    }
 }
+
 
 .profile-listings {
     @extend .clearfix;
