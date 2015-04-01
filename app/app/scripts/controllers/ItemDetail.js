@@ -14,6 +14,29 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.loaded = false;
 		$scope.isPrivate = false;
 
+
+		// init language
+		$scope.postTypes = {
+			User: {
+				need: 'DOES_WISH',
+				offer: 'DOES_GIVE'
+			},
+			Community: {
+				need: 'WE_NEED',
+				offer: 'WE_GIVE'
+			}
+		};
+
+		$scope.replyLabel = {
+			offer: 'WISH_GIFT',
+			need: 'OFFER_GIFT'
+		};
+
+		$scope.replyCountTexts = {
+			offer: 'PEOPLE_COUNT_WISH_PL',
+			need: 'PEOPLE_COUNT_OFFER_PL'
+		};
+
 		$scope.loadReplies = function() {
 			PostReplies.get({user_id: $routeParams.id}, function(data) {
 				$scope.replies = data.replies;
@@ -42,15 +65,28 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.owner_id);
 					$scope.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
-					$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
+					//$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
+
+					$scope.isExpiringSoon = !data.valid_until_unlimited && moment(data.valid_until).subtract(7, 'days').isBefore(new Date())
+												&& moment(data.valid_until).isAfter(new Date());
+					
 					
 					$timeout(function() {
 						$scope.$broadcast('initMap');
 						$scope.$broadcast('showMarkersOnMap');
 					});
 
+<<<<<<< HEAD
 					$scope.isMine && $scope.loadReplies();
+=======
+					if($scope.isMine) {
+						$scope.loadReplies();
+					}
+
+					$scope.postAddress = $rootScope.appUrl+'%23!/ad/'+$scope.ad._id;
+					$scope.isActive = $rootScope.isPostActive($scope.ad);
+>>>>>>> feature/item-detail-ui-polish
 				}
 			}, function(res) {
 				$scope.loaded = true;
@@ -81,9 +117,11 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		});
 
 		$scope.$on('postCreated', $scope.load);
+		$scope.$on('updatedItem', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
 		$scope.$on('initFinished', $scope.load);
 
-        $rootScope.initFinished && $scope.load();
+
+		$rootScope.initFinished && $scope.load();
 	}
 ]);

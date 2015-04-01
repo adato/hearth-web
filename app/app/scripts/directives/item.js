@@ -71,6 +71,7 @@ angular.module('hearth.directives').directive('item', [
                 scope.socialLinks = $rootScope.socialLinks;
                 scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
                 scope.openReportBox = $rootScope.openReportBox;
+                scope.openEmailSharingBox = $rootScope.openEmailSharingBox;
 
                 /**
                  * Init basic structure
