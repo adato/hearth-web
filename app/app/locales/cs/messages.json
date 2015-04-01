@@ -680,7 +680,7 @@
     "POST_HAS_ALREADY_EXPIRED": "Platnost inzerátu již skončila",
     "POST_HAS_BEEN_DEACTIVATED": "Inzerát byl pozastavený",
     "POST_HAS_EXPIRED": "Platnost inzerátu skončila",
-    "POST_KEYWORDS_LABEL": "Klíčová slova",
+    "POST_KEYWORDS_LABEL": "Klíčová slova:",
     "POST_LOCK_LABEL": "Soukromí inzerátu",
     "POST_NOT_FOUND": "Inzerát nebyl nalezen.",
     "POST_PLACE_LABEL": "Místa:",
