@@ -46,7 +46,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
             var valid = true;
             // are given emails valid?
             jQuery.each(emails, function(key, email) {
-
                 // this will set false to valid and call break when not valid
                 return valid = !!validateEmail(email);
             });
@@ -85,15 +84,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
                 invalid = $scope.showError.message = true;
             }
 
-            // is to_email illed?
-            if($scope.inviteForm.to_email.$invalid) {
-                invalid = $scope.showError.to_email = true;
-            }
-            
-            if(data.to_email && ! $scope.testEmailsFormat(data.to_email)) {
+            if(!data.to_email || ! $scope.testEmailsFormat(data.to_email)) {
                 invalid = true;
             }
-
             return !invalid;
         };
         
@@ -122,10 +115,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
                 return false;
 
             $rootScope.globalLoading = true;
-
             // split emails to array and copy it to new object
             dataOut = $scope.transformInvitationOut(angular.copy(data));
-            Invitation.add({invitation: dataOut}, handleEmailResult);
+            Invitation.add({invitation: dataOut}, handleEmailResult, handleEmailResult);
         };
 
         $scope.initForm = function() {
