@@ -244,6 +244,21 @@
             top: 20px;
         }
 
+        .checkbox {
+            span {
+                top: 0px;
+            }
+            &.on {
+                font-weight: normal;
+            }
+            .fa {
+                color: #999999;
+                font-size: 14px;
+                margin-left: 0;
+                width: 14px;
+            }
+        }
+
         button {
             &.positive {
                 background-color: #58af08;
