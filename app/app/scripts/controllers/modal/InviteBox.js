@@ -37,24 +37,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
             $scope.endpoints = $$config.sharingEndpoints;
         };
 
-<<<<<<< HEAD
-        function validateEmail(email) { 
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
-            return email.trim().match(re);
-        }
-
-        $scope.validateEmails = function(emails) {
-            var valid = true;
-            // are given emails valid?
-            jQuery.each(emails, function(key, email) {
-                // this will set false to valid and call break when not valid
-                return valid = !!validateEmail(email);
-            });
-            return valid;
-        };
-
-=======
->>>>>>> feature/item-detail-ui-polish
         /**
          * This function will test given emails and if they are wrong
          * it will show error and return false
