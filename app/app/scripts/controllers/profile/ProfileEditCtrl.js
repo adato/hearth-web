@@ -154,7 +154,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$rootScope.globalLoading = true;
 
 			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
-			transformedData.user_id = $scope.profile._id;
+			// transformedData.user_id = $scope.profile._id;
 			
 			User.edit(transformedData, function(res) {
 				$scope.sending = false;
