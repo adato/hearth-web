@@ -251,8 +251,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 			$scope.closeThisDialog();
 			
-			console.log(post._id ? 'postUpdated' : 'postCreated', data);
-			
 			// emit event into whole app
 			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
 
@@ -394,9 +392,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init();
+		$scope.$watch('post.related_communities', function(val, old) {
+			if(!$scope.post.related_communities.length)
+				$scope.post.is_private = false;
+		});
 		$scope.$watch('post.current_community_id', function(val, old) {
 			if(!!val !== !!old) {
-				$scope.post.is_private = 0;
 				$scope.post.related_communities = [];
 				$scope.slide.communities = false;
 			}

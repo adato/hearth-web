@@ -96,7 +96,24 @@
                     </div>
                 </div>
             </section>
-            
+
+            <section class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
+                <label class="collapse-trigger" slide-trigger="slide.communities">
+                    {{ 'POST_COMMUNITIES_LABEL' | translate }}
+                    <span ng-if="post.related_communities.length">
+                    ({{ post.related_communities.length}})
+                    </span>
+                </label>
+                <div ng-slide-down="slide.communities" lazy-render duration="0.5">
+                    <div ng-if="!post.related_communities.length && post.is_private">
+                        <community-selector disable="true" tipsy title="{{'POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE' | translate }}" communities="post.related_communities"></community-selector>
+                    </div>
+                    <div ng-if="post.related_communities.length || !post.is_private">
+                        <community-selector communities="post.related_communities"></community-selector>
+                    </div>
+                </div>
+            </section>
+
             <section class="collapse lock">
                 <label slide-trigger="slide.lock" for="lock">
                     {{ 'POST_LOCK_LABEL' | translate }}
@@ -119,18 +136,6 @@
                         </radio>
                     </li>
                 </ul>
-            </section>
-
-            <section class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
-                <label class="collapse-trigger" slide-trigger="slide.communities">
-                    {{ 'POST_COMMUNITIES_LABEL' | translate }}
-                    <span ng-if="post.related_communities.length">
-                    ({{ post.related_communities.length}})
-                    </span>
-                </label>
-                <div ng-slide-down="slide.communities" lazy-render duration="0.5">
-                    <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
-                </div>
             </section>
 
             <section class="collapse files" ng-class="{ 'collapse-expanded': slide.files }">
