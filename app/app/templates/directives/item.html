@@ -1,4 +1,4 @@
-<article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView}">
+<article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<section ng-if="! hideAvatar" class="large-2 columns user">
 		<div info-box="item.author">
 			<a ng-href="#!/{{getProfileLinkByType(item.author._type)}}/{{ item.author._id }}">
