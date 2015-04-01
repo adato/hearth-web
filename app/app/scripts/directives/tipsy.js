@@ -9,13 +9,9 @@ angular.module('hearth.directives').directive('tipsy', [
     '$timeout',
     function($timeout) {
         return {
-            scope: {
-                tipsyHide: "=",
-            },
             link: function($scope, element, attrs) {
                 $timeout(function() {
-                    if(!$scope.tipsyHide)
-                        $(element).tipsy({gravity: 's'});
+                    $(element).tipsy({gravity: 's'});
                 });
             }
         }

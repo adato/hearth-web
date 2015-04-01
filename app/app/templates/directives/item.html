@@ -73,7 +73,10 @@
 				<div class="clear"></div>
 			</div>
 			<footer>
-				<a class="report-link spam fa fa-flag" ng-class="{'not-reported': !item.spam_reported}" ng-if="! mine && loggedUser._id" title="{{ (item.spam_reported) ? 'REPORT_HARMFUL_AD_ONLY_ONCE' : 'REPORT_HARMFUL_AD' | translate}}" tipsy tipsy-hide="!item.spam_reported" ng-click="openReportBox(item)">
+
+				<a ng-if="! mine && loggedUser._id && item.spam_reported" class="report-link spam fa fa-flag" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy ng-click="openReportBox(item)">
+				</a>
+				<a ng-if="! mine && loggedUser._id && !item.spam_reported" class="report-link spam fa fa-flag not-reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">
 				</a>
 				<div class="share">
 					<div class="fa fa-share-square-o"></div>
