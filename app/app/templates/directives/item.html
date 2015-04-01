@@ -71,17 +71,6 @@
 					<span>{{ 'show-less' | translate }} <i class="fa fa-chevron-up"></i></span>
 				</a>
 				<div class="clear"></div>
-
-				<div ng-if="item.related_communities.length">
-					<br />
-					<b>Inzerat je v komunitach:</b>
-				<ul>
-					<li ng-repeat="item in item.related_communities">
-						{{ item.name}}
-					</li>
-				</ul>
-				</div>
-
 			</div>
 			<footer>
 				<a class="report-link spam fa fa-flag" ng-if="! mine && loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">
