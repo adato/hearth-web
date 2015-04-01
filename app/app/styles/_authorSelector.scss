@@ -1,9 +1,13 @@
 .authorSelector {
 	display: inline-block;
 	
-	.avatar, .avatar img {
+	.avatar, .avatar * {
 		height: 30px;
 		width: 30px;
+
+		&:before {
+			box-shadow: none;
+		}
 	}	
 	select {
 		display: inline-block;
