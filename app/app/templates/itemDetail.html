@@ -103,7 +103,7 @@
 						<p ng-bind-html="ad.name | linky:'_blank' | nl2br"></p>
 					</div>
 
-					<ul lemmon-slider fancybox>
+					<ul lemmon-slider fancybox ng-if="ad.attachments_attributes.length">
 						<li ng-repeat="photo in ad.attachments_attributes track by $index">
 							<a class="fancy" ng-href="{{ photo.large }}" rel="{{ ad._id }}"><img ng-src="{{photo.normal}}"></a>
 						</li>
