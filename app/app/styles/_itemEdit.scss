@@ -1,14 +1,4 @@
-$local-title-font-size: 16px;
-$local-text-font-size: 14px;
-$local-small-grid-size: 5px;
-$local-grid-size: 5 * $local-small-grid-size;
-$local-border-style: 1px solid #e3e3e3; // exact by image
-$local-input-border-style: 1px solid #ddd; // or should be #ddd?
-$local-input-text-color: #333;
-$local-color-disabled: #999;
-$local-color-lighter: #999;
-$local-input-height: 30px;
-$local-input-error-color: #ea122a;
+// config is now in settings.scss at the bottom
 
 .ngdialog .itemReply, .ngdialog .itemEdit {
 
@@ -32,13 +22,6 @@ $local-input-error-color: #ea122a;
     // fix stuff
     a {
         font-weight: 600;
-        &.close-dialog { 
-            font-size:$local-text-font-size + ($local-text-font-size / 2);
-            position:relative;
-            top:-1 * $local-small-grid-size;
-            right:-1 * $local-small-grid-size;
-            color:$local-color-lighter;
-        }
     }
     * {
         text-align:left;
@@ -144,36 +127,7 @@ $local-input-error-color: #ea122a;
             }
         }
     }
-    .avatar-small { 
-        position:relative;
-        top:-1 * $local-small-grid-size;
-        img {
-            width:6*$local-small-grid-size;
-            height:6*$local-small-grid-size; 
-        }
-        *:before {
-            width:6*$local-small-grid-size;
-            height:6*$local-small-grid-size;
-            box-shadow:none !important;
-        }
-    }
-}
 
-
-
-.authorSelector {
-    margin-right:$local-grid-size;
-    margin-top:3*$local-small-grid-size;
-    select {
-        width:60*$local-small-grid-size;
-        outline:none;
-        &:focus {
-            border:1px solid color(5);
-        }
-    }
-}
-
-.ngdialog .itemEdit {
     .need-offer-selector {
         display: inline-block;
         margin-top: 18px;
@@ -196,7 +150,7 @@ $local-input-error-color: #ea122a;
             padding:0;
             box-shadow:none;
             margin-bottom:1rem;
-            height:$local-input-height;
+            min-height:$local-input-height;
             .select2-drop {
                 margin-left:0;
                 font-size:$local-text-font-size;
