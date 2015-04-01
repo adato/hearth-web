@@ -46,6 +46,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 			// show top error message
 			$scope.showError.badCredentials = true;
+			$scope.showMsgOnlyLogged = false;
 
 			// set blank password - try it again
 			$scope.data.password = '';
