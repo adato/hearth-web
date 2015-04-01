@@ -2,10 +2,14 @@
 	<div loading show="!loaded"></div>
 	
 	<div class="row" ng-if="loaded">
-		<section class="ad-not-found box large-6 margin-auto text-center">
-			<p ng-show="ad && !isMine && ad.state === 'suspended'" class="margin-0">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
-			<p ng-show="!adDeleted && ad === false" class="margin-0">{{ 'POST_NOT_FOUND' | translate }}</p>
-			<p ng-show="adDeleted" class="margin-0">{{ 'POST_WAS_DELETED' | translate }}</p>
+		<section ng-show="ad && !isMine && ad.state === 'suspended'" class="ad-not-found box large-6 margin-auto text-center">
+			<p class="margin-0">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
+		</section>
+		<section ng-show="!adDeleted && ad === false" class="ad-not-found box large-6 margin-auto text-center">
+			<p class="margin-0">{{ 'POST_NOT_FOUND' | translate }}</p>
+		</section>
+		<section ng-show="adDeleted" class="ad-not-found box large-6 margin-auto text-center">
+			<p class="margin-0">{{ 'POST_WAS_DELETED' | translate }}</p>
 		</section>
 
 		<section ng-if="! adDeleted && ad && ad.name" class="large-12 content row" id="item_container_{{ ad._id }}">
