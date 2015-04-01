@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('EmailSharing', [
-	'$scope', '$rootScope', 'Notify', 'Post', 'Validators',
-	function($scope, $rootScope, Notify, Post, Validators) {
+	'$scope', '$rootScope', 'Notify', 'Post', 'Validators', '$timeout',
+	function($scope, $rootScope, Notify, Post, Validators, $timeout) {
+		var timeout = null;
 		$scope.sending = false;
 		$scope.sharing = {
 			emails: '',
@@ -22,9 +23,14 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 
 		$scope.showFinished = function() {
 			$(".email-sharing").slideToggle();
-			setTimeout(function() {
+			timeout = $timeout(function() {
 				$scope.closeThisDialog();
 			}, 5000);
+		};
+
+		$scope.close = function() {
+			$timeout.cancel(timeout);
+			$scope.closeThisDialog();
 		};
 
 		$scope.validate = function(data) {

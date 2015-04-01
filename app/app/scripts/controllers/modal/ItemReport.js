@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ItemReport', [
-	'$scope', '$rootScope', 'Notify', 'Post',
-	function($scope, $rootScope, Notify, Post) {
+	'$scope', '$rootScope', 'Notify', 'Post', '$timeout',
+	function($scope, $rootScope, Notify, Post, $timeout) {
+		var timeout = null;
 		$scope.sending = false;
 		$scope.showErrors = false;
 		$scope.message = '';
@@ -19,9 +20,14 @@ angular.module('hearth.controllers').controller('ItemReport', [
 		$scope.showFinished = function() {
 
 			$(".report-ad").slideToggle();
-			setTimeout(function() {
+			timeout = $timeout(function() {
 				$scope.closeThisDialog();
 			}, 5000);
+		};
+
+		$scope.close = function() {
+			$timeout.cancel(timeout);
+			$scope.closeThisDialog();
 		};
 
 		$scope.sendReport = function() {

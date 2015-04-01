@@ -216,7 +216,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 template: $$config.templates + 'userForms/login.html',
                 controller: 'LoginCtrl',
                 scope: scope,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
         };
@@ -237,7 +237,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 template: $$config.templates + 'modal/itemReport.html',
                 controller: 'ItemReport',
                 scope: scope,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
         };
@@ -289,10 +289,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemEdit',
                 scope: scope,
                 closeByDocument: false,
-                closeByEscape: true,
+                closeByEscape: false,
                 showClose: false
             });
-            dialog.closePromise.then(function(data) {});
         };
 
         // $timeout(function() {
@@ -346,8 +345,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 closeByEscape: true,
                 showClose: false
             });
-
-            dialog.closePromise.then(function(data) {});
         };
 
         $rootScope.openEmailSharingBox = function(item) {
@@ -358,7 +355,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 template: $$config.templates + 'modal/emailSharing.html',
                 controller: 'EmailSharing',
                 scope: scope,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
         };
@@ -374,7 +371,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: $scope.$new(),
                 className: 'ngdialog-invite-box',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 // showClose: false
             });
 
@@ -396,7 +393,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: scope,
                 className: 'ngdialog-tutorial ngdialog-theme-default',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
 
