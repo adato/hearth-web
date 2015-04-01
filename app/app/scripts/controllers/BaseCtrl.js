@@ -221,7 +221,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        /**
+         * Open report modal window for given item
+         */
         $rootScope.openReportBox = function(item) {
+            if(item.spam_reported)
+                return false;
+
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
             
