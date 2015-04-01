@@ -31,7 +31,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			
 			// $scope.initLocations();
 			User.get({
-				user_id: $rootScope.loggedUser._id
+				_id: $rootScope.loggedUser._id
 			}, function(res) {
 				$scope.profile = $scope.transformDataIn(res);
 				$scope.loaded = true;

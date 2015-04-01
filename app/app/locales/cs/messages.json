@@ -662,6 +662,7 @@
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
             "LOCATION_HEADING": "Umístění inzerátu",
             "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
             "REPLIES": "Odpovědi uživatelů",
@@ -967,7 +968,7 @@
     "YOU_ARE_ACCEPTING_TERMS": "Registrací souhlasíte s ",
     "YOU_ARE_MEMBER": "Jste členem",
     "YOU_ARE_MEMBER_OF_X_COMMUNITIES": "Jste členem ",
-    "YOU_CAN_CONTACT_USER": "<p>Chcete uživatele kontaktovat? Po&scaron;lete j&iacute; \/ mu e-mail na <a href=\"mailto:{{email}}\">{{email}}<\/a>.<\/p>",
+    "YOU_CAN_CONTACT_USER": "<p>Kontaktovat na <a href=\"mailto:{{email}}\">{{email}}<\/a>.<\/p>",
     "YOU_HAVE": "Máte",
     "YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST": "Na tento inzerát jste již odpověděl(a).",
     "YOU_HAVE_NOT_BEEN_RATED": "Zatím vás ještě nikdo neohodnotil.",

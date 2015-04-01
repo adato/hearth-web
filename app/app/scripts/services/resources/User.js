@@ -9,9 +9,7 @@
 angular.module('hearth.services').factory('User', [
 	'$resource',
 	function($resource) {
-		return $resource($$config.apiPath + '/users/:user_id', {
-			user_id: '@_id'
-		}, {
+		return $resource($$config.apiPath + '/users/:_id', {}, {
 			add: {
 				method: 'POST'
 			},

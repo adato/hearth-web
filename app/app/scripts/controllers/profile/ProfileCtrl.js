@@ -62,7 +62,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}
 
 			// get user data
-			User.get({user_id: $routeParams.id}, function(res) {
+			User.get({_id: $routeParams.id}, function(res) {
 				$scope.info = res;
 				$scope.info.cities = $scope.citiesToString(res);
 

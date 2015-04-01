@@ -662,6 +662,7 @@
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
             "LOCATION_HEADING": "Umístění inzerátu",
             "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
             "REPLIES": "Odpovědi uživatelů",

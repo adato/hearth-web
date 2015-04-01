@@ -7,12 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma',
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma) {
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService',
+
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService) {
 		$scope.ad = false;
 		$scope.adDeleted = false;
 		$scope.loaded = false;
 		$scope.isPrivate = false;
+		$scope.profile = false;
 
 
 		// init language
@@ -43,12 +45,22 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
+		$scope.fillUserInfo = function(info) {
+			$scope.profile = info;
+			$scope.loaded = true;
+		};
+
 		// load post data
 		$scope.load = function() {
+
 			Post.get({postId: $routeParams.id}, function(data) {
 				$scope.ad = data;
-				$scope.loaded = true;
 				
+				if($rootScope.loggedUser._id)
+					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
+				else
+					$scope.loaded = true;
+
 				// if there are post data, process them
 				if(data.name) {
 					var image = null;
@@ -77,16 +89,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 						$scope.$broadcast('showMarkersOnMap');
 					});
 
-<<<<<<< HEAD
 					$scope.isMine && $scope.loadReplies();
-=======
-					if($scope.isMine) {
-						$scope.loadReplies();
-					}
-
 					$scope.postAddress = $rootScope.appUrl+'%23!/ad/'+$scope.ad._id;
 					$scope.isActive = $rootScope.isPostActive($scope.ad);
->>>>>>> feature/item-detail-ui-polish
 				}
 			}, function(res) {
 				$scope.loaded = true;

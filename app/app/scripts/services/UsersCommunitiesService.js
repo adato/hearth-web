@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.services').service('UsersCommunitiesService', [
-	'$q', 'CommunityMemberships',
-	function($q, CommunityMemberships) {
+	'$q', 'CommunityMemberships', '$rootScope', 'User', 'Community', 
+	function($q, CommunityMemberships, $rootScope, User, Community) {
 		this.query = function(params) {
 			var deferred;
 			deferred = $q.defer();
@@ -19,6 +19,20 @@ angular.module('hearth.services').service('UsersCommunitiesService', [
 			});
 			return deferred.promise;
 		};
+
+
+		this.loadProfileInfo = function(author, done, doneErr) {
+			var Resource = (author._type == 'User') ? User : Community;
+			
+			if($rootScope.cacheInfoBox[author._id])
+				return done($rootScope.cacheInfoBox[author._id]);
+			
+			Resource.get({_id: author._id}, function(info) {
+				$rootScope.cacheInfoBox[author._id] = info;
+				done(info);
+			}, doneErr);
+		};
+
 		return this;
 	}
 ]);

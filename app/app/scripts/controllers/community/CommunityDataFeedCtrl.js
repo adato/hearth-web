@@ -39,7 +39,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function processDataErr(res) {
-            // console.log("Err", res);
             finishLoading();
         }
         
@@ -64,7 +63,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 $scope.postsInactive = [];
 
                 res.data.forEach(function(item) {
-                    // if(item.is_active && !item.is_expired)
                     if($rootScope.isPostActive(item))
                         $scope.postsActive.push(item);
                     else

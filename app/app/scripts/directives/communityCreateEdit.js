@@ -79,7 +79,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     return $scope.community.admin === $rootScope.loggedUser._id;
                 };
                 $scope.loadCommunity = function(id) {
-                    Community.get({communityId: id}, function(res) {
+                    Community.get({_id: id}, function(res) {
                         $scope.community = $scope.transformDataIn(res);
                         if($scope.checkOwnership($scope.community)) {
 
