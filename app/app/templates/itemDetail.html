@@ -94,8 +94,8 @@
 						</div>
 						<div class="large-4 columns">
 							<span class="fright" id="ad-flag-container">
-								<a class="report-link spam fa fa-flag" ng-if="! isMine && !loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)"></a>
-								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
+								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id && ad.spam_reported" tipsy title="{{'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" ng-click="openReportBox(ad)"></a>
+								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !ad.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
 							</span>
 							<span class="date fright" title="{{ad.updated_at | date:DATETIME_FORMATS.medium}}">
 								{{ad.updated_at | ago}}

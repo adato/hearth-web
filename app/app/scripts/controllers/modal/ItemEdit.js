@@ -251,6 +251,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
 			$scope.closeThisDialog();
 			
+			console.log(post._id ? 'postUpdated' : 'postCreated', data);
+			
 			// emit event into whole app
 			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
 
@@ -284,13 +286,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.publishPost = function(data, post, done) {
-			Post.publish({id: post._id}, function() {
+			Post.publish({id: post._id}, function(data) {
 				done(data, post);
 			}, $scope.processErrorResult);
 		};
 
 		$scope.resumePost = function(data, post, done) {
-			Post.resume({id: post._id}, function() {
+			Post.resume({id: post._id}, function(data) {
 				done(data, post);
 			}, $scope.processErrorResult);
 		};

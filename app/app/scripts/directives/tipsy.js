@@ -12,6 +12,11 @@ angular.module('hearth.directives').directive('tipsy', [
             link: function($scope, element, attrs) {
                 $timeout(function() {
                     $(element).tipsy({gravity: 's'});
+                    $(element).mouseleave(function() {
+                        $(element).tipsy("hide");
+                        console.log("aaa");
+                        
+                    });
                 });
             }
         }

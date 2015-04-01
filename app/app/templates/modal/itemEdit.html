@@ -73,30 +73,6 @@
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </section>
 
-            <section class="collapse lock">
-                <label slide-trigger="slide.lock" for="lock">
-                    {{ 'POST_LOCK_LABEL' | translate }}
-                    <span ng-if="!slide.lock">
-                        <span ng-if="!post.is_private">({{ 'SHOW_TO_ALL' | translate }})</span>
-                        <span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">({{ 'SHOW_TO_FRIENDS' | translate }})</span>
-                        <span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">({{ 'SHOW_TO_COMMUNITY' | translate }})</span>
-                    </span>
-                </label>
-                <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
-                    <li>
-                        <radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
-                            {{ 'VISIBLE_FOR_ALL' | translate }}
-                        </radio>
-                    </li>
-                    <li>
-                        <radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
-                            <span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-                            <span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
-                        </radio>
-                    </li>
-                </ul>
-            </section>
-
             <section class="collapse date" ng-class="{ 'collapse-expanded': slide.date }">
                 <label slide-trigger="slide.date">
                     {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
@@ -119,6 +95,30 @@
                         <span ng-show="createAdForm.valid_until.$error.invalid">{{ 'ERR_DATE_IS_OLD' | translate }}</span>
                     </div>
                 </div>
+            </section>
+            
+            <section class="collapse lock">
+                <label slide-trigger="slide.lock" for="lock">
+                    {{ 'POST_LOCK_LABEL' | translate }}
+                    <span ng-if="!slide.lock">
+                        <span ng-if="!post.is_private">({{ 'SHOW_TO_ALL' | translate }})</span>
+                        <span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">({{ 'SHOW_TO_FRIENDS' | translate }})</span>
+                        <span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">({{ 'SHOW_TO_COMMUNITY' | translate }})</span>
+                    </span>
+                </label>
+                <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
+                    <li>
+                        <radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
+                            {{ 'VISIBLE_FOR_ALL' | translate }}
+                        </radio>
+                    </li>
+                    <li>
+                        <radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
+                            <span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+                            <span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+                        </radio>
+                    </li>
+                </ul>
             </section>
 
             <section class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
