@@ -1,6 +1,9 @@
 .authorSelector {
-	.avatar {
-		
+	display: inline-block;
+	
+	.avatar, .avatar img {
+		height: 30px;
+		width: 30px;
 	}	
 	select {
 		display: inline-block;

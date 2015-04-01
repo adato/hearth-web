@@ -244,6 +244,33 @@
             top: 20px;
         }
 
+        .authorSelector {
+            .avatar {
+                position: relative;
+                top: -5px;
+            }
+            select {
+                border-radius: $global-radius;
+                height:$local-input-height;
+                line-height:$local-text-font-size;
+                padding:0 15px;
+                font-weight:600;
+                -moz-appearance:none;
+
+                border:$local-input-border-style;
+                font-family: $body-font-family;
+                box-shadow: none !important; // uh oh
+                font-size: $local-text-font-size;
+                color:$local-input-text-color;
+                &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
+                    border:1px solid $local-input-error-color !important;
+                }
+                &:disabled {
+                    background-color: #ddd !important;
+                }
+            }
+        }
+
         .checkbox {
             span {
                 top: 0px;
