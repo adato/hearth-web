@@ -26,16 +26,17 @@ angular.module('hearth.geo').directive('searchMap', [
             },
             templateUrl: 'templates/geo/searchMap.html',
             link: function(scope, element) {
-
+                scope.center = false;
                 var searchBoxElement = $('input', element),
                     searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
 
                 google.maps.event.addListener(searchBox, 'places_changed', function() {
                     var places = searchBox.getPlaces();
-
                     if (places && places.length > 0) {
                         geo.focusLocation(places[0].geometry.location);
-                        scope.search(places[0].geometry.location);
+                        
+                        var loc = places[0].geometry.location;
+                        scope.search({lat: loc.lat(), lon: loc.lng(), distance: '50km', name: places[0].formatted_address});
                     }
                 });
 
@@ -46,12 +47,6 @@ angular.module('hearth.geo').directive('searchMap', [
                             searchBoxElement.val(info.formatted_address);
                         });
                         scope.search(location);
-                    });
-                };
-
-                scope.search = function(location) {
-                    scope.setLocationFn({
-                        location: location
                     });
                 };
 
@@ -69,6 +64,12 @@ angular.module('hearth.geo').directive('searchMap', [
                     };
                 };
 
+                scope.setSearchParams = function(params) {
+                    params = angular.extend(scope.getFilterParams(), params);
+                    console.log(params);
+                    $location.search(params);
+                };
+
                 scope.getSearchParams = function() {
                     var searchParams = scope.getFilterParams();
 
@@ -80,12 +81,18 @@ angular.module('hearth.geo').directive('searchMap', [
                     return searchParams;
                 };
 
-                scope.search = function() {
+                scope.search = function(loc) {
+                    // if we should set new location, set it also to search
+                    loc && loc.lon && scope.setSearchParams(loc);
 
                     // search only when map is shown
                     if (scope.showMap) {
-                        Post.mapQuery(scope.getSearchParams(), function(data) {
-                            scope.setLoadingFn(true);
+                        var params = scope.getSearchParams();
+
+                        if(params.lon)
+                            scope.center = true;
+
+                        Post.mapQuery(params, function(data) {
                             scope.$broadcast('showMarkersOnMap', data);
                         });
                     }
