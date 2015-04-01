@@ -2,7 +2,7 @@
     <ui-select multiple ng-model="list.communities" theme="select2" ng-disabled="disable">
         <ui-select-match placeholder="{{ 'SELECT_COMMUNITIES_FOR_POST' | translate }}">{{$item.name}}</ui-select-match>
         <ui-select-choices repeat="item in myCommunities | filter: {name: $select.search}">
-          <div ng-bind-html="item.name | highlight: $select.search"></div>
+          <div ng-bind-html="item.name"></div>
         </ui-select-choices>
     </ui-select>
 </div>
