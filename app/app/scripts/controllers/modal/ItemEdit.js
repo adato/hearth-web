@@ -393,12 +393,15 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.init();
 		$scope.$watch('post.related_communities', function(val, old) {
-			if(!$scope.post.related_communities.length)
+			console.log("COMMUNITIES: ", val.length, old.length);
+			if(val.length !== old.length && !$scope.post.related_communities.length)
 				$scope.post.is_private = false;
 		});
 		$scope.$watch('post.current_community_id', function(val, old) {
+			console.log("AUTHOR: ", val, old);
 			if(!!val !== !!old) {
 				$scope.post.related_communities = [];
+				$scope.post.is_private = false;
 				$scope.slide.communities = false;
 			}
 		});
