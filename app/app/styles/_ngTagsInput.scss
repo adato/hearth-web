@@ -10,7 +10,7 @@ tags-input {
         outline: none;
     }
     .tags {
-        height: 30px;
+        min-height: 30px;
         overflow: hidden;
         word-wrap: break-word;
         cursor: text;
