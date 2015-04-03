@@ -121,8 +121,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 },
                 function(done) {
                     UsersActivityLog.get(params, function(res) {
-                        $scope.activityLog = [];
-                        // $scope.activityLog = res;
+                        $scope.activityLog = res;
                         done(null);
                     }, done);
                 },

@@ -26,7 +26,7 @@
             <div class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</div>
 
             <section class="author">
-                <author-selector title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
+                <author-selector title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
 
                 <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>
                 <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_GIVE' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
@@ -73,30 +73,6 @@
                 <locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
             </section>
 
-            <section class="collapse lock">
-                <label slide-trigger="slide.lock" for="lock">
-                    {{ 'POST_LOCK_LABEL' | translate }}
-                    <span ng-if="!slide.lock">
-                        <span ng-if="!post.is_private">({{ 'SHOW_TO_ALL' | translate }})</span>
-                        <span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">({{ 'SHOW_TO_FRIENDS' | translate }})</span>
-                        <span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">({{ 'SHOW_TO_COMMUNITY' | translate }})</span>
-                    </span>
-                </label>
-                <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
-                    <li>
-                        <radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
-                            {{ 'VISIBLE_FOR_ALL' | translate }}
-                        </radio>
-                    </li>
-                    <li>
-                        <radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
-                            <span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-                            <span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
-                        </radio>
-                    </li>
-                </ul>
-            </section>
-
             <section class="collapse date" ng-class="{ 'collapse-expanded': slide.date }">
                 <label slide-trigger="slide.date">
                     {{ 'POST_EXPIRATION_DATE_LABEL' | translate}}
@@ -129,8 +105,37 @@
                     </span>
                 </label>
                 <div ng-slide-down="slide.communities" lazy-render duration="0.5">
-                    <community-selector disable="post.current_community_id" communities="post.related_communities"></community-selector>
+                    <div ng-if="!post.related_communities.length && post.is_private">
+                        <community-selector disable="true" tipsy title="{{'POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE' | translate }}" communities="post.related_communities"></community-selector>
+                    </div>
+                    <div ng-if="post.related_communities.length || !post.is_private">
+                        <community-selector communities="post.related_communities"></community-selector>
+                    </div>
                 </div>
+            </section>
+
+            <section class="collapse lock">
+                <label slide-trigger="slide.lock" for="lock">
+                    {{ 'POST_LOCK_LABEL' | translate }}
+                    <span ng-if="!slide.lock">
+                        <span ng-if="!post.is_private">({{ 'SHOW_TO_ALL' | translate }})</span>
+                        <span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">({{ 'SHOW_TO_FRIENDS' | translate }})</span>
+                        <span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">({{ 'SHOW_TO_COMMUNITY' | translate }})</span>
+                    </span>
+                </label>
+                <ul ng-slide-down="slide.lock" lazy-render duration="0.5">
+                    <li>
+                        <radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
+                            {{ 'VISIBLE_FOR_ALL' | translate }}
+                        </radio>
+                    </li>
+                    <li>
+                        <radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
+                            <span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+                            <span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+                        </radio>
+                    </li>
+                </ul>
             </section>
 
             <section class="collapse files" ng-class="{ 'collapse-expanded': slide.files }">

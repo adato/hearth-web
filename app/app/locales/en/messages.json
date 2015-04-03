@@ -649,6 +649,7 @@
         "DETAIL": {
             "HIDE_MAP": "Hide map",
             "LOCATION_ANYWHERE": "Anywhere",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
             "LOCATION_HEADING": "Ad location",
             "NO_REPLY": "You have no replies to this ad yet.",
             "REPLIES": "Users replies",
@@ -660,6 +661,7 @@
         "one": "post",
         "other": "posts"
     },
+    "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro přidání inzerátu do komunity nesmíte mít inzerát jen pro přátele.",
     "POST_COMMUNITIES_LABEL": "Insert ad into community:",
     "POST_EXPIRATION_DATE_LABEL": "Valid until",
     "POST_HAS_ALREADY_EXPIRED": "Date of post has expired",
@@ -772,7 +774,7 @@
     "REPLY_PUBLISH_EMAIL_AGREE": "I agree that my email address will be provided to {{name}}.",
     "REPORT": "Report",
     "REPORT_HARMFUL_AD": "Report abuse post",
-    "REPORT_HARMFUL_AD_ONLY_ONCE": "Inzerát byl již nahlášen.",
+    "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "RESET_PASSWORD": "Reset password",
     "RESET_PASSWORD_API_ERROR": "Change of password has failed... What now?",
     "RESET_PASSWORD_BROKEN_LINK": "<p>Ouch, something is broken, this link is invalid.<br \/>Generate a new one <a href=\"#!\/forgotten-password\">clicking here<\/a>.<\/p>",

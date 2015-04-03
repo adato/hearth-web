@@ -662,6 +662,7 @@
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
             "LOCATION_HEADING": "Umístění inzerátu",
             "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
             "REPLIES": "Odpovědi uživatelů",
@@ -674,20 +675,21 @@
         "few": "inzeráty",
         "other": "inzerátov"
     },
+    "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro přidání inzerátu do komunity nesmíte mít inzerát jen pro přátele.",
     "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity",
     "POST_EXPIRATION_DATE_LABEL": "Platnost do",
     "POST_HAS_ALREADY_EXPIRED": "Platnosť inzerátu už skončila",
     "POST_HAS_BEEN_DEACTIVATED": "Inzerát bol pozastavený",
     "POST_HAS_EXPIRED": "Platnosť inzerátu skončila",
-    "POST_KEYWORDS_LABEL": "Klíčová slova",
+    "POST_KEYWORDS_LABEL": "Klíčová slova:",
     "POST_LOCK_LABEL": "Soukromí inzerátu",
     "POST_NOT_FOUND": "Inzerát nebol nájdený.",
     "POST_PLACE_LABEL": "Místa:",
     "POST_REPORT": {
-        "HEADING": "Označit za nevhodný",
-        "REASON_PLACEHOLDER": "Napište nám a autorovi pár slov, proč si myslíte, že by na Hearth.net takový inzerát neměl být...",
-        "REPORT_INFO": "<p>Mysl&iacute;te si, že nab&iacute;dka nebo popt&aacute;vka tohoto typu na Hearth.net nem&aacute; co dělat? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e označen&iacute; nevhodn&eacute;ho obsahu, spolu s v&aacute;mi uveden&yacute;m&nbsp;důvodem, za&scaron;leme i autorovi nab&iacute;dky nebo popt&aacute;vky. Nebojte, Va&scaron;e zpr&aacute;va nebude veřejně vidět, bude to jen mezi V&aacute;mi, n&aacute;mi a autorem.<\/p>",
-        "SUCCESS_MESSAGE": "Inzerát byl úspěšně nahlášen."
+        "HEADING": "Upozorněte na nevhodný dar nebo přání",
+        "REASON_PLACEHOLDER": "Napište nám a autorovi pár slov, proč si myslíte, že by na Hearth.net takový obsah neměl být...",
+        "REPORT_INFO": "<p>Mysl&iacute;te si, že dar nebo př&aacute;n&iacute;&nbsp;tohoto typu na Hearth.net nepatř&iacute;? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e upozorněn&iacute; na nevhodn&yacute; obsah, spolu s uveden&yacute;m&nbsp;důvodem, za&scaron;leme i jeho autorovi. Nebojte, Va&scaron;e zpr&aacute;va nebude veřejn&aacute;, tato zpětn&aacute; vazba zůstane jen mezi V&aacute;mi, Hearthem a autorem.<\/p>",
+        "SUCCESS_MESSAGE": "Upozornění na nevhodný dar\/přání bylo úspěšně odesláno."
     },
     "POST_TEXT_LABEL": "Text inzerátu:",
     "POST_TITLE_LABEL": "Stručný popis inzerátu:",
@@ -792,7 +794,7 @@
     "REPLY_PUBLISH_EMAIL_AGREE": "Spoločne s touto správou uvidí užívateľ {{name}} i Vašu emailovú adresu.",
     "REPORT": "Odeslat",
     "REPORT_HARMFUL_AD": "Nahlásiť škodlivý inzerát",
-    "REPORT_HARMFUL_AD_ONLY_ONCE": "Inzerát byl již nahlášen.",
+    "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Pri zmene hesla došlo k chybe... Čo teraz?",
     "RESET_PASSWORD_BROKEN_LINK": "Ajajaj, niečo sa pokazilo, tento odkaz nie je platný.<br \/>Nechajte si vygenerovať nový na <a href='#!\/forgotten-password'>tejto adrese.<\/a>",

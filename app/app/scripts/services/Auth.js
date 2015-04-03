@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location',
-	function($session, $http, $rootScope, $q, LanguageSwitch, $location) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -28,6 +28,12 @@ angular.module('hearth.services').factory('Auth', [
 					}
 					$rootScope.$broadcast('authorize');
 					return callback();
+				});
+			},
+			refreshUserInfo: function() {
+				Session.show(function(res) {
+					if(res.get_logged_in_user)
+						$rootScope.loggedUser = res.get_logged_in_user;
 				});
 			},
 			login: function(credentials, cb) {
@@ -120,16 +126,6 @@ angular.module('hearth.services').factory('Auth', [
 					return err(data);
 				});
 			},
-			switchIdentity: function(identity) {
-				var defer;
-				defer = $q.defer();
-				$http.post($$config.apiPath + '/session/switch_identity/', {id: identity}).success(function(data) {
-					return defer.resolve(data);
-				}).error(function(data) {
-					return defer.reject(data);
-				});
-				return defer.promise;
-			},
 			processLoginResponse: function(data) {
 				if(data.email_token)
 					return $location.path('/fill-email/'+data.email_token);
@@ -143,16 +139,6 @@ angular.module('hearth.services').factory('Auth', [
 	            }
 
 	            window.location = window.location.pathname;
-			},
-			switchIdentityBack: function() {
-				var defer;
-				defer = $q.defer();
-				$http.post($$config.apiPath + '/session/leave_identity').success(function(data) {
-					return defer.resolve(data);
-				}).error(function(data) {
-					return defer.reject(data);
-				});
-				return defer.promise;
 			},
 			getTwitterAuthUrl: function() {
 				var fillEmailUrl = $$config.appUrl +'#!/fill-email/%{token}';

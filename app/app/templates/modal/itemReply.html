@@ -1,6 +1,6 @@
 <div class="itemReply modal">
     <div class="head">
-        <span ng-click="closeThisDialog()" class="fright close fa fa-times"></span>
+        <span ng-click="close()" class="fright close fa fa-times"></span>
         <h2>
             <span ng-if="post.type =='offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
             <span ng-if="post.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
@@ -25,7 +25,7 @@
                 <span ng-show="! reply.agreed">{{ 'ERR_AD_REPLY_NOT_AGREE' | translate }}</span>
             </div>
             <section class="bottom">
-                <a href="" ng-click="closeThisDialog()" class="fleft close">
+                <a href="" ng-click="close()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
                 <button class="primary button-send fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SUBMIT</button>
@@ -35,7 +35,7 @@
     <div class="reply-ad success success-msg hidden">
         <p>{{ 'SEND_REPLY_SUCCESS' | translate }}</p>
         <section class="bottom">
-            <button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>
+            <button class="primary button-send fright pointer" ng-click="close()" translate>CLOSE</button>
         </section>
     </div>
 </div>

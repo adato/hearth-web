@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ItemReply', [
-	'$scope', '$rootScope', 'PostReplies', 'Notify',
-	function($scope, $rootScope, PostReplies, Notify) {
+	'$scope', '$rootScope', 'PostReplies', 'Notify', '$timeout',
+	function($scope, $rootScope, PostReplies, Notify, $timeout) {
+		var timeout = null;
 		$scope.sending = false;
 		$scope.showErrors = false;
 		// $scope.author = null;
@@ -38,9 +39,14 @@ angular.module('hearth.controllers').controller('ItemReply', [
 		$scope.showFinished = function() {
 
 			$(".reply-ad").slideToggle();
-			setTimeout(function() {
+			timeout = $timeout(function() {
 				$scope.closeThisDialog();
 			}, 5000);
+		};
+
+		$scope.close = function() {
+			$timeout.cancel(timeout);
+			$scope.closeThisDialog();
 		};
 
 		$scope.sendReply = function() {

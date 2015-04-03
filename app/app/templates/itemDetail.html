@@ -3,13 +3,13 @@
 	
 	<div class="row" ng-if="loaded">
 		<section ng-show="ad && !isMine && ad.state === 'suspended'" class="ad-not-found box large-6 margin-auto text-center">
-			<p class="margin-0 padding-top">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
+			<p class="margin-0">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
 		</section>
 		<section ng-show="!adDeleted && ad === false" class="ad-not-found box large-6 margin-auto text-center">
-			<p class="margin-0 padding-top">{{ 'POST_NOT_FOUND' | translate }}</p>
+			<p class="margin-0">{{ 'POST_NOT_FOUND' | translate }}</p>
 		</section>
 		<section ng-show="adDeleted" class="ad-not-found box large-6 margin-auto text-center">
-			<p class="margin-0 padding-top">{{ 'POST_WAS_DELETED' | translate }}</p>
+			<p class="margin-0">{{ 'POST_WAS_DELETED' | translate }}</p>
 		</section>
 
 		<section ng-if="! adDeleted && ad && ad.name" class="large-12 content row" id="item_container_{{ ad._id }}">
@@ -27,7 +27,6 @@
 						</span>
 					</div>
 				</a>
-
 				<div class="box text-left" ng-if="profile">
 					<div class="line">
 						<div class="descr" ng-if="profile.about"><i class="fa fa-quote-right"></i> {{profile.about|ellipsis}}</div>
@@ -91,8 +90,8 @@
 						</div>
 						<div class="large-4 columns">
 							<span class="fright" id="ad-flag-container">
-								<a class="report-link spam fa fa-flag" ng-if="! isMine && !loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="showLoginBox(true)"></a>
-								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
+								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id && ad.spam_reported" tipsy title="{{'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" ng-click="openReportBox(ad)"></a>
+								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !ad.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
 							</span>
 							<span class="date fright" title="{{ad.updated_at | date:DATETIME_FORMATS.medium}}">
 								{{ad.updated_at | ago}}
@@ -188,13 +187,3 @@
 		</section>
 	</div>
 </article>
-
-
-<!--
- 						<div class="controll-buttons" ng-if="mine">
-							<div class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"></div>
-							<div class="fa " ng-class="{'fa-refresh': ad.state == 'expired', 'fa-play': ad.state == 'suspended'}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+ad._id)"></div>
-							<div class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"></div>
-							<div class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></div>
-						</div> 
--->

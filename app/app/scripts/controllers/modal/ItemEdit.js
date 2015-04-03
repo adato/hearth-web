@@ -284,13 +284,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.publishPost = function(data, post, done) {
-			Post.publish({id: post._id}, function() {
+			Post.publish({id: post._id}, function(data) {
 				done(data, post);
 			}, $scope.processErrorResult);
 		};
 
 		$scope.resumePost = function(data, post, done) {
-			Post.resume({id: post._id}, function() {
+			Post.resume({id: post._id}, function(data) {
 				done(data, post);
 			}, $scope.processErrorResult);
 		};
@@ -392,10 +392,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init();
+		$scope.$watch('post.related_communities', function(val, old) {
+			console.log("COMMUNITIES: ", val.length, old.length);
+			if(val.length !== old.length && !$scope.post.related_communities.length)
+				$scope.post.is_private = false;
+		});
 		$scope.$watch('post.current_community_id', function(val, old) {
+			console.log("AUTHOR: ", val, old);
 			if(!!val !== !!old) {
-				$scope.post.is_private = 0;
 				$scope.post.related_communities = [];
+				$scope.post.is_private = false;
 				$scope.slide.communities = false;
 			}
 		});

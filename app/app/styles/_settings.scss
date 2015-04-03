@@ -1298,3 +1298,15 @@ $crumb-slash: ">";
 // $range-slider-handle-round: $global-rounded;
 // $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
 // $range-slider-handle-cursor: pointer;
+
+$local-title-font-size: 16px;
+$local-text-font-size: 14px;
+$local-small-grid-size: 5px;
+$local-grid-size: 5 * $local-small-grid-size;
+$local-border-style: 1px solid #e3e3e3; // exact by image
+$local-input-border-style: 1px solid #ddd; // or should be #ddd?
+$local-input-text-color: #333;
+$local-color-disabled: #999;
+$local-color-lighter: #999;
+$local-input-height: 30px;
+$local-input-error-color: #ea122a;
