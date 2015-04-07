@@ -1,4 +1,8 @@
 <div>
+    <section ng-if="errorLoading == 404" class="box padding-top large-6 margin-auto text-center">
+      <p class="margin-0">{{ 'COMMUNITY_WAS_NOT_FOUND' | translate }}</p>
+    </section>
+    
   <div class="row margin-bottom-20 profile-edit-common" ng-show="loaded">
     <div class="communities-notify-area"></div>
     <form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
@@ -132,5 +136,5 @@
     </div>
     <div class="clear"></div>
   </div>    
-  <div loading show="!loaded"></div>
+  <div loading show="!loaded && !errorLoading"></div>
 </div>
