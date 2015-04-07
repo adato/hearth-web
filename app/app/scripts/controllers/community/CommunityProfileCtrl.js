@@ -112,6 +112,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         		return false;
         	$scope.approveApplicationLock = true;
 
+
         	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
         		$scope.approveApplicationLock = false;
 
@@ -133,7 +134,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         };
 
 		$scope.init = function() {
-			console.log("AA");
 			$scope.refreshDataFeed();
 			$scope.fetchCommunity();
 		};
