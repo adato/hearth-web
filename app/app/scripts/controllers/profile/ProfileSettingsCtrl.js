@@ -80,7 +80,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				
 				// serialize
 				var out = {
-					user_id: $rootScope.loggedUser._id,
+					_id: $rootScope.loggedUser._id,
 					current_password: data.pass,
 					reason: data.reason
 				};
