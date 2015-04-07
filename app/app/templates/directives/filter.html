@@ -1,10 +1,63 @@
 <div class="filter" ng-show="inited">
-	<article class="row">
+	<section class="keywords-container" ng-if="inited">
+		<label>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</label>
+		<tags-input ng-model="filter.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+			<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+		</tags-input>
+	</section>
+	<section class="common-keywords-container">
+		<ul>
+			<li ng-repeat="(ind, val) in commonKeywords">
+				<a ng-click="insertKeyword(val)">{{ val }}</a>
+			</li>
+		</ul>
+	</section>
+	<section class="radio-container type-switch-container">
+		<label>{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</label>
+		<radio type="radio" model="filter.type" value="'offer'">{{'ADS_OFFER' | translate}}</radio>
+		<radio type="radio" model="filter.type" value="'need'">{{'ADS_NEED' | translate}}</radio>
+		<radio type="radio" model="filter.type" value="null">{{'ADS_ALL' | translate}}</radio>
+	</section>
+	<section class="radio-container author-switch-container">
+		<label>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</label>
+		<checkbox model="filter.user" value="true">{{'INDIVIDUALS' | translate}}</checkbox>
+		<checkbox model="filter.community" value="true">{{'COMMUNITIES' | translate}}</checkbox>
+		<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{'JUST_MY_CONNECTIONS' | translate}}</checkbox>
+	</section>
+	<section class="radio-container time-switch-container">
+		<label>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</label>
+		<radio type="radio" model="filter.days" value="'1'">{{'TODAY' | translate}}</radio>
+		<radio type="radio" model="filter.days" value="'3'">{{'3_DAYS' | translate}}</radio>
+		<radio type="radio" model="filter.days" value="'7'">{{'WEEK' | translate}}</radio>
+		<radio type="radio" model="filter.days" value="null">{{'WITHOUT_LIMIT' | translate}}</radio>
+	</section>
+	<section class="location-container">
+		<label>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</label>
+		<section>
+			<div class="range-select-container"  ng-show="filter.lat && filter.lon && filter.name">
+				<input type="range" ng-model="filter.distance" step="25"  min="25" max="100" >
+				<span class="distance">{{filter.distance}} {{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+			</div>
+			<input type="text" id="geolocation" ng-model="filter.name" />
+		</section>
+	</section>
+	<section class="footer">
+		<div class="fleft">
+			<a ng-click="reset()" class="link-button">{{'RETURN_THE_FILTER_TO_ORIGINAL_SETTINGS' | translate}}</a>
+		</div>
+		<div class="fright">
+			<checkbox signed-in model="filterSave" value="true">{{'SAVE_THE_FILTER_FOR_FUTURE_USE' | translate}}</checkbox>
+			<button class="button" ng-click="applyFilter()">{{'RUN_FILTER' | translate}}</button>
+		</div>
+	</section>
+
+
+<!-- 	<article class="row">
 		<section ng-if="inited" class="large-12 columns" style="padding-bottom:0;padding-top:0">
 			<tags-input ng-model="filter.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
 				<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 			</tags-input>
-			<ul class="commonKeywords">
+			<ul class="common-keywords-container">
 				<li ng-repeat="(ind, val) in commonKeywords">
 					<a ng-click="insertKeyword(val)">{{ val }}</a>
 				</li>
@@ -58,5 +111,5 @@
 			<button class="button" ng-click="applyFilter()"><span class="fa fa-filter"></span> {{'RUN_FILTER' | translate}}</button>
 		</div>
 	</div>
-
+ -->
 </div>
