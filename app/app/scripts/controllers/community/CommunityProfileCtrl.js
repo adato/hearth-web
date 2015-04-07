@@ -133,7 +133,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         };
 
 		$scope.init = function() {
-
+			console.log("AA");
 			$scope.refreshDataFeed();
 			$scope.fetchCommunity();
 		};
