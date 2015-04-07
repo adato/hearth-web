@@ -484,10 +484,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             
             $rootScope.globalLoading = true;
             // call service
-            Action({
-                    id: item._id
-                },
-                function(res) {
+            Action({id: item._id}, function(res) {
 
                     if(angular.isFunction(cb))
                         cb(item);

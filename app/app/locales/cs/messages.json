@@ -196,6 +196,7 @@
     "COMMUNITY_SEE_ALL_APPLICATIONS": "Zobrazit všechny přihlášky do komunity",
     "COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN": "Vyberte osobu, které chcete předat správcovství komunity a klikněte na odeslat.",
     "COMMUNITY_UPDATED_DONE": "Komunita byla aktualizována.",
+    "COMMUNITY_WAS_NOT_FOUND": "Taková komunita tu není..",
     "COMPLETE": "Odeslat",
     "CONFIRM": "Potvrdit",
     "CONTACTS": "Kontakty",
@@ -308,6 +309,7 @@
     "ERR_WRONG_PASSWORD": "Heslo musí mít alespoň 4 znaky. Jo jo, máme rádi matiku.",
     "EXPIRATION_DATE": "Doba platnosti",
     "FACEBOOK_INVITATION_MESSAGE": "Jsem na Hearth.net - štědré sociální síti pro sdílení darů a zkušeností. Pojď to taky zkusit!",
+    "FAQ": "Časté dotazy",
     "FEEDBACK": "Napište nám",
     "FEEDBACK_FORM_SPEECH_BUBBLE": "Nejsme perfektní, ale s vaší pomocí můžeme být. \r\nNapište nám a my vám dáme lepší Hearth.\r\nČestné vývojářské.",
     "FEEDBACK_LINK": "Hodnocení",
@@ -688,8 +690,8 @@
     "POST_REPORT": {
         "HEADING": "Upozorněte na nevhodný dar nebo přání",
         "REASON_PLACEHOLDER": "Napište nám a autorovi pár slov, proč si myslíte, že by na Hearth.net takový obsah neměl být...",
-        "REPORT_INFO": "<p>Mysl&iacute;te si, že dar nebo př&aacute;n&iacute;&nbsp;tohoto typu na Hearth.net nepatř&iacute;? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e upozorněn&iacute; na nevhodn&yacute; obsah, spolu s uveden&yacute;m&nbsp;důvodem, za&scaron;leme i autorovi. Nebojte, Va&scaron;e zpr&aacute;va nebude veřejn&aacute;, tato zpětn&aacute; vazba zůstane jen mezi V&aacute;mi, Hearthem a autorem.<\/p>",
-        "SUCCESS_MESSAGE": "Inzerát byl úspěšně nahlášen."
+        "REPORT_INFO": "<p>Mysl&iacute;te si, že dar nebo př&aacute;n&iacute;&nbsp;tohoto typu na Hearth.net nepatř&iacute;? <strong>Dejte n&aacute;m o tom vědět!<\/strong><\/p>\r\n<p>Va&scaron;e upozorněn&iacute; na nevhodn&yacute; obsah, spolu s uveden&yacute;m&nbsp;důvodem, za&scaron;leme i jeho autorovi. Nebojte, Va&scaron;e zpr&aacute;va nebude veřejn&aacute;, tato zpětn&aacute; vazba zůstane jen mezi V&aacute;mi, Hearthem a autorem.<\/p>",
+        "SUCCESS_MESSAGE": "Upozornění na nevhodný dar\/přání bylo úspěšně odesláno."
     },
     "POST_TEXT_LABEL": "Text inzerátu:",
     "POST_TITLE_LABEL": "Stručný popis inzerátu:",
@@ -843,6 +845,7 @@
     "SIGN_UP_WITH_FACEBOOK": "přihlásit přes Facebook",
     "SIGN_UP_WITH_GOOGLE": "přihlásit přes Google",
     "SIGN_UP_WITH_TWITTER": "přihlásit přes Twitter",
+    "SOCIAL_NETWORKS": "Jsme také na:",
     "SUBMIT": "Odeslat",
     "SUGGESTED_COMMUNITIES": "Doporučené komunity",
     "SWITCH_TO": "Přepnout se za",
