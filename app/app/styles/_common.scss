@@ -62,7 +62,7 @@
 
 .logo {
     background-image: inline-image("logo.png");
-    background-position: center center;
+    background-position: center center; 
     background-color: color(1);
     background-repeat: no-repeat;
     width: 200px !important;
@@ -71,14 +71,6 @@
 }
 
 button {
-    -webkit-transition: -webkit-filter 1s;
-    &[disabled=disabled] {
-        filter: blur(1px) grayscale(70%);
-    }
-    outline: none;
-    &:focus {
-        outline: 1px dotted darken(color(4), 30%);
-    }
 }
 
 .link-button {
@@ -90,20 +82,7 @@ button {
 }
 
 .button-send {
-    border: none;
-    color: white;
-    font-weight: bold;
-    display: inline-block;
-    font-size: 1.2rem;
-    margin: 0 0 1.25rem;
-    padding: 0.5rem 2rem;
-    transition: background-color 300ms ease-out 0s;
-    opacity: 1;
-    cursor: pointer;
-    background-color: color(5);
-    &:hover, &:focus {
-        background-color: darken(color(5), abs($button-function-factor));
-    }
+    @extend .button;
 }
 
 .animate-show {

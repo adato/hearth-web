@@ -2,9 +2,9 @@
 
 .ngdialog .itemReply, .ngdialog .itemEdit {
 
-    font-size: $local-text-font-size;
+    font-size: $ui-text-font-size;
     width: 650px;
-    padding: $local-grid-size;
+    padding: $ui-grid-size;
 
     textarea {
         height: 85px;
@@ -15,25 +15,23 @@
         cursor: pointer;
         margin-bottom:10px;
         line-height:1;
-        font-weight: 600;
+        font-weight: $ui-text-weight-bolder;
         color:#333;
     }
 
     // fix stuff
     a {
-        font-weight: 600;
+        font-weight: $ui-text-weight-bolder;
     }
-    * {
-        text-align:left;
-    }
+
     input, select, textarea {
-        border:$local-input-border-style;
+        border:$ui-input-border-style;
         font-family: $body-font-family;
         box-shadow: none !important; // uh oh
-        font-size: $local-text-font-size;
-        color:$local-input-text-color;
+        font-size: $ui-text-font-size;
+        color:$ui-input-text-color;
         &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
-            border:1px solid $local-input-error-color !important;
+            border:1px solid $ui-input-error-color !important;
         }
     }
     input[type="radio"] {
@@ -41,18 +39,18 @@
     }
     input[type="text"], input[type="email"] {
         box-shadow:none !important;
-        font-size: $local-text-font-size !important;
+        font-size: $ui-text-font-size !important;
         line-height:1.3;
-        height:6 * $local-small-grid-size;
-        padding:$local-small-grid-size;
-        padding-left:$local-small-grid-size * 2;
+        height:6 * $ui-small-grid-size;
+        padding:$ui-small-grid-size;
+        padding-left:$ui-small-grid-size * 2;
     }
     select {
         border-radius: $global-radius;
-        height:$local-input-height;
-        line-height:$local-text-font-size;
+        height:$ui-input-height;
+        line-height:$ui-text-font-size;
         padding:0 15px;
-        font-weight:600;
+        font-weight:$ui-text-weight-bolder;
         -moz-appearance:none;
 
         &:disabled {
@@ -60,59 +58,45 @@
         }
     }
     div.error {
-        font-size:$local-text-font-size;
-        top: -2 * $local-small-grid-size;
-        margin-bottom: $local-small-grid-size * 2;
-        color:$local-input-error-color;
-    }
-    button.button-send {
-        min-width:30 * $local-small-grid-size;
-        padding: 0px $local-grid-size;
-        margin: 0;
-        margin-left:$local-small-grid-size * 2;
-        font-weight:600;
-        height:$local-input-height;
-        text-align:center;
-        font-size:$local-text-font-size;
-        &.red {
-            background:red;
-            color:white;
-        }
+        font-size:$ui-text-font-size;
+        top: -2 * $ui-small-grid-size;
+        margin-bottom: $ui-small-grid-size * 2;
+        color:$ui-input-error-color;
     }
     // end fix stuff
     .head {
         top:0;
         h1, h2 {
-            font-size: $local-title-font-size;
+            font-size: $ui-title-font-size;
             font-weight: 700;
             word-wrap: break-word;
             margin:0;
             padding:0;
-            line-height:$local-title-font-size;
-            height:$local-title-font-size;
+            line-height:$ui-title-font-size;
+            height:$ui-title-font-size;
             text-align:left;
         }
         hr {
             border:0;
-            border-bottom:$local-border-style;
-            margin-top:$local-grid-size;
-            margin-bottom:$local-small-grid-size * 2;
+            border-bottom:$ui-border-style;
+            margin-top:$ui-grid-size;
+            margin-bottom:$ui-small-grid-size * 2;
         }
         ul.message-line {
             margin:0;
             padding:0;
             li {
                 list-style-type: none;
-                color:$local-color-disabled;
-                margin-bottom:$local-small-grid-size * 2;
-                border-bottom:$local-border-style;
-                padding-bottom:$local-small-grid-size * 2;
+                color:$ui-color-disabled;
+                margin-bottom:$ui-small-grid-size * 2;
+                border-bottom:$ui-border-style;
+                padding-bottom:$ui-small-grid-size * 2;
                 font-size:14px;
             }
         }
     }
     .bottom {
-        margin-top:$local-small-grid-size * 3;
+        margin-top:$ui-small-grid-size * 3;
         .pauseLink {
             text-transform: uppercase;
             margin-right: 30px;
@@ -131,7 +115,7 @@
     .need-offer-selector {
         display: inline-block;
         margin-top: 18px;
-        margin-bottom: 5*$local-small-grid-size;
+        margin-bottom: 5*$ui-small-grid-size;
         label { margin:0; }
         label:first-child {
             margin-right:20px;
@@ -150,20 +134,20 @@
             padding:0;
             box-shadow:none;
             margin-bottom:1rem;
-            min-height:$local-input-height;
+            min-height:$ui-input-height;
             .select2-drop {
                 margin-left:0;
-                font-size:$local-text-font-size;
+                font-size:$ui-text-font-size;
             }
             .select2-choices .select2-search-choice {
                 margin:3px;
                 height:22px;
                 line-height:20px;
-                font-size:$local-text-font-size;
-                span { color:$local-input-text-color; }
+                font-size:$ui-text-font-size;
+                span { color:$ui-input-text-color; }
             }
             .select2-result-label {
-                padding:3px $local-small-grid-size * 2;
+                padding:3px $ui-small-grid-size * 2;
             }
         }
     }
@@ -171,37 +155,37 @@
     // any collapsible section
     section.collapse {
         &.collapse-expanded {
-            margin-bottom:$local-small-grid-size * 3;
+            margin-bottom:$ui-small-grid-size * 3;
         }
         &>label i.fa, label.collapse-trigger i.fa {
             margin:0;
             color:color(5);
 
             &::before {
-                margin-right:$local-small-grid-size;
+                margin-right:$ui-small-grid-size;
             }
         }
     }    
 
     section.place {
-        padding-bottom:$local-small-grid-size * 3;
+        padding-bottom:$ui-small-grid-size * 3;
     }
 
     section.date {
         input.date {
-            width: 10*$local-grid-size;
+            width: 10*$ui-grid-size;
             text-align:center;
         }
     }
 
     .location-picker {
         .ng-invalid .tags { 
-            border:1px solid $local-input-error-color !important; 
+            border:1px solid $ui-input-error-color !important; 
         }
         .location-input.disabled .tags { border-color:#ddd !important; }
-        .location-map { margin-bottom: $local-small-grid-size * 2; }
+        .location-map { margin-bottom: $ui-small-grid-size * 2; }
         .error {
-            margin-top:3*$local-small-grid-size;
+            margin-top:3*$ui-small-grid-size;
         }
         input {
             transition: none;
@@ -211,7 +195,7 @@
     section.lock {
         &>ul>div {
             line-height:1;
-            margin-bottom:$local-small-grid-size;
+            margin-bottom:$ui-small-grid-size;
         }
     }
 
@@ -221,26 +205,12 @@
         }
     }
 
-
-
     .checkbox {
-        padding-top: 0px;
-        height: auto;
-        padding-left: 0px;
-        font-weight: normal;
-        .fa {
-            margin-left: 0px;
-            width: 14px;
-            font-size:14px;
-            color:$local-color-lighter;
-        }
-        span {
-            margin-left: 0;
-            top: 0;
-        }
+        @extend .ui-checkbox;
     }
+
     label.checkbox.radio {
-        margin-right:$local-grid-size;
+        margin-right:$ui-grid-size;
     }
     .tags {
         min-height:30px;
@@ -417,11 +387,11 @@
     .mail {
         span {
             display: block;
-            margin-bottom: 2 * $local-small-grid-size;
+            margin-bottom: 2 * $ui-small-grid-size;
         }
     }
     .bottom {
-        height:6 * $local-small-grid-size;
-        margin-top: 5 * $local-small-grid-size;
+        height:6 * $ui-small-grid-size;
+        margin-top: 5 * $ui-small-grid-size;
     }
 }
