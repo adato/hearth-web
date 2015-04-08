@@ -41,8 +41,8 @@
 							<a sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
 						</div>
 						<hr>
-						<a ng-if="! mine && loggedUser._id && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST'}}</a>
-						<a ng-if="! mine && loggedUser._id && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST'}}</a>
+						<a ng-if="! mine && loggedUser._id && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+						<a ng-if="! mine && loggedUser._id && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 					</div>
 				</div>
 				<div ng-if="item.location_unlimited" class="large-12 columns clearfix">{{ 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}</div>
@@ -162,6 +162,7 @@
 				<div class="clear"></div>
 			</div>
 			<footer>
+				<a class="fa fa-spoon report-link spam" ng-if="item.admin_communities.length" title="{{'AD_REMOVE_FROM_COMMUNITY_LABEL' | translate}}" ng-click="removeItemFromCommunity(item)"></a>
 
 				<a ng-if="! mine && loggedUser._id && item.spam_reported" class="report-link spam fa fa-flag" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy ng-click="openReportBox(item)">
 				</a>
@@ -192,7 +193,7 @@
 						{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 					</span>
 				</span>
-
+					
 				<span ng-if="item.reply_count">
 					<span class="margin" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></span>
 				</span>
