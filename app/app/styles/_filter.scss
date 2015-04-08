@@ -87,7 +87,8 @@
     }
 }
 
-
+// reset and redefine previously set classes
+// imported by @extend
 .bottom-line-input {
     min-height: $ui-grid-size;
     border-radius:0;
@@ -96,7 +97,8 @@
     border-right: none !important;
     border-bottom:1px solid $ui-input-text-color !important;
     box-shadow:none !important;
-    padding-left:0;
+    padding:0;
+    font-size:$ui-text-font-size;
     input {
         height: $ui-grid-size;
         padding-left:0;
@@ -107,84 +109,3 @@
     font-size:$ui-text-font-size;
     margin-right:$ui-grid-size;
 }
-/* .filter {
-    input.text-input {
-        width: 100%;
-        margin-bottom: 0;
-    }
-    header {
-        text-align: center;
-        font-weight: bold;
-        font-size: rem-calc(14);
-        display: inline-block;
-        width: 7em;
-        text-align: left;
-        position: relative;
-        top: -5px;
-        padding-bottom: 5px;
-    }
-    .footer {
-        .link-button {
-            margin-top: 1rem;
-        }
-
-        .checkbox {
-            padding-top: 0px;
-            margin-right: 1em;
-            position: relative;
-            top: 7px;
-        }
-    }
-    .bars {
-        margin: 0;
-        &>section {
-            padding-bottom: 0.5em;
-            &.margin {
-                padding-top: 1em;
-            }
-            .rangeSelect {
-                position: relative;
-                top: 10px;
-            }
-            &:first-child header {
-                border: {
-                    top-left-radius: 8px;
-                    bottom-left-radius: 8px;
-                };
-            }
-            &:last-child header {
-                border: {
-                    top-right-radius: 8px;
-                    bottom-right-radius: 8px;
-                };
-            }
-        }
-    }
-    input[type=range] {
-        width: 100%;
-        cursor: pointer;
-        outline: none;
-    }
-    tags-input {
-        input {
-            background-color: transparent;
-        }
-        .host {
-            margin: {
-                top: 1em;
-            };
-        }
-    }
-
-    .commonKeywords {
-        list-style: none;
-        margin-left: -10px;
-        margin-bottom: 0px;
-        
-        &>li {
-            padding-left: 10px;
-            padding-right: 10px;
-            display: inline-block;
-        }
-    }
-} */
