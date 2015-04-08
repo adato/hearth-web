@@ -40,6 +40,7 @@
     "AD_REMOVE_ARE_YOU_SURE": "Ste si istý, že chcete zmazať túto položku? Potom ju už nikto nikdy neuvidí!",
     "AD_REMOVE_CANNOT_BE_REMOVED": "Položka sa nedá vymazať. Radšej sa s tým zmierte.",
     "AD_REMOVE_DONE": "A je to! Položka bola úspešne vymazaná.",
+    "AD_REMOVE_FROM_COMMUNITY_LABEL": "Odstranit inzerát z komunity",
     "AD_REMOVE_LABEL": "Odstrániť inzerát",
     "AD_REPLIES": "Odpovede na inzerát",
     "AD_REPLY_PLACEHOLDER": "Máte záujem? Tak odpovedzte!",

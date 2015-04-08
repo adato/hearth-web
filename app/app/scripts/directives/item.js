@@ -72,6 +72,7 @@ angular.module('hearth.directives').directive('item', [
                 scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
                 scope.openReportBox = $rootScope.openReportBox;
                 scope.openEmailSharingBox = $rootScope.openEmailSharingBox;
+                scope.removeItemFromCommunity = $rootScope.removeItemFromCommunity;
 
                 /**
                  * Init basic structure
