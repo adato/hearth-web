@@ -6,9 +6,9 @@
     margin-bottom:2 * $ui-small-grid-size;
     .filter-button-container {
         @extend .box;
-        float:right;
-        width:24 * $ui-grid-size;
+        width:auto;
         padding:0 $ui-grid-size;
+        margin-left:190px;
         a {
             color: color(5);
             font-weight: $ui-text-weight-bolder;
@@ -25,7 +25,7 @@
         clear:both;
         float:right;
         margin-top:2 * $ui-small-grid-size;
-        margin-bottom:2 * $ui-small-grid-size;
+        margin-bottom:$ui-grid-size;
         width:770px;
     }
 }
