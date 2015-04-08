@@ -19,17 +19,68 @@ $imageSize: 80px;
     }
 }
 
-.timeline {
-    background-color: lighten(color(3), 40%);
-    opacity: 0.5;
-    margin: {
-        top: $fontSize;
-        bottom: $fontSize;
-        left: auto;
-        right: auto;
-    };
-    width: 5px;
-    border-radius: 5px;
+// .post-on-market is an envelope around every item 
+article.post-on-market {
+    article header h1>a { color:black; }
+    .avatar {
+        margin-top:2 * $ui-small-grid-size;
+        span::before, img { box-shadow:none;}
+    }
+    .ad-flag-container {
+        margin-top:-1 * $ui-small-grid-size;
+    }
+    .more-actions-dropdown {
+        position:absolute;
+        right:-16px;
+        top:30px;
+        width:200px;
+        border-radius: $global-radius;
+        z-index:1000;
+        padding: 2*$ui-small-grid-size;
+        min-height: 40px;
+        box-shadow:0px 0px 6px 0px rgba(100, 100, 100, 0.3);
+        background:white;
+        hr {
+            border:none;
+            height:0;
+            border-bottom:1px solid $ui-color-lighter;
+            margin-top:$ui-small-grid-size;
+            margin-bottom:$ui-small-grid-size;
+        }
+        b { font-weight:$ui-text-weight-bolder; }
+        a { color: color(5); }
+        &:after {
+            content: ' ';
+            position: absolute;
+            top:-7px;
+            right: 3*$ui-small-grid-size;
+            transform:rotate(45deg);
+            box-shadow:-2px -2px 4px 0px rgba(100, 100, 100, 0.2);
+            width: 15px;
+            height: 15px;
+            background:white;
+        }
+    }
+
+    .sharing a { 
+        color:color(4) !important;
+        background:color(3);
+        border-radius:50%;
+        padding:7px;
+        font-size:1em;
+        width:$ui-grid-size;
+        height:$ui-grid-size;
+        margin:$ui-small-grid-size / 2;
+        &.fa-envelope {
+           font-size: 13px;
+            padding: 3px 0 11px;
+            padding-left: 6px;
+            padding-right: 3px;
+            padding-top: 6px;
+            position: relative;
+            top: -2px;
+        }
+    }
 }
 
 .karma {
@@ -51,472 +102,6 @@ $imageSize: 80px;
     .positive {
         height: 5px;
         background: linear-gradient(to bottom, rgba(white, 0.8) 0%, transparent 50%, transparent 100%), linear-gradient(to left, darken(color(2), 10%) 0%, color(2) 80%, lighten(color(2), 5%) 100%);
-    }
-}
-
-.item {
-    background-color: white;
-    min-height: 100px;
-    position: relative;
-    margin: auto;
-    box-shadow: $defaultShadow;
-    border-radius: $global-radius;
-    margin: {
-        bottom: 2rem;
-    };
-    header {
-        margin-bottom: 8px;
-        text-align: right;
-        font-size: 0.8em;
-        .fa {
-            margin: {
-                right:.4rem;
-            };
-        }
-        .date {
-            display: inline-block;
-        }
-        span {
-            margin: {
-                left: 1em;
-            };
-        }
-        a {
-            &.open {
-                visibility: hidden;
-            }
-        }
-        .locations {
-            display: inline-block;
-            position: relative;
-            span {
-                margin-left: 0px;
-            }
-        }
-        .content {
-            text-align: left;
-            div {
-                margin: {
-                    bottom: 0.5em;
-                };
-            }
-        }
-        .location-dropdown {
-            margin-left: 0;
-            margin-right: 0;
-            left: -7px !important;
-            top: -11px !important;
-            width: 110%;
-            background-color: white;
-            border: 1px solid #e3e3e3;
-            border-radius: 10px;
-            padding: 10px;
-            padding-right: 0px;
-            padding-left: 0px;
-            position: absolute;
-            display: none;
-            z-index: 5;
-            div {
-                margin-bottom: 20px;
-                .fa {}
-                &:last-child {
-                    margin-bottom: 0px;
-                }
-            }
-        }
-    }
-    footer {
-        height: 64px;
-        border-radius: 0 0 $global-radius $global-radius;
-        background-color: color(4);
-        padding: {
-            left: 2rem;
-            right: 1rem;
-            top: .5rem;
-            bottom: .5rem;
-        };
-        font-size:.9rem;
-        span {
-            &.margin {
-                display: inline-block;
-                margin-top: 15px;
-            }
-        }
-        .share {
-            font-size: 1.8em;
-            float: right;
-            margin: {
-                top: .7rem;
-            };
-            color: color(5);
-        }
-        .controll-buttons {
-            color: #1fb1e8;
-            display: inline-block;
-            float: right;
-            font-size: 25px;
-            position: relative;
-            right: 10px;
-            top: 8px;
-            div {
-                margin-left: 10px;
-                cursor: pointer;
-            }
-            .fa-times {
-                font-size: 30px;
-            }
-        }
-        .spam {
-            font-size: 1.5em;
-            float: right;
-            margin: {
-                top: .7rem;
-            };
-            opacity: 0.3;
-            display: inline-block;
-            margin-left: 0.1em;
-            color: black;
-            width: 2em;
-            cursor: default;
-            padding-top: 0.05em;
-            text-align: center;
-            &.not-reported:hover {
-                color: black;
-                opacity: 0.2;
-                cursor: pointer;
-            }
-        }
-        .remove-button {
-            display: inline-block;
-            margin: {
-                right: 1em;
-            };
-        }
-        .footer-container {
-            margin-top: $fontSize;
-        }
-        button {
-            margin: {
-                right: 2 * $fontSize;
-                bottom: 0;
-            };
-            padding: {
-                top: $fontSize / 2;
-                bottom: $fontSize / 2;
-                left: 2 * $fontSize;
-                right: 2 * $fontSize;
-            };
-            min-width: 10 * $fontSize;
-            transition: background-color .5s, border-color .5s, color .5s;
-            &.main {
-                background-color: white;
-                color: darken(color(1), 10%);
-                border-color: lighten(color(1), 20%);
-                &:hover:not([disabled]) {
-                    background-color: lighten(color(1), 30%);
-                    color: darken(color(1), 10%);
-                    border-color: color(1);
-                }
-            }
-            &.main.offer {
-                background-color: white;
-                color: darken(color(2), 10%);
-                border-color: lighten(color(2), 20%);
-                &:hover {
-                    background-color: lighten(color(2), 30%);
-                    color: darken(color(2), 10%);
-                    border-color: color(2);
-                }
-            }
-        }
-        small {
-            font-size: rem;
-        }
-    }
-    .show-more {
-        margin-top: 25px;
-        color: #20B1EA;
-        font-weight: bold;
-        display: inline-block;
-        float: right;
-        position: relative;
-        top: 5px;
-        span {
-            &:last-child {
-                display: none;
-            }
-        }
-        &.expanded {
-            span:first-child {
-                display: none;
-            }
-            span:last-child {
-                display: inline-block;
-            }
-        }
-    }
-    .alert-box {
-        margin: 0em;
-        margin: {
-            bottom: $fontSize;
-        };
-    }
-    form {
-        .alert-box {
-            margin: {
-                left: $fontSize;
-                right: $fontSize;
-                bottom: 0;
-                top: 0;
-            };
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-    }
-    .reply-box {
-        .columns {
-            padding: {
-                bottom: $fontSize;
-            };
-        }
-        textarea {
-            height: 180px;
-            margin-bottom: $fontSize / 2;
-        }
-        button {
-            margin: 0;
-        }
-        form {
-            margin: {
-                top: $fontSize;
-            };
-        }
-    }
-    .content {
-        margin: {
-            left: sqrt(2) * $size;
-        };
-        padding: {
-            top: $fontSize;
-            right: $fontSize;
-            bottom: $fontSize;
-        };
-        h1 {
-            position: relative;
-            top: -5px;
-            font-size: 1.2em;
-            font-weight: bold;
-            word-wrap: break-word;
-            span {
-                position: relative;
-                z-index: 50;
-                left: -$size / 2;
-                font-size: 0.8em;
-            }
-            div {
-                display: inline;
-            }
-            a {
-                color: black;
-                &:hover {
-                    color: black;
-                    text-decoration: underline;
-                }
-            }
-        }
-        .text-container {
-            .expandable {
-                max-height: 5em;
-                overflow: hidden;
-                p {
-                    text-align: justify;
-                    hyphens: auto;
-                    margin: {
-                        bottom: 0;
-                    };
-                }
-                &.expanded {
-                    /* max-height: 100em; */
-                }
-            }
-        }
-        small {
-            font-size: .8rem;
-        }
-        .attachments {
-            margin-bottom: 5px;
-            padding-left:50px;
-            img {
-                max-width: 185px;
-                max-height: 185px;
-                margin-right: 20px;
-                margin-top: $fontSize;
-                border-radius: 10px;
-            }
-
-            .expandable {
-                max-height: 205px;
-                overflow: hidden;
-                .lazyLoad {
-                    display: none;
-                }
-            }
-        }
-        .tags {
-            width: 76%;
-            float: left;
-        }
-    }
-    .share {
-        position: relative;
-        display: inline-block;
-        &:hover {
-            .fa-share-square-o {
-                color: lighten(desaturate(color(5), 100%), 20%);
-            }
-            .sharing {
-                max-width: 300px;
-            }
-        }
-        &:first-child {
-            float: right;
-        }
-        .sharing {
-            float: left;
-            max-width: 0;
-            overflow: hidden;
-            font-size: 0.5em;
-            position: absolute;
-            right: 30px;
-            top: 0;
-            z-index: 10;
-            height: 33px;
-            background-color: color(4);
-            padding-left: 5px;
-            a {
-                &:first-child {
-                    margin-left: 0px;
-                }
-            }
-            @include transition(max-width .5s ease);
-            div {
-                text-align: right;
-                white-space: nowrap;
-                margin-right: 0.5em;
-                span,
-                a {
-                    display: inline-block;
-                    margin-left: 0.5em;
-                    color: lighten(color(5), 30%);
-                    height: 2em;
-                    width: 2em;
-                    padding-top: 0.5em;
-                    text-align: center;
-                    background-color: color(5);
-                    border-radius: 50%;
-                    text-shadow: 0 -1px 1px darken(color(5), 15%);
-                    @include transition(color .5s);
-                    @include transition(background-color 0.5s);
-                    &:hover {
-                        color: white;
-                        background-color: darken(color(5), abs($button-function-factor));
-                    }
-                }
-            }
-        }
-    }
-    .overlap {
-        background-color: white;
-        height: 2.3 * $size;
-        width: $size;
-        position: absolute;
-        top: $arrowTop - 15px;
-        left: 0;
-        z-index: 10;
-    }
-    & .arrowbox {
-        z-index: 9;
-        position: absolute;
-        border-radius: $border;
-        background-color: white;
-        box-shadow: $defaultShadow;
-    }
-    & .arrow {
-        height: $size + 30px;
-        width: $size;
-        overflow: hidden;
-        position: absolute;
-        z-index: 20;
-        &:after {
-            z-index: 5;
-            content: "";
-            position: absolute;
-            top: 2 * $border;
-            height: $size;
-            width: $size;
-            @include rotate(45deg);
-        }
-    }
-    &.need {
-        h1 {
-            span {
-                color: color(1);
-            }
-        }
-        & .arrowbox {
-            height: $size;
-            width: $size;
-            left: $border - $size / 2;
-            top: $arrowTop;
-            @include rotate(45deg);
-            -webkit-transform-origin: 50% 50%;
-        }
-        & .arrow {
-            left: -$size + 2 * $border + 5px;
-            top: $arrowTop - 2 * $border;
-            &:after {
-                left: $size / 2;
-                background-color: color(1);
-            }
-        }
-    }
-    &.offer {
-        h1 {
-            span {
-                color: color(2);
-            }
-        }
-        & .arrowbox {
-            height: round(sqrt(2) * $size) + 4 * $border;
-            width: $size;
-            left: -$size / 2;
-            top: $arrowTop - round(sqrt(2) * $size) + $size + $border;
-            border-radius: $global-radius;
-        }
-        & .arrow {
-            left: -$size / 2 + 2 * $border;
-            top: $arrowTop - round(sqrt(2) * $size) + $size + 3 * $border;
-            &:after {
-                left: -$size / 2;
-                background-color: color(2);
-            }
-        }
-    }
-    &.rating-received {
-        & .arrowbox {
-            height: $size;
-            width: $size;
-            left: $border - $size / 2;
-            top: $arrowTop;
-            @include rotate(45deg);
-            -webkit-transform-origin: 50% 50%;
-        }
-        &.positive, &.positive > .overlap, &.positive > .arrowbox {
-            background: lighten(color(2), 45%);
-        }
-        &.negative, &.negative > .overlap, &.negative > .arrowbox {
-            background: lighten(color(5), 45%);
-        }
     }
 }
 

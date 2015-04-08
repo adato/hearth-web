@@ -1,4 +1,4 @@
-<article class="row post" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
+<article class="row post post-on-market" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<section ng-if="! hideAvatar" class="large-2 columns user">
 		<div info-box="item.author">
 			<a ng-href="#!/{{getProfileLinkByType(item.author._type)}}/{{ item.author._id }}">
@@ -11,7 +11,95 @@
 		</div>
 		<div class="timeline"></div>
 	</section>
-	<section class="item-container columns" ng-class="foundationColumnsClass">
+	<div class="large-10 fleft columns ad-detail-column">
+		<article class="box post-detail">
+			<header class="clearfix">
+				<div class="large-11 columns">
+					<h1>
+						<a ng-href="#!/ad/{{item._id}}">
+							<span data-item-type="{{ item.type }}">
+								{{ postTypes[item.author._type][item.type] | translate }}
+							</span>
+							{{item.title}}
+						</a>
+					</h1>
+					<span class="validity-warning" ng-if="isExpiringSoon">{{ 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
+					<span class="fa fa-lock" ng-if="item.is_private" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
+				</div>
+				<div class="large-1 columns">
+					<span class="ad-flag-container fright">
+						<a class="fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
+					</span>
+					<div class="more-actions-dropdown" id="more-actions-{{ item._id }}" style="display:none;">
+						{{:: 'MARKETPLACE.POST.PUBLISHED_AT' | translate }} {{item.updated_at | ago}}
+						<hr>
+						<b>{{:: 'MARKETPLACE.POST.SHARE_WITH' | translate }}</b><br>
+						<div class="sharing">
+							<a class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
+							<a sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank"></a>
+							<a sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
+							<a sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
+						</div>
+						<hr>
+						<a ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST'}}</a>
+					</div>
+				</div>
+				<div ng-if="item.location_unlimited" class="large-12 columns clearfix">{{ 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}</div>
+				<div ng-if="!item.location_unlimited" class="large-12 columns clearfix">
+					<span ng-repeat="(locationId, location) in item.locations" ng-if="location.address">
+						<i class="fa fa-map-marker" ng-if="$first"></i> {{ location.address }}<span ng-if="!$last">;</span>
+					</span>
+				</div>
+			</header>
+			<div class="text-container">
+				<p ng-bind-html="item.name | linky:'_blank' | nl2br"></p>
+			</div>
+
+			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
+				<li ng-repeat="photo in item.attachments_attributes track by $index">
+					<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}"><img ng-src="{{photo.normal}}"></a>
+				</li>
+			</ul>
+
+			<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
+				<ul class="tagList">
+					<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords">
+						{{tag}}
+					</li>
+				</ul>
+			</div>
+
+			<footer class="clearfix">
+<!-- 				<div class="sharing fright">
+					<a class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
+					<a sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank"></a>
+					<a sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
+					<a sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
+				</div> -->
+				<div class="post-edit-buttons-container fleft" ng-if="isMine">
+					<div class="controll-buttons">
+						<a title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"><i class="fa fa-pencil"></i></a>
+						<a title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"><i class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i></a>
+						<a title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"><i class="fa fa-pause"></i></a>
+						<a title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="reply-button-container fleft">
+					<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="reply-button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
+					<div ng-if="item.is_replied">
+						{{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+					</div>
+				</div>
+				<div class="reply-count-container fleft">
+					<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+
+					<div ng-if="!item.reply_count">{{'NO_REPLY' | translate}}</div>
+				</div>
+
+			</footer>
+		</article>
+	</div>
+	<!-- <section class="item-container columns" ng-class="foundationColumnsClass">
 		<div class="item" ng-class="item.type">
 			<div class="arrow-move">
 				<div class="overlap"> </div>
@@ -120,5 +208,5 @@
 				<div class="clear"></div>
 			</footer>
 		</div>
-	</section>
+	</section> -->
 </article>
