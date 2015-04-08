@@ -9,6 +9,7 @@
         width:auto;
         padding:0 $ui-grid-size;
         margin-left:190px;
+        overflow: hidden;
         a {
             color: color(5);
             font-weight: $ui-text-weight-bolder;
@@ -16,7 +17,6 @@
     }
     .insert-button-container {
         float:right;
-        margin-left:10px;
     }
 
     .filter-container {

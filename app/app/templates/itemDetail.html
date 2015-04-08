@@ -93,7 +93,7 @@
 							<span class="fa fa-lock" ng-if="ad.is_private" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 						</div>
 						<div class="large-4 columns">
-							<span class="fright" id="ad-flag-container">
+							<span class="fright ad-flag-container">
 								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id && ad.spam_reported" tipsy title="{{'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" ng-click="openReportBox(ad)"></a>
 								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !ad.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
 							</span>
