@@ -41,8 +41,8 @@
 							<a sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
 						</div>
 						<hr>
-						<a ng-if="! mine && loggedUser._id && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST'}}</a>
-						<a ng-if="! mine && loggedUser._id && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST'}}</a>
+						<a ng-if="! mine && loggedUser._id && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+						<a ng-if="! mine && loggedUser._id && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 					</div>
 				</div>
 				<div ng-if="item.location_unlimited" class="large-12 columns clearfix">{{ 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}</div>
