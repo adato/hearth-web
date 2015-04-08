@@ -1,0 +1,17 @@
+.remove-post-from-community {
+	form {
+		margin-top: 15px;
+		
+		.community-list {
+			margin-bottom: 25px;
+
+			&>div {
+				margin-bottom: 10px;
+			}
+			
+			label {
+				margin-bottom: 0px;
+			}
+		}
+	}
+}
