@@ -112,6 +112,7 @@ $fontSize: rem-calc(14);
 @import "404";
 @import "notify";
 @import "dropdown";
+@import "market";
 @import "marketplaceBanner";
 
 body {
@@ -202,17 +203,6 @@ img.blur {
 
     .fa {
       margin-right: 0.5rem;
-    }
-}
-
-.market {
-    padding-bottom: 50px;
-    .loading {
-        position: absolute;
-        left: 0;
-        right: 0;
-        border: 0 none;
-        margin-bottom: 10px;
     }
 }
 
