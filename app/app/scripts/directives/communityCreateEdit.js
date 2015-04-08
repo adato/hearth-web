@@ -117,10 +117,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                         $scope.showError.description = err = true;
                     }
 
-                    if(!data.locations || !data.locations.length) {
-                        $scope.showError.locations = err = true;
-                    }
-
                     return ! err; // return true if valid
                 };
 
