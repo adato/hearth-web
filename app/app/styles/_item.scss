@@ -20,7 +20,7 @@ $imageSize: 80px;
 }
 
 // .post-on-market is an envelope around every item 
-article.post-on-market {
+article.post-on-market, article.post-on-profile {
     article header h1>a { color:black; }
     .avatar {
         margin-top:2 * $ui-small-grid-size;
@@ -128,7 +128,8 @@ article.post-on-market {
         margin: {
             bottom: 0px;
             left: 0px;
-            top: $fontSize;
+            top: 3*$ui-small-grid-size;
+            bottom: 3*$ui-small-grid-size;
         };
         li {
             border: 1px solid #C2C2C2;
