@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </section>
-            <section class="collapse lock" ng-show="loggedUser.friends_count">
+            <section class="collapse lock" ng-show="enableLockField">
                 <label slide-trigger="slide.lock" for="lock">
                     {{ 'POST_LOCK_LABEL' | translate }}
                     <span ng-if="!slide.lock">
