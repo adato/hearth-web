@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 		$scope.message = '';
 		$scope.showErrors = {
 			message: false,
+			communities: false,
 		}
 
 		$scope.showFinished = function() {
@@ -32,36 +33,56 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 			$scope.closeThisDialog();
 		};
 
+		$scope.getCheckedCommunities = function() {
+			// if we have only one community to remove post from,
+			// return it as a default community	
+			if($scope.communitiesCount == 1)
+				return [$scope.communityObj._id];
+
+			var res = [];
+			// walk throught all communities and pick checked IDs
+			for(var id in $scope.communities)
+				if($scope.communities[id]) res.push(id);
+
+			return res;
+		};
+
+		$scope.validate = function(data) {
+			var invalid = false;
+
+			if($scope.reportForm.message.$invalid)
+				invalid = $scope.showErrors.message = true;
+			
+			if(!data.communities.length)
+				invalid = $scope.showErrors.communities = true;
+
+			return !invalid;
+		};
+
 		$scope.sendReport = function() {
 			var data = {
-				id: $scope.post._id,
+				communities: $scope.getCheckedCommunities(),
 				message: $scope.message,
 			};
 
-			$.each($scope.showErrors, function(key, value) {
-				$scope.showErrors[key] = true;
-			});
-
-			if ($scope.sending || $scope.reportForm.message.$invalid) {
+			if($scope.sending || !$scope.validate(data))
 				return false;
-			}
 
 			$rootScope.globalLoading = true;
 			$scope.sending = true;
 			
-			Post.spam(data, function(res) {
+			Post.communityRemove(data, function(res) {
                 $rootScope.$broadcast('reportItem', $scope.post);
                 
 				$scope.post.spam_reported = true;
 				$scope.sending = false;
                 $rootScope.globalLoading = false;
                 $scope.showFinished();
-                // Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
             }, function(err) {
                 
 				$scope.sending = false;
                 $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR,  '.notify-report-container');
+                Notify.addSingleTranslate('NOTIFY.POST_REMOVE_FROM_COMMUNITY_FAILED', Notify.T_ERROR,  '.notify-report-container');
             });
 		};
 

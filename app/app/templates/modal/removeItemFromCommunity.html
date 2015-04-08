@@ -15,10 +15,13 @@
                 <label>{{ 'POST_COMMUNITY_REMOVE.SELECT_COMMUNITIES' | translate }}</label>
 
                 <div ng-repeat="community in myAdminCommunities" ng-if="post.admin_communities.indexOf(community._id)+1">
-                    <checkbox model="communities[community._id]" value="true">
-                        <avatar src="community.avatar.normal" size="small" type="community._type"></avatar>
+                    <checkbox on-update="showErrors.communities = false" model="communities[community._id]" value="true">
+                        <avatar src="community.avatar.normal" size="mini" type="community._type"></avatar>
                         {{community.name}}
                     </checkbox>
+                </div>
+                 <div class="moveUp error" ng-show="showErrors.communities">
+                    {{ 'ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY' | translate }}
                 </div>
             </div>
             <div class="community-removed" ng-show="communitiesCount == 1">

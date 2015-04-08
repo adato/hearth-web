@@ -1,16 +1,16 @@
 .remove-post-from-community {
+	form {
+		margin-top: 15px;
+		
+		.community-list {
+			margin-bottom: 25px;
 
-	.community-list {
-		margin-bottom: 10px;
-
-		&>div {
-			position: relative;
-			top: -16px;
-
-			.avatar {
-				position: relative;
-				top: 16px;
-				margin-right: 10px;
+			&>div {
+				margin-bottom: 10px;
+			}
+			
+			label {
+				margin-bottom: 0px;
 			}
 		}
 	}

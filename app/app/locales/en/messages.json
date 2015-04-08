@@ -255,6 +255,7 @@
     "ERR_AD_TEXT_MIN_LEN": "Your post is too short. Add few more words... Wise men say that every word counts.",
     "ERR_AD_TITLE_LEN": "The post title is too looong.",
     "ERR_AD_TITLE_MIN_LEN": "Title of the post is too short.",
+    "ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Vyberte alespoň jednu komunitu, z které se má inzerát odstranit.",
     "ERR_COMMENT_LEN": "Your comment is too long. Seriously. We're sure it's great but still too long.",
     "ERR_COMMUNITY_ABOUT_NOT_FILLED": "Please tell us a few words about the community.",
     "ERR_COMMUNITY_NAME_MAX_LENGTH": "Community name is too long. Cannot exceed 75 characters. Should be enough, right?",
@@ -672,7 +673,8 @@
         "POST_WILL_BE_REMOVED_FROM": "<p>Inzer&aacute;t bude odstraněn z komunity <strong>{{name}}<\/strong>.<\/p>",
         "REASON_LABEL": "Důvod odstranění:",
         "REASON_PLACEHOLDER": "Napište uživateli důvod, proč je inzerát nevhodný ve Vašich komunitách...",
-        "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:"
+        "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:",
+        "SUCCESS_MESSAGE": "Inzerát byl úspěšně odebrán."
     },
     "POST_EXPIRATION_DATE_LABEL": "Valid until",
     "POST_HAS_ALREADY_EXPIRED": "Date of post has expired",

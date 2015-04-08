@@ -262,6 +262,7 @@
     "ERR_AD_TEXT_MIN_LEN": "Váš příspěvek je příliš krátký. Přidejte ještě aspoň pár slov... Co slovo, to perla, říká se přece.",
     "ERR_AD_TITLE_LEN": "Titulek příspěvku je příliš dlooouhý.",
     "ERR_AD_TITLE_MIN_LEN": "Titulek příspěvku je příliš krátký.",
+    "ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Vyberte alespoň jednu komunitu, z které se má inzerát odstranit.",
     "ERR_COMMENT_LEN": "Komentář je příliš dlouhý. Ne vážně. Určitě je skvělý, ale moc dlouhý.",
     "ERR_COMMUNITY_ABOUT_NOT_FILLED": "Napište prosím alespoň něco málo o komunitě.",
     "ERR_COMMUNITY_NAME_MAX_LENGTH": "Jméno komunity je moc dlouhé. Nesmí mít více jak 75 znaků.",
@@ -686,7 +687,8 @@
         "POST_WILL_BE_REMOVED_FROM": "<p>Inzer&aacute;t bude odstraněn z komunity <strong>{{name}}<\/strong>.<\/p>",
         "REASON_LABEL": "Důvod odstranění:",
         "REASON_PLACEHOLDER": "Napište uživateli důvod, proč je inzerát nevhodný ve Vašich komunitách...",
-        "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:"
+        "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:",
+        "SUCCESS_MESSAGE": "Inzerát byl úspěšně odebrán."
     },
     "POST_EXPIRATION_DATE_LABEL": "Platnost do",
     "POST_HAS_ALREADY_EXPIRED": "Platnost inzerátu již skončila",
