@@ -9,9 +9,7 @@
             font-weight: $ui-text-weight-bolder;
         }
         tags-input {
-            float:right;
-            min-width:70%;
-            max-width: 80%;
+            width:auto;
             .tags {
                 @extend .bottom-line-input;
             }
@@ -102,6 +100,7 @@
     input {
         height: $ui-grid-size;
         padding-left:0;
+        margin-left:0;
     }
 }
 .reset-label {
