@@ -6,8 +6,8 @@
 		<a ng-click="toggleFilter()" ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" class="fleft">
 			<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
 			<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
-			<span ng-hide="filterOn">{{::'MARKETPLACE.FILTER' | translate}}</span>
-			<span ng-show="filterOn">{{::'MARKETPLACE.FILTER_IS_ON' | translate}}</span>
+			<span ng-hide="filterOn">{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
+			<span ng-show="filterOn">{{::'MARKETPLACE.FILTER.TITLE_ENABLED' | translate}}</span>
 		</a>
 		<a ng-if="!mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
 		<a ng-if="mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
