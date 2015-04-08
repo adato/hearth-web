@@ -1,7 +1,7 @@
 <div class="filter" ng-show="inited">
 	<section class="keywords-container" ng-if="inited">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</label>
-		<tags-input ng-model="filter.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
+		<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="20">
 			<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 		</tags-input>
 	</section>
@@ -14,22 +14,22 @@
 	</section>
 	<section class="radio-container type-switch-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</label>
-		<radio type="radio" model="filter.type" value="'offer'">{{'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
-		<radio type="radio" model="filter.type" value="'need'">{{'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
-		<radio type="radio" model="filter.type" value="null">{{'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
+		<radio type="radio" model="filter.type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
+		<radio type="radio" model="filter.type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
+		<radio type="radio" model="filter.type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
 	</section>
 	<section class="radio-container author-switch-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</label>
-		<checkbox model="filter.user" value="true">{{'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
-		<checkbox model="filter.community" value="true">{{'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
-		<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}</checkbox>
+		<checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
+		<checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
+		<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}</checkbox>
 	</section>
 	<section class="radio-container time-switch-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</label>
-		<radio type="radio" model="filter.days" value="'1'">{{'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="'3'">{{'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="'7'">{{'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="null">{{'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
+		<radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
+		<radio type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
+		<radio type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
+		<radio type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
 	</section>
 	<section class="location-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</label>
@@ -43,11 +43,11 @@
 	</section>
 	<section class="footer">
 		<div class="fleft">
-			<a ng-click="reset()" class="link-button">{{'MARKETPLACE.FILTER.CANCEL_FILTER' | translate}}</a>
+			<a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CANCEL_FILTER' | translate}}</a>
 		</div>
 		<div class="fright">
-			<checkbox signed-in model="filterSave" value="true">{{'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
-			<button class="button" ng-click="applyFilter()">{{'MARKETPLACE.FILTER.RUN_FILTER' | translate}}</button>
+			<checkbox signed-in model="filterSave" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
+			<button class="button" ng-click="applyFilter()">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}</button>
 		</div>
 	</section>
 </div>
