@@ -666,6 +666,14 @@
     },
     "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro přidání inzerátu do komunity nesmíte mít inzerát jen pro přátele.",
     "POST_COMMUNITIES_LABEL": "Insert ad into community:",
+    "POST_COMMUNITY_REMOVE": {
+        "HEADING": "Odstranit inzerát z komunity",
+        "INFO": "Inzerát do Vaší komunity nepatří? Můžete ho jednodušše odstranit..",
+        "POST_WILL_BE_REMOVED_FROM": "<p>Inzer&aacute;t bude odstraněn z komunity <strong>{{name}}<\/strong>.<\/p>",
+        "REASON_LABEL": "Důvod odstranění:",
+        "REASON_PLACEHOLDER": "Napište uživateli důvod, proč je inzerát nevhodný ve Vašich komunitách...",
+        "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:"
+    },
     "POST_EXPIRATION_DATE_LABEL": "Valid until",
     "POST_HAS_ALREADY_EXPIRED": "Date of post has expired",
     "POST_HAS_BEEN_DEACTIVATED": "Post was suspended",

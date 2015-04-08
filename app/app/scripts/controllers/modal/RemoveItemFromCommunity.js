@@ -2,14 +2,16 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.RemovePostFromCommunity
+ * @name hearth.controllers.RemoveItemFromCommunity
  * @description
  */
 
-angular.module('hearth.controllers').controller('RemovePostFromCommunity', [
+angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 	'$scope', '$rootScope', 'Notify', 'Post', '$timeout',
 	function($scope, $rootScope, Notify, Post, $timeout) {
 		var timeout = null;
+		$scope.communities = {};
+		$scope.communitiesCount = 0;
 		$scope.sending = false;
 		$scope.showErrors = false;
 		$scope.message = '';
@@ -62,5 +64,20 @@ angular.module('hearth.controllers').controller('RemovePostFromCommunity', [
                 Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR,  '.notify-report-container');
             });
 		};
+
+		$scope.init = function() {
+			$($rootScope.myAdminCommunities).each(function(index, community) {
+				
+				if(1+$scope.post.admin_communities.indexOf(community._id)) {
+
+					$scope.communities[community._id] = false;
+					$scope.communityObj = community;
+				}
+			});
+
+			$scope.communitiesCount = Object.keys($scope.communities).length;
+		};
+
+		$scope.init();
 	}
 ]);

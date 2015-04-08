@@ -1,0 +1,17 @@
+.remove-post-from-community {
+
+	.community-list {
+		margin-bottom: 10px;
+
+		&>div {
+			position: relative;
+			top: -16px;
+
+			.avatar {
+				position: relative;
+				top: 16px;
+				margin-right: 10px;
+			}
+		}
+	}
+}
