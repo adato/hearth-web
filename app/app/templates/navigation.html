@@ -56,10 +56,12 @@
 					<label>{{'TOP_BAR_ABOUT' | translate}}</label>
 				</a>
 		        <ul class="dropdown" id="about-drop">
-		          <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+		          <li><a ng-href="#!/terms">{{ 'MENU.TERMS' | translate}}</a></li>
+		          <li><a ng-href="#!/faq">{{ 'MENU.FAQ' | translate}}</a></li>
 		          <li><a ng-href="#!/feedback">{{ 'WRITE_US' | translate}}</a></li>
-		          <li><a ng-href="#!/faq">{{ 'FAQ' | translate}}</a></li>
-		          <li><a ng-href="#!/terms">{{ 'TERMS' | translate}}</a></li>
+		          <li class="divider"></li>
+		          <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+		          <li><a ng-href="#!/taxes">{{ 'MENU.TAXES' | translate}}</a></li>
 		          <li class="divider"></li>
 		          <li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
 		          <li class="no-hover">
