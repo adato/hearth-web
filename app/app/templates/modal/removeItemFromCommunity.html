@@ -6,7 +6,7 @@
         <span ng-click="close()" class="close fa fa-times"></span>
         <hr />
     </div>
-    <form ng-submit="sendReport()" name="reportForm" novalidate class="report-ad">
+    <form ng-submit="sendRemoval()" name="reportForm" novalidate class="report-ad">
         <div class="notify-report-container"></div>
         <div>
             <div ng-bind-html="'POST_COMMUNITY_REMOVE.INFO' | translate"></div>
@@ -20,7 +20,7 @@
                         {{community.name}}
                     </checkbox>
                 </div>
-                 <div class="moveUp error" ng-show="showErrors.communities">
+                 <div class="error" ng-show="showErrors.communities">
                     {{ 'ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY' | translate }}
                 </div>
             </div>
