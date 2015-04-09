@@ -1,13 +1,14 @@
-
-
 #item-detail {
 	a {
 		color:color(5);
 		font-weight:600;
 	}
+}
+
+#item-detail, .market article.post-on-market, .profile-view article.post-on-market {
 	.box {
 		padding:$ui-grid-size;
-		box-shadow:1px 1px 6px rgba(100,100,100,.5);
+		box-shadow:$ui-box-shadow;
 	}
 
 	.item-status-bar {
@@ -181,7 +182,7 @@
 	}
 
 	.ad-detail-column {
-		margin-bottom:4em; 
+		margin-bottom:3*$ui-small-grid-size;
 		.columns {
 			padding-left:0;
 			padding-right:0;
@@ -199,12 +200,13 @@
 				margin-right:3 * $ui-small-grid-size;
 				display:inline;
 			}
-			#ad-flag-container>a {
+			.ad-flag-container>a {
 				color:color(3);
 				margin-left:$ui-grid-size;
 			}
 			.validity-warning {
 				margin-right: 3 * $ui-small-grid-size;
+				white-space:nowrap;
 			}
 		}
 		h4 {
@@ -235,6 +237,7 @@
 			margin: {
 				left: -1 * $ui-grid-size;
 				right: -1 * $ui-grid-size;
+				top: -1 * $ui-grid-size;
 			}
 			padding: {
 				top: 14px;
