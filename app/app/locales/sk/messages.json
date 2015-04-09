@@ -302,7 +302,6 @@
     "ERR_WRONG_PASSWORD": "Heslo musí mať aspoň 4 znaky. Áno, áno, máme radi matiku.",
     "EXPIRATION_DATE": "Doba platnosti",
     "FACEBOOK_INVITATION_MESSAGE": "Jsem na Hearth.net - štědré sociální síti pro sdílení darů a zkušeností. Pojď to taky zkusit!",
-    "FAQ": "Časté dotazy",
     "FEEDBACK": "Napíšte nám",
     "FEEDBACK_FORM_SPEECH_BUBBLE": "Nie sme perfektní, ale s vašou pomocou môžeme byť.\n\nNapíšte nám a my vám dáme lepší Hearth.\n\nUvidíte...\n",
     "FEEDBACK_LINK": "Hodnotenie",
@@ -463,6 +462,11 @@
     },
     "MEET_USER": "Spoznajte užívateľa",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členom komunít",
+    "MENU": {
+        "FAQ": "Časté dotazy",
+        "TAXES": "Darování a daně",
+        "TERMS": "Podmienky použitia"
+    },
     "MESSAGES": {
         "MESSAGES": "Správy",
         "ADD": {
@@ -879,7 +883,6 @@
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadajte, čo vás zaujíma...",
     "TELL_MORE_ABOUT": "Povedzte svetu niečo o sebe:",
     "TELL_WHAT": "Jednoducho uveďte čo napr. tútorstvo",
-    "TERMS": "Podmienky použitia",
     "TERMS_OF_USE_ON_HEARTH": "Podmienky používania štedrej sociálnej siete - Hearth.net",
     "THANKS_FOR_REPORT": "Ďakujeme za podnet, tento príspevok preveríme.",
     "THEY_WROTE_ME": "Ohodnotili ma",

@@ -295,7 +295,6 @@
     "ERR_WRONG_PASSWORD": "Password must be at least 4 characters long. \nYep. We like maths.",
     "EXPIRATION_DATE": "Expiration date",
     "FACEBOOK_INVITATION_MESSAGE": "I'm at Hearth.net - generous social network for sharing gifts, skills and experience. Come give it a try!",
-    "FAQ": "Časté dotazy",
     "FEEDBACK": "Feedback",
     "FEEDBACK_FORM_SPEECH_BUBBLE": "We're not perfect. But we can be with your help. Let us know your feedback and we'll give you better Hearth. Thank you!",
     "FEEDBACK_LINK": "Feedback",
@@ -453,6 +452,11 @@
     },
     "MEET_USER": "Meet user",
     "MEMBER_OF_COMMUNITIES_LABEL": "Is member of communities",
+    "MENU": {
+        "FAQ": "Časté dotazy",
+        "TAXES": "Darování a daně",
+        "TERMS": "Terms of use"
+    },
     "MESSAGES": {
         "MESSAGES": "News",
         "ADD": {
@@ -859,7 +863,6 @@
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Tell me what are you looking for...",
     "TELL_MORE_ABOUT": "Tell the world about yourself:",
     "TELL_WHAT": "Simply state what: e.g. tutoring",
-    "TERMS": "Terms of use",
     "TERMS_OF_USE_ON_HEARTH": "Terms and conditions of the generous social network - Hearth.net",
     "THANKS_FOR_REPORT": "Thanks for the notice, we will check this post.",
     "THEY_WROTE_ME": "Rated me",
