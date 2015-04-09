@@ -58,7 +58,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.dateUnlimitedToggle = function() {
 
 			$scope.showError.valid_until = false;
-			$scope.createAdForm.valid_until.$error.invalid = false;
 
 			// $scope.post.valid_until_unlimited = !$scope.post.valid_until_unlimited;
 			if (!$scope.post.valid_until_unlimited) {
@@ -239,8 +238,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 		
 		$scope.focusDate = function(datetime) {
-
-			$scope.createAdForm.valid_until.$error.invalid = false;
 			$scope.showError.valid_until = false;
 		};
 
