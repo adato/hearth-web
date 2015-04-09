@@ -41,22 +41,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     $scope.loaded = true;
                 };
 
-                $scope.transformDataOut = function(data) {
-
-                    if(!data.locations || !data.locations.length)
-                        data.locations = false;
-
-                    return data;
-                };
-
-                $scope.transformDataIn = function(data) {
-
-                    if(!data.locations) {
-                        data.locations = [];
-                    }
-                    return data;
-                };
-
                 /**
                  * Function will remove user from list
                  * @param  {string} id UserId to remove
@@ -80,7 +64,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 };
                 $scope.loadCommunity = function(id) {
                     Community.get({_id: id}, function(res) {
-                        $scope.community = $scope.transformDataIn(res);
+                        $scope.community = res;
                         if($scope.checkOwnership($scope.community)) {
 
                             $scope.loaded = true;
@@ -119,7 +103,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.save = function() {
                     // if we have community ID - then edit
                     var service = ($scope.community._id) ? Community.edit : Community.add;
-                    var transformedData;
                     // validate data
                     if(!$scope.validate($scope.community)) {
                         $rootScope.scrollToError();
@@ -131,8 +114,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                     $scope.sending = true;
                     $rootScope.globalLoading = true;
 
-                    transformedData = $scope.transformDataOut(angular.copy($scope.community));
-                    service(transformedData, function(res) {
+                    service($scope.community, function(res) {
                         $rootScope.globalLoading = false;
                         $rootScope.$broadcast("reloadCommunities");
                         $location.path('/community/'+res._id);
