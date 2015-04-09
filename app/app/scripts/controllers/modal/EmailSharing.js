@@ -69,7 +69,7 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 			$scope.resetForm();
 
 			var data = angular.copy($scope.sharing);
-			data.emails = data.emails.split(",");
+			data.emails = data.emails.split(",").map(function(item) {return item.trim();});
 
 			if(!$scope.validate(data))
 				return false;
