@@ -182,12 +182,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(!post.valid_until_unlimited) {
 
 				if(post.valid_until == '') {
-					res = $scope.showError.valid_until = true;
+					res = $scope.slide.date = true;
+					$timeout(function() {$scope.showError.valid_until = true;});
+					
 				} else if( getDateDiffFromNow(post.valid_until, $scope.dateFormat) < 0) {
-
+					res = $scope.slide.date = true;
+					console.log(getDateDiffFromNow(post.valid_until, $scope.dateFormat));
 					// test for old date in past
-					res = $scope.showError.valid_until = true;
-					$scope.createAdForm.valid_until.$error.invalid = true;
+					$timeout(function() {$scope.showError.valid_until = true;});
+				} else {
+					$scope.showError.valid_until = false;
 				}
 			}
 			
@@ -224,13 +228,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.blurDate = function(datetime) {
-			$scope.showError.valid_until = true;
-
 			if(datetime != '') {
-				
 				$timeout(function() {
 					if(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat) < 0) {
-						$scope.createAdForm.valid_until.$error.invalid = true;
+						console.log(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat));
+						$scope.showError.valid_until = true;
 					}
 				});
 			}

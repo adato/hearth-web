@@ -90,9 +90,9 @@
                 <div ng-slide-down="slide.date" lazy-render duration="0.3" ng-class="{disabled: post.valid_until_unlimited == true}">
                     <input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until" required>
                     <checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
-                    <div class="clear error" ng-show="showError.valid_until">
-                        <span ng-show="createAdForm.valid_until.$error.required">{{ 'DATE_IS_EMPTY' | translate }}</span>
-                        <span ng-show="createAdForm.valid_until.$error.invalid">{{ 'ERR_DATE_IS_OLD' | translate }}</span>
+                    <div class="clear error" ng-show="!post.valid_until_unlimited && showError.valid_until">
+                        <span ng-show="!post.valid_until.trim()">{{ 'DATE_IS_EMPTY' | translate }}</span>
+                        <span ng-show="post.valid_until.trim()">{{ 'ERR_DATE_IS_OLD' | translate }}</span>
                     </div>
                 </div>
             </section>
