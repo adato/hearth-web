@@ -74,9 +74,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			if (!data.webs || !data.webs.length) {
 				data.webs = [''];
 			}
-			if (!data.locations || !data.locations.length) {
-				data.locations = [];
-			}
 
 			data.interests = (data.interests) ? data.interests.join(",") : '';
 
@@ -120,7 +117,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 					}
 				});
 			} else {
-				data.locations = false;
+				data.locations = [];
 			}
 
 			if($scope.profileEditForm.email.$invalid) {
@@ -154,7 +151,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$rootScope.globalLoading = true;
 
 			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
-			// transformedData.user_id = $scope.profile._id;
 			
 			User.edit(transformedData, function(res) {
 				$scope.sending = false;
