@@ -53,16 +53,22 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 			if($scope.reportForm.message.$invalid)
 				invalid = $scope.showErrors.message = true;
 			
-			if(!data.communities.length)
+			if(!data["ids[]"].length)
 				invalid = $scope.showErrors.communities = true;
 
 			return !invalid;
 		};
 
-		$scope.sendReport = function() {
+		$scope.removeCommunities = function(item, ids) {
+			item.admin_communities = $(item.admin_communities).not(ids).get();
+			item.related_communities = item.related_communities.filter(function(item) {return !~ids.indexOf(item._id)});
+		};
+
+		$scope.sendRemoval = function() {
 			var data = {
-				communities: $scope.getCheckedCommunities(),
-				message: $scope.message,
+				postId: $scope.post._id,
+				"ids[]": $scope.getCheckedCommunities(),
+				message: encodeURIComponent($scope.message),
 			};
 
 			if($scope.sending || !$scope.validate(data))
@@ -70,11 +76,10 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 
 			$rootScope.globalLoading = true;
 			$scope.sending = true;
-			
+
 			Post.communityRemove(data, function(res) {
-                $rootScope.$broadcast('reportItem', $scope.post);
+				$scope.removeCommunities($scope.post, data["ids[]"]);
                 
-				$scope.post.spam_reported = true;
 				$scope.sending = false;
                 $rootScope.globalLoading = false;
                 $scope.showFinished();

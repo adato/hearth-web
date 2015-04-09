@@ -63,8 +63,8 @@ angular.module('hearth.services').factory('Post', [
 				method: 'DELETE'
 			},
 			communityRemove: {
-				url: $$config.apiPath + '/posts/:postId/community-remove',
-				method: 'PUT'
+				url: $$config.apiPath + '/posts/:postId/communities/remove',
+				method: 'DELETE'
 			},
 			spam: {
 				url: $$config.apiPath + '/posts/:postId/spam',
