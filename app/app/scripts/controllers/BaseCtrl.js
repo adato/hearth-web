@@ -29,6 +29,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.missingPost = false;
+        $rootScope.cacheInfoBox = {};
 
         // init globalLoading 
         $rootScope.globalLoading = false;
@@ -57,6 +58,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * scroll to top of the page, if not, refresh page with fixed height
          */
         $rootScope.$on("$routeChangeStart", function(event, next) {
+            if(!$rootScope.addressNew)
+                return $rootScope.top(0, 1);;
+            
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
@@ -206,12 +210,34 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function(showMsgOnlyLogged) {
             
-            $scope.showMsgOnlyLogged = showMsgOnlyLogged;
+            var scope = $scope.$new();
+            scope.showMsgOnlyLogged = showMsgOnlyLogged;
             ngDialog.open({
                 template: $$config.templates + 'userForms/login.html',
                 controller: 'LoginCtrl',
-                scope: $scope,
-                closeByEscape: false,
+                scope: scope,
+                closeByEscape: true,
+                showClose: false
+            });
+        };
+
+        /**
+         * Open report modal window for given item
+         */
+        $rootScope.openReportBox = function(item) {
+            if(item.spam_reported)
+                return false;
+
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/itemReport.html',
+                controller: 'ItemReport',
+                scope: scope,
+                closeByEscape: true,
                 showClose: false
             });
         };
@@ -230,22 +256,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // send report to API and close modal.. maybe fire some notification too?
-        $rootScope.reportItem = function(item) {
-            if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox(true);
+        // $rootScope.reportItem = function(item) {
+        //     if (!Auth.isLoggedIn())
+        //         return $rootScope.showLoginBox(true);
 
-            $rootScope.globalLoading = true;
-            Post.spam({id: item._id}, function(res) {
-                $rootScope.$broadcast('reportItem', item);
+        //     $rootScope.globalLoading = true;
+        //     Post.spam({id: item._id}, function(res) {
+        //         $rootScope.$broadcast('reportItem', item);
 
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
-            }, function(err) {
+        //         $rootScope.globalLoading = false;
+        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
+        //     }, function(err) {
                 
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
-            });
-        };
+        //         $rootScope.globalLoading = false;
+        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
+        //     });
+        // };
 
         // open modal window for item edit
         $rootScope.editItem = function(post, isInvalid, preset) {
@@ -263,10 +289,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemEdit',
                 scope: scope,
                 closeByDocument: false,
-                closeByEscape: true,
+                closeByEscape: false,
                 showClose: false
             });
-            dialog.closePromise.then(function(data) {});
         };
 
         // $timeout(function() {
@@ -320,8 +345,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 closeByEscape: true,
                 showClose: false
             });
+        };
 
-            dialog.closePromise.then(function(data) {});
+        $rootScope.openEmailSharingBox = function(item) {
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/emailSharing.html',
+                controller: 'EmailSharing',
+                scope: scope,
+                closeByEscape: true,
+                showClose: false
+            });
         };
 
         // show modal window with invite options
@@ -335,7 +371,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: $scope.$new(),
                 className: 'ngdialog-invite-box',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 // showClose: false
             });
 
@@ -357,7 +393,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: scope,
                 className: 'ngdialog-tutorial ngdialog-theme-default',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
 
@@ -428,10 +464,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             
             $rootScope.globalLoading = true;
             // call service
-            Action({
-                    id: item._id
-                },
-                function(res) {
+            Action({id: item._id}, function(res) {
 
                     if(angular.isFunction(cb))
                         cb(item);

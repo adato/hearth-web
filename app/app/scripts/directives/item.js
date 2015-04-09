@@ -60,7 +60,6 @@ angular.module('hearth.directives').directive('item', [
                 scope.loggedUser = $rootScope.loggedUser;
                 scope.isPostActive = $rootScope.isPostActive;
                 scope.showLoginBox = $rootScope.showLoginBox;
-                scope.reportItem = $rootScope.reportItem;
                 scope.pauseToggle = $rootScope.pauseToggle;
                 scope.pluralCat = $rootScope.pluralCat;
                 scope.deleteItem = $rootScope.deleteItem;
@@ -71,6 +70,8 @@ angular.module('hearth.directives').directive('item', [
                 scope.edit = $rootScope.editItem;
                 scope.socialLinks = $rootScope.socialLinks;
                 scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                scope.openReportBox = $rootScope.openReportBox;
+                scope.openEmailSharingBox = $rootScope.openEmailSharingBox;
 
                 /**
                  * Init basic structure

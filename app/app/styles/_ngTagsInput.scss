@@ -5,17 +5,12 @@ tags-input *, *:before, *:after {
 }
 
 tags-input {
-/*     .host {
-        position: relative;
-        margin-top: 5px;
-        margin-bottom: 5px;
-    } */
+
     .host:active {
         outline: none;
     }
     .tags {
-/*         -moz-appearance: textfield;
-        -webkit-appearance: textfield; */
+        min-height: 30px;
         overflow: hidden;
         word-wrap: break-word;
         cursor: text;
@@ -49,22 +44,13 @@ tags-input {
                 border: none;
                 background: none;
                 cursor: pointer;
-                vertical-align: middle;
                 color: #585858;
                 font-weight: bold;
-                position: relative;
                 font-size:14px;
                 &:active {
                     color: red;
                 }
             }
-/*             &:hover {
-                background-color: lighten(color(5), 30%);
-                color: white;
-                .remove-button {
-                    color: white;
-                }
-            } */
         }
         .input {
             border: 0 !important;
@@ -74,7 +60,7 @@ tags-input {
             margin-left: 5px;
             padding: 0;
             float: left;
-            height: 22px;
+            height: 30px;
             font-size: $global-font-size;
             min-width: 250px;
         }

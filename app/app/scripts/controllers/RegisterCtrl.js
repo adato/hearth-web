@@ -30,23 +30,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
         $scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
         
-
-        function processOathLoginResult(res) {
-            // when user logged, use his language configured on API
-            if(res.data.language)
-                LanguageSwitch.setCookie(res.data.language);
-
-            if(res.data.api_token) {
-                Auth.setToken(res.data.api_token);
-            }
-
-            window.location = window.location.pathname;
-        }
-
         $scope.oauth = function(provider) {
             $auth.authenticate(provider).then(function(response) {
                 if(response.status == 200)
-                    processOathLoginResult(response);
+                    Auth.processLoginResponse(response.data);
                 else
                     $scope.loginError = true;
             });

@@ -1,0 +1,40 @@
+<div class="itemShare itemEdit modal">
+    <div class="head">
+        <h2>
+            {{ 'EMAIL_SHARING.HEADING' | translate}}
+        </h2>
+        <span ng-click="close()" class="close fa fa-times"></span>
+        <hr />
+    </div>
+    <form ng-submit="send()" name="emailForm" novalidate class="email-sharing">
+        <div class="notify-report-container"></div>
+        <div>
+            <label>{{ 'EMAIL_SHARING.ADDRESS_LABEL' | translate }}</label>
+            <br />
+            <input type="text" ng-focus="showErrors.emails = false" ng-blur="showErrors.emails = true; testEmailsFormat(sharing.emails)" placeholder="{{ 'EMAIL_SHARING.ADDRESS_PLACEHOLDER' | translate }}" ng-model="sharing.emails" name="emails" required />
+            <div class="moveUp error" ng-show="showErrors.emails">
+                <span ng-show="emailForm.emails.$error.required">{{ 'ERR_NOT_FILLED_SHARING_EMAIL_ADDRS' | translate }}</span>
+                <span ng-show="emailForm.emails.$error.format">{{ 'ERR_SHARING_EMAIL_ADDRESS_INVALID' | translate }}</span>
+            </div>
+
+            <label>{{ 'EMAIL_SHARING.TEXT_LABEL' | translate }}</label>
+            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" placeholder="{{ 'EMAIL_SHARING.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
+            <div class="moveUp error" ng-show="showErrors.message">
+                <span ng-show="emailForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="emailForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="emailForm.message.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+            </div>
+            <div class="bottom clearfix">
+                <a href="" ng-click="close()" class="fleft close">
+                    {{ 'CLOSE' | translate }}
+                </a>
+                <button class="primary button-send fright pointer" type="submit" translate>SEND</button>
+            </div>
+        </div>
+    </form>
+    <div class="email-sharing success success-msg hidden">
+        <p>{{ 'EMAIL_SHARING.SUCCESS_MESSAGE' | translate }}</p>
+        <button class="primary button-send fright pointer" ng-click="close()" translate>CLOSE</button>
+        <div class="clear"></div>
+    </div>
+</div>

@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload',
+	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth',
 
-	function($scope, $route, User, $location, $rootScope, $timeout, Notify, UnauthReload) {
+	function($scope, $route, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -31,7 +31,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			
 			// $scope.initLocations();
 			User.get({
-				user_id: $rootScope.loggedUser._id
+				_id: $rootScope.loggedUser._id
 			}, function(res) {
 				$scope.profile = $scope.transformDataIn(res);
 				$scope.loaded = true;
@@ -154,10 +154,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$rootScope.globalLoading = true;
 
 			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
+			// transformedData.user_id = $scope.profile._id;
+			
 			User.edit(transformedData, function(res) {
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 
+				// refresh user info - for example avatar in navbar
+				Auth.refreshUserInfo();
 				$location.path('/profile/'+$scope.profile._id);
 				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
 				

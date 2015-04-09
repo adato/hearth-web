@@ -19,7 +19,15 @@
 }
 
 .error {
-    color: red;
+    color:red;
+}
+
+.green {
+    color: #a7bd1d;
+}
+
+.red {
+    color: #fa5800;
 }
 
 .action-link {
@@ -259,18 +267,18 @@ textarea {
 }
 
 .datepicker {
-    border: 3px solid #ff4100 !important;
-    border-radius: 8px;
+    border: 1px solid color(5) !important;
+    border-radius: $global-radius;
     thead {
         tr {
             th {
-                color: #FF4100 !important;
+                color: color(5) !important;
             }
         }
     }
     td {
         &.active {
-            background-color: #FF4100 !important;
+            background-color: color(5) !important;
         }
     }
 }

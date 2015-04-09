@@ -81,17 +81,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			return $scope.$broadcast('searchWithRefresh');
 		};
 
-		$scope.updateLocation = function(location) {
-			// funkce zdvojuje nektere requesty
-			return;
-
-			$scope.myLocation = location;
-			$scope.offset = 0;
-			$rootScope.$broadcast('cancelCreatingAd');
-			$rootScope.$broadcast('cancelReplyingAd');
-			return $scope.$broadcast('searchWithRefresh');
-		};
-
 		$scope.initMyLocation = function() {
 			if (!$scope.myLocation) {
 				if ($scope.loggedUser) {

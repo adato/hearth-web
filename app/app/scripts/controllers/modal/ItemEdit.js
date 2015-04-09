@@ -12,9 +12,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
+		$scope.limitPixelSize = 200;
 		$scope.imagesCount = 0;
 		$scope.defaultPost = {
-			type: false,
+			type: true,
 			keywords: [],
 			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
 			locations: [],
@@ -27,10 +28,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			is_private: false,
 		};
 		$scope.slide = {
-			keywords: false,
 			files: false,
 			date: false,
 			lock: false,
+			communities: false,
 		};
 		$scope.newPost = false;
 		$scope.showError = {
@@ -57,7 +58,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.dateUnlimitedToggle = function() {
 
 			$scope.showError.valid_until = false;
-			$scope.createAdForm.valid_until.$error.invalid = false;
 
 			// $scope.post.valid_until_unlimited = !$scope.post.valid_until_unlimited;
 			if (!$scope.post.valid_until_unlimited) {
@@ -128,16 +128,17 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
+				$scope.slide.communities = !!post.related_communities.length
 
-				post.type = post.type == 'need';
+				post.type = post.type == 'offer';
 			}
 			return post;
 		}
 
 		$scope.transformDataOut = function(data) {
 			var values = {
-				false: 'offer',
-				true: 'need'
+				true: 'offer',
+				false: 'need'
 			};
 
 			// clear locations from null values
@@ -180,12 +181,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(!post.valid_until_unlimited) {
 
 				if(post.valid_until == '') {
-					res = $scope.showError.valid_until = true;
+					res = $scope.slide.date = true;
+					$timeout(function() {$scope.showError.valid_until = true;});
+					
 				} else if( getDateDiffFromNow(post.valid_until, $scope.dateFormat) < 0) {
-
+					res = $scope.slide.date = true;
+					console.log(getDateDiffFromNow(post.valid_until, $scope.dateFormat));
 					// test for old date in past
-					res = $scope.showError.valid_until = true;
-					$scope.createAdForm.valid_until.$error.invalid = true;
+					$timeout(function() {$scope.showError.valid_until = true;});
+				} else {
+					$scope.showError.valid_until = false;
 				}
 			}
 			
@@ -222,21 +227,17 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.blurDate = function(datetime) {
-			$scope.showError.valid_until = true;
-
 			if(datetime != '') {
-				
 				$timeout(function() {
 					if(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat) < 0) {
-						$scope.createAdForm.valid_until.$error.invalid = true;
+						console.log(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat));
+						$scope.showError.valid_until = true;
 					}
 				});
 			}
 		};
 		
 		$scope.focusDate = function(datetime) {
-
-			$scope.createAdForm.valid_until.$error.invalid = false;
 			$scope.showError.valid_until = false;
 		};
 
@@ -282,13 +283,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.publishPost = function(data, post, done) {
-			Post.publish({id: post._id}, function() {
+			Post.publish({id: post._id}, function(data) {
 				done(data, post);
 			}, $scope.processErrorResult);
 		};
 
 		$scope.resumePost = function(data, post, done) {
-			Post.resume({id: post._id}, function() {
+			Post.resume({id: post._id}, function(data) {
 				done(data, post);
 			}, $scope.processErrorResult);
 		};
@@ -317,16 +318,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			
 			postData = $scope.transformDataOut(postData);
 
-			// if(post.related_community_ids.length) {
-			// 	postData.related_community_ids = [];
-			// 	post.related_community_ids.forEach(function(item) {
-			// 		postData.related_community_ids.push(item._id);
-			// 	});
-			// }
-
-			if ($scope.sending) {
+			if ($scope.sending)
 				return false;
-			}
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
@@ -383,6 +376,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.init = function() {
 			$scope.newPost = !$scope.post;
 			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
+			$scope.enableLockField = $rootScope.loggedUser.friends_count || $scope.post.is_private;
 			$scope.recountImages();
 
 			if($scope.preset)
@@ -398,10 +392,17 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init();
+		$scope.$watch('post.related_communities', function(val, old) {
+			console.log("COMMUNITIES: ", val.length, old.length);
+			if(val.length !== old.length && !$scope.post.related_communities.length)
+				$scope.post.is_private = false;
+		});
 		$scope.$watch('post.current_community_id', function(val, old) {
+			console.log("AUTHOR: ", val, old);
 			if(!!val !== !!old) {
-				$scope.post.is_private = 0;
 				$scope.post.related_communities = [];
+				$scope.post.is_private = false;
+				$scope.slide.communities = false;
 			}
 		});
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);

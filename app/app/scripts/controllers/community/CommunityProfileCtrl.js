@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = false;
+		$scope.topLoaded = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
 
@@ -28,10 +29,11 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}
 
 			$scope.loadingCounter++;
-			Community.get({ communityId: $routeParams.id }, function(res) {
+			Community.get({_id: $routeParams.id }, function(res) {
 
 				$scope.loadingCounter--;
 				$scope.info = res;
+				$scope.topLoaded = true;
 				// $scope.loaded = true;
 				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
@@ -42,7 +44,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				}
 
 			}, function(res) {
-
 				$scope.loadingCounter--;
 				$scope.loaded = true;
 				$scope.info = false;
@@ -112,6 +113,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         		return false;
         	$scope.approveApplicationLock = true;
 
+
         	CommunityMembers.add({communityId: $scope.info._id, user_id: id}, function(res) {
         		$scope.approveApplicationLock = false;
 
@@ -133,7 +135,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         };
 
 		$scope.init = function() {
-
 			$scope.refreshDataFeed();
 			$scope.fetchCommunity();
 		};

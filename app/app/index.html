@@ -32,7 +32,7 @@
      <!-- @if DEBUG -->
      <link rel="stylesheet" href="styles/palette.css">
     <!-- @endif -->
- 
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
@@ -139,7 +139,6 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
     <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
@@ -148,6 +147,8 @@
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="libs/lemmon-slider.js"></script>
+    <script type="text/javascript" src="libs/jquery.tipsy.js"></script>
 
     <script src="vendor/async/lib/async.js"></script>
     <script src="vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
@@ -280,6 +281,14 @@
 
       <script src="scripts/directives/communitySelector.js"></script>
       <script src="scripts/directives/slideTrigger.js"></script>
+    <script src="scripts/services/Validators.js"></script>
+
+    
+     <script src="scripts/filters/filters.js"></script>
+
+      <script src="scripts/directives/tipsy.js"></script>
+      <script src="scripts/directives/lemmonSlider.js"></script>
+      <script src="scripts/directives/sharingWindow.js"></script>
       <script src="scripts/directives/invitationForm.js"></script>
       <script src="scripts/directives/activityAvatar.js"></script>
       <script src="scripts/directives/avatar.js"></script>
@@ -321,6 +330,7 @@
       <script src="scripts/directives/marketplaceBanner.js"></script>
       <script src="scripts/directives/userSelector.js"></script>
       <script src="scripts/directives/authorSelector.js"></script>
+      <script src="scripts/directives/infoBox.js"></script>
 
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>
@@ -361,6 +371,8 @@
       <script src="scripts/controllers/messages/MessagesCtrl.js"></script>
       <script src="scripts/controllers/messages/AddMessageCtrl.js"></script>
 
+      <script src="scripts/controllers/modal/ItemReport.js"></script>
+      <script src="scripts/controllers/modal/EmailSharing.js"></script>
       <script src="scripts/controllers/modal/ItemEdit.js"></script>
       <script src="scripts/controllers/modal/ItemReply.js"></script>
       <script src="scripts/controllers/modal/Tutorial.js"></script>
