@@ -12,6 +12,8 @@ angular.module('hearth').config([
 			.when('/ad/:id', 'ad')
 			.when('/404', 'err404')
 			.when('/terms', 'terms')
+			.when('/taxes', 'taxes')
+			.when('/faq', 'faq')
 			.when('/about', 'about')
 			.when('/feedback', 'feedback')
 			
@@ -85,6 +87,12 @@ angular.module('hearth').config([
 			}).segment('confirm-email', {
 				templateUrl: 'templates/userForms/confirmEmail.html',
 				controller: 'ConfirmEmailCtrl'
+			}).segment('taxes', {
+				templateUrl: 'templates/localizationPage.html',
+				controller: 'LocalizationPage'
+			}).segment('faq', {
+				templateUrl: 'templates/localizationPage.html',
+				controller: 'LocalizationPage'
 			}).segment('fill-email', {
 				templateUrl: 'templates/userForms/fillEmail.html',
 				controller: 'FillEmailCtrl'
