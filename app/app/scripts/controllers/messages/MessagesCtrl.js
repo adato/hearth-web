@@ -11,15 +11,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 	function($scope, $rootScope, Conversations, UnauthReload, $timeout, Notify, Messenger) {
 		$scope.conversations = false;
 		$scope.detail = false;
-		$scope.reply = {
-			text: ''
-		};
-		$scope.replyForm = {
-			show: false
-		};
-		$scope.showError = {
-			text: false
-		};
 		
 		$scope.showConversation = function(info) {
 			info.read = true;

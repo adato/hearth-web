@@ -28,14 +28,35 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     
                     Conversations.getMessages({id: $scope.info._id, from: from, count: _messagesCount}, function(res) {
                         $scope.messages = res.messages;
-
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        $scope.messages = $scope.messages.concat(res.messages);
+                        
+                        console.log($scope.messages);
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                     });
                 };
                 
-                $scope.loadNewMessages = function(from) {
-                    // $scope.conversation[0].
-                    Conversations.getMessages({id: $scope.info._id, newer: from}, function(res) {
+                $scope.loadNewMessages = function() {
+                    if(!$scope.conversation.length)
+                        return $scope.loadMessages();
+
+                    var config = {
+                        id: $scope.info._id
+                        // newet: $scope.conversation[$scope.conversation.length -1].
+                    };
+
+                    $timeout.cancel(_loadTimeoutPromise);
+                    Conversations.getMessages(config, function(res) {
                         $scope.messages.concat(res.messages);
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                     });
@@ -47,6 +68,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 };
 
                 $scope.$watch('info', $scope.init);
+                $scope.$on('conversationMessageAdded', $scope.loadNewMessages);
                 $scope.$on('$destroy', function() {
                     // stop pulling new messages on directive destroy
                     $timeout.cancel(_loadTimeoutPromise);
