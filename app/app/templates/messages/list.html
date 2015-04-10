@@ -1,6 +1,4 @@
-<div class="large-12 large-centered columns box messages-list">
-	<br />
-
+<div class="box messages" dynamic-height>
 	<div class="messages-filer left" ng-if="conversationsCounters">
 		<a ng-click="loadConversations({type:'inbox'})">Inbox</a>		
 		<a ng-click="loadConversations({type:'archive'})">Archive</a>		
@@ -12,10 +10,10 @@
 	<div class="text-center" ng-if="conversations && !conversations.length">
 		{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
 	</div>
-	<div class="collumn left large-3">
+	<div class="collumn left large-3 conversation-list">
 		<div class="message-conversation" ng-repeat="item in conversations" ng-click="showConversation(item._id)">
-			<h4 ng-if="item.title">{{ item.title  }}</h3>
-			<h4 ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h3>
+			<h5 ng-if="item.title">{{ item.title  }}</h5>
+			<h4 ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h4>
 			<span ng-if="item.last_message_text">{{ item.last_message_text | ellipsis:40 }}</span>
 			<!-- <i ng-if="item.last_message_time">{{ item.last_message_time | date:mediumTime }}</i> -->
 			<br />
@@ -24,23 +22,26 @@
 		</div>
 
 	</div>
-	<div class="collumn right large-8" ng-if="conversations.length">
-		<div loading show="!detail"></div>
-		<div ng-if="detail">
-			<article class="message" ng-repeat="item in detail.messages" ng-init="item.show = $last">
-				<div class="message-head" ng-click="item.show = !item.show">
-					<span class="left large-10">
-						<avatar class="left" src="detail.participants[item.author_id].avatar.normal" size="small"></avatar>
-						<h4>{{ detail.participants[item.author_id].name }}</h4>
-					</span>
-					<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}">{{ item.created_at | ago }}</span>
-					<div class="clear"></div>
-				</div>
-				<p ng-slide-down="item.show" lazy-render duration="0.5">
-					<span ng-bind-html="item.text | linky:'_blank' | nl2br"></span>
-				</p>
-			</article>
-			<message-reply conversation-id="1"></message-reply>
+	<div class="collumn right large-8 conversation-detail" ng-if="conversations.length">
+		<div>
+			<div loading show="!detail"></div>
+			<div ng-if="detail">
+				<article class="message" ng-repeat="item in detail.messages" ng-init="item.show = $last">
+					<div class="message-head" ng-click="item.show = !item.show">
+						<span class="left large-10">
+							<avatar class="left" src="detail.participants[item.author_id].avatar.normal" size="small"></avatar>
+							<h4>{{ detail.participants[item.author_id].name }}</h4>
+						</span>
+						<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}">{{ item.created_at | ago }}</span>
+						<div class="clear"></div>
+					</div>
+					<p ng-slide-down="item.show" lazy-render duration="0.5">
+						<span ng-bind-html="item.text | linky:'_blank' | nl2br"></span>
+					</p>
+				</article>
+				<message-reply conversation-id="1"></message-reply>
+			</div>
 		</div>
 	</div>
+	<div class="clear"></div>
 </div>

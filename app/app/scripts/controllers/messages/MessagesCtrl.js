@@ -87,7 +87,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		function init() {
 			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {
-				console.log(list);
 				// load first conversation on init
 				list.length && $scope.loadConversationDetail(list[0]._id);
 			});
