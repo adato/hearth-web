@@ -12,18 +12,17 @@ angular.module('hearth.directives').directive('dynamicHeight',
 			restrict: 'A',
 			scope: {
 				minHeight: '=?',
-				bottomOffset: '=?',
+				offset: '=?',
+				container: '@?',
 			},
 			link: function(scope, element, attrs) {
-				scope.bottomOffset = scope.bottomOffset || 150;
-				scope.minHeight = scope.minHeight || 400;
+				scope.container = scope.container || window;
+				scope.minHeight = scope.minHeight || 200;
 				function resizeElement() {
-					var height = $(window).height() - $(element).offset().top - scope.bottomOffset;
-					console.log($(window).height() , $(element).offset(), scope.bottomOffset);
-
+					var height = $(scope.container).height() - parseInt(scope.offset);
 					$(element).height((height < scope.minHeight) ? scope.minHeight : height);
 				}
-
+				
 				$timeout(resizeElement);
 				$(window).resize(resizeElement);
 			}

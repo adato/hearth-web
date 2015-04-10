@@ -268,6 +268,7 @@
     "ERR_INVITE_EMAIL_INVALID": "Jeden alebo viac emailov nemá správny formát.",
     "ERR_KEYWORD_LEN": "Vaše kľúčové slovo je príliš dlhé. Ale no tak. Je to len slovo, nie poviedka.",
     "ERR_LOCATION_UNKNOWN_PLACE": "Takéto miesto nepoznáme.. Skúste vybrať miesto radšej zo zoznamu.",
+    "ERR_MESSAGE_TEXT_MIN_LEN": "Nezapomněli jste vyplnit text zprávy?",
     "ERR_MISSING_PWD": "Prosím zadajte heslo. Počkať! Ste sami? OK, môžete.",
     "ERR_NOT_AUTHN": "Ach nie! Prihlasovacie meno alebo heslo je neplatné. Tak ktoré z nich?",
     "ERR_NOT_AUTHZ": "Hearth neobdržal autorizáciu pre prístup k Vášmu profilu. Hrozný pocit! Skúste to prosím ešte raz.",
@@ -479,6 +480,9 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "LIST": {
+            "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek"
+        },
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."

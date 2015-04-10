@@ -21,11 +21,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			text: false
 		};
 		
-		$scope.showConversation = function(id) {
-			if($scope.detail._id == id) return false;
-			
-			$scope.detail = false;
-			$scope.loadConversationDetail(id);
+		$scope.showConversation = function(info) {
+			info.read = true;
+			$scope.detail = info;
 		};
 
 		$scope.loadCounters = function() {
@@ -52,7 +50,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadConversations = function(conf, done) {
-			Conversations.get(conf, function(res) {
+			Conversations.get(conf || {}, function(res) {
 				$scope.conversations = $scope.deserialize(res.conversations);
 				done && done($scope.conversations);
 			});
@@ -71,24 +69,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
-		$scope.loadConversationDetail = function(id) {
-			$scope.detail = false;
-
-			Conversations.get({id: id}, function(res) {
-				$scope.replyForm.text = false;
-				$scope.showError.text = false;
-				$scope.reply.text = '';
-
-				$scope.detail = res;
-				$scope.replyForm.show = false;
-			});
-		};
-		
 		function init() {
 			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {
 				// load first conversation on init
-				list.length && $scope.loadConversationDetail(list[0]._id);
+				if(list.length)
+					$scope.detail = list[0];
 			});
 		};
 

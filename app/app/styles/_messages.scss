@@ -1,18 +1,60 @@
 .messages {
 	padding: 20px;
 
-	.conversation-list {
-		overflow: auto;
+	.conversations {
+		overflow: hidden;
 		height: 100%;
+
+		&:hover {
+			overflow-y: auto;
+		}
+
+		.conversation-unreaded {
+			background-color: #CCC;
+		}
+
+		.avatars {
+			float: left;
+			margin-right: 10px;
+		}
+
+		.conversation-info {
+			margin-left: 60px;
+
+			i {
+				margin-right: 10px;
+				float: right;
+			}
+		}
 	}
 
-	.conversation-detail {
-		position: relative;
+	.message-head {
+		margin-bottom: 10px;
 
-		&>div {
+		.avatar {
+			margin-right: 10px;
+		}
+
+		h4 {
+			position: relative;
+			top: 5px;
+		}
+	}
+
+	.conversation-detail-container {
+		position: relative;
+		height: 100%;
+		
+		.conversation-detail {
 			position: absolute;
 			bottom: 0px;
-			
+			width: 100%;
+
+			.message-reply {
+				textarea {
+				    resize: none;
+				}
+			}
 		}
 	}
 }

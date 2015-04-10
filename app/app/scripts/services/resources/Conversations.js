@@ -22,6 +22,10 @@ angular.module('hearth.services').factory('Conversations', [
 				url: $$config.apiPath + '/conversations/counter',
 				method: 'GET'
 			},
+			getMessages: {
+				url: $$config.apiPath + '/conversations/:id/messages',
+				method: 'GET'
+			},
 			reply: {
 				method: 'POST',
 			},
