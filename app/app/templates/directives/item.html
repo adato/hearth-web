@@ -12,7 +12,7 @@
 		<div class="timeline"></div>
 	</section>
 	<div class="large-10 fleft columns ad-detail-column">
-		<article class="box post-detail" ng-class="item.type">
+		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
 				<div class="large-11 columns">
 					<h1>
@@ -28,7 +28,7 @@
 				</div>
 				<div class="large-1 columns">
 					<span class="ad-flag-container fright">
-						<a class="fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
+						<a class="action-dropdown fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}" hover="true"></a>
 					</span>
 					<div class="more-actions-dropdown" id="more-actions-{{ item._id }}" style="display:none;">
 						{{:: 'MARKETPLACE.POST.PUBLISHED_AT' | translate }} {{item.updated_at | ago}}
@@ -45,16 +45,19 @@
 						<a ng-if="! mine && loggedUser._id && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 					</div>
 				</div>
-				<div ng-if="item.location_unlimited" class="large-12 columns clearfix">{{ 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}</div>
+				<div ng-if="item.location_unlimited" class="large-12 columns clearfix">{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}</div>
 				<div ng-if="!item.location_unlimited" class="large-12 columns clearfix">
 					<span ng-repeat="(locationId, location) in item.locations" ng-if="location.address">
 						<i class="fa fa-map-marker" ng-if="$first"></i> {{ location.short_address }}<span ng-if="!$last">;</span>
 					</span>
 				</div>
 			</header>
-			<div class="text-container">
+			<div class="text-container" ng-if="item.name.length < 100 || marketplace.expanded == true">
 				<p ng-bind-html="item.name | linky:'_blank' | nl2br"></p>
 			</div>
+			<div class="text-container" ng-if="item.name.length >= 100 && !marketplace.expanded">
+				<p><span ng-bind-html="item.name | ellipsis:200 | linky:'_blank'"></span> <span><a ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
+			</div>			
 
 			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
 				<li ng-repeat="photo in item.attachments_attributes track by $index">
@@ -71,12 +74,12 @@
 			</div>
 
 			<footer class="clearfix">
-<!-- 				<div class="sharing fright">
+ 				<div class="sharing hide fright">
 					<a class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
 					<a sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank"></a>
 					<a sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
 					<a sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
-				</div> -->
+				</div>
 				<div class="post-edit-buttons-container fleft" ng-if="mine">
 					<div class="controll-buttons">
 						<a title="{{'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"><i class="fa fa-pencil"></i></a>
