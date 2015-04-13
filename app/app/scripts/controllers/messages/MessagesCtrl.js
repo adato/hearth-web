@@ -11,10 +11,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 	function($scope, $rootScope, Conversations, UnauthReload, $timeout, Notify, Messenger) {
 		$scope.conversations = false;
 		$scope.detail = false;
+		$scope.detailIndex = false;
 		
-		$scope.showConversation = function(info) {
+		$scope.showConversation = function(info, index) {
 			info.read = true;
 			$scope.detail = info;
+			$scope.detailIndex = index;
 		};
 
 		$scope.loadCounters = function() {
@@ -65,7 +67,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.loadConversations({}, function(list) {
 				// load first conversation on init
 				if(list.length)
-					$scope.detail = list[0];
+					$scope.showConversation(list[0], 0);
 			});
 		};
 

@@ -9,7 +9,7 @@
 angular.module('hearth.services').service('Messenger', [
 	'$q', 'Conversations', '$rootScope', '$timeout',
 	function($q, Conversations, $rootScope, $timeout) {
-		const _LOAD_COUNTERS_INTERVAL = 10000;
+		const _LOAD_COUNTERS_INTERVAL = 60000;
 		var self = this;
 		this.counters = null;
 		var timer = null;

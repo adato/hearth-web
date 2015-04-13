@@ -8,7 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('messageReply', [
-	function() {
+	'Conversations',
+	function(Conversations) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -17,6 +18,7 @@ angular.module('hearth.directives').directive('messageReply', [
 			},
 			templateUrl: 'templates/directives/messageReply.html',
 			link: function($scope, el, attrs) {
+				$scope.sendingReply = false;
 				$scope.reply = {
 					text: ''
 				};
@@ -25,8 +27,11 @@ angular.module('hearth.directives').directive('messageReply', [
 				};
 		
 				$scope.validateReply = function(reply) {
+					var invalid = false;
+
 					if(!reply.text)
-						return $scope.showError.text = true;
+						invalid = $scope.showError.text = true;
+					return !invalid;
 				};
 
 				$scope.sendReply = function(reply) {
@@ -35,12 +40,12 @@ angular.module('hearth.directives').directive('messageReply', [
 						return false;
 					$scope.sendingReply = true;
 
-					console.log(reply);
 					Conversations.reply(reply, function(res) {
 
 						$scope.reply.text = '';
 						$scope.sendingReply = false;
-						$scope.$broadcast("conversationMessageAdded", reply);
+						$scope.showError.text = false;
+						$scope.$emit("conversationMessageAdded", res);
 					}, function(err) {
 						$scope.sendingReply = false;
 						Notify.addSingleTranslate('NOTIFY.MESSAGE_REPLY_FAILED', Notify.T_ERROR);

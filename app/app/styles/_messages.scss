@@ -2,14 +2,52 @@
 	.conversations {
 		overflow: hidden;
 		height: 100%;
-		padding-right: 20px;
+		padding-right: 5px;
 
-		&:hover {
-			overflow-y: auto;
+		.scroll-content {
+			padding-right: 15px;
 		}
 
+		.scroll-element_size {
+		    background-color: #eeeeee;
+		    border-radius: 5px;
+		    left: -9px;
+		    top: -2px !important;
+		    width: 6px;
+		    opacity: 0;
+		    transition: opacity 0.2s linear 0s;
+		}
+
+		&:hover .scroll-element_size {
+			opacity: 1;
+		}
+
+		&>div {
+			height: 100%;
+		}
+
+		.scroll-x {
+			display: none !important;
+		}
+		.border-bottom,
+		.message-conversation {
+			border-bottom: 1px solid #CCC;
+			&.active-bottom {
+				border-bottom-color: orange;
+			}
+		}
+
+		.message-conversation {
+			cursor: pointer;
+			&.active {
+				h5 {
+					color: orange;
+				}
+				border-bottom-color: orange;
+			}
+		}
 		.conversation-unreaded {
-			background-color: #CCC;
+			background-color: #AAA;
 		}
 
 		.avatars {
@@ -28,8 +66,10 @@
 	}
 
 	.message-head {
-		margin-bottom: 10px;
-
+		h5 {
+			position: relative;
+			top: -5px;
+		}
 		.avatar {
 			margin-right: 10px;
 		}
@@ -53,6 +93,8 @@
 			bottom: 0px;
 			width: 100%;
 
+			.messages-container {
+			}
 			.message-reply {
 				textarea {
 				    resize: none;
