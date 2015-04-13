@@ -5,7 +5,7 @@
 	}
 }
 
-#item-detail, .market article.post-on-market, .profile-view article.post-on-market {
+#item-detail, .market article.post-on-market, .profile-view article.post-on-market, .community-view article.post-on-market {
 	.box {
 		padding:$ui-grid-size;
 		box-shadow:$ui-box-shadow;
@@ -135,6 +135,7 @@
 				right:1rem;
 			}
 			.line {
+				overflow-x: hidden;
 				div.descr {
 					line-height:130%;
 					margin-top: 10px;

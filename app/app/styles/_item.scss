@@ -20,14 +20,25 @@ $imageSize: 80px;
 }
 
 // .post-on-market is an envelope around every item 
-article.post-on-market, article.post-on-profile {
-    article header h1>a { color:black; }
+article.post-on-market {
+    article header h1>a { 
+        color:black; 
+        &:hover {
+            text-decoration:underline;
+        }
+        &:hover span {
+            text-decoration:underline;
+        }
+    }
     .avatar {
         margin-top:2 * $ui-small-grid-size;
         span::before, img { box-shadow:none;}
     }
     .ad-flag-container {
         margin-top:-1 * $ui-small-grid-size;
+        .action-dropdown:hover {
+            color:color(5) !important;
+        }
     }
     .more-actions-dropdown {
         position:absolute;
@@ -43,7 +54,7 @@ article.post-on-market, article.post-on-profile {
         hr {
             border:none;
             height:0;
-            border-bottom:1px solid $ui-color-lighter;
+            border-bottom:1px solid lighten($ui-color-lighter, 15%);
             margin-top:$ui-small-grid-size;
             margin-bottom:$ui-small-grid-size;
         }
@@ -159,45 +170,6 @@ article.post-on-market, article.post-on-profile {
     }
 }
 
-.mineItem {
-    .avatar:before,
-    .item,
-    .arrowbox {
-        border: 2px solid #f95800;
-    }
-    .share {
-        color: #f95800 !important;
-        a {
-            text-shadow: none !important;
-            background-color: #f95800 !important;
-            color: lighten(#f95800, 50%) !important;
-            &:hover {
-                color: white !important;
-                background-color: darken(#f95800, 20%) !important;
-            }
-        }
-    }
-    .controll-buttons {
-        div {
-            color: #f95800 !important;
-            @include transition(color 0.5s);
-            &:hover {
-                color: darken(#f95800, 20%) !important;
-            }
-        }
-    }
-}
-
-.marketplace-items-container {
-    article.mine {
-        .item,
-        .arrowbox {
-            border: 2px solid #f95800;
-        }
-    }
-}
-
-
 .post {
     &.hidden-init {
         display: none;
@@ -211,7 +183,7 @@ article.post-on-market, article.post-on-profile {
 }
 
 // an exception for ignored <p> in <span> (as a by-product of a translation method)
-button>span.ng-binding>p, h2>span.ng-binding>p {
+button p {
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
