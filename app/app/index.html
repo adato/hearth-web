@@ -48,12 +48,12 @@
     <!-- endbuild -->
 
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="vendor/jquery.scrollbar/jquery.scrollbar.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/flexslider-min.css">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
-
+    
   </head>
-
   <body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
 
 <div class="ngdialog ngdialog-theme-default" id="maitenancePage">
@@ -167,6 +167,7 @@
     <script src="vendor/fastclick/lib/fastclick.js"></script>
     <script src="vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
     <script src="vendor/satellizer/satellizer.min.js"></script>
+    <script src="vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
     
     <script src="vendor/angular-translate/angular-translate.js"></script>
     <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
@@ -288,6 +289,8 @@
     
      <script src="scripts/filters/filters.js"></script>
 
+      <script src="scripts/directives/dynamicHeight.js"></script>
+      <script src="scripts/directives/messageReply.js"></script>
       <script src="scripts/directives/tipsy.js"></script>
       <script src="scripts/directives/lemmonSlider.js"></script>
       <script src="scripts/directives/sharingWindow.js"></script>
@@ -332,7 +335,9 @@
       <script src="scripts/directives/marketplaceBanner.js"></script>
       <script src="scripts/directives/userSelector.js"></script>
       <script src="scripts/directives/authorSelector.js"></script>
+      <script src="scripts/directives/conversationDetail.js"></script>
       <script src="scripts/directives/infoBox.js"></script>
+      <script src="scripts/directives/customScrollbar.js"></script>
 
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>

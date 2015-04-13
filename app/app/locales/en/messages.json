@@ -261,6 +261,7 @@
     "ERR_INVITE_EMAIL_INVALID": "One or more emails' format is invalid.",
     "ERR_KEYWORD_LEN": "Your keyword is too long. Remember, it's a word not a short story.",
     "ERR_LOCATION_UNKNOWN_PLACE": "We don't know such a place... Could you pick one from the list instead?",
+    "ERR_MESSAGE_TEXT_MIN_LEN": "Nezapomněli jste vyplnit text zprávy?",
     "ERR_MISSING_PWD": "Please enter password. Wait! Are you alone? Go ahead!",
     "ERR_NOT_AUTHN": "Oh no! Username or password is invalid. Now, which one is it?",
     "ERR_NOT_AUTHZ": "Hearth was not allowed to access your profile. And feels so bad now! Please try\nagain.",
@@ -469,6 +470,9 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "LIST": {
+            "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek"
+        },
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
