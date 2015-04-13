@@ -97,6 +97,9 @@ angular.module('hearth.directives').directive('item', [
                     // is this my post? if so, show controll buttons and etc
                     scope.mine = scope.item.owner_id === ((scope.user) ? scope.user._id : null);
 
+                    scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date())
+                                                && moment(scope.item.valid_until).isAfter(new Date());
+
                     // if the post is show instantly (without any effect) recount his height now
                     if(!scope.delayedView)
                         scope.recountHeight();
