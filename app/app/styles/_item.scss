@@ -94,6 +94,15 @@ article.post-on-market {
     }
 }
 
+.ad-detail-column footer>.sharing {
+    opacity:0;
+    transition: opacity .2s ease-in;
+}
+.ad-detail-column:hover footer>.sharing {
+    opacity:1;
+}
+
+
 .karma {
     height: 5px;
     width: $imageSize + 30px;
