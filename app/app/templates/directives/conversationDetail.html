@@ -5,7 +5,7 @@
 			<article class="message" ng-repeat="item in messages track by $index">
 				<div class="message-head" ng-click="item.show = !item.show">
 					<a class="left large-10" ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
-						<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="small"></avatar>
+						<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
 						<h4>{{ item.author.name }}</h4>
 					</a>
 					<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}">{{ item.created_at | ago }}</span>

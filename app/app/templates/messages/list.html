@@ -1,4 +1,4 @@
-<div class="box messages" dynamic-height offset="150" min-height="400">
+<div class="messages" dynamic-height offset="150" min-height="400">
 	<div class="messages-filer left" ng-if="conversationsCounters">
 		<a ng-click="loadConversations({type:'inbox'})">Inbox</a>		
 		<a ng-click="loadConversations({type:'archive'})">Archive</a>		
@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
-		<div class="collumn left large-3 conversations">
+		<div class="collumn left large-4 conversations">
 			<div class="message-conversation" ng-class="{'conversation-unreaded': !item.read}" ng-repeat="item in conversations" ng-click="showConversation(item)">
 				<div class="avatars avatar-count-{{item.participants.length}}">
 					<avatar src="person.avatar.normal" size="mini" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
@@ -29,7 +29,7 @@
 				<hr />
 			</div>
 		</div>
-		<div class="collumn right large-8 conversation-detail-container">
+		<div class="collumn box right large-8 conversation-detail-container">
 			<conversation-detail ng-if="detail" info="detail"></conversation-detail>
 		</div>
 		<div class="clear"></div>
