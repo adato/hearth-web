@@ -14,7 +14,6 @@ angular.module('hearth').config([
 			.when('/terms', 'terms')
 			.when('/taxes', 'taxes')
 			.when('/faq', 'faq')
-			.when('/about', 'about')
 			.when('/feedback', 'feedback')
 			
 			// ======= User routes
@@ -114,9 +113,6 @@ angular.module('hearth').config([
 			}).segment('terms', {
 				controller: 'TermsCtrl',
 				templateUrl: 'templates/terms.html'
-			}).segment('about', {
-				templateUrl: 'templates/about.html',
-				pageType: 'about'
 			}).segment('ad', {
 				controller: 'ItemDetail',
 				templateUrl: 'templates/itemDetail.html'
