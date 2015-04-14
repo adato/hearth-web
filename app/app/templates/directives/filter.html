@@ -18,12 +18,6 @@
 		<radio type="radio" model="filter.type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
 		<radio type="radio" model="filter.type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
 	</section>
-	<section class="radio-container author-switch-container">
-		<label>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</label>
-		<checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
-		<checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
-		<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}</checkbox>
-	</section>
 	<section class="radio-container time-switch-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</label>
 		<radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
@@ -31,15 +25,19 @@
 		<radio type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
 		<radio type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
 	</section>
+	<section class="radio-container author-switch-container">
+		<label>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</label>
+		<checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
+		<checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
+		<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}</checkbox>
+	</section>
 	<section class="location-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</label>
-		<section>
-			<div class="range-select-container"  ng-show="filter.lat && filter.lon && filter.name">
+			<div class="range-select-container" ng-show="filter.lat && filter.lon && filter.name">
 				<input type="range" ng-model="filter.distance" step="25" min="25" max="100" >
-				<span class="distance">{{filter.distance}} {{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+				<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
 			</div>
 			<input type="text" id="geolocation" ng-model="filter.name" />
-		</section>
 	</section>
 	<section class="footer">
 		<div class="fleft">

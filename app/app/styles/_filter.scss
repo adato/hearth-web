@@ -50,22 +50,25 @@
     }
     .location-container {
         @extend .clearfix;
-        margin-top:2 * $ui-small-grid-size;
         &>label {
             @extend .reset-label;
             font-weight: $ui-text-weight-bolder;
+            min-width:5 * $ui-grid-size;
+            display:inline-block;
         }
         input#geolocation {
             @extend .bottom-line-input;
             height: $ui-grid-size;
-            width:45%;
+            width:30%;
+            display:inline-block;
         }
         .range-select-container {
-            width:45%;
+            width:30%;
             float:right;
             input[type="range"] {
                 width:75%;
                 margin-right:$ui-grid-size;
+                display:inline-block;
             }
             span.distance {
                 color:$ui-color-lighter;
