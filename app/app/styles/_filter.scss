@@ -1,12 +1,14 @@
 .filter {
+    section.type-switch-container, section.radio-container { border-bottom:1px solid #efefef;}
     .keywords-container {
         @extend .clearfix;
         &>label { 
             @extend .reset-label;
-            float:left;
-            margin-right:$ui-grid-size;
             line-height:$ui-input-height;
-            font-weight: $ui-text-weight-bolder;
+            min-width:28 * $ui-small-grid-size;
+            display:inline-block;
+            float:left;
+            margin-right:18px; // sorry, but it needs to be precise :)
         }
         tags-input {
             width:auto;
@@ -14,7 +16,8 @@
                 @extend .bottom-line-input;
             }
             .autocomplete {
-                max-width:20 * $ui-grid-size;
+                max-width:22 * $ui-grid-size;
+                margin-left:16%;
             }
         }
     }
@@ -35,8 +38,7 @@
         &>label {
             @extend .reset-label;
             &:nth-child(1) {
-                font-weight: $ui-text-weight-bolder;
-                min-width:5 * $ui-grid-size;
+                min-width:28 * $ui-small-grid-size;
             }
             display:inline-block;
         }
@@ -46,28 +48,28 @@
         }
     }
     .type-switch-container {
-        margin-top:$ui-grid-size;
+        margin-top:3*$ui-small-grid-size;
     }
     .location-container {
         @extend .clearfix;
         &>label {
             @extend .reset-label;
-            font-weight: $ui-text-weight-bolder;
-            min-width:5 * $ui-grid-size;
+            min-width:28 * $ui-small-grid-size;
             display:inline-block;
         }
         input#geolocation {
             @extend .bottom-line-input;
             height: $ui-grid-size;
-            width:30%;
+            width:38%;
             display:inline-block;
+            margin-bottom:0;
         }
         .range-select-container {
-            width:30%;
+            width:35%;
             float:right;
             input[type="range"] {
                 width:75%;
-                margin-right:$ui-grid-size;
+                margin-right:2 * $ui-small-grid-size;
                 display:inline-block;
             }
             span.distance {
@@ -110,5 +112,5 @@
 }
 .reset-label {
     font-size:$ui-text-font-size;
-    margin-right:$ui-grid-size;
+    margin-right:3*$ui-small-grid-size;
 }
