@@ -1,8 +1,8 @@
 #item-detail {
-	a {
+/* 	a {
 		color:color(5);
 		font-weight:600;
-	}
+	} */
 }
 
 #item-detail, .market article.post-on-market, .profile-view article.post-on-market, .community-view article.post-on-market {
@@ -215,8 +215,15 @@
 			font-weight:600;
 		}
 		.text-container {
+			a {
+				color:color(5);
+				font-weight:600;
+			}
 			p {
 				font-size:$ui-text-font-size;
+			}
+			.text-expand-link {
+				display:inline-block;
 			}
 		}
 		ul.address { 
@@ -346,6 +353,10 @@
 
 		.map-expand-toggle {
 			float:right;
+			a { color:color(5); }
+		}
+		.map-container {
+			margin-bottom:3 * $ui-small-grid-size;
 		}
 	}
 

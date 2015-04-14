@@ -94,11 +94,11 @@ article.post-on-market {
     }
 }
 
-.ad-detail-column footer>.sharing {
+article.post-on-market .ad-detail-column footer>.sharing {
     opacity:0;
-    transition: opacity .2s ease-in;
+    transition: opacity .2s ease-out;
 }
-.ad-detail-column:hover footer>.sharing {
+article.post-on-market .ad-detail-column:hover footer>.sharing {
     opacity:1;
 }
 

@@ -6,6 +6,8 @@
 	<!-- <filter-status></filter-status> -->
 	<filterbar filter=filter></filterbar>
 	
+	<div class="mtop" ng-hide="loaded || showMap">&nbsp;</div>
+
 	<div class="large-12 columns" ng-hide="!loaded || showMap">
 		<div class="marketplace-items-container" ng-if="!items.length">
 			<div ng-show="filterIsOn" class="row">

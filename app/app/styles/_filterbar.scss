@@ -3,7 +3,6 @@
     height:$ui-input-height;
     position:relative;
     left:-3 * $ui-small-grid-size;
-    margin-bottom:2 * $ui-small-grid-size;
     .filter-button-container {
         @extend .box;
         width:auto;
@@ -24,8 +23,19 @@
         padding:$ui-grid-size;
         clear:both;
         float:right;
-        margin-top:2 * $ui-small-grid-size;
-        margin-bottom:$ui-grid-size;
+        margin-top:3 * $ui-small-grid-size;
         width:770px;
+        transition:all .3s ease-in;
+        opacity:1;
+        max-height:800px;
+    }
+    .animated-hidden {
+        opacity:0;
+        max-height:0;
+        margin-top:0;
+        margin-bottom:0;
+        padding-top:0;
+        padding-bottom:0;
+        overflow-y:hidden;
     }
 }
