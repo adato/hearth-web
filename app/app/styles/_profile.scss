@@ -99,6 +99,21 @@
     }
 }
 
+.item.rating-received {
+    position:relative;
+    &:after {
+        content: ' ';
+        position: absolute;
+        left:-13px;
+        top:26px;
+        transform:rotate(45deg);
+        box-shadow: -2px 2px 4px rgba(100, 100, 100, 0.2);
+        width: 25px;
+        height: 25px;
+        background:white;
+    }
+}
+
 .rating-listing {
     .rating-received-bar {
         min-height: 50px;
@@ -121,8 +136,7 @@
         small {
             font-size:smaller;
         }
-    }
-    
+    }    
     .rating-item {
         margin-top: 0rem;
         margin-bottom: 1rem;
