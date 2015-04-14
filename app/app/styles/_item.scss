@@ -91,6 +91,12 @@ article.post-on-market {
             position: relative;
             top: -2px;
         }
+        &:hover {
+            background:lighten(color(3), 10%);
+        }
+        &:active, &:focus {
+            background:darken(color(3), 10%);
+        }
     }
 }
 

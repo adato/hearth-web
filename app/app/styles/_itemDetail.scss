@@ -160,9 +160,7 @@
 				.fa {
 					color: color(5);
 					margin: 1px;
-				}
-				.fa:hover {
-					opacity: 0.7;
+
 				}
 				.link {
 					i {
@@ -261,6 +259,7 @@
 				width:$ui-grid-size;
 				height:$ui-grid-size;
 				margin:$ui-small-grid-size / 2;
+				transition: all .2s ease-out;
 				&.fa-envelope {
 				   font-size: 13px;
 				    padding: 3px 0 11px;
@@ -270,6 +269,12 @@
 				    position: relative;
 				    top: -2px;
 				}
+				&:hover {
+					background:lighten(color(3), 10%);
+				}
+				&:active, &:focus {
+					background:darken(color(3), 10%);
+				}
 			}
 			.post-edit-buttons-container {
 				font-size:22px; // @@TODO
@@ -278,6 +283,12 @@
 				a {
 					color:color(3);
 					margin-right:$ui-small-grid-size;
+					&:hover {
+						color:lighten(color(3), 10%);
+					}
+					&:active, &:focus {
+						color:darken(color(3), 10%);
+					}
 				}
 			}
 			.reply-button-container, .reply-count-container {
@@ -291,7 +302,8 @@
 			}
 			.reply-button-container {
 				button {
-					border:0;
+					border:none;
+					outline:none;
 					color:lighten(color(4), 10%);
 					margin:0;
 					font-size:$ui-text-font-size;
@@ -368,9 +380,21 @@
 	}
 	button[data-item-type="need"] {
 		background:color(1);
+		&:hover {
+			background:lighten(color(1), 10%);
+		}
+		&:focus, &:active {
+			background:darken(color(1), 10%);
+		}
 	}
 	button[data-item-type="offer"] {
 		background:color(2);
+		&:hover {
+			background:lighten(color(2), 10%);
+		}
+		&:focus, &:active {
+			background:darken(color(2), 10%);
+		}		
 	}
 
 }
