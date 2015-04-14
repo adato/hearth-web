@@ -114,8 +114,8 @@ $fontSize: rem-calc(14);
 @import "marketplaceBanner";
 
 body {
-    background-image: inline-image("bg.jpg");
-    background-color: #FAF8EB;
+    background-image: inline-image("bg.png");
+    background-color: #faf8eb;
     background-repeat: no-repeat;
     background-position: 50% top;
     .main-container {
@@ -123,11 +123,6 @@ body {
         min-width:960px;
         margin: 0px auto;
         position: relative;
-        /*      
-       .scrolled & {
-            top: 6em;
-        }
-        */
         top: 6em;
     }
 }
