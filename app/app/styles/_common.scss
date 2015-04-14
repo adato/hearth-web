@@ -33,9 +33,8 @@
 .box {
     background-color: white;
     border-radius: $global-radius;
-    padding: 1em;
-    padding-top: 0;
-    box-shadow: $defaultShadow;
+    padding: $ui-grid-size;
+    box-shadow: $ui-box-shadow;
     //overflow: hidden;
     .header {
         background-color: color(1);
@@ -53,6 +52,10 @@
     &.no-result p {
         margin: 1.25rem 0.5rem;
     }
+}
+
+.item {
+    @extend .box;
 }
 
 .logo {
