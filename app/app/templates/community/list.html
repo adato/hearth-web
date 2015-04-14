@@ -1,6 +1,6 @@
 <div class="communities">
-    <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button2 fright community-list-add-button">
-        <i class="fa fa-plus"></i>&nbsp; {{:: 'CREATE_COMMUNITY' | translate}}
+    <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button button-send fright community-list-add-button">
+        <i class="fa fa-plus"></i>&nbsp; {{'CREATE_COMMUNITY' | translate}}
     </a>
     <div class="community-list-add-form hide">
         <community-create-edit close="toggleForm()"></community-create-edit>
