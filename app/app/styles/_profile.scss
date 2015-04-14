@@ -122,6 +122,8 @@
 
     .rating-call-to-action {
         margin-bottom:$ui-grid-size;
+        padding-left: 0;
+        padding-right: 6*$ui-small-grid-size;
     }
 
     .date { margin-top: -2 * $ui-small-grid-size; }
