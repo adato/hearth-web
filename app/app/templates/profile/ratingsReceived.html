@@ -9,9 +9,6 @@
 	</section>
 	<section class="large-10 columns user-rating-form">
 		<div class="item rating-received">
-			<div class="overlap"> </div>
-			<div class="arrowbox"></div>
-			<div class="arrow"></div>
 			<div class="content">
 				<h5>{{:: 'ADD_USER_RATING' | translate }} {{ info.name }}</h5>
 				<div class="rating-notify-box"></div>
@@ -67,7 +64,7 @@
 <div class="clear"></div>
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded">
-	<section class="large-8 large-centered columns rating-call-to-action" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+	<section class="columns rating-call-to-action" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
@@ -88,9 +85,6 @@
 			<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
 				<i class="score-icon fa icon-rating-negative" ng-if="item.score == -1"></i>
 				<i class="score-icon fa icon-rating-positive" ng-if="item.score == 1"></i>
-				<div class="overlap"> </div>
-				<div class="arrowbox"></div>
-				<div class="arrow"></div>
 				<div class="content">
 					<div class="fright">
 						<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
