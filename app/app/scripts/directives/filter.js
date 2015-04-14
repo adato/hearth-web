@@ -42,6 +42,9 @@ angular.module('hearth.directives').directive('filter', [
 
 
                 scope.queryKeywords = function($query) {
+                    if ($query === '' || $query.length < 3) {
+                        return Filter.queryCommonKeywords($query);
+                    }
                     return KeywordsService.queryKeywords($query);
                 };
 
