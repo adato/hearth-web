@@ -410,7 +410,6 @@
     "LOCATION_DOES_NOT_MATTER": "Na mieste nezáleží",
     "LOCATION_GO_CURRENT": "Nájsť vašu aktuálnu polohu",
     "LOCATION_INPUT_PLACEHOLDER": "Kde?",
-    "LOCATION_UNLIMITED_MESSAGE": "Kdekoľvek",
     "LOGIN_BAD_CREDENTIALS": "Meno alebo heslo nesedí. Skúste to ešte raz.",
     "LOGIN_BUTTON": "Prihlásiť sa",
     "LOGIN_HEADING": "Prihlásenie",
@@ -452,8 +451,9 @@
         "HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
         "NOTHING_FOUND": "Hmm... asi sa niekde stala chyba, pretože tu nie sú žiadne inzeráty",
         "POST": {
+            "CLICK_TO_EXPAND": "Rozbaliť celý inzerát",
             "FLAG_POST": "Nahlásiť škodlivý inzerát",
-            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Kdekoľvek",
             "PUBLISHED_AT": "Přidáno",
             "SHARE_WITH": "Sdílet přes"
         },
@@ -480,6 +480,7 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "LIST": {
             "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek"
         },
@@ -692,9 +693,10 @@
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
-            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
             "LOCATION_HEADING": "Umístění inzerátu",
             "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
+            "POST_EXPIRING_SOON": "Platí posledních pár dní",
             "REPLIES": "Odpovědi uživatelů",
             "SHOW_MAP": "Zobrazit mapu"
         }
@@ -1027,7 +1029,6 @@
     "required": "Toto pole je povinné. Nechceme sa hrať na policajta, ale poznáte takéto polia...",
     "send_fb_invitation": "Pozvite priateľov na Facebooku",
     "show-less": "Skryť",
-    "show-more": "Rozbaliť celý inzerát",
     "time": "Čas",
     "title-maxlength": "Titulok je príliš dlhý, pán Shakespeare. To nás mrzí, naša maximálna dĺžka je {{value}} znakov.",
     "title-required": "Titulok je príliš krátky. Pridajte ešte aspoň pár slov...",

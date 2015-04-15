@@ -410,7 +410,6 @@
     "LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
     "LOCATION_GO_CURRENT": "Najít vaši aktuální polohu",
     "LOCATION_INPUT_PLACEHOLDER": "Kde?",
-    "LOCATION_UNLIMITED_MESSAGE": "Kdekoliv",
     "LOGIN_BAD_CREDENTIALS": "Jméno nebo heslo nesedí. Zkuste to prosím ještě jednou.",
     "LOGIN_BUTTON": "Přihlásit se",
     "LOGIN_HEADING": "Přihlášení",
@@ -452,8 +451,9 @@
         "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
         "NOTHING_FOUND": "Buďte klidní, meditujte. Někde se stala chybka, nejsou tu žádné inzeráty",
         "POST": {
-            "FLAG_POST": "Upozornit na nevhodný dar nebo přání",
-            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
+            "CLICK_TO_EXPAND": "Zobrazit celý text",
+            "FLAG_POST": "Označit jako nevhodný",
+            "LOCATION_ANYWHERE_HEADING": "Kdekoliv",
             "PUBLISHED_AT": "Přidáno",
             "SHARE_WITH": "Sdílet přes"
         },
@@ -480,6 +480,7 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "LIST": {
             "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek"
         },
@@ -670,7 +671,7 @@
         "other": "Už nabídlo {{value}} lidí."
     },
     "PEOPLE_COUNT_WISH_PL": {
-        "one": "Už požádal jeden člověk.",
+        "one": "Už požádal {{value}} člověk.",
         "few": "Už požádali {{value}} lidé.",
         "other": "Už požádalo {{value}} lidí."
     },
@@ -692,9 +693,10 @@
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
-            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
             "LOCATION_HEADING": "Umístění inzerátu",
             "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
+            "POST_EXPIRING_SOON": "Platí posledních pár dní",
             "REPLIES": "Odpovědi uživatelů",
             "SHOW_MAP": "Zobrazit mapu"
         }
@@ -1027,7 +1029,6 @@
     "required": "Toto pole je povinné. Nechceme si hrát na četníka, ale znáte tahle pole...",
     "send_fb_invitation": "Pozvěte přátele na Facebooku",
     "show-less": "Skrýt",
-    "show-more": "Rozbalit celý inzerát",
     "time": "Čas",
     "title-maxlength": "Titulek je příliš dlouhý, pane Shakespeare. To nás mrzí, naše maximální délka je {{value}} znaků.",
     "title-required": "Titulek je příliš krátký. Přidejte ještě aspoň pár slov...",

@@ -1,19 +1,21 @@
 <div class="messages" dynamic-height offset="100" min-height="400">
+	<div class="messages-top formStyle">
+		<form class="search" method="POST" ng-submit="search()">
+			<input type="text" ng-model="conversationSearch" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
+			<button class="button-icon fa fa-search"></button>
+		</form>
+		<select class="messages-filter left" ng-model="conversationFilter" ng-init="conversationFilter = 'all'">
+			<option ng-value="all">All</option>
+			<option ng-value="inbox">Inbox</option>
+			<option ng-value="archive">Archive</option>
+		</select>
 
-	<div class="search" ng-if="false">
-		<input type="text" ng-model="conversationSearch" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
-		<button class="fa fa-search"></button>
-	</div>
-	<div class="messages-filer left" ng-if="conversationsCounters">
-		<a ng-click="loadConversations({type:'inbox'})">Inbox</a>		
-		<a ng-click="loadConversations({type:'archive'})">Archive</a>		
-		<a ng-click="loadConversations({type:'all'})">All</a>		
-	</div>
-	<a ng-href="#!/messages/new" class="button-send right">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
-	<div class="clear"></div>
-	<div loading show="!conversations"></div>
-	<div class="text-center" ng-if="conversations && !conversations.length">
-		{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
+		<a ng-href="#!/messages/new" class="button-send right">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+		<div class="clear"></div>
+		<div loading show="!conversations"></div>
+		<div class="text-center" ng-if="conversations && !conversations.length">
+			{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
+		</div>
 	</div>
 	
 	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">

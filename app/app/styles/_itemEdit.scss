@@ -1,31 +1,7 @@
 // config is now in settings.scss at the bottom
 
-.ngdialog .itemReply, .ngdialog .itemEdit {
-
-    font-size: $local-text-font-size;
-    width: 650px;
-    padding: $local-grid-size;
-
-    textarea {
-        height: 85px;
-        resize: vertical;
-        transition: height 0.2s;
-    }
-    label {
-        cursor: pointer;
-        margin-bottom:10px;
-        line-height:1;
-        font-weight: 600;
-        color:#333;
-    }
-
-    // fix stuff
-    a {
-        font-weight: 600;
-    }
-    * {
-        text-align:left;
-    }
+.formStyle {
+    
     input, select, textarea {
         border:$local-input-border-style;
         font-family: $body-font-family;
@@ -59,6 +35,35 @@
             background-color: #ddd !important;
         }
     }
+}
+
+.ngdialog .itemReply, .ngdialog .itemEdit {
+
+    font-size: $local-text-font-size;
+    width: 650px;
+    padding: $local-grid-size;
+
+    textarea {
+        height: 85px;
+        resize: vertical;
+        transition: height 0.2s;
+    }
+    label {
+        cursor: pointer;
+        margin-bottom:10px;
+        line-height:1;
+        font-weight: 600;
+        color:#333;
+    }
+
+    // fix stuff
+    a {
+        font-weight: 600;
+    }
+    * {
+        text-align:left;
+    }
+    
     div.error {
         font-size:$local-text-font-size;
         top: -2 * $local-small-grid-size;
