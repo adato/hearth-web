@@ -1,7 +1,14 @@
 <div>
 	<div loading show="!messages"></div>
 	<div class="conversation-detail" ng-if="messages">
-		<div class="messages-container" dynamic-height offset="250" container=".conversation-detail" min-height="240">
+		<div class="conversation-detail-top">
+			<a class="left">{{ info.title }}</a>
+			<span class="right">
+				<a class="fa fa-chevron-down"></a>
+			</span>
+			<div class="clear"></div>
+		</div>
+		<div class="messages-container">
 			<div class="scrollbar-macosx" custom-scrollbar>
 				<article class="message" ng-repeat="item in messages track by $index">
 					<div class="message-head" ng-click="item.show = !item.show">

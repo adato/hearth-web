@@ -481,8 +481,16 @@
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
+        "FILTER": {
+            "ALL": "Všechny zprávy",
+            "ARCHIVE": "Archiv",
+            "COMMUNITIES_POSTS": "Zprávy od komunit",
+            "POST_REPLIES": "Odpovědi na inzerát",
+            "USERS_POSTS": "Zprávy od uživatelů"
+        },
         "LIST": {
-            "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek"
+            "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek",
+            "NO_RESULT": "V seznamu nejsou žádné konverzace."
         },
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",

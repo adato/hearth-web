@@ -20,7 +20,8 @@
     border-width: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    &:hover {
+    &:hover,
+    &:focus, {
         background-color: transparent;
         color: color(5);
     }

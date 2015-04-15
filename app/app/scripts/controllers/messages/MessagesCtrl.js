@@ -12,7 +12,16 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.conversations = false;
 		$scope.detail = false;
 		$scope.detailIndex = false;
+		$scope.showFulltext = false;
+		$scope.conversationFilter = 'all';
+		$scope.conversationSearch = '';
 		
+		$scope.searchConversation = function() {
+			// if fulltext is hidden, first only show input
+			if(!$scope.showFulltext || !$scope.conversationSearch )
+				return $scope.showFulltext = !$scope.showFulltext;
+		};
+
 		$scope.showConversation = function(info, index) {
 			info.read = true;
 			$scope.detail = info;
@@ -44,7 +53,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.loadConversations = function(conf, done) {
 			conf = conf || {};
-			conf.exclude_myself = true;
+			conf.exclude_self = true;
 
 			Conversations.get(conf, function(res) {
 				$scope.conversations = $scope.deserialize(res.conversations);

@@ -3,16 +3,31 @@
 		input, select {
 			width: auto;
 			display: inline-block;
-			min-width: 250px;
+			min-width: 280px;
 			display: inline-block;
 			background-color: white;
 		}
-
 		.search {
-			float: left;
-			button {
-				width: 30px;
+			.slide-show {
+				float: left;
+				overflow: hidden;
+				max-width: 0px !important;
+				transition:  max-width 1s;
+				&.width-auto {
+					max-width: 1000px !important;;
+				}
 			}
+			display: inline-block;
+			margin-right: 8px;
+			float: left;
+			height: 30px;
+		}
+
+		button {
+			width: 30px;
+			height: 30px;
+			font-size: 20px;
+			outline: 0;
 		}
 	}
 	.conversations {
@@ -62,7 +77,7 @@
 		.conversation {
 			border-bottom: 1px solid #CCC;
 			&.active-bottom {
-				border-bottom-color: orange;
+				border-bottom-color: color(1);
 			}
 		}
 
@@ -79,9 +94,9 @@
 
 			&.active {
 				h5 {
-					color: orange;
+					color: color(1);
 				}
-				border-bottom-color: orange;
+				border-bottom-color: color(1);
 			}
 		}
 		.conversation-unreaded {
@@ -111,16 +126,18 @@
 	.conversation-detail-container {
 		width: 634px;
 		height: 100%;
-		
+		padding: 20px;
+
 		&>div {
 			position: relative;
 			height: 100%;
 		}
 		
+		.conversation-detail-top {
+			padding-bottom: 25px;
+		}
+		
 		.conversation-detail {
-			position: absolute;
-			bottom: 0px;
-			width: 100%;
 
 			.message-head {
 				h5 {
