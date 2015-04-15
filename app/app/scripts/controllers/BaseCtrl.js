@@ -347,6 +347,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        /**
+         * Function will show modal window where community admin can remove post from his community
+         */
+        $rootScope.removeItemFromCommunity = function(post) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = post;
+            
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'removeItemFromCommunity.html',
+                controller: 'RemoveItemFromCommunity',
+                scope: scope,
+                closeByDocument: false,
+                closeByEscape: true,
+                showClose: false
+            });
+        };
+
         $rootScope.openEmailSharingBox = function(item) {
             
             var scope = $scope.$new();
@@ -464,10 +484,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             
             $rootScope.globalLoading = true;
             // call service
-            Action({
-                    id: item._id
-                },
-                function(res) {
+            Action({id: item._id}, function(res) {
 
                     if(angular.isFunction(cb))
                         cb(item);

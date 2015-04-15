@@ -43,7 +43,7 @@
 						<hr ng-if="! mine">
 						<a ng-if="! mine && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 						<a ng-if="! mine && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-						<a ng-if="! mine && item.admin_communities.length" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+						<a ng-if="! mine && item.admin_communities.length" title="{{ 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 					</div>
 				</div>
 				<div ng-if="item.location_unlimited" class="large-12 columns clearfix">
@@ -102,7 +102,6 @@
 
 					<div ng-if="!item.reply_count">{{'NO_REPLY' | translate}}</div>
 				</div>
-
 			</footer>
 		</article>
 	</div>

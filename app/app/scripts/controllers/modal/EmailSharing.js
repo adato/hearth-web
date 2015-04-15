@@ -75,6 +75,7 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 				return false;
 
 			$rootScope.globalLoading = true;
+			if($scope.sending) return false;
 			$scope.sending = true;
 			
 			Post.emailShare(data, function(res) {

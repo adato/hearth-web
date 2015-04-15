@@ -11,6 +11,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
     function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators) {
         $scope.showEmailForm = false;
         $scope.url = '';
+        $scope.sending = false;
+        
         var timeoutClose = false;
 
         $scope.fbInvite = function() {
@@ -85,7 +87,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
         function handleEmailResult(res) {
             $rootScope.globalLoading = false;
-
+            $scope.sending = false;
             if(res.ok) {
                 $scope.showFinished();
             } else {
@@ -96,9 +98,10 @@ angular.module('hearth.controllers').controller('InviteBox', [
         $scope.sendEmailInvitation = function(data) {
             var dataOut;
 
-            if(!$scope.validateInvitationForm(data))
+            if(!$scope.validateInvitationForm(data) || $scope.sending)
                 return false;
 
+            $scope.sending = true;
             $rootScope.globalLoading = true;
             // split emails to array and copy it to new object
             dataOut = $scope.transformInvitationOut(angular.copy(data));

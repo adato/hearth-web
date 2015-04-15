@@ -1,0 +1,51 @@
+<div class="itemEdit modal remove-post-from-community">
+    <div class="head">
+        <h2>
+            {{ 'POST_COMMUNITY_REMOVE.HEADING' | translate}}
+        </h2>
+        <span ng-click="close()" class="close fa fa-times"></span>
+        <hr />
+    </div>
+    <form ng-submit="sendRemoval()" name="reportForm" novalidate class="report-ad">
+        <div class="notify-report-container"></div>
+        <div>
+            <div ng-bind-html="'POST_COMMUNITY_REMOVE.INFO' | translate"></div>
+            <br />
+            <div class="community-list" ng-show="communitiesCount > 1">
+                <label>{{ 'POST_COMMUNITY_REMOVE.SELECT_COMMUNITIES' | translate }}</label>
+
+                <div ng-repeat="community in myAdminCommunities" ng-if="post.admin_communities.indexOf(community._id)+1">
+                    <checkbox on-update="showErrors.communities = false" model="communities[community._id]" value="true">
+                        <avatar src="community.avatar.normal" size="mini" type="community._type"></avatar>
+                        {{community.name}}
+                    </checkbox>
+                </div>
+                 <div class="error" ng-show="showErrors.communities">
+                    {{ 'ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY' | translate }}
+                </div>
+            </div>
+            <div class="community-removed" ng-show="communitiesCount == 1">
+                <span ng-bind-html="'POST_COMMUNITY_REMOVE.POST_WILL_BE_REMOVED_FROM' | translate: {name: communityObj.name}"></span>
+            </div>
+            
+            <label>{{ 'POST_COMMUNITY_REMOVE.REASON_LABEL' | translate }}</label>
+            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" placeholder="{{ 'POST_COMMUNITY_REMOVE.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
+            <div class="moveUp error" ng-show="showErrors.message">
+                <span ng-show="reportForm.message.$error.required">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="reportForm.message.$error.minlength">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
+                <span ng-show="reportForm.message.$error.maxlength">{{ 'ERR_REPORT_TEXT_MAX_LEN' | translate }}</span>
+            </div>
+            <div class="bottom">
+                <a href="" ng-click="close()" class="fleft close">
+                    {{ 'CLOSE' | translate }}
+                </a>
+                <button class="primary button-send fright pointer" type="submit" translate>REPORT</button>
+            </div>
+        </div>
+    </form>
+    <div class="report-ad success success-msg hidden">
+        <p>{{ 'POST_COMMUNITY_REMOVE.SUCCESS_MESSAGE' | translate }}</p>
+        <button class="primary button-send fright pointer" ng-click="close()" translate>CLOSE</button>
+    </div>
+    <div class="clear"></div>
+</div>

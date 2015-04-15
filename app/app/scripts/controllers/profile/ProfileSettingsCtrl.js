@@ -80,7 +80,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				
 				// serialize
 				var out = {
-					user_id: $rootScope.loggedUser._id,
+					_id: $rootScope.loggedUser._id,
 					current_password: data.pass,
 					reason: data.reason
 				};
@@ -157,10 +157,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		 */
 		$scope.sendChangeRequest = function(pass) {
 			return function(validationResult) {
-
-				if (!validationResult) {
-					return false;
-				}
+				console.log(validationResult);
+				if (!validationResult || $scope.changeSubmitted) return false;
+				$scope.changeSubmitted = true;
 
 				$rootScope.globalLoading = true;
 				ChangePassword.change({
@@ -192,8 +191,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		 * Change password and validate old pass
 		 */
 		$scope.changePassword = function(pass) {
-			if ($scope.changeSubmitted || !$scope.validateChangePasswordError(pass)) return false;
-			$scope.changeSubmitted = true;
+			if (!$scope.validateChangePasswordError(pass)) return false;
 
 			// validate old pass
 			$scope.testOldPassword(pass.old, 'profileSettingsForm', 'oldPass', $scope.sendChangeRequest(pass));
