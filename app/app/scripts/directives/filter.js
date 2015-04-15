@@ -39,6 +39,7 @@ angular.module('hearth.directives').directive('filter', [
 
                 scope.loggedUser = Auth.isLoggedIn();
                 scope.inited = false;
+                scope.filterPostCount = false;
 
 
                 scope.queryKeywords = function($query) {
@@ -200,6 +201,14 @@ angular.module('hearth.directives').directive('filter', [
                     scope.updateFilterByRoute();
                 });
 
+                scope.recountPosts = function() {
+                    
+                    Filter.getFilterPostCount(scope.filter, function(count) {
+                        console.log(count);
+                        scope.filterPostCount = count;
+                    });
+                };
+
                 scope.updateFilterByRoute = function() {
                     var search = $location.search();
                     scope.filter = $.isEmptyObject(search) ? angular.copy(filterDefault) : scope.convertParamsToFilter(search);
@@ -214,6 +223,7 @@ angular.module('hearth.directives').directive('filter', [
                         scope.filterSave = true;
                 };
 
+                scope.$watch('filter', scope.recountPosts, true);
                 scope.$watch('filterSave', scope.toggleSaveFilter);
                 scope.$on('initFinished', scope.init);
                 $rootScope.initFinished && scope.init();

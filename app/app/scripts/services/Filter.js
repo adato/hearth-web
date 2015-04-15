@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-	'$q', '$location', '$rootScope', 'User', 'KeywordsService',
-	function($q, $location, $rootScope, User, KeywordsService) {
+	'$q', '$location', '$rootScope', 'User', 'KeywordsService', 'Post',
+	function($q, $location, $rootScope, User, KeywordsService, Post) {
 		return {
             _commonKeywords: [],
             getCommonKeywords: function(cb) {
@@ -62,6 +62,14 @@ angular.module('hearth.services').factory('Filter', [
                     return params.keywords;
 
 			},
+            getFilterPostCount: function(filter, cb) {
+                filter = filter || {};
+                filter.counters = true;
+
+                Post.query(filter, function(res) {
+                    cb((res.counters && res.counters.post) ? res.counters.post : 0);
+                });
+            },
             get: function() {
                 return $location.search();
             },
