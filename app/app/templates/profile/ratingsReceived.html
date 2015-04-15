@@ -8,73 +8,66 @@
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
 	<section class="large-10 columns user-rating-form">
-	<div class="item rating-received">
-		<div class="overlap"> </div>
-		<div class="arrowbox"></div>
-		<div class="arrow"></div>
-		<div class="content">
-			<h3>{{:: 'ADD_USER_RATING' | translate }}</h3>
-			<div class="rating-notify-box"></div>
-			<h5>{{:: 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
+		<div class="item rating-received">
+			<div class="content">
+				<h5>{{:: 'ADD_USER_RATING' | translate }} {{ info.name }}</h5>
+				<div class="rating-notify-box"></div>
+				<h6>{{:: 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h6>
+				<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
+				<needofferselector class="fright" model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" ></needofferselector>
+				<div class="clear"></div>
 
-			<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
-			<br />
-			<needofferselector class="fleft" model="rating.score" text-true="{{ 'POSITIVE' | translate}}" text-false="{{ 'NEGATIVE' | translate}}" ></needofferselector>
-			<div class="clear"></div>
+				<form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
 
-			<div class="clear"></div>
-		    <form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
-
-				<h5>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
-				<span ng-if="ratingPosts.length && loadedRatingPosts">
-					<div class="padding-bottom-3">
-						{{:: 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
+					<h6>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h6>
+					<span ng-if="ratingPosts.length && loadedRatingPosts">
+						<div class="padding-bottom-3">
+							{{:: 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
+						</div>
+						<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
+						  <option value="0">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
+						  <option ng-repeat="post in ratingPosts" title="{{post.title}}" value="{{ post._id }}">
+							{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:40 }}
+						  </option>
+						</select>
+					</span>
+					<div ng-if="!ratingPosts.length && loadedRatingPosts" class="padding-bottom">
+						{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
 					</div>
-				    <select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
-				      <option value="0">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
-				      <option ng-repeat="post in ratingPosts" title="{{post.title}}" value="{{ post._id }}">
-				      	{{ 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:40 }}
-				      </option>
-				    </select>
-				</span>
-				<div ng-if="!ratingPosts.length && loadedRatingPosts" class="padding-bottom">
-					{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
-				</div>
-				<div ng-if="!loadedRatingPosts">
-					{{:: 'RATING_LOADING_COMMON_POSTS' | translate }}
-				</div>
-				<br />
+					<div ng-if="!loadedRatingPosts">
+						{{:: 'RATING_LOADING_COMMON_POSTS' | translate }}
+					</div>
+					<br />
 
-		        <label>
-					<h5>{{:: 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h5>
-		            <textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
+					<label>
+						<h6>{{:: 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h6>
+					</label>
+					<textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
+					<div class="fleft error clearfix" ng-show="showError.text">
+						<span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
+						<span ng-show="ratingForm.text.$error.minlength">{{:: 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
+					</div>
+
 					<max-len-counter max-len="300" value="rating.text"></max-len-counter>
 
-		            <div class="moveUp error" ng-show="showError.text">
-		                <span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
-		                <span ng-show="ratingForm.text.$error.minlength">{{:: 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
-		            </div>
-					<div class="clear"></div>
-		        </label>
-
-				<div class="clear"></div>
-		        <strong><a ng-click="closeUserRatingForm()" class="revert-changes"><i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a></strong>
-		        <button type="submit" class="button-send right" ng-class="{ 'positive': rating.score == 1, 'negative': rating.score < 1}">
-		        	{{ 'SEND_USER_RATING' | translate }}
-			        &nbsp; <i class="score-icon fa" ng-class="{'icon-rating-negative':!rating.score,'icon-rating-positive':rating.score}"></i>
-				</button>
-		    </form>
-	    </div>
-    </div>
+					<div class="clearfix">&nbsp;</div>
+					<strong><a ng-click="closeUserRatingForm()" class="revert-changes"><i class="fa fa-chevron-left"></i>&nbsp; {{:: 'CANCEL' | translate }}</a></strong>
+					<button type="submit" class="button-send right" ng-class="{ 'positive': rating.score == 1, 'negative': rating.score < 1}">
+						{{:: 'SEND_USER_RATING' | translate }}
+						&nbsp; <i class="score-icon fa" ng-class="{'icon-rating-negative':!rating.score,'icon-rating-positive':rating.score}"></i>
+					</button>
+				</form>
+			</div>
+		</div>
 	</section>
 </div>
 <div class="clear"></div>
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded">
-	<section class="large-8 large-centered columns" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+	<section class="columns rating-call-to-action" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
-				{{ 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
+				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
 				<a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a>
 			</div>
 		</div>
@@ -92,9 +85,6 @@
 			<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
 				<i class="score-icon fa icon-rating-negative" ng-if="item.score == -1"></i>
 				<i class="score-icon fa icon-rating-positive" ng-if="item.score == 1"></i>
-				<div class="overlap"> </div>
-				<div class="arrowbox"></div>
-				<div class="arrow"></div>
 				<div class="content">
 					<div class="fright">
 						<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
