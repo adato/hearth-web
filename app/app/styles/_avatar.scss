@@ -56,15 +56,15 @@ $large-avatar-size: 300px;
 
 .avatar-mini { 
     position:relative;
-    top:2 * $ui-small-grid-size;
-    margin-right:2*$ui-small-grid-size;
+    top: 6px;
+    margin-right: 10px;
     img {
-        width:6*$ui-small-grid-size;
-        height:6*$ui-small-grid-size; 
+        width:$mini-avatar-size;
+        height:$mini-avatar-size;
     }
     *:before {
-        width:6*$ui-small-grid-size;
-        height:6*$ui-small-grid-size;
+        width:$mini-avatar-size;
+        height:$mini-avatar-size;
         box-shadow:none !important;
     }
 }

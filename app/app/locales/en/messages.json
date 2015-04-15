@@ -400,7 +400,6 @@
     "LOCATION_DOES_NOT_MATTER": "On location doesn't matter",
     "LOCATION_GO_CURRENT": "Find your current location",
     "LOCATION_INPUT_PLACEHOLDER": "Place",
-    "LOCATION_UNLIMITED_MESSAGE": "Anywhere",
     "LOGIN_BAD_CREDENTIALS": "Login or password do not match. Please try again.",
     "LOGIN_BUTTON": "Sign in",
     "LOGIN_HEADING": "Sign in",
@@ -442,9 +441,11 @@
         "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - authentic fairytale about giving and happiness<\/a>.<\/p>",
         "NOTHING_FOUND": "Stay calm and meditate. Something went wrong, there are no posts.",
         "POST": {
+            "CLICK_TO_EXPAND": "Expand entire post",
             "FLAG_POST": "Report abuse post",
-            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Anywhere",
             "PUBLISHED_AT": "Přidáno",
+            "REMOVE_FROM_COMMUNITY": "Odstranit z komunity",
             "SHARE_WITH": "Sdílet přes"
         },
         "RESET_FILTER": "Reset filter",
@@ -470,8 +471,17 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
+        "FILTER": {
+            "ALL": "Všechny zprávy",
+            "ARCHIVE": "Archiv",
+            "COMMUNITIES_POSTS": "Zprávy od komunit",
+            "POST_REPLIES": "Odpovědi na inzerát",
+            "USERS_POSTS": "Zprávy od uživatelů"
+        },
         "LIST": {
-            "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek"
+            "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek",
+            "NO_RESULT": "V seznamu nejsou žádné konverzace."
         },
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",
@@ -679,9 +689,10 @@
         "DETAIL": {
             "HIDE_MAP": "Hide map",
             "LOCATION_ANYWHERE": "Anywhere",
-            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
             "LOCATION_HEADING": "Ad location",
             "NO_REPLY": "You have no replies to this ad yet.",
+            "POST_EXPIRING_SOON": "Platí posledních pár dní",
             "REPLIES": "Users replies",
             "SHOW_MAP": "Show map"
         }
@@ -1001,7 +1012,6 @@
     "required": "This field is required. We hate to play the bad cop but you know these fields...",
     "send_fb_invitation": "Invitate your friends on Facebook",
     "show-less": "Hide",
-    "show-more": "Expand entire post",
     "time": "Time",
     "title-maxlength": "Tittle too long, Mr Shakespeare. Sorry for that but our maximum length is {{value}} characters.",
     "title-required": "Title is too short. Add a couple more words please...",
