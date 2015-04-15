@@ -30,6 +30,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will schedule next health check
 		 */
 		this.processHealthCheckFailResult = function(res) {
+			self.turnOn();
 			healthCheckTimeoutPointer = setTimeout(self.sendHealthCheck, healthCheckTimeout);
 		};
 
@@ -50,14 +51,18 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 				return false;
 
 			$("#maitenancePage").fadeIn();
-			self.sendHealthCheck();
 		};
 
 		this.turnOff = function() {
+			if(!$("#maitenancePage").is(":visible"))
+				return false;
 
 			$("#maitenancePage").fadeOut();
-			window.location = document.URL;
-			location.reload();
+
+			if(reload) {
+				window.location = document.URL;
+				location.reload();
+			}
 		};
 	}
 ]);
