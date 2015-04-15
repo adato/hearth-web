@@ -43,7 +43,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadConversations = function(conf, done) {
-			Conversations.get(conf || {}, function(res) {
+			conf = conf || {};
+			conf.exclude_myself = true;
+
+			Conversations.get(conf, function(res) {
 				$scope.conversations = $scope.deserialize(res.conversations);
 				done && done($scope.conversations);
 			});

@@ -3,6 +3,20 @@
 		overflow: hidden;
 		height: 100%;
 		padding-right: 5px;
+		position: relative;
+		width: 326px;
+
+		&::after {
+			background: image-url("messages_left_side_shade.png");
+			background-position: center bottom;
+			width: 100%;
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+			content: "";
+			height: 30px;
+
+		}
 
 		.scroll-content {
 			padding-right: 15px;
@@ -18,6 +32,10 @@
 		    transition: opacity 0.2s linear 0s;
 		}
 
+		.scroll-x {
+			display: none !important;
+		}
+
 		&:hover .scroll-element_size {
 			opacity: 1;
 		}
@@ -25,20 +43,25 @@
 		&>div {
 			height: 100%;
 		}
-
-		.scroll-x {
-			display: none !important;
-		}
 		.border-bottom,
-		.message-conversation {
+		.conversation {
 			border-bottom: 1px solid #CCC;
 			&.active-bottom {
 				border-bottom-color: orange;
 			}
 		}
 
-		.message-conversation {
+		.conversation {
 			cursor: pointer;
+			padding: 10px;
+			padding-left: 0px;
+
+			h5 {
+				margin:0px;
+				position: relative;
+				top: -5px;
+			}
+
 			&.active {
 				h5 {
 					color: orange;
@@ -53,6 +76,11 @@
 		.avatars {
 			float: left;
 			margin-right: 10px;
+			
+			avatar {
+				position: default;
+				margin-right: 5px;
+			}
 		}
 
 		.conversation-info {
@@ -65,22 +93,8 @@
 		}
 	}
 
-	.message-head {
-		h5 {
-			position: relative;
-			top: -5px;
-		}
-		.avatar {
-			margin-right: 10px;
-		}
-
-		h4 {
-			position: relative;
-			top: 5px;
-		}
-	}
-
 	.conversation-detail-container {
+		width: 634px;
 		height: 100%;
 		
 		&>div {
@@ -92,6 +106,22 @@
 			position: absolute;
 			bottom: 0px;
 			width: 100%;
+
+			.message-head {
+				h5 {
+					position: relative;
+					top: -5px;
+				}
+				.avatar {
+					margin-right: 10px;
+				}
+
+				h4 {
+					position: relative;
+					top: 5px;
+				}
+			}
+
 
 			.messages-container {
 			}

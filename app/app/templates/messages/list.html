@@ -17,17 +17,18 @@
 	</div>
 	
 	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
-		<div class="collumn left large-4 conversations">
+		<div class="collumn left conversations">
 			<div class="scrollbar-macosx" custom-scrollbar>
 				<div class="border-bottom" ng-class="{'active-bottom': !detailIndex}"></div>
-				<div class="message-conversation" ng-class="{'conversation-unreaded': !item.read, active: detailIndex === $index, 'active-bottom': detailIndex -1 === $index}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
-					<div class="avatars avatar-count-{{item.participants.length}}">
+				<div class="conversation" ng-class="{'conversation-unreaded': !item.read, active: detailIndex === $index, 'active-bottom': detailIndex -1 === $index}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
+					<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
 						<avatar src="person.avatar.normal" size="mini" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
+
 					</div>
 					<div class="conversation-info">
 						<h5 class="fleft" ng-if="item.title">{{ item.title }}</h5>
 						<h5 class="fleft" ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h5>
-						<i class="fright" ng-if="item.last_message_time">{{ item.last_message_time | date:mediumTime }}</i>
+						<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:mediumTime }}">{{ item.last_message_time | ago }}</i>
 						<div class="clear"></div>
 
 						<div ng-if="item.message.text">{{ item.message.text | ellipsis:40 }}</div>
@@ -36,7 +37,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="collumn box right large-8 conversation-detail-container">
+		<div class="collumn box right conversation-detail-container">
 			<conversation-detail ng-if="detail" info="detail"></conversation-detail>
 		</div>
 		<div class="clear"></div>
