@@ -112,8 +112,12 @@ $topBarImageSize: 1.8em;
         }
     }
     .avatar {
-        margin: auto;
-        margin-bottom: -2px;
+        position: static;
+        margin: 0px;
+        img {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     .user-dropdown {
@@ -129,11 +133,6 @@ $topBarImageSize: 1.8em;
         }
         .avatar {
             margin-right: 5px;
-            margin-bottom: 0px;
-            img {
-                width: 25px;
-                height: 25px;
-            }
         }
         span.name {
             position: relative;

@@ -1,11 +1,16 @@
+marketplace-banner {
+	display:block;
+}
+
 .marketplace-banner {
-	position:relative;
-	top:-1rem;
 	background-color:#EEF3F9;
 	background-image: image-url("banner/02.jpg"), image-url("banner/01.jpg");
 	background-repeat:no-repeat;
 	background-size: 450px, 270px;
 	background-position: -45px -4px, 550px 0px;
+	margin-left:$ui-grid-size;
+	max-width:770px;
+	margin-bottom: 3 * $ui-small-grid-size;	
 	&>p {
 		text-decoration:none;
 		padding-left:8rem;

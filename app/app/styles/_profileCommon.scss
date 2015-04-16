@@ -251,19 +251,19 @@
             }
             select {
                 border-radius: $global-radius;
-                height:$local-input-height;
-                line-height:$local-text-font-size;
+                height:$ui-input-height;
+                line-height:$ui-text-font-size;
                 padding:0 15px;
                 font-weight:600;
                 -moz-appearance:none;
 
-                border:$local-input-border-style;
+                border:$ui-input-border-style;
                 font-family: $body-font-family;
                 box-shadow: none !important; // uh oh
-                font-size: $local-text-font-size;
-                color:$local-input-text-color;
+                font-size: $ui-text-font-size;
+                color:$ui-input-text-color;
                 &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
-                    border:1px solid $local-input-error-color !important;
+                    border:1px solid $ui-input-error-color !important;
                 }
                 &:disabled {
                     background-color: #ddd !important;
@@ -272,18 +272,7 @@
         }
 
         .checkbox {
-            span {
-                top: 0px;
-            }
-            &.on {
-                font-weight: normal;
-            }
-            .fa {
-                color: #999999;
-                font-size: 14px;
-                margin-left: 0;
-                width: 14px;
-            }
+            @extend .ui-checkbox;
         }
 
         button {

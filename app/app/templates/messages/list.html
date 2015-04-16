@@ -21,22 +21,21 @@
 	
 	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
 		<div class="collumn left conversations">
-			<div class="scrollbar-macosx" custom-scrollbar>
+			<div class="scrollbar-macosx" custom-scrollbar conversations class-if-overflow="shadow-bottom">
 				<div class="border-bottom" ng-class="{'active-bottom': !detailIndex}"></div>
 				<div class="text-center" ng-if="!conversations.length">
-				{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
-			</div>
+					{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
+				</div>
 				<div class="conversation" ng-class="{'conversation-unreaded': !item.read, active: detailIndex === $index, 'active-bottom': detailIndex -1 === $index}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
 					<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
-						<avatar src="person.avatar.normal" size="mini" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
+						<avatar src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
 					</div>
 					<div class="conversation-info">
-						<h5 class="fleft" ng-if="item.title">{{ item.title }}</h5>
-						<h5 class="fleft" ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h5>
-						<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:mediumTime }}">{{ item.last_message_time | ago }}</i>
-						<div class="clear"></div>
+						<h2 ng-if="item.title">{{ item.title }}</h2>
+						<h2 ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h2>
 
-						<div ng-if="item.message.text">{{ item.message.text | ellipsis:40 }}</div>
+						<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>
+						<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:mediumTime }}">{{ item.last_message_time | ago }}</i>
 					</div>
 					<div class="clear"></div>
 				</div>

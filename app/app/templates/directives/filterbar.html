@@ -1,39 +1,20 @@
 <div class="filterbar-wrap">
-	<article class="row">
-		<section class="large-10  push-2 columns">
-			<article class="row filterbar">
-				<section class="columns large-9">
-					<article class="row filterbar-section">
-						<section class="large-4 columns">
-							<a ng-click="toggleFilter()" ng-disabled="newItemSelected" class="button" ng-class="{pressed: filterSelected}"><span class="fa fa-filter"></span> 
-								<span ng-hide="filterOn">{{::'FILTER' | translate}}</span>
-								<span ng-show="filterOn">{{::'FILTER_IS_ON' | translate}}</span>
-							</a>
-						</section>
-						<section class="large-7 columns map-toggle">
+	<div class="insert-button-container">
+		<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button">{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}</a>
+	</div>
+	<div class="filter-button-container">
+		<a ng-click="toggleFilter()" ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" class="fleft">
+			<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
+			<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
+			<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
+		</a>
+		<a ng-show="filterOn" ng-click="cancelFilter()">{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}</a>
 
-							<a ng-if="!mapSelected" ng-click="toggleMap()">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
-							<a ng-if="mapSelected" ng-click="toggleMap()">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
-						</section>
-						<section class="large-1 columns"></section>
-					</article>
-				</section>
-				<section class="large-3 columns text-right insert-button-container">
-					<!-- toggleNewItem() -->
-					<a ng-click="editItem(null)" ng-disabled="filterSelected" ng-class="{pressed: newItemSelected}" class="button"><span class="fa fa-pencil"></span> {{::'CREATE_NEW_ADD' | translate}}</a>
-				</section>
-			</article>
-		</section>
-	</article>
+		<a ng-if="!mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
+		<a ng-if="mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
+	</div>
 
-	<article class="row">
-		<section class="large-10  push-2 columns">
-			<div ng-if="filterSelected" class="animate-show">
-				<filter id="filter" class="filterbar-container"></filter>
-			</div>
-<!-- 			<div ng-show="newItemSelected" class="animate-show">
-				<item-edit id="newOffer" class="filterbar-container"></item-edit>
-			</div> -->
-		</section>
+	<article class="filter-container animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }" >
+		<filter id="filter"></filter>
 	</article>
 </div>

@@ -60,3 +60,98 @@ textarea:focus {
         }
     }
 }
+
+
+/// common form items, included as @extend
+.item-box-forms {
+    textarea {
+        height: 85px;
+        resize: vertical;
+        transition: height 0.2s;
+    }
+    label {
+        cursor: pointer;
+        margin-bottom:10px;
+        line-height:1;
+        font-weight: $ui-text-weight-bolder;
+        color:#333;
+    }
+
+    // fix stuff
+    a {
+        font-weight: $ui-text-weight-bolder;
+    }
+
+    input, select, textarea {
+        border:$ui-input-border-style;
+        font-family: $body-font-family;
+        box-shadow: none !important; // uh oh
+        font-size: $ui-text-font-size;
+        color:$ui-input-text-color;
+        &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
+            border:1px solid $ui-input-error-color !important;
+        }
+    }
+    input[type="radio"] {
+        box-shadow:none !important;
+    }
+    input[type="text"], input[type="email"] {
+        box-shadow:none !important;
+        font-size: $ui-text-font-size !important;
+        line-height:1.3;
+        height:6 * $ui-small-grid-size;
+        padding:$ui-small-grid-size;
+        padding-left:$ui-small-grid-size * 2;
+    }
+    select {
+        border-radius: $global-radius;
+        height:$ui-input-height;
+        line-height:$ui-text-font-size;
+        padding:0 15px;
+        font-weight:$ui-text-weight-bolder;
+        -moz-appearance:none;
+        outline:none;
+
+        &:disabled {
+            background-color: #ddd !important;
+        }
+    }
+    div.error {
+        font-size:$ui-text-font-size;
+        top: -2 * $ui-small-grid-size;
+        margin-bottom: $ui-small-grid-size * 2;
+        color:$ui-input-error-color;
+    }
+    // end fix stuff
+    .head {
+        top:0;
+        h1, h2 {
+            font-size: $ui-title-font-size;
+            font-weight: 700;
+            word-wrap: break-word;
+            margin:0;
+            padding:0;
+            line-height:$ui-title-font-size;
+            height:$ui-title-font-size;
+            text-align:left;
+        }
+        hr {
+            border:0;
+            border-bottom:$ui-border-style;
+            margin-top:$ui-grid-size;
+            margin-bottom:$ui-small-grid-size * 2;
+        }
+        ul.message-line {
+            margin:0;
+            padding:0;
+            li {
+                list-style-type: none;
+                color:$ui-color-disabled;
+                margin-bottom:$ui-small-grid-size * 2;
+                border-bottom:$ui-border-style;
+                padding-bottom:$ui-small-grid-size * 2;
+                font-size:14px;
+            }
+        }
+    }
+}

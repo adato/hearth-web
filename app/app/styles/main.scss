@@ -77,9 +77,11 @@ $fontSize: rem-calc(14);
 @import "infoBox";
 @import "itemEdit";
 @import "authorSelector";
+@import "removePostFromCommunity";
 @import "tipsy";
 @import "common";
 @import "buttons";
+@import "htmlSlider";
 @import "tutorial";
 @import "userForms";
 @import "messages";
@@ -111,6 +113,7 @@ $fontSize: rem-calc(14);
 @import "404";
 @import "notify";
 @import "dropdown";
+@import "market";
 @import "marketplaceBanner";
 
 body {
@@ -190,23 +193,13 @@ img.blur {
 
 .loading {
     @extend .clearfix;
+    position:relative;
     font-size: 2rem;
     opacity: 0.7;
     height: 40px;
 
     .fa {
       margin-right: 0.5rem;
-    }
-}
-
-.market {
-    padding-bottom: 50px;
-    .loading {
-        position: absolute;
-        left: 0;
-        right: 0;
-        border: 0 none;
-        margin-bottom: 10px;
     }
 }
 

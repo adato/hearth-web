@@ -33,7 +33,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 };
                 
                 $scope.loadNewMessages = function() {
-                    console.log("AA");
                     
                     if(!$scope.messages.length)
                         return $scope.loadMessages();

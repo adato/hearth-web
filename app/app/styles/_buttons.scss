@@ -1,7 +1,31 @@
+.button {
+    min-width:30 * $ui-small-grid-size;
+    padding: 0px $ui-grid-size;
+    margin: 0;
+    margin-left:$ui-small-grid-size * 2;
+    font-weight:600;
+    height:$ui-input-height;
+    text-align:center;
+    font-size:$ui-text-font-size;
+    line-height: $ui-input-height;
+    border:none;
+    border-radius:$global-radius;
+    background:color(5);
+    transition: all .3s;
+    cursor:pointer;
+    outline:none;
+    &:hover {
+        background-color: lighten(color(5), abs($button-function-factor));
+    }
+    &:focus, &:active {
+        background-color: darken(color(5), abs($button-function-factor));
+    }
+}
+
 .button2 {
     border-radius: $global-radius;
-    border-color: color(5), abs($button-function-factor);
-    transition: border-color 1s, background-color 1s;
+    border-color: color(5);
+    transition: border-color .3s, background-color .3s;
     background-color: color(5);
     border: 2px solid color(5);
     cursor: pointer;

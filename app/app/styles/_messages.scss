@@ -7,6 +7,9 @@
 			display: inline-block;
 			background-color: white;
 		}
+		select {
+			width: 265px;
+		}
 		.search {
 			.slide-show {
 				float: left;
@@ -18,7 +21,7 @@
 				}
 			}
 			display: inline-block;
-			margin-right: 8px;
+			margin-right: 14px;
 			float: left;
 			height: 30px;
 		}
@@ -86,14 +89,27 @@
 			padding: 10px;
 			padding-left: 0px;
 
-			h5 {
+			.conversation-info {
+				margin-top: 7px;
+			}
+			h2 {
 				margin:0px;
 				position: relative;
+				font-size: 14px;
+
 				top: -5px;
 			}
 
+			p {
+				color: #555;
+    			font-size: 12px;
+    			height: 40px;
+			    line-height: 16px;
+    			margin-bottom: 0px;
+			}
+
 			&.active {
-				h5 {
+				h2 {
 					color: color(1);
 				}
 				border-bottom-color: color(1);
@@ -114,7 +130,7 @@
 		}
 
 		.conversation-info {
-			margin-left: 60px;
+			margin-left: 90px;
 
 			i {
 				margin-right: 10px;
@@ -158,6 +174,9 @@
 			.messages-container {
 			}
 			.message-reply {
+				bottom: 0;
+			    position: absolute;
+			    width: 100%;
 				textarea {
 				    resize: none;
 				}
