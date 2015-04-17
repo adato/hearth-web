@@ -15,6 +15,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showFulltext = false;
 		$scope.conversationFilter = 'all';
 		$scope.conversationSearch = '';
+		$scope.showNewMessageForm = false;
 		
 		$scope.searchConversation = function() {
 			// if fulltext is hidden, first only show input
@@ -24,6 +25,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.showConversation = function(info, index) {
 			info.read = true;
+			$scope.showNewMessageForm = false;
 			$scope.detail = info;
 			$scope.detailIndex = index;
 		};

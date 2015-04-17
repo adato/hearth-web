@@ -474,6 +474,9 @@
     "MESSAGES": {
         "MESSAGES": "Zprávy",
         "ADD": {
+            "ERR": {
+                "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
+            },
             "HEADING": "Nová zpráva",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",

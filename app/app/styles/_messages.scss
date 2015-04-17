@@ -1,9 +1,8 @@
 .messages {
 	.messages-top {
 		input, select {
-			width: auto;
+			width: 280px;
 			display: inline-block;
-			min-width: 280px;
 			display: inline-block;
 			background-color: white;
 		}
@@ -40,9 +39,9 @@
 		position: relative;
 		width: 326px;
 
-		&::after {
+		.shadow-bottom::after {
 			background: image-url("messages_left_side_shade.png");
-			background-position: center bottom;
+			background-position: left bottom;
 			width: 100%;
 			position: absolute;
 			bottom: 0px;
@@ -182,5 +181,11 @@
 				}
 			}
 		}
+	}
+}
+
+.messages-add {
+	.recipient {
+		margin-bottom: 15px;
 	}
 }

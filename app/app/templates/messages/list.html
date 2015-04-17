@@ -14,14 +14,14 @@
 			<option value="archive" ng-selected="conversationFilter == 'archive'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
 		</select>
 
-		<a ng-href="#!/messages/new" class="button-send right">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+		<a class="button-send right" ng-click="showNewMessageForm = !showNewMessageForm">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
 		<div class="clear"></div>
 		<div loading show="!conversations"></div>
 	</div>
 	
 	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
 		<div class="collumn left conversations">
-			<div class="scrollbar-macosx" custom-scrollbar conversations class-if-overflow="shadow-bottom">
+			<div class="scrollbar-macosx" ng-if="conversations" custom-scrollbar class-if-overflow="shadow-bottom">
 				<div class="border-bottom" ng-class="{'active-bottom': !detailIndex}"></div>
 				<div class="text-center" ng-if="!conversations.length">
 					{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
@@ -42,8 +42,8 @@
 			</div>
 		</div>
 		<div class="collumn box right conversation-detail-container">
-			
-			<conversation-detail ng-if="detail" info="detail"></conversation-detail>
+			<conversation-add></conversation-add>
+			<!-- <conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail> -->
 		</div>
 		<div class="clear"></div>
 	</div>
