@@ -28,6 +28,10 @@ angular.module('hearth.services').factory('Conversations', [
 				method: 'GET',
 		      	ignoreLoadingBar: true
 			},
+			getParticipants: {
+				url: $$config.apiPath + '/conversations/:id/users',
+				method: 'GET'
+			},
 			reply: {
 				method: 'POST',
 			},

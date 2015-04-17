@@ -20,6 +20,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
                 $scope.confirmBox = $rootScope.confirmBox;
 
+                $scope.participants = false;
+                $scope.showParticipants = false;
                 $scope.sendingDeleteRequest = false;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
@@ -92,10 +94,19 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.init = function(info) {
                     $timeout.cancel(_loadTimeoutPromise);
 
+                    $scope.participants = false;
+                    $scope.showParticipants = false;
                     $scope.conversation = false;
                     $scope.loadMessages();
                 };
 
+                $scope.loadParticipants = function(val) {
+                    if($scope.participants) return false;
+
+                    Conversations.getParticipants({id: $scope.info._id}, function(res) {
+                        $scope.participants = res.participants;
+                    });
+                };
                 
                 $scope.bindMessagesBoxResizeWatchers = function() {
                     if($scope.messagesBoxResizeWatchInited)
@@ -126,6 +137,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 
 
                 $scope.$watch('info', $scope.init);
+                $scope.$watch('showParticipants', $scope.loadParticipants);
                 $scope.$on('conversationMessageAdded', $scope.loadNewMessages);
                 $scope.$on('$destroy', function() {
                     // stop pulling new messages on directive destroy
