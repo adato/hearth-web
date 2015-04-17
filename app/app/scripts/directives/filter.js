@@ -21,6 +21,7 @@ angular.module('hearth.directives').directive('filter', [
                     filterDefault = {
                         type: null,
                         distance: 25,
+                        keywords: [],
                         days: null
                     };
 
@@ -188,23 +189,14 @@ angular.module('hearth.directives').directive('filter', [
                     }
                 });
 
-                // scope.$watch('place', function(value) {
-                //     console.log(value);
-                //     if (!value && scope.filter) {
-                //         delete scope.filter.lat;
-                //         delete scope.filter.lon;
-                //         delete scope.filter.name;
-                //     }
-                // });
-
                 scope.$on('filterApplied', function() {
                     scope.updateFilterByRoute();
                 });
 
                 scope.recountPosts = function() {
                     
-                    Filter.getFilterPostCount(scope.filter, function(count) {
-                        console.log(count);
+                    var f = scope.convertFilterToParams(scope.filter);
+                    Filter.getFilterPostCount(f, function(count) {
                         scope.filterPostCount = count;
                     });
                 };
