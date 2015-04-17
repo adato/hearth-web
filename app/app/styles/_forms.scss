@@ -155,3 +155,25 @@ textarea:focus {
         }
     }
 }
+
+
+.select2-container {
+    padding:0;
+    box-shadow:none;
+    margin-bottom:1rem;
+    min-height:$ui-input-height;
+    .select2-drop {
+        margin-left:0;
+        font-size:$ui-text-font-size;
+    }
+    .select2-choices .select2-search-choice {
+        margin:3px;
+        height:22px;
+        line-height:20px;
+        font-size:$ui-text-font-size;
+        span { color:$ui-input-text-color; }
+    }
+    .select2-result-label {
+        padding:3px $ui-small-grid-size * 2;
+    }
+}

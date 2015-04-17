@@ -11,7 +11,9 @@ angular.module('hearth.directives').directive('conversationAdd', [
         return {
             restrict: 'E',
             replace: true,
-            scope: {},
+            scope: {
+                close: '&',
+            },
             templateUrl: 'templates/directives/conversationAdd.html',
             link: function($scope, element) {
                 $scope.showError = {
@@ -66,7 +68,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
                         $scope.sendMessage = false;
                         Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
-                        $location.url("/messages");
+                        $scope.close(res);
                     }, function() {
                         $scope.sendMessage = false;
                         Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR);

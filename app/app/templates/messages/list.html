@@ -14,7 +14,7 @@
 			<option value="archive" ng-selected="conversationFilter == 'archive'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
 		</select>
 
-		<a class="button-send right" ng-click="showNewMessageForm = !showNewMessageForm">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+		<a class="button-send right" ng-click="toggleAddForm()">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
 		<div class="clear"></div>
 		<div loading show="!conversations"></div>
 	</div>
@@ -28,7 +28,8 @@
 				</div>
 				<div class="conversation" ng-class="{'conversation-unreaded': !item.read, active: detailIndex === $index, 'active-bottom': detailIndex -1 === $index}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
 					<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
-						<avatar src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
+						<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
+						<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
 					</div>
 					<div class="conversation-info">
 						<h2 ng-if="item.title">{{ item.title }}</h2>
@@ -42,8 +43,8 @@
 			</div>
 		</div>
 		<div class="collumn box right conversation-detail-container">
-			<conversation-add></conversation-add>
-			<!-- <conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail> -->
+			<conversation-add ng-if="showNewMessageForm" close="toggleAddForm()"></conversation-add>
+			<conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail>
 		</div>
 		<div class="clear"></div>
 	</div>
