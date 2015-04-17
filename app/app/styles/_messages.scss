@@ -39,11 +39,11 @@
 		position: relative;
 		width: 326px;
 
-		.shadow-bottom::before {
+		.shadow-bottom::after {
 			background: image-url("messages_left_side_shade.png");
 			background-position: left bottom;
 			width: 100%;
-			position: absolute;
+			position: absolute !important;
 			bottom: 0px;
 			left: 0px;
 			content: "";
@@ -52,6 +52,7 @@
 
 		.scroll-content {
 			padding-right: 15px;
+			position: static !important; 
 		}
 
 		.scroll-element_size {
