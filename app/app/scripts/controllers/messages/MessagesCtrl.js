@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', '$timeout', 'Notify', 'Messenger',
-	function($scope, $rootScope, Conversations, UnauthReload, $timeout, Notify, Messenger) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger) {
 		$scope.conversations = false;
 		$scope.detail = false;
 		$scope.detailIndex = false;
@@ -77,19 +77,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 		
-		$scope.deleteConversation = function(id) {
-			$scope.sendingDeleteRequest = true;
-			Conversations.remove({id: id}, function(res) {
-
-				init();
-				$scope.sendingDeleteRequest = false;
-				Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_SUCCESS', Notify.T_SUCCESS);
-			}, function(err) {
-				$scope.sendingDeleteRequest = false;
-				Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_FAILED', Notify.T_ERROR);
-			});
-		};
-
 		function init() {
 			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {

@@ -2,7 +2,7 @@
 	<div loading show="!messages"></div>
 	<div class="conversation-detail" ng-if="messages">
 		<div class="conversation-detail-top">
-			<a class="left">{{ info.title }}</a>
+			<a ng-click="">{{ info.title }}</a>
 			<span class="right">
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{ info._id }}" title="{{ 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
 				<div class="conversation-actions-dropdown" id="conversation-actions-{{ info._id }}" style="display:none;">
