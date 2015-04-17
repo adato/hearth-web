@@ -1,11 +1,122 @@
 // config is now in settings.scss at the bottom
 
+.formStyle {
+    
+    input, select, textarea {
+        border:$ui-border-style;
+        font-family: $body-font-family;
+        box-shadow: none !important; // uh oh
+        font-size: $ui-text-font-size;
+        color:$ui-input-text-color;
+        &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
+            border:1px solid $ui-input-error-color !important;
+        }
+    }
+    input[type="radio"] {
+        box-shadow:none !important;
+    }
+    input[type="text"], input[type="email"] {
+        box-shadow:none !important;
+        font-size: $ui-text-font-size !important;
+        line-height:1.3;
+        height:6 * $ui-small-grid-size;
+        padding:$ui-small-grid-size;
+        padding-left:$ui-small-grid-size * 2;
+    }
+    select {
+        border-radius: $global-radius;
+        height:$ui-input-height;
+        line-height:$ui-text-font-size;
+        padding:0 15px;
+        font-weight:600;
+        -moz-appearance:none;
+
+        &:disabled {
+            background-color: #ddd !important;
+        }
+    }
+}
+
 .ngdialog .itemReply, .ngdialog .itemEdit {
-    @extend .item-box-forms;
+
     font-size: $ui-text-font-size;
     width: 650px;
     padding: $ui-grid-size;
 
+    textarea {
+        height: 85px;
+        resize: vertical;
+        transition: height 0.2s;
+    }
+    label {
+        cursor: pointer;
+        margin-bottom:10px;
+        line-height:1;
+        font-weight: 600;
+        color:#333;
+    }
+
+    // fix stuff
+    a {
+        font-weight: 600;
+    }
+    * {
+        text-align:left;
+    }
+    
+    div.error {
+        font-size:$ui-text-font-size;
+        top: -2 * $ui-small-grid-size;
+        margin-bottom: $ui-small-grid-size * 2;
+        color:$ui-input-error-color;
+    }
+    button.button-send {
+        min-width:30 * $ui-small-grid-size;
+        padding: 0px $ui-grid-size;
+        margin: 0;
+        margin-left:$ui-small-grid-size * 2;
+        font-weight:600;
+        height:$ui-input-height;
+        text-align:center;
+        font-size:$ui-text-font-size;
+        &.red {
+            background:red;
+            color:white;
+        }
+    }
+    // end fix stuff
+    .head {
+        top:0;
+        h1, h2 {
+            font-size: $ui-title-font-size;
+            font-weight: 700;
+            word-wrap: break-word;
+            margin:0;
+            padding:0;
+            line-height:$ui-title-font-size;
+            height:$ui-title-font-size;
+            text-align:left;
+        }
+        hr {
+            border:0;
+            border-bottom:$ui-border-style;
+            margin-top:$ui-grid-size;
+            margin-bottom:$ui-small-grid-size * 2;
+        }
+        ul.message-line {
+            margin:0;
+            padding:0;
+            li {
+                list-style-type: none;
+                color:$ui-color-disabled;
+                margin-bottom:$ui-small-grid-size * 2;
+                border-bottom:$ui-border-style;
+                padding-bottom:$ui-small-grid-size * 2;
+                font-size:14px;
+            }
+        }
+    }
+    
     .bottom {
         margin-top:$ui-small-grid-size * 3;
         .pauseLink {
@@ -39,28 +150,6 @@
     }
     .keywords {
         margin-bottom: 1rem;
-    }
-    .community-picker {
-        .select2-container {
-            padding:0;
-            box-shadow:none;
-            margin-bottom:1rem;
-            min-height:$ui-input-height;
-            .select2-drop {
-                margin-left:0;
-                font-size:$ui-text-font-size;
-            }
-            .select2-choices .select2-search-choice {
-                margin:3px;
-                height:22px;
-                line-height:20px;
-                font-size:$ui-text-font-size;
-                span { color:$ui-input-text-color; }
-            }
-            .select2-result-label {
-                padding:3px $ui-small-grid-size * 2;
-            }
-        }
     }
 
     // any collapsible section

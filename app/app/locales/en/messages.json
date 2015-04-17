@@ -464,6 +464,9 @@
     "MESSAGES": {
         "MESSAGES": "News",
         "ADD": {
+            "ERR": {
+                "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
+            },
             "HEADING": "Nová zpráva",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
@@ -474,6 +477,11 @@
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
+        "DELETE_CONFIRM": {
+            "LABEL": "Smazání konverzace",
+            "TEXT": "Doopravdy chcete smazat konverzaci?"
+        },
+        "DELETE_CONVERSATION": "Smazat zprávy",
         "FILTER": {
             "ALL": "Všechny zprávy",
             "ARCHIVE": "Archiv",
@@ -481,6 +489,11 @@
             "POST_REPLIES": "Odpovědi na inzerát",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
+        "LEAVE_CONFIRM": {
+            "LABEL": "Opustit konverzaci",
+            "TEXT": "Doopravdy chcete opustit konverzaci?"
+        },
+        "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
             "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek",
             "NO_RESULT": "V seznamu nejsou žádné konverzace."
@@ -595,11 +608,17 @@
         "COMMUNITY_UPDATE_SUCCESS": "Community has been edited successfully.",
         "COMPLETE_TWITTER_REGISTRATION_FAILED": "Adding email has failed.",
         "COMPLETE_TWITTER_REGISTRATION_SUCCESS": "Email successfully saved.",
+        "CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě.",
+        "CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazána",
+        "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
+        "CONVERSATION_LEAVE_SUCCESS": "Konverzace byla opuštěna.",
         "EMAIL_INVITATION_FAILED": "Sending the invite has failed.",
         "EMAIL_INVITATION_SUCCESS": "Invitation was sent successfully.",
         "EMAIL_NOTIFY_CONFIG_FAILED": "Saving the settings has failed.",
         "EMAIL_NOTIFY_CONFIG_SUCCESS": "Setting email notifications was successfully saved.",
         "EMAIL_SHARING_FAILED": "Err...There was an error when sending the email.",
+        "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
+        "MESSAGE_SEND_SUCCESS": "Zpráva byla úspěšně odeslána",
         "NEW_PASS_FAILED": "Setting up new password has failed.",
         "NEW_PASS_SUCCESS": "New password has been set. You can now sign in.",
         "PASS_CHANGE_FAILED": "Editing of password has failed.",
@@ -705,7 +724,7 @@
         "other": "posts"
     },
     "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro přidání inzerátu do komunity nesmíte mít inzerát jen pro přátele.",
-    "POST_COMMUNITIES_LABEL": "Insert ad into community:",
+    "POST_COMMUNITIES_LABEL": "Insert ad into community",
     "POST_COMMUNITY_REMOVE": {
         "HEADING": "Odstranit inzerát z komunity",
         "INFO": "Inzerát do Vaší komunity nepatří? Můžete ho jednodušše odstranit..",

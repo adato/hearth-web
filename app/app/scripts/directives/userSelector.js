@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('userSelector', [
-	'$rootScope', '$q', 'Fulltext', '$timeout',
-	function($rootScope, $q, Fulltext, $timeout) {
+	'$rootScope', '$q', 'User', '$timeout',
+	function($rootScope, $q, User, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -49,7 +49,7 @@ angular.module('hearth.directives').directive('userSelector', [
 
 					// Search after while when user stops typing
 					timer = $timeout(function() {
-						Fulltext.query(params, function(res) {
+						User.getConnections(params, function(res) {
 							$scope.userList = res.data;
 						});
 					}, 200);

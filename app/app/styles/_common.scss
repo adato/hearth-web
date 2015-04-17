@@ -85,7 +85,29 @@ button {
 }
 
 .button-send {
+    border: none;
+    color: white;
+    border-radius: $global-radius;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 0 0 1.25rem;
+    padding: 0.5rem 2rem;
+    transition: background-color 300ms ease-out 0s;
+    opacity: 1;
+    cursor: pointer;
+    background-color: color(5);
+    &:hover, &:focus {
+        background-color: darken(color(5), abs($button-function-factor));
+    }
     @extend .button;
+}
+
+a.button-send {
+    &:hover, &:focus {
+        color: white;
+        background-color: darken(color(5), abs($button-function-factor));
+    }
 }
 
 .animate-show {
@@ -218,7 +240,6 @@ input:not([type]),
 input[type='text'],
 textarea {
     border: 1px solid darken(color(4), 20%);
-    background-color: lighten(color(4), 2%);
     @include transition(background-color, 0.5s);
     box-shadow: none;
     &:focus {

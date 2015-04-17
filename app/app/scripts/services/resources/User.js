@@ -22,6 +22,10 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/users/:user_id/posts',
 				method: 'GET'
 			},
+			getConnections: {
+				url: $$config.apiPath + '/users/connections',
+				method: 'GET'
+			},
 			edit: {
 				method: 'PUT'
 			},

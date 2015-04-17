@@ -110,12 +110,13 @@ angular.module('hearth.filters', [])
     }
 })
 .filter('minMax', function() {
-    return function(input, min, max) {
+    return function(input, min, max, postfix) {
 		var val = parseInt(input);
+		if(!postfix && postfix != '') postfix = '+';
 		if(val < min)
 			return min;
 		if(val > max)
-			return max+'+';
+			return max+postfix;
 		return input;
     }
 })

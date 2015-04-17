@@ -14,8 +14,6 @@ angular.module('hearth.directives').directive('tipsy', [
                     $(element).tipsy({gravity: 's'});
                     $(element).mouseleave(function() {
                         $(element).tipsy("hide");
-                        console.log("aaa");
-                        
                     });
                 });
             }

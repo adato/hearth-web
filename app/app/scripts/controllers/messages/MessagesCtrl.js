@@ -7,14 +7,37 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', '$timeout', 'Notify', 'Messenger',
-	function($scope, $rootScope, Conversations, UnauthReload, $timeout, Notify, Messenger) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger) {
 		$scope.conversations = false;
 		$scope.detail = false;
 		$scope.detailIndex = false;
+		$scope.showFulltext = false;
+		$scope.conversationFilter = 'all';
+		$scope.conversationSearch = '';
+		$scope.showNewMessageForm = false;
 		
+		$scope.toggleAddForm = function(conversation) {
+			$scope.showNewMessageForm = !$scope.showNewMessageForm;
+
+			if(conversation)
+				$scope.prependConversation(conversation);
+		};
+
+		$scope.prependConversation = function(conversation) {
+			$scope.conversations.unshift($scope.deserializeConversation(conversation));
+			$scope.showConversation(conversation, 0);
+		};
+
+		$scope.searchConversation = function() {
+			// if fulltext is hidden, first only show input
+			if(!$scope.showFulltext || !$scope.conversationSearch )
+				return $scope.showFulltext = !$scope.showFulltext;
+		};
+
 		$scope.showConversation = function(info, index) {
 			info.read = true;
+			$scope.showNewMessageForm = false;
 			$scope.detail = info;
 			$scope.detailIndex = index;
 		};
@@ -25,43 +48,35 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
-		$scope.deserialize = function(messages) {
-			return messages.map(function(msg) {
-				if(!msg.title) {
-					msg.title = [];
+		$scope.deserializeConversation = function(conversation) {
+			if(!conversation.title) {
+				conversation.title = [];
 
-					for(var id in msg.participants) {
-						var user = msg.participants[id];
+				for(var id in conversation.participants) {
+					var user = conversation.participants[id];
 
-						if($rootScope.loggedUser._id !== user._id)
-							msg.title.push(user.name);
-					};
-					msg.title = msg.title.join(", ");
-				}
-				return msg;
-			});
+					if($rootScope.loggedUser._id !== user._id)
+						conversation.title.push(user.name);
+				};
+				conversation.title = conversation.title.join(", ");
+			}
+			return conversation;
+		};
+
+		$scope.deserialize = function(conversation) {
+			return conversation.map($scope.deserializeConversation);
 		};
 
 		$scope.loadConversations = function(conf, done) {
-			Conversations.get(conf || {}, function(res) {
+			conf = conf || {};
+			conf.exclude_self = true;
+
+			Conversations.get(conf, function(res) {
 				$scope.conversations = $scope.deserialize(res.conversations);
 				done && done($scope.conversations);
 			});
 		};
 		
-		$scope.deleteConversation = function(id) {
-			$scope.sendingDeleteRequest = true;
-			Conversations.remove({id: id}, function(res) {
-
-				init();
-				$scope.sendingDeleteRequest = false;
-				Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_SUCCESS', Notify.T_SUCCESS);
-			}, function(err) {
-				$scope.sendingDeleteRequest = false;
-				Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_FAILED', Notify.T_ERROR);
-			});
-		};
-
 		function init() {
 			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {

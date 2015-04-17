@@ -474,6 +474,9 @@
     "MESSAGES": {
         "MESSAGES": "Zprávy",
         "ADD": {
+            "ERR": {
+                "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
+            },
             "HEADING": "Nová zpráva",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
@@ -484,6 +487,11 @@
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
+        "DELETE_CONFIRM": {
+            "LABEL": "Smazání konverzace",
+            "TEXT": "Doopravdy chcete smazat konverzaci?"
+        },
+        "DELETE_CONVERSATION": "Smazat zprávy",
         "FILTER": {
             "ALL": "Všechny zprávy",
             "ARCHIVE": "Archiv",
@@ -491,6 +499,11 @@
             "POST_REPLIES": "Odpovědi na inzerát",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
+        "LEAVE_CONFIRM": {
+            "LABEL": "Opustit konverzaci",
+            "TEXT": "Doopravdy chcete opustit konverzaci?"
+        },
+        "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
             "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek",
             "NO_RESULT": "V seznamu nejsou žádné konverzace."
@@ -605,11 +618,17 @@
         "COMMUNITY_UPDATE_SUCCESS": "Úprava komunity byla úspěšná.",
         "COMPLETE_TWITTER_REGISTRATION_FAILED": "Přidání emailu se nezdařilo.",
         "COMPLETE_TWITTER_REGISTRATION_SUCCESS": "Email byl úspěšně uložen.",
+        "CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě.",
+        "CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazána",
+        "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
+        "CONVERSATION_LEAVE_SUCCESS": "Konverzace byla opuštěna.",
         "EMAIL_INVITATION_FAILED": "Při odesílání pozvánky došlo k chybě.",
         "EMAIL_INVITATION_SUCCESS": "Pozvánka byla úspěšně odeslána.",
         "EMAIL_NOTIFY_CONFIG_FAILED": "Při ukládání nastavení došlo k chybě.",
         "EMAIL_NOTIFY_CONFIG_SUCCESS": "Nastavení emailových notifikací bylo úspěšně uloženo.",
         "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě...",
+        "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
+        "MESSAGE_SEND_SUCCESS": "Zpráva byla úspěšně odeslána",
         "NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
         "NEW_PASS_SUCCESS": "Nové heslo bylo nastaveno. Nyní se můžete přihlásit.",
         "PASS_CHANGE_FAILED": "Při úpravě hesla došlo k chybě.",
