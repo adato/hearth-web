@@ -162,7 +162,11 @@
 		}
 		
 		.conversation-detail-top {
-			padding-bottom: 25px;
+			padding-bottom: 15px;
+
+			hr {
+				margin-top: 10px;
+			}
 
 			.conversation-participants {
 				max-height: 100px;

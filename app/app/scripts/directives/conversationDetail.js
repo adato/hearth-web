@@ -105,7 +105,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 };
 
                 $scope.loadParticipants = function(val, oldVal) {
-                    console.log(val);
                     if(!$scope.showParticipants || $scope.participants) return false;
 
                     Conversations.getParticipants({id: $scope.info._id}, function(res) {
