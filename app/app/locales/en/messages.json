@@ -617,6 +617,7 @@
         "EMAIL_NOTIFY_CONFIG_FAILED": "Saving the settings has failed.",
         "EMAIL_NOTIFY_CONFIG_SUCCESS": "Setting email notifications was successfully saved.",
         "EMAIL_SHARING_FAILED": "Err...There was an error when sending the email.",
+        "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
         "MESSAGE_SEND_SUCCESS": "Zpráva byla úspěšně odeslána",
         "NEW_PASS_FAILED": "Setting up new password has failed.",

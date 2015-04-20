@@ -2,7 +2,7 @@
 	<div loading show="!messages"></div>
 	<div class="conversation-detail" ng-if="messages">
 		<div class="conversation-detail-top">
-			<a ng-click="showParticipants = !showParticipants">{{ info.title }}</a>
+			<a ng-click="toggleParticipants()">{{ info.title }}</a>
 			<span class="right">
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{ info._id }}" title="{{ 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
 				<div class="conversation-actions-dropdown" id="conversation-actions-{{ info._id }}" style="display:none;">
@@ -12,12 +12,18 @@
 				</div>
 			</span>
 			<div class="clear"></div>
-			<div class="conversation-participants" ng-if="showParticipants">
+			<div class="conversation-participants" style="height: 100px;" ng-if="showParticipants">
 				<div loading show="!participants"></div>
 				<ul>
-					<li ng-repeat="item in participants">{{ item.name }}</li>
+					<li ng-repeat="item in participants">
+						<a ng-href="#!/{{ getProfileLinkByType(item._type) }}/{{item._id}}">
+							<avatar src="item.avatar.normal" type="item._type" size="mini"></avatar>
+							{{ item.name }}
+						</a>
+					</li>
 				</ul>
 			</div>
+			<div class="clear"></div>
 		</div>
 		<div class="messages-container">
 			<div class="scrollbar-macosx" custom-scrollbar>
