@@ -116,7 +116,7 @@
 			}
 		}
 		.conversation-unreaded {
-			background-color: #AAA;
+			border-left: 4px solid rgb(33,176,233);
 		}
 
 		.avatars {
@@ -162,7 +162,10 @@
 		}
 		
 		.conversation-detail-top {
-			padding-bottom: 25px;
+			padding-bottom: 15px;
+			hr {
+				margin-top: 10px;
+			}
 
 			.conversation-participants {
 				max-height: 100px;

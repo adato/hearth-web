@@ -30,11 +30,11 @@
 					<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
 						<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
 						<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo:3:3"></avatar>
-						<div class="avatar-participants-count" ng-if="item.participants_count > 3">+{{ item.participants_count - 3 }}</div>
+						<div class="avatar-participants-count" ng-if="item.participants_count > 3">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
 					</div>
 					<div class="conversation-info">
 						<h2 ng-if="item.title">{{ item.title }}</h2>
-						<h2 ng-if="!item.title"><i>{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</i></h2>
+						<h2 ng-if="!item.title">{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</h2>
 
 						<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>
 						<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:mediumTime }}">{{ item.last_message_time | ago }}</i>
