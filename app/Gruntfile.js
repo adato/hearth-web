@@ -640,7 +640,7 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js', '.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
