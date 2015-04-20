@@ -627,6 +627,7 @@
         "EMAIL_NOTIFY_CONFIG_FAILED": "Při ukládání nastavení došlo k chybě.",
         "EMAIL_NOTIFY_CONFIG_SUCCESS": "Nastavení emailových notifikací bylo úspěšně uloženo.",
         "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě...",
+        "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
         "MESSAGE_SEND_SUCCESS": "Zpráva byla úspěšně odeslána",
         "NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",

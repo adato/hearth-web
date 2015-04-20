@@ -29,7 +29,8 @@
 				<div class="conversation" ng-class="{'conversation-unreaded': !item.read, active: detailIndex === $index, 'active-bottom': detailIndex -1 === $index}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
 					<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
 						<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
-						<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
+						<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo:3:3"></avatar>
+						<div class="avatar-participants-count" ng-if="item.participants_count > 3">+{{ item.participants_count - 3 }}</div>
 					</div>
 					<div class="conversation-info">
 						<h2 ng-if="item.title">{{ item.title }}</h2>
