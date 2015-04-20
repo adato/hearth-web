@@ -157,7 +157,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		 */
 		$scope.sendChangeRequest = function(pass) {
 			return function(validationResult) {
-				console.log(validationResult);
 				if (!validationResult || $scope.changeSubmitted) return false;
 				$scope.changeSubmitted = true;
 
