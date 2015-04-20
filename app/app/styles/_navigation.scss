@@ -35,6 +35,15 @@ $topBarImageSize: 1.8em;
     .row {
         margin: 0px auto;
     }
+    .fa.icon-community {
+        position:relative;
+        top:-3px;
+        left:-7px;
+    }
+    .fa.icon-marketplace, .fa.fa-question-circle {
+        position:relative;
+        top:-3px;
+    }
     .columns {
 
         &.icons {
@@ -64,9 +73,6 @@ $topBarImageSize: 1.8em;
             };
             .fa {
                 font-size: $topBarHeight - $topBarLabelSize;
-                &.icon-community {
-                    margin-left:-13px;
-                }
             }
             .img {
                 opacity: 0.8;
