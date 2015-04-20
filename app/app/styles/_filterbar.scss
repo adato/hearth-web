@@ -13,6 +13,10 @@
             color: color(5);
             font-weight: $ui-text-weight-bolder;
         }
+        a.filter-cancel-button {
+            font-size:12px;
+            margin-left:2*$ui-small-grid-size;
+        }
     }
     .insert-button-container {
         float:right;
