@@ -66,7 +66,6 @@ angular.module('hearth.geo').directive('searchMap', [
 
                 scope.setSearchParams = function(params) {
                     params = angular.extend(scope.getFilterParams(), params);
-                    console.log(params);
                     $location.search(params);
                 };
 
