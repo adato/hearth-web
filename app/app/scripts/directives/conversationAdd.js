@@ -12,7 +12,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
             restrict: 'E',
             replace: true,
             scope: {
-                close: '&',
+                close: '=',
             },
             templateUrl: 'templates/directives/conversationAdd.html',
             link: function($scope, element) {

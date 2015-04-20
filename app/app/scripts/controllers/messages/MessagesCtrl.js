@@ -19,9 +19,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		
 		$scope.toggleAddForm = function(conversation) {
 			$scope.showNewMessageForm = !$scope.showNewMessageForm;
+			conversation && $scope.loadNewConversations();
+		};
 
-			if(conversation)
-				$scope.prependConversation(conversation);
+		$scope.loadNewConversations = function() {
+			// TODO
 		};
 
 		$scope.prependConversation = function(conversation) {

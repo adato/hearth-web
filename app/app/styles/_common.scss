@@ -35,6 +35,11 @@
     font-weight: bold;
 }
 
+.moveUp {
+    position: relative;
+    top: -15px;
+}
+
 .box {
     background-color: white;
     border-radius: $global-radius;
