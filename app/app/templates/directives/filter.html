@@ -1,17 +1,10 @@
 <div class="filter" ng-show="inited">
 	<section class="keywords-container" ng-if="inited">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</label>
-		<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" max-length="20">
-			<auto-complete source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="400" max-results-to-show="8"></auto-complete>
+		<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="3" max-length="20">
+			<auto-complete source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
 		</tags-input>
 	</section>
-<!-- 	<section class="common-keywords-container">
-		<ul>
-			<li ng-repeat="(ind, val) in commonKeywords">
-				<a ng-click="insertKeyword(val)">{{ val }}</a>
-			</li>
-		</ul>
-	</section> -->
 	<section class="radio-container type-switch-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</label>
 		<radio type="radio" model="filter.type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
