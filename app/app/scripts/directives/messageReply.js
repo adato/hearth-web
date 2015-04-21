@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('messageReply', [
-	'Conversations', 'Notify',
-	function(Conversations, Notify) {
+	'Conversations', 'Notify', '$timeout',
+	function(Conversations, Notify, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -34,6 +34,10 @@ angular.module('hearth.directives').directive('messageReply', [
 					return !invalid;
 				};
 
+				$scope.onResize = function() {
+					$scope.$emit('messageReplyFormResized');
+				};
+
 				$scope.sendReply = function(reply) {
 					reply.id = $scope.conversationId;
 					if($scope.sendingReply || !$scope.validateReply(reply))
@@ -43,6 +47,12 @@ angular.module('hearth.directives').directive('messageReply', [
 					Conversations.reply(reply, function(res) {
 
 						$scope.reply.text = '';
+						
+						$timeout(function() {
+							$('textarea', el).trigger('autosize.resize');
+							$scope.onResize();
+						});
+
 						$scope.sendingReply = false;
 						$scope.showError.text = false;
 						$scope.$emit("conversationMessageAdded", res);
