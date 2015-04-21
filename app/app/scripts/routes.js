@@ -43,6 +43,7 @@ angular.module('hearth').config([
 			// ======= Messages & subroutes
 			.when('/messages', 'messages')
 			.when('/messages/new', 'messagesAdd')
+			.when('/messages/:id', 'messages')
 			
 			// ======= Communities & subroutes
 			.when('/communities', 'communityList')

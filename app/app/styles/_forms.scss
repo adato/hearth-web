@@ -3,6 +3,7 @@ textarea,
 button,
 .button {
     border-radius: $global-radius;
+    resize: none;
 }
 
 input,

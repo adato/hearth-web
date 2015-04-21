@@ -38,6 +38,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                         _loadLock = false;
                         $scope.resizeMessagesBox();
+                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight);
 
                     }, function() {
                         _loadLock = false;
@@ -45,7 +46,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
                 
-                $scope.loadNewMessages = function() {
+                $scope.loadNewMessages = function(scrollDown) {
                     if(!$scope.messages.length)
                         return $scope.loadMessages();
 
@@ -134,8 +135,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         if(!$scope.inited && $(".conversation-detail-top")[0]){
 
                             $scope.inited = true;
-                            $(".messages-reply", element).css("background-color", "blue");
                             $("textarea", element).resize($scope.resizeMessagesBox);
+                            $(window).resize($scope.resizeMessagesBox);
                             $(".conversation-detail-top", element).resize($scope.resizeMessagesBox);
                         }
                     });

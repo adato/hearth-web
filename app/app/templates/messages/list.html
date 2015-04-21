@@ -1,17 +1,17 @@
 <div class="messages" dynamic-height offset="100" min-height="400">
 	<div class="messages-top formStyle">
-		<form class="search" method="POST" ng-submit="searchConversation()">
+		<form class="search" method="POST" ng-submit="applyFilter()">
 			<div class="slide-show" ng-class="{'width-auto': showFulltext}">
 				<input type="text" ng-model="conversationSearch" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
 			</div>
 			<button class="button-icon fa fa-search"></button>
 		</form>
-		<select class="messages-filter" ng-model="conversationFilter">
+		<select class="messages-filter" ng-model="conversationFilter" ng-change="applyFilter()">
 			<option value="all" ng-selected="conversationFilter == 'all'">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
-			<option value="post-reply" ng-selected="conversationFilter == 'post-reply'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
-			<option value="users-posts" ng-selected="conversationFilter == 'users-posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option>
-			<option value="communities-posts" ng-selected="conversationFilter == 'communities-posts'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option>
-			<option value="archive" ng-selected="conversationFilter == 'archive'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
+			<option value="as_replies" ng-selected="conversationFilter == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<!-- <option value="users-posts" ng-selected="conversationFilter == 'users-posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
+			<option value="from_community" ng-selected="conversationFilter == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option>
+			<!-- <option value="archive" ng-selected="conversationFilter == 'archive'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option> -->
 		</select>
 
 		<a class="button-send right" ng-click="toggleAddForm()">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
@@ -26,7 +26,7 @@
 				<div class="text-center" ng-if="!conversations.length">
 					{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
 				</div>
-				<div class="conversation" ng-class="{'conversation-unreaded': !item.read, active: detailIndex === $index, 'active-bottom': detailIndex -1 === $index}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
+				<div class="conversation" ng-class="{'conversation-unreaded': !item.read, active: detailIndex == $index, 'active-bottom': detailIndex -1 === $index}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
 					<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
 						<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
 						<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo:3:3"></avatar>
