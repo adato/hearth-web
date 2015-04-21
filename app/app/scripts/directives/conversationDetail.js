@@ -124,21 +124,33 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.resizeMessagesBox = function() {
 
                     $timeout(function() {
-                        // $scope.bindMessagesBoxResizeWatchers();
-
                         // var boxHeight = element.find(".conversation-detail").height();
                         // var headHeight = element.find(".conversation-detail").height();
                         // var footHeight = element.find(".conversation-detail").height();
-                        // boxHeight - 
-                        // // $scope.resizeMessagesBox();
-                        // console.log(element.find(".conversation-detail").height());
-                        // console.log(element.find(".conversation-detail").innerHeight());
-                        // console.log(element.find(".conversation-detail").outerHeight());
-                    });
+                        var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").height();
+                        var boxBottomPosition = element.find(".messages-reply").height();
 
+                        $(".messages-container", element).css("max-height", boxHeight);
+                        $(".messages-container", element).css("bottom", boxBottomPosition);
+                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight);
+                        $(".messages-container", element).fadeIn();
+
+                        console.log("Box height: ", boxHeight, " Position from bottom: ", boxBottomPosition);
+                        
+                        if(!$scope.inited){
+
+                            $scope.inited = true;
+                            $(".messages-reply", element).css("background-color", "blue");
+                            $("textarea", element).resize($scope.resizeMessagesBox);
+                            $(".conversation-detail-top", element).resize($scope.resizeMessagesBox);
+                        }
+                    });
                 };
 
-                
+                $scope.inited = false;
+
+                element.resize($scope.resizeMessagesBox);
+                $scope.$on("messageReplyFormResized", $scope.resizeMessagesBox)
 
                 $scope.$watch('info', $scope.init);
                 $scope.$watch('showParticipants', $scope.loadParticipants);
