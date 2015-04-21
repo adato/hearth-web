@@ -63,6 +63,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         _loadLock = false;
                         
                         $scope.messages = $scope.messages.concat(res.messages.reverse());
+                        $timeout(function() {$(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight);});
                     }, function() {
                         _loadLock = false;
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
@@ -102,6 +103,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                 $scope.toggleParticipants =  function() {
                     $scope.showParticipants = ! $scope.showParticipants;
+                    $scope.resizeMessagesBox();
                 };
 
                 $scope.loadParticipants = function(val, oldVal) {
@@ -109,16 +111,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                     Conversations.getParticipants({id: $scope.info._id}, function(res) {
                         $scope.participants = res.participants;
+                        $scope.resizeMessagesBox();
                     });
-                };
-                
-                $scope.bindMessagesBoxResizeWatchers = function() {
-                    if($scope.messagesBoxResizeWatchInited)
-                        return false;
-                    $scope.messagesBoxResizeWatchInited = true;
-
-                    $('.conversation-detail-top', element).resize($scope.resizeMessagesBox);
-                    $('.message-reply', element).resize($scope.resizeMessagesBox);
                 };
 
                 $scope.resizeMessagesBox = function() {
@@ -127,17 +121,17 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         // var boxHeight = element.find(".conversation-detail").height();
                         // var headHeight = element.find(".conversation-detail").height();
                         // var footHeight = element.find(".conversation-detail").height();
-                        var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").height();
-                        var boxBottomPosition = element.find(".messages-reply").height();
+                        var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").height() - 10;
+                        // var boxBottomPosition = element.find(".messages-reply").height();
 
-                        $(".messages-container", element).css("max-height", boxHeight);
-                        $(".messages-container", element).css("bottom", boxBottomPosition);
+                        $(".messages-container", element).css("height", boxHeight);
+                        // $(".messages-container", element).css("bottom", boxBottomPosition);
                         $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight);
                         $(".messages-container", element).fadeIn();
 
-                        console.log("Box height: ", boxHeight, " Position from bottom: ", boxBottomPosition);
+                        console.log("Box height: ", boxHeight);
                         
-                        if(!$scope.inited){
+                        if(!$scope.inited && $(".conversation-detail-top")[0]){
 
                             $scope.inited = true;
                             $(".messages-reply", element).css("background-color", "blue");

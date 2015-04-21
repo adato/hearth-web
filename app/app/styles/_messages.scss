@@ -161,28 +161,30 @@
 			height: 100%;
 		}
 		
-		.conversation-detail-top {
-			padding-bottom: 15px;
-			hr {
-				margin-top: 10px;
-			}
+		.conversation-detail {
 
-			.conversation-participants {
-				max-height: 100px;
-				ul {
-					list-style: none;
-					margin: 0px;
-					li {
-						display: block;
-						float: left;
-						width: 33%;
+			.conversation-detail-top {
+    			background:red;
+				padding-bottom: 15px;
+
+				hr {
+					margin-top: 10px;
+				}
+
+				.conversation-participants {
+					max-height: 100px;
+					ul {
+						list-style: none;
+						margin: 0px;
+						li {
+							display: block;
+							float: left;
+							width: 33%;
+						}
 					}
 				}
 			}
-		}
-		
-		.conversation-detail {
-
+			
 			.message-head {
 				.avatar {
 					margin-right: 10px;
@@ -228,18 +230,29 @@
 		    }
 
 			.messages-container {
-				position: absolute;
-				overflow: hidden;
+
+			    position: relative;
+				overflow: auto;
 				width: 100%;
-				background-color: red;
 				display: none;
+				background: green;
+
+				.messages-container-inner {
+					position: absolute;
+				    width: 100%;
+				    bottom: 0px;
+				    max-height:100%;
+				}
 			}
 			.message-reply {
 				bottom: 0;
 			    position: absolute;
 			    width: 100%;
 			    min-height: 118px;
+			    background:green;
+
 				textarea {
+					transition: none;
 					max-height: 140px;
 				    resize: none;
 				}
