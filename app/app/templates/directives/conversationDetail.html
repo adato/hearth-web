@@ -27,7 +27,7 @@
 			<hr />
 		</div>
 		<div class="messages-container">
-			<div class="scrollbar-macosx" custom-scrollbar>
+			<div class="messages-container-inner">
 				<article class="message" ng-repeat="item in messages track by $index">
 					<div class="message-head" ng-click="item.show = !item.show">
 						<a class="left" ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
