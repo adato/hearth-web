@@ -207,7 +207,8 @@
 		        width:200px;
 		        border-radius: $global-radius;
 		        z-index:1000;
-		        padding: 2*$ui-small-grid-size;
+		        padding: 15px;
+		        padding-top: 5px;
 		        min-height: 40px;
 		        box-shadow:0px 0px 6px 0px rgba(100, 100, 100, 0.3);
 		        background:white;
@@ -219,7 +220,11 @@
 		            margin-bottom:$ui-small-grid-size;
 		        }
 		        b { font-weight:$ui-text-weight-bolder; }
-		        a { color: color(5); }
+		        a {
+			        color: color(5);
+			        display: block;
+			        margin-top: 10px;
+		        }
 		        &:after {
 		            content: ' ';
 		            position: absolute;
