@@ -56,7 +56,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			info.read = true;
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
-			$scope.detailIndex = parseInt(index);
+			$scope.detailIndex = index;
 
 			$location.url("/messages/"+info._id+"?"+jQuery.param( $location.search()));
 		};
@@ -133,9 +133,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.conversations.splice(i, 1);
 
 			// and if it is currently open, jump to top
-			if(id == $scope.detail._id) {
+			if(id == $scope.detail)
 				$scope.showConversation($scope.conversations[0], 0);
-			}
 		};
 
 		function init() {

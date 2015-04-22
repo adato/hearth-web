@@ -153,6 +153,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         // $(".messages-container", element).css("bottom", boxBottomPosition);
                         $(".messages-container", element).fadeIn();
 
+                        console.log("Box height: ", boxHeight);
+                        
                         if(!$scope.inited && $(".conversation-detail-top")[0]){
 
                             $scope.inited = true;
