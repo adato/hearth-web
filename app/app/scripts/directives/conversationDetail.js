@@ -150,23 +150,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         $scope.testScrollBottom();
 
                         $(".messages-container", element).css("height", boxHeight);
-                        // $(".messages-container", element).css("bottom", boxBottomPosition);
                         $(".messages-container", element).fadeIn();
-
-                        console.log("Box height: ", boxHeight);
-                        
-                        if(!$scope.inited && $(".conversation-detail-top")[0]){
-
-                            $scope.inited = true;
-                            $("textarea", element).resize($scope.resizeMessagesBox);
-                            $(window).resize($scope.resizeMessagesBox);
-                            $(".conversation-detail-top", element).resize($scope.resizeMessagesBox);
-                        }
                     // });
                 };
 
-                $scope.inited = false;
-                element.resize($scope.resizeMessagesBox);
+                // element.resize($scope.resizeMessagesBox);
+                $(window).resize($scope.resizeMessagesBox);
                 $scope.$on("messageReplyFormResized", $scope.resizeMessagesBox)
 
                 $scope.$watch('info', $scope.init);

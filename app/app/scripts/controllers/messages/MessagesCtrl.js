@@ -52,11 +52,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.showConversation = function(info, index) {
-			console.log("Display: ", info._id, " index: ", index);
 			info.read = true;
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
-			$scope.detailIndex = index;
+			$scope.detailIndex = parseInt(index);
 
 			$location.url("/messages/"+info._id+"?"+jQuery.param( $location.search()));
 		};
@@ -133,7 +132,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.conversations.splice(i, 1);
 
 			// and if it is currently open, jump to top
-			if(id == $scope.detail)
+			if(id == $scope.detail._id)
 				$scope.showConversation($scope.conversations[0], 0);
 		};
 
