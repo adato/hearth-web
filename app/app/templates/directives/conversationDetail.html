@@ -7,7 +7,6 @@
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{ info._id }}" title="{{ 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
 				<div class="conversation-actions-dropdown" id="conversation-actions-{{ info._id }}" style="display:none;">
 					<a ng-click="confirmBox('MESSAGES.DELETE_CONFIRM.LABEL', 'MESSAGES.DELETE_CONFIRM.TEXT', deleteConversation, info._id, this)" class="action-link">{{ 'MESSAGES.DELETE_CONVERSATION' | translate }}</a>
-					<br />
 					<a ng-click="confirmBox('MESSAGES.LEAVE_CONFIRM.LABEL', 'MESSAGES.LEAVE_CONFIRM.TEXT', leaveConversation, info._id, this)" class="action-link">{{ 'MESSAGES.LEAVE_CONVERSATION' | translate }}</a>
 				</div>
 			</span>

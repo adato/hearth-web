@@ -41,14 +41,12 @@ angular.module('hearth.directives').directive('messageReply', [
 					$scope.sendingReply = true;
 
 					Conversations.reply(reply, function(res) {
-
 						$scope.reply.text = '';
 						
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
 							$scope.$emit('messageReplyFormResized');
 						});
-
 						$scope.sendingReply = false;
 						$scope.showError.text = false;
 						$scope.$emit("conversationMessageAdded", res);
