@@ -410,6 +410,7 @@
     "LOCATION_DOES_NOT_MATTER": "Na mieste nezáleží",
     "LOCATION_GO_CURRENT": "Nájsť vašu aktuálnu polohu",
     "LOCATION_INPUT_PLACEHOLDER": "Kde?",
+    "LOCATION_UNLIMITED_MESSAGE": "Kdekoliv",
     "LOGIN_BAD_CREDENTIALS": "Meno alebo heslo nesedí. Skúste to ešte raz.",
     "LOGIN_BUTTON": "Prihlásiť sa",
     "LOGIN_HEADING": "Prihlásenie",
@@ -491,7 +492,7 @@
             "LABEL": "Smazání konverzace",
             "TEXT": "Doopravdy chcete smazat konverzaci?"
         },
-        "DELETE_CONVERSATION": "Smazat zprávy",
+        "DELETE_CONVERSATION": "Smazat konverzaci",
         "FILTER": {
             "ALL": "Všechny zprávy",
             "ARCHIVE": "Archiv",
@@ -511,6 +512,9 @@
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+        },
+        "SYSTEM_MESSAGE": {
+            "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
         }
     },
     "MESSAGES_ARCHIVE": "Archív správ",

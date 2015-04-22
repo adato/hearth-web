@@ -28,16 +28,20 @@
 		</div>
 		<div class="messages-container">
 			<div class="messages-container-inner">
-				<article class="message" ng-repeat="item in messages track by $index">
-					<div class="message-head" ng-click="item.show = !item.show">
-						<a class="left" ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
-							<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
-							<h5 class="fleft">{{ item.author.name }}</h5>
-						</a>
-						<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}">{{ item.created_at | ago }}</span>
-						<div class="clear"></div>
+				<article class="message" ng-repeat="item in messages track by $index" style="display: none;">
+					<div ng-if="item.author">
+						<div class="message-head">
+							<a class="left" ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
+								<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
+								<h5 class="fleft">{{ item.author.name }}</h5>
+							</a>
+							<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}">{{ item.created_at | ago }}</span>
+							<div class="clear"></div>
+						</div>
+						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 					</div>
-					<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+					<div ng-if="!item.author" class="system-message" ng-bind-html="'MESSAGES.SYSTEM_MESSAGE.'+item.verb | translate: item.system_data">
+					</div>
 				</article>
 			</div>
 		</div>

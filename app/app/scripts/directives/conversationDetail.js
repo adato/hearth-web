@@ -37,8 +37,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         $scope.messages = res.messages.slice().reverse();
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                         _loadLock = false;
+
+                        $timeout(function() {$scope.displayMessages();});
                         $scope.scrollBottom();
-                        $scope.resizeMessagesBox();
+                        $timeout(function(){$scope.resizeMessagesBox();});
 
                     }, function() {
                         _loadLock = false;
@@ -46,24 +48,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
                 
-                $scope.scrollBottom = function() {
-                    console.log("TESTING2");
-                    $timeout(function() {
-                        console.log("TESTING3");
-                        // if($scope.scrollBottom)
-                        console.log($(".messages-container")[0].scrollHeight);
-                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight * 1000);
-                        // $scope.scrollBottom = false;
-                    });
-                };
-
-                $scope.testScrollBottom = function() {
-                    console.log("TESTING");
-                    if(Viewport.isBottomScrolled(element, ".messages-container", ".messages-container-inner")) {
-                        $scope.scrollBottom();
-                    }
-                };
-
                 $scope.loadNewMessages = function(scrollDown) {
                     if(!$scope.messages.length)
                         return $scope.loadMessages();
@@ -82,17 +66,32 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         _loadLock = false;
                         
                         $scope.messages = $scope.messages.concat(res.messages.reverse());
+                        
+                        $timeout(function() {$scope.displayMessages();});
                         $scope.testScrollBottom();
                     }, function() {
                         _loadLock = false;
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                     });
                 };
+
+                $scope.scrollBottom = function() {
+                    $timeout(function() {
+                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight * 1000);
+                    });
+                };
+
+                $scope.testScrollBottom = function() {
+                    if(Viewport.isBottomScrolled(element, ".messages-container", ".messages-container-inner")) {
+                        $scope.scrollBottom();
+                    }
+                };
                 
                 $scope.deleteConversation = function(id) {
                     $scope.sendingDeleteRequest = true;
                     Conversations.remove({id: id}, function(res) {
                         $scope.sendingDeleteRequest = false;
+                        $scope.$emit("conversationRemoved", id);
                         Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_SUCCESS', Notify.T_SUCCESS);
                     }, function(err) {
                         $scope.sendingDeleteRequest = false;
@@ -102,8 +101,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                 $scope.leaveConversation = function(id) {
                     $scope.sendingDeleteRequest = true;
-                    Conversations.remove({id: id}, function(res) {
+                    Conversations.leave({id: id}, function(res) {
                         $scope.sendingDeleteRequest = false;
+                        $scope.$emit("conversationRemoved", id);
                         Notify.addSingleTranslate('NOTIFY.CONVERSATION_LEAVE_SUCCESS', Notify.T_SUCCESS);
                     }, function(err) {
                         $scope.sendingDeleteRequest = false;
@@ -111,12 +111,16 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
+                $scope.displayMessages = function() {
+                    $(".messages-container article:hidden", element).fadeIn();
+                };
+
                 $scope.init = function(info) {
                     $timeout.cancel(_loadTimeoutPromise);
 
+                    $scope.messages = false;
                     $scope.participants = false;
                     $scope.showParticipants = false;
-                    $scope.conversation = false;
                     $scope.loadMessages();
                 };
 

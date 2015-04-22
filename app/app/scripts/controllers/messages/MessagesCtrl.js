@@ -107,7 +107,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// but first try to find it in list
 			if($scope.conversations) for(var i in $scope.conversations) {
 				if($scope.conversations[i]._id == id) {
-					console.log(id, i);
 					return $scope.showConversation($scope.conversations[i], i);
 				}
 			}
@@ -116,6 +115,26 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Conversations.get({exclude_self: true, id: id}, function(res) {
 				$scope.showConversation($scope.deserializeConversation(res), false);
 			});
+		};
+
+		// when we leave/delete conversation - remove it from conversation list
+		$scope.removeConversationFromList = function(ev, id) {
+			var index = false;
+			// find its position
+			for(var i in $scope.conversations) {
+				if($scope.conversations[i]._id == id) {
+					index = i;
+					break;
+				}
+			}
+
+			// remove it
+			if(index !== false)
+				$scope.conversations.splice(i, 1);
+
+			// and if it is currently open, jump to top
+			if(id == $scope.detail)
+				$scope.showConversation($scope.conversations[0], 0);
 		};
 
 		function init() {
@@ -137,6 +156,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		UnauthReload.check();
+		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();
