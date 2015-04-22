@@ -173,6 +173,7 @@
 
 				.conversation-participants {
 					max-height: 100px;
+					overflow: auto;
 					ul {
 						list-style: none;
 						margin: 0px;
@@ -193,6 +194,9 @@
 				h4 {
 					position: relative;
 					top: 5px;
+				}
+				span {
+					margin-right: 5px;
 				}
 			}
 
@@ -241,6 +245,11 @@
 					position: absolute;
 				    bottom: 0px;
 				    max-height:100%;
+
+				    .system-message p {
+				    	text-align: center;
+				    	color: #999;
+				    }
 				}
 			}
 			.message-reply {
@@ -248,7 +257,7 @@
 			    position: absolute;
 			    width: 100%;
 			    min-height: 118px;
-			    padding-top: 20px;
+			    padding-top: 10px;
 				textarea {
 					transition: none;
 					max-height: 140px;

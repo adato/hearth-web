@@ -34,10 +34,6 @@ angular.module('hearth.directives').directive('messageReply', [
 					return !invalid;
 				};
 
-				$scope.onResize = function() {
-					$scope.$emit('messageReplyFormResized');
-				};
-
 				$scope.sendReply = function(reply) {
 					reply.id = $scope.conversationId;
 					if($scope.sendingReply || !$scope.validateReply(reply))
@@ -50,7 +46,7 @@ angular.module('hearth.directives').directive('messageReply', [
 						
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
-							$scope.onResize();
+							$scope.$emit('messageReplyFormResized');
 						});
 
 						$scope.sendingReply = false;
@@ -62,6 +58,9 @@ angular.module('hearth.directives').directive('messageReply', [
 					});
 				};
 
+				$scope.init = function() {
+					$scope.reply.text = '';
+				};
 			}
 		};
 	}

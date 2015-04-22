@@ -114,9 +114,9 @@
         "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
         "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatím nejste součástí žádné komunity. Můžete si založit svoji anebo se mrkněte do doporučených komunit. Doufáme, že vás alespoň jedna chytí za srdce.",
         "X_GIVES_AND_WISHES": {
-            "one": "<b>{{count}}<\/b><br \/> inzerát",
-            "few": "<b>{{count}}<\/b><br \/> inzeráty",
-            "other": "<b>{{count}}<\/b><br \/> inzerátů"
+            "one": "<p><strong>{{count}}<\/strong><br \/>dar či př&aacute;n&iacute;<\/p>",
+            "few": "<p><strong>{{count}}<\/strong><br \/>dary a př&aacute;n&iacute;<\/p>",
+            "other": "<p><strong>{{count}}<\/strong><br \/>darů a př&aacute;n&iacute;<\/p>"
         },
         "X_MEMBERS": {
             "one": "<b>{{count}}<\/b><br \/> člen",
@@ -342,9 +342,9 @@
     "FULLTEXT_USERS": "Lidé",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>",
     "GIVES_AND_WISHES": {
-        "one": "inzerát",
-        "few": "inzeráty",
-        "other": "inzerátů"
+        "one": "dar či přání",
+        "few": "dary a přání",
+        "other": "darů a přání"
     },
     "GIVE_US_FEEDBACK": "Váš názor",
     "GO_BACK_TO_MARKET": "Přejít na tržiště",
@@ -410,6 +410,7 @@
     "LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
     "LOCATION_GO_CURRENT": "Najít vaši aktuální polohu",
     "LOCATION_INPUT_PLACEHOLDER": "Kde?",
+    "LOCATION_UNLIMITED_MESSAGE": "Kdekoliv",
     "LOGIN_BAD_CREDENTIALS": "Jméno nebo heslo nesedí. Zkuste to prosím ještě jednou.",
     "LOGIN_BUTTON": "Přihlásit se",
     "LOGIN_HEADING": "Přihlášení",
@@ -491,7 +492,7 @@
             "LABEL": "Smazání konverzace",
             "TEXT": "Doopravdy chcete smazat konverzaci?"
         },
-        "DELETE_CONVERSATION": "Smazat zprávy",
+        "DELETE_CONVERSATION": "Smazat konverzaci",
         "FILTER": {
             "ALL": "Všechny zprávy",
             "ARCHIVE": "Archiv",
@@ -511,6 +512,9 @@
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+        },
+        "SYSTEM_MESSAGE": {
+            "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
         }
     },
     "MESSAGES_ARCHIVE": "Archív zpráv",
@@ -522,7 +526,7 @@
     "ME_WROTE": "Napsal jsem",
     "ME_WROTE_THEM": "Ohodnotil(a) jsem",
     "MINUTES_AGO": "před %d minutami",
-    "MINUTE_AGO": "1 minuta",
+    "MINUTE_AGO": "před minutkou",
     "MONTHS_AGO": "před %d měsíci",
     "MONTH_AGO": "před měsícem",
     "MY_CONTACT_EMAIL": "Kontaktní email",
