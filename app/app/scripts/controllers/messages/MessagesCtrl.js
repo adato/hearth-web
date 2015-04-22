@@ -7,19 +7,31 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$routeParams', '$location',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location) {
 		$scope.conversations = false;
 		$scope.detail = false;
 		$scope.detailIndex = false;
 		$scope.showFulltext = false;
+		$scope.showNewMessageForm = false;
 		$scope.conversationFilter = 'all';
 		$scope.conversationSearch = '';
-		$scope.showNewMessageForm = false;
 		
 		$scope.toggleAddForm = function(conversation) {
 			$scope.showNewMessageForm = !$scope.showNewMessageForm;
 			conversation && $scope.loadNewConversations();
+		};
+
+		$scope.applyFilter = function() {
+			var filter = {};
+			if($scope.conversationSearch)
+				filter.query = $scope.conversationSearch;
+
+			if(!!~['as_replies', 'from_community'].indexOf($scope.conversationFilter))
+				filter[$scope.conversationFilter] = true;
+
+			$location.url("/messages?"+jQuery.param(filter));
+			$scope.$broadcast('filterApplied', filter);
 		};
 
 		$scope.loadNewConversations = function() {
@@ -28,20 +40,25 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.prependConversation = function(conversation) {
 			$scope.conversations.unshift($scope.deserializeConversation(conversation));
-			$scope.showConversation(conversation, 0);
+			// $scope.showConversation(conversation, 0);
 		};
 
 		$scope.searchConversation = function() {
 			// if fulltext is hidden, first only show input
 			if(!$scope.showFulltext || !$scope.conversationSearch )
 				return $scope.showFulltext = !$scope.showFulltext;
+
+			$scope.conversationSearch && $scope.applyFilter();
 		};
 
 		$scope.showConversation = function(info, index) {
+			console.log("Display: ", info._id, " index: ", index);
 			info.read = true;
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
 			$scope.detailIndex = index;
+
+			$location.url("/messages/"+info._id+"?"+jQuery.param( $location.search()));
 		};
 
 		$scope.loadCounters = function() {
@@ -70,8 +87,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadConversations = function(conf, done) {
+			var filter;
 			conf = conf || {};
 			conf.exclude_self = true;
+
+			filter = $location.search();
+			if(filter)
+				angular.extend(conf, filter);
 
 			Conversations.get(conf, function(res) {
 				$scope.conversations = $scope.deserialize(res.conversations);
@@ -79,16 +101,43 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 		
-		function init() {
-			$scope.loadCounters();
-			$scope.loadConversations({}, function(list) {
-				// load first conversation on init
-				if(list.length)
-					$scope.showConversation(list[0], 0);
+		// if we have detail ID in url load it and display in detail box
+		$scope.loadConversationDetail = function(id) {
+
+			// but first try to find it in list
+			if($scope.conversations) for(var i in $scope.conversations) {
+				if($scope.conversations[i]._id == id) {
+					console.log(id, i);
+					return $scope.showConversation($scope.conversations[i], i);
+				}
+			}
+
+			// if requested conversation is not in list, load it from API
+			Conversations.get({exclude_self: true, id: id}, function(res) {
+				$scope.showConversation($scope.deserializeConversation(res), false);
 			});
 		};
 
+		function init() {
+			$scope.conversations = false;
+			$scope.detail = false;
+			$scope.detailIndex = false;
+			$scope.showFulltext = false;
+			$scope.showNewMessageForm = false;
+
+			$scope.loadCounters();
+			$scope.loadConversations({}, function(list) {
+				// load first conversation on init
+				if($routeParams.id)
+					$scope.loadConversationDetail($routeParams.id);
+				else if(list.length)
+					$scope.showConversation(list[0], 0);
+			});
+
+		};
+
 		UnauthReload.check();
+		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();
 	}

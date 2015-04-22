@@ -85,6 +85,7 @@
 		}
 
 		.conversation {
+			display: block;
 			cursor: pointer;
 			padding: 10px;
 			padding-left: 0px;
@@ -164,7 +165,6 @@
 		.conversation-detail {
 
 			.conversation-detail-top {
-    			background:red;
 				padding-bottom: 15px;
 
 				hr {
@@ -235,11 +235,10 @@
 				overflow: auto;
 				width: 100%;
 				display: none;
-				background: green;
 
 				.messages-container-inner {
-					position: absolute;
 				    width: 100%;
+					position: absolute;
 				    bottom: 0px;
 				    max-height:100%;
 				}
@@ -249,8 +248,7 @@
 			    position: absolute;
 			    width: 100%;
 			    min-height: 118px;
-			    background:green;
-
+			    padding-top: 20px;
 				textarea {
 					transition: none;
 					max-height: 140px;
