@@ -27,7 +27,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if($scope.conversationSearch)
 				filter.query = $scope.conversationSearch;
 
-			if(!!~['as_replies', 'from_community'].indexOf($scope.conversationFilter))
+			if(!!~['archive', 'as_replies', 'from_community'].indexOf($scope.conversationFilter))
 				filter[$scope.conversationFilter] = true;
 
 			$location.url("/messages?"+jQuery.param(filter));
