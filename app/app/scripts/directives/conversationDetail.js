@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-    '$rootScope', 'Conversations', '$timeout', 'Notify',
-    function($rootScope, Conversations, $timeout, Notify) {
+    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport',
+    function($rootScope, Conversations, $timeout, Notify, Viewport) {
         return {
             restrict: 'E',
             replace: true,
@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
             link: function($scope, element) {
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
                 $scope.confirmBox = $rootScope.confirmBox;
-
+                $scope.scrollBottom = false;
                 $scope.participants = false;
                 $scope.showParticipants = false;
                 $scope.sendingDeleteRequest = false;
@@ -37,8 +37,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         $scope.messages = res.messages.slice().reverse();
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                         _loadLock = false;
+                        $scope.scrollBottom();
                         $scope.resizeMessagesBox();
-                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight);
 
                     }, function() {
                         _loadLock = false;
@@ -46,6 +46,24 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
                 
+                $scope.scrollBottom = function() {
+                    console.log("TESTING2");
+                    $timeout(function() {
+                        console.log("TESTING3");
+                        // if($scope.scrollBottom)
+                        console.log($(".messages-container")[0].scrollHeight);
+                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight * 1000);
+                        // $scope.scrollBottom = false;
+                    });
+                };
+
+                $scope.testScrollBottom = function() {
+                    console.log("TESTING");
+                    if(Viewport.isBottomScrolled(element, ".messages-container", ".messages-container-inner")) {
+                        $scope.scrollBottom();
+                    }
+                };
+
                 $scope.loadNewMessages = function(scrollDown) {
                     if(!$scope.messages.length)
                         return $scope.loadMessages();
@@ -64,7 +82,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         _loadLock = false;
                         
                         $scope.messages = $scope.messages.concat(res.messages.reverse());
-                        $timeout(function() {$(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight);});
+                        $scope.testScrollBottom();
                     }, function() {
                         _loadLock = false;
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
@@ -104,7 +122,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                 $scope.toggleParticipants =  function() {
                     $scope.showParticipants = ! $scope.showParticipants;
-                    $scope.resizeMessagesBox();
+                    $timeout(function(){$scope.resizeMessagesBox();});
                 };
 
                 $scope.loadParticipants = function(val, oldVal) {
@@ -112,22 +130,23 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                     Conversations.getParticipants({id: $scope.info._id}, function(res) {
                         $scope.participants = res.participants;
-                        $scope.resizeMessagesBox();
+                        $timeout(function(){$scope.resizeMessagesBox();});
                     });
+                };
+
+                $scope.onMessageAdded = function() {
+                    $scope.scrollBottom();
+                    $scope.loadNewMessages();
                 };
 
                 $scope.resizeMessagesBox = function() {
 
-                    $timeout(function() {
-                        // var boxHeight = element.find(".conversation-detail").height();
-                        // var headHeight = element.find(".conversation-detail").height();
-                        // var footHeight = element.find(".conversation-detail").height();
-                        var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").height() - 10;
-                        // var boxBottomPosition = element.find(".messages-reply").height();
+                    // $timeout(function() {
+                        var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").outerHeight() - 10;
+                        $scope.testScrollBottom();
 
                         $(".messages-container", element).css("height", boxHeight);
                         // $(".messages-container", element).css("bottom", boxBottomPosition);
-                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight);
                         $(".messages-container", element).fadeIn();
 
                         console.log("Box height: ", boxHeight);
@@ -139,16 +158,16 @@ angular.module('hearth.directives').directive('conversationDetail', [
                             $(window).resize($scope.resizeMessagesBox);
                             $(".conversation-detail-top", element).resize($scope.resizeMessagesBox);
                         }
-                    });
+                    // });
                 };
 
                 $scope.inited = false;
-
                 element.resize($scope.resizeMessagesBox);
                 $scope.$on("messageReplyFormResized", $scope.resizeMessagesBox)
 
                 $scope.$watch('info', $scope.init);
                 $scope.$watch('showParticipants', $scope.loadParticipants);
+                $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
                 $scope.$on('conversationMessageAdded', $scope.loadNewMessages);
                 $scope.$on('$destroy', function() {
                     // stop pulling new messages on directive destroy

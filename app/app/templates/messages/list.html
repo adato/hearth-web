@@ -1,6 +1,6 @@
 <div class="messages" dynamic-height offset="100" min-height="400">
 	<div class="messages-top formStyle">
-		<form class="search" method="POST" ng-submit="applyFilter()">
+		<form class="search" method="POST" ng-submit="searchConversation()">
 			<div class="slide-show" ng-class="{'width-auto': showFulltext}">
 				<input type="text" ng-model="conversationSearch" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
 			</div>

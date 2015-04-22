@@ -43,11 +43,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// $scope.showConversation(conversation, 0);
 		};
 
-		// $scope.searchConversation = function() {
-		// 	// if fulltext is hidden, first only show input
-		// 	if(!$scope.showFulltext || !$scope.conversationSearch )
-		// 		return $scope.showFulltext = !$scope.showFulltext;
-		// };
+		$scope.searchConversation = function() {
+			// if fulltext is hidden, first only show input
+			if(!$scope.showFulltext || !$scope.conversationSearch )
+				return $scope.showFulltext = !$scope.showFulltext;
+
+			$scope.conversationSearch && $scope.applyFilter();
+		};
 
 		$scope.showConversation = function(info, index) {
 			console.log("Display: ", info._id, " index: ", index);
