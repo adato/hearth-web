@@ -27,6 +27,7 @@
 		</div>
 		<div class="messages-container">
 			<div class="messages-container-inner">
+				<div loading class="older-messages-loader" show="loadingOlderMessages"></div>
 				<article class="message" ng-repeat="item in messages track by $index" style="display: none;">
 					<div ng-if="item.author">
 						<div class="message-head">

@@ -33,7 +33,7 @@ angular.module('hearth.directives').directive('messageReply', [
 						invalid = $scope.showError.text = true;
 					return !invalid;
 				};
-
+				
 				$scope.onResize = function() {
 					$scope.$emit('messageReplyFormResized');
 				};
@@ -52,7 +52,7 @@ angular.module('hearth.directives').directive('messageReply', [
 							$('textarea', el).trigger('autosize.resize');
 							$scope.onResize();
 						});
-
+						
 						$scope.sendingReply = false;
 						$scope.showError.text = false;
 						$scope.$emit("conversationMessageAdded", res);

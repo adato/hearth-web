@@ -33,7 +33,7 @@
 						<div class="avatar-participants-count" ng-if="item.participants_count > 3">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
 					</div>
 					<div class="conversation-info">
-						<h2 ng-if="item.title">{{ item.title }}</h2>
+						<h2 ng-if="item.title">{{ item.title | ellipsis:45 }}</h2>
 						<h2 ng-if="!item.title">{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</h2>
 
 						<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>
