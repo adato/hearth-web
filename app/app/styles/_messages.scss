@@ -1,4 +1,7 @@
 .messages {
+	a {
+		color: color(5);
+	}
 	.messages-top {
 		input, select {
 			width: 280px;
@@ -172,7 +175,8 @@
 				}
 
 				.conversation-participants {
-					max-height: 100px;
+					min-height: 40px;
+					max-height: 150px;
 					overflow: auto;
 					ul {
 						list-style: none;
@@ -181,6 +185,9 @@
 							display: block;
 							float: left;
 							width: 33%;
+							a {
+								font-size: 14px;
+							}
 						}
 					}
 				}
@@ -224,6 +231,7 @@
 			        color: color(5);
 			        display: block;
 			        margin-top: 10px;
+			        font-weight: 600;
 		        }
 		        &:after {
 		            content: ' ';

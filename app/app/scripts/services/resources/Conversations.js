@@ -19,7 +19,7 @@ angular.module('hearth.services').factory('Conversations', [
 				method: 'GET',
 			},
 			leave: {
-				url: $$config.apiPath + '/conversations/:id/remove',
+				url: $$config.apiPath + '/conversations/:id/leave',
 				method: 'DELETE',
 			},
 			getCounters: {

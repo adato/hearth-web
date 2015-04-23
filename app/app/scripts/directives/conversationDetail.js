@@ -27,24 +27,38 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
                 var _loadTimeout = 10000; // pull requests interval in ms
                 var _loadLock = false; // pull requests interval in ms
+                var _scrollInited = false;
+                var _loadOlderMessagesEnd = false;
                 var _loadTimeoutPromise = false;
                 
-                $scope.loadMessages = function(from) {
-                    if(_loadLock) return false;
+                $scope.loadMessages = function(from, done) {
+                    if(_loadLock) {
+                        done && done(false);
+                        return false;
+                    }
                     _loadLock = true;
-                                        
-                    Conversations.getMessages({id: $scope.info._id, from: from, count: _messagesCount}, function(res) {
-                        $scope.messages = res.messages.slice().reverse();
+                        
+                    console.log("LOADING", from);
+                    Conversations.getMessages({id: $scope.info._id, older: from, limit: _messagesCount}, function(res) {
+                        if(res.messages.length < _messagesCount)
+                            _loadOlderMessagesEnd = true;
+
+                        if($scope.messages)
+                            Array.prototype.unshift.apply($scope.messages, res.messages);
+                        else
+                            $scope.messages = res.messages;
+                        
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                         _loadLock = false;
-
-                        $timeout(function() {$scope.displayMessages();});
-                        $scope.scrollBottom();
+                        
+                        $timeout(function(){$scope.displayMessages();});
                         $timeout(function(){$scope.resizeMessagesBox();});
-
+                        if(!from) $scope.scrollBottom();
+                        done && done(res);
                     }, function() {
                         _loadLock = false;
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
+                        done && done(false);
                     });
                 };
                 
@@ -65,8 +79,11 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                         _loadLock = false;
                         
-                        $scope.messages = $scope.messages.concat(res.messages.reverse());
-                        
+                        if($scope.messages)
+                            $scope.messages = $scope.messages.concat(res.messages);
+                        else
+                            $scope.messages = res.messages;
+
                         $timeout(function() {$scope.displayMessages();});
                         $scope.testScrollBottom();
                     }, function() {
@@ -118,6 +135,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.init = function(info) {
                     $timeout.cancel(_loadTimeoutPromise);
 
+                    _loadOlderMessagesEnd = false;
+                    _scrollInited = false;
                     $scope.messages = false;
                     $scope.participants = false;
                     $scope.showParticipants = false;
@@ -151,7 +170,33 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                         $(".messages-container", element).css("height", boxHeight);
                         $(".messages-container", element).fadeIn();
+
+                        if(!_scrollInited) {
+                            $(".messages-container", element).scroll($scope.loadOlderMessages);
+                            _scrollInited = true;
+                        }
+
                     // });
+                };
+
+                $scope.loadOlderMessages = function() {
+                    if($scope.loadingOlderMessages || _loadOlderMessagesEnd) return false;
+
+                    if($(".messages-container", element).scrollTop() < 100) {
+                        var from = $scope.messages[0] ? $scope.messages[0].created_at : undefined;
+                        var height = $(".messages-container-inner", element).prop('scrollHeight');
+                        $scope.loadingOlderMessages = true;
+
+                        $scope.loadMessages($scope.messages[0].created_at, function() {
+                            $scope.loadingOlderMessages = false;
+                            $timeout(function() {
+                                var newHeight = $(".messages-container-inner", element).prop('scrollHeight');
+                                $(".messages-container", element).scrollTop(newHeight - height);
+                                console.log("Old: ", height, " New: ", newHeight);
+                                console.log("Scrolling down to: ", newHeight - height);
+                            });
+                        });
+                    }
                 };
 
                 // element.resize($scope.resizeMessagesBox);
