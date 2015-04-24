@@ -8,6 +8,7 @@
 		}
 		select {
 			width: 265px;
+			float: left;
 		}
 		.search {
 			.slide-show {
@@ -20,8 +21,7 @@
 				}
 			}
 			display: inline-block;
-			margin-right: 14px;
-			float: left;
+			margin-left: 50px;
 			height: 30px;
 		}
 
@@ -106,8 +106,8 @@
 					display: inline-block;
 					font-size: 11px;
 					font-weight: 700;
-					height: 14px;
 					padding-top: 2px;
+					padding-bottom: 2px;
 					text-align: center;
 				    width: 30px;
 				    float: right;
@@ -184,6 +184,9 @@
 			
 			.conversation-detail-top {
 				padding-bottom: 15px;
+				&>a {
+					padding-bottom: 5px;
+				}
 
 				hr {
 					margin-top: 10px;

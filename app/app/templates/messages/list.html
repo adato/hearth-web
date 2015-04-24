@@ -1,18 +1,18 @@
 <div class="messages" dynamic-height offset="100" min-height="400">
 	<div class="messages-top formStyle">
-		<select class="messages-filter" ng-model="filter.query" ng-change="applyFilter()">
-			<option value="all" ng-selected="filter.query == 'all'">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
-			<option value="as_replies" ng-selected="filter.query == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
-			<!-- <option value="users-posts" ng-selected="filter.query == 'users-posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
-			<option value="from_community" ng-selected="filter.query == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option>
-			<option value="archive" ng-selected="filter.query == 'archive'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
-		</select>
 		<form class="search" method="POST" ng-submit="searchConversation()">
 			<div class="slide-show" ng-class="{'width-auto': showFulltext}">
-				<input type="text" ng-model="filter.search" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
+				<input type="text" ng-model="filter.query" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
 			</div>
 			<button class="button-icon fa fa-search"></button>
 		</form>
+		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
+			<option value="" ng-selected="filter.type == ''">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
+			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<!-- <option value="users-posts" ng-selected="filter.type == 'users-posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
+			<option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option>
+			<option value="archive" ng-selected="filter.type == 'archive'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
+		</select>
 
 		<a class="button-send right" ng-click="toggleAddForm()">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
 		<div class="clear"></div>
