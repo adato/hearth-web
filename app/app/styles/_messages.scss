@@ -1,7 +1,4 @@
 .messages {
-	a {
-		color: color(5);
-	}
 	.messages-top {
 		input, select {
 			width: 280px;
@@ -40,7 +37,7 @@
 		height: 100%;
 		padding-right: 5px;
 		position: relative;
-		width: 326px;
+		width: 365px;
 
 		.shadow-bottom::after {
 			background: image-url("messages_left_side_shade.png");
@@ -95,12 +92,33 @@
 
 			.conversation-info {
 				margin-top: 7px;
+				float: right;
+    			width: 245px;
+
+				i {
+					margin-right: 10px;
+					float: right;
+				}
+				.unreaded-count {
+					background-color: #1da8db;
+					border-radius: 10px;
+					color: white;
+					display: inline-block;
+					font-size: 11px;
+					font-weight: 700;
+					height: 14px;
+					padding-top: 2px;
+					text-align: center;
+				    width: 30px;
+				    float: right;
+				}
 			}
 			h2 {
+				float: left;
 				margin:0px;
 				position: relative;
 				font-size: 14px;
-
+				width: 210px;
 				top: -5px;
 			}
 
@@ -116,11 +134,11 @@
 				h2 {
 					color: color(1);
 				}
+				p {
+					color: black;
+				}
 				border-bottom-color: color(1);
 			}
-		}
-		.conversation-unreaded {
-			border-left: 4px solid rgb(33,176,233);
 		}
 
 		.avatars {
@@ -144,19 +162,10 @@
 			    width: 40px;
 			}
 		}
-
-		.conversation-info {
-			margin-left: 90px;
-
-			i {
-				margin-right: 10px;
-				float: right;
-			}
-		}
 	}
 
 	.conversation-detail-container {
-		width: 634px;
+		width: 595px;
 		height: 100%;
 		padding: 20px;
 
@@ -166,7 +175,13 @@
 		}
 		
 		.conversation-detail {
-
+			a {
+				color: color(5);
+				&:hover {
+					color: lighten(color(5), 10);
+				}
+			}
+			
 			.conversation-detail-top {
 				padding-bottom: 15px;
 
@@ -228,7 +243,6 @@
 		        }
 		        b { font-weight:$ui-text-weight-bolder; }
 		        a {
-			        color: color(5);
 			        display: block;
 			        margin-top: 10px;
 			        font-weight: 600;

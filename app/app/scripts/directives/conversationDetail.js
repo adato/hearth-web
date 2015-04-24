@@ -18,6 +18,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
             templateUrl: 'templates/directives/conversationDetail.html',
             link: function($scope, element) {
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                $scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
                 $scope.confirmBox = $rootScope.confirmBox;
                 $scope.scrollBottom = false;
                 $scope.participants = false;
@@ -38,7 +39,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     }
                     _loadLock = true;
                         
-                    console.log("LOADING", from);
                     Conversations.getMessages({id: $scope.info._id, older: from, limit: _messagesCount}, function(res) {
                         if(res.messages.length < _messagesCount)
                             _loadOlderMessagesEnd = true;
@@ -51,8 +51,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                         _loadLock = false;
                         
-                        $timeout(function(){$scope.displayMessages();});
-                        $timeout(function(){$scope.resizeMessagesBox();});
+                        $timeout(function(){
+                            $scope.displayMessages();
+                            $scope.resizeMessagesBox();
+                        });
                         if(!from) $scope.scrollBottom();
                         done && done(res);
                     }, function() {
@@ -164,36 +166,35 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                 $scope.resizeMessagesBox = function() {
 
-                    // $timeout(function() {
-                        var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").outerHeight() - 10;
-                        $scope.testScrollBottom();
+                    var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").outerHeight() - 10;
+                    $scope.testScrollBottom();
 
-                        $(".messages-container", element).css("height", boxHeight);
-                        $(".messages-container", element).fadeIn();
+                    $(".messages-container", element).css("height", boxHeight);
+                    $(".messages-container", element).fadeIn();
 
-                        if(!_scrollInited) {
-                            $(".messages-container", element).scroll($scope.loadOlderMessages);
-                            _scrollInited = true;
-                        }
-
-                    // });
+                    if(!_scrollInited) {
+                        $(".messages-container", element).scroll($scope.loadOlderMessages);
+                        _scrollInited = true;
+                    }
                 };
 
-                $scope.loadOlderMessages = function() {
+                $scope.loadOlderMessages = function(event) {
                     if($scope.loadingOlderMessages || _loadOlderMessagesEnd) return false;
 
                     if($(".messages-container", element).scrollTop() < 100) {
                         var from = $scope.messages[0] ? $scope.messages[0].created_at : undefined;
-                        var height = $(".messages-container-inner", element).prop('scrollHeight');
                         $scope.loadingOlderMessages = true;
 
                         $scope.loadMessages($scope.messages[0].created_at, function() {
                             $scope.loadingOlderMessages = false;
+                            var height = $(".messages-container-inner", element).prop('scrollHeight');
+                            var scrollTop = $(".messages-container", element).scrollTop();
+                            
                             $timeout(function() {
                                 var newHeight = $(".messages-container-inner", element).prop('scrollHeight');
-                                $(".messages-container", element).scrollTop(newHeight - height);
-                                console.log("Old: ", height, " New: ", newHeight);
-                                console.log("Scrolling down to: ", newHeight - height);
+                                $(".messages-container", element).scrollTop(newHeight - height + scrollTop);
+                                // console.log("Old: ", height, " New: ", newHeight);
+                                // console.log("Scrolling down to: ", newHeight - height);
                             });
                         });
                     }
