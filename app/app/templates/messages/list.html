@@ -35,7 +35,7 @@
 					<div class="conversation-info">
 						<h2 ng-if="item.title">{{ item.title | ellipsis:45 }}</h2>
 						<h2 ng-if="!item.title">{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</h2>
-						<span class="unreaded-count" ng-if"!item.read">12+</span>
+						<span class="unreaded-count" ng-if="!item.read">12+</span>
 						<div class="clear"></div>
 						<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>
 						<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:DATETIME_FORMATS.medium }}">{{ item.last_message_time | ago }}</i>
