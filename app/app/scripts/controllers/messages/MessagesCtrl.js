@@ -58,11 +58,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				return $scope.loadConversations({});
 
 			Conversations.get({newer:$scope.conversations[0].last_message_time, exclude_self: true}, function(res) {
-				$scope.prependConversation($scope.deserialize(res.conversations));
+				$scope.prependConversations($scope.deserialize(res.conversations));
 			});
 		};
 
-		$scope.prependConversation = function(conversation) {
+		$scope.prependConversations = function(conversation) {
 			Array.prototype.unshift.apply($scope.conversations, $scope.deserializeConversation(conversation));
 		};
 
@@ -135,20 +135,29 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
+		$scope.findConversation = function(id) {
+			for(var i in $scope.conversations) {
+				if($scope.conversations[i]._id == id)
+					return i;
+			}
+			return false;
+		};
+
+		$scope.updateConversation = function(ev, conversation) {
+			var index = $scope.findConversation(conversation._id);
+			index && $scope.conversations.splice(index, 1);
+
+			$scope.prependConversations([conversation]);
+		};
+
 		// when we leave/delete conversation - remove it from conversation list
 		$scope.removeConversationFromList = function(ev, id) {
-			var index = false;
 			// find its position
-			for(var i in $scope.conversations) {
-				if($scope.conversations[i]._id == id) {
-					index = i;
-					break;
-				}
-			}
+			var index = $scope.findConversation(id);
 
 			// remove it
 			if(index !== false)
-				$scope.conversations.splice(i, 1);
+				$scope.conversations.splice(index, 1);
 
 			// and if it is currently open, jump to top
 			if(id == $scope.detail._id) {
@@ -178,6 +187,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		UnauthReload.check();
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
+		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();

@@ -81,10 +81,19 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                         _loadLock = false;
                         
-                        if($scope.messages)
-                            $scope.messages = $scope.messages.concat(res.messages);
-                        else
-                            $scope.messages = res.messages;
+                        if(res.messages.length) {
+
+                            if($scope.messages)
+                                $scope.messages = $scope.messages.concat(res.messages);
+                            else
+                                $scope.messages = res.messages;
+
+                            $scope.info.last_message_time = res.messages[res.messages.length-1].created_at;
+                            $scope.info.message = res.messages[res.messages.length-1];
+                            $scope.info.messages_count += res.messages.length;
+
+                            $scope.$emit("conversationUpdated", $scope.info);
+                        }
 
                         $timeout(function() {$scope.displayMessages();});
                         $scope.testScrollBottom();
