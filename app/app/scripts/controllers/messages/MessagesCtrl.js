@@ -7,19 +7,20 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$routeParams', '$location',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$routeParams', '$location', '$timeout',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
 		$scope.conversations = false;
 		$scope.detail = false;
-		$scope.detailIndex = false;
 		$scope.showFulltext = false;
 		$scope.showNewMessageForm = false;
-		$scope.conversationFilter = 'all';
-		$scope.conversationSearch = '';
 		
 		$scope.toggleAddForm = function(conversation) {
 			$scope.showNewMessageForm = !$scope.showNewMessageForm;
-			conversation && $scope.loadNewConversations();
+			if(conversation) {
+				$scope.loadNewConversations();
+				$scope.loadConversationDetail(conversation._id);
+			}
+
 		};
 
 		$scope.applyFilter = function() {
@@ -35,12 +36,16 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadNewConversations = function() {
-			// TODO
+			if(!$scope.conversations.length)
+				return $scope.loadConversations({});
+
+			Conversations.get({newer:$scope.conversations[0].last_message_time, exclude_self: true}, function(res) {
+				$scope.prependConversation($scope.deserialize(res.conversations));
+			});
 		};
 
 		$scope.prependConversation = function(conversation) {
-			$scope.conversations.unshift($scope.deserializeConversation(conversation));
-			// $scope.showConversation(conversation, 0);
+			Array.prototype.unshift.apply($scope.conversations, $scope.deserializeConversation(conversation));
 		};
 
 		$scope.searchConversation = function() {
@@ -55,7 +60,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			info.read = true;
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
-			$scope.detailIndex = parseInt(index);
 
 			$location.url("/messages/"+info._id+"?"+jQuery.param( $location.search()));
 		};
@@ -112,7 +116,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// if requested conversation is not in list, load it from API
 			Conversations.get({exclude_self: true, id: id}, function(res) {
-				$scope.showConversation($scope.deserializeConversation(res), false);
+				$scope.showConversation($scope.deserializeConversation(res), -1);
 			});
 		};
 
@@ -132,16 +136,28 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.conversations.splice(i, 1);
 
 			// and if it is currently open, jump to top
-			if(id == $scope.detail._id)
+			if(id == $scope.detail._id) {
 				$scope.showConversation($scope.conversations[0], 0);
+				$timeout(function() {
+					$(".conversations .scroll-content").scrollTop(0);
+				});
+			}
 		};
 
 		function init() {
 			$scope.conversations = false;
 			$scope.detail = false;
-			$scope.detailIndex = false;
 			$scope.showFulltext = false;
 			$scope.showNewMessageForm = false;
+			
+			console.log($location.search());
+			// if($location.search())
+				// $scope.filter = {
+				// 	type: 'all',
+				// 	search: '',
+				// };
+
+
 
 			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {

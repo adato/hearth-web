@@ -1,7 +1,4 @@
 .messages {
-	a {
-		color: color(5);
-	}
 	.messages-top {
 		input, select {
 			width: 280px;
@@ -40,7 +37,7 @@
 		height: 100%;
 		padding-right: 5px;
 		position: relative;
-		width: 326px;
+		width: 365px;
 
 		.shadow-bottom::after {
 			background: image-url("messages_left_side_shade.png");
@@ -156,7 +153,7 @@
 	}
 
 	.conversation-detail-container {
-		width: 634px;
+		width: 595px;
 		height: 100%;
 		padding: 20px;
 
@@ -166,7 +163,13 @@
 		}
 		
 		.conversation-detail {
-
+			a {
+				color: color(5);
+				&:hover {
+					color: lighten(color(5), 10);
+				}
+			}
+			
 			.conversation-detail-top {
 				padding-bottom: 15px;
 
@@ -228,7 +231,6 @@
 		        }
 		        b { font-weight:$ui-text-weight-bolder; }
 		        a {
-			        color: color(5);
 			        display: block;
 			        margin-top: 10px;
 			        font-weight: 600;
