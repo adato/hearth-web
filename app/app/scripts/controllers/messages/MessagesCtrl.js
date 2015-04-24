@@ -13,23 +13,41 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.detail = false;
 		$scope.showFulltext = false;
 		$scope.showNewMessageForm = false;
-		
+		$scope.filter = $location.search();
+
+		if(!Object.keys($scope.filter).length) {
+			$scope.filter = {
+				query: '',
+				type: '',
+			}
+		}
+
 		$scope.toggleAddForm = function(conversation) {
 			$scope.showNewMessageForm = !$scope.showNewMessageForm;
 			if(conversation) {
 				$scope.loadNewConversations();
 				$scope.loadConversationDetail(conversation._id);
 			}
+		};
 
+		$scope.getFilter = function() {
+			var filter = angular.copy($location.search());
+			if(!!~['archive', 'as_replies', 'from_community'].indexOf(filter.type))
+				filter[filter.type] = true;
+
+			delete filter.type;
+			return filter;
 		};
 
 		$scope.applyFilter = function() {
-			var filter = {};
-			if($scope.conversationSearch)
-				filter.query = $scope.conversationSearch;
+			var filter = angular.copy($scope.filter);
 
-			if(!!~['archive', 'as_replies', 'from_community'].indexOf($scope.conversationFilter))
-				filter[$scope.conversationFilter] = true;
+			if(!filter.query)
+				delete filter.query;
+			if(!filter.type)
+				delete filter.type;
+			
+			console.log(filter);
 
 			$location.url("/messages?"+jQuery.param(filter));
 			$scope.$broadcast('filterApplied', filter);
@@ -50,10 +68,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.searchConversation = function() {
 			// if fulltext is hidden, first only show input
-			if(!$scope.showFulltext || !$scope.conversationSearch )
+			if(!$scope.showFulltext || !$scope.filter.query )
 				return $scope.showFulltext = !$scope.showFulltext;
 
-			$scope.conversationSearch && $scope.applyFilter();
+			$scope.filter.query && $scope.applyFilter();
 		};
 
 		$scope.showConversation = function(info, index) {
@@ -61,7 +79,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
 
-			$location.url("/messages/"+info._id+"?"+jQuery.param( $location.search()));
+			$location.url("/messages/"+info._id+"?"+jQuery.param($location.search()));
 		};
 
 		$scope.loadCounters = function() {
@@ -90,13 +108,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadConversations = function(conf, done) {
-			var filter;
 			conf = conf || {};
 			conf.exclude_self = true;
 
-			filter = $location.search();
-			if(filter)
-				angular.extend(conf, filter);
+			angular.extend(conf, $scope.getFilter());
 
 			Conversations.get(conf, function(res) {
 				$scope.conversations = $scope.deserialize(res.conversations);
@@ -150,15 +165,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showFulltext = false;
 			$scope.showNewMessageForm = false;
 			
-			console.log($location.search());
-			// if($location.search())
-				// $scope.filter = {
-				// 	type: 'all',
-				// 	search: '',
-				// };
-
-
-
 			$scope.loadCounters();
 			$scope.loadConversations({}, function(list) {
 				// load first conversation on init

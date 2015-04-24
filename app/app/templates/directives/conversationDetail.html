@@ -2,7 +2,8 @@
 	<div loading show="!messages"></div>
 	<div class="conversation-detail" ng-if="messages">
 		<div class="conversation-detail-top">
-			<a ng-click="toggleParticipants()">{{ info.title }}</a>
+			<a ng-click="toggleParticipants()" ng-if="info.title">{{ info.title }}</a>
+			<a ng-click="toggleParticipants()" ng-if="!info.title">{{ 'MESSAGES.LIST.CONVERSATION_HAS_NO_TITLE' | translate }}</a>
 			<span class="right">
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{ info._id }}" title="{{ 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
 				<div class="conversation-actions-dropdown" id="conversation-actions-{{ info._id }}" style="display:none;">
