@@ -179,8 +179,8 @@
 									<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
 								</div>
 								<div class="text-container clearfix">
-									<span class="reply-author">{{ item.author.name }}</span>
-									<p ng-bind-html="item.message | linky:'_blank' | nl2br"></p>
+									<span class="reply-author">{{ item.message.author.name }}</span>
+									<p ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
 								</div>
 								<div class="reply-contact fright" ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></div>
 							</div>
