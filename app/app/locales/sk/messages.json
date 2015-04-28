@@ -506,7 +506,7 @@
         },
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
-            "CONVERSATION_HAS_NO_TITLE": "Konverzace nemá titulek",
+            "CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",
             "NO_RESULT": "V seznamu nejsou žádné konverzace."
         },
         "REPLY": {
@@ -924,6 +924,7 @@
     "TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadajte, čo vás zaujíma...",
     "TELL_MORE_ABOUT": "Povedzte svetu niečo o sebe:",
     "TELL_WHAT": "Jednoducho uveďte čo napr. tútorstvo",
+    "TERMS": "Podmínky použití",
     "TERMS_OF_USE_ON_HEARTH": "Podmienky používania štedrej sociálnej siete - Hearth.net",
     "THANKS_FOR_REPORT": "Ďakujeme za podnet, tento príspevok preveríme.",
     "THEY_WROTE_ME": "Ohodnotili ma",

@@ -41,11 +41,10 @@ angular.module('hearth.directives').directive('userSelector', [
 						type: 'user'
 					};
 
-					if(!s || s.length < 2)
+					if(!s || !s.length)
 						return;
 
-					if(timer)
-						$timeout.cancel(timer);
+					timer && $timeout.cancel(timer);
 
 					// Search after while when user stops typing
 					timer = $timeout(function() {
