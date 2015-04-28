@@ -41,7 +41,7 @@ angular.module('hearth.directives').directive('userSelector', [
 						type: 'user'
 					};
 
-					if(!s || s.length < 2)
+					if(!s || !s.length)
 						return;
 
 					if(timer)
