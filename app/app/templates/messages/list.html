@@ -1,11 +1,11 @@
 <div class="messages" dynamic-height offset="100" min-height="400">
 	<div class="messages-top formStyle">
-		<form class="search" method="POST" ng-submit="searchConversation()">
+		<!-- <form class="search" method="POST" ng-submit="searchConversation()">
 			<div class="slide-show" ng-class="{'width-auto': showFulltext}">
 				<input type="text" ng-model="filter.query" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
 			</div>
 			<button class="button-icon fa fa-search"></button>
-		</form>
+		</form> -->
 		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
 			<option value="" ng-selected="filter.type == ''">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
 			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
@@ -36,7 +36,7 @@
 					<div class="conversation-info">
 						<h2 ng-if="item.title">{{ item.title | ellipsis:45 }}</h2>
 						<h2 ng-if="!item.title">{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</h2>
-						<!-- <span class="unreaded-count" ng-if="!item.read">12+</span> -->
+						<span class="unreaded-count" ng-if="!item.read"></span>
 						<div class="clear"></div>
 						<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>
 						<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:DATETIME_FORMATS.medium }}">{{ item.last_message_time | ago }}</i>
