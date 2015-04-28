@@ -187,16 +187,7 @@ angular.module('hearth.directives').directive('filter', [
                         });
                     }
                 });
-
-                // scope.$watch('place', function(value) {
-                //     console.log(value);
-                //     if (!value && scope.filter) {
-                //         delete scope.filter.lat;
-                //         delete scope.filter.lon;
-                //         delete scope.filter.name;
-                //     }
-                // });
-
+                
                 scope.$on('filterApplied', function() {
                     scope.updateFilterByRoute();
                 });
@@ -204,7 +195,6 @@ angular.module('hearth.directives').directive('filter', [
                 scope.recountPosts = function() {
                     
                     Filter.getFilterPostCount(scope.filter, function(count) {
-                        console.log(count);
                         scope.filterPostCount = count;
                     });
                 };

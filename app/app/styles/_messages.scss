@@ -90,15 +90,20 @@
 			padding: 10px;
 			padding-left: 0px;
 
+			&.unreaded {
+				border-left: 2px solid #1da8db;
+			}
 			.conversation-info {
 				margin-top: 7px;
 				float: right;
-    			width: 245px;
+    			width: 240px;
 
 				i {
 					margin-right: 10px;
 					float: right;
 				}
+				/*
+				
 				.unreaded-count {
 					background-color: #1da8db;
 					border-radius: 10px;
@@ -112,6 +117,7 @@
 				    width: 30px;
 				    float: right;
 				}
+				 */
 			}
 			h2 {
 				float: left;
