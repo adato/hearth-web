@@ -31,6 +31,7 @@
 						<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
 						<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo:3:3"></avatar>
 						<div class="avatar-participants-count" ng-if="item.participants_count > 3">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
+						<div class="avatar-no-participants" ng-if="!item.participants.length"></div>
 					</div>
 					<div class="conversation-info">
 						<h2 ng-if="item.title">{{ item.title | ellipsis:45 }}</h2>

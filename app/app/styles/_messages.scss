@@ -155,7 +155,14 @@
 				position: default;
 				margin-right: 5px;
 			}
-
+			.avatar-no-participants {
+				background-color: #DDD;
+				margin: 0px auto;
+				width: 50px;
+				height: 50px;
+				margin-top: 20px;
+				border-radius: 50%;
+			}
 			.avatar-participants-count {
 			    background-color: #dddddd;
 			    border-radius: 50%;
