@@ -1,13 +1,13 @@
 .messages {
 	.messages-top {
 		input, select {
-			width: 280px;
+			width: 240px;
 			display: inline-block;
 			display: inline-block;
 			background-color: white;
 		}
 		select {
-			width: 265px;
+			width: 225px;
 			float: left;
 		}
 		.search {
@@ -137,6 +137,7 @@
 			}
 
 			&.active {
+				background-color: rgba(251,127,59, 0.25); //rgba(255,230,216,0.7);
 				h2 {
 					color: color(1);
 				}
