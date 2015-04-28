@@ -91,33 +91,27 @@
 			padding-left: 0px;
 
 			&.unreaded {
-				border-left: 4px solid #1da8db;
+				h2 {
+					color: #1da8db;
+				}
 			}
 			.conversation-info {
 				margin-top: 7px;
 				float: right;
-    			width: 240px;
+    			width: 230px;
 
 				i {
 					margin-right: 10px;
 					float: right;
 				}
-				/*
-				
 				.unreaded-count {
 					background-color: #1da8db;
-					border-radius: 10px;
-					color: white;
+					border-radius: 50%;
 					display: inline-block;
-					font-size: 11px;
-					font-weight: 700;
-					padding-top: 2px;
-					padding-bottom: 2px;
-					text-align: center;
-				    width: 30px;
+				    height: 15px;
+				    width: 15px;
 				    float: right;
 				}
-				 */
 			}
 			h2 {
 				float: left;
@@ -151,6 +145,7 @@
 		.avatars {
 			float: left;
 			margin-right: 10px;
+			margin-left: 10px;
 			width: 80px;
 			avatar {
 				position: default;
