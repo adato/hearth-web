@@ -188,15 +188,12 @@ angular.module('hearth.directives').directive('filter', [
                         });
                     }
                 });
-
                 scope.$on('filterApplied', function() {
                     scope.updateFilterByRoute();
                 });
 
                 scope.recountPosts = function() {
-                    
-                    var f = scope.convertFilterToParams(scope.filter);
-                    Filter.getFilterPostCount(f, function(count) {
+                    Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function(count) {
                         scope.filterPostCount = count;
                     });
                 };

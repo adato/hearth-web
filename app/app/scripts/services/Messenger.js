@@ -9,7 +9,6 @@
 angular.module('hearth.services').service('Messenger', [
 	'$q', 'Conversations', '$rootScope', '$timeout',
 	function($q, Conversations, $rootScope, $timeout) {
-		const _LOAD_COUNTERS_INTERVAL = 60000;
 		var self = this;
 		this.counters = null;
 		var timer = null;
@@ -17,20 +16,13 @@ angular.module('hearth.services').service('Messenger', [
 		this.loadCounters = function(done) {
 			Conversations.getCounters({}, function(res) {
 				self.counters = res;
-				$rootScope.unreadedMessagesCount = self.counters.unread;
+				$rootScope.unreadedMessagesCount = res.unread;
 				done && done(res);
-
-				$timeout.cancel(timer);
-				timer = $timeout(self.loadCounters,_LOAD_COUNTERS_INTERVAL);
 			});
 		};
 
-		function init() {
-			if($rootScope.loggedUser._id)
-				self.loadCounters();
+		this.decrUnreaded = function() {
+			$rootScope.unreadedMessagesCount--;
 		};
-		
-		$rootScope.$on('initFinished', init);
-		$rootScope.initFinished && init();
 	}
 ]);

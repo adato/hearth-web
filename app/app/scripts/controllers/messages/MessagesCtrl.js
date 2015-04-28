@@ -14,7 +14,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showFulltext = false;
 		$scope.showNewMessageForm = false;
 		$scope.filter = $location.search();
-
+		var _loadTimeout = 10000; // pull requests interval in ms
+        var _loadLock = false; // pull requests interval in ms
+        var _loadTimeoutPromise = false;
+        
 		if(!Object.keys($scope.filter).length) {
 			$scope.filter = {
 				query: '',
@@ -47,23 +50,38 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if(!filter.type)
 				delete filter.type;
 			
-			console.log(filter);
-
 			$location.url("/messages?"+jQuery.param(filter));
 			$scope.$broadcast('filterApplied', filter);
 		};
 
 		$scope.loadNewConversations = function() {
 			if(!$scope.conversations.length)
-				return $scope.loadConversations({});
+				return init();
 
+            if(_loadLock) return false;
+            _loadLock = true;
+
+            $timeout.cancel(_loadTimeoutPromise);
 			Conversations.get({newer:$scope.conversations[0].last_message_time, exclude_self: true}, function(res) {
-				$scope.prependConversations($scope.deserialize(res.conversations));
+				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+                _loadLock = false;
+                
+                $scope.prependConversations($scope.deserialize(res.conversations));
+			}, function() {
+                _loadLock = false;
+                _loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+            });
+		};
+
+		$scope.removeDuplicitConversations = function(list) {
+			list.forEach(function(item) {
+				$scope.removeConversationFromList(null, item._id, true);
 			});
 		};
 
-		$scope.prependConversations = function(conversation) {
-			Array.prototype.unshift.apply($scope.conversations, $scope.deserializeConversation(conversation));
+		$scope.prependConversations = function(conversations) {
+			$scope.removeDuplicitConversations(conversations);
+			Array.prototype.unshift.apply($scope.conversations, conversations);
 		};
 
 		$scope.searchConversation = function() {
@@ -75,6 +93,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.showConversation = function(info, index) {
+			if(!info.read)
+				Messenger.decrUnreaded();
+			
 			info.read = true;
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
@@ -144,14 +165,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.updateConversation = function(ev, conversation) {
-			var index = $scope.findConversation(conversation._id);
-			index && $scope.conversations.splice(index, 1);
-
-			$scope.prependConversations([conversation]);
+			$scope.prependConversations([$scope.deserializeConversation(conversation)]);
 		};
 
 		// when we leave/delete conversation - remove it from conversation list
-		$scope.removeConversationFromList = function(ev, id) {
+		$scope.removeConversationFromList = function(ev, id, dontSwitchConversation) {
 			// find its position
 			var index = $scope.findConversation(id);
 
@@ -161,12 +179,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// and if it is currently open, jump to top
 			if(id == $scope.detail._id) {
-				$scope.showConversation($scope.conversations[0], 0);
+				// if we should switch to the first conversation at the top
+				!dontSwitchConversation && $scope.showConversation($scope.conversations[0], 0);
 				$timeout(function() {
 					$(".conversations .scroll-content").scrollTop(0);
 				});
 			}
 		};
+
 
 		function init() {
 			$scope.conversations = false;
@@ -181,6 +201,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					$scope.loadConversationDetail($routeParams.id);
 				else if(list.length)
 					$scope.showConversation(list[0], 0);
+
+				$scope.loadNewConversations();
 			});
 
 		};
@@ -191,5 +213,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();
+
+		$scope.$on('$destroy', function() {
+            // stop pulling new conversations on directive destroy
+            $timeout.cancel(_loadTimeoutPromise);
+        });
 	}
 ]);
