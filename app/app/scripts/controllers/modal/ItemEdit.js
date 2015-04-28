@@ -186,7 +186,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					
 				} else if( getDateDiffFromNow(post.valid_until, $scope.dateFormat) < 0) {
 					res = $scope.slide.date = true;
-					console.log(getDateDiffFromNow(post.valid_until, $scope.dateFormat));
 					// test for old date in past
 					$timeout(function() {$scope.showError.valid_until = true;});
 				} else {
@@ -230,7 +229,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if(datetime != '') {
 				$timeout(function() {
 					if(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat) < 0) {
-						console.log(getDateDiffFromNow($scope.post.valid_until, $scope.dateFormat));
 						$scope.showError.valid_until = true;
 					}
 				});
@@ -393,12 +391,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.init();
 		$scope.$watch('post.related_communities', function(val, old) {
-			console.log("COMMUNITIES: ", val.length, old.length);
 			if(val.length !== old.length && !$scope.post.related_communities.length)
 				$scope.post.is_private = false;
 		});
 		$scope.$watch('post.current_community_id', function(val, old) {
-			console.log("AUTHOR: ", val, old);
 			if(!!val !== !!old) {
 				$scope.post.related_communities = [];
 				$scope.post.is_private = false;

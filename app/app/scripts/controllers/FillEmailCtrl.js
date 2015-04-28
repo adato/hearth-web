@@ -59,7 +59,6 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
         };
 
         $scope.fillEmail = function() {
-            console.log($scope.sending);
             if ($scope.sending)
                 return false;
             $scope.sending = true;
