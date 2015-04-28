@@ -36,8 +36,7 @@ angular.module('hearth.directives').directive('userSelector', [
 				$scope.search = function(s) {
 					var params = {
 						limit: 10,
-						query: s,
-						q: s,
+						query: '*'+s+'*',
 						type: 'user'
 					};
 
