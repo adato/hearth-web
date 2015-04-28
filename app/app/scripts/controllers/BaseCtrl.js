@@ -58,7 +58,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * scroll to top of the page, if not, refresh page with fixed height
          */
         $rootScope.$on("$routeChangeStart", function(event, next) {
-            Messenger.loadCounters();
+            // when changed route, load conversation counters 
+            if(Auth.isLoggedIn())
+                Messenger.loadCounters();
+
             if(!$rootScope.addressNew)
                 return $rootScope.top(0, 1);;
             
