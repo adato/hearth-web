@@ -180,6 +180,7 @@
 	.conversation-detail-container {
 		width: 595px;
 		padding: 20px;
+		max-height: 100%;
 
 		&>div {
 			position: relative;
