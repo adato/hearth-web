@@ -179,7 +179,6 @@
 
 	.conversation-detail-container {
 		width: 595px;
-		height: 100%;
 		padding: 20px;
 
 		&>div {
@@ -285,8 +284,7 @@
 
 				.messages-container-inner {
 				    width: 100%;
-					position: absolute;
-				    bottom: 0px;
+					
 				    max-height:100%;
 
 				    .system-message p {
@@ -296,8 +294,6 @@
 				}
 			}
 			.message-reply {
-				bottom: 0;
-			    position: absolute;
 			    width: 100%;
 			    min-height: 118px;
 			    padding-top: 10px;

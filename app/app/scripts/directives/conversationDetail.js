@@ -178,7 +178,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").outerHeight() - 10;
                     $scope.testScrollBottom();
 
-                    $(".messages-container", element).css("height", boxHeight);
+                    if(element.height() > element.parent().height())
+                        alert("AA");
+                    $(".messages-container", element).css("max-height", boxHeight);
                     $(".messages-container", element).fadeIn();
 
                     if(!_scrollInited) {
