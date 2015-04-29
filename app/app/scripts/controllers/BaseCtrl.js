@@ -59,8 +59,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $rootScope.$on("$routeChangeStart", function(event, next) {
             // when changed route, load conversation counters 
-            if(Auth.isLoggedIn())
-                Messenger.loadCounters();
+            Auth.isLoggedIn() && Messenger.loadCounters();
 
             if(!$rootScope.addressNew)
                 return $rootScope.top(0, 1);;
@@ -205,6 +204,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $.cookie('tutorial', 1);
             }
             Notify.checkRefreshMessage();
+            Auth.isLoggedIn() && Messenger.loadCounters();
+
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);

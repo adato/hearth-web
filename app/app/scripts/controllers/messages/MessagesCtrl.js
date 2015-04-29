@@ -62,7 +62,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
             _loadLock = true;
 
             $timeout.cancel(_loadTimeoutPromise);
-			Conversations.get({newer:$scope.conversations[0].last_message_time, exclude_self: true}, function(res) {
+			Conversations.getSilently({newer:$scope.conversations[0].last_message_time, exclude_self: true}, function(res) {
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
                 _loadLock = false;
                 
