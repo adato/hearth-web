@@ -493,6 +493,18 @@
             "TEXT": "Doopravdy chcete smazat konverzaci?"
         },
         "DELETE_CONVERSATION": "Smazat konverzaci",
+        "DETAIL": {
+            "AND_X_MORE": {
+                "one": "a 1 další",
+                "few": "a {{count}} další",
+                "other": "a {{count}} dalších"
+            },
+            "USERS": {
+                "one": "1 uživatel",
+                "few": "{{count}} uživatelé",
+                "other": "{{count}} uživatelů"
+            }
+        },
         "FILTER": {
             "ALL": "Všechny zprávy",
             "ARCHIVE": "Archiv",
@@ -507,7 +519,8 @@
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
             "CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",
-            "NO_RESULT": "V seznamu nejsou žádné konverzace."
+            "NO_RESULT": "V seznamu nejsou žádné konverzace.",
+            "PARTICIPANTS_AND_MORE": "a další"
         },
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",

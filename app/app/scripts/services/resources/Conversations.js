@@ -18,6 +18,10 @@ angular.module('hearth.services').factory('Conversations', [
 			get: {
 				method: 'GET',
 			},
+			getSilently: {
+				method: 'GET',
+		      	ignoreLoadingBar: true
+			},
 			leave: {
 				url: $$config.apiPath + '/conversations/:id/leave',
 				method: 'DELETE',
