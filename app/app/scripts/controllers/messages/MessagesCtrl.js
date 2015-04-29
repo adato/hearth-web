@@ -35,7 +35,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.getFilter = function() {
 			var filter = angular.copy($location.search());
-			if(!!~['archive', 'as_replies', 'from_community'].indexOf(filter.type))
+			if(!!~['archive', 'as_replies', 'from_community', 'users_posts'].indexOf(filter.type))
 				filter[filter.type] = true;
 
 			delete filter.type;
@@ -55,14 +55,17 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadNewConversations = function() {
-			if(!$scope.conversations.length)
-				return init();
-
             if(_loadLock) return false;
             _loadLock = true;
-
+			
+			if(!$scope.conversations.length)
+				return init();
             $timeout.cancel(_loadTimeoutPromise);
-			Conversations.getSilently({newer:$scope.conversations[0].last_message_time, exclude_self: true}, function(res) {
+
+            var conf = {newer:$scope.conversations[0].last_message_time, exclude_self: true};
+            angular.extend(conf, $scope.getFilter());
+
+			Conversations.getSilently(conf, function(res) {
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
                 _loadLock = false;
                 
@@ -111,13 +114,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.deserializeConversation = function(conversation) {
 			if(!conversation.title) {
+				conversation.titleCustom = true;
 				conversation.title = [];
 
-				for(var id in conversation.participants) {
-					var user = conversation.participants[id];
-
-					if($rootScope.loggedUser._id !== user._id)
-						conversation.title.push(user.name);
+				for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
+					var user = conversation.participants[i];
+					conversation.title.push(user.name);
 				};
 				conversation.title = conversation.title.join(", ");
 			}
@@ -136,6 +138,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			Conversations.get(conf, function(res) {
 				$scope.conversations = $scope.deserialize(res.conversations);
+				$scope.conversation =  [];
 				done && done($scope.conversations);
 			});
 		};
@@ -202,7 +205,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				else if(list.length)
 					$scope.showConversation(list[0], 0);
 
-				$scope.loadNewConversations();
+				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 			});
 
 		};

@@ -19,6 +19,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
             link: function($scope, element) {
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
                 $scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
+                $scope.pluralCat = $rootScope.pluralCat;
                 $scope.confirmBox = $rootScope.confirmBox;
                 $scope.scrollBottom = false;
                 $scope.participants = false;
@@ -127,6 +128,18 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
+                $scope.archiveConversation = function(id) {
+                    $scope.sendingArchiveRequest = true;
+                    Conversations.remove({id: id}, function(res) {
+                        $scope.sendingArchiveRequest = false;
+                        $scope.$emit("conversationRemoved", id);
+                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_ARCHIVE_SUCCESS', Notify.T_SUCCESS);
+                    }, function(err) {
+                        $scope.sendingArchiveRequest = false;
+                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_ARCHIVE_FAILED', Notify.T_ERROR);
+                    });
+                };
+
                 $scope.leaveConversation = function(id) {
                     $scope.sendingDeleteRequest = true;
                     Conversations.leave({id: id}, function(res) {
@@ -143,9 +156,24 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     $(".messages-container article:hidden", element).fadeIn();
                 };
 
+                        
+                $scope.deserialize = function(conversation) {
+                    if(conversation.titleCustom) {
+                        conversation.titleDetail = [];
+
+                        for(var i = 0; i < 3 && i < conversation.participants.length; i++) {
+                            var user = conversation.participants[i];
+                            conversation.titleDetail.push(user.name);
+                        };
+                        conversation.titleDetail = conversation.titleDetail.join(", ");
+                    }
+                    return conversation;
+                };
+
                 $scope.init = function(info) {
                     $timeout.cancel(_loadTimeoutPromise);
 
+                    $scope.info = $scope.deserialize($scope.info);
                     _loadOlderMessagesEnd = false;
                     _scrollInited = false;
                     $scope.messages = false;
@@ -162,7 +190,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.loadParticipants = function(val, oldVal) {
                     if(!$scope.showParticipants || $scope.participants) return false;
 
-                    Conversations.getParticipants({id: $scope.info._id}, function(res) {
+                    Conversations.getParticipants({id: $scope.info._id, exclude_self: true}, function(res) {
                         $scope.participants = res.participants;
                         $timeout(function(){$scope.resizeMessagesBox();});
                     });
