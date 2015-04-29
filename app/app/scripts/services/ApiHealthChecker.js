@@ -58,7 +58,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 				return false;
 
 			$("#maitenancePage").fadeOut();
-
 			window.location = document.URL;
 			location.reload();
 		};
