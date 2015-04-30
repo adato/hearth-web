@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showFulltext = false;
 		$scope.showNewMessageForm = false;
 		$scope.filter = $location.search();
-		var _loadTimeout = 10000; // pull requests interval in ms
+		var _loadTimeout = 2000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
         
@@ -55,11 +55,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadNewConversations = function() {
+			if(!$scope.conversations.length)
+				return $scope.loadFirstConversations();
+
             if(_loadLock) return false;
             _loadLock = true;
 			
-			if(!$scope.conversations.length)
-				return init();
             $timeout.cancel(_loadTimeoutPromise);
 
             var conf = {newer:$scope.conversations[0].last_message_time, exclude_self: true};
@@ -138,7 +139,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadConversations = function(conf, done) {
 			conf = conf || {};
 			conf.exclude_self = true;
-
 			angular.extend(conf, $scope.getFilter());
 
 			Conversations.get(conf, function(res) {
@@ -186,6 +186,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// and if it is currently open, jump to top
 			if(id == $scope.detail._id) {
+				if(!$scope.conversations.length) {
+					$scope.detail = false;
+					return $location.url("/messages");
+				}
 				// if we should switch to the first conversation at the top
 				!dontSwitchConversation && $scope.showConversation($scope.conversations[0], 0);
 				$timeout(function() {
@@ -194,6 +198,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 		};
 
+		$scope.loadFirstConversations = function() {
+			$scope.loadCounters();
+			$scope.loadConversations({}, function(list) {
+				// load first conversation on init
+				if($routeParams.id)
+					$scope.loadConversationDetail($routeParams.id);
+				else if(list.length)
+					$scope.showConversation(list[0], 0);
+
+				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+			});
+		};
 
 		function init() {
 			$scope.conversations = false;
@@ -211,7 +227,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 			});
-
 		};
 
 		UnauthReload.check();

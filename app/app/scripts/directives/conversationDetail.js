@@ -88,6 +88,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * This will handle callback functions after first messages are loaded
                  */
                 $scope.afterInitLoad = function(messages) {
+                    _loadingOlderMessages = false;
 
                     // start pulling new messages
                     $scope.scheduleNewMessagesLoading();
@@ -304,12 +305,15 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * and load messages
                  */
                 $scope.init = function(info) {
+                    if(_loadingOlderMessages)
+                        return false;
+                    _loadingOlderMessages = true;
+                        
                     $timeout.cancel(_loadTimeoutPromise);
 
                     // set initial state
                     $scope.info = $scope.deserialize($scope.info);
                     _loadOlderMessagesEnd = false;
-                    _loadingOlderMessages = false;
                     _scrollInited = false;
                     $scope.messages = false;
                     $scope.participants = false;
