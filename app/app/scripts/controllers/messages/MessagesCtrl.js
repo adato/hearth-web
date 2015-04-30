@@ -142,7 +142,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			angular.extend(conf, $scope.getFilter());
 
 			Conversations.get(conf, function(res) {
-				// res.conversations = [];
+				res.conversations = [];
 				$scope.conversations = $scope.deserialize(res.conversations);
 				done && done($scope.conversations);
 			});

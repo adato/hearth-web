@@ -504,6 +504,8 @@
                 "few": "a {{count}} další",
                 "other": "a {{count}} dalších"
             },
+            "EMPTY_HEADER": "Nejsou zde žádné konverzace",
+            "EMPTY_TEXT": "...",
             "EXPAND_ACTIONS": "Menu konverzace",
             "REPLY_TO_POST": "Odpověď na",
             "USERS": {
