@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.sendingActionRequest = false;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
-                var _loadTimeout = 2000; // pull requests interval in ms
+                var _loadTimeout = 5000; // pull requests interval in ms
                 var _loadLock = false; // pull requests interval in ms
                 var _scrollInited = false;
                 var _loadOlderMessagesEnd = false;
@@ -35,7 +35,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 var _loadingOlderMessages = false;
                 
                 $scope.addMessagesToList = function(messages, append) {
-
                     // concat new messages
                     if(!$scope.messages)
                         $scope.messages = messages;
@@ -104,7 +103,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 };
 
                 $scope.updateConversationInfo = function(lastMessage, messagesCount) {
-
                     // set info to conversation detail
                     $scope.info.last_message_time = lastMessage.created_at;
                     $scope.info.message = lastMessage;

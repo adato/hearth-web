@@ -54,6 +54,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.$broadcast('filterApplied', filter);
 		};
 
+		$scope.setCurrentConversationAsReaded = function() {
+			if(!$scope.detail || $scope.detail.read)
+				return false;
+				
+			Messenger.decrUnreaded();
+			$scope.detail.read = true;
+		};
+
 		$scope.loadNewConversations = function() {
 			if(!$scope.conversations.length)
 				return $scope.loadFirstConversations();
@@ -71,6 +79,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
                 _loadLock = false;
                 
                 $scope.prependConversations($scope.deserialize(res.conversations));
+                $scope.setCurrentConversationAsReaded();
 			}, function() {
                 _loadLock = false;
                 _loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
@@ -172,7 +181,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.updateConversation = function(ev, conversation) {
-			$scope.prependConversations([$scope.deserializeConversation(conversation)]);
+			if(!$scope.conversations.length || $scope.conversations[0]._id != conversation._id)
+				$scope.prependConversations([$scope.deserializeConversation(conversation)]);
 		};
 
 		// when we leave/delete conversation - remove it from conversation list
@@ -185,13 +195,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.conversations.splice(index, 1);
 
 			// and if it is currently open, jump to top
-			if(id == $scope.detail._id) {
+			if(!dontSwitchConversation && id == $scope.detail._id) {
 				if(!$scope.conversations.length) {
 					$scope.detail = false;
 					return $location.url("/messages");
 				}
 				// if we should switch to the first conversation at the top
-				!dontSwitchConversation && $scope.showConversation($scope.conversations[0], 0);
+				$scope.showConversation($scope.conversations[0], 0);
 				$timeout(function() {
 					$(".conversations .scroll-content").scrollTop(0);
 				});
