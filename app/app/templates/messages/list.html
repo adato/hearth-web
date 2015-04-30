@@ -24,7 +24,7 @@
 			<div class="nano" custom-scrollbar>
 	    		<div class="nano-content">
 					<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == detail._id}"></div>
-					<div class="text-center" ng-if="!conversations.length">
+					<div class="text-center no-result" ng-if="!conversations.length">
 						{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
 					</div>
 					<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
@@ -52,7 +52,15 @@
 		</div>
 		<div class="collumn box right conversation-detail-container">
 			<conversation-add ng-if="showNewMessageForm" close="toggleAddForm"></conversation-add>
-			<conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail>
+			<div ng-if="!showNewMessageForm">
+				<div ng-if="!conversations.length" class="text-center no-result">
+					<img src="/images/fireplace.jpeg" title="{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" />
+					<br />
+					<h3>{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h3>
+					<span>{{ 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
+				</div>
+				<conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail>
+			</div>
 		</div>
 		<div class="clear"></div>
 	</div>
