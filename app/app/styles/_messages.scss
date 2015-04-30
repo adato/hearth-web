@@ -192,8 +192,14 @@
 
 				.conversation-participants {
 					min-height: 40px;
-					max-height: 160px;
+					max-height: 145px;
 					overflow: auto;
+					.loading {
+						font-size: 20px;
+					    position: relative;
+					    top: 14px;
+					    height: auto;
+					}
 					ul {
 						list-style: none;
 						margin: 0px;
@@ -201,8 +207,12 @@
 							display: block;
 							float: left;
 							width: 33%;
-							a {
-								font-size: 14px;
+							padding-bottom: 5px;
+							padding-top: 5px;
+							font-size: 14px;
+							a.avatar {
+								float: left;
+								position: static;
 							}
 						}
 					}
@@ -229,7 +239,7 @@
 			}
 
 			p {
-				margin-top: 5px;
+				margin-top: 0px;
 				margin-bottom: 15px;
 				margin-left: 38px;
 			}

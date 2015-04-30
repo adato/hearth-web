@@ -477,6 +477,7 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
             "LABEL": "Smazání konverzace",
@@ -488,6 +489,7 @@
                 "one": "a 1 další",
                 "other": "a {{count}} další"
             },
+            "EXPAND_ACTIONS": "Menu konverzace",
             "USERS": {
                 "one": "1 uživatel",
                 "other": "{{count}} uživatelé"
