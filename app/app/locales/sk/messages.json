@@ -644,6 +644,8 @@
         "COMMUNITY_UPDATE_SUCCESS": "Úprava komunity bola úspešná.",
         "COMPLETE_TWITTER_REGISTRATION_FAILED": "Pridanie emailu sa nepodarilo.",
         "COMPLETE_TWITTER_REGISTRATION_SUCCESS": "Email bol úspešne uložený.",
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
         "CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě.",
         "CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazána",
         "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
