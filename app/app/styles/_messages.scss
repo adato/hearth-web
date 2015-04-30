@@ -115,12 +115,12 @@
 			p {
 				color: #555;
     			font-size: 12px;
-    			max-height: 40px;
-    			min-height: 25px;
+    			height: 35px;
 			    line-height: 16px;
     			margin-bottom: 5px;
     			word-wrap: break-word;
     			word-break: break-all;
+    			overflow: hidden;
 			}
 
 			&.active {
@@ -243,9 +243,11 @@
 					position: relative;
 					top: 5px;
 				}
-				span {
+				&>span {
 					margin-right: 5px;
 					color: #999;
+					position: relative;
+					top: 10px;
 				}
 			}
 
