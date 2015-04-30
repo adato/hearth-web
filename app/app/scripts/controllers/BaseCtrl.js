@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify',
+    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger',
 
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
+    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -58,6 +58,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * scroll to top of the page, if not, refresh page with fixed height
          */
         $rootScope.$on("$routeChangeStart", function(event, next) {
+            // when changed route, load conversation counters 
+            Auth.isLoggedIn() && Messenger.loadCounters();
+
             if(!$rootScope.addressNew)
                 return $rootScope.top(0, 1);;
             
@@ -201,6 +204,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $.cookie('tutorial', 1);
             }
             Notify.checkRefreshMessage();
+            Auth.isLoggedIn() && Messenger.loadCounters();
+
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);
@@ -340,6 +345,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemReply.html',
                 controller: 'ItemReply',
+                scope: scope,
+                closeByDocument: false,
+                closeByEscape: true,
+                showClose: false
+            });
+        };
+
+        /**
+         * Function will show modal window where community admin can remove post from his community
+         */
+        $rootScope.removeItemFromCommunity = function(post) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = post;
+            
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'removeItemFromCommunity.html',
+                controller: 'RemoveItemFromCommunity',
                 scope: scope,
                 closeByDocument: false,
                 closeByEscape: true,

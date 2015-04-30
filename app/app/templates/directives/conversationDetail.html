@@ -1,0 +1,67 @@
+<div>
+	<div loading show="!messages"></div>
+	<div class="conversation-detail" ng-if="messages">
+		<div class="conversation-detail-top">
+			<span class="left" ng-if="info.title && !info.titleDetail">
+				<span ng-if="!info.post_id">{{ info.title }}</span>
+				<span ng-if="info.post_id">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post_id}}">{{ info.title }}</a></span>
+				 ( 
+					<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a>
+					<a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name }}</a>
+				)
+			</span>
+			<a class="left" ng-click="toggleParticipants()" ng-if="info.title && info.titleDetail">
+				{{ info.titleDetail }}
+				<span ng-if="info.participants_count > 3">{{'MESSAGES.DETAIL.AND_X_MORE.'+pluralCat(info.participants_count-3) | translate: '{count: '+(info.participants_count-3)+'}'}}</span>
+			</a>
+			<a class="left" ng-click="toggleParticipants()" ng-if="!info.title">{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</a>
+			<span class="right">
+				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{ info._id }}" title="{{ 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
+				<div class="conversation-actions-dropdown" id="conversation-actions-{{ info._id }}" style="display:none;">
+					<a ng-click="confirmBox('MESSAGES.DELETE_CONFIRM.LABEL', 'MESSAGES.DELETE_CONFIRM.TEXT', deleteConversation, info._id, this)" class="action-link">{{ 'MESSAGES.DELETE_CONVERSATION' | translate }}</a>
+					<a ng-click="confirmBox('MESSAGES.LEAVE_CONFIRM.LABEL', 'MESSAGES.LEAVE_CONFIRM.TEXT', leaveConversation, info._id, this)" class="action-link">{{ 'MESSAGES.LEAVE_CONVERSATION' | translate }}</a>
+					<a ng-click="confirmBox('MESSAGES.ARCHIVE_CONFIRM.LABEL', 'MESSAGES.ARCHIVE_CONFIRM.TEXT', archiveConversation, info._id, this)" class="action-link">{{ 'MESSAGES.ARCHIVE_CONVERSATION' | translate }}</a>
+				</div>
+			</span>
+			<div class="clear"></div>
+			<div ng-if="showParticipants">
+				<hr />
+				<div class="conversation-participants">
+					<div loading show="!participants"></div>
+					<ul>
+						<li ng-repeat="item in participants">
+							<a ng-href="#!/{{ getProfileLinkByType(item._type) }}/{{item._id}}">
+								<avatar src="item.avatar.normal" type="item._type" size="mini"></avatar>
+								<span>{{ item.name }}</span>
+								<div class="clear"></div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<hr />
+		</div>
+		<div loading class="older-messages-loader" show="loadingOlderMessages"></div>
+		<div class="nano messages-container" custom-scrollbar>
+    		<div class="nano-content">
+				<article class="message" ng-repeat="item in messages track by $index">
+					<div ng-if="item.author">
+						<div class="message-head">
+							<a class="left" ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
+								<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
+								<h5 class="fleft">{{ item.author.name }}</h5>
+							</a>
+							<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}">{{ item.created_at | ago }}</span>
+							<div class="clear"></div>
+						</div>
+						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+					</div>
+					<div ng-if="!item.author" class="system-message" ng-bind-html="'MESSAGES.SYSTEM_MESSAGE.'+item.verb | translate: item.system_data">
+					</div>
+				</article>
+			</div>
+		</div>
+		<message-reply class="messages-reply" conversation-id="info._id"></message-reply>
+	</div>
+</div>

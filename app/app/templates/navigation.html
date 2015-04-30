@@ -27,8 +27,16 @@
 				<label>{{ 'COMMUNITIES' | translate }}</label>
 			</a>
 			<div class="separator"></div>
+		   
+		    <span class="top-bar-messages">
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="#!/messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+                    <span class="messages-icon">{{ unreadedMessagesCount | minMax:0:99 }}</span>
+		            <label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
+			    </a>
+		    </span>
+			
 		    <span class="dropdown-container">
-				<a ng-if="loggedUser._id" ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ 'TOP_BAR_PROFILE' | translate }}" title="{{ loggedUser.name}}">
+				<a ng-if="loggedUser._id" ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
                     <avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 		            <label>{{ loggedUser.name | ellipsis:9}}</label>
 			    </a>

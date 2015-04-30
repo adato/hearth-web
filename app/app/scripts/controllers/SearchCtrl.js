@@ -398,7 +398,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		$scope.queryKeywords = function($query) {
-			console.log("REMOVE_ME - KEYWORDS TEST");
 			return KeywordsService.queryKeywords($query);
 		};
 

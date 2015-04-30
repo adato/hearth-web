@@ -1,5 +1,4 @@
 {
-    "3_DAYS": "3 dny",
     "404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáte, pravděpodobně neexistuje.",
     "404_NOT_FOUND_TITLE": "404 Nenalezeno",
     "ABOUT": "Napište pár slov o sobě. Hezky i česky.",
@@ -29,9 +28,6 @@
     "ADD_USER_RATING": "Ohodnoťte komunikaci s uživatelem",
     "ADMIN": "Správce",
     "ADMIN_7_CASE": "správce",
-    "ADS_ALL": "Všechny inzeráty",
-    "ADS_NEED": "Inzeráty přijmu",
-    "ADS_OFFER": "Inzeráty věnuji",
     "AD_ADD_LABEL": "Vytvořit inzerát",
     "AD_EDIT_LABEL": "Editovat inzerát",
     "AD_PAUSE_ARE_YOU_SURE": "Doopravdy chcete pozastavit tento inzerát?",
@@ -40,6 +36,7 @@
     "AD_REMOVE_ARE_YOU_SURE": "Jste si jisti, že chcete smazat tuto položku? Pak už ji nikdo nikdy neuvidí!",
     "AD_REMOVE_CANNOT_BE_REMOVED": "Nejde vymazat položku. Radši se s tím smiřte.",
     "AD_REMOVE_DONE": "A je to! Položka byla úspěšně vymazána.",
+    "AD_REMOVE_FROM_COMMUNITY_LABEL": "Odstranit inzerát z komunity",
     "AD_REMOVE_LABEL": "Odstranit inzerát",
     "AD_REPLIES": "Odpovědi na inzerát",
     "AD_REPLY_PLACEHOLDER": "Máte zájem? Můžete odpovídat...",
@@ -59,19 +56,14 @@
     "BACK_TO_LOGIN": "Zpět na přihlášení",
     "BLOG": "Blog",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máte několik neaktivních inzerátů.",
-    "BY_AUTHOR": "Podle autora",
     "BY_PEOPLE": {
         "one": "člověkem",
         "few": "lidmi",
         "other": "lidmi"
     },
-    "BY_PLACE": "Podle místa",
-    "BY_TIME": "Podle času",
-    "BY_TYPE": "Podle typu",
     "CANCEL": "Zrušit",
     "CANCEL_ADD_COMMUNITY": "Zrušit přidání komunity",
     "CANCEL_CHANGES": "Zrušit změny",
-    "CANCEL_FILTER": "Zrušit filtr",
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
     "CHANGE": "Změnit",
     "CHANGE_PASSWORD": "změnit heslo",
@@ -122,9 +114,9 @@
         "REMOVE_MEMBER_LABEL": "Odebrat člena z komunity",
         "USER_ISNT_MEMBER_OF_ANY_COMMUNITY": "Zatím nejste součástí žádné komunity. Můžete si založit svoji anebo se mrkněte do doporučených komunit. Doufáme, že vás alespoň jedna chytí za srdce.",
         "X_GIVES_AND_WISHES": {
-            "one": "<b>{{count}}<\/b><br \/> inzerát",
-            "few": "<b>{{count}}<\/b><br \/> inzeráty",
-            "other": "<b>{{count}}<\/b><br \/> inzerátů"
+            "one": "<p><strong>{{count}}<\/strong><br \/>dar či př&aacute;n&iacute;<\/p>",
+            "few": "<p><strong>{{count}}<\/strong><br \/>dary a př&aacute;n&iacute;<\/p>",
+            "other": "<p><strong>{{count}}<\/strong><br \/>darů a př&aacute;n&iacute;<\/p>"
         },
         "X_MEMBERS": {
             "one": "<b>{{count}}<\/b><br \/> člen",
@@ -221,8 +213,8 @@
     "DELETE": "smazat",
     "DELETE_ACCOUNT_BUTTON_CAPTION": "Smazat účet",
     "DELETE_LOCATION": "smazat",
-    "DOES_GIVE": "Věnuje",
-    "DOES_WISH": "Přijme",
+    "DOES_GIVE": "Věnuji",
+    "DOES_WISH": "Přijmu",
     "DOING_AS_COMMUNITY": "Za komunitu",
     "DONT_HAVE_ACCOUNT_YET": "Nemáte účet?",
     "DONT_SHOW_ANYMORE": "Znovu neukazovat",
@@ -261,6 +253,7 @@
     "ERR_AD_TEXT_MIN_LEN": "Váš příspěvek je příliš krátký. Přidejte ještě aspoň pár slov... Co slovo, to perla, říká se přece.",
     "ERR_AD_TITLE_LEN": "Titulek příspěvku je příliš dlooouhý.",
     "ERR_AD_TITLE_MIN_LEN": "Titulek příspěvku je příliš krátký.",
+    "ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Vyberte alespoň jednu komunitu, z které se má inzerát odstranit.",
     "ERR_COMMENT_LEN": "Komentář je příliš dlouhý. Ne vážně. Určitě je skvělý, ale moc dlouhý.",
     "ERR_COMMUNITY_ABOUT_NOT_FILLED": "Napište prosím alespoň něco málo o komunitě.",
     "ERR_COMMUNITY_NAME_MAX_LENGTH": "Jméno komunity je moc dlouhé. Nesmí mít více jak 75 znaků.",
@@ -275,6 +268,7 @@
     "ERR_INVITE_EMAIL_INVALID": "Jeden nebo více emailů nemá správný formát.",
     "ERR_KEYWORD_LEN": "Vaše klíčové slovo je příliš dlouhé. Ale no tak. Je to jen slovo, ne povídka.",
     "ERR_LOCATION_UNKNOWN_PLACE": "Takové místo neznáme... Zkuste vybrat místo spíše ze seznamu.",
+    "ERR_MESSAGE_TEXT_MIN_LEN": "Nezapomněli jste vyplnit text zprávy?",
     "ERR_MISSING_PWD": "Prosím zadejte heslo. Počkat! Jste sami? Ok, můžete.",
     "ERR_NOT_AUTHN": "Ach ne! Přihlašovací jméno nebo heslo je neplatné. Tak které z nich?",
     "ERR_NOT_AUTHZ": "Hearth neobdržel autorizaci pro přístup k Vašemu profilu. Strašný pocit! Zkuste to prosím ještě jednou.",
@@ -309,7 +303,6 @@
     "ERR_WRONG_PASSWORD": "Heslo musí mít alespoň 4 znaky. Jo jo, máme rádi matiku.",
     "EXPIRATION_DATE": "Doba platnosti",
     "FACEBOOK_INVITATION_MESSAGE": "Jsem na Hearth.net - štědré sociální síti pro sdílení darů a zkušeností. Pojď to taky zkusit!",
-    "FAQ": "Časté dotazy",
     "FEEDBACK": "Napište nám",
     "FEEDBACK_FORM_SPEECH_BUBBLE": "Nejsme perfektní, ale s vaší pomocí můžeme být. \r\nNapište nám a my vám dáme lepší Hearth.\r\nČestné vývojářské.",
     "FEEDBACK_LINK": "Hodnocení",
@@ -349,9 +342,9 @@
     "FULLTEXT_USERS": "Lidé",
     "FULLTEXT_WE_FOUND_RESULTS": "Našli jsme pro vás obsah související s <b>{{value}}<\/b>",
     "GIVES_AND_WISHES": {
-        "one": "inzerát",
-        "few": "inzeráty",
-        "other": "inzerátů"
+        "one": "dar či přání",
+        "few": "dary a přání",
+        "other": "darů a přání"
     },
     "GIVE_US_FEEDBACK": "Váš názor",
     "GO_BACK_TO_MARKET": "Přejít na tržiště",
@@ -371,7 +364,6 @@
     "HOURS_AGO": "před %d hodinami",
     "HOUR_AGO": "před hodinou",
     "IMAGES": "Obrázky",
-    "INDIVIDUALS": "Jednotlivci",
     "INFO_BOX_LOADING_ERROR": "Při načítání došlo k chybě",
     "INSERT_LOCATION": "Vložit lokaci",
     "INSPIRED_BY_HIM": "inspiruje",
@@ -403,7 +395,6 @@
     "I_GIVE": "Věnuji",
     "I_WISH": "Přijmu",
     "JUST_MINE_CONNECTION": "jen mí přátelé",
-    "JUST_MY_CONNECTIONS": "Jen mí přátelé",
     "KEYWORD": "Napište prvních pár znaků...",
     "KEYWORDS": "Klíčová slova",
     "KEYWORD_ADD": "Přidat",
@@ -434,19 +425,59 @@
     "LOG_IN_TO_REPLY": "Před odesláním vaší odpovědi se prosím <a href=\"#\/login\">přihlaste<\/a>.",
     "MAP": "Mapa",
     "MARKETPLACE": {
+        "CREATE_NEW_ADD": "Vložit nový dar nebo přání",
         "EDIT_FILTER": "Upravit filtr",
+        "FILTER": {
+            "3_DAYS": "3 dny",
+            "ADS_ALL": "Všechny inzeráty",
+            "ADS_NEED": "Inzeráty přijmu",
+            "ADS_OFFER": "Inzeráty věnuji",
+            "BY_AUTHOR": "Podle autora",
+            "BY_KEYWORDS": "Podle klíčových slov",
+            "BY_LOCATION": "Podle umístění",
+            "BY_TIME": "Podle času",
+            "BY_TYPE": "Podle typu",
+            "CANCEL_FILTER": "Zrušit filtr",
+            "CANCEL_FILTER_BAR": "zrušit filtr",
+            "COMMUNITIES": "Komunity",
+            "INDIVIDUALS": "Jednotlivci",
+            "MY_CONNECTIONS": "Jen mí přátelé",
+            "RUN_FILTER": "Filtrovat",
+            "SAVE_FILTER": "Zapamatovat filtr",
+            "TITLE": "Filtrovat",
+            "TITLE_ENABLED": "Filter je aktivní",
+            "TODAY": "Dnes",
+            "WEEK": "Týden",
+            "WITHOUT_LIMIT": "Bez omezení"
+        },
         "FILTER_NOT_FOUND": "<p>Ajta! Zadan&eacute; kombinaci neodpov&iacute;d&aacute; vůbec, ale vůbec ž&aacute;dn&yacute; inzer&aacute;t.<br \/>Co nějak&eacute; to krit&eacute;rium ubrat?<\/p>",
         "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
         "NOTHING_FOUND": "Buďte klidní, meditujte. Někde se stala chybka, nejsou tu žádné inzeráty",
+        "POST": {
+            "CLICK_TO_EXPAND": "Zobrazit celý text",
+            "FLAG_POST": "Označit jako nevhodný",
+            "LOCATION_ANYWHERE_HEADING": "Kdekoliv",
+            "PUBLISHED_AT": "Přidáno",
+            "REMOVE_FROM_COMMUNITY": "Odstranit z komunity",
+            "SHARE_WITH": "Sdílet přes"
+        },
         "RESET_FILTER": "Vymazat filtr",
-        "SHOW_POSTS_IN_LIST": "Zobrazit seznam inzerátů",
-        "SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě"
+        "SHOW_POSTS_IN_LIST": "Zobrazit seznam",
+        "SHOW_POSTS_ON_MAP": "Zobrazit na mapě"
     },
     "MEET_USER": "Poznejte uživatele",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členem komunit",
+    "MENU": {
+        "FAQ": "Časté dotazy",
+        "TAXES": "Darování a daně",
+        "TERMS": "Podmínky použití"
+    },
     "MESSAGES": {
-        "MESSAGES": "Zprávy",
+        "0": "Zprávy",
         "ADD": {
+            "ERR": {
+                "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
+            },
             "HEADING": "Nová zpráva",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
@@ -456,9 +487,56 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "ARCHIVE_CONFIRM": {
+            "LABEL": "Archivovat zprávu",
+            "TEXT": "Doopravdy chcete přesunout zprávu do sekce archivované?"
+        },
+        "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
+        "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
+        "DELETE_CONFIRM": {
+            "LABEL": "Smazání konverzace",
+            "TEXT": "Doopravdy chcete smazat konverzaci?"
+        },
+        "DELETE_CONVERSATION": "Smazat konverzaci",
+        "DETAIL": {
+            "AND_X_MORE": {
+                "one": "a 1 další",
+                "few": "a {{count}} další",
+                "other": "a {{count}} dalších"
+            },
+            "EMPTY_HEADER": "Nejsou zde žádné konverzace",
+            "EMPTY_TEXT": "...",
+            "EXPAND_ACTIONS": "Menu konverzace",
+            "REPLY_TO_POST": "Odpověď na",
+            "USERS": {
+                "one": "1 uživatel",
+                "few": "{{count}} uživatelé",
+                "other": "{{count}} uživatelů"
+            }
+        },
+        "FILTER": {
+            "ALL": "Všechny zprávy",
+            "ARCHIVE": "Archivované zprávy",
+            "COMMUNITIES_POSTS": "Zprávy od komunit",
+            "POST_REPLIES": "Odpovědi na dary a přání",
+            "USERS_POSTS": "Zprávy od uživatelů"
+        },
+        "LEAVE_CONFIRM": {
+            "LABEL": "Opustit konverzaci",
+            "TEXT": "Doopravdy chcete opustit konverzaci?"
+        },
+        "LEAVE_CONVERSATION": "Opustit konverzaci",
+        "LIST": {
+            "CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",
+            "NO_RESULT": "V seznamu nejsou žádné konverzace.",
+            "PARTICIPANTS_AND_MORE": "a další"
+        },
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+        },
+        "SYSTEM_MESSAGE": {
+            "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
         }
     },
     "MESSAGES_ARCHIVE": "Archív zpráv",
@@ -470,7 +548,7 @@
     "ME_WROTE": "Napsal jsem",
     "ME_WROTE_THEM": "Ohodnotil(a) jsem",
     "MINUTES_AGO": "před %d minutami",
-    "MINUTE_AGO": "1 minuta",
+    "MINUTE_AGO": "před minutkou",
     "MONTHS_AGO": "před %d měsíci",
     "MONTH_AGO": "před měsícem",
     "MY_CONTACT_EMAIL": "Kontaktní email",
@@ -566,11 +644,20 @@
         "COMMUNITY_UPDATE_SUCCESS": "Úprava komunity byla úspěšná.",
         "COMPLETE_TWITTER_REGISTRATION_FAILED": "Přidání emailu se nezdařilo.",
         "COMPLETE_TWITTER_REGISTRATION_SUCCESS": "Email byl úspěšně uložen.",
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
+        "CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě.",
+        "CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazána",
+        "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
+        "CONVERSATION_LEAVE_SUCCESS": "Konverzace byla opuštěna.",
         "EMAIL_INVITATION_FAILED": "Při odesílání pozvánky došlo k chybě.",
         "EMAIL_INVITATION_SUCCESS": "Pozvánka byla úspěšně odeslána.",
         "EMAIL_NOTIFY_CONFIG_FAILED": "Při ukládání nastavení došlo k chybě.",
         "EMAIL_NOTIFY_CONFIG_SUCCESS": "Nastavení emailových notifikací bylo úspěšně uloženo.",
         "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě...",
+        "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
+        "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
+        "MESSAGE_SEND_SUCCESS": "Zpráva byla úspěšně odeslána",
         "NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
         "NEW_PASS_SUCCESS": "Nové heslo bylo nastaveno. Nyní se můžete přihlásit.",
         "PASS_CHANGE_FAILED": "Při úpravě hesla došlo k chybě.",
@@ -579,6 +666,7 @@
         "POST_DELETED_FAILED": "Inzerát se nepodařilo smazat.",
         "POST_DELETED_SUCCESFULLY": "Inzerát byl úspěšně smazán.",
         "POST_EDIT_FAILED": "Při úpravě inzerátu došlo k chybě.",
+        "POST_REMOVE_FROM_COMMUNITY_FAILED": "Při odebírání inzerátu z komunity došlo k chybě",
         "POST_SPAM_REPORT_FAILED": "Nahlášení inzerátu se nepovedlo.",
         "POST_SPAM_REPORT_SUCCESS": "Inzerát byl nahlášen.",
         "POST_UPDATED_SUCCESFULLY": "Inzerát byl úspěšně upraven.",
@@ -642,7 +730,7 @@
         "other": "Už nabídlo {{value}} lidí."
     },
     "PEOPLE_COUNT_WISH_PL": {
-        "one": "Už požádal jeden člověk.",
+        "one": "Už požádal {{value}} člověk.",
         "few": "Už požádali {{value}} lidé.",
         "other": "Už požádalo {{value}} lidí."
     },
@@ -657,16 +745,17 @@
         "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
     },
     "POSTS": {
-        "POSTS": "inzeráty",
+        "0": "inzeráty",
         "CREATE": {
             "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         },
         "DETAIL": {
             "HIDE_MAP": "Skrýt mapu",
             "LOCATION_ANYWHERE": "Kdekoliv",
-            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: Kdekoliv",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
             "LOCATION_HEADING": "Umístění inzerátu",
             "NO_REPLY": "Na tento inzerát zatím nemáte žádné odpovědi.",
+            "POST_EXPIRING_SOON": "Platí posledních pár dní",
             "REPLIES": "Odpovědi uživatelů",
             "SHOW_MAP": "Zobrazit mapu"
         }
@@ -679,6 +768,15 @@
     },
     "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro přidání inzerátu do komunity nesmíte mít inzerát jen pro přátele.",
     "POST_COMMUNITIES_LABEL": "Vložit inzerát do komunity",
+    "POST_COMMUNITY_REMOVE": {
+        "HEADING": "Odstranit inzerát z komunity",
+        "INFO": "Inzerát do Vaší komunity nepatří? Můžete ho jednodušše odstranit..",
+        "POST_WILL_BE_REMOVED_FROM": "<p>Inzer&aacute;t bude odstraněn z komunity <strong>{{name}}<\/strong>.<\/p>",
+        "REASON_LABEL": "Důvod odstranění:",
+        "REASON_PLACEHOLDER": "Napište uživateli důvod, proč je inzerát nevhodný ve Vašich komunitách...",
+        "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:",
+        "SUCCESS_MESSAGE": "Inzerát byl úspěšně odebrán."
+    },
     "POST_EXPIRATION_DATE_LABEL": "Platnost do",
     "POST_HAS_ALREADY_EXPIRED": "Platnost inzerátu již skončila",
     "POST_HAS_BEEN_DEACTIVATED": "Inzerát byl pozastavený",
@@ -772,7 +870,7 @@
         "YOUR_PROFILE_IS_EMPTY": "Váš profil je nějak smutný... Aha, vždyť je prázdný. Nebuďte tajnůstkáři a sdělte světu, co vás zajímá a baví."
     },
     "PROFILE_EDIT": {
-        "PROFILE_EDIT": "Upravit profil",
+        "0": "Upravit profil",
         "HEADER": "Upravit profil"
     },
     "PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",
@@ -795,7 +893,6 @@
     "REPLY_BUTTON_CAPTION": "Odpovědět",
     "REPLY_PUBLISH_EMAIL_AGREE": "Společně s touto zprávou uvidí uživatel {{name}} i Vaši emailovou adresu.",
     "REPORT": "Odeslat",
-    "REPORT_HARMFUL_AD": "Upozornit na nevhodný dar nebo přání",
     "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Při změně hesla došlo k chybě... Co teď?",
@@ -803,7 +900,6 @@
     "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bylo úspěšně změněno.<br \/>Nyní se můžete <a href='#!\/login'>přihlásit<\/a>.",
     "RESET_PASSWORD_TEXT": "Zde si můžete nastavit nové přihlašovací heslo.",
     "RETURN_THE_FILTER_TO_ORIGINAL_SETTINGS": "Zrušit filtr",
-    "RUN_FILTER": "Filtrovat",
     "SAVE": "Uložit",
     "SAVE_AND_ACTIVATE": "Uložit a aktivovat",
     "SAVE_THE_FILTER_FOR_FUTURE_USE": "Zapamatovat filtr",
@@ -859,7 +955,6 @@
     "THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvěte i své přátele do Hearth.net, do štědré sociální sítě!",
     "THUMB_UP": "Ohodnotit",
     "TITLE": "Hearth",
-    "TODAY": "Dnes",
     "TOP_BAR_ABOUT": "O projektu",
     "TOP_BAR_COMMUNITY_PROFILE": "Náš profil",
     "TOP_BAR_MESSAGES": "Zprávy",
@@ -911,7 +1006,6 @@
     "VISIBLE_FOR_FRIENDS": "Jen pro přátele",
     "VISIBLE_FOR_MEMBERS": "Viditelné pouze pro členy",
     "WAITING_FOR_APPROVE": "čeká na schválení",
-    "WEEK": "Týden",
     "WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíte. Opravdu! Sdělte nám proč a my se pokusíme polepšit a dostat vás zpátky:",
     "WE_GIVE": "Nabízíme",
     "WE_HAVE_SENT_YOU_AN_EMAIL_TO_RESET_PASSWORD": "Hurá! Poslali jsme vám tajný ověřovací kód, najdete ho v e-mailu.",
@@ -922,7 +1016,6 @@
     "WHO": "Kdo jsem",
     "WHOLE_PROFILE": "Celý profil",
     "WISH_GIFT": "<p><strong>Pož&aacute;dat<\/strong> o dar<\/p>",
-    "WITHOUT_LIMIT": "Bez omezení",
     "WITH_TERMS_OF_USE": "podmínkami používání",
     "WRITE_COMMUNITY_SOME_RATING": "Napište komunitě k hodnocení pár slov",
     "WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS": "Napište svým přátelům zprávu do pozvánky.",
@@ -974,7 +1067,7 @@
     "YOU_ARE_MEMBER_OF_X_COMMUNITIES": "Jste členem ",
     "YOU_CAN_CONTACT_USER": "<p>Kontaktovat na <a href=\"mailto:{{email}}\">{{email}}<\/a>.<\/p>",
     "YOU_HAVE": "Máte",
-    "YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST": "Na tento inzerát jste již odpověděl(a).",
+    "YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST": "Na dar\/přání jste již odpověděl(a).",
     "YOU_HAVE_NOT_BEEN_RATED": "Zatím vás ještě nikdo neohodnotil.",
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáte žádné inzeráty, můžete si je ale přidat ",
     "YOU_HAVE_NO_RATINGS_YET": "Zatím zde nemáte žádná hodnocení",
@@ -996,7 +1089,6 @@
     "required": "Toto pole je povinné. Nechceme si hrát na četníka, ale znáte tahle pole...",
     "send_fb_invitation": "Pozvěte přátele na Facebooku",
     "show-less": "Skrýt",
-    "show-more": "Rozbalit celý inzerát",
     "time": "Čas",
     "title-maxlength": "Titulek je příliš dlouhý, pane Shakespeare. To nás mrzí, naše maximální délka je {{value}} znaků.",
     "title-required": "Titulek je příliš krátký. Přidejte ještě aspoň pár slov...",

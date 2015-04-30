@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$anchorScroll', '$location',
+	'$anchorScroll', '$location', 'Filter',
 
-	function($anchorScroll, $location) {
+	function($anchorScroll, $location, Filter) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -21,6 +21,10 @@ angular.module('hearth.directives').directive('filterbar', [
 					newItemSelected: false
 				});
 
+				scope.cancelFilter = function() {
+					Filter.reset();
+				};
+				
 				scope.toggleNewItem = function() {
 					if (!scope.filterSelected) {
 						scope.newItemSelected = !scope.newItemSelected;

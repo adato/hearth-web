@@ -30,8 +30,11 @@ $topBarImageSize: 1.8em;
     box-shadow: 0 2px 2px rgba(black, 0.3);
     background-color: color(1);
     padding: $fontSize / 2;
-    // ============ Odstraneni responzivity ======
+    // ============ Removed responzivity ======
     min-width: 950px;
+    .row {
+        margin: 0px auto;
+    }
     .columns {
 
         &.icons {
@@ -109,8 +112,12 @@ $topBarImageSize: 1.8em;
         }
     }
     .avatar {
-        margin: auto;
-        margin-bottom: -2px;
+        position: static;
+        margin: 0px;
+        img {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     .user-dropdown {
@@ -126,11 +133,6 @@ $topBarImageSize: 1.8em;
         }
         .avatar {
             margin-right: 5px;
-            margin-bottom: 0px;
-            img {
-                width: 25px;
-                height: 25px;
-            }
         }
         span.name {
             position: relative;
@@ -146,5 +148,37 @@ $topBarImageSize: 1.8em;
         top: 12px;
         color: color(1);
         cursor: pointer;
+    }
+    .top-bar-messages {
+
+        .messages-icon::after {
+            color: #ffa97a;
+            content: "";
+            font-family: FontAwesome;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: normal;
+            left: 0;
+            right: 0;
+            top: -7px;
+            position: absolute;
+            text-decoration: inherit;
+            z-index: -1;
+            transition: color 1s, text-shadow 2s;
+        }
+        &>a:hover .messages-icon::after,
+        &>a.active .messages-icon::after {
+            color: lighten(color(1), 50%);
+        }
+        .messages-icon {
+            background: none;
+            color: #fa5800;
+            font-weight: bold;
+            position: relative;
+            height: 30px;
+            width: 30px;
+            top: 5px;
+            display: inline-block;
+        }
     }
 }

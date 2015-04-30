@@ -67,25 +67,24 @@
         margin-bottom: 20px;
     }
     .user-rating-form {
+        @extend .item-box-forms;
         overflow: visible !important;
         margin: auto;
-        .item {
-            margin-top: 5px;
-        }
+        h5 { font-weight:600; }
         label {
             margin-bottom: 15px;
+            font-size:$ui-text-font-size;
+            margin-right: $ui-grid-size;
         }
         textarea {
             min-height: 120px;
         }
-        .moveUp {
-            position: relative;
-            span {
-                position: absolute;
-                top: -30px;
-            }
-        }
+        .need-offer-selector { margin-top: 18px; }
     }
+}
+
+#received-rating-form {
+    margin-bottom:$ui-grid-size;
 }
 
 .mine-profile {
@@ -100,11 +99,34 @@
     }
 }
 
+.item.rating-received {
+    position:relative;
+    &:after {
+        content: ' ';
+        position: absolute;
+        left:-13px;
+        top:26px;
+        transform:rotate(45deg);
+        box-shadow: -2px 2px 4px rgba(100, 100, 100, 0.2);
+        width: 25px;
+        height: 25px;
+        background:white;
+    }
+}
+
 .rating-listing {
     .rating-received-bar {
         min-height: 50px;
         text-align: center;
     }
+
+    .rating-call-to-action {
+        margin-bottom:$ui-grid-size;
+        padding-left: 0;
+        padding-right: 6*$ui-small-grid-size;
+    }
+
+    .date { margin-top: -2 * $ui-small-grid-size; }
 
     .item {
         position: relative;
@@ -113,8 +135,10 @@
             right: 4px;
             bottom: 8px;
         }
-    }
-    
+        small {
+            font-size:smaller;
+        }
+    }    
     .rating-item {
         margin-top: 0rem;
         margin-bottom: 1rem;

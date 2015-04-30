@@ -77,11 +77,14 @@ $fontSize: rem-calc(14);
 @import "infoBox";
 @import "itemEdit";
 @import "authorSelector";
+@import "removePostFromCommunity";
 @import "tipsy";
 @import "common";
 @import "buttons";
+@import "htmlSlider";
 @import "tutorial";
 @import "userForms";
+@import "messages";
 
 @import "maitenancePage";
 @import "angularLoadingBar";
@@ -110,11 +113,12 @@ $fontSize: rem-calc(14);
 @import "404";
 @import "notify";
 @import "dropdown";
+@import "market";
 @import "marketplaceBanner";
 
 body {
-    background-image: inline-image("bg.jpg");
-    background-color: #FAF8EB;
+    background-image: inline-image("bg.png");
+    background-color: #faf8eb;
     background-repeat: no-repeat;
     background-position: 50% top;
     .main-container {
@@ -122,11 +126,6 @@ body {
         min-width:960px;
         margin: 0px auto;
         position: relative;
-        /*      
-       .scrolled & {
-            top: 6em;
-        }
-        */
         top: 6em;
     }
 }
@@ -194,23 +193,13 @@ img.blur {
 
 .loading {
     @extend .clearfix;
+    position:relative;
     font-size: 2rem;
     opacity: 0.7;
     height: 40px;
 
     .fa {
       margin-right: 0.5rem;
-    }
-}
-
-.market {
-    padding-bottom: 50px;
-    .loading {
-        position: absolute;
-        left: 0;
-        right: 0;
-        border: 0 none;
-        margin-bottom: 10px;
     }
 }
 

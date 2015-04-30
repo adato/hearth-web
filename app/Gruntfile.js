@@ -52,7 +52,13 @@ module.exports = function(grunt) {
 					'copy:localConfig'
 				],
 				options: {
-					livereload: 3333
+					livereload: {
+						port: 3333,
+						key: grunt.file.read('./cert/server.key'),
+						cert: grunt.file.read('./cert/server.crt'),
+						// key: grunt.file.read('path/to/ssl.key'),
+        				// cert: grunt.file.read('path/to/ssl.crt')
+        			}
 				}
 			},
 			jsTest: {
@@ -71,7 +77,14 @@ module.exports = function(grunt) {
 			},
 			livereload: {
 				options: {
-					livereload: '<%= connect.options.livereload %>'
+					livereload:  {
+        			// '<%= connect.options.livereload %>'
+						port: 3333,
+						key: grunt.file.read('./cert/server.key'),
+						cert: grunt.file.read('./cert/server.crt'),
+						// key: grunt.file.read('path/to/ssl.key'),
+        				// cert: grunt.file.read('path/to/ssl.crt')
+        			}
 				},
 				files: [
 					'<%= yeoman.app %>/{,*/}*.html',

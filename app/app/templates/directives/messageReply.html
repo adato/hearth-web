@@ -1,0 +1,15 @@
+<div class="message-reply">
+
+	<form novalidate name="msgReplyForm" ng-submit="sendReply(reply)" class="formStyle">
+		<label for="reply-text">{{ 'MESSAGES.REPLY.TEXT_LABEL' | translate }}
+			<textarea rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
+		</label>
+		<div class="error fleft" ng-show="msgReplyForm.text.$invalid && showError.text">
+            <span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
+        </div>
+       <button type="submit" class="margin-0 button-send right">
+	    	{{ 'SEND' | translate }}
+		</button>
+		<div class="clear"></div>
+	</form>
+</div>
