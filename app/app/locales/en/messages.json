@@ -463,7 +463,7 @@
         "TERMS": "Terms of use"
     },
     "MESSAGES": {
-        "MESSAGES": "News",
+        "0": "News",
         "ADD": {
             "ERR": {
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
@@ -477,6 +477,11 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "ARCHIVE_CONFIRM": {
+            "LABEL": "Archivovat zprávu",
+            "TEXT": "Doopravdy chcete přesunout zprávu do sekce archivované?"
+        },
+        "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
             "LABEL": "Smazání konverzace",
@@ -488,6 +493,8 @@
                 "one": "a 1 další",
                 "other": "a {{count}} další"
             },
+            "EXPAND_ACTIONS": "Menu konverzace",
+            "REPLY_TO_POST": "Odpověď na",
             "USERS": {
                 "one": "1 uživatel",
                 "other": "{{count}} uživatelé"
@@ -495,9 +502,9 @@
         },
         "FILTER": {
             "ALL": "Všechny zprávy",
-            "ARCHIVE": "Archiv",
+            "ARCHIVE": "Archivované zprávy",
             "COMMUNITIES_POSTS": "Zprávy od komunit",
-            "POST_REPLIES": "Odpovědi na inzerát",
+            "POST_REPLIES": "Odpovědi na dary a přání",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
@@ -719,7 +726,7 @@
         "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
     },
     "POSTS": {
-        "POSTS": "posts",
+        "0": "posts",
         "CREATE": {
             "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         },
@@ -837,7 +844,7 @@
         "YOUR_PROFILE_IS_EMPTY": "Your profile seems to be kind of sad... Hey, it's empty. Don't play a secret agent and tell the world about stuff you like."
     },
     "PROFILE_EDIT": {
-        "PROFILE_EDIT": "Edit profile",
+        "0": "Edit profile",
         "HEADER": "Edit profile"
     },
     "PROFILE_PROGRESS": "Your profile is {{progress}}% complete.",

@@ -35,7 +35,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.getFilter = function() {
 			var filter = angular.copy($location.search());
-			if(!!~['archive', 'as_replies', 'from_community', 'users_posts'].indexOf(filter.type))
+			if(!!~['archived', 'as_replies', 'from_community', 'users_posts'].indexOf(filter.type))
 				filter[filter.type] = true;
 
 			delete filter.type;
@@ -114,14 +114,19 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.deserializeConversation = function(conversation) {
 			if(!conversation.title) {
-				conversation.titleCustom = true;
-				conversation.title = [];
+				if(conversation.post_id)
+					conversation.title = conversation.post_title;
+				else {
+					conversation.titleCustom = true;
 
-				for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
-					var user = conversation.participants[i];
-					conversation.title.push(user.name);
-				};
-				conversation.title = conversation.title.join(", ");
+					conversation.title = [];
+
+					for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
+						var user = conversation.participants[i];
+						conversation.title.push(user.name);
+					};
+					conversation.title = conversation.title.join(", ");
+				}
 			}
 			return conversation;
 		};
@@ -137,8 +142,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			angular.extend(conf, $scope.getFilter());
 
 			Conversations.get(conf, function(res) {
+				// res.conversations = [];
 				$scope.conversations = $scope.deserialize(res.conversations);
-				$scope.conversation =  [];
 				done && done($scope.conversations);
 			});
 		};

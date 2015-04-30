@@ -1,23 +1,31 @@
 .select2-container {
-    position: relative;
-    display: inline-block;
-    zoom: 1;
-    *display: inline;
-    vertical-align: middle;
-    width: 100%;
-
-    word-wrap: break-word;
     background-color: white;
     border-radius: $global-radius;
-    background-color: white;
-    border: 1px solid #d7d7d7; // !important;
+    border: 1px solid #d7d7d7;
+    box-shadow:none;
+    display: inline-block;
+    margin-bottom:1rem;
+    min-height:$ui-input-height;
+    padding:0;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+    word-wrap: break-word;
+    zoom: 1;
+
+    &.user-count-0 {
+        .select2-drop {
+            display: none;
+        }
+    }
+
     ul {
         margin: 0px;
         li {
             list-style: none;
         }
     }
-    
+
     .select2-display-none {
         display: none;
     }
@@ -30,6 +38,16 @@
             width: 100% !important;
         }
     }
+
+    
+    .select2-drop {
+        margin-left:0;
+        font-size:$ui-text-font-size;
+    }
+    .select2-drop-active {
+        border-top: 1px solid #aaa !important;
+    }
+    
 
     .select2-choices {
         min-height: 26px;
@@ -58,15 +76,18 @@
         }
 
         .select2-search-choice {
-            position: relative;
+
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #acacac;
+            display: inline-block;
+            font-size:$ui-text-font-size;
+            height: 26px;
+            line-height:20px;
             margin: 2px;
             padding: 0 5px;
-            display: inline-block;
-            height: 26px;
-            line-height: 25px;
-            border: 1px solid #acacac;
-            border-radius: 8px;
-            background-color: white;
+            position: relative;
+            span { color:$ui-input-text-color; }
 
 
             &>span {
@@ -110,20 +131,30 @@
             color: #fff;
         }
 
-        .select2-results .select2-result-label {
+        .select2-result-label {
+            padding:3px $ui-small-grid-size * 2;
+
             -moz-user-select: none;
             font-size:$global-font-size;
             cursor: pointer;
-            margin: 0;
             min-height: 1em;
-  //          padding: 3px 7px 4px;
-            
+
+            .avatar {
+                margin-right: 10px;
+                float: left;
+            }
             div {
+                display: inline-block;
+                margin-bottom: 5px;
+                margin-top: 5px;
+                min-height: 1em;
+                display: inline-block;
                 -moz-user-select: none;
                 cursor: pointer;
-                margin: 0;
-                min-height: 1em;
-//                padding: 3px 7px 4px;
+
+                &.avatar-mini {
+                    position: static;
+                }
             }
         }
     }

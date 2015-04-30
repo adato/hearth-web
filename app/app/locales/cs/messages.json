@@ -473,7 +473,7 @@
         "TERMS": "Podmínky použití"
     },
     "MESSAGES": {
-        "MESSAGES": "Zprávy",
+        "0": "Zprávy",
         "ADD": {
             "ERR": {
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
@@ -487,6 +487,11 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "ARCHIVE_CONFIRM": {
+            "LABEL": "Archivovat zprávu",
+            "TEXT": "Doopravdy chcete přesunout zprávu do sekce archivované?"
+        },
+        "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
             "LABEL": "Smazání konverzace",
@@ -499,6 +504,8 @@
                 "few": "a {{count}} další",
                 "other": "a {{count}} dalších"
             },
+            "EXPAND_ACTIONS": "Menu konverzace",
+            "REPLY_TO_POST": "Odpověď na",
             "USERS": {
                 "one": "1 uživatel",
                 "few": "{{count}} uživatelé",
@@ -507,9 +514,9 @@
         },
         "FILTER": {
             "ALL": "Všechny zprávy",
-            "ARCHIVE": "Archiv",
+            "ARCHIVE": "Archivované zprávy",
             "COMMUNITIES_POSTS": "Zprávy od komunit",
-            "POST_REPLIES": "Odpovědi na inzerát",
+            "POST_REPLIES": "Odpovědi na dary a přání",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
@@ -734,7 +741,7 @@
         "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
     },
     "POSTS": {
-        "POSTS": "inzeráty",
+        "0": "inzeráty",
         "CREATE": {
             "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         },
@@ -859,7 +866,7 @@
         "YOUR_PROFILE_IS_EMPTY": "Váš profil je nějak smutný... Aha, vždyť je prázdný. Nebuďte tajnůstkáři a sdělte světu, co vás zajímá a baví."
     },
     "PROFILE_EDIT": {
-        "PROFILE_EDIT": "Upravit profil",
+        "0": "Upravit profil",
         "HEADER": "Upravit profil"
     },
     "PROFILE_PROGRESS": "Profil je kompletní z {{progress}}% procent.",

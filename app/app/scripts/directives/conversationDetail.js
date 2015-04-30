@@ -24,143 +24,173 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.scrollBottom = false;
                 $scope.participants = false;
                 $scope.showParticipants = false;
-                $scope.sendingDeleteRequest = false;
+                $scope.sendingActionRequest = false;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
-                var _loadTimeout = 10000; // pull requests interval in ms
+                var _loadTimeout = 2000; // pull requests interval in ms
                 var _loadLock = false; // pull requests interval in ms
                 var _scrollInited = false;
                 var _loadOlderMessagesEnd = false;
                 var _loadTimeoutPromise = false;
+                var _loadingOlderMessages = false;
                 
-                $scope.loadMessages = function(from, done) {
-                    if(_loadLock) {
-                        done && done(false);
-                        return false;
-                    }
-                    _loadLock = true;
-                        
-                    Conversations.getMessages({id: $scope.info._id, older: from, limit: _messagesCount}, function(res) {
-                        if(res.messages.length < _messagesCount)
-                            _loadOlderMessagesEnd = true;
+                $scope.addMessagesToList = function(messages, append) {
 
-                        if($scope.messages)
-                            Array.prototype.unshift.apply($scope.messages, res.messages);
-                        else
-                            $scope.messages = res.messages;
-                        
-                        _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
-                        _loadLock = false;
-                        
-                        $timeout(function(){
-                            $scope.displayMessages();
-                            $scope.resizeMessagesBox();
-                        });
-                        if(!from) $scope.scrollBottom();
-                        done && done(res);
-                    }, function() {
-                        _loadLock = false;
-                        _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
-                        done && done(false);
+                    // concat new messages
+                    if(!$scope.messages)
+                        $scope.messages = messages;
+                    else if(append)
+                        $scope.messages = $scope.messages.concat(messages);
+                    else
+                        Array.prototype.unshift.apply($scope.messages, messages);
+
+                    // and resize message box
+                    $scope.resizeTMessagesBox();
+
+                    // resize scrollbar
+                    $scope.$broadcast("scrollbarResize");
+
+                    // when we get less messages then requested, we hitted the end of list
+                    if(!append && messages.length < _messagesCount)
+                        _loadOlderMessagesEnd = true;
+                };
+
+                /**
+                 * Load messages 
+                 * @param  {[type]}   from [description]
+                 * @param  {Function} done [description]
+                 * @return {[type]}        [description]
+                 */
+                $scope.loadMessages = function(config, done) {
+                    config = angular.extend(config || {}, {
+                        id: $scope.info._id,
+                        limit: _messagesCount
                     });
+                    Conversations.getMessages(
+                        config,
+                        function(res) {
+                            // test if we loaded data for actual conversation detail
+                            if(config.id !== $scope.info._id) return false;
+
+                            // append/prepend messages
+                            $scope.addMessagesToList(res.messages, config.newer);
+
+                            done && done(res.messages);
+                        }, done);
+                };
+
+                $scope.testOlderMessagesLoading = function() {
+                    if($(".nano-content", element).scrollTop() < 100)
+                        $scope.loadOlderMessages();
                 };
                 
-                $scope.loadNewMessages = function(scrollDown) {
-                    if(!$scope.messages.length)
-                        return $scope.loadMessages();
+                /**
+                 * This will handle callback functions after first messages are loaded
+                 */
+                $scope.afterInitLoad = function(messages) {
 
+                    // start pulling new messages
+                    $scope.scheduleNewMessagesLoading();
+
+                    
+                    $timeout(function() {
+                        // test if we are on bottom
+                        $scope.testOlderMessagesLoading();
+
+                        // when scrolled top, load older messages
+                        $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
+                    });
+                };
+
+                $scope.updateConversationInfo = function(lastMessage, messagesCount) {
+
+                    // set info to conversation detail
+                    $scope.info.last_message_time = lastMessage.created_at;
+                    $scope.info.message = lastMessage;
+                    $scope.info.messages_count += messagesCount;
+
+                    // send info event upward
+                    $scope.$emit("conversationUpdated", $scope.info);
+                };
+
+                /**
+                 * Schedule next pull of new messages
+                 */
+                $scope.scheduleNewMessagesLoading = function() {
+                    $timeout.cancel(_loadTimeoutPromise);
+                    _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
+                };
+
+                /**
+                 * Periodically pull new messages
+                 */
+                $scope.loadNewMessages = function() {
                     if(_loadLock) return false;
                     _loadLock = true;
 
-                    var config = {
-                        id: $scope.info._id,
-                        newer: $scope.messages[$scope.messages.length-1].created_at,
-                    };
+                    $scope.loadMessages({
+                            newer: $scope.info.message.created_at
+                        }, 
+                        function(messages) {
+                            _loadLock = false;
+                            $scope.scheduleNewMessagesLoading();
 
-                    $timeout.cancel(_loadTimeoutPromise);
-                    Conversations.getMessages(config, function(res) {
-                        _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
-                        _loadLock = false;
-                        
-                        if(res.messages.length) {
-
-                            if($scope.messages)
-                                $scope.messages = $scope.messages.concat(res.messages);
-                            else
-                                $scope.messages = res.messages;
-
-                            $scope.info.last_message_time = res.messages[res.messages.length-1].created_at;
-                            $scope.info.message = res.messages[res.messages.length-1];
-                            $scope.info.messages_count += res.messages.length;
-
-                            $scope.$emit("conversationUpdated", $scope.info);
-                        }
-
-                        $timeout(function() {$scope.displayMessages();});
-                        $scope.testScrollBottom();
-                    }, function() {
-                        _loadLock = false;
-                        _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
-                    });
+                            if(messages && messages.length) {
+                                $scope.testScrollBottom();
+                                $scope.updateConversationInfo(messages[messages.length-1], messages.length);
+                            }
+                        });
                 };
 
+                /**
+                 * Scroll to bottom
+                 */
                 $scope.scrollBottom = function() {
                     $timeout(function() {
-                        $(".messages-container", element).scrollTop($(".messages-container")[0].scrollHeight * 1000);
+                        $(".nano-content", element).scrollTop($(".nano-content")[0].scrollHeight * 1000);
                     });
                 };
 
+                /**
+                 * If user is on bottom, keep user there after added more content
+                 */
                 $scope.testScrollBottom = function() {
-                    if(Viewport.isBottomScrolled(element, ".messages-container", ".messages-container-inner")) {
+                    var outer = $(".nano", element);
+                    var inner = $(".nano-content", outer);
+                    
+                    if(inner.scrollTop() + inner.height() >= inner.prop('scrollHeight')) {
                         $scope.scrollBottom();
                     }
                 };
                 
-                $scope.deleteConversation = function(id) {
-                    $scope.sendingDeleteRequest = true;
-                    Conversations.remove({id: id}, function(res) {
-                        $scope.sendingDeleteRequest = false;
+                /**
+                 * Send action request to archive/delete/leave conversation
+                 * @param  {string} id       ID of conversation
+                 * @param  {type} type     type of request DELETE/ARCHIVE/LEAVE
+                 * @param  {resource} resource resource function to call
+                 */
+                $scope.sendActionRequest = function(id, type, resourceFunc) {
+                    if($scope.sendingActionRequest) return false;
+                    $scope.sendingActionRequest = true;
+
+                    resourceFunc({id: id}, function(res) {
+                        $scope.sendingActionRequest = false;
                         $scope.$emit("conversationRemoved", id);
-                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_SUCCESS', Notify.T_SUCCESS);
+                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_'+type+'_SUCCESS', Notify.T_SUCCESS);
                     }, function(err) {
-                        $scope.sendingDeleteRequest = false;
-                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_DELETE_FAILED', Notify.T_ERROR);
+                        $scope.sendingActionRequest = false;
+                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_'+type+'_FAILED', Notify.T_ERROR);
                     });
                 };
-
-                $scope.archiveConversation = function(id) {
-                    $scope.sendingArchiveRequest = true;
-                    Conversations.remove({id: id}, function(res) {
-                        $scope.sendingArchiveRequest = false;
-                        $scope.$emit("conversationRemoved", id);
-                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_ARCHIVE_SUCCESS', Notify.T_SUCCESS);
-                    }, function(err) {
-                        $scope.sendingArchiveRequest = false;
-                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_ARCHIVE_FAILED', Notify.T_ERROR);
-                    });
-                };
-
-                $scope.leaveConversation = function(id) {
-                    $scope.sendingDeleteRequest = true;
-                    Conversations.leave({id: id}, function(res) {
-                        $scope.sendingDeleteRequest = false;
-                        $scope.$emit("conversationRemoved", id);
-                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_LEAVE_SUCCESS', Notify.T_SUCCESS);
-                    }, function(err) {
-                        $scope.sendingDeleteRequest = false;
-                        Notify.addSingleTranslate('NOTIFY.CONVERSATION_LEAVE_FAILED', Notify.T_ERROR);
-                    });
-                };
-
-                $scope.displayMessages = function() {
-                    $(".messages-container article:hidden", element).fadeIn();
-                };
-
-                        
+                
+                /**
+                 * Transform conversation info so we can use it in view
+                 */
                 $scope.deserialize = function(conversation) {
                     if(conversation.titleCustom) {
                         conversation.titleDetail = [];
 
+                        // use first three participants names if we dont have title
                         for(var i = 0; i < 3 && i < conversation.participants.length; i++) {
                             var user = conversation.participants[i];
                             conversation.titleDetail.push(user.name);
@@ -170,82 +200,131 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     return conversation;
                 };
 
-                $scope.init = function(info) {
-                    $timeout.cancel(_loadTimeoutPromise);
+                /**
+                 * Keep user on his position when added more messages to top
+                 */
+                $scope.scrollToCurrentPosition = function(done) {
+                    var content = $(".nano-content", element);
+                    var height = content.prop('scrollHeight');
+                    var scrollTop = content.scrollTop();
 
-                    $scope.info = $scope.deserialize($scope.info);
-                    _loadOlderMessagesEnd = false;
-                    _scrollInited = false;
-                    $scope.messages = false;
-                    $scope.participants = false;
-                    $scope.showParticipants = false;
-                    $scope.loadMessages();
-                };
+                    $timeout(function() {
+                        $scope.$broadcast("scrollbarResize");
+                        $(".nano-content", element).scrollTop($(".nano-content", element).prop('scrollHeight') - height + scrollTop);
 
-                $scope.toggleParticipants =  function() {
-                    $scope.showParticipants = ! $scope.showParticipants;
-                    $timeout(function(){$scope.resizeMessagesBox();});
-                };
-
-                $scope.loadParticipants = function(val, oldVal) {
-                    if(!$scope.showParticipants || $scope.participants) return false;
-
-                    Conversations.getParticipants({id: $scope.info._id, exclude_self: true}, function(res) {
-                        $scope.participants = res.participants;
-                        $timeout(function(){$scope.resizeMessagesBox();});
+                        done && done();
                     });
                 };
 
+                /**
+                 * Load oldermessages when we scrolled to top
+                 */
+                $scope.loadOlderMessages = function() {
+                    if(_loadingOlderMessages|| _loadOlderMessagesEnd || !$scope.messages.length) return false;
+                    _loadingOlderMessages = true;
+
+                    $scope.loadMessages({
+                            older: $scope.messages[0] ? $scope.messages[0].created_at : undefined
+                        }, function(messages) {
+                            _loadingOlderMessages = false;
+
+                            $scope.scrollToCurrentPosition(function() {
+                            });
+                        });
+                };
+
+                /**
+                 * When we add new message callback
+                 */
                 $scope.onMessageAdded = function() {
                     $scope.scrollBottom();
                     $scope.loadNewMessages();
                 };
 
+                /**
+                 * Resize box with timeout
+                 * - this will let view to render first
+                 */
+                $scope.resizeTMessagesBox = function() {
+                    $timeout($scope.resizeMessagesBox);
+                };
+                
                 $scope.resizeMessagesBox = function() {
+                    var container = $(".messages-container", element);
 
-                    var boxHeight = element.height() - element.find(".conversation-detail-top").height() - element.find(".messages-reply").outerHeight() - 10;
                     $scope.testScrollBottom();
-                    var maxBoxHeight = $(".messages-container").height() - 50 - element.find(".conversation-detail-top").height() - element.find(".messages-reply").outerHeight();
+                    var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
                     
-                    $(".messages-container", element).css("max-height", maxBoxHeight);
-                    $(".messages-container", element).fadeIn();
+                    container.css("max-height", maxBoxHeight);
+                    container.css("height", $(".nano-content", element).prop('scrollHeight'));
+                    container.fadeIn();
 
-                    if(!_scrollInited) {
-                        $(".messages-container", element).scroll($scope.loadOlderMessages);
-                        _scrollInited = true;
-                    }
+                    $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
                 };
 
-                $scope.loadOlderMessages = function(event) {
-                    if($scope.loadingOlderMessages || _loadOlderMessagesEnd) return false;
-
-                    if($(".messages-container", element).scrollTop() < 100) {
-                        var from = $scope.messages[0] ? $scope.messages[0].created_at : undefined;
-                        $scope.loadingOlderMessages = true;
-
-                        $scope.loadMessages($scope.messages[0].created_at, function() {
-                            $scope.loadingOlderMessages = false;
-                            var height = $(".messages-container-inner", element).prop('scrollHeight');
-                            var scrollTop = $(".messages-container", element).scrollTop();
-                            
-                            $timeout(function() {
-                                var newHeight = $(".messages-container-inner", element).prop('scrollHeight');
-                                $(".messages-container", element).scrollTop(newHeight - height + scrollTop);
-                                // console.log("Old: ", height, " New: ", newHeight);
-                                // console.log("Scrolling down to: ", newHeight - height);
-                            });
-                        });
-                    }
+                // use sendActionRequest to delete conversation
+                $scope.deleteConversation = function(id) {
+                    $scope.sendActionRequest(id, 'DELETE', Conversations.remove);
                 };
 
-                // element.resize($scope.resizeMessagesBox);
+                // use sendActionRequest to archive conversation
+                $scope.archiveConversation = function(id) {
+                    $scope.sendActionRequest(id, 'ARCHIVE', Conversations.archive);
+                };
+
+                // use sendActionRequest to leave conversation
+                $scope.leaveConversation = function(id) {
+                    $scope.sendActionRequest(id, 'LEAVE', Conversations.leave);
+                };
+
+                /**
+                 * Show/hide participants list & load from API
+                 */
+                $scope.toggleParticipants =  function() {
+                    $scope.showParticipants = ! $scope.showParticipants;
+                    $scope.resizeTMessagesBox();
+
+                    if($scope.showParticipants && !$scope.participants)
+                        $scope.loadParticipants();
+                };
+
+                /**
+                 * Load participants list
+                 */
+                $scope.loadParticipants = function() {
+                    Conversations.getParticipants({id: $scope.info._id, exclude_self: true}, function(res) {
+                        $scope.participants = res.participants;
+                        $scope.resizeTMessagesBox();
+                    });
+                };
+
+                /**
+                 * Config init variables
+                 * deserialize conversation
+                 * and load messages
+                 */
+                $scope.init = function(info) {
+                    $timeout.cancel(_loadTimeoutPromise);
+
+                    // set initial state
+                    $scope.info = $scope.deserialize($scope.info);
+                    _loadOlderMessagesEnd = false;
+                    _loadingOlderMessages = false;
+                    _scrollInited = false;
+                    $scope.messages = false;
+                    $scope.participants = false;
+                    $scope.showParticipants = false;
+
+                    // load first messages
+                    $scope.loadMessages(null, $scope.afterInitLoad);
+                };
+
+                // resize box when needed
                 $(window).resize($scope.resizeMessagesBox);
-                $scope.$on("messageReplyFormResized", $scope.resizeMessagesBox)
+                $scope.$on("messageReplyFormResized", $scope.resizeMessagesBox);
 
                 $scope.$watch('info', $scope.init);
-                $scope.$watch('showParticipants', $scope.loadParticipants);
                 $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
-                $scope.$on('conversationMessageAdded', $scope.loadNewMessages);
                 $scope.$on('$destroy', function() {
                     // stop pulling new messages on directive destroy
                     $timeout.cancel(_loadTimeoutPromise);

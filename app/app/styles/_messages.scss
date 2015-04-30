@@ -165,6 +165,7 @@
 	.conversation-detail-container {
 		width: 600px;
 		padding: 20px;
+		padding-right: 10px;
 		max-height: 100%;
 
 		&>div {
@@ -182,8 +183,14 @@
 			
 			.conversation-detail-top {
 				padding-bottom: 15px;
+				padding-right: 10px;
 				&>a {
 					padding-bottom: 5px;
+				}
+
+				.post_link {
+					color: inherit;
+					text-decoration: underline;
 				}
 
 				hr {
@@ -192,8 +199,14 @@
 
 				.conversation-participants {
 					min-height: 40px;
-					max-height: 160px;
+					max-height: 145px;
 					overflow: auto;
+					.loading {
+						font-size: 20px;
+					    position: relative;
+					    top: 14px;
+					    height: auto;
+					}
 					ul {
 						list-style: none;
 						margin: 0px;
@@ -201,8 +214,12 @@
 							display: block;
 							float: left;
 							width: 33%;
-							a {
-								font-size: 14px;
+							padding-bottom: 5px;
+							padding-top: 5px;
+							font-size: 14px;
+							a.avatar {
+								float: left;
+								position: static;
 							}
 						}
 					}
@@ -229,7 +246,7 @@
 			}
 
 			p {
-				margin-top: 5px;
+				margin-top: 0px;
 				margin-bottom: 15px;
 				margin-left: 38px;
 			}
@@ -272,19 +289,18 @@
 		    }
 
 			.messages-container {
-
-			    position: relative;
-				overflow: auto;
-				width: 100%;
 				display: none;
 
-				.messages-container-inner {
-				    width: 100%;
+				.nano-content {
 				    max-height:100%;
 				    
-				    p {
-				    	font-size: 14px;
-				    	word-wrap: break-word;
+				    article {
+				    	margin-right: 45px;
+					    p {
+					    	font-size: 14px;
+					    	word-wrap: break-word;
+					    	word-break: break-all;
+					    }
 				    }
 				    .system-message p {
 				    	text-align: center;
@@ -296,6 +312,7 @@
 			    width: 100%;
 			    min-height: 118px;
 			    padding-top: 10px;
+			    padding-right: 10px;
 				textarea {
 					transition: none;
 					max-height: 140px;
@@ -308,4 +325,8 @@
 
 .nano > .nano-pane {
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.nano-content {
+	right: -50px !important; /* when zoomed out, there is a little bit of native scrollbar */
 }

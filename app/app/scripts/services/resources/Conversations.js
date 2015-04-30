@@ -24,7 +24,11 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			leave: {
 				url: $$config.apiPath + '/conversations/:id/leave',
-				method: 'DELETE',
+				method: 'POST',
+			},
+			archive: {
+				url: $$config.apiPath + '/conversations/:id/archive',
+				method: 'POST',
 			},
 			getCounters: {
 				url: $$config.apiPath + '/conversations/counter',
