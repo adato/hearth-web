@@ -463,7 +463,7 @@
         "TERMS": "Terms of use"
     },
     "MESSAGES": {
-        "MESSAGES": "News",
+        "0": "News",
         "ADD": {
             "ERR": {
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
@@ -494,6 +494,7 @@
                 "other": "a {{count}} další"
             },
             "EXPAND_ACTIONS": "Menu konverzace",
+            "REPLY_TO_POST": "Odpověď na",
             "USERS": {
                 "one": "1 uživatel",
                 "other": "{{count}} uživatelé"
@@ -725,7 +726,7 @@
         "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
     },
     "POSTS": {
-        "POSTS": "posts",
+        "0": "posts",
         "CREATE": {
             "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         },
@@ -843,7 +844,7 @@
         "YOUR_PROFILE_IS_EMPTY": "Your profile seems to be kind of sad... Hey, it's empty. Don't play a secret agent and tell the world about stuff you like."
     },
     "PROFILE_EDIT": {
-        "PROFILE_EDIT": "Edit profile",
+        "0": "Edit profile",
         "HEADER": "Edit profile"
     },
     "PROFILE_PROGRESS": "Your profile is {{progress}}% complete.",

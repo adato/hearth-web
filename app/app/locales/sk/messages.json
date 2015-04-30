@@ -473,7 +473,7 @@
         "TERMS": "Podmienky použitia"
     },
     "MESSAGES": {
-        "MESSAGES": "Správy",
+        "0": "Správy",
         "ADD": {
             "ERR": {
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
@@ -505,6 +505,7 @@
                 "other": "a {{count}} dalších"
             },
             "EXPAND_ACTIONS": "Menu konverzace",
+            "REPLY_TO_POST": "Odpověď na",
             "USERS": {
                 "one": "1 uživatel",
                 "few": "{{count}} uživatelé",
@@ -740,7 +741,7 @@
         "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
     },
     "POSTS": {
-        "POSTS": "inzeráty",
+        "0": "inzeráty",
         "CREATE": {
             "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         },
@@ -865,7 +866,7 @@
         "YOUR_PROFILE_IS_EMPTY": "Váš profil je smutný a prázdny - povedzte niečo viac o tom, čo vás zaujíma a baví."
     },
     "PROFILE_EDIT": {
-        "PROFILE_EDIT": "Upraviť profil",
+        "0": "Upraviť profil",
         "HEADER": "Upraviť profil"
     },
     "PROFILE_PROGRESS": "Profil je kompletný z {{progress}}% percent.",
