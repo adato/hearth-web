@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showFulltext = false;
 		$scope.showNewMessageForm = false;
 		$scope.filter = $location.search();
-		var _loadTimeout = 2000; // pull requests interval in ms
+		var _loadTimeout = 5000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
         
@@ -78,8 +78,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
                 _loadLock = false;
                 
-                $scope.prependConversations($scope.deserialize(res.conversations));
-                $scope.setCurrentConversationAsReaded();
+                if(res.conversations.length) {
+	                $scope.prependConversations($scope.deserialize(res.conversations));
+	                $scope.setCurrentConversationAsReaded();
+                }
 			}, function() {
                 _loadLock = false;
                 _loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
@@ -95,6 +97,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.prependConversations = function(conversations) {
 			$scope.removeDuplicitConversations(conversations);
 			Array.prototype.unshift.apply($scope.conversations, conversations);
+			$scope.$broadcast("scrollbarResize");
 		};
 
 		$scope.searchConversation = function() {
@@ -181,8 +184,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.updateConversation = function(ev, conversation) {
-			if(!$scope.conversations.length || $scope.conversations[0]._id != conversation._id)
+			if(!$scope.conversations.length || $scope.conversations[0]._id != conversation._id) {
 				$scope.prependConversations([$scope.deserializeConversation(conversation)]);
+			}
 		};
 
 		// when we leave/delete conversation - remove it from conversation list
@@ -203,6 +207,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				// if we should switch to the first conversation at the top
 				$scope.showConversation($scope.conversations[0], 0);
 				$timeout(function() {
+					$scope.$broadcast("scrollbarResize");
 					$(".conversations .scroll-content").scrollTop(0);
 				});
 			}

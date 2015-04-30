@@ -15,6 +15,7 @@ angular.module('hearth.directives').directive('customScrollbar', [
             template: false,
             link: function(scope, element, attrs) {
                 function addScrollbar() {
+                    console.log("INIT SCROLL");
                     $(element).nanoScroller();
                 }
 
