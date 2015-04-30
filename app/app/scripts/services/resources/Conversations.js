@@ -46,6 +46,7 @@ angular.module('hearth.services').factory('Conversations', [
 				method: 'GET'
 			},
 			reply: {
+				url: $$config.apiPath + '/conversations',
 				method: 'POST',
 			},
 			unreaded: {
