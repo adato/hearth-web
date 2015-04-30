@@ -52,9 +52,9 @@
 		</div>
 		<div class="collumn box right conversation-detail-container">
 			<conversation-add ng-if="showNewMessageForm" close="toggleAddForm"></conversation-add>
-			<div ng-if="!showNewMessageForm">
+			<div ng-if="!showNewMessageForm && ! detail">
 				<div ng-if="!conversations.length" class="text-center no-result">
-					<img src="/images/fireplace.jpeg" title="{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" />
+					<img src="images/fireplace.jpeg" title="{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" />
 					<br />
 					<h3>{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h3>
 					<span>{{ 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
