@@ -9,9 +9,9 @@
 		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
 			<option value="" ng-selected="filter.type == ''">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
 			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
-			<option value="users_posts" ng-selected="filter.type == 'users_posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option>
-			<option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option>
-			<option value="archive" ng-selected="filter.type == 'archive'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
+			<!-- <option value="users_posts" ng-selected="filter.type == 'users_posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
+			<!-- <option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option> -->
+			<option value="archived" ng-selected="filter.type == 'archived'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
 		</select>
 
 		<a class="button-send right" ng-click="toggleAddForm()">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
@@ -20,7 +20,7 @@
 	</div>
 	
 	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
-		<div id="about" class="nano collumn left conversations" class-if-overflow="shadow-bottom" custom-scrollbar>
+		<div id="about" class="nano collumn left conversations"  ng-if="conversations" class-if-overflow="shadow-bottom" custom-scrollbar>
     		<div class="nano-content">
 				<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == detail._id}"></div>
 				<div class="text-center" ng-if="!conversations.length">

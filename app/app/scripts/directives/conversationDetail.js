@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.sendingDeleteRequest = false;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
-                var _loadTimeout = 10000; // pull requests interval in ms
+                var _loadTimeout = 2000; // pull requests interval in ms
                 var _loadLock = false; // pull requests interval in ms
                 var _scrollInited = false;
                 var _loadOlderMessagesEnd = false;
@@ -111,6 +111,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 };
 
                 $scope.testScrollBottom = function() {
+                    return;
                     if(Viewport.isBottomScrolled(element, ".messages-container", ".messages-container-inner")) {
                         $scope.scrollBottom();
                     }

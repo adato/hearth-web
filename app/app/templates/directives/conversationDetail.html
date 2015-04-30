@@ -40,9 +40,9 @@
 			</div>
 			<hr />
 		</div>
-		<div class="messages-container">
-			<div class="messages-container-inner">
-				<div loading class="older-messages-loader" show="loadingOlderMessages"></div>
+		<div loading class="older-messages-loader" show="loadingOlderMessages"></div>
+		<div class="nano messages-container" custom-scrollbar>
+    		<div class="nano-content">
 				<article class="message" ng-repeat="item in messages track by $index">
 					<div ng-if="item.author">
 						<div class="message-head">

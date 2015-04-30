@@ -35,7 +35,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.getFilter = function() {
 			var filter = angular.copy($location.search());
-			if(!!~['archive', 'as_replies', 'from_community', 'users_posts'].indexOf(filter.type))
+			if(!!~['archived', 'as_replies', 'from_community', 'users_posts'].indexOf(filter.type))
 				filter[filter.type] = true;
 
 			delete filter.type;

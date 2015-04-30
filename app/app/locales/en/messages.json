@@ -477,6 +477,10 @@
             "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
+        "ARCHIVE_CONFIRM": {
+            "LABEL": "Archivovat zprávu",
+            "TEXT": "Doopravdy chcete přesunout zprávu do sekce archivované?"
+        },
         "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
@@ -497,9 +501,9 @@
         },
         "FILTER": {
             "ALL": "Všechny zprávy",
-            "ARCHIVE": "Archiv",
+            "ARCHIVE": "Archivované zprávy",
             "COMMUNITIES_POSTS": "Zprávy od komunit",
-            "POST_REPLIES": "Odpovědi na inzerát",
+            "POST_REPLIES": "Odpovědi na dary a přání",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {

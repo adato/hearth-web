@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('customScrollbar', [
             link: function(scope, element, attrs) {
                 $timeout(function() {
                     $(element).nanoScroller();
-                }, 500);
+                });
             }
         };
     }
