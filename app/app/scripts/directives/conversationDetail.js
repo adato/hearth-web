@@ -172,7 +172,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.sendActionRequest = function(id, type, resourceFunc) {
                     if($scope.sendingActionRequest) return false;
                     $scope.sendingActionRequest = true;
-
+                    
                     resourceFunc({id: id}, function(res) {
                         $scope.sendingActionRequest = false;
                         $scope.$emit("conversationRemoved", id);

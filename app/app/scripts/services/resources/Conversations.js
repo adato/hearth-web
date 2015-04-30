@@ -11,6 +11,7 @@ angular.module('hearth.services').factory('Conversations', [
 	
 	function($resource) {
 		return $resource($$config.apiPath + '/conversations/:id', {
+			id: '@id',
 		}, {
 			add: {
 				method: 'POST'
