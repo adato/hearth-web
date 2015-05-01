@@ -2,19 +2,18 @@
 	<div loading show="!messages"></div>
 	<div class="conversation-detail" ng-if="messages">
 		<div class="conversation-detail-top">
-			<span class="left" ng-if="info.title && !info.titleDetail">
-				<span ng-if="!info.post_id">{{ info.title }}</span>
-				<span ng-if="info.post_id">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post_id}}">{{ info.title }}</a></span>
-				 ( 
-					<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a>
-					<a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name }}</a>
-				)
+			<span class="conversation-title">
+				<span class="left" ng-if="info.title && !info.titleDetail">
+					<span ng-if="!info.post_id">{{ info.title }}</span>
+					<span ng-if="info.post_id">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post_id}}">{{ info.title }}</a></span>
+					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a>&nbsp;<a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name }}</a>&nbsp;)
+				</span>
+				<a class="left" ng-click="toggleParticipants()" ng-if="info.title && info.titleDetail">
+					{{ info.titleDetail }}
+					<span ng-if="info.participants_count > 3">{{'MESSAGES.DETAIL.AND_X_MORE.'+pluralCat(info.participants_count-3) | translate: '{count: '+(info.participants_count-3)+'}'}}</span>
+				</a>
+				<a class="left" ng-click="toggleParticipants()" ng-if="!info.title">{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</a>
 			</span>
-			<a class="left" ng-click="toggleParticipants()" ng-if="info.title && info.titleDetail">
-				{{ info.titleDetail }}
-				<span ng-if="info.participants_count > 3">{{'MESSAGES.DETAIL.AND_X_MORE.'+pluralCat(info.participants_count-3) | translate: '{count: '+(info.participants_count-3)+'}'}}</span>
-			</a>
-			<a class="left" ng-click="toggleParticipants()" ng-if="!info.title">{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</a>
 			<span class="right">
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{ info._id }}" title="{{ 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
 				<div class="conversation-actions-dropdown" id="conversation-actions-{{ info._id }}" style="display:none;">

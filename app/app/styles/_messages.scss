@@ -196,8 +196,13 @@
 			.conversation-detail-top {
 				padding-bottom: 15px;
 				padding-right: 10px;
-				&>a {
-					padding-bottom: 5px;
+
+				.conversation-title {
+					max-width: 540px;
+					display: inline-block;
+					&>a {
+						padding-bottom: 5px;
+					}
 				}
 
 				.post_link {
