@@ -43,6 +43,10 @@
 			.no-result {
 				margin: 20px;
 				margin-left: 0px;
+
+				img {
+					height: 200px;
+				}
 			}
 			&>div {
 				width: 340px;
@@ -305,6 +309,7 @@
 				    max-height:100%;
 				    
 				    article {
+				    	width: 560px;
 				    	margin-right: 45px;
 					    p {
 					    	font-size: 14px;
