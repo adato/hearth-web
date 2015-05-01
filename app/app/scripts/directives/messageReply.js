@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('messageReply', [
 			restrict: 'E',
 			replace: true,
 			scope: {
-				'conversationId': '='
+				'conversation': '='
 			},
 			templateUrl: 'templates/directives/messageReply.html',
 			link: function($scope, el, attrs) {
@@ -39,7 +39,7 @@ angular.module('hearth.directives').directive('messageReply', [
 				};
 
 				$scope.sendReply = function(reply) {
-					reply.id = $scope.conversationId;
+					reply.id = $scope.conversation._id;
 					if($scope.sendingReply || !$scope.validateReply(reply))
 						return false;
 					$scope.sendingReply = true;
