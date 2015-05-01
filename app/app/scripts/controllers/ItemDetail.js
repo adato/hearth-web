@@ -39,9 +39,17 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			need: 'PEOPLE_COUNT_OFFER_PL'
 		};
 
+		$scope.deserializeReply = function(item) {
+			if(item.from_community) {
+				item.from_community.person = item.message.author;
+				item.message.author = item.from_community;	
+			}
+			return item;
+		};
+
 		$scope.loadReplies = function() {
 			PostReplies.get({user_id: $routeParams.id}, function(data) {
-				$scope.replies = data.replies;
+				$scope.replies = data.replies.filter($scope.deserializeReply);
 			});
 		};
 
