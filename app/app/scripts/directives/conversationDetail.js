@@ -72,7 +72,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                             if(config.id !== $scope.info._id) return false;
 
                             // append/prepend messages
-                            $scope.addMessagesToList(res.messages, config.newer);
+                            res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
 
                             done && done(res.messages);
                         }, done);
