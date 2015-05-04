@@ -9,11 +9,12 @@
 angular.module('hearth.controllers').controller('MessagesCtrl', [
 	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$routeParams', '$location', '$timeout',
 	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
-		$scope.conversations = false;
-		$scope.detail = false;
-		$scope.showFulltext = false;
-		$scope.showNewMessageForm = false;
 		$scope.filter = $location.search();
+		$scope.showNewMessageForm = false;
+		$scope.conversations = false;
+		$scope.showFulltext = false;
+		$scope.detail = false;
+
 		var _loadTimeout = 5000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
@@ -21,7 +22,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		if(!Object.keys($scope.filter).length) {
 			$scope.filter = {
 				query: '',
-				type: '',
+				type: ''
 			}
 		}
 
