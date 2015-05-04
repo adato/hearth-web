@@ -29,9 +29,9 @@
 					</div>
 					<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
 						<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
-							<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants | limitTo:4:4"></avatar>
-							<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo:3:3"></avatar>
-							<div class="avatar-participants-count" ng-if="item.participants_count > 3">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
+							<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants"></avatar>
+							<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
+							<div class="avatar-participants-count" ng-if="item.participants_count > 4">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
 							<div class="avatar-no-participants" ng-if="!item.participants.length"></div>
 						</div>
 						<div class="conversation-info">
