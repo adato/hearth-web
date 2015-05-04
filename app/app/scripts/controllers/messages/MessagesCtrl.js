@@ -29,17 +29,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.toggleAddForm = function(conversation) {
 			$scope.showNewMessageForm = !$scope.showNewMessageForm;
 
-			if($scope.showNewMessageForm) {
+			if(conversation) {
 				$location.url("/messages/");
 				$scope.filter = {
 					query: '',
 					type: '',
 				}
-			}
-
-			if(conversation) {
-				$scope.loadNewConversations();
-				$scope.loadConversationDetail(conversation._id);
+				$scope.loadConversations({}, function(list) {
+					$scope.loadConversationDetail(conversation._id);
+				});
 			}
 		};
 
