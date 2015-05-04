@@ -4,9 +4,10 @@
 		<div class="conversation-detail-top">
 			<span class="conversation-title" ng-if="info">
 				<span class="left" ng-if="info.title && !info.titleDetail">
-					<span ng-if="!info.post_id">{{ info.title| ellipsis:120 }}</span>
-					<span ng-if="info.post_id">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post_id}}">{{ info.title | ellipsis:100 }}</a></span>
-					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a>&nbsp;<a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a>&nbsp;)
+					<span ng-if="!info.post">{{ info.title| ellipsis:120 }}</span>
+					
+					<span ng-if="info.post">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post._id}}">{{ info.post.type_code | translate }} {{ info.title | ellipsis:100 }}</a></span>
+					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a><a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a>&nbsp;)
 				</span>
 				<a class="left" ng-click="toggleParticipants()" ng-if="info.title && info.titleDetail">
 					{{ info.titleDetail }}

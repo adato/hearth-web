@@ -136,10 +136,19 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.deserializeConversation = function(conversation) {
+			var post = conversation.post;
+
 			if(!conversation.title) {
-				if(conversation.post_id)
-					conversation.title = conversation.post_title;
-				else {
+
+				if(post) {
+					conversation.title = post.title;
+					
+					if(post.author._type == 'User')
+						post.type_code = (post.type == 'offer' ? 'OFFER' : 'NEED');
+					else
+						post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
+
+				} else {
 					conversation.titleCustom = true;
 
 					conversation.title = [];
