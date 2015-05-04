@@ -2,7 +2,7 @@
 	<div loading show="!messages"></div>
 	<div class="conversation-detail" ng-if="messages">
 		<div class="conversation-detail-top">
-			<span class="conversation-title">
+			<span class="conversation-title" ng-if="info">
 				<span class="left" ng-if="info.title && !info.titleDetail">
 					<span ng-if="!info.post_id">{{ info.title| ellipsis:120 }}</span>
 					<span ng-if="info.post_id">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post_id}}">{{ info.title | ellipsis:100 }}</a></span>
@@ -10,7 +10,7 @@
 				</span>
 				<a class="left" ng-click="toggleParticipants()" ng-if="info.title && info.titleDetail">
 					{{ info.titleDetail }}
-					<span ng-if="info.participants_co      unt > 3">{{'MESSAGES.DETAIL.AND_X_MORE.'+pluralCat(info.participants_count-3) | translate: '{count: '+(info.participants_count-3)+'}'}}</span>
+					<span ng-if="info.participants_count > 3">{{'MESSAGES.DETAIL.AND_X_MORE.'+pluralCat(info.participants_count-3) | translate: '{count: '+(info.participants_count-3)+'}'}}</span>
 				</a>
 				<a class="left" ng-click="toggleParticipants()" ng-if="!info.title">{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</a>
 			</span>
