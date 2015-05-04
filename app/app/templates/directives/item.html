@@ -14,7 +14,7 @@
 	<div class="large-10 fleft columns ad-detail-column">
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
-				<div class="large-11 columns">
+				<div class="large-9 columns">
 					<h1>
 						<a ng-href="#!/ad/{{item._id}}">
 							<span data-item-type="{{ item.type }}">
@@ -26,25 +26,18 @@
 					<span class="validity-warning" ng-if="isExpiringSoon">{{ 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
 					<span class="fa fa-lock" ng-if="item.is_private" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 				</div>
-				<div class="large-1 columns">
-					<span class="ad-flag-container fright">
+				<div class="large-3 columns">
+					<span class="ad-flag-container fright" ng-if="!mine">
 						<a class="action-dropdown fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
 					</span>
 					<div class="more-actions-dropdown" id="more-actions-{{ item._id }}" style="display:none;">
-						{{:: 'MARKETPLACE.POST.PUBLISHED_AT' | translate }} {{item.updated_at | ago}}
-						<hr>
-						<b>{{:: 'MARKETPLACE.POST.SHARE_WITH' | translate }}</b><br>
-						<div class="sharing">
-							<a class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
-							<a sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank"></a>
-							<a sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
-							<a sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
-						</div>
-						<hr ng-if="! mine">
 						<a ng-if="! mine && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 						<a ng-if="! mine && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 						<a ng-if="! mine && item.admin_communities.length" title="{{ 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 					</div>
+					<span class="ad-date fright" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">
+						{{item.updated_at | ago}}
+					</span>
 				</div>
 				<div ng-if="item.location_unlimited" class="large-12 columns clearfix">
 					<i class="fa fa-map-marker"></i> {{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
