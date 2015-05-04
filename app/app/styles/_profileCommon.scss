@@ -244,32 +244,10 @@
             top: 20px;
         }
 
-        .authorSelector {
-            .avatar {
-                position: relative;
-                top: -5px;
-            }
-            select {
-                border-radius: $global-radius;
-                height:$ui-input-height;
-                line-height:$ui-text-font-size;
-                padding:0 15px;
-                font-weight:600;
-                -moz-appearance:none;
-
-                border:$ui-input-border-style;
-                font-family: $body-font-family;
-                box-shadow: none !important; // uh oh
-                font-size: $ui-text-font-size;
-                color:$ui-input-text-color;
-                &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
-                    border:1px solid $ui-input-error-color !important;
-                }
-                &:disabled {
-                    background-color: #ddd !important;
-                }
-            }
+        .author-selector {
+            float:left;
         }
+
 
         .checkbox {
             @extend .ui-checkbox;
@@ -278,28 +256,6 @@
         button {
             &.positive {
                 background-color: #58af08;
-            }
-        }
-        .score-select {
-            p {
-                left: 20px;
-                position: relative;
-                top: 8px;
-            }
-            .need-offer-selector {
-                margin: 0px;
-                .button {
-                    &.left.pressed {
-                        background-color: color(2);
-                        //positive
-                   
-                    }
-                    &.right.pressed {
-                        background-color: color(5);
-                        //negative
-                   
-                    }
-                }
             }
         }
         .profile-edit-common {

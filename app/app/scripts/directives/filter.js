@@ -21,6 +21,7 @@ angular.module('hearth.directives').directive('filter', [
                     filterDefault = {
                         type: null,
                         distance: 25,
+                        keywords: [],
                         days: null
                     };
 
@@ -187,13 +188,8 @@ angular.module('hearth.directives').directive('filter', [
                         });
                     }
                 });
-                
-                scope.$on('filterApplied', function() {
-                    scope.updateFilterByRoute();
-                });
 
                 scope.recountPosts = function() {
-                    
                     Filter.getFilterPostCount(scope.filter, function(count) {
                         scope.filterPostCount = count;
                     });

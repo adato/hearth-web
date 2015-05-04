@@ -8,7 +8,7 @@
 			<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
 			<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
 		</a>
-		<a ng-show="filterOn" ng-click="cancelFilter()">{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}</a>
+		<a ng-show="filterOn" ng-click="cancelFilter()" class="filter-cancel-button">{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}</a>
 
 		<a ng-if="!mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
 		<a ng-if="mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>

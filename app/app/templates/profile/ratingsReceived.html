@@ -13,9 +13,8 @@
 				<h5>{{:: 'ADD_USER_RATING' | translate }} {{ info.name }}</h5>
 				<div class="rating-notify-box"></div>
 				<h6>{{:: 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h6>
-
 				<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
-				<needofferselector class="fright" model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" ></needofferselector>
+				<needofferselector class="fleft" model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" ></needofferselector>
 				<div class="clear"></div>
 
 				<form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
@@ -65,7 +64,7 @@
 <div class="clear"></div>
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded">
-	<section class="columns rating-call-to-action" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+	<section class="columns rating-call-to-action large-centered" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />

@@ -20,16 +20,34 @@ textarea:focus {
 
 #searchBox {
     margin: {
-        top: 1px;
+        top: $ui-small-grid-size;
         left: 1rem;
         right: 0;
         bottom: 0;
     };
-    background: color(4) !important;
+    box-shadow: none !important;
+    height: $ui-input-height;
+    border: 0 !important;
+    padding-left:3*$ui-small-grid-size;
+    background: lighten(color(1), 20%) !important;
+    transition: background .3s,  border-color .3s, box-shadow .3s;
     &:focus {
         background: lighten(color(4), 20%) !important;
     }
-    transition: background .5s,  border-color .5s, box-shadow .5s;
+    &::-webkit-input-placeholder { 
+        color:color(3);
+    }
+    &:-moz-placeholder { 
+       color:color(3);
+       opacity:  1;
+    }
+    &::-moz-placeholder {
+       color:color(3);
+       opacity:  1;
+    }
+    &:-ms-input-placeholder {
+       color:color(3);
+    }
 }
 
 .field-group {
