@@ -34,11 +34,13 @@ article.post-on-market {
         margin-top:2 * $ui-small-grid-size;
         span::before, img { box-shadow:none;}
     }
-    .ad-flag-container {
-        margin-top:-1 * $ui-small-grid-size;
+    .ad-flag-container { 
         .action-dropdown:hover {
             color:color(5) !important;
         }
+    }
+    .ad-date {
+        color:color(3);
     }
     .more-actions-dropdown {
         position:absolute;
