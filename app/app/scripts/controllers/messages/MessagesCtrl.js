@@ -27,6 +27,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.toggleAddForm = function(conversation) {
 			$scope.showNewMessageForm = !$scope.showNewMessageForm;
+
+			if($scope.showNewMessageForm) {
+				$location.url("/messages/");
+				$scope.filter = {
+					query: '',
+					type: '',
+				}
+			}
+
 			if(conversation) {
 				$scope.loadNewConversations();
 				$scope.loadConversationDetail(conversation._id);

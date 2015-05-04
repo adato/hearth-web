@@ -196,13 +196,22 @@
 			.conversation-detail-top {
 				padding-bottom: 15px;
 				padding-right: 10px;
-				&>a {
-					padding-bottom: 5px;
+
+				.conversation-title {
+					max-width: 540px;
+					line-height: 18px;
+					display: inline-block;
+					&>a {
+						padding-bottom: 5px;
+					}
 				}
 
 				.post_link {
 					color: inherit;
 					text-decoration: underline;
+					&:hover {
+						color: #777;
+					}
 				}
 
 				hr {
