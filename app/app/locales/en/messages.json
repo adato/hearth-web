@@ -736,6 +736,7 @@
             "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         },
         "DETAIL": {
+            "EXPAND_MORE_INFO": "Více informací",
             "HIDE_MAP": "Hide map",
             "LOCATION_ANYWHERE": "Anywhere",
             "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
