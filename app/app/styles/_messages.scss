@@ -93,7 +93,7 @@
 
 				i {
 					float: right;
-					font-size: 14px;
+					font-size: 13px;
 					color: #999;
 				}
 				.unreaded-count {
@@ -341,6 +341,10 @@
 				    resize: none;
 				}
 			}
+		}
+		.no-result img.responsive-height {
+			max-height:50%;
+			max-height:50vh;
 		}
 	}
 }
