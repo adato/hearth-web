@@ -142,28 +142,27 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				conversation.maxAvatarCount = 3;	// print only 3 avatars and 4th will be +X counter
 
 			// handle conversation title
+			// if it is post reply conversation, add post type
+			if(!conversation.title && post && post.title) {
+
+				conversation.title = post.title;
+				
+				if(post.author._type == 'User')
+					post.type_code = (post.type == 'offer' ? 'OFFER' : 'NEED');
+				else
+					post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
+			}
+			
 			if(!conversation.title) {
+				conversation.titleCustom = true;
+				conversation.title = [];
 
-				// if it is post reply conversation, add post type
-				if(post) {
-					conversation.title = post.title;
-					
-					if(post.author._type == 'User')
-						post.type_code = (post.type == 'offer' ? 'OFFER' : 'NEED');
-					else
-						post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
-
-				} else {
-					conversation.titleCustom = true;
-					conversation.title = [];
-
-					// if there is no title, build it from participants
-					for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
-						var user = conversation.participants[i];
-						conversation.title.push(user.name);
-					};
-					conversation.title = conversation.title.join(", ");
-				}
+				// if there is no title, build it from participants
+				for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
+					var user = conversation.participants[i];
+					conversation.title.push(user.name);
+				};
+				conversation.title = conversation.title.join(", ");
 			}
 			return conversation;
 		};
