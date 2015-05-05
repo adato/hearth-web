@@ -107,6 +107,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.removeDuplicitConversations(conversations);
 			Array.prototype.unshift.apply($scope.conversations, conversations);
 			$scope.$broadcast("scrollbarResize");
+			$scope.$broadcast("classIfOverflowContentResize");
 		};
 
 		$scope.searchConversation = function() {
@@ -234,6 +235,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.showConversation($scope.conversations[0], 0);
 				$timeout(function() {
 					$scope.$broadcast("scrollbarResize");
+					$scope.$broadcast("classIfOverflowContentResize");
 					$(".conversations .scroll-content").scrollTop(0);
 				});
 			}
