@@ -74,32 +74,6 @@ article.post-on-market {
             background:white;
         }
     }
-
-    .sharing a { 
-        color:color(4) !important;
-        background:color(3);
-        border-radius:50%;
-        padding:7px;
-        font-size:1em;
-        width:$ui-grid-size;
-        height:$ui-grid-size;
-        margin:$ui-small-grid-size / 2;
-        &.fa-envelope {
-           font-size: 13px;
-            padding: 3px 0 11px;
-            padding-left: 6px;
-            padding-right: 3px;
-            padding-top: 6px;
-            position: relative;
-            top: -2px;
-        }
-        &:hover {
-            background:lighten(color(3), 10%);
-        }
-        &:active, &:focus {
-            background:darken(color(3), 10%);
-        }
-    }
 }
 
 article.post-on-market .ad-detail-column footer>.sharing {
