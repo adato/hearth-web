@@ -493,13 +493,14 @@
                 "one": "a 1 další",
                 "other": "a {{count}} další"
             },
+            "CONVERSATION_IS_EMPTY": "všichni uživatelé opustili konverzaci",
             "EMPTY_HEADER": "Nejsou zde žádné konverzace",
             "EMPTY_TEXT": "...",
             "EXPAND_ACTIONS": "Menu konverzace",
             "REPLY_TO_POST": "Odpověď na",
             "USERS": {
-                "one": "1 uživatel",
-                "other": "{{count}} uživatelé"
+                "one": "1 příjemce",
+                "other": "{{count}} příjemci"
             }
         },
         "FILTER": {
@@ -884,7 +885,7 @@
     "SAYING": "Says",
     "SEARCH_LINK": "Search",
     "SELECT_COMMUNITIES_FOR_POST": "Select communities the ad should go into.",
-    "SELECT_USERS": "Vyberze příjemce",
+    "SELECT_USERS": "Vyberte příjemce",
     "SEND": "Send",
     "SENDING_FEEDBACK_SUCCESS": "Thanks for your response! You too are helping us getting better every day.",
     "SENDING_MESSAGE_IN_PROGRESS": "Spinning the wheels, please wait... Why are people so impatient these days? Hm...",
