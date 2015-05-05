@@ -12,28 +12,31 @@ angular.module('hearth.directives').directive('classIfOverflow',
 			restrict: 'A',
 			scope: {
 				classIfOverflow: "@",
+				inner: "@",
+				outer: "@",
 			},
 			link: function(scope, element, attrs) {
 				// test if inner elements overflows container
-            	scope.isOverflow = function() {
-            		var height = 0;
-
-					$(element).children('*').each(function() {
-
-					    height += $(this).outerHeight();
-					});
-					return height > element.height();
+            	scope.isOverflow = function(el) {
+					console.log(el.find(scope.inner).height(), ">", el.height());
+					return el.find(scope.inner).height() > el.height();
             	};
 
             	scope.toggleClass = function() {
-            		if(scope.isOverflow())
-            			element.addClass(scope.classIfOverflow);
+            		var el = scope.outer ? element.find(scope.outer) : element;
+
+					console.log("OUTER: ", el.height());
+					console.log("INNER: ", element.find(scope.inner).height());
+            		
+            		if(scope.isOverflow(el))
+            			el.addClass(scope.classIfOverflow);
         			else
-        				element.removeClass(scope.classIfOverflow);
+        				el.removeClass(scope.classIfOverflow);
             	};
 
             	$timeout(scope.toggleClass);
 				$(window).resize(scope.toggleClass);
+				scope.$on("classIfOverflowContentResize", scope.toggleClass);
 			}
 		};
 	}]

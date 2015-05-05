@@ -48,6 +48,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                     // resize scrollbar
                     $scope.$broadcast("scrollbarResize");
+                    $scope.$broadcast("classIfOverflowContentResize");
 
                     // when we get less messages then requested, we hitted the end of list
                     if(!append && messages.length < _messagesCount)

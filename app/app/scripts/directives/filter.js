@@ -42,7 +42,6 @@ angular.module('hearth.directives').directive('filter', [
                 scope.inited = false;
                 scope.filterPostCount = false;
 
-
                 scope.queryKeywords = function($query) {
                     if ($query === '' || $query.length < 3) {
                         return Filter.queryCommonKeywords($query);
