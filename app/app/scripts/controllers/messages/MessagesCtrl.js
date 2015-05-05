@@ -9,11 +9,12 @@
 angular.module('hearth.controllers').controller('MessagesCtrl', [
 	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$routeParams', '$location', '$timeout',
 	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
-		$scope.conversations = false;
-		$scope.detail = false;
-		$scope.showFulltext = false;
-		$scope.showNewMessageForm = false;
 		$scope.filter = $location.search();
+		$scope.showNewMessageForm = false;
+		$scope.conversations = false;
+		$scope.showFulltext = false;
+		$scope.detail = false;
+
 		var _loadTimeout = 5000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
@@ -21,25 +22,24 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		if(!Object.keys($scope.filter).length) {
 			$scope.filter = {
 				query: '',
-				type: '',
+				type: ''
 			}
 		}
 
 		$scope.toggleAddForm = function(conversation) {
-			$scope.showNewMessageForm = !$scope.showNewMessageForm;
-
-			if($scope.showNewMessageForm) {
+			if(conversation) {
 				$location.url("/messages/");
 				$scope.filter = {
 					query: '',
 					type: '',
 				}
+				$scope.loadConversations({}, function(list) {
+					$scope.loadConversationDetail(conversation._id);
+				});
+				return;
 			}
 
-			if(conversation) {
-				$scope.loadNewConversations();
-				$scope.loadConversationDetail(conversation._id);
-			}
+			$scope.showNewMessageForm = !$scope.showNewMessageForm;
 		};
 
 		$scope.getFilter = function() {
@@ -135,14 +135,29 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.deserializeConversation = function(conversation) {
-			if(!conversation.title) {
-				if(conversation.post_id)
-					conversation.title = conversation.post_title;
-				else {
-					conversation.titleCustom = true;
+			var post = conversation.post;
+			conversation.maxAvatarCount = 4; // print 4 avatars max
 
+			if(conversation.participants_count > 4) // if there are more participants
+				conversation.maxAvatarCount = 3;	// print only 3 avatars and 4th will be +X counter
+
+			// handle conversation title
+			if(!conversation.title) {
+
+				// if it is post reply conversation, add post type
+				if(post) {
+					conversation.title = post.title;
+					
+					if(post.author._type == 'User')
+						post.type_code = (post.type == 'offer' ? 'OFFER' : 'NEED');
+					else
+						post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
+
+				} else {
+					conversation.titleCustom = true;
 					conversation.title = [];
 
+					// if there is no title, build it from participants
 					for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
 						var user = conversation.participants[i];
 						conversation.title.push(user.name);
@@ -153,8 +168,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			return conversation;
 		};
 
-		$scope.deserialize = function(conversation) {
-			return conversation.map($scope.deserializeConversation);
+		/**
+		 * Deserialize whole array of conversations
+		 */
+		$scope.deserialize = function(conversations) {
+			return conversations.map($scope.deserializeConversation);
 		};
 
 		$scope.loadConversations = function(conf, done) {

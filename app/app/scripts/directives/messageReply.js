@@ -53,6 +53,9 @@ angular.module('hearth.directives').directive('messageReply', [
 							$scope.onResize();
 						});
 						
+						$scope.msgReplyForm.$setUntouched();
+						$scope.msgReplyForm.$setPristine();
+
 						$scope.sendingReply = false;
 						$scope.showError.text = false;
 						$scope.$emit("conversationMessageAdded", res);
