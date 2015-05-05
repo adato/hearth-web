@@ -102,7 +102,21 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
-                $scope.updateConversationInfo = function(lastMessage, messagesCount) {
+                $scope.updateConversationInfo = function(messages, messagesCount) {
+                    var lastMessage = false;
+
+                    // find last message that is not system message
+                    for(var i = messages.length - 1; i >= 0; i--) {
+                        if(messages[i].author) {
+                            lastMessage = messages[i];
+                            break;
+                        }
+                    }
+
+                    // if there is no non-system message, dont update
+                    if(!lastMessage)
+                        return false;
+
                     // set info to conversation detail
                     $scope.info.last_message_time = lastMessage.created_at;
                     $scope.info.message = lastMessage;
@@ -120,6 +134,13 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     _loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
                 };
 
+                $scope.getLastMessageTime = function() {
+                    if(!$scope.messages || !$scope.messages.length)
+                        return undefined;
+                    
+                    return $scope.messages[$scope.messages.length-1].created_at;
+                };
+
                 /**
                  * Periodically pull new messages
                  */
@@ -128,7 +149,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     _loadLock = true;
 
                     $scope.loadMessages({
-                            newer: $scope.info.message.created_at
+                            newer: $scope.getLastMessageTime()
                         }, 
                         function(messages) {
                             _loadLock = false;
@@ -136,7 +157,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                             if(messages && messages.length) {
                                 $scope.testScrollBottom();
-                                $scope.updateConversationInfo(messages[messages.length-1], messages.length);
+                                $scope.updateConversationInfo(messages, messages.length);
                             }
                         });
                 };
