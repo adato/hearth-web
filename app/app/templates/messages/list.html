@@ -41,7 +41,8 @@
 								<span ng-if="item.participants_count > 2 && item.titleCustom">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 							</h2>
 							<h2 ng-if="!item.title">
-								{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</h2>
+								{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
+							</h2>
 							<span class="unreaded-count" ng-if="!item.read"></span>
 							<div class="clear"></div>
 							<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>

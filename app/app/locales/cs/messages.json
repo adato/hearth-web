@@ -504,14 +504,15 @@
                 "few": "a {{count}} další",
                 "other": "a {{count}} dalších"
             },
+            "CONVERSATION_IS_EMPTY": "všichni uživatelé opustili konverzaci",
             "EMPTY_HEADER": "Nejsou zde žádné konverzace",
             "EMPTY_TEXT": "...",
             "EXPAND_ACTIONS": "Menu konverzace",
             "REPLY_TO_POST": "Odpověď na",
             "USERS": {
-                "one": "1 uživatel",
-                "few": "{{count}} uživatelé",
-                "other": "{{count}} uživatelů"
+                "one": "1 příjemce",
+                "few": "{{count}} příjemci",
+                "other": "{{count}} příjemců"
             }
         },
         "FILTER": {
@@ -906,7 +907,7 @@
     "SAYING": "Říká",
     "SEARCH_LINK": "Hledat",
     "SELECT_COMMUNITIES_FOR_POST": "Vyberte komunity, do kterých se má inzerát vložit.",
-    "SELECT_USERS": "Vyberze příjemce",
+    "SELECT_USERS": "Vyberte příjemce",
     "SEND": "Odeslat",
     "SENDING_FEEDBACK_SUCCESS": "Děkujeme za názor. I díky vám budeme zas o něco lepší.",
     "SENDING_MESSAGE_IN_PROGRESS": "Zpráva se odesílá, prosím vyčkejte... Proč jsou všichni dnes tak netrpěliví? Hm...",
