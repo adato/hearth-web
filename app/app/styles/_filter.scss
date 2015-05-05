@@ -87,6 +87,7 @@
         .link-button {
             font-weight:$ui-text-weight-bolder;
             color:color(5);
+            margin-top:3px;
         }
         label { @extend .reset-label; }
     }

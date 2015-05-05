@@ -188,6 +188,7 @@
 		}
 		header {
 			margin-bottom:1em;
+			margin-top:-3px;
 			div.columns {
 				line-height:23px;
 			}
@@ -270,10 +271,10 @@
 				    top: -2px;
 				}
 				&:hover {
-					background:lighten(color(3), 10%);
+					background:color(5);
 				}
 				&:active, &:focus {
-					background:darken(color(3), 10%);
+					background:darken(color(5), 10%);
 				}
 			}
 			.post-edit-buttons-container {
