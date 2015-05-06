@@ -74,7 +74,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadNewConversations = function() {
 			if(!$scope.conversations.length)
 				return $scope.loadFirstConversations();
-
+			
             if(_loadLock) return false;
             _loadLock = true;
 			
