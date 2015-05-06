@@ -520,6 +520,7 @@
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
+        "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
             "TEXT_LABEL": "Text odpovědi:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."

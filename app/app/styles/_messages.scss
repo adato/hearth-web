@@ -1,4 +1,9 @@
 .messages {
+	.first-message {
+		.bottom .action-link {
+			display: none;
+		}	
+	}
 	.messages-top {
 		input, select {
 			width: 240px;

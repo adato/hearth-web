@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
+		$scope.loaded = false;
 		$scope.conversations = false;
 		$scope.showFulltext = false;
 		$scope.detail = false;
@@ -131,7 +132,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.loadCounters = function() {
 			Messenger.loadCounters(function(res) {
+				$scope.loaded = true;
 				$scope.conversationsCounters = res;
+				$scope.conversationsCounters.total = 0; // TODO
 			});
 		};
 
