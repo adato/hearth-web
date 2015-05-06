@@ -33,7 +33,7 @@
 						<li ng-repeat="item in participants">
 							<a ng-href="#!/{{ getProfileLinkByType(item._type) }}/{{item._id}}">
 								<avatar src="item.avatar.normal" type="item._type" size="mini"></avatar>
-								<span>{{ item.name | ellipsis:15}}</span>
+								<span title="{{ item.name }}">{{ item.name | ellipsis:15}}</span>
 								<div class="clear"></div>
 							</a>
 						</li>
