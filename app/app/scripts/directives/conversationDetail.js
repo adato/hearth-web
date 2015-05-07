@@ -103,17 +103,25 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
-                $scope.updateConversationInfo = function(messages, messagesCount) {
-                    var lastMessage = false;
+                $scope.hasSystemMessage = function(messages) {
+                    for(var i = messages.length - 1; i >= 0; i--) {
+                        if(!messages[i].author)
+                            return true;
+                    }
+                    return false;
+                };
 
+                $scope.getLastMessage = function(messages) {
                     // find last message that is not system message
                     for(var i = messages.length - 1; i >= 0; i--) {
-                        if(messages[i].author) {
-                            lastMessage = messages[i];
-                            break;
-                        }
+                        if(messages[i].author)
+                            return messages[i];
                     }
-
+                    return false;
+                };
+                
+                $scope.updateConversationInfo = function(messages, messagesCount) {
+                    var lastMessage = $scope.getLastMessage(messages);
                     // if there is no non-system message, dont update
                     if(!lastMessage)
                         return false;
@@ -142,6 +150,18 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     return $scope.messages[$scope.messages.length-1].created_at;
                 };
 
+                $scope.reloadConversationInfo = function() {
+                    Conversations.get({id: $scope.info._id, exclude_self: true}, function(res) {
+                        $scope.info.participants = res.participants;
+                        $scope.info.participants_count = res.participants_count;
+                        $scope.info.title = res.title;
+                        if($scope.participants) $scope.loadParticipants();
+                        $scope.info = $scope.deserialize($scope.info);
+
+                        $scope.$emit("conversationDeepUpdate", $scope.info);
+                    });
+                };
+
                 /**
                  * Periodically pull new messages
                  */
@@ -157,6 +177,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
                             $scope.scheduleNewMessagesLoading();
 
                             if(messages && messages.length) {
+
+                                if($scope.hasSystemMessage(messages))
+                                    $scope.reloadConversationInfo();
+
                                 $scope.testScrollBottom();
                                 $scope.updateConversationInfo(messages, messages.length);
                             }

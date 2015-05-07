@@ -374,7 +374,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.init = function() {
 			$scope.newPost = !$scope.post;
 			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
-			$scope.enableLockField = $rootScope.loggedUser.friends_count || $scope.post.is_private;
 			$scope.recountImages();
 
 			if($scope.preset)
@@ -389,10 +388,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		};
 
+		$scope.toggleLockField = function() {
+			$scope.enableLockField = $scope.post.current_community_id ||
+				$scope.post.related_communities.length ||
+				$rootScope.loggedUser.friends_count ||
+				$scope.post.is_private;
+		};
+
 		$scope.init();
 		$scope.$watch('post.related_communities', function(val, old) {
 			if(val.length !== old.length && !$scope.post.related_communities.length)
 				$scope.post.is_private = false;
+
+			$scope.toggleLockField();
 		});
 		$scope.$watch('post.current_community_id', function(val, old) {
 			if(!!val !== !!old) {
@@ -400,6 +408,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.post.is_private = false;
 				$scope.slide.communities = false;
 			}
+			$scope.toggleLockField();
 		});
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
 		$scope.$on('updatedItem', $scope.refreshItemInfo);
