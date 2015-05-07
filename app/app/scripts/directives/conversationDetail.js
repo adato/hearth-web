@@ -25,6 +25,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.participants = false;
                 $scope.showParticipants = false;
                 $scope.sendingActionRequest = false;
+                $scope.lockCounter = 0;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
                 var _loadTimeout = 5000; // pull requests interval in ms
@@ -62,6 +63,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * @return {[type]}        [description]
                  */
                 $scope.loadMessages = function(config, done) {
+                    var lockCounter = $scope.lockCounter;
                     config = angular.extend(config || {}, {
                         id: $scope.info._id,
                         limit: _messagesCount
@@ -70,7 +72,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         config,
                         function(res) {
                             // test if we loaded data for actual conversation detail
-                            if(config.id !== $scope.info._id) return false;
+                            // if(config.id !== $scope.info._id) return false;
+                            if(lockCounter !== $scope.lockCounter) return false;
 
                             // append/prepend messages
                             res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
@@ -344,8 +347,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 };
 
                 /**
-                 * Config init variables
-                 * deserialize conversation
+                 * Config init variables deserialize conversation
                  * and load messages
                  */
                 $scope.init = function(info) {
@@ -354,7 +356,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     // _loadingOlderMessages = true;
                         
                     $timeout.cancel(_loadTimeoutPromise);
-
+                    $scope.lockCounter++;
                     // set initial state
                     $scope.info = $scope.deserialize($scope.info);
                     _loadOlderMessagesEnd = false;
