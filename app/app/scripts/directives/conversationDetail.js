@@ -339,7 +339,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.loadParticipants = function() {
                     Conversations.getParticipants({id: $scope.info._id, exclude_self: true}, function(res) {
                         $scope.participants = res.participants;
-                        $scope.resizeTMessagesBox();
+                        $scope.resizeTMessagesBox(); // resize with timeout
                     });
                 };
 
@@ -349,9 +349,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * and load messages
                  */
                 $scope.init = function(info) {
-                    if(_loadingOlderMessages)
-                        return false;
-                    _loadingOlderMessages = true;
+                    // if(_loadingOlderMessages)
+                    //     return false;
+                    // _loadingOlderMessages = true;
                         
                     $timeout.cancel(_loadTimeoutPromise);
 
