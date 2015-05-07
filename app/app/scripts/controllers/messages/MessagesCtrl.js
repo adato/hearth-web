@@ -101,6 +101,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.removeDuplicitConversations = function(list) {
 			list.forEach(function(item) {
 				$scope.removeConversationFromList(null, item._id, true);
+				$scope.conversationsCounters.total--;
 			});
 		};
 
@@ -134,7 +135,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Messenger.loadCounters(function(res) {
 				$scope.loaded = true;
 				$scope.conversationsCounters = res;
-				$scope.conversationsCounters.total = 0; // TODO
 			});
 		};
 
@@ -279,6 +279,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		UnauthReload.check();
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
+		$scope.$on('conversationCreated', $scope.loadCounters);
 		$scope.$on('conversationDeepUpdate', $scope.updateDeepConversation);
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);

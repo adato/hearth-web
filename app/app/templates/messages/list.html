@@ -1,7 +1,13 @@
 <div class="messages" ng-if="loaded" dynamic-height offset="100" min-height="400">
 	<div ng-if="!conversationsCounters.total" class="first-message">
 		<p>{{ 'MESSAGES.NO_MESSAGE_YET' | translate }}</p>
-		<conversation-add close="toggleAddForm"></conversation-add>
+		<br />
+		<br />
+		<div class="left large-4">
+		<img src="images/messages-icon.png" />
+		</div>
+		<conversation-add class="left large-8" close="toggleAddForm"></conversation-add>
+		<div class="clear"></div>
 	</div>
 	<div ng-if="conversationsCounters.total">
 		<div class="messages-top formStyle">
