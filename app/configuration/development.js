@@ -2,7 +2,7 @@ var $$localConfig; // development
 
 $$localConfig = {
 	fbAppId: '1495788017321716', // dev
-	disableDebugInfo: false,
+	disableDebugInfo: true,
 	languages: {
 		"cs": "cs_CZ",
 		"sk": "sk_SK",
