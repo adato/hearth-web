@@ -101,7 +101,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.removeDuplicitConversations = function(list) {
 			list.forEach(function(item) {
 				$scope.removeConversationFromList(null, item._id, true);
-				$scope.conversationsCounters.total--;
 			});
 		};
 
@@ -134,6 +133,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadCounters = function() {
 			Messenger.loadCounters(function(res) {
 				$scope.loaded = true;
+				res.participants_count = 0;
 				$scope.conversationsCounters = res;
 			});
 		};
