@@ -14,8 +14,10 @@ angular.module('hearth', [
             $locationProvider.html5Mode(false).hashPrefix('!');
         }
     ]).config([
-        'cfpLoadingBarProvider',
-        function(cfpLoadingBarProvider) {
+        'cfpLoadingBarProvider', '$compileProvider',
+        function(cfpLoadingBarProvider, $compileProvider) {
+
+            $compileProvider.debugInfoEnabled($$config.disableDebugInfo);
 
             // ===============================
             // === Loading Bar Configuration

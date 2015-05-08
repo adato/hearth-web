@@ -2,6 +2,7 @@ var $$localConfig; // staging
 
 $$localConfig = {
 	fbAppId: '769756073037691', // stage
+	disableDebugInfo: true,
 	languages: {
 		"cs": "cs_CZ",
 		"sk": "sk_SK",
