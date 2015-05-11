@@ -28,7 +28,7 @@
             <h1 style="display: inline;">
                 <a href="#!/profile/{{info._id}}"><span>{{ info.name }}</span></a>
             </h1>
-            <p ng-if="info.about"><span class="fa fa-quote-right"></span>{{info.about | ellipsis}}</p>
+            <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about | ellipsis}}</div>
         </div>
         <div class="highlights">
             <avatar size="large" class="left" src="info.avatar.large" href="'#!/profile/'+info._id" type="info._type"></avatar>
