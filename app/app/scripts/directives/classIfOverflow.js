@@ -18,16 +18,11 @@ angular.module('hearth.directives').directive('classIfOverflow',
 			link: function(scope, element, attrs) {
 				// test if inner elements overflows container
             	scope.isOverflow = function(el) {
-					console.log(el.find(scope.inner).height(), ">", el.height());
 					return el.find(scope.inner).height() > el.height();
             	};
 
             	scope.toggleClass = function() {
             		var el = scope.outer ? element.find(scope.outer) : element;
-
-					console.log("OUTER: ", el.height());
-					console.log("INNER: ", element.find(scope.inner).height());
-            		
             		if(scope.isOverflow(el))
             			el.addClass(scope.classIfOverflow);
         			else

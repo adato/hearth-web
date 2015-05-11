@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
+		$scope.loaded = false;
 		$scope.conversations = false;
 		$scope.showFulltext = false;
 		$scope.detail = false;
@@ -74,7 +75,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadNewConversations = function() {
 			if(!$scope.conversations.length)
 				return $scope.loadFirstConversations();
-
+			
             if(_loadLock) return false;
             _loadLock = true;
 			
@@ -131,16 +132,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.loadCounters = function() {
 			Messenger.loadCounters(function(res) {
+				$scope.loaded = true;
+				res.participants_count = 0;
 				$scope.conversationsCounters = res;
 			});
 		};
 
 		$scope.deserializeConversation = function(conversation) {
 			var post = conversation.post;
-			conversation.maxAvatarCount = 4; // print 4 avatars max
-
-			if(conversation.participants_count > 4) // if there are more participants
-				conversation.maxAvatarCount = 3;	// print only 3 avatars and 4th will be +X counter
+			conversation.maxAvatarCount = (conversation.participants_count > 4 ) ? 3 : 4; // print 4 avatars max or only 3 avatars and 4th will be +X counter
 
 			// handle conversation title
 			// if it is post reply conversation, add post type
@@ -216,6 +216,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 		};
 
+		$scope.updateDeepConversation = function(ev, conv) {
+			conv = $scope.deserializeConversation(conv);
+		};
+
 		// when we leave/delete conversation - remove it from conversation list
 		$scope.removeConversationFromList = function(ev, id, dontSwitchConversation) {
 			// find its position
@@ -275,6 +279,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		UnauthReload.check();
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
+		$scope.$on('conversationCreated', $scope.loadCounters);
+		$scope.$on('conversationDeepUpdate', $scope.updateDeepConversation);
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();

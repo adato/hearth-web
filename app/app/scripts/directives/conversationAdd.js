@@ -68,6 +68,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
                         $scope.sendMessage = false;
                         Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
+                        $scope.$emit("conversationCreated", res);
                         $scope.close(res);
                     }, function() {
                         $scope.sendMessage = false;

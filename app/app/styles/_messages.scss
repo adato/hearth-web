@@ -1,4 +1,9 @@
 .messages {
+	.first-message {
+		.bottom .action-link {
+			display: none;
+		}	
+	}
 	.messages-top {
 		input, select {
 			width: 240px;
@@ -335,18 +340,12 @@
 
 				&.shadow-top::after {
 					background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #ffffff 70%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-					/*
-						background: image-url("messages_right_shade.png");
-						background-repeat: no-repeat;
-						background-position: left top;
-					*/
-				
 					position: absolute !important;
 					top: 0px;
 					left: 0px;
 					width: 100%;
 					content: "";
-					height: 40px;
+					height: 30px;
 				}
 			}
 			.message-reply {
