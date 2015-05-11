@@ -22,7 +22,8 @@
     "font-awesome": "~4.3.0",
     "foundation-datepicker": "~1.1.0",
     "ng-slide-down": "~0.3.0",
-    "jquery.scrollbar": "~0.2.7"
+    "jquery.scrollbar": "~0.2.7",
+    "exif-js": "*"
   },
   "devDependencies": {},
   "resolutions": {
