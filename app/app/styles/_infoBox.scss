@@ -27,6 +27,14 @@
                 bottom: 0.8em;
             };
         }
+        .user-info-text div {
+            word-wrap: break-word;
+            margin-left:40px;
+            .fa { 
+                margin-left:-28px; 
+                float:left;
+            }
+        }
         .inner {
 
             .fa {
@@ -61,7 +69,7 @@
                 margin-top: 10px;
                 height: 18px;
                 .fa {
-                    font-size: 20px;
+                    //font-size: 20px;
                     margin-right: 3px;
                 }
             }
