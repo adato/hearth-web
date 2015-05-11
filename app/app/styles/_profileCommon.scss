@@ -420,8 +420,11 @@
                     margin-bottom: $ui-small-grid-size;
                     margin-left: 27px;
                     line-height: 140%;
+                    clear:both;
                     .fa {
                         margin-left: -27px;
+                        float:left;
+                        margin-top:3px;
                     }
                 }
             }
