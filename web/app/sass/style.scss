@@ -222,9 +222,9 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 }
 @keyframes pulseImg
 {
-	0% { @include size ( $face-size, $face-size ); transform:translate(0,0); }
+	0% { @include size ( $face-size, $face-size );}
 	10% { @include size ( $face-size-hover, $face-size-hover ); } 
-	20% { @include size ( $face-size, $face-size ); transform:translate(0,0); }
+	20% { @include size ( $face-size, $face-size );}
 	60% { @include size ( $face-size, $face-size );  }
 	100% { @include size ( $face-size, $face-size );  }
 }
