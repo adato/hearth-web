@@ -161,13 +161,12 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 	margin: 0 auto;
 	text-align: center;
 
-	.face
-		{
+	.face {
 		position: absolute;
 		display: inline-block;
 		overflow: hidden;
 		@include size ( $face-size, $face-size ); 
-		@include rounded-corners ( $face-size / 2 );
+		@include rounded-corners (50%);
 		border: 7px solid #FFF;
 		
 		& > img {
@@ -177,15 +176,18 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 			animation-duration: 12s;
 			animation-timing-function: ease-out;
 			animation-iteration-count: infinite;
+			animation-play-state:running;
 		}
 
 		@include hoverify 
 		{
  			@include size ( $face-size-hover !important, $face-size-hover !important);
-			@include rounded-corners ( $face-size-hover / 2 );
+			//@include rounded-corners ( $face-size-hover / 2 );
 			@include box-shadow ( #FFF 0 0 45px !important);
 			transform:translate($translate-size, $translate-size) !important;
+			animation-play-state:paused;
 			& > img {
+				animation-play-state:paused;
 				@include size ( $face-size-hover !important, $face-size-hover !important);
 			} 
 		}
@@ -194,11 +196,8 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 		animation-duration: 12s;
 		animation-timing-function: ease-out;
 		animation-iteration-count: infinite; 
+		animation-play-state:running;
 
-		// 1st person
-		&.first, &.second, &.third {
-
-		}
 		&.first	{ left: -25%; top: 200px; }
 		&.second { left: 250px; top: -20px; animation-delay: 4s; &>img { animation-delay: 4s; }}
 		&.third	{ left: 90%; top: 275px; animation-delay: 8s; &>img { animation-delay: 8s; }}
@@ -216,17 +215,13 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 {
 	0% { @include size ( $face-size, $face-size ); transform:translate(0,0); @include box-shadow (none); }
 	10% { @include size ( $face-size-hover, $face-size-hover ); @include box-shadow ( #FFF 0 0 45px ); transform:translate($translate-size, $translate-size);} 
-	20% { @include size ( $face-size, $face-size ); transform:translate(0,0); }
-	60% { @include size ( $face-size, $face-size ); @include box-shadow (none); }
-	100% { @include size ( $face-size, $face-size );  }
+	20% { @include size ( $face-size, $face-size ); transform:translate(0,0); @include box-shadow (none); }
 }
 @keyframes pulseImg
 {
 	0% { @include size ( $face-size, $face-size );}
 	10% { @include size ( $face-size-hover, $face-size-hover ); } 
 	20% { @include size ( $face-size, $face-size );}
-	60% { @include size ( $face-size, $face-size );  }
-	100% { @include size ( $face-size, $face-size );  }
 }
 
 
