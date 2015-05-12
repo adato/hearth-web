@@ -9,14 +9,16 @@
 angular.module('hearth.services').service('Messenger', [
 	'$q', 'Conversations', '$rootScope', '$timeout',
 	function($q, Conversations, $rootScope, $timeout) {
+		$rootScope.messagesCounters = {};
 		var self = this;
-		this.counters = null;
 		var timer = null;
+		this.counters = null;
 
+		// load 
 		this.loadCounters = function(done) {
 			Conversations.getCounters({}, function(res) {
 				self.counters = res;
-				$rootScope.unreadedMessagesCount = res.unread;
+				$rootScope.messagesCounters = res;
 				done && done(res);
 			});
 		};

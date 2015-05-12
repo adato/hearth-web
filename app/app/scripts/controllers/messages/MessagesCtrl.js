@@ -130,14 +130,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$location.url("/messages/"+info._id+"?"+jQuery.param($location.search()));
 		};
 
-		$scope.loadCounters = function() {
-			Messenger.loadCounters(function(res) {
-				$scope.loaded = true;
-				res.participants_count = 0;
-				$scope.conversationsCounters = res;
-			});
-		};
-
 		$scope.deserializeConversation = function(conversation) {
 			var post = conversation.post;
 			conversation.maxAvatarCount = (conversation.participants_count > 4 ) ? 3 : 4; // print 4 avatars max or only 3 avatars and 4th will be +X counter

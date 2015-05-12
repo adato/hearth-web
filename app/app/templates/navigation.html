@@ -29,7 +29,7 @@
 			<div class="separator"></div>
 		    <span ng-if="config.env != 'production'" class="top-bar-messages">
 				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="#!/messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
-                    <span class="messages-icon">{{ unreadedMessagesCount | minMax:0:99 }}</span>
+                    <span class="messages-icon">{{ messagesCounters.unread | minMax:0:99 }}</span>
 		            <label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
 			    </a>
 		    </span>
