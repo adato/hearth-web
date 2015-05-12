@@ -1042,6 +1042,13 @@ body.stickify-up .sticky-panel {
   height: 460px;
   margin: 0 auto;
   text-align: center;
+  /* 	.center-text {
+  		font-family:"Redressed", Arial, sans-serif;
+  		position:relative;
+  		top:60%;
+  		font-size:30px;
+  		color:#fff;
+  	} */
 }
 /* line 164, ../../app/sass/style.scss */
 .face-deck .face {
@@ -1054,8 +1061,8 @@ body.stickify-up .sticky-panel {
   border: 7px solid #FFF;
   -webkit-animation-name: pulse;
           animation-name: pulse;
-  -webkit-animation-duration: 12s;
-          animation-duration: 12s;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
   -webkit-animation-timing-function: ease-out;
           animation-timing-function: ease-out;
   -webkit-animation-iteration-count: infinite;
@@ -1070,8 +1077,8 @@ body.stickify-up .sticky-panel {
   height: 190px;
   -webkit-animation-name: pulseImg;
           animation-name: pulseImg;
-  -webkit-animation-duration: 12s;
-          animation-duration: 12s;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
   -webkit-animation-timing-function: ease-out;
           animation-timing-function: ease-out;
   -webkit-animation-iteration-count: infinite;
@@ -1105,33 +1112,25 @@ body.stickify-up .sticky-panel {
 .face-deck .face.second {
   left: 250px;
   top: -20px;
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
+  -webkit-animation-delay: .5s;
+          animation-delay: .5s;
 }
 /* line 202, ../../app/sass/style.scss */
 .face-deck .face.second > img {
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
+  -webkit-animation-delay: .5s;
+          animation-delay: .5s;
 }
 /* line 203, ../../app/sass/style.scss */
 .face-deck .face.third {
   left: 90%;
   top: 275px;
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 /* line 203, ../../app/sass/style.scss */
 .face-deck .face.third > img {
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
-}
-/* line 205, ../../app/sass/style.scss */
-.face-deck .center-text {
-  font-family: "Redressed", Arial, sans-serif;
-  position: relative;
-  top: 60%;
-  font-size: 30px;
-  color: #fff;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 
 @-webkit-keyframes pulse {
