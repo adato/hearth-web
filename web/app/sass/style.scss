@@ -173,7 +173,7 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 			display: inline-block;
 			@include size ( $face-size, $face-size ); 
 			animation-name: pulseImg;
-			animation-duration: 12s;
+			animation-duration: 5s;
 			animation-timing-function: ease-out;
 			animation-iteration-count: infinite;
 			animation-play-state:running;
@@ -193,22 +193,22 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 		}
 
 		animation-name: pulse;
-		animation-duration: 12s;
+		animation-duration: 5s;
 		animation-timing-function: ease-out;
 		animation-iteration-count: infinite; 
 		animation-play-state:running;
 
 		&.first	{ left: -25%; top: 200px; }
-		&.second { left: 250px; top: -20px; animation-delay: 4s; &>img { animation-delay: 4s; }}
-		&.third	{ left: 90%; top: 275px; animation-delay: 8s; &>img { animation-delay: 8s; }}
+		&.second { left: 250px; top: -20px; animation-delay: .5s; &>img { animation-delay: .5s; }}
+		&.third	{ left: 90%; top: 275px; animation-delay: 1s; &>img { animation-delay: 1s; }}
 	}
-	.center-text {
+/* 	.center-text {
 		font-family:"Redressed", Arial, sans-serif;
 		position:relative;
 		top:60%;
 		font-size:30px;
 		color:#fff;
-	}
+	} */
 }
 
 @keyframes pulse

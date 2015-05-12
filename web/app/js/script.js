@@ -179,15 +179,17 @@ function onHoverStopAnimate() {
 			.css('-moz-animation-name', 'none');
 
 	}, function () {
-		$(faceSelector)
-			.css('animation-name', 'pulse')
-			.css('-webkit-animation-name', 'pulse')
-			.css('-moz-animation-name', 'pulse');
+		window.setTimeout(function () {
+			$(faceSelector)
+				.css('animation-name', 'pulse')
+				.css('-webkit-animation-name', 'pulse')
+				.css('-moz-animation-name', 'pulse');
 
-		$(faceImgSelector)
-			.css('animation-name', 'pulseImg')
-			.css('-webkit-animation-name', 'pulseImg')
-			.css('-moz-animation-name', 'pulseImg');
+			$(faceImgSelector)
+				.css('animation-name', 'pulseImg')
+				.css('-webkit-animation-name', 'pulseImg')
+				.css('-moz-animation-name', 'pulseImg');
+		}, 1000);
 	});
 }
 
