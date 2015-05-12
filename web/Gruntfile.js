@@ -373,8 +373,8 @@ module.exports = function(grunt) {
 		'htmlmin'
 	]);
 	grunt.registerTask('default', [
-		'newer:jshint',
-		'test',
+//		'newer:jshint',
+//		'test',
 		'build'
 	]);
 };
