@@ -16,7 +16,8 @@ var viewportRatio = viewportHeight / viewportWidth;
 var logoWidth = $( '.logo-strip>.container' ).innerWidth();
 setHeaderHeight();
 // window.onresize = setHeaderHeight;
-stickifyPanel( $( '.sticky-panel' ), '.logo-container')
+stickifyPanel( $( '.sticky-panel' ), '.logo-container');
+onHoverStopAnimate();
 
 $(function () 
 {
@@ -161,6 +162,37 @@ function stickifyPanel( stickyPanel, logoClass )
 		positionPanel();
 	})
 }
+
+
+function onHoverStopAnimate() {
+	var faceSelector = '.face-deck>.face';
+	var faceImgSelector = '.face-deck>.face>img';
+	$(faceSelector).hover(function () {
+		$(faceSelector)
+			.css('animation-name', 'none')
+			.css('-webkit-animation-name', 'none')
+			.css('-moz-animation-name', 'none');
+
+		$(faceImgSelector)
+			.css('animation-name', 'none')
+			.css('-webkit-animation-name', 'none')
+			.css('-moz-animation-name', 'none');
+
+	}, function () {
+		$(faceSelector)
+			.css('animation-name', 'pulse')
+			.css('-webkit-animation-name', 'pulse')
+			.css('-moz-animation-name', 'pulse');
+
+		$(faceImgSelector)
+			.css('animation-name', 'pulseImg')
+			.css('-webkit-animation-name', 'pulseImg')
+			.css('-moz-animation-name', 'pulseImg');
+	});
+}
+
+
+
 
 // === Test if we are logged in hearth
 // if yes, refresh user to /app
