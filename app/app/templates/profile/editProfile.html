@@ -2,7 +2,7 @@
   <form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
     <div class="right-column small-12 large-5 columns push-7" ng-cloak>
       <div image-preview files="profile.avatar" limit="1" limit-pixel-size="400" single-file="true">
-        <img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image />
+        <img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image exif-rotated />
         <img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" resized-thumbnail-image />
         <div class="text">
           <span class="fa fa-plus-square-o"></span>

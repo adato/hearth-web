@@ -153,7 +153,7 @@
                             <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
                                 <i class="fa fa-times"></i>
                             </a>
-                            <img resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
+                            <img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
                         </li>
                         <li class="file-upload">
                             <div image-preview no-encoding="true" error="showError.files" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
