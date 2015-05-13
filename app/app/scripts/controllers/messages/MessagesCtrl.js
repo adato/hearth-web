@@ -16,7 +16,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showFulltext = false;
 		$scope.detail = false;
 
-		var _loadTimeout = 5000; // pull requests interval in ms
+		var _loadTimeout = 20000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
         

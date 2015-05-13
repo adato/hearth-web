@@ -28,7 +28,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.lockCounter = 0;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
-                var _loadTimeout = 5000; // pull requests interval in ms
+                var _loadTimeout = 20000; // pull requests interval in ms
                 var _loadLock = false; // pull requests interval in ms
                 var _scrollInited = false;
                 var _loadOlderMessagesEnd = false;

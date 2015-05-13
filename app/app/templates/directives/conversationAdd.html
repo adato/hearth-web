@@ -1,5 +1,6 @@
 <div class="messages messages-add">
 	<form ng-submit="addMessage(message)" novalidate name="addMessageForm" class="formStyle">
+        <p>{{ 'MESSAGES.NEW_MESSAGE_USER_RESTRICTION' | translate }}</p>
         <div class="recipient">
           <label>
             {{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *

@@ -31,7 +31,7 @@ angular.module('hearth.services').service('timeAgoService', [
 			nowTime: 0,
 			initted: false,
 			settings: {
-				refreshMillis: 60000,
+				refreshMillis: 30000,
 				strings: {}
 			},
 			doTimeout: function() {
