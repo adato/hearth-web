@@ -58,7 +58,7 @@ body
 		background-position: center top;
 		background-repeat: no-repeat;
 		& > div.header-content {
-			@include bg ( "dots-and-lines.png", no-repeat center 40% );
+			@include bg ( "dots-and-lines.png", no-repeat center 43% );
 		}
 	}
 
@@ -157,6 +157,7 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 .face-deck 
 {
 	position: relative;
+	top:30px;
 	@include size ( 70%, 460px );
 	margin: 0 auto;
 	text-align: center;
@@ -168,15 +169,18 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 		@include size ( $face-size, $face-size ); 
 		@include rounded-corners (50%);
 		border: 7px solid #FFF;
+
+
+		animation-duration: 5s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite; 
 		
 		& > img {
 			display: inline-block;
 			@include size ( $face-size, $face-size ); 
-			animation-name: pulseImg;
 			animation-duration: 5s;
-			animation-timing-function: ease-out;
+			animation-timing-function: linear;
 			animation-iteration-count: infinite;
-			animation-play-state:running;
 		}
 
 		@include hoverify 
@@ -184,7 +188,10 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
  			@include size ( $face-size-hover !important, $face-size-hover !important);
 			//@include rounded-corners ( $face-size-hover / 2 );
 			@include box-shadow ( #FFF 0 0 45px !important);
-			transform:translate($translate-size, $translate-size) !important;
+			
+			margin-top:$translate-size;
+			margin-left:$translate-size;
+
 			animation-play-state:paused;
 			& > img {
 				animation-play-state:paused;
@@ -192,40 +199,33 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 			} 
 		}
 
-		animation-name: pulse;
-		animation-duration: 5s;
-		animation-timing-function: ease-out;
-		animation-iteration-count: infinite; 
-		animation-play-state:running;
-
 		&.first	{ left: -25%; top: 200px; }
 		&.second { left: 250px; top: -20px; animation-delay: .5s; &>img { animation-delay: .5s; }}
 		&.third	{ left: 90%; top: 275px; animation-delay: 1s; &>img { animation-delay: 1s; }}
 	}
-/* 	.center-text {
-		font-family:"Redressed", Arial, sans-serif;
-		position:relative;
-		top:60%;
-		font-size:30px;
-		color:#fff;
-	} */
 }
 
 @keyframes pulse
 {
-	0% { @include size ( $face-size, $face-size ); transform:translate(0,0); @include box-shadow (none); }
-	10% { @include size ( $face-size-hover, $face-size-hover ); @include box-shadow ( #FFF 0 0 45px ); transform:translate($translate-size, $translate-size);} 
-	20% { @include size ( $face-size, $face-size ); transform:translate(0,0); @include box-shadow (none); }
+	0% { @include box-shadow (none); }
+	10% { @include box-shadow ( #FFF 0 0 40px ); }
+	20% { @include box-shadow (none); }
 }
+
 @keyframes pulseImg
 {
-	0% { @include size ( $face-size, $face-size );}
-	10% { @include size ( $face-size-hover, $face-size-hover ); } 
-	20% { @include size ( $face-size, $face-size );}
+	0% { @include size ( $face-size, $face-size ); margin:0;}
+	10% { @include size ( $face-size-hover, $face-size-hover ); margin-top:$translate-size; margin-left:$translate-size;} 
+	20% { @include size ( $face-size, $face-size ); margin:0;}
 }
 
 
 // Headline & Claim
+.claim-container {
+	position:relative;
+	top:30px;
+}
+
 .headline
 {
 	text-transform: uppercase;
@@ -239,7 +239,7 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 .btn-cta 
 {
 	display: inline-block;
-	padding: 25px 60px;
+	padding: 25px 150px;
 	margin: 50px 0 70px;
 	text-transform: uppercase;
 	@include text-shadow ( rgba( #000, .25) 0 1px 2px );
@@ -247,7 +247,7 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 	@include gradient-linear ( $intro-cta-btn-bg, darken( $intro-cta-btn-bg, 5 ) );
 	@include rounded-corners ( $web-radius );
 	@include box-shadow ( rgba( #000, .35 ) 0 3px 5px );
-	@include font-params ( #FFF, 24px, normal, $bold );
+	@include font-params ( #FFF, 30px, normal, $bold );
 
 	@include hoverify 
 	{
