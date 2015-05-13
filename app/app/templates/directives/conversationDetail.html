@@ -53,7 +53,10 @@
 								<div class="message-head">
 									<a class="left" ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
 										<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
-										<h5 class="fleft">{{ item.author.name }}</h5>
+										<h5 class="fleft">
+											{{ item.author.name }}
+											<i ng-if="item.author._type == 'Community'">({{ item.owner.name }})</i>
+										</h5>
 									</a>
 									<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
 									<div class="clear"></div>

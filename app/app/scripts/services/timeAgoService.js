@@ -37,7 +37,7 @@ angular.module('hearth.services').service('timeAgoService', [
 			doTimeout: function() {
 				var now = new Date();
 				ref.nowTime = now.getTime();
-				$rootScope.$broadcast('hearthbeat', ref.nowTime);
+				$rootScope.$emit('hearthbeat', ref.nowTime);
 				return ref.nowTime;
 			},
 			init: function() {
