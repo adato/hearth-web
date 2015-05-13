@@ -1,86 +1,74 @@
 <div class="messages" ng-if="loaded" dynamic-height offset="100" min-height="400">
-	<div ng-if="!conversationsCounters.total" class="first-message">
-		<p>{{ 'MESSAGES.NO_MESSAGE_YET' | translate }}</p>
-		<br />
-		<br />
-		<div class="left large-4">
-		<img src="images/messages-icon.png" />
-		</div>
-		<conversation-add class="left large-8" close="toggleAddForm"></conversation-add>
-		<div class="clear"></div>
-	</div>
-	<div ng-if="conversationsCounters.total">
-		<div class="messages-top formStyle">
-			<!-- <form class="search" method="POST" ng-submit="searchConversation()">
-				<div class="slide-show" ng-class="{'width-auto': showFulltext}">
-					<input type="text" ng-model="filter.query" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
-				</div>
-				<button class="button-icon fa fa-search"></button>
-			</form> -->
-			<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
-				<option value="" ng-selected="filter.type == ''">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
-				<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
-				<!-- <option value="users_posts" ng-selected="filter.type == 'users_posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
-				<!-- <option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option> -->
-				<option value="archived" ng-selected="filter.type == 'archived'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
-			</select>
+	<div class="messages-top formStyle">
+		<!-- <form class="search" method="POST" ng-submit="searchConversation()">
+			<div class="slide-show" ng-class="{'width-auto': showFulltext}">
+				<input type="text" ng-model="filter.query" placeholder="{{ 'MESSAGES.CONVERSATION_SEARCH_PLACEHOLDER' | translate}}">
+			</div>
+			<button class="button-icon fa fa-search"></button>
+		</form> -->
+		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
+			<option value="" ng-selected="filter.type == ''">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
+			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<!-- <option value="users_posts" ng-selected="filter.type == 'users_posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
+			<!-- <option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option> -->
+			<option value="archived" ng-selected="filter.type == 'archived'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
+		</select>
 
-			<a class="button-send right" ng-click="toggleAddForm()">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
-			<div class="clear"></div>
-			<div loading show="!conversations"></div>
-		</div>
-		
-		<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
-			<div id="about" class="collumn left conversations" ng-if="conversations" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
-				<div class="nano" custom-scrollbar>
-		    		<div class="nano-content">
-			    		<div class="nano-content-inner">
-							<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == detail._id}"></div>
-							<div class="text-center no-result" ng-if="!conversations.length">
-								{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
+		<a class="button-send right" ng-click="toggleAddForm()">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+		<div class="clear"></div>
+		<div loading show="!conversations"></div>
+	</div>
+	
+	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
+		<div id="about" class="collumn left conversations" ng-if="conversations" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
+			<div class="nano" custom-scrollbar>
+	    		<div class="nano-content">
+		    		<div class="nano-content-inner">
+						<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == detail._id}"></div>
+						<div class="text-center no-result" ng-if="!conversations.length">
+							{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
+						</div>
+						<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
+							<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
+								<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants"></avatar>
+								<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
+								<div class="avatar-participants-count" ng-if="item.participants_count > 4">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
+								<div class="avatar-no-participants" ng-if="!item.participants.length"></div>
 							</div>
-							<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
-								<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
-									<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants"></avatar>
-									<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
-									<div class="avatar-participants-count" ng-if="item.participants_count > 4">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
-									<div class="avatar-no-participants" ng-if="!item.participants.length"></div>
-								</div>
-								<div class="conversation-info">
-									<h2 ng-if="item.title">
-										<span ng-if="item.post">{{ item.post.type_code | translate }}</span>
-										{{ item.title | ellipsis:45 }}
-										<span ng-if="item.participants_count > 2 && item.titleCustom">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
-									</h2>
-									<h2 ng-if="!item.title">
-										{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
-									</h2>
-									<span class="unreaded-count" ng-if="!item.read"></span>
-									<div class="clear"></div>
-									<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>
-									<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:DATETIME_FORMATS.medium }}">{{ item.last_message_time | ago }}</i>
-								</div>
+							<div class="conversation-info">
+								<h2 ng-if="item.title">
+									<span ng-if="item.post">{{ item.post.type_code | translate }}</span>
+									{{ item.title | ellipsis:45 }}
+									<span ng-if="item.participants_count > 2 && item.titleCustom">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
+								</h2>
+								<h2 ng-if="!item.title">
+									{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
+								</h2>
+								<span class="unreaded-count" ng-if="!item.read"></span>
 								<div class="clear"></div>
+								<p ng-if="item.message.text">{{ item.message.text | ellipsis:60 }}</p>
+								<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:DATETIME_FORMATS.medium }}" ago="item.last_message_time"></i>
 							</div>
+							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="collumn box right conversation-detail-container">
-				<conversation-add ng-if="showNewMessageForm" close="toggleAddForm"></conversation-add>
-				<div ng-if="!showNewMessageForm && ! detail">
-					<div ng-if="!conversations.length" class="text-center no-result">
-						<br />
-						<img src="images/fireplace.jpeg" title="{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
-						<br />
-						<br />
-						<h4>{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
-						<span>{{ 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
-					</div>
-				</div>
-				<conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail>
-			</div>
-			<div class="clear"></div>
 		</div>
+		<div class="collumn box right conversation-detail-container">
+			<conversation-add ng-if="showNewMessageForm" close="toggleAddForm"></conversation-add>
+			<div ng-if="!showNewMessageForm && ! detail">
+				<div ng-if="!conversations.length" class="text-center no-result">
+					<br />
+					<img src="images/fireplace.jpeg" title="{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
+					<br />
+					<br />
+					<h4>{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
+					<span>{{ 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
+				</div>
+			</div>
+			<conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail>
+		</div>
+		<div class="clear"></div>
 	</div>
 </div>
