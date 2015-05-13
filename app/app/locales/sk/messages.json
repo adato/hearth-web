@@ -28,6 +28,7 @@
     "ADD_USER_RATING": "Ohodnoťte komunikáciu s užívateľom",
     "ADMIN": "Správca",
     "ADMIN_7_CASE": "správca",
+    "ADS_ALL": "Všechny dary a přání",
     "AD_ADD_LABEL": "Vytvoriť inzerát",
     "AD_EDIT_LABEL": "Editovať inzerát",
     "AD_PAUSE_ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
@@ -534,7 +535,7 @@
         },
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
-            "TEXT_LABEL": "Text odpovědi:",
+            "TEXT_LABEL": "Text zprávy:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
         },
         "SYSTEM_MESSAGE": {
@@ -617,6 +618,8 @@
     "NOTIFICATION": {
         "ALERT_EXPIRED_POSTS": "Zasílat upozornění na inzeráty, kterým skončila doba platnosti.",
         "ALERT_EXPIRING_POSTS": "Zasílat upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
+        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
         "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti."
     },
     "NOTIFY": {
@@ -880,7 +883,7 @@
     "PROFILE_UPDATE_FAILED": "Zmeny vo Vašom profile sa, bohužiaľ, nepodarilo uložiť. Skôr než vyskočíte z okna, skúste to prosím ešte raz.\n",
     "PROFILE_WAS_UPDATED": "Zmeny vo Vašom profile boli uložené. Ste teraz ako úplne nový človek!",
     "RATINGS_LABEL_WRITE_SOME_WORD": "Pridajte pár slov:",
-    "RATINGS_SAYING_FOR": "Řekla",
+    "RATINGS_SAYING_FOR": "Říká o uživateli",
     "RATING_COMMON_POSTS_TOP": "O aký inzerát šlo?",
     "RATING_LOADING_COMMON_POSTS": "Načítavam zoznam inzerátov",
     "RATING_NO_COMMON_POST_IN_3_MONTHS": "Za posledné 3 mesiace ste si vzájomne nereagovali na žiadny inzerát. I tak ale môžete užívateľa ohodnotiť. :)",
