@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger',
+    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService',
 
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger) {
+    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -203,6 +203,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
+            timeAgoService.init();
             Notify.checkRefreshMessage();
             Auth.isLoggedIn() && Messenger.loadCounters();
 

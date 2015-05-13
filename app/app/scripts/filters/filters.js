@@ -72,7 +72,6 @@ angular.module('hearth.filters', [])
  */
 .filter('ago', [
 	'timeAgoService',
-
 	function(timeAgoService) {
 		return function(value) {
 			var nowDate = new Date(),

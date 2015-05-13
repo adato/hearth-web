@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.services').service('timeAgoService', [
-	'$interval', '$translate',
-	function($interval, $translate) {
+	'$interval', '$translate', '$rootScope',
+	function($interval, $translate, $rootScope) {
 		var ref;
 		ref = null;
 		return {
@@ -36,18 +36,16 @@ angular.module('hearth.services').service('timeAgoService', [
 			},
 			doTimeout: function() {
 				var now = new Date();
-
 				ref.nowTime = now.getTime();
+				$rootScope.$broadcast('hearthbeat', ref.nowTime);
 				return ref.nowTime;
 			},
 			init: function() {
-				var that;
 				if (!this.initted) {
 					this.initted = true;
-					this.nowTime = (new Date()).getTime();
 					ref = this;
-					that = this;
-					that.settings.strings = that.getStrings();
+					this.settings.strings = this.getStrings();
+					ref.doTimeout();
 					$interval(ref.doTimeout, ref.settings.refreshMillis);
 					this.initted = true;
 					return this.initted;

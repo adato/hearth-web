@@ -238,7 +238,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadFirstConversations = function() {
-			$scope.loadCounters();
+			Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
 				// load first conversation on init
 				if($routeParams.id)
@@ -256,8 +256,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showFulltext = false;
 			$scope.showNewMessageForm = false;
 			
-			$scope.loadCounters();
+			Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
+				$scope.loaded = true;
+				
 				// load first conversation on init
 				if($routeParams.id)
 					$scope.loadConversationDetail($routeParams.id);
