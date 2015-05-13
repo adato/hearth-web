@@ -533,6 +533,7 @@
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
+        "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
             "TEXT_LABEL": "Text zprávy:",
