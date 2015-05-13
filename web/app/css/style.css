@@ -951,7 +951,7 @@ body > header {
 }
 /* line 60, ../../app/sass/style.scss */
 body > header > div.header-content {
-  background: url("../img/dots-and-lines.png") no-repeat center 40%;
+  background: url("../img/dots-and-lines.png") no-repeat center 43%;
 }
 /* line 65, ../../app/sass/style.scss */
 body > footer {
@@ -1038,19 +1038,13 @@ body.stickify-up .sticky-panel {
 /* line 157, ../../app/sass/style.scss */
 .face-deck {
   position: relative;
+  top: 30px;
   width: 70%;
   height: 460px;
   margin: 0 auto;
   text-align: center;
-  /* 	.center-text {
-  		font-family:"Redressed", Arial, sans-serif;
-  		position:relative;
-  		top:60%;
-  		font-size:30px;
-  		color:#fff;
-  	} */
 }
-/* line 164, ../../app/sass/style.scss */
+/* line 165, ../../app/sass/style.scss */
 .face-deck .face {
   position: absolute;
   display: inline-block;
@@ -1059,75 +1053,67 @@ body.stickify-up .sticky-panel {
   height: 190px;
   border-radius: 50%;
   border: 7px solid #FFF;
-  -webkit-animation-name: pulse;
-          animation-name: pulse;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-  -webkit-animation-play-state: running;
-          animation-play-state: running;
 }
-/* line 172, ../../app/sass/style.scss */
+/* line 178, ../../app/sass/style.scss */
 .face-deck .face > img {
   display: inline-block;
   width: 190px;
   height: 190px;
-  -webkit-animation-name: pulseImg;
-          animation-name: pulseImg;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-  -webkit-animation-play-state: running;
-          animation-play-state: running;
 }
 /* line 373, ../../app/sass/libs/_base.scss */
 .face-deck .face:hover, .face-deck .face:active, .face-deck .face:focus {
   width: 200px !important;
   height: 200px !important;
   box-shadow: #FFF 0 0 45px !important;
-  -webkit-transform: translate(-5px, -5px) !important;
-          transform: translate(-5px, -5px) !important;
+  margin-top: -5px;
+  margin-left: -5px;
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
 }
-/* line 189, ../../app/sass/style.scss */
+/* line 196, ../../app/sass/style.scss */
 .face-deck .face:hover > img, .face-deck .face:active > img, .face-deck .face:focus > img {
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
   width: 200px !important;
   height: 200px !important;
 }
-/* line 201, ../../app/sass/style.scss */
+/* line 202, ../../app/sass/style.scss */
 .face-deck .face.first {
   left: -25%;
   top: 200px;
 }
-/* line 202, ../../app/sass/style.scss */
+/* line 203, ../../app/sass/style.scss */
 .face-deck .face.second {
   left: 250px;
   top: -20px;
   -webkit-animation-delay: .5s;
           animation-delay: .5s;
 }
-/* line 202, ../../app/sass/style.scss */
+/* line 203, ../../app/sass/style.scss */
 .face-deck .face.second > img {
   -webkit-animation-delay: .5s;
           animation-delay: .5s;
 }
-/* line 203, ../../app/sass/style.scss */
+/* line 204, ../../app/sass/style.scss */
 .face-deck .face.third {
   left: 90%;
   top: 275px;
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
 }
-/* line 203, ../../app/sass/style.scss */
+/* line 204, ../../app/sass/style.scss */
 .face-deck .face.third > img {
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
@@ -1135,48 +1121,24 @@ body.stickify-up .sticky-panel {
 
 @-webkit-keyframes pulse {
   0% {
-    width: 190px;
-    height: 190px;
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
     box-shadow: none;
   }
   10% {
-    width: 200px;
-    height: 200px;
-    box-shadow: #FFF 0 0 45px;
-    -webkit-transform: translate(-5px, -5px);
-            transform: translate(-5px, -5px);
+    box-shadow: #FFF 0 0 40px;
   }
   20% {
-    width: 190px;
-    height: 190px;
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
     box-shadow: none;
   }
 }
 
 @keyframes pulse {
   0% {
-    width: 190px;
-    height: 190px;
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
     box-shadow: none;
   }
   10% {
-    width: 200px;
-    height: 200px;
-    box-shadow: #FFF 0 0 45px;
-    -webkit-transform: translate(-5px, -5px);
-            transform: translate(-5px, -5px);
+    box-shadow: #FFF 0 0 40px;
   }
   20% {
-    width: 190px;
-    height: 190px;
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
     box-shadow: none;
   }
 }
@@ -1184,30 +1146,44 @@ body.stickify-up .sticky-panel {
   0% {
     width: 190px;
     height: 190px;
+    margin: 0;
   }
   10% {
     width: 200px;
     height: 200px;
+    margin-top: -5px;
+    margin-left: -5px;
   }
   20% {
     width: 190px;
     height: 190px;
+    margin: 0;
   }
 }
 @keyframes pulseImg {
   0% {
     width: 190px;
     height: 190px;
+    margin: 0;
   }
   10% {
     width: 200px;
     height: 200px;
+    margin-top: -5px;
+    margin-left: -5px;
   }
   20% {
     width: 190px;
     height: 190px;
+    margin: 0;
   }
 }
+/* line 224, ../../app/sass/style.scss */
+.claim-container {
+  position: relative;
+  top: 30px;
+}
+
 /* line 229, ../../app/sass/style.scss */
 .headline {
   text-transform: uppercase;
@@ -1227,7 +1203,7 @@ body.stickify-up .sticky-panel {
 /* line 239, ../../app/sass/style.scss */
 .btn-cta {
   display: inline-block;
-  padding: 25px 60px;
+  padding: 25px 150px;
   margin: 50px 0 70px;
   text-transform: uppercase;
   text-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px;
@@ -1239,7 +1215,7 @@ body.stickify-up .sticky-panel {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0 3px 5px;
   color: #FFF;
-  font-size: 24px;
+  font-size: 30px;
   line-height: normal;
   font-weight: 700;
 }
