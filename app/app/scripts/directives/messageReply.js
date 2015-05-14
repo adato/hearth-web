@@ -21,10 +21,17 @@ angular.module('hearth.directives').directive('messageReply', [
 				$scope.sendingReply = false;
 				$scope.actors = [];
 				$scope.actorsCount = 0;
+<<<<<<< HEAD
 				$scope.reply = {
 					text: '',
 					current_community_id: false
 				};
+=======
+ 				$scope.reply = {
+					text: '',
+					current_community_id: false
+ 				};
+>>>>>>> feature/hearth-30-messaging
 				$scope.showError = {
 					text: false
 				};
@@ -78,7 +85,7 @@ angular.module('hearth.directives').directive('messageReply', [
 
 					console.log($scope.actors);
 					console.log($scope.reply);
-				};
+ 				};
 
 				$scope.init();
 			}

@@ -539,6 +539,8 @@
             "TEXT_LABEL": "Text zprávy:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
         },
+        "REPLY_AS_COMMUNITY": "jako komunita",
+        "REPLY_AS_USER": "jako",
         "SYSTEM_MESSAGE": {
             "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
         },
