@@ -43,7 +43,7 @@
 										{{ item.title | ellipsis:45 }}
 										<span ng-if="item.participants_count > 2">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 									</div>
-									<i ng-if="item.titlePersons" class="left">{{ item.titlePersons | ellipsis:30 }}</i>
+									<i ng-if="item.titlePersons" class="left">{{ item.titlePersons | ellipsis:28 }}</i>
 									<div class="clear"></div>
 								</h2>
 								<h2 ng-if="!item.title && item.titlePersons" ng-bind="item.titlePersons"></h2>
