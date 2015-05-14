@@ -16,7 +16,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showFulltext = false;
 		$scope.detail = false;
 
-		var _loadTimeout = 5000; // pull requests interval in ms
+		var _loadTimeout = 20000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
         
@@ -83,7 +83,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
             var conf = {newer:$scope.conversations[0].last_message_time, exclude_self: true};
             angular.extend(conf, $scope.getFilter());
-
+            
+            Messenger.loadCounters();
 			Conversations.get(conf, function(res) {
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
                 _loadLock = false;
@@ -127,15 +128,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
 
+			// dont load counter when we click on conversation detail
+			// (and change URL)
+			Messenger.disableLoading();
 			$location.url("/messages/"+info._id+"?"+jQuery.param($location.search()));
-		};
 
-		$scope.loadCounters = function() {
-			Messenger.loadCounters(function(res) {
-				$scope.loaded = true;
-				res.participants_count = 0;
-				$scope.conversationsCounters = res;
-			});
+			// enable counters loading after URL is changed
+			$timeout(Messenger.enableLoading);
 		};
 
 		$scope.deserializeConversation = function(conversation) {
@@ -246,7 +245,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadFirstConversations = function() {
-			$scope.loadCounters();
+			// Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
 				// load first conversation on init
 				if($routeParams.id)
@@ -264,8 +263,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showFulltext = false;
 			$scope.showNewMessageForm = false;
 			
-			$scope.loadCounters();
+			// Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
+				$scope.loaded = true;
+				
 				// load first conversation on init
 				if($routeParams.id)
 					$scope.loadConversationDetail($routeParams.id);

@@ -28,6 +28,7 @@
     "ADD_USER_RATING": "Rate communication with the user",
     "ADMIN": "Administrator",
     "ADMIN_7_CASE": "administrator",
+    "ADS_ALL": "Všechny dary a přání",
     "AD_ADD_LABEL": "Create post",
     "AD_EDIT_LABEL": "Edit",
     "AD_PAUSE_ARE_YOU_SURE": "Do you want to suspend this post?",
@@ -520,14 +521,18 @@
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
+        "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
-            "TEXT_LABEL": "Text odpovědi:",
+            "TEXT_LABEL": "Text zprávy:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
         },
+        "REPLY_AS_COMMUNITY": "jako komunita",
+        "REPLY_AS_USER": "jako",
         "SYSTEM_MESSAGE": {
             "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
-        }
+        },
+        "YOU": "Vy"
     },
     "MESSAGES_ARCHIVE": "News archive",
     "MESSAGES_ARCHIVE_MESSAGE": "Archive",
@@ -605,6 +610,8 @@
     "NOTIFICATION": {
         "ALERT_EXPIRED_POSTS": "Send notifications for expired ads.",
         "ALERT_EXPIRING_POSTS": "Send notifications for ads close to their expiration date (usually 3 days before expiry).",
+        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
         "ALERT_TIME_UNLIMITED_POSTS": "Send notifications for ads without expiration date."
     },
     "NOTIFY": {
@@ -858,7 +865,7 @@
     "PROFILE_UPDATE_FAILED": "Unfortunately, the changes in your profile couldn't be saved at this time. Before you jump out of window, please try again.",
     "PROFILE_WAS_UPDATED": "Your profile was updated. You are  like a whole new person now!",
     "RATINGS_LABEL_WRITE_SOME_WORD": "Add couple of words:",
-    "RATINGS_SAYING_FOR": "Told",
+    "RATINGS_SAYING_FOR": "Told about user",
     "RATING_COMMON_POSTS_TOP": "What post was it?",
     "RATING_LOADING_COMMON_POSTS": "Loading list of ads",
     "RATING_NO_COMMON_POST_IN_3_MONTHS": "You haven't interacted over any ad in the last 3 months. You can still rate the user. :)",

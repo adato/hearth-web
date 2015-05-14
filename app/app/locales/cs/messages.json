@@ -28,6 +28,7 @@
     "ADD_USER_RATING": "Ohodnoťte komunikaci s uživatelem",
     "ADMIN": "Správce",
     "ADMIN_7_CASE": "správce",
+    "ADS_ALL": "Všechny dary a přání",
     "AD_ADD_LABEL": "Vytvořit inzerát",
     "AD_EDIT_LABEL": "Editovat inzerát",
     "AD_PAUSE_ARE_YOU_SURE": "Doopravdy chcete pozastavit tento inzerát?",
@@ -532,14 +533,18 @@
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
+        "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
-            "TEXT_LABEL": "Text odpovědi:",
+            "TEXT_LABEL": "Text zprávy:",
             "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
         },
+        "REPLY_AS_COMMUNITY": "jako komunita",
+        "REPLY_AS_USER": "jako",
         "SYSTEM_MESSAGE": {
             "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
-        }
+        },
+        "YOU": "Vy"
     },
     "MESSAGES_ARCHIVE": "Archív zpráv",
     "MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -617,6 +622,8 @@
     "NOTIFICATION": {
         "ALERT_EXPIRED_POSTS": "Zasílat upozornění na inzeráty, kterým skončila doba platnosti.",
         "ALERT_EXPIRING_POSTS": "Zasílat upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
+        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
         "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti."
     },
     "NOTIFY": {
@@ -880,7 +887,7 @@
     "PROFILE_UPDATE_FAILED": "Změny ve vašem profilu se bohužel nepodařilo uložit. Dřív než vyskočíte z\nokna, zkuste to prosím ještě jednou.",
     "PROFILE_WAS_UPDATED": "Změny ve vašem profilu byly uloženy. Jste teď jako úplně nový člověk!",
     "RATINGS_LABEL_WRITE_SOME_WORD": "Přidejte pár slov:",
-    "RATINGS_SAYING_FOR": "Řekla",
+    "RATINGS_SAYING_FOR": "Říká o uživateli",
     "RATING_COMMON_POSTS_TOP": "O jaký inzerát šlo?",
     "RATING_LOADING_COMMON_POSTS": "Načítám seznam inzerátů",
     "RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce jste si vzájemně nereagovali na žádný inzerát. I tak ale můžete uživatele ohodnotit. :)",
@@ -967,7 +974,7 @@
     "TUTORIAL": "Tutoriál",
     "TUTORIAL_DONT_SHOW_ANYTHING": "Neukazujte mi nic. Zahraju si na Sherlocka a vše objevím sám.",
     "TUTORIAL_DONT_SHOW_ANYTHING_BELOW_SLIDE": "Tuhle novinku už mi neukazujte.",
-    "TUTORIAL_HEADER": "Hearth.net je v novém kabátě. Krátce vám představíme, co najdete po kapsách.",
+    "TUTORIAL_HEADER": "Hearth.net pro vás má opět novinky. Podívejte se, jaké funkce jsme přidali.",
     "TUTORIAL_SHOW_NEW_FUNCTIONS": "Ukažte mi nové funkce",
     "TUTORIAL_SHOW_OLD_FUNCTIONS": "Zobrazit starší vychytávky",
     "TYPE_IN_WHAT_YOU_SEARCH_FOR": "Hledáte něco či někoho? Pomůžeme!",
