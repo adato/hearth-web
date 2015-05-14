@@ -14,18 +14,22 @@ angular.module('hearth.directives').directive('messageReply', [
 			restrict: 'E',
 			replace: true,
 			scope: {
-				'conversation': '='
+				conversation: '='
 			},
 			templateUrl: 'templates/directives/messageReply.html',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
+				$scope.actors = [];
+				$scope.actorsCount = 0;
 				$scope.reply = {
-					text: ''
+					text: '',
+					current_community_id: false
 				};
 				$scope.showError = {
 					text: false
 				};
-		
+
+
 				$scope.validateReply = function(reply) {
 					var invalid = false;
 
@@ -44,7 +48,7 @@ angular.module('hearth.directives').directive('messageReply', [
 						return false;
 					$scope.sendingReply = true;
 
-					Conversations.reply(reply, function(res) {
+				 	Conversations.reply(reply, function(res) {
 
 						$scope.reply.text = '';
 						
@@ -66,8 +70,17 @@ angular.module('hearth.directives').directive('messageReply', [
 				};
 
 				$scope.init = function() {
-					$scope.reply.text = '';
+					$scope.actors = $scope.conversation.possible_actings;
+					
+					if ($scope.actors.length == 1){
+						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? undefined : $scope.actors[0]._id);
+					}
+
+					console.log($scope.actors);
+					console.log($scope.reply);
 				};
+
+				$scope.init();
 			}
 		};
 	}
