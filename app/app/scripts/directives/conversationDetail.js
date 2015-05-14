@@ -343,6 +343,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     Conversations.getParticipants({id: $scope.info._id, exclude_self: true}, function(res) {
                         $scope.participants = res.participants;
                         $scope.resizeTMessagesBox(); // resize with timeout
+                        $timeout(function() {
+                            $scope.$broadcast('scrollbarResize');
+                        });
                     });
                 };
 
