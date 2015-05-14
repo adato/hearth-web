@@ -15,11 +15,13 @@ angular.module('hearth.services').service('Messenger', [
 		var _loadingEnabled = true;
 		this.counters = null;
 
-		// load 
+		// load counters and send it to callback
 		this.loadCounters = function(done) {
 			if(!_loadingEnabled) return false;
 
 			Conversations.getCounters({}, function(res) {
+				if(!_loadingEnabled) return false;
+
 				self.counters = res;
 				$rootScope.messagesCounters = res;
 				done && done(res);

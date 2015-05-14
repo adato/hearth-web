@@ -227,12 +227,19 @@
 				.conversation-participants {
 					min-height: 40px;
 					max-height: 145px;
-					overflow: auto;
+				    overflow-x: hidden;
+					overflow-y: auto;
 					.loading {
 						font-size: 20px;
 					    position: relative;
 					    top: 14px;
 					    height: auto;
+					}
+					&.nano {
+						height: 145px !important;
+						.nano-content {
+							margin-right: 0px !important;
+						}
 					}
 					ul {
 						list-style: none;
