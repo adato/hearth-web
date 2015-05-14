@@ -74,9 +74,6 @@ angular.module('hearth.directives').directive('messageReply', [
 					if ($scope.actors.length == 1){
 						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? undefined : $scope.actors[0]._id);
 					}
-
-					console.log($scope.actors);
-					console.log($scope.reply);
  				};
 
 				$scope.init();
