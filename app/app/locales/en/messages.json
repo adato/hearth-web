@@ -472,10 +472,10 @@
             "HEADING": "Nová zpráva",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
-            "SUBJECT_LABEL": "Předmět zprávy",
-            "SUBJECT_PLACEHOLDER": "Vyplňte předmět zprávy",
+            "SUBJECT_LABEL": "Téma konverzace",
+            "SUBJECT_PLACEHOLDER": "Vyplňte téma konverzace",
             "TEXT_LABEL": "Text zprávy",
-            "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
+            "TEXT_PLACEHOLDER": "Napiště text zprávy, kterou chcete poslat vybraným příjemcům..."
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ARCHIVE_CONFIRM": {
@@ -612,7 +612,8 @@
         "ALERT_EXPIRING_POSTS": "Send notifications for ads close to their expiration date (usually 3 days before expiry).",
         "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
         "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
-        "ALERT_TIME_UNLIMITED_POSTS": "Send notifications for ads without expiration date."
+        "ALERT_TIME_UNLIMITED_POSTS": "Send notifications for ads without expiration date.",
+        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Přijímat pouze zprávy týkající se darů a přání."
     },
     "NOTIFY": {
         "ACCOUNT_ACTIVATE_FAILED": "Account activation has failed...",
@@ -894,7 +895,7 @@
     "SAYING": "Says",
     "SEARCH_LINK": "Search",
     "SELECT_COMMUNITIES_FOR_POST": "Select communities the ad should go into.",
-    "SELECT_USERS": "Vyberte příjemce",
+    "SELECT_USERS": "Vyberte jednoho nebo více příjemců",
     "SEND": "Send",
     "SENDING_FEEDBACK_SUCCESS": "Thanks for your response! You too are helping us getting better every day.",
     "SENDING_MESSAGE_IN_PROGRESS": "Spinning the wheels, please wait... Why are people so impatient these days? Hm...",

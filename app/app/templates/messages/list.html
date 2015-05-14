@@ -38,11 +38,16 @@
 							</div>
 							<div class="conversation-info">
 								<h2 ng-if="item.title">
-									<span ng-if="item.post">{{ item.post.type_code | translate }}</span>
-									{{ item.title | ellipsis:45 }}
-									<span ng-if="item.participants_count > 2 && item.titleCustom">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
+									<div>
+										<span ng-if="item.post">{{ item.post.type_code | translate }}</span>
+										{{ item.title | ellipsis:45 }}
+										<span ng-if="item.participants_count > 2">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
+									</div>
+									<i ng-if="item.titlePersons" class="left">{{ item.titlePersons | ellipsis:30 }}</i>
+									<div class="clear"></div>
 								</h2>
-								<h2 ng-if="!item.title">
+								<h2 ng-if="!item.title && item.titlePersons" ng-bind="item.titlePersons"></h2>
+								<h2 ng-if="!item.title && !item.titlePersons">
 									{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
 								</h2>
 								<span class="unreaded-count" ng-if="!item.read"></span>

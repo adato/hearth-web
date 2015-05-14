@@ -482,10 +482,10 @@
             "HEADING": "Nová zpráva",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
-            "SUBJECT_LABEL": "Předmět zprávy",
-            "SUBJECT_PLACEHOLDER": "Vyplňte předmět zprávy",
+            "SUBJECT_LABEL": "Téma konverzace",
+            "SUBJECT_PLACEHOLDER": "Vyplňte téma konverzace",
             "TEXT_LABEL": "Text zprávy",
-            "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
+            "TEXT_PLACEHOLDER": "Napiště text zprávy, kterou chcete poslat vybraným příjemcům..."
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ARCHIVE_CONFIRM": {
@@ -624,7 +624,8 @@
         "ALERT_EXPIRING_POSTS": "Zasílat upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
         "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
         "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
-        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti."
+        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
+        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Přijímat pouze zprávy týkající se darů a přání."
     },
     "NOTIFY": {
         "ACCOUNT_ACTIVATE_FAILED": "Aktivace účtu se nezdařila...",
@@ -916,7 +917,7 @@
     "SAYING": "Říká",
     "SEARCH_LINK": "Hledat",
     "SELECT_COMMUNITIES_FOR_POST": "Vyberte komunity, do kterých se má inzerát vložit.",
-    "SELECT_USERS": "Vyberte příjemce",
+    "SELECT_USERS": "Vyberte jednoho nebo více příjemců",
     "SEND": "Odeslat",
     "SENDING_FEEDBACK_SUCCESS": "Děkujeme za názor. I díky vám budeme zas o něco lepší.",
     "SENDING_MESSAGE_IN_PROGRESS": "Zpráva se odesílá, prosím vyčkejte... Proč jsou všichni dnes tak netrpěliví? Hm...",

@@ -153,17 +153,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
 			}
 			
-			if(!conversation.title) {
-				conversation.titleCustom = true;
-				conversation.title = [];
-
-				// if there is no title, build it from participants
+			if(conversation.participants.length) {
+				conversation.titlePersons = [];
+				// if there is no title, build it from first 3 participants (index from 0 to 2)
 				for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
-					var user = conversation.participants[i];
-					conversation.title.push(user.name);
+					conversation.titlePersons.push(conversation.participants[i].name);
 				};
-				conversation.title = conversation.title.join(", ");
+				conversation.titlePersons = conversation.titlePersons.join(", ");
 			}
+
 			return conversation;
 		};
 

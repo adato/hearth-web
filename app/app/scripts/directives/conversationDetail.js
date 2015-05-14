@@ -96,7 +96,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     // start pulling new messages
                     $scope.scheduleNewMessagesLoading();
 
-                    
                     $timeout(function() {
                         // test if we are on bottom
                         $scope.testOlderMessagesLoading();
@@ -235,7 +234,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * Transform conversation info so we can use it in view
                  */
                 $scope.deserialize = function(conversation) {
-                    if(conversation.titleCustom) {
+                    if(!conversation.title) {
                         conversation.titleDetail = [];
 
                         // use first three participants names if we dont have title

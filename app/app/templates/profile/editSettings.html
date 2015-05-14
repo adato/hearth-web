@@ -42,12 +42,17 @@
           
           <br />
           <checkbox model="notify.new_conversation" type="checkbox" value="true" value-off="false">
-            {{:: 'NOTIFICATION.ALERT_NEW_CONVERSATION' | translate }}
+            {{ 'NOTIFICATION.ALERT_NEW_CONVERSATION' | translate }}
           </checkbox>
 
           <br />
           <checkbox model="notify.new_message" type="checkbox" value="true" value-off="false">
-            {{:: 'NOTIFICATION.ALERT_NEW_MESSAGES_IN_CONVERSATION' | translate }}
+            {{ 'NOTIFICATION.ALERT_NEW_MESSAGES_IN_CONVERSATION' | translate }}
+          </checkbox>
+
+          <br />
+          <checkbox model="notify.only_replies" type="checkbox" value="true" value-off="false">
+            {{ 'NOTIFICATION.MESSAGES_ALLOW_ONLY_POST_REPLIES' | translate }}
           </checkbox>
 
           <br />

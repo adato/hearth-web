@@ -8,7 +8,7 @@
 					
 					<span ng-if="info.post">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post._id}}">{{ info.post.type_code | translate }} {{ info.title | ellipsis:100 }}</a></span>
 					 
-					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a><a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a><span ng-if="!info.participants_count">{{ 'MESSAGES.DETAIL.CONVERSATION_IS_EMPTY' | translate }}&nbsp;</span>)
+					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a><a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a><span ng-if="!info.participants_count">{{ 'MESSAGES.DETAIL.CONVERSATION_IS_EMPTY' | translate }}</span>&nbsp;)
 				</span>
 				<a class="left" ng-click="toggleParticipants()" ng-if="info.title && info.titleCustom">
 					{{ info.titleDetail }}
