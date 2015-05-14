@@ -12,10 +12,13 @@ angular.module('hearth.services').service('Messenger', [
 		$rootScope.messagesCounters = {};
 		var self = this;
 		var timer = null;
+		var _loadingEnabled = true;
 		this.counters = null;
 
 		// load 
 		this.loadCounters = function(done) {
+			if(!_loadingEnabled) return false;
+
 			Conversations.getCounters({}, function(res) {
 				self.counters = res;
 				$rootScope.messagesCounters = res;
@@ -23,8 +26,16 @@ angular.module('hearth.services').service('Messenger', [
 			});
 		};
 
+		this.disableLoading = function() {
+			_loadingEnabled = false;
+		};
+
+		this.enableLoading = function() {
+			_loadingEnabled = true;
+		};
+
 		this.decrUnreaded = function() {
-			$rootScope.unreadedMessagesCount--;
+			$rootScope.messagesCounters.unread--;
 		};
 	}
 ]);
