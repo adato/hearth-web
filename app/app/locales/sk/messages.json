@@ -541,7 +541,8 @@
         },
         "SYSTEM_MESSAGE": {
             "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
-        }
+        },
+        "YOU": "Vy"
     },
     "MESSAGES_ARCHIVE": "Archív správ",
     "MESSAGES_ARCHIVE_MESSAGE": "Archivovať",

@@ -529,7 +529,8 @@
         },
         "SYSTEM_MESSAGE": {
             "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
-        }
+        },
+        "YOU": "Vy"
     },
     "MESSAGES_ARCHIVE": "News archive",
     "MESSAGES_ARCHIVE_MESSAGE": "Archive",
