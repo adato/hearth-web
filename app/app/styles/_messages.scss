@@ -262,11 +262,19 @@
 			
 			.message-head {
 				font-size: 14px;
-				
+				&.owner-name {
+					.avatar {
+						position: relative;
+						top: 15px;
+					}
+					h5>div {
+						color: #999;
+						font-size: 12px;
+					}				
+				}
 				.avatar {
 					margin-right: 10px;
 				}
-
 				h5 {
 					font-weight: 600;
 					font-size: 14px;

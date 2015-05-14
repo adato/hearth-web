@@ -54,12 +54,14 @@
 		    		<div class="nano-content-inner">
 						<article class="message" ng-repeat="item in messages track by $index">
 							<div ng-if="item.author">
-								<div class="message-head">
+								<div class="message-head"  ng-class="{'owner-name': item.author._type == 'Community'}">
 									<a class="left" ng-href="#!/{{ getProfileLinkByType(item.author._type) }}/{{item.author._id}}">
 										<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
 										<h5 class="fleft">
-											{{ item.author.name }}
-											<i ng-if="item.author._type == 'Community'">({{ item.owner.name }})</i>
+											{{ item.author.name | ellipsis:50 }}
+											<div ng-if="item.author._type == 'Community'">
+												({{ item.owner.name }})
+											</div>
 										</h5>
 									</a>
 									<span class="right" title="{{ item.created_at | date:DATETIME_FORMATS.medium}}" ago="item.created_at"></span>
