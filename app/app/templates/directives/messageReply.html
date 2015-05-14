@@ -4,9 +4,8 @@
 
 		<label for="reply-text">
 			{{ 'MESSAGES.REPLY.TEXT_LABEL' | translate }}
-			<span ng-if="actors.length == 1">
-				{{ (actors[0]._type == 'Community' ? 'MESSAGES.REPLY_AS_COMMUNITY' : 'MESSAGES.REPLY_AS_USER') | translate }}
-				{{ actors[0].name }}
+			<span ng-if="actors.length == 1 && actors[0]._type == 'Community'">
+				{{ 'MESSAGES.REPLY_AS_COMMUNITY' | translate }} {{ actors[0].name }}
 			</span>
 			<textarea ng-disabled="!conversation.is_member" rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
 		</label>
