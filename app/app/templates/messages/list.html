@@ -8,8 +8,8 @@
 		</form> -->
 		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
 			<option value="" ng-selected="filter.type == ''">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
-			&nbsp;&nbsp;&nbsp;&nbsp;<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
-			<option value="" disabled>—————————————————————</option>
+			<option value="as_replies" ng-selected="filter.type == 'as_replies'">&nbsp;&nbsp;&nbsp;&nbsp;{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<option value="" disabled>———————————————————————</option>
 			<!-- <option value="users_posts" ng-selected="filter.type == 'users_posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
 			<!-- <option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option> -->
 			<option value="archived" ng-selected="filter.type == 'archived'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
