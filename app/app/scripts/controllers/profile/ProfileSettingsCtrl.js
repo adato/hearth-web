@@ -199,13 +199,13 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.saveNotificationSettings = function(settings) {
 			var data = {
 				_id: $rootScope.loggedUser._id,
-				settings: {
-					send_emails: settings
-				}
-			};
+				settings: settings,
+			}
+
+			console.log(data);
 
 			User.edit(data, function(res) {
-				$rootScope.user.settings.send_emails = settings;
+				$rootScope.user.settings = settings;
 				Notify.addSingleTranslate('NOTIFY.EMAIL_NOTIFY_CONFIG_SUCCESS', Notify.T_SUCCESS);
 			}, function(err) {
 				Notify.addSingleTranslate('NOTIFY.EMAIL_NOTIFY_CONFIG_FAILED', Notify.T_ERROR);
@@ -216,7 +216,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.init = function() {
 			// for authorized only
 			UnauthReload.check();
-			$scope.notify = $rootScope.user.settings.send_emails;
+			$scope.notify = $rootScope.user.settings;
 		};
 
 		// switch language to given lang code
