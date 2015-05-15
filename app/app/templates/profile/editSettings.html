@@ -25,7 +25,6 @@
       </h2>
       <section class="configure-notifications">
 
-      {{ notify }}
         <form ng-submit="saveNotificationSettings(notify)">
           <checkbox model="notify.send_emails.expiring" type="checkbox" value="true" value-off="false">
             {{ 'NOTIFICATION.ALERT_EXPIRING_POSTS' | translate }}
