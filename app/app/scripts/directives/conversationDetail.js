@@ -234,8 +234,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * Transform conversation info so we can use it in view
                  */
                 $scope.deserialize = function(conversation) {
+                    conversation.titleDetail= conversation.title;
+                    conversation.titleCustom = false;
+
                     if(!conversation.title) {
                         conversation.titleDetail = [];
+                        conversation.titleCustom = true;
 
                         // use first three participants names if we dont have title
                         for(var i = 0; i < 3 && i < conversation.participants.length; i++) {
@@ -244,6 +248,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         };
                         conversation.titleDetail = conversation.titleDetail.join(", ");
                     }
+
                     return conversation;
                 };
 
