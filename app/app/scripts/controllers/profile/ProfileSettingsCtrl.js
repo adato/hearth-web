@@ -200,9 +200,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			var data = {
 				_id: $rootScope.loggedUser._id,
 				settings: settings,
-			}
-
-			console.log(data);
+			};
 
 			User.edit(data, function(res) {
 				$rootScope.user.settings = settings;
