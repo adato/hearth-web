@@ -485,18 +485,18 @@
             "SUBJECT_LABEL": "Téma konverzace",
             "SUBJECT_PLACEHOLDER": "Vyplňte téma konverzace",
             "TEXT_LABEL": "Text zprávy",
-            "TEXT_PLACEHOLDER": "Napiště text zprávy, kterou chcete poslat vybraným příjemcům..."
+            "TEXT_PLACEHOLDER": "Napište text zprávy, kterou chcete odeslat vybraným příjemcům..."
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ARCHIVE_CONFIRM": {
-            "LABEL": "Archivovat zprávu",
-            "TEXT": "Doopravdy chcete přesunout zprávu do sekce archivované?"
+            "LABEL": "Archivovat konverzaci",
+            "TEXT": "Chcete tuto konverzaci archivovat? Nebojte, kdykoli se k ní můžete v Archivu vrátit a pokud do ní dorazí nová zpráva, tak vás na to upozorníme..."
         },
         "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
-            "LABEL": "Smazání konverzace",
-            "TEXT": "Doopravdy chcete smazat konverzaci?"
+            "LABEL": "Smazat konverzaci",
+            "TEXT": "Jste si jisti, že chcete smazat tuto konverzaci? Pak už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
         },
         "DELETE_CONVERSATION": "Smazat konverzaci",
         "DETAIL": {
@@ -517,15 +517,15 @@
             }
         },
         "FILTER": {
-            "ALL": "Všechny zprávy",
-            "ARCHIVE": "Archivované zprávy",
+            "ALL": "Všechny konverzace",
+            "ARCHIVE": "Archivované konverzace",
             "COMMUNITIES_POSTS": "Zprávy od komunit",
             "POST_REPLIES": "Odpovědi na dary a přání",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
             "LABEL": "Opustit konverzaci",
-            "TEXT": "Doopravdy chcete opustit konverzaci?"
+            "TEXT": "Jste si jisti, že chcete opustit tuto konverzaci? Ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
         },
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
@@ -536,8 +536,8 @@
         "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
-            "TEXT_LABEL": "Text zprávy:",
-            "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+            "TEXT_LABEL": "Odpovědět:",
+            "TEXT_PLACEHOLDER": "Text zprávy..."
         },
         "REPLY_AS_COMMUNITY": "jako komunita",
         "REPLY_AS_USER": "jako",
@@ -667,7 +667,7 @@
         "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě...",
         "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
-        "MESSAGE_SEND_SUCCESS": "Zpráva byla úspěšně odeslána",
+        "MESSAGE_SEND_SUCCESS": "Paráda! Zpráva byla úspěšně odeslána.",
         "NEW_PASS_FAILED": "Nastavení nového hesla se nezdařilo.",
         "NEW_PASS_SUCCESS": "Nové heslo bylo nastaveno. Nyní se můžete přihlásit.",
         "PASS_CHANGE_FAILED": "Při úpravě hesla došlo k chybě.",
