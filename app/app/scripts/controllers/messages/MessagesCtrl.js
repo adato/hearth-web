@@ -214,7 +214,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.updateDeepConversation = function(ev, conv) {
-			conv = $scope.deserializeConversation(conv);
+			$scope.deserializeConversation(conv);
 		};
 
 		// when we leave/delete conversation - remove it from conversation list

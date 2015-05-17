@@ -6,9 +6,9 @@
 				<span class="left" ng-if="info.titleDetail && !info.titleCustom">
 					<span ng-if="!info.post">{{ info.titleDetail| ellipsis:120 }}</span>
 					
-					<span ng-if="info.post">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="#!/ad/{{info.post._id}}">{{ info.post.type_code | translate }} {{ info.titleDetail | ellipsis:100 }}</a></span>
+					<span ng-if="info.post">{{ 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" target="_blank" href="#!/ad/{{info.post._id}}">{{ info.post.type_code | translate }} {{ info.titleDetail | ellipsis:100 }}</a></span>
 					 
-					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a><a ng-if="info.participants_count == 1" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a><span ng-if="!info.participants_count">{{ 'MESSAGES.DETAIL.CONVERSATION_IS_EMPTY' | translate }}</span>&nbsp;)
+					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{ 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a><a ng-if="info.participants_count == 1" target="_blank" href="#!/{{getProfileLinkByType(info.participants[0]._type)}}/{{info.participants[0]._id}}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a><span ng-if="!info.participants_count">{{ 'MESSAGES.DETAIL.CONVERSATION_IS_EMPTY' | translate }}</span>&nbsp;)
 				</span>
 				<a class="left" ng-click="toggleParticipants()" ng-if="info.titleDetail && info.titleCustom">
 					{{ info.titleDetail }}
@@ -19,9 +19,9 @@
 			<span class="right">
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{ info._id }}" title="{{ 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
 				<div class="conversation-actions-dropdown" id="conversation-actions-{{ info._id }}" style="display:none;">
-					<a ng-click="confirmBox('MESSAGES.DELETE_CONFIRM.LABEL', 'MESSAGES.DELETE_CONFIRM.TEXT', deleteConversation, info._id, this)" class="action-link">{{ 'MESSAGES.DELETE_CONVERSATION' | translate }}</a>
-					<a ng-if="info.is_member" ng-click="confirmBox('MESSAGES.LEAVE_CONFIRM.LABEL', 'MESSAGES.LEAVE_CONFIRM.TEXT', leaveConversation, info._id, this)" class="action-link">{{ 'MESSAGES.LEAVE_CONVERSATION' | translate }}</a>
 					<a ng-if="!info.is_archived" ng-click="confirmBox('MESSAGES.ARCHIVE_CONFIRM.LABEL', 'MESSAGES.ARCHIVE_CONFIRM.TEXT', archiveConversation, info._id, this)" class="action-link">{{ 'MESSAGES.ARCHIVE_CONVERSATION' | translate }}</a>
+					<a ng-if="info.is_member" ng-click="confirmBox('MESSAGES.LEAVE_CONFIRM.LABEL', 'MESSAGES.LEAVE_CONFIRM.TEXT', leaveConversation, info._id, this)" class="action-link">{{ 'MESSAGES.LEAVE_CONVERSATION' | translate }}</a>
+					<a ng-click="confirmBox('MESSAGES.DELETE_CONFIRM.LABEL', 'MESSAGES.DELETE_CONFIRM.TEXT', deleteConversation, info._id, this)" class="action-link">{{ 'MESSAGES.DELETE_CONVERSATION' | translate }}</a>
 				</div>
 			</span>
 			<div class="clear"></div>
@@ -33,7 +33,7 @@
 							<div loading show="!participants"></div>
 							<ul>
 								<li ng-repeat="item in participants">
-									<a ng-href="#!/{{ getProfileLinkByType(item._type) }}/{{item._id}}">
+									<a target="_blank" ng-href="#!/{{ getProfileLinkByType(item._type) }}/{{item._id}}">
 										<avatar src="item.avatar.normal" type="item._type" size="mini"></avatar>
 										<span title="{{ item.name }}">{{ item.name | ellipsis:15}}</span>
 										<div class="clear"></div>
@@ -69,8 +69,8 @@
 								</div>
 								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 							</div>
-							<div ng-if="!item.author" class="system-message" ng-bind-html="'MESSAGES.SYSTEM_MESSAGE.'+item.verb | translate: item.system_data">
-							</div>
+							<div ng-if="!item.author && item.system_data.target._id != loggedUser._id" class="system-message" ng-bind-html="'MESSAGES.SYSTEM_MESSAGE.'+item.system_data.target._type+'.'+item.verb | translate: item.system_data"></div>
+							<div ng-if="!item.author && item.system_data.target._id == loggedUser._id" class="system-message" ng-bind-html="'MESSAGES.SYSTEM_MESSAGE_YOU.'+item.verb | translate"></div>
 						</article>
 					</div>
 				</div>

@@ -530,7 +530,15 @@
         "REPLY_AS_COMMUNITY": "jako komunita",
         "REPLY_AS_USER": "jako",
         "SYSTEM_MESSAGE": {
-            "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
+            "Community": {
+                "left": "<p>Komunita <strong>{{target.name}}<\/strong> opustila konverzaci.<\/p>"
+            },
+            "User": {
+                "left": "<p>Uživatel<strong> {{target.name}}<\/strong> opustil konverzaci.<\/p>"
+            }
+        },
+        "SYSTEM_MESSAGE_YOU": {
+            "left": "<p>Opustili jste konverzaci.<\/p>"
         },
         "YOU": "Vy"
     },

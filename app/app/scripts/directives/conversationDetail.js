@@ -18,6 +18,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
             templateUrl: 'templates/directives/conversationDetail.html',
             link: function($scope, element) {
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                $scope.loggedUser = $rootScope.loggedUser;
                 $scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
                 $scope.pluralCat = $rootScope.pluralCat;
                 $scope.confirmBox = $rootScope.confirmBox;
@@ -47,9 +48,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     // and resize message box
                     $scope.resizeTMessagesBox();
 
-                    // resize scrollbar
-                    $scope.$broadcast("scrollbarResize");
-                    $scope.$broadcast("classIfOverflowContentResize");
 
                     // when we get less messages then requested, we hitted the end of list
                     if(!append && messages.length < _messagesCount)
@@ -154,12 +152,14 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                 $scope.reloadConversationInfo = function() {
                     Conversations.get({id: $scope.info._id, exclude_self: true}, function(res) {
+                        if($scope.participants) $scope.loadParticipants();
+
                         $scope.info.participants = res.participants;
                         $scope.info.participants_count = res.participants_count;
                         $scope.info.title = res.title;
-                        if($scope.participants) $scope.loadParticipants();
                         $scope.info = $scope.deserialize($scope.info);
 
+                        delete $scope.info.titlePersons;
                         $scope.$emit("conversationDeepUpdate", $scope.info);
                     });
                 };
@@ -304,14 +304,23 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.resizeMessagesBox = function() {
                     var container = $(".messages-container", element);
 
+                    // console.log($(".messages-container").height(), element.find(".conversation-detail-top").outerHeight(), element.find(".messages-reply").outerHeight());
+
                     $scope.testScrollBottom();
                     var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
-                    
+                    // console.log(maxBoxHeight);
+
                     container.css("max-height", maxBoxHeight);
-                    container.css("height", $(".nano-content", element).prop('scrollHeight'));
+                    // container.css("height", $(".nano-content", element).prop('scrollHeight'));
                     container.fadeIn();
 
                     $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
+
+                    $timeout(function() {
+                        // resize scrollbar
+                        $scope.$broadcast("scrollbarResize");
+                        $scope.$broadcast("classIfOverflowContentResize");
+                    });
                 };
 
                 // use sendActionRequest to delete conversation
