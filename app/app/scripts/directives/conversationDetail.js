@@ -154,6 +154,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     Conversations.get({id: $scope.info._id, exclude_self: true}, function(res) {
                         if($scope.participants) $scope.loadParticipants();
 
+                        $scope.info.is_member = res.is_member;
                         $scope.info.participants = res.participants;
                         $scope.info.participants_count = res.participants_count;
                         $scope.info.title = res.title;

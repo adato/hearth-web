@@ -129,7 +129,6 @@
 			    line-height: 16px;
     			margin-bottom: 5px;
     			word-wrap: break-word;
-    			word-break: break-all;
     			overflow: hidden;
 			}
 
@@ -293,7 +292,7 @@
 				margin-top: 0px;
 				margin-bottom: 15px;
 				margin-left: 33px;
-				word-break: break-all;
+				word-wrap: break-word;
 			}
 			.conversation-actions-dropdown {
 		        position:absolute;
