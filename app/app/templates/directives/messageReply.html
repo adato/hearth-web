@@ -1,12 +1,18 @@
 <div class="message-reply">
 	<form novalidate name="msgReplyForm" ng-submit="sendReply(reply)" class="formStyle">
-		<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
-
+		
 		<label for="reply-text">
-			{{ 'MESSAGES.REPLY.TEXT_LABEL' | translate }}
-			<span ng-if="actors.length == 1 && actors[0]._type == 'Community'">
-				{{ 'MESSAGES.REPLY_AS_COMMUNITY' | translate }} {{ actors[0].name }}
-			</span>
+			<div class="author-info">
+				<div ng-if="actors.length == 1 && actors[0]._type != 'Community'">
+					{{ 'MESSAGES.REPLY.TEXT_LABEL' | translate }}
+				</div>
+				<div ng-if="actors.length == 1 && actors[0]._type == 'Community'">
+					<strong>{{ 'MESSAGES.REPLY_AS_COMMUNITY' | translate }}</strong>
+					<avatar src="actors[0].avatar.normal" type="actors[0]._type" size="mini"></avatar><span>{{ actors[0].name | ellipsis:55 }}</span>
+				</div>
+			</div>
+			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
+
 			<textarea ng-disabled="!conversation.is_member" rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
 		</label>
 		<div class="error fleft" ng-show="msgReplyForm.text.$invalid && showError.text">
