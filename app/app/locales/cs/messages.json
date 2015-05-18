@@ -481,6 +481,7 @@
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
             },
             "HEADING": "Nová zpráva",
+            "RECIPIENT": "Příjemce:",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
             "SUBJECT_LABEL": "Téma konverzace",
@@ -534,6 +535,8 @@
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
+        "NEW_MESSAGE": "Poslat zprávu",
+        "NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána.",
         "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
@@ -935,9 +938,10 @@
     "SEND_COMMUNITY_RATING": "Odeslat hodnocení",
     "SEND_EMAIL_INVITATION": "Pozvat emailem",
     "SEND_INVITE_SUCCESS": "Pozvánka přátelům byla odeslána.",
+    "SEND_MESSAGE": "Poslat zprávu...",
     "SEND_REPLY_SUCCESS": "Odpověď na inzerát byla odeslána.",
     "SEND_USER_RATING": "Odeslat hodnocení",
-    "SERVER_MAITENANCE_MESSAGE": "<p>Pr&aacute;vě přid&aacute;v&aacute;me hromadu nov&yacute;ch funkc&iacute;.<br \/>Vteřinku. Za chviličku to bude hotov&eacute;...<\/p>",
+    "SERVER_MAITENANCE_MESSAGE": "<p>Pr&aacute;vě přid&aacute;v&aacute;me hromadu nov&yacute;ch funkc&iacute;.<br \/>Vteřinku. Za chviličku to bude hotov&eacute;...<\/p>\r\n<p>Mezit&iacute;m můžete mrknout na n&aacute;&scaron; <a href=\"https:\/\/blog.hearth.net\/\" target=\"_blank\">blog<\/a>&nbsp;nebo <a href=\"https:\/\/www.facebook.com\/Hearthnet.Ceska.republika.a.Slovensko\" target=\"_blank\">Facebook<\/a>.<\/p>",
     "SETTINGS": "Nastavení",
     "SHARING_SOCIAL_DISABLED": "Sdílení na jiné sociální sítě je zakázáno",
     "SHARING_SOCIAL_ENABLED": "Ostatní mohou sdílet inzerát na jiné sociální sítě",

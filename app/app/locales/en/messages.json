@@ -470,26 +470,27 @@
             "ERR": {
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
             },
-            "HEADING": "Nová zpráva",
-            "RECIPIENTS_LABEL": "Příjemce",
-            "SEND_MESSAGE": "Odeslat zprávu",
+            "HEADING": "New message",
+            "RECIPIENT": "Příjemce:",
+            "RECIPIENTS_LABEL": "Recipient",
+            "SEND_MESSAGE": "Send message",
             "SUBJECT_LABEL": "Téma konverzace",
             "SUBJECT_PLACEHOLDER": "Vyplňte téma konverzace",
             "TEXT_LABEL": "Text zprávy",
             "TEXT_PLACEHOLDER": "Napište text zprávy, kterou chcete odeslat vybraným příjemcům..."
         },
-        "ADD_NEW_MESSAGE": "Nová zpráva",
+        "ADD_NEW_MESSAGE": "New message",
         "ARCHIVE_CONFIRM": {
             "LABEL": "Archivovat konverzaci",
             "TEXT": "Chcete tuto konverzaci archivovat? Nebojte, kdykoli se k ní můžete v Archivu vrátit a pokud do ní dorazí nová zpráva, tak vás na to upozorníme..."
         },
-        "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
+        "ARCHIVE_CONVERSATION": "Archive conversation",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
             "LABEL": "Smazat konverzaci",
             "TEXT": "Jste si jisti, že chcete smazat tuto konverzaci? Pak už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
         },
-        "DELETE_CONVERSATION": "Smazat konverzaci",
+        "DELETE_CONVERSATION": "Delete conversation",
         "DETAIL": {
             "AND_X_MORE": {
                 "one": "a 1 další",
@@ -499,10 +500,10 @@
             "EMPTY_HEADER": "Nejsou zde žádné konverzace",
             "EMPTY_TEXT": "...",
             "EXPAND_ACTIONS": "Menu konverzace",
-            "REPLY_TO_POST": "Odpověď na",
+            "REPLY_TO_POST": "Response to",
             "USERS": {
-                "one": "1 příjemce",
-                "other": "{{count}} příjemci"
+                "one": "1 recipient",
+                "other": "{{count}} recipients"
             }
         },
         "FILTER": {
@@ -516,17 +517,19 @@
             "LABEL": "Opustit konverzaci",
             "TEXT": "Jste si jisti, že chcete opustit tuto konverzaci? Ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
         },
-        "LEAVE_CONVERSATION": "Opustit konverzaci",
+        "LEAVE_CONVERSATION": "Leave conversation",
         "LIST": {
             "CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
-            "PARTICIPANTS_AND_MORE": "a další"
+            "PARTICIPANTS_AND_MORE": "and more"
         },
+        "NEW_MESSAGE": "Poslat zprávu",
+        "NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána.",
         "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
-            "TEXT_LABEL": "Odpovědět:",
-            "TEXT_PLACEHOLDER": "Text zprávy..."
+            "TEXT_LABEL": "Reply:",
+            "TEXT_PLACEHOLDER": "Message text..."
         },
         "REPLY_AS_COMMUNITY": "Odpovědět jako:",
         "REPLY_AS_USER": "jako",
@@ -541,7 +544,7 @@
         "SYSTEM_MESSAGE_YOU": {
             "left": "<p>Opustili jste konverzaci.<\/p>"
         },
-        "YOU": "Vy"
+        "YOU": "You"
     },
     "MESSAGES_ARCHIVE": "News archive",
     "MESSAGES_ARCHIVE_MESSAGE": "Archive",
@@ -913,9 +916,10 @@
     "SEND_COMMUNITY_RATING": "Send rating",
     "SEND_EMAIL_INVITATION": "Invite by email",
     "SEND_INVITE_SUCCESS": "Invite to friends has been sent",
+    "SEND_MESSAGE": "Poslat zprávu...",
     "SEND_REPLY_SUCCESS": "Reply to post has been sent",
     "SEND_USER_RATING": "Send rating",
-    "SERVER_MAITENANCE_MESSAGE": "<p>We are adding heap of new functions right now.<br \/>Just a sec. Will be done in a jiffy...<\/p>",
+    "SERVER_MAITENANCE_MESSAGE": "<p>We are adding heap of new functions right now.<br \/>Just a sec. Will be done in a jiffy...<\/p>\r\n<p>Meanwhile you can go to our&nbsp;<a href=\"https:\/\/blog.hearth.net\/\" target=\"_blank\">blog<\/a>&nbsp;or&nbsp;<a href=\"https:\/\/www.facebook.com\/Hearthnet.Ceska.republika.a.Slovensko\" target=\"_blank\">Facebook<\/a>.<\/p>",
     "SETTINGS": "Settings",
     "SHARING_SOCIAL_DISABLED": "Sharing on other social networks is not allowed",
     "SHARING_SOCIAL_ENABLED": "Others may share the post on various social networks",
@@ -955,7 +959,7 @@
     "TITLE": "Hearth",
     "TOP_BAR_ABOUT": "About",
     "TOP_BAR_COMMUNITY_PROFILE": "Our profile",
-    "TOP_BAR_MESSAGES": "Zprávy",
+    "TOP_BAR_MESSAGES": "Messages",
     "TOP_BAR_PROFILE": "Profile",
     "TOP_BAR_SIGN_IN": "Sign in",
     "TOTAL_COUNT": "{{value}} total",

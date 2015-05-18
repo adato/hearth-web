@@ -481,6 +481,7 @@
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
             },
             "HEADING": "Nová zpráva",
+            "RECIPIENT": "Příjemce:",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
             "SUBJECT_LABEL": "Téma konverzace",
@@ -534,6 +535,8 @@
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
+        "NEW_MESSAGE": "Poslat zprávu",
+        "NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána.",
         "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
@@ -935,6 +938,7 @@
     "SEND_COMMUNITY_RATING": "Odeslat hodnocení",
     "SEND_EMAIL_INVITATION": "Pozvať emailom",
     "SEND_INVITE_SUCCESS": "Pozvánka priateľom bola odoslaná.",
+    "SEND_MESSAGE": "Poslat zprávu...",
     "SEND_REPLY_SUCCESS": "Odpoveď na inzerát bola odoslaná.",
     "SEND_USER_RATING": "Odoslať hodnotenie",
     "SERVER_MAITENANCE_MESSAGE": "Práve pridávame hromadu nových funkcií.<br \/>O chvíľku to bude hotové.",
