@@ -51,6 +51,22 @@
           </checkbox>
 
           <br />
+          
+          <button type="submit" class="button-send right" analytics-on analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1">{{ 'SAVE' | translate }}</button>
+        </form>
+      </section>
+      <div class="clear"></div>
+
+      <h2>
+        <span class="content">
+          <span class="fa fa-envelope"></span>{{ 'USER_MESSAGES' | translate }}
+        </span>
+      </h2>
+      <section class="configure-messages">
+
+          <form ng-submit="saveNotificationSettings(notify)">
+          
+          <br />
           <checkbox model="notify.get_messages.only_replies" type="checkbox" value="true" value-off="false">
             {{ 'NOTIFICATION.MESSAGES_ALLOW_ONLY_POST_REPLIES' | translate }}
           </checkbox>
@@ -59,9 +75,9 @@
           
           <button type="submit" class="button-send right" analytics-on analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1">{{ 'SAVE' | translate }}</button>
         </form>
+
       </section>
       <div class="clear"></div>
-
 
 
       <form id="profileSettingsForm" name="profileSettingsForm" ng-submit="changePassword(pass)" novalidate ng-show="loaded">
