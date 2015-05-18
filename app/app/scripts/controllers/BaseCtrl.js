@@ -261,23 +261,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             return ret;
         };
 
-        // send report to API and close modal.. maybe fire some notification too?
-        // $rootScope.reportItem = function(item) {
-        //     if (!Auth.isLoggedIn())
-        //         return $rootScope.showLoginBox(true);
-
-        //     $rootScope.globalLoading = true;
-        //     Post.spam({id: item._id}, function(res) {
-        //         $rootScope.$broadcast('reportItem', item);
-
-        //         $rootScope.globalLoading = false;
-        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
-        //     }, function(err) {
-                
-        //         $rootScope.globalLoading = false;
-        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
-        //     });
-        // };
+        $rootScope.sendMessage = function(user) {
+            console.log("Sending to", user);
+        };
 
         // open modal window for item edit
         $rootScope.editItem = function(post, isInvalid, preset) {

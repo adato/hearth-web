@@ -935,6 +935,7 @@
     "SEND_COMMUNITY_RATING": "Odeslat hodnocení",
     "SEND_EMAIL_INVITATION": "Pozvať emailom",
     "SEND_INVITE_SUCCESS": "Pozvánka priateľom bola odoslaná.",
+    "SEND_MESSAGE": "Poslat zprávu.",
     "SEND_REPLY_SUCCESS": "Odpoveď na inzerát bola odoslaná.",
     "SEND_USER_RATING": "Odoslať hodnotenie",
     "SERVER_MAITENANCE_MESSAGE": "Práve pridávame hromadu nových funkcií.<br \/>O chvíľku to bude hotové.",
