@@ -262,7 +262,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.sendMessage = function(user) {
-            console.log("Sending to", user);
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+
+            var scope = $scope.$new();
+            scope.user = user;
+
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'newMessage.html',
+                controller: 'NewMessage',
+                scope: scope,
+                closeByDocument: false,
+                closeByEscape: false,
+                showClose: false
+            });
         };
 
         // open modal window for item edit

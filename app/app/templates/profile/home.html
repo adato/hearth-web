@@ -96,7 +96,7 @@
             </div>
             <div class="clear"></div>
             <div class="line">
-                <div ng-if="!mine" class="bold margin-top fleft">
+                <div ng-if="!mine && config.env != 'production'" class="bold margin-top fleft">
                     <a ng-click="sendMessage(info)">{{ 'SEND_MESSAGE' | translate }}</a>
                 </div>
                 <div class="social fright">
