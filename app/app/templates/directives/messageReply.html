@@ -8,7 +8,7 @@
 			
 			<div class="author-info" ng-if="actors.length == 1 && actors[0]._type == 'Community'">
 				<strong>{{ 'MESSAGES.REPLY_AS_COMMUNITY' | translate }}</strong>
-				<avatar src="actors[0].avatar.normal" type="actors[0]._type" size="mini"></avatar>{{ actors[0].name | ellipsis:55 }}
+				<avatar src="actors[0].avatar.normal" type="actors[0]._type" size="mini"></avatar><span>{{ actors[0].name | ellipsis:55 }}</span>
 			</div>
 			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
 
