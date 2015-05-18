@@ -28,6 +28,7 @@
     "ADD_USER_RATING": "Ohodnoťte komunikáciu s užívateľom",
     "ADMIN": "Správca",
     "ADMIN_7_CASE": "správca",
+    "ADS_ALL": "Všechny dary a přání",
     "AD_ADD_LABEL": "Vytvoriť inzerát",
     "AD_EDIT_LABEL": "Editovať inzerát",
     "AD_PAUSE_ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
@@ -441,6 +442,7 @@
             "CANCEL_FILTER_BAR": "zrušit filtr",
             "COMMUNITIES": "Komunity",
             "INDIVIDUALS": "Jednotlivci",
+            "KM": "Km",
             "MY_CONNECTIONS": "Len moji priatelia",
             "RUN_FILTER": "Filtrovať",
             "SAVE_FILTER": "Zapamatovat filtr",
@@ -479,23 +481,24 @@
                 "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
             },
             "HEADING": "Nová zpráva",
+            "RECIPIENT": "Příjemce:",
             "RECIPIENTS_LABEL": "Příjemce",
             "SEND_MESSAGE": "Odeslat zprávu",
-            "SUBJECT_LABEL": "Předmět zprávy",
-            "SUBJECT_PLACEHOLDER": "Vyplňte předmět zprávy",
+            "SUBJECT_LABEL": "Téma konverzace",
+            "SUBJECT_PLACEHOLDER": "Vyplňte téma konverzace",
             "TEXT_LABEL": "Text zprávy",
-            "TEXT_PLACEHOLDER": "Napiště text zprávy vybraným uživatelům"
+            "TEXT_PLACEHOLDER": "Napište text zprávy, kterou chcete odeslat vybraným příjemcům..."
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ARCHIVE_CONFIRM": {
-            "LABEL": "Archivovat zprávu",
-            "TEXT": "Doopravdy chcete přesunout zprávu do sekce archivované?"
+            "LABEL": "Archivovat konverzaci",
+            "TEXT": "Chcete tuto konverzaci archivovat? Nebojte, kdykoli se k ní můžete v Archivu vrátit a pokud do ní dorazí nová zpráva, tak vás na to upozorníme..."
         },
         "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
-            "LABEL": "Smazání konverzace",
-            "TEXT": "Doopravdy chcete smazat konverzaci?"
+            "LABEL": "Smazat konverzaci",
+            "TEXT": "Jste si jisti, že chcete smazat tuto konverzaci? Pak už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
         },
         "DELETE_CONVERSATION": "Smazat konverzaci",
         "DETAIL": {
@@ -516,15 +519,15 @@
             }
         },
         "FILTER": {
-            "ALL": "Všechny zprávy",
-            "ARCHIVE": "Archivované zprávy",
+            "ALL": "Všechny konverzace",
+            "ARCHIVE": "Archivované konverzace",
             "COMMUNITIES_POSTS": "Zprávy od komunit",
             "POST_REPLIES": "Odpovědi na dary a přání",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
             "LABEL": "Opustit konverzaci",
-            "TEXT": "Doopravdy chcete opustit konverzaci?"
+            "TEXT": "Jste si jisti, že chcete opustit tuto konverzaci? Ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
         },
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
@@ -532,13 +535,28 @@
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
+        "NEW_MESSAGE": "Poslat zprávu",
+        "NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána.",
+        "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
+        "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
-            "TEXT_LABEL": "Text odpovědi:",
-            "TEXT_PLACEHOLDER": "Napište text pro uživatele v konverzaci.."
+            "TEXT_LABEL": "Odpovědět:",
+            "TEXT_PLACEHOLDER": "Text zprávy..."
         },
+        "REPLY_AS_COMMUNITY": "Odpovědět jako:",
+        "REPLY_AS_USER": "jako",
         "SYSTEM_MESSAGE": {
-            "left": "<p><strong>{{target.name}}<\/strong> opustil konverzaci.<\/p>"
-        }
+            "Community": {
+                "left": "<p>Komunita <strong>{{target.name}}<\/strong> opustila konverzaci.<\/p>"
+            },
+            "User": {
+                "left": "<p>Uživatel<strong> {{target.name}}<\/strong> opustil konverzaci.<\/p>"
+            }
+        },
+        "SYSTEM_MESSAGE_YOU": {
+            "left": "<p>Opustili jste konverzaci.<\/p>"
+        },
+        "YOU": "Vy"
     },
     "MESSAGES_ARCHIVE": "Archív správ",
     "MESSAGES_ARCHIVE_MESSAGE": "Archivovať",
@@ -616,7 +634,10 @@
     "NOTIFICATION": {
         "ALERT_EXPIRED_POSTS": "Zasílat upozornění na inzeráty, kterým skončila doba platnosti.",
         "ALERT_EXPIRING_POSTS": "Zasílat upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
-        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti."
+        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
+        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
+        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Přijímat pouze zprávy týkající se darů a přání."
     },
     "NOTIFY": {
         "ACCOUNT_ACTIVATE_FAILED": "Aktivácia účtu sa nepodarila...",
@@ -658,7 +679,7 @@
         "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě...",
         "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
-        "MESSAGE_SEND_SUCCESS": "Zpráva byla úspěšně odeslána",
+        "MESSAGE_SEND_SUCCESS": "Paráda! Zpráva byla úspěšně odeslána.",
         "NEW_PASS_FAILED": "Nastavenie nového hesla sa nepodarilo.",
         "NEW_PASS_SUCCESS": "Nové heslo bolo nastavené. Teraz sa môžete prihlásiť.",
         "PASS_CHANGE_FAILED": "Pri úprave hesla došlo k chybe.",
@@ -879,7 +900,7 @@
     "PROFILE_UPDATE_FAILED": "Zmeny vo Vašom profile sa, bohužiaľ, nepodarilo uložiť. Skôr než vyskočíte z okna, skúste to prosím ešte raz.\n",
     "PROFILE_WAS_UPDATED": "Zmeny vo Vašom profile boli uložené. Ste teraz ako úplne nový človek!",
     "RATINGS_LABEL_WRITE_SOME_WORD": "Pridajte pár slov:",
-    "RATINGS_SAYING_FOR": "Řekla",
+    "RATINGS_SAYING_FOR": "Říká o uživateli",
     "RATING_COMMON_POSTS_TOP": "O aký inzerát šlo?",
     "RATING_LOADING_COMMON_POSTS": "Načítavam zoznam inzerátov",
     "RATING_NO_COMMON_POST_IN_3_MONTHS": "Za posledné 3 mesiace ste si vzájomne nereagovali na žiadny inzerát. I tak ale môžete užívateľa ohodnotiť. :)",
@@ -908,7 +929,7 @@
     "SAYING": "Hovorí",
     "SEARCH_LINK": "Hľadať",
     "SELECT_COMMUNITIES_FOR_POST": "Vyberte komunity, do kterých se má inzerát vložit.",
-    "SELECT_USERS": "Vyberte příjemce",
+    "SELECT_USERS": "Vyberte jednoho nebo více příjemců",
     "SEND": "Odoslať",
     "SENDING_FEEDBACK_SUCCESS": "Ďakujeme za názor. I vďaka vám budeme zas o niečo lepší.",
     "SENDING_MESSAGE_IN_PROGRESS": "Správa sa odosiela, prosím počkajte... Prečo sú všetci dnes tak netrpezliví? Hmm...",
@@ -917,6 +938,7 @@
     "SEND_COMMUNITY_RATING": "Odeslat hodnocení",
     "SEND_EMAIL_INVITATION": "Pozvať emailom",
     "SEND_INVITE_SUCCESS": "Pozvánka priateľom bola odoslaná.",
+    "SEND_MESSAGE": "Poslat zprávu...",
     "SEND_REPLY_SUCCESS": "Odpoveď na inzerát bola odoslaná.",
     "SEND_USER_RATING": "Odoslať hodnotenie",
     "SERVER_MAITENANCE_MESSAGE": "Práve pridávame hromadu nových funkcií.<br \/>O chvíľku to bude hotové.",
@@ -990,7 +1012,8 @@
     "USER_HAS_REGISTERED": "Užívateľ sa registroval",
     "USER_IS_MEMBER": "Užívateľ je členom",
     "USER_LANGUAGE": "Jazyk",
-    "USER_NOTIFICATION": "Notifikace",
+    "USER_MESSAGES": "Zprávy",
+    "USER_NOTIFICATION": "Upozornění",
     "USER_POSTS": "Inzeráty užívateľa",
     "USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte inzerát",
     "USER_RATING_JOIN_REALIZED_GIFT": "Hodnotenie môžete spojiť s inzerátom, na ktorý ste si v posledných 3 mesiacoch vzájomne reagovali.",
