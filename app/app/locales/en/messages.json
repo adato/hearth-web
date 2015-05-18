@@ -527,7 +527,7 @@
             "TEXT_LABEL": "Odpovědět:",
             "TEXT_PLACEHOLDER": "Text zprávy..."
         },
-        "REPLY_AS_COMMUNITY": "jako komunita",
+        "REPLY_AS_COMMUNITY": "Odpovědět jako:",
         "REPLY_AS_USER": "jako",
         "SYSTEM_MESSAGE": {
             "Community": {
