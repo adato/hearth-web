@@ -12,6 +12,10 @@ angular.module('hearth.directives').directive('conversationAdd', [
             restrict: 'E',
             replace: true,
             scope: {
+                recipient: '=?',
+                onError: '=',
+                onSuccess: '=',
+                notifyContainer: '@',
                 close: '=',
             },
             templateUrl: 'templates/directives/conversationAdd.html',
@@ -38,7 +42,12 @@ angular.module('hearth.directives').directive('conversationAdd', [
                 $scope.isValid = function(msg) {
                     var invalid = false;
 
-                    if(!msg.participant_ids.length) {
+                    // if there is presetted recipient, add him to list
+                    if($scope.recipient) {
+                        msg.participant_ids = [$scope.recipient._id];
+
+                    // else test if there are selected recipients
+                    } else if(!msg.participant_ids.length) {
                         invalid = $scope.showError.participant_ids = true;
                     }
 
@@ -67,12 +76,21 @@ angular.module('hearth.directives').directive('conversationAdd', [
                     Conversations.add(data, function(res) {
 
                         $scope.sendMessage = false;
-                        Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
+
+                        if($scope.onSuccess)
+                            $scope.onSuccess(res);
+                        else
+                            Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
+                            
                         $scope.$emit("conversationCreated", res);
                         $scope.close(res);
-                    }, function() {
+                    }, function(err) {
                         $scope.sendMessage = false;
-                        Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR);
+                        
+                        if($scope.onError)
+                            $scope.onError(err);
+                        else
+                            Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR);
                     });
                 };
             }

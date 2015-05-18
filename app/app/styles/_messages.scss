@@ -402,3 +402,18 @@
 .nano-content {
 	right: -50px !important; /* when zoomed out, there is a little bit of native scrollbar */
 }
+
+
+.modal.new-message {
+	label {
+		width: 100%;
+	}
+	.bottom {
+		margin-top: 0px;
+	}
+
+	.recipient label {
+		margin-bottom: 0px;
+	}
+
+}
