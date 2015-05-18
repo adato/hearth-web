@@ -42,13 +42,13 @@
 										<span ng-if="item.post">{{ item.post.type_code | translate }}</span>
 										{{ item.title | ellipsis:45 }}
 									</div>
-									<i ng-if="item.titlePersons" class="left">
+									<i ng-if="item.titlePersons" class="left" title="{{item.titlePersons}}">
 										{{ item.titlePersons | ellipsis:28 }}
 										<span ng-if="item.participants_count > 2">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 									</i>
 									<div class="clear"></div>
 								</h2>
-								<h2 ng-if="!item.title && item.titlePersons">{{ item.titlePersons }} <span ng-if="item.participants_count > 2">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span></h2>
+								<h2 ng-if="!item.title && item.titlePersons" title="{{item.titlePersons}}">{{ item.titlePersons }} <span ng-if="item.participants_count > 2">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span></h2>
 								<h2 ng-if="!item.title && !item.titlePersons">
 									{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
 								</h2>
