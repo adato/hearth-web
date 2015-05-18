@@ -12,6 +12,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		var self = this;
 		var healthCheckTimeout = 2000;
 		var healthCheckTimeoutPointer = 0;
+		var healthCheckRunning = false;
 
 		/**
 		 * This will process health check result
@@ -42,6 +43,17 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		};
 
 		/**
+		 * Send first health check and manage locking
+		 *  - eg only one health check will run at the time
+		 */
+		this.sendFirstHealthCheck = function() {
+			if(healthCheckRunning) return false;
+			healthCheckRunning = true;
+
+			self.sendHealthCheck();
+		};
+
+		/**
 		 * Turn on health check controll
 		 */
 		this.turnOn = function() {
@@ -54,6 +66,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		};
 
 		this.turnOff = function() {
+			healthCheckRunning = false;;
 			if(!$("#maitenancePage").is(":visible"))
 				return false;
 

@@ -13,6 +13,7 @@ angular.module('hearth.directives').directive('filter', [
             restrict: 'E',
             replace: true,
             scope: {
+                filterShown: "="
             },
             templateUrl: 'templates/directives/filter.html',
             link: function(scope, element) {
@@ -189,7 +190,10 @@ angular.module('hearth.directives').directive('filter', [
                 });
 
                 scope.recountPosts = function() {
-                    Filter.getFilterPostCount(scope.filter, function(count) {
+                    if(!scope.filterShown)
+                        return false;
+
+                    Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function(count) {
                         scope.filterPostCount = count;
                     });
                 };
@@ -209,6 +213,7 @@ angular.module('hearth.directives').directive('filter', [
                 };
 
                 scope.$watch('filter', scope.recountPosts, true);
+                scope.$watch('filterShown', scope.recountPosts);
                 scope.$watch('filterSave', scope.toggleSaveFilter);
                 scope.$on('initFinished', scope.init);
                 $rootScope.initFinished && scope.init();

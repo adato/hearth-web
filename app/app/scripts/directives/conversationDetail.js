@@ -18,6 +18,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
             templateUrl: 'templates/directives/conversationDetail.html',
             link: function($scope, element) {
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                $scope.loggedUser = $rootScope.loggedUser;
                 $scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
                 $scope.pluralCat = $rootScope.pluralCat;
                 $scope.confirmBox = $rootScope.confirmBox;
@@ -25,9 +26,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.participants = false;
                 $scope.showParticipants = false;
                 $scope.sendingActionRequest = false;
+                $scope.lockCounter = 0;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
-                var _loadTimeout = 5000; // pull requests interval in ms
+                var _loadTimeout = 20000; // pull requests interval in ms
                 var _loadLock = false; // pull requests interval in ms
                 var _scrollInited = false;
                 var _loadOlderMessagesEnd = false;
@@ -46,9 +48,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     // and resize message box
                     $scope.resizeTMessagesBox();
 
-                    // resize scrollbar
-                    $scope.$broadcast("scrollbarResize");
-                    $scope.$broadcast("classIfOverflowContentResize");
 
                     // when we get less messages then requested, we hitted the end of list
                     if(!append && messages.length < _messagesCount)
@@ -62,6 +61,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * @return {[type]}        [description]
                  */
                 $scope.loadMessages = function(config, done) {
+                    var lockCounter = $scope.lockCounter;
                     config = angular.extend(config || {}, {
                         id: $scope.info._id,
                         limit: _messagesCount
@@ -70,7 +70,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         config,
                         function(res) {
                             // test if we loaded data for actual conversation detail
-                            if(config.id !== $scope.info._id) return false;
+                            // if(config.id !== $scope.info._id) return false;
+                            if(lockCounter !== $scope.lockCounter) return false;
 
                             // append/prepend messages
                             res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
@@ -93,7 +94,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     // start pulling new messages
                     $scope.scheduleNewMessagesLoading();
 
-                    
                     $timeout(function() {
                         // test if we are on bottom
                         $scope.testOlderMessagesLoading();
@@ -103,17 +103,25 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
-                $scope.updateConversationInfo = function(messages, messagesCount) {
-                    var lastMessage = false;
+                $scope.hasSystemMessage = function(messages) {
+                    for(var i = messages.length - 1; i >= 0; i--) {
+                        if(!messages[i].author)
+                            return true;
+                    }
+                    return false;
+                };
 
+                $scope.getLastMessage = function(messages) {
                     // find last message that is not system message
                     for(var i = messages.length - 1; i >= 0; i--) {
-                        if(messages[i].author) {
-                            lastMessage = messages[i];
-                            break;
-                        }
+                        if(messages[i].author)
+                            return messages[i];
                     }
-
+                    return false;
+                };
+                
+                $scope.updateConversationInfo = function(messages, messagesCount) {
+                    var lastMessage = $scope.getLastMessage(messages);
                     // if there is no non-system message, dont update
                     if(!lastMessage)
                         return false;
@@ -142,6 +150,21 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     return $scope.messages[$scope.messages.length-1].created_at;
                 };
 
+                $scope.reloadConversationInfo = function() {
+                    Conversations.get({id: $scope.info._id, exclude_self: true}, function(res) {
+                        if($scope.participants) $scope.loadParticipants();
+
+                        $scope.info.is_member = res.is_member;
+                        $scope.info.participants = res.participants;
+                        $scope.info.participants_count = res.participants_count;
+                        $scope.info.title = res.title;
+                        $scope.info = $scope.deserialize($scope.info);
+
+                        delete $scope.info.titlePersons;
+                        $scope.$emit("conversationDeepUpdate", $scope.info);
+                    });
+                };
+
                 /**
                  * Periodically pull new messages
                  */
@@ -157,6 +180,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
                             $scope.scheduleNewMessagesLoading();
 
                             if(messages && messages.length) {
+
+                                if($scope.hasSystemMessage(messages))
+                                    $scope.reloadConversationInfo();
+
                                 $scope.testScrollBottom();
                                 $scope.updateConversationInfo(messages, messages.length);
                             }
@@ -208,8 +235,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * Transform conversation info so we can use it in view
                  */
                 $scope.deserialize = function(conversation) {
-                    if(conversation.titleCustom) {
+                    conversation.titleDetail= conversation.title;
+                    conversation.titleCustom = false;
+
+                    if(!conversation.title) {
                         conversation.titleDetail = [];
+                        conversation.titleCustom = true;
 
                         // use first three participants names if we dont have title
                         for(var i = 0; i < 3 && i < conversation.participants.length; i++) {
@@ -218,6 +249,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         };
                         conversation.titleDetail = conversation.titleDetail.join(", ");
                     }
+
                     return conversation;
                 };
 
@@ -273,14 +305,23 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.resizeMessagesBox = function() {
                     var container = $(".messages-container", element);
 
+                    // console.log($(".messages-container").height(), element.find(".conversation-detail-top").outerHeight(), element.find(".messages-reply").outerHeight());
+
                     $scope.testScrollBottom();
                     var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
-                    
+                    // console.log(maxBoxHeight);
+
                     container.css("max-height", maxBoxHeight);
-                    container.css("height", $(".nano-content", element).prop('scrollHeight'));
+                    // container.css("height", $(".nano-content", element).prop('scrollHeight'));
                     container.fadeIn();
 
                     $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
+
+                    $timeout(function() {
+                        // resize scrollbar
+                        $scope.$broadcast("scrollbarResize");
+                        $scope.$broadcast("classIfOverflowContentResize");
+                    });
                 };
 
                 // use sendActionRequest to delete conversation
@@ -315,22 +356,24 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.loadParticipants = function() {
                     Conversations.getParticipants({id: $scope.info._id, exclude_self: true}, function(res) {
                         $scope.participants = res.participants;
-                        $scope.resizeTMessagesBox();
+                        $scope.resizeTMessagesBox(); // resize with timeout
+                        $timeout(function() {
+                            $scope.$broadcast('scrollbarResize');
+                        });
                     });
                 };
 
                 /**
-                 * Config init variables
-                 * deserialize conversation
+                 * Config init variables deserialize conversation
                  * and load messages
                  */
                 $scope.init = function(info) {
-                    if(_loadingOlderMessages)
-                        return false;
-                    _loadingOlderMessages = true;
+                    // if(_loadingOlderMessages)
+                    //     return false;
+                    // _loadingOlderMessages = true;
                         
                     $timeout.cancel(_loadTimeoutPromise);
-
+                    $scope.lockCounter++;
                     // set initial state
                     $scope.info = $scope.deserialize($scope.info);
                     _loadOlderMessagesEnd = false;

@@ -1,8 +1,6 @@
-#item-detail {
-/* 	a {
-		color:color(5);
-		font-weight:600;
-	} */
+#item-detail .row .row {
+	margin-left:0;
+	margin-right:0;
 }
 
 #item-detail, .market article.post-on-market, .profile-view article.post-on-market, .community-view article.post-on-market {
@@ -24,7 +22,7 @@
 		float:right;
 		clear:left;
 		padding-right:0;
-		padding-left:$ui-grid-size;
+		padding-left:2*$ui-small-grid-size;
 
 		&:before {
 			content:"";
@@ -138,12 +136,15 @@
 				overflow-x: hidden;
 				word-wrap: break-word;
 				div.descr {
+					clear:both;
 					line-height:130%;
 					margin-top: 10px;
 					margin-bottom: 10px;
 					margin-left: 27px;
 					.fa {
+						float:left;
 						margin-left: -27px;
+						margin-top:2px;
 					}
 				}
 			}
@@ -342,7 +343,7 @@
 				}
 				.content { margin-left:-3 * $ui-small-grid-size; }
 				.reply-author { font-weight: 600; }
-				.reply-contact p { margin-top:0;margin-bottom:3*$ui-small-grid-size; text-align:right; }
+				.reply-contact p { margin-top:0;margin-bottom:3*$ui-small-grid-size; text-align:right; font-size:small;}
 				.text-container p { 
 					margin-top: 2 * $ui-small-grid-size; 
 					margin-bottom: 3 * $ui-small-grid-size;

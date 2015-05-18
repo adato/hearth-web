@@ -11,11 +11,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
+		$scope.loaded = false;
 		$scope.conversations = false;
 		$scope.showFulltext = false;
 		$scope.detail = false;
 
-		var _loadTimeout = 5000; // pull requests interval in ms
+		var _loadTimeout = 20000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
         
@@ -82,7 +83,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
             var conf = {newer:$scope.conversations[0].last_message_time, exclude_self: true};
             angular.extend(conf, $scope.getFilter());
-
+            
+            Messenger.loadCounters();
 			Conversations.get(conf, function(res) {
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
                 _loadLock = false;
@@ -126,21 +128,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
 
+			// dont load counter when we click on conversation detail
+			// (and change URL)
+			Messenger.disableLoading();
 			$location.url("/messages/"+info._id+"?"+jQuery.param($location.search()));
-		};
 
-		$scope.loadCounters = function() {
-			Messenger.loadCounters(function(res) {
-				$scope.conversationsCounters = res;
-			});
+			// enable counters loading after URL is changed
+			$timeout(Messenger.enableLoading);
 		};
 
 		$scope.deserializeConversation = function(conversation) {
 			var post = conversation.post;
-			conversation.maxAvatarCount = 4; // print 4 avatars max
-
-			if(conversation.participants_count > 4) // if there are more participants
-				conversation.maxAvatarCount = 3;	// print only 3 avatars and 4th will be +X counter
+			conversation.maxAvatarCount = (conversation.participants_count > 4 ) ? 3 : 4; // print 4 avatars max or only 3 avatars and 4th will be +X counter
 
 			// handle conversation title
 			// if it is post reply conversation, add post type
@@ -154,17 +153,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
 			}
 			
-			if(!conversation.title) {
-				conversation.titleCustom = true;
-				conversation.title = [];
-
-				// if there is no title, build it from participants
+			if(conversation.participants.length) {
+				conversation.titlePersons = [];
+				// if there is no title, build it from first 3 participants (index from 0 to 2)
 				for(var i = 0; i < 2 && i < conversation.participants.length; i++) {
-					var user = conversation.participants[i];
-					conversation.title.push(user.name);
+					conversation.titlePersons.push(conversation.participants[i].name);
 				};
-				conversation.title = conversation.title.join(", ");
+				conversation.titlePersons = conversation.titlePersons.join(", ");
 			}
+
 			return conversation;
 		};
 
@@ -216,6 +213,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}
 		};
 
+		$scope.updateDeepConversation = function(ev, conv) {
+			$scope.deserializeConversation(conv);
+		};
+
 		// when we leave/delete conversation - remove it from conversation list
 		$scope.removeConversationFromList = function(ev, id, dontSwitchConversation) {
 			// find its position
@@ -242,7 +243,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadFirstConversations = function() {
-			$scope.loadCounters();
+			// Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
 				// load first conversation on init
 				if($routeParams.id)
@@ -260,8 +261,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showFulltext = false;
 			$scope.showNewMessageForm = false;
 			
-			$scope.loadCounters();
+			// Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
+				$scope.loaded = true;
+				
 				// load first conversation on init
 				if($routeParams.id)
 					$scope.loadConversationDetail($routeParams.id);
@@ -275,6 +278,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		UnauthReload.check();
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
+		$scope.$on('conversationCreated', $scope.loadCounters);
+		$scope.$on('conversationDeepUpdate', $scope.updateDeepConversation);
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();

@@ -20,12 +20,18 @@
                     color: darken(color(3), 40%);
                 }
             }
-            p {
-                margin-left: 1rem;
+            div.short-about {
+                margin-left: 40px;
+                margin-top:15px;
+                margin-bottom:15px;
+                word-wrap: break-word;
+                line-height: 1.5;
                 .fa {
                     display: inline-block;
                     margin-right: 10px;
                     color: color(1);
+                    margin-left:-27px;
+                    float:left;
                 }
             }
         }
@@ -420,8 +426,11 @@
                     margin-bottom: $ui-small-grid-size;
                     margin-left: 27px;
                     line-height: 140%;
+                    clear:both;
                     .fa {
                         margin-left: -27px;
+                        float:left;
+                        margin-top:3px;
                     }
                 }
             }

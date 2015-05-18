@@ -13,8 +13,7 @@
 		<a ng-if="!mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
 		<a ng-if="mapSelected" ng-click="toggleMap()" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
 	</div>
-
 	<article class="filter-container animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }" >
-		<filter id="filter"></filter>
+		<filter id="filter" filter-shown="filterSelected"></filter>
 	</article>
 </div>
