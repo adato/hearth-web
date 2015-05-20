@@ -267,7 +267,6 @@ module.exports = function(grunt) {
 						middlewares.push(function(req, res){
 							for(var file, i = 0; i < options.base.length; i++){
 								// console.log(options.base);
-								grunt.log.error(options.base);
 								file = options.base[i] + "/index.html";
 								
 								if (grunt.file.exists(file)){
