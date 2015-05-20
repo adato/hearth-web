@@ -7,6 +7,8 @@ $$config = {
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
 	defaultHearthImage: 'images/facebook-sharing-image.png',
+	defaultHearthImageWidth: 600,
+	defaultHearthImageHeight: 600,
 	defaultUserAvatar: 'images/no-avatar.jpg',
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
 	sharingEndpoints: {

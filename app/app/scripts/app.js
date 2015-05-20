@@ -163,7 +163,7 @@ angular.module('hearth', [
 
                 $rootScope.$on('$translateChangeSuccess', function() {
                     
-                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), $$config.appUrl+$$config.defaultHearthImage);
+                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), $$config.appUrl+$$config.defaultHearthImage, $$config.defaultHearthImageWidth, $$config.defaultHearthImageHeight);
                     OpenGraph.setDefault();
 
                     // reset OG to default when changing location
