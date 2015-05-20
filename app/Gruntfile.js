@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 		yeoman: {
 			// configurable paths
 			app: require('./bower.json').appPath || 'app',
-			dist: 'dist',
+			dist: 'dist/app',
 			env: env,
 			envFolder: envFolder,
 			api: (env == 'staging') ? 'stage' : 'dev'
@@ -649,8 +649,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': [
-						'.tmp\/concat\/styles/{,*/}*.css',
-						'<%= yeoman.app %>/styles/{,*/}*.css'
+						'<%= yeoman.dist %>/styles/main.css'
 					]
 				}
 			}
@@ -723,10 +722,10 @@ module.exports = function(grunt) {
 				encoding: 'utf8',
 				algorithm: 'md5',
 				length: 16,
-				rename: false
+				rename: false,
+				baseDir: '<%= yeoman.dist %>/../'
 			},
 			assets: {
-				rename: false,
 				files: [{
 					src: ['<%= yeoman.dist %>/index.html']
 				}]
@@ -811,12 +810,12 @@ module.exports = function(grunt) {
 		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
 		'rename:configDist',	// move config-global to .tmp/concat folder
 		'rename:googleAnalytics',	// move googleAnalytics.js to ./tmp concat folder
-		'rename:newRelic',	// move googleAnalytics.js to ./tmp concat folder
+		'rename:newRelic',		// move googleAnalytics.js to ./tmp concat folder
 		'preprocess',			
 		'ngmin',
 		'cdnify',
 		'cssmin',				// minify css files
-		'rev',
+		// 'rev',
 		'usemin',
 		'htmlmin',
 		'htmlmin:distTemplates', // minify template files before concatenation
