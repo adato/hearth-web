@@ -11,7 +11,7 @@ angular.module('hearth', [
             // ============================
             // === Location Configuration
             // ============================
-            $locationProvider.html5Mode(false).hashPrefix('!');
+            $locationProvider.html5Mode(true);
         }
     ]).config([
         'cfpLoadingBarProvider',
@@ -140,7 +140,7 @@ angular.module('hearth', [
                             }
                             $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });
                             Auth.logout(function() {
-                                location.reload("#!/login");
+                                location.reload("/login");
                             });
                         }
 
