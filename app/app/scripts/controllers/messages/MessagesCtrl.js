@@ -16,7 +16,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showFulltext = false;
 		$scope.detail = false;
 
-		var _loadTimeout = 20000; // pull requests interval in ms
+		var _loadTimeout = 5000; // pull requests interval in ms
         var _loadLock = false; // pull requests interval in ms
         var _loadTimeoutPromise = false;
         
@@ -120,11 +120,37 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.filter.query && $scope.applyFilter();
 		};
 
-		$scope.showConversation = function(info, index) {
-			if(!info.read)
-				Messenger.decrUnreaded();
+		$scope.markReadedAfterActivity = function(info, index) {
+			console.log("Binding handlers");
 			
-			info.read = true;
+			function markReaded() {
+				console.log("Clearing handlers");
+				
+				$(window).unbind('mousemove');
+				$(window).unbind('click');
+
+				info.read = true;
+				Messenger.decrUnreaded();
+			}
+
+			$("body").mousemove(markReaded);
+			$("body").click(markReaded);
+		};
+
+		/**
+		 * This will show requested conversation in right column
+		 * and optionally mark it as readed
+		 */
+		$scope.showConversation = function(info, index, dontMarkAsReaded) {
+			
+			if(!dontMarkAsReaded && !info.read) {
+				Messenger.decrUnreaded();
+				info.read = true;
+			}
+
+			if(!info.read && dontMarkAsReaded)
+				$scope.markReadedAfterActivity(info, index);
+
 			$scope.showNewMessageForm = false;
 			$scope.detail = info;
 
@@ -267,9 +293,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				
 				// load first conversation on init
 				if($routeParams.id)
-					$scope.loadConversationDetail($routeParams.id);
+					$scope.loadConversationDetail($routeParams.id, true);
 				else if(list.length)
-					$scope.showConversation(list[0], 0);
+					$scope.showConversation(list[0], 0, true);
 
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 			});
