@@ -39,6 +39,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
 
+     <base href="/app/"></base>
+
     <!-- build:js scripts/config.min.js -->
       <script src="scripts/config-local.js"></script>
       <script src="scripts/config-global.js"></script>
@@ -69,6 +71,7 @@
   <script src="//connect.facebook.net/en_US/all.js"></script>
   <script type='text/javascript'>
   <!--
+    // fb invite jump out from FB frame
     if (top.location!= self.location) {
       top.location = self.location;
     }
@@ -78,11 +81,13 @@
         window.location.hash = '';
     }
 
-    // refresh from old URL style to new #/ => #!/
-    if (window.location.href.indexOf('#') != -1 && window.location.href.indexOf('#!') == -1){
-      var page = window.location.hash.slice(1);
-      if(!page.length || page[0] != '/') page = '/'+page;
-      window.location.hash = '#!' + page;
+    // refresh from old URL style to new one #!/ => /
+    if (!!~window.location.href.indexOf('#!/')){
+       // != -1 && window.location.href.indexOf('#!') == -1
+      console.log(window.location);
+      window.location.href =  window.location.href.replace('#!/', '');
+      console.log(window.location);
+      alert("AA");
     }
   //-->
   </script>

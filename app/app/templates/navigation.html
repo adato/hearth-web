@@ -1,7 +1,7 @@
 <div class="fixed navigation">
 	<article class="row">
 		<section class="large-2 columns text-right">
-			<a ng-href="#!/market" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
+			<a ng-href="/app/market" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
 		</section>
 		<section class="large-3 columns show-for-scrolled">
 			<a ng-click="showUI('filter')"><span class="fa fa-filter"></span> {{'filter-ads' | translate}}</a>
@@ -18,17 +18,17 @@
 		</section>
 		
 		<section class="large-6 icons columns hide-for-scrolled">
-			<a href="#!/market" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+			<a href="/app/market" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa icon-marketplace"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
-			<a ng-if="loggedUser._id" href="#!/communities" ng-class="{active: segment == 'communityList'}" title="{{ 'COMMUNITIES' | translate }}">
+			<a ng-if="loggedUser._id" href="/app/communities" ng-class="{active: segment == 'communityList'}" title="{{ 'COMMUNITIES' | translate }}">
 				<div class="fa icon-community"></div>
 				<label>{{ 'COMMUNITIES' | translate }}</label>
 			</a>
 			<div class="separator"></div>
 		    <span ng-if="config.env != 'production'" class="top-bar-messages">
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="#!/messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="/app/messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
                     <span class="messages-icon">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 		            <label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
 			    </a>
@@ -40,13 +40,13 @@
 			    </a>
 				<ul class="dropdown user-dropdown" id="profile-drop" title="{{ loggedUser.name }} ">
 			       
-			       <li><a ng-href="#!/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
-			       <li><a ng-href="#!/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
-			       <li><a ng-href="#!/profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+			       <li><a ng-href="/app/profile/{{ loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
+			       <li><a ng-href="/app/profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
+			       <li><a ng-href="/app/profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
 			       
 		          	<li class="divider" ng-if="myAdminCommunities.length"></li>
 			       	<li ng-repeat="item in myAdminCommunities">
-						<a class="user-switch-item" ng-href="#!/community/{{item._id}}" title="{{ item.name}}">
+						<a class="user-switch-item" ng-href="/app/community/{{item._id}}" title="{{ item.name}}">
 							<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 							<span class="name">{{ item.name | ellipsis:12}}</span>
 						</a>
@@ -62,9 +62,9 @@
 					<label>{{'TOP_BAR_ABOUT' | translate}}</label>
 				</a>
 		        <ul class="dropdown" id="about-drop">
-		          <li><a ng-href="#!/terms">{{ 'MENU.TERMS' | translate}}</a></li>
-		          <li><a ng-href="#!/faq">{{ 'MENU.FAQ' | translate}}</a></li>
-		          <li><a ng-href="#!/feedback">{{ 'WRITE_US' | translate}}</a></li>
+		          <li><a ng-href="/app/terms">{{ 'MENU.TERMS' | translate}}</a></li>
+		          <li><a ng-href="/app/faq">{{ 'MENU.FAQ' | translate}}</a></li>
+		          <li><a ng-href="/app/feedback">{{ 'WRITE_US' | translate}}</a></li>
 		          <li class="divider"></li>
 		          <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
 		          <li><a ng-href="#!/taxes">{{ 'MENU.TAXES' | translate}}</a></li>
@@ -80,7 +80,7 @@
 		          </li>
 		        </ul>
 			</span>		     
-			<a ng-if="!loggedUser._id" href="#!/login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
+			<a ng-if="!loggedUser._id" href="/app/login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
 				<div class="text">
 		            <div class="fa fa-sign-in"></div>
 		            <label>{{'TOP_BAR_SIGN_IN' | translate }}</label>

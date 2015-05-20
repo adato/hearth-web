@@ -200,6 +200,22 @@ module.exports = function(grunt) {
 					// Make directory browse-able.
 					middlewares.push(connect.directory(directory));
 
+					// if not found, just send index.html
+					// middlewares.push(function(req, res){
+					// 	for(var file, i = 0; i < options.base.length; i++){
+					// 		// console.log(options.base);
+					// 		grunt.log.error(options.base);
+					// 		file = options.base[i] + "/index.html";
+
+					// 		if (grunt.file.exists(file)){
+					// 			require('fs').createReadStream(file).pipe(res);
+					// 			return; // we're done
+					// 		}
+					// 	}
+					// 	res.statusCode(404); // where's index.html?
+					// 	res.end();
+					// });
+
 					return middlewares;
 				}
 			},
@@ -207,7 +223,7 @@ module.exports = function(grunt) {
 			rules: [
 				{from: '^/api/(.*)$',to: '/api/$1'},
 				{from: '^/app(.*)$',to: '$1'},
-				// {from: '^(?!app).*',to: '/app/', redirect: 'temporary'},
+				{from: '^(?!/app)(.*)',to: '/app$1', redirect: 'temporary'},
 			],
 
 			proxies: [{
@@ -246,6 +262,23 @@ module.exports = function(grunt) {
 						// Make directory browse-able.
 						middlewares.push(connect.directory(directory));
 
+
+						// if not found, just send index.html
+						middlewares.push(function(req, res){
+							for(var file, i = 0; i < options.base.length; i++){
+								// console.log(options.base);
+								grunt.log.error(options.base);
+								file = options.base[i] + "/index.html";
+								
+								if (grunt.file.exists(file)){
+									require('fs').createReadStream(file).pipe(res);
+									return; // we're done
+								}
+							}
+							res.statusCode(404); // where's index.html?
+							res.end();
+						});
+					
 						return middlewares;
 					}
 				}
