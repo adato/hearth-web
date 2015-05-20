@@ -722,9 +722,11 @@ module.exports = function(grunt) {
 			options: {
 				encoding: 'utf8',
 				algorithm: 'md5',
-				length: 16
+				length: 16,
+				rename: false
 			},
 			assets: {
+				rename: false,
 				files: [{
 					src: ['<%= yeoman.dist %>/index.html']
 				}]
