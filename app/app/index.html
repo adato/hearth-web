@@ -24,13 +24,13 @@
     <meta property="og:image" content="{{og_image}}" />
     <meta property="og:image:width" ng-if="og_image && og_image_width" content="{{og_image_width}}" />
     <meta property="og:image:height" ng-if="og_image && og_image_height" content="{{og_image_height}}" />
-    
-    <!-- build:css({.tmp,app}) /app/styles/main.css -->
-    <link rel="stylesheet" type="text/css" href="/app/styles/main.css">
+
+     <!-- build:css({.tmp,app}) /app/styles/main.css -->
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
     <!-- endbuild -->
 
      <!-- @if DEBUG -->
-     <link rel="stylesheet" href="/app/styles/palette.css">
+     <link rel="stylesheet" href="/styles/palette.css">
     <!-- @endif -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="/app/favicon.ico">
@@ -41,11 +41,11 @@
 
      <base href="/app/"></base>
 
-    <!-- build:js scripts/config.min.js -->
-      <script src="/app/scripts/config-local.js"></script>
-      <script src="/app/scripts/config-global.js"></script>
-      <script src="/app/scripts/googleAnalytics.js"></script>
-      <!-- <script src="/app/scripts/newRelic.js"></script> -->
+    <!-- build:js /app/scripts/config.min.js -->
+      <script src="scripts/config-local.js"></script>
+      <script src="scripts/config-global.js"></script>
+      <script src="scripts/googleAnalytics.js"></script>
+      <!-- <script src="scripts/newRelic.js"></script> -->
     <!-- endbuild -->
 
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -118,7 +118,7 @@
     <![endif]-->
 
     <div class="all-visible row max-width" ng-show="initFinished">
-      <section ng-include="'templates/navigation.html'" id="navigation"></section>
+      <section ng-include="'/app/templates/navigation.html'" id="navigation"></section>
       <div app-view-segment="0" class="main-container"></div>
       <ng-view style="position: relative;top:10em;"></ng-view>
       <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
