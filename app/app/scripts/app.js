@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('hearth', [
-    'ngDialog', 'tmh.dynamicLocale', 'ngRoute', 'angular-flexslider', 'route-segment', 'angularFileUpload',
+    'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ngRoute', 'angular-flexslider', 'route-segment', 'angularFileUpload',
     'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
-    'hearth.filters', 'hearth.directives', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
+    'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
     'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {
@@ -89,6 +89,7 @@ angular.module('hearth', [
         '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
         function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
+            $rootScope.config = $$config;
 
             /**
              * This will cache some files at start
@@ -159,9 +160,14 @@ angular.module('hearth', [
             function initOpenGraph(done) {
 
                 $rootScope.$on('$translateChangeSuccess', function() {
-                    var defaultHearthImage = 'https://www.hearth.net/app/images/default_avatar.png';
-                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), defaultHearthImage);
+                    
+                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), $$config.appUrl+$$config.defaultHearthImage, $$config.defaultHearthImageWidth, $$config.defaultHearthImageHeight);
                     OpenGraph.setDefault();
+
+                    // reset OG to default when changing location
+                    $rootScope.$on("$locationChangeStart", function(loc) {
+                        OpenGraph.setDefault();
+                    });
                 });
 
                 done(null);

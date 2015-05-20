@@ -52,7 +52,13 @@ module.exports = function(grunt) {
 					'copy:localConfig'
 				],
 				options: {
-					livereload: 3333
+					livereload: {
+						port: 3333,
+						key: grunt.file.read('./cert/server.key'),
+						cert: grunt.file.read('./cert/server.crt'),
+						// key: grunt.file.read('path/to/ssl.key'),
+        				// cert: grunt.file.read('path/to/ssl.crt')
+        			}
 				}
 			},
 			jsTest: {
@@ -71,7 +77,14 @@ module.exports = function(grunt) {
 			},
 			livereload: {
 				options: {
-					livereload: '<%= connect.options.livereload %>'
+					livereload:  {
+        			// '<%= connect.options.livereload %>'
+						port: 3333,
+						key: grunt.file.read('./cert/server.key'),
+						cert: grunt.file.read('./cert/server.crt'),
+						// key: grunt.file.read('path/to/ssl.key'),
+        				// cert: grunt.file.read('path/to/ssl.crt')
+        			}
 				},
 				files: [
 					'<%= yeoman.app %>/{,*/}*.html',
@@ -529,6 +542,11 @@ module.exports = function(grunt) {
 					src: ['**/*']
 				}, {
 					expand: true,
+					cwd: '<%= yeoman.app %>/libs',
+					dest: '<%= yeoman.dist %>/libs',
+					src: ['**/*']
+				}, {
+					expand: true,
 					cwd: '<%= yeoman.app %>/scripts',
 					dest: '.tmp/scripts',
 					src: ['**/*']
@@ -622,7 +640,7 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js', '.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {

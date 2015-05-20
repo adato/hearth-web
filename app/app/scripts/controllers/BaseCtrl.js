@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify',
+    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService',
 
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
+    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -29,6 +29,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.missingPost = false;
+        $rootScope.cacheInfoBox = {};
 
         // init globalLoading 
         $rootScope.globalLoading = false;
@@ -57,6 +58,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * scroll to top of the page, if not, refresh page with fixed height
          */
         $rootScope.$on("$routeChangeStart", function(event, next) {
+            // when changed route, load conversation counters 
+            Auth.isLoggedIn() && Messenger.loadCounters();
+
+            if(!$rootScope.addressNew)
+                return $rootScope.top(0, 1);;
+            
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
@@ -146,10 +153,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             location.reload();
         };
 
-        $rootScope.isMine = function (author) {
-            if($scope.loggedCommunity)
-                return $scope.loggedCommunity._id === author._id;
-            return $scope.loggedUser && author._id === $scope.loggedUser._id;
+        $rootScope.isMine = function (author_id) {
+            return $scope.loggedUser && author_id === $scope.loggedUser._id;
         };
 
         angular.element(window).bind('scroll', function() {
@@ -170,20 +175,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(item.admin == $rootScope.loggedUser._id)
                         $rootScope.myAdminCommunities.push(item);
                 });
-            });
-        };
-
-        $rootScope.switchIdentity = function(id) {
-            Auth.switchIdentity(id).then(function() {
-                window.location.hash = '#!/community/'+id;
-                location.reload();
-            });
-        };
-
-        $rootScope.leaveIdentity = function(id) {
-            Auth.switchIdentityBack(id).then(function() {
-                window.location.hash = '#!/profile/' + id
-                location.reload();
             });
         };
 
@@ -212,7 +203,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
+            timeAgoService.init();
             Notify.checkRefreshMessage();
+            Auth.isLoggedIn() && Messenger.loadCounters();
+
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);
@@ -222,12 +216,34 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function(showMsgOnlyLogged) {
             
-            $scope.showMsgOnlyLogged = showMsgOnlyLogged;
+            var scope = $scope.$new();
+            scope.showMsgOnlyLogged = showMsgOnlyLogged;
             ngDialog.open({
                 template: $$config.templates + 'userForms/login.html',
                 controller: 'LoginCtrl',
-                scope: $scope,
-                closeByEscape: false,
+                scope: scope,
+                closeByEscape: true,
+                showClose: false
+            });
+        };
+
+        /**
+         * Open report modal window for given item
+         */
+        $rootScope.openReportBox = function(item) {
+            if(item.spam_reported)
+                return false;
+
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/itemReport.html',
+                controller: 'ItemReport',
+                scope: scope,
+                closeByEscape: true,
                 showClose: false
             });
         };
@@ -246,25 +262,25 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         // send report to API and close modal.. maybe fire some notification too?
-        $rootScope.reportItem = function(item) {
-            if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox(true);
+        // $rootScope.reportItem = function(item) {
+        //     if (!Auth.isLoggedIn())
+        //         return $rootScope.showLoginBox(true);
 
-            $rootScope.globalLoading = true;
-            Post.spam({id: item._id}, function(res) {
-                $rootScope.$broadcast('reportItem', item);
+        //     $rootScope.globalLoading = true;
+        //     Post.spam({id: item._id}, function(res) {
+        //         $rootScope.$broadcast('reportItem', item);
 
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
-            }, function(err) {
+        //         $rootScope.globalLoading = false;
+        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
+        //     }, function(err) {
                 
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
-            });
-        };
+        //         $rootScope.globalLoading = false;
+        //         Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
+        //     });
+        // };
 
         // open modal window for item edit
-        $rootScope.editItem = function(post, isInvalid) {
+        $rootScope.editItem = function(post, isInvalid, preset) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
@@ -272,6 +288,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             scope.post = angular.copy(post);
             scope.postOrig = post;
             scope.isInvalid = isInvalid;
+            scope.preset = preset;
 
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
@@ -281,8 +298,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 closeByEscape: false,
                 showClose: false
             });
-            dialog.closePromise.then(function(data) {});
         };
+
+        // $timeout(function() {
+            // $rootScope.editItem(null);
+        // }, 3000);
 
         $rootScope.removeItemFromList = function(id, list) {
             for (var i = 0; i < list.length; i++) {
@@ -328,11 +348,42 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemReply',
                 scope: scope,
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
+        };
 
-            dialog.closePromise.then(function(data) {});
+        /**
+         * Function will show modal window where community admin can remove post from his community
+         */
+        $rootScope.removeItemFromCommunity = function(post) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = post;
+            
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'removeItemFromCommunity.html',
+                controller: 'RemoveItemFromCommunity',
+                scope: scope,
+                closeByDocument: false,
+                closeByEscape: true,
+                showClose: false
+            });
+        };
+
+        $rootScope.openEmailSharingBox = function(item) {
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/emailSharing.html',
+                controller: 'EmailSharing',
+                scope: scope,
+                closeByEscape: true,
+                showClose: false
+            });
         };
 
         // show modal window with invite options
@@ -346,7 +397,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: $scope.$new(),
                 className: 'ngdialog-invite-box',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 // showClose: false
             });
 
@@ -368,7 +419,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: scope,
                 className: 'ngdialog-tutorial ngdialog-theme-default',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
 
@@ -439,10 +490,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             
             $rootScope.globalLoading = true;
             // call service
-            Action({
-                    id: item._id
-                },
-                function(res) {
+            Action({id: item._id}, function(res) {
 
                     if(angular.isFunction(cb))
                         cb(item);

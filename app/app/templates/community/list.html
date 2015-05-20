@@ -1,15 +1,15 @@
 <div class="communities">
-    <a ng-if="loggedUser._id && !loggedCommunity" ng-click="toggleForm()" class="button2 fright community-list-add-button">
-        <i class="fa fa-plus"></i>&nbsp; {{'CREATE_COMMUNITY' | translate}}
+    <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button button-send fright community-list-add-button">
+        <i class="fa fa-plus"></i>&nbsp; {{:: 'CREATE_COMMUNITY' | translate}}
     </a>
-    <div class="community-list-add-form hide">
+    <div class="community-list-add-form clearfix hide">
         <community-create-edit close="toggleForm()"></community-create-edit>
     </div>
-    <div class="myCommunities" ng-if="!loggedCommunity && myCommunities !== false">
-        <h4>{{ 'YOUR_COMMUNITIES' | translate }}</h4>
+    <div class="myCommunities" ng-if="myCommunities !== false">
+        <h4>{{:: 'YOUR_COMMUNITIES' | translate }}</h4>
         <div class="my-communities" ng-if="myCommunities.length">
             <h5>
-                {{ 'YOU_ARE_MEMBER' | translate}}
+                {{:: 'YOU_ARE_MEMBER' | translate}}
                 {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
                 <span ng-if="myAdminCommunities.length">
                     {{ 'FROM_THAT' | translate }}
@@ -19,17 +19,17 @@
             </h5>
             <div class="clear"></div>
             <br />
-            <div class="community-list">
+            <div class="community-list row clearfix">
                 <community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
             </div>
         </div>
         <div class="my-communities" ng-if="! myCommunities.length">
-            <h5>{{ 'COMMUNITY.USER_ISNT_MEMBER_OF_ANY_COMMUNITY' | translate }}</h5>
+            <h5>{{:: 'COMMUNITY.USER_ISNT_MEMBER_OF_ANY_COMMUNITY' | translate }}</h5>
             <div class="clear"></div>
         </div>
     </div>
-    <div ng-if="randomCommunities.length" class="community-list small">
-        <h4>{{ 'SUGGESTED_COMMUNITIES' | translate }}</h4>
+    <div ng-if="randomCommunities.length" class="community-list row clearfix small">
+        <h4>{{:: 'SUGGESTED_COMMUNITIES' | translate }}</h4>
         <community-item item="item" ng-repeat="(id, item) in randomCommunities track by $index"></community-item>
     </div>
 </div>

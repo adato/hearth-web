@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-	'$location', '$rootScope', 'User', 'KeywordsService',
-	function($location, $rootScope, User, KeywordsService) {
+	'$q', '$location', '$rootScope', 'User', 'KeywordsService', 'Post',
+	function($q, $location, $rootScope, User, KeywordsService, Post) {
 		return {
             _commonKeywords: [],
             getCommonKeywords: function(cb) {
@@ -21,6 +21,11 @@ angular.module('hearth.services').factory('Filter', [
                     KeywordsService.queryKeywords().then(function(res) {
                         cb(self._commonKeywords = res);
                     });
+            },
+            queryCommonKeywords: function($query) {
+                var deferred = $q.defer();
+                deferred.resolve(this._commonKeywords);
+                return deferred.promise;
             },
 			toggleTag: function(tag) {
 				var params, index;
@@ -57,6 +62,14 @@ angular.module('hearth.services').factory('Filter', [
                     return params.keywords;
 
 			},
+            getFilterPostCount: function(filter, cb) {
+                filter = filter || {};
+                filter.counters = true;
+
+                Post.query(filter, function(res) {
+                    cb((res.counters && res.counters.post) ? res.counters.post : 0);
+                });
+            },
             get: function() {
                 return $location.search();
             },

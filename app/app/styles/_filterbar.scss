@@ -1,111 +1,45 @@
 .filterbar-wrap {
-    margin: {
-        bottom: 1em;
-    };
-    .filterbar-container {
-        background-color: white;
-        border: 1px solid darken(white, 20%);
-        border-top: 0;
-        border-radius: 0 0 $global-radius $global-radius;
-        margin: {
-            bottom: 1em;
-        };
-        padding: {
-            left: 1em;
-            right: 1em;
-            top: 1em;
-        };
-        .footer {
-            padding: {
-                top: $fontSize;
-                bottom: $fontSize;
-            };
-            margin: {
-                top: $fontSize;
-                bottom: 0;
-            };
+    line-height:$ui-input-height;
+    height:$ui-input-height;
+    position:relative;
+    left:-3 * $ui-small-grid-size;
+    .filter-button-container {
+        @extend .box;
+        width:auto;
+        padding:0 $ui-grid-size;
+        margin-left:190px;
+        overflow: hidden;
+        a {
+            color: color(5);
+            font-weight: $ui-text-weight-bolder;
         }
-        button {
-            background-color: color(5);
-            border-color: color(5);
-            margin: {
-                bottom: 0;
-            };
-            padding: {
-                top: rem-calc(8);
-                bottom: rem-calc(8);
-            };
-            transition: background-color 0.8s, border-color 0.8s;
-            &:hover,
-            &:focus {
-                background-color: darken(color(5), abs($button-function-factor));
-                border-color: darken(color(5), abs($button-function-factor));
-            }
+        a.filter-cancel-button {
+            font-size:12px;
+            margin-left:2*$ui-small-grid-size;
         }
     }
-    .filterbar {
-        margin: {
-            left: 0 !important;
-            right: 0 !important;
-        };
-        .button {
-            color: color(5);
-            background-color: white;
-            border-radius: 0;
-            border: 0;
-            padding: {
-                top: 0.5em;
-                bottom: 0.5em;
-            };
-            margin: {
-                bottom: 0;
-            };
-            &[disabled] {
-                cursor: not-allowed;
-            }
-            cursor: pointer;
-            &:hover:not([disabled]),
-            &.pressed {
-                color: white;
-                background-color: color(5);
-            }
-        }
-        .filterbar-section {
-            background-color: white;
-            border-radius: $global-radius $global-radius 0 0;
-            overflow: hidden;
-            border: {
-                bottom: 2px solid lighten(color(5), abs($button-function-factor));
-            }
-            &>.large-4 {
-                padding-right: 0px;
-            }
-            .map-toggle a {
-                position: relative;
-                top: 10px;
-                color: color(5);
-            }
-        }
-        .insert-button-container {
-            padding: {
-                right: 0;
-            };
-            .button {
-                border-radius: $global-radius;
-                border-color: color(5), abs($button-function-factor);
-                background-color: color(5);
-                color: white;
-                padding: {
-                    left: 3.2em;
-                    right: 3.2em;
-                };
-                border: 2px solid color(5);
-                transition: border-color 1s, background-color 1s;
-                &:hover {
-                    background-color: darken(color(5), abs($button-function-factor));
-                    border-color: darken(color(5), abs($button-function-factor));
-                }
-            }
-        }
+    .insert-button-container {
+        float:right;
+    }
+
+    .filter-container {
+        @extend .box;
+        padding:$ui-grid-size;
+        clear:both;
+        float:right;
+        margin-top:2 * $ui-small-grid-size;
+        width:770px;
+        transition:all .3s ease-in;
+        opacity:1;
+        max-height:800px;
+    }
+    .animated-hidden {
+        opacity:0;
+        max-height:0;
+        margin-top:0;
+        margin-bottom:0;
+        padding-top:0;
+        padding-bottom:0;
+        overflow-y:hidden;
     }
 }

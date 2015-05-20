@@ -58,7 +58,7 @@ body
 		background-position: center top;
 		background-repeat: no-repeat;
 		& > div.header-content {
-			@include bg ( "dots-and-lines.png", no-repeat center top );
+			@include bg ( "dots-and-lines.png", no-repeat center 43% );
 		}
 	}
 
@@ -147,69 +147,99 @@ body
 	text-align: center;
 }
 
+
 // Pane with 3 story faces
+// Single avatar
+$face-size-hover: 200px;
+$face-size: 190px;
+$translate-size: -.5 * ($face-size-hover - $face-size);
+
 .face-deck 
 {
 	position: relative;
+	top:30px;
 	@include size ( 70%, 460px );
 	margin: 0 auto;
 	text-align: center;
 
-	// Single avatar
-	$face-size-hover: 200px;
-	$face-size: 190px;
-	$translate-size: -.5 * ($face-size-hover - $face-size);
-
-	.face
-		{
+	.face {
 		position: absolute;
 		display: inline-block;
 		overflow: hidden;
 		@include size ( $face-size, $face-size ); 
-		@include rounded-corners ( $face-size / 2 );
+		@include rounded-corners (50%);
 		border: 7px solid #FFF;
+
+
+		animation-duration: 5s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite; 
 		
-		& > img 
-		{ 
+		& > img {
 			display: inline-block;
 			@include size ( $face-size, $face-size ); 
+			animation-duration: 5s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
 		}
 
 		@include hoverify 
 		{
-			@include size ( $face-size-hover, $face-size-hover );
-			@include rounded-corners ( $face-size-hover / 2 );
-			@include box-shadow ( #FFF 0 0 45px );
-			transform:translate($translate-size, $translate-size);
+ 			@include size ( $face-size-hover !important, $face-size-hover !important);
+			//@include rounded-corners ( $face-size-hover / 2 );
+			@include box-shadow ( #FFF 0 0 45px !important);
+			
+			margin-top:$translate-size;
+			margin-left:$translate-size;
 
-			& > img 
-			{
-				@include size ( $face-size-hover, $face-size-hover );
-
-			}
+			animation-play-state:paused;
+			& > img {
+				animation-play-state:paused;
+				@include size ( $face-size-hover !important, $face-size-hover !important);
+			} 
 		}
 
-		// 1st person
-		&.first	{ left: 5px; top: 145px; }
-		&.second { left: 300px; top: 0; }
-		&.third	{ left: 430px; top: 225px; }
+		&.first	{ left: -25%; top: 200px; }
+		&.second { left: 250px; top: -20px; animation-delay: .5s; &>img { animation-delay: .5s; }}
+		&.third	{ left: 90%; top: 275px; animation-delay: 1s; &>img { animation-delay: 1s; }}
 	}
 }
 
+@keyframes pulse
+{
+	0% { @include box-shadow (none); }
+	10% { @include box-shadow ( #FFF 0 0 40px ); }
+	20% { @include box-shadow (none); }
+}
+
+@keyframes pulseImg
+{
+	0% { @include size ( $face-size, $face-size ); margin:0;}
+	10% { @include size ( $face-size-hover, $face-size-hover ); margin-top:$translate-size; margin-left:$translate-size;} 
+	20% { @include size ( $face-size, $face-size ); margin:0;}
+}
+
+
 // Headline & Claim
+.claim-container {
+	position:relative;
+	top:30px;
+}
+
 .headline
 {
 	text-transform: uppercase;
 	@include font-params ( $intro-headline, 60px, normal, $bold );
+	color:#446142;
 }
 
-.claim { font-size: 25px; }
+.claim { font-size: 25px; color:#333;}
 
 // Call-to-action / Important action button
 .btn-cta 
 {
 	display: inline-block;
-	padding: 25px 60px;
+	padding: 25px 150px;
 	margin: 50px 0 70px;
 	text-transform: uppercase;
 	@include text-shadow ( rgba( #000, .25) 0 1px 2px );
@@ -217,7 +247,7 @@ body
 	@include gradient-linear ( $intro-cta-btn-bg, darken( $intro-cta-btn-bg, 5 ) );
 	@include rounded-corners ( $web-radius );
 	@include box-shadow ( rgba( #000, .35 ) 0 3px 5px );
-	@include font-params ( #FFF, 24px, normal, $bold );
+	@include font-params ( #FFF, 30px, normal, $bold );
 
 	@include hoverify 
 	{

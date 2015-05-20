@@ -23,6 +23,10 @@ angular.module('hearth.services').factory('Post', [
 				},
 				nointercept: true,
 			},
+			emailShare: {
+				url: $$config.apiPath + '/posts/:postId/email_share',
+				method: 'POST',
+			},
 			suspend: {
 				url: $$config.apiPath + '/posts/:postId/suspend',
 				method: 'PUT'
@@ -56,6 +60,10 @@ angular.module('hearth.services').factory('Post', [
 				// headers: {'Content-Type': 'multipart/form-data'}
 			},
 			remove: {
+				method: 'DELETE'
+			},
+			communityRemove: {
+				url: $$config.apiPath + '/posts/:postId/communities/remove',
 				method: 'DELETE'
 			},
 			spam: {

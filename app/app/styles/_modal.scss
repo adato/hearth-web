@@ -67,17 +67,17 @@
     .ngdialog-content {
         -webkit-animation: ngdialog-flyin .5s;
         animation: ngdialog-flyin .5s;
-        border-radius: 8px;
+        border-radius: $global-radius;
         color: black;
-        font-size: 1.1em;
-        line-height: 1.5em;
+        font-size: $global-font-size;
+        //line-height: $global-line-height;
         margin: 0 auto;
         max-width: 100%;
         display: inline-block;
-        padding: 0.2em;
+        //padding: 0.2em;
         position: relative;
         width: auto;
-        text-align: letf;
+        text-align: left;
         margin-top: 4%;
         margin-bottom: 4%;
     }
@@ -206,7 +206,7 @@
         display: none;
     }
     label {
-        font-size: 16px;
+        font-size: $global-font-size;
         display: inline-block;
         .fa {
             margin-right: 4px;
@@ -222,24 +222,23 @@
         }
     }
     .disabled {
-        a {
+        a, a:hover {
+            opacity: 1;
             color: #939393 !important;
         }
+
         input {
             background-color: #DDD !important;
         }
     }
-    .head {
+     .head {
         text-align: center;
         h2 {
             font-weight: normal;
             font-size: 25px;
             text-align: center;
-            span {
-                font-family: "SourceSansPro","Geneva","Tahoma",sans-serif;
-            }
         }
-    }
+    } 
     hr {
         border: 1px solid #bbb8b1;
         margin-bottom: 22px;
@@ -248,23 +247,18 @@
         color: red;
         font-size: 16px;
     }
-    .moveUp {
-        position: relative;
-        top: -15px;
-    }
     .moveBot {
         position: relative;
         top: 4px;
     }
     .head {
         position: relative;
-        top: -5px;
         .close {
             color: #ddd;
-            font-size: 30px;
+            font-size: 25px;
             position: absolute;
             right: 0;
-            top: 0px;
+            top: -5px;
             cursor: pointer;
             transition: color, 0.8s;
             &:hover {
@@ -272,9 +266,9 @@
             }
         }
     }
-    .keywords {
+/*     .keywords {
         margin-bottom: 15px;
-    }
+    } */
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-content.errorBox {
@@ -321,16 +315,12 @@
         margin-left: -210px !important;
         padding: 15px;
         padding-top: 10px;
-
         header {
             position: relative;
             h2 {
-                text-align: center;
-                font-size: 25px;
-                font-weight: normal;
-                text-align: center;
-                margin-bottom: 4px;
-                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 5px;
             }
             .close {
                 display: none;
@@ -346,9 +336,13 @@
                 }
             }
         }
+        article {
+            font-size:$base-font-size;
+        }
         hr {
-            margin-bottom: 10px;
-            border: 1px solid #bbb8b1;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom:1px solid color(4);
         }
         .text-right a {
             color: color(5);
@@ -357,26 +351,36 @@
                 color: darken(color(5), 20%);
             }
         }
+        .link-button {
+            padding:5px;
+            padding-left:0;
+            font-weight:600;
+        }
 
         .columns {
             padding: 0px;
         }
 
         button {
+            outline:none;
             background-color: color(5);
             border-color: color(5);
             padding: {
-                top: 8px;
-                bottom: 8px;
+                top: 5px;
+                bottom: 5px;
             };
             margin: {
                 bottom: 0;
             };
             transition: background-color 0.8s, border-color 0.8s;
             &:hover {
+                background-color: lighten(color(5), abs($button-function-factor));
+                border-color: lighten(color(5), abs($button-function-factor));
+            }
+            &:focus, &:active {
                 background-color: darken(color(5), abs($button-function-factor));
                 border-color: darken(color(5), abs($button-function-factor));
-            }
+            }            
         }
     }
 }

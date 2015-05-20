@@ -15,7 +15,7 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
             responseError: function(rejection) {
                 // if (!rejection.config.nointercept) {}
                 if (rejection.status === 503 || rejection.status === 0) {
-                    ApiHealthChecker.turnOn();
+                    ApiHealthChecker.sendFirstHealthCheck();
                 }
                 return $q.reject(rejection);
             }

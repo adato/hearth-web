@@ -60,7 +60,6 @@ angular.module('hearth.directives').directive('item', [
                 scope.loggedUser = $rootScope.loggedUser;
                 scope.isPostActive = $rootScope.isPostActive;
                 scope.showLoginBox = $rootScope.showLoginBox;
-                scope.reportItem = $rootScope.reportItem;
                 scope.pauseToggle = $rootScope.pauseToggle;
                 scope.pluralCat = $rootScope.pluralCat;
                 scope.deleteItem = $rootScope.deleteItem;
@@ -71,6 +70,9 @@ angular.module('hearth.directives').directive('item', [
                 scope.edit = $rootScope.editItem;
                 scope.socialLinks = $rootScope.socialLinks;
                 scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                scope.openReportBox = $rootScope.openReportBox;
+                scope.openEmailSharingBox = $rootScope.openEmailSharingBox;
+                scope.removeItemFromCommunity = $rootScope.removeItemFromCommunity;
 
                 /**
                  * Init basic structure
@@ -93,10 +95,10 @@ angular.module('hearth.directives').directive('item', [
                     scope.isActive = scope.isPostActive(item);
 
                     // is this my post? if so, show controll buttons and etc
-                    if(scope.community)
-                        scope.mine = scope.item.author._id === scope.community._id;
-                    else
-                        scope.mine = scope.item.author._id === ((scope.user) ? scope.user._id : null);
+                    scope.mine = scope.item.owner_id === ((scope.user) ? scope.user._id : null);
+
+                    scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date())
+                                                && moment(scope.item.valid_until).isAfter(new Date());
 
                     // if the post is show instantly (without any effect) recount his height now
                     if(!scope.delayedView)

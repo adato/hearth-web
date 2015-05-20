@@ -9,8 +9,8 @@
 angular.module('hearth.services').factory('User', [
 	'$resource',
 	function($resource) {
-		return $resource($$config.apiPath + '/users/:user_id', {
-			user_id: '@_id'
+		return $resource($$config.apiPath + '/users/:_id', {
+			_id: '@_id'
 		}, {
 			add: {
 				method: 'POST'
@@ -20,6 +20,10 @@ angular.module('hearth.services').factory('User', [
 			},
 			getPosts: {
 				url: $$config.apiPath + '/users/:user_id/posts',
+				method: 'GET'
+			},
+			getConnections: {
+				url: $$config.apiPath + '/users/connections',
 				method: 'GET'
 			},
 			edit: {

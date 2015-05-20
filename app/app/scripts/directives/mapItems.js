@@ -15,6 +15,7 @@ angular.module('hearth.directives').directive('mapitems', [
 			replace: true,
 			scope: {
 				'items': '=',
+				'zoomOnScroll': '='
 			},
 			template: '<div class="map-container"></div>',
 			link: function($scope, baseElement, attrs) {
@@ -25,6 +26,8 @@ angular.module('hearth.directives').directive('mapitems', [
 					origin: new google.maps.Point(0,0),
 					anchor: new google.maps.Point(14, 34)
 				};
+				var options = {};
+				options.scrollwheel = $scope.zoomOnScroll || false;
 
 				/**
 				 * Is map inited - will return boolean
@@ -40,7 +43,7 @@ angular.module('hearth.directives').directive('mapitems', [
 					if($scope.isInited())
 						return false;
 
-					map = geo.createMap($(".map-container")[0], {});
+					map = geo.createMap($(".map-container")[0], options);
 					$(".map-container", baseElement).addClass("inited");
 				};
 

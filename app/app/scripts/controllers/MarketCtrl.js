@@ -16,6 +16,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
+		$scope.author = null;
 		$scope.filterIsOn = false;
 
 		function refreshTags() {
@@ -43,7 +44,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				// console.time("Single post ("+(index+1)+") built");
 				$scope.items.push(posts[index]);
-
+				
 				return $timeout(function() {
 					// console.timeEnd("Single post ("+(index+1)+") built");
 					$scope.addItemsToList(data, index + 1, done);
@@ -230,6 +231,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
+			$rootScope.cacheInfoBox = {};
 		});
 
 		// ==== Global event fired when init process is finished

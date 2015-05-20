@@ -62,6 +62,12 @@ angular.module('hearth.services').service('Viewport', [
 				return (target.min - viewport.min);
 		};
 
+		this.isBottomScrolled = function(element, outer, inner) {
+			outer = $(outer, element);
+			inner = $(inner, outer);
+			return outer.scrollTop() + inner.height() >= inner.prop('scrollHeight');
+		};
+
 		// smooth scroll given pixels with offset
 		this.scroll = function(h, offset, base) {
 			base = base || 'html';

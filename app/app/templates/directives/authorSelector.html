@@ -1,0 +1,9 @@
+<span class="author-selector" ng-show="list.length > 1">
+	<avatar type="selectedEntity._type" src="selectedEntity.avatar.normal" size="mini"></avatar>
+	<select ng-disabled="ngDisabled" ng-model="selected._id" ng-change="onChange(selected._id)">
+		<option ng-repeat="item in list" title="{{item.name }}" ng-if="item._id !== remove" value="{{item._id}}" ng-selected="item._id==selected._id">
+			{{ (item._type == 'Community') ? 'ADD_CONTENT_AS_COMMUNITY' : 'ADD_CONTENT_AS_USER' | translate }}
+		 	{{item.name | ellipsis:20 }}
+	 	</option>
+	</select>
+</span>

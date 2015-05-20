@@ -7,10 +7,9 @@ $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 $webWidth: 960px;
 
-
 @import "settings";
 
-$fontSize: rem-calc(18);
+$fontSize: rem-calc(14);
 
 @import "compass";
 // import Compass mixins
@@ -75,11 +74,17 @@ $fontSize: rem-calc(18);
 @import "navigation";
 @import "forms";
 @import "item";
+@import "infoBox";
 @import "itemEdit";
+@import "authorSelector";
+@import "removePostFromCommunity";
+@import "tipsy";
 @import "common";
 @import "buttons";
+@import "htmlSlider";
 @import "tutorial";
 @import "userForms";
+@import "messages";
 
 @import "maitenancePage";
 @import "angularLoadingBar";
@@ -88,6 +93,7 @@ $fontSize: rem-calc(18);
 @import "filter";
 @import "needOfferSelector";
 @import "ngTagsInput";
+@import "uiSelect";
 @import "foundationDatepicker";
 @import "locations";
 @import "checkbox";
@@ -100,17 +106,19 @@ $fontSize: rem-calc(18);
 @import "profile";
 @import "profileEditCommon";
 @import "profileEdit";
+@import "emailSharing";
 @import "communities";
 @import "communityProfile";
 @import "communityEdit";
 @import "404";
 @import "notify";
 @import "dropdown";
+@import "market";
 @import "marketplaceBanner";
 
 body {
-    background-image: inline-image("bg.jpg");
-    background-color: #FAF8EB;
+    background-image: inline-image("bg.png");
+    background-color: #faf8eb;
     background-repeat: no-repeat;
     background-position: 50% top;
     .main-container {
@@ -118,20 +126,12 @@ body {
         min-width:960px;
         margin: 0px auto;
         position: relative;
-        /*      
-       .scrolled & {
-            top: 6em;
-        }
-        */
         top: 6em;
     }
 }
 
 
 @import "hearthIcons";
-@include font-face("SourceSansPro", font-files("sourcesanspro-400.woff"), null, normal);
-@include font-face("SourceSansPro", font-files("sourcesanspro-700.woff"), null, bold);
-
 
 meta.foundation-data-attribute-namespace {
     font-family: false;
@@ -193,23 +193,13 @@ img.blur {
 
 .loading {
     @extend .clearfix;
+    position:relative;
     font-size: 2rem;
     opacity: 0.7;
     height: 40px;
 
     .fa {
       margin-right: 0.5rem;
-    }
-}
-
-.market {
-    padding-bottom: 50px;
-    .loading {
-        position: absolute;
-        left: 0;
-        right: 0;
-        border: 0 none;
-        margin-bottom: 10px;
     }
 }
 

@@ -39,7 +39,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function processDataErr(res) {
-            // console.log("Err", res);
             finishLoading();
         }
         
@@ -64,7 +63,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 $scope.postsInactive = [];
 
                 res.data.forEach(function(item) {
-                    // if(item.is_active && !item.is_expired)
                     if($rootScope.isPostActive(item))
                         $scope.postsActive.push(item);
                     else
@@ -84,11 +82,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function loadCommunityHome(id) {
-            var fulltextParams = {
-                type: 'post',
-                community_id: id
-            };
-
             async.parallel([
                 function(done) {
                     CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
@@ -111,7 +104,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     }, done);
                 },
                 function(done) {
-                    Fulltext.query(fulltextParams, function(res) {
+                    Community.getPosts({communityId:id, limit: 5, offset: 1}, function(res) {
                         $scope.posts = res;
                         done(null);
                     }, done);
@@ -136,11 +129,15 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         $scope.removeMember = function(id) {
+            if($scope.sendingRemoveMember) return false;
+            $scope.sendingRemoveMember = true;
 
             CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
+                $scope.sendingRemoveMember = false;
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_SUCCESS', Notify.T_SUCCESS);
                 $scope.init();
             }, function(res) {
+                $scope.sendingRemoveMember = false;
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED', Notify.T_ERROR);
             });
         };

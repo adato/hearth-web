@@ -7,11 +7,10 @@
  */
 
 angular.module('hearth.services').service('Time', [
-	'$translate',
-	function($translate) {
+	'$translate', '$interval', '$rootScope',
+	function($translate, $interval, $rootScope) {
 		var self = this;
-
-
+		
 		this.getMomentTimeObject = function(datetime, format) {
 
 			// make dates format same as moment.js format
@@ -30,6 +29,11 @@ angular.module('hearth.services').service('Time', [
 		this.getDateDiffFromNow = function(datetime, format) {
 			var today = moment(moment().format('DD.MM.YYYY'), 'DD.MM.YYYY');
 			return self.getMomentTimeObject(datetime, format).diff(today, 'minutes');
+		};
+
+		// this will return count of days/minutes/seconds/etc.. from given date to now
+		this.getDateDiffToNow = function(date, type) {
+			return moment().diff(moment(date), type || 'days')
 		};
 
 		return this;
