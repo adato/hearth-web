@@ -1,5 +1,20 @@
-.tipsy { font-size: 10px; position: absolute; padding: 5px; z-index: 100000; }
-.tipsy-inner { background-color: #000; color: #FFF; max-width: 200px; padding: 5px 8px 4px 8px; text-align: center; }
+.tipsy {
+	font-size: 10px;
+	position: absolute;
+	padding: 5px;
+	z-index: 100000;
+}
+.tipsy-inner {
+	background-color: rgba(0,0,0, 0.95);
+	color: #FFF;
+	max-width: 250px;
+	/*padding: 5px 8px 4px 8px;*/
+	padding: 10px 6px;;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 8px !important;
+}
+
 /* Rounded corners */
 .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 /* Uncomment for shadow */
