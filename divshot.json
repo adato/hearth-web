@@ -2,5 +2,5 @@
 	"name":"hearth",
 	"root":"public",
 	"prerender":true,
-	"error_page": "app/error404.html"
+	"error_page": "app/index.html"
 }
