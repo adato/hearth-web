@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session',
-	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -138,7 +138,10 @@ angular.module('hearth.services').factory('Auth', [
 	                this.setToken(data.api_token);
 	            }
 
-	            window.location = window.location.pathname;
+				var reloadLoc = UnauthReload.getLocation();
+				UnauthReload.clearReloadLocation();
+				
+				$rootScope.refreshToPath(reloadLoc || '/');
 			},
 			getTwitterAuthUrl: function() {
 				var fillEmailUrl = $$config.appUrl +'fill-email/%{token}';

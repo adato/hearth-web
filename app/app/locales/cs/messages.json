@@ -419,11 +419,11 @@
     "LOGIN_TO_HEARTH": "Přihlaste se",
     "LOGOUT": "Odhlásit se",
     "LOG_IN": "Přihlásit",
-    "LOG_IN_BEFORE_REPORT": "Pro nahl&aacute;&scaron;en&iacute; inzer&aacute;tu se nejprve <a href='#!\/login'>přihlaste<\/a> pros&iacute;m.",
+    "LOG_IN_BEFORE_REPORT": "<p>Pro nahl&aacute;&scaron;en&iacute; inzer&aacute;tu se nejprve <a href=\"\/app\/login\">přihlaste<\/a> pros&iacute;m.<\/p>",
     "LOG_IN_TO_CREATE_COMMUNITY": "Pro založení komunity musíte být přihlášeni",
-    "LOG_IN_TO_POST_NEW_WISHES": "Než se zapojíte, <a href=\"#\/login\">přihlaste se<\/a> prosím.",
-    "LOG_IN_TO_POST_RATING": "Než budete hodnotit jiného uživatele, <a href=\"#\/login\">přihlaste se<\/a> prosím.",
-    "LOG_IN_TO_REPLY": "Před odesláním vaší odpovědi se prosím <a href=\"#\/login\">přihlaste<\/a>.",
+    "LOG_IN_TO_POST_NEW_WISHES": "<p>Než se zapoj&iacute;te, <a href=\"\/app\/login\">přihlaste se<\/a> pros&iacute;m.<\/p>",
+    "LOG_IN_TO_POST_RATING": "<p>Než budete hodnotit jin&eacute;ho uživatele, <a href=\"\/app\/login\">přihlaste se<\/a> pros&iacute;m.<\/p>",
+    "LOG_IN_TO_REPLY": "<p>Před odesl&aacute;n&iacute;m va&scaron;&iacute; odpovědi se pros&iacute;m <a href=\"\/app\/login\">přihlaste<\/a>.<\/p>",
     "MAP": "Mapa",
     "MARKETPLACE": {
         "CREATE_NEW_ADD": "Vložit nový dar nebo přání",
@@ -491,14 +491,14 @@
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ARCHIVE_CONFIRM": {
-            "LABEL": "Archivovat konverzaci",
-            "TEXT": "Chcete tuto konverzaci archivovat? Nebojte, kdykoli se k ní můžete v Archivu vrátit a pokud do ní dorazí nová zpráva, tak vás na to upozorníme..."
+            "LABEL": "Chcete konverzaci archivovat?",
+            "TEXT": "Pokud konverzaci archivujete, kdykoli se k ní můžete v Archivu vrátit. A neunikne vám v ní ani nová zpráva, upozorníme vás na ni..."
         },
         "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
-            "LABEL": "Smazat konverzaci",
-            "TEXT": "Jste si jisti, že chcete smazat tuto konverzaci? Pak už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
+            "LABEL": "Chcete konverzaci smazat?",
+            "TEXT": "Pokud tuto konverzaci smažete, už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
         },
         "DELETE_CONVERSATION": "Smazat konverzaci",
         "DETAIL": {
@@ -526,8 +526,8 @@
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
-            "LABEL": "Opustit konverzaci",
-            "TEXT": "Jste si jisti, že chcete opustit tuto konverzaci? Ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
+            "LABEL": "Chcete konverzaci opustit?",
+            "TEXT": "Pokud konverzaci opustíte, ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
         },
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
@@ -594,6 +594,7 @@
         "it": "Italsky",
         "ja": "Japonsky",
         "ko": "Korejsky",
+        "nl": "Nizozemština",
         "no": "Norsky",
         "pl": "Polsky",
         "pt": "Portugalsky",
@@ -632,12 +633,12 @@
     "NOTHING_FOUND": "Ajajaj! Nic jsme bohužel nenašli. Zkuste se zeptat jinak.",
     "NOTICE_EMPTY_DATA": "Zatím zde nejsou žádné záznamy.",
     "NOTIFICATION": {
-        "ALERT_EXPIRED_POSTS": "Zasílat upozornění na inzeráty, kterým skončila doba platnosti.",
-        "ALERT_EXPIRING_POSTS": "Zasílat upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
-        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
-        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
-        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
-        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Přijímat pouze zprávy týkající se darů a přání."
+        "ALERT_EXPIRED_POSTS": "Zasílat e-mailem upozornění na inzeráty, kterým skončila doba platnosti.",
+        "ALERT_EXPIRING_POSTS": "Zasílat e-mailem upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
+        "ALERT_NEW_CONVERSATION": "Zasílat e-mailem upozornění na nově zahájené konverzace.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Zasílat e-mailem upozornění na jednotlivé přijaté zprávy v konverzaci.",
+        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat e-mailem upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
+        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Nechci přijímat nové zprávy, které se netýkají mých darů a přání."
     },
     "NOTIFY": {
         "ACCOUNT_ACTIVATE_FAILED": "Aktivace účtu se nezdařila...",
@@ -919,8 +920,8 @@
     "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Při změně hesla došlo k chybě... Co teď?",
-    "RESET_PASSWORD_BROKEN_LINK": "Jejda, něco se pokazilo, tento odkaz není platný.<br \/>Nechte si vygenerovat nový na <a href='#!\/forgotten-password'>této adrese.<\/a>",
-    "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bylo úspěšně změněno.<br \/>Nyní se můžete <a href='#!\/login'>přihlásit<\/a>.",
+    "RESET_PASSWORD_BROKEN_LINK": "<p>Jejda, něco se pokazilo, tento odkaz nen&iacute; platn&yacute;.<br \/>Nechte si vygenerovat nov&yacute; na <a href=\"\/app\/forgotten-password\">t&eacute;to adrese.<\/a><\/p>",
+    "RESET_PASSWORD_SUCCESS": "<p>Hur&aacute;! Va&scaron;e heslo bylo &uacute;spě&scaron;ně změněno.<br \/>Nyn&iacute; se můžete <a href=\"\/app\/login\">přihl&aacute;sit<\/a>.<\/p>",
     "RESET_PASSWORD_TEXT": "Zde si můžete nastavit nové přihlašovací heslo.",
     "RETURN_THE_FILTER_TO_ORIGINAL_SETTINGS": "Zrušit filtr",
     "SAVE": "Uložit",

@@ -82,7 +82,7 @@
             <a ng-if="!community._id" ng-click="close()" class="revert-changes">
               <span class="fa fa-chevron-left"></span>{{:: 'CANCEL_ADD_COMMUNITY' | translate }}
             </a>
-            <a ng-if="community._id" ng-href="#!/community/{{community._id}}" class="revert-changes">
+            <a ng-if="community._id" ng-href="/app/community/{{community._id}}" class="revert-changes">
               <span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
             </a>
             <button type="submit" class="button-send right" analytics-on analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>

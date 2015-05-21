@@ -6,20 +6,20 @@
             <h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
-                <avatar class="left" href="'#!/'+getProfileLinkByType(item.user_from_type)+'/'+item.user_from" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
+                <avatar class="left" href="'/app/'+getProfileLinkByType(item.user_from_type)+'/'+item.user_from" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
                 <small class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
                 <div class="rating-text">
                     {{item.text | ellipsis}}
                     <br>
                     <small class="rating-from">
-                        {{:: 'SAYING' | translate }} <a href="#!/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
+                        {{:: 'SAYING' | translate }} <a href="/app/{{ getProfileLinkByType(item.user_from_type) }}/{{item.user_from}} ">{{item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="/app/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:20}}</a></span>.
                     </small>
                 </div>
             </div>
             <p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
             <p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}} <a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a></p>
             <div class="buttons" ng-if="receivedRatings.length">
-                <a href="#!/profile/{{info._id}}/received-ratings">
+                <a href="/app/profile/{{info._id}}/received-ratings">
                     <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'OLDER_RATINGS' | translate }}</button>
                 </a>
             </div>
@@ -48,7 +48,7 @@
             <p class="mine" ng-if="! posts.data.length && info.post_count > 0">{{:: 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
             
             <div class="buttons" ng-if="posts.data.length > 0 || (info.post_count > 0 &&  mine)">
-                <a href="#!/profile/{{info._id}}/posts">
+                <a href="/app/profile/{{info._id}}/posts">
                     <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}</button>
                 </a>
             </div>
@@ -84,7 +84,7 @@
 
                 <div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
                 <p>{{:: 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
-                <p><a href="#!/profile-edit">{{:: 'PROFILE_EDIT.HEADER' | translate}}</a></p>
+                <p><a href="/app/profile-edit">{{:: 'PROFILE_EDIT.HEADER' | translate}}</a></p>
                 </div>
                 
                 <div class="descr reg-date fleft">

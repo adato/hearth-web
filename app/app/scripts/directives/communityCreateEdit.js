@@ -172,8 +172,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 $scope.reloadToPath = function(path, hard) {
 
                     if(hard) {
-                        window.location.hash = '#!'+path;
-                        location.reload();
+                        $rootScope.refreshToPath(path);
                     } else {
 
                         $rootScope.$broadcast("reloadCommunities");
