@@ -47,10 +47,14 @@ angular.module('hearth.services').service('UnauthReload', [
 
 			if(loc) {
 				$location.path(loc);
-				$.cookie(cookieName, '');
+				self.clearReloadLocation();
 			}
 		};
 
+		this.clearReloadLocation = function() {
+			$.cookie(cookieName, '');
+		};
+		
 		this.getLocation = function() {
 			return $.cookie(cookieName);
 		};

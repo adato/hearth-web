@@ -99,8 +99,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $scope.logout = function() {
             Auth.logout(function() {
-                window.location.hash = '#!/';
-                location.reload();
+                $rootScope.refreshToPath("/");
             });
         };
         
@@ -148,9 +147,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         /**
          * Refresh user to given path
          */
-        $scope.refreshToPath = function(path) {
-            window.location.hash = '#!/' + path;
-            location.reload();
+        $rootScope.refreshToPath = function(path) {
+            window.location = path || document.URL;
         };
 
         $rootScope.isMine = function (author_id) {
