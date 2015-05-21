@@ -14,10 +14,11 @@ angular.module('hearth', [
             $locationProvider.html5Mode(true);
         }
     ]).config([
-        'cfpLoadingBarProvider', '$compileProvider',
-        function(cfpLoadingBarProvider, $compileProvider) {
+        'cfpLoadingBarProvider', '$compileProvider', '$httpProvider',
+        function(cfpLoadingBarProvider, $compileProvider, $httpProvider) {
 
             $compileProvider.debugInfoEnabled($$config.disableDebugInfo);
+            $httpProvider.useApplyAsync(true);
 
             // ===============================
             // === Loading Bar Configuration
