@@ -1,8 +1,6 @@
-#item-detail {
-/* 	a {
-		color:color(5);
-		font-weight:600;
-	} */
+#item-detail .row .row {
+	margin-left:0;
+	margin-right:0;
 }
 
 #item-detail, .market article.post-on-market, .profile-view article.post-on-market, .community-view article.post-on-market {
@@ -24,7 +22,7 @@
 		float:right;
 		clear:left;
 		padding-right:0;
-		padding-left:$ui-grid-size;
+		padding-left:2*$ui-small-grid-size;
 
 		&:before {
 			content:"";
@@ -224,6 +222,7 @@
 			}
 			p {
 				font-size:$ui-text-font-size;
+				word-wrap:break-word;
 			}
 			.text-expand-link {
 				display:inline-block;
