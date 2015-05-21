@@ -1,6 +1,16 @@
 <div class="messages messages-add">
 	<form ng-submit="addMessage(message)" novalidate name="addMessageForm" class="formStyle">
-        <div class="recipient">
+        <div class="recipient" ng-if="recipient">
+          <br />
+          <label>
+            {{ 'MESSAGES.ADD.RECIPIENT' | translate }}
+          </label>
+          <avatar src="recipient.avatar.normal" type="recipient._type" size="mini"></avatar><span title="{{ recipient.name }}">{{ recipient.name | ellipsis:55 }}</span>
+          <br />
+          <br />
+          <br />
+        </div>
+        <div class="recipient" ng-if="!recipient">
           <label>
             {{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
             <user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.participant_ids"></user-selector>
