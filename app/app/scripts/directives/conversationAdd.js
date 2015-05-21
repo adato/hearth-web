@@ -44,7 +44,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
                     // if there is presetted recipient, add him to list
                     if($scope.recipient) {
-                        msg.participant_ids = [$scope.recipient._id];
+                        msg.participant_ids = [$scope.recipient];
 
                     // else test if there are selected recipients
                     } else if(!msg.participant_ids.length) {

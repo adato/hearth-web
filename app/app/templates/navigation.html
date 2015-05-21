@@ -27,7 +27,7 @@
 				<label>{{ 'COMMUNITIES' | translate }}</label>
 			</a>
 			<div class="separator"></div>
-		    <span ng-if="config.env != 'production'" class="top-bar-messages">
+		    <span class="top-bar-messages">
 				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="/app/messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
                     <span class="messages-icon">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 		            <label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
