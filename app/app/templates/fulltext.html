@@ -36,7 +36,7 @@
                 </section>
                 <section class="large-10 columns">
                     <i class="fa" ng-class="{'icon-marketplace' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
-                    <a class="title" ng-href="#!/{{getProfileLinkByType(item._type)}}/{{item._id}}">
+                    <a class="title" ng-href="/app/{{getProfileLinkByType(item._type)}}/{{item._id}}">
                         <span ng-if="title">{{item.title}}</span>
                         <span ng-if="!title">{{item.name | ellipsis: 50}}</span>
                         <span ng-if="item.author.name">({{item.author.name}})</span>
@@ -47,17 +47,17 @@
                     <p ng-switch-when="Community">{{item.description | ellipsis: 150}}</p>
 
                     <div class="breadcrumb" ng-switch-when="Post">
-                        <a href="#!/">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
-                        <a ng-href="#!/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                        <a href="/app/">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
+                        <a ng-href="/app/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
                         <span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : DATETIME_FORMATS.mediumDate}}
                     </div>
                     <div class="breadcrumb" ng-switch-when="User">
                         {{'people' | translate}} &gt;
-                        <a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                        <a ng-href="/app/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
                     </div>
                     <div class="breadcrumb" ng-switch-when="Community">
-                        <a href="#!/communities">{{'COMMUNITIES' | translate}}</a> &gt;
-                        <a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                        <a href="/app/communities">{{'COMMUNITIES' | translate}}</a> &gt;
+                        <a ng-href="/app/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
                     </div>
                 </section>
             </article>

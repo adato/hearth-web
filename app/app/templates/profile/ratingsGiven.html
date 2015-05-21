@@ -10,7 +10,7 @@
 <div class="ratings-given rating-listing">
 	<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index">
 		<section class="large-2 columns user">
-			<a ng-href="#!/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to }}">
+			<a ng-href="/app/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to }}">
 				<avatar src="item.user_to_avatar.normal" type="item.user_to_type"></avatar>
 				<div class="name">{{ item.user_to_full_name}}</div>
 			</a>
@@ -29,7 +29,7 @@
 					<small>
 						<span ng-if="mine">{{ 'ME_WROTE' | translate}}</span>
 						<span ng-if="!mine">{{ 'RATINGS_SAYING_FOR' | translate}}</span>
-						<a href="#!/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to}}">{{ item.user_to_full_name}}</a><span ng-if="item.post_id">&nbsp;{{ 'RATING_TO_POST' | translate }} <a href="#!/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
+						<a href="/app/{{ getProfileLinkByType(item.user_to_type) }}/{{item.user_to}}">{{ item.user_to_full_name}}</a><span ng-if="item.post_id">&nbsp;{{ 'RATING_TO_POST' | translate }} <a href="/app/ad/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
 					</small>
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 <article class="row post post-on-market" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<section ng-if="! hideAvatar" class="large-2 columns user">
 		<div info-box="item.author">
-			<a ng-href="#!/{{getProfileLinkByType(item.author._type)}}/{{ item.author._id }}">
+			<a ng-href="/app/{{getProfileLinkByType(item.author._type)}}/{{ item.author._id }}">
 				<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
 				<div class="name">{{ item.author.name }}</div>
 			</a>
@@ -16,7 +16,7 @@
 			<header class="clearfix">
 				<div class="large-9 columns">
 					<h1>
-						<a ng-href="#!/ad/{{item._id}}">
+						<a ng-href="/app/ad/{{item._id}}">
 							<span data-item-type="{{ item.type }}">
 								{{ postTypes[item.author._type][item.type] | translate }}
 							</span>
