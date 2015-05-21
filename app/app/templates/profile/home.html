@@ -6,7 +6,7 @@
             <h3 class="others">{{ 'USERS_RATINGS' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
-                <avatar class="left" href="'#!/'+getProfileLinkByType(item.user_from_type)+'/'+item.user_from" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
+                <avatar class="left" href="'/app/'+getProfileLinkByType(item.user_from_type)+'/'+item.user_from" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
                 <small class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
                 <div class="rating-text">
                     {{item.text | ellipsis}}

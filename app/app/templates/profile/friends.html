@@ -10,7 +10,7 @@
 
 	<div class="people-listing">
 		<div class="person" ng-repeat="(id, item) in data track by $index">
-			<avatar href="'#!/'+getProfileLinkByType(item._type)+'/'+ item._id" src="item.avatar.normal" type="item.user_type"></avatar>
+			<avatar href="'/app/'+getProfileLinkByType(item._type)+'/'+ item._id" src="item.avatar.normal" type="item.user_type"></avatar>
 			<div class="name">
 				<h4>
 					<a href="/app/{{ getProfileLinkByType(item._type) }}/{{ item._id}}">{{ item.name | ellipsis:24 }}</a>

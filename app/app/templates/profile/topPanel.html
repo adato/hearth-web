@@ -31,7 +31,7 @@
             <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about | ellipsis}}</div>
         </div>
         <div class="highlights">
-            <avatar size="large" class="left" src="info.avatar.large" href="'#!/profile/'+info._id" type="info._type"></avatar>
+            <avatar size="large" class="left" src="info.avatar.large" href="'/app/profile/'+info._id" type="info._type"></avatar>
             <a href="/app/profile/{{info._id}}/followers" ng-class="{'active': (pageSegment.substr(8) == 'friends' || pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers')}" class="friends-and-follows">
                 
                 <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>

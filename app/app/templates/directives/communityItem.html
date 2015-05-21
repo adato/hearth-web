@@ -1,5 +1,5 @@
 <article class="community-item community_{{ item._id }}">
-	<avatar href="'#!/community/'+item._id" src="item.avatar.normal" type="item._type" class="fleft"></avatar>
+	<avatar href="'/app/community/'+item._id" src="item.avatar.normal" type="item._type" class="fleft"></avatar>
 	<div class="content">
 		<div class="fright" ng-if="user && item.admin == user._id">
 			{{ 'ADMIN' | translate }}

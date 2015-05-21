@@ -16,7 +16,7 @@
 
 	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 	            	<div class="applications-item">
-                        <avatar class="left margin-bottom-20" href="'#!/profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
+                        <avatar class="left margin-bottom-20" href="'/app/profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
                         <div class="applications-text">
                             <a href="/app/profile/{{item._id}} ">
 		                    	{{item.name | ellipsis}}

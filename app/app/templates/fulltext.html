@@ -32,7 +32,7 @@
         <section id="fulltextSearchResults">
             <article ng-repeat="item in items" class="row search-item" ng-switch="item._type">
                 <section class="large-2 columns text-center">
-                    <avatar src="item.avatar.normal" href="'#!/'+getProfileLinkByType(item.author._type || item._type)+'/'+(item.author._id || item._id)" type="item.item_type"></avatar>
+                    <avatar src="item.avatar.normal" href="'/app/'+getProfileLinkByType(item.author._type || item._type)+'/'+(item.author._id || item._id)" type="item.item_type"></avatar>
                 </section>
                 <section class="large-10 columns">
                     <i class="fa" ng-class="{'icon-marketplace' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>

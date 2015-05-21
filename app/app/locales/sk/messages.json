@@ -419,11 +419,11 @@
     "LOGIN_TO_HEARTH": "Prihláste sa",
     "LOGOUT": "Odhlásiť sa",
     "LOG_IN": "Prihlásiť",
-    "LOG_IN_BEFORE_REPORT": "Pre nahl&aacute;&senie inzer&aacute;tu sa\nnajprv <a href='#!\/login'>prihl&aacute;&ste<\/a> pros&iacute;m.",
+    "LOG_IN_BEFORE_REPORT": "Pre nahl&aacute;&senie inzer&aacute;tu sa\r\nnajprv <a href='\/app\/login'>prihl&aacute;&ste<\/a> pros&iacute;m.",
     "LOG_IN_TO_CREATE_COMMUNITY": "Pre založenie musíte byť prihlásený",
-    "LOG_IN_TO_POST_NEW_WISHES": "Skôr než sa zapojíte, <a href=\"#\/login\">prihláste sa<\/a> prosím.",
-    "LOG_IN_TO_POST_RATING": "Skôr než budete hodnotiť iného užívateľa, <a href=\"#\/login\">prihláste sa<\/a> prosím.",
-    "LOG_IN_TO_REPLY": "Pred odoslaním vašej odpovede sa prosím <a href=\"#\/login\">prihláste<\/a>.",
+    "LOG_IN_TO_POST_NEW_WISHES": "Skôr než sa zapojíte, <a href=\"\/app\/login\">prihláste sa<\/a> prosím.",
+    "LOG_IN_TO_POST_RATING": "Skôr než budete hodnotiť iného užívateľa, <a href=\"\/app\/login\">prihláste sa<\/a> prosím.",
+    "LOG_IN_TO_REPLY": "Pred odoslaním vašej odpovede sa prosím <a href=\"\/app\/login\">prihláste<\/a>.",
     "MAP": "Mapa",
     "MARKETPLACE": {
         "CREATE_NEW_ADD": "Vložit nový dar nebo přání",
@@ -491,14 +491,14 @@
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ARCHIVE_CONFIRM": {
-            "LABEL": "Archivovat konverzaci",
-            "TEXT": "Chcete tuto konverzaci archivovat? Nebojte, kdykoli se k ní můžete v Archivu vrátit a pokud do ní dorazí nová zpráva, tak vás na to upozorníme..."
+            "LABEL": "Chcete konverzaci archivovat?",
+            "TEXT": "Pokud konverzaci archivujete, kdykoli se k ní můžete v Archivu vrátit. A neunikne vám v ní ani nová zpráva, upozorníme vás na ni..."
         },
         "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
-            "LABEL": "Smazat konverzaci",
-            "TEXT": "Jste si jisti, že chcete smazat tuto konverzaci? Pak už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
+            "LABEL": "Chcete konverzaci smazat?",
+            "TEXT": "Pokud tuto konverzaci smažete, už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
         },
         "DELETE_CONVERSATION": "Smazat konverzaci",
         "DETAIL": {
@@ -526,8 +526,8 @@
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
-            "LABEL": "Opustit konverzaci",
-            "TEXT": "Jste si jisti, že chcete opustit tuto konverzaci? Ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
+            "LABEL": "Chcete konverzaci opustit?",
+            "TEXT": "Pokud konverzaci opustíte, ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
         },
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
@@ -594,6 +594,7 @@
         "it": "Taliansky",
         "ja": "Japonsky",
         "ko": "Kórejsky",
+        "nl": "Holandčina",
         "no": "Nórsky",
         "pl": "Poľsky",
         "pt": "Portugalsky",
@@ -632,12 +633,12 @@
     "NOTHING_FOUND": "Ajajaj! Nič sme, bohužiaľ, nenašli. Skúste sa opýtať inak.",
     "NOTICE_EMPTY_DATA": "Zatiaľ tu nie sú žiadne záznamy.",
     "NOTIFICATION": {
-        "ALERT_EXPIRED_POSTS": "Zasílat upozornění na inzeráty, kterým skončila doba platnosti.",
-        "ALERT_EXPIRING_POSTS": "Zasílat upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
-        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
-        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
-        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
-        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Přijímat pouze zprávy týkající se darů a přání."
+        "ALERT_EXPIRED_POSTS": "Zasílat e-mailem upozornění na inzeráty, kterým skončila doba platnosti.",
+        "ALERT_EXPIRING_POSTS": "Zasílat e-mailem upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
+        "ALERT_NEW_CONVERSATION": "Zasílat e-mailem upozornění na nově zahájené konverzace.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Zasílat e-mailem upozornění na jednotlivé přijaté zprávy v konverzaci.",
+        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat e-mailem upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
+        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Nechci přijímat nové zprávy, které se netýkají mých darů a přání."
     },
     "NOTIFY": {
         "ACCOUNT_ACTIVATE_FAILED": "Aktivácia účtu sa nepodarila...",
@@ -919,8 +920,8 @@
     "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "RESET_PASSWORD": "Reset hesla",
     "RESET_PASSWORD_API_ERROR": "Pri zmene hesla došlo k chybe... Čo teraz?",
-    "RESET_PASSWORD_BROKEN_LINK": "Ajajaj, niečo sa pokazilo, tento odkaz nie je platný.<br \/>Nechajte si vygenerovať nový na <a href='#!\/forgotten-password'>tejto adrese.<\/a>",
-    "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bolo úspešne zmenené.<br \/>Teraz sa môžete <a href='#!\/login'>prihlásiť<\/a>.",
+    "RESET_PASSWORD_BROKEN_LINK": "Ajajaj, niečo sa pokazilo, tento odkaz nie je platný.<br \/>Nechajte si vygenerovať nový na <a href='\/app\/forgotten-password'>tejto adrese.<\/a>",
+    "RESET_PASSWORD_SUCCESS": "Hurá! Vaše heslo bolo úspešne zmenené.<br \/>Teraz sa môžete <a href='\/app\/login'>prihlásiť<\/a>.",
     "RESET_PASSWORD_TEXT": "Tu si môžete nastaviť nové prihlasovacie heslo.",
     "RETURN_THE_FILTER_TO_ORIGINAL_SETTINGS": "Zrušit filter",
     "SAVE": "Uložiť",
