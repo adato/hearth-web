@@ -17,7 +17,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.detail = false;
 		$scope.loadingBottom = false;
 
-		var _loadLimit = 1000; // pull requests interval in ms
+		var _loadLimit = 20; // pull requests interval in ms
 		var _loadTimeout = 5000; // pull requests interval in ms
 		var _loadLock = false; // pull requests interval in ms
 		var _loadTimeoutPromise = false;
@@ -91,7 +91,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			Messenger.loadCounters();
 			Conversations.get(conf, function(res) {
-				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				// if we didnt end loading..
+				if(_loadTimeoutPromise !== -1)
+					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 				_loadLock = false;
 
 				if (res.conversations.length) {
@@ -100,7 +102,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				}
 			}, function() {
 				_loadLock = false;
-				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				if(_loadTimeoutPromise !== -1)
+					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 			});
 		};
 
@@ -305,7 +308,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.loadingBottom = true;
 			var conf = {
 				limit: _loadLimit,
-				offset: $scope.conversations.length + 1
+				offset: $scope.conversations.length
 			};
 
 			angular.extend(conf, $scope.getFilter());
@@ -333,10 +336,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// Messenger.loadCounters();
 			$scope.loadConversations({
 				limit: _loadLimit,
-				offset: 1
+				offset: 0
 			}, function(list) {
 				$scope.loaded = true;
-				console.log(list.length);
 				// load first conversation on init
 				if ($routeParams.id)
 					$scope.loadConversationDetail($routeParams.id, true);
@@ -360,6 +362,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('$destroy', function() {
 			// stop pulling new conversations on directive destroy
 			$timeout.cancel(_loadTimeoutPromise);
+			_loadTimeoutPromise = -1;
 		});
 	}
 ]);
