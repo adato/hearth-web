@@ -27,10 +27,11 @@ angular.module('hearth.directives').directive('social', [
 					var title = encodeURIComponent(scope.title);
 					var summary = encodeURIComponent(scope.summary);
 
-				 	$scope.url = window.location.href.replace(window.location.hash, '');
+				 	$scope.url = window.location.host+ $scope.config.baseUrl;
+					alert("AA" + $scope.url);
 
 					if (value) {
-						$scope.url += '%23/ad/' + value;
+						$scope.url += '/post/' + value;
 					}
 					$scope.endpoints = $$config.sharingEndpoints;
 				});

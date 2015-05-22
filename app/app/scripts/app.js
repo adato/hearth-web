@@ -93,7 +93,8 @@ angular.module('hearth', [
         function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
             $rootScope.config = $$config;
-
+            
+            console.log($$config);            
             /**
              * This will cache some files at start
              */

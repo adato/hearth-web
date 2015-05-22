@@ -1,7 +1,8 @@
 var $$config;
 
 $$config = {
-	appUrl: window.location.origin+window.location.pathname,
+	basePath: '/app/',
+	appUrl: window.location.origin + '/app/',
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',

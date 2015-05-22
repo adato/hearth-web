@@ -85,7 +85,7 @@
     if (!!~window.location.href.indexOf('#!/')){
        // != -1 && window.location.href.indexOf('#!') == -1
       console.log(window.location);
-      window.location.href =  window.location.href.replace('/app/', '');
+      window.location.href =  window.location.href.replace('#!/', '');
     }
   //-->
   </script>
@@ -382,6 +382,7 @@
       <script src="scripts/controllers/Error404Ctrl.js"></script>
       <script src="scripts/controllers/FillEmailCtrl.js"></script>
       <script src="scripts/controllers/ItemDetail.js"></script>
+      <script src="scripts/controllers/ItemDetailOld.js"></script>
       <script src="scripts/controllers/TokenLoginCtrl.js"></script>
       <script src="scripts/controllers/messages/MessagesCtrl.js"></script>
       <script src="scripts/controllers/LocalizationPage.js"></script>

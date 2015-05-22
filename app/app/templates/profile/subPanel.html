@@ -1,19 +1,19 @@
 <div class="bottom-tabs">
     <ul>
         <li>
-        	<a href="/app/profile/{{info._id}}/posts" ng-class="{selected: pageSegment =='profile.posts'}">
+        	<a href="{{ basePath }}profile/{{info._id}}/posts" ng-class="{selected: pageSegment =='profile.posts'}">
         		<span class="mine">{{:: 'MY_POSTS' | translate}}</span>
         		<span class="others">{{:: 'USER_POSTS' | translate}}</span>
 		    </a>
 		</li>
         <li>
-        	<a href="/app/profile/{{info._id}}/received-ratings" ng-class="{selected: pageSegment =='profile.received'}">
+        	<a href="{{ basePath }}profile/{{info._id}}/received-ratings" ng-class="{selected: pageSegment =='profile.received'}">
         		<span class="mine">{{:: 'THEY_WROTE_ME' | translate }}</span>
         		<span class="others">{{:: 'USER_RECEIVED_RATINGS' | translate }}</span>
 	        </a>
 	    </li>
         <li>
-        	<a href="/app/profile/{{info._id}}/given-ratings" ng-class="{selected: pageSegment =='profile.given'}">
+        	<a href="{{ basePath }}profile/{{info._id}}/given-ratings" ng-class="{selected: pageSegment =='profile.given'}">
         		<span class="mine">{{:: 'ME_WROTE_THEM' | translate }}</span>
         		<span class="others">{{:: 'USER_GIVED_RATINGS' | translate }}</span>
         	</a>

@@ -32,7 +32,7 @@
 			</section>
 			<section class="columns large-5">
 				<div class="profil-link text-right">
-					<a ng-href="/app/{{ getProfileLinkByType(info._type) }}/{{info._id}}">{{ 'WHOLE_PROFILE' | translate}}</a>
+					<a ng-href="{{ basePath + getProfileLinkByType(info._type) }}/{{info._id}}">{{ 'WHOLE_PROFILE' | translate}}</a>
 				</div>
 			</section>
 		</article>

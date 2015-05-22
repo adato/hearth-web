@@ -21,18 +21,18 @@
                 <button ng-if="mine" ng-click="openInviteBox()" class="profile-button no-wrap tall">
                     <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
                 </button>
-                <a href="/app/profile-edit" class="mine">
+                <a href="{{ basePath }}profile-edit" class="mine">
                     <button class="profile-button button-red tall"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER' | translate}}</button>
                 </a>
             </div>
             <h1 style="display: inline;">
-                <a href="/app/profile/{{info._id}}"><span>{{ info.name }}</span></a>
+                <a href="{{ basePath }}profile/{{info._id}}"><span>{{ info.name }}</span></a>
             </h1>
             <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about | ellipsis}}</div>
         </div>
         <div class="highlights">
-            <avatar size="large" class="left" src="info.avatar.large" href="'/app/profile/'+info._id" type="info._type"></avatar>
-            <a href="/app/profile/{{info._id}}/followers" ng-class="{'active': (pageSegment.substr(8) == 'friends' || pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers')}" class="friends-and-follows">
+            <avatar size="large" class="left" src="info.avatar.large" href="basePath+'profile/'+info._id" type="info._type"></avatar>
+            <a href="{{ basePath }}profile/{{info._id}}/followers" ng-class="{'active': (pageSegment.substr(8) == 'friends' || pageSegment.substr(8) == 'following' || pageSegment.substr(8) == 'followers')}" class="friends-and-follows">
                 
                 <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
                 <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
@@ -42,13 +42,13 @@
 
                 <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_HIM.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
             </a>
-            <a href="/app/profile/{{info._id}}/communities" class="communities" ng-class="{'active': (pageSegment.substr(8) == 'communities')}"><b>{{info.communities_count}}</b> 
+            <a href="{{ basePath }}profile/{{info._id}}/communities" class="communities" ng-class="{'active': (pageSegment.substr(8) == 'communities')}"><b>{{info.communities_count}}</b> 
                 {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
             </a>
-            <a href="/app/profile/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(8) == 'posts' || pageSegment.substr(8) == 'received' || pageSegment.substr(8) == 'given')}" class="ratings"><b>{{info.post_count}}</b><br>
+            <a href="{{ basePath }}profile/{{info._id}}/posts" ng-class="{'active': (pageSegment.substr(8) == 'posts' || pageSegment.substr(8) == 'received' || pageSegment.substr(8) == 'given')}" class="ratings"><b>{{info.post_count}}</b><br>
                 {{ 'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
             </a>
-            <a href="/app/profile/{{info._id}}/received-ratings">
+            <a href="{{ basePath }}profile/{{info._id}}/received-ratings">
                 <div ng-if="info" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
                     <span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
                         <span>{{ info.karma }}% <i class="fa icon-rating-positive"></i></span>
