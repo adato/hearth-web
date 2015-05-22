@@ -2,8 +2,5 @@
 	"name":"hearth",
 	"root":"public",
 	"prerender":true,
- 	"routes": {
-	    "[^.]*": "index.html"
-  	},
-	"error_page": "app/index2.html"
+	"error_page": "app/index.html"
 }
