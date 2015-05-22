@@ -57,12 +57,17 @@ angular.module('hearth.services').service('OpenGraph', [
 		/**
 		 * Nastavi info do opengraph meta tagu
 		 */
-		this.set = function(title, desc, url, image, image_width, image_height) {
-
+		this.set = function(title, desc, url, image, imageSize) {
+			var imageWidth, imageHeight;
 			$rootScope.og_title = (typeof title === 'string') ? title : defaults.title;
 			$rootScope.og_description = (typeof desc === 'string') ? desc : defaults.description;
 			$rootScope.og_url = (typeof url === 'string') ? url : getUrl();
-			self.setImageData(image, image_width, image_height);
+
+			if(imageSize) {
+				imageWidth = imageSize[0];
+				imageHeight = imageSize[1];
+			}
+			self.setImageData(image, imageWidth, imageHeight);
 
 			// console.log($rootScope.og_title + ' -- ' + $rootScope.og_description);
 		};
