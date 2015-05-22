@@ -94,13 +94,18 @@
                      {{info.created_at | ago}}
                 </div>
             </div>
+            <div class="clear"></div>
             <div class="line">
+                <div ng-if="!mine" class="bold margin-top fleft">
+                    <a ng-click="sendMessage(info)">{{ 'SEND_MESSAGE' | translate }}</a>
+                </div>
                 <div class="social fright">
                     <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
                     <a target="_blank" ng-if="info.facebook" href="{{info.facebook}}"><i class="fa fa-facebook-square"></i></a>
                     <a target="_blank" ng-if="info.googleplus" href="{{info.googleplus}}"><i class="fa fa-google-plus-square"></i></a>
                     <a target="_blank" ng-if="info.linkedin" href="{{info.linkedin}}"><i class="fa fa-linkedin"></i></a>
                 </div>
+                <div class="clear"></div>
             </div>
             <div class="clear">&nbsp;</div>
         </div>

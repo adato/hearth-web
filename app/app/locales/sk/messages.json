@@ -491,14 +491,14 @@
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ARCHIVE_CONFIRM": {
-            "LABEL": "Archivovat konverzaci",
-            "TEXT": "Chcete tuto konverzaci archivovat? Nebojte, kdykoli se k ní můžete v Archivu vrátit a pokud do ní dorazí nová zpráva, tak vás na to upozorníme..."
+            "LABEL": "Chcete konverzaci archivovat?",
+            "TEXT": "Pokud konverzaci archivujete, kdykoli se k ní můžete v Archivu vrátit. A neunikne vám v ní ani nová zpráva, upozorníme vás na ni..."
         },
         "ARCHIVE_CONVERSATION": "Archivovat konverzaci",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
-            "LABEL": "Smazat konverzaci",
-            "TEXT": "Jste si jisti, že chcete smazat tuto konverzaci? Pak už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
+            "LABEL": "Chcete konverzaci smazat?",
+            "TEXT": "Pokud tuto konverzaci smažete, už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
         },
         "DELETE_CONVERSATION": "Smazat konverzaci",
         "DETAIL": {
@@ -526,8 +526,8 @@
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
-            "LABEL": "Opustit konverzaci",
-            "TEXT": "Jste si jisti, že chcete opustit tuto konverzaci? Ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
+            "LABEL": "Chcete konverzaci opustit?",
+            "TEXT": "Pokud konverzaci opustíte, ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
         },
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "LIST": {
@@ -594,6 +594,7 @@
         "it": "Taliansky",
         "ja": "Japonsky",
         "ko": "Kórejsky",
+        "nl": "Holandčina",
         "no": "Nórsky",
         "pl": "Poľsky",
         "pt": "Portugalsky",
@@ -632,12 +633,12 @@
     "NOTHING_FOUND": "Ajajaj! Nič sme, bohužiaľ, nenašli. Skúste sa opýtať inak.",
     "NOTICE_EMPTY_DATA": "Zatiaľ tu nie sú žiadne záznamy.",
     "NOTIFICATION": {
-        "ALERT_EXPIRED_POSTS": "Zasílat upozornění na inzeráty, kterým skončila doba platnosti.",
-        "ALERT_EXPIRING_POSTS": "Zasílat upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
-        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
-        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
-        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
-        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Přijímat pouze zprávy týkající se darů a přání."
+        "ALERT_EXPIRED_POSTS": "Zasílat e-mailem upozornění na inzeráty, kterým skončila doba platnosti.",
+        "ALERT_EXPIRING_POSTS": "Zasílat e-mailem upozornění na inzeráty, kterým se blíží doba platnosti (obvykle 3 dny před konce doby platnosti).",
+        "ALERT_NEW_CONVERSATION": "Zasílat e-mailem upozornění na nově zahájené konverzace.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Zasílat e-mailem upozornění na jednotlivé přijaté zprávy v konverzaci.",
+        "ALERT_TIME_UNLIMITED_POSTS": "Zasílat e-mailem upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
+        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Nechci přijímat nové zprávy, které se netýkají mých darů a přání."
     },
     "NOTIFY": {
         "ACCOUNT_ACTIVATE_FAILED": "Aktivácia účtu sa nepodarila...",

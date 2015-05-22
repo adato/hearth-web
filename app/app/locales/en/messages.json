@@ -28,7 +28,7 @@
     "ADD_USER_RATING": "Rate communication with the user",
     "ADMIN": "Administrator",
     "ADMIN_7_CASE": "administrator",
-    "ADS_ALL": "Všechny dary a přání",
+    "ADS_ALL": "All gifts and wishes",
     "AD_ADD_LABEL": "Create post",
     "AD_EDIT_LABEL": "Edit",
     "AD_PAUSE_ARE_YOU_SURE": "Do you want to suspend this post?",
@@ -262,7 +262,7 @@
     "ERR_INVITE_EMAIL_INVALID": "One or more emails' format is invalid.",
     "ERR_KEYWORD_LEN": "Your keyword is too long. Remember, it's a word not a short story.",
     "ERR_LOCATION_UNKNOWN_PLACE": "We don't know such a place... Could you pick one from the list instead?",
-    "ERR_MESSAGE_TEXT_MIN_LEN": "Nezapomněli jste vyplnit text zprávy?",
+    "ERR_MESSAGE_TEXT_MIN_LEN": "Did you remember to fill out the message?",
     "ERR_MISSING_PWD": "Please enter password. Wait! Are you alone? Go ahead!",
     "ERR_NOT_AUTHN": "Oh no! Username or password is invalid. Now, which one is it?",
     "ERR_NOT_AUTHZ": "Hearth was not allowed to access your profile. And feels so bad now! Please try\nagain.",
@@ -416,7 +416,7 @@
     "LOG_IN_TO_REPLY": "Please, <a href=\"#\/login\">log in<\/a> to reply.",
     "MAP": "Map",
     "MARKETPLACE": {
-        "CREATE_NEW_ADD": "Vložit nový dar nebo přání",
+        "CREATE_NEW_ADD": "Add new gift or wish",
         "EDIT_FILTER": "Edit filter",
         "FILTER": {
             "3_DAYS": "3 days",
@@ -424,19 +424,19 @@
             "ADS_NEED": "Needs only",
             "ADS_OFFER": "Offers only",
             "BY_AUTHOR": "By author",
-            "BY_KEYWORDS": "Podle klíčových slov",
+            "BY_KEYWORDS": "By keywords",
             "BY_LOCATION": "By place",
             "BY_TIME": "By time",
             "BY_TYPE": "By type",
             "CANCEL_FILTER": "Cancel filter",
-            "CANCEL_FILTER_BAR": "zrušit filtr",
-            "COMMUNITIES": "Komunity",
+            "CANCEL_FILTER_BAR": "cancel filter",
+            "COMMUNITIES": "Communities",
             "INDIVIDUALS": "Users",
             "KM": "Km",
             "MY_CONNECTIONS": "Only my friends",
             "RUN_FILTER": "Filter",
-            "SAVE_FILTER": "Zapamatovat filtr",
-            "TITLE": "Filtrovat",
+            "SAVE_FILTER": "Save the filter for future use",
+            "TITLE": "Filter",
             "TITLE_ENABLED": "Filter je aktivní",
             "TODAY": "Today",
             "WEEK": "Week",
@@ -468,36 +468,36 @@
         "0": "News",
         "ADD": {
             "ERR": {
-                "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
+                "RECIPIENTS_NOT_FILLED": "Did you remember to fill out message recipients?"
             },
             "HEADING": "New message",
-            "RECIPIENT": "Příjemce:",
+            "RECIPIENT": "To:",
             "RECIPIENTS_LABEL": "Recipient",
             "SEND_MESSAGE": "Send message",
-            "SUBJECT_LABEL": "Téma konverzace",
-            "SUBJECT_PLACEHOLDER": "Vyplňte téma konverzace",
-            "TEXT_LABEL": "Text zprávy",
-            "TEXT_PLACEHOLDER": "Napište text zprávy, kterou chcete odeslat vybraným příjemcům..."
+            "SUBJECT_LABEL": "Subject",
+            "SUBJECT_PLACEHOLDER": "Fill the subject of conversation",
+            "TEXT_LABEL": "Message",
+            "TEXT_PLACEHOLDER": "Fill the message you want to send to the selected recipients ..."
         },
         "ADD_NEW_MESSAGE": "New message",
         "ARCHIVE_CONFIRM": {
-            "LABEL": "Archivovat konverzaci",
-            "TEXT": "Chcete tuto konverzaci archivovat? Nebojte, kdykoli se k ní můžete v Archivu vrátit a pokud do ní dorazí nová zpráva, tak vás na to upozorníme..."
+            "LABEL": "Archive this conversation?",
+            "TEXT": "If you archive the conversation whenever you can return to it in Archive. And you will not miss a new message in it, we will notify you about it..."
         },
         "ARCHIVE_CONVERSATION": "Archive conversation",
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "DELETE_CONFIRM": {
-            "LABEL": "Smazat konverzaci",
-            "TEXT": "Jste si jisti, že chcete smazat tuto konverzaci? Pak už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
+            "LABEL": "Delete this conversation?",
+            "TEXT": "If you delete this conversation, you will not be able to return to it. Other recipients will have access to it."
         },
         "DELETE_CONVERSATION": "Delete conversation",
         "DETAIL": {
             "AND_X_MORE": {
-                "one": "a 1 další",
-                "other": "a {{count}} další"
+                "one": "and 1 other",
+                "other": "and {{count}} others"
             },
-            "CONVERSATION_IS_EMPTY": "všichni uživatelé opustili konverzaci",
-            "EMPTY_HEADER": "Nejsou zde žádné konverzace",
+            "CONVERSATION_IS_EMPTY": "all users have left the conversation",
+            "EMPTY_HEADER": "You have no conversations there...",
             "EMPTY_TEXT": "...",
             "EXPAND_ACTIONS": "Menu konverzace",
             "REPLY_TO_POST": "Response to",
@@ -507,42 +507,42 @@
             }
         },
         "FILTER": {
-            "ALL": "Všechny konverzace",
-            "ARCHIVE": "Archivované konverzace",
+            "ALL": "All converstations",
+            "ARCHIVE": "Archived conversations",
             "COMMUNITIES_POSTS": "Zprávy od komunit",
-            "POST_REPLIES": "Odpovědi na dary a přání",
+            "POST_REPLIES": "Replies to gift and wishes",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
         "LEAVE_CONFIRM": {
-            "LABEL": "Opustit konverzaci",
-            "TEXT": "Jste si jisti, že chcete opustit tuto konverzaci? Ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit."
+            "LABEL": "Leave this conversation?",
+            "TEXT": "If you leave the conversation, the other recipients will continue the conversation, but you will not be able to access to it. We will move the conversation to Archive where you can return to its history."
         },
         "LEAVE_CONVERSATION": "Leave conversation",
         "LIST": {
-            "CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",
+            "CONVERSATION_IS_EMPTY": "All users left the conversation.",
             "NO_RESULT": "V seznamu nejsou žádné konverzace.",
-            "PARTICIPANTS_AND_MORE": "and more"
+            "PARTICIPANTS_AND_MORE": "and other"
         },
-        "NEW_MESSAGE": "Poslat zprávu",
-        "NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána.",
+        "NEW_MESSAGE": "Send message",
+        "NEW_MESSAGE_SENT": "You have successfully sent a message!",
         "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
         "REPLY": {
             "TEXT_LABEL": "Reply:",
             "TEXT_PLACEHOLDER": "Message text..."
         },
-        "REPLY_AS_COMMUNITY": "Odpovědět jako:",
-        "REPLY_AS_USER": "jako",
+        "REPLY_AS_COMMUNITY": "Reply as:",
+        "REPLY_AS_USER": "as",
         "SYSTEM_MESSAGE": {
             "Community": {
-                "left": "<p>Komunita <strong>{{target.name}}<\/strong> opustila konverzaci.<\/p>"
+                "left": "<p>Community <strong>{{target.name}}<\/strong> left the conversation.<\/p>"
             },
             "User": {
-                "left": "<p>Uživatel<strong> {{target.name}}<\/strong> opustil konverzaci.<\/p>"
+                "left": "<p>User <strong>{{target.name}}<\/strong> left the conversation.<\/p>"
             }
         },
         "SYSTEM_MESSAGE_YOU": {
-            "left": "<p>Opustili jste konverzaci.<\/p>"
+            "left": "<p>You left the conversation.<\/p>"
         },
         "YOU": "You"
     },
@@ -582,6 +582,7 @@
         "it": "Italian",
         "ja": "Japanese",
         "ko": "Korean",
+        "nl": "Dutch",
         "no": "Norwegian",
         "pl": "Polish",
         "pt": "Portuguese",
@@ -622,10 +623,10 @@
     "NOTIFICATION": {
         "ALERT_EXPIRED_POSTS": "Send notifications for expired ads.",
         "ALERT_EXPIRING_POSTS": "Send notifications for ads close to their expiration date (usually 3 days before expiry).",
-        "ALERT_NEW_CONVERSATION": "Posílat na email upozornění na nové konverzace.",
-        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Posílat na email upozornění na nové zprávy v konverzaci.",
+        "ALERT_NEW_CONVERSATION": "Send notifications to newly initiated conversation.",
+        "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Send notifications of new messages in the conversation.",
         "ALERT_TIME_UNLIMITED_POSTS": "Send notifications for ads without expiration date.",
-        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Přijímat pouze zprávy týkající se darů a přání."
+        "MESSAGES_ALLOW_ONLY_POST_REPLIES": "I don't want receive messages that aren't replies to my gifts and wishes."
     },
     "NOTIFY": {
         "ACCOUNT_ACTIVATE_FAILED": "Account activation has failed...",
@@ -757,7 +758,7 @@
             "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         },
         "DETAIL": {
-            "EXPAND_MORE_INFO": "Více informací",
+            "EXPAND_MORE_INFO": "More info",
             "HIDE_MAP": "Hide map",
             "LOCATION_ANYWHERE": "Anywhere",
             "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
@@ -907,7 +908,7 @@
     "SAYING": "Says",
     "SEARCH_LINK": "Search",
     "SELECT_COMMUNITIES_FOR_POST": "Select communities the ad should go into.",
-    "SELECT_USERS": "Vyberte jednoho nebo více příjemců",
+    "SELECT_USERS": "Select one or more recipients",
     "SEND": "Send",
     "SENDING_FEEDBACK_SUCCESS": "Thanks for your response! You too are helping us getting better every day.",
     "SENDING_MESSAGE_IN_PROGRESS": "Spinning the wheels, please wait... Why are people so impatient these days? Hm...",
@@ -916,7 +917,7 @@
     "SEND_COMMUNITY_RATING": "Send rating",
     "SEND_EMAIL_INVITATION": "Invite by email",
     "SEND_INVITE_SUCCESS": "Invite to friends has been sent",
-    "SEND_MESSAGE": "Poslat zprávu...",
+    "SEND_MESSAGE": "Send message...",
     "SEND_REPLY_SUCCESS": "Reply to post has been sent",
     "SEND_USER_RATING": "Send rating",
     "SERVER_MAITENANCE_MESSAGE": "<p>We are adding heap of new functions right now.<br \/>Just a sec. Will be done in a jiffy...<\/p>\r\n<p>Meanwhile you can go to our&nbsp;<a href=\"https:\/\/blog.hearth.net\/\" target=\"_blank\">blog<\/a>&nbsp;or&nbsp;<a href=\"https:\/\/www.facebook.com\/Hearthnet.Ceska.republika.a.Slovensko\" target=\"_blank\">Facebook<\/a>.<\/p>",
@@ -990,7 +991,7 @@
     "USER_HAS_REGISTERED": "User has joined",
     "USER_IS_MEMBER": "User is member",
     "USER_LANGUAGE": "Language",
-    "USER_MESSAGES": "Zprávy",
+    "USER_MESSAGES": "Messages",
     "USER_NOTIFICATION": "Notifications",
     "USER_POSTS": "User posts",
     "USER_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
