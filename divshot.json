@@ -3,7 +3,7 @@
 	"root":"public",
 	"prerender":true,
  	"routes": {
-	    /^[^.]*$/: "index.html"
+	    "^[^.]*$": "index.html"
   	},
 	"error_page": "app/index2.html"
 }
