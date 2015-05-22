@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('customScrollbar', [
         return {
             restrict: 'A',
             replace: true,
-            scope: {},
+            scope: false,
             template: false,
             link: function(scope, element, attrs) {
                 function addScrollbar() {

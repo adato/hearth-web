@@ -7,41 +7,44 @@
  * @restrict A
  */
 
-angular.module('hearth.utils').directive('whenScrolled', function() {
-	return {
-		restrict: 'A',
-		scope: {
-			loadingInProgress: '=',
-			whenScrolled: '&'
-		},
-		link: function(scope, element, attr) {
-			var raw = element[0],
-				offset = 1000,
-				innerHeight = parseInt(window.innerHeight);
+angular.module('hearth.utils').directive('whenScrolled', [
+	"$timeout",
+	function($timeout) {
+		return {
+			restrict: 'A',
+			scope: {
+				loadingInProgress: '=',	// lock - dont overhelm callback
+				whenScrolled: '&',		// callback funct to call when scroller
+				innerScrolling: '=',	// if we scroll in inner div or in window
+				offset: '='
+			},
+			link: function(scope, element, attr) {
+				var el = scope.innerScrolling ? element : angular.element(window),
+					offset = scope.offset || 100,
+					innerHeight = el[0].innerHeight;
 
-			scope.$watch('loadingInProgress', function(val) {
-				!val && process();
-			});
+				function process ($event) {
+					if(scope.loadingInProgress)
+						return false;
+					
+					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
 
-			function process ($event) {
-				if(scope.loadingInProgress)
-					return false;
-				
-				var rectObject = raw.getBoundingClientRect(),
-					bottom = parseInt(rectObject.bottom, 10);
-
-				if (bottom > 0 && bottom - offset <= innerHeight) {
-					scope.whenScrolled();
+					if(childHeight - el.height() - el.scrollTop() - offset <= 0)
+						scope.whenScrolled();
 				}
-			}
 
-			function processWithResite () {
-				innerHeight = parseInt(window.innerHeight);
-				process();
-			}
+				function processWithResite () {
+					innerHeight = el[0].innerHeight;
+					process();
+				}
 
-			angular.element(window).bind('scroll', process);
-			angular.element(window).bind('resize', processWithResite);
-		}
-	};
-});
+				scope.$watch('loadingInProgress', function(val) {
+					!val && process();
+				});
+
+				el.bind('scroll', process)
+				angular.element(window).bind('resize', processWithResite);
+			}
+		};
+	}
+]);
