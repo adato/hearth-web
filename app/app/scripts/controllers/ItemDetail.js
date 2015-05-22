@@ -74,7 +74,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					var image = null, imageWidth = null, imageHeight = null;
 					var title = data.author.name;
 
-					if(data.attachments_attributes && data.attachments_attributes.length) {
+					if(data.attachments_attributes && data.attachments_attributes.length && data.attachments_attributes[0].size) {
 						image = data.attachments_attributes[0].large;
 						imageWidth = data.attachments_attributes[0].size[0];
 						imageHeight = data.attachments_attributes[0].size[1];
