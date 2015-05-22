@@ -4,12 +4,12 @@
 
 		<div class="application">
 			<div class="applications-item">
-		        <avatar class="left margin-bottom-20" href="'/app/profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
+		        <avatar class="left margin-bottom-20" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
 		        <div class="applications-text">
-		            <a href="/app/profile/{{item._id}} ">
+		            <a href="{{ basePath }}profile/{{item._id}} ">
 		            	{{item.name | ellipsis}}
 		            </a><br>
-		            <a href="/app/profile/{{item._id}} ">
+		            <a href="{{ basePath }}profile/{{item._id}} ">
 		            	<small>{{ 'SHOW_PROFILE' | translate}}</small>
 		            </a>
 		        </div>

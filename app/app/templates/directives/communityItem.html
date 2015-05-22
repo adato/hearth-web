@@ -1,11 +1,11 @@
 <article class="community-item community_{{ item._id }}">
-	<avatar href="'/app/community/'+item._id" src="item.avatar.normal" type="item._type" class="fleft"></avatar>
+	<avatar href="basePath+'community/'+item._id" src="item.avatar.normal" type="item._type" class="fleft"></avatar>
 	<div class="content">
 		<div class="fright" ng-if="user && item.admin == user._id">
 			{{ 'ADMIN' | translate }}
 		</div>
 		<h3>
-			<a ng-href="/app/community/{{item._id}}">{{item.name}}</a>
+			<a ng-href="{{ basePath }}community/{{item._id}}">{{item.name}}</a>
 		</h3>
 		<div class="text-container">
 			<p ng-bind-html="item.description | ellipsis | linky:'_blank'"></p>

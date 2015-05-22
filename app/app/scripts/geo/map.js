@@ -130,7 +130,7 @@ angular.module('hearth.geo').directive('map', [
 
                         scope.$apply(function() {
 
-                            var path = $location.path('ad/' + itemId);
+                            var path = $location.path('post/' + itemId);
                         });
                     });
                 };

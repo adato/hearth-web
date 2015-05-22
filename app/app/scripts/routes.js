@@ -10,6 +10,7 @@ angular.module('hearth').config([
 			.when('/market', 'market-refresh')
 			.when('/search/?', 'search')
 			.when('/ad/:id', 'ad')
+			.when('/post/:id', 'post')
 			.when('/404', 'err404')
 			.when('/terms', 'terms')
 			.when('/about', 'about')
@@ -115,6 +116,8 @@ angular.module('hearth').config([
 				templateUrl: 'templates/about.html',
 				pageType: 'about'
 			}).segment('ad', {
+				controller: 'ItemDetailOld',
+			}).segment('post', {
 				controller: 'ItemDetail',
 				templateUrl: 'templates/itemDetail.html'
 			}).segment('error404', {
