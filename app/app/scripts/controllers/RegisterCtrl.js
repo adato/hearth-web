@@ -80,7 +80,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
                 $scope.sending = false;
 
             //     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
-            //     // $location.path('/');
+            //     // $location.path($$config.basePath);
                 
                 $scope.hideForm();
 
