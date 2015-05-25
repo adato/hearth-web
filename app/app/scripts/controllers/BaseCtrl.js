@@ -200,7 +200,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.pluralCat = $locale.pluralCat;
             
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
-            $rootScope.appUrl = window.location.href.replace(window.location.hash, '');
+            $rootScope.appUrl = $$config.appUrl;
 
             if($rootScope.loggedUser._id) {
                 $scope.loadMyCommunities();
