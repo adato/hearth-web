@@ -3,6 +3,6 @@
 	"root":"public",
 	"prerender":true,
 	"routes": {
-		"app/**": "/app/index.html"
+		"/app/**": "/app/index.html"
 	}
 }
