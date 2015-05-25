@@ -252,8 +252,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
 
 			// $(document.body).scrollTop(0);
-
-			if($rootScope.isPostActive(data) && $location.path() != $$config.basePath) {
+			alert($location.path());
+			if($rootScope.isPostActive(data) && $location.path() != '/') {
 				// wait for refresh to 
 				var deleteEventListener = $rootScope.$on('postsLoaded', function() {
 					deleteEventListener();
@@ -264,7 +264,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				});
 
 				// if post is visible on marketplace - refresh user there
-				$location.path($$config.basePath);
+				$location.path('/');
 				$rootScope.insertPostIfMissing(data);
 			} else {
 				// flash post immediatelly
