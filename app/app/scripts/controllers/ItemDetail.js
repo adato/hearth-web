@@ -70,18 +70,12 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 				// if there are post data, process them
 				if(data.name) {
-					var image = null, size = null;
+					var image = $rootScope.getSharingImage(data.attachments_attributes, data.author.avatar);
 					var title = data.author.name;
-
-					if(data.attachments_attributes && data.attachments_attributes.length) {
-						image = data.attachments_attributes[0].large;
-						size = data.attachments_attributes[0].size
-					}
-					
 
 					if (data.title)
 						title += " - " + data.title;
-					OpenGraph.set(title, data.name || "", null, image, size);
+					OpenGraph.set(title, data.name || "", null, image.large, image.size);
 
 					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.owner_id);

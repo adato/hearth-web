@@ -234,6 +234,36 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         /**
+         * This will test, if image size is sufficient for facebook sharing
+         * based on this https://developers.facebook.com/docs/sharing/best-practices
+         */
+        $rootScope.testImageForSharing = function(img) {
+            return  img.size &&
+                    img.size[0] >= $$config.fbSharing.minWidth &&
+                    img.size[1] >= $$config.fbSharing.minHeight;
+        };
+        
+        /**
+         * This will select best image for facebook sharing
+         */
+        $rootScope.getSharingImage = function(postImages, userImage) {
+
+            // this will go throught post images and select first sufficient
+            if (postImages) for (var img in postImages) {
+                if ($rootScope.testImageForSharing(postImages[img]))
+                    return postImages[img];
+            }
+
+            if(userImage && $rootScope.testImageForSharing(userImage))
+                return userImage;
+
+            return {
+                size: $$config.defaultHearthImageSize,
+                large: $$config.appUrl+$$config.defaultHearthImage,
+            }
+        };
+
+        /**
          * Open report modal window for given item
          */
         $rootScope.openReportBox = function(item) {
