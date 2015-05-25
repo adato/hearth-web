@@ -252,7 +252,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
 
 			// $(document.body).scrollTop(0);
-			alert($location.path());
 			if($rootScope.isPostActive(data) && $location.path() != '/') {
 				// wait for refresh to 
 				var deleteEventListener = $rootScope.$on('postsLoaded', function() {
