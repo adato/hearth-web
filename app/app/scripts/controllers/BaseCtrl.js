@@ -145,6 +145,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         /**
+         * Return profile of item based on its type and id
+         */
+        $rootScope.getProfileLink = function(type, id) {
+            return $$config.appUrl+"#!/"+$rootScope.getProfileLinkByType(type)+"/"+id;
+        };
+
+
+        /**
          * Refresh user to given path
          */
         $rootScope.refreshToPath = function(path) {
