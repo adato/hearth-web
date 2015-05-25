@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.addresses = {
             "Community": "community",
             "User": "profile",
-            "Post": "ad",
+            "Post": "post",
         };
         $rootScope.socialLinks = {
             facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
