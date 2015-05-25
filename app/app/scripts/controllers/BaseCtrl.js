@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.addresses = {
             "Community": "community",
             "User": "profile",
-            "Post": "ad",
+            "Post": "post",
         };
         $rootScope.socialLinks = {
             facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
@@ -67,8 +67,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
-            var r1 = $rootScope.addressOld.split("/");
-            var r2 = $rootScope.addressNew.split("/");
+            var r1 = $rootScope.addressOld.split($$config.basePath);
+            var r2 = $rootScope.addressNew.split($$config.basePath);
 
             // if first element in URL of old page is not same as first element in URL of new page
             // scroll to top - (alias scroll when we come to new URL)
@@ -99,8 +99,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $scope.logout = function() {
             Auth.logout(function() {
-                window.location.hash = '#!/';
-                location.reload();
+                $rootScope.refreshToPath($$config.basePath);
             });
         };
         
@@ -146,11 +145,18 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         /**
+         * Return profile of item based on its type and id
+         */
+        $rootScope.getProfileLink = function(type, id) {
+            return $$config.basePath+$rootScope.getProfileLinkByType(type)+"/"+id;
+        };
+
+
+        /**
          * Refresh user to given path
          */
-        $scope.refreshToPath = function(path) {
-            window.location.hash = '#!/' + path;
-            location.reload();
+        $rootScope.refreshToPath = function(path) {
+            window.location = path || document.URL;
         };
 
         $rootScope.isMine = function (author_id) {
@@ -225,6 +231,36 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 closeByEscape: true,
                 showClose: false
             });
+        };
+
+        /**
+         * This will test, if image size is sufficient for facebook sharing
+         * based on this https://developers.facebook.com/docs/sharing/best-practices
+         */
+        $rootScope.testImageForSharing = function(img) {
+            return  img.size &&
+                    img.size[0] >= $$config.fbSharing.minWidth &&
+                    img.size[1] >= $$config.fbSharing.minHeight;
+        };
+        
+        /**
+         * This will select best image for facebook sharing
+         */
+        $rootScope.getSharingImage = function(postImages, userImage) {
+
+            // this will go throught post images and select first sufficient
+            if (postImages) for (var img in postImages) {
+                if ($rootScope.testImageForSharing(postImages[img]))
+                    return postImages[img];
+            }
+
+            if(userImage && $rootScope.testImageForSharing(userImage))
+                return userImage;
+
+            return {
+                size: $$config.defaultHearthImageSize,
+                large: $$config.appUrl+$$config.defaultHearthImage,
+            }
         };
 
         /**

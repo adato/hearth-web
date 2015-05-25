@@ -1,12 +1,18 @@
 var $$config;
 
 $$config = {
-	appUrl: window.location.origin+window.location.pathname,
+	basePath: '/app/',
+	appUrl: window.location.origin + '/app/',
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
+	fbSharing: {
+		minWidth: 200,
+		minHeight: 200
+	},
 	defaultHearthImage: 'images/facebook-sharing-image.png',
+	defaultHearthImageSize: [600, 600],
 	defaultHearthImageWidth: 600,
 	defaultHearthImageHeight: 600,
 	defaultUserAvatar: 'images/no-avatar.jpg',
