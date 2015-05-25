@@ -77,7 +77,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				$scope.loginError = true;
 			
 			if (Auth.isLoggedIn()) {
-				return $location.path( $rootScope.referrerUrl || '/');
+				return $location.path( $rootScope.referrerUrl || $$config.basePath);
 			}
 
 			$(".login_name").focus();

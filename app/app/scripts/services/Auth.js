@@ -128,7 +128,7 @@ angular.module('hearth.services').factory('Auth', [
 			},
 			processLoginResponse: function(data) {
 				if(data.email_token)
-					return $location.path('/fill-email/'+data.email_token);
+					return $location.path($$config.appUrl+'/fill-email/'+data.email_token);
 				
 				// when user logged, use his language configured on API
 	            if(data.language)
@@ -141,7 +141,7 @@ angular.module('hearth.services').factory('Auth', [
 				var reloadLoc = UnauthReload.getLocation();
 				UnauthReload.clearReloadLocation();
 				
-				$rootScope.refreshToPath(reloadLoc || '/');
+				$rootScope.refreshToPath(reloadLoc || $$config.basePath);
 			},
 			getTwitterAuthUrl: function() {
 				var fillEmailUrl = $$config.appUrl +'fill-email/%{token}';
