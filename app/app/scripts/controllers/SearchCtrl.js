@@ -52,7 +52,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 						return $location.search('id', itemId);
 					}
 				} else {
-					path = $$config.basePath + where + '/' + itemId;
+					path = where + '/' + itemId;
 					return $location.path(path);
 				}
 			}

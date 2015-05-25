@@ -14,6 +14,6 @@ angular.module('hearth.controllers').controller('TokenLoginCtrl', [
 			window.location = window.location.pathname;
 			return true;
 		}
-		return $location.path($$config.basePath);
+		return $location.path('/');
 	}
 ]);
