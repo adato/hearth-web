@@ -103,7 +103,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
             if (params.query === '') {
                 // dont search empty query and redirect to marketplace
-                $location.path("/");
+                $location.path($$config.basePath);
             }
 
             if (deleteOffset) {

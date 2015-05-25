@@ -67,8 +67,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
-            var r1 = $rootScope.addressOld.split("/");
-            var r2 = $rootScope.addressNew.split("/");
+            var r1 = $rootScope.addressOld.split($$config.basePath);
+            var r2 = $rootScope.addressNew.split($$config.basePath);
 
             // if first element in URL of old page is not same as first element in URL of new page
             // scroll to top - (alias scroll when we come to new URL)
@@ -99,7 +99,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $scope.logout = function() {
             Auth.logout(function() {
-                $rootScope.refreshToPath("/");
+                $rootScope.refreshToPath($$config.basePath);
             });
         };
         
