@@ -110,7 +110,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadUserHome(params) {
             params.limit  = 5;
-            params.offset = 1;
+            params.offset = 0;
 
             async.parallel([
                 function(done) {
