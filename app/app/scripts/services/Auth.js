@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session',
-	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -128,7 +128,7 @@ angular.module('hearth.services').factory('Auth', [
 			},
 			processLoginResponse: function(data) {
 				if(data.email_token)
-					return $location.path('/fill-email/'+data.email_token);
+					return $location.path($$config.appUrl+'/fill-email/'+data.email_token);
 				
 				// when user logged, use his language configured on API
 	            if(data.language)
@@ -138,11 +138,14 @@ angular.module('hearth.services').factory('Auth', [
 	                this.setToken(data.api_token);
 	            }
 
-	            window.location = window.location.pathname;
+				var reloadLoc = UnauthReload.getLocation();
+				UnauthReload.clearReloadLocation();
+				
+				$rootScope.refreshToPath(reloadLoc || $$config.basePath);
 			},
 			getTwitterAuthUrl: function() {
-				var fillEmailUrl = $$config.appUrl +'#!/fill-email/%{token}';
-				var twitterSuccessUrl  = $$config.appUrl +'#!/token-login/%{token}';
+				var fillEmailUrl = $$config.appUrl +'fill-email/%{token}';
+				var twitterSuccessUrl  = $$config.appUrl +'token-login/%{token}';
 				return $$config.apiPath + '/users/auth/twitter?success_url='+encodeURIComponent(twitterSuccessUrl)+'&email_url='+encodeURIComponent(fillEmailUrl);
 			},
 		};

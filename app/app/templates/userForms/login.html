@@ -17,7 +17,7 @@
         <div class="text-center">
             <button class="primary button-send pointer center" type="submit"><i class="fa fa-sign-in"></i> {{ 'LOGIN_BUTTON' | translate }}</button>
         </div>
-        <p><a ng-click="closeModal()" href="#!/forgotten-password">{{ 'HAVE_YOU_FORGOT_PASS' | translate }}</a></p>
+        <p><a ng-click="closeModal()" href="{{ basePath }}forgotten-password">{{ 'HAVE_YOU_FORGOT_PASS' | translate }}</a></p>
         <div class="clear"></div>
         <hr />
         <div class="social-login">
@@ -28,7 +28,7 @@
         </div>
         <hr />
         <div class="bottom">
-            <p>{{ 'DONT_HAVE_ACCOUNT_YET' | translate }} <a ng-click="closeModal()" href="#!/register">{{ 'SIGNUP' | translate }}</a></p>
+            <p>{{ 'DONT_HAVE_ACCOUNT_YET' | translate }} <a ng-click="closeModal()" href="{{ basePath }}register">{{ 'SIGNUP' | translate }}</a></p>
         </div>
     </form>
 </div>

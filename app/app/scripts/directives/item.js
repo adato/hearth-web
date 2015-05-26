@@ -91,7 +91,7 @@ angular.module('hearth.directives').directive('item', [
                         return false;
                     
                     // post address for social links
-                    scope.postAddress = $rootScope.appUrl+'%23!/ad/'+item._id;
+                    scope.postAddress = $rootScope.appUrl+'post/'+item._id;
                     scope.isActive = scope.isPostActive(item);
 
                     // is this my post? if so, show controll buttons and etc

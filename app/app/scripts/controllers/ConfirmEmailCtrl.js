@@ -35,7 +35,7 @@ angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 
 			if(res.api_token) {
 				Auth.setToken(res.api_token);
-				window.location = window.location.pathname;
+				window.location = $$config.appUrl;
 				return true;
 			}
 			return $location.path('login');

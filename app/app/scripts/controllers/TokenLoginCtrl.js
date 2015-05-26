@@ -11,7 +11,7 @@ angular.module('hearth.controllers').controller('TokenLoginCtrl', [
 	function($scope, $location, Auth, Notify, $routeParams) {
 		if($routeParams.token) {
 			Auth.setToken($routeParams.token);
-			window.location = window.location.pathname;
+			window.location = $$config.appUrl;
 			return true;
 		}
 		return $location.path('/');

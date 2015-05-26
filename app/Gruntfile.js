@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 		yeoman: {
 			// configurable paths
 			app: require('./bower.json').appPath || 'app',
-			dist: 'dist',
+			dist: 'dist/app',
 			env: env,
 			envFolder: envFolder,
 			api: (env == 'staging') ? 'stage' : 'dev'
@@ -200,6 +200,22 @@ module.exports = function(grunt) {
 					// Make directory browse-able.
 					middlewares.push(connect.directory(directory));
 
+					// if not found, just send index.html
+					// middlewares.push(function(req, res){
+					// 	for(var file, i = 0; i < options.base.length; i++){
+					// 		// console.log(options.base);
+					// 		grunt.log.error(options.base);
+					// 		file = options.base[i] + "/index.html";
+
+					// 		if (grunt.file.exists(file)){
+					// 			require('fs').createReadStream(file).pipe(res);
+					// 			return; // we're done
+					// 		}
+					// 	}
+					// 	res.statusCode(404); // where's index.html?
+					// 	res.end();
+					// });
+
 					return middlewares;
 				}
 			},
@@ -207,7 +223,7 @@ module.exports = function(grunt) {
 			rules: [
 				{from: '^/api/(.*)$',to: '/api/$1'},
 				{from: '^/app(.*)$',to: '$1'},
-				// {from: '^(?!app).*',to: '/app/', redirect: 'temporary'},
+				{from: '^(?!/app)(.*)',to: '/app$1', redirect: 'temporary'},
 			],
 
 			proxies: [{
@@ -246,6 +262,22 @@ module.exports = function(grunt) {
 						// Make directory browse-able.
 						middlewares.push(connect.directory(directory));
 
+
+						// if not found, just send index.html
+						middlewares.push(function(req, res){
+							for(var file, i = 0; i < options.base.length; i++){
+								// console.log(options.base);
+								file = options.base[i] + "/index.html";
+								
+								if (grunt.file.exists(file)){
+									require('fs').createReadStream(file).pipe(res);
+									return; // we're done
+								}
+							}
+							res.statusCode(404); // where's index.html?
+							res.end();
+						});
+					
 						return middlewares;
 					}
 				}
@@ -617,8 +649,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': [
-						'.tmp\/concat\/styles/{,*/}*.css',
-						'<%= yeoman.app %>/styles/{,*/}*.css'
+						'<%= yeoman.dist %>/styles/main.css'
 					]
 				}
 			}
@@ -690,7 +721,9 @@ module.exports = function(grunt) {
 			options: {
 				encoding: 'utf8',
 				algorithm: 'md5',
-				length: 16
+				length: 16,
+				rename: false,
+				baseDir: '<%= yeoman.dist %>/../'
 			},
 			assets: {
 				files: [{
@@ -777,12 +810,12 @@ module.exports = function(grunt) {
 		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
 		'rename:configDist',	// move config-global to .tmp/concat folder
 		'rename:googleAnalytics',	// move googleAnalytics.js to ./tmp concat folder
-		'rename:newRelic',	// move googleAnalytics.js to ./tmp concat folder
+		'rename:newRelic',		// move googleAnalytics.js to ./tmp concat folder
 		'preprocess',			
 		'ngmin',
 		'cdnify',
 		'cssmin',				// minify css files
-		'rev',
+		// 'rev',
 		'usemin',
 		'htmlmin',
 		'htmlmin:distTemplates', // minify template files before concatenation

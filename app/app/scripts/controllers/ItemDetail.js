@@ -94,7 +94,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					});
 
 					$scope.isMine && $scope.loadReplies();
-					$scope.postAddress = $rootScope.appUrl+'%23!/ad/'+$scope.ad._id;
+					$scope.postAddress = $rootScope.appUrl+'post/'+$scope.ad._id;
 					$scope.isActive = $rootScope.isPostActive($scope.ad);
 				}
 			}, function(res) {
