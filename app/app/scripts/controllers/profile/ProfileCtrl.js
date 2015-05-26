@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time',
+	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time) {
+	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph) {
 		$scope.initPage = function() {
 			$scope.loaded = false;
 			$scope.info = false;
@@ -71,6 +71,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
 				$scope.mine = $rootScope.isMine($routeParams.id);
 				// $scope.loaded = true;
+
+				OpenGraph.set(res.name, "", null, res.avatar.large, res.avatar.size);
 
 				$rootScope.profileLoaded = true;
 				// broadcast event for load subpages
