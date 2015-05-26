@@ -22,7 +22,7 @@ angular.module('hearth.services').service('UnauthReload', [
 
 				// set return path and refresh on login
 				$.cookie(cookieName, $location.path());
-				$location.path('/login');
+				$location.path('login');
 
         		var destroy = $rootScope.$on('$routeChangeSuccess', function() {
 		            $timeout(function() {
