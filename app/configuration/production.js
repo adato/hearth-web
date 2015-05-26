@@ -3,6 +3,7 @@ var $$localConfig; // production
 $$localConfig = {
 	env: 'production',
 	fbAppId: '277542219089599',
+	disableDebugInfo: true,
 	languages: {
 		"cs": "cs_CZ",
 		"en": "en_US"
