@@ -117,6 +117,7 @@ angular.module('hearth', [
                     offEvent(); // unregister event listener
                     LanguageSwitch.init();
                     $rootScope.language = preferredLanguage;
+                    $rootScope.languageInited = true;
                     $rootScope.$broadcast("initLanguageSuccess", preferredLanguage);
                     done(null, data);
                 });
