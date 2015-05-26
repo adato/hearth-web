@@ -7,29 +7,29 @@
 			<button class="button-icon fa fa-search"></button>
 		</form> -->
 		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
-			<option value="" ng-selected="filter.type == ''">{{ 'MESSAGES.FILTER.ALL' | translate }}</option>
-			<option value="as_replies" ng-selected="filter.type == 'as_replies'">&nbsp;&nbsp;&nbsp;&nbsp;{{ 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<option value="" ng-selected="filter.type == ''">{{:: 'MESSAGES.FILTER.ALL' | translate }}</option>
+			<option value="as_replies" ng-selected="filter.type == 'as_replies'">&nbsp;&nbsp;&nbsp;&nbsp;{{:: 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
 			<!-- <option value="" disabled>———————————————————————</option> -->
 			<!-- <option value="users_posts" ng-selected="filter.type == 'users_posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
 			<!-- <option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option> -->
-			<option value="archived" ng-selected="filter.type == 'archived'">{{ 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
+			<option value="archived" ng-selected="filter.type == 'archived'">{{:: 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
 		</select>
 
-		<a class="button-send right" ng-click="toggleAddForm()">{{ 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+		<a class="button-send right" ng-click="toggleAddForm()">{{:: 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
 		<div class="clear"></div>
 		<div loading show="!conversations"></div>
 	</div>
 	<div class="messages-container" ng-if="conversations" dynamic-height offset="60" container=".messages" min-height="340">
 		<div id="about" class="collumn left conversations" ng-if="conversations" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
 			<div class="nano" custom-scrollbar>
-	    		<div class="nano-content">
+	    		<div class="nano-content" when-scrolled="loadBottom()" loading-in-progress="loadingBottom" inner-scrolling="true">
 		    		<div class="nano-content-inner">
 						<div class="border-bottom" ng-class="{'active-bottom': conversations.length && conversations[0]._id == detail._id}"></div>
 						<div class="text-center no-result" ng-if="!conversations.length">
-							{{ 'MESSAGES.LIST.NO_RESULT' | translate }}
+							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
 						</div>
 						<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
-							<div class="avatars avatar-count-{{item.participants_count | minMax:0:4}}">
+							<div class="avatars">
 								<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants"></avatar>
 								<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>
 								<div class="avatar-participants-count" ng-if="item.participants_count > 4">+{{ (item.participants_count - 3) | minMax:0:999 }}</div>
@@ -43,21 +43,21 @@
 									</div>
 									<i ng-if="item.titlePersons" class="left" title="{{item.titlePersons}}">
 										{{ item.titlePersons | ellipsis:28 }}
-										<span ng-if="item.participants_count > 2">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
+										<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 									</i>
 									<div class="clear"></div>
 								</h2>
-								<h2 ng-if="!item.title && item.titlePersons" title="{{item.titlePersons}}">{{ item.titlePersons }} <span ng-if="item.participants_count > 2">{{ 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span></h2>
+								<h2 ng-if="!item.title && item.titlePersons" title="{{item.titlePersons}}">{{ item.titlePersons }} <span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span></h2>
 								<h2 ng-if="!item.title && !item.titlePersons">
-									{{ 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
+									{{:: 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
 								</h2>
 								<span class="unreaded-count" ng-if="!item.read"></span>
 								<div class="clear"></div>
 								<p ng-if="item.message.text">
-									<span ng-if="item.message.owner._id == loggedUser._id" ng-bind="'MESSAGES.YOU' | translate"></span><span ng-if="item.message.owner._id != loggedUser._id" ng-bind="item.message.owner.name"></span>:
+									<span ng-if="item.message.owner._id == loggedUser._id" ng-bind=":: 'MESSAGES.YOU' | translate"></span><span ng-if="item.message.owner._id != loggedUser._id" ng-bind="item.message.owner.name"></span>:
 									{{ item.message.text | ellipsis:60 }}
 								</p>
-								<i class="fright" ng-if="item.last_message_time" title="{{ item.last_message_time | date:DATETIME_FORMATS.medium }}" ago="item.last_message_time"></i>
+								<i class="fright" ng-if="item.last_message_time" title="{{:: item.last_message_time | date:DATETIME_FORMATS.medium }}" ago="item.last_message_time"></i>
 							</div>
 							<div class="clear"></div>
 						</div>
@@ -70,11 +70,11 @@
 			<div ng-if="!showNewMessageForm && ! detail">
 				<div ng-if="!conversations.length" class="text-center no-result">
 					<br />
-					<img src="images/fireplace.jpeg" title="{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
+					<img src="images/fireplace.jpeg" title="{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
 					<br />
 					<br />
-					<h4>{{ 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
-					<span>{{ 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
+					<h4>{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
+					<span>{{:: 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
 				</div>
 			</div>
 			<conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail>

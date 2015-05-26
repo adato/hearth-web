@@ -27,7 +27,7 @@
 			</div>
 		</div>
 
-		<div when-scrolled="load()" ng-if="items.length" loading-in-progress="loading" class="marketplace-items-container">
+		<div when-scrolled="load()" ng-if="items.length" offset="1000" loading-in-progress="loading" class="marketplace-items-container">
 			<item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by $index" user="user" community="null"></item>
 		</div>
 	</div>
