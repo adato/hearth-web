@@ -51,11 +51,10 @@ angular.module('hearth.geo').directive('locations', [
 
                     // remove duplicit locations
                     for (var i = 0; i < locations.length; i++) {
-
+                        if(!locations[i].origin_address)
+                            locations[i].origin_address = locations[i].address;
+                        
                         for (var j = 0; j < i; j++) {
-                            // console.log(locations[j].address, locations[i].address);
-                            // console.log(j, i);
-
                             if(locations[j].address == locations[i].address) {
                                 locations.splice(i--, 1);
                                 break;
@@ -74,9 +73,8 @@ angular.module('hearth.geo').directive('locations', [
                         var places = sBox.getPlaces();
                         $scope.showError = false;
 
-                        console.log(places);
                         if(!places.length || ! places[0].address_components) {
-                            // $(input).val('');
+                            $(input).val('');
                             return false;
                         }
 
@@ -105,13 +103,7 @@ angular.module('hearth.geo').directive('locations', [
                     $(input).on('keyup keypress', function(e) {
                         
                       if(e.keyCode == 13 && $(input).val() != '') {
-                        console.log("KEY_PRESS");
                         e.preventDefault();
-                        
-                        google.maps.event.trigger(sBox, 'place_changed');
-                        // var c = $(".pac-container .pac-item").html();
-                        // console.log(c);
-
                         return false;
                       }
                     });
@@ -121,7 +113,7 @@ angular.module('hearth.geo').directive('locations', [
                      * When user fills some location and clicks enter (does not select option in autocomplete)
                      * simulate key down and enter to select first item in autocomplete
                      */
-                    (function pacSelectFirst(input) {
+                    function pacSelectFirst(input) {
                         // store the original event binding function
                         var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
 
@@ -149,7 +141,11 @@ angular.module('hearth.geo').directive('locations', [
 
                         input.addEventListener = addEventListenerWrapper;
                         input.attachEvent = addEventListenerWrapper;
-                    })(input);
+                    }
+
+                    $timeout(function() {
+                        pacSelectFirst(input);
+                    });
 
 
                     $(document).on('focusout', input, function(e) {
@@ -216,6 +212,7 @@ angular.module('hearth.geo').directive('locations', [
                     // but only when it is now added yet
                     if(!$scope.locationExists(pos.lng(), pos.lat())) {
 
+                        info.origin_address = addr;
                         info.address = addr;
                         info.coordinates = [pos.lng(), pos.lat()];
                         $scope.locations.push(info);
