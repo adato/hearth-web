@@ -29,14 +29,14 @@ angular.module('hearth.geo').directive('locations', [
                 $scope.mapPoint = false;
                 $scope.mapPointShowName = true;  // due to chrome bug with rerendering
                 $scope.errorWrongPlace = false;
+                $scope.initFinished = $rootScope.initFinished;
                 $scope.mapIsVisible = false;
 
                 if(!$scope.errorCode)
                     $scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
                 $scope.$watch("locations", function(val) {
-                    if(!val)
-                        $scope.locations = [];
+                    $scope.locations = (val) ? filterUniqueLocations(val) : [];
                 });
 
                  var markerImage = {
@@ -46,6 +46,26 @@ angular.module('hearth.geo').directive('locations', [
                     anchor: new google.maps.Point(14, 34)
                   };
 
+                function filterUniqueLocations(locations) {
+                    var arr = [];
+                    var item;
+
+                    // remove duplicit locations
+                    for (var i = 0; i < locations.length; i++) {
+                        if(!locations[i].origin_address)
+                            locations[i].origin_address = locations[i].address;
+                        
+                        for (var j = 0; j < i; j++) {
+                            if(locations[j].address == locations[i].address) {
+                                locations.splice(i--, 1);
+                                break;
+                            }
+                        }
+                    }
+
+                    return locations;
+                }
+
                 // init google places search box
                 function addPlacesAutocompleteListener(input) {
 
@@ -53,6 +73,11 @@ angular.module('hearth.geo').directive('locations', [
                     google.maps.event.addListener(sBox, 'places_changed', function() {
                         var places = sBox.getPlaces();
                         $scope.showError = false;
+
+                        if(!places.length || ! places[0].address_components) {
+                            $(input).val('');
+                            return false;
+                        }
 
                         if (places && places.length) {
                             $scope.errorWrongPlace = false;
@@ -67,12 +92,62 @@ angular.module('hearth.geo').directive('locations', [
                         }
                     });
 
+                    // $(input).focusin(function () {
+                    //     $(document).keypress(function (e) {
+                    //         if (e.which == 13) {
+                    //             $(input).trigger('focus');
+                    //             $(input).simulate('keydown', { keyCode: $.ui.keyCode.DOWN } ).simulate('keydown', { keyCode: $.ui.keyCode.ENTER });
+                    //         }
+                    //     });
+                    // });
+
                     $(input).on('keyup keypress', function(e) {
+                        
                       if(e.keyCode == 13 && $(input).val() != '') {
                         e.preventDefault();
                         return false;
                       }
                     });
+
+
+                    /**
+                     * When user fills some location and clicks enter (does not select option in autocomplete)
+                     * simulate key down and enter to select first item in autocomplete
+                     */
+                    function pacSelectFirst(input) {
+                        // store the original event binding function
+                        var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+
+                        function addEventListenerWrapper(type, listener) {
+                            // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+                            // and then trigger the original listener.
+                            if (type == "keydown") {
+                                var orig_listener = listener;
+                                listener = function(event) {
+                                    var suggestion_selected = $(".pac-item-selected").length > 0;
+                                    if (event.which == 13 && !suggestion_selected) {
+                                        var simulated_downarrow = $.Event("keydown", {
+                                            keyCode: 40,
+                                            which: 40
+                                        });
+                                        orig_listener.apply(input, [simulated_downarrow]);
+                                    }
+
+                                    orig_listener.apply(input, [event]);
+                                };
+                            }
+
+                            _addEventListener.apply(input, [type, listener]);
+                        }
+
+                        input.addEventListener = addEventListenerWrapper;
+                        input.attachEvent = addEventListenerWrapper;
+                    }
+
+                    $timeout(function() {
+                        pacSelectFirst(input);
+                    });
+
 
                     $(document).on('focusout', input, function(e) {
                         $timeout(function() {
@@ -138,6 +213,7 @@ angular.module('hearth.geo').directive('locations', [
                     // but only when it is now added yet
                     if(!$scope.locationExists(pos.lng(), pos.lat())) {
 
+                        info.origin_address = addr;
                         info.address = addr;
                         info.coordinates = [pos.lng(), pos.lat()];
                         $scope.locations.push(info);

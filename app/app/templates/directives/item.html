@@ -1,4 +1,4 @@
-<article class="row post post-on-market" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
+<article class="item-common row post post-on-market" id="post_{{ item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<section ng-if="! hideAvatar" class="large-2 columns user">
 		<div info-box="item.author">
 			<a ng-href="{{ basePath }}{{getProfileLinkByType(item.author._type)}}/{{ item.author._id }}">

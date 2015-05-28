@@ -1,4 +1,4 @@
-<article id="item-detail" class="item-detail-page web-width">
+<article id="item-detail" class="item-common item-detail-page web-width">
 	<div loading show="!loaded"></div>
 	
 	<div class="row" ng-if="loaded">
@@ -89,10 +89,18 @@
 							<span class="fa fa-lock" ng-if="ad.is_private" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 						</div>
 						<div class="large-4 columns">
-							<span class="fright ad-flag-container">
+							<!-- <span class="fright ad-flag-container">
 								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id && ad.spam_reported" tipsy title="{{'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" ng-click="openReportBox(ad)"></a>
 								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !ad.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
+							</span> -->
+							<span class="ad-flag-container fright" ng-if="!mine">
+								<a class="action-dropdown fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
 							</span>
+							<div class="more-actions-dropdown" id="more-actions-{{ item._id }}" style="display:none;">
+								<a ng-if="! mine && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+								<a ng-if="! mine && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+								<a ng-if="! mine && item.admin_communities.length" title="{{ 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+							</div>
 							<span class="date fright" title="{{ad.updated_at | date:DATETIME_FORMATS.medium}}">
 								{{ad.updated_at | ago}}
 							</span>

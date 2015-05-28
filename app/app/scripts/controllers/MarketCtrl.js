@@ -104,37 +104,36 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		 * This will load new posts to marketplace
 		 */
 		$scope.load = function() {
-			// load only once in a time
-			if ($scope.loading) return;
-			$scope.loading = true;
 
 			// load only if map is not shown
-			if (!$scope.showMap) {
-				var params = angular.extend(angular.copy($location.search()), {
-					offset: $scope.items.length,
-					limit: $scope.limit
-				});
+			// load only once in a time
+			if ($scope.showMap || $scope.loading) return;
+			$scope.loading = true;
 
-				// if there are keywords, add them to search
-				if ( $.isArray(params.keywords)) {
-					params.keywords = params.keywords.join(",");
-				}
+			var params = angular.extend(angular.copy($location.search()), {
+				offset: $scope.items.length,
+				limit: $scope.limit
+			});
 
-				// console.time("Market posts loaded and displayed");
-				// console.time("Market posts loaded from API");
-				// load based on given params
-				Post.query(params, function(data) {
-					$scope.loaded = true;
-					// console.timeEnd("Market posts loaded from API");
-					if(data.data)
-						data.data = $scope.insertLastPostIfMissing(data.data);
-					
-					// console.time("Posts pushed to array and built");
-					// iterativly add loaded data to the list and then call finishLoading
-					$scope.addItemsToList(data, 0, $scope.finishLoading);
-					$rootScope.$broadcast('postsLoaded');
-				});
+			// if there are keywords, add them to search
+			if ( $.isArray(params.keywords)) {
+				params.keywords = params.keywords.join(",");
 			}
+
+			// console.time("Market posts loaded and displayed");
+			// console.time("Market posts loaded from API");
+			// load based on given params
+			Post.query(params, function(data) {
+				$scope.loaded = true;
+				// console.timeEnd("Market posts loaded from API");
+				if(data.data)
+					data.data = $scope.insertLastPostIfMissing(data.data);
+				
+				// console.time("Posts pushed to array and built");
+				// iterativly add loaded data to the list and then call finishLoading
+				$scope.addItemsToList(data, 0, $scope.finishLoading);
+				$rootScope.$broadcast('postsLoaded');
+			});
 		};
 		
 		function init() {

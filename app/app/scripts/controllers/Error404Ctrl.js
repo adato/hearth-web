@@ -12,10 +12,10 @@ angular.module('hearth.controllers').controller('Error404Ctrl', [
 		var container = ".main-container";
 		
 		$scope.goToMarket = function() {
-			$location.url($$config.basePath);
+			$location.url('/');
 		};
 		$scope.goToFeedback = function() {
-			$location.url($$config.basePath+'/feedback');
+			$location.url('feedback');
 		};
 
 		// hide route segment container when user comes to e404 page

@@ -308,7 +308,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.loadingBottom = true;
 			var conf = {
 				limit: _loadLimit,
-				offset: $scope.conversations.length
+				offset: $scope.conversations.length,
+				exclude_self: true,
 			};
 
 			angular.extend(conf, $scope.getFilter());
