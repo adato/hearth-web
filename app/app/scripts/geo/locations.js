@@ -29,6 +29,7 @@ angular.module('hearth.geo').directive('locations', [
                 $scope.mapPoint = false;
                 $scope.mapPointShowName = true;  // due to chrome bug with rerendering
                 $scope.errorWrongPlace = false;
+                $scope.initFinished = $rootScope.initFinished;
                 $scope.mapIsVisible = false;
 
                 if(!$scope.errorCode)

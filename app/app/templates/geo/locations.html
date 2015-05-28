@@ -33,7 +33,7 @@
             <div class="map-container"></div>
         </div>
         
-        <tags-input allow-duplicate-tags="true" refocus-input-on-tab display-property="origin_address" class="tags tags-input" ng-class="{'ng-invalid': showError && !locations.length && !disabled }" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}" replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30" add-from-autocomplete-only="true">
+        <tags-input ng-if="initFinished" allow-duplicate-tags="true" refocus-input-on-tab display-property="origin_address" class="tags tags-input" ng-class="{'ng-invalid': showError && !locations.length && !disabled }" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}" replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30" add-from-autocomplete-only="true">
         </tags-input>
 
     </div>
