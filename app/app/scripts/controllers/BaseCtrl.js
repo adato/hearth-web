@@ -259,7 +259,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             return {
                 size: $$config.defaultHearthImageSize,
-                large: $$config.appUrl+$$config.defaultHearthImage,
+                original: $$config.appUrl+$$config.defaultHearthImage,
             }
         };
 
