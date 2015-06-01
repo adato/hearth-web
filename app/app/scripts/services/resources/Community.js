@@ -39,7 +39,8 @@ angular.module('hearth.services').factory('Community', [
 			add: {
 				method: 'POST'
 			},
-			random: {
+			suggested: {
+				url: $$config.apiPath + '/related_communities',
 				method: 'GET',
 				isArray: true,
 				params: {
