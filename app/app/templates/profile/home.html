@@ -96,8 +96,9 @@
             </div>
             <div class="clear"></div>
             <div class="line">
-                <div ng-if="!mine" class="bold margin-top fleft">
-                    <a ng-click="sendMessage(info)">{{ 'SEND_MESSAGE' | translate }}</a>
+                <div ng-if="!mine" class="margin-top fleft">
+                    <a class="bold" ng-if="!info.only_replies" ng-click="sendMessage(info)">{{:: 'SEND_MESSAGE' | translate }}</a>
+                    <span class="disabled-replies" ng-if="info.only_replies">{{:: 'MESSAGES.USER_HAS_DISABLED_MESSAGING' | translate }}</span>
                 </div>
                 <div class="social fright">
                     <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
