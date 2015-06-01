@@ -83,21 +83,22 @@
                 </div>
 
                 <div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
-                <p>{{ 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
-                <p><a href="{{ basePath }}profile-edit">{{ 'PROFILE_EDIT.HEADER' | translate}}</a></p>
+                <p>{{:: 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
+                <p><a href="{{ basePath }}profile-edit">{{:: 'PROFILE_EDIT.HEADER' | translate}}</a></p>
                 </div>
                 
                 <div class="descr reg-date fleft">
                     <i class="fa fa-asterisk"></i>
-                    <span ng-if="!mine">{{ 'USER_HAS_REGISTERED' | translate }}</span>
-                    <span ng-if="mine">{{ 'YOU_HAVE_REGISTERED' | translate }}</span>
+                    <span ng-if="!mine">{{:: 'USER_HAS_REGISTERED' | translate }}</span>
+                    <span ng-if="mine">{{:: 'YOU_HAVE_REGISTERED' | translate }}</span>
                      {{info.created_at | ago}}
                 </div>
             </div>
             <div class="clear"></div>
             <div class="line">
-                <div ng-if="!mine" class="bold margin-top fleft">
-                    <a ng-click="sendMessage(info)">{{ 'SEND_MESSAGE' | translate }}</a>
+                <div ng-if="!mine" class="margin-top fleft">
+                    <a class="bold" ng-if="!info.only_replies" ng-click="sendMessage(info)">{{:: 'SEND_MESSAGE' | translate }}</a>
+                    <span class="disabled-replies" ng-if="info.only_replies">{{:: 'MESSAGES.USER_HAS_DISABLED_MESSAGING' | translate }}</span>
                 </div>
                 <div class="social fright">
                     <a target="_blank" ng-if="info.twitter" href="{{info.twitter}}"><i class="fa fa-twitter-square"></i></a>
