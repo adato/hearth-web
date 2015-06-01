@@ -171,6 +171,7 @@ angular.module('hearth.directives').directive('filter', [
 
                 scope.$on('filterReseted', function() {
                     scope.filter = angular.copy(filterDefault);
+                    scope.filterSave = false;
                     scope.close();
                 });
 
@@ -217,7 +218,7 @@ angular.module('hearth.directives').directive('filter', [
 
                 scope.$watch('filter', scope.recountPosts, true);
                 scope.$watch('filterShown', scope.recountPosts);
-                scope.$watch('filterSave', scope.toggleSaveFilter);
+                // scope.$watch('filterSave', scope.toggleSaveFilter);
                 scope.$on('initFinished', scope.init);
                 $rootScope.initFinished && scope.init();
             }

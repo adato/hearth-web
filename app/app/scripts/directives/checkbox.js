@@ -39,7 +39,7 @@ angular.module('hearth.directives').directive('checkbox', function() {
 				}
 
 				if(scope.onUpdate)
-					scope.onUpdate(scope.model);
+					scope.onUpdate({value: scope.model});
 			};
 
 			scope.$watch('model', function(value) {
