@@ -116,6 +116,7 @@ angular.module('hearth.geo').directive('locations', [
                      */
                     function pacSelectFirst(input) {
                         // store the original event binding function
+                        if (typeof input === 'undefined') return; 
                         var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
 
                         function addEventListenerWrapper(type, listener) {
