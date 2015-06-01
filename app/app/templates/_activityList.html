@@ -5,7 +5,7 @@
         <h4 show-if-different-dates old-date="item.prevDate" new-date="item.created_at">{{ item.created_at | ago }}</h4>
         <div class="activity">
         	<activity-avatar type="item.type"></activity-avatar>
-            <div class="activity-text" dynamic-text="item.text" dynamic-data="{name: item.name, url: getProfileLink(item.object.type, item.object.id)}"></div>
+            <div class="activity-text" dynamic-text="item.text" dynamic-data="{name: item.name, url: getActivityLink(item.object, item.target_object)}"></div>
         </div>
     </div>
 </div>

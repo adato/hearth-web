@@ -145,6 +145,15 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         /**
+         * Return profile of item based on its type (community, user, post)
+         */
+        $rootScope.getActivityLink = function(object, target_object) {
+            if(target_object)
+                return $rootScope.getProfileLink(target_object.type, target_object.id);
+            return $rootScope.getProfileLink(object.type, object.id);
+        };
+
+        /**
          * Return profile of item based on its type and id
          */
         $rootScope.getProfileLink = function(type, id) {
@@ -259,7 +268,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             return {
                 size: $$config.defaultHearthImageSize,
-                large: $$config.appUrl+$$config.defaultHearthImage,
+                original: $$config.appUrl+$$config.defaultHearthImage,
             }
         };
 

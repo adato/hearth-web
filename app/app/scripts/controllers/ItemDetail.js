@@ -75,7 +75,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 					if (data.title)
 						title += " - " + data.title;
-					OpenGraph.set(title, data.name || "", null, image.large, image.size);
+					OpenGraph.set(title, data.name || "", null, image.original, image.size);
 
 					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.owner_id);
