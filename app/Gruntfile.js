@@ -625,6 +625,10 @@ module.exports = function(grunt) {
 			newRelic: {
 				src: '.tmp/scripts/newRelic.js',
 				dest: '.tmp/concat/newRelic.js'
+			},
+			rollbar: {
+				src: '.tmp/scripts/rollbar.js',
+				dest: '.tmp/concat/rollbar.js'
 			}
 		},
 
@@ -671,7 +675,7 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js'],
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/rollbar.js', '.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
@@ -810,7 +814,8 @@ module.exports = function(grunt) {
 		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
 		'rename:configDist',	// move config-global to .tmp/concat folder
 		'rename:googleAnalytics',	// move googleAnalytics.js to ./tmp concat folder
-		'rename:newRelic',		// move googleAnalytics.js to ./tmp concat folder
+		'rename:newRelic',		// move newrelic.js to ./tmp concat folder
+		'rename:rollbar',		// move rollbar.js to ./tmp concat folder
 		'preprocess',			
 		'ngmin',
 		'cdnify',
