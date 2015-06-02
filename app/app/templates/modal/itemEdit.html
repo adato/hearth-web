@@ -26,10 +26,14 @@
             <div class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate  }}</div>
 
             <section class="author">
-                <author-selector title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
+                <span class="inline-block" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy>
+                    <author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
+                </span>
 
-                <needofferselector ng-if="!post.current_community_id" class="fleft" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>
-                <needofferselector ng-if="post.current_community_id" class="fleft" model="post.type" text-true="{{ 'WE_GIVE' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
+                <span class="inline-block" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy>
+                    <needofferselector ng-if="!post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>
+                    <needofferselector ng-if="post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'WE_GIVE' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
+                </span>
                 <div class="clear"></div>
             </section>
             
@@ -37,8 +41,8 @@
                 <label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
                 <div class="name">
                     <div class="field-group">
-                        <span class="left-radius green bold" ng-if="post.type" ng-click="post.type = !post.type">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
-                        <span class="left-radius red bold" ng-if="!post.type" ng-click="post.type = !post.type">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
+                        <span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius green bold" ng-if="post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
+                        <span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius red bold" ng-if="!post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
                         <input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
                     </div>
 

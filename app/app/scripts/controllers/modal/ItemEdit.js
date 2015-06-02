@@ -51,6 +51,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		});
 
+		$scope.togglePostType = function() {
+			if(!$scope.post.reply_count)
+				$scope.post.type = !$scope.post.type;
+		};
+
 		$scope.queryKeywords = function($query) {
 			return KeywordsService.queryKeywords($query);
 		};
