@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService',
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService) {
+	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
+	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
 		$scope.ad = false;
 		$scope.adDeleted = false;
 		$scope.loaded = false;
@@ -71,10 +71,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				// if there are post data, process them
 				if(data.name) {
 					var image = $rootScope.getSharingImage(data.attachments_attributes, data.author.avatar);
-					var title = data.author.name;
+					var postType = $filter('translate')($scope.postTypes[data.author._type][data.type]);
+					var title = 'Hearth.net: '+postType+' '+data.title+' ('+data.author.name+')';
 
-					if (data.title)
-						title += " - " + data.title;
 					OpenGraph.set(title, data.name || "", null, image.original, image.size);
 
 					$scope.profile = data.author;
