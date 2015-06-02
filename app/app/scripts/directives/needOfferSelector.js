@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('needofferselector',
 				iconTrue: '@',
 				textFalse: '@',
 				iconFalse: '@',
-
+				ngDisabled: '=',
 			},
 			templateUrl: 'templates/directives/needOfferSelector.html',
 			link: function(scope) {

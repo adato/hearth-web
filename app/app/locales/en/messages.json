@@ -751,7 +751,8 @@
     "POSITIVE": "All clicked into place",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Everything went smoothly? Are you excited? Quick...share your joy with the user.",
     "POST": {
-        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
+        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora.",
+        "TYPE_CHANGE_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit typ."
     },
     "POSTS": {
         "0": "posts",
