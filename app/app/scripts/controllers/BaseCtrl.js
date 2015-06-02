@@ -418,6 +418,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.openEmailSharingBox = function(item) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
             
             var scope = $scope.$new();
             scope.post = item;
