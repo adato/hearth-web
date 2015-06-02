@@ -556,7 +556,6 @@
         "SYSTEM_MESSAGE_YOU": {
             "left": "<p>Opustili jste konverzaci.<\/p>"
         },
-        "USER_HAS_DISABLED_MESSAGING": "Uživatel má vypnuté zprávy.",
         "YOU": "Vy"
     },
     "MESSAGES_ARCHIVE": "Archív správ",
