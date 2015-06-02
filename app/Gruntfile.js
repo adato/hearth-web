@@ -659,16 +659,31 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			dist: {
+			options: {
+				sourceMap: true,
+				sourceMapIncludeSources : true,
+		    },
+			scripts: {
+				options: {
+	    			sourceMapIn : '.tmp/concat/scripts.js.map'
+			    },
+				files: {
+					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
+				}
+			},	   
+			config: {
+				options: {
+	    			sourceMapIn : '.tmp/concat/config.js.map'
+			    },
 				files: {
 					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
-					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
 				}
 			},	   
 		},
 		concat: {
 			options: {
 				separator: ';',
+			    sourceMap: true
 			},
 			scripts: {
 				src: ['.tmp/scripts/**/*.js'],
@@ -679,8 +694,8 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
-				src: ['.tmp/concat/templates.js', '<%= yeoman.dist %>/scripts/scripts.min.js'],
-				dest: '<%= yeoman.dist %>/scripts/scripts.min.js',
+				src: ['.tmp/concat/templates.js', '.tmp/concat/scripts.js'],
+				dest: '.tmp/concat/scripts.js',
 			},
 		},
 
@@ -820,17 +835,16 @@ module.exports = function(grunt) {
 		'ngmin',
 		'cdnify',
 		'cssmin',				// minify css files
-		// 'rev',
 		'usemin',
 		'htmlmin',
 		'htmlmin:distTemplates', // minify template files before concatenation
 		'html2js', 				// merge all templates to one js file
 		'concat:scripts',
 		'concat:config',
-		'replace:dist', 		// inject angular module for merged templates
-		'uglify',
 		'replace:tmplMinify', 		// minify merged templates
 		'concat:tmpl',			// concat templates merged to JS into scripts
+		'replace:dist', 		// inject angular module for merged templates
+		'uglify',
 		'cacheBust'
 	]);
 
