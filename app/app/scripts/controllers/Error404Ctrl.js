@@ -7,9 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('Error404Ctrl', [
-	'$scope', '$location',
-	function($scope, $location) {
+	'$scope', '$location', '$rootScope',
+	function($scope, $location, $rootScope) {
 		var container = ".main-container";
+
+		$scope.basePath = $rootScope.config.basePath;
 		
 		$scope.goToMarket = function() {
 			$location.url('/');
