@@ -263,8 +263,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     return postImages[img];
             }
 
-            if(userImage && $rootScope.testImageForSharing(userImage))
-                return userImage;
+            // if(userImage && $rootScope.testImageForSharing(userImage))
+            //     return userImage;
 
             return {
                 size: $$config.defaultHearthImageSize,
