@@ -766,7 +766,8 @@
     "POSITIVE": "Všechno klaplo",
     "POSITIVE_FEEDBACK_PLACEHOLDER": "Vše proběhlo jak mělo? Jste nadšeni? Tak šup... dejte to uživateli vědět.",
     "POST": {
-        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora."
+        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora.",
+        "TYPE_CHANGE_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit typ."
     },
     "POSTS": {
         "0": "inzeráty",
