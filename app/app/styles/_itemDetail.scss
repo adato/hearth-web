@@ -3,6 +3,16 @@
 	margin-right:0;
 }
 
+#item-detail .ad-detail-column.columns, #item-detail .ad-detail-column .columns{
+	padding-left:0;
+	padding-right:0;
+}
+
+.market article.post-on-market .ad-detail-column .columns {
+	padding-left:0;
+	padding-right:0;
+} 
+
 #item-detail, .market article.post-on-market, .profile-view article.post-on-market, .community-view article.post-on-market {
 	.box {
 		padding:$ui-grid-size;
@@ -22,7 +32,7 @@
 		float:right;
 		clear:left;
 		padding-right:0;
-		padding-left:2*$ui-small-grid-size;
+		padding-left:$ui-grid-size;
 
 		&:before {
 			content:"";
@@ -184,10 +194,6 @@
 
 	.ad-detail-column {
 		margin-bottom:3*$ui-small-grid-size;
-		.columns {
-			padding-left:0;
-			padding-right:0;
-		}
 		header {
 			margin-bottom:1em;
 			margin-top:-3px;
