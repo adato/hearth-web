@@ -13,6 +13,7 @@ $$localConfig = {
 		google: '498929272646-pn752gcu0r0d783pn4i8k6iuatmvf6cm.apps.googleusercontent.com'
 	},
 	apiPath: 'https://api.hearth.net',
+	rollbar: '37749b1156e24ca986bf5a77dd74eefc',
 	newRelic: {
 		 licenseKey:"b7ed760467",
 		 applicationID:"5107330",
