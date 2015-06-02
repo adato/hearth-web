@@ -4,6 +4,8 @@
 
 <p>{{ info.description }}</p>
 
-<h4>{{ 'COMMUNITY_TERMS' | translate }}</h3>
+<div ng-if="info.terms">
+<h4>{{ 'COMMUNITY_TERMS' | translate }}</h4>
 
 <p>{{ info.terms }}</p>
+</div>
