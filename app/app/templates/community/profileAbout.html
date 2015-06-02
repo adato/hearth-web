@@ -3,3 +3,9 @@
 <h3>{{:: 'COMMUNITY_ABOUT_SHORT' | translate }}</h3>
 
 <p>{{ info.description }}</p>
+
+<div ng-if="info.terms">
+<h4>{{:: 'COMMUNITY_TERMS' | translate }}</h4>
+
+<p>{{ info.terms }}</p>
+</div>
