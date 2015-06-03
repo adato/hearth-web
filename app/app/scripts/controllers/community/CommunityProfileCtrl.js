@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload',
-	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
+	'$scope', '$stateParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload',
+	function($scope, $stateParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
 		$scope.loaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -20,16 +20,16 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		$scope.fetchCommunity = function() {
-			if(!$routeParams.id) return false;
+			if(!$stateParams.id) return false;
 
 			// if we load profile of another user (there are different IDs) scroll to top
-			if ($scope.info._id !== $routeParams.id) {
+			if ($scope.info._id !== $stateParams.id) {
 				$rootScope.top(0, 1);
 				$scope.loaded = false;
 			}
 
 			$scope.loadingCounter++;
-			Community.get({_id: $routeParams.id }, function(res) {
+			Community.get({_id: $stateParams.id }, function(res) {
 
 				$scope.loadingCounter--;
 				$scope.info = res;

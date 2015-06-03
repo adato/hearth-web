@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$routeParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph',
+	'$scope', '$route', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph',
 
-	function($scope, $route, User, $routeParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph) {
+	function($scope, $route, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph) {
 		$scope.initPage = function() {
 			$scope.loaded = false;
 			$scope.info = false;
@@ -48,28 +48,28 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		 */
 		$scope.fetchUser = function (fetchSubpage) {
 			// dont load user when there is no ID in params
-			if(! $routeParams.id) return false;
+			if(! $stateParams.id) return false;
 
 			// if we are loading new user init
-			if($scope.paramId && $scope.paramId != $routeParams.id) {
+			if($scope.paramId && $scope.paramId != $stateParams.id) {
 				$scope.initPage();
 			}
 			
 			// if we load profile of another user (there are different IDs) scroll to top
-			if($scope.info._id !== $routeParams.id) {
+			if($scope.info._id !== $stateParams.id) {
 				$rootScope.top(0, 1);
 				$scope.loaded = false;
 			}
 
 			// get user data
-			User.get({_id: $routeParams.id}, function(res) {
+			User.get({_id: $stateParams.id}, function(res) {
 				$scope.info = res;
 				$scope.info.cities = $scope.citiesToString(res);
 
 				$scope.info.created_at_days = Time.getDateDiffToNow($scope.info.created_at);
 				// count karma values
 				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
-				$scope.mine = $rootScope.isMine($routeParams.id);
+				$scope.mine = $rootScope.isMine($stateParams.id);
 				// $scope.loaded = true;
 
 				OpenGraph.set(res.name, "", null, res.avatar.large, res.avatar.size);

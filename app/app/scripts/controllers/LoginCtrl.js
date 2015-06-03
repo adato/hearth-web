@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
-	'$scope', '$location', '$routeParams', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth',
-	function($scope, $location, $routeParams, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth) {
+	'$scope', '$location', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth',
+	function($scope, $location, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth) {
 		$scope.data = {
 			username: '',
 			password: ''

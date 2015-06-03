@@ -99,11 +99,11 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
       <![endif]-->
 
-      <div class="all-visible row max-width" ng-show="initFinished">
+      <div class="all-visible row max-width">
         <section ng-include="'/app/templates/navigation.html'" id="navigation"></section>
         
-       <!-- <div ui-view></div> -->
-       <!-- <div app-view-segment="0" class="main-container"></div>
+       <div ui-view class="main-container"></div>
+       <!-- <div app-view-segment="0"></div>
         <ng-view style="position: relative;top:10em;"></ng-view>
          -->
         <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
@@ -210,13 +210,9 @@
 
 
       <!-- build:js /app/scripts/scripts.min.js -->
-
-      
       <script src="scripts/oms.min.js"></script>
       <script src="scripts/app.js"></script>
-      <!-- <script src="scripts/routes.js"></script> -->
-
-
+      <script src="scripts/routes.js"></script>
 
       <script src="scripts/services/resources/ChangePassword.js"></script>
       <script src="scripts/services/resources/Community.js"></script>

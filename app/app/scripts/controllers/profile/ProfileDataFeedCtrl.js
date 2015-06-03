@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
-    function($scope, $timeout, $rootScope, $routeParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
+    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
+    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
         var loadServices = {
                 'profile': loadUserHome,
                 'profile.posts': loadUserPosts,
@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'profile.activities': UsersActivityLog.get
             },
             params = {
-                user_id: $routeParams.id
+                user_id: $stateParams.id
             };
         var inited = false;
         $scope.subPageLoaded = false;

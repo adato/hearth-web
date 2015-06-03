@@ -9,9 +9,9 @@
  */
 
 angular.module('hearth.controllers').controller('SearchCtrl', [
-	'$scope', 'UsersService', 'PostsService', '$routeParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
+	'$scope', 'UsersService', 'PostsService', '$stateParams', 'flash', '$timeout', '$rootScope', 'Auth', '$location', '$window', 'Errors', 'FulltextService', 'FolloweesPostsService', 'FolloweesSearchService', 'KeywordsService', '$analytics', 'geo',
 
-	function($scope, UsersService, PostsService, $routeParams, flash, $timeout, $rootScope, Auth, $location, $window, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
+	function($scope, UsersService, PostsService, $stateParams, flash, $timeout, $rootScope, Auth, $location, $window, Errors, FulltextService, FolloweesPostsService, FolloweesSearchService, KeywordsService, $analytics, geo) {
 		$scope.orderByPostSort = '';
 		$scope.adEditing = false;
 		$scope.location = $location;
@@ -402,7 +402,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		$scope.$on('$routeUpdate', function() {
-			if (($routeParams.id == null) || !$routeParams.id) {
+			if (($stateParams.id == null) || !$stateParams.id) {
 				return $scope.expandAd(null);
 			}
 		});

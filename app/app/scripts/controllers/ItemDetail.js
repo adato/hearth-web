@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
+	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
+	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
 		$scope.ad = false;
 		$scope.adDeleted = false;
 		$scope.loaded = false;
@@ -48,7 +48,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.loadReplies = function() {
-			PostReplies.get({user_id: $routeParams.id}, function(data) {
+			PostReplies.get({user_id: $stateParams.id}, function(data) {
 				$scope.replies = data.replies.filter($scope.deserializeReply);
 			});
 		};
@@ -61,7 +61,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		// load post data
 		$scope.load = function() {
 
-			Post.get({postId: $routeParams.id}, function(data) {
+			Post.get({postId: $stateParams.id}, function(data) {
 				$scope.ad = data;
 				
 				if($rootScope.loggedUser._id)

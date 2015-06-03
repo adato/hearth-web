@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$routeParams', '$location', '$timeout',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout) {
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
 		$scope.loaded = false;
@@ -284,8 +284,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
 				// load first conversation on init
-				if ($routeParams.id)
-					$scope.loadConversationDetail($routeParams.id);
+				if ($stateParams.id)
+					$scope.loadConversationDetail($stateParams.id);
 				else if (list.length)
 					$scope.showConversation(list[0], 0);
 
@@ -341,8 +341,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			}, function(list) {
 				$scope.loaded = true;
 				// load first conversation on init
-				if ($routeParams.id)
-					$scope.loadConversationDetail($routeParams.id, true);
+				if ($stateParams.id)
+					$scope.loadConversationDetail($stateParams.id, true);
 				else if (list.length)
 					$scope.showConversation(list[0], 0, true);
 

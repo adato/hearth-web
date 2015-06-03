@@ -1,4 +1,4 @@
-<div class="row page-not-found" ng-if="initFinished">
+<div class="page-not-found">
 	<div class="large-6 columns text-center"><img ng-src="{{ basePath }}images/tv.png"></div>
 	<div class="large-6 columns text-center">
 		<h1><big>404</big><br>{{:: 'ERROR_404_SUBHEADER' | translate }}</h1>
@@ -6,4 +6,5 @@
 		<br>
 		<button class="button-flat blue" ng-click="goToFeedback()">{{:: 'FEEDBACK' | translate }}</button> &nbsp; <button class="button-flat blue" ng-click="goToMarket()">{{:: 'GO_BACK_TO_MARKET' | translate }}</button>
 	</div>
+	<div class="clear"></div>
 </div>
