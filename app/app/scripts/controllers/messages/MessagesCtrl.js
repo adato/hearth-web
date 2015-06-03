@@ -151,7 +151,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		 */
 		$scope.showConversation = function(info, index, dontMarkAsReaded) {
 
-			if (!info.read) {
+			if (!info.read && !dontMarkAsReaded) {
 				Messenger.decrUnreaded();
 				info.read = true;
 			}
@@ -218,22 +218,23 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		// if we have detail ID in url load it and display in detail box
-		$scope.loadConversationDetail = function(id) {
+		$scope.loadConversationDetail = function(id, dontMarkAsReaded) {
 
 			// but first try to find it in list
 			if ($scope.conversations)
 				for (var i in $scope.conversations) {
 					if ($scope.conversations[i]._id == id) {
-						return $scope.showConversation($scope.conversations[i], i);
+						return $scope.showConversation($scope.conversations[i], i, true);
 					}
 				}
 
 			// if requested conversation is not in list, load it from API
 			Conversations.get({
 				exclude_self: true,
+				no_read: !!dontMarkAsReaded,
 				id: id
 			}, function(res) {
-				$scope.showConversation($scope.deserializeConversation(res), -1);
+				$scope.showConversation($scope.deserializeConversation(res), -1, true);
 			});
 		};
 
