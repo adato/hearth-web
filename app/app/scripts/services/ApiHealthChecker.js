@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('ApiHealthChecker', [
-	'$rootScope',
-	function($rootScope) {
+	'$rootScope', '$timeout',
+	function($rootScope, $timeout) {
 		var self = this;
 		var healthCheckTimeout = 2000;
 		var healthCheckTimeoutPointer = 0;
@@ -63,7 +63,14 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 				return false;
 
 			$("#maitenancePage").fadeIn();
+			$rootScope.showNewVersionNotify = false;
 		};
+
+
+		$timeout(function() {
+			$rootScope.showNewVersionNotify = true;
+		}, 5000);
+
 
 		this.turnOff = function() {
 			healthCheckRunning = false;;
@@ -71,8 +78,10 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 				return false;
 
 			$("#maitenancePage").fadeOut();
-			window.location = document.URL;
-			location.reload();
+			// window.location = document.URL;
+			// location.reload();
+			
+			$rootScope.showNewVersionNotify = true;
 		};
 	}
 ]);

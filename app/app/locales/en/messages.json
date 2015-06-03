@@ -181,6 +181,7 @@
     "COMMUNITY_RESTRICTIONS_PLACEHOLDER": "What membership rules does the community have?",
     "COMMUNITY_SEE_ALL_APPLICATIONS": "Show all community applications",
     "COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN": "Select person you want to hand over administration of community to and click send.",
+    "COMMUNITY_TERMS": "Podmínky členství",
     "COMMUNITY_UPDATED_DONE": "Community successfully updated.",
     "COMMUNITY_WAS_NOT_FOUND": "Taková komunita tu není..",
     "COMPLETE": "Send",
@@ -618,6 +619,7 @@
     "NEWEST": "Newest",
     "NEW_COMMUNITY_CREATED_TEXT": "Now you can switch to administrator view. You will act as a whole community.",
     "NEW_COMMUNITY_CREATED_TITLE": "You have created new community",
+    "NEW_VERSION_NOTIFICATION": "Na webu je dostupná nová verze. Chcete obnovit prohlížeč?",
     "NOTHING_FOUND": "Too bad! We haven't found anything. Maybe if you try again and ask differently?",
     "NOTICE_EMPTY_DATA": "There are no entries here.",
     "NOTIFICATION": {
@@ -891,6 +893,7 @@
     "RATING_TO_POST": "To post",
     "RATING_WAS_SAVED": "Rating was successfully saved.",
     "REGISTER_TO_HEARTH_TEXT": "Your new profile is just few clicks away.  Clickity click!",
+    "RELOAD": "Obnovit",
     "REMOVE": "Remove",
     "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Reply",

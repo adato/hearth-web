@@ -188,6 +188,7 @@
     "COMMUNITY_RESTRICTIONS_PLACEHOLDER": "Aké má komunita podmienky členstva?",
     "COMMUNITY_SEE_ALL_APPLICATIONS": "Zobraziť všetky prihlášky do komunity",
     "COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN": "Vyberte osobu, ktorej chcete odovzdať spravovanie komunity a kliknite na odoslať.",
+    "COMMUNITY_TERMS": "Podmínky členství",
     "COMMUNITY_UPDATED_DONE": "Komunita bola aktualizovaná",
     "COMMUNITY_WAS_NOT_FOUND": "Taková komunita tu není..",
     "COMPLETE": "Odoslať",
@@ -630,6 +631,7 @@
     "NEWEST": "Najnovšie",
     "NEW_COMMUNITY_CREATED_TEXT": "Tu sa môžete prepnúť do pohľadu správcu. Budete potom v Hearth vystupovať za celú komunitu.",
     "NEW_COMMUNITY_CREATED_TITLE": "Založili ste novú komunitu",
+    "NEW_VERSION_NOTIFICATION": "Na webu je dostupná nová verze. Chcete obnovit prohlížeč?",
     "NOTHING_FOUND": "Ajajaj! Nič sme, bohužiaľ, nenašli. Skúste sa opýtať inak.",
     "NOTICE_EMPTY_DATA": "Zatiaľ tu nie sú žiadne záznamy.",
     "NOTIFICATION": {
@@ -913,6 +915,7 @@
     "RATING_TO_POST": "k inzerátu",
     "RATING_WAS_SAVED": "Hodnotenie bolo úspešne uložené. Čo je doma, to sa počíta.",
     "REGISTER_TO_HEARTH_TEXT": "Váš profil je už len pár klikov odtiaľto. Šup šup.",
+    "RELOAD": "Obnovit",
     "REMOVE": "Odobrať",
     "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Odpovedať",

@@ -62,6 +62,11 @@
       <h2 translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
   </div>
 </div>
+<div ng-cloak id="new-version-notify" ng-show="showNewVersionNotify">
+  <p>{{ 'NEW_VERSION_NOTIFICATION' | translate }}</p>
+  <span ng-click="refreshToPath()" class="left">{{ 'RELOAD' | translate }}</span>
+  <span ng-click="closeMaintenanceNotify();" class="right">{{ 'CLOSE' | translate }}</span>
+</div>
 <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
 
 <div id="all">
