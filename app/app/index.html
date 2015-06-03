@@ -54,128 +54,110 @@
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/css/nanoscroller.min.css" media="screen" />
     
   </head>
-  <body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
-
-<div class="ngdialog ngdialog-theme-default" id="maitenancePage">
-  <div class="ngdialog-overlay"></div>
-  <div class="ngdialog-content" ng-cloak>
-      <h2 translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
-  </div>
-</div>
-<div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
-
-<div id="all">
-  <div id="fb-root"></div>
-  <div id="notify-top"></div>
-  <script src="//connect.facebook.net/en_US/all.js"></script>
-  <script type='text/javascript'>
-  <!--
-    // fb invite jump out from FB frame
-    if (top.location!= self.location) {
-      top.location = self.location;
-    }
-
-    // fb login redirects to this URL
-    if (window.location.hash && window.location.hash === '#_=_') {
-        window.location.hash = '';
-    }
-
-    // refresh from old URL style to new one #!/ => /
-    if (!!~window.location.href.indexOf('#!/')){
-       // != -1 && window.location.href.indexOf('#!') == -1
-      window.location.href =  window.location.href.replace('#!/', '');
-    }
-  //-->
-  </script>
-
-  <script>
-    // window.fbAsyncInit = function() {
-    //     FB.init({appId: '301646633324636', status: true, cookie: true,
-    //     xfbml: true});
-    // };
-    // (function() {
-    //     var e = document.createElement('script'); e.async = true;
-    //     e.src = document.location.protocol +
-    //     '//connect.facebook.net/en_US/all.js';
-    //     document.getElementById('fb-root').appendChild(e);
-    // }());
-  </script>
-
-    <!--[if lt IE 10]>
-      <div class="chromeframe">
-        <div class="reason">
-          <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
-        </div>
-        
-      </div>
-    <![endif]-->
-
-    <!--[if lt IE 9]>
-      <script src="/app/vendor/es5-shim/es5-shim.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
-    <![endif]-->
-
-    <div class="all-visible row max-width" ng-show="initFinished">
-      <section ng-include="'/app/templates/navigation.html'" id="navigation"></section>
-      <div app-view-segment="0" class="main-container"></div>
-      <ng-view style="position: relative;top:10em;"></ng-view>
-      <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
-          {{topArrowText.top}}
-          <span class="fa fa-caret-square-o-up"></span>
-          {{topArrowText.bottom}}
+  <body ng-controller="BaseCtrl" ng-init="init()" ng-class="pageType" ng-keydown="escapeKey($event)">
+    <div class="ngdialog ngdialog-theme-default" id="maitenancePage">
+      <div class="ngdialog-overlay"></div>
+      <div class="ngdialog-content" ng-cloak>
+          <h2 translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
       </div>
     </div>
+    <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
+    <div id="all">
+      <div id="fb-root"></div>
+      <div id="notify-top"></div>
+      <script src="//connect.facebook.net/en_US/all.js"></script>
+      <script type='text/javascript'>
+      <!--
+        // fb invite jump out from FB frame
+        if (top.location!= self.location) {
+          top.location = self.location;
+        }
 
-    <script>
-      EMPTY_AVATAR_URL = 'data-main="images/no-avatar.jpg"'.slice(11, -1);
-      EMPTY_COMMUNITY_AVATAR_URL = 'data-main="images/no-cm-avatar.jpg"'.slice(11, -1);
-    </script>
+        // fb login redirects to this URL
+        if (window.location.hash && window.location.hash === '#_=_') {
+            window.location.hash = '';
+        }
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-sanitize.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-resource.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-route-segment/1.3.3/angular-route-segment.min.js"></script>
+        // refresh from old URL style to new one #!/ => /
+        if (!!~window.location.href.indexOf('#!/')){
+           // != -1 && window.location.href.indexOf('#!') == -1
+          window.location.href =  window.location.href.replace('#!/', '');
+        }
+      //-->
+      </script>
+      <!--[if lt IE 10]>
+        <div class="chromeframe">
+          <div class="reason">
+            <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
+          </div>
+          
+        </div>
+      <![endif]-->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
-    <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.11.1/select.js"></script>
+      <!--[if lt IE 9]>
+        <script src="/app/vendor/es5-shim/es5-shim.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+      <![endif]-->
 
-    
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/javascripts/jquery.nanoscroller.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    <script type="text/javascript" src="/app/libs/lemmon-slider.js"></script>
-    <script type="text/javascript" src="/app/libs/jquery.tipsy.js"></script>
+      <div class="all-visible row max-width" ng-show="initFinished">
+        <section ng-include="'/app/templates/navigation.html'" id="navigation"></section>
+        
+       <!-- <div ui-view></div> -->
+       <!-- <div app-view-segment="0" class="main-container"></div>
+        <ng-view style="position: relative;top:10em;"></ng-view>
+         -->
+        <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
+            {{topArrowText.top}}
+            <span class="fa fa-caret-square-o-up"></span>
+            {{topArrowText.bottom}}
+        </div>
+      </div>
 
-    <script src="/app/vendor/async/lib/async.js"></script>
-    <script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
-    <script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
-    <script src="/app/vendor/ngDialog/js/ngDialog.js"></script>
-    <script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-    <script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
-    <script src="/app/vendor/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
-    <script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
-    <script src="/app/vendor/SHA-1/sha1.js"></script>
-    <script src="/app/vendor/angularitics/src/angulartics-ga.js"></script>
-    <script src="/app/vendor/angularitics/src/angulartics.js"></script>
-    <script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
-    <script src="/app/vendor/fastclick/lib/fastclick.js"></script>
-    <script src="/app/vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
-    <script src="/app/vendor/satellizer/satellizer.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-sanitize.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-resource.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
+      <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
-    <script src="/app/vendor/angular-translate/angular-translate.js"></script>
-    <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.11.1/select.js"></script>
 
-    <script src="/app/vendor/exif-js/exif.js"></script>
 
-    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/javascripts/jquery.nanoscroller.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script type="text/javascript" src="/app/libs/lemmon-slider.js"></script>
+      <script type="text/javascript" src="/app/libs/jquery.tipsy.js"></script>
+
+      <script src="/app/vendor/async/lib/async.js"></script>
+      <script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
+      <script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
+      <script src="/app/vendor/ngDialog/js/ngDialog.js"></script>
+      <script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+      <script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
+      <script src="/app/vendor/angular-loading-bar/build/loading-bar.js"></script>
+      <script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
+      <script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
+      <script src="/app/vendor/SHA-1/sha1.js"></script>
+      <script src="/app/vendor/angularitics/src/angulartics-ga.js"></script>
+      <script src="/app/vendor/angularitics/src/angulartics.js"></script>
+      <script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
+      <script src="/app/vendor/fastclick/lib/fastclick.js"></script>
+      <script src="/app/vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
+      <script src="/app/vendor/satellizer/satellizer.min.js"></script>
+
+      <script src="/app/vendor/angular-translate/angular-translate.js"></script>
+      <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+      <script src="/app/vendor/exif-js/exif.js"></script>
+
+    <!-- // <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
     <script>
       preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
     </script>
@@ -185,7 +167,6 @@
           'sensor=true&libraries=places,geometry&language=';
 
       document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
-      
     </script>
     <script src="/app/vendor/markerclustererplus/src/markerclusterer.js"></script>
 
@@ -212,85 +193,99 @@
     </script>
 
 
-    <!-- build:js /app/scripts/scripts.min.js -->
-    <script src="scripts/oms.min.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/routes.js"></script>
+  
+
+    <script>
+      $(function() { FastClick.attach(document.body);});
+    </script>
+    <!-- Crazy Egg tracking script -->
+    <script type="text/javascript">
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName("script")[0];
+      a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
 
 
-    <script src="scripts/services/resources/ChangePassword.js"></script>
-    <script src="scripts/services/resources/Community.js"></script>
-    <script src="scripts/services/resources/CommunityActivityLog.js"></script>
-    <script src="scripts/services/resources/CommunityApplicants.js"></script>
-    <script src="scripts/services/resources/CommunityDelegateAdmin.js"></script>
-    <script src="scripts/services/resources/CommunityLeave.js"></script>
-    <script src="scripts/services/resources/CommunityMembers.js"></script>
-    <script src="scripts/services/resources/CommunityMemberships.js"></script>
-    <script src="scripts/services/resources/CommunityRatings.js"></script>
-    <script src="scripts/services/resources/Email.js"></script>
-    <script src="scripts/services/resources/Feedback.js"></script>
-    <script src="scripts/services/resources/FolloweePosts.js"></script>
-    <script src="scripts/services/resources/Followees.js"></script>
-    <script src="scripts/services/resources/FolloweeSearch.js"></script>
-    <script src="scripts/services/resources/Followers.js"></script>
-    <script src="scripts/services/resources/Friends.js"></script>
-    <script src="scripts/services/resources/Fulltext.js"></script>
-    <script src="scripts/services/resources/Info.js"></script>
-    <script src="scripts/services/resources/Invitation.js"></script>
-    <script src="scripts/services/resources/ItemDetailResource.js"></script>
-    <script src="scripts/services/resources/Keywords.js"></script>
-    <script src="scripts/services/resources/Password.js"></script>
-    <script src="scripts/services/resources/Post.js"></script>
-    <script src="scripts/services/resources/PostReplies.js"></script>
-    <script src="scripts/services/resources/Session.js"></script>
-    <script src="scripts/services/resources/Tutorial.js"></script>
-    <script src="scripts/services/resources/User.js"></script>
-    <script src="scripts/services/resources/UserLocation.js"></script>
-    <script src="scripts/services/resources/UserRatings.js"></script>
-    <script src="scripts/services/resources/UsersActivityLog.js"></script>
-    <script src="scripts/services/resources/Conversations.js"></script>
-    
-    <script src="scripts/services/$feature.js"></script>
-    <script src="scripts/services/$session.js"></script>
-    <script src="scripts/services/ApiHealthChecker.js"></script>
-    <script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
-    <script src="scripts/services/Auth.js"></script>
-    <!-- // <script src="scripts/services/CommunityService.js"></script> -->
-    <script src="scripts/services/Errors.js"></script>
-    <script src="scripts/services/Facebook.js"></script>
-    <script src="scripts/services/Filter.js"></script>
-    <script src="scripts/services/FolloweesPostsService.js"></script>
-    <script src="scripts/services/FolloweesSearchService.js"></script>
-    <script src="scripts/services/FulltextService.js"></script>
-    <script src="scripts/services/HearthLoginInterceptor.js"></script>
-    <script src="scripts/services/Karma.js"></script>
-    <script src="scripts/services/KeywordsService.js"></script>
-    <script src="scripts/services/LanguageSwitch.js"></script>
-    <script src="scripts/services/Notify.js"></script>
-    <script src="scripts/services/OpenGraph.js"></script>
-    <script src="scripts/services/PostsService.js"></script>
-    <script src="scripts/services/ProfileProgress.js"></script>
-    <script src="scripts/services/ResponseErrors.js"></script>
-    <script src="scripts/services/SessionLanguageStorage.js"></script>
-    <script src="scripts/services/Time.js"></script>
-    <script src="scripts/services/timeAgoService.js"></script>
-    <script src="scripts/services/UnauthReload.js"></script>
-    <script src="scripts/services/UsersCommunitiesService.js"></script>
-    <script src="scripts/services/UsersService.js"></script>
-    <script src="scripts/services/ViewPort.js"></script>
-    <script src="scripts/services/Communities.js"></script>
-    <script src="scripts/services/Messenger.js"></script>
-    
 
-     <script src="scripts/filters/filters.js"></script>
 
+      <!-- build:js /app/scripts/scripts.min.js -->
+
+      
+      <script src="scripts/oms.min.js"></script>
+      <script src="scripts/app.js"></script>
+      <!-- <script src="scripts/routes.js"></script> -->
+
+
+
+      <script src="scripts/services/resources/ChangePassword.js"></script>
+      <script src="scripts/services/resources/Community.js"></script>
+      <script src="scripts/services/resources/CommunityActivityLog.js"></script>
+      <script src="scripts/services/resources/CommunityApplicants.js"></script>
+      <script src="scripts/services/resources/CommunityDelegateAdmin.js"></script>
+      <script src="scripts/services/resources/CommunityLeave.js"></script>
+      <script src="scripts/services/resources/CommunityMembers.js"></script>
+      <script src="scripts/services/resources/CommunityMemberships.js"></script>
+      <script src="scripts/services/resources/CommunityRatings.js"></script>
+      <script src="scripts/services/resources/Email.js"></script>
+      <script src="scripts/services/resources/Feedback.js"></script>
+      <script src="scripts/services/resources/FolloweePosts.js"></script>
+      <script src="scripts/services/resources/Followees.js"></script>
+      <script src="scripts/services/resources/FolloweeSearch.js"></script>
+      <script src="scripts/services/resources/Followers.js"></script>
+      <script src="scripts/services/resources/Friends.js"></script>
+      <script src="scripts/services/resources/Fulltext.js"></script>
+      <script src="scripts/services/resources/Info.js"></script>
+      <script src="scripts/services/resources/Invitation.js"></script>
+      <script src="scripts/services/resources/ItemDetailResource.js"></script>
+      <script src="scripts/services/resources/Keywords.js"></script>
+      <script src="scripts/services/resources/Password.js"></script>
+      <script src="scripts/services/resources/Post.js"></script>
+      <script src="scripts/services/resources/PostReplies.js"></script>
+      <script src="scripts/services/resources/Session.js"></script>
+      <script src="scripts/services/resources/Tutorial.js"></script>
+      <script src="scripts/services/resources/User.js"></script>
+      <script src="scripts/services/resources/UserLocation.js"></script>
+      <script src="scripts/services/resources/UserRatings.js"></script>
+      <script src="scripts/services/resources/UsersActivityLog.js"></script>
+      <script src="scripts/services/resources/Conversations.js"></script>
+
+      <script src="scripts/services/Validators.js"></script>
+      <script src="scripts/services/$feature.js"></script>
+      <script src="scripts/services/$session.js"></script>
+      <script src="scripts/services/ApiHealthChecker.js"></script>
+      <script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
+      <script src="scripts/services/Auth.js"></script>
+      <!-- // <script src="scripts/services/CommunityService.js"></script> -->
+      <script src="scripts/services/Errors.js"></script>
+      <script src="scripts/services/Facebook.js"></script>
+      <script src="scripts/services/Filter.js"></script>
+      <script src="scripts/services/FolloweesPostsService.js"></script>
+      <script src="scripts/services/FolloweesSearchService.js"></script>
+      <script src="scripts/services/FulltextService.js"></script>
+      <script src="scripts/services/HearthLoginInterceptor.js"></script>
+      <script src="scripts/services/Karma.js"></script>
+      <script src="scripts/services/KeywordsService.js"></script>
+      <script src="scripts/services/LanguageSwitch.js"></script>
+      <script src="scripts/services/Notify.js"></script>
+      <script src="scripts/services/OpenGraph.js"></script>
+      <script src="scripts/services/PostsService.js"></script>
+      <script src="scripts/services/ProfileProgress.js"></script>
+      <script src="scripts/services/ResponseErrors.js"></script>
+      <script src="scripts/services/SessionLanguageStorage.js"></script>
+      <script src="scripts/services/Time.js"></script>
+      <script src="scripts/services/timeAgoService.js"></script>
+      <script src="scripts/services/UnauthReload.js"></script>
+      <script src="scripts/services/UsersCommunitiesService.js"></script>
+      <script src="scripts/services/UsersService.js"></script>
+      <script src="scripts/services/ViewPort.js"></script>
+      <script src="scripts/services/Communities.js"></script>
+      <script src="scripts/services/Messenger.js"></script>
+
+      <script src="scripts/filters/filters.js"></script>
+      
       <script src="scripts/directives/communitySelector.js"></script>
       <script src="scripts/directives/slideTrigger.js"></script>
-    <script src="scripts/services/Validators.js"></script>
-
-    
-     <script src="scripts/filters/filters.js"></script>
-
       <script src="scripts/directives/ago.js"></script>
       <script src="scripts/directives/classIfOverflow.js"></script>
       <script src="scripts/directives/dynamicHeight.js"></script>
@@ -350,7 +345,7 @@
       <script src="scripts/utils/validatedCheckbox.js"></script>
       <script src="scripts/utils/whenScrolled.js"></script>
       <script src="scripts/utils/withErrors.js"></script>
-      
+
       <script src="scripts/geo/geo.js"></script>
       <script src="scripts/geo/locations.js"></script>
       <script src="scripts/geo/searchMap.js"></script>
@@ -381,7 +376,7 @@
       <script src="scripts/controllers/ItemDetail.js"></script>
       <script src="scripts/controllers/ItemDetailOld.js"></script>
       <script src="scripts/controllers/TokenLoginCtrl.js"></script>
-      
+
       <script src="scripts/controllers/messages/MessagesCtrl.js"></script>
 
       <script src="scripts/controllers/modal/RemoveItemFromCommunity.js"></script>
@@ -393,19 +388,9 @@
       <script src="scripts/controllers/modal/Tutorial.js"></script>
       <script src="scripts/controllers/modal/InviteBox.js"></script>
       <script src="scripts/controllers/modal/ConfirmBox.js"></script>
-    <!-- endbuild -->
 
-    <script>
-      $(function() { FastClick.attach(document.body);});
-    </script>
-    <!-- Crazy Egg tracking script -->
-    <script type="text/javascript">
-      setTimeout(function(){var a=document.createElement("script");
-      var b=document.getElementsByTagName("script")[0];
-      a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
-      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-    </script>
+      <!-- endbuild -->
 
-  </div>
+    </div>
   </body>
 </html>
