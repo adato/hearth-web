@@ -81,11 +81,19 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         }, done);
                 };
 
+                /**
+                 * If we have space on top, load older messages
+                 * also add parameter to dont mark conversation as readed when loading messages
+                 */
                 $scope.testOlderMessagesLoading = function(dontMarkAsReaded) {
                     if($(".nano-content", element).scrollTop() < 100)
                         $scope.loadOlderMessages(dontMarkAsReaded);
                 };
                 
+                $scope.onContentScrolling = function() {
+                    $scope.testOlderMessagesLoading();
+                };
+
                 /**
                  * This will handle callback functions after first messages are loaded
                  */
@@ -93,14 +101,14 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     _loadingOlderMessages = false;
 
                     // start pulling new messages
-                    $scope.scheduleNewMessagesLoading();
+                    // $scope.scheduleNewMessagesLoading();
 
                     $timeout(function() {
                         // test if we are on bottom
                         $scope.testOlderMessagesLoading(true);
 
                         // when scrolled top, load older messages
-                        $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
+                        $(".nano-content", element).scroll($scope.onContentScrolling);
                     });
                 };
 
@@ -128,7 +136,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         return false;
 
                     // set info to conversation detail
-                    $scope.info.last_message_time = lastMessage.created_at;
                     $scope.info.message = lastMessage;
                     $scope.info.messages_count += messagesCount;
 
@@ -174,7 +181,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     _loadLock = true;
 
                     $scope.loadMessages({
-                            newer: $scope.getLastMessageTime()
+                            newer: $scope.getLastMessageTime(),
+                            no_read: true,
                         }, 
                         function(messages) {
                             _loadLock = false;
@@ -270,13 +278,15 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
-                $scope.setCurrentConversationAsReaded = function() {
+                $scope.setConversationAsReaded = function() {
                     if (!$scope.info || $scope.info.read)
                         return false;
 
                     Messenger.decrUnreaded();
                     $scope.info.read = true;
-                    // Conversations.setReaded($scope.info._id); // TODO - uncoment this!!!
+                    Conversations.setReaded({id: $scope.info._id});
+
+                    $scope.$emit('currentConversationAsReaded');
                 };
 
                 /**
@@ -292,8 +302,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
                             _loadingOlderMessages = false;
 
                             $scope.scrollToCurrentPosition(function() {});
-                            if(loadOlderMessages !== true)
-                                $scope.setCurrentConversationAsReaded();
+                            if(loadOlderMessages !== true) {
+                                $scope.setConversationAsReaded();
+                            }
                         });
                 };
 
@@ -316,17 +327,13 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.resizeMessagesBox = function() {
                     var container = $(".messages-container", element);
 
-                    // console.log($(".messages-container").height(), element.find(".conversation-detail-top").outerHeight(), element.find(".messages-reply").outerHeight());
-
                     $scope.testScrollBottom();
                     var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
-                    // console.log(maxBoxHeight);
 
                     container.css("max-height", maxBoxHeight);
-                    // container.css("height", $(".nano-content", element).prop('scrollHeight'));
                     container.fadeIn();
 
-                    $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
+                    $(".nano-content", element).scroll($scope.onContentScrolling);
 
                     $timeout(function() {
                         // resize scrollbar
@@ -375,30 +382,30 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 };
 
                 $scope.bindActionHandlers = function() {
-
                     element.bind('click', function() {
-                        if(!$scope.info.read)
-                            $scope.dontMarkAsReaded();
-                        alert("AA");
+                        $scope.setConversationAsReaded();
+                    });
 
-                        // ============ TODO
+                    element.bind('keypress', function() {
+                        $scope.setConversationAsReaded();
+                    });
 
+                    var ev = $scope.$on('scrollbarResize', function() {
+                        ev();
+
+                        $(".nano-content", element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e){
+                            if ( e.which > 0 || e.type == "mousedown" || e.type == "mousewheel"){
+                                $scope.setConversationAsReaded();
+                            }
+                        });
                     });
                 };
                 
-                $scope.unbindActionHandlers = function() {
-                    element.unbind('click');
-                };
-
-
                 /**
                  * Config init variables deserialize conversation
                  * and load messages
                  */
                 $scope.init = function(info) {
-                    // if(_loadingOlderMessages)
-                    //     return false;
-                    // _loadingOlderMessages = true;
                         
                     $timeout.cancel(_loadTimeoutPromise);
                     $scope.lockCounter++;
@@ -409,6 +416,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     $scope.messages = false;
                     $scope.participants = false;
                     $scope.showParticipants = false;
+                    $timeout($scope.bindActionHandlers);
+
 
                     // load first messages and mark as readed on API based on actual state
                     $scope.loadMessages(null, $scope.afterInitLoad, $scope.info.read);
@@ -418,13 +427,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $(window).resize($scope.resizeMessagesBox);
                 $scope.$on("conversationReplyFormResized", $scope.resizeMessagesBox);
 
-                $timeout($scope.bindActionHandlers);
                 $scope.$watch('info', $scope.init);
+                $scope.$on('loadNewMessages', $scope.loadNewMessages);
                 $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
                 $scope.$on('$destroy', function() {
                     // stop pulling new messages on directive destroy
                     $timeout.cancel(_loadTimeoutPromise);
-                    $scope.unbindActionHandlers();
                 });
             }
         };
