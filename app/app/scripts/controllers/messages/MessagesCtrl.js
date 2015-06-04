@@ -66,6 +66,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.$broadcast('filterApplied', filter);
 		};
 
+		$scope.setCurrentConversationAsReadedSoft = function() {
+			$scope.detail.read = true;
+		};
+		
 		$scope.setCurrentConversationAsReaded = function() {
 			if (!$scope.detail || $scope.detail.read)
 				return false;
@@ -75,6 +79,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadNewConversations = function() {
+			$scope.$broadcast('loadNewMessages');
+
 			if (!$scope.conversations.length)
 				return $scope.loadFirstConversations();
 
@@ -98,7 +104,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 				if (res.conversations.length) {
 					$scope.prependConversations($scope.deserialize(res.conversations));
-					$scope.setCurrentConversationAsReaded();
 				}
 			}, function() {
 				_loadLock = false;
@@ -128,32 +133,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.filter.query && $scope.applyFilter();
 		};
 
-		// $scope.markReadedAfterActivity = function(info, index) {
-		// 	console.log("Binding handlers");
-
-		// 	function markReaded() {
-		// 		console.log("Clearing handlers");
-
-		// 		$(window).unbind('mousemove');
-		// 		$(window).unbind('click');
-
-		// 		info.read = true;
-		// 		Messenger.decrUnreaded();
-		// 	}
-
-		// 	$("body").mousemove(markReaded);
-		// 	$("body").click(markReaded);
-		// };
-
 		/**
 		 * This will show requested conversation in right column
 		 * and optionally mark it as readed
 		 */
 		$scope.showConversation = function(info, index, dontMarkAsReaded) {
+			if(info._id == $scope.detail._id)
+				return false;
 
-			if (!info.read) {
+			if (!info.read && !dontMarkAsReaded) {
 				Messenger.decrUnreaded();
 				info.read = true;
+				Conversations.setReaded({id: info._id});
 			}
 
 			// if(!info.read && dontMarkAsReaded)
@@ -203,7 +194,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		 * Deserialize whole array of conversations
 		 */
 		$scope.deserialize = function(conversations) {
-			return conversations.map($scope.deserializeConversation);
+			var newArray = [];
+
+			for(var i in conversations) {
+				var conv = $scope.deserializeConversation(conversations[i]);
+
+				if(conversations[i]._id === $scope.detail._id) {
+				 	angular.copy(conv, $scope.detail);;
+				} else {
+					newArray.push(conv);
+				}
+			}
+			return newArray;
 		};
 
 		$scope.loadConversations = function(conf, done) {
@@ -218,22 +220,23 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		// if we have detail ID in url load it and display in detail box
-		$scope.loadConversationDetail = function(id) {
+		$scope.loadConversationDetail = function(id, dontMarkAsReaded) {
 
 			// but first try to find it in list
 			if ($scope.conversations)
 				for (var i in $scope.conversations) {
 					if ($scope.conversations[i]._id == id) {
-						return $scope.showConversation($scope.conversations[i], i);
+						return $scope.showConversation($scope.conversations[i], i, true);
 					}
 				}
 
 			// if requested conversation is not in list, load it from API
 			Conversations.get({
 				exclude_self: true,
+				no_read: !!dontMarkAsReaded,
 				id: id
 			}, function(res) {
-				$scope.showConversation($scope.deserializeConversation(res), -1);
+				$scope.showConversation($scope.deserializeConversation(res), -1, true);
 			});
 		};
 
@@ -355,6 +358,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('conversationCreated', $scope.loadCounters);
+		$scope.$on('currentConversationAsReaded', $scope.setCurrentConversationAsReadedSoft);
 		$scope.$on('conversationDeepUpdate', $scope.updateDeepConversation);
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);

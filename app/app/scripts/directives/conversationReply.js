@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name hearth.directives.messageReply
+ * @name hearth.directives.conversationReply
  * @description 
  * @restrict E
  */
 
-angular.module('hearth.directives').directive('messageReply', [
+angular.module('hearth.directives').directive('conversationReply', [
 	'Conversations', 'Notify', '$timeout',
 	function(Conversations, Notify, $timeout) {
 		return {
@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('messageReply', [
 			scope: {
 				conversation: '='
 			},
-			templateUrl: 'templates/directives/messageReply.html',
+			templateUrl: 'templates/directives/conversationReply.html',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
 				$scope.actors = [];
@@ -39,7 +39,7 @@ angular.module('hearth.directives').directive('messageReply', [
 				};
 				
 				$scope.onResize = function() {
-					$scope.$emit('messageReplyFormResized');
+					$scope.$emit('conversationReplyFormResized');
 				};
 
 				$scope.sendReply = function(reply) {
