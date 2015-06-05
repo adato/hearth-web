@@ -45,7 +45,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
         
         function loadCommunityAbout(id, done, doneErr) {
-        	// do nothing
+            finishLoading();
         }
 
         function loadCommunityMember(id, doneErr) {
