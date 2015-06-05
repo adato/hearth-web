@@ -4,6 +4,18 @@ angular.module('hearth').config([
 
 		// delay routing - first load all dependencies (user session, translations)
 		$urlRouterProvider.deferIntercept();
+		$urlRouterProvider.rule(function ($injector, $location) {
+
+		    var re = /(.+)(\/+)(\?.*)?$/
+		    var path = $location.url();
+
+		    if(re.test(path)) {
+		        return path.replace(re, '$1$3')
+		    }
+
+		    return false;
+		});
+
 
 		// For any unmatched url, redirect to /state1
 		// $urlRouterProvider.otherwise("/error404");
@@ -14,6 +26,11 @@ angular.module('hearth').config([
 				url: '/',
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
+			})
+			.state('map', {
+				url: '/map',
+				templateUrl: 'templates/map.html',
+				controller: 'MapCtrl',
 			})
 			.state('market-refresh', {
 				url: "/market",
@@ -90,22 +107,34 @@ angular.module('hearth').config([
 			    controller: 'ItemDetail'
 			})
 			.state('messages', {
-				url: '/messages/:id',
+				url: '/messages',
 				templateUrl: 'templates/messages/list.html',
-			    controller: 'MessagesCtrl'
+	            controller: 'MessagesCtrl'
 			})
-			.state('messagesAdd', {
-				url: '/messages/new',
-				templateUrl: 'templates/messages/add.html',
-			    controller: 'AddMessageCtrl'
+			.state('messages.detail', {
+				url: '/:id',
+      			template: '<div>abcd dbawdwd</div>'
+			})
+			.state('profile', {
+				url: '/profile/:id/{param}',
+				templateUrl: 'templates/profile/profile.html',
+				controller: 'ProfileCtrl',
+			})
+			.state('profileEdit', {
+				url: '/profile-edit',
+				templateUrl: 'templates/profile/editProfile.html',
+				controller: 'ProfileEditCtrl',
+			})
+			.state('profileSettings', {
+				url: '/profile-settings',
+				templateUrl: 'templates/profile/editSettings.html',
+				controller: 'ProfileSettingsCtrl',
 			})
 			.state('error404', {
 				templateUrl: 'templates/error404.html',
 				controller: 'Error404Ctrl'
-			})
+			});
 			
-
-
 		$urlRouterProvider.otherwise(function($injector, $location){
 		   var state = $injector.get('$state');
 		   state.go('error404');
