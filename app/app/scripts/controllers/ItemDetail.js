@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.loaded = false;
 		$scope.isPrivate = false;
 		$scope.profile = false;
-
+		$scope.isMine = false;
 
 		// init language
 		$scope.postTypes = {
@@ -64,7 +64,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			Post.get({postId: $stateParams.id}, function(data) {
 				$scope.ad = data;
 				
-				if($rootScope.loggedUser._id)
+				if($rootScope.loggedUser._id && data.name)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
 				else
 					$scope.loaded = true;
