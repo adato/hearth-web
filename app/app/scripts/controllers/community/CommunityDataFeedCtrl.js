@@ -13,13 +13,15 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         var inited = false;
 
 		 var loadServices = {
-            'community': loadCommunityHome,
-            'community.posts': loadCommunityPosts,
-            'community.members': loadCommunityMember,
-            'community.about': loadCommunityAbout,
-            'community.applications': loadCommunityApplications,
-            'community.activity-feed': loadCommunityActivityLog,
+            'home': loadCommunityHome,
+            'posts': loadCommunityPosts,
+            'members': loadCommunityMember,
+            'about': loadCommunityAbout,
+            'applications': loadCommunityApplications,
+            'activity': loadCommunityActivityLog,
         };
+
+        console.log($stateParams);
 
         function finishLoading() {
             $timeout(function(){
@@ -149,6 +151,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function init() {
+            $scope.pageSegment = $stateParams.page || 'home';
+
             // console.log("Calling load service for segment ", $scope.pageSegment);
             loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
 
@@ -178,13 +182,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         $scope.$on('itemDeleted', $scope.removeItemFromList);
-        if($rootScope.communityLoaded)
-            init();
-        else
-            $scope.$on('communityTopPanelLoaded', init);
-
-        $scope.$on('$destroy', function() {
-            $rootScope.communityLoaded = false;
-        });   
+        init();
     }
 ]);

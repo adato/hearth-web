@@ -7,16 +7,17 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', '$route', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph',
+	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph',
 
-	function($scope, $route, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph) {
+	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph) {
+		$scope.activePage = null;
+
 		$scope.initPage = function() {
 			$scope.loaded = false;
 			$scope.info = false;
 			$scope.paramId = false;
 			$scope.sendingRemoveFollower = false;
 			$scope.sendingAddFollower = false;
-			$rootScope.profileLoaded = false;
 			
 			// ratings
 			$scope.sendingRating = false;
@@ -30,6 +31,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			};
 		};
 		
+
+		console.log($stateParams);
+		console.log($location);
+
 		/**
 		 * Push cities to concatenated string.
 		 * Expects info.locations = [{city: ...}, ...]
@@ -43,17 +48,23 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			return list.join(", ");
 		};
 
+		$scope.serializeUser = function(user) {
+			user.cities = $scope.citiesToString(user);
+			user.created_at_days = Time.getDateDiffToNow(user.created_at);
+			user.karma = Karma.count(user.up_votes, user.down_votes);
+			return user;
+		};
+
 		/**
 		 * Fetch user of this profile
 		 */
 		$scope.fetchUser = function (fetchSubpage) {
 			// dont load user when there is no ID in params
+			console.log($stateParams);
+
 			if(! $stateParams.id) return false;
 
 			// if we are loading new user init
-			if($scope.paramId && $scope.paramId != $stateParams.id) {
-				$scope.initPage();
-			}
 			
 			// if we load profile of another user (there are different IDs) scroll to top
 			if($scope.info._id !== $stateParams.id) {
@@ -63,24 +74,18 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 			// get user data
 			User.get({_id: $stateParams.id}, function(res) {
-				$scope.info = res;
-				$scope.info.cities = $scope.citiesToString(res);
+				$scope.loaded = true;
 
-				$scope.info.created_at_days = Time.getDateDiffToNow($scope.info.created_at);
-				// count karma values
-				$scope.info.karma = Karma.count(res.up_votes, res.down_votes);
+				$scope.info = $scope.serializeUser(res);
 				$scope.mine = $rootScope.isMine($stateParams.id);
-				// $scope.loaded = true;
-
+				
 				OpenGraph.set(res.name, "", null, res.avatar.large, res.avatar.size);
-
-				$rootScope.profileLoaded = true;
 				// broadcast event for load subpages
 				if(fetchSubpage)
 					$scope.$broadcast("profileTopPanelLoaded");
 			}, function (res) {
 
-				// when something is wrong..
+				// when something went wrong..
 				$scope.loaded = true;
 				$scope.info = false;
 				$scope.mine = false;
@@ -142,9 +147,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		// when changed URL, save actual segment name to pageSegment value
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
-			$scope.pagePath = $route.current.originalPath;
-			if($route.current.$$route)
-				$scope.pageSegment = $route.current.$$route.segment;
+			console.log("REVIEW");
 		};
 
 		// refresh user info and if fetchSubpage == true also fetch new subpage
@@ -253,21 +256,20 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 			});
 		};
-
-		$scope.$on('$destroy', function() {
-			$rootScope.profileLoaded = false;
-		});
 		
 		// first init
 		$scope.initPage();
+		$scope.refreshUser();
+		
+		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
+			$scope.activePage = params.page;
+		});
+
 		// check if we are allowed to see this page
 		UnauthReload.check();
 		$scope.$on('profileRefreshUserNoSubpage', function() {
 			$scope.refreshUser(false);
 		});
-		$scope.$on('$routeChangeSuccess', $scope.refreshUser);
 		$scope.$on('profileRefreshUser', $scope.refreshUser);
-		$scope.$on('initFinished', $scope.refreshUser);
-		$rootScope.initFinished && $scope.refreshUser(true);
 	}
 ]);

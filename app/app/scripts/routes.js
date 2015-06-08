@@ -78,7 +78,7 @@ angular.module('hearth').config([
 			    controller: 'RegisterCtrl'
 			})
 			.state('search', {
-				url: '/search',
+				url: '/search?q',
 				templateUrl: 'templates/fulltext.html',
 			    controller: 'FulltextCtrl'
 			})
@@ -116,19 +116,65 @@ angular.module('hearth').config([
       			template: '<div>abcd dbawdwd</div>'
 			})
 			.state('profile', {
-				url: '/profile/:id/{param}',
+				abstract: true,
+    			url: '/profile/:id',
 				templateUrl: 'templates/profile/profile.html',
 				controller: 'ProfileCtrl',
 			})
+			.state('profile.default', {
+				url: '',
+				controller: 'ProfileDataFeedCtrl',
+				templateUrl: 'templates/profile/subviews/home.html',
+			})
+			.state('profile.subview', {
+				url: '/{page}',
+				controller: 'ProfileDataFeedCtrl',
+				templateUrl: function ($stateParams) {
+					var pages = ['activities', 'given-ratings', 'received-ratings', 'communities', 'friends', 'followers', 'following', 'posts', 'replies'];
+					var tplPath = 'templates/profile/subviews/';
+
+					if(!~pages.indexOf($stateParams.page))
+						$stateParams.page = 'home';
+					return tplPath+$stateParams.page+'.html';
+			  	}
+			})
 			.state('profileEdit', {
 				url: '/profile-edit',
-				templateUrl: 'templates/profile/editProfile.html',
+				templateUrl: 'templates/profile/edit.html',
 				controller: 'ProfileEditCtrl',
 			})
 			.state('profileSettings', {
 				url: '/profile-settings',
 				templateUrl: 'templates/profile/editSettings.html',
 				controller: 'ProfileSettingsCtrl',
+			})
+			.state('communityEdit', {
+    			url: '/community/:id/edit',
+				templateUrl: 'templates/community/editCommunity.html',
+				controller: 'CommunityCreateCtrl',
+			})
+			.state('community', {
+				abstract: true,
+    			url: '/community/:id',
+				templateUrl: 'templates/community/profile.html',
+				controller: 'CommunityProfileCtrl',
+			})
+			.state('community.default', {
+				url: '',
+				controller: 'CommunityDataFeedCtrl',
+				templateUrl: 'templates/community/subviews/home.html',
+			})
+			.state('community.subview', {
+				url: '/{page}',
+				controller: 'CommunityDataFeedCtrl',
+				templateUrl: function ($stateParams) {
+					var pages = ['activity', 'members', 'received-ratings', 'applications', 'about', 'posts'];
+					var tplPath = 'templates/community/subviews/';
+					
+					if(!~pages.indexOf($stateParams.page))
+						$stateParams.page = 'home';
+					return tplPath+$stateParams.page+'.html';
+			  	}
 			})
 			.state('error404', {
 				templateUrl: 'templates/error404.html',

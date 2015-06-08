@@ -109,8 +109,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!text) return false;
             $rootScope.top(0, 1);
 
-            $location.path('/search');
-            $location.search('q=' + (text || ""));
+            $location.path('/search?q=' + (text || ""));
             
             // first reload scope to new location, then start searching
             $timeout(function() {

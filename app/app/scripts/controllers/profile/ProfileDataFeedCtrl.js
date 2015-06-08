@@ -10,15 +10,16 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
     '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
     function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
         var loadServices = {
-                'profile': loadUserHome,
-                'profile.posts': loadUserPosts,
-                'profile.communities': loadCommunities,
-                'profile.given': UserRatings.given,
-                'profile.received': loadReceivedRatings,
-                'profile.following': loadFollowees,
-                'profile.followers': loadFollowers,
-                'profile.friends': loadFriends,
-                'profile.activities': UsersActivityLog.get
+                'home': loadUserHome,
+                'posts': loadUserPosts,
+                'replies': loadUserPosts,
+                'communities': loadCommunities,
+                'given-ratings': UserRatings.given,
+                'received-ratings': loadReceivedRatings,
+                'following': loadFollowees,
+                'followers': loadFollowers,
+                'friends': loadFriends,
+                'activities': UsersActivityLog.get
             },
             params = {
                 user_id: $stateParams.id
@@ -65,7 +66,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 $scope.closeUserRatingForm();
                 removeListener();
             });
-        }
+        };
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";
@@ -162,7 +163,13 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function init(e) {
+            $scope.pageSegment = $stateParams.page || 'home';
+            if(!loadServices[$scope.pageSegment]) return;
+
             $scope.subPageLoaded = false;
+
+            console.log($scope.pageSegment);
+
             // console.log("Calling load service", $scope.pageSegment, e);
             // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);
@@ -217,11 +224,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             });
         };
 
+        console.log("INNER: ", $stateParams);
+
         $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);
-        // if($rootScope.profileLoaded)
-        //     init();
-        // $scope.loaded && init();
+        init();
     }
 ]);
