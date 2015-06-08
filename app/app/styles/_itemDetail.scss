@@ -241,6 +241,9 @@
 				font-size:$ui-text-font-size;
 			}
 		}
+		.address-unlimited {
+			margin-bottom:3*$ui-small-grid-size;
+		}
 		footer {
 			background:color(4);
 			height:60px;
@@ -264,20 +267,26 @@
 				color:color(4);
 				background:color(3);
 				border-radius:50%;
-				padding:7px;
-				font-size:1em;
+				font-size:15px;
 				width:$ui-grid-size;
 				height:$ui-grid-size;
 				margin:$ui-small-grid-size / 2;
+				line-height:14px;
 				transition: all .2s ease-out;
 				&.fa-envelope {
-				   font-size: 13px;
-				    padding: 3px 0 11px;
-				    padding-left: 6px;
-				    padding-right: 3px;
-				    padding-top: 6px;
-				    position: relative;
-				    top: -2px;
+					font-size: 13px;
+					line-height:16px;
+					&:before {
+						top:5px;
+					}
+				}
+				&.fa-facebook:before {
+					left:7px;
+				}
+				&:before {
+					position: relative;
+					top:6px;
+					left:6px;
 				}
 				&:hover {
 					background:color(5);
