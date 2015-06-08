@@ -7,9 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService',
-
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService) {
+    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService',
+    function($scope, $locale, $rootScope, $location,  Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -84,7 +83,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * and add class of given controller to wrapping div container
          */
         $rootScope.$on("$routeChangeSuccess", function(next, current) {
-            $scope.segment = $route.current.segment;
+            // $scope.segment = $route.current.segment;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);
@@ -110,8 +109,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!text) return false;
             $rootScope.top(0, 1);
 
-            $location.path('/search');
-            $location.search('q=' + (text || ""));
+            $location.path('/search?q=' + (text || ""));
             
             // first reload scope to new location, then start searching
             $timeout(function() {

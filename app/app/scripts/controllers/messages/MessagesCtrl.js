@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$routeParams', '$location', '$timeout',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $routeParams, $location, $timeout) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout) {
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
 		$scope.loaded = false;
@@ -286,9 +286,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadFirstConversations = function() {
 			// Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
+				var paramId = $scope.getParamId();
 				// load first conversation on init
-				if ($routeParams.id)
-					$scope.loadConversationDetail($routeParams.id);
+				if (paramId)
+					$scope.loadConversationDetail(paramId);
 				else if (list.length)
 					$scope.showConversation(list[0], 0);
 
@@ -330,6 +331,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
+		$scope.getParamId = function() {
+			var parts = $location.url().split('/');
+			console.log(parts.length);
+
+			return parts.length > 2 ? parts[2] : false;
+		};
+
 		function init() {
 			$scope.conversations = false;
 			$scope.detail = false;
@@ -343,9 +351,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				offset: 0
 			}, function(list) {
 				$scope.loaded = true;
+
+				var paramId = $scope.getParamId();
+
 				// load first conversation on init
-				if ($routeParams.id)
-					$scope.loadConversationDetail($routeParams.id, true);
+				if (paramId)
+					$scope.loadConversationDetail(paramId, true);
 				else if (list.length)
 					$scope.showConversation(list[0], 0, true);
 
@@ -353,6 +364,20 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			});
 		};
+
+		var changeDetail = function(ev, state) {
+			
+			var paramId = $scope.getParamId();
+
+			// load first conversation on init
+			if (paramId)
+				$scope.loadConversationDetail(paramId, true);
+			else if (list.length)
+				$scope.showConversation(list[0], 0, true);
+		};
+
+		var urlChangeHandler = $rootScope.$on('$stateChangeSuccess', changeDetail);
+
 
 		UnauthReload.check();
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
@@ -368,6 +393,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// stop pulling new conversations on directive destroy
 			$timeout.cancel(_loadTimeoutPromise);
 			_loadTimeoutPromise = -1;
+			urlChangeHandler();
 		});
 	}
 ]);
