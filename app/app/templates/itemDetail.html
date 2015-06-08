@@ -170,7 +170,7 @@
 					</footer>
 				</article>
 
-				<div class="box post-replies row" ng-if="isMine">
+				<div class="box post-replies row" ng-if="isMine" scroll-to-view-on-hash="replies">
 					<h4 ng-if="replies.length">{{ 'POSTS.DETAIL.REPLIES' | translate }}</h4>
 					<div class="large-12 large-centered columns text-center no-result" ng-if="!replies.length"><p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p></div>
 					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies">

@@ -310,6 +310,12 @@
 					}
 				}
 			}
+			.reply-count-container .reply-info-link {
+				color:color(3);
+				text-decoration:underline;
+				margin-left:3*$ui-small-grid-size;
+				&:hover { color:color(5); }
+			}
 			.reply-button-container, .reply-count-container {
 				line-height: $ui-grid-size;
 				margin-right:3 * $ui-small-grid-size;
