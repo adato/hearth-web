@@ -15,6 +15,8 @@ angular.module('hearth.directives').directive('infoBox', [
 			replace: true,
 			scope: {
 				infoBox: "=",
+				infoboxIndex: "=",
+				infoboxClass: "=",
 			},
 			templateUrl: 'templates/directives/infoBox.html',
 			link: function(scope, el, attrs) {
@@ -22,6 +24,8 @@ angular.module('hearth.directives').directive('infoBox', [
 				scope.error = false; // an error occured when loading info
 				scope.info = false;  // we will cache infobox content
 				scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+				scope.infoboxIndex = 0 || scope.infoboxIndex;
+				scope.infoboxClass = '' || scope.infoboxClass;
 				
 				/**
 				 * Show user info into the box
