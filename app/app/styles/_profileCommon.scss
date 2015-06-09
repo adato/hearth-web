@@ -11,17 +11,13 @@
             h1 {
                 overflow: hidden;
                 line-height: 1.5;
-                padding: {
-                    left: 1rem;
-                    right: 1rem;
-                };
                 text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
                 a {
                     color: darken(color(3), 40%);
                 }
             }
             div.short-about {
-                margin-left: 40px;
+                margin-left: 30px;
                 margin-top:15px;
                 margin-bottom:15px;
                 word-wrap: break-word;
@@ -582,9 +578,13 @@
         word-wrap: break-word;
         @extend .large-4, .columns;
 
+        .info-avatar {
+            display:block;
+            float: left;
+        }
         .avatar {
             margin-top: 20px;
-            float: left;
+
         }
         a {
             color: darken(color(3), 20%);
