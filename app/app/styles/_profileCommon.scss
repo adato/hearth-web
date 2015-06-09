@@ -578,6 +578,7 @@
 .people-listing {
     @extend .clearfix;
     .person {
+        height: 115px;
         word-wrap: break-word;
         @extend .large-4, .columns;
 
@@ -591,7 +592,6 @@
                 color: color(5);
             }
         }
-        height: 115px;
         .name {
             margin-left: 100px;
         }

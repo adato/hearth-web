@@ -66,6 +66,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
+            console.log(next);
+
             var r1 = $rootScope.addressOld.split($$config.basePath);
             var r2 = $rootScope.addressNew.split($$config.basePath);
 
