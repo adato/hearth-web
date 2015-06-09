@@ -576,10 +576,13 @@
     .person {
         word-wrap: break-word;
         @extend .large-4, .columns;
+        padding:0;
 
         .info-avatar {
             display:block;
             float: left;
+            padding-left:15px;
+            padding-right:15px;
         }
         .avatar {
             margin-top: 20px;
