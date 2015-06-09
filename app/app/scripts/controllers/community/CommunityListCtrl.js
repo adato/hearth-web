@@ -7,32 +7,36 @@
  */
  
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', '$rootScope', 'CommunityMemberships', 'Community', 'UnauthReload',
-	function($scope, $rootScope, CommunityMemberships, Community, UnauthReload) {
-		$scope.randomCommunities = [];
-		$scope.loaded = false;
-		// my communities are loaded already in BaseCtrl for top navigation
+	'$scope', 'Community', 'UnauthReload', '$state',
+	function($scope, Community, UnauthReload, $state) {
+		$scope.list = [];
+		$scope.loading = false;
+		$scope.loadingFinished = false;
 
-		$scope.fetchRandomCommunities = function() {
-			
-			Community.suggested({}, function(res) {
-				$scope.randomCommunities = res;
-				$scope.loaded = true;
+		$scope.load = function() {
+			if($scope.loadingFinished) return false;
+
+			var conf = {
+				limit: 20,
+				offset: $scope.list.length
+			};
+
+			$scope.loading = true;
+
+			var service = ($state.current.name == 'communities.suggested') ? Community.suggested : Community.query;
+			service(conf, function(res) {
+				$scope.list = $scope.list.concat(res);
+				$scope.loading = false;
+
+				if(!res.length || $state.current.name == 'communities.suggested') {
+					return $scope.loadingFinished = true;
+				}
 			});
 		};
 
-		$scope.toggleForm = function() {
-			$(".community-list-add-button").slideToggle();
-			$(".community-list-add-form").toggle();
-		};
+		console.log("Current state: ", $state.current);
 
-		$scope.init = function() {
-
-			UnauthReload.check();
-			$scope.fetchRandomCommunities();
-		};
-
-		$scope.$on('initFinished', $scope.init);
-		$rootScope.initFinished && $scope.init();
+		UnauthReload.check();
+		$scope.load();
 	}
 ]);
