@@ -149,8 +149,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $rootScope.getActivityLink = function(object, target_object) {
             if(target_object)
-                return $rootScope.getProfileLink(target_object.type, target_object.id);
-            return $rootScope.getProfileLink(object.type, object.id);
+                return $rootScope.getProfileLink(target_object._type, target_object._id);
+            return $rootScope.getProfileLink(object._type, object._id);
         };
 
         /**
