@@ -128,14 +128,14 @@ angular.module('hearth').config([
 			.state('profile.subview', {
 				url: '/{page}',
 				controller: 'ProfileDataFeedCtrl',
-				templateUrl: ['$stateParams', function ($stateParams) {
+				templateUrl: function ($stateParams) {
 					var pages = ['activities', 'given-ratings', 'received-ratings', 'communities', 'friends', 'followers', 'following', 'posts', 'replies'];
 					var tplPath = 'templates/profile/subviews/';
 
 					if(!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';
 					return tplPath+$stateParams.page+'.html';
-			  	}]
+			  	}
 			})
 			.state('profileEdit', {
 				url: '/profile-edit',
@@ -166,14 +166,14 @@ angular.module('hearth').config([
 			.state('community.subview', {
 				url: '/{page}',
 				controller: 'CommunityDataFeedCtrl',
-				templateUrl: ['$stateParams', function ($stateParams) {
+				templateUrl: function ($stateParams) {
 					var pages = ['activity', 'members', 'received-ratings', 'applications', 'about', 'posts'];
 					var tplPath = 'templates/community/subviews/';
-					
+
 					if(!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';
 					return tplPath+$stateParams.page+'.html';
-			  	}]
+			  	}
 			})
 			.state('error404', {
 				templateUrl: 'templates/error404.html',

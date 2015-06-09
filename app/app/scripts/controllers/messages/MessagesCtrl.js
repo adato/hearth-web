@@ -372,7 +372,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.showConversation($scope.conversations[0], 0, true);
 		};
 
-		var urlChangeHandler = $rootScope.$on('$stateChangeSuccess', changeDetail);
+		$scope.$on('$stateChangeSuccess', changeDetail);
 
 
 		UnauthReload.check();
@@ -389,7 +389,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// stop pulling new conversations on directive destroy
 			$timeout.cancel(_loadTimeoutPromise);
 			_loadTimeoutPromise = -1;
-			urlChangeHandler();
 		});
 	}
 ]);

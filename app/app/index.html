@@ -100,7 +100,7 @@
       <![endif]-->
 
       <div class="all-visible row max-width">
-        <section ng-include="'/app/templates/navigation.html'" id="navigation"></section>
+        <section ng-if="initFinished" ng-include="'/app/templates/navigation.html'" id="navigation"></section>
         
        <div ui-view class="main-container"></div>
        <!-- <div app-view-segment="0"></div>
