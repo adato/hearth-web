@@ -46,6 +46,7 @@
     "AD_RESUME_LABEL": "Obnoviť inzerát",
     "AGREE_WITH_TERMS_BUTTON_LABEL": "Súhlasím s podmienkami použitia",
     "AGREE_WITH_TERMS_POPUP": "Súhlasím s <a href=\"\">podmienkami použitia<\/a>",
+    "ALL_COMMUNITIES": "Všechny komunity",
     "ALL_POSTS": "Všetky príspevky",
     "ALREADY_HAVE_AN_ACCOUNT": "Už máte účet?",
     "ALREADY_USED_EMAIL": "Email je už použitý v aplikácii",
@@ -110,6 +111,10 @@
             "NO_POSTS_ADMIN": "Zatiaľ ste nevytvorili žiadny inzerát, poďme s tým niečo urobiť - môžete darovať či prijať, čo vás len napadne.",
             "NO_POSTS_MEMBER": "V komunite ešte nemáte žiadne inzeráty.",
             "NO_POSTS_OTHER": "Komunita zatiaľ nič nevenovala, ani nepotrebovala prijať. Asi sa zatiaľ rozhliada, alebo len reaguje na inzeráty ostatných."
+        },
+        "PROFILE": {
+            "GIVEN_RATINGS": "Odeslaná hodnocení",
+            "RECEIVED_RATINGS": "Přijatá hodnocení"
         },
         "REMOVE_MEMBER_ARE_YOU_SURE": "Naozaj chcete odobrať tohto člena z komunity?\n",
         "REMOVE_MEMBER_LABEL": "Odobrať člena z komunity",
@@ -188,6 +193,7 @@
     "COMMUNITY_RESTRICTIONS_PLACEHOLDER": "Aké má komunita podmienky členstva?",
     "COMMUNITY_SEE_ALL_APPLICATIONS": "Zobraziť všetky prihlášky do komunity",
     "COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN": "Vyberte osobu, ktorej chcete odovzdať spravovanie komunity a kliknite na odoslať.",
+    "COMMUNITY_TERMS": "Podmínky členství",
     "COMMUNITY_UPDATED_DONE": "Komunita bola aktualizovaná",
     "COMMUNITY_WAS_NOT_FOUND": "Taková komunita tu není..",
     "COMPLETE": "Odoslať",
@@ -630,6 +636,7 @@
     "NEWEST": "Najnovšie",
     "NEW_COMMUNITY_CREATED_TEXT": "Tu sa môžete prepnúť do pohľadu správcu. Budete potom v Hearth vystupovať za celú komunitu.",
     "NEW_COMMUNITY_CREATED_TITLE": "Založili ste novú komunitu",
+    "NEW_VERSION_NOTIFICATION": "Na webu je dostupná nová verze. Chcete obnovit prohlížeč?",
     "NOTHING_FOUND": "Ajajaj! Nič sme, bohužiaľ, nenašli. Skúste sa opýtať inak.",
     "NOTICE_EMPTY_DATA": "Zatiaľ tu nie sú žiadne záznamy.",
     "NOTIFICATION": {
@@ -913,6 +920,7 @@
     "RATING_TO_POST": "k inzerátu",
     "RATING_WAS_SAVED": "Hodnotenie bolo úspešne uložené. Čo je doma, to sa počíta.",
     "REGISTER_TO_HEARTH_TEXT": "Váš profil je už len pár klikov odtiaľto. Šup šup.",
+    "RELOAD": "Obnovit",
     "REMOVE": "Odobrať",
     "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Odpovedať",

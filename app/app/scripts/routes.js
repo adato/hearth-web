@@ -167,7 +167,7 @@ angular.module('hearth').config([
 				url: '/{page}',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: function ($stateParams) {
-					var pages = ['activity', 'members', 'received-ratings', 'applications', 'about', 'posts'];
+					var pages = ['activity', 'members', 'received-ratings', 'given-ratings', 'applications', 'about', 'posts'];
 					var tplPath = 'templates/community/subviews/';
 
 					if(!~pages.indexOf($stateParams.page))
