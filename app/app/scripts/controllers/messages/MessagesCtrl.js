@@ -330,8 +330,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.getParamId = function() {
 			var parts = $location.url().split('/');
-			console.log(parts.length);
-
 			return parts.length > 2 ? parts[2] : false;
 		};
 
@@ -362,15 +360,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
-		var changeDetail = function(ev, state) {
-			
-			var paramId = $scope.getParamId();
+		var changeDetail = function(ev, state, params) {
 
 			// load first conversation on init
-			if (paramId)
-				$scope.loadConversationDetail(paramId, true);
-			else if (list.length)
-				$scope.showConversation(list[0], 0, true);
+			if (params.id)
+				$scope.loadConversationDetail(params.id, true);
+			else if ($scope.conversations.length)
+				$scope.showConversation($scope.conversations[0], 0, true);
 		};
 
 		var urlChangeHandler = $rootScope.$on('$stateChangeSuccess', changeDetail);
