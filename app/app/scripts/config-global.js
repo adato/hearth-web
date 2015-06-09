@@ -30,6 +30,7 @@ $$config = {
 		new_reply: 'new_reply',
 		prolong_post: 'resume_post',
 		resume_post: 'resume_post',
+		suspend_post: 'edit_post',
 	},
 	features: {
 		aboutPage: false,
