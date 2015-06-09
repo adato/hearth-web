@@ -12,9 +12,9 @@
                 {{:: 'YOU_ARE_MEMBER' | translate}}
                 {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
                 <span ng-if="myAdminCommunities.length">
-                    {{::  'FROM_THAT' | translate }}
+                    {{:: 'FROM_THAT' | translate }}
                     {{'IN_X.'+pluralCat(myAdminCommunities.length)  | translate:'{count:'+myAdminCommunities.length+'}'}}
-                    {{::  'ADMIN_7_CASE' | translate }}
+                    {{:: 'ADMIN_7_CASE' | translate }}
                 </span>
             </h5>
             <div class="clear"></div>
@@ -28,10 +28,23 @@
             <div class="clear"></div>
         </div>
     </div>
-    <div ng-if="randomCommunities.length" class="community-list row clearfix small">
-        <h4>{{:: 'SUGGESTED_COMMUNITIES' | translate }}</h4>
-        <community-item item="item" ng-repeat="(id, item) in randomCommunities track by $index"></community-item>
+    
+    <!-- =================== Community List ================ -->    
+    <div class="bottom-tabs">
+        <ul>
+            <li>
+                <a href="{{ basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">
+                    <span class="others">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">
+                    <span class="others">{{:: 'ALL_COMMUNITIES' | translate }}</span>
+                </a>
+            </li> 
+        </ul>
     </div>
-</div>
+    <div class="clear"></div>
 
-<div loading show="!loaded"></div>
+    <div ui-view></div>
+</div>
