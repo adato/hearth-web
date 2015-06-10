@@ -91,7 +91,8 @@
 					</div>
 				</div>
 				<div class="reply-count-container fleft">
-					<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+					<div ng-if="item.reply_count && mine"><a class="reply-info-link" ng-href="{{ basePath }}post/{{item._id}}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a></div>
+					<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
 
 					<div ng-if="!item.reply_count">{{'NO_REPLY' | translate}}</div>
 				</div>
