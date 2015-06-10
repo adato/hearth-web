@@ -13,15 +13,24 @@ angular.module('hearth.directives').directive('activityAvatar', [
 			restrict: 'E',
 			replace: true,
 			scope: {
-				'type': '=',
+				'item': '=',
+
 			},
 			template: '<span><avatar class="left" size="small" src="src"></avatar></span>',
 			link: function($scope, el, attrs) {
 				$scope.src = null;
 
-				$scope.$watch('type', function(val) {
-					if($$config.activitiesIcons[val])
-						$scope.src = "images/icons/"+$$config.activitiesIcons[val]+".png";
+				$scope.$watch('item', function(val) {
+					
+					if(val.target_object && val.target_object.avatar)
+						$scope.src = val.target_object.avatar.normal;
+					
+					else if(val.object.avatar)
+						$scope.src = val.object.avatar.normal;
+
+					else if($$config.activitiesIcons[val.type])
+						$scope.src = "images/icons/"+$$config.activitiesIcons[val.type]+".png";
+
 					else
 						$scope.src = null;
 				});
