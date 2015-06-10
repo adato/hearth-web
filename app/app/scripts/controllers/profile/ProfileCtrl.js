@@ -31,10 +31,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			};
 		};
 		
-
-		console.log($stateParams);
-		console.log($location);
-
 		/**
 		 * Push cities to concatenated string.
 		 * Expects info.locations = [{city: ...}, ...]
@@ -60,7 +56,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		 */
 		$scope.fetchUser = function (fetchSubpage) {
 			// dont load user when there is no ID in params
-			console.log($stateParams);
 
 			if(! $stateParams.id) return false;
 
@@ -147,7 +142,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		// when changed URL, save actual segment name to pageSegment value
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
-			console.log("REVIEW");
 		};
 
 		// refresh user info and if fetchSubpage == true also fetch new subpage

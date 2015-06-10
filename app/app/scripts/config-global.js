@@ -43,7 +43,31 @@ $$config = {
 		deleteAccount: true,
 		uploadFiles: false,
 		newCreateEditForm: false
-	}
+	},
+	itemAddresses: {
+        "Community": "community",
+        "User": "profile",
+        "Post": "post",
+        "Conversation": "messages",
+    },
+    postTypes: {
+        User: {
+            need: 'DOES_WISH',
+            offer: 'DOES_GIVE'
+        },
+        Community: {
+            need: 'WE_NEED',
+            offer: 'WE_GIVE'
+       }
+    },
+    replyLabels: {
+		offer: 'WISH_GIFT',
+		need: 'OFFER_GIFT'
+	},
+	replyCountTexts: {
+        offer: 'PEOPLE_COUNT_WISH_PL',
+        need: 'PEOPLE_COUNT_OFFER_PL'
+    }
 };
 
 // copy data from localConfig

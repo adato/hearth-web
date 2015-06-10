@@ -16,11 +16,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.addressOld = '';
         $rootScope.addressNew = '';
         $scope.segment = false;
-        $scope.addresses = {
-            "Community": "community",
-            "User": "profile",
-            "Post": "post",
-        };
+        $scope.addresses = $$config.itemAddresses;
         $rootScope.socialLinks = {
             facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
             gplus: 'https://plus.google.com/share?url=',
