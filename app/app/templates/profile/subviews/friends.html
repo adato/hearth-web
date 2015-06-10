@@ -1,20 +1,19 @@
-<div ng-include="'templates/profile/followingPanel.html'"></div>
+<div ng-include="'templates/profile/subviews/followingPanel.html'"></div>
 
 <div ng-if="subPageLoaded">
-
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
-		<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_ME' | translate }}</p>
+		<p>{{:: 'PROFILE.FRIENDS.NO_FRIENDS_ME' | translate }}</p>
 	</div>
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
-		<p>{{ 'PROFILE.FOLLOWERS.NO_FOLLOWERS_OTHER' | translate }}</p>
+		<p>{{:: 'PROFILE.FRIENDS.NO_FRIENDS_OTHER' | translate }}</p>
 	</div>
 
 	<div class="people-listing">
 		<div class="person" ng-repeat="(id, item) in data track by $index">
-			<avatar type="item._type" href="basePath+getProfileLinkByType(item._type)+'/'+item._id" src="item.avatar.normal"></avatar>
+			<avatar href="basePath+getProfileLinkByType(item._type)+'/'+ item._id" src="item.avatar.normal" type="item.user_type"></avatar>
 			<div class="name">
 				<h4>
-					<a href="{{ basePath + getProfileLinkByType(item._type) }}/{{ item._id}}">{{ item.name | ellipsis:24 }}</a>
+					<a href="{{ basePath + getProfileLinkByType(item._type) }}/{{:: item._id}}">{{ item.name | ellipsis:24 }}</a>
 				</h4>
 			</div>
 		</div>

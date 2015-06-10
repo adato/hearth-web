@@ -7,13 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', '$location', 'CommunityRatings',
-	function($scope, $routeParams, $rootScope, Community, $route, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, $location, CommunityRatings) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings',
+	function($scope, $stateParams, $rootScope, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings) {
 		$scope.loaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
+		$scope.activePage = false;
 		// ratings
 		$scope.sendingRating = false;
 		$scope.rating = {
@@ -24,22 +25,23 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.showError = {
 			text: false
 		};
-
+		
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
 
 		$scope.fetchCommunity = function() {
-			if(!$routeParams.id) return false;
+			if(!$stateParams.id) return false;
 
 			// if we load profile of another user (there are different IDs) scroll to top
-			if ($scope.info._id !== $routeParams.id) {
+			if ($scope.info._id !== $stateParams.id) {
 				$rootScope.top(0, 1);
 				$scope.loaded = false;
 			}
 
 			$scope.loadingCounter++;
-			Community.get({_id: $routeParams.id }, function(res) {
+			Community.get({_id: $stateParams.id }, function(res) {
+				$scope.loaded = true;
 
 				$scope.loadingCounter--;
 				$scope.info = res;
@@ -47,12 +49,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				// $scope.loaded = true;
 				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
-
-				if(!$scope.loadingCounter) {
-					$rootScope.communityLoaded = true;	
-					$scope.$broadcast("communityTopPanelLoaded");
-				}
-
 			}, function(res) {
 				$scope.loadingCounter--;
 				$scope.loaded = true;
@@ -65,9 +61,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
-			$scope.pagePath = $route.current.originalPath;
-			if($route.current.$$route)
-				$scope.pageSegment = $route.current.$$route.segment;
 		};
 
 		$scope.applyForCommunity = function() {
@@ -245,9 +238,12 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.fetchCommunity();
 		};
 
+
+		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
+			$scope.activePage = params.page;
+		});
+
 		UnauthReload.check();
-		$scope.$on('$routeChangeSuccess', $scope.init);
-		$scope.$on('initFinished', $scope.init);
-		$rootScope.initFinished && $scope.init();
+		$scope.init();
 	}
 ]);

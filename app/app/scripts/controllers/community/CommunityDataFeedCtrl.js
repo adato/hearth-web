@@ -7,21 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$routeParams', '$rootScope', 'Community', '$route', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings',
-	function($scope, $routeParams, $rootScope, Community, $route, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
         $scope.activityShow = false;
         var inited = false;
 
 		 var loadServices = {
-            'community': loadCommunityHome,
-            'community.posts': loadCommunityPosts,
-            'community.given': loadGivenRatings,
-            'community.received': loadReceivedRatings,
-            'community.members': loadCommunityMember,
-            'community.about': loadCommunityAbout,
-            'community.applications': loadCommunityApplications,
-            'community.activity-feed': loadCommunityActivityLog,
+            'home': loadCommunityHome,
+            'posts': loadCommunityPosts,
+            'members': loadCommunityMember,
+            'about': loadCommunityAbout,
+            'applications': loadCommunityApplications,
+            'activity': loadCommunityActivityLog,
+            'received-ratings': loadReceivedRatings,
+            'given-ratings': loadGivenRatings,
         };
+
+        console.log($stateParams);
 
         function finishLoading() {
             $timeout(function(){
@@ -188,15 +190,17 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function init() {
+            $scope.pageSegment = $stateParams.page || 'home';
+
             // console.log("Calling load service for segment ", $scope.pageSegment);
-            loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+            loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
 
             // refresh after new post created
             if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
                 $scope.$on('postCreated', function() {
                     // refresh whole page - load new counters, activity feed, posts list
                     $scope.init();
-                    // loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+                    // loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
                 });
             }
 
@@ -204,10 +208,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             if (! inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts')) {
                 // console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
-                    loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+                    loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
                 });
                 $scope.$on('postUpdated', function() {
-                    loadServices[$scope.pageSegment]($routeParams.id, processData, processDataErr);
+                    loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
                 });
 
                 // added event listeners - dont add them again
@@ -247,13 +251,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         $scope.$on('communityRatingsAdded', $scope.addCommunityRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
-        if($rootScope.communityLoaded)
-            init();
-        else
-            $scope.$on('communityTopPanelLoaded', init);
-
-        $scope.$on('$destroy', function() {
-            $rootScope.communityLoaded = false;
-        });   
+        init();
     }
 ]);

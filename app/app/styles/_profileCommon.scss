@@ -51,8 +51,26 @@
             
             .avatar {
                 box-shadow: 1px 0 16px 0 #fff;
+                margin-right: 25px;
             }
+
+            .shadow {
+                background-image: url("../images/profile_shadow_small.png");
+                background-position: center bottom 5px;
+                background-repeat: no-repeat;
+                display: inline-block;
+                float: left;
+                height: 240px;
+
+                &.large {
+                    background-image: image-url("profile_shadow_large.png");
+                    background-position: center bottom 0px;
+                }
+            }
+
             .bubble {
+                @extend .columns;
+
                 position: relative;
                 border-radius: 50%;
                 border: none;
@@ -71,6 +89,11 @@
                 hr {
                     margin: 10px;
                 }
+                
+                &.move-down {
+                    top: 60px;
+                }
+
                 &.active,
                 &:hover {
                     background: mix(darken(color(1), 20%), darken(color(3), 10%));
@@ -78,56 +101,22 @@
                     box-shadow: none;
                     padding: 10px;
                 }
-            }
-            .friends-and-follows {
-                @extend .large-2, .columns, .bubble;
-                width: 170px;
-                height: 170px;
-                top: -1rem;
-                left: 4rem;
-            }
-            .communities {
-                @extend .large-3, .columns, .bubble;
-                width: 120px;
-                height: 120px;
-                left: 7rem;
-                top: 6rem;
-            }
-            .ratings {
-                @extend .large-3, .columns, .bubble;
-                width: 130px;
-                height: 130px;
-                top: 2rem;
-                left: 10rem;
-            }
-            .posts-count {
-                @extend .large-3, .columns, .bubble;
-                width: 140px;
-                height: 140px;
-                top: 1rem;
-                left: 4rem;
-            }
-            .members-count {
-                @extend .large-3, .columns, .bubble;
-                width: 130px;
-                height: 130px;
-                b {
-                    display: inline-block;
-                    margin-top: .5rem;
+
+                &.large {
+                    @extend .large-2;
+                    width: 160px;
+                    height: 160px;
                 }
-                top: 7rem;
-                left: 7rem;
-            }
-            .about {
-                @extend .large-3, .columns, .bubble;
-                width: 130px;
-                height: 130px;
-                span {
-                    display: inline-block;
-                    margin-top: 1.8rem;
+                &.small {
+                    @extend .large-3;
+                    width: 120px;
+                    height: 120px;
                 }
-                top: 2rem;
-                left: 11rem;
+                &.medium {
+                    @extend .large-3;
+                    width: 140px;
+                    height: 140px;
+                }
             }
             .karma-bar {
                 @extend .large-8, .columns, .pull-right;
@@ -142,7 +131,7 @@
                 
                 text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
                 position: relative;
-                top: 4em;
+                top: 0.5em;
                 right: 0px;
                 float: right;
 
@@ -578,6 +567,7 @@
 .people-listing {
     @extend .clearfix;
     .person {
+        height: 115px;
         word-wrap: break-word;
         @extend .large-4, .columns;
 
@@ -591,7 +581,6 @@
                 color: color(5);
             }
         }
-        height: 115px;
         .name {
             margin-left: 100px;
         }
