@@ -16,10 +16,6 @@ angular.module('hearth').config([
 		    return false;
 		});
 
-		// For any unmatched url, redirect to /state1
-		// $urlRouterProvider.otherwise("/error404");
-		//
-		// Now set up the states
 		$stateProvider
 			.state('market', {
 				url: '/',
@@ -152,6 +148,7 @@ angular.module('hearth').config([
 				url: '/profile-edit',
 				templateUrl: 'templates/profile/edit.html',
 				controller: 'ProfileEditCtrl',
+				}
 			})
 			.state('profileSettings', {
 				url: '/profile-settings',
@@ -178,7 +175,7 @@ angular.module('hearth').config([
 				url: '/{page}',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: function ($stateParams) {
-					var pages = ['activity', 'members', 'received-ratings', 'applications', 'about', 'posts'];
+					var pages = ['activity', 'members', 'given-ratings', 'received-ratings', 'applications', 'about', 'posts'];
 					var tplPath = 'templates/community/subviews/';
 
 					if(!~pages.indexOf($stateParams.page))

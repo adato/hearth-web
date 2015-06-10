@@ -18,21 +18,21 @@
 	            	<div class="applications-item">
                         <avatar class="left margin-bottom-20" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
                         <div class="applications-text">
-                            <a href="{{ basePath }}profile/{{item._id}} ">
-		                    	{{item.name | ellipsis}}
+                            <a href="{{:: basePath }}profile/{{:: item._id}} ">
+		                    	{{:: item.name | ellipsis}}
                             </a><br>
-                            <a href="{{ basePath }}profile/{{item._id}} ">
+                            <a href="{{:: basePath }}profile/{{:: item._id}} ">
 		                    	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
                             </a>
 		                </div>
                         <div class="applications-buttons">
-                            <a ng-click="approveApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
-                            <a ng-click="rejectApplication(item._id)" title="{{ 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
+                            <a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
+                            <a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
                         </div>
 	            	</div>
 	            </div>
 	            <div class="buttons">
-	                <a href="{{ basePath }}community/{{info._id}}/applications">
+	                <a href="{{:: basePath }}community/{{:: info._id}}/applications">
 	                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> 
                         {{:: 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}</button>
 	                </a>
@@ -43,7 +43,7 @@
             <h3 class="iblock">
                 {{:: 'COMMUNITY_POSTS' | translate }}
                 
-                <a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{ 'AD_ADD_LABEL' | translate}}">
+                <a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{:: 'AD_ADD_LABEL' | translate}}">
                     <i class="fa fa-plus-square"></i>
                 </a>
             </h3>
@@ -59,7 +59,7 @@
             <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = !mine"></div>
 
             <div class="buttons" ng-if="posts.data.length > 0 || (info.post_count > 0 && mine)">
-                <a href="{{ basePath }}community/{{info._id}}/posts">
+                <a href="{{:: basePath }}community/{{:: info._id}}/posts">
                     <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}</button>
                 </a>
             </div>

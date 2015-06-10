@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.topLoaded = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
-
+		$scope.activePage = false;
 		// ratings
 		$scope.sendingRating = false;
 		$scope.rating = {
@@ -25,8 +25,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.showError = {
 			text: false
 		};
-
-		$scope.activePage = false;
 
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;

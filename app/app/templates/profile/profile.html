@@ -32,22 +32,38 @@
         </div>
         <div class="highlights">
             <avatar size="large" class="left" src="info.avatar.large" href="basePath+'profile/'+info._id" type="info._type"></avatar>
-            <a href="{{ basePath }}profile/{{info._id}}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="friends-and-follows">
-                
-                <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
-                <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
-                <hr>
 
-                <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_ME.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
+            <span class="shadow large">
+                <a href="{{ basePath }}profile/{{info._id}}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble large">
+                    
+                    <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
+                    <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
+                    <hr>
 
-                <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_HIM.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
-            </a>
-            <a href="{{ basePath }}profile/{{info._id}}/communities" class="communities" ng-class="{'active': (activePage == 'communities')}"><b>{{info.communities_count}}</b> 
-                {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
-            </a>
-            <a href="{{ basePath }}profile/{{info._id}}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'received' || activePage == 'given')}" class="ratings"><b>{{info.post_count}}</b><br>
-                {{ 'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
-            </a>
+                    <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_ME.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
+
+                    <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_HIM.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
+                </a>
+            </span>
+            
+            <span class="shadow small">
+                <a href="{{ basePath }}profile/{{info._id}}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}"><b>{{info.communities_count}}</b> 
+                    {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
+                </a>
+            </span>
+
+            <span class="shadow small">
+                <a href="{{ basePath }}profile/{{info._id}}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="bubble small"><b>{{info.down_votes + info.up_votes}}</b><br>
+                    {{ 'RATINGS_COUNT' | translate }}
+                </a>
+            </span>
+            
+            <span class="shadow small">
+                <a href="{{ basePath }}profile/{{info._id}}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="move-down bubble small"><b>{{info.post_count}}</b><br>
+                    {{ 'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
+                </a>
+            </span>
+
             <a href="{{ basePath }}profile/{{info._id}}/received-ratings">
                 <div ng-if="info" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
                     <span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">

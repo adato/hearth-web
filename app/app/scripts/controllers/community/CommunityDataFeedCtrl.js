@@ -8,7 +8,7 @@
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings',
-    function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
         $scope.activityShow = false;
         var inited = false;
 
@@ -19,6 +19,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             'about': loadCommunityAbout,
             'applications': loadCommunityApplications,
             'activity': loadCommunityActivityLog,
+            'received-ratings': loadReceivedRatings,
+            'given-ratings': loadGivenRatings,
         };
 
         console.log($stateParams);

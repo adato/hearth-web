@@ -1,7 +1,7 @@
 <div loading show="!loaded"></div>
 
 <div class="community-view profile-common" ng-show="loaded" ng-class="{'mine': mine, 'others': !mine}">
-	<div class="user" ng-show="! info">
+	<div class="user" ng-show="! info && loaded">
 		<p>{{:: 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
 	</div>
 	<header ng-show="info">
@@ -16,7 +16,7 @@
 				<button ng-if="!mine && info.is_applicant" class="profile-button tall outline">
 					<i class="fa fa-smile-o"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
 				</button>
-				<a href="{{ basePath }}community/{{info._id}}/invite-friends" class="right" ng-if="false">
+				<a href="{{:: basePath }}community/{:: info._id}}/invite-friends" class="right" ng-if="false">
 					<button class="profile-button tall"><i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
 				</a>
 				<a ng-if="mine" href="{{ basePath }}community/{{info._id}}/edit">
@@ -26,24 +26,35 @@
 				</a>
 			</div>
 			<h1>
-				<a href="{{ basePath }}community/{{info._id}}">
-					{{ info.name }}
+				<a href="{{:: basePath }}community/{{:: info._id}}">
+					{{:: info.name }}
 				</a>
 			</h1>
 			<div class="clear"></div>
 		</div>
 		<div class="highlights">
             <avatar size="large" class="left" src="info.avatar.large" href="basePath+'community/'+info._id" type="info._type"></avatar>
-			<a href="{{ basePath }}community/{{info._id}}/posts" ng-class="{'active': (activePage == 'posts')}" class="posts-count">
-                <span ng-if="info" ng-bind-html="'COMMUNITY.X_GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate: '{count: '+info.post_count+'}'"></span>
-			</a>
-			<a href="{{ basePath }}community/{{info._id}}/members" class="members-count" ng-class="{'active': (activePage == 'members' || activePage == 'applications')}">
-                <span ng-if="info" ng-bind-html="'COMMUNITY.X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
-            </a>
-			<a href="{{ basePath }}community/{{info._id}}/about" class="about" ng-class="{'active': (pageSegment.substr(10) == 'about')}">
-			<a href="{{ basePath }}community/{{info._id}}/about" class="about" ng-class="{'active': (activePage == 'about')}">
-				<span>{{:: 'COMMUNITY_ABOUT_SHORT' | translate}}</span>
-            </a>
+				
+			<span class="shadow large">
+				<a href="{{:: basePath }}community/{{:: info._id}}/posts" ng-class="{'active': (activePage == 'posts')}" class="bubble large">
+	                <span ng-if="info" ng-bind-html="'COMMUNITY.X_GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate: '{count: '+info.post_count+'}'"></span>
+				</a>
+            </span>
+			<span class="shadow small">
+				<a href="{{:: basePath }}community/{{:: info._id}}/members" class="bubble small move-down" ng-class="{'active': (activePage == 'members' || activePage == 'applications')}">
+	                <span ng-if="info" ng-bind-html="'COMMUNITY.X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
+	            </a>
+            </span>
+			<span class="shadow small">
+				<a href="{{:: basePath }}community/{{:: info._id}}/received-ratings" class="bubble small" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}">
+					<span>{{:: 'COMMUNITY_RATINGS' | translate}}</span>
+	            </a>
+            </span>
+			<span class="shadow small">
+				<a href="{{:: basePath }}community/{{:: info._id}}/about" class="bubble small move-down" ng-class="{'active': (activePage == 'about')}">
+					<span>{{:: 'COMMUNITY_ABOUT_SHORT' | translate}}</span>
+	            </a>
+            </span>
 		</div>
 	</header>
 	<div class="clear"></div>
