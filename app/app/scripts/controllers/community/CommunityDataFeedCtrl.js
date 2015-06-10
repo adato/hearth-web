@@ -23,8 +23,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             'given-ratings': loadGivenRatings,
         };
 
-        console.log($stateParams);
-
         function finishLoading() {
             $timeout(function(){
                $scope.subPageLoaded = true;

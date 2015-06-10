@@ -148,7 +148,6 @@ angular.module('hearth').config([
 				url: '/profile-edit',
 				templateUrl: 'templates/profile/edit.html',
 				controller: 'ProfileEditCtrl',
-				}
 			})
 			.state('profileSettings', {
 				url: '/profile-settings',
