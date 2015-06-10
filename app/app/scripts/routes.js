@@ -127,6 +127,7 @@ angular.module('hearth').config([
 				templateUrl: function ($stateParams) {
 					var pages = ['activities', 'given-ratings', 'received-ratings', 'communities', 'friends', 'followers', 'following', 'posts', 'replies'];
 					var tplPath = 'templates/profile/subviews/';
+				}
 			})
 			.state('profileSettings', {
 				url: '/profile-settings',
@@ -153,7 +154,7 @@ angular.module('hearth').config([
 				url: '/{page}',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: function ($stateParams) {
-					var pages = ['activity', 'members', 'received-ratings', 'applications', 'about', 'posts'];
+					var pages = ['activity', 'members', 'given-ratings', 'received-ratings', 'applications', 'about', 'posts'];
 					var tplPath = 'templates/community/subviews/';
 
 					if(!~pages.indexOf($stateParams.page))

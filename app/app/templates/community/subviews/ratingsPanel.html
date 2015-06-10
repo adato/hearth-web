@@ -1,0 +1,16 @@
+<div class="bottom-tabs">
+    <ul>
+        <li>
+        	<a href="{{:: basePath }}community/{{:: info._id}}/received-ratings" ng-class="{selected: pageSegment =='received-ratings'}">
+        		<span>{{:: 'COMMUNITY_RECEIVED_RATINGS' | translate }}</span>
+	        </a>
+	    </li>
+        <li>
+        	<a href="{{:: basePath }}community/{{:: info._id}}/given-ratings" ng-class="{selected: pageSegment =='given-ratings'}">
+        		<span>{{:: 'COMMUNITY_GIVEN_RATINGS' | translate }}</span>
+        	</a>
+        </li> 
+    </ul>
+</div>
+
+<div class="clear"></div>
