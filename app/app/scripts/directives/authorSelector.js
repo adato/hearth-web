@@ -16,7 +16,9 @@ angular.module('hearth.directives').directive('authorSelector', [
 		scope: {
 			selectedEntity: '=?author',
 			authorId: '=',
+			authorList: '=',
 			remove: '=remove',
+			ngDisabled: '=',
 		},
 		templateUrl: 'templates/directives/authorSelector.html',
 		link: function($scope) {
@@ -46,7 +48,8 @@ angular.module('hearth.directives').directive('authorSelector', [
 				if(!$rootScope.loggedUser)
 					return false;
 
-				console.log("Removing: ", $scope.remove);
+				if($scope.authorList)
+					return $scope.list = $scope.authorList;
 
 				$scope.list = [$rootScope.loggedUser];
 				if($rootScope.myAdminCommunities)

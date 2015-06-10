@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 			app: {
 				files: [{
 					expand: true,
-					cwd: 'app/dist/',
+					cwd: 'app/dist/app/',
 					dest: 'divshot/public/app/',
 					src: ['**/*']
 				}]

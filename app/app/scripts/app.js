@@ -11,11 +11,14 @@ angular.module('hearth', [
             // ============================
             // === Location Configuration
             // ============================
-            $locationProvider.html5Mode(false).hashPrefix('!');
+            $locationProvider.html5Mode(true);
         }
     ]).config([
-        'cfpLoadingBarProvider',
-        function(cfpLoadingBarProvider) {
+        'cfpLoadingBarProvider', '$compileProvider', '$httpProvider',
+        function(cfpLoadingBarProvider, $compileProvider, $httpProvider) {
+
+            $compileProvider.debugInfoEnabled($$config.disableDebugInfo);
+            $httpProvider.useApplyAsync(true);
 
             // ===============================
             // === Loading Bar Configuration
@@ -89,6 +92,7 @@ angular.module('hearth', [
         '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
         function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
             $rootScope.appInitialized = false;
+            $rootScope.config = $$config;
 
             /**
              * This will cache some files at start
@@ -139,7 +143,7 @@ angular.module('hearth', [
                             }
                             $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });
                             Auth.logout(function() {
-                                location.reload("#!/login");
+                                location.reload("/login");
                             });
                         }
 
@@ -160,7 +164,7 @@ angular.module('hearth', [
 
                 $rootScope.$on('$translateChangeSuccess', function() {
                     
-                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), $$config.appUrl+$$config.defaultHearthImage);
+                    OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), $$config.appUrl+$$config.defaultHearthImage, $$config.defaultHearthImageWidth, $$config.defaultHearthImageHeight);
                     OpenGraph.setDefault();
 
                     // reset OG to default when changing location

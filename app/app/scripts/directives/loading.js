@@ -22,7 +22,6 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 			$scope.showTimeout = 0;
 			$scope.showSchedule = false;
 			$scope.defaultCode = 'COMMON.LOADING';
-
 			// hide message on start
 			$(el).css('display', 'none ');
 

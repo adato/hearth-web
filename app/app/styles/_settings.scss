@@ -1298,3 +1298,17 @@ $crumb-slash: ">";
 // $range-slider-handle-round: $global-rounded;
 // $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
 // $range-slider-handle-cursor: pointer;
+
+$ui-title-font-size: 16px;
+$ui-text-font-size: 14px;
+$ui-text-weight-bolder: 600;
+$ui-small-grid-size: 5px;
+$ui-grid-size: 5 * $ui-small-grid-size;
+$ui-border-style: 1px solid #e3e3e3; // exact by image
+$ui-input-border-style: 1px solid #ddd;
+$ui-input-text-color: #333;
+$ui-color-disabled: #999;
+$ui-color-lighter: #999;
+$ui-input-height: 30px;
+$ui-input-error-color: #ea122a;
+$ui-box-shadow: 0px 0px 5px rgba(100,100,100,.5);

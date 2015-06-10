@@ -1,81 +1,117 @@
 .filter {
-    input.text-input {
-        width: 100%;
-        margin-bottom: 0;
+    section.type-switch-container, section.radio-container { border-bottom:1px solid #efefef;}
+    .keywords-container {
+        @extend .clearfix;
+        &>label { 
+            @extend .reset-label;
+            line-height:$ui-input-height;
+            min-width:28 * $ui-small-grid-size;
+            display:inline-block;
+            float:left;
+            margin-right:18px; // sorry, but it needs to be precise :)
+        }
+        tags-input {
+            width:auto;
+            .tags {
+                @extend .bottom-line-input;
+            }
+            .autocomplete {
+                max-width:22 * $ui-grid-size;
+                margin-left:16%;
+            }
+        }
     }
-    header {
-        text-align: center;
-        font-weight: bold;
-        font-size: rem-calc(14);
-        display: inline-block;
-        width: 7em;
-        text-align: left;
-        position: relative;
-        top: -5px;
-        padding-bottom: 5px;
+    .common-keywords-container>ul {
+        @extend .clearfix;
+        margin:0;
+        li { 
+            list-style-type:none;
+            float:left;
+            margin-right:$ui-grid-size;
+            line-height: $ui-grid-size;
+            a {
+                color:color(5);
+            }
+        }
+    }
+    .radio-container {
+        &>label {
+            @extend .reset-label;
+            &:nth-child(1) {
+                min-width:28 * $ui-small-grid-size;
+            }
+            display:inline-block;
+        }
+        .checkbox {
+            display:inline-block;
+            @extend .ui-checkbox;
+        }
+    }
+    .type-switch-container {
+        margin-top:3*$ui-small-grid-size;
+    }
+    .location-container {
+        @extend .clearfix;
+        &>label {
+            @extend .reset-label;
+            min-width:28 * $ui-small-grid-size;
+            display:inline-block;
+        }
+        input#geolocation {
+            @extend .bottom-line-input;
+            height: $ui-grid-size;
+            width:38%;
+            display:inline-block;
+            margin-bottom:0;
+        }
+        .range-select-container {
+            width:35%;
+            float:right;
+            input[type="range"] {
+                width:75%;
+                margin-right:2 * $ui-small-grid-size;
+                display:inline-block;
+            }
+            span.distance {
+                color:$ui-color-lighter;
+            }
+        }
     }
     .footer {
-        .link-button {
-            margin-top: 1rem;
-        }
-
+        @extend .clearfix;
+        margin-top:$ui-grid-size;
+        line-height:$ui-grid-size;
         .checkbox {
-            padding-top: 0px;
-            margin-right: 1em;
-            position: relative;
-            top: 7px;
+            @extend .ui-checkbox;
         }
-    }
-    .bars {
-        margin: 0;
-        &>section {
-            padding-bottom: 0.5em;
-            &.margin {
-                padding-top: 1em;
-            }
-            .rangeSelect {
-                position: relative;
-                top: 10px;
-            }
-            &:first-child header {
-                border: {
-                    top-left-radius: 8px;
-                    bottom-left-radius: 8px;
-                };
-            }
-            &:last-child header {
-                border: {
-                    top-right-radius: 8px;
-                    bottom-right-radius: 8px;
-                };
-            }
+        .link-button {
+            font-weight:$ui-text-weight-bolder;
+            color:color(5);
+            margin-top:3px;
         }
+        label { @extend .reset-label; }
     }
-    input[type=range] {
-        width: 100%;
-        cursor: pointer;
-        outline: none;
-    }
-    tags-input {
-        input {
-            background-color: transparent;
-        }
-        .host {
-            margin: {
-                top: 1em;
-            };
-        }
-    }
+}
 
-    .commonKeywords {
-        list-style: none;
-        margin-left: -10px;
-        margin-bottom: 0px;
-        
-        &>li {
-            padding-left: 10px;
-            padding-right: 10px;
-            display: inline-block;
-        }
+// reset and redefine previously set classes
+// imported by @extend
+.bottom-line-input {
+    min-height: $ui-grid-size;
+    border-radius:0;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom:1px solid $ui-input-text-color !important;
+    box-shadow:none !important;
+    padding:0;
+    font-size:$ui-text-font-size;
+    input {
+        height: $ui-grid-size;
+        padding-left:0;
+        margin-left:0;
     }
+}
+.reset-label {
+    font-size:$ui-text-font-size;
+    margin-right:3*$ui-small-grid-size;
 }

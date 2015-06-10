@@ -52,7 +52,7 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 						return $location.search('id', itemId);
 					}
 				} else {
-					path = '/' + where + '/' + itemId;
+					path = where + '/' + itemId;
 					return $location.path(path);
 				}
 			}
@@ -78,17 +78,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 			$rootScope.$broadcast('cancelEditingAd');
 
 			$scope.orderByPostSort = orderByPostSortValues[order];
-			return $scope.$broadcast('searchWithRefresh');
-		};
-
-		$scope.updateLocation = function(location) {
-			// funkce zdvojuje nektere requesty
-			return;
-
-			$scope.myLocation = location;
-			$scope.offset = 0;
-			$rootScope.$broadcast('cancelCreatingAd');
-			$rootScope.$broadcast('cancelReplyingAd');
 			return $scope.$broadcast('searchWithRefresh');
 		};
 
@@ -409,7 +398,6 @@ angular.module('hearth.controllers').controller('SearchCtrl', [
 		};
 
 		$scope.queryKeywords = function($query) {
-			console.log("REMOVE_ME - KEYWORDS TEST");
 			return KeywordsService.queryKeywords($query);
 		};
 

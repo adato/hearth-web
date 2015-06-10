@@ -3,32 +3,175 @@ textarea,
 button,
 .button {
     border-radius: $global-radius;
+    resize: none;
 }
 
 input,
 textarea {
     border: 1px solid #d7d7d7 !important;
-    background: transparent !important;
     box-shadow: inset 0 0 5px #d7d7d7 !important;
 }
 
 input:focus,
 textarea:focus {
     border: 1px solid color(5) !important;
-    background: transparent !important;
     box-shadow: inset 0 0 5px color(5) !important;
 }
 
 #searchBox {
     margin: {
-        top: 1px;
+        top: $ui-small-grid-size + 1;
         left: 1rem;
         right: 0;
         bottom: 0;
     };
-    background: color(4) !important;
+    box-shadow: none !important;
+    height: $ui-input-height;
+    border: 0 !important;
+    padding-left:3*$ui-small-grid-size;
+    background: lighten(color(1), 20%) !important;
+    transition: background .3s,  border-color .3s, box-shadow .3s;
     &:focus {
         background: lighten(color(4), 20%) !important;
     }
-    transition: background .5s,  border-color .5s, box-shadow .5s;
+    &::-webkit-input-placeholder { 
+        color:color(3);
+    }
+    &:-moz-placeholder { 
+       color:color(3);
+       opacity:  1;
+    }
+    &::-moz-placeholder {
+       color:color(3);
+       opacity:  1;
+    }
+    &:-ms-input-placeholder {
+       color:color(3);
+    }
+}
+
+.field-group {
+    display: table;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    &>* {
+        display: table-cell !important;
+        margin-bottom: 0px !important;
+    }
+
+    .no-left-radius {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    &>span {
+        white-space: nowrap;
+        border: 1px solid #dddddd;
+        background-color: #f2f3f3;
+        width: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        &.left-radius {
+            border-right-width: 0px;
+            border-bottom-left-radius: $global-radius;
+            border-top-left-radius: $global-radius;
+        }
+    }
+}
+
+
+/// common form items, included as @extend
+.item-box-forms {
+    textarea {
+        height: 85px;
+        resize: vertical;
+        transition: height 0.2s;
+    }
+    label {
+        cursor: pointer;
+        margin-bottom:10px;
+        line-height:1;
+        font-weight: $ui-text-weight-bolder;
+        color:#333;
+    }
+
+    // fix stuff
+    a {
+        font-weight: $ui-text-weight-bolder;
+    }
+
+    input, select, textarea {
+        border:$ui-input-border-style;
+        font-family: $body-font-family;
+        box-shadow: none !important; // uh oh
+        font-size: $ui-text-font-size;
+        color:$ui-input-text-color;
+        &.ng-invalid:not(.ng-untouched):not([disabled]):not(.ng-valid-parse):not(.ng-valid-required) {
+            border:1px solid $ui-input-error-color !important;
+        }
+    }
+    input[type="radio"] {
+        box-shadow:none !important;
+    }
+    input[type="text"], input[type="email"] {
+        box-shadow:none !important;
+        font-size: $ui-text-font-size !important;
+        line-height:1.3;
+        height:6 * $ui-small-grid-size;
+        padding:$ui-small-grid-size;
+        padding-left:$ui-small-grid-size * 2;
+    }
+    select {
+        border-radius: $global-radius;
+        height:$ui-input-height;
+        line-height:$ui-text-font-size;
+        padding:0 15px;
+        font-weight:$ui-text-weight-bolder;
+        -moz-appearance:none;
+        outline:none;
+
+        &:disabled {
+            background-color: #ddd !important;
+        }
+    }
+    div.error {
+        font-size:$ui-text-font-size;
+        top: -2 * $ui-small-grid-size;
+        margin-bottom: $ui-small-grid-size * 2;
+        color:$ui-input-error-color;
+    }
+    // end fix stuff
+    .head {
+        top:0;
+        h1, h2 {
+            font-size: $ui-title-font-size;
+            font-weight: 700;
+            word-wrap: break-word;
+            margin:0;
+            padding:0;
+            line-height:$ui-title-font-size;
+            height:$ui-title-font-size;
+            text-align:left;
+        }
+        hr {
+            border:0;
+            border-bottom:$ui-border-style;
+            margin-top:$ui-grid-size;
+            margin-bottom:$ui-small-grid-size * 2;
+        }
+        ul.message-line {
+            margin:0;
+            padding:0;
+            li {
+                list-style-type: none;
+                color:$ui-color-disabled;
+                margin-bottom:$ui-small-grid-size * 2;
+                border-bottom:$ui-border-style;
+                padding-bottom:$ui-small-grid-size * 2;
+                font-size:14px;
+            }
+        }
+    }
 }

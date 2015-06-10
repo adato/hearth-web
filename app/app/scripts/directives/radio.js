@@ -16,13 +16,17 @@ angular.module('hearth.directives').directive('radio', function() {
 			model: '=',
 			value: '=',
 			valueOff: '=',
-			onUpdate: '&'
+			onUpdate: '&',
+			ngDisabled: '='
 		},
 		templateUrl: 'templates/directives/radio.html',
 		link: function(scope) {
 			scope.checked = false;
 
 			scope.toggle = function() {
+				if(scope.ngDisabled)
+					return false;
+
 				if (!scope.checked) {
 					scope.checked = !scope.checked;
 				}

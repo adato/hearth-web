@@ -1,11 +1,15 @@
 <div>
+    <section ng-if="errorLoading == 404" class="box padding-top large-6 margin-auto text-center">
+      <p class="margin-0">{{ 'COMMUNITY_WAS_NOT_FOUND' | translate }}</p>
+    </section>
+    
   <div class="row margin-bottom-20 profile-edit-common" ng-show="loaded">
     <div class="communities-notify-area"></div>
     <form id="communityForm" name="communityForm" ng-submit="save()" novalidate>
       <div class="right-column small-12 large-5 columns push-7" ng-cloak>
         <div image-preview files="community.avatar" limit-pixel-size="400" limit="1" single-file="true">
 
-          <img class="preview" ng-if="community.avatar.file" ng-src="{{community.avatar.file}}" resized-thumbnail-image />
+          <img class="preview" ng-if="community.avatar.file" ng-src="{{community.avatar.file}}" resized-thumbnail-image exif-rotated />
           <img class="preview" ng-if="!community.avatar.file && community.avatar.large" ng-src="{{community.avatar.large}}" resized-thumbnail-image />
           <div class="text">
             <span class="fa fa-plus-square-o"></span>
@@ -78,7 +82,7 @@
             <a ng-if="!community._id" ng-click="close()" class="revert-changes">
               <span class="fa fa-chevron-left"></span>{{ 'CANCEL_ADD_COMMUNITY' | translate }}
             </a>
-            <a ng-if="community._id" ng-href="#!/community/{{community._id}}" class="revert-changes">
+            <a ng-if="community._id" ng-href="{{ basePath }}community/{{community._id}}" class="revert-changes">
               <span class="fa fa-chevron-left"></span>{{ 'CANCEL_CHANGES' | translate }}
             </a>
             <button type="submit" class="button-send right" analytics-on analytics-event="save profile" analytics-category="My community" analytics-value="5">{{ 'SAVE' | translate }}</button>
@@ -132,5 +136,5 @@
     </div>
     <div class="clear"></div>
   </div>    
-  <div loading show="!loaded"></div>
+  <div loading show="!loaded && !errorLoading"></div>
 </div>

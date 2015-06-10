@@ -10,8 +10,8 @@ angular.module('hearth.services').factory('Community', [
 	'$resource',
 	
 	function($resource) {
-		return $resource($$config.apiPath + '/communities/:communityId', {
-			communityId: '@_id'
+		return $resource($$config.apiPath + '/communities/:_id', {
+			_id: "@_id"
 		}, {
 			get: {
 				method: 'GET',
@@ -39,7 +39,8 @@ angular.module('hearth.services').factory('Community', [
 			add: {
 				method: 'POST'
 			},
-			random: {
+			suggested: {
+				url: $$config.apiPath + '/related_communities',
 				method: 'GET',
 				isArray: true,
 				params: {

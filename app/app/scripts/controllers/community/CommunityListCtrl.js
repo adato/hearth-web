@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 
 		$scope.fetchRandomCommunities = function() {
 			
-			Community.random({}, function(res) {
+			Community.suggested({}, function(res) {
 				$scope.randomCommunities = res;
 				$scope.loaded = true;
 			});

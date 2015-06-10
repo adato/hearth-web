@@ -12,6 +12,7 @@ angular.module('hearth.services').factory('Fulltext', [
 		return $resource($$config.apiPath + '/search', {}, {
 			query: {
 				method: 'GET',
+				isArray: false,
 				params: {
 					limit: 15
 				}

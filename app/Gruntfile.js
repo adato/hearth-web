@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 		yeoman: {
 			// configurable paths
 			app: require('./bower.json').appPath || 'app',
-			dist: 'dist',
+			dist: 'dist/app',
 			env: env,
 			envFolder: envFolder,
 			api: (env == 'staging') ? 'stage' : 'dev'
@@ -52,7 +52,13 @@ module.exports = function(grunt) {
 					'copy:localConfig'
 				],
 				options: {
-					livereload: 3333
+					livereload: {
+						port: 3333,
+						key: grunt.file.read('./cert/server.key'),
+						cert: grunt.file.read('./cert/server.crt'),
+						// key: grunt.file.read('path/to/ssl.key'),
+        				// cert: grunt.file.read('path/to/ssl.crt')
+        			}
 				}
 			},
 			jsTest: {
@@ -71,7 +77,14 @@ module.exports = function(grunt) {
 			},
 			livereload: {
 				options: {
-					livereload: '<%= connect.options.livereload %>'
+					livereload:  {
+        			// '<%= connect.options.livereload %>'
+						port: 3333,
+						key: grunt.file.read('./cert/server.key'),
+						cert: grunt.file.read('./cert/server.crt'),
+						// key: grunt.file.read('path/to/ssl.key'),
+        				// cert: grunt.file.read('path/to/ssl.crt')
+        			}
 				},
 				files: [
 					'<%= yeoman.app %>/{,*/}*.html',
@@ -162,7 +175,7 @@ module.exports = function(grunt) {
 				protocol: 'https',
 			 	key: grunt.file.read('./cert/server.key').toString(),
 				cert: grunt.file.read('./cert/server.crt').toString(),
-				ca: grunt.file.read('./cert/ca.crt').toString(),
+				// ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
 				hostname: 'localhost',
 				livereload: 3333,
@@ -187,6 +200,22 @@ module.exports = function(grunt) {
 					// Make directory browse-able.
 					middlewares.push(connect.directory(directory));
 
+					// if not found, just send index.html
+					// middlewares.push(function(req, res){
+					// 	for(var file, i = 0; i < options.base.length; i++){
+					// 		// console.log(options.base);
+					// 		grunt.log.error(options.base);
+					// 		file = options.base[i] + "/index.html";
+
+					// 		if (grunt.file.exists(file)){
+					// 			require('fs').createReadStream(file).pipe(res);
+					// 			return; // we're done
+					// 		}
+					// 	}
+					// 	res.statusCode(404); // where's index.html?
+					// 	res.end();
+					// });
+
 					return middlewares;
 				}
 			},
@@ -194,7 +223,7 @@ module.exports = function(grunt) {
 			rules: [
 				{from: '^/api/(.*)$',to: '/api/$1'},
 				{from: '^/app(.*)$',to: '$1'},
-				// {from: '^(?!app).*',to: '/app/', redirect: 'temporary'},
+				{from: '^(?!/app)(.*)',to: '/app$1', redirect: 'temporary'},
 			],
 
 			proxies: [{
@@ -233,6 +262,22 @@ module.exports = function(grunt) {
 						// Make directory browse-able.
 						middlewares.push(connect.directory(directory));
 
+
+						// if not found, just send index.html
+						middlewares.push(function(req, res){
+							for(var file, i = 0; i < options.base.length; i++){
+								// console.log(options.base);
+								file = options.base[i] + "/index.html";
+								
+								if (grunt.file.exists(file)){
+									require('fs').createReadStream(file).pipe(res);
+									return; // we're done
+								}
+							}
+							res.statusCode(404); // where's index.html?
+							res.end();
+						});
+					
 						return middlewares;
 					}
 				}
@@ -529,6 +574,11 @@ module.exports = function(grunt) {
 					src: ['**/*']
 				}, {
 					expand: true,
+					cwd: '<%= yeoman.app %>/libs',
+					dest: '<%= yeoman.dist %>/libs',
+					src: ['**/*']
+				}, {
+					expand: true,
 					cwd: '<%= yeoman.app %>/scripts',
 					dest: '.tmp/scripts',
 					src: ['**/*']
@@ -575,6 +625,10 @@ module.exports = function(grunt) {
 			newRelic: {
 				src: '.tmp/scripts/newRelic.js',
 				dest: '.tmp/concat/newRelic.js'
+			},
+			rollbar: {
+				src: '.tmp/scripts/rollbar.js',
+				dest: '.tmp/concat/rollbar.js'
 			}
 		},
 
@@ -599,35 +653,49 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': [
-						'.tmp\/concat\/styles/{,*/}*.css',
-						'<%= yeoman.app %>/styles/{,*/}*.css'
+						'<%= yeoman.dist %>/styles/main.css'
 					]
 				}
 			}
 		},
 		uglify: {
-			dist: {
+			options: {
+				sourceMap: true,
+				sourceMapIncludeSources : true,
+		    },
+			scripts: {
+				options: {
+	    			sourceMapIn : '.tmp/concat/scripts.js.map'
+			    },
+				files: {
+					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
+				}
+			},	   
+			config: {
+				options: {
+	    			sourceMapIn : '.tmp/concat/config.js.map'
+			    },
 				files: {
 					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
-					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
 				}
 			},	   
 		},
 		concat: {
 			options: {
 				separator: ';',
+			    sourceMap: true
 			},
 			scripts: {
 				src: ['.tmp/scripts/**/*.js'],
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js', '.tmp/concat/config-local.js', '.tmp/concat/config-global.js'],
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/rollbar.js', '.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
-				src: ['.tmp/concat/templates.js', '<%= yeoman.dist %>/scripts/scripts.min.js'],
-				dest: '<%= yeoman.dist %>/scripts/scripts.min.js',
+				src: ['.tmp/concat/templates.js', '.tmp/concat/scripts.js'],
+				dest: '.tmp/concat/scripts.js',
 			},
 		},
 
@@ -672,7 +740,9 @@ module.exports = function(grunt) {
 			options: {
 				encoding: 'utf8',
 				algorithm: 'md5',
-				length: 16
+				length: 16,
+				rename: false,
+				baseDir: '<%= yeoman.dist %>/../'
 			},
 			assets: {
 				files: [{
@@ -759,22 +829,22 @@ module.exports = function(grunt) {
 		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
 		'rename:configDist',	// move config-global to .tmp/concat folder
 		'rename:googleAnalytics',	// move googleAnalytics.js to ./tmp concat folder
-		'rename:newRelic',	// move googleAnalytics.js to ./tmp concat folder
+		'rename:newRelic',		// move newrelic.js to ./tmp concat folder
+		'rename:rollbar',		// move rollbar.js to ./tmp concat folder
 		'preprocess',			
 		'ngmin',
 		'cdnify',
 		'cssmin',				// minify css files
-		'rev',
 		'usemin',
 		'htmlmin',
 		'htmlmin:distTemplates', // minify template files before concatenation
 		'html2js', 				// merge all templates to one js file
 		'concat:scripts',
 		'concat:config',
-		'replace:dist', 		// inject angular module for merged templates
-		'uglify',
 		'replace:tmplMinify', 		// minify merged templates
 		'concat:tmpl',			// concat templates merged to JS into scripts
+		'replace:dist', 		// inject angular module for merged templates
+		'uglify',
 		'cacheBust'
 	]);
 

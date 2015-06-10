@@ -20,12 +20,18 @@
                     color: darken(color(3), 40%);
                 }
             }
-            p {
-                margin-left: 1rem;
+            div.short-about {
+                margin-left: 40px;
+                margin-top:15px;
+                margin-bottom:15px;
+                word-wrap: break-word;
+                line-height: 1.5;
                 .fa {
                     display: inline-block;
                     margin-right: 10px;
                     color: color(1);
+                    margin-left:-27px;
+                    float:left;
                 }
             }
         }
@@ -237,25 +243,36 @@
     a {
         color: color(5);
     }
-
-    .ratings-received {
-        .authorSelector select {
-            margin-bottom: 0px;
-        }
-
-        .need-offer-selector {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
         
+    .ratings-received {
+        .revert-changes {
+            position: relative;
+            top: 20px;
+        }
+
+        .author-selector {
+            float:left;
+        }
+
+
+        .checkbox {
+            @extend .ui-checkbox;
+        }
+
         button {
-            margin-top: 10px;
             &.positive {
                 background-color: #58af08;
             }
         }
+        .profile-edit-common {
+            h3 {
+                position: relative;
+                top: -20px;
+            }
+        }
     }
 }
+
 
 .profile-listings {
     @extend .clearfix;
@@ -404,11 +421,16 @@
                 margin-left: 20px;
                 margin-right: 20px;
                 div.descr {
-                    margin-top: 10px;
-                    margin-bottom: 10px;
+                    word-wrap: break-word;
+                    margin-top: $ui-small-grid-size;
+                    margin-bottom: $ui-small-grid-size;
                     margin-left: 27px;
+                    line-height: 140%;
+                    clear:both;
                     .fa {
                         margin-left: -27px;
+                        float:left;
+                        margin-top:3px;
                     }
                 }
             }
@@ -569,7 +591,7 @@
                 color: color(5);
             }
         }
-        min-height: 115px;
+        height: 115px;
         .name {
             margin-left: 100px;
         }
@@ -585,7 +607,7 @@
         float: unset;
         margin: 0px auto;
     }
-    & > article > section {
+    & > article.hiddenAvatar > section {
         @extend .large-centered;
     }
     h3 {
@@ -617,9 +639,10 @@
         background: darken(color(5), 20%);
         border-color: darken(color(5), 20%);
     }
-    &.red {
+    &.button-red {
         background: color(1);
         border-color: color(1);
+        color: white;
         &:hover {
             background: darken(color(1), 20%);
             border-color: darken(color(1), 20%);

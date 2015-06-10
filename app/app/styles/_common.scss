@@ -19,16 +19,37 @@
 }
 
 .error {
-    color: red;
+    color:red;
+}
+
+.green {
+    color: #a7bd1d;
+}
+
+.red {
+    color: #fa5800;
+}
+
+.action-link {
+    color: #20b1ea;
+    font-weight: bold;
+}
+
+.moveUp {
+    position: relative;
+    top: -15px;
+}
+
+.inline-block {
+    display: inline-block;
 }
 
 .box {
     background-color: white;
     border-radius: $global-radius;
-    padding: 1em;
-    padding-top: 0;
-    box-shadow: $defaultShadow;
-    overflow: hidden;
+    padding: $ui-grid-size;
+    box-shadow: $ui-box-shadow;
+    //overflow: hidden;
     .header {
         background-color: color(1);
         color: color(4);
@@ -47,9 +68,13 @@
     }
 }
 
+.item {
+    @extend .box;
+}
+
 .logo {
     background-image: inline-image("logo.png");
-    background-position: center center;
+    background-position: center center; 
     background-color: color(1);
     background-repeat: no-repeat;
     width: 200px !important;
@@ -58,14 +83,6 @@
 }
 
 button {
-    -webkit-transition: -webkit-filter 1s;
-    &[disabled=disabled] {
-        filter: blur(1px) grayscale(70%);
-    }
-    outline: none;
-    &:focus {
-        outline: 1px dotted darken(color(4), 30%);
-    }
 }
 
 .link-button {
@@ -79,6 +96,7 @@ button {
 .button-send {
     border: none;
     color: white;
+    border-radius: $global-radius;
     font-weight: bold;
     display: inline-block;
     font-size: 1.2rem;
@@ -89,6 +107,14 @@ button {
     cursor: pointer;
     background-color: color(5);
     &:hover, &:focus {
+        background-color: darken(color(5), abs($button-function-factor));
+    }
+    @extend .button;
+}
+
+a.button-send {
+    &:hover, &:focus {
+        color: white;
         background-color: darken(color(5), abs($button-function-factor));
     }
 }
@@ -107,7 +133,7 @@ button {
 }
 
 .row {
-    max-width: 960px;
+    max-width: 960px !important;
 }
 
 .remove {
@@ -223,7 +249,6 @@ input:not([type]),
 input[type='text'],
 textarea {
     border: 1px solid darken(color(4), 20%);
-    background-color: lighten(color(4), 2%);
     @include transition(background-color, 0.5s);
     box-shadow: none;
     &:focus {
@@ -254,18 +279,18 @@ textarea {
 }
 
 .datepicker {
-    border: 3px solid #ff4100 !important;
-    border-radius: 8px;
+    border: 1px solid color(5) !important;
+    border-radius: $global-radius;
     thead {
         tr {
             th {
-                color: #FF4100 !important;
+                color: color(5) !important;
             }
         }
     }
     td {
         &.active {
-            background-color: #FF4100 !important;
+            background-color: color(5) !important;
         }
     }
 }

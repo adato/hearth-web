@@ -33,6 +33,8 @@ angular.module('hearth.services').service('Viewport', [
             var target = $(target);
             var height = target.height();
 
+            if (!target.length) throw "NoElementErr";
+
             return {
             	min: target.offset().top,
             	max: height + target.offset().top,
@@ -46,6 +48,8 @@ angular.module('hearth.services').service('Viewport', [
 			var viewport = self.getViewportPos(base);
 			var target = self.getTargetViewportPos(target);
 
+			if (!target.length || !viewport.length) throw "NoElementErr";
+
 			return (viewport.min <= target.min && viewport.max >= target.max)
 		};
 
@@ -56,10 +60,18 @@ angular.module('hearth.services').service('Viewport', [
 			var viewport = self.getViewportPos(base);
 			var target = self.getTargetViewportPos(target);
 
+			if (!target.length || !viewport.length) throw "NoElementErr";
+
 			if(viewport.min < target.min)
 				return -1 * (viewport.max - target.max);
 			else
 				return (target.min - viewport.min);
+		};
+
+		this.isBottomScrolled = function(element, outer, inner) {
+			outer = $(outer, element);
+			inner = $(inner, outer);
+			return outer.scrollTop() + inner.height() >= inner.prop('scrollHeight');
 		};
 
 		// smooth scroll given pixels with offset
@@ -75,8 +87,12 @@ angular.module('hearth.services').service('Viewport', [
 
 		// test if target element is in viewport, if not, scroll to it
 		this.scrollIfHidden = function(target, offset, base) {
-			if(!self.isInViewport(target, base)) {
-				self.scroll(self.getTargetsDistance(target), offset, base);
+			try {
+				if(!self.isInViewport(target, base)) {
+					self.scroll(self.getTargetsDistance(target), offset, base);
+				}
+			} catch (e) {
+				if (e === "NoElementErr") console.log("element not found");
 			}
 		};
 

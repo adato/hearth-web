@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify',
+    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService',
 
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify) {
+    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $scope.addresses = {
             "Community": "community",
             "User": "profile",
-            "Post": "ad",
+            "Post": "post",
         };
         $rootScope.socialLinks = {
             facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
@@ -29,6 +29,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.missingPost = false;
+        $rootScope.cacheInfoBox = {};
 
         // init globalLoading 
         $rootScope.globalLoading = false;
@@ -57,11 +58,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * scroll to top of the page, if not, refresh page with fixed height
          */
         $rootScope.$on("$routeChangeStart", function(event, next) {
+            // when changed route, load conversation counters 
+            Auth.isLoggedIn() && Messenger.loadCounters();
+
+            if(!$rootScope.addressNew)
+                return $rootScope.top(0, 1);;
+            
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
-            var r1 = $rootScope.addressOld.split("/");
-            var r2 = $rootScope.addressNew.split("/");
+            var r1 = $rootScope.addressOld.split($$config.basePath);
+            var r2 = $rootScope.addressNew.split($$config.basePath);
 
             // if first element in URL of old page is not same as first element in URL of new page
             // scroll to top - (alias scroll when we come to new URL)
@@ -92,8 +99,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $scope.logout = function() {
             Auth.logout(function() {
-                window.location.hash = '#!/';
-                location.reload();
+                $rootScope.refreshToPath($$config.basePath);
             });
         };
         
@@ -139,11 +145,27 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         /**
+         * Return profile of item based on its type (community, user, post)
+         */
+        $rootScope.getActivityLink = function(object, target_object) {
+            if(target_object)
+                return $rootScope.getProfileLink(target_object._type, target_object._id);
+            return $rootScope.getProfileLink(object._type, object._id);
+        };
+
+        /**
+         * Return profile of item based on its type and id
+         */
+        $rootScope.getProfileLink = function(type, id) {
+            return $$config.basePath+$rootScope.getProfileLinkByType(type)+"/"+id;
+        };
+
+
+        /**
          * Refresh user to given path
          */
-        $scope.refreshToPath = function(path) {
-            window.location.hash = '#!/' + path;
-            location.reload();
+        $rootScope.refreshToPath = function(path) {
+            window.location = path || document.URL;
         };
 
         $rootScope.isMine = function (author_id) {
@@ -187,7 +209,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.pluralCat = $locale.pluralCat;
             
             $rootScope.DATETIME_FORMATS = $locale.DATETIME_FORMATS;
-            $rootScope.appUrl = window.location.href.replace(window.location.hash, '');
+            $rootScope.appUrl = $$config.appUrl;
 
             if($rootScope.loggedUser._id) {
                 $scope.loadMyCommunities();
@@ -196,7 +218,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1);
             }
+            timeAgoService.init();
             Notify.checkRefreshMessage();
+            Auth.isLoggedIn() && Messenger.loadCounters();
+
         };
 
         $scope.$on('reloadCommunities', $scope.loadMyCommunities);
@@ -206,12 +231,64 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         // ======================================== PUBLIC METHODS =====================================
         $rootScope.showLoginBox = function(showMsgOnlyLogged) {
             
-            $scope.showMsgOnlyLogged = showMsgOnlyLogged;
+            var scope = $scope.$new();
+            scope.showMsgOnlyLogged = showMsgOnlyLogged;
             ngDialog.open({
                 template: $$config.templates + 'userForms/login.html',
                 controller: 'LoginCtrl',
-                scope: $scope,
-                closeByEscape: false,
+                scope: scope,
+                closeByEscape: true,
+                showClose: false
+            });
+        };
+
+        /**
+         * This will test, if image size is sufficient for facebook sharing
+         * based on this https://developers.facebook.com/docs/sharing/best-practices
+         */
+        $rootScope.testImageForSharing = function(img) {
+            return  img.size &&
+                    img.size[0] >= $$config.fbSharing.minWidth &&
+                    img.size[1] >= $$config.fbSharing.minHeight;
+        };
+        
+        /**
+         * This will select best image for facebook sharing
+         */
+        $rootScope.getSharingImage = function(postImages, userImage) {
+
+            // this will go throught post images and select first sufficient
+            if (postImages) for (var img in postImages) {
+                if ($rootScope.testImageForSharing(postImages[img]))
+                    return postImages[img];
+            }
+
+            // if(userImage && $rootScope.testImageForSharing(userImage))
+            //     return userImage;
+
+            return {
+                size: $$config.defaultHearthImageSize,
+                original: $$config.appUrl+$$config.defaultHearthImage,
+            }
+        };
+
+        /**
+         * Open report modal window for given item
+         */
+        $rootScope.openReportBox = function(item) {
+            if(item.spam_reported)
+                return false;
+
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/itemReport.html',
+                controller: 'ItemReport',
+                scope: scope,
+                closeByEscape: true,
                 showClose: false
             });
         };
@@ -229,21 +306,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             return ret;
         };
 
-        // send report to API and close modal.. maybe fire some notification too?
-        $rootScope.reportItem = function(item) {
+        $rootScope.sendMessage = function(user) {
             if (!Auth.isLoggedIn())
                 return $rootScope.showLoginBox(true);
 
-            $rootScope.globalLoading = true;
-            Post.spam({id: item._id}, function(res) {
-                $rootScope.$broadcast('reportItem', item);
+            var scope = $scope.$new();
+            scope.user = user;
 
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
-            }, function(err) {
-                
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR);
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'newMessage.html',
+                controller: 'NewMessage',
+                scope: scope,
+                closeByDocument: false,
+                closeByEscape: false,
+                showClose: false
             });
         };
 
@@ -266,7 +342,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 closeByEscape: false,
                 showClose: false
             });
-            dialog.closePromise.then(function(data) {});
         };
 
         // $timeout(function() {
@@ -317,11 +392,44 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 controller: 'ItemReply',
                 scope: scope,
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
+        };
 
-            dialog.closePromise.then(function(data) {});
+        /**
+         * Function will show modal window where community admin can remove post from his community
+         */
+        $rootScope.removeItemFromCommunity = function(post) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = post;
+            
+            var dialog = ngDialog.open({
+                template: $$config.modalTemplates + 'removeItemFromCommunity.html',
+                controller: 'RemoveItemFromCommunity',
+                scope: scope,
+                closeByDocument: false,
+                closeByEscape: true,
+                showClose: false
+            });
+        };
+
+        $rootScope.openEmailSharingBox = function(item) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+            
+            var scope = $scope.$new();
+            scope.post = item;
+            ngDialog.open({
+                template: $$config.templates + 'modal/emailSharing.html',
+                controller: 'EmailSharing',
+                scope: scope,
+                closeByEscape: true,
+                showClose: false
+            });
         };
 
         // show modal window with invite options
@@ -335,7 +443,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: $scope.$new(),
                 className: 'ngdialog-invite-box',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 // showClose: false
             });
 
@@ -357,7 +465,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: scope,
                 className: 'ngdialog-tutorial ngdialog-theme-default',
                 closeByDocument: false,
-                closeByEscape: false,
+                closeByEscape: true,
                 showClose: false
             });
 
@@ -428,10 +536,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             
             $rootScope.globalLoading = true;
             // call service
-            Action({
-                    id: item._id
-                },
-                function(res) {
+            Action({id: item._id}, function(res) {
 
                     if(angular.isFunction(cb))
                         cb(item);

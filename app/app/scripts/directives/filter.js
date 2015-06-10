@@ -13,6 +13,7 @@ angular.module('hearth.directives').directive('filter', [
             restrict: 'E',
             replace: true,
             scope: {
+                filterShown: "="
             },
             templateUrl: 'templates/directives/filter.html',
             link: function(scope, element) {
@@ -21,6 +22,7 @@ angular.module('hearth.directives').directive('filter', [
                     filterDefault = {
                         type: null,
                         distance: 25,
+                        keywords: [],
                         days: null
                     };
 
@@ -39,9 +41,12 @@ angular.module('hearth.directives').directive('filter', [
 
                 scope.loggedUser = Auth.isLoggedIn();
                 scope.inited = false;
-
+                scope.filterPostCount = false;
 
                 scope.queryKeywords = function($query) {
+                    if ($query === '' || $query.length < 3) {
+                        return Filter.queryCommonKeywords($query);
+                    }
                     return KeywordsService.queryKeywords($query);
                 };
 
@@ -166,6 +171,7 @@ angular.module('hearth.directives').directive('filter', [
 
                 scope.$on('filterReseted', function() {
                     scope.filter = angular.copy(filterDefault);
+                    scope.filterSave = false;
                     scope.close();
                 });
 
@@ -184,18 +190,14 @@ angular.module('hearth.directives').directive('filter', [
                     }
                 });
 
-                // scope.$watch('place', function(value) {
-                //     console.log(value);
-                //     if (!value && scope.filter) {
-                //         delete scope.filter.lat;
-                //         delete scope.filter.lon;
-                //         delete scope.filter.name;
-                //     }
-                // });
+                scope.recountPosts = function() {
+                    if(!scope.filterShown)
+                        return false;
 
-                scope.$on('filterApplied', function() {
-                    scope.updateFilterByRoute();
-                });
+                    Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function(count) {
+                        scope.filterPostCount = count;
+                    });
+                };
 
                 scope.updateFilterByRoute = function() {
                     var search = $location.search();
@@ -211,7 +213,9 @@ angular.module('hearth.directives').directive('filter', [
                         scope.filterSave = true;
                 };
 
-                scope.$watch('filterSave', scope.toggleSaveFilter);
+                scope.$watch('filter', scope.recountPosts, true);
+                scope.$watch('filterShown', scope.recountPosts);
+                // scope.$watch('filterSave', scope.toggleSaveFilter);
                 scope.$on('initFinished', scope.init);
                 $rootScope.initFinished && scope.init();
             }

@@ -13,7 +13,6 @@
     <!-- @endif -->
     <title>HEARTH.net</title>
 
-    <meta name="fragment" content="!">
     <meta http-equiv="pragma" content="no-cache" />
     <meta name="description" content="Hearth.net - {{og_description}}">
     
@@ -22,24 +21,26 @@
     <meta property="og:description" content="{{og_description}}" />
     <meta property="og:url" content="{{og_url}}" />
     <meta property="og:image" content="{{og_image}}" />
-    <!-- <meta property="og:image:width" content="185" />
-    <meta property="og:image:height" content="185" /> -->
-
-     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <!-- endbuild -->
+    <meta property="og:image:width" ng-if="og_image && og_image_width" content="{{og_image_width}}" />
+    <meta property="og:image:height" ng-if="og_image && og_image_height" content="{{og_image_height}}" />
+    
+     <!-- build:css({.tmp,app}) /app/styles/main.css -->
+      <link rel="stylesheet" type="text/css" href="/styles/main.css">
+     <!-- endbuild -->
 
      <!-- @if DEBUG -->
-     <link rel="stylesheet" href="styles/palette.css">
+     <link rel="stylesheet" href="/styles/palette.css">
     <!-- @endif -->
- 
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href="/app/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/app/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/app/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/app/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/app/apple-touch-icon-144x144-precomposed.png">
 
-    <!-- build:js scripts/config.min.js -->
+     <base href="/app/"></base>
+
+    <!-- build:js /app/scripts/config.min.js -->
       <script src="scripts/config-local.js"></script>
       <script src="scripts/config-global.js"></script>
       <script src="scripts/googleAnalytics.js"></script>
@@ -47,12 +48,12 @@
     <!-- endbuild -->
 
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="vendor/ngDialog/css/ngDialog.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/app/vendor/ngDialog/css/ngDialog.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/flexslider-min.css">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
-
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/css/nanoscroller.min.css" media="screen" />
+    
   </head>
-
   <body ng-controller="BaseCtrl" ng-init="init();" ng-class="pageType" ng-keydown="escapeKey($event)">
 
 <div class="ngdialog ngdialog-theme-default" id="maitenancePage">
@@ -69,6 +70,7 @@
   <script src="//connect.facebook.net/en_US/all.js"></script>
   <script type='text/javascript'>
   <!--
+    // fb invite jump out from FB frame
     if (top.location!= self.location) {
       top.location = self.location;
     }
@@ -78,11 +80,10 @@
         window.location.hash = '';
     }
 
-    // refresh from old URL style to new #/ => #!/
-    if (window.location.href.indexOf('#') != -1 && window.location.href.indexOf('#!') == -1){
-      var page = window.location.hash.slice(1);
-      if(!page.length || page[0] != '/') page = '/'+page;
-      window.location.hash = '#!' + page;
+    // refresh from old URL style to new one #!/ => /
+    if (!!~window.location.href.indexOf('#!/')){
+       // != -1 && window.location.href.indexOf('#!') == -1
+      window.location.href =  window.location.href.replace('#!/', '');
     }
   //-->
   </script>
@@ -110,12 +111,12 @@
     <![endif]-->
 
     <!--[if lt IE 9]>
-      <script src="vendor/es5-shim/es5-shim.js"></script>
+      <script src="/app/vendor/es5-shim/es5-shim.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
     <![endif]-->
 
-    <div class="all-visible" ng-show="initFinished">
-      <section ng-include="'templates/navigation.html'" id="navigation"></section>
+    <div class="all-visible row max-width" ng-show="initFinished">
+      <section ng-include="'/app/templates/navigation.html'" id="navigation"></section>
       <div app-view-segment="0" class="main-container"></div>
       <ng-view style="position: relative;top:10em;"></ng-view>
       <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
@@ -139,35 +140,40 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
     <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.11.1/select.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.11.1/select.js"></script>
 
+    
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/javascripts/jquery.nanoscroller.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="/app/libs/lemmon-slider.js"></script>
+    <script type="text/javascript" src="/app/libs/jquery.tipsy.js"></script>
 
-    <script src="vendor/async/lib/async.js"></script>
-    <script src="vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
-    <script src="vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
-    <script src="vendor/ngDialog/js/ngDialog.js"></script>
-    <script src="vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-    <script src="vendor/angular-flexslider/angular-flexslider.js"></script>
-    <script src="vendor/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="vendor/angular-cookie/angular-cookie.min.js"></script>
-    <script src="vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
-    <script src="vendor/SHA-1/sha1.js"></script>
-    <script src="vendor/angularitics/src/angulartics-ga.js"></script>
-    <script src="vendor/angularitics/src/angulartics.js"></script>
-    <script src="vendor/angularitics/dist/angulartics-ga.min.js"></script>
-    <script src="vendor/fastclick/lib/fastclick.js"></script>
-    <script src="vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
-    <script src="vendor/satellizer/satellizer.min.js"></script>
-    
-    <script src="vendor/angular-translate/angular-translate.js"></script>
-    <script src="vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="/app/vendor/async/lib/async.js"></script>
+    <script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
+    <script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
+    <script src="/app/vendor/ngDialog/js/ngDialog.js"></script>
+    <script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+    <script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
+    <script src="/app/vendor/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
+    <script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="/app/vendor/SHA-1/sha1.js"></script>
+    <script src="/app/vendor/angularitics/src/angulartics-ga.js"></script>
+    <script src="/app/vendor/angularitics/src/angulartics.js"></script>
+    <script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
+    <script src="/app/vendor/fastclick/lib/fastclick.js"></script>
+    <script src="/app/vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
+    <script src="/app/vendor/satellizer/satellizer.min.js"></script>
+
+    <script src="/app/vendor/angular-translate/angular-translate.js"></script>
+    <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+    <script src="/app/vendor/exif-js/exif.js"></script>
 
     
     <script>
@@ -181,7 +187,7 @@
       document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
       
     </script>
-    <script src="vendor/markerclustererplus/src/markerclusterer.js"></script>
+    <script src="/app/vendor/markerclustererplus/src/markerclusterer.js"></script>
 
     <script>
       $(function() { 
@@ -206,7 +212,7 @@
     </script>
 
 
-    <!-- build:js scripts/scripts.min.js -->
+    <!-- build:js /app/scripts/scripts.min.js -->
     <script src="scripts/oms.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/routes.js"></script>
@@ -242,7 +248,8 @@
     <script src="scripts/services/resources/UserLocation.js"></script>
     <script src="scripts/services/resources/UserRatings.js"></script>
     <script src="scripts/services/resources/UsersActivityLog.js"></script>
-
+    <script src="scripts/services/resources/Conversations.js"></script>
+    
     <script src="scripts/services/$feature.js"></script>
     <script src="scripts/services/$session.js"></script>
     <script src="scripts/services/ApiHealthChecker.js"></script>
@@ -272,11 +279,25 @@
     <script src="scripts/services/UsersService.js"></script>
     <script src="scripts/services/ViewPort.js"></script>
     <script src="scripts/services/Communities.js"></script>
+    <script src="scripts/services/Messenger.js"></script>
     
+
      <script src="scripts/filters/filters.js"></script>
 
       <script src="scripts/directives/communitySelector.js"></script>
       <script src="scripts/directives/slideTrigger.js"></script>
+    <script src="scripts/services/Validators.js"></script>
+
+    
+     <script src="scripts/filters/filters.js"></script>
+
+      <script src="scripts/directives/ago.js"></script>
+      <script src="scripts/directives/classIfOverflow.js"></script>
+      <script src="scripts/directives/dynamicHeight.js"></script>
+      <script src="scripts/directives/messageReply.js"></script>
+      <script src="scripts/directives/tipsy.js"></script>
+      <script src="scripts/directives/lemmonSlider.js"></script>
+      <script src="scripts/directives/sharingWindow.js"></script>
       <script src="scripts/directives/invitationForm.js"></script>
       <script src="scripts/directives/activityAvatar.js"></script>
       <script src="scripts/directives/avatar.js"></script>
@@ -300,7 +321,8 @@
       <script src="scripts/directives/checkbox.js"></script>
       <script src="scripts/directives/ngEnter.js"></script>
       <script src="scripts/directives/imagePreview.js"></script>
-      <script src="scripts/directives/resizedThumbnailImage.js"></script>      
+      <script src="scripts/directives/resizedThumbnailImage.js"></script>
+      <script src="scripts/directives/exifRotated.js"></script>
       <script src="scripts/directives/fancybox.js"></script>
       <script src="scripts/directives/refocusInputOnTab.js"></script>
       <script src="scripts/directives/autosizeTextarea.js"></script>
@@ -316,7 +338,13 @@
       <script src="scripts/directives/dropdown.js"></script>
       <script src="scripts/directives/emailValidator.js"></script>
       <script src="scripts/directives/marketplaceBanner.js"></script>
+      <script src="scripts/directives/userSelector.js"></script>
       <script src="scripts/directives/authorSelector.js"></script>
+      <script src="scripts/directives/conversationDetail.js"></script>
+      <script src="scripts/directives/conversationAdd.js"></script>
+      <script src="scripts/directives/infoBox.js"></script>
+      <script src="scripts/directives/customScrollbar.js"></script>
+      <script src="scripts/directives/scrollToViewOnHash.js"></script>
 
       <script src="scripts/utils/timeAgo.js"></script>
       <script src="scripts/utils/apiPrefix.js"></script>
@@ -343,7 +371,6 @@
       <script src="scripts/controllers/ResetPwdCtrl.js"></script>
       <script src="scripts/controllers/FeedbackCtrl.js"></script>
       <script src="scripts/controllers/TermsCtrl.js"></script>
-      <script src="scripts/controllers/SetupCtrl.js"></script>
       <script src="scripts/controllers/community/CommunityProfileCtrl.js"></script>
       <script src="scripts/controllers/community/CommunityCreateCtrl.js"></script>
       <script src="scripts/controllers/community/CommunityListCtrl.js"></script>
@@ -353,15 +380,20 @@
       <script src="scripts/controllers/Error404Ctrl.js"></script>
       <script src="scripts/controllers/FillEmailCtrl.js"></script>
       <script src="scripts/controllers/ItemDetail.js"></script>
+      <script src="scripts/controllers/ItemDetailOld.js"></script>
       <script src="scripts/controllers/TokenLoginCtrl.js"></script>
+      
+      <script src="scripts/controllers/messages/MessagesCtrl.js"></script>
 
+      <script src="scripts/controllers/modal/RemoveItemFromCommunity.js"></script>
+      <script src="scripts/controllers/modal/NewMessage.js"></script>
+      <script src="scripts/controllers/modal/ItemReport.js"></script>
+      <script src="scripts/controllers/modal/EmailSharing.js"></script>
       <script src="scripts/controllers/modal/ItemEdit.js"></script>
       <script src="scripts/controllers/modal/ItemReply.js"></script>
       <script src="scripts/controllers/modal/Tutorial.js"></script>
       <script src="scripts/controllers/modal/InviteBox.js"></script>
       <script src="scripts/controllers/modal/ConfirmBox.js"></script>
-
-      <script src="scripts/messages/Messages.js"></script>      
     <!-- endbuild -->
 
     <script>

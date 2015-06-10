@@ -1,4 +1,4 @@
-<article class="row fulltext" when-scrolled="load(1)" loading-in-progress="!loaded">
+<article class="row fulltext" when-scrolled="load(1)" offset="300" loading-in-progress="!loaded">
     <section class="large-12  columns box  margin-bottom-20">
         <article class="row">
             <section class="large-12 columns">
@@ -32,11 +32,11 @@
         <section id="fulltextSearchResults">
             <article ng-repeat="item in items" class="row search-item" ng-switch="item._type">
                 <section class="large-2 columns text-center">
-                    <avatar src="item.avatar.normal" href="'#!/'+getProfileLinkByType(item.author._type || item._type)+'/'+(item.author._id || item._id)" type="item.item_type"></avatar>
+                    <avatar src="item.avatar.normal" href="basePath+getProfileLinkByType(item.author._type || item._type)+'/'+(item.author._id || item._id)" type="item.item_type"></avatar>
                 </section>
                 <section class="large-10 columns">
                     <i class="fa" ng-class="{'icon-marketplace' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
-                    <a class="title" ng-href="#!/{{getProfileLinkByType(item._type)}}/{{item._id}}">
+                    <a class="title" ng-href="{{ basePath+getProfileLinkByType(item._type)}}/{{item._id}}">
                         <span ng-if="title">{{item.title}}</span>
                         <span ng-if="!title">{{item.name | ellipsis: 50}}</span>
                         <span ng-if="item.author.name">({{item.author.name}})</span>
@@ -47,17 +47,17 @@
                     <p ng-switch-when="Community">{{item.description | ellipsis: 150}}</p>
 
                     <div class="breadcrumb" ng-switch-when="Post">
-                        <a href="#!/">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
-                        <a ng-href="#!/ad/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                        <a ng-href="{{ basePath }}">{{'HOMEPAGE_MARKET' | translate}}</a> &gt;
+                        <a ng-href="{{ basePath }}post/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
                         <span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : DATETIME_FORMATS.mediumDate}}
                     </div>
                     <div class="breadcrumb" ng-switch-when="User">
                         {{'people' | translate}} &gt;
-                        <a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                        <a ng-href="{{ basePath }}profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
                     </div>
                     <div class="breadcrumb" ng-switch-when="Community">
-                        <a href="#!/communities">{{'COMMUNITIES' | translate}}</a> &gt;
-                        <a ng-href="#!/profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
+                        <a ng-href="{{ basePath }}communities">{{'COMMUNITIES' | translate}}</a> &gt;
+                        <a ng-href="{{ basePath }}profile/{{item._id}}">{{item.title || item.name  | ellipsis: 50}}</a>
                     </div>
                 </section>
             </article>

@@ -72,7 +72,6 @@ angular.module('hearth.filters', [])
  */
 .filter('ago', [
 	'timeAgoService',
-
 	function(timeAgoService) {
 		return function(value) {
 			var nowDate = new Date(),
@@ -107,5 +106,24 @@ angular.module('hearth.filters', [])
 .filter('protocolfree', function() {
     return function(input) {
       return input.replace("http://", "").replace("https://", "");
+    }
+})
+.filter('minMax', function() {
+    return function(input, min, max, postfix, blank) {
+		var val = parseInt(input);
+		if(!postfix && postfix != '') postfix = '+';
+		if(val < min)
+			return blank ? '' : min;
+		if(val > max)
+			return max+postfix;
+		return input;
+    }
+})
+.filter('highlight', function($sce) {
+    return function(text, phrase) {
+      if (phrase) text = text.replace(new RegExp('('+phrase+')', 'gi'),
+        '<span class="highlighted">$1</span>')
+
+      return $sce.trustAsHtml(text)
     }
 });

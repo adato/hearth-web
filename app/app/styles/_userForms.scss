@@ -8,7 +8,7 @@ $max-modal-window-width:23em;
 }
 .register-login-dialog {
    	background: none repeat scroll 0 0 #fff;
-    border-radius: 8px;
+    border-radius: $global-radius;
     font-size: 1.1em;
     line-height: 1.5em;
     margin: 4% auto 0;
@@ -100,6 +100,12 @@ $max-modal-window-width:23em;
 	.bottom {
 		p {
 			margin-bottom:.2rem;
+		}
+	}
+
+	.head {
+		span.close {
+			top:5px;
 		}
 	}
 

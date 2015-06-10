@@ -1,0 +1,18 @@
+<div class="new-message itemEdit formStyle modal">
+    <div class="head">
+        <h2>
+            {{ 'MESSAGES.NEW_MESSAGE' | translate}}
+        </h2>
+        <span ng-click="close()" class="close fa fa-times"></span>
+        <hr />
+    </div>
+    <div class="toggle-content">
+        <div class="notify-new-message-container"></div>
+        <conversation-add close="close" on-error="onError" on-success="onSuccess" recipient="user"></conversation-add>
+    </div>
+    <div class="toggle-content success success-msg hidden">
+        <p>{{ 'MESSAGES.NEW_MESSAGE_SENT' | translate }}</p>
+        <button class="primary button-send fright pointer" ng-click="close()" translate>CLOSE</button>
+    </div>
+    <div class="clear"></div>
+</div>

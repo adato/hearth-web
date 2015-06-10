@@ -5,48 +5,48 @@
     padding-right:1rem;
 
     .avatar {
-        margin: 2em;
+        margin-left:3*$ui-small-grid-size;
     }
 
     .community-list-add-form {
-        @extend .clearfix;
         transition: opacity 0.4s ease-in-out;
     }
 
     .community-list {
-        @extend .row, .clearfix;
         .community-item {
-            @extend .large-12, .columns;
-            margin:0;
-            padding:0;            
-            margin:auto;
+            @extend .large-12, .columns, .item;
+            padding:4*$ui-small-grid-size;
             float:none;
             word-wrap: break-word;
+            margin-bottom:3*$ui-small-grid-size;
             .content {
-                margin-left:9.1rem;
+                margin-left:5*$ui-grid-size;
+            }
+            p {
+                margin-bottom: 0;
             }
         }
         &.small {
             clear: both;
             .community-item {
-                @extend .large-6, .columns;
-                margin:0;
-                padding:0;
-                section {
-                    height:11.5rem;
-                    overflow:hidden;
-                    margin:1rem;
-                    .content {
-                        height: 10.6rem;
-                        overflow: hidden;
-                        word-wrap: break-word;
-                    }
-                    padding-bottom:1rem;
+                @extend .large-6, .columns, .item;
+                float:left;
+                padding:4*$ui-small-grid-size;
+                height:11.5rem;
+                overflow:hidden;
+                margin-left:$ui-small-grid-size;
+                margin-right:$ui-small-grid-size;
+                max-width:49.4%;
+                .content {
+                    height: 10.6rem;
+                    overflow: hidden;
+                    word-wrap: break-word;
                 }
-                &:nth-child(2n)>section {
+                padding-bottom:1rem;
+                &:nth-child(2n) {
                     margin-left:0;
                 }
-                &:nth-child(2n-1)>section {
+                &:nth-child(2n-1) {
                     margin-right:0;
                 }
                 .fadeout {
