@@ -17,26 +17,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.isMine = false;
 
 		// init language
-		$scope.postTypes = {
-			User: {
-				need: 'DOES_WISH',
-				offer: 'DOES_GIVE'
-			},
-			Community: {
-				need: 'WE_NEED',
-				offer: 'WE_GIVE'
-			}
-		};
-
-		$scope.replyLabel = {
-			offer: 'WISH_GIFT',
-			need: 'OFFER_GIFT'
-		};
-
-		$scope.replyCountTexts = {
-			offer: 'PEOPLE_COUNT_WISH_PL',
-			need: 'PEOPLE_COUNT_OFFER_PL'
-		};
+		$scope.postTypes = $$config.postTypes;
+		$scope.replyLabel = $$config.replyLabels;
+		$scope.replyCountTexts = $$config.replyCountTexts;
 
 		$scope.deserializeReply = function(item) {
 			if(item.from_community) {
