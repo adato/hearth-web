@@ -1,4 +1,4 @@
-<div ng-include="'templates/community/profileMembersPanel.html'"></div>
+<div ng-include="'templates/community/subviews/membersPanel.html'"></div>
 <div class="community-applications-list" ng-if="subPageLoaded">
 	<div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 

@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-    '$rootScope', '$location', '$routeParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth',
-    function($rootScope, $location, $routeParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth) {
+    '$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth',
+    function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth) {
         return {
             restrict: 'E',
             replace: true,
@@ -87,7 +87,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
                 };
 
                 $scope.getCommunityId = function() {
-                    return $routeParams.id;
+                    return $stateParams.id;
                 };
 
                 $scope.validate = function(data) {
