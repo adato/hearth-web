@@ -86,6 +86,14 @@
                     margin: 10px;
                 }
                 
+                &.vertical-center {
+                    display: table;
+                    span {
+                        display: table-cell;
+                        vertical-align: middle;
+                    }
+                }
+
                 &.move-down {
                     top: 60px;
                 }
