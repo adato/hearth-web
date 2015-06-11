@@ -908,6 +908,7 @@
     "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Reply",
     "REPLY_PUBLISH_EMAIL_AGREE": "I agree that my email address will be provided to {{name}}.",
+    "REPLY_TO_POST": "Odpověď na inzerát: ",
     "REPORT": "Report",
     "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "RESET_PASSWORD": "Reset password",

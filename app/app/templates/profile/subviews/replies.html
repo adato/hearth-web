@@ -1,42 +1,41 @@
 <div ng-include="'templates/profile/subviews/postPanel.html'"></div>
 
 <div ng-if="subPageLoaded" class="reply-list">
-	<div ng-repeat="(id, item) in replies track by $index" class="reply">
 
-		<div class="applications-item">
-	        <!-- <avatar class="left margin-bottom-20" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
-	        <div class="applications-text">
-	            <a href="{{:: basePath }}profile/{{:: item._id}} ">
-	            	{{:: item.name | ellipsis}}
-	            </a><br>
-	            <a href="{{:: basePath }}profile/{{:: item._id}} ">
-	            	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
-	            </a>
-	        </div>
-	        <div class="applications-buttons">
-	            <a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
-	            <a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
-	        </div> -->
+	<article ng-repeat="(id, item) in replies track by $index" class="reply row" id="reply_{{ item._id }}">
 
-	        POST: 
-	        <a ng-href="{{:: getProfileLink(item.post.author._type, item.post.author._id) }}">{{:: item.post.author.name}}</a>
-	         - 
-	        <a ng-href="{{:: getProfileLink('Post', item.post._id) }}">{{:: postTypes[item.post.author._type][item.post.type] | translate }} {{:: item.post.title}}</a>
+		<section class="large-2 columns user">
+			<div info-box="item.author">
+				<a ng-href="{{:: getProfileLinkB(item.post.author._type, item.post.author._id) }}">
+					<avatar type="item.post.author._type" src="item.post.author.avatar.large"></avatar>
+					<div class="name">{{ item.post.author.name }}</div>
+				</a>
+			</div>
+		</section>
+		<div class="large-10 fleft columns">
+			<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
+				<span class="ad-date fright" title="{{item.created_at | date:DATETIME_FORMATS.medium}}">
+					{{item.created_at | ago}}
+				</span>
 
-	        <br />
+				<span class="text-container">
+		        	{{:: item.message.text | ellipsis}}
+			        <a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="fa fa-share"></a>
+				</span>
 
-	        REPLY:
-	        <a ng-href="{{:: getProfileLink(item._type, item._id) }}">
-	        	{{:: item.message.text | ellipsis}}
-        	</a>
-        	- 
-	        <span title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
-				{{ item.created_at | ago}}
-			</span>
-
-			<hr />
+				<div class="clear"></div>
+				
+				<br />
+				<span class="right">
+					{{:: 'REPLY_TO_POST' | translate }}&nbsp;
+					<a class="right" ng-href="{{:: getProfileLink('Post', item.post._id) }}">
+						{{:: postTypes[item.post.author._type][item.post.type] | translate }} {{:: item.post.title | ellipsis:60 }}
+					</a>
+				</span>
+				<div class="clear"></div>
+			</article>
 		</div>
-	</div>	
+	</article>
 </div>
 
 <div loading show="!subPageLoaded"></div>

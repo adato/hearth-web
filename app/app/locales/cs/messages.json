@@ -930,6 +930,7 @@
     "REPLY": "Odpovědět",
     "REPLY_BUTTON_CAPTION": "Odpovědět",
     "REPLY_PUBLISH_EMAIL_AGREE": "Společně s touto zprávou uvidí uživatel {{name}} i Vaši emailovou adresu.",
+    "REPLY_TO_POST": "Odpověď na inzerát: ",
     "REPORT": "Odeslat",
     "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "RESET_PASSWORD": "Reset hesla",
