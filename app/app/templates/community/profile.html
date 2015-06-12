@@ -1,10 +1,10 @@
 <div loading show="!loaded"></div>
 
-<div class="community-view profile-common" ng-show="loaded" ng-class="{'mine': mine, 'others': !mine}">
-	<div class="user" ng-show="! info">
+<div class="community-view profile-common" ng-if="loaded" ng-class="{'mine': mine, 'others': !mine}">
+	<div class="user" ng-if="! info">
 		<p>{{:: 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
 	</div>
-	<header ng-show="info">
+	<header ng-if="info">
 		<div class="user-basic">
 			<div class="button-bar text-right">
 				<button class="profile-button tall outline" ng-if="!mine && info.is_member" ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
@@ -19,8 +19,8 @@
 				<a href="{{:: basePath }}community/{:: info._id}}/invite-friends" class="right" ng-if="false">
 					<button class="profile-button tall"><i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
 				</a>
-				<a ng-if="mine" href="{{:: basePath }}community/{{:: info._id}}/edit">
-					<button class="profile-button button-red tall">
+				<a ng-if="mine" href="{{ basePath }}community/{{info._id}}/edit">
+					<button class="profile-button red tall">
 						<i class="fa fa-gears"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}
 					</button>
 				</a>
