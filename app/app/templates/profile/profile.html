@@ -34,7 +34,23 @@
             <avatar size="large" class="left" src="info.avatar.large" href="basePath+'profile/'+info._id" type="info._type"></avatar>
 
             <span class="shadow large">
-                <a href="{{ basePath }}profile/{{info._id}}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble large">
+                <a href="{{ basePath }}profile/{{info._id}}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">
+                    <b>{{info.post_count}}</b><br>
+                    {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count) | translate }}
+                    <hr />
+                     <b>{{info.post_count}}</b><br>
+                    {{ 'PROFILE.WISHES_COUNT.'+pluralCat(info.post_count) | translate }}
+                </a>
+            </span>
+
+            <span class="shadow small">
+                <a href="{{ basePath }}profile/{{info._id}}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble small"><b>{{info.down_votes + info.up_votes}}</b><br>
+                    {{ 'RATINGS_COUNT' | translate }}
+                </a>
+            </span>
+
+            <span class="shadow small">
+                <a href="{{ basePath }}profile/{{info._id}}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble medium">
                     
                     <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
                     <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
@@ -49,18 +65,6 @@
             <span class="shadow small">
                 <a href="{{ basePath }}profile/{{info._id}}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}"><b>{{info.communities_count}}</b> 
                     {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
-                </a>
-            </span>
-
-            <span class="shadow small">
-                <a href="{{ basePath }}profile/{{info._id}}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="bubble small"><b>{{info.down_votes + info.up_votes}}</b><br>
-                    {{ 'RATINGS_COUNT' | translate }}
-                </a>
-            </span>
-            
-            <span class="shadow small">
-                <a href="{{ basePath }}profile/{{info._id}}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="move-down bubble small"><b>{{info.post_count}}</b><br>
-                    {{ 'GIVES_AND_WISHES.'+pluralCat(info.post_count) | translate }}
                 </a>
             </span>
 

@@ -54,20 +54,6 @@
                 margin-right: 25px;
             }
 
-            .shadow {
-                background-image: url("../images/profile_shadow_small.png");
-                background-position: center bottom 5px;
-                background-repeat: no-repeat;
-                display: inline-block;
-                float: left;
-                height: 240px;
-
-                &.large {
-                    background-image: image-url("profile_shadow_large.png");
-                    background-position: center bottom 0px;
-                }
-            }
-
             .bubble {
                 @extend .columns;
 
@@ -80,12 +66,13 @@
                 color: color(4);
                 box-shadow: inset 0px -1px 50px 30px rgba(50, 50, 50, 0.75);
                 text-shadow: 0px 0px 13px rgba(50, 50, 50, 1);
-                margin: 10px;
+                margin: 7px;
                 b, strong {
-                    font-size: 46px;
+                    font-size: 26px;
                     font-weight: bold;
                     margin: 5px;
                 }
+               
                 hr {
                     margin: 10px;
                 }
@@ -118,6 +105,21 @@
                     height: 140px;
                 }
             }
+
+            .shadow {
+                background-image: url("../images/profile_shadow_small.png");
+                background-position: center bottom 5px;
+                background-repeat: no-repeat;
+                display: inline-block;
+                float: left;
+                height: 240px;
+
+                &.large {
+                    background-image: image-url("profile_shadow_large.png");
+                    background-position: center bottom 0px;
+                }
+            }
+
             .karma-bar {
                 @extend .large-8, .columns, .pull-right;
 
