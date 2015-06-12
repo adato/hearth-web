@@ -43,6 +43,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			Community.get({_id: $stateParams.id }, function(res) {
 				$scope.loaded = true;
 
+				$scope.comunityLink = $rootScope.getProfileLink('Community', res._id);
 				$scope.loadingCounter--;
 				$scope.info = res;
 				$scope.topLoaded = true;

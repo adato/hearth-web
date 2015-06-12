@@ -16,17 +16,17 @@
 				<button ng-if="!mine && info.is_applicant" class="profile-button tall outline">
 					<i class="fa fa-smile-o"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
 				</button>
-				<a href="{{:: basePath }}community/{:: info._id}}/invite-friends" class="right" ng-if="false">
+				<a href="{{:: comunityLink }}/invite-friends" class="right" ng-if="false">
 					<button class="profile-button tall"><i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
 				</a>
-				<a ng-if="mine" href="{{ basePath }}community/{{info._id}}/edit">
+				<a ng-if="mine" href="{{:: comunityLink }}/edit">
 					<button class="profile-button red tall">
 						<i class="fa fa-gears"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}
 					</button>
 				</a>
 			</div>
 			<h1>
-				<a href="{{:: basePath }}community/{{:: info._id}}">
+				<a href="{{:: comunityLink }}">
 					{{:: info.name }}
 				</a>
 			</h1>
@@ -36,7 +36,7 @@
             <avatar size="large" class="left" src="info.avatar.large" href="basePath+'community/'+info._id" type="info._type"></avatar>
 				
 			<span class="shadow large">
-				<a href="{{:: getProfileLink('Community', info._id) }}/posts" ng-class="{'active': (activePage == 'posts')}" class="bubble large">
+				<a href="{{:: comunityLink }}/posts" ng-class="{'active': (activePage == 'posts')}" class="bubble large">
 	                <span>
 	                	<b>{{ info.post_count }}</b><br />
 	                	{{ 'COMMUNITY.X_GIVES.'+pluralCat(info.post_count) | translate }}
@@ -47,12 +47,12 @@
 				</a>
             </span>
 			<span class="shadow small">
-				<a href="{{:: getProfileLink('Community', info._id) }}/members" class="bubble small move-down" ng-class="{'active': (activePage == 'members' || activePage == 'applications')}">
+				<a href="{{:: comunityLink }}/members" class="bubble small move-down" ng-class="{'active': (activePage == 'members' || activePage == 'applications')}">
 	                <span ng-if="info" ng-bind-html="'COMMUNITY.X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
 	            </a>
             </span>
 			<span class="shadow small">
-				<a href="{{:: getProfileLink('Community', info._id) }}/received-ratings" class="bubble small" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}">
+				<a href="{{:: comunityLink }}/received-ratings" class="bubble small" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}">
 					<span>
 						<b>123</b><br />
 						{{:: 'COMMUNITY_RATINGS' | translate}}
@@ -60,7 +60,7 @@
 	            </a>
             </span>
 			<span class="shadow small">
-				<a href="{{:: basePath }}community/{{:: info._id}}/about" class="bubble small move-down" ng-class="{'active': (activePage == 'about')}">
+				<a href="{{:: comunityLink }}/about" class="bubble small move-down" ng-class="{'active': (activePage == 'about')}">
 					<span>
 						<b>?</b><br />
 						{{:: 'COMMUNITY_ABOUT_SHORT' | translate}}
