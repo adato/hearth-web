@@ -906,6 +906,16 @@
         "PROFILE": {
             "GIVEN_RATINGS": "Odeslaná hodnocení",
             "RECEIVED_RATINGS": "Přijatá hodnocení"
+        },
+        "X_GIVES": {
+            "one": "dar",
+            "few": "dary",
+            "other": "darů"
+        },
+        "X_WISHES": {
+            "one": "přání",
+            "few": "přání",
+            "other": "přání"
         }
     },
     "PROFILE": {
@@ -1140,7 +1150,7 @@
     "ALL_COMMUNITIES": "Všechny komunity",
     "RATINGS_COUNT": "hodnocení",
     "MY_POST_REPLIES": "Moje odpovědi",
-    "COMMUNITY_RATINGS": "Hodnocení komunity",
+    "COMMUNITY_RATINGS": "hodnocení",
     "COMMUNITY_GIVEN_RATINGS": "Věnovaná hodnocení",
     "COMMUNITY_RECEIVED_RATINGS": "Přijatá hodnocení",
     "REPLY_TO_POST": "Odpověď na inzerát: "

@@ -4,72 +4,81 @@
 <div class="profile-view profile-common" ng-show="loaded" ng-class="{'mine-profile': mine, 'others-profile': ! mine}">
 
     <div class="user" ng-show="! info">
-        <p>{{ 'ERR_USER_NOT_FOUND' | translate }}</p>
+        <p>{{:: 'ERR_USER_NOT_FOUND' | translate }}</p>
     </div>
     <header ng-show="info">
         <div class="user-basic">
             <div class="button-bar text-right">
                 <button class="others profile-button tall solid" ng-click="openUserRatingForm(true)">
-                    {{ 'THUMB_UP' | translate }}
+                    {{:: 'THUMB_UP' | translate }}
                 </button>
                 <button ng-if="!info.is_followed" class="others profile-button tall outline" ng-click="toggleFollow(info._id)">
-                    <i class="fa fa-plus"></i> {{ 'FOLLOW_BUTTON_CAPTION' | translate}}
+                    <i class="fa fa-plus"></i> {{:: 'FOLLOW_BUTTON_CAPTION' | translate}}
                 </button>
                 <button ng-if="info.is_followed" class="others profile-button tall outline" ng-click="toggleFollow(info._id)">
-                    <i class="fa fa-times"></i> {{ 'UNFOLLOW_BUTTON_CAPTION' | translate}}
+                    <i class="fa fa-times"></i> {{:: 'UNFOLLOW_BUTTON_CAPTION' | translate}}
                 </button>
                 <button ng-if="mine" ng-click="openInviteBox()" class="profile-button no-wrap tall">
-                    <i class="fa fa-forward"></i> <span ng-bind-html="'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
+                    <i class="fa fa-forward"></i> <span ng-bind-html=":: 'INVITE_FRIENDS_TO_HEARTH' | translate"></span>
                 </button>
-                <a href="{{ basePath }}profile-edit" class="mine">
-                    <button class="profile-button button-red tall"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER' | translate}}</button>
+                <a href="{{:: basePath }}profile-edit" class="mine">
+                    <button class="profile-button button-red tall"><i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
                 </a>
             </div>
             <h1 style="display: inline;">
-                <a href="{{ basePath }}profile/{{info._id}}"><span>{{ info.name }}</span></a>
+                <a href="{{:: basePath }}profile/{{:: info._id}}"><span>{{:: info.name }}</span></a>
             </h1>
-            <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{info.about | ellipsis}}</div>
+            <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{:: info.about | ellipsis}}</div>
         </div>
         <div class="highlights">
             <avatar size="large" class="left" src="info.avatar.large" href="basePath+'profile/'+info._id" type="info._type"></avatar>
 
             <span class="shadow large">
                 <a href="{{ basePath }}profile/{{info._id}}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">
-                    <b>{{info.post_count}}</b><br>
-                    {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count) | translate }}
-                    <hr />
-                     <b>{{info.post_count}}</b><br>
-                    {{ 'PROFILE.WISHES_COUNT.'+pluralCat(info.post_count) | translate }}
+                    <span>
+                        <b>{{info.post_count}}</b><br>
+                        {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count) | translate }}
+                        <hr class="orange" />
+                         <b>{{info.post_count}}</b><br>
+                        {{ 'PROFILE.WISHES_COUNT.'+pluralCat(info.post_count) | translate }}
+                    </span>
                 </a>
             </span>
 
             <span class="shadow small">
-                <a href="{{ basePath }}profile/{{info._id}}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble small"><b>{{info.down_votes + info.up_votes}}</b><br>
-                    {{ 'RATINGS_COUNT' | translate }}
+                <a href="{{ basePath }}profile/{{info._id}}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble small">
+                    <span>
+                        <b>{{info.down_votes + info.up_votes}}</b><br>
+                        {{:: 'RATINGS_COUNT' | translate }}
+                    </span>
                 </a>
             </span>
 
             <span class="shadow small">
                 <a href="{{ basePath }}profile/{{info._id}}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble medium">
-                    
-                    <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
-                    <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
-                    <hr>
+                    <span>
+                        <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
+                        <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
+                        <hr class="blue" />
 
-                    <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_ME.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
+                        <span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_ME.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
 
-                    <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_HIM.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
+                        <span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRING_HIM.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
+                    </span>
                 </a>
             </span>
             
             <span class="shadow small">
-                <a href="{{ basePath }}profile/{{info._id}}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}"><b>{{info.communities_count}}</b> 
-                    {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
+                <a href="{{ basePath }}profile/{{info._id}}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}">
+                    <span>
+                        <b>{{info.communities_count}}</b><br />
+                        {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
+                    </span>
                 </a>
             </span>
 
             <a href="{{ basePath }}profile/{{info._id}}/received-ratings">
-                <div ng-if="info" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
+                <div ng-if="info" class="karma-bar" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
                     <span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
                         <span>{{ info.karma }}% <i class="fa icon-rating-positive"></i></span>
                     </span>
@@ -79,10 +88,10 @@
                         </span>
                     </span>
                     <span class="empty" ng-if="info.karma == null && mine">
-                        {{ 'PROFILE.TOP.KARMA_NO_RATING_ME' | translate }}
+                        {{:: 'PROFILE.TOP.KARMA_NO_RATING_ME' | translate }}
                     </span>
                     <span class="empty" ng-if="info.karma == null && !mine">
-                        {{ 'PROFILE.TOP.KARMA_NO_RATING_OTHER' | translate }}
+                        {{:: 'PROFILE.TOP.KARMA_NO_RATING_OTHER' | translate }}
                     </span>
                 </div>
             </a>

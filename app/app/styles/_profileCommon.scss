@@ -57,6 +57,7 @@
             .bubble {
                 @extend .columns;
 
+                display: table;
                 position: relative;
                 border-radius: 50%;
                 border: none;
@@ -67,14 +68,29 @@
                 box-shadow: inset 0px -1px 50px 30px rgba(50, 50, 50, 0.75);
                 text-shadow: 0px 0px 13px rgba(50, 50, 50, 1);
                 margin: 7px;
+
+                &>span {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+
                 b, strong {
                     font-size: 26px;
                     font-weight: bold;
-                    margin: 5px;
+                    display: inline-block;
+                    margin-bottom: 5px;
                 }
                
                 hr {
                     margin: 10px;
+
+                    &.orange {
+                        border-color: lighten(color(1), 40);
+                    }
+                    
+                    &.blue {
+                        border-color: lighten(color(5), 30);
+                    }
                 }
                 
                 &.move-down {
@@ -684,5 +700,11 @@
     }
     &.without-icon-text .fa {
         margin: 0;
+    }
+}
+
+.reply-list {
+    .reply {
+        margin-bottom: 10px;
     }
 }
