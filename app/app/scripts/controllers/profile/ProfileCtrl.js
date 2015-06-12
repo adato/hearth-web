@@ -71,6 +71,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			User.get({_id: $stateParams.id}, function(res) {
 				$scope.loaded = true;
 
+				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);
 				$scope.mine = $rootScope.isMine($stateParams.id);
 				
