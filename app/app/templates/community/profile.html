@@ -38,11 +38,11 @@
 			<span class="shadow large">
 				<a href="{{:: comunityLink }}/posts" ng-class="{'active': (activePage == 'posts')}" class="bubble large">
 	                <span>
-	                	<b>{{ info.post_count }}</b><br />
-	                	{{ 'COMMUNITY.X_GIVES.'+pluralCat(info.post_count) | translate }}
+	                	<b>{{ info.post_count.offers }}</b><br />
+	                	{{ 'COMMUNITY.X_GIVES.'+pluralCat(info.post_count.offers) | translate }}
 	                	<hr class="orange" />
-	                	<b>{{ info.post_count }}</b><br />
-	                	{{ 'COMMUNITY.X_WISHES.'+pluralCat(info.post_count) | translate }}
+	                	<b>{{ info.post_count.needs }}</b><br />
+	                	{{ 'COMMUNITY.X_WISHES.'+pluralCat(info.post_count.needs) | translate }}
                 	</span>
 				</a>
             </span>
