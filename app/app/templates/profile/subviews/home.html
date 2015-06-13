@@ -37,16 +37,16 @@
             <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index"></div>
 
             <!-- === No posts active & inactive === -->
-            <p class="mine" ng-if="! posts.data.length && !info.post_count">
+            <p class="mine" ng-if="! posts.data.length && !info.post_total">
                 {{:: 'PROFILE.HOME.NO_POSTS_ME' | translate}}
                 <a ng-click="editItem(null)" title="{{:: 'AD_ADD_LABEL' | translate}}">{{:: 'AD_ADD_LABEL' | translate }}</a>
             </p>
             <p class="others" ng-if="! posts.data.length">{{:: 'USER_HAS_NO_POSTS_YET' | translate }}</p>
             
             <!-- === No active posts but some inactive === -->
-            <p class="mine" ng-if="! posts.data.length && info.post_count > 0">{{:: 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
+            <p class="mine" ng-if="! posts.data.length && info.post_total > 0">{{:: 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
             
-            <div class="buttons" ng-if="posts.data.length > 0 || (info.post_count > 0 &&  mine)">
+            <div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 &&  mine)">
                 <a href="{{:: basePath }}profile/{{:: info._id}}/posts">
                     <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}</button>
                 </a>

@@ -43,6 +43,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			Community.get({_id: $stateParams.id }, function(res) {
 				$scope.loaded = true;
 
+				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.comunityLink = $rootScope.getProfileLink('Community', res._id);
 				$scope.loadingCounter--;
 				$scope.info = res;

@@ -36,11 +36,11 @@
             <span class="shadow large">
                 <a href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">
                     <span>
-                        <b>{{info.post_count}}</b><br>
-                        {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count) | translate }}
+                        <b>{{info.post_count.offers}}</b><br>
+                        {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count.offers) | translate }}
                         <hr class="orange" />
-                         <b>{{info.post_count}}</b><br>
-                        {{ 'PROFILE.WISHES_COUNT.'+pluralCat(info.post_count) | translate }}
+                         <b>{{info.post_count.needs}}</b><br>
+                        {{ 'PROFILE.WISHES_COUNT.'+pluralCat(info.post_count.needs) | translate }}
                     </span>
                 </a>
             </span>
