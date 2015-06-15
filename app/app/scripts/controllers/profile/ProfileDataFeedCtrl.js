@@ -26,10 +26,16 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             };
 
         $scope.postTypes = $$config.postTypes;
+        $scope.loadingData = false;
 
         var inited = false;
         $scope.subPageLoaded = false;
         
+
+        $scope.loadBottom = function() {
+            $scope.loadingData = true;
+            loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
+        };
 
         function loadFriends(params, done, doneErr) {
             params.related = "user";
@@ -40,6 +46,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
+            params.offset = $scope.data.
             UserRatings.received(params, done, doneErr);
             
             $scope.$watch('rating.current_community_id', function(val) {
@@ -157,6 +164,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         };
 
         function finishLoading() {
+            if(res && res.length)
+                $scope.loadingData = false;
+
             $scope.subPageLoaded = true;
             if(!$scope.$parent)
                 $scope.$parent = {};
@@ -165,7 +175,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function processData(res) {
-            $scope.data = res;
+            $scope.data = $scope.data.concat(res);
             finishLoading();
         }
 

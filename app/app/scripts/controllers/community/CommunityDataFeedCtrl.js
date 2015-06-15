@@ -11,7 +11,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
         $scope.activityShow = false;
         $scope.loadingData = false;
-        $scope.loadLimit = 10;
 
         var inited = false;
         var loadServices = {
@@ -108,7 +107,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function loadGivenRatings(id, done, doneErr) {
             var obj = {
                 communityId: id,
-                limit: $scope.loadLimit,
+                limit: 10,
                 offset: $scope.data.length
             };
             
@@ -118,7 +117,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function loadReceivedRatings(id, done, doneErr) {
             var obj = {
                 communityId: id,
-                limit: $scope.loadLimit,
+                limit: 10,
                 offset: $scope.data.length
             };
 
