@@ -1,20 +1,20 @@
 <div class="bottom-tabs">
     <ul>
         <li>
-            <a href="{{ basePath }}profile/{{info._id}}/friends" ng-class="{selected: pageSegment == 'friends'}">
+            <a href="{{:: profileLink}}/friends" ng-class="{selected: pageSegment == 'friends'}">
                 <span ng-if="mine && info" ng-bind-html="'PROFILE.FRIENDS.YOU_HAVE_X_FRIENDS.'+pluralCat(info.friends_count) | translate: '{count: '+info.friends_count+'}'"></span>
                 <span ng-if="!mine && info" ng-bind-html="'PROFILE.FRIENDS.HE_HAS_X_FRIENDS.'+pluralCat(info.friends_count) | translate: '{count: '+info.friends_count+'}'"></span>
             </a>
         </li>
         <li>
-            <a href="{{ basePath }}profile/{{info._id}}/followers" ng-class="{selected: pageSegment == 'followers'}">
+            <a href="{{:: profileLink}}/followers" ng-class="{selected: pageSegment == 'followers'}">
 
                 <span ng-if="mine && info" ng-bind-html="'PROFILE.FOLLOWERS.IM_INSPIRING_X_PEOPLE.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
                 <span ng-if="!mine && info" ng-bind-html="'PROFILE.FOLLOWERS.HE_IS_INSPIRING_X_PEOPLE.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
             </a>
         </li>
         <li>
-            <a href="{{ basePath }}profile/{{info._id}}/following" ng-class="{selected: pageSegment == 'following'}">
+            <a href="{{:: profileLink}}/following" ng-class="{selected: pageSegment == 'following'}">
 
                 <span ng-if="mine && info" ng-bind-html="'PROFILE.FOLLOWEES.IM_INSPIRED_BY_X_PEOPLE.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>
                 <span ng-if="!mine && info" ng-bind-html="'PROFILE.FOLLOWEES.HE_IS_INSPIRED_BY_X_PEOPLE.'+pluralCat(info.followees_count) | translate: '{count: '+info.followees_count+'}'"></span>

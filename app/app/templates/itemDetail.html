@@ -15,11 +15,11 @@
 		<section ng-if="! adDeleted && ad && ad.name" class="large-12 content row" id="item_container_{{ ad._id }}">
 			<div class="large-4 ad-author-column text-center fright">
 				<div>
-					<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="basePath+getProfileLinkByType(ad.author._type)+'/'+ad.author._id" /></avatar>
+					<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="getProfileLink(ad.author._type, ad.author._id)" /></avatar>
 				</div>
-				<a ng-href="{{basePath+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}"><h2>{{ ad.author.name}}</h2></a>
+				<a ng-href="{{:: getProfileLink(ad.author._type, ad.author._id)}}"><h2>{{ ad.author.name}}</h2></a>
 
-				<a ng-href="{{basePath+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">
+				<a ng-href="{{:: getProfileLink(ad.author._type, ad.author._id)}}">
 					<div ng-if="ad.author" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ ad.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ ad.author.down_votes }}">
 						<span class="positive bar" ng-style="{width: (karma)+'%'}" ng-class="{full: karma == 100}" ng-if="karma != null && karma > 0">
 						</span>
@@ -59,7 +59,7 @@
 							<a target="_blank" ng-if="ad.author.linkedin" href="{{ad.author.linkedin}}"><i class="fa fa-linkedin"></i></a>
 						</div>
 						<div class="fright">
-							<a class="profile-link" ng-href="{{ basePath+getProfileLinkByType(ad.author._type)+'/'+ad.author._id}}">{{ 'WHOLE_PROFILE' | translate }}</a>
+							<a class="profile-link" ng-href="{{:: getProfileLink(ad.author._type, ad.author._id)}}">{{ 'WHOLE_PROFILE' | translate }}</a>
 						</div>
 					</div>
 				</div>
@@ -175,7 +175,7 @@
 					<div class="large-12 large-centered columns text-center no-result" ng-if="!replies.length"><p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p></div>
 					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies">
 						<section class="large-2 columns user">
-							<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="basePath + getProfileLinkByType(item.message.author._type) + '/' + item.message.author._id"></avatar>
+							<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
 						</section>
 						<section class="large-10 columns">
 							<div class="content">

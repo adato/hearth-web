@@ -6,7 +6,7 @@
 
 		<section class="large-2 columns user">
 			<div info-box="item.author">
-				<a ng-href="{{:: getProfileLinkB(item.post.author._type, item.post.author._id) }}">
+				<a ng-href="{{:: getProfileLink(item.post.author._type, item.post.author._id) }}">
 					<avatar type="item.post.author._type" src="item.post.author.avatar.large"></avatar>
 					<div class="name">{{ item.post.author.name }}</div>
 				</a>

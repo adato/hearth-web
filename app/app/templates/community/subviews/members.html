@@ -1,13 +1,13 @@
 <div ng-include="'templates/community/subviews/membersPanel.html'"></div>
 
-<div class="people-listing">
+<div class="people-listing" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div class="person" ng-repeat="(id, item) in data track by $index">
 		<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
-			<avatar src="item.avatar.normal" href="basePath+'profile/'+item._id" type="item.avatar._type"></avatar>
+			<avatar src="item.avatar.normal" href="getProfileLink('User', item._id)" type="item.avatar._type"></avatar>
 		</div>
 		<div class="name">
 			<h4>
-				<a href="{{ basePath }}profile/{{ item._id}}">{{ item.name | ellipsis:24}}</a>
+				<a href="{{:: getProfileLink('User', item._id)}}">{{:: item.name | ellipsis:24}}</a>
 			</h4>
 			<a ng-if="managing && item._id != loggedUser._id" ng-click="confirmBox('COMMUNITY.REMOVE_MEMBER_LABEL', 'COMMUNITY.REMOVE_MEMBER_ARE_YOU_SURE', removeMember, item._id, this)">{{:: 'COMMUNITY_KICK_MEMBER' | translate }}</a>
 			<span ng-if="(managing && item._id == loggedUser._id) || item.community_admin">{{:: 'COMMUNITY_ADMIN' | translate }}</span>

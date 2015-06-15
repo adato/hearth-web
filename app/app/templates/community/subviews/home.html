@@ -16,12 +16,12 @@
 
 	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 	            	<div class="applications-item">
-                        <avatar class="left margin-bottom-20" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
+                        <avatar class="left margin-bottom-20" href="getProfileLink('User', item._id)" src="item.avatar.normal" type="item._type"></avatar>
                         <div class="applications-text">
-                            <a href="{{:: basePath }}profile/{{:: item._id}} ">
+                            <a href="{{:: getProfileLink('User', item._id)}} ">
 		                    	{{:: item.name | ellipsis}}
                             </a><br>
-                            <a href="{{:: basePath }}profile/{{:: item._id}} ">
+                            <a href="{{:: getProfileLink('User', item._id)}} ">
 		                    	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
                             </a>
 		                </div>
@@ -32,7 +32,7 @@
 	            	</div>
 	            </div>
 	            <div class="buttons">
-	                <a href="{{:: basePath }}community/{{:: info._id}}/applications">
+	                <a href="{{:: communityLink }}/applications">
 	                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> 
                         {{:: 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}</button>
 	                </a>
@@ -59,7 +59,7 @@
             <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = !mine"></div>
 
             <div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 && mine)">
-                <a href="{{:: basePath }}community/{{:: info._id}}/posts">
+                <a href="{{:: communityLink }}/posts">
                     <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}</button>
                 </a>
             </div>

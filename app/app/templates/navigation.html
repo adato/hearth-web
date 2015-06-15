@@ -40,13 +40,13 @@
 			    </a>
 				<ul class="dropdown user-dropdown" id="profile-drop" title="{{ loggedUser.name }} ">
 			       
-			       <li><a ng-href="{{ basePath+'profile/'+loggedUser._id }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
-			       <li><a ng-href="{{ basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
-			       <li><a ng-href="{{ basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+			       <li><a ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
+			       <li><a ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
+			       <li><a ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
 			       
 		          	<li class="divider" ng-if="myAdminCommunities.length"></li>
 			       	<li ng-repeat="item in myAdminCommunities">
-						<a class="user-switch-item" ng-href="{{ basePath }}community/{{item._id}}" title="{{ item.name}}">
+						<a class="user-switch-item" ng-href="{{:: getProfileLink('Community, item._id) }}" title="{{ item.name}}">
 							<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 							<span class="name">{{ item.name | ellipsis:12}}</span>
 						</a>

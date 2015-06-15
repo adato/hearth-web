@@ -7,31 +7,8 @@
 	<p>{{:: 'PROFILE.POSTS.NO_GIVEN_RATINGS_OTHER' | translate }}</p>
 </div>
 
-<div class="ratings-given rating-listing">
-	<article class="row rating-item" ng-repeat="(id, item) in data track by $index">
-		<section class="large-2 columns user">
-			<a ng-href="{{:: basePath }}{{:: getProfileLinkByType(item.user_to_type) }}/{{:: item.user_to }}">
-				<avatar src="item.user_to_avatar.normal" type="item.user_to_type"></avatar>
-				<div class="name">{{:: item.user_to_full_name}}</div>
-			</a>
-		</section>
-		<section class="large-10 columns">
-			<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
-				<div class="content">
-					<div class="fright">
-						<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
-					</div>			
-					<div class="text-container clear clearfix">
-						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
-					</div>
-					<small>
-						<span ng-if="mine">{{:: 'ME_WROTE' | translate}}</span>
-						<span ng-if="!mine">{{:: 'RATINGS_SAYING_FOR' | translate}}</span>
-						<a href="{{:: basePath}}{{:: getProfileLinkByType(item.user_to_type) }}/{{:: item.user_to}}">{{:: item.user_to_full_name}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{::basePath}}ad/{{:: item.post_id}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a></span>.
-					</small>
-				</div>
-			</div>
-		</section>
+<div class="ratings-given rating-listing" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
+	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index" ng-include="'templates/directives/_itemGivenRating.html'">
 	</article>
 </div>
 <div loading show="!subPageLoaded"></div>
