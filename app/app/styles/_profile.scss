@@ -142,7 +142,7 @@
     }    
     .rating-item {
         margin-top: 0rem;
-        margin-bottom: 1rem;
+        margin-bottom: $ui-grid-size;
         .date {
             font-size: .8rem;
         }
