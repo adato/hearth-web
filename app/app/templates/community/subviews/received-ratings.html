@@ -68,7 +68,7 @@
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded">
 
-	<section class="large-8 rating-call-to-action large-centered columns" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
+	<section class="large-8 rating-call-to-action large-centered columns push-1" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
