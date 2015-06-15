@@ -4,7 +4,7 @@
 	<section class="large-2 columns user">
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
-	<section class="large-10 columns user-rating-form">
+	<section class="large-10 columns rating-form">
 	<div class="item rating-received">
 		<div class="overlap"> </div>
 		<div class="arrowbox"></div>
@@ -67,8 +67,7 @@
 <div class="clear"></div>
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded">
-
-	<section class="large-8 rating-call-to-action large-centered columns push-1" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
+	<section class="large-8 rating-call-to-action large-centered columns" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
@@ -78,9 +77,9 @@
 	</section>
 	<div class="clear"></div>
 
-	<article class="row rating-item" ng-repeat="(id, item) in data track by $index">
+	<article class="row rating-item"ng-repeat="(id, item) in data track by $index" id="rating_{{ item._id }}">
 		<section class="large-2 columns user">
-			<a ng-href="{{:: basePath }}{{:: getProfileLinkByType(item.user_from_type) }}/{{:: item.user_from }}">
+			<a ng-href="{{:: getProfileLink(item.user_from_type, item.user_from) }}">
 				<avatar src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
 				<div class="name">{{:: item.user_from_full_name}}</div>
 			</a>
@@ -99,7 +98,7 @@
 					</div>
 					<small>
 						{{:: 'SAYING' | translate}}
-						<a href="{{:: basePath }}{{:: getProfileLinkByType(item.user_from_type) }}/{{:: item.user_from }}">{{:: item.user_from_full_name }}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath}}ad/{{:: item.post_id}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a></span>.
+						<a href="{{:: getProfileLink(item.user_from_type, item.user_from) }}">{{:: item.user_from_full_name }}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath}}post/{{:: item.post_id}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a></span>.
 					</small>
 				</div>
 			</div>

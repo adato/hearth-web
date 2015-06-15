@@ -16,15 +16,15 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.sendingApplication = false;
 		$scope.sendingRating = false;
 		$scope.activePage = false;
-		// ratings
+        $scope.showUserRatingForm = false;
 		$scope.rating = {
-			current_community_id: null,
-			score: true,
-			text: ''
-		};
-		$scope.showError = {
-			text: false
-		};
+            current_community_id: null,
+            score: true,
+            text: ''
+        };
+        $scope.showError = {
+            text: false
+        };
 
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
@@ -60,7 +60,44 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			});
 		};
-		
+
+        // will close form and set to default state
+        $scope.closeUserRatingForm = function() {
+            $scope.showUserRatingForm = false;
+        };
+
+        // will redirect user to user ratings and open rating form
+        $scope.openUserRatingForm = function(score) {
+            var ratingUrl = '/community/'+$scope.info._id+'/received-ratings';
+            var removeListener;
+
+            $scope.ratingPosts = [];
+            $scope.loadedRatingPosts = false;
+            // set default values
+            $scope.showError.text = false;
+            $scope.rating.current_community_id = null;
+            $scope.rating.score = score;
+            $scope.rating.text = '';
+            $scope.rating.post_id = 0;
+            // select first option in posts select - eg default value           
+            $("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
+
+            // show form
+            $scope.showUserRatingForm = true;
+
+            // if we are on rating URL just jump down
+            if($location.url() == ratingUrl) {
+                $scope.scrollToUserRatingForm();
+            } else {
+            // else jump to the righ address and there jump down
+                removeListener = $scope.$on('$routeChangeSuccess', function() {
+                    removeListener();
+                    $scope.scrollToUserRatingForm();
+                });
+                $location.url(ratingUrl);
+            }
+        };
+
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
 		};
@@ -139,94 +176,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, 300);
 		};
 		
-		// will redirect user to user ratings and open rating form
-		$scope.openUserRatingForm = function(score) {
-			var ratingUrl = '/community/'+$scope.info._id+'/received-ratings';
-			var removeListener;
-
-			$scope.ratingPosts = [];
-	        $scope.loadedRatingPosts = false;
-			// set default values
-			$scope.showError.text = false;
-			$scope.rating.current_community_id = null;
-			$scope.rating.score = score;
-			$scope.rating.text = '';
-			$scope.rating.post_id = 0;
-			// select first option in posts select - eg default value			
-			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
-
-			// show form
-			$scope.showUserRatingForm = true;
-
-			// if we are on rating URL just jump down
-			if($location.url() == ratingUrl) {
-				$scope.scrollToUserRatingForm();
-			} else {
-			// else jump to the righ address and there jump down
-				removeListener = $scope.$on('$routeChangeSuccess', function() {
-					removeListener();
-					$scope.scrollToUserRatingForm();
-				});
-				$location.url(ratingUrl);
-			}
-		};
-
-		// will close form and set to default state
-		$scope.closeUserRatingForm = function() {
-			$scope.showUserRatingForm = false;
-		};
-
-		// send rating to API
-		$scope.sendRating = function(ratingOrig) {
-			var rating;
-			var ratings = {
-				false: -1,
-				true: 1
-			};
-
-			$scope.showError.text = false;
-
-			if(!ratingOrig.text)
-				return $scope.showError.text = true;
-
-			// transform rating.score value from true/false to -1 and +1
-			rating = angular.copy(ratingOrig);
-			rating.score = ratings[rating.score];
-			rating.post_id = rating.post_id || null;
-
-			var out = {
-				current_community_id: rating.current_community_id,
-				id: $scope.info._id,
-				rating: rating
-			};
-
-			// lock - dont send twice
-			if($scope.sendingRating)
-				return false;
-			$scope.sendingRating = true;
-
-			// send rating to API
-			CommunityRatings.add(out, function(res) {
-
-				// remove lock
-				$scope.sendingRating = false;
-
-				// close form
-				$scope.closeUserRatingForm();
-
-				// broadcast new rating - this will add rating to list
-				$scope.$broadcast('communityRatingsAdded', res);
-				// Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
-
-			}, function(err) {
-				// remove lock
-				$scope.sendingRating = false;
-
-				// handle error
-				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
-			});
-		};
-
         $scope.addItem = function() {
         	var preset = {
         		current_community_id: ($scope.mine) ? $scope.info._id : null,

@@ -80,21 +80,6 @@
     .rate-user-text {
         margin-bottom: 20px;
     }
-    .user-rating-form {
-        @extend .item-box-forms;
-        overflow: visible !important;
-        margin: auto;
-        h5 { font-weight:600; }
-        label {
-            margin-bottom: 15px;
-            font-size:$ui-text-font-size;
-            margin-right: $ui-grid-size;
-        }
-        textarea {
-            min-height: 120px;
-        }
-        .need-offer-selector { margin-top: 12px; }
-    }
 }
 
 #received-rating-form {
@@ -153,13 +138,27 @@
         small {
             font-size:smaller;
         }
-    }    
+    }
+    .item, .item:after {
+        transition:background 1.5s ease-out;
+    }
+
     .rating-item {
         margin-top: 0rem;
         margin-bottom: $ui-grid-size;
         .date {
             font-size: .8rem;
         }
+    }
 
+    .blink-rating {
+        .item {
+            transition:background .5s ease-out;
+            background:#FFB697;
+            &:after {
+                transition:background .5s ease-out;
+                background:#FFB697;
+            }
+        }
     }
 }
