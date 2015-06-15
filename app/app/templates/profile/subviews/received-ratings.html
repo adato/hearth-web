@@ -26,8 +26,8 @@
 						</div>
 						<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 						  <option value="0">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
-						  <option ng-repeat="post in ratingPosts" title="{{post.title}}" value="{{ post._id }}">
-							{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:40 }}
+						  <option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
+							{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{:: post.title | ellipsis:40 }}
 						  </option>
 						</select>
 					</span>
@@ -64,7 +64,7 @@
 <div class="clear"></div>
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded">
-	<section class="columns rating-call-to-action large-centered" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+	<section class="columns rating-call-to-action large-centered push-1" ng-class="{ 'large-8': !data.length, 'large-10': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />

@@ -124,13 +124,27 @@
         small {
             font-size:smaller;
         }
-    }    
+    }
+    .item, .item:after {
+        transition:background 1.5s ease-out;
+    }
+
     .rating-item {
         margin-top: 0rem;
         margin-bottom: $ui-grid-size;
         .date {
             font-size: .8rem;
         }
+    }
 
+    .blink-rating {
+        .item {
+            transition:background .5s ease-out;
+            background:#FFB697;
+            &:after {
+                transition:background .5s ease-out;
+                background:#FFB697;
+            }
+        }
     }
 }
