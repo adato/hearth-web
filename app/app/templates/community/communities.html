@@ -30,15 +30,15 @@
     </div>
     
     <!-- =================== Community List ================ -->    
-    <div class="bottom-tabs">
+    <div class="bottom-tabs" ng-if="loadedFirstBatch">
         <ul>
             <li>
-                <a href="{{ basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">
+                <a href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">
                     <span class="others">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</span>
                 </a>
             </li>
             <li>
-                <a href="{{ basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">
+                <a href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">
                     <span class="others">{{:: 'ALL_COMMUNITIES' | translate }}</span>
                 </a>
             </li> 

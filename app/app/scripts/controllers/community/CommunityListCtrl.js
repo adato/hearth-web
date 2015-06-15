@@ -27,6 +27,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 			service(conf, function(res) {
 				$scope.list = $scope.list.concat(res);
 				$scope.loading = false;
+				$scope.$parent.loadedFirstBatch = true;
 
 				if(!res.length || $state.current.name == 'communities.suggested') {
 					return $scope.loadingFinished = true;
