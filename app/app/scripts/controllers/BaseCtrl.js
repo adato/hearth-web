@@ -525,10 +525,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
-        setTimeout(function() {
-            $rootScope.flashRatingBackground({_id: '557ea4b465613000074f0000'});
-        }, 5000);
-
         // == deactivate / prolong / activate post item
         // and close modal or call given callback
         $rootScope.pauseToggle = function(item, cb) {
