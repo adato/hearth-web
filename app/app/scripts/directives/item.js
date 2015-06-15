@@ -28,26 +28,9 @@ angular.module('hearth.directives').directive('item', [
             },
             templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
             link: function(scope, element) {
-                scope.postTypes = {
-                    User: {
-                        need: 'DOES_WISH',
-                        offer: 'DOES_GIVE'
-                    },
-                    Community: {
-                        need: 'WE_NEED',
-                        offer: 'WE_GIVE'
-                    }
-                };
-
-                scope.replyLabel = {
-                    offer: 'WISH_GIFT',
-                    need: 'OFFER_GIFT'
-                };
-
-                scope.replyCountTexts = {
-                    offer: 'PEOPLE_COUNT_WISH_PL',
-                    need: 'PEOPLE_COUNT_OFFER_PL'
-                };
+                scope.postTypes = $$config.postTypes;
+                scope.replyLabel = $$config.replyLabels;
+                scope.replyCountTexts = $$config.replyCountTexts;
 
                 // default values
                 scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;

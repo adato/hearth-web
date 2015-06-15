@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         var loadServices = {
                 'home': loadUserHome,
                 'posts': loadUserPosts,
-                'replies': loadUserPosts,
+                'replies': loadUserReplies,
                 'communities': loadCommunities,
                 'given-ratings': UserRatings.given,
                 'received-ratings': loadReceivedRatings,
@@ -24,6 +24,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             params = {
                 user_id: $stateParams.id
             };
+
+        $scope.postTypes = $$config.postTypes;
+
         var inited = false;
         $scope.subPageLoaded = false;
         
@@ -80,6 +83,14 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadCommunities(params, done, doneErr) {
             CommunityMemberships.query(params, done, doneErr);
+        }
+
+        function loadUserReplies(params, done, doneErr) {
+
+            User.getReplies({}, function(res) {
+                $scope.replies = res.replies;
+                finishLoading();
+            }, doneErr);
         }
 
         function loadUserPosts(params, done, doneErr) {
@@ -168,8 +179,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
             $scope.subPageLoaded = false;
 
-            console.log($scope.pageSegment);
-
             // console.log("Calling load service", $scope.pageSegment, e);
             // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);
@@ -223,8 +232,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 $scope.flashRatingBackground(item);
             });
         };
-
-        console.log("INNER: ", $stateParams);
 
         $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
