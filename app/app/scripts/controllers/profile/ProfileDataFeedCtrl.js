@@ -26,6 +26,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             };
 
         $scope.postTypes = $$config.postTypes;
+        $scope.data = [];
         $scope.loadingData = false;
 
         var inited = false;
@@ -46,7 +47,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
-            params.offset = $scope.data.
+            params.offset = $scope.data.length;
+            params.limit = 10;
             UserRatings.received(params, done, doneErr);
             
             $scope.$watch('rating.current_community_id', function(val) {
@@ -163,7 +165,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.close();
         };
 
-        function finishLoading() {
+        function finishLoading(res) {
             if(res && res.length)
                 $scope.loadingData = false;
 
@@ -176,11 +178,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function processData(res) {
             $scope.data = $scope.data.concat(res);
-            finishLoading();
+            finishLoading(res);
         }
 
         function processDataErr(res) {
-            finishLoading();
+            finishLoading([]);
         }
 
         function init(e) {
@@ -188,6 +190,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             if(!loadServices[$scope.pageSegment]) return;
 
             $scope.subPageLoaded = false;
+            $scope.loadingData = true;
 
             // console.log("Calling load service", $scope.pageSegment, e);
             // console.log("Calling load service", loadServices[$scope.pageSegment]);
