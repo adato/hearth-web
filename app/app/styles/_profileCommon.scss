@@ -286,6 +286,24 @@
             }
         }
     }
+    .rating-form {
+        @extend .item-box-forms;
+        overflow: visible !important;
+        margin: auto;
+        h5 { font-weight:600; }
+        label {
+            margin-bottom: 15px;
+            font-size:$ui-text-font-size;
+            margin-right: $ui-grid-size;
+        }
+        textarea {
+            min-height: 120px;
+        }
+        .need-offer-selector {
+            display: inline-block;
+            margin-top: 12px;
+        }
+    }
 }
 
 

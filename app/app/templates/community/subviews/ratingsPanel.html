@@ -1,13 +1,13 @@
 <div class="bottom-tabs">
     <ul>
         <li>
-            <a href="{{ basePath }}community/{{info._id}}/given-ratings" ng-class="{selected: pageSegment == 'given-ratings'}">
-                {{:: 'COMMUNITY.PROFILE.GIVEN_RATINGS' | translate }}
+            <a href="{{ basePath }}community/{{info._id}}/received-ratings" ng-class="{selected: pageSegment == 'received-ratings'}">
+                {{:: 'COMMUNITY.PROFILE.RECEIVED_RATINGS' | translate }}
             </a>
         </li>
         <li>
-            <a href="{{ basePath }}community/{{info._id}}/received-ratings" ng-class="{selected: pageSegment == 'received-ratings'}">
-                {{:: 'COMMUNITY.PROFILE.RECEIVED_RATINGS' | translate }}
+            <a href="{{ basePath }}community/{{info._id}}/given-ratings" ng-class="{selected: pageSegment == 'given-ratings'}">
+                {{:: 'COMMUNITY.PROFILE.GIVEN_RATINGS' | translate }}
             </a>
         </li>
     </ul>

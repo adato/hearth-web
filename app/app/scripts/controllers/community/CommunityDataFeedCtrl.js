@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         $scope.activityShow = false;
         var inited = false;
 
-		 var loadServices = {
+        var loadServices = {
             'home': loadCommunityHome,
             'posts': loadCommunityPosts,
             'members': loadCommunityMember,
@@ -21,6 +21,57 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             'activity': loadCommunityActivityLog,
             'given-ratings': loadGivenRatings,
             'received-ratings': loadReceivedRatings,
+        };
+
+        // send rating to API
+        $scope.sendRating = function(ratingOrig) {
+            var rating;
+            var ratings = {
+                false: -1,
+                true: 1
+            };
+
+            $scope.showError.text = false;
+
+            if(!ratingOrig.text)
+                return $scope.showError.text = true;
+
+            // transform rating.score value from true/false to -1 and +1
+            rating = angular.copy(ratingOrig);
+            rating.score = ratings[rating.score];
+            rating.post_id = rating.post_id || null;
+
+            var out = {
+                current_community_id: rating.current_community_id,
+                id: $scope.info._id,
+                rating: rating
+            };
+
+            // lock - dont send twice
+            if($scope.sendingRating)
+                return false;
+            $scope.sendingRating = true;
+
+            // send rating to API
+            CommunityRatings.add(out, function(res) {
+
+                // remove lock
+                $scope.sendingRating = false;
+
+                // close form
+                $scope.closeUserRatingForm();
+
+                // broadcast new rating - this will add rating to list
+                $scope.$broadcast('communityRatingsAdded', res);
+                // Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
+
+            }, function(err) {
+                // remove lock
+                $scope.sendingRating = false;
+
+                // handle error
+                Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
+            });
         };
 
         function finishLoading() {
@@ -214,9 +265,16 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 // added event listeners - dont add them again
                 inited = true;
             }
-
         }
 
+        // will add new rating to data array
+        $scope.addCommunityRating = function($event, item) {
+            console.log(item);
+            $scope.data.unshift(item);
+            $scope.flashRatingBackground(item);
+        };
+
+        $scope.$on('communityRatingsAdded', $scope.addCommunityRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         init();
     }

@@ -513,6 +513,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+
+        // this will flash rating box with some background color
+        $rootScope.flashRatingBackground = function(rating) {
+            $timeout(function() {
+
+                $('#rating_'+rating._id).toggleClass('blink-rating');
+                $timeout(function() {
+                    $('#rating_'+rating._id).toggleClass('blink-rating');
+                }, 1000);
+            });
+        };
+
+        setTimeout(function() {
+            $rootScope.flashRatingBackground({_id: '557ea4b465613000074f0000'});
+        }, 5000);
+
         // == deactivate / prolong / activate post item
         // and close modal or call given callback
         $rootScope.pauseToggle = function(item, cb) {

@@ -7,14 +7,14 @@
 	<section class="large-2 columns user">
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
-	<section class="large-10 columns user-rating-form">
+	<section class="large-10 columns rating-form">
 		<div class="item rating-received">
 			<div class="content">
 				<h5>{{:: 'ADD_USER_RATING' | translate }} {{ info.name }}</h5>
 				<div class="rating-notify-box"></div>
 				<h6>{{:: 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h6>
 				<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
-				<needofferselector class="fleft" model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" ></needofferselector>
+				<needofferselector model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" ></needofferselector>
 				<div class="clear"></div>
 
 				<form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
@@ -74,11 +74,11 @@
 	</section>
 	<div class="clear"></div>
 
-	<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index">
+	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index">
 		<section class="large-2 columns user">
-			<a ng-href="{{ basePath + getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
+			<a ng-href="{{:: getProfileLink(item.user_from_type, item.user_from) }}">
 				<avatar src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
-				<div class="name">{{ item.user_from_full_name}}</div>
+				<div class="name">{{:: item.user_from_full_name}}</div>
 			</a>
 		</section>
 		<section class="large-10 columns">
@@ -87,14 +87,14 @@
 				<i class="score-icon fa icon-rating-positive" ng-if="item.score == 1"></i>
 				<div class="content">
 					<div class="fright">
-						<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
+						<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
 					</div>			
 					<div class="text-container clearfix">
 						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 					</div>
 					<small>
 						{{:: 'SAYING' | translate}}
-						<a href="{{ basePath + getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{ basePath }}post/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
+						<a href="{{:: getProfileLink(item.user_from_type, item.user_from)}}">{{:: item.user_from_full_name}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath }}post/{{:: item.post_id}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a></span>.
 					</small>			
 				</div>
 			</div>

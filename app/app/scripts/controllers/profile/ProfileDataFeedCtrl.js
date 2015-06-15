@@ -205,32 +205,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $("#post_"+item._id).slideUp( "slow", function() {});
             $scope.$emit("profileRefreshUserNoSubpage");
         };
-
-        // this will flash rating box with some background color
-        $scope.flashRatingBackground = function(rating) {
-            var delayIn = 200;
-            var delayOut = 2000;
-            var color = "#FFB697";
-            var colorOut = $('.rating_'+rating._id + ' .item').css("background-color");
-
-            $('.rating_'+rating._id + ' .item').animate({backgroundColor: color}, delayIn, function() {
-                $('.rating_'+rating._id + ' .item').animate({backgroundColor: colorOut}, delayOut );
-            });
-            $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: color}, delayIn, function() {
-                $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: colorOut}, delayOut );
-            });
-            $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: color}, delayIn, function() {
-                $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: colorOut}, delayOut );
-            });
-
-        };
-
+        
         // will add new rating to data array
         $scope.addUserRating = function($event, item) {
             $scope.data.unshift(item);
-            setTimeout(function() {
-                $scope.flashRatingBackground(item);
-            });
+            $scope.flashRatingBackground(item);
         };
 
         $scope.$on('userRatingsAdded', $scope.addUserRating);
