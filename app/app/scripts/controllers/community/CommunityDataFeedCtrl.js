@@ -10,8 +10,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings',
 	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
         $scope.activityShow = false;
-        var inited = false;
+        $scope.loadingData = false;
+        $scope.loadLimit = 10;
 
+        var inited = false;
         var loadServices = {
             'home': loadCommunityHome,
             'posts': loadCommunityPosts,
@@ -21,6 +23,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             'activity': loadCommunityActivityLog,
             'given-ratings': loadGivenRatings,
             'received-ratings': loadReceivedRatings,
+        };
+
+        $scope.loadBottom = function() {
+            $scope.loadingData = true;
+            loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
         };
 
         // send rating to API
@@ -74,7 +81,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             });
         };
 
-        function finishLoading() {
+        function finishLoading(res) {
             $timeout(function(){
                $scope.subPageLoaded = true;
                
@@ -84,26 +91,41 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                $scope.$parent.loaded = true;
                $rootScope.$emit("subPageLoaded");
             });
+
+            if(res && res.length)
+                $scope.loadingData = false;
         }
 
         function processData(res) {
-            $scope.data = res;
-            finishLoading();
+            $scope.data = $scope.data.concat(res);
+            finishLoading(res);
         }
 
         function processDataErr(res) {
-            finishLoading();
+            finishLoading([]);
         }
         
         function loadGivenRatings(id, done, doneErr) {
-            CommunityRatings.given({communityId: id}, done, doneErr);
+            var obj = {
+                communityId: id,
+                limit: $scope.loadLimit,
+                offset: $scope.data.length
+            };
+            
+            CommunityRatings.given(obj, done, doneErr);
         }
 
         function loadReceivedRatings(id, done, doneErr) {
+            var obj = {
+                communityId: id,
+                limit: $scope.loadLimit,
+                offset: $scope.data.length
+            };
+
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
-            CommunityRatings.received({communityId: id}, done, doneErr);
+            CommunityRatings.received(obj, done, doneErr);
             $scope.$watch('rating.current_community_id', function(val) {
                 $scope.rating.post_id = 0;
                 CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res) {
@@ -132,21 +154,30 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function loadCommunityAbout(id, done, doneErr) {
-            finishLoading();
+            finishLoading([]);
         }
 
         function loadCommunityMember(id, doneErr) {
+            var obj = {
+                communityId: id,
+                limit: 12,
+                offset: $scope.data.length
+            };
 
-            CommunityMembers.query({communityId: id}, processData, doneErr);
+            CommunityMembers.query(obj, processData, doneErr);
         }
 
         function loadCommunityApplications(id, doneErr) {
+            var obj = {
+                communityId: id,
+                limit: 12,
+                offset: $scope.data.length
+            };
 
-            CommunityApplicants.query({communityId: id}, processData, doneErr);
+            CommunityApplicants.query(obj, processData, doneErr);
         }
 
         function loadCommunityPosts(id, doneErr) {
-
             Community.getPosts({communityId: id}, function(res) {
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
@@ -162,7 +193,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }, doneErr);
         }
 
-         $scope.refreshItemInfo = function($event, itemNew) {
+        $scope.refreshItemInfo = function($event, itemNew) {
             $scope.posts.data.forEach(function(item, key) {
                 if(item._id === itemNew._id) {
                     $scope.posts.data[key] = itemNew;
@@ -204,7 +235,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function loadCommunityActivityLog(id) {
-
             CommunityActivityLog.get({communityId: id}, processData, processDataErr);
         }
         // =================================== Public Methods ====================================
@@ -238,10 +268,13 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function init() {
+            $scope.loadingData = true;
+            $scope.data = [];
             $scope.pageSegment = $stateParams.page || 'home';
+            var loadService = loadServices[$scope.pageSegment];
 
             // console.log("Calling load service for segment ", $scope.pageSegment);
-            loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
+            loadService($stateParams.id, processData, processDataErr);
 
             // refresh after new post created
             if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
@@ -254,12 +287,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             // refresh after new post created
             if (! inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts')) {
-                // console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
-                    loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
+                    loadService($stateParams.id, processData, processDataErr);
                 });
                 $scope.$on('postUpdated', function() {
-                    loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
+                    loadService($stateParams.id, processData, processDataErr);
                 });
 
                 // added event listeners - dont add them again
@@ -269,7 +301,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         // will add new rating to data array
         $scope.addCommunityRating = function($event, item) {
-            console.log(item);
             $scope.data.unshift(item);
             $scope.flashRatingBackground(item);
         };

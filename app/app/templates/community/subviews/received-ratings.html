@@ -66,8 +66,8 @@
 </div>
 <div class="clear"></div>
 
-<div class="rating-listing ratings-received" ng-if="subPageLoaded">
-	<section class="large-8 rating-call-to-action large-centered columns" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
+<div class="rating-listing ratings-received" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
+	<section class="push-1 large-8 rating-call-to-action large-centered columns" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
@@ -81,4 +81,4 @@
 	</article>
 </div>
 
-<div loading show="! subPageLoaded"></div>
+<div loading show="!subPageLoaded"></div>
