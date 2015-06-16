@@ -104,6 +104,62 @@ body
 }
 
 
+/* english version */
+body.lang-en {
+	header > div.header-content {
+		background:none;
+	}
+	.face-deck {
+		position: relative;
+		top:30px;
+		@include size ( 100%, 460px );
+		margin: 0 auto;
+		text-align: center;
+		//.face { display:none; }
+		.face-en {
+			vertical-align:top;
+			display:inline-block;
+			margin-right:20px;
+			border-radius:50%;
+			width:350px;
+			height:350px;
+			box-sizing: content-box;
+			border: 10px solid #fff;
+			img {
+				width:350px;
+				height:350px;
+				border-radius:50%;
+			}
+			&>div {
+				opacity: 0;
+				color:#fff;
+				font-size:21px;
+				transition: all .2s ease-out;
+				top: -357px;
+				display:block;
+				border-radius:50%;
+				width: 350px;
+				height: 350px;
+				padding: 130px 40px;
+				background: #446142;
+				position:relative;
+				&>span {
+					display:block;
+
+				}
+			}
+			&:hover > div {
+				opacity:.8;
+			}
+		}
+	}
+	.claim-container {
+
+	}
+}
+
+
+
 /* ===== HEADER & INTRODUCTION ====================== */
 
 // Logo container
@@ -126,9 +182,11 @@ body
 
 	.btn 
 	{
-		@include relative-shift ( -1px ); // 1px thin line fix
+		@include relative-shift ( -2px ); // 1px thin line fix
+		float:right;
 		display: inline-block;
 		padding: 5px 30px 8px;
+		margin: 0px 20px;
 		background: $bg-brand;
 		color: #EAEAEA;
 		font-size:29px;
@@ -136,6 +194,24 @@ body
 		@include border-bottom-radius( $web-radius );
 
 		@include hoverify ( #FFF );
+	}
+}
+
+.flag {
+	display:block;
+	font-size:29px;
+	line-height:1.3;
+	width:32px;
+	height:23px;
+	margin:6.5px;
+	background-repeat:no-repeat;
+	&.flag-en {
+		background:url(../img/flag-english.svg);
+		background-size:32px 23px;
+	}
+	&.flag-cs {
+		background:url(../img/flag-czech.svg);
+		background-size:32px 23px;
 	}
 }
 
@@ -153,6 +229,7 @@ body
 $face-size-hover: 200px;
 $face-size: 190px;
 $translate-size: -.5 * ($face-size-hover - $face-size);
+
 
 .face-deck 
 {
