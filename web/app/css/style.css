@@ -1441,4 +1441,10 @@ body.lang-en .face-deck .face-en:hover > div {
   margin: 0 12px;
 }
 
+/* line 472, ../../app/sass/style.scss */
+.fb_iframe_widget iframe {
+  width: 500px;
+  height: 600px;
+}
+
 /* ===== OVERRIDES (MUST BE AT THE END) ============= */

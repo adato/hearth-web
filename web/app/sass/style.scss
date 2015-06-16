@@ -469,6 +469,9 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 }
 
 
+.fb_iframe_widget iframe { width: 500px; height:600px; }
+
+
 /* ===== OVERRIDES (MUST BE AT THE END) ============= */
 
  // 9. OVERRIDES
