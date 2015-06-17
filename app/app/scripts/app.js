@@ -150,7 +150,7 @@ angular.module('hearth', [
 
                         UnauthReload.checkLocation();
                     } else {
-                        $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });
+                        $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20, path: '/' });
                     }
 
                     $rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);

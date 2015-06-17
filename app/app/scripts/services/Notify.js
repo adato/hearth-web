@@ -117,7 +117,7 @@ angular.module('hearth.services').service('Notify', [
 		// this will save message to cookies - will be retrieved after next refresh
 		this.addTranslateAfterRefresh = function(text, type, container, ttl, delay) {
 
-			$.cookie("notify.afterRefresh", JSON.stringify(arguments));
+			$.cookie("notify.afterRefresh", JSON.stringify(arguments), { path: '/' });
 		};
 
 		// this will take cookie and if not empty - it will show containing notification 
