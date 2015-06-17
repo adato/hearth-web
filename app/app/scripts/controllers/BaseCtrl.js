@@ -216,7 +216,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $scope.checkTutorial();
             } else {
                 // set to check tutorial after next login
-                $.cookie('tutorial', 1);
+                $.cookie('tutorial', 1, { path: '/' });
             }
             timeAgoService.init();
             Notify.checkRefreshMessage();
