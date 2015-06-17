@@ -3,6 +3,10 @@
 var defaultLanguage = 'en';
 var defaultLanguageUrl = 'cs'; // language version on root = /
 
+// hack - put jquery cookie function to link onClick event
+window.jCookie = $.cookie;
+
+
 // language based on browser settings
 var langBrowser = window.navigator.userLanguage || window.navigator.language;
 
@@ -15,11 +19,24 @@ function redirectToLangVersion(lang, langsAvailable) {
 
 	if(langsAvailable.indexOf(langLoc) == -1)
 		loc = langPathMap[lang]+loc;
-	else
-		loc = loc.replace(/^.*\//g, lang);
+	else {
+
+		var locParts = loc.split('/');
+		if(locParts.length)
+			locParts.shift();
+
+		loc = langPathMap[lang] + locParts.join('/');
+	}
 
 	console.log("New url is: ", loc);
 	window.location = loc;
+}
+
+function changeLanguage(lang) {
+	console.log('Settings language to cookies:', lang);
+	
+	window.jCookie('language', lang, {path: '/', expires: 20 * 365});
+	return true;
 }
 
 // all langs except default cs language
@@ -49,12 +66,12 @@ console.log('Languages are: browser = ',langBrowser,' | url = ', langUrl, ' | co
 // if there is not set language in cookie yet
 // use language from browser
 if(!$.cookie('language')) {
-	console.log('There is no language in cookie, setting value from browser', langBrowser);
-	$.cookie('language', langBrowser, {path: '/', expire: 20 * 365});
+	console.log('There is no language in cookie yet');
+	changeLanguage(langBrowser, $);
 }
 
 // if we are not on right url, redirect
 if(langUrl != $.cookie('language')) {
-	console.log('Language in URL is not the same as value in cookies, redirecting to ', langUrl);
+	console.log('Language in URL is not the same as value in cookies, redirecting to ', $.cookie('language'));
 	redirectToLangVersion($.cookie('language'), langsAvailable);
 }

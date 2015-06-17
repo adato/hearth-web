@@ -107,54 +107,7 @@ body
 /* english version */
 body.lang-en {
 	header > div.header-content {
-		background:none;
-	}
-	.face-deck {
-		position: relative;
-		top:30px;
-		@include size ( 100%, 460px );
-		margin: 0 auto;
-		text-align: center;
-		//.face { display:none; }
-		.face-en {
-			vertical-align:top;
-			display:inline-block;
-			margin-right:20px;
-			border-radius:50%;
-			width:350px;
-			height:350px;
-			box-sizing: content-box;
-			border: 10px solid #fff;
-			img {
-				width:350px;
-				height:350px;
-				border-radius:50%;
-			}
-			&>div {
-				opacity: 0;
-				color:#fff;
-				font-size:21px;
-				transition: all .2s ease-out;
-				top: -357px;
-				display:block;
-				border-radius:50%;
-				width: 350px;
-				height: 350px;
-				padding: 130px 40px;
-				background: #446142;
-				position:relative;
-				&>span {
-					display:block;
-
-				}
-			}
-			&:hover > div {
-				opacity:.8;
-			}
-		}
-	}
-	.claim-container {
-
+		@include bg ( "dots-and-lines-en.png", no-repeat center 43% );
 	}
 }
 
