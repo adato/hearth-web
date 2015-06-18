@@ -11,10 +11,10 @@ $$config = {
 		minWidth: 200,
 		minHeight: 200
 	},
-	defaultHearthImage: 'images/facebook-sharing-image.png',
-	defaultHearthImageSize: [600, 600],
-	defaultHearthImageWidth: 600,
-	defaultHearthImageHeight: 600,
+	defaultHearthImage: 'images/facebook-sharing-image.jpg',
+	defaultHearthImageSize: [1200, 630],
+	defaultHearthImageWidth: 1200,
+	defaultHearthImageHeight: 630,
 	defaultUserAvatar: 'images/no-avatar.jpg',
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
 	sharingEndpoints: {
@@ -30,6 +30,7 @@ $$config = {
 		new_reply: 'new_reply',
 		prolong_post: 'resume_post',
 		resume_post: 'resume_post',
+		suspend_post: 'suspend_post',
 	},
 	features: {
 		aboutPage: false,

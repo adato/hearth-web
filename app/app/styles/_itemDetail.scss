@@ -3,6 +3,16 @@
 	margin-right:0;
 }
 
+#item-detail .ad-detail-column.columns, #item-detail .ad-detail-column .columns{
+	padding-left:0;
+	padding-right:0;
+}
+
+.market article.post-on-market .ad-detail-column .columns {
+	padding-left:0;
+	padding-right:0;
+} 
+
 #item-detail, .market article.post-on-market, .profile-view article.post-on-market, .community-view article.post-on-market {
 	.box {
 		padding:$ui-grid-size;
@@ -22,7 +32,7 @@
 		float:right;
 		clear:left;
 		padding-right:0;
-		padding-left:2*$ui-small-grid-size;
+		padding-left:$ui-grid-size;
 
 		&:before {
 			content:"";
@@ -184,10 +194,6 @@
 
 	.ad-detail-column {
 		margin-bottom:3*$ui-small-grid-size;
-		.columns {
-			padding-left:0;
-			padding-right:0;
-		}
 		header {
 			margin-bottom:1em;
 			margin-top:-3px;
@@ -235,6 +241,9 @@
 				font-size:$ui-text-font-size;
 			}
 		}
+		.address-unlimited {
+			margin-bottom:3*$ui-small-grid-size;
+		}
 		footer {
 			background:color(4);
 			height:60px;
@@ -258,20 +267,26 @@
 				color:color(4);
 				background:color(3);
 				border-radius:50%;
-				padding:7px;
-				font-size:1em;
+				font-size:15px;
 				width:$ui-grid-size;
 				height:$ui-grid-size;
 				margin:$ui-small-grid-size / 2;
+				line-height:14px;
 				transition: all .2s ease-out;
 				&.fa-envelope {
-				   font-size: 13px;
-				    padding: 3px 0 11px;
-				    padding-left: 6px;
-				    padding-right: 3px;
-				    padding-top: 6px;
-				    position: relative;
-				    top: -2px;
+					font-size: 13px;
+					line-height:16px;
+					&:before {
+						top:5px;
+					}
+				}
+				&.fa-facebook:before {
+					left:7px;
+				}
+				&:before {
+					position: relative;
+					top:6px;
+					left:6px;
 				}
 				&:hover {
 					background:color(5);
@@ -294,6 +309,12 @@
 						color:darken(color(3), 10%);
 					}
 				}
+			}
+			.reply-count-container .reply-info-link {
+				color:color(3);
+				text-decoration:underline;
+				margin-left:3*$ui-small-grid-size;
+				&:hover { color:color(5); }
 			}
 			.reply-button-container, .reply-count-container {
 				line-height: $ui-grid-size;
