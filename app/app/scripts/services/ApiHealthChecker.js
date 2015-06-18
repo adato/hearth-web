@@ -7,19 +7,37 @@
  */
 
 angular.module('hearth.services').service('ApiHealthChecker', [
-	'$rootScope', '$timeout',
-	function($rootScope, $timeout) {
+	'$rootScope', '$timeout', '$interval',
+	function($rootScope, $timeout, $interval) {
 		var self = this;
 		var healthCheckTimeout = 2000;
 		var healthCheckTimeoutPointer = 0;
 		var healthCheckRunning = false;
+		var version = null;
+		const _check_interval = 1000;
+
+		this.getAppVersion = function(done) {
+			$.get('/version.txt').success(done);
+		};
+
+		this.checkVersion = function() {
+			self.getAppVersion(function(v) {
+				$("#maitenancePage").fadeOut();
+
+				if (v === version)
+					return;
+
+				version = v;
+				$rootScope.showNewVersionNotify = true;
+			});
+		};
 
 		/**
 		 * This will process health check result
 		 */
 		this.processHealthCheckResult = function(res) {
 			// console.log("Health check result: ", res);
-			if(res && res.ok && res.ok == true){
+			if (res && res.ok && res.ok == true){
 				return self.turnOff();
 			}
 
@@ -47,7 +65,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 *  - eg only one health check will run at the time
 		 */
 		this.sendFirstHealthCheck = function() {
-			if(healthCheckRunning) return false;
+			if (healthCheckRunning) return false;
 			healthCheckRunning = true;
 
 			self.sendHealthCheck();
@@ -57,31 +75,31 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * Turn on health check controll
 		 */
 		this.turnOn = function() {
-
 			// if already started, than stop
-			if(healthCheckTimeoutPointer)
+			if (healthCheckTimeoutPointer)
 				return false;
 
 			$("#maitenancePage").fadeIn();
 			$rootScope.showNewVersionNotify = false;
 		};
 
-
-		$timeout(function() {
-			$rootScope.showNewVersionNotify = true;
-		}, 5000);
-
-
 		this.turnOff = function() {
 			healthCheckRunning = false;;
-			if(!$("#maitenancePage").is(":visible"))
+			if (!$("#maitenancePage").is(":visible"))
 				return false;
 
-			$("#maitenancePage").fadeOut();
 			// window.location = document.URL;
 			// location.reload();
 			
-			$rootScope.showNewVersionNotify = true;
+			self.checkVersion();
 		};
+
+
+		// on init get actual version
+		this.getAppVersion(function(v) {
+			version = v;
+		});
+
+		setInterval(this.checkVersion, _check_interval);
 	}
 ]);
