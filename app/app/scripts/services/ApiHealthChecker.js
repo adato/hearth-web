@@ -14,7 +14,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		var healthCheckTimeoutPointer = 0;
 		var healthCheckRunning = false;
 		var version = null;
-		const _check_interval = 1000;
+		const _check_interval = 10000;
 
 		this.getAppVersion = function(done) {
 			$.get('/version.txt').success(done);
