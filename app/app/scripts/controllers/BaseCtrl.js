@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService',
-    function($scope, $locale, $rootScope, $location,  Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService) {
+    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker',
+    function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -115,8 +115,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
-        $rootScope.closeMaintenanceNotify = function() {
-            $rootScope.showNewVersionNotify = false;
+        /**
+         * Close notification of maintenance message about new version
+         */
+        $scope.closeMaintenanceNotify = function() {
+            ApiHealthChecker.closeNotify();
         };
 
         /**
