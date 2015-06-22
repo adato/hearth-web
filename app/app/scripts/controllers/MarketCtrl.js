@@ -13,7 +13,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
-		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
 		$scope.author = null;

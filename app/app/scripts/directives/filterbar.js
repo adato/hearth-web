@@ -16,7 +16,6 @@ angular.module('hearth.directives').directive('filterbar', [
 			scope: true,
 			link: function(scope) {
 				angular.extend(scope, {
-					mapSelected: false,
 					filterSelected: false,
 					newItemSelected: false
 				});
@@ -61,11 +60,6 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.$on('filterReseted', scope.testFilterActive);
 				scope.$on('filterApplied', scope.testFilterActive);
-
-				scope.toggleMap = function() {
-					scope.mapSelected = !scope.mapSelected;
-					scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
-				};
 
 				scope.testFilterActive();
 			}
