@@ -38,8 +38,19 @@ angular.module('hearth').config([
 				}],
 			})
 			.state('communities', {
+				abstract: true,
 				url: "/communities",
-				templateUrl: 'templates/community/list.html',
+				templateUrl: 'templates/community/communities.html',
+			    controller: 'CommunitiesCtrl'
+			})
+			.state('communities.suggested', {
+				url: "",
+				templateUrl: 'templates/community/communityList.html',
+			    controller: 'CommunityListCtrl'
+			})
+			.state('communities.all', {
+				url: "/all",
+				templateUrl: 'templates/community/communityList.html',
 			    controller: 'CommunityListCtrl'
 			})
 			.state('reset-pass', {
