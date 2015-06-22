@@ -35,16 +35,19 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * Check version and optionally show notification
 		 */
 		this.checkVersion = function() {
-			self.getAppVersion(function(v) {
-				$("#maitenancePage").fadeOut();
+			if (!$("#maitenancePage").is(":visible"))  {
+				
+				self.getAppVersion(function(v) {
+					$("#maitenancePage").fadeOut();
 
-				if (v === version)
-					return;
+					if (v === version)
+						return;
 
-				version = v;
-				$rootScope.showNewVersionNotify = true;
-				$interval.cancel(checkVersionInterval);
-			});
+					version = v;
+					$rootScope.showNewVersionNotify = true;
+					$interval.cancel(checkVersionInterval);
+				});
+			}
 		};
 
 		/**
