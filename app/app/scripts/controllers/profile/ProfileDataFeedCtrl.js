@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'activities': UsersActivityLog.get
             },
             params = {
-                user_id: $stateParams.id
+                user_id: $stateParams.id,
             };
 
         $scope.postTypes = $$config.postTypes;
@@ -32,25 +32,39 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         var inited = false;
         $scope.subPageLoaded = false;
         
+        $scope.paginate = function(params) {
+            params.offset = $scope.data.length;
+            return params;
+        };
+
+        $scope.addPagination = function(params) {
+            if(params.limit) return params;
+            
+            params.offset = $scope.data.length;
+            params.limit = 15;
+            return params;
+        };
 
         $scope.loadBottom = function() {
             $scope.loadingData = true;
-            loadServices[$scope.pageSegment](params, processData, processDataErr);
+
+            loadServices[$scope.pageSegment]($scope.paginate(params), processData, processDataErr);
         };
 
         function loadFriends(params, done, doneErr) {
             params.related = "user";
+            $scope.addPagination(params);
+
             Friends.query(params, done, doneErr);
         }
 
         function loadGivenRatings(params, done, doneErr) {
-            params.offset = $scope.data.length;
-            params.limit = 10;
-            
+            $scope.addPagination(params);
             UserRatings.given(params, done, doneErr);
         }
 
         function loadReceivedRatings(params, done, doneErr) {
+            $scope.addPagination(params);
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
@@ -88,16 +102,20 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         };
 
         function loadFollowees(params, done, doneErr) {
+            $scope.addPagination(params);
+            
             params.related = "user";
             Followees.query(params, done, doneErr);
         }
 
         function loadFollowers(params, done, doneErr) {
+            $scope.addPagination(params);
             params.related = "user";
             Followers.query(params, done, doneErr);
         }
 
         function loadCommunities(params, done, doneErr) {
+            $scope.addPagination(params);
             CommunityMemberships.query(params, done, doneErr);
         }
 
