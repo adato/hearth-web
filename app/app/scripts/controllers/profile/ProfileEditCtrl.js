@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', '$route', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth',
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth',
 
-	function($scope, $route, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth) {
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;

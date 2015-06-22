@@ -1,0 +1,18 @@
+<div class="bottom-tabs">
+    <ul>
+        <li>
+        	<a href="{{:: basePath }}profile/{{:: info._id}}/received-ratings" ng-class="{selected: pageSegment =='received-ratings'}">
+        		<span class="mine">{{:: 'THEY_WROTE_ME' | translate }}</span>
+        		<span class="others">{{:: 'USER_RECEIVED_RATINGS' | translate }}</span>
+	        </a>
+	    </li>
+        <li>
+        	<a href="{{:: basePath }}profile/{{:: info._id}}/given-ratings" ng-class="{selected: pageSegment =='given-ratings'}">
+        		<span class="mine">{{:: 'ME_WROTE_THEM' | translate }}</span>
+        		<span class="others">{{:: 'USER_GIVED_RATINGS' | translate }}</span>
+        	</a>
+        </li> 
+    </ul>
+</div>
+
+<div class="clear"></div>

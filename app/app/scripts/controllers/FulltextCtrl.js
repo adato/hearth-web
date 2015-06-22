@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('FulltextCtrl', [
-    '$scope', '$timeout', '$routeParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate', '$rootScope',
+    '$scope', '$timeout', '$stateParams', 'Fulltext', '$location', 'LanguageSwitch', '$translate', '$rootScope',
 
-    function($scope, $timeout, $routeParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
+    function($scope, $timeout, $stateParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
         var deleteOffset = false;
         $scope.readedAllData = false;
 
@@ -19,7 +19,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
         });
 
         angular.extend($scope, {
-            queryText: $routeParams.q || '',
+            queryText: $stateParams.q || '',
             items: [],
             counters: {
                 post: 0,
@@ -31,7 +31,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
         $scope.setFilter = function(filter) {
             var params = {
-                q: $routeParams.q,
+                q: $stateParams.q,
                 type: filter
             };
 
@@ -90,11 +90,11 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
         $scope.load = function(addOffset) {
             var params = {
                 limit: 15,
-                query: $routeParams.q || "",
+                query: $stateParams.q || "",
                 offset: (addOffset) ? $scope.items.length : 0
             };
 
-            $rootScope.setFulltextSearch($routeParams.q);
+            $rootScope.setFulltextSearch($stateParams.q);
 
             // if there is no more result data, dont load
             if($scope.readedAllData) {

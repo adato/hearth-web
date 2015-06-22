@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$routeParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
+	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
 
-	function($scope, $routeParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
+	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
 		$scope.ad = false;
 		$scope.adDeleted = false;
 		$scope.loaded = false;
@@ -18,26 +18,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.isMine = false;
 
 		// init language
-		$scope.postTypes = {
-			User: {
-				need: 'DOES_WISH',
-				offer: 'DOES_GIVE'
-			},
-			Community: {
-				need: 'WE_NEED',
-				offer: 'WE_GIVE'
-			}
-		};
-
-		$scope.replyLabel = {
-			offer: 'WISH_GIFT',
-			need: 'OFFER_GIFT'
-		};
-
-		$scope.replyCountTexts = {
-			offer: 'PEOPLE_COUNT_WISH_PL',
-			need: 'PEOPLE_COUNT_OFFER_PL'
-		};
+		$scope.postTypes = $$config.postTypes;
+		$scope.replyLabel = $$config.replyLabels;
+		$scope.replyCountTexts = $$config.replyCountTexts;
 
 		$scope.deserializeReply = function(item) {
 			if(item.from_community) {
@@ -48,7 +31,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.loadReplies = function() {
-			PostReplies.get({user_id: $routeParams.id}, function(data) {
+			PostReplies.get({user_id: $stateParams.id}, function(data) {
 				$scope.replies = data.replies.filter($scope.deserializeReply);
 			});
 		};
@@ -61,7 +44,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		// load post data
 		$scope.load = function() {
 
-			Post.get({postId: $routeParams.id}, function(data) {
+			Post.get({postId: $stateParams.id}, function(data) {
 				$scope.ad = data;
 				
 				if($rootScope.loggedUser._id && data.name)

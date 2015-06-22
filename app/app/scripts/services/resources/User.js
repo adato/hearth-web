@@ -18,6 +18,10 @@ angular.module('hearth.services').factory('User', [
 			get: {
 				method: 'GET'
 			},
+			getReplies: {
+				url: $$config.apiPath + '/replies',
+				method: 'GET'
+			},
 			getPosts: {
 				url: $$config.apiPath + '/users/:user_id/posts',
 				method: 'GET'

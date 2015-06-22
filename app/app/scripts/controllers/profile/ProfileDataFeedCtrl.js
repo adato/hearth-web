@@ -7,22 +7,26 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
-    function($scope, $timeout, $rootScope, $routeParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
+    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
+    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
         var loadServices = {
-                'profile': loadUserHome,
-                'profile.posts': loadUserPosts,
-                'profile.communities': loadCommunities,
-                'profile.given': UserRatings.given,
-                'profile.received': loadReceivedRatings,
-                'profile.following': loadFollowees,
-                'profile.followers': loadFollowers,
-                'profile.friends': loadFriends,
-                'profile.activities': UsersActivityLog.get
+                'home': loadUserHome,
+                'posts': loadUserPosts,
+                'replies': loadUserReplies,
+                'communities': loadCommunities,
+                'given-ratings': UserRatings.given,
+                'received-ratings': loadReceivedRatings,
+                'following': loadFollowees,
+                'followers': loadFollowers,
+                'friends': loadFriends,
+                'activities': UsersActivityLog.get
             },
             params = {
-                user_id: $routeParams.id
+                user_id: $stateParams.id
             };
+
+        $scope.postTypes = $$config.postTypes;
+
         var inited = false;
         $scope.subPageLoaded = false;
         
@@ -65,7 +69,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 $scope.closeUserRatingForm();
                 removeListener();
             });
-        }
+        };
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";
@@ -79,6 +83,14 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadCommunities(params, done, doneErr) {
             CommunityMemberships.query(params, done, doneErr);
+        }
+
+        function loadUserReplies(params, done, doneErr) {
+
+            User.getReplies({}, function(res) {
+                $scope.replies = res.replies;
+                finishLoading();
+            }, doneErr);
         }
 
         function loadUserPosts(params, done, doneErr) {
@@ -162,7 +174,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function init(e) {
+            $scope.pageSegment = $stateParams.page || 'home';
+            if(!loadServices[$scope.pageSegment]) return;
+
             $scope.subPageLoaded = false;
+
             // console.log("Calling load service", $scope.pageSegment, e);
             // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);
@@ -220,8 +236,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);
-        // if($rootScope.profileLoaded)
-        //     init();
-        // $scope.loaded && init();
+        init();
     }
 ]);

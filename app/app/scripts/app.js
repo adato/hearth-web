@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('hearth', [
-    'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ngRoute', 'angular-flexslider', 'route-segment', 'angularFileUpload',
-    'view-segment', 'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
+    'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider', 'angularFileUpload',
+    'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
     'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
     'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer'])
     .config(['$sceProvider', '$locationProvider',
@@ -89,8 +89,8 @@ angular.module('hearth', [
             // $httpProvider.responseInterceptors.push('TermsAgreement');
         }
     ]).run([
-        '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload',
-        function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload) {
+        '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter',
+        function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter) {
             $rootScope.appInitialized = false;
             $rootScope.config = $$config;
 
@@ -184,20 +184,14 @@ angular.module('hearth', [
                 cacheFiles: cacheFiles,   // cache some files at start
             }, function(err, init) {
 
+                $urlRouter.sync();
+                $urlRouter.listen();
+
                 $rootScope.initFinished = true;
                 $rootScope.$broadcast("initFinished");
             });
         }
     ]);
-
-var __indexOf = [].indexOf || function(item) {
-    for (var i = 0, l = this.length; i < l; i++) {
-        if (i in this && this[i] === item) {
-            return i;
-        }
-    }
-    return -1;
-};
 
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
