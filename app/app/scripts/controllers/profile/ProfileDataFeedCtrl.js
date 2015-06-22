@@ -7,35 +7,55 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$routeParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
-    function($scope, $timeout, $rootScope, $routeParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
+    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
+    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
         var loadServices = {
-                'profile': loadUserHome,
-                'profile.posts': loadUserPosts,
-                'profile.communities': loadCommunities,
-                'profile.given': UserRatings.given,
-                'profile.received': loadReceivedRatings,
-                'profile.following': loadFollowees,
-                'profile.followers': loadFollowers,
-                'profile.friends': loadFriends,
-                'profile.activities': UsersActivityLog.get
+                'home': loadUserHome,
+                'posts': loadUserPosts,
+                'replies': loadUserReplies,
+                'communities': loadCommunities,
+                'given-ratings': loadGivenRatings,
+                'received-ratings': loadReceivedRatings,
+                'following': loadFollowees,
+                'followers': loadFollowers,
+                'friends': loadFriends,
+                'activities': UsersActivityLog.get
             },
             params = {
-                user_id: $routeParams.id
+                user_id: $stateParams.id
             };
+
+        $scope.postTypes = $$config.postTypes;
+        $scope.data = [];
+        $scope.loadingData = false;
+
         var inited = false;
         $scope.subPageLoaded = false;
         
+
+        $scope.loadBottom = function() {
+            $scope.loadingData = true;
+            loadServices[$scope.pageSegment](params, processData, processDataErr);
+        };
 
         function loadFriends(params, done, doneErr) {
             params.related = "user";
             Friends.query(params, done, doneErr);
         }
 
+        function loadGivenRatings(params, done, doneErr) {
+            params.offset = $scope.data.length;
+            params.limit = 10;
+            
+            UserRatings.given(params, done, doneErr);
+        }
+
         function loadReceivedRatings(params, done, doneErr) {
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
+            params.offset = $scope.data.length;
+            params.limit = 10;
             UserRatings.received(params, done, doneErr);
             
             $scope.$watch('rating.current_community_id', function(val) {
@@ -65,7 +85,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 $scope.closeUserRatingForm();
                 removeListener();
             });
-        }
+        };
 
         function loadFollowees(params, done, doneErr) {
             params.related = "user";
@@ -79,6 +99,14 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadCommunities(params, done, doneErr) {
             CommunityMemberships.query(params, done, doneErr);
+        }
+
+        function loadUserReplies(params, done, doneErr) {
+
+            User.getReplies({}, function(res) {
+                $scope.replies = res.replies;
+                finishLoading();
+            }, doneErr);
         }
 
         function loadUserPosts(params, done, doneErr) {
@@ -144,7 +172,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.close();
         };
 
-        function finishLoading() {
+        function finishLoading(res) {
+            if(res && res.length)
+                $scope.loadingData = false;
+
             $scope.subPageLoaded = true;
             if(!$scope.$parent)
                 $scope.$parent = {};
@@ -153,23 +184,25 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function processData(res) {
-            $scope.data = res;
-            finishLoading();
+            $scope.data = $scope.data.concat(res);
+            finishLoading(res);
         }
 
         function processDataErr(res) {
-            finishLoading();
+            finishLoading([]);
         }
 
         function init(e) {
+            $scope.pageSegment = $stateParams.page || 'home';
+            if(!loadServices[$scope.pageSegment]) return;
+
             $scope.subPageLoaded = false;
-            // console.log("Calling load service", $scope.pageSegment, e);
-            // console.log("Calling load service", loadServices[$scope.pageSegment]);
+            $scope.loadingData = true;
+
             loadServices[$scope.pageSegment](params, processData, processDataErr);
 
             // refresh after new post created
             if (! inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
-                // console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
                     $scope.refreshUser(true);
                     loadServices[$scope.pageSegment](params, processData, processDataErr);
@@ -189,39 +222,16 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $("#post_"+item._id).slideUp( "slow", function() {});
             $scope.$emit("profileRefreshUserNoSubpage");
         };
-
-        // this will flash rating box with some background color
-        $scope.flashRatingBackground = function(rating) {
-            var delayIn = 200;
-            var delayOut = 2000;
-            var color = "#FFB697";
-            var colorOut = $('.rating_'+rating._id + ' .item').css("background-color");
-
-            $('.rating_'+rating._id + ' .item').animate({backgroundColor: color}, delayIn, function() {
-                $('.rating_'+rating._id + ' .item').animate({backgroundColor: colorOut}, delayOut );
-            });
-            $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: color}, delayIn, function() {
-                $('.rating_'+rating._id + ' .arrowbox').animate({backgroundColor: colorOut}, delayOut );
-            });
-            $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: color}, delayIn, function() {
-                $('.rating_'+rating._id + ' .overlap').animate({backgroundColor: colorOut}, delayOut );
-            });
-
-        };
-
+        
         // will add new rating to data array
         $scope.addUserRating = function($event, item) {
             $scope.data.unshift(item);
-            setTimeout(function() {
-                $scope.flashRatingBackground(item);
-            });
+            $scope.flashRatingBackground(item);
         };
 
         $scope.$on('userRatingsAdded', $scope.addUserRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         $scope.$on('profileTopPanelLoaded', init);
-        // if($rootScope.profileLoaded)
-        //     init();
-        // $scope.loaded && init();
+        init();
     }
 ]);

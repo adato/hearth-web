@@ -9,8 +9,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
-	'$scope', 'LanguageSwitch', '$rootScope', '$route', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload',
-	function($scope, LanguageSwitch, $rootScope, $route, Password, ChangePassword, $timeout, User, Notify, UnauthReload) {
+	'$scope', 'LanguageSwitch', '$rootScope', 'Password', 'ChangePassword', '$timeout', 'User', 'Notify', 'UnauthReload',
+	function($scope, LanguageSwitch, $rootScope, Password, ChangePassword, $timeout, User, Notify, UnauthReload) {
 		$scope.loaded = true;
 		$scope.lang = false; // used in view
 		$scope.changeSubmitted = false;

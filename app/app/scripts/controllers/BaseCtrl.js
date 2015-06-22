@@ -7,9 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', '$route', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker',
-
-    function($scope, $locale, $rootScope, $location, $route, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker) {
+    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker',
+    function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -17,11 +16,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.addressOld = '';
         $rootScope.addressNew = '';
         $scope.segment = false;
-        $scope.addresses = {
-            "Community": "community",
-            "User": "profile",
-            "Post": "post",
-        };
+        $scope.addresses = $$config.itemAddresses;
         $rootScope.socialLinks = {
             facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
             gplus: 'https://plus.google.com/share?url=',
@@ -67,6 +62,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
 
+            console.log(next);
+
             var r1 = $rootScope.addressOld.split($$config.basePath);
             var r2 = $rootScope.addressNew.split($$config.basePath);
 
@@ -84,7 +81,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * and add class of given controller to wrapping div container
          */
         $rootScope.$on("$routeChangeSuccess", function(next, current) {
-            $scope.segment = $route.current.segment;
+            // $scope.segment = $route.current.segment;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);
@@ -110,8 +107,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if (!text) return false;
             $rootScope.top(0, 1);
 
-            $location.path('/search');
-            $location.search('q=' + (text || ""));
+            $location.path('/search?q=' + (text || ""));
             
             // first reload scope to new location, then start searching
             $timeout(function() {
@@ -521,6 +517,18 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             elements.animate({backgroundColor: color}, delayIn, function() {
                 elements.animate({backgroundColor: "#FFF"}, delayOut );
+            });
+        };
+
+
+        // this will flash rating box with some background color
+        $rootScope.flashRatingBackground = function(rating) {
+            $timeout(function() {
+
+                $('#rating_'+rating._id).toggleClass('blink-rating');
+                $timeout(function() {
+                    $('#rating_'+rating._id).toggleClass('blink-rating');
+                }, 1000);
             });
         };
 

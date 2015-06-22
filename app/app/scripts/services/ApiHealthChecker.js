@@ -15,7 +15,8 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		var healthCheckRunning = false;
 		var version = null;
 		var checkVersionInterval = null;
-		const _check_interval = 10000;
+		$rootScope.showNewVersionNotify = false;
+		const _check_interval = 60000;
 
 		/**
 		 * Close notification about new version
@@ -38,7 +39,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 			if (!$("#maitenancePage").is(":visible"))  {
 				
 				self.getAppVersion(function(v) {
-					$("#maitenancePage").fadeOut();
 
 					if (v === version)
 						return;
@@ -54,7 +54,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will process health check result
 		 */
 		this.processHealthCheckResult = function(res) {
-			// console.log("Health check result: ", res);
 			if (res && res.ok && res.ok == true){
 				return self.turnOff();
 			}
@@ -102,14 +101,20 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		};
 
 		this.turnOff = function() {
-			healthCheckRunning = false;;
+			healthCheckRunning = false;
+			healthCheckTimeoutPointer = null;
+
 			if (!$("#maitenancePage").is(":visible"))
 				return false;
 
-			// window.location = document.URL;
-			// location.reload();
+			// if app was not properly inited, reload page
+			if(!$rootScope.initFinished) {
+				window.location = document.URL;
+			}
 			
-			self.checkVersion();
+			$("#maitenancePage").fadeOut('fast', function() {
+				self.checkVersion();
+			});
 		};
 
 

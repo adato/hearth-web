@@ -1,12 +1,12 @@
 <div class="bottom-tabs">
     <ul ng-if="mine">
         <li>
-            <a href="{{ basePath }}community/{{info._id}}/members" ng-class="{selected: pageSegment =='community.members'}">
+            <a href="{{:: communityLink }}/members" ng-class="{selected: pageSegment =='members'}">
                 <span ng-if="info" ng-bind-html="'COMMUNITY.COMMUNITY_HAS_X_MEMBERS.'+pluralCat(info.member_count) | translate: '{count: '+info.member_count+'}'"></span>
             </a>
         </li>
         <li>
-            <a href="{{ basePath }}community/{{info._id}}/applications" ng-class="{selected: pageSegment =='community.applications'}">
+            <a href="{{:: communityLink }}/applications" ng-class="{selected: pageSegment =='applications'}">
                 <span ng-if="info" ng-bind-html="'COMMUNITY.APPROVE_REQUESTS.'+pluralCat(info.applicant_count) | translate: '{count: '+info.applicant_count+'}'"></span>
             </a>
         </li> 

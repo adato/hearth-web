@@ -44,12 +44,20 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			reply: {
 				url: $$config.apiPath + '/conversations',
-				method: 'POST',
+				method: 'POST'
 			},
 			unreaded: {
 				params: {
 					state: 'unread'
 				}
+			},
+			setReaded: {
+				url: $$config.apiPath + '/conversations/:id/read',
+				method: 'POST'
+			},
+			setUnreaded: {
+				url: $$config.apiPath + '/conversations/:id/unread',
+				method: 'POST'
 			},
 			readed: {
 				params: {

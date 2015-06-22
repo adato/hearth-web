@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport',
-    function($rootScope, Conversations, $timeout, Notify, Viewport) {
+    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger',
+    function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger) {
         return {
             restrict: 'E',
             replace: true,
@@ -18,6 +18,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
             templateUrl: 'templates/directives/conversationDetail.html',
             link: function($scope, element) {
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                $scope.getProfileLink = $rootScope.getProfileLink;
                 $scope.loggedUser = $rootScope.loggedUser;
                 $scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
                 $scope.pluralCat = $rootScope.pluralCat;
@@ -29,7 +30,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.lockCounter = 0;
                 $scope.messages = false;
                 var _messagesCount = 10; // how many messages will we load in each request except new messages
-                var _loadTimeout = 20000; // pull requests interval in ms
+                var _loadTimeout = 5000; // pull requests interval in ms
                 var _loadLock = false; // pull requests interval in ms
                 var _scrollInited = false;
                 var _loadOlderMessagesEnd = false;
@@ -60,11 +61,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
                  * @param  {Function} done [description]
                  * @return {[type]}        [description]
                  */
-                $scope.loadMessages = function(config, done) {
+                $scope.loadMessages = function(config, done, dontMarkAsReaded) {
                     var lockCounter = $scope.lockCounter;
                     config = angular.extend(config || {}, {
                         id: $scope.info._id,
-                        limit: _messagesCount
+                        limit: _messagesCount,
+                        no_read: !!dontMarkAsReaded
                     });
                     Conversations.getMessages(
                         config,
@@ -80,11 +82,19 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         }, done);
                 };
 
-                $scope.testOlderMessagesLoading = function() {
+                /**
+                 * If we have space on top, load older messages
+                 * also add parameter to dont mark conversation as readed when loading messages
+                 */
+                $scope.testOlderMessagesLoading = function(dontMarkAsReaded) {
                     if($(".nano-content", element).scrollTop() < 100)
-                        $scope.loadOlderMessages();
+                        $scope.loadOlderMessages(dontMarkAsReaded);
                 };
                 
+                $scope.onContentScrolling = function() {
+                    $scope.testOlderMessagesLoading();
+                };
+
                 /**
                  * This will handle callback functions after first messages are loaded
                  */
@@ -92,14 +102,14 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     _loadingOlderMessages = false;
 
                     // start pulling new messages
-                    $scope.scheduleNewMessagesLoading();
+                    // $scope.scheduleNewMessagesLoading();
 
                     $timeout(function() {
                         // test if we are on bottom
-                        $scope.testOlderMessagesLoading();
+                        $scope.testOlderMessagesLoading(true);
 
                         // when scrolled top, load older messages
-                        $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
+                        $(".nano-content", element).scroll($scope.onContentScrolling);
                     });
                 };
 
@@ -127,7 +137,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         return false;
 
                     // set info to conversation detail
-                    $scope.info.last_message_time = lastMessage.created_at;
                     $scope.info.message = lastMessage;
                     $scope.info.messages_count += messagesCount;
 
@@ -173,7 +182,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     _loadLock = true;
 
                     $scope.loadMessages({
-                            newer: $scope.getLastMessageTime()
+                            newer: $scope.getLastMessageTime(),
+                            no_read: true,
                         }, 
                         function(messages) {
                             _loadLock = false;
@@ -187,7 +197,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                                 $scope.testScrollBottom();
                                 $scope.updateConversationInfo(messages, messages.length);
                             }
-                        });
+                        }, true);
                 };
 
                 /**
@@ -269,10 +279,21 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
+                $scope.setConversationAsReaded = function() {
+                    if (!$scope.info || $scope.info.read)
+                        return false;
+
+                    Messenger.decrUnreaded();
+                    $scope.info.read = true;
+                    Conversations.setReaded({id: $scope.info._id});
+
+                    $scope.$emit('currentConversationAsReaded');
+                };
+
                 /**
                  * Load oldermessages when we scrolled to top
                  */
-                $scope.loadOlderMessages = function() {
+                $scope.loadOlderMessages = function(loadOlderMessages) {
                     if(_loadingOlderMessages|| _loadOlderMessagesEnd || !$scope.messages.length) return false;
                     _loadingOlderMessages = true;
 
@@ -281,8 +302,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         }, function(messages) {
                             _loadingOlderMessages = false;
 
-                            $scope.scrollToCurrentPosition(function() {
-                            });
+                            $scope.scrollToCurrentPosition(function() {});
+                            if(loadOlderMessages !== true) {
+                                $scope.setConversationAsReaded();
+                            }
                         });
                 };
 
@@ -305,17 +328,13 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.resizeMessagesBox = function() {
                     var container = $(".messages-container", element);
 
-                    // console.log($(".messages-container").height(), element.find(".conversation-detail-top").outerHeight(), element.find(".messages-reply").outerHeight());
-
                     $scope.testScrollBottom();
                     var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
-                    // console.log(maxBoxHeight);
 
                     container.css("max-height", maxBoxHeight);
-                    // container.css("height", $(".nano-content", element).prop('scrollHeight'));
                     container.fadeIn();
 
-                    $(".nano-content", element).scroll($scope.testOlderMessagesLoading);
+                    $(".nano-content", element).scroll($scope.onContentScrolling);
 
                     $timeout(function() {
                         // resize scrollbar
@@ -363,14 +382,31 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     });
                 };
 
+                $scope.bindActionHandlers = function() {
+                    element.bind('click', function() {
+                        $scope.setConversationAsReaded();
+                    });
+
+                    element.bind('keypress', function() {
+                        $scope.setConversationAsReaded();
+                    });
+
+                    var ev = $scope.$on('scrollbarResize', function() {
+                        ev();
+
+                        $(".nano-content", element).bind('scroll mousedown wheel DOMMouseScroll mousewheel keyup', function(e){
+                            if ( e.which > 0 || e.type == "mousedown" || e.type == "mousewheel"){
+                                $scope.setConversationAsReaded();
+                            }
+                        });
+                    });
+                };
+                
                 /**
                  * Config init variables deserialize conversation
                  * and load messages
                  */
                 $scope.init = function(info) {
-                    // if(_loadingOlderMessages)
-                    //     return false;
-                    // _loadingOlderMessages = true;
                         
                     $timeout.cancel(_loadTimeoutPromise);
                     $scope.lockCounter++;
@@ -381,16 +417,19 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     $scope.messages = false;
                     $scope.participants = false;
                     $scope.showParticipants = false;
+                    $timeout($scope.bindActionHandlers);
 
-                    // load first messages
-                    $scope.loadMessages(null, $scope.afterInitLoad);
+
+                    // load first messages and mark as readed on API based on actual state
+                    $scope.loadMessages(null, $scope.afterInitLoad, $scope.info.read);
                 };
 
                 // resize box when needed
                 $(window).resize($scope.resizeMessagesBox);
-                $scope.$on("messageReplyFormResized", $scope.resizeMessagesBox);
+                $scope.$on("conversationReplyFormResized", $scope.resizeMessagesBox);
 
                 $scope.$watch('info', $scope.init);
+                $scope.$on('loadNewMessages', $scope.loadNewMessages);
                 $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
                 $scope.$on('$destroy', function() {
                     // stop pulling new messages on directive destroy

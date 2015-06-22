@@ -11,9 +11,9 @@
  * @requires $templateCache
  */
 angular.module('hearth.geo').directive('map', [
-    'geo', '$interpolate', '$templateCache', 'Post', '$location', '$route', '$timeout',
+    'geo', '$interpolate', '$templateCache', 'Post', '$location', '$timeout',
 
-    function(geo, $interpolate, $templateCache, Post, $location, $route, $timeout) {
+    function(geo, $interpolate, $templateCache, Post, $location, $timeout) {
         return {
             restrict: 'E',
             replace: true,

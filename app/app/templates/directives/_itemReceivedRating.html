@@ -1,0 +1,24 @@
+<section class="large-2 columns user">
+	<a ng-href="{{:: getProfileLink(item.user_from_type, item.user_from) }}">
+		<avatar src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
+		<div class="name">{{:: item.user_from_full_name}}</div>
+	</a>
+</section>
+<section class="large-10 columns">
+	<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
+		<i class="score-icon fa icon-rating-negative" ng-if="item.score == -1"></i>
+		<i class="score-icon fa icon-rating-positive" ng-if="item.score == 1"></i>
+		<div class="content">
+			<div class="fright">
+				<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
+			</div>			
+			<div class="text-container clearfix">
+				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+			</div>
+			<small>
+				{{:: 'SAYING' | translate}}
+				<a href="{{:: getProfileLink(item.user_from_type, item.user_from)}}">{{:: item.user_from_full_name}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath }}post/{{:: item.post_id}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a></span>.
+			</small>			
+		</div>
+	</div>
+</section>

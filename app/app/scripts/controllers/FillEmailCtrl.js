@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('FillEmailCtrl', [
-    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify', '$routeParams',
-    function($scope, Auth, $location, ResponseErrors, Email, Notify, $routeParams) {
+    '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify', '$stateParams',
+    function($scope, Auth, $location, ResponseErrors, Email, Notify, $stateParams) {
         $scope.twitter_token = false;
 		$scope.data = {
             email: ''
@@ -96,6 +96,6 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
         };
 
 
-        $scope.data.email_token = $routeParams.token;
+        $scope.data.email_token = $stateParams.token;
 	}
 ]);

@@ -1,4 +1,4 @@
-<div ng-include="'templates/profile/subPanel.html'"></div>
+<div ng-include="'templates/profile/subviews/ratingsPanel.html'"></div>
 
 <div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! data.length">
 	<p>{{:: 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
@@ -7,14 +7,14 @@
 	<section class="large-2 columns user">
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
-	<section class="large-10 columns user-rating-form">
+	<section class="large-10 columns rating-form">
 		<div class="item rating-received">
 			<div class="content">
 				<h5>{{:: 'ADD_USER_RATING' | translate }} {{ info.name }}</h5>
 				<div class="rating-notify-box"></div>
 				<h6>{{:: 'USER_RATING_SCORE_SELECT_TEXT' | translate }}</h6>
 				<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
-				<needofferselector class="fleft" model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" ></needofferselector>
+				<needofferselector model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" ></needofferselector>
 				<div class="clear"></div>
 
 				<form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
@@ -26,8 +26,8 @@
 						</div>
 						<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 						  <option value="0">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
-						  <option ng-repeat="post in ratingPosts" title="{{post.title}}" value="{{ post._id }}">
-							{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{ post.title | ellipsis:40 }}
+						  <option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
+							{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{:: post.title | ellipsis:40 }}
 						  </option>
 						</select>
 					</span>
@@ -63,8 +63,8 @@
 </div>
 <div class="clear"></div>
 
-<div class="rating-listing ratings-received" ng-if="subPageLoaded">
-	<section class="columns rating-call-to-action large-centered" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'push-1': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+<div class="rating-listing ratings-received" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
+	<section class="columns rating-call-to-action large-centered push-1" ng-class="{ 'large-8': !data.length, 'large-10': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
@@ -74,31 +74,7 @@
 	</section>
 	<div class="clear"></div>
 
-	<article class="row rating-item rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index">
-		<section class="large-2 columns user">
-			<a ng-href="{{ basePath + getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">
-				<avatar src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
-				<div class="name">{{ item.user_from_full_name}}</div>
-			</a>
-		</section>
-		<section class="large-10 columns">
-			<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
-				<i class="score-icon fa icon-rating-negative" ng-if="item.score == -1"></i>
-				<i class="score-icon fa icon-rating-positive" ng-if="item.score == 1"></i>
-				<div class="content">
-					<div class="fright">
-						<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
-					</div>			
-					<div class="text-container clearfix">
-						<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
-					</div>
-					<small>
-						{{:: 'SAYING' | translate}}
-						<a href="{{ basePath + getProfileLinkByType(item.user_from_type) }}/{{item.user_from}}">{{ item.user_from_full_name}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{ basePath }}post/{{item.post_id}}" title="{{ item.post_title }}">{{item.post_title | ellipsis:40}}</a></span>.
-					</small>			
-				</div>
-			</div>
-		</section>
+	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index" ng-include="'templates/directives/_itemReceivedRating.html'">
 	</article>
 </div>
 

@@ -1,0 +1,81 @@
+<br />
+<br />
+
+<div class="community-listings" ng-if="subPageLoaded">
+    <div class="left-pane">
+        <div class="applications" ng-if="mine">
+            <div ng-if="!applications.length">
+                <h3>{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
+                <p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
+            </div>
+            <div ng-if="applications.length">
+
+                <h3 class="small-8 fleft">{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}: {{applications.length}}</h3>
+	            <a class="fright" ng-if="false">{{:: 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
+	            <div class="clear"></div>
+
+	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
+	            	<div class="applications-item">
+                        <avatar class="left margin-bottom-20" href="getProfileLink('User', item._id)" src="item.avatar.normal" type="item._type"></avatar>
+                        <div class="applications-text">
+                            <a href="{{:: getProfileLink('User', item._id)}} ">
+		                    	{{:: item.name | ellipsis}}
+                            </a><br>
+                            <a href="{{:: getProfileLink('User', item._id)}} ">
+		                    	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
+                            </a>
+		                </div>
+                        <div class="applications-buttons">
+                            <a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
+                            <a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
+                        </div>
+	            	</div>
+	            </div>
+	            <div class="buttons">
+	                <a href="{{:: communityLink }}/applications">
+	                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> 
+                        {{:: 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}</button>
+	                </a>
+	            </div>
+	        </div>
+        </div>
+        <div class="ads">
+            <h3 class="iblock">
+                {{:: 'COMMUNITY_POSTS' | translate }}
+                
+                <a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{:: 'AD_ADD_LABEL' | translate}}">
+                    <i class="fa fa-plus-square"></i>
+                </a>
+            </h3>
+            <div class="clear"></div>
+            <div ng-if="mine">
+                <p ng-if="! posts.data.length && !info.post_total">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
+                <p ng-if="! posts.data.length && info.post_total > 0">{{:: 'COMMUNITY_HAS_ONLY_INACTIVE_POSTS' | translate }}</p>
+            </div>
+            <div ng-if="!mine">
+                <p ng-if="! posts.data.length">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
+            </div>
+            
+            <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = !mine"></div>
+
+            <div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 && mine)">
+                <a href="{{:: communityLink }}/posts">
+                    <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="right-pane">
+        <div class="activities">
+            <h3>{{:: 'COMMUNITY_ACTIVITY' | translate }}</h3>
+            <p ng-if="mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
+            <p ng-if="! mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
+            <div ng-if="activityLog.length">
+                <div ng-include="'templates/_activityList.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<div loading show="!subPageLoaded"></div>
