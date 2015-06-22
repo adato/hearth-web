@@ -31,7 +31,7 @@
             <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{:: info.about | ellipsis}}</div>
         </div>
         <div class="highlights">
-            <avatar size="large" class="left" src="info.avatar.large" href="basePath+'profile/'+info._id" type="info._type"></avatar>
+            <avatar size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
 
             <span class="shadow large">
                 <a href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">

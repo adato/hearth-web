@@ -1,13 +1,13 @@
 <div class="bottom-tabs">
     <ul>
         <li>
-        	<a href="{{:: basePath }}profile/{{:: info._id}}/posts" ng-class="{selected: pageSegment =='posts'}">
+        	<a href="{{:: profileLink }}/posts" ng-class="{selected: pageSegment =='posts'}">
         		<span class="mine">{{:: 'MY_POSTS' | translate}}</span>
         		<span class="others">{{:: 'USER_POSTS' | translate}}</span>
 		    </a>
 		</li>
         <li>
-        	<a ng-if="mine" href="{{:: basePath }}profile/{{:: info._id}}/replies" ng-class="{selected: pageSegment =='replies'}">
+        	<a ng-if="mine" href="{{:: profileLink }}/replies" ng-class="{selected: pageSegment =='replies'}">
         		<span>{{:: 'MY_POST_REPLIES' | translate }}</span>
 	        </a>
 	    </li>

@@ -1121,5 +1121,6 @@
     "COMMUNITY_RATINGS": "hodnocení",
     "COMMUNITY_GIVEN_RATINGS": "Věnovaná hodnocení",
     "COMMUNITY_RECEIVED_RATINGS": "Přijatá hodnocení",
-    "REPLY_TO_POST": "Odpověď na inzerát: "
+    "REPLY_TO_POST": "Odpověď na inzerát: ",
+    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý."
 }

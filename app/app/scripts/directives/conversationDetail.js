@@ -18,6 +18,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
             templateUrl: 'templates/directives/conversationDetail.html',
             link: function($scope, element) {
                 $scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                $scope.getProfileLink = $rootScope.getProfileLink;
                 $scope.loggedUser = $rootScope.loggedUser;
                 $scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
                 $scope.pluralCat = $rootScope.pluralCat;

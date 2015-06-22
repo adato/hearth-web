@@ -29,9 +29,8 @@
 					<a ng-if="info.linkedin" class="fa fa-linkedin-square" title="LinkedIn" href="{{info.linkedin}}" target="_blank"></a>
 				<div>
 			</section>
-
 			<section class="columns large-5 profil-link text-right">
-				<a ng-href="{{ basePath + getProfileLinkByType(info._type) }}/{{info._id}}">{{ 'WHOLE_PROFILE' | translate}}</a>
+				<a ng-href="{{:: getProfileLink(info._type, info._id)}}">{{ 'WHOLE_PROFILE' | translate}}</a>
 			</section>
 		</article>
 	</div>

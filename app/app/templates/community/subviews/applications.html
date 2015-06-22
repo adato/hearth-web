@@ -1,17 +1,14 @@
 <div ng-include="'templates/community/subviews/membersPanel.html'"></div>
-<div class="community-applications-list" ng-if="subPageLoaded">
+<div class="community-applications-list" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div ng-repeat="(id, item) in data track by $index" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 
 		<div class="application">
 			<div class="applications-item">
-				<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
-		        	<avatar class="left margin-bottom-20" href="basePath+'profile/'+item._id" src="item.avatar.normal" type="item._type"></avatar>
-	        	</div>
+		        <avatar class="left margin-bottom-20" href="getProfileLink('User',item._id)" src="item.avatar.normal" type="item._type"></avatar>
 		        <div class="applications-text">
-		            <a href="{{:: basePath }}profile/{{:: item._id}} ">
+		            <a href="{{:: getProfileLink('User', item._id) }}">
 		            	{{:: item.name | ellipsis}}
-		            </a><br>
-		            <a href="{{:: basePath }}profile/{{:: item._id}} ">
+		            	<br>
 		            	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
 		            </a>
 		        </div>

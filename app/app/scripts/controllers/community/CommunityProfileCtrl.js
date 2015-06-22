@@ -7,15 +7,25 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload',
-	function($scope, $stateParams, $rootScope, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings) {
 		$scope.loaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
 		$scope.activePage = false;
-		
+        $scope.showUserRatingForm = false;
+
+		$scope.rating = {
+            current_community_id: null,
+            score: true,
+            text: ''
+        };
+        $scope.showError = {
+            text: false
+        };
+
 		$scope.amIAdmin = function(res) {
 			return $rootScope.loggedUser._id == res.admin;
 		};
@@ -34,7 +44,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.loaded = true;
 
 				res.post_total = res.post_count.needs + res.post_count.offers;
-				$scope.comunityLink = $rootScope.getProfileLink('Community', res._id);
+				$scope.communityLink = $rootScope.getProfileLink('Community', res._id);
 				$scope.loadingCounter--;
 				$scope.info = res;
 				$scope.topLoaded = true;
@@ -50,7 +60,44 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			});
 		};
-		
+
+        // will close form and set to default state
+        $scope.closeUserRatingForm = function() {
+            $scope.showUserRatingForm = false;
+        };
+
+        // will redirect user to user ratings and open rating form
+        $scope.openUserRatingForm = function(score) {
+            var ratingUrl = '/community/'+$scope.info._id+'/received-ratings';
+            var removeListener;
+
+            $scope.ratingPosts = [];
+            $scope.loadedRatingPosts = false;
+            // set default values
+            $scope.showError.text = false;
+            $scope.rating.current_community_id = null;
+            $scope.rating.score = score;
+            $scope.rating.text = '';
+            $scope.rating.post_id = 0;
+            // select first option in posts select - eg default value           
+            $("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
+
+            // show form
+            $scope.showUserRatingForm = true;
+
+            // if we are on rating URL just jump down
+            if($location.url() == ratingUrl) {
+                $scope.scrollToUserRatingForm();
+            } else {
+            // else jump to the righ address and there jump down
+                removeListener = $scope.$on('$routeChangeSuccess', function() {
+                    removeListener();
+                    $scope.scrollToUserRatingForm();
+                });
+                $location.url(ratingUrl);
+            }
+        };
+
 		$scope.refreshDataFeed = function() {
 			$rootScope.subPageLoaded = false;
 		};
@@ -120,6 +167,15 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         	});
         };
 
+
+		// scroll to user Rating form when opened
+		$scope.scrollToUserRatingForm = function() {
+			// scroll to form
+			setTimeout(function() {
+				$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
+			}, 300);
+		};
+		
         $scope.addItem = function() {
         	var preset = {
         		current_community_id: ($scope.mine) ? $scope.info._id : null,

@@ -52,7 +52,7 @@ angular.module('hearth.directives').directive('item', [
                 scope.replyItem = $rootScope.replyItem;
                 scope.edit = $rootScope.editItem;
                 scope.socialLinks = $rootScope.socialLinks;
-                scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+                scope.getProfileLink = $rootScope.getProfileLink;
                 scope.openReportBox = $rootScope.openReportBox;
                 scope.openEmailSharingBox = $rootScope.openEmailSharingBox;
                 scope.removeItemFromCommunity = $rootScope.removeItemFromCommunity;
