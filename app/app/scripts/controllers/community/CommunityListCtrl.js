@@ -35,8 +35,6 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 			});
 		};
 
-		console.log("Current state: ", $state.current);
-
 		UnauthReload.check();
 		$scope.load();
 	}
