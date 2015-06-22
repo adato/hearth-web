@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 'posts': loadUserPosts,
                 'replies': loadUserReplies,
                 'communities': loadCommunities,
-                'given-ratings': UserRatings.given,
+                'given-ratings': loadGivenRatings,
                 'received-ratings': loadReceivedRatings,
                 'following': loadFollowees,
                 'followers': loadFollowers,
@@ -35,12 +35,19 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         $scope.loadBottom = function() {
             $scope.loadingData = true;
-            loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
+            loadServices[$scope.pageSegment](params, processData, processDataErr);
         };
 
         function loadFriends(params, done, doneErr) {
             params.related = "user";
             Friends.query(params, done, doneErr);
+        }
+
+        function loadGivenRatings(params, done, doneErr) {
+            params.offset = $scope.data.length;
+            params.limit = 10;
+            
+            UserRatings.given(params, done, doneErr);
         }
 
         function loadReceivedRatings(params, done, doneErr) {
@@ -192,13 +199,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.subPageLoaded = false;
             $scope.loadingData = true;
 
-            // console.log("Calling load service", $scope.pageSegment, e);
-            // console.log("Calling load service", loadServices[$scope.pageSegment]);
             loadServices[$scope.pageSegment](params, processData, processDataErr);
 
             // refresh after new post created
             if (! inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
-                // console.log("Adding listeners");
                 $scope.$on('postCreated', function() {
                     $scope.refreshUser(true);
                     loadServices[$scope.pageSegment](params, processData, processDataErr);

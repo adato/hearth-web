@@ -11,7 +11,7 @@
 	<div class="people-listing">
 		<div class="person" ng-repeat="(id, item) in data track by $index">
 			<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
-				<avatar href="getProfileLink(item._type, item._id)" src="item.avatar.normal" type="item.user_type"></avatar>
+				<avatar href="getProfileLink(item._type, item._id)" src="item.avatar.normal" type="item._type"></avatar>
 			</div>
 			<div class="name">
 				<h4>

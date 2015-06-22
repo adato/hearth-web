@@ -186,7 +186,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.scrollToUserRatingForm();
 			} else {
 			// else jump to the righ address and there jump down
-				removeListener = $scope.$on('$routeChangeSuccess', function() {
+				removeListener = $scope.$on('$stateChangeSuccess', function() {
 					removeListener();
 					$scope.scrollToUserRatingForm();
 				});
