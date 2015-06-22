@@ -72,6 +72,7 @@ body
 	// Story background reset
 	&.story 
 	{
+		& > header { min-height: initial; }
 		& > header, .body { background: transparent };
 	}
 
