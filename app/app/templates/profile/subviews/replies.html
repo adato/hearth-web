@@ -21,11 +21,8 @@
 				<p class="text-container">
 		        	{{:: item.message.text | ellipsis}}
 				</p>
-				<div class="ad-date left" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}">
+				<span class="ad-date">
 					{{item.created_at | ago}}
-				</div>
-				<span class="fleft">
-					&nbsp;
 					{{:: 'REPLY_TO_POST' | translate }}
 					<a ng-href="{{:: getProfileLink('Post', item.post._id) }}">
 						{{:: postTypes[item.post.author._type][item.post.type] | translate }} {{:: item.post.title | ellipsis:60 }}
