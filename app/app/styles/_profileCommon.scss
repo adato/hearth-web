@@ -738,6 +738,15 @@
 
 .reply-list {
     .reply {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        p {
+            font-size: 14px;
+        }
+        .ad-date {
+            display: inline;
+        }
+        .ad-date::first-letter {
+            text-transform: uppercase;
+        }
     }
 }
