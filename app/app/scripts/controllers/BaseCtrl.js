@@ -92,17 +92,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * This will set up rollbar person
          * Depends on $windo.Rollbar !!
          */
-        $rootScope.$on("initSessionSuccess", function (user) {
-            console.log(Rollbar);
+        $rootScope.$on("initSessionSuccess", function (event, user) {
             if($window.Rollbar) {
-                console.log("setting up rollbar");
-
                 $window.Rollbar.configure({
                     payload: {
                         person: {
-                            id: 456,
-                            username: "foo",
-                            email: "foo@example.com"
+                            id: user._id,
+                            username: user.name,
+                            email: user.email
                         }
                     }
                 });
