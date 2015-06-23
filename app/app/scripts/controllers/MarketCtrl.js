@@ -13,7 +13,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
-		$scope.showMap = false;
 		$scope.loading = false;
 		$scope.keywordsActive = [];
 		$scope.author = null;
@@ -29,7 +28,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 
 		$scope.toggleFilter = function() {
-			$rootScope.$broadcast("filterOpen");
+			$scope.$broadcast("filterOpen");
 		};
 
 		$scope.addItemsToList = function(data, index, done) {
@@ -143,17 +142,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			Filter.getCommonKeywords();
 
 			$scope.filterIsOn = Filter.isSet();
-
-			$scope.$on('authorize', function() {
-				$scope.load();
-			});
-			$scope.$watch('user', function(value) {
-				if (value.loggedIn && !Filter.isSet()) {
-					$scope.filter = value.filter;
-					$location.search(value.filter || {});
-				}
-				$scope.load();
-			});
 		}
 
 		/**
@@ -183,23 +171,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			for (i = 0; i < $scope.items.length; i++) {
 				item = $scope.items[i];
 				if (data._id === item._id) {
-					$scope.items[i] =  data;
+					$scope.items[i] = data;
 					break;
 				}
 			}
-		});
-
-		$scope.$on('searchMap', function() {
-			$scope.showMap = true;
-			$timeout(function() {
-				$scope.$broadcast('initMap');
-			});
-		});
-
-		$scope.$on('searchList', function() {
-			$scope.loading = false;
-			$scope.showMap = false;
-			$scope.load();
 		});
 
 		$scope.$on('postCreated', function($event, post) {

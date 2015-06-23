@@ -1,0 +1,9 @@
+<div id="notify-container-market"></div>
+<div class="market row" ng-if="initFinished">
+
+	<filterbar filter=filter></filterbar>
+
+	<div class="large-12 columns marketplace-map-container">
+		<search-map location="myLocation" set-loading-fn="setLoadingComplete()" logged-user="loggedUser" set-location-fn=""></search-map>
+	</div>
+</div>

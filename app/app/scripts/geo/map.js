@@ -216,7 +216,7 @@ angular.module('hearth.geo').directive('map', [
                     map.setZoom(markerClusterMaxZoom + 1);
                 };
 
-                scope.$on('initMap', scope.initMap);
+                scope.initMap();
                 scope.$on('showMarkersOnMap', scope.createPins);
             }
         };

@@ -1,13 +1,10 @@
 <div id="notify-container-market"></div>
 <div class="market row" ng-if="initFinished">
 
-	<!-- <marketplace-banner></marketplace-banner> -->
-
-	<!-- <filter-status></filter-status> -->
 	<filterbar filter=filter></filterbar>
-	<div ng-hide="loaded || showMap" class="margin-top">&nbsp;</div>
+	<div ng-hide="loaded" class="margin-top">&nbsp;</div>
 
-	<div class="large-12 columns" ng-hide="!loaded || showMap">
+	<div class="large-12 columns" ng-hide="!loaded">
 		<div class="marketplace-items-container" ng-if="!items.length">
 			<div ng-show="filterIsOn" class="row">
 				<div class="large-10 push-2 columns box text-center not-found-box">
@@ -22,19 +19,15 @@
 			</div>
 			<div ng-show="!filterIsOn" class="row">
 				<div class="large-10 push-2 columns box text-center not-found-box">
-					<p translate class="padding-2">MARKETPLACE.NOTHING_FOUND</p>
+					<p class="padding-2">{{:: "MARKETPLACE.NOTHING_FOUND" | translate }}</p>
 				</div>
 			</div>
 		</div>
 
 		<div when-scrolled="load()" ng-if="items.length" offset="1000" loading-in-progress="loading" class="marketplace-items-container">
-			<item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by item._id" user="user" community="null"></item>
+			<item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by $index" user="user" community="null"></item>
 		</div>
 	</div>
 	<div class="clear"></div>
 	<div loading show="loading"></div>
-
-	<div class="large-12 columns marketplace-map-container" ng-if="showMap">
-		<search-map show-map="showMap" location="myLocation" set-loading-fn="setLoadingComplete()" logged-user="loggedUser" set-location-fn=""></search-map>
-	</div>
 </div>

@@ -22,7 +22,6 @@ angular.module('hearth.geo').directive('searchMap', [
                 setLocationFn: '&',
                 setLoadingFn: '&',
                 items: '=',
-                showMap: '='
             },
             templateUrl: 'templates/geo/searchMap.html',
             link: function(scope, element) {
@@ -85,20 +84,18 @@ angular.module('hearth.geo').directive('searchMap', [
                     loc && loc.lon && scope.setSearchParams(loc);
 
                     // search only when map is shown
-                    if (scope.showMap) {
-                        var params = scope.getSearchParams();
+                    var params = scope.getSearchParams();
 
-                        if(params.lon)
-                            scope.center = true;
+                    if(params.lon)
+                        scope.center = true;
 
-                        Post.mapQuery(params, function(data) {
-                            scope.$broadcast('showMarkersOnMap', data);
-                        });
-                    }
+                    Post.mapQuery(params, function(data) {
+                        scope.$broadcast('showMarkersOnMap', data);
+                    });
                 };
 
-                scope.$on('initMap', scope.search);
-                scope.$on('initMap', scope.autodetectMyLocation);
+                scope.search();
+                scope.autodetectMyLocation();
                 scope.$on('filterReseted', scope.search);
                 scope.$on('filterApplied', scope.search);
             }
