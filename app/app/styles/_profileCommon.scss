@@ -738,12 +738,17 @@
 
 .reply-list {
     .reply {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+
+        .user .name {
+            margin-top: 0.4rem;
+        }
+        
         p {
             font-size: 14px;
         }
         .ad-date {
-            display: inline;
+            display: inline-block;
         }
         .ad-date::first-letter {
             text-transform: uppercase;
