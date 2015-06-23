@@ -19,23 +19,14 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				angular.extend(scope, {
 					filterSelected: false,
-					newItemSelected: false
 				});
 
 				scope.cancelFilter = function() {
 					Filter.reset();
 				};
 				
-				scope.toggleNewItem = function() {
-					if (!scope.filterSelected) {
-						scope.newItemSelected = !scope.newItemSelected;
-					}
-				};
-
 				scope.toggleFilter = function() {
-					if (!scope.newItemSelected) {
-						scope.filterSelected = !scope.filterSelected;
-					}
+					scope.filterSelected = !scope.filterSelected;
 				};
 
 				scope.testFilterActive = function() {
@@ -53,7 +44,6 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.$on('showUI', function($event, ui) {
 					scope.filterSelected = ui === 'filter';
-					scope.newItemSelected = ui === 'newAd';
 
 					if (ui === 'map') {
 						scope.mapSelected = true;
@@ -66,9 +56,6 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.$on('filterReseted', scope.testFilterActive);
 				scope.$on('filterApplied', scope.testFilterActive);
 
-				scope.$on('$stateChangeSuccess', function(ev, route, params) {
-				});
-				
 				scope.testFilterActive();
 			}
 		};
