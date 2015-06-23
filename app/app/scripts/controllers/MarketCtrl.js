@@ -132,7 +132,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				// console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
 				$scope.addItemsToList(data, 0, $scope.finishLoading);
-				$timeout(function () { $scope.confuseEverybodyWithThisError(); throw new Exception(); });
 				$rootScope.$broadcast('postsLoaded');
 			});
 		};
