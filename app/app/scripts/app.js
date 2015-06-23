@@ -88,7 +88,16 @@ angular.module('hearth', [
             // // ======== ?? wtf is this?
             // $httpProvider.responseInterceptors.push('TermsAgreement');
         }
-    ]).run([
+    ]).config(function($provide) {
+        $provide.decorator("$exceptionHandler", function($delegate, $window) {
+          return function (exception, cause) {
+            if($window.Rollbar) {
+              $window.Rollbar.error(exception, {cause: cause});
+            }
+            $delegate(exception, cause);
+          };
+        });
+    }).run([
         '$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter',
         function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter) {
             $rootScope.appInitialized = false;
