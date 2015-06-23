@@ -87,6 +87,30 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $("#all").addClass(current.controller);
         });
 
+
+        /**
+         * This will set up rollbar person
+         * Depends on $windo.Rollbar !!
+         */
+        $rootScope.$on("initSessionSuccess", function (user) {
+            console.log(Rollbar);
+            if($window.Rollbar) {
+                console.log("setting up rollbar");
+
+                $window.Rollbar.configure({
+                    payload: {
+                        person: {
+                            id: 456,
+                            username: "foo",
+                            email: "foo@example.com"
+                        }
+                    }
+                });
+            }
+        });
+
+
+
         $scope.showUI = function(ui) {
             $scope.$broadcast('showUI', ui);
         };
