@@ -217,10 +217,11 @@ angular.module('hearth.geo').directive('locations', [
                         info.origin_address = addr;
                         info.address = addr;
                         info.coordinates = [pos.lng(), pos.lat()];
-                        $scope.locations.push(info);
-
-                        tagsInput.focus();
-                        apply && $scope.apply();
+                        $timeout(function () {
+                            $scope.locations.push(info);
+                            tagsInput.focus();
+                            apply && $scope.apply();
+                        });
                     }
  
                     // and erase input for next location
@@ -253,7 +254,6 @@ angular.module('hearth.geo').directive('locations', [
                 $scope.chooseMapLocation = function() {
                     if(! $scope.mapPoint)
                         return false;
-                    
                     $scope.fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, false);
                     $scope.closeMap();
                 };
@@ -275,7 +275,7 @@ angular.module('hearth.geo').directive('locations', [
 
                             // let address to display on page and then scroll to it if it is not visible
                             $timeout(function() {
-                                Viewport.scrollIfHidden(".mapPoint", 60, $scope.base);
+                                Viewport.scrollIfHidden(".map-point", 60, $scope.base);
                             });
                         });
                     });
