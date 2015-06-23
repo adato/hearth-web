@@ -6,15 +6,17 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$anchorScroll', '$location', 'Filter',
+	'$anchorScroll', '$location', 'Filter', '$window',
 
-	function($anchorScroll, $location, Filter) {
+	function($anchorScroll, $location, Filter, $window) {
 		return {
 			replace: true,
 			restrict: 'E',
 			templateUrl: 'templates/directives/filterbar.html',
 			scope: true,
 			link: function(scope) {
+				scope.searchParams = '';
+
 				angular.extend(scope, {
 					filterSelected: false,
 					newItemSelected: false
@@ -37,7 +39,10 @@ angular.module('hearth.directives').directive('filterbar', [
 				};
 
 				scope.testFilterActive = function() {
+					var paramString = $.param($location.search());
 					scope.filterOn = !$.isEmptyObject($location.search());
+
+					scope.searchParams = (paramString) ? '?'+paramString : '';
 				};
 
 				scope.$on('filterClose', function() {
@@ -61,6 +66,9 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.$on('filterReseted', scope.testFilterActive);
 				scope.$on('filterApplied', scope.testFilterActive);
 
+				scope.$on('$stateChangeSuccess', function(ev, route, params) {
+				});
+				
 				scope.testFilterActive();
 			}
 		};

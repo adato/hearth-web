@@ -10,8 +10,8 @@
 		</a>
 		<a ng-show="filterOn" ng-click="cancelFilter()" class="filter-cancel-button">{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}</a>
 
-		<a ng-if="!mapSelected" ng-href="/map" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
-		<a ng-if="mapSelected" ng-href="/" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
+		<a ng-if="!mapSelected" ng-href="/map{{ searchParams }}" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
+		<a ng-if="mapSelected" ng-href="/{{ searchParams }}" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
 	</div>
 	<article class="filter-container animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }" >
 		<filter id="filter" filter-shown="filterSelected"></filter>
