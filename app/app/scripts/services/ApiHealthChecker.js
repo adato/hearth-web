@@ -7,19 +7,54 @@
  */
 
 angular.module('hearth.services').service('ApiHealthChecker', [
-	'$rootScope',
-	function($rootScope) {
+	'$rootScope', '$timeout', '$interval',
+	function($rootScope, $timeout, $interval) {
 		var self = this;
 		var healthCheckTimeout = 2000;
 		var healthCheckTimeoutPointer = 0;
 		var healthCheckRunning = false;
+		var version = null;
+		var checkVersionInterval = null;
+		$rootScope.showNewVersionNotify = false;
+		const _check_interval = 60000;
+
+		/**
+		 * Close notification about new version
+		 */
+		this.closeNotify = function() {
+			$rootScope.showNewVersionNotify = false;
+		};
+
+		/**
+		 * Checkout actual app version
+		 */
+		this.getAppVersion = function(done) {
+			$.get('/version.txt').success(done);
+		};
+
+		/**
+		 * Check version and optionally show notification
+		 */
+		this.checkVersion = function() {
+			if (!$("#maitenancePage").is(":visible"))  {
+				
+				self.getAppVersion(function(v) {
+
+					if (v === version)
+						return;
+
+					version = v;
+					$rootScope.showNewVersionNotify = true;
+					$interval.cancel(checkVersionInterval);
+				});
+			}
+		};
 
 		/**
 		 * This will process health check result
 		 */
 		this.processHealthCheckResult = function(res) {
-			// console.log("Health check result: ", res);
-			if(res && res.ok && res.ok == true){
+			if (res && res.ok && res.ok == true){
 				return self.turnOff();
 			}
 
@@ -47,7 +82,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 *  - eg only one health check will run at the time
 		 */
 		this.sendFirstHealthCheck = function() {
-			if(healthCheckRunning) return false;
+			if (healthCheckRunning) return false;
 			healthCheckRunning = true;
 
 			self.sendHealthCheck();
@@ -57,22 +92,37 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * Turn on health check controll
 		 */
 		this.turnOn = function() {
-
 			// if already started, than stop
-			if(healthCheckTimeoutPointer)
+			if (healthCheckTimeoutPointer)
 				return false;
 
 			$("#maitenancePage").fadeIn();
+			$rootScope.showNewVersionNotify = false;
 		};
 
 		this.turnOff = function() {
-			healthCheckRunning = false;;
-			if(!$("#maitenancePage").is(":visible"))
+			healthCheckRunning = false;
+			healthCheckTimeoutPointer = null;
+
+			if (!$("#maitenancePage").is(":visible"))
 				return false;
 
-			$("#maitenancePage").fadeOut();
-			window.location = document.URL;
-			location.reload();
+			// if app was not properly inited, reload page
+			if(!$rootScope.initFinished) {
+				window.location = document.URL;
+			}
+			
+			$("#maitenancePage").fadeOut('fast', function() {
+				self.checkVersion();
+			});
 		};
+
+
+		// on init get actual version
+		this.getAppVersion(function(v) {
+			version = v;
+		});
+
+		checkVersionInterval = $interval(this.checkVersion, _check_interval);
 	}
 ]);
