@@ -120,10 +120,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function loadUserReplies(params, done, doneErr) {
-
-            User.getReplies({}, function(res) {
-                $scope.replies = res.replies;
-                finishLoading();
+            $scope.addPagination(params);
+            User.getReplies(params, function(res) {
+                done(res.replies);
             }, doneErr);
         }
 
