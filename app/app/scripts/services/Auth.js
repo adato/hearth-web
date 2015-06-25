@@ -32,8 +32,10 @@ angular.module('hearth.services').factory('Auth', [
 			},
 			refreshUserInfo: function() {
 				Session.show(function(res) {
-					if(res.get_logged_in_user)
+					if(res.get_logged_in_user) {
 						$rootScope.loggedUser = res.get_logged_in_user;
+						$rootScope.loggedUser.email = res.email;
+					}
 				});
 			},
 			login: function(credentials, cb) {
