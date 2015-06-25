@@ -178,6 +178,7 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 
 // an exception for ignored <p> in <span> (as a by-product of a translation method)
 button p {
+    display: inline;
     font-family: inherit;
     font-weight: inherit;
     font-size: inherit;
