@@ -50,7 +50,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		
 		// set cookie with language
 		this.setCookie = function(lang) {
-			$.cookie('language', lang, {expires: 21*30*100});
+			$.cookie('language', lang, {expires: 21*30*100, path: '/' });
 		};
 		
 		// use language

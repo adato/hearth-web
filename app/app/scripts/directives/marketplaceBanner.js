@@ -6,19 +6,18 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('marketplaceBanner',
-	['ipCookie',
-	function( ipCookie ) {
+	function() {
 		return {
 			restrict: 'E',
 			scope: false,
 			templateUrl: 'templates/directives/marketplaceBanner.html',
 			link: function(scope, element, attrs) {
-				scope.closed = ipCookie('showMarketplaceBanner') || false;
+				scope.closed = $.cookie('showMarketplaceBanner') || false;
 				scope.close = function () {
 					scope.closed = !scope.closed;
-					ipCookie('showMarketplaceBanner', scope.closed, { expires: 99999 });
+					$.cookie('showMarketplaceBanner', scope.closed, { path: '/', expires: 99999 });
 				}
 			}
 		};
-	}]
+	}
 );

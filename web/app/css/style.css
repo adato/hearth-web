@@ -960,25 +960,29 @@ body > footer {
   min-width: 980px;
 }
 /* line 75, ../../app/sass/style.scss */
+body.story > header {
+  min-height: initial;
+}
+/* line 76, ../../app/sass/style.scss */
 body.story > header, body.story .body {
   background: transparent;
 }
-/* line 79, ../../app/sass/style.scss */
+/* line 80, ../../app/sass/style.scss */
 body.stickify-down {
   padding-bottom: 50px;
 }
-/* line 83, ../../app/sass/style.scss */
+/* line 84, ../../app/sass/style.scss */
 body.stickify-down .sticky-panel {
   bottom: 0;
   position: fixed;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.45) -1px 0 14px;
 }
-/* line 93, ../../app/sass/style.scss */
+/* line 94, ../../app/sass/style.scss */
 body.stickify-up {
   padding-top: 50px;
 }
-/* line 97, ../../app/sass/style.scss */
+/* line 98, ../../app/sass/style.scss */
 body.stickify-up .sticky-panel {
   top: 0;
   z-index: 99999;
@@ -987,28 +991,36 @@ body.stickify-up .sticky-panel {
   box-shadow: rgba(0, 0, 0, 0.45) 1px 0 8px;
 }
 
-/* ===== HEADER & INTRODUCTION ====================== */
+/* english version */
 /* line 110, ../../app/sass/style.scss */
+body.lang-en header > div.header-content {
+  background: url("../img/dots-and-lines-en.png") no-repeat center 43%;
+}
+
+/* ===== HEADER & INTRODUCTION ====================== */
+/* line 120, ../../app/sass/style.scss */
 .logo-strip {
   padding: 15px 0 5px;
   border-bottom: 5px solid #fa5800;
 }
-/* line 115, ../../app/sass/style.scss */
+/* line 125, ../../app/sass/style.scss */
 .logo-strip .logo {
   width: 321px;
   height: 56px;
 }
 
-/* line 123, ../../app/sass/style.scss */
+/* line 133, ../../app/sass/style.scss */
 .strip-btns {
   text-align: right;
 }
-/* line 127, ../../app/sass/style.scss */
+/* line 137, ../../app/sass/style.scss */
 .strip-btns .btn {
   position: relative;
-  top: -1px;
+  top: -2px;
+  float: right;
   display: inline-block;
   padding: 5px 30px 8px;
+  margin: 0px 20px;
   background: #fa5800;
   color: #EAEAEA;
   font-size: 29px;
@@ -1021,7 +1033,28 @@ body.stickify-up .sticky-panel {
   color: #FFF;
 }
 
-/* line 144, ../../app/sass/style.scss */
+/* line 154, ../../app/sass/style.scss */
+.flag {
+  display: block;
+  font-size: 29px;
+  line-height: 1.3;
+  width: 32px;
+  height: 23px;
+  margin: 6.5px;
+  background-repeat: no-repeat;
+}
+/* line 162, ../../app/sass/style.scss */
+.flag.flag-en {
+  background: url(../img/flag-english.svg);
+  background-size: 32px 23px;
+}
+/* line 166, ../../app/sass/style.scss */
+.flag.flag-cs {
+  background: url(../img/flag-czech.svg);
+  background-size: 32px 23px;
+}
+
+/* line 174, ../../app/sass/style.scss */
 .intro {
   text-align: center;
 }
@@ -1035,7 +1068,7 @@ body.stickify-up .sticky-panel {
   clear: both;
 }
 
-/* line 157, ../../app/sass/style.scss */
+/* line 188, ../../app/sass/style.scss */
 .face-deck {
   position: relative;
   top: 30px;
@@ -1044,7 +1077,7 @@ body.stickify-up .sticky-panel {
   margin: 0 auto;
   text-align: center;
 }
-/* line 165, ../../app/sass/style.scss */
+/* line 196, ../../app/sass/style.scss */
 .face-deck .face {
   position: absolute;
   display: inline-block;
@@ -1060,7 +1093,7 @@ body.stickify-up .sticky-panel {
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
 }
-/* line 178, ../../app/sass/style.scss */
+/* line 209, ../../app/sass/style.scss */
 .face-deck .face > img {
   display: inline-block;
   width: 190px;
@@ -1082,38 +1115,38 @@ body.stickify-up .sticky-panel {
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
 }
-/* line 196, ../../app/sass/style.scss */
+/* line 227, ../../app/sass/style.scss */
 .face-deck .face:hover > img, .face-deck .face:active > img, .face-deck .face:focus > img {
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
   width: 200px !important;
   height: 200px !important;
 }
-/* line 202, ../../app/sass/style.scss */
+/* line 233, ../../app/sass/style.scss */
 .face-deck .face.first {
   left: -25%;
   top: 200px;
 }
-/* line 203, ../../app/sass/style.scss */
+/* line 234, ../../app/sass/style.scss */
 .face-deck .face.second {
   left: 250px;
   top: -20px;
   -webkit-animation-delay: .5s;
           animation-delay: .5s;
 }
-/* line 203, ../../app/sass/style.scss */
+/* line 234, ../../app/sass/style.scss */
 .face-deck .face.second > img {
   -webkit-animation-delay: .5s;
           animation-delay: .5s;
 }
-/* line 204, ../../app/sass/style.scss */
+/* line 235, ../../app/sass/style.scss */
 .face-deck .face.third {
   left: 90%;
   top: 275px;
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
 }
-/* line 204, ../../app/sass/style.scss */
+/* line 235, ../../app/sass/style.scss */
 .face-deck .face.third > img {
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
@@ -1178,13 +1211,13 @@ body.stickify-up .sticky-panel {
     margin: 0;
   }
 }
-/* line 224, ../../app/sass/style.scss */
+/* line 255, ../../app/sass/style.scss */
 .claim-container {
   position: relative;
   top: 30px;
 }
 
-/* line 229, ../../app/sass/style.scss */
+/* line 260, ../../app/sass/style.scss */
 .headline {
   text-transform: uppercase;
   color: #1c1c1b;
@@ -1194,13 +1227,13 @@ body.stickify-up .sticky-panel {
   color: #446142;
 }
 
-/* line 236, ../../app/sass/style.scss */
+/* line 267, ../../app/sass/style.scss */
 .claim {
   font-size: 25px;
   color: #333;
 }
 
-/* line 239, ../../app/sass/style.scss */
+/* line 270, ../../app/sass/style.scss */
 .btn-cta {
   display: inline-block;
   padding: 25px 150px;
@@ -1229,7 +1262,7 @@ body.stickify-up .sticky-panel {
 }
 
 /* ===== STICKY PANEL & MAIN MENU =================== */
-/* line 262, ../../app/sass/style.scss */
+/* line 293, ../../app/sass/style.scss */
 .sticky-panel {
   background: #fa5800;
   padding: 0 40px;
@@ -1245,13 +1278,13 @@ body.stickify-up .sticky-panel {
 .sticky-panel:after {
   clear: both;
 }
-/* line 270, ../../app/sass/style.scss */
+/* line 301, ../../app/sass/style.scss */
 .sticky-panel .logo-container {
   display: inline-block;
   line-height: 50px;
   opacity: 0;
 }
-/* line 277, ../../app/sass/style.scss */
+/* line 308, ../../app/sass/style.scss */
 .sticky-panel .logo {
   vertical-align: sub;
   display: inline-block;
@@ -1259,39 +1292,39 @@ body.stickify-up .sticky-panel {
   width: 149px;
   height: 26px;
 }
-/* line 285, ../../app/sass/style.scss */
+/* line 316, ../../app/sass/style.scss */
 .sticky-panel .menu-container {
   float: right;
 }
 
 /* Main menu */
-/* line 289, ../../app/sass/style.scss */
+/* line 320, ../../app/sass/style.scss */
 .menu {
   height: 50px;
   line-height: 50px;
   text-align: right;
 }
-/* line 296, ../../app/sass/style.scss */
+/* line 327, ../../app/sass/style.scss */
 .menu > li {
   display: inline-block;
   color: #ffc9ac;
 }
-/* line 301, ../../app/sass/style.scss */
+/* line 332, ../../app/sass/style.scss */
 .menu > li:before {
   position: static;
   display: inline-block;
   content: "|";
   margin: 0 8px 0 12px;
 }
-/* line 308, ../../app/sass/style.scss */
+/* line 339, ../../app/sass/style.scss */
 .menu > li.active a {
   color: #FFF;
 }
-/* line 313, ../../app/sass/style.scss */
+/* line 344, ../../app/sass/style.scss */
 .menu > li:first-child:before {
   display: none;
 }
-/* line 315, ../../app/sass/style.scss */
+/* line 346, ../../app/sass/style.scss */
 .menu > li > a {
   color: inherit;
   font-size: 18px;
@@ -1306,7 +1339,7 @@ body.stickify-up .sticky-panel {
 
 /* ===== CONTENT ==================================== */
 /* Body & content */
-/* line 329, ../../app/sass/style.scss */
+/* line 360, ../../app/sass/style.scss */
 .body {
   background: url("../img/bg.jpg") no-repeat top center;
   background-color: #faf8eb;
@@ -1314,17 +1347,17 @@ body.stickify-up .sticky-panel {
   min-width: 980px;
 }
 
-/* line 342, ../../app/sass/style.scss */
+/* line 373, ../../app/sass/style.scss */
 .content p > strong {
   font-weight: 700;
 }
 
 /* ===== FOOTER ===================================== */
-/* line 350, ../../app/sass/style.scss */
+/* line 381, ../../app/sass/style.scss */
 .links {
   float: left;
 }
-/* line 354, ../../app/sass/style.scss */
+/* line 385, ../../app/sass/style.scss */
 .links > li {
   display: inline-block;
   font-weight: 700;
@@ -1334,33 +1367,39 @@ body.stickify-up .sticky-panel {
 .links > li > a:hover, .links > li > a:active, .links > li > a:focus {
   color: #333;
 }
-/* line 369, ../../app/sass/style.scss */
+/* line 400, ../../app/sass/style.scss */
 .links.text {
   float: left;
   padding: 7px 0;
 }
-/* line 374, ../../app/sass/style.scss */
+/* line 405, ../../app/sass/style.scss */
 .links.text > li {
   margin: 0 8px;
 }
-/* line 376, ../../app/sass/style.scss */
+/* line 407, ../../app/sass/style.scss */
 .links.text > li:after {
   position: static;
   display: inline-block;
   content: "|";
   margin-left: 16px;
 }
-/* line 382, ../../app/sass/style.scss */
+/* line 413, ../../app/sass/style.scss */
 .links.text > li:last-child:after {
   display: none;
 }
-/* line 386, ../../app/sass/style.scss */
+/* line 417, ../../app/sass/style.scss */
 .links.icons {
   float: right;
 }
-/* line 390, ../../app/sass/style.scss */
+/* line 421, ../../app/sass/style.scss */
 .links.icons > li {
   margin: 0 12px;
+}
+
+/* line 426, ../../app/sass/style.scss */
+.fb_iframe_widget iframe {
+  width: 500px;
+  height: 600px;
 }
 
 /* ===== OVERRIDES (MUST BE AT THE END) ============= */

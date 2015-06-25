@@ -80,6 +80,25 @@
       <script src="//connect.facebook.net/en_US/all.js"></script>
       <script type='text/javascript'>
       <!--
+        /**
+         * Temporary function for cookie path translation
+         * Move all cookies from /app/ path to /
+         */
+        (function() {
+          var cookies = document.cookie.split('; ');
+          var used = {};
+          for(var i in cookies) {
+            var c = cookies[i].split('=');
+            if(used[c[0]])
+              continue;
+            used[c[0]] = c[1];
+
+            $.removeCookie(c[0])
+            // $.removeCookie(c[0], { path: '/app/' }); // => true
+            $.cookie(c[0], c[1], {path: "/", expires: 20 * 365});
+          }
+        })();
+        
         // fb invite jump out from FB frame
         if (top.location!= self.location) {
           top.location = self.location;

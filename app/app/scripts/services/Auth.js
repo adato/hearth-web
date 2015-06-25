@@ -50,7 +50,7 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			setToken: function (token) {
-				$.cookie(TOKEN_NAME, token, { expires: 30 * 12 * 30, path: $$config.basePath });
+				$.cookie(TOKEN_NAME, token, { expires: 30 * 12 * 30, path: '/' });
 			},
 			destroyLogin: function () {
 				$.removeCookie(TOKEN_NAME, {path: $$config.basePath});

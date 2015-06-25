@@ -21,7 +21,7 @@ angular.module('hearth.services').service('UnauthReload', [
             	$rootScope.loginRequired = true;
 
 				// set return path and refresh on login
-				$.cookie(cookieName, $location.path());
+				$.cookie(cookieName, $location.path(), { path: '/' });
 				$location.path('login');
 
         		var destroy = $rootScope.$on('$routeChangeSuccess', function() {
@@ -52,7 +52,7 @@ angular.module('hearth.services').service('UnauthReload', [
 		};
 
 		this.clearReloadLocation = function() {
-			$.cookie(cookieName, '');
+			$.cookie(cookieName, '', { path: '/' });
 		};
 		
 		this.getLocation = function() {
