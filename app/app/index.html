@@ -64,8 +64,8 @@
           <h2 translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
       </div>
     </div>
-    <div ng-cloak id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
-      <div>
+    <div id="new-version-notify" class="hidden" ng-class="{'active': showNewVersionNotify, 'display-block': initFinished}">
+      <div> 
         <p>
           <i class="fa fa-exclamation-circle"></i>
           {{ 'NEW_VERSION_NOTIFICATION' | translate }}
