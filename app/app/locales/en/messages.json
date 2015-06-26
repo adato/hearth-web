@@ -1126,5 +1126,11 @@
     "COMMUNITY_GIVEN_RATINGS": "Věnovaná hodnocení",
     "COMMUNITY_RECEIVED_RATINGS": "Přijatá hodnocení",
     "REPLY_TO_POST": "na dar\/přání:",
-    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý."
+    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý.",
+    "COMMUNITY_PROFILE": {
+        "TOP": {
+            "KARMA_NO_RATING_ME": "With your first rating, we'll bring in more colours here.",
+            "KARMA_NO_RATING_OTHER": "Rate community and it will show their pretty colours :)"
+        }
+    }
 }
