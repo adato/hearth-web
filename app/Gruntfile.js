@@ -177,7 +177,7 @@ module.exports = function(grunt) {
 				cert: grunt.file.read('./cert/server.crt').toString(),
 				// ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
-				hostname: 'localhost',
+				hostname: '0.0.0.0',
 				livereload: 3333,
 				open: true,
 				middleware: function(connect, options) {

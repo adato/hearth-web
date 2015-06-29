@@ -16,10 +16,9 @@ angular.module('hearth.directives').directive('dynamicHeight',
 				container: '@?',
 			},
 			link: function(scope, element, attrs) {
-				scope.container = scope.container || window;
 				scope.minHeight = scope.minHeight || 200;
 				function resizeElement() {
-					var height = $(scope.container).height() - parseInt(scope.offset);
+					var height = $(scope.container || window).height() - parseInt(scope.offset);
 					$(element).height((height < scope.minHeight) ? scope.minHeight : height);
 				}
 				

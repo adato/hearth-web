@@ -22,13 +22,13 @@
         <div class="subject">
           <label>
             {{ 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
-            <input name="title" ng-required="true" placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
+            <input name="title" ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
           </label>
         </div>
         <div class="text">
           <label>
             {{ 'MESSAGES.ADD.TEXT_LABEL' | translate }} *
-            <textarea rows="5" name="text" placeholder="{{ 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea>
+            <textarea rows="5" name="text" ng-attr-placeholder="{{ 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea>
           </label>
           <div class="error" ng-show="addMessageForm.text.$invalid && showError.text">
             <span ng-show="addMessageForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>

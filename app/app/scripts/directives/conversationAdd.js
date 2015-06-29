@@ -20,6 +20,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
             },
             templateUrl: 'templates/directives/conversationAdd.html',
             link: function($scope, element) {
+                $scope.sendingMessage = false;
                 $scope.showError = {
                     text: false,
                     participant_ids: false,
@@ -70,12 +71,11 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
                     var data = $scope.serialize(angular.copy(msg));
 
-                    if($scope.sendMessage) return false;
-                    $scope.sendMessage = true;
+                    if($scope.sendingMessage) return false;
+                    $scope.sendingMessage = true;
 
                     Conversations.add(data, function(res) {
-
-                        $scope.sendMessage = false;
+                        // $scope.sendingMessage = false;
 
                         if($scope.onSuccess)
                             $scope.onSuccess(res);
@@ -85,7 +85,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
                         $scope.$emit("conversationCreated", res);
                         $scope.close(res);
                     }, function(err) {
-                        $scope.sendMessage = false;
+                        // $scope.sendingMessage = false;
                         
                         if($scope.onError)
                             $scope.onError(err);

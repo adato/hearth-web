@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$anchorScroll', '$location', 'Filter', '$window',
+	'$anchorScroll', '$location', 'Filter', '$window', '$rootScope',
 
-	function($anchorScroll, $location, Filter, $window) {
+	function($anchorScroll, $location, Filter, $window, $rootScope) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -16,6 +16,7 @@ angular.module('hearth.directives').directive('filterbar', [
 			scope: true,
 			link: function(scope) {
 				scope.searchParams = '';
+				scope.basePath = $$config.basePath;
 
 				angular.extend(scope, {
 					filterSelected: false,

@@ -488,7 +488,7 @@
     "CREATE_COMMUNITY": "Založit komunitu",
     "DOING_AS_COMMUNITY": "Za komunitu",
     "YOU_ARE_MEMBER_OF_X_COMMUNITIES": "Jste členem ",
-    "SUGGESTED_COMMUNITIES": "Doporučené komunity",
+    "SUGGESTED_COMMUNITIES": "Vybrané komunity",
     "OTHER_COMMUNITIES": "Další komunity",
     "SHOW_PROFILE": "Zobrazit profil",
     "COUNT_OF_PLUS_POINTS": "Počet kladných hodnocení",
@@ -512,9 +512,9 @@
     "COMMUNITY_HAS_NO_ADS_YET": "Těžko tomu uvěřit, ale tato komunita zatím nemá žádné inzeráty. Že by šotek záškodník?",
     "COMMUNITY_ACTIVITY": "Aktivita komunity",
     "COMMUNITY_HAS": "Komunita má",
-    "COMMUNITY_APPLICATION_SENT": "Přihláška do komunity čeká na schválení",
+    "COMMUNITY_APPLICATION_SENT": "Přihláška čeká na schválení",
     "COMMUNITY_POSTS": "Inzeráty komunity",
-    "COMMUNITY_APPLY": "Požádat o přijetí do komunity",
+    "COMMUNITY_APPLY": "Požádat o členství",
     "COMMUNITY_HAS_NO_POSTS_YET": "Komunita zatím nemá žádné inzeráty. A vy zrovna zde, že by...?",
     "COMMUNITY_SEE_ALL_APPLICATIONS": "Zobrazit všechny přihlášky do komunity",
     "COMMUNITY_HAS_NO_APPLICATIONS": "Komunita nemá aktuálně žádné přihlášky",
@@ -723,7 +723,7 @@
     "YOU_HAVE_REGISTERED": "Přidal\/a jste se",
     "THEY_WROTE_ME": "Ohodnotili mne",
     "ME_WROTE_THEM": "Ohodnotil(a) jsem",
-    "ME_WROTE": "Napsal jsem",
+    "ME_WROTE": "Napsal(a) jsem",
     "TUTORIAL_HEADER": "Hearth.net pro vás má opět novinky. Podívejte se, jaké funkce jsme přidali.",
     "TUTORIAL": "Tutoriál",
     "TUTORIAL_DONT_SHOW_ANYTHING": "Neukazujte mi nic. Zahraju si na Sherlocka a vše objevím sám.",
@@ -1149,14 +1149,20 @@
     "USER_MESSAGES": "Zprávy",
     "SEND_MESSAGE": "Poslat zprávu...",
     "COMMUNITY_TERMS": "Podmínky členství",
-    "NEW_VERSION_NOTIFICATION": "Na webu je dostupná nová verze. Chcete obnovit prohlížeč?",
-    "RELOAD": "Obnovit",
+    "NEW_VERSION_NOTIFICATION": "Máme pro vás připravenou novější verzi Hearth. Chcete Hearth aktualizovat teď nebo to necháte na později?",
+    "RELOAD": "Aktualizovat",
     "ALL_COMMUNITIES": "Všechny komunity",
     "RATINGS_COUNT": "hodnocení",
     "MY_POST_REPLIES": "Moje odpovědi",
     "COMMUNITY_RATINGS": "hodnocení",
     "COMMUNITY_GIVEN_RATINGS": "Věnovaná hodnocení",
     "COMMUNITY_RECEIVED_RATINGS": "Přijatá hodnocení",
-    "REPLY_TO_POST": " na inzerát: ",
-    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý."
+    "REPLY_TO_POST": "na dar\/přání:",
+    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý.",
+    "COMMUNITY_PROFILE": {
+        "TOP": {
+            "KARMA_NO_RATING_ME": "S prvním hodnocením vám to zde obarvíme :)",
+            "KARMA_NO_RATING_OTHER": "Ohodnoťte komunitu a pěkně se všem vybarví :)"
+        }
+    }
 }

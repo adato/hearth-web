@@ -42,7 +42,7 @@
 					<label>
 						<h6>{{:: 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h6>
 					</label>
-					<textarea autosize-textarea rows="4" name="text" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
+					<textarea autosize-textarea rows="4" name="text" ng-attr-placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
 					<div class="fleft error clearfix" ng-show="showError.text">
 						<span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
 						<span ng-show="ratingForm.text.$error.minlength">{{:: 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
@@ -75,7 +75,7 @@
 	</section>
 	<div class="clear"></div>
 
-	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index" ng-include="'templates/directives/_itemReceivedRating.html'">
+	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by item._id" ng-include="'templates/directives/_itemReceivedRating.html'">
 	</article>
 </div>
 

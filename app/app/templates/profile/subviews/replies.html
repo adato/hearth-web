@@ -1,11 +1,10 @@
 <div ng-include="'templates/profile/subviews/postPanel.html'"></div>
 
-<div ng-if="subPageLoaded" class="reply-list">
-	<div class="large-8 large-centered columns box text-center no-result" ng-if="!replies.length">
+<div ng-if="subPageLoaded" class="reply-list" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
+	<div class="large-8 large-centered columns box text-center no-result" ng-if="!data.length">
 		<p>{{:: 'PROFILE.REPLIES.NO_REPLIES' | translate }}</p>
 	</div>
-	
-	<article ng-repeat="(id, item) in replies track by $index" class="reply row" id="reply_{{ item._id }}">
+	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}" >
 
 		<section class="large-2 columns user">
 			<div info-box="item.post.author">

@@ -23,7 +23,7 @@ angular.module('hearth.directives').directive('infoBox', [
 				scope.show = false;	// infobox shown
 				scope.error = false; // an error occured when loading info
 				scope.info = false;  // we will cache infobox content
-				scope.getProfileLinkByType = $rootScope.getProfileLinkByType;
+				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.infoboxIndex = 0 || scope.infoboxIndex;
 				scope.infoboxClass = '' || scope.infoboxClass;
 				

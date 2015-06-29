@@ -1,6 +1,6 @@
 <div>
     <section ng-if="errorLoading == 404" class="box padding-top large-6 margin-auto text-center">
-      <p class="margin-0">{{ 'COMMUNITY_WAS_NOT_FOUND' | translate }}</p>
+      <p class="margin-0">{{:: 'COMMUNITY_WAS_NOT_FOUND' | translate }}</p>
     </section>
     
   <div class="row margin-bottom-20 profile-edit-common" ng-show="loaded">
@@ -60,7 +60,7 @@
             <label>
               {{:: 'COMMUNITY_DESCRIPTION' | translate }}
             </label>
-            <textarea autosize-textarea max-len="300" ng-focus="showError.description = false" ng-blur="showError.description = true" name="description" placeholder="{{'COMMUNITY_DESCRIPTIONS_PLACEHOLDER' | translate }}" ng-model="community.description" required></textarea>
+            <textarea autosize-textarea max-len="300" ng-focus="showError.description = false" ng-blur="showError.description = true" name="description" ng-attr-placeholder="{{::'COMMUNITY_DESCRIPTIONS_PLACEHOLDER' | translate }}" ng-model="community.description" required></textarea>
             <max-len-counter max-len="300" value="community.description"></max-len-counter>
             <div class="error margin-top" ng-show="showError.description">
               <span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
@@ -70,7 +70,7 @@
             <label>
               {{:: 'COMMUNITY_RESTRICTIONS' | translate }}
             </label>
-            <textarea autosize-textarea class="text-input" type="text" ng-model="community.terms" placeholder="{{'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" name="terms"></textarea>
+            <textarea autosize-textarea class="text-input" type="text" ng-model="community.terms" ng-attr-placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" name="terms"></textarea>
             <max-len-counter max-len="300" value="community.terms"></max-len-counter>
           </div>
         </section>

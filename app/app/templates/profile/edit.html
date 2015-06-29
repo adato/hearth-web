@@ -188,14 +188,14 @@
           <label>
             {{:: 'MY_TELL_ABOUT' | translate }}
           </label>
-          <textarea autosize-textarea max-len="300" placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" ng-model="profile.about"></textarea>
+          <textarea autosize-textarea max-len="300" ng-attr-placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" ng-model="profile.about"></textarea>
           <max-len-counter max-len="300" value="profile.about"></max-len-counter>
         </div>
         <div class="large-6 columns">
           <label>
             {{:: 'MY_INTERESTS' | translate }}
           </label>
-          <textarea autosize-textarea class="text-input" type="text" ng-model="profile.interests" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}"></textarea>
+          <textarea autosize-textarea class="text-input" type="text" ng-model="profile.interests" ng-attr-placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}"></textarea>
           <max-len-counter max-len="300" value="profile.interests"></max-len-counter>
         </div>
       </section>

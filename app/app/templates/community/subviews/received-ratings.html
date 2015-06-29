@@ -42,7 +42,7 @@
 
 		        <label>
 					<h5>{{:: 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h5>
-		            <textarea autosize-textarea rows="4" style="height: 120px;" name="text" placeholder="{{:: 'WRITE_COMMUNITY_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
+		            <textarea autosize-textarea rows="4" style="height: 120px;" name="text" ng-attr-placeholder="{{:: 'WRITE_COMMUNITY_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true" class="text-input" ng-minlength="3"></textarea>
 					<max-len-counter class="fright" max-len="300" value="rating.text"></max-len-counter>
 
 		            <div class="moveUp error" ng-show="showError.text">
@@ -77,7 +77,7 @@
 	</section>
 	<div class="clear"></div>
 
-	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by $index" ng-include="'templates/directives/_itemReceivedRating.html'">
+	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by item._id" ng-include="'templates/directives/_itemReceivedRating.html'">
 	</article>
 </div>
 

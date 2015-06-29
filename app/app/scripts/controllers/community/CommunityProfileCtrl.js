@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma) {
 		$scope.loaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -44,7 +44,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.loaded = true;
 
 				res.post_total = res.post_count.needs + res.post_count.offers;
-				$scope.communityLink = $rootScope.getProfileLink('Community', res._id);
+                res.karma = Karma.count(res.up_votes, res.down_votes);
+            
+                $scope.communityLink = $rootScope.getProfileLink('Community', res._id);
 				$scope.loadingCounter--;
 				$scope.info = res;
 				$scope.topLoaded = true;
@@ -60,6 +62,46 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			});
 		};
+
+        // scroll to user Rating form when opened
+        $scope.scrollToRatingForm = function() {
+            // scroll to form
+            setTimeout(function() {
+                $('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
+            }, 300);
+        };
+        
+        // will redirect user to user ratings and open rating form
+        $scope.openRatingForm = function(score) {
+            var ratingUrl = '/community/'+$scope.info._id+'/received-ratings';
+            var removeListener;
+
+            $scope.ratingPosts = [];
+            $scope.loadedRatingPosts = false;
+            // set default values
+            $scope.showError.text = false;
+            $scope.rating.current_community_id = null;
+            $scope.rating.score = score;
+            $scope.rating.text = '';
+            $scope.rating.post_id = 0;
+            // select first option in posts select - eg default value           
+            $("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
+
+            // show form
+            $scope.showUserRatingForm = true;
+
+            // if we are on rating URL just jump down
+            if($location.url() == ratingUrl) {
+                $scope.scrollToRatingForm();
+            } else {
+            // else jump to the righ address and there jump down
+                removeListener = $scope.$on('$stateChangeSuccess', function() {
+                    removeListener();
+                    $scope.scrollToRatingForm();
+                });
+                $location.url(ratingUrl);
+            }
+        };
 
         // will close form and set to default state
         $scope.closeUserRatingForm = function() {
@@ -87,19 +129,19 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
             // if we are on rating URL just jump down
             if($location.url() == ratingUrl) {
-                $scope.scrollToUserRatingForm();
+                $scope.scrollToRatingForm();
             } else {
             // else jump to the righ address and there jump down
                 removeListener = $scope.$on('$routeChangeSuccess', function() {
                     removeListener();
-                    $scope.scrollToUserRatingForm();
+                    $scope.scrollToRatingForm();
                 });
                 $location.url(ratingUrl);
             }
         };
 
 		$scope.refreshDataFeed = function() {
-			$rootScope.subPageLoaded = false;
+			$scope.$broadcast('refreshSubpage');
 		};
 
 		$scope.applyForCommunity = function() {
@@ -169,7 +211,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 
 		// scroll to user Rating form when opened
-		$scope.scrollToUserRatingForm = function() {
+		$scope.scrollToRatingForm = function() {
 			// scroll to form
 			setTimeout(function() {
 				$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);

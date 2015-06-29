@@ -67,7 +67,7 @@
                         </label>
                     </td>
                     <td>
-                        <textarea name="message" autosize-textarea max-len="300" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" ng-model="inv.message" ng-focus="showError.message = false" ng-blur="showError.message = true" required></textarea>
+                        <textarea name="message" autosize-textarea max-len="300" ng-attr-placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" ng-model="inv.message" ng-focus="showError.message = false" ng-blur="showError.message = true" required></textarea>
                         <max-len-counter max-len="300" value="inv.message"></max-len-counter>
                     </td>
                     <td valign="top">

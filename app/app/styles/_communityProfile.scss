@@ -37,6 +37,11 @@
             @extend .box, .community-applications-list;
         }
     }
+
+    .button-bar {
+        max-width: 47% !important;
+    }
+
 }
 
 

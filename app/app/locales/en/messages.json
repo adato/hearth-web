@@ -1117,14 +1117,20 @@
     "USER_MESSAGES": "Messages",
     "SEND_MESSAGE": "Send message...",
     "COMMUNITY_TERMS": "Podmínky členství",
-    "NEW_VERSION_NOTIFICATION": "Na webu je dostupná nová verze. Chcete obnovit prohlížeč?",
-    "RELOAD": "Obnovit",
+    "NEW_VERSION_NOTIFICATION": "Máme pro vás připravenou novější verzi Hearth. Chcete Hearth aktualizovat teď nebo to necháte na později?",
+    "RELOAD": "Aktualizovat",
     "ALL_COMMUNITIES": "Všechny komunity",
     "RATINGS_COUNT": "hodnocení",
     "MY_POST_REPLIES": "Moje odpovědi",
     "COMMUNITY_RATINGS": "hodnocení",
     "COMMUNITY_GIVEN_RATINGS": "Věnovaná hodnocení",
     "COMMUNITY_RECEIVED_RATINGS": "Přijatá hodnocení",
-    "REPLY_TO_POST": " na inzerát: ",
-    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý."
+    "REPLY_TO_POST": "na dar\/přání:",
+    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý.",
+    "COMMUNITY_PROFILE": {
+        "TOP": {
+            "KARMA_NO_RATING_ME": "With your first rating, we'll bring in more colours here.",
+            "KARMA_NO_RATING_OTHER": "Rate community and it will show their pretty colours :)"
+        }
+    }
 }

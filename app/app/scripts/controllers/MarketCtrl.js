@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify',
+	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter',
 
-	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify) {
+	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.keywordsActive = [];
 		$scope.author = null;
 		$scope.filterIsOn = false;
+		var ItemFilter = new UniqueFilter();
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
@@ -125,9 +126,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			Post.query(params, function(data) {
 				$scope.loaded = true;
 				// console.timeEnd("Market posts loaded from API");
-				if(data.data)
+				if(data.data) {
+
 					data.data = $scope.insertLastPostIfMissing(data.data);
-				
+					data.data = ItemFilter.filter(data.data);
+
+				}
 				// console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
 				$scope.addItemsToList(data, 0, $scope.finishLoading);

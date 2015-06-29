@@ -98,9 +98,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     payload: {
                         person: {
                             id: user._id,
-                            username: user.name
+                            username: user.name,
                             // email is not reachable in session`s user variable, so we omit it
-                            //email: user.email 
+                            email: user.email 
                         }
                     }
                 });

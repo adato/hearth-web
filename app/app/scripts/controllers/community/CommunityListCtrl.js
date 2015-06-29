@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
-	'$scope', 'Community', 'UnauthReload', '$state',
-	function($scope, Community, UnauthReload, $state) {
+	'$scope', 'Community', 'UnauthReload', '$state', '$filter',
+	function($scope, Community, UnauthReload, $state, $filter) {
 		$scope.list = [];
 		$scope.loading = false;
 		$scope.loadingFinished = false;
@@ -25,6 +25,9 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 
 			var service = ($state.current.name == 'communities.suggested') ? Community.suggested : Community.query;
 			service(conf, function(res) {
+				if(res) res.forEach(function(item) {
+					item.description = $filter('ellipsis')($filter('linky')(item.description, '_blank'));
+				});
 				$scope.list = $scope.list.concat(res);
 				$scope.loading = false;
 				$scope.$parent.loadedFirstBatch = true;
