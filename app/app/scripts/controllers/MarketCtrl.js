@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify',
+	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter',
 
-	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify) {
+	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -17,30 +17,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.keywordsActive = [];
 		$scope.author = null;
 		$scope.filterIsOn = false;
-		var idList = [];
-
-		function addToIdList(item) {
-			idList.push(item);
-		}
-		
-		function isInIdList(item) {
-			return idList.indexOf(item) !== -1
-		}
-
-		function addItemsToIdList(items) {
-			items.forEach(function(i) {
-				addToIdList(i._id);
-			});
-		}
-		
-		function removeDuplicitIds(items) {
-			var out = [];
-
-			items.forEach(function(item) {
-				if(!isInIdList(item._id)) out.push(item);
-			});
-			return out;
-		}
+		var ItemFilter = new UniqueFilter();
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
@@ -152,9 +129,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				if(data.data) {
 
 					data.data = $scope.insertLastPostIfMissing(data.data);
+					data.data = ItemFilter.filter(data.data);
 
-					data.data = removeDuplicitIds(data.data);
-					addItemsToIdList(data.data);
 				}
 				// console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading

@@ -7,10 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter) {
         $scope.activityShow = false;
         $scope.loadingData = false;
+        var ItemFilter = new UniqueFilter();
 
         var inited = false;
         var loadServices = {
@@ -96,6 +97,8 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function processData(res) {
+            res = ItemFilter.filter(res);
+
             $scope.data = $scope.data.concat(res);
             finishLoading(res);
         }
@@ -127,9 +130,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             CommunityRatings.received(obj, done, doneErr);
             $scope.$watch('rating.current_community_id', function(val) {
                 $scope.rating.post_id = 0;
-                CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res) {
+                CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res, headers) {
                     var posts = [];
-                    
+                    if(!res.needed || !res.offered)
+                        console.error('Undefined needed/offered posts: ', res, headers)
+
                     res.needed.forEach(function(item) {
                         item.post_type = "needed";
                         posts.push(item);

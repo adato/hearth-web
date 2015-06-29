@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post',
-    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post) {
+    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter',
+    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter) {
         var loadServices = {
                 'home': loadUserHome,
                 'posts': loadUserPosts,
@@ -28,7 +28,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         $scope.postTypes = $$config.postTypes;
         $scope.data = [];
         $scope.loadingData = false;
-
+        var ItemFilter = new UniqueFilter();
         var inited = false;
         $scope.subPageLoaded = false;
         
@@ -201,6 +201,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         function processData(res) {
+            res = ItemFilter.filter(res);
+
             $scope.data = $scope.data.concat(res);
             finishLoading(res);
         }

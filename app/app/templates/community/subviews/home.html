@@ -14,7 +14,7 @@
 	            <a class="fright" ng-if="false">{{:: 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
 	            <div class="clear"></div>
 
-	            <div ng-repeat="(id, item) in applications track by $index" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
+	            <div ng-repeat="(id, item) in applications track by item._id" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 	            	<div class="applications-item">
                         <avatar class="left margin-bottom-20" href="getProfileLink('User', item._id)" src="item.avatar.normal" type="item._type"></avatar>
                         <div class="applications-text">
@@ -56,7 +56,7 @@
                 <p ng-if="! posts.data.length">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
             </div>
             
-            <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by $index" ng-init="hidePost = !mine"></div>
+            <div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by item._id" ng-init="hidePost = !mine"></div>
 
             <div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 && mine)">
                 <a href="{{:: communityLink }}/posts">
