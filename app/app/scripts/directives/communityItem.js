@@ -8,7 +8,7 @@
  */
 angular.module('hearth.directives').directive('communityItem', [
     '$rootScope', 
-    function($$rootScope) {
+    function($rootScope) {
         return {
             restrict: 'E',
             replace: true,
@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('communityItem', [
             },
             templateUrl: 'templates/directives/communityItem.html',
             link: function(scope, element) {
-                
+                scope.getProfileLink = $rootScope.getProfileLink;
             }
         };
     }

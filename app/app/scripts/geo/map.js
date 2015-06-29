@@ -211,7 +211,6 @@ angular.module('hearth.geo').directive('map', [
                 };
 
                 scope.zoomMarkerClusterer = function(cluster) {
-
                     map.fitBounds(cluster.getBounds());
                     map.setZoom(markerClusterMaxZoom + 1);
                 };
