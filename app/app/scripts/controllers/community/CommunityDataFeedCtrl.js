@@ -272,6 +272,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function init() {
+            ItemFilter.clear();
             $scope.loadingData = true;
             $scope.data = [];
             $scope.pageSegment = $stateParams.page || 'home';
@@ -309,6 +310,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $scope.flashRatingBackground(item);
         };
 
+        $scope.$on('refreshSubpage', init);
         $scope.$on('communityRatingsAdded', $scope.addCommunityRating);
         $scope.$on('itemDeleted', $scope.removeItemFromList);
         init();

@@ -141,7 +141,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
         };
 
 		$scope.refreshDataFeed = function() {
-			$rootScope.subPageLoaded = false;
+			$scope.$broadcast('refreshSubpage');
 		};
 
 		$scope.applyForCommunity = function() {

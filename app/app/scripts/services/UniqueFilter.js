@@ -17,6 +17,10 @@ angular.module('hearth.services').factory('UniqueFilter', function () {
       return idList;
     };
 
+    this.clear = function() {
+      idList = [];  
+    };
+
     this.add = function(item) {
       idList.push(item);
     };
