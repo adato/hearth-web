@@ -202,6 +202,7 @@
     section.title {
         .name .field-group span {
             cursor:pointer;
+            vertical-align: middle;
         }
     }
 
@@ -394,6 +395,11 @@
         color: #4d4d4d;
         padding-left: 5px;
         padding-right: 5px;
+    }
+
+    .community-selector {
+        display: block;
+        height: auto !important;
     }
 }
 
