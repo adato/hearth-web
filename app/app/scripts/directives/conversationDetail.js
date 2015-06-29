@@ -327,7 +327,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 
                 $scope.resizeMessagesBox = function() {
                     var container = $(".messages-container", element);
-
+                    console.log('Resized message box');
                     $scope.testScrollBottom();
                     var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
 
@@ -434,6 +434,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.$on('$destroy', function() {
                     // stop pulling new messages on directive destroy
                     $timeout.cancel(_loadTimeoutPromise);
+                    $(window).off('resize', $scope.resizeMessagesBox);
+
                 });
             }
         };

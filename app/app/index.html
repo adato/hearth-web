@@ -24,9 +24,9 @@
     <meta property="og:image:width" ng-if="og_image && og_image_width" content="{{og_image_width}}" />
     <meta property="og:image:height" ng-if="og_image && og_image_height" content="{{og_image_height}}" />
     
-     <!-- build:css({.tmp,app}) /app/styles/main.css -->
-      <link rel="stylesheet" type="text/css" href="/styles/main.css">
-     <!-- endbuild -->
+   <!-- build:css({.tmp,app}) /app/styles/main.css -->
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+   <!-- endbuild -->
 
      <!-- @if DEBUG -->
      <link rel="stylesheet" href="/styles/palette.css">
@@ -57,14 +57,14 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   </head>
   <body ng-controller="BaseCtrl" ng-init="init()" ng-class="pageType" ng-keydown="escapeKey($event)">
-
+ 
     <div class="ngdialog ngdialog-theme-default" id="maitenancePage">
       <div class="ngdialog-overlay"></div>
       <div class="ngdialog-content" ng-cloak>
           <h2 translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
       </div>
     </div>
-    <div id="new-version-notify" class="hidden" ng-class="{'active': showNewVersionNotify, 'display-block': initFinished}">
+    <div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
       <div> 
         <p>
           <i class="fa fa-exclamation-circle"></i>
