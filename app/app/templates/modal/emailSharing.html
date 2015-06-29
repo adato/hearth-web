@@ -18,7 +18,7 @@
             </div>
 
             <label>{{ 'EMAIL_SHARING.TEXT_LABEL' | translate }}</label>
-            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" placeholder="{{ 'EMAIL_SHARING.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
+            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'EMAIL_SHARING.TEXT_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="sharing.message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
             <div class="moveUp error" ng-show="showErrors.message">
                 <span ng-show="emailForm.message.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
                 <span ng-show="emailForm.message.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>

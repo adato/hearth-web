@@ -52,9 +52,31 @@ angular.module('hearth.filters', [])
  */
 .filter('ellipsis', function() {
 	return function(text, limit) {
-		text = (text || '').trim();
-		limit = Math.abs(limit || 127);
 
+		var decodeEntities = (function() {
+		  // this prevents any overhead from creating the object each time
+		  var element = document.createElement('div');
+
+		  function decodeHTMLEntities (str) {
+		    if(str && typeof str === 'string') {
+		      // strip script/html tags
+		      str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+		      str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+		      element.innerHTML = str;
+		      str = element.textContent;
+		      element.textContent = '';
+		    }
+
+		    return str;
+		  }
+
+		  return decodeHTMLEntities;
+		})();
+		
+		text = (text || '').trim();
+		text = decodeEntities(text);
+
+		limit = Math.abs(limit || 127);
 		var originalLength = text.length;
 
 		text = text.substring(0, limit).trim();

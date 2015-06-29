@@ -78,6 +78,8 @@ angular.module('hearth', [
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
            
             // Add language header
+            $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+            // $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
             $httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
             $httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 

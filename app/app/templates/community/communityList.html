@@ -1,5 +1,5 @@
 
 <div ng-if="list.length" class="community-list row clearfix small" when-scrolled="load(1)" offset="300" loading-in-progress="loading">
-    <community-item item="item" ng-repeat="(id, item) in list track by $index"></community-item>
+    <community-item item="item" ng-repeat="(id, item) in list track by item._id"></community-item>
 </div>
 <div loading show="loading"></div>
