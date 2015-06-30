@@ -24,6 +24,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		$scope.resetFilter = function() {
+			ItemFilter.clear();
 			Filter.reset();
 			$scope.loaded = false;
 		};
@@ -140,7 +141,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 		
 		function init() {
-
+			ItemFilter.clear();
 			refreshTags();
 			Filter.checkUserFilter();
 			Filter.getCommonKeywords();
@@ -154,7 +155,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		function refreshPosts() {
 			$scope.filterIsOn = Filter.isSet();
 			refreshTags();
-
+			ItemFilter.clear();
+			
 			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.items = [];

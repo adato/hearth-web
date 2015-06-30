@@ -37,10 +37,13 @@
   z-index: 20;
   border-radius: 10px;
   transition: max-height 1s ease-in-out;
-  border: 1px solid #DDD;
 
   &.active {
     max-height: 500px;
+  }
+  
+  &.border {
+    border: 1px solid #DDD;
   }
 
   &>div {
