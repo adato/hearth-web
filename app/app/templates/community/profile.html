@@ -71,7 +71,7 @@
 	            </a>
             </span>
 
-            <a href="{{:: profileLink }}/received-ratings">
+            <a href="{{:: communityLink }}/received-ratings">
                 <div ng-if="info" class="karma-bar" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
                     <span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
                         <span>{{ info.karma }}% <i class="fa icon-rating-positive"></i></span>
