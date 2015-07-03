@@ -37,13 +37,13 @@
             "PUBLISHED_AT": "Přidáno",
             "REMOVE_FROM_COMMUNITY": "Odstranit z komunity"
         },
-        "HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
         "EDIT_FILTER": "Upraviť filter",
         "FILTER_NOT_FOUND": "Hups, zadanej kombinácii nezodpovedá vôbec, ale vôbec žiadny inzerát.<br \/>Čo takto nejaké to kritérium ubrať?",
         "RESET_FILTER": "Vymazať filter",
         "NOTHING_FOUND": "Hmm... asi sa niekde stala chyba, pretože tu nie sú žiadne inzeráty",
         "SHOW_POSTS_IN_LIST": "Zobraziť zoznam inzerátov",
         "SHOW_POSTS_ON_MAP": "Zobraziť inzeráty na mape",
+        "HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
         "CREATE_NEW_ADD": "Vložit nový dar nebo přání"
     },
     "404_NOT_FOUND_TEXT": "Je nám to ľúto, ale stránka, ktorú hľadáte, pravdepodobne neexistuje.",
@@ -386,7 +386,6 @@
     "SIGN_UP_WITH_GOOGLE": "prihlásiť cez Google",
     "SUBMIT": "Odoslať",
     "TELL_MORE_ABOUT": "Povedzte svetu niečo o sebe:",
-    "AD_REPLIES": "Odpovede na inzerát",
     "TELL_WHAT": "Jednoducho uveďte čo napr. tútorstvo",
     "MENU": {
         "TERMS": "Podmienky použitia",
@@ -1062,6 +1061,7 @@
     "CHOOSE_LANGUAGE": "Vyberte jazyk",
     "RATINGS_LABEL_WRITE_SOME_WORD": "Pridajte pár slov:",
     "POST_WAS_SUSPENDED": "Inzerát bol pozastavený",
+    "AD_REPLIES": "Odpovede na inzerát",
     "AD_PLACES": "Miesta inzerátu",
     "YOU_CAN_CONTACT_USER": "<p>Chcete užívateľa kontaktovať? Po&scaron;lete mu e-mail na \n<a href=\"mailto:{{email}}\">{{email}}<\/a>.<\/p>",
     "FILL_EMAIL_FOR_TWITTER_LOGIN": "Doplňte Váš kontaktný email:",
@@ -1164,5 +1164,6 @@
             "KARMA_NO_RATING_ME": "S prvním hodnocením vám to zde obarvíme :)",
             "KARMA_NO_RATING_OTHER": "Ohodnoťte komunitu a pěkně se všem vybarví :)"
         }
-    }
+    },
+    "COMMUNITY_RATING_TITLE": "Hodnocení komunity"
 }
