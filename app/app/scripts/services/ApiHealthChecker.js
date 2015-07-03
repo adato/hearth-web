@@ -44,6 +44,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 						return;
 
 					version = v;
+					$('#new-version-notify').addClass('border');
 					$rootScope.showNewVersionNotify = true;
 					$interval.cancel(checkVersionInterval);
 				});
@@ -116,7 +117,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 				self.checkVersion();
 			});
 		};
-
 
 		// on init get actual version
 		this.getAppVersion(function(v) {

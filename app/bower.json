@@ -16,14 +16,14 @@
     "foundation": "~5.2.3",
     "angular-translate": "~2.5.2",
     "angular-translate-loader-static-files": "~2.5.2",
-    "markerclustererplus": "~2.1.2",
     "ng-file-upload": "~3.0.4",
     "satellizer": "~0.9.2",
     "font-awesome": "~4.3.0",
     "foundation-datepicker": "~1.1.0",
     "ng-slide-down": "~0.3.0",
     "jquery.scrollbar": "~0.2.7",
-    "exif-js": "*"
+    "exif-js": "*",
+    "markerclustererplus": "~2.1.4"
   },
   "devDependencies": {},
   "resolutions": {
