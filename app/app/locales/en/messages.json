@@ -37,13 +37,13 @@
             "PUBLISHED_AT": "Přidáno",
             "REMOVE_FROM_COMMUNITY": "Odstranit z komunity"
         },
-        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - authentic fairytale about giving and happiness<\/a>.<\/p>",
         "EDIT_FILTER": "Edit filter",
         "FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br \/>Maybe remove some conditions?",
         "RESET_FILTER": "Reset filter",
         "NOTHING_FOUND": "Stay calm and meditate. Something went wrong, there are no posts.",
         "SHOW_POSTS_IN_LIST": "Show posts in list",
         "SHOW_POSTS_ON_MAP": "Show posts on map",
+        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - authentic fairytale about giving and happiness<\/a>.<\/p>",
         "CREATE_NEW_ADD": "Add new gift or wish"
     },
     "404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
@@ -384,7 +384,6 @@
     "SIGN_UP_WITH_GOOGLE": "Log in with Google",
     "SUBMIT": "Submit",
     "TELL_MORE_ABOUT": "Tell the world about yourself:",
-    "AD_REPLIES": "Replies",
     "TELL_WHAT": "Simply state what: e.g. tutoring",
     "MENU": {
         "TERMS": "Terms of use",
@@ -1030,6 +1029,7 @@
     "CHOOSE_LANGUAGE": "Select language",
     "RATINGS_LABEL_WRITE_SOME_WORD": "Add couple of words:",
     "POST_WAS_SUSPENDED": "Post was suspended.",
+    "AD_REPLIES": "Replies",
     "AD_PLACES": "Places",
     "YOU_CAN_CONTACT_USER": "<p>Do you want to contact this user? Send him \/ her an e-mail to <a href=\"mailto:{{email}}\">{{email}}<\/a>.<\/p>",
     "FILL_EMAIL_FOR_TWITTER_LOGIN": "Add your contact email:",
@@ -1132,5 +1132,6 @@
             "KARMA_NO_RATING_ME": "With your first rating, we'll bring in more colours here.",
             "KARMA_NO_RATING_OTHER": "Rate community and it will show their pretty colours :)"
         }
-    }
+    },
+    "COMMUNITY_RATING_TITLE": "Hodnocení komunity"
 }

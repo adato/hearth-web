@@ -265,6 +265,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     }, done);
                 },
                 function(done) {
+                    CommunityRatings.received({communityId: id, limit: 5, offset: 0}, function(res) {
+                        $scope.receivedRatings = res;
+                        done(null);
+                    }, done);
+                },
+                function(done) {
                     Community.getPosts({communityId:id, limit: 5, offset: 0}, function(res) {
                         $scope.posts = res;
                         done(null);
