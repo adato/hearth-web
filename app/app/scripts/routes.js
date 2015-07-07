@@ -113,26 +113,31 @@ angular.module('hearth').config([
 			    controller: 'ItemDetail'
 			})
 			.state('messages', {
+				title: 'messages.0',
 				url: '/messages',
 				templateUrl: 'templates/messages/list.html',
 	            controller: 'MessagesCtrl'
 			})
 			.state('messages.detail', {
+				title: false,
 				url: '/:id',
       			template: '<div>abcd dbawdwd</div>'
 			})
 			.state('profile', {
+				title: false,
 				abstract: true,
     			url: '/profile/:id',
 				templateUrl: 'templates/profile/profile.html',
 				controller: 'ProfileCtrl',
 			})
 			.state('profile.default', {
+				title: false,
 				url: '',
 				controller: 'ProfileDataFeedCtrl',
 				templateUrl: 'templates/profile/subviews/home.html',
 			})
 			.state('profile.subview', {
+				title: false,
 				url: '/{page}',
 				controller: 'ProfileDataFeedCtrl',
 				templateUrl: function ($stateParams) {
@@ -166,11 +171,13 @@ angular.module('hearth').config([
 				controller: 'CommunityProfileCtrl',
 			})
 			.state('community.default', {
+				title: false,
 				url: '',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: 'templates/community/subviews/home.html',
 			})
 			.state('community.subview', {
+				title: false,
 				url: '/{page}',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: function ($stateParams) {

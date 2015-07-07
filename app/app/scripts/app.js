@@ -203,6 +203,12 @@ angular.module('hearth', [
                 $rootScope.$broadcast("initFinished");
             });
         }
+    ]).run([
+        'PageTitle',
+        function(PageTitle) {
+            /** Set default title, postfix, delimiter */
+            PageTitle.setDefault('', 'Hearth.net');
+        }
     ]);
 
 angular.module('hearth.controllers', []);
