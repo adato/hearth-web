@@ -67,7 +67,7 @@
 		          <li><a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
 		          <li class="divider"></li>
 		          <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
-		          <li><a ng-href="/app/taxes">{{ 'MENU.TAXES' | translate}}</a></li>
+		          <li ng-if="language == 'cs'"><a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
 		          <li class="divider"></li>
 		          <li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
 		          <li class="no-hover">

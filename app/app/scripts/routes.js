@@ -93,6 +93,20 @@ angular.module('hearth').config([
 				templateUrl: 'templates/feedback.html',
 			    controller: 'FeedbackCtrl'
 			})
+			.state('faq', {
+				url: '/faq',
+				templateUrl: 'templates/localizationPage.html',
+				controller: ['$location', '$scope', function($location, $scope) {
+					$scope.pageName = $location.path().replace("/", "");
+				}],
+			})
+			.state('taxes', {
+				url: '/taxes',
+				templateUrl: 'templates/localizationPage.html',
+				controller: ['$location', '$scope', function($location, $scope) {
+					$scope.pageName = $location.path().replace("/", "");
+				}],
+			})
 			.state('terms', {
 				url: '/terms',
 				templateUrl: 'templates/terms.html',
