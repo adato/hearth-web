@@ -24,6 +24,10 @@ angular.module('hearth.directives').directive('dynamicHeight',
 				
 				$timeout(resizeElement);
 				$(window).resize(resizeElement);
+				
+				scope.$on('$destroy', function () {
+					$(window).unbind('resize',resizeElement);
+				});
 			}
 		};
 	}]
