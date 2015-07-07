@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph',
+	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph', 'PageTitle',
 
-	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph) {
+	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph, PageTitle) {
 		$scope.activePage = null;
 
 		$scope.initPage = function() {
@@ -76,6 +76,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.info = $scope.serializeUser(res);
 				$scope.mine = $rootScope.isMine($stateParams.id);
 				
+				PageTitle.setTranslate('TITLE.user-profile-page', res.name);
 				OpenGraph.set(res.name, "", null, res.avatar.large, res.avatar.size);
 				// broadcast event for load subpages
 				if(fetchSubpage)

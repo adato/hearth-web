@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate) {
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
 		$scope.loaded = false;
@@ -138,6 +138,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		 * and optionally mark it as readed
 		 */
 		$scope.showConversation = function(info, index, dontMarkAsReaded) {
+			var title;
+
 			if(info._id == $scope.detail._id)
 				return false;
 
@@ -157,7 +159,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// (and change URL)
 			Messenger.disableLoading();
 			$location.url("/messages/" + info._id + "?" + jQuery.param($location.search()));
-
+			
+			title = (info.post) ? info.post.type_translate+' '+info.title : info.title || info.titlePersons;
+			PageTitle.setTranslate('TITLE.messages.detail', title);
+			
 			// enable counters loading after URL is changed
 			$timeout(Messenger.enableLoading);
 		};
@@ -176,6 +181,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					post.type_code = (post.type == 'offer' ? 'OFFER' : 'NEED');
 				else
 					post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
+
+				post.type_translate = $translate.instant(post.type_code);
 			}
 
 			if (conversation.participants.length) {

@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 		var search;
 		$scope.brokenLink = false;
 		search = $location.search();
-	
+		
 		function onError(res) {
 			$analytics.eventTrack('registration email failed', {
 				category: 'registration',
