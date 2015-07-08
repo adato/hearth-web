@@ -206,7 +206,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.scrollBottom = function() {
                     $timeout(function() {
                         if($(".nano-content", element).length > 0) {
-                            $(".nano-content", element).scrollTop($(".nano-content", element))[0].scrollHeight * 1000);
+                            $(".nano-content", element).scrollTop($(".nano-content", element)[0].scrollHeight * 1000);
                         }
                     });
                 };
