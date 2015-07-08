@@ -27,7 +27,8 @@
             "COMMUNITIES": "Komunity",
             "TITLE_ENABLED": "Filter je aktivní",
             "CANCEL_FILTER_BAR": "zrušit filtr",
-            "KM": "Km"
+            "KM": "Km",
+            "CLOSE_FILTER": "Zavřít filtr"
         },
         "POST": {
             "FLAG_POST": "Označit jako nevhodný",
@@ -37,13 +38,13 @@
             "PUBLISHED_AT": "Přidáno",
             "REMOVE_FROM_COMMUNITY": "Odstranit z komunity"
         },
-        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
         "EDIT_FILTER": "Upravit filtr",
         "FILTER_NOT_FOUND": "<p>Ajta! Zadan&eacute; kombinaci neodpov&iacute;d&aacute; vůbec, ale vůbec ž&aacute;dn&yacute; inzer&aacute;t.<br \/>Co nějak&eacute; to krit&eacute;rium ubrat?<\/p>",
         "RESET_FILTER": "Vymazat filtr",
         "NOTHING_FOUND": "Buďte klidní, meditujte. Někde se stala chybka, nejsou tu žádné inzeráty",
         "SHOW_POSTS_IN_LIST": "Zobrazit seznam",
         "SHOW_POSTS_ON_MAP": "Zobrazit na mapě",
+        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
         "CREATE_NEW_ADD": "Vložit nový dar nebo přání"
     },
     "404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáte, pravděpodobně neexistuje.",
@@ -386,7 +387,6 @@
     "SIGN_UP_WITH_GOOGLE": "přihlásit přes Google",
     "SUBMIT": "Odeslat",
     "TELL_MORE_ABOUT": "Řekněte světu něco o sobě:",
-    "AD_REPLIES": "Odpovědi na inzerát",
     "TELL_WHAT": "Jednoduše sdělte co: např. tutorství",
     "MENU": {
         "TERMS": "Podmínky použití",
@@ -396,7 +396,39 @@
     "THANKS_FOR_REPORT": "Děkujeme za upozornění, tento příspěvek prověříme.",
     "THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvěte i své přátele do Hearth.net, do štědré sociální sítě!",
     "THUMB_UP": "Ohodnotit",
-    "TITLE": "Hearth",
+    "TITLE": {
+        "0": "Hearth",
+        "market": "Tržiště",
+        "map": "Mapa darů a přání",
+        "communities": {
+            "0": "Komunity",
+            "suggested": "Doporučené komunity",
+            "all": "Seznam všech komunit"
+        },
+        "reset-pass": "Nastavení nového hesla",
+        "forgot-pass": "Zapomenuté heslo",
+        "token-login": "První přihlášení",
+        "fill-email": "Doplnění emailu",
+        "confirm-email": "Ověření emailu",
+        "login": "Přihlášení",
+        "reg": "Registrace",
+        "search": "Vyhledávání",
+        "feedback": "Kontakt",
+        "terms": "Podmínky používání služby",
+        "about": "O projektu",
+        "post": "Detail přání \/ daru",
+        "messages": {
+            "0": "Konverzace",
+            "detail": "Detail konverzace"
+        },
+        "user-profile-page": "Profil uživatele",
+        "profileEdit": "Úprava profilu",
+        "profileSettings": "Nastavení profilu",
+        "communityEdit": "Úprava komunity",
+        "community": "Komunity",
+        "error404": "Stránka nenalezena",
+        "community-profile-page": "Profil komunity"
+    },
     "TOP_BAR_ABOUT": "O projektu",
     "TOP_BAR_COMMUNITY_PROFILE": "Náš profil",
     "TOP_BAR_PROFILE": "Můj profil",
@@ -1062,6 +1094,7 @@
     "CHOOSE_LANGUAGE": "Vyberte jazyk",
     "RATINGS_LABEL_WRITE_SOME_WORD": "Přidejte pár slov:",
     "POST_WAS_SUSPENDED": "Inzerát byl pozastaven",
+    "AD_REPLIES": "Odpovědi na inzerát",
     "AD_PLACES": "Místa inzerátu",
     "YOU_CAN_CONTACT_USER": "<p>Kontaktovat na <a href=\"mailto:{{email}}\">{{email}}<\/a>.<\/p>",
     "FILL_EMAIL_FOR_TWITTER_LOGIN": "Doplňte Váš kontaktní email:",
@@ -1164,5 +1197,6 @@
             "KARMA_NO_RATING_ME": "S prvním hodnocením vám to zde obarvíme :)",
             "KARMA_NO_RATING_OTHER": "Ohodnoťte komunitu a pěkně se všem vybarví :)"
         }
-    }
+    },
+    "COMMUNITY_RATING_TITLE": "Hodnocení komunity"
 }
