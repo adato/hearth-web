@@ -16,7 +16,9 @@
 
 	            <div ng-repeat="(id, item) in applications track by item._id" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 	            	<div class="applications-item">
-                        <avatar class="left margin-bottom-20" href="getProfileLink('User', item._id)" src="item.avatar.normal" type="item._type"></avatar>
+                        <div info-box="item" infobox-class="'on-profile'">
+                            <avatar class="left margin-bottom-20" href="getProfileLink(item._type, item._id)" src="item.avatar.normal" type="item._type"></avatar>
+                        </div>
                         <div class="applications-text">
                             <a href="{{:: getProfileLink('User', item._id)}} ">
 		                    	{{:: item.name | ellipsis}}

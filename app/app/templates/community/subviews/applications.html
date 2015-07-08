@@ -4,8 +4,8 @@
 
 		<div class="application">
 			<div class="applications-item">
-				<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
-		        	<avatar class="left margin-bottom-20" href="getProfileLink('User',item._id)" src="item.avatar.normal" type="item._type"></avatar>
+				<div info-box="item"  infobox-index="$index" infobox-class="'on-profile'">
+		        	<avatar class="left margin-bottom-20" href="getProfileLink(item._type,item._id)" src="item.avatar.normal" type="item._type"></avatar>
 	        	</div>
 		        <div class="applications-text">
 		            <a href="{{:: getProfileLink('User', item._id) }}">

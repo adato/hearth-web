@@ -35,6 +35,8 @@
         @extend .clearfix, .profile-listings;
         .applications {
             @extend .box, .community-applications-list;
+
+            overflow:visible !important;
         }
     }
 
