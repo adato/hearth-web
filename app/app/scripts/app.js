@@ -153,7 +153,7 @@ angular.module('hearth', [
                             for(var cookie in cookies) {
                                $.removeCookie(cookie);
                             }
-                            $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20 });
+                            $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20, path: '/' });
                             Auth.logout(function() {
                                 location.reload("/login");
                             });

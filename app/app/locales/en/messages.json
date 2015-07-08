@@ -27,7 +27,8 @@
             "COMMUNITIES": "Communities",
             "TITLE_ENABLED": "Filter je aktivní",
             "CANCEL_FILTER_BAR": "cancel filter",
-            "KM": "Km"
+            "KM": "Km",
+            "CLOSE_FILTER": "Zavřít filtr"
         },
         "POST": {
             "FLAG_POST": "Report abuse post",

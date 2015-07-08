@@ -57,6 +57,10 @@ angular.module('hearth.directives').directive('dropdown', [
 				$scope.$watch("dropdown", function(val) {
 					target = null;
 				});
+
+				$scope.$on('$destroy', function () {
+					$document.off('click', hide);
+				})
 			}
 		}
 	}
