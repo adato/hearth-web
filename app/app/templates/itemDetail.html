@@ -173,9 +173,11 @@
 				<div class="box post-replies row" ng-if="isMine" scroll-to-view-on-hash="replies">
 					<h4 ng-if="replies.length">{{ 'POSTS.DETAIL.REPLIES' | translate }}</h4>
 					<div class="large-12 large-centered columns text-center no-result" ng-if="!replies.length"><p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p></div>
-					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies">
+					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies track by item._id">
 						<section class="large-2 columns user">
-							<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
+							<div info-box="item.message.author" infobox-index="$index" infobox-class="'on-item-detail'">
+								<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
+							</div>
 						</section>
 						<section class="large-10 columns">
 							<div class="content">
