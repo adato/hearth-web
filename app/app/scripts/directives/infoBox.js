@@ -26,7 +26,6 @@ angular.module('hearth.directives').directive('infoBox', [
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.infoboxIndex = 0 || scope.infoboxIndex;
 				scope.infoboxClass = '' || scope.infoboxClass;
-				
 				/**
 				 * Show user info into the box
 				 */
@@ -48,7 +47,6 @@ angular.module('hearth.directives').directive('infoBox', [
 					if($rootScope.loggedUser._id) {
 						scope.show = true;
 						scope.error = false;
-						
 						UsersCommunitiesService.loadProfileInfo(scope.infoBox, fillUserInfo, displayError);
 					}
 				};
