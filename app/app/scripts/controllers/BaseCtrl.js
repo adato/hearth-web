@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle',
-    function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle) {
+    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state',
+    function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -48,6 +48,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $rootScope.$on("subPageLoaded", $scope.removePageMinHeight);
 
+        $scope.setPageTitle = function() {
+            var state = $state.$current;
+
+            // set new page title
+            if(state.title !== false && $rootScope.language)
+                PageTitle.setTranslate('TITLE.'+(state.title || state.name));
+        };
+
         /**
          * When started routing to another page, compare routes and if they differ
          * scroll to top of the page, if not, refresh page with fixed height
@@ -55,10 +63,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.$on("$stateChangeStart", function(event, next) {
             // when changed route, load conversation counters 
             Auth.isLoggedIn() && Messenger.loadCounters();
-            
-            // set new page title
-            if(next.title !== false)
-                PageTitle.setTranslate('TITLE.'+(next.title || next.name));
             
             if(!$rootScope.addressNew)
                 return $rootScope.top(0, 1);;
@@ -78,15 +82,18 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $scope.resfreshWithResize();
         });
 
+        $rootScope.$on("initLanguageSuccess", $scope.setPageTitle);
+
         /**
          * After routing finished, set current page segment to variable - used somewhere else
          * and add class of given controller to wrapping div container
          */
-        $rootScope.$on("$routeChangeSuccess", function(next, current) {
+        $rootScope.$on("$stateChangeSuccess", function(next, current) {
             // $scope.segment = $route.current.segment;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);
+            $scope.setPageTitle();
         });
 
 
