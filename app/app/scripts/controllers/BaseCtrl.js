@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker',
-    function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker) {
+    '$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle',
+    function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle) {
         var timeout;
         $rootScope.myCommunities = false;
         $rootScope.searchText = '';
@@ -52,17 +52,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * When started routing to another page, compare routes and if they differ
          * scroll to top of the page, if not, refresh page with fixed height
          */
-        $rootScope.$on("$routeChangeStart", function(event, next) {
+        $rootScope.$on("$stateChangeStart", function(event, next) {
             // when changed route, load conversation counters 
             Auth.isLoggedIn() && Messenger.loadCounters();
-
+            
+            // set new page title
+            if(next.title !== false)
+                PageTitle.setTranslate('TITLE.'+(next.title || next.name));
+            
             if(!$rootScope.addressNew)
                 return $rootScope.top(0, 1);;
             
             $rootScope.addressOld = $rootScope.addressNew;
             $rootScope.addressNew = next.originalPath;
-
-            console.log(next);
 
             var r1 = $rootScope.addressOld.split($$config.basePath);
             var r2 = $rootScope.addressNew.split($$config.basePath);

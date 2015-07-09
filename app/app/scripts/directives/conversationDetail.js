@@ -329,7 +329,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 
                 $scope.resizeMessagesBox = function() {
                     var container = $(".messages-container", element);
-                    console.log('Resized message box');
                     $scope.testScrollBottom();
                     var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
 
