@@ -3,21 +3,12 @@
 		<section class="large-2 columns text-right">
 			<a ng-href="{{:: basePath }}market" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
 		</section>
-		<section class="large-3 columns show-for-scrolled">
-			<a ng-click="showUI('filter')"><span class="fa fa-filter"></span> {{'filter-ads' | translate}}</a>
-		</section>
-		<section class="large-4 columns show-for-scrolled text-center">
-			<a ng-click="showUI('map')"><span class="fa fa-map-marker"></span> {{'show-ads-on-map' | translate}}</a>
-		</section>
-		<section class="large-3 columns show-for-scrolled text-right">
-			<a ng-click="editItem(null)" ng-if="loggedUser._id"><span class="fa fa-edit"></span> {{'create-new-ad' | translate}}</a>
-		</section>
-		<section class="large-4 columns hide-for-scrolled">
+		<section class="large-4 columns">
 			<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchText" ng-enter="search(searchText)">
 			<span class="search-button fa fa-search" ng-click="search(searchText)"></span>
 		</section>
 		
-		<section class="large-6 icons columns hide-for-scrolled">
+		<section class="large-6 icons columns">
 			<a href="{{:: basePath }}market" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa icon-marketplace"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
