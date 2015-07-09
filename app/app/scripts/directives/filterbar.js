@@ -6,9 +6,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$anchorScroll', '$location', 'Filter', '$window', '$rootScope',
+	'$anchorScroll', '$location', 'Filter', '$window', '$rootScope', '$timeout', '$analytics',
 
-	function($anchorScroll, $location, Filter, $window, $rootScope) {
+	function($anchorScroll, $location, Filter, $window, $rootScope, $timeout, $analytics) {
 		return {
 			replace: true,
 			restrict: 'E',
@@ -18,15 +18,32 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.searchParams = '';
 				scope.basePath = $$config.basePath;
 
-				angular.extend(scope, {
-					filterSelected: false,
-				});
+				/**
+				 * Set cookie info that we have closed filter
+				 * so we will not open him next time
+				 */
+				scope.setCookieFiltered = function() {
+					if(scope.isCookieFiltered())
+						return;
+
+					$analytics.eventTrack('filter closed', {
+						category: 'filter',
+						label: 'filter was closed for the first time'
+					});
+
+					$.cookie('closedFilter', Date.now(), { expires: 30 * 12 * 20, path: '/' });
+				};
+
+				scope.isCookieFiltered = function() {
+					return !!$.cookie('closedFilter');
+				};
 
 				scope.cancelFilter = function() {
 					Filter.reset();
 				};
 				
 				scope.toggleFilter = function() {
+					scope.setCookieFiltered();
 					scope.filterSelected = !scope.filterSelected;
 				};
 
@@ -38,6 +55,7 @@ angular.module('hearth.directives').directive('filterbar', [
 				};
 
 				scope.$on('filterClose', function() {
+					scope.setCookieFiltered();
 					scope.filterSelected = false;
 				});
 
@@ -57,6 +75,14 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.$on('filterReseted', scope.testFilterActive);
 				scope.$on('filterApplied', scope.testFilterActive);
 
+				angular.extend(scope, {
+					filterSelected: false
+				});
+
+				$timeout(function() {
+					if(!scope.isCookieFiltered())
+						scope.filterSelected = true;
+				});
 				scope.testFilterActive();
 			}
 		};
