@@ -48,9 +48,8 @@ angular.module('hearth.directives').directive('filterbar', [
 				};
 
 				scope.testFilterActive = function() {
-					var paramString = $.param($location.search());
+					var paramString = Filter.getParams();
 					scope.filterOn = !$.isEmptyObject($location.search());
-
 					scope.searchParams = (paramString) ? '?'+paramString : '';
 				};
 
