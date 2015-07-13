@@ -278,7 +278,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 }
             ], finishLoading);
 
-            $scope.$on('updatedItem', $scope.refreshItemInfo);
+            $scope.$on('postUpdated', $scope.refreshItemInfo);
         }
 
         function loadCommunityActivityLog(id) {

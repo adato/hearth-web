@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter',
+	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices',
 
-	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter) {
+	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -18,6 +18,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.author = null;
 		$scope.filterIsOn = false;
 		var ItemFilter = new UniqueFilter();
+		var templateFunction = null;
+		var container = null;
+		var templateUrl = $sce.getTrustedResourceUrl('templates/directives/item.html');
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
@@ -33,29 +36,62 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.$broadcast("filterOpen");
 		};
 
+		$scope.getPostScope = function(post) {
+			
+			var scope = $scope.$new(true);
+            scope.keywords = $scope.keywordsActive; 
+            scope.item = post;
+            scope.toggleTag = Filter.toggleTag;
+            scope.foundationColumnsClass = 'large-10';
+			scope.delayedView = true;
+			angular.extend(scope, ItemServices);
+
+            // post address for social links
+            scope.postAddress = $rootScope.appUrl+'post/'+post._id;
+            scope.isActive = $rootScope.isPostActive(post);
+
+            // is this my post? if so, show controll buttons and etc
+            scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
+
+            scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
+            return scope;
+		};
+
 		$scope.addItemsToList = function(data, index, done) {
 			var posts = data.data;
 
 			// console.timeEnd("Post built");
 			if (posts.length > index) {
-				posts[index].index = index+1; // index starting with 1
+				var post = posts[index];
+				// post.index = index+1; // index starting with 1
 				
-				if(posts.length == posts[index].index)
-					posts[index].isLast = true;
+				// if(posts.length == post.index)
+				// 	post.isLast = true;
 
-				// console.time("Single post ("+(index+1)+") built");
-				$scope.items.push(posts[index]);
-				
+				console.time("Single post ("+(index+1)+") built");
+				$scope.items.push(post);
+
+				templateFunction($scope.getPostScope(post), function(clone){
+					// console.log(clone);
+					$('#market-item-list').append(clone[0]);
+					setTimeout(function() {
+						// if(index < 4)
+						// 	$('#post_'+scope.item._id).fadeIn();
+						// else
+							$('#post_'+post._id).slideDown();
+					});
+				});
+	
 				return $timeout(function() {
-					// console.timeEnd("Single post ("+(index+1)+") built");
+					console.timeEnd("Single post ("+(index+1)+") built");
 					$scope.addItemsToList(data, index + 1, done);
 				});
 			}
-			// console.timeEnd("Posts pushed to array and built");
+			console.timeEnd("Posts pushed to array and built");
 			done(data);
 		};
 
-		$scope.finishLoading = function(data) {
+		$scope.finishLoading = function(data, isLast) {
 			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
 				value: $scope.items.length
 			});
@@ -63,20 +99,24 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			// console.time("Posts displayed with some effect");
+			console.time("Posts displayed with some effect");
 
 			// fade out loading bar
 			$(".loading").fadeOut('fast', function() {
 				// show hidden posts and recount their height to show "show more" button
 
-				$scope.$broadcast("showHiddenPosts", function(index) {
+				// $scope.$broadcast("showHiddenPosts", function(index) {
 
-					// console.timeEnd("Posts displayed with some effect");
-					// console.timeEnd("Market posts loaded and displayed");
+					console.timeEnd("Posts displayed with some effect");
+					console.timeEnd("Market posts loaded and displayed");
 					// finish loading and allow to show loading again
-					$scope.loading = false;
-					$(".loading").show();
-				});
+					
+					$timeout(function() {
+						if(!isLast)
+							$scope.loading = false;
+					});
+
+				// });
 			});
 		};
 
@@ -105,7 +145,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		 * This will load new posts to marketplace
 		 */
 		$scope.load = function() {
-
+			$(".loading").show();
+			
 			// load only if map is not shown
 			// load only once in a time
 			if ($scope.showMap || $scope.loading) return;
@@ -121,21 +162,29 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				params.keywords = params.keywords.join(",");
 			}
 
-			// console.time("Market posts loaded and displayed");
-			// console.time("Market posts loaded from API");
+			console.time("Market posts loaded and displayed");
+			console.time("Market posts loaded from API");
 			// load based on given params
 			Post.query(params, function(data) {
 				$scope.loaded = true;
-				// console.timeEnd("Market posts loaded from API");
+
+				if(!data.data.length) {
+					$scope.finishLoading(data.data, true);
+					return;
+				}
+
+				console.timeEnd("Market posts loaded from API");
 				if(data.data) {
 
 					data.data = $scope.insertLastPostIfMissing(data.data);
 					data.data = ItemFilter.filter(data.data);
 
 				}
-				// console.time("Posts pushed to array and built");
+				console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
 				$scope.addItemsToList(data, 0, $scope.finishLoading);
+				
+				
 				$rootScope.$broadcast('postsLoaded');
 			});
 		};
@@ -175,9 +224,17 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			var item, i;
 
 			for (i = 0; i < $scope.items.length; i++) {
-				item = $scope.items[i];
-				if (data._id === item._id) {
+				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
+
+					templateFunction($scope.getPostScope(data), function(clone){
+						$('#post_'+data._id).replaceWith(clone);
+						
+						setTimeout(function() {
+							$('#post_'+data._id).slideDown();
+						});
+					});
+
 					break;
 				}
 			}
@@ -214,11 +271,17 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$rootScope.cacheInfoBox = {};
 		});
 
-		// ==== Global event fired when init process is finished
-		$scope.$on('initFinished', init);
-		if($rootScope.initFinished) {
-			init();
-			$scope.load();
-		}
+
+	    $templateRequest(templateUrl).then(function(template) {
+	    	templateFunction = $compile(template);
+
+	    	setTimeout(function() {
+	    		container = $('#market-item-list');
+
+				init();
+				$scope.load();
+	    	});
+	    });
+
 	}
 ]);
