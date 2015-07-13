@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile',
+	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices',
 
-	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile) {
+	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -36,41 +36,49 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.$broadcast("filterOpen");
 		};
 
+		$scope.getPostScope = function(post) {
+			
+			var scope = $scope.$new(true);
+            scope.keywords = $scope.keywordsActive; 
+            scope.item = post;
+            scope.toggleTag = Filter.toggleTag;
+            scope.foundationColumnsClass = 'large-10';
+			scope.delayedView = true;
+			angular.extend(scope, ItemServices);
+
+            // post address for social links
+            scope.postAddress = $rootScope.appUrl+'post/'+post._id;
+            scope.isActive = $rootScope.isPostActive(post);
+
+            // is this my post? if so, show controll buttons and etc
+            scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
+
+            scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
+            return scope;
+		};
+
 		$scope.addItemsToList = function(data, index, done) {
 			var posts = data.data;
 
 			// console.timeEnd("Post built");
 			if (posts.length > index) {
-				// posts[index].index = index+1; // index starting with 1
+				var post = posts[index];
+				// post.index = index+1; // index starting with 1
 				
-				// if(posts.length == posts[index].index)
-				// 	posts[index].isLast = true;
+				// if(posts.length == post.index)
+				// 	post.isLast = true;
 
 				console.time("Single post ("+(index+1)+") built");
-				$scope.items.push(posts[index]);
+				$scope.items.push(post);
 
-				var scope = $scope.$new(true);
-				scope.showMore = false;
-                scope.expanded = false;
-                scope.isActive = false;
-                scope.item = posts[index];
-
-                // post address for social links
-                scope.postAddress = $rootScope.appUrl+'post/'+posts[index]._id;
-                scope.isActive = $rootScope.isPostActive(posts[index]);
-
-                // is this my post? if so, show controll buttons and etc
-                scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
-
-                scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
-				templateFunction(scope, function(clone){
+				templateFunction($scope.getPostScope(post), function(clone){
 					// console.log(clone);
 					$('#market-item-list').append(clone[0]);
 					setTimeout(function() {
-						if(index < 4)
-							$('#post_'+scope.item._id).fadeIn();
-						else
-							$('#post_'+scope.item._id).slideDown();
+						// if(index < 4)
+						// 	$('#post_'+scope.item._id).fadeIn();
+						// else
+							$('#post_'+post._id).slideDown();
 					});
 				});
 	
@@ -83,7 +91,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			done(data);
 		};
 
-		$scope.finishLoading = function(data) {
+		$scope.finishLoading = function(data, isLast) {
 			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
 				value: $scope.items.length
 			});
@@ -104,11 +112,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					// finish loading and allow to show loading again
 					
 					$timeout(function() {
-						$scope.loading = false;
+						if(!isLast)
+							$scope.loading = false;
 					});
 
-					console.log('LOADING COMPLETED');
-					$(".loading").show();
 				// });
 			});
 		};
@@ -138,7 +145,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		 * This will load new posts to marketplace
 		 */
 		$scope.load = function() {
-			console.log('LOADING START');
+			$(".loading").show();
+			
 			// load only if map is not shown
 			// load only once in a time
 			if ($scope.showMap || $scope.loading) return;
@@ -159,6 +167,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// load based on given params
 			Post.query(params, function(data) {
 				$scope.loaded = true;
+
+				if(!data.data.length) {
+					$scope.finishLoading(data.data, true);
+					return;
+				}
+
 				console.timeEnd("Market posts loaded from API");
 				if(data.data) {
 
@@ -210,9 +224,17 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			var item, i;
 
 			for (i = 0; i < $scope.items.length; i++) {
-				item = $scope.items[i];
-				if (data._id === item._id) {
+				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
+
+					templateFunction($scope.getPostScope(data), function(clone){
+						$('#post_'+data._id).replaceWith(clone);
+						
+						setTimeout(function() {
+							$('#post_'+data._id).slideDown();
+						});
+					});
+
 					break;
 				}
 			}
@@ -260,5 +282,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.load();
 	    	});
 	    });
+
 	}
 ]);

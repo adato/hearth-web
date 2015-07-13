@@ -145,12 +145,14 @@ angular.module('hearth.directives').directive('item', [
                 };
                 
                 scope.init();
-                $rootScope.$on('updatedItem', scope.refreshItemInfo);
+                scope.$on('postUpdated', scope.refreshItemInfo);
 
                 // when we hide item after init and then show him with some effect,
                 // we need to recount his height after displayed
                 if(scope.delayedView)
                     scope.showListener = scope.$on('showHiddenPosts', scope.displayDelayed);
+
+
             }
         };
     }

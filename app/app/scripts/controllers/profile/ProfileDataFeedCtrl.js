@@ -178,7 +178,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 }
             ], finishLoading);
 
-            $scope.$on('updatedItem', $scope.refreshItemInfo);
+            $scope.$on('postUpdated', $scope.refreshItemInfo);
         }
 
         $scope.cancelEdit = function() {
