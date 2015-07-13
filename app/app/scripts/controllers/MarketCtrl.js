@@ -20,6 +20,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var ItemFilter = new UniqueFilter();
 		var templateFunction = null;
 		var container = null;
+		var templateUrl = $sce.getTrustedResourceUrl('templates/directives/item.html');
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
@@ -66,7 +67,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					// console.log(clone);
 					$('#market-item-list').append(clone[0]);
 					setTimeout(function() {
-						$('#post_'+scope.item._id).slideDown();
+						if(index < 4)
+							$('#post_'+scope.item._id).fadeIn();
+						else
+							$('#post_'+scope.item._id).slideDown();
 					});
 				});
 	
@@ -98,7 +102,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					console.timeEnd("Posts displayed with some effect");
 					console.timeEnd("Market posts loaded and displayed");
 					// finish loading and allow to show loading again
-					$scope.loading = false;
+					
+					$timeout(function() {
+						$scope.loading = false;
+					});
+
+					console.log('LOADING COMPLETED');
 					$(".loading").show();
 				// });
 			});
@@ -129,7 +138,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		 * This will load new posts to marketplace
 		 */
 		$scope.load = function() {
-			
+			console.log('LOADING START');
 			// load only if map is not shown
 			// load only once in a time
 			if ($scope.showMap || $scope.loading) return;
@@ -240,22 +249,16 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$rootScope.cacheInfoBox = {};
 		});
 
-		// ==== Global event fired when init process is finished
-		$scope.$on('initFinished', init);
-		if($rootScope.initFinished) {
 
-			var templateUrl = $sce.getTrustedResourceUrl('templates/directives/item.html');
-		    $templateRequest(templateUrl).then(function(template) {
-		    	templateFunction = $compile(template);
+	    $templateRequest(templateUrl).then(function(template) {
+	    	templateFunction = $compile(template);
+
+	    	setTimeout(function() {
+	    		container = $('#market-item-list');
 
 				init();
 				$scope.load();
-
-		    	setTimeout(function() {
-		    		container = $('#market-item-list');
-		    	});
-		    }, function() {});
-
-			}
+	    	});
+	    });
 	}
 ]);

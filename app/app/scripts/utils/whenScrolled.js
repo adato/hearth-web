@@ -24,6 +24,7 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					innerHeight = el[0].innerHeight;
 
 				function process ($event) {
+					console.log('LOAD NEXT: ', scope.loadingInProgress);
 					if(scope.loadingInProgress)
 						return false;
 					
