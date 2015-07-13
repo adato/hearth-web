@@ -92,7 +92,7 @@ angular.module('hearth.geo').directive('map', [
                                 styles: markerClusterStyles
                             });
 
-                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
+//                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
                             oms.addListener('click', scope.onMarkerClick);
                         }, 100);
                     }
@@ -210,10 +210,10 @@ angular.module('hearth.geo').directive('map', [
                     markerCluster.repaint();
                 };
 
-                scope.zoomMarkerClusterer = function(cluster) {
+/*                scope.zoomMarkerClusterer = function(cluster) {
                     map.fitBounds(cluster.getBounds());
                     map.setZoom(markerClusterMaxZoom + 1);
-                };
+                };*/
 
                 scope.initMap();
                 scope.$on('showMarkersOnMap', scope.createPins);
