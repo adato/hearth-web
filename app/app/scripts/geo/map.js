@@ -173,6 +173,7 @@ angular.module('hearth.geo').directive('map', [
                     var i, j, ad, location, distanceBase, distance = false;
                     ads = ads || [];
                     markers = [];
+                    markerLimitValues = [];
 
                     markerCluster.clearMarkers();
                     oms.clearMarkers();
