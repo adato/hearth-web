@@ -22,6 +22,22 @@ angular.module('hearth.directives').directive('filterbar', [
 				 * Set cookie info that we have closed filter
 				 * so we will not open him next time
 				 */
+				scope.sendFilterClosedInfo = function() {
+					if(scope.wasClosedFilterSent())
+						return;
+
+
+					$.cookie('closedFilterSent', Date.now(), { expires: 30 * 12 * 20, path: '/' });
+				};
+
+				scope.wasClosedFilterSent = function() {
+					return !!$.cookie('closedFilterSent');
+				};
+
+				/**
+				 * Set cookie info that we have closed filter
+				 * so we will not open him next time
+				 */
 				scope.setCookieFiltered = function() {
 					if(scope.isCookieFiltered())
 						return;
@@ -32,6 +48,8 @@ angular.module('hearth.directives').directive('filterbar', [
 					});
 
 					$.cookie('closedFilter', Date.now(), { expires: 30 * 12 * 20, path: '/' });
+
+					scope.sendFilterClosedInfo();
 				};
 
 				scope.isCookieFiltered = function() {
