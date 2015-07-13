@@ -348,6 +348,13 @@ angular.module('hearth.geo').directive('locations', [
                         $scope.errorWrongPlace = false;
                 });
                 $timeout($scope.init);
+
+
+
+                $scope.$on("$destroy", function () {
+                    $(document).unbind("focusin");
+                    $(document).unbind("focusout");
+                })
             }
         };
     }
