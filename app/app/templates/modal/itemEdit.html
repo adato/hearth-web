@@ -44,7 +44,7 @@
                     <div class="field-group">
                         <span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius green bold" ng-if="post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
                         <span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius red bold" ng-if="!post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
-                        <input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="100" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
+                        <input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
                     </div>
 
                     <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
