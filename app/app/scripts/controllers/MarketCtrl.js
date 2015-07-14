@@ -105,18 +105,16 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$(".loading").fadeOut('fast', function() {
 				// show hidden posts and recount their height to show "show more" button
 
-				// $scope.$broadcast("showHiddenPosts", function(index) {
+				console.timeEnd("Posts displayed with some effect");
+				console.timeEnd("Market posts loaded and displayed");
+				// finish loading and allow to show loading again
+				
+				$timeout(function() {
+					if(!isLast)
+						$scope.loading = false;
+				});
 
-					console.timeEnd("Posts displayed with some effect");
-					console.timeEnd("Market posts loaded and displayed");
-					// finish loading and allow to show loading again
-					
-					$timeout(function() {
-						if(!isLast)
-							$scope.loading = false;
-					});
-
-				// });
+				$(".loading").show();
 			});
 		};
 
