@@ -14,7 +14,7 @@ angular.module('hearth.services').service('Activities', [
 		this.getActivityTranslationCode = function(info) {
 			var isTargetCommunity = '';
 
-			if(info.target_object && info.target_object._type == 'Community')
+			if(info.target_object && info.target_object._type == 'Community' && info.verb !== 'accepted_into_community')
 				isTargetCommunity = '_community';
 
 			return 'activities.'+info.narrative_mode+'.'+info.verb+isTargetCommunity;
@@ -32,8 +32,6 @@ angular.module('hearth.services').service('Activities', [
 				name: obj.title || obj.name,
 				url: $rootScope.getProfileLink(obj._type, obj._id)
 			};
-
-			console.log(data);
 			return data;
 		};
 
