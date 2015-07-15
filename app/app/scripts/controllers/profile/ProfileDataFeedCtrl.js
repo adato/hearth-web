@@ -170,9 +170,6 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                             activity.text = Activities.getActivityTranslation(activity);
                             return activity;
                         });
-
-                        console.log(res);
-
                         $scope.activityLog = res;
                         done(null);
                     }, done);

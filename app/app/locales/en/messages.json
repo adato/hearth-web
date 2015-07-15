@@ -506,7 +506,7 @@
         },
         "third_person": {
             "new_post": "<p>User created an ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating": "<p>%{user} gave a rating to a post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating": "<p>{{user}} gave a rating to a post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_received": "<p>{{user}} get a rating from&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_reply": "<p>{{user}} answered an ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "wants_into_community": "<p>{{user}} applied to a community&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
