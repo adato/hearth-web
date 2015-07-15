@@ -25,17 +25,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
 
-		$scope.resetFilter = function() {
-			ItemFilter.clear();
-			Filter.reset();
-			$scope.loaded = false;
-		};
-
 		$scope.toggleFilter = function() {
 			$scope.$broadcast("filterOpen");
 		};
 
-		$scope.getPostScope = function(post) {
+	 	function getPostScope(post) {
 			
 			var scope = $scope.$new(true);
             scope.keywords = $scope.keywordsActive; 
@@ -56,7 +50,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
             return scope;
 		};
 
-		$scope.addItemsToList = function(container, data, index, done) {
+		function addItemsToList(container, data, index, done) {
 			var posts = data.data;
 
 			// console.timeEnd("Post built");
@@ -66,14 +60,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				console.time("Single post ("+(index)+") built");
 				$scope.items.push(post);
 
-				return templateFunction($scope.getPostScope(post), function(clone){
+				return templateFunction(getPostScope(post), function(clone){
 					container.append(clone[0]);
 	
 					return $timeout(function() {
 						$('#post_'+post._id).slideDown();
 						
 						console.timeEnd("Single post ("+(index)+") built");
-						$scope.addItemsToList(container, data, index + 1, done);
+						addItemsToList(container, data, index + 1, done);
 					});
 				});
 			}
@@ -81,7 +75,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			done(data);
 		};
 
-		$scope.finishLoading = function(data, isLast) {
+		function finishLoading(data, isLast) {
 			$scope.topArrowText.top = $translate.instant('ads-has-been-read', {
 				value: $scope.items.length
 			});
@@ -103,7 +97,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		// As temporary fix of issue #1010, this will retrieve newly added post from cache
 		// and try if it in array of posts, if not, insert it, if yes delete it from cache
-		$scope.insertLastPostIfMissing = function(data) {
+		function insertLastPostIfMissing(data) {
 			var newPost = $rootScope.getPostIfMissing();
 
 			// if there is not new post, dont do anything
@@ -158,13 +152,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				console.timeEnd("Market posts loaded from API");
 				if(data.data) {
 
-					data.data = $scope.insertLastPostIfMissing(data.data);
+					data.data = insertLastPostIfMissing(data.data);
 					data.data = ItemFilter.filter(data.data);
 
 				}
 				console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
-				$scope.addItemsToList($('#market-item-list'), data, 0, $scope.finishLoading);
+				addItemsToList($('#market-item-list'), data, 0, finishLoading);
 				
 				
 				$rootScope.$broadcast('postsLoaded');
@@ -209,7 +203,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
 
-					templateFunction($scope.getPostScope(data), function(clone){
+					templateFunction(getPostScope(data), function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 						
 						setTimeout(function() {
@@ -224,15 +218,16 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('postCreated', function($event, post) {
 
-			$scope.showMap = false;
-			
 			// hide him and show with some effect
 			post.hidden = true;
 			$scope.items.unshift(post);
 
-			$timeout(function() {
-				$("#post_"+post._id).slideDown(function() {
-					post.hidden = false;
+			templateFunction(getPostScope(post), function(clone){
+				console.log(clone);
+				$('#market-item-list').prepend(clone);
+				
+				setTimeout(function() {
+					$('#post_'+post._id).slideDown();
 				});
 			});
 		});
@@ -256,10 +251,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 	    $templateRequest(templateUrl).then(function(template) {
 	    	templateFunction = $compile(template);
-	    	console.log('FUNCTION: ', templateFunction);
 
-			init();
-			$scope.load();
+			// init();
+			// $scope.load();
 	    });
 
 	}
