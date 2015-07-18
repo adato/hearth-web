@@ -1,0 +1,25 @@
+<div class="ratingReply">
+	<form class="formStyle" ng-submit="sendReply(text)" name="ratingReplyForm" novalidate="">
+		<label for="reply-text">
+			<div class="author-info">
+				<div>{{:: 'PROFILE.RATING.REPLY_TO_USER' | translate}} 
+					<a href="{{:: getProfileLink(rating.user_from_type, rating.user_from)}}">{{:: rating.user_from_full_name}}</a><span ng-if="rating.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath }}post/{{:: rating.post_id}}" title="{{:: rating.post_title }}">{{:: rating.post_title | ellipsis:40}}</a></span>:
+				</div>
+			</div>
+			<textarea ng-model="text" ng-attr-placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-required="true" autosize-textarea="" name="text" id="reply-text" rows="1"></textarea>
+		</label>
+ 		
+		<div>
+			<a class="left cancel-reply" ng-click="closeReply(rating)">
+				{{:: 'CANCEL' | translate }}
+			</a>
+			<button type="submit" class="margin-0 button-send right ng-binding">
+				{{:: 'SEND' | translate }}
+			</button>
+			<div ng-show="ratingReplyForm.text.$invalid && showError" class="error right ng-hide">
+		        <span ng-show="ratingReplyForm.text.$error.required" class="ng-binding">{{:: 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
+		    </div>
+		</div>
+		<div class="clear"></div>
+	</form>
+</div>

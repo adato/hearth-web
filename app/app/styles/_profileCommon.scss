@@ -281,6 +281,46 @@
                 top: -20px;
             }
         }
+        
+        .reply, .ratingReply {
+            margin-top: 20px;
+        }
+
+        .ratingReply {
+            .formStyle {
+                .cancel-reply {
+                    font-weight: bold;
+                    position: relative;
+                    top: 5px;
+                    font-size: 14px;
+                }
+
+                textarea {
+                    overflow: hidden;
+                    word-wrap: break-word;
+                    height: 50px;
+                }
+
+                .error {
+                    margin-top: 7px;
+                }
+            }
+
+            .reply {
+                line-height: 1.3;
+                margin-top: 20px;
+
+                .avatar {
+                    margin-right: 20px;
+                }
+
+                i {
+                    display: block;
+                    float: left;
+                    max-width: 676px;
+                }
+            }
+        }
     }
     .rating-form {
         @extend .item-box-forms;
