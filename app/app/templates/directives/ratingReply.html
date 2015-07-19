@@ -1,0 +1,27 @@
+<div class="ratingReply">
+	<form class="formStyle" ng-submit="sendReply(reply)" name="msgReplyForm" novalidate="">
+		<label for="reply-text">
+			<div class="author-info">
+				<div>Reagovat na hodnocení od <a href="/app/profile/53ad2bff6335360002070000" class="ng-binding">Jan Jůna</a> k inzeratu <a class="ng-binding" href="post/558c5e233433330007ed0100" title="poradu v oblasti architektury">poradu v oblasti architektury</a>:</div>
+			</div>
+
+			<textarea ng-model="reply.text" ng-attr-placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-required="true" autosize-textarea="" name="text" id="reply-text" rows="1" style="overflow: hidden; word-wrap: break-word; height: 50px;"></textarea>
+		</label>
+		<div ng-show="msgReplyForm.text.$invalid &amp;&amp; showError.text" class="error fleft ng-hide">
+	        <span ng-show="msgReplyForm.text.$error.required" class="ng-binding">Did you remember to fill out the message?</span>
+	    </div>
+	   <div class="left">
+	   	<a style="font-weight: bold; position: relative; top: 5px; font-size: 14px;">Zrušit</a></div>
+			<button ng-disabled="!conversation.is_member" type="submit" class="margin-0 button-send right ng-binding">
+				Send
+			</button>
+		</div>
+		<div class="clear"></div>
+	</form>
+
+	<div class="reply">
+		<avatar class="left" type="info._type" src="info.avatar.normal" size="mini"></avatar>
+		<i style="display: block; float: left; max-width: 676px;">„ABCD”</i>
+		<div class="clear">
+	</div>
+</div>
