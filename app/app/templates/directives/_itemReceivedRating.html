@@ -18,11 +18,7 @@
 			</div>
 			<div class="clear"></div>	
 			<div class="text-container clearfix">
-				<p>
-					<i class="score-icon fa icon-rating-negative" ng-if="item.score == -1"></i>
-					<i class="score-icon fa icon-rating-positive" ng-if="item.score == 1"></i>
-					<span ng-bind-html="item.text | linky:'_blank' | nl2br"></span>
-				</p>
+				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 			</div>
 			<div ng-if="!item.formOpened">
 				<small class="left">

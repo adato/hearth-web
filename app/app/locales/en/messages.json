@@ -881,7 +881,9 @@
         "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
         "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
-        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě."
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "RATING_REPLY_SUCCESS": "Komentář byl úspěšně přidán.",
+        "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě"
     },
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. You can add them though",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "But you have couple of inactive ads.",

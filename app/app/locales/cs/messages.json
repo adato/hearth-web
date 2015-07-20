@@ -533,7 +533,7 @@
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
-    "SERVER_MAITENANCE_MESSAGE": "<p>Pr&aacute;vě přid&aacute;v&aacute;me hromadu nov&yacute;ch funkc&iacute;.<br \/>Vteřinku. Za chviličku to bude hotov&eacute;...<\/p>\r\n<p>Mezit&iacute;m můžete mrknout na n&aacute;&scaron; <a href=\"https:\/\/blog.hearth.net\/\" target=\"_blank\">blog<\/a>&nbsp;nebo <a href=\"https:\/\/www.facebook.com\/Hearthnet.Ceska.republika.a.Slovensko\" target=\"_blank\">Facebook<\/a>.<\/p>",
+    "SERVER_MAITENANCE_MESSAGE": "<p>Omlouv&aacute;me se, jeden ze serverů n&aacute;s nechal ve &scaron;tychu.<br \/>Než to oprav&iacute;me, pros&iacute;m, rozd&aacute;vejte radost \"offline\". :)<\/p>\r\n<p>Mezit&iacute;m můžete mrknout na n&aacute;&scaron; <a href=\"https:\/\/blog.hearth.net\/\" target=\"_blank\">blog<\/a>&nbsp;nebo <a href=\"https:\/\/www.facebook.com\/Hearthnet.Ceska.republika.a.Slovensko\" target=\"_blank\">Facebook<\/a>.<\/p>",
     "ADMIN": "Správce",
     "WRITE_USER_SOME_RATING": "Napište uživateli k hodnocení pár slov...",
     "SEND_USER_RATING": "Odeslat hodnocení",
@@ -892,7 +892,9 @@
         "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
         "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
-        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě."
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "RATING_REPLY_SUCCESS": "Komentář byl úspěšně přidán.",
+        "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě"
     },
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáte žádné inzeráty, můžete si je ale přidat ",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máte několik neaktivních inzerátů.",
