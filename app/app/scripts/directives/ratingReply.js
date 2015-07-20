@@ -46,10 +46,6 @@ angular.module('hearth.directives').directive('ratingReply', [
 						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_FAILED', Notify.T_ERROR);
 					});
 				};
-
-				scope.$watch('rating', function(val) {
-					console.log(val);
-				});
 			}
 		};
 	}
