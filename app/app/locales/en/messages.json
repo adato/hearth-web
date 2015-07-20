@@ -400,7 +400,7 @@
         "map": "Mapa darů a přání",
         "communities": {
             "0": "Komunity",
-            "suggested": "Doporučené komunity",
+            "suggested": "Vybrané komunity",
             "all": "Seznam všech komunit"
         },
         "reset-pass": "Nastavení nového hesla",
@@ -531,7 +531,7 @@
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "You are logged in using external social network (e.g. Facebook, Twitter) so you can't change your Hearth.net password here.",
-    "SERVER_MAITENANCE_MESSAGE": "<p>We are adding heap of new functions right now.<br \/>Just a sec. Will be done in a jiffy...<\/p>\r\n<p>Meanwhile you can go to our&nbsp;<a href=\"https:\/\/blog.hearth.net\/\" target=\"_blank\">blog<\/a>&nbsp;or&nbsp;<a href=\"https:\/\/www.facebook.com\/Hearthnet.Ceska.republika.a.Slovensko\" target=\"_blank\">Facebook<\/a>.<\/p>",
+    "SERVER_MAITENANCE_MESSAGE": "<p>We are adding heap of new functions right now.<br \/>Just a sec. Will be done in a jiffy...<\/p>",
     "ADMIN": "Administrator",
     "WRITE_USER_SOME_RATING": "Add couple of words to user's rating...",
     "SEND_USER_RATING": "Send rating",
@@ -881,7 +881,9 @@
         "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
         "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
-        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě."
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "RATING_REPLY_SUCCESS": "Komentář byl úspěšně přidán.",
+        "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě"
     },
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. You can add them though",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "But you have couple of inactive ads.",
@@ -1053,6 +1055,10 @@
         "REPLIES": {
             "NO_REPLIES": "Zatím jste nikomu neodpověděli na žádné přání nebo nabídku a tak Vám tu nemáme co ukázat.",
             "GO_TO_CONVERSATION": "Přejít do konverzace"
+        },
+        "RATING": {
+            "OPEN_REPLY_FORM": "Přidat komentář",
+            "REPLY_TO_USER": "Reagovat na hodnocení od"
         }
     },
     "X_PEOPLE_INSPIRED_BY_ME": {
@@ -1210,5 +1216,10 @@
             "KARMA_NO_RATING_OTHER": "Rate community and it will show their pretty colours :)"
         }
     },
-    "COMMUNITY_RATING_TITLE": "Hodnocení komunity"
+    "COMMUNITY_RATING_TITLE": "Hodnocení komunity",
+    "RATINGS": {
+        "REPLY": {
+            "TEXT_PLACEHOLDER": "Text odpovědi.."
+        }
+    }
 }
