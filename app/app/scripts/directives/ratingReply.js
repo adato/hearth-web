@@ -32,27 +32,19 @@ angular.module('hearth.directives').directive('ratingReply', [
 					if(sendingReply) return;
 					sendingReply = true;
 
-					console.log("AAA");
 					if(!text) {
 						sendingReply = false;
 						scope.showError = true;
 						return false;
 					}
-					
-					scope.rating.comment = {
-					    "created_at": "2014-02-20T13:28:53.756Z",
-					    "updated_at": "2014-02-20T13:28:53.756Z",
-					    "text": "comment for rating",
-					    "user": {} // Author of comment
-					};
-					scope.closeReply();
 
-					// Ratings.add({comment: text, _id: scope.rating._id}, function(res) {
-					// 	scope.rating.comment = text;
-					// 	Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);
-					// }, function(err) {
-					// 	Notify.addSingleTranslate('NOTIFY.RATING_REPLY_FAILED', Notify.T_ERROR);
-					// });
+					Ratings.add({comment: text, _id: scope.rating._id}, function(res) {
+						scope.rating.comment = text;
+						scope.closeReply();
+						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);
+					}, function(err) {
+						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_FAILED', Notify.T_ERROR);
+					});
 				};
 
 				scope.$watch('rating', function(val) {
