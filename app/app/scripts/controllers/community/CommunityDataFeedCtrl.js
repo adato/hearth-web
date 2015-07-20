@@ -127,7 +127,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
-            CommunityRatings.received(obj, done, doneErr);
+            CommunityRatings.received(obj, function(res) {
+                // res.forEach(function(item, index) {
+                //     item.formOpened = false;
+                // }); 
+                done(res);
+            }, doneErr);
             $scope.$watch('rating.current_community_id', function(val) {
                 $scope.rating.post_id = 0;
                 CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res, headers) {

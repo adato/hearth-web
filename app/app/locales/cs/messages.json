@@ -402,7 +402,7 @@
         "map": "Mapa darů a přání",
         "communities": {
             "0": "Komunity",
-            "suggested": "Doporučené komunity",
+            "suggested": "Vybrané komunity",
             "all": "Seznam všech komunit"
         },
         "reset-pass": "Nastavení nového hesla",
@@ -488,6 +488,50 @@
     "title-required": "Titulek je příliš krátký. Přidejte ještě aspoň pár slov...",
     "user": "jednotlivci",
     "you-will-find-me": "Najdete mne v",
+    "activities": {
+        "first_person": {
+            "new_post": "Přidal(a) jste inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
+            "new_rating": "Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}<\/a>.",
+            "new_rating_received": "Dostal(a) jste hodnocení od <a href=\"{{url}}\">{{name}}<\/a>.",
+            "new_reply": "Odpověděl(a) jste na inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
+            "wants_into_community": "Přihlásil(a) jste se do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
+            "accepted_into_community": "Přijali vás do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
+            "rejected_into_community": "Byl(a) jste odmítnut(á) komunitou <a href=\"{{url}}\">{{name}}<\/a>.",
+            "start_following": "Začal(a) jste sledovat uživatele <a href=\"{{url}}\">{{name}}<\/a>.",
+            "start_being_followed": "<p><a href=\"{{url}}\">{{name}}<\/a> v&aacute;s začal(a) sledovat.<\/p>",
+            "resume_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_comm_rating_received": "<p>Dostal(a) jste hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "suspend_post": "<p>Pozastavil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "prolong_post": "<p>Obnovil(a) jste&nbsp;inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "publish_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_community": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+        },
+        "third_person": {
+            "new_post": "<p>{{user}} přidal(a) inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating": "<p>{{user}} ohodnotil(a) uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_received": "<p>{{user}} dostal(a) hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_reply": "<p>{{user}} odpověděl(a) na inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "wants_into_community": "<p>{{user}} přihl&aacute;sil(a) se do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "accepted_into_community": "<p>{{user}} byl přijat do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "rejected_into_community": "<p>{{user}} byl odm&iacute;tnut komunitou <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "start_following": "<p>{{user}}&nbsp;sleduje uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "start_being_followed": "<p>{{user}} začal(a) b&yacute;t sledov&aacute;n uživatelem <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "community_new_post": "<p>Nov&yacute; inzer&aacute;t v komunitě&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "community_excluded_member": "<p>Komunita vyloučila uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_application": "<p>Uživatel&nbsp;<a href=\"{{url}}\">{{name}}<\/a>&nbsp;odeslal novou ž&aacute;dost o vstup do komunity.<\/p>",
+            "community_rejected_user": "<p>Komunita odm&iacute;tla uživatele &nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "community_accepted_user": "<p><a href=\"{{url}}\">{{name}}<\/a>&nbsp;je nov&yacute; člen komunity.<\/p>",
+            "member_left": "<p>Komunitu opustil uživatel <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_admin": "<p><a href=\"{{url}}\">{{name}}<\/a>&nbsp;je nov&yacute; spr&aacute;vce komunity.<\/p>",
+            "resume_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_community_rating": "<p>Komunita ohodnotila uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_comm_rating_received": "<p>Uživatel dostal&nbsp;hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "suspend_post": "<p>Uživatel pozastavil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "prolong_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "publish_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_community": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+        }
+    },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
     "SERVER_MAITENANCE_MESSAGE": "<p>Pr&aacute;vě přid&aacute;v&aacute;me hromadu nov&yacute;ch funkc&iacute;.<br \/>Vteřinku. Za chviličku to bude hotov&eacute;...<\/p>\r\n<p>Mezit&iacute;m můžete mrknout na n&aacute;&scaron; <a href=\"https:\/\/blog.hearth.net\/\" target=\"_blank\">blog<\/a>&nbsp;nebo <a href=\"https:\/\/www.facebook.com\/Hearthnet.Ceska.republika.a.Slovensko\" target=\"_blank\">Facebook<\/a>.<\/p>",
     "ADMIN": "Správce",
@@ -1036,6 +1080,10 @@
         "REPLIES": {
             "NO_REPLIES": "Zatím jste nikomu neodpověděli na žádné přání nebo nabídku a tak Vám tu nemáme co ukázat.",
             "GO_TO_CONVERSATION": "Přejít do konverzace"
+        },
+        "RATING": {
+            "OPEN_REPLY_FORM": "Přidat komentář",
+            "REPLY_TO_USER": "Reagovat na hodnocení od"
         }
     },
     "X_PEOPLE_INSPIRED_BY_ME": {
@@ -1198,5 +1246,10 @@
             "KARMA_NO_RATING_OTHER": "Ohodnoťte komunitu a pěkně se všem vybarví :)"
         }
     },
-    "COMMUNITY_RATING_TITLE": "Hodnocení komunity"
+    "COMMUNITY_RATING_TITLE": "Hodnocení komunity",
+    "RATINGS": {
+        "REPLY": {
+            "TEXT_PLACEHOLDER": "Text odpovědi.."
+        }
+    }
 }

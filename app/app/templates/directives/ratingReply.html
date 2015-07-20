@@ -1,27 +1,25 @@
 <div class="ratingReply">
-	<form class="formStyle" ng-submit="sendReply(reply)" name="msgReplyForm" novalidate="">
+	<form class="formStyle" ng-submit="sendReply(text)" name="ratingReplyForm" novalidate="">
 		<label for="reply-text">
 			<div class="author-info">
-				<div>Reagovat na hodnocení od <a href="/app/profile/53ad2bff6335360002070000" class="ng-binding">Jan Jůna</a> k inzeratu <a class="ng-binding" href="post/558c5e233433330007ed0100" title="poradu v oblasti architektury">poradu v oblasti architektury</a>:</div>
+				<div>{{:: 'PROFILE.RATING.REPLY_TO_USER' | translate}} 
+					<a href="{{:: getProfileLink(rating.user_from_type, rating.user_from)}}">{{:: rating.user_from_full_name}}</a><span ng-if="rating.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath }}post/{{:: rating.post_id}}" title="{{:: rating.post_title }}">{{:: rating.post_title | ellipsis:40}}</a></span>:
+				</div>
 			</div>
-
-			<textarea ng-model="reply.text" ng-attr-placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-required="true" autosize-textarea="" name="text" id="reply-text" rows="1" style="overflow: hidden; word-wrap: break-word; height: 50px;"></textarea>
+			<textarea ng-model="text" ng-attr-placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-required="true" autosize-textarea="" name="text" id="reply-text" rows="1"></textarea>
 		</label>
-		<div ng-show="msgReplyForm.text.$invalid &amp;&amp; showError.text" class="error fleft ng-hide">
-	        <span ng-show="msgReplyForm.text.$error.required" class="ng-binding">Did you remember to fill out the message?</span>
-	    </div>
-	   <div class="left">
-	   	<a style="font-weight: bold; position: relative; top: 5px; font-size: 14px;">Zrušit</a></div>
-			<button ng-disabled="!conversation.is_member" type="submit" class="margin-0 button-send right ng-binding">
-				Send
+ 		
+		<div>
+			<a class="left cancel-reply" ng-click="closeReply(rating)">
+				{{:: 'CANCEL' | translate }}
+			</a>
+			<button type="submit" class="margin-0 button-send right ng-binding">
+				{{:: 'SEND' | translate }}
 			</button>
+			<div ng-show="ratingReplyForm.text.$invalid && showError" class="error right ng-hide">
+		        <span ng-show="ratingReplyForm.text.$error.required" class="ng-binding">{{:: 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
+		    </div>
 		</div>
 		<div class="clear"></div>
 	</form>
-
-	<div class="reply">
-		<avatar class="left" type="info._type" src="info.avatar.normal" size="mini"></avatar>
-		<i style="display: block; float: left; max-width: 676px;">„ABCD”</i>
-		<div class="clear">
-	</div>
 </div>
