@@ -208,9 +208,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 				if(conversations[i]._id === $scope.detail._id) {
 				 	angular.copy(conv, $scope.detail);;
-				} else {
-					newArray.push(conv);
 				}
+				newArray.push(conv);
 			}
 			return newArray;
 		};
@@ -228,7 +227,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// if we have detail ID in url load it and display in detail box
 		$scope.loadConversationDetail = function(id, dontMarkAsReaded) {
-
 			// but first try to find it in list
 			if ($scope.conversations)
 				for (var i in $scope.conversations) {
