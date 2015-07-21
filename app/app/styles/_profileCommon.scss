@@ -116,8 +116,11 @@
         }
         &.small {
           @extend .large-3;
-          width: 120px;
-          height: 120px;
+          width: 124px;
+          height: 124px;
+          p {
+            margin-bottom: 0px;
+          }
         }
         &.medium {
           @extend .large-3;
@@ -288,6 +291,8 @@
 
     .ratingReply {
       .formStyle {
+        width: 100%;
+        
         .cancel-reply {
           font-weight: bold;
           position: relative;

@@ -39,7 +39,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 					}
 
 					Ratings.add({comment: {text: text}, _id: scope.rating._id}, function(res) {
-						scope.rating.comment = text;
+						scope.rating.comment = res;
 						scope.closeReply();
 						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);
 					}, function(err) {
