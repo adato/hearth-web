@@ -412,7 +412,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     $timeout.cancel(_loadTimeoutPromise);
                     $scope.lockCounter++;
                     // set initial state
-                    $scope.info = $scope.deserialize($scope.info);
                     _loadOlderMessagesEnd = false;
                     _scrollInited = false;
                     $scope.messages = false;
@@ -420,9 +419,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     $scope.showParticipants = false;
                     $timeout($scope.bindActionHandlers);
 
-
                     // load first messages and mark as readed on API based on actual state
                     $scope.loadMessages(null, $scope.afterInitLoad, $scope.info.read);
+                };
+
+                $scope.deserializeInfo = function(info) {
+                    $scope.info = $scope.deserialize($scope.info);
                 };
 
                 // resize box when needed
@@ -430,6 +432,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.$on("conversationReplyFormResized", $scope.resizeMessagesBox);
 
                 $scope.$watch('info', $scope.init);
+                $scope.$watch('info', $scope.deserializeInfo, true);
                 $scope.$on('loadNewMessages', $scope.loadNewMessages);
                 $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
                 $scope.$on('$destroy', function() {
