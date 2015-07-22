@@ -33,7 +33,6 @@ angular.module('hearth.services').service('PageTitle', [
 		};
 		
 		this.set = function(title, append) {
-            return; // DONT CHANGE TITLE FOR NOW
             
             title +=  ((append) ? ' '+append : '');
 
