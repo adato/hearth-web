@@ -145,7 +145,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$(".loading").hide();
 
 				if(!data.data.length) {
-					$scope.finishLoading(data.data, true);
+					finishLoading(data.data, true);
 					return;
 				}
 
