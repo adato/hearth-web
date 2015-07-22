@@ -28,8 +28,8 @@ angular.module('hearth.directives').directive('activityAvatar', [
 					else if(val.object.avatar)
 						$scope.src = val.object.avatar.normal;
 
-					else if($$config.activitiesIcons[val.type])
-						$scope.src = "images/icons/"+$$config.activitiesIcons[val.type]+".png";
+					else if($$config.activitiesIcons[val.verb])
+						$scope.src = "images/icons/"+$$config.activitiesIcons[val.verb]+".png";
 
 					else
 						$scope.src = null;
