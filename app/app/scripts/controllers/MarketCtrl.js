@@ -185,6 +185,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.loaded = false;
 			$scope.loading = false;
 			$scope.items = [];
+			$('#market-item-list').html('');
 			$scope.load();
 		}
 
