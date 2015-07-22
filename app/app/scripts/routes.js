@@ -32,6 +32,7 @@ angular.module('hearth').config([
 				controller: 'MapCtrl',
 			})
 			.state('market-refresh', {
+				title: false,
 				url: "/market",
 				controller: ['$location', function($location) {
 					$location.path('/'); // just for refresh purposes
