@@ -587,7 +587,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(angular.isFunction(cb))
                         cb(item);
 
-                    $rootScope.$broadcast('updatedItem', res);
+                    $rootScope.$broadcast('postUpdated', res);
                     Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
                     $rootScope.globalLoading = false;
 

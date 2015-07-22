@@ -30,6 +30,21 @@ angular.module('hearth.directives').directive('filterbar', [
 				 * Set cookie info that we have closed filter
 				 * so we will not open him next time
 				 */
+				scope.sendFilterClosedInfo = function() {
+					if(scope.wasClosedFilterSent())
+						return;
+
+					$.cookie('closedFilterSent', Date.now(), { expires: 30 * 12 * 20, path: '/' });
+				};
+
+				scope.wasClosedFilterSent = function() {
+					return !!$.cookie('closedFilterSent');
+				};
+
+				/**
+				 * Set cookie info that we have closed filter
+				 * so we will not open him next time
+				 */
 				scope.setCookieFiltered = function() {
 					if(scope.isCookieFiltered())
 						return;
@@ -46,7 +61,8 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.setUserFilterCookie = function() {
 					if(!scope.isCookieFiltered() && $rootScope.user && $rootScope.user.closed_filter)
 						$.cookie('closedFilter', +moment($rootScope.user.closed_filter), { expires: 30 * 12 * 20, path: '/' });
-					
+
+					scope.sendFilterClosedInfo();
 				};
 
 				scope.isCookieFiltered = function() {

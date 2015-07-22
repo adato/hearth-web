@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter',
-    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter) {
+    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities',
+    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities) {
         var loadServices = {
                 'home': loadUserHome,
                 'posts': loadUserPosts,
@@ -166,6 +166,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 },
                 function(done) {
                     UsersActivityLog.get(params, function(res) {
+                        res.map(function(activity) {
+                            activity.text = Activities.getActivityTranslation(activity);
+                            return activity;
+                        });
                         $scope.activityLog = res;
                         done(null);
                     }, done);
@@ -178,7 +182,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                 }
             ], finishLoading);
 
-            $scope.$on('updatedItem', $scope.refreshItemInfo);
+            $scope.$on('postUpdated', $scope.refreshItemInfo);
         }
 
         $scope.cancelEdit = function() {
