@@ -217,8 +217,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.testScrollBottom = function() {
                     var outer = $(".nano", element);
                     var inner = $(".nano-content", outer);
-                    
-                    if(inner.scrollTop() + inner.height() >= inner.prop('scrollHeight')) {
+                    var pos = Math.ceil(inner.scrollTop() + inner.height());
+
+                    if(pos >= inner.prop('scrollHeight')) {
                         $scope.scrollBottom();
                     }
                 };
