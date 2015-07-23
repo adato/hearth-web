@@ -402,7 +402,7 @@
         "map": "Mapa darů a přání",
         "communities": {
             "0": "Komunity",
-            "suggested": "Doporučené komunity",
+            "suggested": "Vybrané komunity",
             "all": "Seznam všech komunit"
         },
         "reset-pass": "Nastavení nového hesla",
@@ -892,7 +892,9 @@
         "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
         "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
         "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
-        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě."
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "RATING_REPLY_SUCCESS": "Komentář byl úspěšně přidán.",
+        "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě"
     },
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máte niekoľko neaktívnych inzerátov.",
@@ -1080,6 +1082,10 @@
         "REPLIES": {
             "NO_REPLIES": "Zatím jste nikomu neodpověděli na žádné přání nebo nabídku a tak Vám tu nemáme co ukázat.",
             "GO_TO_CONVERSATION": "Přejít do konverzace"
+        },
+        "RATING": {
+            "OPEN_REPLY_FORM": "Přidat komentář",
+            "REPLY_TO_USER": "Reagovat na hodnocení od"
         }
     },
     "X_PEOPLE_INSPIRED_BY_ME": {
@@ -1242,5 +1248,10 @@
             "KARMA_NO_RATING_OTHER": "Ohodnoťte komunitu a pěkně se všem vybarví :)"
         }
     },
-    "COMMUNITY_RATING_TITLE": "Hodnocení komunity"
+    "COMMUNITY_RATING_TITLE": "Hodnocení komunity",
+    "RATINGS": {
+        "REPLY": {
+            "TEXT_PLACEHOLDER": "Text odpovědi.."
+        }
+    }
 }
