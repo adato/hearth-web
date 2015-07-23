@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.ratingReply
- * @description 
+ * @description
  * @restrict A
  */
 
@@ -28,7 +28,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 
 				scope.sendReply = function(text) {
 					scope.showError = false;
-					
+
 					if(sendingReply) return;
 					sendingReply = true;
 
@@ -38,8 +38,8 @@ angular.module('hearth.directives').directive('ratingReply', [
 						return false;
 					}
 
-					Ratings.add({comment: text, _id: scope.rating._id}, function(res) {
-						scope.rating.comment = text;
+					Ratings.add({comment: {text: text}, _id: scope.rating._id}, function(res) {
+						scope.rating.comment = res;
 						scope.closeReply();
 						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);
 					}, function(err) {

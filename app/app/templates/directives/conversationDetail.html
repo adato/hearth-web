@@ -34,7 +34,7 @@
 							<ul>
 								<li ng-repeat="item in participants">
 									<a ng-href="{{:: getProfileLink(item._type, item._id) }}">
-										<avatar src="item.avatar.normal" type="item._type" size="mini"></avatar>
+										<avatar src="item.avatar.normal" class="move-bot" type="item._type" size="mini"></avatar>
 										<span title="{{:: item.name }}">{{:: item.name | ellipsis:15}}</span>
 										<div class="clear"></div>
 									</a>
@@ -56,7 +56,7 @@
 							<div ng-if="item.author">
 								<div class="message-head"  ng-class="{'owner-name': item.author._type == 'Community'}">
 									<a class="left" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-										<avatar class="left" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
+										<avatar class="left move-bot" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
 										<h5 class="fleft">
 											{{:: item.author.name | ellipsis:50 }}
 											<div ng-if="item.author._type == 'Community'">

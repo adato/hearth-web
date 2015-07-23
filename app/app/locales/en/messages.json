@@ -797,7 +797,7 @@
     "TUTORIAL_SHOW_OLD_FUNCTIONS": "Show me former goodies",
     "SAYING": "Says",
     "ACTIVE_POSTS": "Active posts",
-    "LOCATION_DOES_NOT_MATTER": "On location doesn't matter",
+    "LOCATION_DOES_NOT_MATTER": "Location does not matter",
     "WRITTEN_FROM_ALLOWED": "{{len}} characters used from {{maxLen}} total ",
     "AD_REPORT_CONFIRM": "Report post",
     "AD_PAUSE_LABEL": "Suspend post",
@@ -938,7 +938,7 @@
             "other": "<p><strong>{{count}}<\/strong><br \/> members<\/p>"
         },
         "COMMUNITY_HAS_X_MEMBERS": {
-            "one": "Community has <b>{{count}}<\/b><br \/> member",
+            "one": "Community has <b>{{count}}<\/b> member",
             "other": "Community has <b>{{count}}<\/b><br \/> members"
         },
         "APPROVE_REQUESTS": {
