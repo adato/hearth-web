@@ -29,7 +29,11 @@ angular.module('hearth.services').service('PageTitle', [
 		};
 
 		this.setTranslate = function(titleCode, append) {
-			self.set($translate.instant(titleCode), append);
+			var translate = $translate.instant(titleCode);
+			if(translate == titleCode)
+				translate = self.getDefault();
+
+			self.set(translate, append);
 		};
 		
 		this.set = function(title, append) {
