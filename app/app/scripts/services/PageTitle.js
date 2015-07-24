@@ -29,7 +29,6 @@ angular.module('hearth.services').service('PageTitle', [
 		};
 
 		this.setTranslate = function(titleCode, append) {
-			console.log('Title: ', titleCode, append);
 			self.set($translate.instant(titleCode), append);
 		};
 		
