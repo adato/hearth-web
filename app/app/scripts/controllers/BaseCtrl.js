@@ -54,6 +54,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             // set new page title
             if(state.title && $rootScope.language)
                 PageTitle.setTranslate('TITLE.'+(state.title || state.name));
+            else
+                PageTitle.set(PageTitle.getDefault());
+
         };
 
         /**
