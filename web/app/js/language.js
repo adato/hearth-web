@@ -28,6 +28,11 @@ function redirectToLangVersion(lang, langsAvailable) {
 		loc = langPathMap[lang] + locParts.join('/');
 	}
 
+	if(loc == 'undefined') {
+		loc = defaultLanguage;
+		window.jCookie('language', defaultLanguage, {path: '/', expires: 20 * 365});
+	}
+
 	console.log("New url is: ", loc);
 	window.location = loc;
 }
