@@ -48,12 +48,16 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $rootScope.$on("subPageLoaded", $scope.removePageMinHeight);
 
-        $scope.setPageTitle = function() {
-            var state = $state.$current;
+        $scope.setPageTitle = function(state) {
+            // var state = $state.$current;
 
             // set new page title
-            if(state.title && $rootScope.language)
+            if(state.title === false)
+                PageTitle.set(PageTitle.getDefault());
+            else if($rootScope.language) {
                 PageTitle.setTranslate('TITLE.'+(state.title || state.name));
+            }
+
         };
 
         /**
@@ -88,12 +92,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * After routing finished, set current page segment to variable - used somewhere else
          * and add class of given controller to wrapping div container
          */
-        $rootScope.$on("$stateChangeSuccess", function(next, current) {
+        $rootScope.$on("$stateChangeSuccess", function(ev, current) {
             // $scope.segment = $route.current.segment;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);
-            $scope.setPageTitle();
+            $scope.setPageTitle(current);
         });
 
 
