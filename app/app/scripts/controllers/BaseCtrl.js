@@ -50,9 +50,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.setPageTitle = function(state) {
             // var state = $state.$current;
-
+            if(state.titleIgnore) return;
             // set new page title
-            if(!state.titleIgnore && state.title === false)
+            if(state.title === false)
                 PageTitle.set(PageTitle.getDefault());
             else if($rootScope.language) {
                 PageTitle.setTranslate('TITLE.'+(state.title || state.name));

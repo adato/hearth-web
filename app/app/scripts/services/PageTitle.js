@@ -32,7 +32,6 @@ angular.module('hearth.services').service('PageTitle', [
 			var translate = $translate.instant(titleCode);
 			if(translate == titleCode)
 				translate = self.getDefault();
-
 			self.set(translate, append);
 		};
 		
