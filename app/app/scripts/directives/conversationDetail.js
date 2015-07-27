@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger',
-    function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger) {
+    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate',
+    function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate) {
         return {
             restrict: 'E',
             replace: true,
@@ -262,6 +262,12 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         };
                         conversation.titleDetail = conversation.titleDetail.join(", ");
                     }
+
+                    var title = (conversation.post)
+                                ? $translate.instant(conversation.post.type_code) + ' ' + conversation.titleDetail
+                                : conversation.titleDetail;
+
+                    PageTitle.setTranslate('TITLE.messages.detail', title);
 
                     return conversation;
                 };

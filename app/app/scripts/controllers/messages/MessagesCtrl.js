@@ -160,8 +160,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Messenger.disableLoading();
 			$location.url("/messages/" + info._id + "?" + jQuery.param($location.search()));
 			
-			title = (info.post) ? info.post.type_translate+' '+info.title : info.title || info.titlePersons;
-			PageTitle.setTranslate('TITLE.messages.detail', title);
 			
 			// enable counters loading after URL is changed
 			$timeout(Messenger.enableLoading);

@@ -124,7 +124,7 @@ angular.module('hearth').config([
 	            controller: 'MessagesCtrl'
 			})
 			.state('messages.detail', {
-				title: false,
+				titleIgnore: false,
 				url: '/:id',
       			template: '<div>abcd dbawdwd</div>'
 			})
