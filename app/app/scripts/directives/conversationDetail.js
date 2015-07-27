@@ -263,12 +263,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                         conversation.titleDetail = conversation.titleDetail.join(", ");
                     }
 
-                    var title = (conversation.post)
-                                ? $translate.instant(conversation.post.type_code) + ' ' + conversation.titleDetail
-                                : conversation.titleDetail;
-
-                    PageTitle.setTranslate('TITLE.messages.detail', title);
-
                     return conversation;
                 };
 
@@ -432,12 +426,24 @@ angular.module('hearth.directives').directive('conversationDetail', [
 
                 $scope.deserializeInfo = function(info) {
                     $scope.info = $scope.deserialize($scope.info);
+                    $scope.setTitle();
+                };
+
+                $scope.setTitle = function() {
+                    
+                    var title = ($scope.info.post)
+                                ? $translate.instant($scope.info.post.type_code) + ' ' + $scope.info.titleDetail
+                                : $scope.info.titleDetail;
+                    
+                    PageTitle.setTranslate('TITLE.messages.detail', title);
                 };
 
                 // resize box when needed
                 $(window).resize($scope.resizeMessagesBox);
                 $scope.$on("conversationReplyFormResized", $scope.resizeMessagesBox);
 
+
+                $scope.$watch('updateTitle', $scope.setTitle);
                 $scope.$watch('info', $scope.init);
                 $scope.$watch('info', $scope.deserializeInfo, true);
                 $scope.$on('loadNewMessages', $scope.loadNewMessages);

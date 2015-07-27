@@ -162,7 +162,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			
 			
 			// enable counters loading after URL is changed
-			$timeout(Messenger.enableLoading);
+			$timeout(function() {
+				Messenger.enableLoading();
+				$scope.$broadcast('updateTitle');
+			});
 		};
 
 		$scope.deserializeConversation = function(conversation) {
@@ -354,7 +357,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.loaded = true;
 
 				var paramId = $scope.getParamId();
-
 				// load first conversation on init
 				if (paramId)
 					$scope.loadConversationDetail(paramId, true);
@@ -367,7 +369,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		var changeDetail = function(ev, state, params) {
-
+			
 			// load first conversation on init
 			if (params.id)
 				$scope.loadConversationDetail(params.id, true);
