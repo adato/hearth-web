@@ -57,7 +57,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					var postType = $filter('translate')($scope.postTypes[data.author._type][data.type]);
 					var title = 'Hearth.net: '+postType+' '+data.title+' ('+data.author.name+')';
 
-					OpenGraph.set(title, data.name || "", null, image.original, image.size);
+					OpenGraph.set(title, data.name || "", null, image.large, image.size);
 
 					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.owner_id);
