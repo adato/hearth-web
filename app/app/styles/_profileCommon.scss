@@ -284,15 +284,26 @@
       }
     }
     .reply, .ratingReply {
-      margin-top: 20px;
+      margin-top: 10px;
       align-items: center;
       display: flex;
     }
 
+      
+    .reply {
+      .reply-top {
+        margin-bottom: 5px;
+
+        small {
+          color: #999999;
+        }
+      }
+    }
+    
     .ratingReply {
       .formStyle {
         width: 100%;
-        
+
         .cancel-reply {
           font-weight: bold;
           position: relative;
@@ -419,7 +430,7 @@
           left: 20px;
           right: 20px;
         }
-      ;
+        
         &.positive {
           background: lighten(color(2), 45%);
         }

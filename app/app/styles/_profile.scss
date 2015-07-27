@@ -114,6 +114,7 @@
 }
 
 .rating-listing {
+
     .rating-received-bar {
         min-height: 50px;
         text-align: center;
@@ -150,6 +151,20 @@
     .rating-item {
         margin-top: 0rem;
         margin-bottom: $ui-grid-size;
+        
+        i {
+            position: relative;
+            right: 4px;
+        }
+
+        i.icon-rating-positive:before {
+          font-weight: bold;
+        }
+
+        .text-container {
+            margin-top: 10px;
+        }
+        
         .date {
             font-size: .8rem;
         }
