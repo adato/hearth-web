@@ -530,7 +530,7 @@
             "publish_post": "<p>User has renewed ad <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_community": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_received_comm": "<p>{{user}} dostal(a) hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "You are logged in using external social network (e.g. Facebook, Twitter) so you can't change your Hearth.net password here.",

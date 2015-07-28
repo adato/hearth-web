@@ -505,7 +505,7 @@
             "prolong_post": "<p>Obnovil(a) jste&nbsp;inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "publish_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_community": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_received_comm": "<p>{{user}} dostal(a) hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         },
         "third_person": {
             "new_post": "<p>{{user}} přidal(a) inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -532,7 +532,7 @@
             "publish_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_community": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_received_comm": "<p>{{user}} dostal(a) hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
