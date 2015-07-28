@@ -73,7 +73,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             UserRatings.received(params, done, doneErr);
             
             $scope.$watch('rating.current_community_id', function(val) {
-                if(!$scope.mine) {
+                if(!$rootScope.isMine(params.user_id)) {
                     $scope.rating.post_id = 0;
                     UserRatings.possiblePosts({userId: params.user_id, current_community_id: val}, function(res) {
                         var posts = [];

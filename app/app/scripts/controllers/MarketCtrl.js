@@ -224,7 +224,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.items.unshift(post);
 
 			templateFunction(getPostScope(post), function(clone){
-				console.log(clone);
 				$('#market-item-list').prepend(clone);
 				
 				setTimeout(function() {
