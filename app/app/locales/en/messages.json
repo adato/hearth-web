@@ -503,7 +503,7 @@
             "prolong_post": "<p>You resumed post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "publish_post": "<p>You have renewed <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_community": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_comm": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_comm": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
         },
         "third_person": {
             "new_post": "<p>User created an ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
