@@ -25,17 +25,17 @@
             "BY_KEYWORDS": "By keywords",
             "SAVE_FILTER": "Save the filter for future use",
             "COMMUNITIES": "Communities",
-            "TITLE_ENABLED": "Filter je aktivnÃ­",
+            "TITLE_ENABLED": "Filter je aktivní",
             "CANCEL_FILTER_BAR": "cancel filter",
             "KM": "Km",
-            "CLOSE_FILTER": "ZavÅ™Ã­t filtr"
+            "CLOSE_FILTER": "Zavřít filtr"
         },
         "POST": {
             "FLAG_POST": "Report abuse post",
             "CLICK_TO_EXPAND": "Expand entire post",
             "LOCATION_ANYWHERE_HEADING": "Anywhere",
-            "SHARE_WITH": "SdÃ­let pÅ™es",
-            "PUBLISHED_AT": "PÅ™idÃ¡no",
+            "SHARE_WITH": "Sdílet přes",
+            "PUBLISHED_AT": "Přidáno",
             "REMOVE_FROM_COMMUNITY": "Odstranit z komunity"
         },
         "EDIT_FILTER": "Edit filter",
@@ -44,7 +44,7 @@
         "NOTHING_FOUND": "Stay calm and meditate. Something went wrong, there are no posts.",
         "SHOW_POSTS_IN_LIST": "Show posts in list",
         "SHOW_POSTS_ON_MAP": "Show posts on map",
-        "HEAD_MESSAGE": "<p><a title=\"SvÄ›t&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - authentic fairytale about giving and happiness<\/a>.<\/p>",
+        "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - authentic fairytale about giving and happiness<\/a>.<\/p>",
         "CREATE_NEW_ADD": "Add new gift or wish"
     },
     "404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
@@ -215,16 +215,16 @@
         },
         "LIST": {
             "CONVERSATION_IS_EMPTY": "All users left the conversation.",
-            "NO_RESULT": "V seznamu nejsou Å¾Ã¡dnÃ© konverzace.",
+            "NO_RESULT": "V seznamu nejsou žádné konverzace.",
             "PARTICIPANTS_AND_MORE": "and other"
         },
-        "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledÃ¡vÃ¡nÃ­...",
+        "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
         "FILTER": {
             "ALL": "All converstations",
             "POST_REPLIES": "Replies to gift and wishes",
             "ARCHIVE": "Archived conversations",
-            "USERS_POSTS": "ZprÃ¡vy od uÅ¾ivatelÅ¯",
-            "COMMUNITIES_POSTS": "ZprÃ¡vy od komunit"
+            "USERS_POSTS": "Zprávy od uživatelů",
+            "COMMUNITIES_POSTS": "Zprávy od komunit"
         },
         "DELETE_CONVERSATION": "Delete conversation",
         "LEAVE_CONVERSATION": "Leave conversation",
@@ -264,8 +264,8 @@
             "LABEL": "Archive this conversation?",
             "TEXT": "If you archive the conversation whenever you can return to it in Archive. And you will not miss a new message in it, we will notify you about it..."
         },
-        "NO_MESSAGE_YET": "JeÅ¡tÄ› jsi nikomu nic nenapsal ÄlovÄ›Äe a nikdo ani neposla Å¾Ã¡dnou zprÃ¡vu tobÄ›. MÅ¯Å¾eÅ¡ to hned zmÄ›nit:",
-        "NEW_MESSAGE_USER_RESTRICTION": "Zde mÅ¯Å¾ete vybrat pouze ty uÅ¾ivatele, se kterÃ½mi jiÅ¾ mÃ¡te nÄ›jakou vazbu. Pokud chcete napsat jinÃ©mu uÅ¾ivateli, udÄ›lejte to z jeho profilu.",
+        "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
+        "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
         "YOU": "You",
         "REPLY_AS_COMMUNITY": "Reply as:",
         "REPLY_AS_USER": "as",
@@ -389,42 +389,42 @@
     "MENU": {
         "TERMS": "Terms of use",
         "FAQ": "FAQs",
-        "TAXES": "DarovÃ¡nÃ­ a danÄ›"
+        "TAXES": "Darování a daně"
     },
     "THANKS_FOR_REPORT": "Thanks for the notice, we will check this post.",
     "THIS_IS_BOB": "Are you new here? Get inspired by {{users}} people here.\nSee, there's nothing to it! Just say THANKS.",
     "THUMB_UP": "Thank you!",
     "TITLE": {
         "0": "Hearth",
-        "market": "TrÅ¾iÅ¡tÄ›",
-        "map": "Mapa darÅ¯ a pÅ™Ã¡nÃ­",
+        "market": "Tržiště",
+        "map": "Mapa darů a přání",
         "communities": {
             "0": "Komunity",
-            "suggested": "VybranÃ© komunity",
-            "all": "Seznam vÅ¡ech komunit"
+            "suggested": "Vybrané komunity",
+            "all": "Seznam všech komunit"
         },
-        "reset-pass": "NastavenÃ­ novÃ©ho hesla",
-        "forgot-pass": "ZapomenutÃ© heslo",
-        "token-login": "PrvnÃ­ pÅ™ihlÃ¡Å¡enÃ­",
-        "fill-email": "DoplnÄ›nÃ­ emailu",
-        "confirm-email": "OvÄ›Å™enÃ­ emailu",
-        "login": "PÅ™ihlÃ¡Å¡enÃ­",
+        "reset-pass": "Nastavení nového hesla",
+        "forgot-pass": "Zapomenuté heslo",
+        "token-login": "První přihlášení",
+        "fill-email": "Doplnění emailu",
+        "confirm-email": "Ověření emailu",
+        "login": "Přihlášení",
         "reg": "Registrace",
-        "search": "VyhledÃ¡vÃ¡nÃ­",
+        "search": "Vyhledávání",
         "feedback": "Kontakt",
-        "terms": "PodmÃ­nky pouÅ¾Ã­vÃ¡nÃ­ sluÅ¾by",
+        "terms": "Podmínky používání služby",
         "about": "O projektu",
-        "post": "Detail pÅ™Ã¡nÃ­ \/ daru",
+        "post": "Detail přání \/ daru",
         "messages": {
             "0": "Konverzace",
             "detail": "Detail konverzace"
         },
-        "user-profile-page": "Profil uÅ¾ivatele",
-        "profileEdit": "Ãšprava profilu",
-        "profileSettings": "NastavenÃ­ profilu",
-        "communityEdit": "Ãšprava komunity",
+        "user-profile-page": "Profil uživatele",
+        "profileEdit": "Úprava profilu",
+        "profileSettings": "Nastavení profilu",
+        "communityEdit": "Úprava komunity",
         "community": "Komunity",
-        "error404": "StrÃ¡nka nenalezena",
+        "error404": "Stránka nenalezena",
         "community-profile-page": "Profil komunity"
     },
     "TOP_BAR_ABOUT": "About",
@@ -768,12 +768,12 @@
             "REPLIES": "Users replies",
             "NO_REPLY": "You have no replies to this ad yet.",
             "LOCATION_ANYWHERE": "Anywhere",
-            "LOCATION_ANYWHERE_HEADING": "UmÃ­stÄ›nÃ­ inzerÃ¡tu: kdekoliv",
-            "POST_EXPIRING_SOON": "PlatÃ­ poslednÃ­ch pÃ¡r dnÃ­",
+            "LOCATION_ANYWHERE_HEADING": "Umístění inzerátu: kdekoliv",
+            "POST_EXPIRING_SOON": "Platí posledních pár dní",
             "EXPAND_MORE_INFO": "More info"
         },
         "CREATE": {
-            "CHOOSE_PLACE_FROM_MAP": "Vyberte mÃ­sto na mapÄ›"
+            "CHOOSE_PLACE_FROM_MAP": "Vyberte místo na mapě"
         }
     },
     "POSTS_INACTIVE": "Inactive posts",
@@ -872,18 +872,18 @@
         "EMAIL_NOTIFY_CONFIG_SUCCESS": "Setting email notifications was successfully saved.",
         "EMAIL_NOTIFY_CONFIG_FAILED": "Saving the settings has failed.",
         "EMAIL_SHARING_FAILED": "Err...There was an error when sending the email.",
-        "POST_REMOVE_FROM_COMMUNITY_FAILED": "PÅ™i odebÃ­rÃ¡nÃ­ inzerÃ¡tu z komunity doÅ¡lo k chybÄ›",
-        "MESSAGE_SEND_SUCCESS": "ParÃ¡da! ZprÃ¡va byla ÃºspÄ›Å¡nÄ› odeslÃ¡na.",
-        "MESSAGE_SEND_FAILED": "PÅ™i odesÃ­lÃ¡nÃ­ zprÃ¡vy doÅ¡lo k chybÄ›",
-        "CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazÃ¡na",
-        "CONVERSATION_DELETE_FAILED": "PÅ™i mazÃ¡nÃ­ konverzace doÅ¡lo k chybÄ›.",
-        "CONVERSATION_LEAVE_SUCCESS": "Konverzace byla opuÅ¡tÄ›na.",
-        "CONVERSATION_LEAVE_FAILED": "PÅ™i opouÅ¡tÄ›nÃ­ konverzace doÅ¡lo k chybÄ›.",
-        "MESSAGE_REPLY_FAILED": "PÅ™i odesÃ­lÃ¡nÃ­ zprÃ¡vy doÅ¡lo k chybÄ›.",
-        "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla ÃºspÄ›Å¡nÄ› archivovÃ¡na.",
-        "CONVERSATION_ARCHIVE_FAILED": "PÅ™i archivaci doÅ¡lo k chybÄ›.",
-        "RATING_REPLY_SUCCESS": "KomentÃ¡Å™ byl ÃºspÄ›Å¡nÄ› pÅ™idÃ¡n.",
-        "RATING_REPLY_FAILED": "PÅ™i pÅ™idÃ¡vÃ¡nÃ­ komentÃ¡Å™e k hodnocenÃ­ doÅ¡lo k chybÄ›"
+        "POST_REMOVE_FROM_COMMUNITY_FAILED": "Při odebírání inzerátu z komunity došlo k chybě",
+        "MESSAGE_SEND_SUCCESS": "Paráda! Zpráva byla úspěšně odeslána.",
+        "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
+        "CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazána",
+        "CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě.",
+        "CONVERSATION_LEAVE_SUCCESS": "Konverzace byla opuštěna.",
+        "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
+        "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
+        "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "RATING_REPLY_SUCCESS": "Komentář byl úspěšně přidán.",
+        "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě"
     },
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. You can add them though",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "But you have couple of inactive ads.",
@@ -965,16 +965,16 @@
             "TEXT": "Do you really want to leave this community?"
         },
         "PROFILE": {
-            "GIVEN_RATINGS": "OdeslanÃ¡ hodnocenÃ­",
-            "RECEIVED_RATINGS": "PÅ™ijatÃ¡ hodnocenÃ­"
+            "GIVEN_RATINGS": "Odeslaná hodnocení",
+            "RECEIVED_RATINGS": "Přijatá hodnocení"
         },
         "X_GIVES": {
             "one": "dar",
             "other": "dary"
         },
         "X_WISHES": {
-            "one": "pÅ™Ã¡nÃ­",
-            "other": "pÅ™Ã¡nÃ­"
+            "one": "přání",
+            "other": "přání"
         }
     },
     "PROFILE": {
@@ -987,7 +987,7 @@
                 "one": "User has {{count}} friend",
                 "other": "User has {{count}} friends"
             },
-            "NO_FRIENDS_ME": "You seem to be sans friends here. Follow anyone following you and voilÃ , we have a friendship right there!",
+            "NO_FRIENDS_ME": "You seem to be sans friends here. Follow anyone following you and voilà, we have a friendship right there!",
             "NO_FRIENDS_OTHER": "User doesn't have any friends here. Now what? Follow each other and you become friends. Easy peasy."
         },
         "FOLLOWEES": {
@@ -1049,16 +1049,16 @@
             "other": "dary"
         },
         "WISHES_COUNT": {
-            "one": "pÅ™Ã¡nÃ­",
-            "other": "pÅ™Ã¡nÃ­"
+            "one": "přání",
+            "other": "přání"
         },
         "REPLIES": {
-            "NO_REPLIES": "ZatÃ­m jste nikomu neodpovÄ›dÄ›li na Å¾Ã¡dnÃ© pÅ™Ã¡nÃ­ nebo nabÃ­dku a tak VÃ¡m tu nemÃ¡me co ukÃ¡zat.",
-            "GO_TO_CONVERSATION": "PÅ™ejÃ­t do konverzace"
+            "NO_REPLIES": "Zatím jste nikomu neodpověděli na žádné přání nebo nabídku a tak Vám tu nemáme co ukázat.",
+            "GO_TO_CONVERSATION": "Přejít do konverzace"
         },
         "RATING": {
-            "OPEN_REPLY_FORM": "PÅ™idat komentÃ¡Å™",
-            "REPLY_TO_USER": "Reagovat na hodnocenÃ­ od"
+            "OPEN_REPLY_FORM": "Přidat komentář",
+            "REPLY_TO_USER": "Reagovat na hodnocení od"
         }
     },
     "X_PEOPLE_INSPIRED_BY_ME": {
@@ -1169,57 +1169,57 @@
     "SEND_COMMUNITY_RATING": "Send rating",
     "TOP_BAR_MESSAGES": "Messages",
     "POST": {
-        "AUTHOR_SELECT_IS_DISABLED": "Na inzerÃ¡t jiÅ¾ nÄ›kdo odpovÄ›dÄ›l, a proto jiÅ¾ nelze zmÄ›nit autora.",
-        "TYPE_CHANGE_IS_DISABLED": "Na inzerÃ¡t jiÅ¾ nÄ›kdo odpovÄ›dÄ›l, a proto jiÅ¾ nelze zmÄ›nit typ."
+        "AUTHOR_SELECT_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit autora.",
+        "TYPE_CHANGE_IS_DISABLED": "Na inzerát již někdo odpověděl, a proto již nelze změnit typ."
     },
     "ADD_CONTENT_AS_USER": "as",
-    "REPLY": "OdpovÄ›dÄ›t",
+    "REPLY": "Odpovědět",
     "SELECT_USERS": "Select one or more recipients",
     "ATTACHE_IMAGES": "Attach images",
-    "ERR_REPORT_TEXT_MIN_LEN": "NapiÅ¡te prosÃ­m dÅ¯vod nahlÃ¡Å¡enÃ­ inzerÃ¡tu",
-    "ERR_REPORT_TEXT_MAX_LEN": "Text je pÅ™Ã­liÅ¡ dlouhÃ½.. maximum je 2500 pÃ­smen.",
-    "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo pÅ™Ã¡nÃ­ uÅ¾ jste oznaÄil(a) jako nevhodnÃ½.",
-    "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro pÅ™idÃ¡nÃ­ inzerÃ¡tu do komunity nesmÃ­te mÃ­t inzerÃ¡t jen pro pÅ™Ã¡tele.",
-    "SOCIAL_NETWORKS": "Jsme takÃ© na:",
-    "COMMUNITY_WAS_NOT_FOUND": "TakovÃ¡ komunita tu nenÃ­..",
-    "AD_REMOVE_FROM_COMMUNITY_LABEL": "Odstranit inzerÃ¡t z komunity",
+    "ERR_REPORT_TEXT_MIN_LEN": "Napište prosím důvod nahlášení inzerátu",
+    "ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen.",
+    "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
+    "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro přidání inzerátu do komunity nesmíte mít inzerát jen pro přátele.",
+    "SOCIAL_NETWORKS": "Jsme také na:",
+    "COMMUNITY_WAS_NOT_FOUND": "Taková komunita tu není..",
+    "AD_REMOVE_FROM_COMMUNITY_LABEL": "Odstranit inzerát z komunity",
     "POST_COMMUNITY_REMOVE": {
-        "HEADING": "Odstranit inzerÃ¡t z komunity",
-        "INFO": "InzerÃ¡t do VaÅ¡Ã­ komunity nepatÅ™Ã­? MÅ¯Å¾ete ho jednoduÅ¡Å¡e odstranit..",
-        "REASON_PLACEHOLDER": "NapiÅ¡te uÅ¾ivateli dÅ¯vod, proÄ je inzerÃ¡t nevhodnÃ½ ve VaÅ¡ich komunitÃ¡ch...",
-        "SELECT_COMMUNITIES": "Vyberte komunity, z kterÃ½ch se mÃ¡ inzerÃ¡t odstranit:",
-        "REASON_LABEL": "DÅ¯vod odstranÄ›nÃ­:",
-        "POST_WILL_BE_REMOVED_FROM": "<p>Inzer&aacute;t bude odstranÄ›n z komunity <strong>{{name}}<\/strong>.<\/p>",
-        "SUCCESS_MESSAGE": "InzerÃ¡t byl ÃºspÄ›Å¡nÄ› odebrÃ¡n."
+        "HEADING": "Odstranit inzerát z komunity",
+        "INFO": "Inzerát do Vaší komunity nepatří? Můžete ho jednodušše odstranit..",
+        "REASON_PLACEHOLDER": "Napište uživateli důvod, proč je inzerát nevhodný ve Vašich komunitách...",
+        "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:",
+        "REASON_LABEL": "Důvod odstranění:",
+        "POST_WILL_BE_REMOVED_FROM": "<p>Inzer&aacute;t bude odstraněn z komunity <strong>{{name}}<\/strong>.<\/p>",
+        "SUCCESS_MESSAGE": "Inzerát byl úspěšně odebrán."
     },
-    "ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Vyberte alespoÅˆ jednu komunitu, z kterÃ© se mÃ¡ inzerÃ¡t odstranit.",
+    "ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Vyberte alespoň jednu komunitu, z které se má inzerát odstranit.",
     "ERR_MESSAGE_TEXT_MIN_LEN": "Did you remember to fill out the message?",
     "LOCATION_UNLIMITED_MESSAGE": "Kdekoliv",
-    "TERMS": "PodmÃ­nky pouÅ¾itÃ­",
+    "TERMS": "Podmínky použití",
     "ADS_ALL": "All gifts and wishes",
     "USER_MESSAGES": "Messages",
     "SEND_MESSAGE": "Send message...",
-    "COMMUNITY_TERMS": "PodmÃ­nky ÄlenstvÃ­",
-    "NEW_VERSION_NOTIFICATION": "MÃ¡me pro vÃ¡s pÅ™ipravenou novÄ›jÅ¡Ã­ verzi Hearth. Chcete Hearth aktualizovat teÄ nebo to nechÃ¡te na pozdÄ›ji?",
+    "COMMUNITY_TERMS": "Podmínky členství",
+    "NEW_VERSION_NOTIFICATION": "Máme pro vás připravenou novější verzi Hearth. Chcete Hearth aktualizovat teď nebo to necháte na později?",
     "RELOAD": "Aktualizovat",
-    "ALL_COMMUNITIES": "VÅ¡echny komunity",
-    "RATINGS_COUNT": "hodnocenÃ­",
-    "MY_POST_REPLIES": "Moje odpovÄ›di",
-    "COMMUNITY_RATINGS": "hodnocenÃ­",
-    "COMMUNITY_GIVEN_RATINGS": "VÄ›novanÃ¡ hodnocenÃ­",
-    "COMMUNITY_RECEIVED_RATINGS": "PÅ™ijatÃ¡ hodnocenÃ­",
-    "REPLY_TO_POST": "na dar\/pÅ™Ã¡nÃ­:",
-    "REPORT_HARMFUL_AD": "NahlÃ¡sit administrÃ¡torÅ¯m a autorovi inzerÃ¡t jako Å¡kodlivÃ½.",
+    "ALL_COMMUNITIES": "Všechny komunity",
+    "RATINGS_COUNT": "hodnocení",
+    "MY_POST_REPLIES": "Moje odpovědi",
+    "COMMUNITY_RATINGS": "hodnocení",
+    "COMMUNITY_GIVEN_RATINGS": "Věnovaná hodnocení",
+    "COMMUNITY_RECEIVED_RATINGS": "Přijatá hodnocení",
+    "REPLY_TO_POST": "na dar\/přání:",
+    "REPORT_HARMFUL_AD": "Nahlásit administrátorům a autorovi inzerát jako škodlivý.",
     "COMMUNITY_PROFILE": {
         "TOP": {
             "KARMA_NO_RATING_ME": "With your first rating, we'll bring in more colours here.",
             "KARMA_NO_RATING_OTHER": "Rate community and it will show their pretty colours :)"
         }
     },
-    "COMMUNITY_RATING_TITLE": "HodnocenÃ­ komunity",
+    "COMMUNITY_RATING_TITLE": "Hodnocení komunity",
     "RATINGS": {
         "REPLY": {
-            "TEXT_PLACEHOLDER": "Text odpovÄ›di.."
+            "TEXT_PLACEHOLDER": "Text odpovědi.."
         }
     }
 }
