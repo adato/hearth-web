@@ -16,7 +16,7 @@
 
                 <div ng-repeat="community in myAdminCommunities" ng-if="post.admin_communities.indexOf(community._id)+1">
                     <checkbox on-update="showErrors.communities = false" model="communities[community._id]" value="true">
-                        <avatar src="community.avatar.normal" size="mini" type="community._type"></avatar>
+                        <avatar src="community.avatar.normal" class="move-bot" size="mini" type="community._type"></avatar>
                         {{community.name}}
                     </checkbox>
                 </div>

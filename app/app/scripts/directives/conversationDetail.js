@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger',
-    function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger) {
+    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate',
+    function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate) {
         return {
             restrict: 'E',
             replace: true,
@@ -217,8 +217,9 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 $scope.testScrollBottom = function() {
                     var outer = $(".nano", element);
                     var inner = $(".nano-content", outer);
-                    
-                    if(inner.scrollTop() + inner.height() >= inner.prop('scrollHeight')) {
+                    var pos = Math.ceil(inner.scrollTop() + inner.height());
+
+                    if(pos >= inner.prop('scrollHeight')) {
                         $scope.scrollBottom();
                     }
                 };
@@ -412,7 +413,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     $timeout.cancel(_loadTimeoutPromise);
                     $scope.lockCounter++;
                     // set initial state
-                    $scope.info = $scope.deserialize($scope.info);
                     _loadOlderMessagesEnd = false;
                     _scrollInited = false;
                     $scope.messages = false;
@@ -420,16 +420,32 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     $scope.showParticipants = false;
                     $timeout($scope.bindActionHandlers);
 
-
                     // load first messages and mark as readed on API based on actual state
                     $scope.loadMessages(null, $scope.afterInitLoad, $scope.info.read);
+                };
+
+                $scope.deserializeInfo = function(info) {
+                    $scope.info = $scope.deserialize($scope.info);
+                    $scope.setTitle();
+                };
+
+                $scope.setTitle = function() {
+                    
+                    var title = ($scope.info.post)
+                                ? $translate.instant($scope.info.post.type_code) + ' ' + $scope.info.titleDetail
+                                : $scope.info.titleDetail;
+                    
+                    PageTitle.setTranslate('TITLE.messages.detail', title);
                 };
 
                 // resize box when needed
                 $(window).resize($scope.resizeMessagesBox);
                 $scope.$on("conversationReplyFormResized", $scope.resizeMessagesBox);
 
+
+                $scope.$watch('updateTitle', $scope.setTitle);
                 $scope.$watch('info', $scope.init);
+                $scope.$watch('info', $scope.deserializeInfo, true);
                 $scope.$on('loadNewMessages', $scope.loadNewMessages);
                 $scope.$on('conversationMessageAdded', $scope.onMessageAdded);
                 $scope.$on('$destroy', function() {

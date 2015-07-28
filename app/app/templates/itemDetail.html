@@ -192,7 +192,13 @@
 									<span class="reply-author">{{ item.message.author.name }}</span>
 									<p ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
 								</div>
-								<div class="reply-contact fright" ng-bind-html="'YOU_CAN_CONTACT_USER' | translate: {email: item.author_email}"></div>
+								
+								<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="reply-contact fright">
+						        	<p>
+							        	{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
+							        	<i class="fa fa-comments-o"></i>
+						        	</p>
+						        </a>
 							</div>
 						</section>
 					</article>

@@ -32,6 +32,7 @@ angular.module('hearth').config([
 				controller: 'MapCtrl',
 			})
 			.state('market-refresh', {
+				title: false,
 				url: "/market",
 				controller: ['$location', function($location) {
 					$location.path('/'); // just for refresh purposes
@@ -123,7 +124,7 @@ angular.module('hearth').config([
 	            controller: 'MessagesCtrl'
 			})
 			.state('messages.detail', {
-				title: false,
+				titleIgnore: true,
 				url: '/:id',
       			template: '<div>abcd dbawdwd</div>'
 			})

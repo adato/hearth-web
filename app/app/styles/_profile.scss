@@ -100,6 +100,7 @@
 }
 
 .rating-listing {
+
     .rating-received-bar {
         min-height: 50px;
         text-align: center;
@@ -112,15 +113,19 @@
         margin-left:67px;
     }
 
-    .date { margin-top: -2 * $ui-small-grid-size; }
+    .text-container {
+        p {
+            margin-bottom: 10px;
+        }
+    }
+    
+    .reply-form-link {
+        font-size: 13px;
+        font-weight: bold;
+    }
 
     .item {
         position: relative;
-        .score-icon {
-            position: absolute;
-            right: 4px;
-            bottom: 8px;
-        }
         small {
             font-size:smaller;
         }
@@ -132,6 +137,20 @@
     .rating-item {
         margin-top: 0rem;
         margin-bottom: $ui-grid-size;
+        
+        i {
+            position: relative;
+            right: 4px;
+        }
+
+        i.icon-rating-positive:before {
+          font-weight: bold;
+        }
+
+        .text-container {
+            margin-top: 10px;
+        }
+        
         .date {
             font-size: .8rem;
         }

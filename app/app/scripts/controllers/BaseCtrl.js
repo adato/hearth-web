@@ -48,12 +48,16 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $rootScope.$on("subPageLoaded", $scope.removePageMinHeight);
 
-        $scope.setPageTitle = function() {
-            var state = $state.$current;
-
+        $scope.setPageTitle = function(state) {
+            // var state = $state.$current;
+            if(state.titleIgnore) return;
             // set new page title
-            if(state.title !== false && $rootScope.language)
+            if(state.title === false)
+                PageTitle.set(PageTitle.getDefault());
+            else if($rootScope.language) {
                 PageTitle.setTranslate('TITLE.'+(state.title || state.name));
+            }
+
         };
 
         /**
@@ -88,12 +92,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * After routing finished, set current page segment to variable - used somewhere else
          * and add class of given controller to wrapping div container
          */
-        $rootScope.$on("$stateChangeSuccess", function(next, current) {
+        $rootScope.$on("$stateChangeSuccess", function(ev, current) {
             // $scope.segment = $route.current.segment;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);
-            $scope.setPageTitle();
+            $scope.setPageTitle(current);
         });
 
 
@@ -302,7 +306,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             return {
                 size: $$config.defaultHearthImageSize,
-                original: $$config.appUrl+$$config.defaultHearthImage,
+                large: $$config.appUrl+$$config.defaultHearthImage,
             }
         };
 
@@ -587,7 +591,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                     if(angular.isFunction(cb))
                         cb(item);
 
-                    $rootScope.$broadcast('updatedItem', res);
+                    $rootScope.$broadcast('postUpdated', res);
                     Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
                     $rootScope.globalLoading = false;
 

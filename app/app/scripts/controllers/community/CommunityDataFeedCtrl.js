@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter', 'Activities',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter, Activities) {
         $scope.activityShow = false;
         $scope.loadingData = false;
         var ItemFilter = new UniqueFilter();
@@ -127,7 +127,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
-            CommunityRatings.received(obj, done, doneErr);
+            CommunityRatings.received(obj, function(res) {
+                // res.forEach(function(item, index) {
+                //     item.formOpened = false;
+                // }); 
+                done(res);
+            }, doneErr);
             $scope.$watch('rating.current_community_id', function(val) {
                 $scope.rating.post_id = 0;
                 CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res, headers) {
@@ -213,6 +218,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                         $scope.activityShow = false;
                         $scope.activityLog = [];
                         $timeout(function() {
+
+                            res.map(function(activity) {
+                                activity.text = Activities.getActivityTranslation(activity);
+                                return activity;
+                            });
+
                             // console.log("Loaded activity");
                             $scope.activityLog = res;
                             $scope.activityShow = true;
@@ -235,7 +246,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 }
             ], finishLoading);
 
-            $scope.$on('updatedItem', $scope.refreshItemInfo);
+            $scope.$on('postUpdated', $scope.refreshItemInfo);
         }
 
         function loadCommunityActivityLog(id) {

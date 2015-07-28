@@ -160,11 +160,12 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Messenger.disableLoading();
 			$location.url("/messages/" + info._id + "?" + jQuery.param($location.search()));
 			
-			title = (info.post) ? info.post.type_translate+' '+info.title : info.title || info.titlePersons;
-			PageTitle.setTranslate('TITLE.messages.detail', title);
 			
 			// enable counters loading after URL is changed
-			$timeout(Messenger.enableLoading);
+			$timeout(function() {
+				Messenger.enableLoading();
+				$scope.$broadcast('updateTitle');
+			});
 		};
 
 		$scope.deserializeConversation = function(conversation) {
@@ -208,9 +209,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 				if(conversations[i]._id === $scope.detail._id) {
 				 	angular.copy(conv, $scope.detail);;
-				} else {
-					newArray.push(conv);
 				}
+				newArray.push(conv);
 			}
 			return newArray;
 		};
@@ -228,7 +228,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		// if we have detail ID in url load it and display in detail box
 		$scope.loadConversationDetail = function(id, dontMarkAsReaded) {
-
 			// but first try to find it in list
 			if ($scope.conversations)
 				for (var i in $scope.conversations) {
@@ -358,7 +357,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.loaded = true;
 
 				var paramId = $scope.getParamId();
-
 				// load first conversation on init
 				if (paramId)
 					$scope.loadConversationDetail(paramId, true);
@@ -371,7 +369,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		var changeDetail = function(ev, state, params) {
-
+			
 			// load first conversation on init
 			if (params.id)
 				$scope.loadConversationDetail(params.id, true);

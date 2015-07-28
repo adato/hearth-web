@@ -73,6 +73,13 @@ angular.module('hearth.services').factory('Filter', [
             get: function() {
                 return $location.search();
             },
+            getParams: function() {
+                var params = this.get();
+                if($.isArray(params.keywords))
+                    params.keywords = params.keywords.join(',');
+
+                return $.param(params);
+            },
             isSet: function() {
                 return !$.isEmptyObject($location.search());
             },

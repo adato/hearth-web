@@ -415,7 +415,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.toggleLockField();
 		});
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
-		$scope.$on('updatedItem', $scope.refreshItemInfo);
+		$scope.$on('postUpdated', $scope.refreshItemInfo);
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}
 ]);

@@ -2,7 +2,7 @@
 	<ui-select multiple ng-model="list.users" class="user-count-{{userList.length}}" theme="select2" ng-disabled="ngDisabled">
 		<ui-select-match placeholder="{{ 'SELECT_USERS' | translate }}">{{$item.name}}</ui-select-match>
 		<ui-select-choices repeat="item in userList" refresh="search($select.search)" refresh-delay="0">
-			<avatar type="item._type" src="item.avatar.normal" size="mini"></avatar>
+			<avatar type="item._type" src="item.avatar.normal" class="move-bot" size="mini"></avatar>
 			<div class="name" ng-bind-html="item.name"></div>
 			<div class="clear"></div>
 		</ui-select-choices>

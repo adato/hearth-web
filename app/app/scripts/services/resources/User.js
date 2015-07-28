@@ -35,6 +35,10 @@ angular.module('hearth.services').factory('User', [
 			},
 			remove: {
 				method: 'DELETE'
+			},
+			setClosedFilter: {
+				url: $$config.apiPath + '/close_filter',
+				method: 'POST'
 			}
 		});
 	}

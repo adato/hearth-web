@@ -515,7 +515,7 @@
             "accepted_into_community": "<p>{{user}} byl přijat do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "rejected_into_community": "<p>{{user}} byl odm&iacute;tnut komunitou <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "start_following": "<p>{{user}}&nbsp;sleduje uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "start_being_followed": "<p>{{user}} začal(a) b&yacute;t sledov&aacute;n uživatelem <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "start_being_followed": "<p><a href=\"{{url}}\">{{name}}<\/a> začal(a) sledovat uživatele {{user}}.<\/p>",
             "community_new_post": "<p>Nov&yacute; inzer&aacute;t v komunitě&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "community_excluded_member": "<p>Komunita vyloučila uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_application": "<p>Uživatel&nbsp;<a href=\"{{url}}\">{{name}}<\/a>&nbsp;odeslal novou ž&aacute;dost o vstup do komunity.<\/p>",

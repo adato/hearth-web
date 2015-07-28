@@ -4,68 +4,73 @@ $medium-avatar-size: 80px;
 $large-avatar-size: 295px;
 
 .avatar {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  & > * {
     display: inline-block;
-    border-radius: 50%;
-    overflow: hidden;
-    &>* {
-        display: inline-block;
-        position: relative;
-        img {
-            border-radius: 50%;
-            width: $medium-avatar-size;
-            height: $medium-avatar-size;
-        }
-        &::before {
-            position: absolute;
-            content: '';
-            top: 0;
-            border-radius: 50%;
-            box-shadow: inset -3px 3px 6px rgba(black, 0.5);
-            width: $medium-avatar-size;
-            height: $medium-avatar-size;
-            left: 0;
-        }
+    position: relative;
+    img {
+      border-radius: 50%;
+      width: $medium-avatar-size;
+      height: $medium-avatar-size;
     }
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      border-radius: 50%;
+      box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+      width: $medium-avatar-size;
+      height: $medium-avatar-size;
+      left: 0;
+    }
+  }
 }
 
 .avatar-small {
-    &>* {
-        img {
-            width: $small-avatar-size;
-            height: $small-avatar-size;
-        }
-        &::before {
-            width: $small-avatar-size;
-            height: $small-avatar-size;
-        }
+  & > * {
+    img {
+      width: $small-avatar-size;
+      height: $small-avatar-size;
     }
+    &::before {
+      width: $small-avatar-size;
+      height: $small-avatar-size;
+    }
+  }
 }
 
 .avatar-large {
-    &>* {
-        img {
-            width: $large-avatar-size;
-            height: $large-avatar-size;
-        }
-        &::before {
-            width: $large-avatar-size;
-            height: $large-avatar-size;
-        }
+  & > * {
+    img {
+      width: $large-avatar-size;
+      height: $large-avatar-size;
     }
+    &::before {
+      width: $large-avatar-size;
+      height: $large-avatar-size;
+    }
+  }
 }
 
+.avatar-mini {
+  position: relative;
 
-.avatar-mini { 
-    position:relative;
+  &.move-bot {
     top: 6px;
-    margin-right: 10px;
-    img {
-        width:$mini-avatar-size;
-        height:$mini-avatar-size;
-    }
-    *:before {
-        width:$mini-avatar-size;
-        height:$mini-avatar-size;
-        box-shadow:none !important;
-    }
+  }
+  margin-right: 10px;
+  min-width: $mini-avatar-size;
+  min-height: $mini-avatar-size;
+
+  img {
+    width: $mini-avatar-size;
+    height: $mini-avatar-size;
+  }
+  *:before {
+    width: $mini-avatar-size;
+    height: $mini-avatar-size;
+    box-shadow: none !important;
+  }
 }
