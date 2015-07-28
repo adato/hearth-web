@@ -20,6 +20,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 			link: function(scope, el, attrs) {
 				var sendingReply = false;
 				scope.showError = false;
+				scope.getProfileLink = $rootScope.getProfileLink;
 
 				scope.closeReply = function(rating) {
 					scope.reply = '';
