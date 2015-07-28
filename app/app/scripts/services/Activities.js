@@ -15,7 +15,7 @@ angular.module('hearth.services').service('Activities', [
 			var isTargetCommunity = '';
 
 			if(info.target_object && info.target_object._type == 'Community' && info.verb !== 'accepted_into_community')
-				isTargetCommunity = '_community';
+				isTargetCommunity = '_comm';
 
 			return 'activities.'+info.narrative_mode+'.'+info.verb+isTargetCommunity;
 		};

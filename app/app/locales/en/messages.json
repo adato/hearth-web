@@ -502,7 +502,8 @@
             "suspend_post": "<p>You suspended post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "prolong_post": "<p>You resumed post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "publish_post": "<p>You have renewed <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_community": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_community": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_comm": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         },
         "third_person": {
             "new_post": "<p>User created an ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -527,7 +528,9 @@
             "suspend_post": "<p>User suspended post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "prolong_post": "<p>User resumed post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "publish_post": "<p>User has renewed ad <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_community": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_community": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_received_comm": "<p>{{user}} dostal(a) hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "You are logged in using external social network (e.g. Facebook, Twitter) so you can't change your Hearth.net password here.",
