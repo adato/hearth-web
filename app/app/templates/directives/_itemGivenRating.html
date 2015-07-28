@@ -19,7 +19,8 @@
 			</div>
 			<div class="fright">
 				<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
-			</div>			
+			</div>
+			<div class="clear"></div>	
 			<div class="text-container clear clearfix">
 				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 			</div>
