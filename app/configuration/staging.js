@@ -16,6 +16,7 @@ $$localConfig = {
 	},
 	apiPath: 'https://api.stage.hearth.net',
 	rollbar: '98de3a45eb1c44f59f35cfbfbe24bc35',
+	hotjar: '56501',
 	newRelic: {
 		 licenseKey:"ab68fb44af",
 		 applicationID:"7058262",
