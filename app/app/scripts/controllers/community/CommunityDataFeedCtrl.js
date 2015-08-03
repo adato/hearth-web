@@ -30,6 +30,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
         };
 
+        $scope.openRatingReplyForm = function(rating) {
+            if($scope.data) $scope.data.forEach(function(item) {
+                item.formOpened = false;
+            });
+
+            rating.formOpened = true;
+        };
+        
         // send rating to API
         $scope.sendRating = function(ratingOrig) {
             var rating;
