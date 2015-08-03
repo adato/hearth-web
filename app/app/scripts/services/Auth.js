@@ -141,7 +141,7 @@ angular.module('hearth.services').factory('Auth', [
 				var reloadLoc = UnauthReload.getLocation();
 				UnauthReload.clearReloadLocation();
 				
-				$rootScope.refreshToPath(reloadLoc ? $$config.basePath+(reloadLoc.slice(1)) : $$config.basePath);
+				$rootScope.refreshToPath(reloadLoc ? $$config.basePath+reloadLoc : $$config.basePath);
 			},
 			getTwitterAuthUrl: function() {
 				var fillEmailUrl = $$config.appUrl +'fill-email/%{token}';
