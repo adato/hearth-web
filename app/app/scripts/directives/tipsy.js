@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('tipsy', [
         return {
             link: function($scope, element, attrs) {
                 var el = null;
-                $timeout(function() {
+                var timeout = $timeout(function() {
                     el = $(element);
 
                     el.tipsy({gravity: 's'});
@@ -22,6 +22,7 @@ angular.module('hearth.directives').directive('tipsy', [
                 });
 
                 $scope.$on('$destroy', function() {
+                    $timeout.cancel(timeout);
                     el.unbind('mouseleave');
                 });
             }

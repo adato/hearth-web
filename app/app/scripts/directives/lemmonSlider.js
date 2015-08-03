@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('lemmonSlider',
 			template: '<div class="lemmon-slider"><div class="container"><ul ng-transclude></ul></div><div class="controll"><a class="prev-page" ng-click="prev()"><i class="fa fa-chevron-left"></i></a><a class="next-page" ng-click="next()"><i class="fa fa-chevron-right"></i></a></div></div>',
 			link: function(scope, element, attrs) {
 				var slider = null;
-            	$timeout(function() {
+            	var timeout = $timeout(function() {
 					slider = $(".container", element);
 
 					// if there are more images then we can show, init slider
@@ -45,6 +45,11 @@ angular.module('hearth.directives').directive('lemmonSlider',
                 scope.prev = function() {
                 	slider.trigger('prevPage');
                 };
+
+                scope.$on('$destroy', function () {
+                	slider = null;
+                	$timeout.cancel(timeout);
+                })
 			}
 		};
 	}]
