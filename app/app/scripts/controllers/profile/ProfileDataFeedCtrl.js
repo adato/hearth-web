@@ -50,7 +50,15 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
             loadServices[$scope.pageSegment]($scope.paginate(params), processData, processDataErr);
         };
+        
+        $scope.openRatingReplyForm = function(rating) {
+            if($scope.data) $scope.data.forEach(function(item) {
+                item.formOpened = false;
+            });
 
+            rating.formOpened = true;
+        };
+        
         function loadFriends(params, done, doneErr) {
             params.related = "user";
             $scope.addPagination(params);
