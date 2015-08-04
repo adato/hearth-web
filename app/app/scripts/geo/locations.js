@@ -274,9 +274,9 @@ angular.module('hearth.geo').directive('locations', [
                             $scope.mapPointShowName = true;
 
                             // let address to display on page and then scroll to it if it is not visible
-                            $timeout(function() {
+                            /*$timeout(function() {
                                 Viewport.scrollIfHidden(".map-point", 60, $scope.base);
-                            });
+                            });*/
                         });
                     });
                 };
@@ -290,12 +290,12 @@ angular.module('hearth.geo').directive('locations', [
                         draggableCursor: 'url(images/pin.png) 14 34, default',
                         scrollwheel: false
                     });
-
                     google.maps.event.addListener(map, 'click', function(e) {
                         map.panTo(e.latLng);
 
-                        if($scope.mapPoint)
+                        if($scope.mapPoint && marker) {
                             return marker.setPosition(e.latLng);
+                        }
 
                         marker = new google.maps.Marker({
                             map: map,
