@@ -22,10 +22,11 @@ angular.module('hearth.directives').directive('dynamicHeight',
 					$(element).height((height < scope.minHeight) ? scope.minHeight : height);
 				}
 				
-				$timeout(resizeElement);
+				var timeout = $timeout(resizeElement);
 				$(window).resize(resizeElement);
 				
 				scope.$on('$destroy', function () {
+					$timeout.cancel(timeout);
 					$(window).unbind('resize',resizeElement);
 				});
 			}

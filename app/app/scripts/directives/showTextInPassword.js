@@ -25,6 +25,10 @@ angular.module('hearth.directives').directive('showTextInPassword', [
 						el.attr('type', 'password');
 					}
 				};
+
+				$scope.$on('$destroy', function () {
+					el = null;
+				})
 			}
 		};
 	}
