@@ -16,12 +16,12 @@ angular.module('hearth.directives').directive('activityAvatar', [
 				'item': '=',
 
 			},
-			template: '<span><avatar class="left" size="small" src="src"></avatar></span>',
+			template: '<span><avatar class="left" size="small" type="avatarType" src="src"></avatar></span>',
 			link: function($scope, el, attrs) {
 				$scope.src = null;
+				$scope.avatarType = ($scope.item.target_object) ? $scope.item.target_object._type : 'User';
 
 				$scope.$watch('item', function(val) {
-					
 					if(val.target_object && val.target_object.avatar)
 						$scope.src = val.target_object.avatar.normal;
 					
