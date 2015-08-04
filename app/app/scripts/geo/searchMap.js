@@ -98,6 +98,11 @@ angular.module('hearth.geo').directive('searchMap', [
                 scope.autodetectMyLocation();
                 scope.$on('filterReseted', scope.search);
                 scope.$on('filterApplied', scope.search);
+
+                scope.$on('$destroy', function () {
+                    scope.searchBoxElement = null;
+                    scope.searchBox = null;
+                });
             }
         };
     }
