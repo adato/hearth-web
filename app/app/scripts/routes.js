@@ -12,7 +12,6 @@ angular.module('hearth').config([
 		    if(re.test(path)) {
 		        return path.replace(re, '$1$3')
 		    }
-
 		    return false;
 		});
 
@@ -25,6 +24,16 @@ angular.module('hearth').config([
 				url: '/',
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
+			})
+			.state('faq', {
+				url: '/faq',
+				templateUrl: 'templates/localizationPage.html',
+				controller: 'LocalizationPage',
+			})
+			.state('taxes', {
+				url: '/taxes',
+				templateUrl: 'templates/localizationPage.html',
+				controller: 'LocalizationPage',
 			})
 			.state('map', {
 				url: '/map',
@@ -148,7 +157,6 @@ angular.module('hearth').config([
 				templateUrl: function ($stateParams) {
 					var pages = ['activities', 'given-ratings', 'received-ratings', 'communities', 'friends', 'followers', 'following', 'posts', 'replies'];
 					var tplPath = 'templates/profile/subviews/';
-
 					if(!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';
 					return tplPath+$stateParams.page+'.html';

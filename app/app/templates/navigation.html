@@ -53,15 +53,22 @@
 					<label>{{'TOP_BAR_ABOUT' | translate}}</label>
 				</a>
 		        <ul class="dropdown" id="about-drop">
-		          <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+		          <li><a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
+		          <li><a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
 		          <li><a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
-		          <li><a ng-href="{{ basePath }}terms">{{ 'TERMS' | translate}}</a></li>
 		          <li class="divider"></li>
-		          <li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
-		          <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
-		          <li><a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span> Google Plus</a> </li>
-		          <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a></li>
-		          <li><a href="http://instagram.com/artofhearth" target="_blank"><span class="fa fa-instagram"></span> Instagram</a></li>
+		          <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+		          <li ng-if="language == 'cs'"><a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
+		          <li class="divider"></li>
+		          <li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
+		          <li class="no-hover">
+			          <ul class="social-menu">
+		          		<li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span></a></li>
+				        <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span></a></li>
+				        <li><a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span></a></li>
+				        <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span></a></li>
+				      </ul>
+		          </li>
 		        </ul>
 			</span>		     
 			<a ng-if="!loggedUser._id" href="{{:: basePath }}login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
