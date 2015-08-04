@@ -48,6 +48,7 @@ angular.module('hearth.utils').directive('whenScrolled', [
 				scope.$on('$destroy', function() {
 					el.unbind('scroll', process);
 					angular.element(window).unbind('resize', processWithResite);
+					el = null;
 				});
 			}
 		};
