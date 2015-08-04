@@ -504,7 +504,7 @@
             "suspend_post": "Pozastavili ste inzerát \n{{name}}\n.",
             "prolong_post": "<p>\nObnovili ste inzerát\n&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>\n\n",
             "publish_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_community": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_comm": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         },
         "third_person": {
             "new_post": "%{user} pridal(a) inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
@@ -529,7 +529,8 @@
             "suspend_post": "Užívateľ pozastavil inzerát \n{{name}}\n.",
             "prolong_post": "<p>Už&iacute;vateľ obnovil inzer&aacut;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "publish_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_community": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Ste prihlásený pomocou externej sociálnej služby, takže si heslo musíte zmeniť tam.",
@@ -1253,5 +1254,6 @@
         "REPLY": {
             "TEXT_PLACEHOLDER": "Text odpovědi.."
         }
-    }
+    },
+    "YOU_ARE_OFFLINE": "<p>Vypad&aacute; to, že nastal probl&eacute;m s připojen&iacute;m k internetu..<\/p>\n<p>&nbsp;<\/p>"
 }
