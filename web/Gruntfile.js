@@ -1,11 +1,22 @@
 // Generated on 2014-03-17 using generator-angular 0.7.1
 'use strict';
+var fs = require('fs');
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 module.exports = function(grunt) {
+
+	var env = grunt.option("target") || 'development';
+	var envFolder = './configuration';
+
+	// test if the environment file exists
+	if (!fs.existsSync(envFolder+'/'+env+'.js')) {
+		grunt.log.error("Unknown environment".red, env);
+		return -1;
+	}
 
 	require('load-grunt-tasks')(grunt); // Load grunt tasks automatically
 
@@ -16,13 +27,18 @@ module.exports = function(grunt) {
 		yeoman: {
 			// configurable paths
 			app: 'app',
+			envFolder: envFolder,
+			env: env,
 			dist: 'dist'
 		},
 		// // Watches files for changes and runs tasks based on the changed files
 		watch: {
 			js: {
-				files: ['<%= yeoman.app %>/css/{,*/}*.js'],
-				tasks: ['newer:jshint:all'],
+				files: [
+					'<%= yeoman.app %>/css/{,*/}*.js',
+					'<%= yeoman.envFolder %>/{,*/}*.js',
+				],
+				tasks: ['newer:jshint:all', 'copy:config'],
 				options: {
 					livereload: true
 				}
@@ -274,7 +290,11 @@ module.exports = function(grunt) {
 						'pics/{,*/}*',
 						'vendor/{,*/}*',
 					]
-				}, {
+				},{
+					cwd: '<%= yeoman.app %>/../',
+					dest: '<%= yeoman.dist %>/js/config.js',
+					src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
+				},{
 					expand: true,
 					cwd: '.tmp/img',
 					dest: '<%= yeoman.dist %>/img',
@@ -286,6 +306,11 @@ module.exports = function(grunt) {
 				cwd: '<%= yeoman.app %>/css',
 				dest: '.tmp/css/',
 				src: '{,*/}*.css'
+			},
+			config: {
+				cwd: '<%= yeoman.app %>/../',
+				dest: '.tmp/js/config.js',
+				src: ['<%= yeoman.envFolder %>/<%= yeoman.env %>.js']
 			}
 		},
 		// // Run some tasks in parallel to speed up the build process
@@ -347,6 +372,7 @@ module.exports = function(grunt) {
 		grunt.task.run([
 			'clean:server',
 			'concurrent:server',
+			'copy:config',
 			'autoprefixer',
 			'connect:livereload',
 			'watch'
