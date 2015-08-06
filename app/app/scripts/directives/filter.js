@@ -189,6 +189,9 @@ angular.module('hearth.directives').directive('filter', [
                         });
                     }
                 });
+                scope.$on('filterApplied', function() {
+                    scope.updateFilterByRoute();
+                });
 
                 scope.recountPosts = function() {
                     if(!scope.filterShown)

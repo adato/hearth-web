@@ -1,22 +1,5 @@
 .author-selector {
     margin-right:$ui-grid-size;
-    
-    /*    
-    .avatar-small { 
-        position:relative;
-        top:2 * $ui-small-grid-size;
-        margin-right:2*$ui-small-grid-size;
-        img {
-            width:6*$ui-small-grid-size;
-            height:6*$ui-small-grid-size; 
-        }
-        *:before {
-            width:6*$ui-small-grid-size;
-            height:6*$ui-small-grid-size;
-            box-shadow:none !important;
-        }
-    }
-    */
     select {
         width:60*$ui-small-grid-size;
         outline:none;

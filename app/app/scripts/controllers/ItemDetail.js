@@ -8,7 +8,6 @@
 
 angular.module('hearth.controllers').controller('ItemDetail', [
 	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
-
 	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
 		$scope.ad = false;
 		$scope.adDeleted = false;

@@ -105,6 +105,10 @@ angular.module('hearth', [
             $rootScope.appInitialized = false;
             $rootScope.config = $$config;
 
+            $http.get('https://api.dev.hearth.net/', function(err, res) {
+                console.log(err, res);
+            });
+            
             /**
              * This will cache some files at start
              */
@@ -128,6 +132,7 @@ angular.module('hearth', [
                     offEvent(); // unregister event listener
                     LanguageSwitch.init();
                     $rootScope.language = preferredLanguage;
+                    $rootScope.languageInited = true;
                     $rootScope.$broadcast("initLanguageSuccess", preferredLanguage);
                     done(null, data);
                 });

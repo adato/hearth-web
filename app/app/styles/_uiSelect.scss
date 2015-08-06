@@ -68,6 +68,11 @@
             box-shadow: unset !important;
             height: 30px;
             transition: none;
+
+            &.ng-hide {
+                display: block;
+                width: 100%;
+            }
         }
 
         .select2-search-choice {
@@ -83,6 +88,7 @@
             padding: 0 5px;
             position: relative;
             span { color:$ui-input-text-color; }
+
 
             &>span {
                 margin-right: 14px;

@@ -21,14 +21,15 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.sendingReply = false;
 				$scope.actors = [];
 				$scope.actorsCount = 0;
- 				$scope.reply = {
+				$scope.reply = {
 					text: '',
 					current_community_id: false
- 				};
+				};
 				$scope.showError = {
 					text: false
 				};
-		
+
+
 				$scope.validateReply = function(reply) {
 					var invalid = false;
 
@@ -47,7 +48,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 						return false;
 					$scope.sendingReply = true;
 
-					Conversations.reply(reply, function(res) {
+				 	Conversations.reply(reply, function(res) {
 
 						$scope.reply.text = '';
 						

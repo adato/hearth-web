@@ -58,7 +58,11 @@ body
 		background-position: center top;
 		background-repeat: no-repeat;
 		& > div.header-content {
-			@include bg ( "dots-and-lines.png", no-repeat center 43% );
+			@include bg ( "dots-and-lines-empty.png", no-repeat center 43% );
+			.intro.container {
+				background: url('../img/explore-czech.png') no-repeat center 38%;
+				background-size:360px 35px;
+			}
 		}
 	}
 
@@ -107,8 +111,9 @@ body
 
 /* english version */
 body.lang-en {
-	header > div.header-content {
-		@include bg ( "dots-and-lines-en.png", no-repeat center 43% );
+	div.header-content .intro.container {
+		background: url('../img/explore-english.png') no-repeat center 38%;
+		background-size:300px 35px;
 	}
 }
 
@@ -158,6 +163,8 @@ body.lang-en {
 	margin-right:-4px;
 	vertical-align:middle;
 	background-repeat:no-repeat;
+	vertical-align:middle;
+	margin-right:-4px;
 	&.flag-en {
 		background:url(../img/flag-english.svg);
 		background-size:32px 23px;

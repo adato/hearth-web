@@ -15,10 +15,6 @@ angular.module('hearth').config([
 		    return false;
 		});
 
-		// For any unmatched url, redirect to /state1
-		// $urlRouterProvider.otherwise("/error404");
-		//
-		// Now set up the states
 		$stateProvider
 			.state('market', {
 				url: '/',
@@ -107,6 +103,20 @@ angular.module('hearth').config([
 				templateUrl: 'templates/feedback.html',
 			    controller: 'FeedbackCtrl'
 			})
+			.state('faq', {
+				url: '/faq',
+				templateUrl: 'templates/localizationPage.html',
+				controller: ['$location', '$scope', function($location, $scope) {
+					$scope.pageName = $location.path().replace("/", "");
+				}],
+			})
+			.state('taxes', {
+				url: '/taxes',
+				templateUrl: 'templates/localizationPage.html',
+				controller: ['$location', '$scope', function($location, $scope) {
+					$scope.pageName = $location.path().replace("/", "");
+				}],
+			})
 			.state('terms', {
 				url: '/terms',
 				templateUrl: 'templates/terms.html',
@@ -194,7 +204,7 @@ angular.module('hearth').config([
 				url: '/{page}',
 				controller: 'CommunityDataFeedCtrl',
 				templateUrl: function ($stateParams) {
-					var pages = ['activity', 'members', 'received-ratings', 'given-ratings', 'applications', 'about', 'posts'];
+					var pages = ['activity', 'members', 'given-ratings', 'received-ratings', 'applications', 'about', 'posts'];
 					var tplPath = 'templates/community/subviews/';
 
 					if(!~pages.indexOf($stateParams.page))

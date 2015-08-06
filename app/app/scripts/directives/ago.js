@@ -23,7 +23,6 @@ angular.module('hearth.directives').directive('ago', [
 	    	}
 
 		    scope.$watch('ago', ago); // translate time on init
-		    scope.$on("hearthbeat", ago); // periodically refresh 
 		    eventListener = $rootScope.$on("hearthbeat", ago); // periodically refresh 
 
 			scope.$on('$destroy', function () {

@@ -23,14 +23,14 @@
     <meta property="og:image" content="{{og_image}}" />
     <meta property="og:image:width" ng-if="og_image && og_image_width" content="{{og_image_width}}" />
     <meta property="og:image:height" ng-if="og_image && og_image_height" content="{{og_image_height}}" />
-    
-   <!-- build:css({.tmp,app}) /app/styles/main.css -->
+    <!-- build:css({.tmp,app}) /app/styles/main.css -->
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
-   <!-- endbuild -->
+    <!-- endbuild -->
 
-     <!-- @if DEBUG -->
-     <link rel="stylesheet" href="/styles/palette.css">
+    <!-- @if DEBUG -->
+    <link rel="stylesheet" href="/styles/palette.css">
     <!-- @endif -->
+
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="/app/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="/app/apple-touch-icon-57x57-precomposed.png">
@@ -102,7 +102,6 @@
             $.cookie(c[0], c[1], {path: "/", expires: 20 * 365});
           }
         })($);
-        
         // fb invite jump out from FB frame
         if (top.location!= self.location) {
           top.location = self.location;
@@ -137,10 +136,7 @@
       <div class="all-visible row max-width">
         <section ng-if="initFinished" ng-include="'/app/templates/navigation.html'" id="navigation"></section>
         
-       <div ng-show="initFinished" ui-view class="main-container"></div>
-       <!-- <div app-view-segment="0"></div>
-        <ng-view style="position: relative;top:10em;"></ng-view>
-         -->
+       <div ui-view class="main-container"></div>
         <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
             {{topArrowText.top}}
             <span class="fa fa-caret-square-o-up"></span>
@@ -229,6 +225,7 @@
 
     <!-- Crazy Egg tracking script -->
     <script type="text/javascript">
+    //   $(function() { FastClick.attach(document.body);});
       setTimeout(function(){var a=document.createElement("script");
       var b=document.getElementsByTagName("script")[0];
       a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
@@ -295,7 +292,6 @@
       <script src="scripts/services/ApiHealthChecker.js"></script>
       <script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
       <script src="scripts/services/Auth.js"></script>
-      <!-- // <script src="scripts/services/CommunityService.js"></script> -->
       <script src="scripts/services/Errors.js"></script>
       <script src="scripts/services/Facebook.js"></script>
       <script src="scripts/services/UniqueFilter.js"></script>
@@ -421,9 +417,9 @@
       <script src="scripts/controllers/ItemDetail.js"></script>
       <script src="scripts/controllers/ItemDetailOld.js"></script>
       <script src="scripts/controllers/TokenLoginCtrl.js"></script>
-      <script src="scripts/controllers/LocalizationPage.js"></script>
 
       <script src="scripts/controllers/messages/MessagesCtrl.js"></script>
+      <script src="scripts/controllers/LocalizationPage.js"></script>
 
       <script src="scripts/controllers/modal/RemoveItemFromCommunity.js"></script>
       <script src="scripts/controllers/modal/NewMessage.js"></script>
@@ -436,6 +432,19 @@
       <script src="scripts/controllers/modal/ConfirmBox.js"></script>
 
       <!-- endbuild -->
+
+
+    <script>
+      $(function() { FastClick.attach(document.body);});
+    </script>
+    <!-- Crazy Egg tracking script -->
+    <script type="text/javascript">
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName("script")[0];
+      a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
+
 
     </div>
   </body>

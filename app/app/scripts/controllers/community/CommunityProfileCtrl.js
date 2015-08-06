@@ -14,9 +14,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.topLoaded = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
 		$scope.sendingApplication = false;
+		$scope.sendingRating = false;
 		$scope.activePage = false;
         $scope.showUserRatingForm = false;
-
 		$scope.rating = {
             current_community_id: null,
             score: true,
@@ -229,6 +229,102 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
         	$rootScope.editItem(null, null, preset);
         };
+
+		// scroll to user Rating form when opened
+		$scope.scrollToUserRatingForm = function() {
+			// scroll to form
+			setTimeout(function() {
+				$('html,body').animate({scrollTop: $("#received-rating-form").offset().top - 200}, 500);
+			}, 300);
+		};
+
+		// will redirect user to user ratings and open rating form
+		$scope.openUserRatingForm = function(score) {
+			var ratingUrl = '/community/'+$scope.info._id+'/received-ratings';
+			var removeListener;
+
+			$scope.ratingPosts = [];
+	        $scope.loadedRatingPosts = false;
+			// set default values
+			$scope.showError.text = false;
+			$scope.rating.current_community_id = null;
+			$scope.rating.score = score;
+			$scope.rating.text = '';
+			$scope.rating.post_id = 0;
+			// select first option in posts select - eg default value			
+			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
+
+			// show form
+			$scope.showUserRatingForm = true;
+
+			// if we are on rating URL just jump down
+			if($location.url() == ratingUrl) {
+				$scope.scrollToUserRatingForm();
+			} else {
+			// else jump to the righ address and there jump down
+				removeListener = $scope.$on('$routeChangeSuccess', function() {
+					removeListener();
+					$scope.scrollToUserRatingForm();
+				});
+				$location.url(ratingUrl);
+			}
+		};
+
+		// will close form and set to default state
+		$scope.closeUserRatingForm = function() {
+			$scope.showUserRatingForm = false;
+		};
+
+		// send rating to API
+		$scope.sendRating = function(ratingOrig) {
+			var rating;
+			var ratings = {
+				false: -1,
+				true: 1
+			};
+
+			$scope.showError.text = false;
+
+			if(!ratingOrig.text)
+				return $scope.showError.text = true;
+
+			// transform rating.score value from true/false to -1 and +1
+			rating = angular.copy(ratingOrig);
+			rating.score = ratings[rating.score];
+			rating.post_id = rating.post_id || null;
+
+			var out = {
+				current_community_id: rating.current_community_id,
+				id: $scope.info._id,
+				rating: rating
+			};
+
+			// lock - dont send twice
+			if($scope.sendingRating)
+				return false;
+			$scope.sendingRating = true;
+
+			// send rating to API
+			CommunityRatings.add(out, function(res) {
+
+				// remove lock
+				$scope.sendingRating = false;
+
+				// close form
+				$scope.closeUserRatingForm();
+
+				// broadcast new rating - this will add rating to list
+				$scope.$broadcast('communityRatingsAdded', res);
+				// Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
+
+			}, function(err) {
+				// remove lock
+				$scope.sendingRating = false;
+
+				// handle error
+				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
+			});
+		};
 
 		$scope.init = function() {
 			$scope.refreshDataFeed();

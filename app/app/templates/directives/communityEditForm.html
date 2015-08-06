@@ -126,7 +126,7 @@
       <br />
       <section class="delete">
         <p class="small-8 fleft" ng-if="community.member_count > 1">
-          {{'COMMUNITY.COMMUNITY_HAS_X_MEMBERS.'+pluralCat(community.member_count) | translate:'{count: '+community.member_count+'}' }}, {{ 'COMMUNITY_DELETE_ANYWAY' | translate }}
+          {{'COMMUNITY.COMMUNITY_HAS_X_MEMBERS.'+pluralCat(community.member_count) | translate:'{count: '+community.member_count+'}' }}, {{:: 'COMMUNITY_DELETE_ANYWAY' | translate }}
         </p>
         <p class="small-8 fleft" ng-if="community.member_count == 1">
           {{:: 'COMMUNITY_HAS_NO_OTHER_MEMBERS_BUT_DELETE' | translate }}
