@@ -1222,5 +1222,6 @@
         "REPLY": {
             "TEXT_PLACEHOLDER": "Text odpovědi.."
         }
-    }
+    },
+    "YOU_ARE_OFFLINE": "<p>Vypad&aacute; to, že nastal probl&eacute;m s připojen&iacute;m k internetu..<\/p>\n<p>&nbsp;<\/p>"
 }

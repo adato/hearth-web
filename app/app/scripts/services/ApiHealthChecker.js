@@ -66,8 +66,9 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		/**
 		 * This will schedule next health check
 		 */
-		this.processHealthCheckFailResult = function(res) {
-			self.turnOn();
+		this.processHealthCheckFailResult = function(res, err) {
+			self.turnOn(res.status);
+
 			healthCheckTimeoutPointer = setTimeout(self.sendHealthCheck, healthCheckTimeout);
 		};
 
@@ -92,13 +93,18 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		/**
 		 * Turn on health check controll
 		 */
-		this.turnOn = function() {
+		this.turnOn = function(statusCode) {
+			$rootScope.$apply(function() {
+				$rootScope.isMaintenanceMode = statusCode == 503;
+			});
+
 			// if already started, than stop
 			if (healthCheckTimeoutPointer)
 				return false;
 
 			$("#maitenancePage").fadeIn();
 			$rootScope.showNewVersionNotify = false;
+
 		};
 
 		this.turnOff = function() {
