@@ -55,8 +55,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will process health check result
 		 */
 		this.processHealthCheckResult = function(res) {
-			console.log(res);
-
 			if (res && res.ok && res.ok == true){
 				return self.turnOff();
 			}
@@ -69,7 +67,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will schedule next health check
 		 */
 		this.processHealthCheckFailResult = function(res, err) {
-			console.log(res, err);
 			self.turnOn(res.status);
 
 			healthCheckTimeoutPointer = setTimeout(self.sendHealthCheck, healthCheckTimeout);
