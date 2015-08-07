@@ -630,9 +630,9 @@ module.exports = function(grunt) {
 				src: '.tmp/concat/config.js',
 				dest: '<%= yeoman.dist %>/scripts/config.min.js'
 			},
-			googleAnalytics: {
-				src: '.tmp/scripts/googleAnalytics.js',
-				dest: '.tmp/concat/googleAnalytics.js'
+			analytics: {
+				src: '.tmp/scripts/analytics.js',
+				dest: '.tmp/concat/analytics.js'
 			},
 			newRelic: {
 				src: '.tmp/scripts/newRelic.js',
@@ -702,7 +702,7 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/rollbar.js', '.tmp/concat/newRelic.js', '.tmp/concat/googleAnalytics.js'],
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/rollbar.js', '.tmp/concat/newRelic.js', '.tmp/concat/analytics.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
@@ -840,7 +840,7 @@ module.exports = function(grunt) {
 		'autoprefixer',			// autoprefix css3 styles
 		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
 		'rename:configDist',	// move config-global to .tmp/concat folder
-		'rename:googleAnalytics',	// move googleAnalytics.js to ./tmp concat folder
+		'rename:analytics',	// move analytics.js to ./tmp concat folder
 		'rename:newRelic',		// move newrelic.js to ./tmp concat folder
 		'rename:rollbar',		// move rollbar.js to ./tmp concat folder
 		'preprocess',			

@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('infoBox', [
-	'$rootScope', 'UsersCommunitiesService',
-	function($rootScope, UsersCommunitiesService) {
+	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics',
+	function($rootScope, UsersCommunitiesService, $state, $analytics) {
 		return {
 			transclude: true,
 			replace: true,
@@ -26,11 +26,18 @@ angular.module('hearth.directives').directive('infoBox', [
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.infoboxIndex = 0 || scope.infoboxIndex;
 				scope.infoboxClass = '' || scope.infoboxClass;
+
 				/**
 				 * Show user info into the box
 				 */
 				function fillUserInfo(info) {
 					scope.info = info;
+
+				 	$analytics.eventTrack('InfoBox shown', {
+			      		Id: info._id,
+			      		name: info.name,
+			      		context: $state.current.name
+				    });
 				};
 
 				/**

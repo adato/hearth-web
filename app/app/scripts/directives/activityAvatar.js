@@ -19,10 +19,10 @@ angular.module('hearth.directives').directive('activityAvatar', [
 			template: '<span><avatar class="left" size="small" type="avatarType" src="src"></avatar></span>',
 			link: function($scope, el, attrs) {
 				$scope.src = null;
-				$scope.avatarType = ($scope.item.target_object) ? $scope.item.target_object._type : 'User';
+				$scope.avatarType = ($scope.item.target_object && $scope.item.verb == "new_rating") ? $scope.item.target_object._type : 'User';
 
 				$scope.$watch('item', function(val) {
-					if(val.target_object && val.target_object.avatar)
+					if(val.target_object && val.target_object.avatar  && val.verb == "new_rating")
 						$scope.src = val.target_object.avatar.normal;
 					
 					else if(val.object.avatar)
