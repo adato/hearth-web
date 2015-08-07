@@ -26,7 +26,7 @@ angular.module('hearth.directives').directive('filter', [
                         days: null
                     };
 
-                $timeout(function () {
+                var timeout = $timeout(function () {
                     $(".tags input", element).keypress(function(e) {
                         if($(e.target).val() != '') {
                             if (e.keyCode == 9) {
@@ -221,6 +221,13 @@ angular.module('hearth.directives').directive('filter', [
                 // scope.$watch('filterSave', scope.toggleSaveFilter);
                 scope.$on('initFinished', scope.init);
                 $rootScope.initFinished && scope.init();
+
+                scope.$on('$destroy', function () {
+                    scope.searchBoxElement = null;
+                    scope.searchBox = null;
+                    $timeout.cancel(timeout);
+                    $(".tags input", element).unbind('keypress');
+                })
             }
         };
     }

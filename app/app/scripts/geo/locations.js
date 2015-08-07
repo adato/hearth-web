@@ -293,7 +293,7 @@ angular.module('hearth.geo').directive('locations', [
                     google.maps.event.addListener(map, 'click', function(e) {
                         map.panTo(e.latLng);
 
-                        if($scope.mapPoint && marker) {
+                        if(marker) {
                             return marker.setPosition(e.latLng);
                         }
 
