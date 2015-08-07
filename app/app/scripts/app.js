@@ -3,7 +3,7 @@
 angular.module('hearth', [
     'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider', 'angularFileUpload',
     'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
-    'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'angulartics', 'angulartics.google.analytics',
+    'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
     'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer'])
     .config(['$sceProvider', '$locationProvider',
         function($sceProvider, $locationProvider) {
@@ -166,6 +166,14 @@ angular.module('hearth', [
                         UnauthReload.checkLocation();
                     } else {
                         $.cookie('forceRefresh', Date.now(), { expires: 30 * 12 * 20, path: '/' });
+                    }
+
+                    if($rootScope.loggedUser && $rootScope.loggedUser._id) {
+                        mixpanel.identify($rootScope.loggedUser._id);
+                        mixpanel.people.set({
+                            "$name": $rootScope.loggedUser.name,
+                            "$email": $rootScope.loggedUser.email
+                        });
                     }
 
                     $rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
