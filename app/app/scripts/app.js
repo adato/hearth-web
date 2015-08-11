@@ -42,6 +42,7 @@ angular.module('hearth', [
             tmhDynamicLocaleProvider.localeLocationPattern('//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_{{locale}}.js');
             // configure translate provider - where language constants are
             $translateProvider.preferredLanguage(preferredLanguage);
+            $translateProvider.useSanitizeValueStrategy(null);
 
             //  ====================== REVIEW ================
             // $translateProvider.useStorage('SessionLanguageStorage');
