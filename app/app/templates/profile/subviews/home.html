@@ -20,7 +20,7 @@
             <p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
             <p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}} <a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a></p>
             <div class="buttons" ng-if="receivedRatings.length">
-                <a href="{{:: getProfileLink('User', info._id)}}/received-ratings">
+                <a href="{{ getProfileLink('User', info._id)}}/received-ratings">
                     <button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'OLDER_RATINGS' | translate }}</button>
                 </a>
             </div>
