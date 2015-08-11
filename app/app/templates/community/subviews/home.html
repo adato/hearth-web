@@ -45,13 +45,13 @@
             <h3>{{:: 'COMMUNITY_RATING_TITLE' | translate}}</h3>
 
             <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
-                <avatar class="left" href="getProfileLink(item.entity_from._type, item.entity_from._id)" src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
+                <avatar class="left" href="getProfileLink(item.user_from_type, item.user_from)" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
                 <small class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
                 <div class="rating-text">
                     {{:: item.text}}
                     <br>
                     <small class="rating-from">
-                        {{:: 'SAYING' | translate }} <a href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id)}} ">{{:: item.entity_from.name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id)}}" title="{{ item.post_title }}">{{:: item.post_title | ellipsis:20}}</a></span>.
+                        {{:: 'SAYING' | translate }} <a href="{{:: getProfileLink(item.user_from_type, item.user_from)}} ">{{:: item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id)}}" title="{{ item.post_title }}">{{:: item.post_title | ellipsis:20}}</a></span>.
                     </small>
                 </div>
             </div>

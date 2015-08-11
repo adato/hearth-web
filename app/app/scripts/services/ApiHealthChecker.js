@@ -16,7 +16,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		var version = null;
 		var checkVersionInterval = null;
 		$rootScope.showNewVersionNotify = false;
-		var _check_interval = 60000;
+		const _check_interval = 60000;
 
 		/**
 		 * Close notification about new version
