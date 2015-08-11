@@ -25,7 +25,7 @@
             "BY_KEYWORDS": "Podle klíčových slov",
             "SAVE_FILTER": "Zapamatovat filtr",
             "COMMUNITIES": "Komunity",
-            "TITLE_ENABLED": "Filter je aktivní",
+            "TITLE_ENABLED": "Filtr je aktivní",
             "CANCEL_FILTER_BAR": "zrušit filtr",
             "KM": "Km",
             "CLOSE_FILTER": "Zavřít filtr"
@@ -197,25 +197,25 @@
         "0": "Zprávy",
         "REPLY": {
             "TEXT_LABEL": "Odpovědět:",
-            "TEXT_PLACEHOLDER": "Text zprávy..."
+            "TEXT_PLACEHOLDER": "Nezapomenutelný text Vaší zprávy..."
         },
         "ADD_NEW_MESSAGE": "Nová zpráva",
         "ADD": {
             "HEADING": "Nová zpráva",
             "RECIPIENTS_LABEL": "Příjemce",
-            "SUBJECT_LABEL": "Téma konverzace",
-            "TEXT_LABEL": "Text zprávy",
-            "TEXT_PLACEHOLDER": "Napište text zprávy, kterou chcete odeslat vybraným příjemcům...",
-            "SUBJECT_PLACEHOLDER": "Vyplňte téma konverzace",
+            "SUBJECT_LABEL": "Předmět:",
+            "TEXT_LABEL": "Zpráva:",
+            "TEXT_PLACEHOLDER": "Napište text zprávy, kterou chcete odeslat šťastným příjemcům...",
+            "SUBJECT_PLACEHOLDER": "Vyplňte předmět konverzace",
             "SEND_MESSAGE": "Odeslat zprávu",
             "ERR": {
-                "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy."
+                "RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy. Jako na poště."
             },
             "RECIPIENT": "Příjemce:"
         },
         "LIST": {
             "CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",
-            "NO_RESULT": "V seznamu nejsou žádné konverzace.",
+            "NO_RESULT": "V seznamu nejsou žádné konverzace. Fakt ne.",
             "PARTICIPANTS_AND_MORE": "a další"
         },
         "CONVERSATION_SEARCH_PLACEHOLDER": "Zadejte text pro vyhledávání...",
@@ -230,10 +230,10 @@
         "LEAVE_CONVERSATION": "Opustit konverzaci",
         "DELETE_CONFIRM": {
             "LABEL": "Chcete konverzaci smazat?",
-            "TEXT": "Pokud tuto konverzaci smažete, už se k ní nebudete mít možnost vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
+            "TEXT": "Smažete-li tuto konverzaci, už se k ní nebudete moct vrátit. Ostatní příjemci ji i nadále budou mít přístupnou."
         },
         "LEAVE_CONFIRM": {
-            "TEXT": "Pokud konverzaci opustíte, ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Konverzaci vám uložíme do Archivu, kde se k její historii budete moct vrátit.",
+            "TEXT": "Když opustíte konverzaci, ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Bez obav! Konverzaci vám uložíme do Archivu, kde se k její historii budete moct kdykoliv vrátit.",
             "LABEL": "Chcete konverzaci opustit?"
         },
         "SYSTEM_MESSAGE": {
@@ -257,7 +257,7 @@
             },
             "EXPAND_ACTIONS": "Menu konverzace",
             "REPLY_TO_POST": "Odpověď na",
-            "EMPTY_HEADER": "Nejsou zde žádné konverzace",
+            "EMPTY_HEADER": "Nejsou zde žádné konverzace. Slyšíte to... ticho?",
             "EMPTY_TEXT": "...",
             "CONVERSATION_IS_EMPTY": "všichni uživatelé opustili konverzaci"
         },
@@ -266,8 +266,8 @@
             "LABEL": "Chcete konverzaci archivovat?",
             "TEXT": "Pokud konverzaci archivujete, kdykoli se k ní můžete v Archivu vrátit. A neunikne vám v ní ani nová zpráva, upozorníme vás na ni..."
         },
-        "NO_MESSAGE_YET": "Ještě jsi nikomu nic nenapsal člověče a nikdo ani neposla žádnou zprávu tobě. Můžeš to hned změnit:",
-        "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze ty uživatele, se kterými již máte nějakou vazbu. Pokud chcete napsat jinému uživateli, udělejte to z jeho profilu.",
+        "NO_MESSAGE_YET": "No teda! Žádná zpráva od Vás ani pro Vás. Jde to hned změnit:",
+        "NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze uživatele, se kterými již máte nějakou vazbu. Chcete-li napsat jinému uživateli, udělejte to z jeho profilu.",
         "YOU": "Vy",
         "REPLY_AS_COMMUNITY": "Odpovědět jako:",
         "REPLY_AS_USER": "jako",
@@ -275,7 +275,7 @@
             "left": "<p>Opustili jste konverzaci.<\/p>"
         },
         "NEW_MESSAGE": "Poslat zprávu",
-        "NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána."
+        "NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink."
     },
     "MESSAGES_ARCHIVE": "Archív zpráv",
     "MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -885,15 +885,15 @@
         "EMAIL_NOTIFY_CONFIG_FAILED": "Při ukládání nastavení došlo k chybě.",
         "EMAIL_SHARING_FAILED": "Při odesílání emailu došlo k chybě...",
         "POST_REMOVE_FROM_COMMUNITY_FAILED": "Při odebírání inzerátu z komunity došlo k chybě",
-        "MESSAGE_SEND_SUCCESS": "Paráda! Zpráva byla úspěšně odeslána.",
-        "MESSAGE_SEND_FAILED": "Při odesílání zprávy došlo k chybě",
+        "MESSAGE_SEND_SUCCESS": "Zing! Zpráva byla úspěšně odeslána.",
+        "MESSAGE_SEND_FAILED": "O-o-p-s. Při odesílání zprávy došlo k chybě",
         "CONVERSATION_DELETE_SUCCESS": "Konverzace byla smazána",
-        "CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě.",
-        "CONVERSATION_LEAVE_SUCCESS": "Konverzace byla opuštěna.",
+        "CONVERSATION_DELETE_FAILED": "Při mazání konverzace došlo k chybě. No teda...",
+        "CONVERSATION_LEAVE_SUCCESS": "Opustili jste konverzaci. Solitéři!",
         "CONVERSATION_LEAVE_FAILED": "Při opouštění konverzace došlo k chybě.",
-        "MESSAGE_REPLY_FAILED": "Při odesílání zprávy došlo k chybě.",
+        "MESSAGE_REPLY_FAILED": "Jaj. Při odesílání zprávy došlo k chybě.",
         "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
-        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě.",
+        "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě. Ta archivace!",
         "RATING_REPLY_SUCCESS": "Komentář byl úspěšně přidán.",
         "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě"
     },
@@ -1156,7 +1156,7 @@
         "ALERT_EXPIRED_POSTS": "Zasílat e-mailem upozornění na inzeráty, kterým skončila doba platnosti.",
         "ALERT_TIME_UNLIMITED_POSTS": "Zasílat e-mailem upozornění na inzeráty, které nemají nastavenou dobu platnosti.",
         "ALERT_NEW_MESSAGES_IN_CONVERSATION": "Zasílat e-mailem upozornění na jednotlivé přijaté zprávy v konverzaci.",
-        "ALERT_NEW_CONVERSATION": "Zasílat e-mailem upozornění na nově zahájené konverzace.",
+        "ALERT_NEW_CONVERSATION": "Zaslat upozornění e-mailem na nově zahájené konverzace.",
         "MESSAGES_ALLOW_ONLY_POST_REPLIES": "Nechci přijímat nové zprávy, které se netýkají mých darů a přání."
     },
     "FACEBOOK_INVITATION_MESSAGE": "Jsem na Hearth.net - štědré sociální síti pro sdílení darů a zkušeností. Pojď to taky zkusit!",
@@ -1226,7 +1226,7 @@
         "SUCCESS_MESSAGE": "Inzerát byl úspěšně odebrán."
     },
     "ERR_CHOOSE_AT_LEAST_ONE_COMMUNITY": "Vyberte alespoň jednu komunitu, z které se má inzerát odstranit.",
-    "ERR_MESSAGE_TEXT_MIN_LEN": "Nezapomněli jste vyplnit text zprávy?",
+    "ERR_MESSAGE_TEXT_MIN_LEN": "Nezapomněli jste vyplnit text zprávy? To je většinou potřeba.",
     "LOCATION_UNLIMITED_MESSAGE": "Kdekoliv",
     "TERMS": "Podmínky použití",
     "ADS_ALL": "Všechny dary a přání",
