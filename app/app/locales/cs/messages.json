@@ -493,6 +493,7 @@
             "new_post": "Přidal(a) jste inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
             "new_rating": "Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}<\/a>.",
             "new_rating_received": "Dostal(a) jste hodnocení od <a href=\"{{url}}\">{{name}}<\/a>.",
+            "new_rating_received_comm": "Dostal(a) jste hodnocení od komunity <a href=\"{{url}}\">{{name}}<\/a>.",
             "new_reply": "Odpověděl(a) jste na inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
             "wants_into_community": "Přihlásil(a) jste se do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
             "accepted_into_community": "Přijali vás do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
