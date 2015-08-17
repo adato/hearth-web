@@ -57,7 +57,7 @@
     </div>
 
     <div class="right-pane">
-        <div class="user-about" ng-if="(! mine && (info.about || info.work || info.interests || info.webs.length || info.locations.length || info.user_languages.length)) || mine">
+        <div class="user-about">
             <h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{ info.name }}</h3>
             <h3 ng-if="mine">{{:: 'YOUR_PROFILE' | translate }}</h3>
             <div class="line">
@@ -92,7 +92,7 @@
                     <i class="fa fa-asterisk"></i>
                     <span ng-if="!mine">{{:: 'USER_HAS_REGISTERED' | translate }}</span>
                     <span ng-if="mine">{{:: 'YOU_HAVE_REGISTERED' | translate }}</span>
-                     {{:: info.created_at | ago}}
+                     {{ info.created_at | ago}}
                 </div>
             </div>
             <div class="clear"></div>
