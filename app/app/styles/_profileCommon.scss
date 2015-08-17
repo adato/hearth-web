@@ -275,9 +275,13 @@
   }
 
   .home-ratings .rating-reply {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-left: 95px;
     .date {
       float: none !important;
+    }
+    .avatar {
+      margin-right: 10px;
     }
   }
 
@@ -449,15 +453,19 @@
           font-size: 0.85rem;
           line-height: 125%;
         }
-        .rating-text {
-          font-size: 1.2rem;
-          line-height: 125%;
+        .rating-info {
+          .score {
+            margin-bottom: 5px;
+          }
+          .rating-text {
+            font-size: 1rem;
+            line-height: 100%;
+          }
           margin: {
-            top: 10px;
+            top: 5px;
             bottom: 10px;
             left: 100px;
           }
-        ;
           .rating-from {
             display: inline-block;
             margin-top: 10px;

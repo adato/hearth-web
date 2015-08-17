@@ -4,34 +4,8 @@
             <h3 class="mine">{{:: 'YOUR_RATING' | translate}}</h3>
             <h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
 
-            <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
-                
-                <div info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }">
-                    <avatar class="left" href="getProfileLink(item.entity_from._type, item.entity_from._id)" src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
-                </div>
-                <small class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
-                <div class="rating-text">
-                    {{:: item.text}}
-                    <br>
-                    <small class="rating-from">
-                        {{:: 'SAYING' | translate }} <a href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id)}} ">{{:: item.entity_from.name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id)}}" title="{{ item.post_title }}">{{:: item.post_title | ellipsis:20}}</a></span>.
-                    </small>
-                </div>
-                <div class="clear"></div>
-                <div class="rating-reply" ng-if="item.comment">
-                    <a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
-                        <avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="mini"></avatar>
-                    </a>
-                    <div class="inline-block">
-                        <div class="reply-top">
-                            {{:: item.entity_to.name | ellipsis:40}}<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
-                        </div>
-                        
-                        <i>„{{ item.comment.text }}”</i>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
+            <div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
+
             <p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
             <p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}} <a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a></p>
             <div class="buttons" ng-if="receivedRatings.length">

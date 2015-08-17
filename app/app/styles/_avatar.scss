@@ -29,6 +29,8 @@ $large-avatar-size: 295px;
 }
 
 .avatar-small {
+  width: $small-avatar-size;
+  height: $small-avatar-size;
   & > * {
     img {
       width: $small-avatar-size;
