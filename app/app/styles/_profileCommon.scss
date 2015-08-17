@@ -258,6 +258,29 @@
     color: color(5);
   }
 
+  .rating-reply, .ratingReply {
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+  }
+    
+  .rating-reply {
+    .reply-top {
+      margin-bottom: 5px;
+
+      small {
+        color: #999999;
+      }
+    }
+  }
+
+  .home-ratings .rating-reply {
+    margin-top: 20px;
+    .date {
+      float: none !important;
+    }
+  }
+
   .ratings-received {
     .revert-changes {
       position: relative;
@@ -283,28 +306,7 @@
         top: -20px;
       }
     }
-    .reply, .ratingReply {
-      margin-top: 10px;
-      align-items: center;
-      display: flex;
-    }
 
-    .home-reply {
-      small.date {
-        float: left;
-
-      }
-    }
-      
-    .reply {
-      .reply-top {
-        margin-bottom: 5px;
-
-        small {
-          color: #999999;
-        }
-      }
-    }
     
     .ratingReply {
       .formStyle {

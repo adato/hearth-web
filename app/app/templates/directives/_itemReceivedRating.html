@@ -29,7 +29,7 @@
 				<a class="right reply-form-link" ng-if="!item.comment && mine" href="#" ng-click="openRatingReplyForm(item)">{{:: 'PROFILE.RATING.OPEN_REPLY_FORM' | translate }}</a>
 				<div class="clear"></div>
 			</div>
-			<div class="reply" ng-if="item.comment">
+			<div class="rating-reply" ng-if="item.comment">
 				<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
 					<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="mini"></avatar>
 				</a>

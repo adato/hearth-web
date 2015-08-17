@@ -1,6 +1,6 @@
 <div class="profile-listings" ng-show="subPageLoaded">
     <div class="left-pane">
-        <div class="ratings" ng-if="receivedRatings.length">
+        <div class="ratings home-ratings" ng-if="receivedRatings.length">
             <h3 class="mine">{{:: 'YOUR_RATING' | translate}}</h3>
             <h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
 
@@ -18,7 +18,7 @@
                     </small>
                 </div>
                 <div class="clear"></div>
-                <div class="reply home-reply" ng-if="item.comment">
+                <div class="rating-reply" ng-if="item.comment">
                     <a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
                         <avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="mini"></avatar>
                     </a>
