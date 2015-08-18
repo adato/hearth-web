@@ -610,6 +610,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+        $rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {
+            $timeout(function() {
+                if($location.search().reply) {
+                    var id = $location.search().reply;
+                    for(var i in data) {
+                        if(data[i]._id == id) {
+                            
+                            scope.openRatingReplyForm(data[i]);
+                            $timeout(function() {
+                                $rootScope.scrollToElement("#rating_"+id);
+                                $("#rating_"+id).find('textarea').focus();
+
+                            });
+                            return;
+                        }
+                    }
+                }
+            });
+        };
+
         // this will scroll to given element in given container (if not setted take body as default)
         $rootScope.scrollToElement = function(el, cont, off) {
             var offset = off || 200;

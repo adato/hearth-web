@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities',
-    function($scope, $timeout, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities) {
+    '$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities',
+    function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities) {
         var loadServices = {
                 'home': loadUserHome,
                 'posts': loadUserPosts,
@@ -78,7 +78,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
             params.offset = $scope.data.length;
             params.limit = 10;
-            UserRatings.received(params, done, doneErr);
+            UserRatings.received(params, function(err, res) {
+                done(err, res);
+                $rootScope.receivedRepliesAfterLoadHandler($scope.data, $scope);
+            }, doneErr);
             
             $scope.$watch('rating.current_community_id', function(val) {
                 if(!$rootScope.isMine(params.user_id)) {

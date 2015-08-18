@@ -39,4 +39,8 @@
         </div>
         <div class="clear"></div>
     </div>
+    <div ng-if="!item.comment && mine">
+    	<a class="right reply-form-link" href="{{ getProfileLink( info._type, info._id)}}/received-ratings?reply={{item._id}}">{{:: 'PROFILE.RATING.OPEN_REPLY_FORM' | translate }}</a>
+    	<div class="clear"></div>
+    </div>
 </div>
