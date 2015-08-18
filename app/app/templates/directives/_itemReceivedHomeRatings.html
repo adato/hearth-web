@@ -1,0 +1,42 @@
+<div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
+    
+    <div info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }">
+        <avatar class="left" href="getProfileLink(item.entity_from._type, item.entity_from._id)" src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
+    </div>
+    <div>
+	    <div class="rating-info">
+			<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
+			<!--     <small class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
+	 -->
+			<div class="clear-right"></div>
+			<div>
+			    <div class="score">
+					<b ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
+					<b ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
+
+					<small ng-if="item.post_id">
+						&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a>.
+					</small>
+				</div>
+		        <div class="rating-text">{{:: item.text}}</div>
+		        <!-- <small class="rating-from">
+		            {{:: 'SAYING' | translate }} <a href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id)}} ">{{:: item.entity_from.name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id)}}" title="{{ item.post_title }}">{{:: item.post_title | ellipsis:20}}</a></span>.
+		        </small> -->
+	    	</div>
+	    </div>
+    </div>
+    <div class="clear"></div>
+    <div class="rating-reply" ng-if="item.comment">
+        <a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
+            <avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="small"></avatar>
+        </a>
+        <div class="inline-block">
+            <div class="reply-top">
+                <a href="getProfileLink(item.entity_to._type, item.entity_to._id)">{{:: item.entity_to.name | ellipsis:40}}</a><small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
+            </div>
+            
+            <i>„{{ item.comment.text }}”</i>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

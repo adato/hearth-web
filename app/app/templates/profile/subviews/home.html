@@ -1,22 +1,11 @@
 <div class="profile-listings" ng-show="subPageLoaded">
     <div class="left-pane">
-        <div class="ratings" ng-if="receivedRatings.length">
+        <div class="ratings home-ratings" ng-if="receivedRatings.length">
             <h3 class="mine">{{:: 'YOUR_RATING' | translate}}</h3>
             <h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
 
-            <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
-                <div info-box="{ '_id': item.user_from, '_type': item.user_from_type }">
-                    <avatar class="left" href="getProfileLink(item.user_from_type, item.user_from)" src="item.user_from_avatar.normal" type="item.user_from_type"></avatar>
-                </div>
-                <small class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{item.created_at | ago}}</small>
-                <div class="rating-text">
-                    {{:: item.text}}
-                    <br>
-                    <small class="rating-from">
-                        {{:: 'SAYING' | translate }} <a href="{{:: getProfileLink(item.user_from_type, item.user_from)}} ">{{:: item.user_from_full_name | ellipsis}}</a><span ng-if="item.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id)}}" title="{{ item.post_title }}">{{:: item.post_title | ellipsis:20}}</a></span>.
-                    </small>
-                </div>
-            </div>
+            <div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
+
             <p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
             <p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}} <a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a></p>
             <div class="buttons" ng-if="receivedRatings.length">
