@@ -12,7 +12,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         $scope.activityShow = false;
         $scope.loadingData = false;
         var ItemFilter = new UniqueFilter();
-
+        var selectedAuthor = false;
         var inited = false;
         var loadServices = {
             'home': loadCommunityHome,
@@ -139,8 +139,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 done(res);
                 $rootScope.receivedRepliesAfterLoadHandler($scope.data, $scope);
             }, doneErr);
-            
+
             $scope.$watch('rating.current_community_id', function(val) {
+                if(val === selectedAuthor) return;
+                selectedAuthor = val;
+
                 $scope.rating.post_id = 0;
                 CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res, headers) {
                     var posts = [];

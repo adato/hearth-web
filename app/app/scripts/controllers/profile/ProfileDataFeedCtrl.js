@@ -24,11 +24,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             params = {
                 user_id: $stateParams.id,
             };
-
         $scope.postTypes = $$config.postTypes;
         $scope.data = [];
         $scope.loadingData = false;
         var ItemFilter = new UniqueFilter();
+        var selectedAuthor = false;
         var inited = false;
         $scope.subPageLoaded = false;
         
@@ -84,6 +84,9 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             }, doneErr);
             
             $scope.$watch('rating.current_community_id', function(val) {
+                if(val === selectedAuthor) return;
+                selectedAuthor = val;
+
                 if(!$rootScope.isMine(params.user_id)) {
                     $scope.rating.post_id = 0;
                     UserRatings.possiblePosts({userId: params.user_id, current_community_id: val}, function(res) {
