@@ -10,6 +10,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
 
 	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
+		$scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -58,7 +59,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			if (posts.length > index) {
 				var post = posts[index];
 				
-				console.time("Single post ("+(index)+") built");
+				$scope.debug && console.time("Single post ("+(index)+") built");
 				$scope.items.push(post);
 
 				return templateFunction(getPostScope(post), function(clone){
@@ -67,12 +68,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					return $timeout(function() {
 						$('#post_'+post._id).slideDown();
 						
-						console.timeEnd("Single post ("+(index)+") built");
+						$scope.debug && console.timeEnd("Single post ("+(index)+") built");
 						addItemsToList(container, data, index + 1, done);
 					});
 				});
 			}
-			console.timeEnd("Posts pushed to array and built");
+			$scope.debug && console.timeEnd("Posts pushed to array and built");
 			done(data);
 		};
 
@@ -84,10 +85,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				value: data.total
 			});
 
-			console.time("Posts displayed with some effect");
+			$scope.debug && console.time("Posts displayed with some effect");
 
-			console.timeEnd("Posts displayed with some effect");
-			console.timeEnd("Market posts loaded and displayed");
+			$scope.debug && console.timeEnd("Posts displayed with some effect");
+			$scope.debug && console.timeEnd("Market posts loaded and displayed");
 			// finish loading and allow to show loading again
 			
 			$timeout(function() {
@@ -138,8 +139,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				params.keywords = params.keywords.join(",");
 			}
 
-			console.time("Market posts loaded and displayed");
-			console.time("Market posts loaded from API");
+			$scope.debug && console.time("Market posts loaded and displayed");
+			$scope.debug && console.time("Market posts loaded from API");
 			// load based on given params
 			Post.query(params, function(data) {
 				$scope.loaded = true;
@@ -150,14 +151,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					return;
 				}
 
-				console.timeEnd("Market posts loaded from API");
+				$scope.debug && console.timeEnd("Market posts loaded from API");
 				if(data.data) {
 
 					data.data = insertLastPostIfMissing(data.data);
 					data.data = ItemFilter.filter(data.data);
 
 				}
-				console.time("Posts pushed to array and built");
+				$scope.debug && console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
 				addItemsToList($('#market-item-list'), data, 0, finishLoading);
 				
