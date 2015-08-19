@@ -62,9 +62,16 @@
       <div class="ngdialog-overlay"></div>
       <div class="ngdialog-content" ng-cloak>
           <h2 ng-if="isMaintenanceMode" translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
-          <h2 ng-if="!isMaintenanceMode" translate-cloak ng-bind-html="'YOU_ARE_OFFLINE' | translate"></h2>
+          <h2 ng-if="isOfflineModel" translate-cloak ng-bind-html="'YOU_ARE_OFFLINE' | translate"></h2>
       </div>
     </div>
+    <div class="ngdialog ngdialog-theme-default" id="offlineNotify">
+      <div class="ngdialog-overlay"></div>
+      <div class="ngdialog-content" ng-cloak>
+          <h2 ng-if="isOfflineModel" translate-cloak ng-bind-html="'YOU_ARE_OFFLINE' | translate"></h2>
+      </div>
+    </div>
+
     <div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
       <div> 
         <p>

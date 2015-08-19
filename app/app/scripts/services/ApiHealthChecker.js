@@ -95,14 +95,25 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 */
 		this.turnOn = function(statusCode) {
 			$rootScope.$apply(function() {
-				$rootScope.isMaintenanceMode = statusCode == 503;
+				if(statusCode == 503) {
+					$("#maitenancePage").fadeIn();
+					$("#offlineNotify").hide();
+					$rootScope.isMaintenanceMode = true;
+					$rootScope.isOfflineModel = false;
+				} else if (statusCode == 0) {
+					
+					$("#offlineNotify").fadeIn();
+					$("#maitenancePage").hide();
+					$rootScope.isMaintenanceMode = false;
+					$rootScope.isOfflineModel = true;
+				}
 			});
 
 			// if already started, than stop
 			if (healthCheckTimeoutPointer)
 				return false;
 
-			$("#maitenancePage").fadeIn();
+			// $("#maitenancePage").fadeIn();
 			$rootScope.showNewVersionNotify = false;
 
 		};
