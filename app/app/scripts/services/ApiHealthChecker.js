@@ -90,6 +90,21 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 			self.sendHealthCheck();
 		};
 
+		this.setOfflineMode = function() {
+			$("#offlineNotify").show();
+			$("#maitenancePage").hide();
+			$rootScope.isMaintenanceMode = false;
+			$rootScope.isOfflineMode = true;
+
+			$('a').on('click.myDisable', function(e) { e.preventDefault(); return false;});
+		};
+
+		this.unsetOfflineMode = function() {
+			$('a').off('click.myDisable');
+		};
+
+		$timeout(self.setOfflineMode, 2000);
+		$timeout(self.unsetOfflineMode, 10000);
 		/**
 		 * Turn on health check controll
 		 */
@@ -99,13 +114,10 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 					$("#maitenancePage").fadeIn();
 					$("#offlineNotify").hide();
 					$rootScope.isMaintenanceMode = true;
-					$rootScope.isOfflineModel = false;
+					$rootScope.isOfflineMode = false;
 				} else if (statusCode == 0) {
 					
-					$("#offlineNotify").fadeIn();
-					$("#maitenancePage").hide();
-					$rootScope.isMaintenanceMode = false;
-					$rootScope.isOfflineModel = true;
+					self.setOfflineMode();
 				}
 			});
 
@@ -121,6 +133,10 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		this.turnOff = function() {
 			healthCheckRunning = false;
 			healthCheckTimeoutPointer = null;
+
+			$("#offlineNotify").hide();
+			$rootScope.isOfflineMode = false;
+			$rootScope.isMaintenanceMode = false;
 
 			if (!$("#maitenancePage").is(":visible"))
 				return false;

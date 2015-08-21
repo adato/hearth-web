@@ -84,3 +84,35 @@
         /* color: #a7bd1d; */
     }
 }
+
+
+.offline-dialog {
+    display: none;
+    width: 100%;
+    position: fixed;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    top: 0px;
+    padding-top: 8px;
+    text-align: center;
+    z-index: 999999;
+    background-color: #F9F9F9;
+    height: 60px;
+
+    span {
+        position: relative;
+        top: 10px;
+    }
+    p {
+        display: inline-block;
+    }
+}
+
+.offline {
+    .navigation {
+        padding-top: 70px;
+    }
+
+    .main-container {
+        padding-top: 65px;
+    }
+}
