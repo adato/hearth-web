@@ -12,8 +12,6 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
             request: function(config) {
                 // console.log(config);
 
-                if($rootScope.isOfflineMode)
-                    return config.url = null;
                 return config;
             },
             responseError: function(rejection) {

@@ -101,6 +101,10 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 
 		this.unsetOfflineMode = function() {
 			$('a').off('click.myDisable');
+			
+			$("#offlineNotify").hide();
+			$rootScope.isOfflineMode = false;
+			$rootScope.isMaintenanceMode = false;
 		};
 
 		$timeout(self.setOfflineMode, 2000);
@@ -134,9 +138,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 			healthCheckRunning = false;
 			healthCheckTimeoutPointer = null;
 
-			$("#offlineNotify").hide();
-			$rootScope.isOfflineMode = false;
-			$rootScope.isMaintenanceMode = false;
+			self.unsetOfflineMode();
 
 			if (!$("#maitenancePage").is(":visible"))
 				return false;
