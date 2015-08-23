@@ -91,23 +91,24 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		};
 
 		this.setOfflineMode = function() {
-			$("#offlineNotify").show();
 			$("#maitenancePage").hide();
 			$rootScope.isMaintenanceMode = false;
 			$rootScope.isOfflineMode = true;
+
+			$.eventManager.disableAll($("*").not('.dontDisable'));
 
 			$('a').on('click.myDisable', function(e) { e.preventDefault(); return false;});
 		};
 
 		this.unsetOfflineMode = function() {
-			$('a').off('click.myDisable');
-			
-			$("#offlineNotify").hide();
+			$('a').off('click.myDisable');			
+
+			$.eventManager.enableAll($("*").not('.dontDisable'));
 			$rootScope.isOfflineMode = false;
 			$rootScope.isMaintenanceMode = false;
 		};
 
-		$timeout(self.setOfflineMode, 2000);
+		$timeout(self.setOfflineMode, 3000);
 		$timeout(self.unsetOfflineMode, 10000);
 		/**
 		 * Turn on health check controll
