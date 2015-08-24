@@ -48,11 +48,11 @@
 					</span>
 				</div>
 			</header>
-			<div class="text-container" ng-if="item.name.length < 270 || marketplace.expanded == true">
+			 <div class="text-container" ng-if="item.name.length < 270 || marketplace.expanded == true">
 				<p ng-bind-html="item.name | linky:'_blank' | nl2br"></p>
 			</div>
 			<div class="text-container" ng-if="item.name.length >= 270 && !marketplace.expanded">
-				<p><span ng-bind-html="item.name | ellipsis:270 | linky:'_blank'"></span> <a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
+				<p><span ng-bind-html="item.name_short | linky:'_blank'"></span> <a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
 			</div>			
 
 			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
@@ -60,7 +60,6 @@
 					<a class="fancy" ng-href="{{ photo.large }}" rel="{{:: item._id }}"><img ng-src="{{photo.normal}}"></a>
 				</li>
 			</ul>
-
 			<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
 				<ul class="tagList">
 					<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords">

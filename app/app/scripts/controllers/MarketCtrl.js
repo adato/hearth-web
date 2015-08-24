@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
 
-	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
+	function($scope, $rootScope, Post, $filter, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
 		$scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
 		$scope.limit = 15;
 		$scope.items = [];
@@ -43,6 +43,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
             scope.foundationColumnsClass = 'large-10';
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
+
+			scope.item.name_short = $filter('ellipsis')(scope.item.name, 270, true);
 
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;
