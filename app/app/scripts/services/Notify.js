@@ -124,20 +124,25 @@ angular.module('hearth.services').service('Notify', [
 		this.checkRefreshMessage = function() {
 			// if not empty
 			if($.cookie("notify.afterRefresh")) {
-				var cookie = JSON.parse($.cookie("notify.afterRefresh"));
+				try {
+					var cookie = JSON.parse($.cookie("notify.afterRefresh"));
 
-				// take cookie and parse him to array
-				var args = $.map(cookie, function(value, index) {
-				    return [value];
-				});
+					// take cookie and parse him to array
+					var args = $.map(cookie, function(value, index) {
+					    return [value];
+					});
 
-				// apply given arguments on this function
-				self.addSingleTranslate.apply(self, args);
+					// apply given arguments on this function
+					self.addSingleTranslate.apply(self, args);
+				} catch(e) {
+					Rollbar.error("HEARTH: Error parsing JSON from cookie for afterRefresh notify", {error: e, source: $.cookie("notify.afterRefresh")});
+				}
 
 				// and delete cookie
 				$.removeCookie("notify.afterRefresh");
 			}
 		};
+		
 		// translate given message
 		this.translate = function(text) {
 			return $translate.instant(text);
