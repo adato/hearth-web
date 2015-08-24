@@ -79,22 +79,26 @@ angular.module('hearth.filters', [])
 		limit = Math.abs(limit || 127);
 		var originalLength = text.length;
 
-		var whiteChars = ' \t,\n'.split('');
-		// take full words only
-		for(var i  = limit; i < originalLength; i++) {
+		if(fullWordsOnly) {
+			var whiteChars = ' \t,\n'.split('');
+			// take full words only
+			for(var i  = limit; i < originalLength; i++) {
 
-			limit++;
-			if(whiteChars.indexOf(text[i]) != -1) {
-				break;
+				limit++;
+				if(whiteChars.indexOf(text[i]) != -1) {
+					break;
+				}
 			}
 		}
 
 		text = text.substring(0, limit).trim();
 
-		var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?$/gi;
- 		var regex = new RegExp(expression);
-  		if (text.match(regex) )
-  			text += " ";
+		if(fullWordsOnly) {
+			var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?$/gi;
+	 		var regex = new RegExp(expression);
+	  		if (text.match(regex) )
+	  			text += " ";
+		}
   		
 		if (originalLength > text.length && text[text.length - 1] !== '…') {
 			text += '…';
