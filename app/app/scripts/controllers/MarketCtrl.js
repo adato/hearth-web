@@ -26,6 +26,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
 
+		$scope.resetFilter = function() {
+			$scope.$broadcast('filterReset');
+		};
+
 		$scope.toggleFilter = function() {
 			$scope.$broadcast("filterOpen");
 		};
@@ -254,7 +258,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	    $templateRequest(templateUrl).then(function(template) {
 	    	templateFunction = $compile(template);
 
-			// init();
+			$scope.filterIsOn = Filter.isSet();
 			// $scope.load();
 	    });
 
