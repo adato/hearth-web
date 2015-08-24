@@ -4,7 +4,6 @@
 
 	var EventPause = function() {
 		var self = this;
-		var events = ['click', 'keydown', 'keyup', 'scroll', 'hover', 'mousein','mouseover'];
 		var nullFun=function(){};
 
 		var getIndex = function(array,value){
@@ -52,15 +51,17 @@
 		this.disableAll = function(el) {
 			el = el || $('*');
 			el.each(function() {
-				self.pauseEvent($(this)[0], events);
+				self.pauseEvent($(this)[0], '');
 			});
+			self.pauseEvent($(window)[0], '');
 		};
 		
 		this.enableAll = function(el) {
 			el = el || $('*');
 			el.each(function() {
-				self.activeEvent($(this)[0], events);
+				self.activeEvent($(this)[0], '');
 			});
+			self.activeEvent($(window)[0], '');
 		};
 		
 		return this;	

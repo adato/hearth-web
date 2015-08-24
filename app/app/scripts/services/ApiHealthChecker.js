@@ -108,8 +108,6 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 			$rootScope.isMaintenanceMode = false;
 		};
 
-		$timeout(self.setOfflineMode, 3000);
-		$timeout(self.unsetOfflineMode, 10000);
 		/**
 		 * Turn on health check controll
 		 */
