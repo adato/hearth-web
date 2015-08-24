@@ -31,13 +31,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.topArrowText = {};
         $scope.isScrolled = false;
 
-        $scope.$watch(
-          function() { console.log('DIGEST'); return true; },
-          function(newValue, oldValue) {
-            return true;
-          }
-        );
-
         /**
          * This will set fixed height of document for current height
          */
