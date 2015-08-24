@@ -60,6 +60,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         };
 
+        $rootScope.reploadActualPage = function() {
+            $state.reload();
+        };
+
         /**
          * When started routing to another page, compare routes and if they differ
          * scroll to top of the page, if not, refresh page with fixed height
