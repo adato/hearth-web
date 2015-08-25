@@ -60,8 +60,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         };
 
-        $rootScope.reploadActualPage = function() {
-            $state.reload();
+        $rootScope.reloadToMarketplace = function() {
+            if($state.current.name == 'market')
+                $state.reload();
+            else
+                $state.go('market');
         };
 
         /**

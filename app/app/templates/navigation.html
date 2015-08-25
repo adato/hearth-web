@@ -1,7 +1,7 @@
 <div class="fixed navigation">
 	<article class="row">
 		<section class="large-2 columns text-right">
-			<a ng-click="reploadActualPage()" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
+			<a ng-click="reloadToMarketplace()" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
 		</section>
 		<section class="large-4 columns">
 			<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchText" ng-enter="search(searchText)">
@@ -9,7 +9,7 @@
 		</section>
 		
 		<section class="large-6 icons columns">
-			<a ng-click="reploadActualPage()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+			<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa icon-marketplace"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
