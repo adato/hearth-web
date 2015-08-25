@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state) {
         var timeout;
         $rootScope.myCommunities = false;
+        $rootScope.pageName = '';
         $rootScope.searchText = '';
         $rootScope.appUrl = '';
         $rootScope.addressOld = '';
@@ -82,7 +83,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if(r1.length < 2 || r2.length < 2 || r1[1] != r2[1])
                 $rootScope.top(0, 1);
             else
-                // dont 
                 $scope.resfreshWithResize();
         });
 
@@ -93,7 +93,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * and add class of given controller to wrapping div container
          */
         $rootScope.$on("$stateChangeSuccess", function(ev, current) {
-            // $scope.segment = $route.current.segment;
+            $rootScope.pageName = $state.current.name;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);
