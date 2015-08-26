@@ -6,8 +6,10 @@
 <!--[if gt IE 9]><!--> <html ng-app="hearth" class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!-- <meta name="viewport" content="width=960"/> -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> -->
+    <meta name="viewport" content="width=960"/>
+    <!-- <meta name="viewport" content="initial-scale=1.0" /> -->
+
     <!-- @if DEBUG -->
       <title>HEARTH.net (debug)</title>
     <!-- @endif -->
@@ -137,7 +139,7 @@
         <section ng-if="initFinished" ng-include="'/app/templates/navigation.html'" id="navigation"></section>
         
        <div ui-view class="main-container"></div>
-        <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
+        <div ng-click="top()" class="move2top show-for-scrolled show-for-large-up" title="{{'move-to-top' | translate}}">
             {{topArrowText.top}}
             <span class="fa fa-caret-square-o-up"></span>
             {{topArrowText.bottom}}
@@ -199,20 +201,20 @@
     <script>
       $(function() { 
         
-        function resizeMenuBar() {
-          // $('.navigation').css("width", $(".main-container").width()+"px");
-        }
+        // function resizeMenuBar() {
+        //   // $('.navigation').css("width", $(".main-container").width()+"px");
+        // }
 
-        $(window).scroll(function() {
-          var fixedHeader = $('.navigation');
+        // $(window).scroll(function() {
+        //   var fixedHeader = $('.navigation');
 
-          resizeMenuBar();
-          fixedHeader.css('left', -1 * $(this).scrollLeft() + "px");
-          if ( $(this).scrollLeft() != 0 )
-            fixedHeader.css('right', "auto");
-          else
-            fixedHeader.css('right', 0);
-        });
+        //   resizeMenuBar();
+        //   fixedHeader.css('left', -1 * $(this).scrollLeft() + "px");
+        //   if ( $(this).scrollLeft() != 0 )
+        //     fixedHeader.css('right', "auto");
+        //   else
+        //     fixedHeader.css('right', 0);
+        // });
        
         // $(window).resize(resizeMenuBar);
       });

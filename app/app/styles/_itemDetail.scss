@@ -29,11 +29,12 @@
 	}
 
 	.ad-author-column {
-		float:right;
-		clear:left;
-		padding-right:0;
-		padding-left:$ui-grid-size;
+		/*padding-right:0;*/
+		/*padding-left:$ui-grid-size;*/
 
+		&>div {
+			display: inline-block;
+		}
 		&:before {
 			content:"";
 			display:block;
@@ -63,7 +64,6 @@
 			box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
 			text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
 			color: color(4);
-			margin-left:3rem;
 
 			.bar:first-child {
 				border-top-left-radius: $global-radius;

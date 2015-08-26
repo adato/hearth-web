@@ -2,10 +2,17 @@
 
 .page-post {
 	
-	.row {
+	#notify-top {
+		width: unset !important;
+	}
+
+	.profile-view {
 		max-width: unset !important;
 	}
 
+	.navigation {
+		min-width: unset !important;
+	}
 	.web-width {
 		width: unset !important;
 	}
