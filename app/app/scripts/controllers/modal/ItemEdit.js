@@ -251,7 +251,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
 			// else
 			// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
-			$scope.closeThisDialog();
+			$timeout(function () {
+				$scope.closeThisDialog();
+			});
 			
 			// emit event into whole app
 			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
