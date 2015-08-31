@@ -1,6 +1,12 @@
 
 
-.page-post {
+.page-login,
+.page-forgot-pass,
+.page-reg,
+.page-reset-pass,
+.page-token-login,
+.page-fill-email,
+.page-post, .page-profileSettings, .page-error404 {
 	
 	#notify-top {
 		width: unset !important;

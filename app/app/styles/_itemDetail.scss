@@ -34,6 +34,7 @@
 
 		&>div {
 			display: inline-block;
+			max-width: 12rem;
 		}
 		&:before {
 			content:"";

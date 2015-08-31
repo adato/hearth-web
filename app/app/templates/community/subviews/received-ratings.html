@@ -1,10 +1,10 @@
 <div ng-include="'templates/community/subviews/ratingsPanel.html'"></div>
 
 <div class="ratings-received row rating-item" id="received-rating-form" ng-show="showUserRatingForm">
-	<section class="large-2 columns user">
+	<section class="large-2 small-2 medium-2 columns user">
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
-	<section class="large-10 columns rating-form">
+	<section class="large-10 small-10 medium-10 columns rating-form">
 	<div class="item rating-received">
 		<div class="overlap"> </div>
 		<div class="arrowbox"></div>
@@ -67,7 +67,7 @@
 <div class="clear"></div>
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
-	<section class="push-1 large-8 rating-call-to-action large-centered columns" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
+	<section class="push-1 large-8 small-8 medium-8 rating-call-to-action large-centered columns" ng-class="{ 'large-8 small-8 medium-8': !data.length, 'large-10 small-10 medium-10': data.length, 'large-centered': data.length, 'push-1': data.length}" ng-if="!showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />

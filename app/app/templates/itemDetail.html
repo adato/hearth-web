@@ -2,18 +2,18 @@
 	<div loading show="!loaded"></div>
 	
 	<div class="row" ng-if=" loaded">
-		<section ng-show="ad && !isMine && ad.state === 'suspended'" class="ad-not-found box large-6 margin-auto text-center">
+		<section ng-show="ad && !isMine && ad.state === 'suspended'" class="ad-not-found box large-6 small-6 medium-6 margin-auto text-center">
 			<p class="margin-0">{{ 'POST_WAS_SUSPENDED' | translate }}</p>
 		</section>
-		<section ng-show="!adDeleted && ad === false" class="ad-not-found box large-6 margin-auto text-center">
+		<section ng-show="!adDeleted && ad === false" class="ad-not-found box large-6 small-6 medium-6 margin-auto text-center">
 			<p class="margin-0">{{ 'POST_NOT_FOUND' | translate }}</p>
 		</section>
-		<section ng-show="adDeleted" class="ad-not-found box large-6 margin-auto text-center">
+		<section ng-show="adDeleted" class="ad-not-found box large-6 small-6 medium-6 margin-auto text-center">
 			<p class="margin-0">{{ 'POST_WAS_DELETED' | translate }}</p>
 		</section>
 
-		<section ng-if="! adDeleted && ad && ad.name" class="large-12 content row" id="item_container_{{ ad._id }}">
-			<div class="large-4 small-12 medium-12 ad-author-column text-center right">
+		<section ng-if="! adDeleted && ad && ad.name" class="large-12 small-12 medium-12 content row" id="item_container_{{ ad._id }}">
+			<div class="large-4 small-4 medium-4 small-12 medium-12 ad-author-column text-center right">
 				<div>
 					<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="getProfileLink(ad.author._type, ad.author._id)" /></avatar>
 					<a ng-href="{{:: getProfileLink(ad.author._type, ad.author._id)}}"><h2>{{ ad.author.name}}</h2></a>
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 			</div>
-			<div ng-if="!isActive" class="large-8 medium-12 small-12 left columns item-status-bar">
+			<div ng-if="!isActive" class="large-8 small-8 medium-8 medium-12 small-12 left columns item-status-bar">
 				<span ng-if="ad.state == 'expired'">
 					<span ng-if="ad.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ ad.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
 					<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
@@ -72,10 +72,10 @@
 				<span ng-if="ad.state == 'suspended'">{{ 'POST_WAS_SUSPENDED' | translate }}</span>
 			</div>
 
-			<div class="large-8 medium-12 small-12 left columns ad-detail-column" ng-init="local.showMap = false">
+			<div class="large-8 small-8 medium-8 medium-12 small-12 left columns ad-detail-column" ng-init="local.showMap = false">
 				<article class="box post-detail row">
 					<header class="clearfix">
-						<div class="large-8 columns">
+						<div class="large-8 small-8 medium-8 columns">
 							<h1>
 								<span data-item-type="{{ ad.type }}">
 									{{ postTypes[ad.author._type][ad.type] | translate }}
@@ -86,7 +86,7 @@
 							<span class="validity-warning" ng-if="isExpiringSoon">{{ 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span><!-- TODO!!! add ngif and data -->
 							<span class="fa fa-lock" ng-if="ad.is_private" title="{{ 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 						</div>
-						<div class="large-4 columns">
+						<div class="large-4 small-4 medium-4 columns">
 							<!-- <span class="fright ad-flag-container">
 								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id && ad.spam_reported" tipsy title="{{'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" ng-click="openReportBox(ad)"></a>
 								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !ad.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
@@ -170,14 +170,14 @@
 
 				<div class="box post-replies row" ng-if="isMine" scroll-to-view-on-hash="replies">
 					<h4 ng-if="replies.length">{{ 'POSTS.DETAIL.REPLIES' | translate }}</h4>
-					<div class="large-12 large-centered columns text-center no-result" ng-if="!replies.length"><p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p></div>
+					<div class="large-12 small-12 medium-12 large-centered columns text-center no-result" ng-if="!replies.length"><p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p></div>
 					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies track by item._id">
-						<section class="large-2 columns user">
+						<section class="large-2 small-2 medium-2 columns user">
 							<div info-box="item.message.author" infobox-index="$index" infobox-class="'on-item-detail'">
 								<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
 							</div>
 						</section>
-						<section class="large-10 columns">
+						<section class="large-10 small-10 medium-10 columns">
 							<div class="content">
 								<div class="fright">
 									<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
