@@ -429,6 +429,9 @@
         "error404": "Stránka nenalezena",
         "community-profile-page": "Profil komunity"
     },
+    "TOP_BAR": {
+        "ADD_NEW_POST": "Nový dar/přáni"
+    },
     "TOP_BAR_ABOUT": "O projektu",
     "TOP_BAR_COMMUNITY_PROFILE": "Náš profil",
     "TOP_BAR_PROFILE": "Můj profil",

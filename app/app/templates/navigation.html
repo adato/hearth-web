@@ -1,82 +1,118 @@
-<div class="fixed navigation">
-	<article class="row">
-		<section class="large-2 small-2 medium-2 columns text-right">
-			<a ng-href="{{:: basePath }}market" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
-		</section>
-		<section class="large-4 small-4 medium-4 columns">
-			<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchText" ng-enter="search(searchText)">
-			<span class="search-button fa fa-search" ng-click="search(searchText)"></span>
-		</section>
-		
-		<section class="large-6 small-6 medium-6 icons columns">
-			<a href="{{:: basePath }}market" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
-				<div class="fa icon-marketplace"></div>
-				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
-			</a>
-			<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: segment == 'communityList'}" title="{{ 'COMMUNITIES' | translate }}">
-				<div class="fa icon-community"></div>
-				<label>{{ 'COMMUNITIES' | translate }}</label>
-			</a>
-			<div class="separator"></div>
-		    <span class="top-bar-messages">
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
-                    <span class="messages-icon">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
-		            <label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
+<!-- 
+<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.js"></script>
+<link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
+ -->
+<nav class="top-bar center max-web-width" data-topbar="">
+    <ul class="title-area hide-for-large-up">
+        <li class="name padding-1">
+            <a ng-href="{{:: basePath }}market" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span class="fa fa-bars"></span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        <ul class="right">
+            <li>
+				<a href="{{:: basePath }}market" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+					{{ 'HOMEPAGE_MARKET' | translate }}
+				</a>
+			</li>
+			<li>
+				<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}">
+					{{ 'COMMUNITIES' | translate }}
+				</a>
+			</li>
+			<li>
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+			        {{ 'TOP_BAR_MESSAGES' | translate }}
 			    </a>
-		    </span>
-		    <span class="dropdown-container">
-				<a ng-if="loggedUser._id" ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
-                    <avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
-		            <label>{{ loggedUser.name | ellipsis:9}}</label>
-			    </a>
-				<ul class="dropdown user-dropdown" id="profile-drop" title="{{ loggedUser.name }} ">
-			       
-			       <li><a ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a></li>
-			       <li><a ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
-			       <li><a ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
-			       
-		          	<li class="divider" ng-if="myAdminCommunities.length"></li>
+			</li>
+			<li class="has-dropdown not-click">
+                <a ng-if="loggedUser._id" ng-show="loggedUser.name" ng-class="{active: pageName.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
+                	<i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:9}}
+            	</a>
+                <ul class="dropdown" id="profile-drop">
+                    <li class="title back js-generated">
+                        <h5><a href="javascript:void(0)">{{ 'MENU_BACK' | translate }}</a></h5>
+                    </li>
+                    <li>
+                    	<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+                    </li>
+					<li><a ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
+					<li><a ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+			      	<li class="divider" ng-if="myAdminCommunities.length"></li>
 			       	<li ng-repeat="item in myAdminCommunities">
 						<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
 							<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 							<span class="name">{{ item.name | ellipsis:12}}</span>
 						</a>
 			       	</li>
-		          <li class="divider" ng-if="myAdminCommunities.length"></li>
-			       <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
-			    </ul> 
-		    </span>
-
-		    <span class="dropdown-container">
-				<a title="{{'TOP_BAR_ABOUT' | translate }}" analytics-on analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
-					<div class="fa fa-question-circle"></div>
-					<label>{{'TOP_BAR_ABOUT' | translate}}</label>
+					<li class="divider" ng-if="myAdminCommunities.length"></li>
+					<li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown not-click">
+        		<a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'feedback', 'terms'].indexOf(pageName) > -1}" analytics-on analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
+					{{'TOP_BAR_ABOUT' | translate}}
 				</a>
-		        <ul class="dropdown" id="about-drop">
-		          <li><a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
-		          <li><a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
-		          <li><a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
-		          <li class="divider"></li>
-		          <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
-		          <li ng-if="language == 'cs'"><a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
-		          <li class="divider"></li>
-		          <li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
-		          <li class="no-hover">
-			          <ul class="social-menu">
-		          		<li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span></a></li>
-				        <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span></a></li>
-				        <li><a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span></a></li>
-				        <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span></a></li>
-				      </ul>
-		          </li>
-		        </ul>
-			</span>		     
-			<a ng-if="!loggedUser._id" href="{{:: basePath }}login" analytics-on analytics-event="sign-in" analytics-category="menu" id="nav-login">
-				<div class="text">
-		            <div class="fa fa-sign-in"></div>
-		            <label>{{'TOP_BAR_SIGN_IN' | translate }}</label>
-		        </div>
-			</a>
-		</section>
-	</article>
+                <ul class="dropdown" id="about-drop">
+                    <li><a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
+					<li><a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
+					<li><a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
+					<li class="divider"></li>
+					<li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+					<li ng-if="language == 'cs'"><a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
+					<li class="divider"></li>
+					<li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
+					<li class="no-hover">
+					  <ul class="social-menu">
+							<li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span></a></li>
+					    <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span></a></li>
+					    <li><a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span></a></li>
+					    <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span></a></li>
+					  </ul>
+					</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</nav>
+ 
+<div class="orange">
+	<div class="max-web-width center padding-1">
+		<div class="row">
+			<div class="column large-3 show-for-large-up">
+				<a ng-href="{{:: basePath }}market" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
+			</div>
+			<div class="search column small-12 medium-12 large-6">
+				<div>
+					<select>
+						<option value="all">Všude</option>
+						<option value="market">Na tržišti</option>
+						<option value="community">V Komunitách</option>
+						<option value="people">V Lidech</option>
+						<option value="messages">Ve zprávách</option>
+					</select>
+					<i class="fa fa-search"></i>
+					<div class="middle">
+						<input type="text" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
+					</div>
+				</div>
+			</div>
+			<div class="column large-3 show-for-large-up text-right">
+				<a href="#" class="button-send button" ng-click="editItem(null)">
+					{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}
+				</a>
+			</div>
+		</div>
+	</div>
 </div>
+</div> 
+	
+
+
+
+
+
+<script>
+$(document).foundation();
+</script>

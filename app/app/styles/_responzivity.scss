@@ -6,7 +6,11 @@
 .page-reset-pass,
 .page-token-login,
 .page-fill-email,
-.page-post, .page-profileSettings, .page-error404 {
+.page-post,
+.page-profileSettings,
+.page-error404,
+.page-communities.suggested,
+.page-communities.all {
 	
 	#notify-top {
 		width: unset !important;
@@ -26,4 +30,18 @@
 		max-width: unset !important;
 		min-width: unset !important;
 	}
+}
+
+.max-web-width {
+	max-width: 940px !important;
+}
+
+.padding-1 {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
 }
