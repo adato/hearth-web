@@ -7,7 +7,7 @@
 			</a>
 		</div>
 		<div class="karma" ng-class="{empty: item.karma === null }" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
-			<div class="positive" style="width:{{:: item.karma}}%;"></div>
+			<div class="positive" ng-attr-style="width:{{:: item.karma}}%;"></div>
 		</div>
 		<div class="timeline"></div>
 	</section>
