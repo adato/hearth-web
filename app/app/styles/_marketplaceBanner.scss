@@ -1,47 +1,26 @@
 marketplace-banner {
 	display:block;
 }
+section.banner {
+	.marketplace-banner {
+		background-color:#e55d23;
+		background-image: image-url("banner/01.png");
+		background-repeat:no-repeat;
+		background-position: 0 0;
+		margin-left:27px;
+		width:772px;
+		height:130px;
+		margin-bottom: 5 * $ui-small-grid-size;
+		margin-top: -2 * $ui-small-grid-size;
+	}
 
-.marketplace-banner {
-	background-color:#EEF3F9;
-	background-image: image-url("banner/02.jpg"), image-url("banner/01.jpg");
-	background-repeat:no-repeat;
-	background-size: 450px, 270px;
-	background-position: -45px -4px, 550px 0px;
-	margin-left:$ui-grid-size;
-	max-width:770px;
-	margin-bottom: 3 * $ui-small-grid-size;	
-	&>p {
-		text-decoration:none;
-		padding-left:8rem;
-		.hero {
-			font-size:28px;
-		}
-		.smaller {
-			display:block;
-		}
-		.cta {
-			// button?
-			font-size:20px;
-			float:right;
-			margin-right:9rem;
-			border-radius: 8px;
-			border: 2px solid rgb(167, 189, 29);
-			color:#809116;
-			padding: 5px 10px;
-			margin-top: 11px;
-			background: rgba(238, 242, 215, 0.99);
-			&:hover {
-				opacity:.8;
-			}
-		}
-		.close {
-			font-size:28px;
-			color:#666;
-			float:right;
-			position:relative;
-			top:-1rem;
-		}
+	.close {
+		display:block;
+		font-size:30px;
+		color:#666;
+		float:right;
+		position:relative;
+		top:78px;
+		right:18px;
 	}
 }
-

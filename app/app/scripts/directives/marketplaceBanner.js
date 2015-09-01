@@ -12,10 +12,10 @@ angular.module('hearth.directives').directive('marketplaceBanner',
 			scope: false,
 			templateUrl: 'templates/directives/marketplaceBanner.html',
 			link: function(scope, element, attrs) {
-				scope.closed = $.cookie('showMarketplaceBanner') || false;
+				scope.closed = $.cookie('showTechLeaderBanner') || false;
 				scope.close = function () {
 					scope.closed = !scope.closed;
-					$.cookie('showMarketplaceBanner', scope.closed, { path: '/', expires: 99999 });
+					$.cookie('showTechLeaderBanner', scope.closed, { path: '/', expires: 99999 });
 				}
 			}
 		};
