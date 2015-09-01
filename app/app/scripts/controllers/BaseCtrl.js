@@ -15,6 +15,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.appUrl = '';
         $rootScope.addressOld = '';
         $rootScope.addressNew = '';
+        $rootScope.pageChangeWithScroll = true;
         $scope.segment = false;
         $scope.addresses = $$config.itemAddresses;
         $rootScope.socialLinks = {
@@ -64,6 +65,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         };
 
+        $rootScope.dontScrollTopAfterPageChange = function() {
+            $rootScope.pageChangeWithScroll = false;
+            console.log('OK');
+        };
+
         /**
          * When started routing to another page, compare routes and if they differ
          * scroll to top of the page, if not, refresh page with fixed height
@@ -71,6 +77,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.$on("$stateChangeStart", function(event, next) {
             // when changed route, load conversation counters 
             Auth.isLoggedIn() && Messenger.loadCounters();
+            
+            if(!$rootScope.pageChangeWithScroll) {
+                // dont scroll top after page change 
+                $rootScope.pageChangeWithScroll = true;
+                return $scope.resfreshWithResize();
+            }
+
             
             if(!$rootScope.addressNew)
                 return $rootScope.top(0, 1);;
