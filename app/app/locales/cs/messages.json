@@ -748,6 +748,7 @@
     "COMMUNITIES": "Komunity",
     "ERROR_BAD_IMAGE_FORMAT": "Obrázek má špatný formát!",
     "ERROR_BAD_IMAGE_SIZE": "Obrázek je moc veliký. Mooc.",
+    "ERROR_BAD_IMAGE_SIZE_ALL": "Celková velikost obrázků nesmí překročit velikost 6MB.",
     "TOTAL_COUNT": "{{value}} celkem",
     "USING_HEARTH_IN_LANG": "Momentálně používáte Hearth",
     "HEARTH_IN_THIS_LANG": "v českém jazyce",

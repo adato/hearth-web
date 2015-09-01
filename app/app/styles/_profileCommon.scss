@@ -258,6 +258,33 @@
     color: color(5);
   }
 
+  .rating-reply, .ratingReply {
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+  }
+    
+  .rating-reply {
+    .reply-top {
+      margin-bottom: 5px;
+
+      small {
+        color: #999999;
+      }
+    }
+  }
+
+  .home-ratings .rating-reply {
+    margin-top: 10px;
+    margin-left: 95px;
+    .date {
+      float: none !important;
+    }
+    .avatar {
+      margin-right: 10px;
+    }
+  }
+
   .ratings-received {
     .revert-changes {
       position: relative;
@@ -283,22 +310,7 @@
         top: -20px;
       }
     }
-    .reply, .ratingReply {
-      margin-top: 10px;
-      align-items: center;
-      display: flex;
-    }
 
-      
-    .reply {
-      .reply-top {
-        margin-bottom: 5px;
-
-        small {
-          color: #999999;
-        }
-      }
-    }
     
     .ratingReply {
       .formStyle {
@@ -441,15 +453,19 @@
           font-size: 0.85rem;
           line-height: 125%;
         }
-        .rating-text {
-          font-size: 1.2rem;
-          line-height: 125%;
+        .rating-info {
+          .score {
+            margin-bottom: 5px;
+          }
+          .rating-text {
+            font-size: 1rem;
+            line-height: 100%;
+          }
           margin: {
-            top: 10px;
+            top: 5px;
             bottom: 10px;
             left: 100px;
           }
-        ;
           .rating-from {
             display: inline-block;
             margin-top: 10px;

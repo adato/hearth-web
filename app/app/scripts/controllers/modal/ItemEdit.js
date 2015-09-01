@@ -14,6 +14,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.limitPixelSize = 200;
 		$scope.imagesCount = 0;
+		$scope.imageSizesSum = 0;
+		$scope.imageSizes = [];
 		$scope.defaultPost = {
 			type: true,
 			keywords: [],
@@ -51,6 +53,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		});
 
+		$scope.getImageSizes = function() {
+			return $scope.imageSizesSum;
+		};
+
 		$scope.togglePostType = function() {
 			if(!$scope.post.reply_count)
 				$scope.post.type = !$scope.post.type;
@@ -73,9 +79,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// this will recount all images which are not market to be deleted
 		$scope.recountImages = function() {
 			$scope.imagesCount = 0;
-			$scope.post.attachments_attributes.forEach(function(item) {
-				if(!item.deleted)
+			$scope.imageSizesSum = 0;
+
+			$scope.post.attachments_attributes.forEach(function(item, index) {
+				if(!item.deleted) {
+					$scope.imageSizesSum += $scope.imageSizes[index];
 					$scope.imagesCount++;
+				}
 			});
 		};
 
@@ -92,6 +102,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			if (!files[index]._id) {
 				files.splice(index, 1);
+				$scope.imageSizes.splice(index, 1);
 			} else {
 				files[index].deleted = true;
 			}
