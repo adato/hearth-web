@@ -3,7 +3,7 @@
 		<label for="reply-text">
 			<div class="author-info">
 				<div>{{:: 'PROFILE.RATING.REPLY_TO_USER' | translate}} 
-					<a href="{{:: getProfileLink(rating.user_from_type, rating.user_from)}}">{{:: rating.user_from_full_name}}</a><span ng-if="rating.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath }}post/{{:: rating.post_id}}" title="{{:: rating.post_title }}">{{:: rating.post_title | ellipsis:40}}</a></span>:
+					<a href="{{:: getProfileLink(rating.entity_from._type, rating.entity_from._id)}}">{{:: rating.entity_from.name}}</a><span ng-if="rating.post_id">&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: basePath }}post/{{:: rating.post_id}}" title="{{:: rating.post_title }}">{{:: rating.post_title | ellipsis:40}}</a></span>:
 				</div>
 			</div>
 			<textarea ng-model="rating.reply_text" ng-attr-placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-required="true" autosize-textarea="" name="text" id="reply-text" rows="1"></textarea>
