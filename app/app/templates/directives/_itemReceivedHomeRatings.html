@@ -1,11 +1,10 @@
 <div ng-repeat="(id, item) in receivedRatings track by $index" class="rating" ng-class="{ 'positive': item.score == 1, 'negative': item.score == -1}">
-    
-    <a class="left" href="{{ getProfileLink(item.entity_from._type, item.entity_from._id) }}">
-        <span info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }">
+    <div class="infobox-avatar-wrapper" info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }">    
+        <a class="left" href="{{ getProfileLink(item.entity_from._type, item.entity_from._id) }}">
             <avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
             <div class="name">{{:: item.entity_from.name}}</div>
-        </span>
-    </a>
+        </a>
+    </div>
     <div>
 	    <div class="rating-info">
 			<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
