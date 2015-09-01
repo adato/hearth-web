@@ -207,7 +207,7 @@
           <a ng-href="{{:: getProfileLink('User', profile._id) }}" class="revert-changes">
             <span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
           </a>
-          <button type="submit" class="button-send right" analytics-on analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+          <button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
           <div class="fright error down-error" ng-show="messageBottom">
               <span>{{ messageBottom | translate}}</span>
           </div>

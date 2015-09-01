@@ -85,7 +85,7 @@
             <a ng-if="community._id" ng-href="{{ basePath }}community/{{community._id}}" class="revert-changes">
               <span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
             </a>
-            <button type="submit" class="button-send right" analytics-on analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+            <button type="submit" class="button-send right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>
           </div>
         </section>
       </div>
@@ -105,7 +105,7 @@
           &nbsp;
           <select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
         </span>
-        <button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-on analytics-event="delegate admin community" analytics-category="My community" analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+        <button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-custom analytics-event="delegate admin community" analytics-category="My community" analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
       </section>
       <section class="change-admin" ng-if="community.member_count == 1">
           <br />
