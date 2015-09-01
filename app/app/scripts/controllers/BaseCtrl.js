@@ -48,6 +48,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $rootScope.$on("subPageLoaded", $scope.removePageMinHeight);
 
+        $rootScope.reloadPage = function() {
+            window.location = document.URL;
+        };   
+
         $scope.setPageTitle = function(state) {
             // var state = $state.$current;
             if(state.titleIgnore) return;

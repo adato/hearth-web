@@ -10,6 +10,8 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
 
         return {
             request: function(config) {
+                // console.log(config);
+
                 return config;
             },
             responseError: function(rejection) {
