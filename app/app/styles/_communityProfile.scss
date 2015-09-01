@@ -36,12 +36,12 @@
         .applications {
             @extend .box, .community-applications-list;
 
-            /** overflow:visible !important; **/
+            overflow:visible;
         }
     }
 
     .button-bar {
-        max-width: 47% !important;
+        max-width: 55% !important;
     }
 
 }

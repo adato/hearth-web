@@ -67,7 +67,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $rootScope.dontScrollTopAfterPageChange = function() {
             $rootScope.pageChangeWithScroll = false;
-            console.log('OK');
+        };
+
+        $rootScope.reloadToMarketplace = function() {
+            if($state.current.name == 'market')
+                $state.reload();
+            else
+                $state.go('market');
         };
 
         /**
@@ -160,11 +166,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.top(0, 1);
 
             $location.path('/search?q=' + (text || ""));
-            
-            // first reload scope to new location, then start searching
-            $timeout(function() {
-                $scope.$broadcast("fulltextSearch");
-            });
         };
 
         /**

@@ -133,21 +133,27 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.filter.query && $scope.applyFilter();
 		};
 
+		$scope.markReaded = function(info) {
+			
+			Messenger.decrUnreaded();
+			info.read = true;
+			Conversations.setReaded({id: info._id});
+		};
+
 		/**
 		 * This will show requested conversation in right column
 		 * and optionally mark it as readed
 		 */
-		$scope.showConversation = function(info, index, dontMarkAsReaded) {
+		$scope.showConversation = function(info, index, dontMarkAsReaded, clicked) {
 			var title;
+			if(clicked)
+				$scope.markReaded(info);
 
 			if(info._id == $scope.detail._id)
 				return false;
 
-			if (!info.read && !dontMarkAsReaded) {
-				Messenger.decrUnreaded();
-				info.read = true;
-				Conversations.setReaded({id: info._id});
-			}
+			if (!info.read && !dontMarkAsReaded)
+				$scope.markReaded(info);
 
 			// if(!info.read && dontMarkAsReaded)
 			// 	$scope.markReadedAfterActivity(info, index);

@@ -21,27 +21,10 @@ angular.module('hearth').config([
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
 			})
-			// .state('faq', {
-			// 	url: '/faq',
-			// 	templateUrl: 'templates/localizationPage.html',
-			// 	controller: 'LocalizationPage',
-			// })
-			// .state('taxes', {
-			// 	url: '/taxes',
-			// 	templateUrl: 'templates/localizationPage.html',
-			// 	controller: 'LocalizationPage',
-			// })
 			.state('map', {
 				url: '/map',
 				templateUrl: 'templates/map.html',
 				controller: 'MapCtrl',
-			})
-			.state('market-refresh', {
-				title: false,
-				url: "/market",
-				controller: ['$location', function($location) {
-					$location.path('/'); // just for refresh purposes
-				}],
 			})
 			.state('communities', {
 				abstract: true,
