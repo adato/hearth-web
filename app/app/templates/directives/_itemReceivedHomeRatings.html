@@ -25,7 +25,7 @@
                     </a>
                     <div class="inline-block">
                         <div class="reply-top">
-                            <a href="getProfileLink(item.entity_to._type, item.entity_to._id)">{{:: item.entity_to.name | ellipsis:40}}</a><small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
+                            {{:: item.entity_to.name | ellipsis:40}} <small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
                         </div>
                         
                         <i>„{{ item.comment.text }}”</i>
