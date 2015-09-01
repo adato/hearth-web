@@ -116,7 +116,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * and add class of given controller to wrapping div container
          */
         $rootScope.$on("$stateChangeSuccess", function(ev, current) {
-            // $scope.segment = $route.current.segment;
+            $scope.segment = current.name;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);

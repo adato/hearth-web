@@ -7,13 +7,12 @@
 			<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchText" ng-enter="search(searchText)">
 			<span class="search-button fa fa-search" ng-click="search(searchText)"></span>
 		</section>
-		
 		<section class="large-6 icons columns">
 			<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 				<div class="fa icon-marketplace"></div>
 				<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
 			</a>
-			<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: segment == 'communityList'}" title="{{ 'COMMUNITIES' | translate }}">
+			<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{ 'COMMUNITIES' | translate }}">
 				<div class="fa icon-community"></div>
 				<label>{{ 'COMMUNITIES' | translate }}</label>
 			</a>
@@ -46,9 +45,8 @@
 			       <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
 			    </ul> 
 		    </span>
-
 		    <span class="dropdown-container">
-				<a title="{{'TOP_BAR_ABOUT' | translate }}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
+				<a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'terms', 'feedback'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
 					<div class="fa fa-question-circle"></div>
 					<label>{{'TOP_BAR_ABOUT' | translate}}</label>
 				</a>
