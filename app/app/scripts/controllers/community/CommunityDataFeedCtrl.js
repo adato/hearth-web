@@ -158,7 +158,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                         item.post_type = "offered";
                         posts.push(item);
                     });
-
+                    
                     $scope.ratingPosts = posts;
                     $scope.loadedRatingPosts = true;
                 }, function(res) {

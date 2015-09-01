@@ -581,7 +581,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $('#rating_'+rating._id).toggleClass('blink-rating');
                 $timeout(function() {
                     $('#rating_'+rating._id).toggleClass('blink-rating');
-                }, 1000);
+                }, 1200);
             });
         };
 
