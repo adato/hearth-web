@@ -106,6 +106,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 			$.eventManager.enableAll($("*").not('.dontDisable'));
 			$rootScope.isOfflineMode = false;
 			$rootScope.isMaintenanceMode = false;
+			$rootScope.$broadcast('ev:online');
 		};
 
 		/**
