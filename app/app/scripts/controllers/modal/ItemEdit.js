@@ -266,6 +266,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.closeThisDialog();
 			});
 			
+
+
 			// emit event into whole app
 			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
 

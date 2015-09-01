@@ -211,8 +211,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
+					var post = getPostScope(angular.copy(data));
 
-					templateFunction(getPostScope(data), function(clone){
+					templateFunction(post, function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 						
 						setTimeout(function() {
