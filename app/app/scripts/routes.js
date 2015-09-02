@@ -21,6 +21,12 @@ angular.module('hearth').config([
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
 			})
+			.state('market-refresh', {
+				url: "/market",
+				controller: ['$location', function($location) {
+					$location.path('/'); // just for refresh purposes
+				}],
+			})
 			.state('map', {
 				url: '/map',
 				templateUrl: 'templates/map.html',

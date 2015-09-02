@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
 
-	function($scope, $rootScope, Post, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
+	function($scope, $rootScope, Post, $filter, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
 		$scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
 		$scope.limit = 15;
 		$scope.items = [];
@@ -26,6 +26,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.keywordsActive = Filter.getActiveTags();
 		}
 
+		$scope.resetFilter = function() {
+			$scope.$broadcast('filterReset');
+		};
+
 		$scope.toggleFilter = function() {
 			$scope.$broadcast("filterOpen");
 		};
@@ -39,6 +43,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
             scope.foundationColumnsClass = 'large-10';
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
+
+			scope.item.name_short = $filter('ellipsis')(scope.item.name, 270, true);
 
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;
@@ -205,8 +211,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
+					var post = getPostScope(angular.copy(data));
 
-					templateFunction(getPostScope(data), function(clone){
+					templateFunction(post, function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 						
 						setTimeout(function() {
@@ -254,7 +261,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	    $templateRequest(templateUrl).then(function(template) {
 	    	templateFunction = $compile(template);
 
-			// init();
+			$scope.filterIsOn = Filter.isSet();
 			// $scope.load();
 	    });
 

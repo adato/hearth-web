@@ -15,6 +15,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.appUrl = '';
         $rootScope.addressOld = '';
         $rootScope.addressNew = '';
+        $rootScope.pageChangeWithScroll = true;
         $scope.segment = false;
         $scope.addresses = $$config.itemAddresses;
         $rootScope.socialLinks = {
@@ -48,6 +49,14 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          */
         $rootScope.$on("subPageLoaded", $scope.removePageMinHeight);
 
+        $rootScope.reloadPage = function() {
+            window.location = document.URL;
+        };
+
+        $rootScope.checkOnlineState = function() {
+            ApiHealthChecker.checkOnlineState();
+        };
+
         $scope.setPageTitle = function(state) {
             // var state = $state.$current;
             if(state.titleIgnore) return;
@@ -58,6 +67,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 PageTitle.setTranslate('TITLE.'+(state.title || state.name));
             }
 
+        };
+
+        $rootScope.dontScrollTopAfterPageChange = function() {
+            $rootScope.pageChangeWithScroll = false;
         };
 
         $rootScope.reloadToMarketplace = function() {
@@ -74,6 +87,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         $rootScope.$on("$stateChangeStart", function(event, next) {
             // when changed route, load conversation counters 
             Auth.isLoggedIn() && Messenger.loadCounters();
+            
+            if(!$rootScope.pageChangeWithScroll) {
+                // dont scroll top after page change 
+                $rootScope.pageChangeWithScroll = true;
+                return $scope.resfreshWithResize();
+            }
+
             
             if(!$rootScope.addressNew)
                 return $rootScope.top(0, 1);;
@@ -100,7 +120,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * and add class of given controller to wrapping div container
          */
         $rootScope.$on("$stateChangeSuccess", function(ev, current) {
-            // $scope.segment = $route.current.segment;
+            $scope.segment = current.name;
 
             $("#all").removeClass();
             $("#all").addClass(current.controller);
@@ -565,7 +585,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 $('#rating_'+rating._id).toggleClass('blink-rating');
                 $timeout(function() {
                     $('#rating_'+rating._id).toggleClass('blink-rating');
-                }, 1000);
+                }, 1200);
             });
         };
 
@@ -609,6 +629,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
                         Notify.addSingleTranslate('NOTIFY.POST_UPDAT_FAILED', Notify.T_ERROR);
                     }
+            });
+        };
+
+        $rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {
+            $timeout(function() {
+                if($location.search().reply) {
+                    var id = $location.search().reply;
+                    for(var i in data) {
+                        if(data[i]._id == id) {
+                            
+                            scope.openRatingReplyForm(data[i]);
+                            $timeout(function() {
+                                $rootScope.scrollToElement("#rating_"+id);
+                                $("#rating_"+id).find('textarea').focus();
+
+                            });
+                            return;
+                        }
+                    }
+                }
             });
         };
 

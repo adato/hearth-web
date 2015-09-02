@@ -748,6 +748,7 @@
     "COMMUNITIES": "Komunity",
     "ERROR_BAD_IMAGE_FORMAT": "Obrázek má špatný formát!",
     "ERROR_BAD_IMAGE_SIZE": "Obrázek je moc veliký. Mooc.",
+    "ERROR_BAD_IMAGE_SIZE_ALL": "Celková velikost obrázků nesmí překročit velikost 6MB.",
     "TOTAL_COUNT": "{{value}} celkem",
     "USING_HEARTH_IN_LANG": "Momentálně používáte Hearth",
     "HEARTH_IN_THIS_LANG": "v českém jazyce",
@@ -1236,6 +1237,7 @@
     "COMMUNITY_TERMS": "Podmínky členství",
     "NEW_VERSION_NOTIFICATION": "Máme pro vás připravenou novější verzi Hearth. Chcete Hearth aktualizovat teď nebo to necháte na později?",
     "RELOAD": "Aktualizovat",
+    "RELOAD_PAGE": "Obnovit stránku",
     "ALL_COMMUNITIES": "Všechny komunity",
     "RATINGS_COUNT": "hodnocení",
     "MY_POST_REPLIES": "Moje odpovědi",
@@ -1256,5 +1258,5 @@
             "TEXT_PLACEHOLDER": "Text odpovědi.."
         }
     },
-    "YOU_ARE_OFFLINE": "<p>Vypad&aacute; to, že nastal probl&eacute;m s připojen&iacute;m k internetu..<\/p>\n<p>&nbsp;<\/p>"
+    "YOU_ARE_OFFLINE": "<p><b>Došlo k chybě při spojení<\/b> Nemáte problém s připojením k internetu?<\/p>"
 }

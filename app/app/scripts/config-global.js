@@ -7,6 +7,7 @@ $$config = {
 	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
+	maxImagesSize: 6,	// max size of all attached images in MB
 	fbSharing: {
 		minWidth: 200,
 		minHeight: 200

@@ -216,7 +216,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);
 			rating.score = ratings[rating.score];
-			rating.post_id = rating.post_id || null;
+            rating.post_id = (rating.post_id && rating.post_id != '0') ? rating.post_id : null;
 
 			var out = {
 				current_community_id: rating.current_community_id,

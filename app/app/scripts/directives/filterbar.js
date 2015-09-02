@@ -102,6 +102,7 @@ angular.module('hearth.directives').directive('filterbar', [
 					$anchorScroll(ui);
 				});
 
+				scope.$on('filterReset', scope.cancelFilter);
 				scope.$on('filterReseted', scope.testFilterActive);
 				scope.$on('filterApplied', scope.testFilterActive);
 

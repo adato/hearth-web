@@ -274,14 +274,36 @@
     }
   }
 
-  .home-ratings .rating-reply {
-    margin-top: 10px;
-    margin-left: 95px;
-    .date {
-      float: none !important;
+  .home-ratings {
+    .score {
+      margin-top: 5px;
+      position: relative;
+      left: -4px;
     }
-    .avatar {
-      margin-right: 10px;
+
+    .infobox-avatar-wrapper {
+      width: 110px;
+      height:100px;
+      float:left;
+    }
+
+    .name {
+      text-align: center;
+      color: #383838;
+      margin-top: 10px;
+/*       text-shadow: 0px 0px 1px gray; */
+      width: 80px;
+      word-wrap: break-word;
+    }
+    
+    .rating-reply {
+      margin-top: 20px;
+      .date {
+        float: none !important;
+      }
+      .avatar {
+        margin-right: 10px;
+      }
     }
   }
 
@@ -459,7 +481,7 @@
           }
           .rating-text {
             font-size: 1rem;
-            line-height: 100%;
+            line-height: 150%;
           }
           margin: {
             top: 5px;
