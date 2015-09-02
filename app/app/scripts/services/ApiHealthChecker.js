@@ -13,6 +13,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		var healthCheckTimeout = 2000;
 		var healthCheckTimeoutPointer = 0;
 		var healthCheckRunning = false;
+		var healthCheckRequestInProgress = false;
 		var version = null;
 		var checkVersionInterval = null;
 		$rootScope.showNewVersionNotify = false;
@@ -51,10 +52,22 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 			}
 		};
 
+		this.checkOnlineState = function() {
+			$rootScope.offlineHealthCheckInProgress = true;
+			clearTimeout(healthCheckTimeoutPointer);
+			self.sendHealthCheck();
+			// add small delay, so user can see that something is hapenning
+			setTimeout(function() {
+				$rootScope.offlineHealthCheckInProgress = false;
+			}, 1000);
+		};
+
 		/**
 		 * This will process health check result
 		 */
 		this.processHealthCheckResult = function(res) {
+			healthCheckRequestInProgress = false;
+
 			if (res && res.ok && res.ok == true){
 				return self.turnOff();
 			}
@@ -67,6 +80,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will schedule next health check
 		 */
 		this.processHealthCheckFailResult = function(res, err) {
+			healthCheckRequestInProgress = false;
 			self.turnOn(res.status);
 
 			healthCheckTimeoutPointer = setTimeout(self.sendHealthCheck, healthCheckTimeout);
@@ -76,6 +90,9 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will send health check request and process result
 		 */
 		this.sendHealthCheck = function(res) {
+			if(healthCheckRequestInProgress)
+				return;
+			healthCheckRequestInProgress = true;
 			$.getJSON($$config.apiPath + '/health').done(self.processHealthCheckResult).fail(self.processHealthCheckFailResult);
 		};
 
