@@ -12,8 +12,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
-		$scope.limitPixelSize = 200;
+		$scope.limitPixelSize = 200;	// Pixels
+		$scope.maxImageSizeLimit = 5; 	// MB
+
 		$scope.imagesCount = 0;
+		$scope.imageSizesSum = 0;
+		$scope.imageSizes = [];
 		$scope.defaultPost = {
 			type: true,
 			keywords: [],
@@ -51,6 +55,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		});
 
+		$scope.getImageSizes = function() {
+			return $scope.imageSizesSum;
+		};
+
 		$scope.togglePostType = function() {
 			if(!$scope.post.reply_count)
 				$scope.post.type = !$scope.post.type;
@@ -73,9 +81,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		// this will recount all images which are not market to be deleted
 		$scope.recountImages = function() {
 			$scope.imagesCount = 0;
-			$scope.post.attachments_attributes.forEach(function(item) {
-				if(!item.deleted)
+			$scope.imageSizesSum = 0;
+
+			$scope.post.attachments_attributes.forEach(function(item, index) {
+				if(!item.deleted) {
+					$scope.imageSizesSum += $scope.imageSizes[index];
 					$scope.imagesCount++;
+				}
 			});
 		};
 
@@ -92,6 +104,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			if (!files[index]._id) {
 				files.splice(index, 1);
+				$scope.imageSizes.splice(index, 1);
 			} else {
 				files[index].deleted = true;
 			}
@@ -251,8 +264,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// 	Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
 			// else
 			// 	Notify.addSingleTranslate('NOTIFY.POST_CREATED_SUCCESFULLY', Notify.T_SUCCESS);
-			$scope.closeThisDialog();
+			$timeout(function () {
+				$scope.closeThisDialog();
+			});
 			
+
+
 			// emit event into whole app
 			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
 

@@ -28,7 +28,7 @@
 						<div class="text-center no-result" ng-if="!conversations.length">
 							{{:: 'MESSAGES.LIST.NO_RESULT' | translate }}
 						</div>
-						<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, $index)">
+						<div class="conversation" ng-class="{unreaded: !item.read, active: detail._id == item._id, 'active-bottom': conversations[$index+1] && conversations[$index+1]._id == detail._id}" ng-repeat="item in conversations" ng-click="showConversation(item, $index, false, true)">
 							<div class="avatars">
 								<avatar ng-if="item.participants.length == 1" src="person.avatar.normal" size="medium" type="person._type" ng-repeat="person in item.participants"></avatar>
 								<avatar ng-if="item.participants.length > 1" src="person.avatar.normal" size="small" type="person._type" ng-repeat="person in item.participants | limitTo: item.maxAvatarCount">{{ $index}}</avatar>

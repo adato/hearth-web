@@ -162,16 +162,17 @@
                             <img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
                         </li>
                         <li class="file-upload">
-                            <div image-preview no-encoding="true" error="showError.files" limit-pixel-size="200" files="post.attachments_attributes" limit="5">
+                            <div image-preview get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
                                 <i class="fa fa-plus"></i>
                             </div>
                         </li>
                     </ul>
                     <div class="clear"></div>
                     <div class="clear error" ng-show="showError.files">
-                        <span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate }}</span>
-                        <span ng-if="showError.files.badSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate }}</span>
-                        <span ng-if="showError.files.badSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX_"+limitPixelSize | translate }}</span>
+                        <span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'JPG, JPEG, PNG, GIF\'}" }}</span>
+                        <span ng-if="showError.files.badSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+maxImageSizeLimit+"}" }}</span>
+                        <span ng-if="showError.files.badSizeAll">{{:: "ERROR_BAD_IMAGE_SIZE_ALL" | translate:"{maxSize: "+maxImageSizeLimit+"}" }}</span>
+                        <span ng-if="showError.files.badSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</span>
                     </div>
                 </div>
             </section>

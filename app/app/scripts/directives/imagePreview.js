@@ -15,8 +15,10 @@ angular.module('hearth.directives').directive('imagePreview', [
 			replace: true,
 			scope: {
 				files: "=?",
+				fileSizes: "=?",
 				limit: "=",
 				error: "=?",
+				getImageSizes: "&",
 				limitPixelSize: "=",
 				singleFile: "=",
 			},
@@ -24,9 +26,9 @@ angular.module('hearth.directives').directive('imagePreview', [
 						+ '<input class="file-upload-input" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
 						+ '<span ng-transclude class="image-preview-content"></span>' 
 						+ '</div>'
-	                    + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
-	                    + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
-	                    + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX_"+limitPixelSize | translate }}</div>'
+	                    + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>'
+	                    + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>'
+	                    + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>'
 						+'</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
@@ -53,6 +55,9 @@ angular.module('hearth.directives').directive('imagePreview', [
 					scope.error = {};
 
 					if (!device.android) { // Since android doesn't handle file types right, do not do this check for phones
+						if(!file.type)
+							console.log("File does not have type attribute", file);
+
 						if (!file.type.match(imageType)) {
 							return scope.error.badFormat = true;
 						}
@@ -82,13 +87,15 @@ angular.module('hearth.directives').directive('imagePreview', [
 							}
 						}
 
-						// neni spravny format
 						if (!~scope.allowedTypes.indexOf(format)) {
+							// bad format
 							scope.error.badFormat = true;
-
-						// neni spravna velikost
 						} else if (e.total > (limitSize * 1024 * 1024)) {
+							// bad size of this one image
 							scope.error.badSize = true;
+						} else if(scope.getImageSizes && scope.getImageSizes() + e.total > $$config.maxImagesSize* 1024 * 1024) {
+							// bad size of all images together
+							scope.error.badSizeAll = true;
 						} else {
 
 							// this will check image size
@@ -105,6 +112,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 										scope.files = {file:src};
 									} else {
 										scope.files.push({file:src});
+										scope.fileSizes.push(e.total);
 									}
 								}
 								scope.$apply();

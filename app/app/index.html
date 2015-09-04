@@ -40,7 +40,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/app/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/app/apple-touch-icon-144x144-precomposed.png">
 
-     <base href="/app/"></base>
+     <base href="/app/">
 
     <!-- build:js /app/scripts/config.min.js -->
       <script src="scripts/config-local.js"></script>
@@ -56,20 +56,28 @@
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/css/nanoscroller.min.css" media="screen" />
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.js"></script>
     <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
 
   </head>
-  <body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName" ng-keydown="escapeKey($event)">
+  <body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
     <div class="ngdialog ngdialog-theme-default" id="maitenancePage">
       <div class="ngdialog-overlay"></div>
       <div class="ngdialog-content" ng-cloak>
           <h2 ng-if="isMaintenanceMode" translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
-          <h2 ng-if="!isMaintenanceMode" translate-cloak ng-bind-html="'YOU_ARE_OFFLINE' | translate"></h2>
       </div>
     </div>
+    <div class="offline-dialog" id="offlineNotify" ng-class="{display: isOfflineMode}" ng-cloak>
+      <div class="content" ng-cloak>
+          <span ng-bind-html="'YOU_ARE_OFFLINE' | translate"></span>
+          &nbsp;&nbsp;
+          <button class="others profile-button solid dontDisable" ng-click="checkOnlineState()">{{ 'RELOAD_PAGE' | translate }} <i class="fa fa-spinner fa-spin" ng-if="offlineHealthCheckInProgress"></i></button>
+      </div>
+    </div>
+
     <div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
       <div> 
         <p>
@@ -178,6 +186,7 @@
       <script src="/app/vendor/angularitics/dist/angulartics.min.js"></script>
       <script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
       <script src="/app/vendor/angularitics/dist/angulartics-mixpanel.min.js"></script>
+      <script src="/app/vendor/fastclick/lib/fastclick.js"></script>
       <script src="/app/vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
       <script src="/app/vendor/satellizer/satellizer.min.js"></script>
 
@@ -187,6 +196,7 @@
 
       <script src="/app/vendor/exif-js/exif.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
 
     <script>
       preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
@@ -249,6 +259,7 @@
 
       <!-- build:js /app/scripts/scripts.min.js -->
       <script src="scripts/oms.min.js"></script>
+      <script src="scripts/rollbar.js"></script>
       <script src="scripts/app.js"></script>
       <script src="scripts/routes.js"></script>
 
@@ -323,6 +334,7 @@
       <script src="scripts/filters/filters.js"></script>
       
       <script src="scripts/directives/ratingReply.js"></script>
+      <script src="scripts/directives/analyticsCustom.js"></script>
       <script src="scripts/directives/communitySelector.js"></script>
       <script src="scripts/directives/slideTrigger.js"></script>
       <script src="scripts/directives/ago.js"></script>
@@ -385,6 +397,7 @@
       <script src="scripts/utils/validatedCheckbox.js"></script>
       <script src="scripts/utils/whenScrolled.js"></script>
       <script src="scripts/utils/withErrors.js"></script>
+      <script src="scripts/utils/eventPause.js"></script>
 
       <script src="scripts/geo/geo.js"></script>
       <script src="scripts/geo/locations.js"></script>
@@ -392,7 +405,6 @@
       <script src="scripts/geo/map.js"></script>
 
       <script src="scripts/controllers/BaseCtrl.js"></script>
-      <script src="scripts/controllers/SearchCtrl.js"></script>
       <script src="scripts/controllers/MapCtrl.js"></script>
       <script src="scripts/controllers/MarketCtrl.js"></script>
       <script src="scripts/controllers/profile/ProfileCtrl.js"></script>

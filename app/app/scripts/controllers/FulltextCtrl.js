@@ -129,19 +129,18 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
         $scope.init = function() {
             $scope.languageCode = $rootScope.language;
             $scope.load();
-        }
 
-        $scope.$on("fulltextSearch", function(text) {
-            $scope.readedAllData = false;
-            $scope.offset = 0;
-            $scope.load();
-        });
+            $scope.$on("fulltextSearch", function(text) {
+                $scope.readedAllData = false;
+                $scope.offset = 0;
+                $scope.load();
+            });
+        }
 
         $scope.$on("$destroy", function() {
             $rootScope.setFulltextSearch('');
         });
-
-        $scope.$on('initFinished', $scope.init);
-        $rootScope.initFinished && $scope.init();
+        
+        $scope.init();
     }
 ]);

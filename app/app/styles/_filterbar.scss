@@ -7,7 +7,7 @@
         @extend .box;
         width:auto;
         padding:0 $ui-grid-size;
-        margin-left:190px;
+        margin-left:189px;
         overflow: hidden;
         a {
             color: color(5);
@@ -19,6 +19,7 @@
         }
     }
     .insert-button-container {
+        margin-right:-2px;
         float:right;
     }
 

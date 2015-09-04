@@ -1,7 +1,8 @@
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
   <form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
-    <div class="right-column small-12 large-5 medium-5 medium-5 columns push-7" ng-cloak>
+    <div class="right-column small-12 large-5 medium-5 columns push-7" ng-cloak>
       <div image-preview files="profile.avatar" limit="1" limit-pixel-size="400" single-file="true">
+      <div image-preview files="profile.avatar" limit="5" limit-pixel-size="400" single-file="true">
         <img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image exif-rotated />
         <img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" resized-thumbnail-image />
         <div class="text">
@@ -204,10 +205,10 @@
       <br />
       <section>
         <div class="large-12 small-12 medium-12 columns">
-          <a ng-href="{{:: getProfileLink('User', profile._id) }}" class="revert-changes">
+          <a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
             <span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
           </a>
-          <button type="submit" class="button-send right" analytics-on analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+          <button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
           <div class="fright error down-error" ng-show="messageBottom">
               <span>{{ messageBottom | translate}}</span>
           </div>

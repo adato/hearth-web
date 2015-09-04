@@ -1,8 +1,8 @@
 <section class="large-2 small-2 medium-2 columns user">
-	<div info-box="{ '_id': item.user_to, '_type': item.user_to_type }">
-		<a ng-href="{{:: getProfileLink(item.user_to_type, item.user_to) }}">
-			<avatar src="item.user_to_avatar.normal" type="item.user_to_type"></avatar>
-			<div class="name">{{ item.user_to_full_name}}</div>
+	<div info-box="{ '_id': item.entity_to._id, '_type': item.entity_to._type }">
+		<a ng-href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id) }}">
+			<avatar src="item.entity_to.avatar.normal" type="item.entity_to._type"></avatar>
+			<div class="name">{{ item.entity_to.name}}</div>
 		</a>
 	</div>
 </section>
