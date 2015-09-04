@@ -36,16 +36,20 @@
 			display: inline-block;
 			max-width: 12rem;
 		}
-		&:before {
-			content:"";
-			display:block;
-			position:absolute;
-			background:image-url("delimiter.png");
-			opacity:.5;
-			background-position:0 0;
-			width:20px;
-			height:500px;
-			background-size: 20px 500px;
+		@media #{$large-up} {
+			&:before {
+				content:"";
+				display:block;
+				position:absolute;
+				background:image-url("delimiter.png");
+				opacity:.5;
+				background-position:0 0;
+				width:40px;
+				height:500px;
+				background-size: 20px 500px;
+				background-position: 20px 0px;
+				background-repeat: no-repeat;
+			}
 		}
 
 		h2 {

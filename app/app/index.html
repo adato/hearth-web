@@ -60,7 +60,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.js"></script>
-    <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
 
   </head>
   <body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
@@ -146,8 +145,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
       <![endif]-->
 
-      <div class="all-visible row max-width">
-        <section class="fixed-nav navigation" ng-if="initFinished" ng-include="'/app/templates/navigation.html'" id="navigation"></section>
+      <div class="all-visible columns row max-width">
+        <navigation class="fixed-nav navigation" ng-if="initFinished" id="navigation"></navigation>
 
        <div ui-view class="main-container"></div>
         <div ng-click="top()" class="move2top show-for-scrolled show-for-large-up" title="{{'move-to-top' | translate}}">
@@ -333,6 +332,7 @@
 
       <script src="scripts/filters/filters.js"></script>
       
+      <script src="scripts/directives/navigation.js"></script>
       <script src="scripts/directives/ratingReply.js"></script>
       <script src="scripts/directives/analyticsCustom.js"></script>
       <script src="scripts/directives/communitySelector.js"></script>

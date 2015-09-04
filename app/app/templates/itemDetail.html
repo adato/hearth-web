@@ -13,7 +13,7 @@
 		</section>
 
 		<section ng-if="! adDeleted && ad && ad.name" class="large-12 small-12 medium-12 content row" id="item_container_{{ ad._id }}">
-			<div class="large-4 small-4 medium-4 small-12 medium-12 ad-author-column text-center right">
+			<div class="large-4 small-12 medium-12 ad-author-column text-center right">
 				<div>
 					<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="getProfileLink(ad.author._type, ad.author._id)" /></avatar>
 					<a ng-href="{{:: getProfileLink(ad.author._type, ad.author._id)}}"><h2>{{ ad.author.name}}</h2></a>
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 			</div>
-			<div ng-if="!isActive" class="large-8 small-8 medium-8 medium-12 small-12 left columns item-status-bar">
+			<div ng-if="!isActive" class="large-8 medium-12 left columns item-status-bar">
 				<span ng-if="ad.state == 'expired'">
 					<span ng-if="ad.valid_until">{{ 'POST_HAS_EXPIRED' | translate  }} {{ ad.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
 					<span ng-if="!ad.valid_until">{{ 'POST_HAS_ALREADY_EXPIRED' | translate  }}</span>
@@ -72,7 +72,7 @@
 				<span ng-if="ad.state == 'suspended'">{{ 'POST_WAS_SUSPENDED' | translate }}</span>
 			</div>
 
-			<div class="large-8 small-8 medium-8 medium-12 small-12 left columns ad-detail-column" ng-init="local.showMap = false">
+			<div class="large-8 medium-12 small-12 left columns ad-detail-column" ng-init="local.showMap = false">
 				<article class="box post-detail row">
 					<header class="clearfix">
 						<div class="large-8 small-8 medium-8 columns">

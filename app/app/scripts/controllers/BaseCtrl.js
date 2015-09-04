@@ -74,13 +74,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.pageChangeWithScroll = false;
         };
 
-        $rootScope.reloadToMarketplace = function() {
-            if($state.current.name == 'market')
-                $state.reload();
-            else
-                $state.go('market');
-        };
-
         /**
          * When started routing to another page, compare routes and if they differ
          * scroll to top of the page, if not, refresh page with fixed height
@@ -152,15 +145,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.showUI = function(ui) {
             $scope.$broadcast('showUI', ui);
-        };
-        
-        /**
-         * When clicked on logout button
-         */
-        $scope.logout = function() {
-            Auth.logout(function() {
-                $rootScope.refreshToPath($$config.basePath);
-            });
         };
         
         /**
@@ -279,6 +263,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1, { path: '/' });
             }
+
+
             timeAgoService.init();
             Notify.checkRefreshMessage();
             Auth.isLoggedIn() && Messenger.loadCounters();

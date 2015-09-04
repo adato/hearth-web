@@ -7,10 +7,14 @@
 .page-token-login,
 .page-fill-email,
 .page-post,
+.page-faq,
+.page-terms,
+.page-taxes,
+.page-feedback,
 .page-profileSettings,
 .page-error404,
-.page-communities.suggested,
-.page-communities.all {
+.page-communities\.suggested,
+.page-communities\.all {
 	
 	#notify-top {
 		width: unset !important;
@@ -44,4 +48,8 @@
 .center {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.all-visible {
+	float: none;
 }
