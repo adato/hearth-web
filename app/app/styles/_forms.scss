@@ -18,6 +18,13 @@ textarea:focus {
     box-shadow: inset 0 0 5px color(5) !important;
 }
 
+input {
+  &.ng-invalid-email {
+    border-color: #ff782e !important;
+    box-shadow: inset 0 0 5px #ff782e !important;
+  }
+}
+
 #searchBox {
     margin: {
         top: $ui-small-grid-size + 1;
@@ -34,10 +41,10 @@ textarea:focus {
     &:focus {
         background: lighten(color(4), 20%) !important;
     }
-    &::-webkit-input-placeholder { 
+    &::-webkit-input-placeholder {
         color:color(3);
     }
-    &:-moz-placeholder { 
+    &:-moz-placeholder {
        color:color(3);
        opacity:  1;
     }
