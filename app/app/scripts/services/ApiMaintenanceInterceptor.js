@@ -37,8 +37,12 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
                         retryHttpRequest(rejection.config, deferred);
                     });
                     return deferred.promise;
-                } else
-                    return rejection;
+                } else {
+
+                    if (rejection.status != 401)
+                        Rollbar.error("HEARTH: API Error response", {error: e, source: rejection});
+                    return $q.reject(rejection);
+                }
             }
         };
     }
