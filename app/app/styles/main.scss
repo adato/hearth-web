@@ -127,9 +127,10 @@ body {
     .main-container {
         display: block;
         min-width:960px;
-        margin: 0px auto;
-        position: relative;
-        top: 6em;
+        max-width: 960px;
+        margin: auto;
+        margin-top: 3em;
+        margin-bottom: 2em;
     }
     -webkit-text-size-adjust:100%; // for mobile
 }

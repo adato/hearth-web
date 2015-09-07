@@ -184,10 +184,14 @@ nav {
 */
 
 
+.top-bar,
 .left-off-canvas-menu {
     a.active {
         font-weight: bold;
     }
+}
+
+.left-off-canvas-menu {
 
     .socials span {
         margin-right: 2px;
@@ -197,7 +201,10 @@ nav {
 .tab-bar-closed {
     .menu-icon{
         display: inline-block;
-        margin-right: 30px;
+        margin-right: 20px;
+        text-indent: 1.1875rem;
+        position: relative;
+        top: -1px;
     }
 }
 
@@ -214,4 +221,7 @@ nav {
 
 .no-hover:hover {
     background-color: inherit;
+    span {
+        background-color: inherit;
+    }
 }

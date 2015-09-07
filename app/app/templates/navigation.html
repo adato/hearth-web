@@ -1,4 +1,177 @@
-<section class="fixed-nav navigation" id="navigation">
+<aside class="left-off-canvas-menu">
+    <ul class="off-canvas-list">
+      <li>
+          <label class="first">Menu</label>
+      </li>
+      <li>
+        <a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+          {{ 'HOMEPAGE_MARKET' | translate }}
+        </a>
+      </li>
+      <li>
+        <a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}">
+          {{ 'COMMUNITIES' | translate }}
+        </a>
+      </li>
+      <li>
+        <a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+              {{ 'TOP_BAR_MESSAGES' | translate }}
+          </a>
+      </li>
+      <li ng-show="!loggedUser.name"><a ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a></li>
+    </ul>
+      <ul class="off-canvas-list" ng-show="loggedUser._id">
+        <li>
+            <label class="first"><i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:15}}</label>
+        </li>
+        <li>
+          <a ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+        </li>
+        <li>
+          <a ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a>
+        </li>
+        <li>
+          <a ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a>
+        </li>
+        <li class="divider" ng-if="myAdminCommunities.length"></li>
+        <li ng-repeat="item in myAdminCommunities">
+          <a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+            <avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+            <span class="name">{{ item.name | ellipsis:12}}</span>
+          </a>
+        </li>
+        <li class="divider" ng-if="myAdminCommunities.length"></li>
+        <li>
+          <a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a>
+        </li>
+      </ul>
+      <ul class="off-canvas-list">
+        <li>
+          <label>
+            {{'TOP_BAR_ABOUT' | translate}}
+          </label>
+        </li>
+        <li><a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
+        <li><a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
+        <li><a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
+        <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+        <li ng-if="language == 'cs'">
+          <a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a>
+        </li>
+      </ul>
+      <ul class="off-canvas-list socials">
+        <li>
+          <label>
+            {{ 'SOCIAL_NETWORKS' | translate}}
+          </label>
+        </li>
+        <li>
+          <a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a>
+        </li>
+        <li>
+          <a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span> Google+</a>
+        </li>
+        <li>
+          <a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a>
+        </li>
+      </ul>
+</aside>
+<nav class="tab-bar tab-bar-closed hide-for-large-up">
+    <a class="left-off-canvas-toggle menu-icon sidebar-button">
+      <img alt="Menu grey" src="http://foundation.zurb.com/assets/img/offcanvas/menu-wht.png">
+    </a>
+    <a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
+</nav>
+<nav class="top-bar top-bar-opened show-for-large-up" data-topbar ng-cloak>
+	<section class="web-width">
+	    <ul class="title-area">
+	      <li class="name">
+	        <h1>
+	          <a ng-href="{{:: basePath }}" analytics-on analytics-event="marketplace" analytics-category="menu"><img ng-click="reloadToMarketplace()" class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
+	        </h1>
+	      </li>
+	    </ul>
+	    <section class="top-bar-section">
+	      <ul class="right">
+	        <li class="divider"></li>
+	        <li>
+	          <a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+	            {{ 'HOMEPAGE_MARKET' | translate }}
+	          </a>
+	        </li>
+	        <li class="divider"></li>
+	        <li>
+	          <a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}">
+	            {{ 'COMMUNITIES' | translate }}
+	          </a>
+	        </li>
+	        <li class="divider"></li>
+	        <li>
+	          <a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+	                {{ 'TOP_BAR_MESSAGES' | translate }}
+	                <span ng-if="messagesCounters.unread > 0" class="round alert label">{{ messagesCounters.unread | minMax:1:99:'+':1}}</span>
+	            </a>
+	        </li>
+	        <li class="divider"></li>
+	        <li ng-show="!loggedUser.name"><a ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a></li>
+	        <li class="divider"></li>
+
+	        <li class="has-dropdown">
+	          <a ng-if="loggedUser._id" ng-class="{active: pageName.slice(0,7) == 'profile'}" title="{{ loggedUser.name}}">
+	              <i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:9}}
+	          </a>
+	          <ul class="dropdown">
+	            <li>
+	              <a ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+	              </li>
+	            <li><a ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
+	            <li><a ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+	            <li class="divider" ng-if="myAdminCommunities.length"></li>
+	            <li ng-repeat="item in myAdminCommunities">
+	              <a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+	                <avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+	                <span class="name">{{ item.name | ellipsis:12}}</span>
+	              </a>
+	            </li>
+	            <li class="divider" ng-if="myAdminCommunities.length"></li>
+	            <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
+	          </ul>
+	        </li>
+	        <li class="divider"></li>
+	        <li class="has-dropdown">
+	          <a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'feedback', 'terms'].indexOf(pageName) > -1}" analytics-on analytics-event="about page open" analytics-category="About" id="nav-about">
+	            {{'TOP_BAR_ABOUT' | translate}}
+	          </a>
+	          <ul class="dropdown">
+	            <li><a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
+	            <li><a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
+	            <li><a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
+	            <li class="divider"></li>
+	            <li><a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+	            <li ng-if="language == 'cs'"><a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
+	            <li class="divider"></li>
+	            <li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
+	            <li class="no-hover">
+	              <ul class="social-menu">
+	              <li><a href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span></a></li>
+	                <li><a href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span></a></li>
+	                <li><a href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span></a></li>
+	                <li><a href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span></a></li>
+	              </ul>
+	            </li>
+	          </ul>
+	        </li>
+	        <li class="divider"></li>
+	      </ul>
+	    </section>
+    </section>
+</nav>
+
+
+<!-- <section class="fixed-nav navigation" id="navigation">
 	<nav class="top-bar center max-web-width" data-topbar="">
 	    <ul class="title-area hide-for-large-up">
 	        <li class="name padding-1">
@@ -103,4 +276,4 @@
 		</div>
 	</div>
 		
-</section>
+</section> -->
