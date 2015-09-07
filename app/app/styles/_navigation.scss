@@ -218,10 +218,21 @@ nav {
     display: none;
 }
 
+.top-bar-section {
+    .dropdown {
+        min-width: 168px;
+    }
+    .no-hover:hover {
+        background-color: #333333;
+        span {
+            background-color: #333333;
+        }
+    }
 
-.no-hover:hover {
-    background-color: inherit !important;
-    span {
-        background-color: inherit !important;
+    .social-menu {
+        li {
+            display: inline-block;
+            width: auto !important;;
+        }
     }
 }
