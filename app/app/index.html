@@ -52,210 +52,254 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.js"></script>
 </head>
-
 <body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
-      <div id="fb-root"></div>
-      <div id="notify-top"></div>
-      <script src="//connect.facebook.net/en_US/all.js"></script>
-      <script type='text/javascript'>
-      <!--
-        /**
-         * Temporary function for cookie path translation
-         * Move all cookies from /app/ path to /
-         */
-        (function($) {
-          var cookies = document.cookie.split('; ');
-          var used = {};
-          for(var i in cookies) {
-            var c = cookies[i].split('=');
-            if(used[c[0]])
-              continue;
-            used[c[0]] = c[1];
+  <div id="fb-root"></div>
+  <div id="notify-top"></div>
+  <script src="//connect.facebook.net/en_US/all.js"></script>
+  <script type='text/javascript'>
+  <!--
+    /**
+     * Temporary function for cookie path translation
+     * Move all cookies from /app/ path to /
+     */
+    (function($) {
+      var cookies = document.cookie.split('; ');
+      var used = {};
+      for(var i in cookies) {
+        var c = cookies[i].split('=');
+        if(used[c[0]])
+          continue;
+        used[c[0]] = c[1];
 
-            $.removeCookie(c[0])
-            // $.removeCookie(c[0], { path: '/app/' }); // => true
-            $.cookie(c[0], c[1], {path: "/", expires: 20 * 365});
-          }
-        })($);
-        // fb invite jump out from FB frame
-        if (top.location!= self.location) {
-          top.location = self.location;
-        }
+        $.removeCookie(c[0])
+        // $.removeCookie(c[0], { path: '/app/' }); // => true
+        $.cookie(c[0], c[1], {path: "/", expires: 20 * 365});
+      }
+    })($);
+    // fb invite jump out from FB frame
+    if (top.location!= self.location) {
+      top.location = self.location;
+    }
 
-        // fb login redirects to this URL
-        if (window.location.hash && window.location.hash === '#_=_') {
-            window.location.hash = '';
-        }
+    // fb login redirects to this URL
+    if (window.location.hash && window.location.hash === '#_=_') {
+        window.location.hash = '';
+    }
 
-        // refresh from old URL style to new one #!/ => /
-        if (!!~window.location.href.indexOf('#!/')){
-           // != -1 && window.location.href.indexOf('#!') == -1
-          window.location.href =  window.location.href.replace('#!/', '');
-        }
-      //-->
-      </script>
-      <!--[if lt IE 10]>
-        <div class="chromeframe">
-          <div class="reason">
-            <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
-          </div>
-          
-        </div>
-      <![endif]-->
-
-      <!--[if lt IE 9]>
-        <script src="/app/vendor/es5-shim/es5-shim.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
-      <![endif]-->
-
-
-    <div class="off-canvas-wrap" data-offcanvas>
-        <div class="inner-wrap">
-            <aside class="left-off-canvas-menu">
-                <ul class="off-canvas-list">
-                  <li>
-                      <label class="first">Menu</label>
-                  </li>
-                  <li>
-                    <a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}" class="menuItem">
-                      {{ 'HOMEPAGE_MARKET' | translate }}
-                    </a>
-                  </li>
-                  <li>
-                    <a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}" class="menuItem">
-                      {{ 'COMMUNITIES' | translate }}
-                    </a>
-                  </li>
-                  <li>
-                    <a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" class="menuItem" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
-                          {{ 'TOP_BAR_MESSAGES' | translate }}
-                      </a>
-                  </li>
-                  <li ng-show="!loggedUser.name"><a class="menuItem" ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a></li>
-                </ul>
-                <ul class="off-canvas-list" ng-show="loggedUser._id">
-                    <li>
-                        <label class="first"><i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:15}}</label>
-                    </li>
-                    <li>
-                      <a class="menuItem" ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
-                    </li>
-                    <li><a class="menuItem" ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
-                    <li><a class="menuItem" ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
-                        <li class="divider" ng-if="myAdminCommunities.length"></li>
-                        <li ng-repeat="item in myAdminCommunities">
-                      <a class="menuItem" class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
-                        <avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
-                        <span class="name">{{ item.name | ellipsis:12}}</span>
-                      </a>
-                        </li>
-                    <li class="divider" ng-if="myAdminCommunities.length"></li>
-                    <li><a class="menuItem" href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
-                </ul>
-                <ul class="off-canvas-list">
-                    <li>
-                        <label>
-                          {{'TOP_BAR_ABOUT' | translate}}
-                        </label>
-                    </li>
-                    <li><a class="menuItem" ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
-                    <li><a class="menuItem" ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
-                    <li><a class="menuItem" ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
-                    <li><a class="menuItem" href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
-                    <li ng-if="language == 'cs'"><a class="menuItem" ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
-                </ul>
-                <ul class="off-canvas-list socials">
-                  <li>
-                    <label>
-                      {{ 'SOCIAL_NETWORKS' | translate}}
-                    </label>
-                  </li>
-                  <li><a class="menuItem" href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
-                  <li><a class="menuItem" href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
-                  <li><a class="menuItem" href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span> Google+</a></li>
-                  <li><a class="menuItem" href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a></li>
-                </ul>
-            </aside>
-            <nav class="tab-bar tab-bar-closed hide-for-large-up">
-                <a class="left-off-canvas-toggle menu-icon sidebar-button">
-                    <img alt="Menu grey" src="http://foundation.zurb.com/assets/img/offcanvas/menu-wht.png">
-                </a>
-                <a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
-            </nav>
-            <nav class="top-bar top-bar-opened show-for-large-up" data-topbar>
-                <ul class="title-area">
-                    <li class="name">
-                        <h1><a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a></h1>
-                    </li>
-                </ul>
-                <section class="top-bar-section">
-                    <ul class="right">
-                        <li class="divider"></li>
-                        <li class="has-dropdown">
-                            <a href="learn/features.html" class="">Learn</a>
-                            <ul class="dropdown">
-                                <li><a href="learn/features.html">Features</a></li>
-                                <li><a href="learn/case-studies.html">Case Studies</a></li>
-                                <li><a href="learn/brands.html">Brands</a></li>
-                                <li><a href="learn/tutorials.html">Tutorials</a></li>
-                                <li><a href="learn/classes.html">Classes</a></li>
-                                <li><a href="learn/about.html">About Foundation</a></li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="has-dropdown">
-                            <a href="develop/getting-started.html" class="">Develop</a>
-                            <ul class="dropdown">
-                                <li><a href="develop/getting-started.html">Getting Started</a></li>
-                                <li><a href="develop/download.html">Download</a></li>
-                                <li><a href="http:http://foundation.zurb.com/docs/">Documentation</a></li>
-                                <li><a href="develop/resources.html">Resources</a></li>
-                                <li><a href="templates.html">HTML Templates</a></li>
-                                <li><a href="develop/contribute.html">Contribute</a></li>
-                                <li><a href="http:http://foundation.zurb.com/apps/">Foundation for Apps</a></li>
-                                <li><a href="http://zurb.com/ink/">Foundation for Emails</a></li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="has-dropdown">
-                            <a href="support/support.html" class="">Support</a>
-                            <ul class="dropdown">
-                                <li><a href="support/support.html">Support Channels</a></li>
-                                <li><a href="/forum">Foundation Forum</a></li>
-                                <li><a href="support/faq.html">FAQs</a></li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="has-dropdown">
-                            <a href="business/services.html" class="">Business</a>
-                            <ul class="dropdown">
-                                <li><a href="business/services.html">Services</a></li>
-                                <li><a href="business/business-support.html">Business Support</a></li>
-                                <li><a href="business/engineering-studios.html">Engineering Studios</a></li>
-                                <li><a href="business/training.html">Business Training</a></li>
-                                <li><a href="business/design-apps.html">Hosted Prototypes</a></li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/docs" class="">Docs</a>
-                        </li>
-                        <li class="divider"></li>
-                    </ul>
-                </section>
-            </nav>
-            <section id="homepage-hero">
-               
-              <div ui-view class="main-container"></div>
-              <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
-                  {{topArrowText.top}}
-                  <span class="fa fa-caret-square-o-up"></span>
-                  {{topArrowText.bottom}}
-              </div>
-            </section>
-            <a class="exit-off-canvas"></a>
-        </div>
+    // refresh from old URL style to new one #!/ => /
+    if (!!~window.location.href.indexOf('#!/')){
+       // != -1 && window.location.href.indexOf('#!') == -1
+      window.location.href =  window.location.href.replace('#!/', '');
+    }
+  //-->
+  </script>
+  <!--[if lt IE 10]>
+    <div class="chromeframe">
+      <div class="reason">
+        <p>We are terribly sorry, but we can't serve you because you are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to use <strong>Hearth.net</strong>.</p>
+      </div>
+      
     </div>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+  <![endif]-->
+
+
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li>
+              <label class="first">Menu</label>
+          </li>
+          <li>
+            <a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}" class="menuItem">
+              {{ 'HOMEPAGE_MARKET' | translate }}
+            </a>
+          </li>
+          <li>
+            <a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}" class="menuItem">
+              {{ 'COMMUNITIES' | translate }}
+            </a>
+          </li>
+          <li>
+            <a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" class="menuItem" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+                  {{ 'TOP_BAR_MESSAGES' | translate }}
+              </a>
+          </li>
+          <li ng-show="!loggedUser.name"><a class="menuItem" ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a></li>
+        </ul>
+          <ul class="off-canvas-list" ng-show="loggedUser._id">
+            <li>
+                <label class="first"><i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:15}}</label>
+            </li>
+            <li>
+              <a class="menuItem" ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+            </li>
+            <li>
+              <a class="menuItem" ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a>
+            </li>
+            <li>
+              <a class="menuItem" ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a>
+            </li>
+            <li class="divider" ng-if="myAdminCommunities.length"></li>
+            <li ng-repeat="item in myAdminCommunities">
+              <a class="menuItem" class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+                <avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+                <span class="name">{{ item.name | ellipsis:12}}</span>
+              </a>
+            </li>
+            <li class="divider" ng-if="myAdminCommunities.length"></li>
+            <li>
+              <a class="menuItem" href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a>
+            </li>
+          </ul>
+          <ul class="off-canvas-list">
+            <li>
+              <label>
+                {{'TOP_BAR_ABOUT' | translate}}
+              </label>
+            </li>
+            <li><a class="menuItem" ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
+            <li><a class="menuItem" ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
+            <li><a class="menuItem" ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
+            <li><a class="menuItem" href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+            <li ng-if="language == 'cs'">
+              <a class="menuItem" ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a>
+            </li>
+          </ul>
+          <ul class="off-canvas-list socials">
+            <li>
+              <label>
+                {{ 'SOCIAL_NETWORKS' | translate}}
+              </label>
+            </li>
+            <li>
+              <a class="menuItem" href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a>
+            </li>
+            <li>
+              <a class="menuItem" href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a>
+            </li>
+            <li>
+              <a class="menuItem" href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span> Google+</a>
+            </li>
+            <li>
+              <a class="menuItem" href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a>
+            </li>
+          </ul>
+      </aside>
+      <nav class="tab-bar tab-bar-closed hide-for-large-up">
+        <a class="left-off-canvas-toggle menu-icon sidebar-button">
+          <img alt="Menu grey" src="http://foundation.zurb.com/assets/img/offcanvas/menu-wht.png">
+        </a>
+        <a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
+      </nav>
+      <nav class="top-bar top-bar-opened show-for-large-up" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1>
+              <a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
+            </h1>
+          </li>
+        </ul>
+        <section class="top-bar-section">
+          <ul class="right">
+            <li class="divider"></li>
+            <li>
+              <a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}" class="menuItem">
+                {{ 'HOMEPAGE_MARKET' | translate }}
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}" class="menuItem">
+                {{ 'COMMUNITIES' | translate }}
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" class="menuItem" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+                    {{ 'TOP_BAR_MESSAGES' | translate }}
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li ng-show="!loggedUser.name"><a class="menuItem" ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a></li>
+            <li class="divider"></li>
+            <li class="has-dropdown" ng-show="loggedUser.name">
+                <a ng-if="loggedUser._id" ng-class="{active: pageName.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
+                    <i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:9}}
+                </a>
+                <ul class="dropdown">
+                  <li>
+                    <a class="menuItem" ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+                    </li>
+                  <li><a class="menuItem" ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
+                  <li><a class="menuItem" ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+                  <li class="divider" ng-if="myAdminCommunities.length"></li>
+                  <li ng-repeat="item in myAdminCommunities">
+                    <a class="menuItem" class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+                      <avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+                      <span class="name">{{ item.name | ellipsis:12}}</span>
+                    </a>
+                  </li>
+                  <li class="divider" ng-if="myAdminCommunities.length"></li>
+                  <li><a class="menuItem" href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
+                </ul>
+            </li>
+            <li class="divider"></li>
+            <li class="has-dropdown">
+              <a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'feedback', 'terms'].indexOf(pageName) > -1}" analytics-on analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
+                {{'TOP_BAR_ABOUT' | translate}}
+              </a>
+                <ul class="dropdown" id="about-drop">
+                  <li><a class="menuItem" ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
+                  <li><a class="menuItem" ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
+                  <li><a class="menuItem" ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
+                  <li class="divider"></li>
+                  <li><a class="menuItem" href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+                  <li ng-if="language == 'cs'"><a class="menuItem" ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
+                  <li class="divider"></li>
+                  <li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
+                  <li class="no-hover">
+                    <ul class="social-menu">
+                    <li><a class="menuItem" href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span></a></li>
+                      <li><a class="menuItem" href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span></a></li>
+                      <li><a class="menuItem" href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span></a></li>
+                      <li><a class="menuItem" href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span></a></li>
+                    </ul>
+                  </li>
+                </ul>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="/docs" class="">Docs</a>
+            </li>
+            <li class="divider"></li>
+          </ul>
+        </section>
+      </nav>
+      <section id="homepage-hero">
+         
+        <div ui-view class="main-container"></div>
+        <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
+            {{topArrowText.top}}
+            <span class="fa fa-caret-square-o-up"></span>
+            {{topArrowText.bottom}}
+        </div>
+      </section>
+      <a class="exit-off-canvas"></a>
+    </div>
+  </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
+        <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+        <script src="/app/vendor/exif-js/exif.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
 
         <script src="//code.angularjs.org/1.4.3/angular.min.js"></script>
         <script src="//code.angularjs.org/1.4.3/angular-sanitize.min.js"></script>
