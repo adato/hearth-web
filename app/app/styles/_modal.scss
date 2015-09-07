@@ -65,6 +65,7 @@
         animation: ngdialog-flyout .5s;
     }
     .ngdialog-content {
+        background: #fff;
         -webkit-animation: ngdialog-flyin .5s;
         animation: ngdialog-flyin .5s;
         border-radius: $global-radius;

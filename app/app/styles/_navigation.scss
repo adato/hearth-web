@@ -220,8 +220,8 @@ nav {
 
 
 .no-hover:hover {
-    background-color: inherit;
+    background-color: inherit !important;
     span {
-        background-color: inherit;
+        background-color: inherit !important;
     }
 }
