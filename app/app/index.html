@@ -3,20 +3,20 @@
 <!--[if IE 7]>         <html xmlns:ng="//angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html xmlns:ng="//angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html ng-app="hearth" class="no-js lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!--> <html ng-app="hearth" class="no-js"> <!--<![endif]-->
-  <head>
+<!--[if gt IE 9]><!-->
+<html ng-app="hearth" class="no-js">
+<!--<![endif]-->
+
+<head>
     <meta charset="utf-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <!-- @if DEBUG -->
-      <title>HEARTH.net (debug)</title>
+    <title>HEARTH.net (debug)</title>
     <!-- @endif -->
     <title>HEARTH.net</title>
-
     <meta http-equiv="pragma" content="no-cache" />
     <meta name="description" content="Hearth.net - {{og_description}}">
-    
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{og_title}}" />
     <meta property="og:description" content="{{og_description}}" />
@@ -27,69 +27,34 @@
     <!-- build:css({.tmp,app}) /app/styles/main.css -->
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
     <!-- endbuild -->
-
     <!-- @if DEBUG -->
     <link rel="stylesheet" href="/styles/palette.css">
     <!-- @endif -->
-
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="/app/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="/app/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/app/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/app/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/app/apple-touch-icon-144x144-precomposed.png">
-
-     <base href="/app/">
-
+    <base href="/app/">
     <!-- build:js /app/scripts/config.min.js -->
-      <script src="scripts/config-local.js"></script>
-      <script src="scripts/config-global.js"></script>
-      <script src="scripts/analytics.js"></script>
-      <script src="scripts/newRelic.js"></script>
+    <script src="scripts/config-local.js"></script>
+    <script src="scripts/config-global.js"></script>
+    <script src="scripts/analytics.js"></script>
+    <script src="scripts/newRelic.js"></script>
     <!-- endbuild -->
-
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="/app/vendor/ngDialog/css/ngDialog.min.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/flexslider-min.css">
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/css/nanoscroller.min.css" media="screen" />
-    
+
+    <!-- <link type="text/css" rel="stylesheet" href="/scripts/utils/marketing.css"/> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+    <!-- <script src="/scripts/utilityils/modernizr.js"></script> -->
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.js"></script>
+</head>
 
-  </head>
-  <body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
-    <div class="ngdialog ngdialog-theme-default" id="maitenancePage">
-      <div class="ngdialog-overlay"></div>
-      <div class="ngdialog-content" ng-cloak>
-          <h2 ng-if="isMaintenanceMode" translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
-      </div>
-    </div>
-    <div class="offline-dialog" id="offlineNotify" ng-class="{display: isOfflineMode}" ng-cloak>
-      <div class="content" ng-cloak>
-          <span ng-bind-html="'YOU_ARE_OFFLINE' | translate"></span>
-          &nbsp;&nbsp;
-          <button class="others profile-button solid dontDisable" ng-click="checkOnlineState()">{{ 'RELOAD_PAGE' | translate }} <i class="fa fa-spinner fa-spin" ng-if="offlineHealthCheckInProgress"></i></button>
-      </div>
-    </div>
-
-    <div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
-      <div> 
-        <p>
-          <i class="fa fa-exclamation-circle"></i>
-          {{ 'NEW_VERSION_NOTIFICATION' | translate }}
-        </p>
-        <span ng-click="refreshToPath()" class="left">{{ 'RELOAD' | translate }}</span>
-        <span ng-click="closeMaintenanceNotify();" class="right">{{ 'CLOSE' | translate }}</span>
-        <div class="clear"></div>
-      </div>
-    </div>
-
-    <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
-    <div id="all">
+<body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
       <div id="fb-root"></div>
       <div id="notify-top"></div>
       <script src="//connect.facebook.net/en_US/all.js"></script>
@@ -144,71 +109,209 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
       <![endif]-->
 
-      <div class="all-visible columns row max-width">
-        <navigation class="fixed-nav navigation" ng-if="initFinished" id="navigation"></navigation>
 
-       <div ui-view class="main-container"></div>
-        <div ng-click="top()" class="move2top show-for-scrolled show-for-large-up" title="{{'move-to-top' | translate}}">
-            {{topArrowText.top}}
-            <span class="fa fa-caret-square-o-up"></span>
-            {{topArrowText.bottom}}
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+            <aside class="left-off-canvas-menu">
+                <ul class="off-canvas-list">
+                  <li>
+                      <label class="first">Menu</label>
+                  </li>
+                  <li>
+                    <a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}" class="menuItem">
+                      {{ 'HOMEPAGE_MARKET' | translate }}
+                    </a>
+                  </li>
+                  <li>
+                    <a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}" class="menuItem">
+                      {{ 'COMMUNITIES' | translate }}
+                    </a>
+                  </li>
+                  <li>
+                    <a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" class="menuItem" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+                          {{ 'TOP_BAR_MESSAGES' | translate }}
+                      </a>
+                  </li>
+                  <li ng-show="!loggedUser.name"><a class="menuItem" ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a></li>
+                </ul>
+                <ul class="off-canvas-list" ng-show="loggedUser._id">
+                    <li>
+                        <label class="first"><i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:15}}</label>
+                    </li>
+                    <li>
+                      <a class="menuItem" ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+                    </li>
+                    <li><a class="menuItem" ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
+                    <li><a class="menuItem" ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
+                        <li class="divider" ng-if="myAdminCommunities.length"></li>
+                        <li ng-repeat="item in myAdminCommunities">
+                      <a class="menuItem" class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+                        <avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
+                        <span class="name">{{ item.name | ellipsis:12}}</span>
+                      </a>
+                        </li>
+                    <li class="divider" ng-if="myAdminCommunities.length"></li>
+                    <li><a class="menuItem" href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
+                </ul>
+                <ul class="off-canvas-list">
+                    <li>
+                        <label>
+                          {{'TOP_BAR_ABOUT' | translate}}
+                        </label>
+                    </li>
+                    <li><a class="menuItem" ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
+                    <li><a class="menuItem" ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
+                    <li><a class="menuItem" ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
+                    <li><a class="menuItem" href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
+                    <li ng-if="language == 'cs'"><a class="menuItem" ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
+                </ul>
+                <ul class="off-canvas-list socials">
+                  <li>
+                    <label>
+                      {{ 'SOCIAL_NETWORKS' | translate}}
+                    </label>
+                  </li>
+                  <li><a class="menuItem" href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span> Twitter</a></li>
+                  <li><a class="menuItem" href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span> Facebook</a></li>
+                  <li><a class="menuItem" href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span> Google+</a></li>
+                  <li><a class="menuItem" href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span> Youtube</a></li>
+                </ul>
+            </aside>
+            <nav class="tab-bar tab-bar-closed hide-for-large-up">
+                <a class="left-off-canvas-toggle menu-icon sidebar-button">
+                    <img alt="Menu grey" src="http://foundation.zurb.com/assets/img/offcanvas/menu-wht.png">
+                </a>
+                <a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
+            </nav>
+            <nav class="top-bar top-bar-opened show-for-large-up" data-topbar>
+                <ul class="title-area">
+                    <li class="name">
+                        <h1><a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a></h1>
+                    </li>
+                </ul>
+                <section class="top-bar-section">
+                    <ul class="right">
+                        <li class="divider"></li>
+                        <li class="has-dropdown">
+                            <a href="learn/features.html" class="">Learn</a>
+                            <ul class="dropdown">
+                                <li><a href="learn/features.html">Features</a></li>
+                                <li><a href="learn/case-studies.html">Case Studies</a></li>
+                                <li><a href="learn/brands.html">Brands</a></li>
+                                <li><a href="learn/tutorials.html">Tutorials</a></li>
+                                <li><a href="learn/classes.html">Classes</a></li>
+                                <li><a href="learn/about.html">About Foundation</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="has-dropdown">
+                            <a href="develop/getting-started.html" class="">Develop</a>
+                            <ul class="dropdown">
+                                <li><a href="develop/getting-started.html">Getting Started</a></li>
+                                <li><a href="develop/download.html">Download</a></li>
+                                <li><a href="http:http://foundation.zurb.com/docs/">Documentation</a></li>
+                                <li><a href="develop/resources.html">Resources</a></li>
+                                <li><a href="templates.html">HTML Templates</a></li>
+                                <li><a href="develop/contribute.html">Contribute</a></li>
+                                <li><a href="http:http://foundation.zurb.com/apps/">Foundation for Apps</a></li>
+                                <li><a href="http://zurb.com/ink/">Foundation for Emails</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="has-dropdown">
+                            <a href="support/support.html" class="">Support</a>
+                            <ul class="dropdown">
+                                <li><a href="support/support.html">Support Channels</a></li>
+                                <li><a href="/forum">Foundation Forum</a></li>
+                                <li><a href="support/faq.html">FAQs</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="has-dropdown">
+                            <a href="business/services.html" class="">Business</a>
+                            <ul class="dropdown">
+                                <li><a href="business/services.html">Services</a></li>
+                                <li><a href="business/business-support.html">Business Support</a></li>
+                                <li><a href="business/engineering-studios.html">Engineering Studios</a></li>
+                                <li><a href="business/training.html">Business Training</a></li>
+                                <li><a href="business/design-apps.html">Hosted Prototypes</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/docs" class="">Docs</a>
+                        </li>
+                        <li class="divider"></li>
+                    </ul>
+                </section>
+            </nav>
+            <section id="homepage-hero">
+               
+              <div ui-view class="main-container"></div>
+              <div ng-click="top()" class="move2top show-for-scrolled" title="{{'move-to-top' | translate}}">
+                  {{topArrowText.top}}
+                  <span class="fa fa-caret-square-o-up"></span>
+                  {{topArrowText.bottom}}
+              </div>
+            </section>
+            <a class="exit-off-canvas"></a>
         </div>
-      </div>
+    </div>
 
-      <script src="//code.angularjs.org/1.4.3/angular.min.js"></script>
-      <script src="//code.angularjs.org/1.4.3/angular-sanitize.min.js"></script>
-      <script src="//code.angularjs.org/1.4.3/angular-resource.min.js"></script>
+        <script src="//code.angularjs.org/1.4.3/angular.min.js"></script>
+        <script src="//code.angularjs.org/1.4.3/angular-sanitize.min.js"></script>
+        <script src="//code.angularjs.org/1.4.3/angular-resource.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
+        <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.12.1/select.min.js"></script>
+
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/javascripts/jquery.nanoscroller.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+        <script type="text/javascript" src="/app/libs/lemmon-slider.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.2/jquery.tipsy.min.js"></script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/async/1.4.2/async.min.js"></script>
+        <script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
+        <script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.4.0/js/ngDialog.min.js"></script>
+        <script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+        <script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
+        <script src="/app/vendor/angular-loading-bar/build/loading-bar.js"></script>
+        <script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
+        <script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="/app/vendor/SHA-1/sha1.js"></script>
+        <script src="/app/vendor/angularitics/dist/angulartics.min.js"></script>
+        <script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
+        <script src="/app/vendor/angularitics/dist/angulartics-mixpanel.min.js"></script>
+        <script src="/app/vendor/fastclick/lib/fastclick.js"></script>
+        <script src="/app/vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
+        <script src="/app/vendor/satellizer/satellizer.min.js"></script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
+        <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+        <script src="/app/vendor/exif-js/exif.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+
+      <script>
+        preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
+      </script>
+      <script>
+        var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
+            ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+            'sensor=true&libraries=places,geometry&language=';
+
+        document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
+      </script>
+      <script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
+      <!-- // <script src="//googlemaps.github.io/js-marker-clusterer/src/markerclusterer.js"></script> -->
       
-      <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
-      <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.12.1/select.min.js"></script>
-
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/javascripts/jquery.nanoscroller.min.js"></script>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <script type="text/javascript" src="/app/libs/lemmon-slider.js"></script>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.2/jquery.tipsy.min.js"></script>
-
-      <script src="//cdnjs.cloudflare.com/ajax/libs/async/1.4.2/async.min.js"></script>
-      <script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
-      <script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.4.0/js/ngDialog.min.js"></script>
-      <script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-      <script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
-      <script src="/app/vendor/angular-loading-bar/build/loading-bar.js"></script>
-      <script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
-      <script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
-      <script src="/app/vendor/SHA-1/sha1.js"></script>
-      <script src="/app/vendor/angularitics/dist/angulartics.min.js"></script>
-      <script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
-      <script src="/app/vendor/angularitics/dist/angulartics-mixpanel.min.js"></script>
-      <script src="/app/vendor/fastclick/lib/fastclick.js"></script>
-      <script src="/app/vendor/ng-file-upload/angular-file-upload-all.min.js"></script>
-      <script src="/app/vendor/satellizer/satellizer.min.js"></script>
-
-      <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
-      <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-
-      <script src="/app/vendor/exif-js/exif.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-
-
-    <script>
-      preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
-    </script>
-    <script>
-      var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
-          ($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-          'sensor=true&libraries=places,geometry&language=';
-
-      document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
-    </script>
-    <script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
-
-
 
       <!-- build:js /app/scripts/scripts.min.js -->
       <script src="scripts/oms.min.js"></script>
@@ -286,7 +389,6 @@
 
       <script src="scripts/filters/filters.js"></script>
       
-      <script src="scripts/directives/navigation.js"></script>
       <script src="scripts/directives/ratingReply.js"></script>
       <script src="scripts/directives/analyticsCustom.js"></script>
       <script src="scripts/directives/communitySelector.js"></script>
@@ -400,13 +502,34 @@
 
       <!-- endbuild -->
 
-
-    <script>
-      $(function() { FastClick.attach(document.body);});
-    </script>
+    <script>$(document).foundation();</script>
     
+        <script>
+      $(function() { 
+        
+        function resizeMenuBar() {
+          // $('.navigation').css("width", $(".main-container").width()+"px");
+        }
+
+        $(window).scroll(function() {
+          var fixedHeader = $('.navigation');
+
+          resizeMenuBar();
+          fixedHeader.css('left', -1 * $(this).scrollLeft() + "px");
+          if ( $(this).scrollLeft() != 0 )
+            fixedHeader.css('right', "auto");
+          else
+            fixedHeader.css('right', 0);
+        });
+       
+        // $(window).resize(resizeMenuBar);
+      });
+    </script>
+
+
     <!-- Crazy Egg tracking script -->
     <script type="text/javascript">
+    //   $(function() { FastClick.attach(document.body);});
       setTimeout(function(){var a=document.createElement("script");
       var b=document.getElementsByTagName("script")[0];
       a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
@@ -424,7 +547,9 @@
             a.appendChild(r);
         })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+    <script>
+      $(function() { FastClick.attach(document.body);});
+    </script>
 
-    </div>
-  </body>
+</body>
 </html>

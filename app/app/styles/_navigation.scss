@@ -1,6 +1,7 @@
 $topBarLabelSize: rem-calc(14);
 $topBarImageSize: 1.8em;
 
+/*
 .fixed-nav {
     position: fixed;
     left: 0px;
@@ -180,3 +181,32 @@ nav {
     }
 }
 
+*/
+
+
+.left-off-canvas-menu {
+    a.active {
+        font-weight: bold;
+    }
+
+    .socials span {
+        margin-right: 2px;
+    }
+}
+
+.tab-bar-closed {
+    .menu-icon{
+        display: inline-block;
+        margin-right: 30px;
+    }
+}
+
+
+
+.top-bar ul > li.has-dropdown .dropdown:before {
+    display: none;
+}
+
+.top-bar ul > li.has-dropdown .dropdown:after {
+    display: none;
+}
