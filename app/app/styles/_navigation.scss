@@ -210,3 +210,8 @@ nav {
 .top-bar ul > li.has-dropdown .dropdown:after {
     display: none;
 }
+
+
+.no-hover:hover {
+    background-color: inherit;
+}
