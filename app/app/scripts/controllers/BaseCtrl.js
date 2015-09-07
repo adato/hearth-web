@@ -289,6 +289,25 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
+
+        $rootScope.reloadToMarketplace = function() {
+            if($state.current.name == 'market')
+                $state.reload();
+            else
+                $state.go('market');
+        };
+
+        /**
+         * When clicked on logout button
+         */
+        $scope.logout = function() {
+            Auth.logout(function() {
+                $rootScope.refreshToPath($$config.basePath);
+            });
+        };
+
+
+
         /**
          * This will test, if image size is sufficient for facebook sharing
          * based on this https://developers.facebook.com/docs/sharing/best-practices
