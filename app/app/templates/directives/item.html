@@ -1,5 +1,5 @@
 <article class="item-common row post post-on-market" id="post_{{:: item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
-	<section ng-if="! hideAvatar" class="large-2 small-2 medium-2 columns user">
+	<section ng-if="! hideAvatar" class="large-2 show-for-medium-up medium-2 columns user">
 		<div info-box="item.author">
 			<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
 				<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
@@ -9,12 +9,14 @@
 		<div class="karma" ng-class="{empty: !item.karma}" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
 			<div class="positive" style="width:{{:: item.karma}}"></div>
 		</div>
-		<div class="timeline"></div>
 	</section>
-	<div class="large-10 small-10 medium-10 fleft columns ad-detail-column">
+	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
 				<div class="large-9 small-9 medium-9 columns">
+					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
+						<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
+					</a>
 					<h1>
 						<a ng-href="{{:: getProfileLink('Post', item._id)}}">
 							<span data-item-type="{{ item.type }}">

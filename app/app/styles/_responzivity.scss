@@ -1,30 +1,31 @@
 
+// foundation breakpoint for large screens 
+@media #{$medium-up} { 
+	.web-width {
+		width: 940px;
+	}
+	body .main-container {
+		min-width:960px;
+		max-width:960px;
+	}
+	.max-web-width {
+		max-width: 960px;
+	}
 
-.page-login,
-.page-forgot-pass,
-.page-reg,
-.page-reset-pass,
-.page-token-login,
-.page-fill-email,
-.page-post,
-.page-faq,
-.page-terms,
-.page-taxes,
-.page-profileEdit,
-.page-feedback,
-.page-profileSettings,
-.page-error404 {
-	
+	#navigation {
+		margin: 0 auto;
+	}
+}
+
+
+// small screens only
+@media #{$small-only} { 
 	#notify-top {
 		width: unset !important;
 	}
 
 	.profile-view {
 		max-width: unset !important;
-	}
-
-	.navigation {
-		min-width: unset !important;
 	}
 	.web-width {
 		width: unset !important;
@@ -34,22 +35,33 @@
 		min-width: unset !important;
 		width: 100%;
 	}
+
+	.avatar {
+		& > * {
+			img {
+				max-width: $small-avatar-size;
+				max-height: $small-avatar-size;
+			}
+			&::before {
+				max-width: $small-avatar-size;
+				max-height: $small-avatar-size;
+			}
+		}
+	}
+
 }
 
-.max-web-width {
-	max-width: 940px !important;
-}
 
 .padding-1 {
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
 
+.all-visible {
+	float: none;
+}
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.all-visible {
-	float: none;
 }
