@@ -12,8 +12,8 @@ $large-avatar-size: 295px;
     position: relative;
     img {
       border-radius: 50%;
-      width: $medium-avatar-size;
-      height: $medium-avatar-size;
+      max-width: $medium-avatar-size;
+      max-height: $medium-avatar-size;
     }
     &::before {
       position: absolute;
@@ -21,8 +21,8 @@ $large-avatar-size: 295px;
       top: 0;
       border-radius: 50%;
       box-shadow: inset -3px 3px 6px rgba(black, 0.5);
-      width: $medium-avatar-size;
-      height: $medium-avatar-size;
+      max-width: $medium-avatar-size;
+      max-height: $medium-avatar-size;
       left: 0;
     }
   }
