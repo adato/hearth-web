@@ -53,8 +53,8 @@ $fontSize: rem-calc(14);
 //  "foundation/components/pagination",
 //  "foundation/components/panels",
 //  "foundation/components/pricing-tables",
-//  "foundation/components/progress-bars",
-//  "foundation/components/range-slider",
+  "foundation/components/progress-bars",
+  "foundation/components/range-slider",
 //  "foundation/components/reveal",
 //  "foundation/components/side-nav",
 //  "foundation/components/split-buttons",
@@ -62,7 +62,7 @@ $fontSize: rem-calc(14);
   "foundation/components/switch",
   "foundation/components/tables",
 //  "foundation/components/tabs",
-//  "foundation/components/thumbs",
+  "foundation/components/thumbs",
 //  "foundation/components/tooltips",
   "foundation/components/top-bar",
   "foundation/components/type",
@@ -73,7 +73,7 @@ $fontSize: rem-calc(14);
 
 @import "avatar";
 @import "navigation";
-@import "forms";
+//@import "forms";
 @import "item";
 @import "infoBox";
 @import "itemEdit";
@@ -81,7 +81,7 @@ $fontSize: rem-calc(14);
 @import "removePostFromCommunity";
 @import "tipsy";
 @import "common";
-@import "buttons";
+//@import "buttons";
 @import "htmlSlider";
 @import "tutorial";
 @import "userForms";
@@ -103,7 +103,7 @@ $fontSize: rem-calc(14);
 @import "itemDetail";
 @import "modal";
 @import "inviteBox";
-@import "profileCommon";
+//@import "profileCommon";
 @import "profile";
 @import "profileEditCommon";
 @import "profileEdit";
@@ -115,22 +115,16 @@ $fontSize: rem-calc(14);
 @import "terms";
 @import "notify";
 @import "dropdown";
-@import "market";
+//@import "market";
 @import "marketplaceBanner";
-@import "responzivity";
+//@import "responzivity";
+@import "responsive";
 
 body {
     background-image: inline-image("bg.png");
     background-color: #faf8eb;
     background-repeat: no-repeat;
     background-position: 50% top;
-    .main-container {
-        display: block;
-        margin: auto;
-        margin-top: 3em;
-        margin-bottom: 2em;
-    }
-    -webkit-text-size-adjust:100%; // for mobile
 }
 
 
@@ -140,11 +134,11 @@ meta.foundation-data-attribute-namespace {
     font-family: false;
 }
 
-img.blur { 
-    -webkit-filter: blur(2px); 
-    -moz-filter: blur(2px); 
-    -o-filter: blur(2px); 
-    -ms-filter: blur(2px); 
+img.blur {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
     filter: blur(2px);
     filter: url(/app/images/blur.svg#blur);
     filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='2');
@@ -204,8 +198,4 @@ img.blur {
     .fa {
       margin-right: 0.5rem;
     }
-}
-
-.web-width {
-    margin: 0 auto;
 }

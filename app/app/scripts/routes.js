@@ -21,6 +21,11 @@ angular.module('hearth').config([
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
 			})
+      .state('market-responsive', {
+        url: '/responsive',
+        templateUrl: 'templates/_responsive/market.html',
+        controller: 'MarketCtrl',
+      })
 			.state('market-refresh', {
 				url: "/market",
 				controller: ['$location', function($location) {
@@ -205,7 +210,7 @@ angular.module('hearth').config([
 				templateUrl: 'templates/error404.html',
 				controller: 'Error404Ctrl'
 			});
-			
+
 		$urlRouterProvider.otherwise(function($injector, $location){
 		   var state = $injector.get('$state');
 		   state.go('error404');

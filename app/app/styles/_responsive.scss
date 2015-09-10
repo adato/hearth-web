@@ -1,0 +1,10 @@
+.v-m-small {
+  @media #{$small-only} {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.progress {
+  margin-bottom: 0;
+}
