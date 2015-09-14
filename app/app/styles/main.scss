@@ -130,6 +130,8 @@ body {
         margin-top: 3em;
         margin-bottom: 2em;
     }
+    font-family: $body-font-family;
+    font-size:$global-font-size;
     -webkit-text-size-adjust:100%; // for mobile
 }
 
