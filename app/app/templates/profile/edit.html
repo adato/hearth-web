@@ -76,7 +76,7 @@
         </span>
       </h2>
       <section>
-        <div class="contact large-6 small-6 medium-6 columns">
+        <div class="contact large-6 small-12 medium-6 columns">
           <div class="margin">
             <label>
               {{:: 'MY_EMAIL' | translate }} *
@@ -108,7 +108,7 @@
             </div>
           </div>
         </div>
-        <div class="large-6 small-6 medium-6 columns">
+        <div class="large-6 small-12 medium-6 columns">
           <label>
             <div class="fa fa-phone"></div>
             {{:: 'MY_PHONE' | translate }}
@@ -128,28 +128,28 @@
       </h2>
       <section>
 
-        <div class="margin large-6 small-6 medium-6 columns">
+        <div class="margin large-6 small-12 medium-6 columns">
           <label>
             {{:: 'MY_FACEBOOK' | translate }}
             <input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'facebook')">
           </label>
         </div>
 
-        <div class="margin large-6 small-6 medium-6 columns">
+        <div class="margin large-6 small-12 medium-6 columns">
           <label>
             {{:: 'MY_TWITTER' | translate }}
             <input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'twitter')">
           </label>
         </div>
 
-        <div class="margin large-6 small-6 medium-6 columns">
+        <div class="margin large-6 small-12 medium-6 columns">
           <label>
             {{:: 'MY_LINKEDIN' | translate }}
             <input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'linkedin')">
           </label>
         </div>
 
-        <div class="margin large-6 small-6 medium-6 columns">
+        <div class="margin large-6 small-12 medium-6 columns">
           <label>
             {{:: 'MY_GOOGLEPLUS' | translate }}
             <input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'googleplus')">
@@ -159,7 +159,7 @@
 
       <div class="clear"></div>
       <section class="webs">
-        <div class="large-6 small-6 medium-6 columns">
+        <div class="large-6 small-12 medium-6 columns">
           <label>
             <span class="fa fa-globe"></span>
             {{:: 'MY_WEB' | translate }}
@@ -184,14 +184,14 @@
         </span>
       </h2>
       <section>
-        <div class="large-6 small-6 medium-6 columns">
+        <div class="large-6 small-12 medium-6 columns">
           <label>
             {{:: 'MY_TELL_ABOUT' | translate }}
           </label>
           <textarea autosize-textarea max-len="300" ng-attr-placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" ng-model="profile.about"></textarea>
           <max-len-counter max-len="300" value="profile.about"></max-len-counter>
         </div>
-        <div class="large-6 small-6 medium-6 columns">
+        <div class="large-6 small-12 medium-6 columns">
           <label>
             {{:: 'MY_INTERESTS' | translate }}
           </label>
