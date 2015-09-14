@@ -26,9 +26,9 @@ angular.module('hearth.directives').directive('imagePreview', [
 						+ '<input class="file-upload-input" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
 						+ '<span ng-transclude class="image-preview-content"></span>' 
 						+ '</div>'
-	                    + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate }}</div>'
-	                    + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate }}</div>'
-	                    + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX_"+limitPixelSize | translate }}</div>'
+	                    + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>'
+	                    + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>'
+	                    + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>'
 						+'</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
