@@ -176,6 +176,22 @@
         margin-top: 15px;
         margin-right: 15px;
     }
+
+
+    // RESPONSIVE //
+    @media #{$small-only} {
+        section {
+            margin-left:0;
+            &.who {
+                margin-left:0;
+            }
+            &.location {
+                position:initial;
+                left:0;
+                width:100%;
+            }
+        }
+    }
 }
 
 .community-settings {
