@@ -49,7 +49,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;
             scope.isActive = $rootScope.isPostActive(post);
-            scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes);
+            scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes)+'%';
 
             // is this my post? if so, show controll buttons and etc
             scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);

@@ -12,7 +12,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
-		$scope.limitPixelSize = 200;
+		$scope.limitPixelSize = 200;	// Pixels
+		$scope.maxImageSizeLimit = 5; 	// MB
+
 		$scope.imagesCount = 0;
 		$scope.imageSizesSum = 0;
 		$scope.imageSizes = [];
