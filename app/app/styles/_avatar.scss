@@ -6,7 +6,6 @@ $large-avatar-size: 295px;
 .avatar {
   display: inline-block;
   border-radius: 50%;
-  overflow: hidden;
   & > * {
     display: inline-block;
     position: relative;
@@ -33,12 +32,12 @@ $large-avatar-size: 295px;
   height: $small-avatar-size;
   & > * {
     img {
-      width: $small-avatar-size;
-      height: $small-avatar-size;
+      max-width: $small-avatar-size;
+      max-height: $small-avatar-size;
     }
     &::before {
-      width: $small-avatar-size;
-      height: $small-avatar-size;
+      max-width: $small-avatar-size;
+      max-height: $small-avatar-size;
     }
   }
 }
@@ -46,12 +45,12 @@ $large-avatar-size: 295px;
 .avatar-large {
   & > * {
     img {
-      width: $large-avatar-size;
-      height: $large-avatar-size;
+      max-width: $large-avatar-size;
+      max-height: $large-avatar-size;
     }
     &::before {
-      width: $large-avatar-size;
-      height: $large-avatar-size;
+      max-width: $large-avatar-size;
+      max-height: $large-avatar-size;
     }
   }
 }
