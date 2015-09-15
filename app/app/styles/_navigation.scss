@@ -1,108 +1,45 @@
-$topBarLabelSize: rem-calc(14);
-$topBarImageSize: 1.8em;
 
-/*
-.fixed-nav {
-    position: fixed;
-    left: 0px;
-    right: 0px;
-}
-
-nav {
-    
-    &.expanded {
-        max-height: 1000px !important;
+.top-bar,
+.left-off-canvas-menu {
+    a.active {
+        font-weight: bold;
     }
 }
 
-.navigation {
-    z-index: 1000;
-    background-color: #FAF8EB !important;
-    padding: 0px;
+.left-off-canvas-menu {
 
-    &>div {
-        box-shadow: 0 2px 2px rgba(black, 0.3);
+    .socials span {
+        margin-right: 2px;
+    }
+}
+
+.tab-bar-closed {
+    .menu-icon{
+        display: inline-block;
+        margin-right: 20px;
+        text-indent: 1.1875rem;
+        position: relative;
+        top: -1px;
+    }
+}
+
+
+.orange-bar {
+    background-color: color(1);
+    box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
+
+    .logo {
+        display: inline-block;
+        margin-top: 12px;
     }
 
-    .top-bar, .top-bar * {
-        background-color: transparent !important;
-    }
-
-    .top-bar {
-        max-height: 45px;
-        height: unset !important;
-        margin-bottom: 0px;
-
-        .menu-icon span {
-            color: #333;
-            font-size: 25px;
-        }
-
-        .toggle-topbar.menu-icon {
-            margin-top: -20px;
-        }
-
-        .dropdown:before {
-            left: unset;
-            right: 20px !important;
-        }
-        
-        .dropdown:after {
-            left: unset;
-            right: 19px !important;
-        }
-    }
-
-    .top-bar-section ul,
-    .top-bar-section ul li>a,
-    .top-bar-section ul li:hover>a,
-    .top-bar-section li:not(.has-form) a:not(.button)
-    .top-bar-section li:not(.has-form) a:not(.button):hover {
-        background-color: inherit;
-    }
-
-    .top-bar-section {
-
-        margin-top: 2px;
-
-        ul li a {
-            line-height: 27px !important;
-            color: #222 !important;
-            padding: 0rem 0.5rem !important;
-            
-            &:hover {
-                color: #838383 !important;
-            }
-        }
-
-        .active {
-            font-weight: bold;
-            color: #333;
-        }
-
-        #about-drop {
-            min-width: 200px;
-
-            .social-menu {
-                margin-left: 4px;
-                list-style: none;
-                li {
-                    width: 37px;
-                    margin-top: 0px;
-                    display: inline-block;
-                    margin-right: 8px;
-
-                    span {
-                        font-size: 1.7rem;
-                    }
-                    a:hover {
-                        span {
-                            color: color(1);
-                        }
-                    }
-                }
-            }
-        }
+    .button {
+        white-space: nowrap;
+        font-size: 1.5rem;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 15px;
+        height: auto;
     }
 
     .search {
@@ -150,61 +87,6 @@ nav {
             cursor: pointer;
         }
     }
-
-    .logo {
-        background-image: inline-image("logo-dark.png") !important;
-        background-position: center center; 
-        background-repeat: no-repeat;
-        width: 200px !important;
-        height: 50px;
-        display: block;
-    }
-
-    .dropdown {
-        background-color: #FAF8EB !important;
-    }
-
-    &>.orange {
-        background-color: color(1);
-    }
-}
-
-*/
-
-
-.top-bar,
-.left-off-canvas-menu {
-    a.active {
-        font-weight: bold;
-    }
-}
-
-.left-off-canvas-menu {
-
-    .socials span {
-        margin-right: 2px;
-    }
-}
-
-.tab-bar-closed {
-    .menu-icon{
-        display: inline-block;
-        margin-right: 20px;
-        text-indent: 1.1875rem;
-        position: relative;
-        top: -1px;
-    }
-}
-
-
-.orange-bar {
-    background-color: color(1);
-    box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
-
-    .button {
-        margin-top: 16px;
-    }
-
 }
 
 .top-bar ul > li.has-dropdown .dropdown:before {
@@ -220,9 +102,9 @@ nav {
         min-width: 168px;
     }
     .no-hover:hover {
-        background-color: #333333;
+        background-color: white;
         span {
-            background-color: #333333;
+            background-color: white;
         }
     }
 
@@ -241,5 +123,28 @@ nav {
         position: relative;
         top: 10px;
         left: -10px;
+    }
+}
+
+@media #{$large-up} {
+    
+    .top-bar {
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        z-index: 50;
+    }
+
+    .orange-bar {
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 43px;
+        z-index: 40;
+    }
+
+    .main-container {
+        margin-top: 160px !important;
     }
 }
