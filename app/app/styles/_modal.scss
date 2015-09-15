@@ -187,10 +187,18 @@
     }
 }
 
-@media (max-width: 568px) {
+@media #{$small-only} {
     .ngdialog.ngdialog-theme-default .ngdialog-button:focus {
         -webkit-animation: none;
         animation: none;
+    }
+
+    // when ngdialog is open, hide page contents
+    body.ngdialog-open {
+        .main-container { display:none; }
+        .ngdialog {
+            position:absolute;
+        }  
     }
 }
 

@@ -40,7 +40,7 @@
 .ngdialog .itemReply, .ngdialog .itemEdit {
 
     font-size: $ui-text-font-size;
-    width: 650px;
+    max-width: 650px;
     padding: $ui-grid-size;
 
     textarea {

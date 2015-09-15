@@ -675,7 +675,6 @@
     @include inline-list;
     li > a {
       width:initial;
-      display:inline-block;
       background: darken(color(4), 30%);
       color: lighten(color(4), 20%);
       border-top: 2px solid darken(color(4), 20%);
@@ -710,7 +709,7 @@
 
   // RESPONSIVE //
   @media #{$small-only} {
-    ul>li>a { width:100%; }
+    ul>li>a { width:100%; display:inline-block; }
   }
 }
 

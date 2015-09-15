@@ -22,10 +22,14 @@ angular.module('hearth.utils').directive('whenScrolled', [
 				var el = scope.innerScrolling ? element : angular.element(window),
 					offset = scope.offset || 100,
 					innerHeight = el[0].innerHeight;
+				var currentScrollTop, lastScrollTop;
 
 				function process ($event) {
 					if(scope.loadingInProgress)
 						return false;
+
+					// disable when modal is shown
+					if (angular.element('body').hasClass('ngdialog-open')) return false;
 					
 					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
 
