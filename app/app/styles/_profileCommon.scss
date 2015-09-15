@@ -150,11 +150,22 @@
         }
       }
 
+      // RESPONSIVE //
+      @media #{$small-only} {
+        .bubble {
+          margin:0 !important;
+        }
+        .shadow, .shadow.large{ 
+          background: none; 
+          height: 160px; 
+        }
+      }
+
       .karma-bar {
         @extend .large-8, .columns, .pull-right;
 
         padding: 0;
-        width: 600px;
+        max-width: 600px;
 
         height: 25px;
         background-color: #7c766a;
@@ -659,6 +670,11 @@
           margin-top: -20px;
         }
       }
+    }
+
+    // RESPONSIVE //
+    @media #{$small-only} {
+      padding:3*$ui-small-grid-size;
     }
   }
 }
