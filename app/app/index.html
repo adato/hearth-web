@@ -365,7 +365,13 @@
 
       <!-- endbuild -->
 
-    <script>$(document).foundation();</script>
+    <script>
+      $(document).foundation({
+        offcanvas: {
+          close_on_click: true
+        }
+      });
+    </script>
     
         <script>
       $(function() { 
