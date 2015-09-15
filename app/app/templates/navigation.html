@@ -81,17 +81,17 @@
 </aside>
 <nav class="tab-bar tab-bar-closed hide-for-large-up">
     <a class="left-off-canvas-toggle menu-icon sidebar-button">
-      <img alt="Menu grey" src="http://foundation.zurb.com/assets/img/offcanvas/menu-wht.png">
+    	<i class="fa fa-bars"></i>
     </a>
-    <a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
+    <a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo-dark.png" height="50"></a>
 </nav>
 <nav class="top-bar top-bar-opened show-for-large-up" data-topbar ng-cloak>
 	<section class="max-web-width center">
 	    <ul class="title-area">
 	      <li class="name">
-	        <h1>
-	          <a analytics-on analytics-event="marketplace" analytics-category="menu" ng-click="reloadToMarketplace()"><img class="zurb-logo-mobile" src="/app/images/logo.png" height="50"></a>
-	        </h1>
+	        <!-- <h1>
+	          <a analytics-on analytics-event="marketplace" analytics-category="menu" ng-click="reloadToMarketplace()"><img class="zurb-logo-mobile" src="/app/images/logo-dark.png" height="50"></a>
+	        </h1> -->
 	      </li>
 	    </ul>
 	    <section class="top-bar-section">
@@ -169,111 +169,32 @@
 	    </section>
     </section>
 </nav>
-
-
-<!-- <section class="fixed-nav navigation" id="navigation">
-	<nav class="top-bar center max-web-width" data-topbar="">
-	    <ul class="title-area hide-for-large-up">
-	        <li class="name padding-1">
-	            <a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
-	        </li>
-	        <li class="toggle-topbar menu-icon"><a href="#"><span class="fa fa-bars"></span></a></li>
-	    </ul>
-	    <section class="top-bar-section">
-	        <ul class="right">
-	            <li>
-					<a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}" class="menuItem">
-						{{ 'HOMEPAGE_MARKET' | translate }}
-					</a>
-				</li>
-				<li>
-					<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}" class="menuItem">
-						{{ 'COMMUNITIES' | translate }}
-					</a>
-				</li>
-				<li>
-					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" class="menuItem" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
-				        {{ 'TOP_BAR_MESSAGES' | translate }}
-				    </a>
-				</li>
-				<li ng-show="!loggedUser.name"><a class="menuItem" ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a></li>
-				
-				<li class="has-dropdown not-click" ng-show="loggedUser.name">
-	                <a ng-if="loggedUser._id" ng-class="{active: pageName.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
-	                	<i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:9}}
-	            	</a>
-	                <ul class="dropdown" id="profile-drop">
-	                    <li>
-	                    	<a class="menuItem" ng-href="{{:: getProfileLink('User', loggedUser._id) }}"><i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
-	                    </li>
-						<li><a class="menuItem" ng-href="{{:: basePath }}profile-edit"><i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a></li>
-						<li><a class="menuItem" ng-href="{{:: basePath }}profile-settings"><i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a></li>
-				      	<li class="divider" ng-if="myAdminCommunities.length"></li>
-				       	<li ng-repeat="item in myAdminCommunities">
-							<a class="menuItem" class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
-								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
-								<span class="name">{{ item.name | ellipsis:12}}</span>
-							</a>
-				       	</li>
-						<li class="divider" ng-if="myAdminCommunities.length"></li>
-						<li><a class="menuItem" href="" ng-click="logout()"><i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a></li>
-	                </ul>
-	            </li>
-	            <li class="has-dropdown not-click">
-	        		<a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'feedback', 'terms'].indexOf(pageName) > -1}" analytics-on analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
-						{{'TOP_BAR_ABOUT' | translate}}
-					</a>
-	                <ul class="dropdown" id="about-drop">
-	                    <li><a class="menuItem" ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a></li>
-						<li><a class="menuItem" ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a></li>
-						<li><a class="menuItem" ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a></li>
-						<li class="divider"></li>
-						<li><a class="menuItem" href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a></li>
-						<li ng-if="language == 'cs'"><a class="menuItem" ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a></li>
-						<li class="divider"></li>
-						<li class="no-hover"><span>{{ 'SOCIAL_NETWORKS' | translate}}</span></li>
-						<li class="no-hover">
-						  <ul class="social-menu">
-							<li><a class="menuItem" href="https://twitter.com/hearth_net" target="_blank"><span class="fa fa-twitter"></span></a></li>
-						    <li><a class="menuItem" href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" target="_blank"><span class="fa fa-facebook"></span></a></li>
-						    <li><a class="menuItem" href="https://plus.google.com/105519310550753411853" target="_blank"><span class="fa fa-google-plus"></span></a></li>
-						    <li><a class="menuItem" href="http://www.youtube.com/user/hearthnetcrsr" target="_blank"><span class="fa fa-youtube"></span></a></li>
-						  </ul>
-						</li>
-	                </ul>
-	            </li>
-	        </ul>
-	    </section>
-	</nav>
-	 
-	<div class="orange">
-		<div class="max-web-width center padding-1">
-			<div class="row">
-				<div class="column large-3 show-for-large-up">
-					<a ng-href="{{:: basePath }}" ng-click="reloadToMarketplace()" class="logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"></a>
-				</div>
-				<div class="search column small-12 medium-12 large-6">
-					<div>
-						<select>
-							<option value="all">Všude</option>
-							<option value="market">Na tržišti</option>
-							<option value="community">V Komunitách</option>
-							<option value="people">V Lidech</option>
-							<option value="messages">Ve zprávách</option>
-						</select>
-						<i class="fa fa-search"></i>
-						<div class="middle">
-							<input type="text" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
-						</div>
+<div class="orange-bar">
+	<div class="max-web-width center padding-1">
+		<div class="row">
+			<div class="column large-3 show-for-large-up">
+				<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" width="200"></a>
+			</div>
+			<div class="search column small-12 medium-12 large-6">
+				<div>
+					<select>
+						<option value="all">{{:: 'TOP_BAR.SEARCH.EVERYWHERE' | translate }}</option>
+						<option value="market">{{:: 'TOP_BAR.SEARCH.MARKET' | translate }}</option>
+						<option value="community">{{:: 'TOP_BAR.SEARCH.COMMUNITY' | translate }}</option>
+						<option value="people">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</option>
+						<!-- <option value="messages">{{:: 'TOP_BAR.SEARCH.MESSAGES' | translate }}</option> -->
+					</select>
+					<i class="fa fa-search" ng-click="search(searchText)"></i>
+					<div class="middle">
+						<input type="text" ng-model="searchText" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
 					</div>
 				</div>
-				<div class="column large-3 show-for-large-up text-right">
-					<a href="#" class="button-send button" ng-click="editItem(null)">
-						{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}
-					</a>
-				</div>
+			</div>
+			<div class="column large-3 show-for-large-up text-right">
+				<a href="#" class="button-send button" ng-click="editItem(null)">
+					{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}
+				</a>
 			</div>
 		</div>
 	</div>
-		
-</section> -->
+</div>
