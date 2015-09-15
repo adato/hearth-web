@@ -59,10 +59,12 @@
     }
 
     // RESPONSIVE //
-    .community-list.small .community-item {
-        &:nth-child(2n), &:nth-child(2n-1) {
-            margin-left:0;
-            margin-right:0;
+    @media #{$small-only} {
+        .community-list.small .community-item {
+            &:nth-child(2n), &:nth-child(2n-1) {
+                margin-left:0;
+                margin-right:0;
+            }
         }
     }
 }
