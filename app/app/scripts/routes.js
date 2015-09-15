@@ -24,7 +24,7 @@ angular.module('hearth').config([
       .state('market-responsive', {
         url: '/responsive',
         templateUrl: 'templates/_responsive/market.html',
-        controller: 'MarketCtrl',
+        controller: 'ResponsiveMarketCtrl',
       })
 			.state('market-refresh', {
 				url: "/market",
