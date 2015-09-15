@@ -38,6 +38,13 @@
       float: right;
       padding-left: 0px;
       padding-right: 0px;
+
+      // RESPONSIVE //
+      @media #{$small-only} {
+        float:initial;
+        max-width:100%;
+        margin-left:0;
+      }
     }
     .highlights {
       @extend .columns;
@@ -825,7 +832,6 @@
       top: 10px;
       bottom: 10px;
     }
-  ;
   }
   &.spacy {
     padding-left: 2rem;
@@ -844,6 +850,13 @@
   }
   &.without-icon-text .fa {
     margin: 0;
+  }
+
+  // RESPONSIVE //
+  @media #{$small-only} {
+    padding:$ui-small-grid-size;
+    margin: $ui-small-grid-size $ui-small-grid-size / 2;
+    font-size:$ui-text-font-size;
   }
 }
 
