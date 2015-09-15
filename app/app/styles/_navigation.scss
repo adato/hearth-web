@@ -160,18 +160,6 @@ nav {
         display: block;
     }
 
-    .orange {
-        .logo {
-            background-image: inline-image("logo.png") !important;
-            position: relative;
-            top: 5px;
-        }
-
-        .button {
-            margin-top: 16px;
-        }
-    }
-
     .dropdown {
         background-color: #FAF8EB !important;
     }
@@ -209,6 +197,17 @@ nav {
 }
 
 
+.orange-bar {
+    .logo {
+        background-image: inline-image("logo.png") !important;
+        position: relative;
+        top: 5px;
+    }
+
+    .button {
+        margin-top: 16px;
+    }
+}
 
 .top-bar ul > li.has-dropdown .dropdown:before {
     display: none;
