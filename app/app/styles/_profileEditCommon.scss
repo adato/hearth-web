@@ -195,6 +195,7 @@
 
     // RESPONSIVE //
     @media #{$small-only} {
+        h2 { display:inline-block; }
         section {
             margin-left:0;
             &.who, &.languages {
