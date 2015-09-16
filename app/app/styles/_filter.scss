@@ -115,3 +115,16 @@
     font-size:$ui-text-font-size;
     margin-right:3*$ui-small-grid-size;
 }
+
+// RESPONSIVE //
+@media #{$small-only} { 
+    .filter>section>label {
+        &:nth-child(1) {
+            font-weight:bold;
+            text-align:center;
+            margin: 10px 0 5px 0;
+        }
+        float:unset !important;
+        display:block !important;
+    }
+}

@@ -430,7 +430,14 @@
         "community-profile-page": "Profil komunity"
     },
     "TOP_BAR": {
-        "ADD_NEW_POST": "Nový dar/přáni"
+        "ADD_NEW_POST": "Nový dar/přáni",
+        "SEARCH": {
+            "EVERYWHERE": "Všude",
+            "MARKET": "Na tržišti",
+            "COMMUNITY": "V komunitách",
+            "PEOPLE": "V lidech",
+            "MESSAGES": "Ve zprávách"
+        }
     },
     "TOP_BAR_ABOUT": "O projektu",
     "TOP_BAR_COMMUNITY_PROFILE": "Náš profil",

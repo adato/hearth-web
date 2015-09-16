@@ -366,8 +366,14 @@
 
       <!-- endbuild -->
 
-    <script>$(document).foundation();</script>
-
+    <script>
+      $(document).foundation({
+        offcanvas: {
+          close_on_click: true
+        }
+      });
+    </script>
+<!--     
         <script>
       $(function() {
 
@@ -389,7 +395,7 @@
         // $(window).resize(resizeMenuBar);
       });
     </script>
-
+ -->
 
     <!-- Crazy Egg tracking script -->
     <script type="text/javascript">

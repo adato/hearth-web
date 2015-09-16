@@ -36,8 +36,8 @@
 		width: 100%;
 	}
 
-	.avatar {
-		& > * {
+	.market .avatar {
+		& > div,span,a {
 			img {
 				max-width: $small-avatar-size;
 				max-height: $small-avatar-size;
@@ -47,6 +47,13 @@
 				max-height: $small-avatar-size;
 			}
 		}
+	}
+	.communities .community-list.small .community-item {
+		max-width:100%;
+	}
+
+	.small-margin-bottom {
+		margin-bottom:3*$ui-small-grid-size;
 	}
 }
 
@@ -63,4 +70,8 @@
 .center {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.off-canvas-wrap, .off-canvas-wrap > .inner-wrap {
+  min-height: 100vh;
 }
