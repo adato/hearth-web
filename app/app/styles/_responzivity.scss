@@ -8,15 +8,15 @@
 		min-width:960px;
 		max-width:960px;
 	}
-	.max-web-width {
-		max-width: 960px;
-	}
 
 	#navigation {
 		margin: 0 auto;
 	}
 }
 
+.max-web-width {
+	max-width: 960px;
+}
 
 // small screens only
 @media #{$small-only} { 

@@ -117,7 +117,7 @@ $fontSize: rem-calc(14);
 @import "dropdown";
 @import "market";
 @import "marketplaceBanner";
-//@import "responzivity";
+@import "responzivity";
 @import "responsive";
 
 body {
@@ -125,6 +125,12 @@ body {
     background-color: #faf8eb;
     background-repeat: no-repeat;
     background-position: 50% top;
+    .main-container {
+        display: block;
+        margin: auto;
+        margin-top: 3em;
+        margin-bottom: 2em;
+    }
     font-family: $body-font-family;
     font-size:$global-font-size;
     -webkit-text-size-adjust:100%; // for mobile
