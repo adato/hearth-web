@@ -16,7 +16,7 @@
       <div class="_karma small-3 medium-12 columns">
         <div class="karma" ng-class="{empty: !item.karma}"
              title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
-          <div class="positive" ng-style="width:{{:: item.karma}}"></div>
+          <div class="positive" style="width:{{:: item.karma}}"></div>
         </div>
       </div>
       <div class="small-6 columns hidden-for-medium-up">
@@ -73,7 +73,8 @@
 
       <div class="_action row">
         <div class="medium-5 large-4 columns">
-          <a ng-if="!item.is_replied && !mine" class="button expand" ng-bind-html="replyLabel[item.type] | translate">
+          <a ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" data-item-type="{{ item.type }}"
+             class="button expand" ng-bind-html="replyLabel[item.type] | translate">
           </a>
           <span ng-if="item.is_replied">
             {{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
