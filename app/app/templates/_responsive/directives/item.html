@@ -57,12 +57,11 @@
         </p>
       </div>
 
-      <p class="thumbnails" ng-if="item.attachments_attributes.length">
-        <a class="th" ng-repeat="photo in item.attachments_attributes track by $index" ng-href="{{ photo.large }}"
-           rel="{{:: item._id }}">
-          <img ng-src="{{photo.normal}}" width="163" height="122"/>
-        </a>
-      </p>
+      <ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
+        <li ng-repeat="photo in item.attachments_attributes track by $index">
+          <a class="fancy" ng-href="{{ photo.large }}" rel="{{:: item._id }}"><img ng-src="{{photo.normal}}"></a>
+        </li>
+      </ul>
 
       <p class="labels" ng-if="item.keywords.length">
         <span ng-repeat="tag in item.keywords"><span ng-click="toggleTag(tag)"
@@ -74,13 +73,13 @@
       <div class="_action row">
         <div class="medium-5 large-4 columns">
           <a ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" data-item-type="{{ item.type }}"
-             class="button expand" ng-bind-html="replyLabel[item.type] | translate">
+             class="button expand button-{{item.type}}" ng-bind-html="replyLabel[item.type] | translate">
           </a>
           <span ng-if="item.is_replied">
             {{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
           </span>
         </div>
-        <div class="medium-7 large-8 columns small-only-text-center">
+        <div class="_reply-info medium-7 large-8 columns small-only-text-center">
           <span ng-if="item.reply_count && mine">
             <a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies"
                ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>

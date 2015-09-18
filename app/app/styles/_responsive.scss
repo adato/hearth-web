@@ -15,8 +15,8 @@
   }
 
   ._item {
-    background: white;
-    margin-bottom: 1em;
+    padding: 1em 0;
+    border-bottom: 1px solid white;
 
     ._avatar {
       ._photo {
@@ -55,7 +55,14 @@
       }
     }
 
+    ._reply-info {
+      padding: .5em 0;
+      color: grey;
+    }
+
     &.need {
+      background-color: lighten(color(1), 50%);
+
       ._content {
         ._title {
           h2 {
@@ -66,16 +73,12 @@
             }
           }
         }
-
-        ._action {
-          .button {
-            background: color(1);
-          }
-        }
       }
     }
 
     &.offer {
+      background-color: lighten(color(2), 50%);
+
       ._content {
         ._title {
           h2 {
@@ -85,12 +88,6 @@
               }
             }
           }
-        }
-      }
-
-      ._action {
-        .button {
-          background: color(2);
         }
       }
     }
