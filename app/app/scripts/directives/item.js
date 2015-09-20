@@ -88,9 +88,6 @@ angular.module('hearth.directives').directive('item', [
                     
                     // count Karma length
                     item.karma = Karma.count(item.author.up_votes, item.author.down_votes);
-                    if(item.karma) {
-                        item.karma += "%";
-                    }
                 });
                 
                 /**

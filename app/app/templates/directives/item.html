@@ -6,8 +6,8 @@
 				<div class="name">{{ item.author.name }}</div>
 			</a>
 		</div>
-		<div class="karma" ng-class="{empty: !item.karma}" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
-			<div class="positive" style="width:{{:: item.karma}}"></div>
+		<div class="karma" ng-class="{empty: item.karma === null }" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
+			<div class="positive" ng-attr-style="width:{{:: item.karma}}%;"></div>
 		</div>
 	</section>
 	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">

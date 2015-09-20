@@ -18,7 +18,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadingBottom = false;
 
 		var _loadLimit = 20; // pull requests interval in ms
-		var _loadTimeout = 5000; // pull requests interval in ms
+		var _loadTimeout = 30000; // pull requests interval in ms
 		var _loadLock = false; // pull requests interval in ms
 		var _loadTimeoutPromise = false;
 

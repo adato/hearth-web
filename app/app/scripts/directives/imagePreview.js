@@ -1,5 +1,34 @@
 'use strict';
 
+angular.module('hearth.directives').service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl, done, doneErr){
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(done)
+        .error(doneErr);
+    };
+}]);
+
+angular.module('hearth.directives').directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
 /**
  * @ngdoc directive
  * @name hearth.directives.imagePreview
@@ -8,13 +37,14 @@
  */
 
 angular.module('hearth.directives').directive('imagePreview', [
-	'$timeout', '$parse', '$rootScope',
-	function($timeout, $parse, $rootScope) {
+	'$timeout', '$parse', '$rootScope', 'fileUpload',
+	function($timeout, $parse, $rootScope, fileUpload) {
 		return {
 			transclude: true,
 			replace: true,
 			scope: {
 				files: "=?",
+				uploadResource: "=?",
 				fileSizes: "=?",
 				limit: "=",
 				error: "=?",
@@ -22,18 +52,21 @@ angular.module('hearth.directives').directive('imagePreview', [
 				limitPixelSize: "=",
 				singleFile: "=",
 			},
-			template: '<div class="image-preview-container"><div class="image-preview  image-upload">'
-						+ '<input class="file-upload-input" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
+			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">'
+						+ '<input class="file-upload-input" file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*" capture>' 
+						+ '<div class="file-upload-overlay"></div>' 
 						+ '<span ng-transclude class="image-preview-content"></span>' 
 						+ '</div>'
 	                    + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>'
 	                    + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>'
 	                    + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>'
+	                    + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>'
 						+'</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
 				scope.showErrors = true;
 				scope.error = scope.error || {};
+				scope.uploading = false;
 
 				// preview jen jednoho souboru? Nebo to budeme davat do pole
 				if(scope.singleFile) {
@@ -102,18 +135,40 @@ angular.module('hearth.directives').directive('imagePreview', [
 							var image = new Image();
 							image.src = e.target.result;
 
-							image.onload = function() {
+							return image.onload = function() {
 
 								if(this.width < scope.limitPixelSize || this.height < scope.limitPixelSize) {
 									scope.error.badSizePx = true;
 								} else {
 
-									if(scope.singleFile) {
-										scope.files = {file:src};
+									// if there is upload resource, upload images immidiatelly
+									if(scope.uploadResource) {
+
+								    	scope.uploading = true;
+										var file = scope.picFile;
+										fileUpload.uploadFileToUrl(file, scope.uploadResource, function(res) {
+									    	scope.uploading = false;
+					
+											if(scope.singleFile) {
+												scope.files = res;
+											} else {
+												scope.files.push(res);
+												scope.fileSizes.push(e.total);
+											}
+										}, function(err) {
+									    	scope.uploading = false;
+											scope.error.uploadError = true;
+											console.log('Error: ', err);
+										});
 									} else {
-										scope.files.push({file:src});
-										scope.fileSizes.push(e.total);
+										if(scope.singleFile) {
+											scope.files = {file:src};
+										} else {
+											scope.files.push({file:src});
+											scope.fileSizes.push(e.total);
+										}
 									}
+									
 								}
 								scope.$apply();
 							};
