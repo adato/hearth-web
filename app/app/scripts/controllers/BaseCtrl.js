@@ -383,17 +383,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
-        // open modal window for item edit
-        $rootScope.editItem = function(post, isInvalid, preset) {
-            if (!Auth.isLoggedIn())
-                return $rootScope.showLoginBox(true);
-
-            var scope = $scope.$new();
-            scope.post = angular.copy(post);
-            scope.postOrig = post;
-            scope.isInvalid = isInvalid;
-            scope.preset = preset;
-
+        $rootScope.openEditForm = function(scope) {
+            
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
                 controller: 'ItemEdit',
@@ -404,9 +395,33 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             });
         };
 
-        // $timeout(function() {
-            // $rootScope.editItem(null);
-        // }, 3000);
+        // open modal window for item edit
+        $rootScope.editItem = function(post, isInvalid, preset) {
+            if (!Auth.isLoggedIn())
+                return $rootScope.showLoginBox(true);
+
+            // createDraft
+            var scope = $scope.$new();
+            scope.isInvalid = isInvalid;
+            scope.preset = preset;
+
+            if(post) {
+
+                scope.post = angular.copy(post);
+                scope.postOrig = post;
+                scope.isDraft = false;
+                $rootScope.openEditForm(scope);
+            } else {
+
+                Post.createDraft({}, function(draft) {
+                    scope.post = draft;
+                    scope.isDraft = true;
+                    scope.post.title = draft._id;
+                    scope.postOrig = null;
+                    $rootScope.openEditForm(scope);
+                });
+            }
+        };
 
         $rootScope.removeItemFromList = function(id, list) {
             for (var i = 0; i < list.length; i++) {
