@@ -565,8 +565,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: scope,
                 className: 'ngdialog-confirm-box',
                 closeByDocument: false,
-                showClose: false
-                // closeByEscape: false,
+                showClose: false,
+                closeByEscape: true,
             });
         };
 
