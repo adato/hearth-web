@@ -118,6 +118,14 @@ body.lang-en {
 }
 
 
+/* english version */
+body.lang-sk {
+	div.header-content .intro.container {
+		background: url('../img/explore-slovak.png') no-repeat center 38%;
+		background-size:370px 43px;
+	}
+}
+
 
 /* ===== HEADER & INTRODUCTION ====================== */
 
@@ -151,8 +159,11 @@ body.lang-en {
 		font-size:29px;
 		line-height: 1.3;
 		@include border-bottom-radius( $web-radius );
-
 		@include hoverify ( #FFF );
+
+		&:last-child {
+			margin:0;
+		}
 	}
 }
 
@@ -171,6 +182,10 @@ body.lang-en {
 	}
 	&.flag-cs {
 		background:url(../img/flag-czech.svg);
+		background-size:32px 23px;
+	}
+	&.flag-sk {
+		background:url(../img/flag-slovak.svg);
 		background-size:32px 23px;
 	}
 }
