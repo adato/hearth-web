@@ -286,6 +286,7 @@ module.exports = function(grunt) {
 						'img/{,*/}*',
 						'fonts/*',
 						'en/*',
+						'sk/*',
 						'css/{,*/}*',
 						'pics/{,*/}*',
 						'vendor/{,*/}*',
@@ -299,6 +300,10 @@ module.exports = function(grunt) {
 					cwd: '.tmp/img',
 					dest: '<%= yeoman.dist %>/img',
 					src: ['generated/*']
+				},{
+					expand: true,
+					src: '.tmp/css/*',
+					dest: '<%= yeoman.dist %>/css',
 				}]
 			},
 			styles: {
