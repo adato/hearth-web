@@ -38,7 +38,6 @@ function redirectToLangVersion(lang, langsAvailable) {
 }
 
 function changeLanguage(lang) {
-	debugger;
 	console.log('Settings language to cookies:', lang);
 	
 	window.jCookie('language', lang, {path: '/', expires: 20 * 365});
