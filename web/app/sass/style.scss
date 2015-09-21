@@ -161,9 +161,7 @@ body.lang-sk {
 		@include border-bottom-radius( $web-radius );
 		@include hoverify ( #FFF );
 	}
-	.btn:last-child {
-		margin:0;
-	}
+
 }
 
 .flag {

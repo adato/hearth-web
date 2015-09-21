@@ -39,8 +39,11 @@
         <div class="strip-btns">
           <div class="container">
             <a href="/app/login" title="Prejdite na Hearth.net" class="btn">Prihlásiť sa</a>
-            <a href="/en/" onclick="return changeLanguage('en')" title="English version" class="btn"><i class="flag flag-en"></i>&nbsp;</a>
-            <a href="/" onclick="return changeLanguage('cs')" title="Česká verze" class="btn"><i class="flag flag-cs"></i>&nbsp;</a>
+            <div class="flag-btn btn">
+              <a href="/" onclick="return changeLanguage('cs')" title="Česká verze"><i class="flag flag-cs"></i></a>
+              &nbsp;|
+              <a href="/en/" onclick="return changeLanguage('en')" title="English version"><i class="flag flag-en"></i></a>
+            </div>
           </div>
         </div>
 
