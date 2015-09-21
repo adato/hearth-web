@@ -1,0 +1,85 @@
+
+// foundation breakpoint for large screens 
+@media #{$medium-up} { 
+	.web-width {
+		width: 940px;
+	}
+	body .main-container {
+		min-width:960px;
+		max-width:960px;
+	}
+	.max-web-width {
+		max-width: 960px;
+	}
+
+	#navigation {
+		margin: 0 auto;
+	}
+
+	#homepage-hero {
+		margin-top: 150px;
+	}
+}
+
+
+// small screens only
+@media #{$small-only} { 
+	#notify-top {
+		width: unset !important;
+	}
+
+	.profile-view {
+		max-width: unset !important;
+	}
+	.web-width {
+		width: unset !important;
+		width: 100%;
+	}
+	.main-container {
+		min-width: unset !important;
+		width: 100%;
+	}
+
+	.market .avatar {
+		& > div,span,a {
+			img {
+				max-width: $small-avatar-size;
+				max-height: $small-avatar-size;
+			}
+			&::before {
+				max-width: $small-avatar-size;
+				max-height: $small-avatar-size;
+			}
+		}
+	}
+	.communities .community-list.small .community-item {
+		max-width:100%;
+	}
+
+	.small-margin-bottom {
+		margin-bottom:3*$ui-small-grid-size;
+	}
+
+	#homepage-hero {
+		margin-top: -40px;
+	}
+}
+
+
+.padding-1 {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.all-visible {
+	float: none;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.off-canvas-wrap, .off-canvas-wrap > .inner-wrap {
+  min-height: 100vh;
+}

@@ -51,7 +51,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $rootScope.reloadPage = function() {
             window.location = document.URL;
-        };   
+        };
+
+        $rootScope.checkOnlineState = function() {
+            ApiHealthChecker.checkOnlineState();
+        };
 
         $scope.setPageTitle = function(state) {
             // var state = $state.$current;
