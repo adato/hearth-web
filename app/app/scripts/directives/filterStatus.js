@@ -7,13 +7,13 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterStatus', [
-	'$location', '$translate',
+	'$state', '$location', '$translate',
 
-	function($location, $translate) {
+	function($state, $location, $translate) {
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'templates/directives/filterStatus.html',
+      templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filterStatus.html' : 'templates/directives/filterStatus.html',
 			scope: {},
 			link: function(scope) {
 				scope.resetFilter = function() {
@@ -23,7 +23,7 @@ angular.module('hearth.directives').directive('filterStatus', [
 					var searchParams = angular.copy($location.search()),
 						related = searchParams.related;
 
-					
+
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;
 
 					if(scope.filterData && $.isArray(scope.filterData.keywords)) {

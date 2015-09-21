@@ -1,55 +1,10 @@
 <div class="_market row">
   <!-- MARKET Start -->
-  <div class="large-3 columns" style="background-color: #fafafa;">
+  <div class="large-3 columns _filter">
     <!-- MARKET FILTER Start -->
-    <div class="_filter">
-      <form>
-        <h4>Typ</h4>
-        <label for="checkbox1"><input id="checkbox1" type="checkbox"> Dary</label>
-        <label for="checkbox2"><input id="checkbox2" type="checkbox"> Přání</label>
-        <label for="checkbox3"><input id="checkbox3" type="checkbox"> Všechny dary a přání</label>
-
-        <hr/>
-
-        <h4>Čas</h4>
-        <label for="checkbox4"><input id="checkbox4" type="checkbox"> Dnes</label>
-        <label for="checkbox5"><input id="checkbox5" type="checkbox"> 3 dny</label>
-        <label for="checkbox6"><input id="checkbox6" type="checkbox"> Týden</label>
-        <label for="checkbox7"><input id="checkbox7" type="checkbox"> Bez omezení</label>
-
-        <hr/>
-
-        <h4>Místo</h4>
-        <input type="text" placeholder="např. Praha"/>
-
-        <div class="row v-m-small">
-          <div class="small-8 medium-11 columns">
-            <div class="range-slider" data-slider data-options="display_selector: #sliderOutput3;">
-              <span class="range-slider-handle" role="slider" tabindex="0"></span>
-              <span class="range-slider-active-segment"></span>
-            </div>
-          </div>
-          <div class="small-4 medium-1 columns">
-            do <span id="sliderOutput3">25</span> km
-          </div>
-        </div>
-
-        <hr/>
-
-        <h4>Autor</h4>
-        <label for="checkbox8"><input id="checkbox8" type="checkbox"> Jednotlivci</label>
-        <label for="checkbox9"><input id="checkbox9" type="checkbox"> Komunity</label>
-        <label for="checkbox10"><input id="checkbox10" type="checkbox"> Jen mí přátelé</label>
-
-        <hr/>
-
-        <a href="#" class="button expand">Filtrovat <b>(476)</b></a>
-
-        <label for="checkbox11"><input id="checkbox11" type="checkbox"> Uložit filtr</label>
-      </form>
-    </div>
+    <filterbar filter=filter></filterbar>
+    <!-- MARKET FILTER End -->
   </div>
-  <!-- MARKET FILTER End -->
   <!-- MARKET ITEMS Start -->
   <div class="large-9 columns" id="market-item-list" when-scrolled="load()"
        offset="1000" loading-in-progress="loading">

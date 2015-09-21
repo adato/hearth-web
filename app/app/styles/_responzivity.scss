@@ -1,6 +1,6 @@
 
-// foundation breakpoint for large screens 
-@media #{$medium-up} { 
+// foundation breakpoint for large screens
+@media #{$medium-up} {
 	.web-width {
 		width: 940px;
 	}
@@ -18,7 +18,7 @@
 }
 
 // small screens only
-@media #{$small-only} { 
+@media #{$small-only} {
 	#notify-top {
 		width: unset !important;
 	}
