@@ -34,11 +34,21 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
                     var evListener = $rootScope.$on('ev:online', function() {
                         evListener(); // turn off event
                         
-                        retryHttpRequest(rejection.config, deferred);
+                        if(rejection.config.method == 'GET')
+                            retryHttpRequest(rejection.config, deferred);
                     });
-                    return deferred.promise;
-                } else
-                    return rejection;
+
+                    if(rejection.config.method == 'GET')
+                        return deferred.promise;
+                    else
+                        return $q.reject(rejection);
+                        
+                } else {
+
+                    if (rejection.status != 401)
+                        Rollbar.error("HEARTH: API Error response", {error: e, source: rejection});
+                    return $q.reject(rejection);
+                }
             }
         };
     }

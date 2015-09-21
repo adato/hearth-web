@@ -16,24 +16,22 @@
     </div>
     <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
     <input type="email" validate-email name="username" class="login_name" ng-model="data.username"
-           placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" required>
+           ng-model-options="{ updateOn: 'blur' }" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}"
+           class="form-control text-input top" required>
+
     <p ng-show="loginForm.username.$dirty && loginForm.username.$invalid" class="error">
-      <span ng-show="loginForm.username.$error.email">
-        {{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}
-      </span>
+      <span ng-show="loginForm.username.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
     </p>
     <input type="password" class="login_password" name="password" ng-model="data.password"
-           ng-minlength="5" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}"
+           ng-model-options="{ updateOn: 'blur' }" ng-minlength="5" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}"
            class="form-control text-input top" required>
+
     <p ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="error">
-      <span ng-show="loginForm.password.$error.minlength">
-        {{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}
-      </span>
+      <span ng-show="loginForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
     </p>
 
     <div class="text-center">
-      <button class="primary button-send pointer center" type="submit" ng-disabled="loginForm.$invalid"><i
-        class="fa fa-sign-in"></i> {{ 'LOGIN_BUTTON' |
+      <button class="primary button-send pointer center" type="submit"><i class="fa fa-sign-in"></i> {{ 'LOGIN_BUTTON' |
         translate }}
       </button>
     </div>
