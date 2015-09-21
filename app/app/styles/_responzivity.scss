@@ -15,6 +15,10 @@
 	#navigation {
 		margin: 0 auto;
 	}
+
+	#homepage-hero {
+		margin-top: 150px;
+	}
 }
 
 
@@ -54,6 +58,10 @@
 
 	.small-margin-bottom {
 		margin-bottom:3*$ui-small-grid-size;
+	}
+
+	#homepage-hero {
+		margin-top: -40px;
 	}
 }
 
