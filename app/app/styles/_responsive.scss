@@ -5,13 +5,36 @@
   }
 }
 
-.progress {
-  margin-bottom: 0;
+body {
+  .main-container {
+    margin-top: auto!important;
+  }
 }
 
 ._market {
   ._filter {
+    background: #fafafa;
 
+    ._filterbar-wrap {
+      ._filterbar-header {
+        padding: 1em 0;
+      }
+
+      .filter-container {
+        transition: all .3s ease-in;
+        opacity: 1;
+        max-height: 800px;
+      }
+      .animated-hidden {
+        opacity: 0;
+        max-height: 0 !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+      }
+    }
   }
 
   ._item {

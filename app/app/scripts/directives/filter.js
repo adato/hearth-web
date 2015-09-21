@@ -6,16 +6,16 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filter', [
-    'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
+    '$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
 
-    function(geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
+    function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
         return {
             restrict: 'E',
             replace: true,
             scope: {
                 filterShown: "="
             },
-            templateUrl: 'templates/directives/filter.html',
+            templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filter.html' : 'templates/directives/filter.html',
             link: function(scope, element) {
                 var searchBoxElement = $('input#geolocation', element),
                     searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
@@ -64,7 +64,7 @@ angular.module('hearth.directives').directive('filter', [
 
                     if(!$rootScope.loggedUser._id)
                         return false;
-                    
+
                     if(save)
                         Filter.setUserFilter(scope.convertFilterToParams(scope.filter));
                     else
@@ -158,7 +158,7 @@ angular.module('hearth.directives').directive('filter', [
                                 exists = true;
                         });
                     }
-                    
+
                     if(!exists)
                         scope.filter.keywords.push({text: keyword})
                 };
