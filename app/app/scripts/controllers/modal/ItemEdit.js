@@ -187,7 +187,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 */
 		$scope.testForm = function(post) {
 			var res = false;
-			
+			$scope.createAdForm.$setDirty();
 			if($scope.createAdForm.title.$invalid) {
 				res = $scope.showError.title = true;
 			}
@@ -364,8 +364,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		function modifyDateFormat(dateFormat) {
 
+			dateFormat = dateFormat.replace(/yyyy/g, 'y');
 			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
-			dateFormat = dateFormat.replace(/([^y]|^)yyyy(?!y)/g, '$1y');
 			return dateFormat;
 		}
 		

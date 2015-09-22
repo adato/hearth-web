@@ -47,7 +47,7 @@
                         <input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
                     </div>
 
-                    <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title">
+                    <div class="moveUp error" ng-show="createAdForm.title.$invalid && showError.title && createAdForm.$dirty">
                         <span ng-show="createAdForm.title.$error.required">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
                         <span ng-show="createAdForm.title.$error.minlength">{{ 'ERR_AD_TITLE_MIN_LEN' | translate }}</span>
                         <span ng-show="createAdForm.title.$error.maxlength">{{ 'ERR_AD_TITLE_LEN' | translate }}</span>

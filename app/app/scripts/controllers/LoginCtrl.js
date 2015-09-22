@@ -30,7 +30,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		}
 
 		$scope.oauth = function(provider) {
-			$auth.authenticate(provider).then(function(response) {
+			$auth.authenticate(provider, {language: preferredLanguage}).then(function(response) {
 				if(response.status == 200)
 					processLoginResult(response);
 				else
