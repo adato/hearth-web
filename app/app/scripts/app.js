@@ -60,7 +60,7 @@ angular.module('hearth', [
             $authProvider.tokenName = 'api_token';
             $authProvider.facebook({
                 clientId: $$config.oauth.facebook,
-                url: $$config.apiPath+'/auth/facebook',
+                url: $$config.apiPath+'/auth/facebook'
             });
 
             $authProvider.google({

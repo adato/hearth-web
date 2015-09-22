@@ -46,7 +46,7 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
                 } else {
 
                     if (rejection.status != 401)
-                        Rollbar.error("HEARTH: API Error response", {error: e, source: rejection});
+                        Rollbar.error("HEARTH: API Error response", {source: rejection});
                     return $q.reject(rejection);
                 }
             }

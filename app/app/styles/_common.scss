@@ -416,3 +416,11 @@ button[disabled],
 .display-block {
     display: block !important;
 }
+
+.image-preview-content {
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
