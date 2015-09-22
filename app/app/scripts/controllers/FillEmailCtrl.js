@@ -11,7 +11,8 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
     function($scope, Auth, $location, ResponseErrors, Email, Notify, $stateParams) {
         $scope.twitter_token = false;
 		$scope.data = {
-            email: ''
+            email: '',
+            language: preferredLanguage
         };
         $scope.showError = {
             email: false
