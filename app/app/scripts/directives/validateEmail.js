@@ -18,9 +18,10 @@ angular.module('hearth.directives').directive('validateEmail', ['Validators', fu
 
         // this will overwrite the default Angular email validator
         ctrl.$validators.email = function (modelValue) {
-          return ctrl.$isEmpty(modelValue) || Validators.email(modelValue);
+          var validatorResult = Validators.email(modelValue) || false;
+          return ctrl.$isEmpty(modelValue) || validatorResult;
         };
       }
     }
   };
-});
+}]);
