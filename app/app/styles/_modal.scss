@@ -187,18 +187,23 @@
     }
 }
 
+// when dialog is shown, allow scrolling it
+body.ngdialog-open {
+    overflow:hidden;
+    .ngdialog {
+        overflow:scroll;
+    }  
+}
+
 @media #{$small-only} {
     .ngdialog.ngdialog-theme-default .ngdialog-button:focus {
         -webkit-animation: none;
         animation: none;
     }
 
-    // when ngdialog is open, hide page contents
-    body.ngdialog-open {
-        .main-container { display:none; }
-        .ngdialog {
-            position:absolute;
-        }  
+
+    .ngdialog-content .modal {
+        max-width:100%;
     }
 }
 
