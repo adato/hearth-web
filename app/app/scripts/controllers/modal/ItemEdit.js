@@ -364,8 +364,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		function modifyDateFormat(dateFormat) {
 
+			dateFormat = dateFormat.replace(/yyyy/g, 'y');
 			dateFormat = dateFormat.replace(/([^y]|y)yy(?!y)/g, '$1y');
-			dateFormat = dateFormat.replace(/([^y]|^)yyyy(?!y)/g, '$1y');
 			return dateFormat;
 		}
 		

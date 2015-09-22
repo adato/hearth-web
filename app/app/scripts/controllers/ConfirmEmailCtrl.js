@@ -7,8 +7,8 @@
  */
  
 angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
-	'$scope', '$location', 'Auth', '$analytics', 'Notify',
-	function($scope, $location, Auth, $analytics, Notify) {
+	'$scope', '$location', 'Auth', '$analytics', 'Notify', 'LanguageSwitch',
+	function($scope, $location, Auth, $analytics, Notify, LanguageSwitch) {
 		var search;
 		$scope.brokenLink = false;
 		search = $location.search();
@@ -19,7 +19,7 @@ angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 				label: 'registration email failed'
 			});
 
-			if(res.name && res.name == 'ValidationError')
+			if(res && res.name && res.name == 'ValidationError')
 				return $scope.brokenLink = true;
 			else
 				Notify.addSingleTranslate('NOTIFY.ACCOUNT_ACTIVATE_FAILED', Notify.T_ERROR, '.activate-account-notify-container');
@@ -32,6 +32,9 @@ angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 				label: 'registration email confirmed'
 			});
 			Notify.addSingleTranslate('NOTIFY.ACCOUNT_ACTIVATE_SUCCESS', Notify.T_SUCCESS);
+
+			if(res.language)
+				LanguageSwitch.setCookie(res.language);
 
 			if(res.api_token) {
 				Auth.setToken(res.api_token);
