@@ -12,7 +12,7 @@ $$config = {
 		minWidth: 200,
 		minHeight: 200
 	},
-	imgMaxPixelSize: 1024,
+	imgMaxPixelSize: 2048,
 	defaultHearthImage: 'images/facebook-sharing-image.jpg',
 	defaultHearthImageSize: [1200, 630],
 	defaultHearthImageWidth: 1200,

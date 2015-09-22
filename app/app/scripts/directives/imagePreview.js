@@ -15,11 +15,15 @@ function getProportionalSize(img, maxWidth, maxHeight) {
 
 angular.module('hearth.directives').service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function(file, uploadUrl, done, doneErr){
-        var fd = new FormData();
-        fd.append('file', file);
-        $http.post(uploadUrl, fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
+        // var fd = new FormData();
+        // fd.append('file', file);
+        file = file.split(',');
+        $http.post(uploadUrl, {
+            // transformRequest: angular.identity,
+            // headers: {'Content-Type': undefined},
+            // data: {
+            	file_data: file[1]
+            // }
         })
         .success(done)
         .error(doneErr);
@@ -136,9 +140,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 						if (!~scope.allowedTypes.indexOf(format)) {
 							// bad format
 							scope.error.badFormat = true;
-						} else if (e.total > (limitSize * 1024 * 1024)) {
-							// bad size of this one image
-							scope.error.badSize = true;
 						} else if(scope.getImageSizes && scope.getImageSizes() + e.total > $$config.maxImagesSize* 1024 * 1024) {
 							// bad size of all images together
 							scope.error.badSizeAll = true;
@@ -156,6 +157,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 									// if there is upload resource, upload images immidiatelly
 									if(scope.uploadResource) {
+								    	scope.uploading = true;
 										var newSize = null;
 										var dataURL;
 
@@ -169,10 +171,15 @@ angular.module('hearth.directives').directive('imagePreview', [
 									        var ctx = canvas.getContext("2d");
 									        ctx.drawImage(this, 0, 0, newSize.width, newSize.height);
 									        dataURL = canvas.toDataURL("image/jpeg");
-										}	
+										} else if (e.total > (limitSize * 1024 * 1024)) {
+											// bad size of this one image
+								    		scope.uploading = false;
+											scope.error.badSize = true;
+											scope.$apply();
+											return;
+										}
 
-								    	scope.uploading = true;
-										var file = newSize ? dataUrl : scope.picFile;
+										var file = newSize ? dataURL : scope.picFile;
 										// var file = newSize ? canvas.toBlob() : scope.picFile;
 										fileUpload.uploadFileToUrl(file, scope.uploadResource, function(res) {
 									    	scope.uploading = false;
