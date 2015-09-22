@@ -1,5 +1,18 @@
 'use strict';
 
+function getProportionalSize(img, maxWidth, maxHeight) {
+    var width = img.width;
+    var height = img.height;
+    var ratioX = (maxWidth / width);
+    var ratioY = (maxHeight / height);
+    var ratio = Math.min(ratioX, ratioY);
+
+    var newWidth  = (width * ratio);
+    var newHeight = (height * ratio);
+    return {width: newWidth, height: newHeight};
+};
+
+
 angular.module('hearth.directives').service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function(file, uploadUrl, done, doneErr){
         var fd = new FormData();
@@ -143,9 +156,24 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 									// if there is upload resource, upload images immidiatelly
 									if(scope.uploadResource) {
+										var newSize = null;
+										var dataURL;
+
+										if (this.width > $$config.imgMaxPixelSize || this.height > $$config.imgMaxPixelSize) {
+
+											newSize = getProportionalSize(this, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
+											console.log(newSize)
+											var canvas = document.createElement('canvas');
+									        canvas.width = newSize.width;
+									        canvas.height = newSize.height;
+									        var ctx = canvas.getContext("2d");
+									        ctx.drawImage(this, 0, 0, newSize.width, newSize.height);
+									        dataURL = canvas.toDataURL("image/jpeg");
+										}	
 
 								    	scope.uploading = true;
-										var file = scope.picFile;
+										var file = newSize ? dataUrl : scope.picFile;
+										// var file = newSize ? canvas.toBlob() : scope.picFile;
 										fileUpload.uploadFileToUrl(file, scope.uploadResource, function(res) {
 									    	scope.uploading = false;
 					
