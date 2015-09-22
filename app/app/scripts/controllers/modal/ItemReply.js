@@ -54,6 +54,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			$.each($scope.showErrors, function(key, value) {
 				$scope.showErrors[key] = true;
 			});
+			$scope.replyForm.$setDirty();
 
 			if ($scope.sending || !$scope.reply.agreed || $scope.replyForm.message.$invalid) {
 				return false;

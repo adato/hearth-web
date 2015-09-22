@@ -187,7 +187,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 */
 		$scope.testForm = function(post) {
 			var res = false;
-			
+			$scope.createAdForm.$setDirty();
 			if($scope.createAdForm.title.$invalid) {
 				res = $scope.showError.title = true;
 			}
