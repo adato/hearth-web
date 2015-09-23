@@ -108,7 +108,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 					 // Since android doesn't handle file types right, do not do this check for phones
 						if(!file || !file.type) {
 							console.log("File does not have type attribute", file);
-							return scope.error.uploadError = true;
+							return;
 						}
 
 						if (!file.type.match(imageType)) {
@@ -144,7 +144,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 						scope.files.push(data);
 						scope.fileSizes.push(img.total);
 					}
-					$('input', el).val("");
 				}
 
 				function handleImageLoad(img, imgFile, limitSize) {
@@ -155,7 +154,10 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 					// if there is not upload resource, upload images later
 					if(!scope.uploadResource) {
-						return pushResult({file: img}, imgFile);
+						if(imgFile.total > limitSize * 1024 * 1024)
+							return scope.error.badSize = true;
+
+						return pushResult({file: imgFile.target.result}, imgFile);
 					}
 
 					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize
@@ -166,15 +168,16 @@ angular.module('hearth.directives').directive('imagePreview', [
 					}
 
 			    	scope.uploading = true;
+			    	scope.$apply();
 					$timeout(function() {
 
 						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
-						console.log(resized.split(',').pop());
 						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, function(res) {
 					    	scope.uploading = false;
 		
 							pushResult(res, {total: 0});
+							$('input', el).val("");
 						}, function(err) {
 					    	scope.uploading = false;
 							scope.error.uploadError = true;
