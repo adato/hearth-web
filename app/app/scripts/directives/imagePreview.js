@@ -68,6 +68,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 				uploadResource: "=?",
 				fileSizes: "=?",
 				limit: "=",
+				uploadingNotifier: "&",
 				error: "=?",
 				getImageSizes: "&",
 				limitPixelSize: "=",
@@ -225,6 +226,11 @@ angular.module('hearth.directives').directive('imagePreview', [
 					}
 					return brand;
 				}
+
+				scope.$watch("uploading", function(val) {
+					if(scope.uploadingNotifier)
+						scope.uploadingNotifier({val:val});
+				});
 
 				return el.bind('change', function(event) {
 					return scope.$apply(function() {
