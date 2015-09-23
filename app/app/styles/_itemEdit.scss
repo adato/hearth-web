@@ -288,6 +288,21 @@
                     opacity: 0.7;
                 }
 
+                .fa-spin {
+                    display: none;
+                }
+
+                .uploading {
+
+                    .fa-plus {
+                        display: none;
+                    }
+                    .fa-spin {
+                        display: inline-block;
+                    }
+                }
+
+
                 div {
                     text-align: center;
                     span {

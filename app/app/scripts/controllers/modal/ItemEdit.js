@@ -7,14 +7,14 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$upload', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
-	function($scope, $rootScope, Auth, Errors, $upload, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.limitPixelSize = 200;	// Pixels
 		$scope.maxImageSizeLimit = 5; 	// MB
-
+		$scope.uploadResource = $$config.apiPath+'/posts/'+$scope.post._id+'/attachments';
 		$scope.imagesCount = 0;
 		$scope.imageSizesSum = 0;
 		$scope.imageSizes = [];
@@ -187,7 +187,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 */
 		$scope.testForm = function(post) {
 			var res = false;
-			
+			$scope.createAdForm.$setDirty();
 			if($scope.createAdForm.title.$invalid) {
 				res = $scope.showError.title = true;
 			}
@@ -268,10 +268,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.closeThisDialog();
 			});
 			
-
-
 			// emit event into whole app
-			$rootScope.$broadcast(post._id ? 'postUpdated' : 'postCreated', data);
+			$rootScope.$broadcast($scope.isDraft ? 'postCreated' : 'postUpdated', data);
 
 			// $(document.body).scrollTop(0);
 			if($rootScope.isPostActive(data) && $location.path() != '/') {
@@ -342,7 +340,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
-			Post[post._id ? 'update' : 'add'](postData, function(data) {
+			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
 
 				// if it is save&activate button
 				// call prolong or resume endpoints first
