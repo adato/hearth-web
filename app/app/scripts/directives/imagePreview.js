@@ -100,15 +100,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 				if(angular.isUndefined(scope.error))
 					scope.showErrors = false;
 
-
-				function previewImage(el, limitSize) {
-					var file = $(el).find(".file-upload-input")[0].files[0],
-						imageType = /image.*/,
-						device = detectDevice();
+				function isInvalidFile(file) {
+					var device = detectDevice();
+					var imageType = /image.*/;
 					
-					scope.error = {};
-
-					if (!device.android) { // Since android doesn't handle file types right, do not do this check for phones
+					if (!device.android) {
+					 // Since android doesn't handle file types right, do not do this check for phones
 						if(!file || !file.type) {
 							console.log("File does not have type attribute", file);
 							return scope.error.uploadError = true;
@@ -119,90 +116,92 @@ angular.module('hearth.directives').directive('imagePreview', [
 						}
 					}
 
+					return false;
+				}
+
+				function isInvalidFormat(file, imgFile) {
+					var format = imgFile.split(';')[0].split('/')[1].toUpperCase();
+					var device = detectDevice();
+
+					// We will change this for an android
+					if (device.android) {
+						format = file.name.split('.');
+						format = format[format.length - 1].toUpperCase();
+					}
+
+					if (!~scope.allowedTypes.indexOf(format)) {
+						// bad format
+						return scope.error.badFormat = true;
+					}
+
+					return false;
+				}
+
+				function pushResult(data, img) {
+					if(scope.singleFile) {
+						scope.files = data;
+					} else {
+						scope.files.push(data);
+						scope.fileSizes.push(img.total);
+					}
+					$('input', el).val("");
+				}
+
+				function handleImageLoad(img, imgFile, limitSize) {
+					var resized;
+
+					if(img.width < scope.limitPixelSize || img.height < scope.limitPixelSize)
+						return scope.error.badSizePx = true;
+
+					// if there is not upload resource, upload images later
+					if(!scope.uploadResource) {
+						return pushResult({file: img}, imgFile);
+					}
+
+					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize
+						&&
+						imgFile.total > (limitSize * 1024 * 1024)
+					   ) {
+						return scope.error.badSize = true;
+					}
+
+			    	scope.uploading = true;
+					$timeout(function() {
+
+						resized = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
+						resized = ExifRestorer.restore(imgFile.target.result, resized);
+						console.log(resized.split(',').pop());
+						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, function(res) {
+					    	scope.uploading = false;
+		
+							pushResult(res, {total: 0});
+						}, function(err) {
+					    	scope.uploading = false;
+							scope.error.uploadError = true;
+							console.log('Error: ', err);
+							$('input', el).val("");
+						});
+					}, 50);
+				}
+
+				function previewImage(el, limitSize) {
+					var file = $(".file-upload-input", el)[0].files[0];
+					scope.error = {};
+					
+					if(isInvalidFile(file))
+						return false;
+
 					var reader = new FileReader();
 					reader.onload = function(e) {
-						var format = e.target.result.split(';')[0].split('/')[1].toUpperCase();
+						var imgFile = e.target.result;
 
-						// We will change this for an android
-						if (device.android) {
-							format = file.name.split('.');
-							format = format[format.length - 1].toUpperCase();
-						}
-
-						// if the picture has right format and is its size is in limit
-						if ((!!~ scope.allowedTypes.indexOf(format)) && e.total < (limitSize * 1024 * 1024)) {
-							var src = e.target.result;
-
-							// very nasty hack for android
-							// This actually injects a small string with format into a temp image.
-							if (device.android) {
-								src = src.split(':');
-								if (src[1].substr(0, 4) == 'base') {
-									src = src[0] + ':image/' + format.toLowerCase() + ';' + src[1];
-								}
-							}
-						}
-
-						if (!~scope.allowedTypes.indexOf(format)) {
-							// bad format
-							scope.error.badFormat = true;
-						} else {
+						if(!isInvalidFormat(file, imgFile)) {
 
 							// this will check image size
 							var image = new Image();
-							image.src = e.target.result;
-
+							image.src = imgFile;
 							return image.onload = function() {
-								var img = this;
-								if(img.width < scope.limitPixelSize || img.height < scope.limitPixelSize) {
-									scope.error.badSizePx = true;
-								} else {
-
-									// if there is upload resource, upload images immidiatelly
-									if(scope.uploadResource) {
-								    	scope.uploading = true;
-										var newSize;
-										var dataURL;
-
-										$timeout(function() {
-											if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize
-												&&
-												e.total > (limitSize * 1024 * 1024)
-											   ) {
-												// bad size of this one image
-									    		scope.uploading = false;
-												scope.error.badSize = true;
-												return;
-											}
-
-											dataURL = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
-
-											// var file = newSize ? canvas.toBlob() : scope.picFile;
-											ImageLib.upload(dataURL.split(',')[1], scope.uploadResource, function(res) {
-										    	scope.uploading = false;
-						
-												if(scope.singleFile) {
-													scope.files = res;
-												} else {
-													scope.files.push(res);
-													scope.fileSizes.push(e.total);
-												}
-											}, function(err) {
-										    	scope.uploading = false;
-												scope.error.uploadError = true;
-												console.log('Error: ', err);
-											});
-										}, 100);
-									} else {
-										if(scope.singleFile) {
-											scope.files = {file:src};
-										} else {
-											scope.files.push({file:src});
-											scope.fileSizes.push(e.total);
-										}
-									}
-									
-								}
+								handleImageLoad(this, e, limitSize);
 								scope.$apply();
 							};
 						}
