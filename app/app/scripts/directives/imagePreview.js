@@ -1,20 +1,31 @@
 'use strict';
 
-function getProportionalSize(img, maxWidth, maxHeight) {
-    var width = img.width;
-    var height = img.height;
-    var ratioX = (maxWidth / width);
-    var ratioY = (maxHeight / height);
-    var ratio = Math.min(ratioX, ratioY);
+angular.module('hearth.directives').service('ImageLib', ['$http', function ($http) {
 
-    var newWidth  = (width * ratio);
-    var newHeight = (height * ratio);
-    return {width: newWidth, height: newHeight};
-};
+	this.getProportionalSize = function(img, maxWidth, maxHeight) {
+		var ratio = 1;
+	    var width = img.width;
+	    var height = img.height;
+	    
+		if(img.width > maxWidth || img.height > maxHeight) {
+		    var ratioX = (maxWidth / width);
+		    var ratioY = (maxHeight / height);
+		    var ratio = Math.min(ratioX, ratioY);
+		}
 
+	    return {width: (width * ratio), height: (height * ratio)};
+	};
 
-angular.module('hearth.directives').service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl, done, doneErr){
+	this.resize = function(img, newSize) {
+		var canvas = document.createElement('canvas');
+		canvas.width = newSize.width;
+		canvas.height = newSize.height;
+		var ctx = canvas.getContext("2d");
+		ctx.drawImage(img, 0, 0, newSize.width, newSize.height);
+	    return canvas.toDataURL("image/jpeg");
+	};
+
+    this.upload = function(file, uploadUrl, done, doneErr){
         $http.post(uploadUrl, {
         	file_data: file
         })
@@ -47,8 +58,8 @@ angular.module('hearth.directives').directive('fileModel', ['$parse', function (
  */
 
 angular.module('hearth.directives').directive('imagePreview', [
-	'$timeout', '$parse', '$rootScope', 'fileUpload',
-	function($timeout, $parse, $rootScope, fileUpload) {
+	'$timeout', '$parse', '$rootScope', 'ImageLib',
+	function($timeout, $parse, $rootScope, ImageLib) {
 		return {
 			transclude: true,
 			replace: true,
@@ -98,8 +109,10 @@ angular.module('hearth.directives').directive('imagePreview', [
 					scope.error = {};
 
 					if (!device.android) { // Since android doesn't handle file types right, do not do this check for phones
-						if(!file.type)
+						if(!file || !file.type) {
 							console.log("File does not have type attribute", file);
+							return scope.error.uploadError = true;
+						}
 
 						if (!file.type.match(imageType)) {
 							return scope.error.badFormat = true;
@@ -133,9 +146,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 						if (!~scope.allowedTypes.indexOf(format)) {
 							// bad format
 							scope.error.badFormat = true;
-						} else if(scope.getImageSizes && scope.getImageSizes() + e.total > $$config.maxImagesSize* 1024 * 1024) {
-							// bad size of all images together
-							scope.error.badSizeAll = true;
 						} else {
 
 							// this will check image size
@@ -143,51 +153,46 @@ angular.module('hearth.directives').directive('imagePreview', [
 							image.src = e.target.result;
 
 							return image.onload = function() {
-
-								if(this.width < scope.limitPixelSize || this.height < scope.limitPixelSize) {
+								var img = this;
+								if(img.width < scope.limitPixelSize || img.height < scope.limitPixelSize) {
 									scope.error.badSizePx = true;
 								} else {
 
 									// if there is upload resource, upload images immidiatelly
 									if(scope.uploadResource) {
 								    	scope.uploading = true;
-										var newSize = null;
+										var newSize;
 										var dataURL;
 
-										if (this.width > $$config.imgMaxPixelSize || this.height > $$config.imgMaxPixelSize) {
-
-											newSize = getProportionalSize(this, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
-											console.log(newSize)
-											var canvas = document.createElement('canvas');
-									        canvas.width = newSize.width;
-									        canvas.height = newSize.height;
-									        var ctx = canvas.getContext("2d");
-									        ctx.drawImage(this, 0, 0, newSize.width, newSize.height);
-									        dataURL = canvas.toDataURL("image/jpeg");
-										} else if (e.total > (limitSize * 1024 * 1024)) {
-											// bad size of this one image
-								    		scope.uploading = false;
-											scope.error.badSize = true;
-											scope.$apply();
-											return;
-										}
-
-										var file = newSize ? dataURL.split(',')[1] : scope.picFile;
-										// var file = newSize ? canvas.toBlob() : scope.picFile;
-										fileUpload.uploadFileToUrl(file, scope.uploadResource, function(res) {
-									    	scope.uploading = false;
-					
-											if(scope.singleFile) {
-												scope.files = res;
-											} else {
-												scope.files.push(res);
-												scope.fileSizes.push(e.total);
+										$timeout(function() {
+											if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize
+												&&
+												e.total > (limitSize * 1024 * 1024)
+											   ) {
+												// bad size of this one image
+									    		scope.uploading = false;
+												scope.error.badSize = true;
+												return;
 											}
-										}, function(err) {
-									    	scope.uploading = false;
-											scope.error.uploadError = true;
-											console.log('Error: ', err);
-										});
+
+											dataURL = ImageLib.resize(img, ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize));
+
+											// var file = newSize ? canvas.toBlob() : scope.picFile;
+											ImageLib.upload(dataURL.split(',')[1], scope.uploadResource, function(res) {
+										    	scope.uploading = false;
+						
+												if(scope.singleFile) {
+													scope.files = res;
+												} else {
+													scope.files.push(res);
+													scope.fileSizes.push(e.total);
+												}
+											}, function(err) {
+										    	scope.uploading = false;
+												scope.error.uploadError = true;
+												console.log('Error: ', err);
+											});
+										}, 100);
 									} else {
 										if(scope.singleFile) {
 											scope.files = {file:src};
