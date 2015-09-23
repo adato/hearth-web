@@ -109,8 +109,10 @@ angular.module('hearth.directives').directive('imagePreview', [
 					scope.error = {};
 
 					if (!device.android) { // Since android doesn't handle file types right, do not do this check for phones
-						if(!file.type)
+						if(!file || !file.type) {
 							console.log("File does not have type attribute", file);
+							return scope.error.uploadError = true;
+						}
 
 						if (!file.type.match(imageType)) {
 							return scope.error.badFormat = true;
@@ -144,9 +146,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 						if (!~scope.allowedTypes.indexOf(format)) {
 							// bad format
 							scope.error.badFormat = true;
-						} else if(scope.getImageSizes && scope.getImageSizes() + e.total > $$config.maxImagesSize* 1024 * 1024) {
-							// bad size of all images together
-							scope.error.badSizeAll = true;
 						} else {
 
 							// this will check image size
@@ -166,7 +165,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 										var dataURL;
 
 										$timeout(function() {
-
 											if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize
 												&&
 												e.total > (limitSize * 1024 * 1024)
@@ -174,7 +172,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 												// bad size of this one image
 									    		scope.uploading = false;
 												scope.error.badSize = true;
-												scope.$apply();
 												return;
 											}
 
@@ -190,14 +187,12 @@ angular.module('hearth.directives').directive('imagePreview', [
 													scope.files.push(res);
 													scope.fileSizes.push(e.total);
 												}
-												scope.$apply();
 											}, function(err) {
 										    	scope.uploading = false;
 												scope.error.uploadError = true;
 												console.log('Error: ', err);
-												scope.$apply();
 											});
-										});
+										}, 100);
 									} else {
 										if(scope.singleFile) {
 											scope.files = {file:src};
