@@ -257,13 +257,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$rootScope.cacheInfoBox = {};
 		});
 
+		$scope.init = function() {
+		    $templateRequest(templateUrl).then(function(template) {
+		    	templateFunction = $compile(template);
+				$scope.filterIsOn = Filter.isSet();
+		    });
+		};
 
-	    $templateRequest(templateUrl).then(function(template) {
-	    	templateFunction = $compile(template);
-
-			$scope.filterIsOn = Filter.isSet();
-			// $scope.load();
-	    });
-
+	 	if($rootScope.initFinished) $scope.init();
+        $rootScope.$on("initFinished", $scope.init);
 	}
 ]);
