@@ -15,15 +15,8 @@ function getProportionalSize(img, maxWidth, maxHeight) {
 
 angular.module('hearth.directives').service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function(file, uploadUrl, done, doneErr){
-        // var fd = new FormData();
-        // fd.append('file', file);
-        file = file.split(',');
         $http.post(uploadUrl, {
-            // transformRequest: angular.identity,
-            // headers: {'Content-Type': undefined},
-            // data: {
-            	file_data: file[1]
-            // }
+        	file_data: file
         })
         .success(done)
         .error(doneErr);
@@ -179,7 +172,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 											return;
 										}
 
-										var file = newSize ? dataURL : scope.picFile;
+										var file = newSize ? dataURL.split(',')[1] : scope.picFile;
 										// var file = newSize ? canvas.toBlob() : scope.picFile;
 										fileUpload.uploadFileToUrl(file, scope.uploadResource, function(res) {
 									    	scope.uploading = false;
