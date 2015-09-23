@@ -51,8 +51,12 @@ angular.module('hearth.services').factory('Post', [
 				},
 				isArray: true
 			},
-			add: {
+			createDraft: {
 				method: 'POST',
+			},
+			add: {
+				method: 'PUT',
+				url: $$config.apiPath + '/posts/:postId/finish',
 				// headers: {'Content-Type': 'multipart/form-data'}
 			},
 			update: {
