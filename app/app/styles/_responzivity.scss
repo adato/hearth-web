@@ -1,6 +1,13 @@
 
 // foundation breakpoint for large screens
-@media #{$medium-up} {
+@media #{$large-up} {
+	#homepage-hero {
+		margin-top: 150px;
+	}
+}
+
+// foundation breakpoint for large screens 
+@media #{$medium-up} { 
 	.web-width {
 		width: 940px;
 	}
@@ -53,6 +60,10 @@
 
 	.small-margin-bottom {
 		margin-bottom:3*$ui-small-grid-size;
+	}
+
+	#homepage-hero {
+		margin-top: -40px;
 	}
 }
 

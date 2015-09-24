@@ -46,16 +46,17 @@ function changeLanguage(lang) {
 
 // all langs except default cs language
 // what langs can be specified in url as /lang/...
-var langsAvailable = ['en'];
+var langsAvailable = ['en', 'sk'];
 var langTranslationMap = {
 	'en': 'en',
 	'cs': 'cs',
-	'sk': 'cs',
+	'sk': 'sk',
 };
 
 var langPathMap = {
 	'cs': '/',
 	'en': '/en/',
+	'sk': '/sk/',
 };
 
 langBrowser = (langBrowser) ? langBrowser.substring(0, 2).toLowerCase() : defaultLanguage;

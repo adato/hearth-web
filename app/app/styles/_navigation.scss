@@ -114,6 +114,8 @@
             width: auto !important;;
         }
     }
+
+
 }
 
 .tab-bar {
@@ -144,7 +146,12 @@
         z-index: 40;
     }
 
-    .main-container {
-        margin-top: 160px !important;
+}
+
+#unreaded-messages-counter {
+    .alert {
+        
+        font-weight: bold;
+        font-size: 15px;
     }
 }
