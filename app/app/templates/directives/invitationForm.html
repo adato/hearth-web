@@ -3,7 +3,7 @@
 		<form name="sendInvitationForm" id="sendInvitationForm" novalidate ng-submit="sendInvitation()">
 			
 			<div class="row">
-				<div class="large-12 columns ">
+				<div class="large-12 small-12 medium-12 columns ">
 					<h2>{{:: 'HEARTH_INVITATION' | translate}}</h2>
 					<hr>
 					<h3>{{:: 'HEARTH_INVITATION_BY_EMAIL' | translate}}</h3>
@@ -12,7 +12,7 @@
 			</div>
 		
 			<div class="row">
-				 <div class="large-12 columns ">
+				 <div class="large-12 small-12 medium-12 columns ">
 				 	<div class="alert-box alert error round connect-bottom visible" ng-show="sendInvitationForm.email.$error.emails">{{'VALIDATION_EMAIL' | translate}}</div>
 				 	<div class="alert-box alert error round connect-bottom visible" ng-show="sendInvitationForm.message.$error.maxlength">{{'VALIDATION_MAX_LENGTH' | translate}}</div>
 					<div style="position:relative;z-index:11"> 
@@ -23,10 +23,10 @@
 				</div>
 			</div>
 			<div class="row">
-				 <div class="large-6 columns ">
+				 <div class="large-6 small-6 medium-6 columns ">
 					<a href="" ng-click="cancel()" translate>CANCEL</a>
 				</div>
-				<div class="large-6 columns">
+				<div class="large-6 small-6 medium-6 columns">
 					<button type="submit" class="primary button right" ng-disabled="status.sending || sendInvitationForm.$invalid" analytics-custom analytics-event="sending invitation" analytics-category="Invitations" >
 						<span class="fa fa-envelope"></span> {{'SEND' | translate}}
 					</button>
@@ -34,7 +34,7 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="large-12 columns ">
+				<div class="large-12 small-12 medium-12 columns ">
 					<h3>{{'HEARTH_INVITATION_SOCIAL' | translate}}</h3>
 					<social item=""></social>
 				</div>

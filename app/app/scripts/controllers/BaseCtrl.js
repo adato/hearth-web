@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state) {
         var timeout;
         $rootScope.myCommunities = false;
+        $rootScope.pageName = '';
         $rootScope.searchText = '';
         $rootScope.appUrl = '';
         $rootScope.addressOld = '';
@@ -73,13 +74,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             $rootScope.pageChangeWithScroll = false;
         };
 
-        $rootScope.reloadToMarketplace = function() {
-            if($state.current.name == 'market')
-                $state.reload();
-            else
-                $state.go('market');
-        };
-
         /**
          * When started routing to another page, compare routes and if they differ
          * scroll to top of the page, if not, refresh page with fixed height
@@ -109,7 +103,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
             if(r1.length < 2 || r2.length < 2 || r1[1] != r2[1])
                 $rootScope.top(0, 1);
             else
-                // dont 
                 $scope.resfreshWithResize();
         });
 
@@ -120,6 +113,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
          * and add class of given controller to wrapping div container
          */
         $rootScope.$on("$stateChangeSuccess", function(ev, current) {
+            $rootScope.pageName = $state.current.name;
             $scope.segment = current.name;
 
             $("#all").removeClass();
@@ -151,15 +145,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
         $scope.showUI = function(ui) {
             $scope.$broadcast('showUI', ui);
-        };
-        
-        /**
-         * When clicked on logout button
-         */
-        $scope.logout = function() {
-            Auth.logout(function() {
-                $rootScope.refreshToPath($$config.basePath);
-            });
         };
         
         /**
@@ -278,6 +263,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 // set to check tutorial after next login
                 $.cookie('tutorial', 1, { path: '/' });
             }
+
+
             timeAgoService.init();
             Notify.checkRefreshMessage();
             Auth.isLoggedIn() && Messenger.loadCounters();
@@ -301,6 +288,25 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 showClose: false
             });
         };
+
+
+        $rootScope.reloadToMarketplace = function() {
+            if($state.current.name == 'market')
+                $state.reload();
+            else
+                $state.go('market');
+        };
+
+        /**
+         * When clicked on logout button
+         */
+        $scope.logout = function() {
+            Auth.logout(function() {
+                $rootScope.refreshToPath($$config.basePath);
+            });
+        };
+
+
 
         /**
          * This will test, if image size is sufficient for facebook sharing
@@ -573,8 +579,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
                 scope: scope,
                 className: 'ngdialog-confirm-box',
                 closeByDocument: false,
-                showClose: false
-                // closeByEscape: false,
+                showClose: false,
+                closeByEscape: true,
             });
         };
 

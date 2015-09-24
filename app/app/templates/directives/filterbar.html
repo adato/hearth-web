@@ -13,7 +13,7 @@
 		<a ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
 		<a ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
 	</div>
-	<article class="filter-container animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }" >
+	<article class="filter-container animated-hidden small-12 pull-right" ng-class="{ 'animated-hidden': !filterSelected }" >
 		<filter id="filter" filter-shown="filterSelected"></filter>
 	</article>
 </div>

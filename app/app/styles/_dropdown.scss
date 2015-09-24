@@ -1,102 +1,106 @@
-.dropdown-container {
-	position: relative;
-    display: inline-block;
-}
+@media #{$large-up} {
 
-
-.dropdown:before {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: transparent transparent white;
-    border-image: none;
-    border-style: inset inset solid;
-    border-width: 6px;
-    content: "";
-    display: block;
-    height: 0;
-    left: 20px;
-    position: absolute;
-    top: -10px;
-    width: 0;
-    z-index: 99;
-}
-
-.dropdown:after {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: transparent transparent #7c766a;
-    border-image: none;
-    border-style: inset inset solid;
-    border-width: 7px;
-    content: "";
-    display: block;
-    height: 0;
-    left: 19px;
-    position: absolute;
-    top: -12px;
-    width: 0;
-    z-index: 98;
-}
-
-.dropdown {
-	display: none;
-    @include box-shadow(0 0px 2px 1px rgba(black, 0.2));
-    position: absolute;
-    left: 0px;
-    background: none repeat scroll 0 0 white;
-    border: 1px solid #7c766a;
-    font-size: 1rem;
-    list-style: none;
-    margin-left: 0;
-    margin-top: 2px;
-    z-index: 99;
-    width: 200px;
-
-    &>li {
-        text-align: left !important;
-        &:hover:not(.no-hover) {
-            background-color: color(1);
-            a {
-                color: color(4);
-            }
-        }
-        .no-hover {
-            color: #7c766a;
-        }
+    .dropdown-container {
+    	position: relative;
+        display: inline-block;
     }
 
-    a,&>li>span {
-        color: #7c766a;
+
+    .dropdown:before {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: transparent transparent white;
+        border-image: none;
+        border-style: inset inset solid;
+        border-width: 6px;
+        content: "";
         display: block;
-        padding: 0.5rem;
-        text-align: left;
-        outline: 0 !important;
+        height: 0;
+        left: 20px;
+        position: absolute;
+        top: -10px;
+        width: 0;
+        z-index: 99;
     }
-    .social-menu {
-        margin-left: 4px;
+
+    .dropdown:after {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: transparent transparent #7c766a;
+        border-image: none;
+        border-style: inset inset solid;
+        border-width: 7px;
+        content: "";
+        display: block;
+        height: 0;
+        left: 19px;
+        position: absolute;
+        top: -12px;
+        width: 0;
+        z-index: 98;
+    }
+
+    .dropdown {
+    	display: none;
+        @include box-shadow(0 0px 2px 1px rgba(black, 0.2));
+        position: absolute;
+        left: 0px;
+        background: none repeat scroll 0 0 white;
+        border: 1px solid #7c766a;
+        font-size: 1rem;
         list-style: none;
-        li {
-            width: 37px;
-            margin-top: -10px;
-            font-size: 2rem;
-            display: inline-block;
-            margin-right: 8px;
-            a:hover {
-                span {
-                    color: color(1);
+        margin-left: 0;
+        margin-top: 2px;
+        z-index: 99;
+        width: 200px;
+
+        &>li {
+            text-align: left !important;
+            &:hover:not(.no-hover) {
+                background-color: color(1);
+                a {
+                    color: color(4);
                 }
             }
+            .no-hover {
+                color: #7c766a;
+            }
         }
+
+        a,&>li>span {
+            color: #7c766a;
+            display: block;
+            padding: 0.5rem;
+            text-align: left;
+            outline: 0 !important;
+        }
+
+        .divider {
+            border: {
+                top: 1px solid lighten(color(3), 40%);
+            };
+        }
+
     }
 
-    .divider {
-        border: {
-            top: 1px solid lighten(color(3), 40%);
-        };
-    }
+}
 
+.top-bar.expanded {
+    .back {
+        display: none;
+    }
+    transition: max-height 2s ease-in; 
+    a {
+        font-size: 0.95rem;
+    }
+    .dropdown {
+        position: static !important;
+        width: 100%;
+        height: unset;
+
+    }
 }

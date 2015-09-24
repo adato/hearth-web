@@ -1,13 +1,13 @@
 <div ng-include="'templates/profile/subviews/ratingsPanel.html'"></div>
 
-<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! data.length">
+<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! data.length">
 	<p>{{:: 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
 </div>
 <div class="ratings-received row rating-item" id="received-rating-form" ng-if="!mine" ng-show="showUserRatingForm">
-	<section class="large-2 columns user">
+	<section class="large-2 small-2 meidum-2 columns user">
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
-	<section class="large-10 columns rating-form">
+	<section class="large-10 small-10 medium-10 columns rating-form">
 		<div class="item rating-received">
 			<div class="content">
 				<h5>{{:: 'ADD_USER_RATING' | translate }} {{ info.name }}</h5>
@@ -65,7 +65,7 @@
 <div class="clear"></div>
 
 <div class="rating-listing ratings-received" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
-	<section class="columns rating-call-to-action large-centered push-1" ng-class="{ 'large-8': !data.length, 'large-10': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
+	<section class="columns rating-call-to-action large-centered push-1" ng-class="{ 'large-8': !data.length, 'large-10': data.length, 'small-8': !data.length, 'small-10': data.length, 'medium-8': !data.length, 'medium-10': data.length}" ng-if="!mine && !showUserRatingForm && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
 				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />

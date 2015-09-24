@@ -38,6 +38,13 @@
       float: right;
       padding-left: 0px;
       padding-right: 0px;
+
+      // RESPONSIVE //
+      @media #{$small-only} {
+        float:initial;
+        max-width:100%;
+        margin-left:0;
+      }
     }
     .highlights {
       @extend .columns;
@@ -143,11 +150,22 @@
         }
       }
 
+      // RESPONSIVE //
+      @media #{$small-only} {
+        .bubble {
+          margin:0 !important;
+        }
+        .shadow, .shadow.large{ 
+          background: none; 
+          height: 160px; 
+        }
+      }
+
       .karma-bar {
         @extend .large-8, .columns, .pull-right;
 
         padding: 0;
-        width: 600px;
+        max-width: 600px;
 
         height: 25px;
         background-color: #7c766a;
@@ -653,6 +671,11 @@
         }
       }
     }
+
+    // RESPONSIVE //
+    @media #{$small-only} {
+      padding:3*$ui-small-grid-size;
+    }
   }
 }
 
@@ -666,7 +689,6 @@
     top: 30px;
     bottom: 30px;
   }
-;
   h2 {
     color: #F95800;
     font-size: 28px;
@@ -675,6 +697,7 @@
   ul {
     @include inline-list;
     li > a {
+      width:initial;
       background: darken(color(4), 30%);
       color: lighten(color(4), 20%);
       border-top: 2px solid darken(color(4), 20%);
@@ -687,13 +710,13 @@
         top: 5px;
         bottom: 5px;
       }
-    ;
+    
       margin: {
         left: 5px;
         right: 5px;
         top: 5px;
       }
-    ;
+    
       border-top-left-radius: $global-radius / 2;
       border-top-right-radius: $global-radius / 2;
       &:hover {
@@ -705,6 +728,11 @@
         border-top: 2px solid lighten(color(1), 20%);
       }
     }
+  }
+
+  // RESPONSIVE //
+  @media #{$small-only} {
+    ul>li>a { width:100%; display:inline-block; }
   }
 }
 
@@ -820,7 +848,6 @@
       top: 10px;
       bottom: 10px;
     }
-  ;
   }
   &.spacy {
     padding-left: 2rem;
@@ -839,6 +866,13 @@
   }
   &.without-icon-text .fa {
     margin: 0;
+  }
+
+  // RESPONSIVE //
+  @media #{$small-only} {
+    padding:$ui-small-grid-size;
+    margin: $ui-small-grid-size $ui-small-grid-size / 2;
+    font-size:$ui-text-font-size;
   }
 }
 
