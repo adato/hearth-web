@@ -162,7 +162,7 @@
                             <img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
                         </li>
                         <li class="file-upload">
-                            <div image-preview get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource' limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
+                            <div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource' limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
                                 <i class="fa fa-plus"></i>
                                 <i class="fa fa-spinner fa-spin"></i>
                             </div>

@@ -15,6 +15,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.items = [];
 		$scope.loaded = false;
 		$scope.loading = false;
+		$scope.marketInitFinished = false;
 		$scope.keywordsActive = [];
 		$scope.author = null;
 		$scope.filterIsOn = false;
@@ -168,19 +169,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				// iterativly add loaded data to the list and then call finishLoading
 				addItemsToList($('#market-item-list'), data, 0, finishLoading);
 				
-				
 				$rootScope.$broadcast('postsLoaded');
 			});
 		};
-		
-		function init() {
-			ItemFilter.clear();
-			refreshTags();
-			Filter.checkUserFilter();
-			Filter.getCommonKeywords();
-
-			$scope.filterIsOn = Filter.isSet();
-		}
 
 		/**
 		 * When applied filter - refresh post on marketplace
@@ -199,7 +190,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('filterApplied', refreshPosts);
 		$scope.$on('filterReseted', function() {
-
 			$scope.filter = {};
 			$scope.user.filter = {};
 			refreshPosts();
@@ -207,7 +197,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
-
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
@@ -216,7 +205,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					templateFunction(post, function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 						
-						setTimeout(function() {
+						$timeout(function() {
 							$('#post_'+data._id).slideDown();
 						});
 					});
@@ -235,7 +224,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			templateFunction(getPostScope(post), function(clone){
 				$('#market-item-list').prepend(clone);
 				
-				setTimeout(function() {
+				$timeout(function() {
 					$('#post_'+post._id).slideDown();
 				});
 			});
@@ -262,6 +251,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	    	templateFunction = $compile(template);
 
 			$scope.filterIsOn = Filter.isSet();
+			$scope.marketInitFinished = true;
 			// $scope.load();
 	    });
 

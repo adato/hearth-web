@@ -32,9 +32,9 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					if (angular.element('body').hasClass('ngdialog-open')) return false;
 					
 					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
-
-					if(childHeight - el.height() - el.scrollTop() - offset <= 0)
+					if(childHeight - el.height() - el.scrollTop() - offset <= 0) {
 						scope.whenScrolled();
+					}
 				}
 
 				function processWithResite () {
