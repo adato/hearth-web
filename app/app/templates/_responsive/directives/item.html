@@ -1,4 +1,20 @@
 <article class="_item {{item.type}} row" id="post_{{:: item._id }}">
+
+  <div class="action-dropdown" ng-if="!mine">
+    <a class="fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}"
+       dropdown="#more-actions-{{:: item._id }}"></a>
+  </div>
+
+  <div class="more-actions-dropdown" id="more-actions-{{:: item._id }}">
+    <a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{::
+      'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+    <a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}"
+       ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+    <a ng-if="! mine && item.admin_communities.length"
+       title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{::
+      'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+  </div>
+
   <!-- MARKET ITEM Start -->
   <div class="medium-2 columns">
     <!-- MARKET ITEM AVATAR Start -->
@@ -19,7 +35,7 @@
           <div class="positive" style="width:{{:: item.karma}}"></div>
         </div>
       </div>
-      <div class="small-6 columns hidden-for-medium-up">
+      <div class="_time small-6 columns hidden-for-medium-up">
         <span>{{item.updated_at | ago}}</span>
       </div>
     </div>
@@ -35,7 +51,10 @@
             {{item.title}}
           </a>
         </h2>
-        <span class="right show-for-medium-up">{{item.updated_at | ago}}</span>
+
+        <div class="_time right show-for-medium-up">
+          {{item.updated_at | ago}}
+        </div>
       </div>
 
       <p class="location"><i class="fa fa-map-marker"></i>
@@ -77,20 +96,33 @@
           </a>
 
 
-        <div class="sharing right">
-          <a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
-          <a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
-          <a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+" ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
-          <a analytics-custom analytics-event="Share" analytics-category="Twitter" analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
-        </div>
-        <div class="post-edit-buttons-container left" ng-if="mine">
-          <div class="controll-buttons">
-            <a title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"><i class="fa fa-pencil"></i></a>
-            <a title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"><i class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i></a>
-            <a title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"><i class="fa fa-pause"></i></a>
-            <a title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"><i class="fa fa-times"></i></a>
+          <div class="sharing">
+            <a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email"
+               class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
+            <a analytics-custom analytics-event="Share" analytics-category="Facebook"
+               analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook"
+               ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
+            <a analytics-custom analytics-event="Share" analytics-category="Google+"
+               analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+"
+               ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
+            <a analytics-custom analytics-event="Share" analytics-category="Twitter"
+               analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter"
+               ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
           </div>
-        </div>
+          <div class="post-edit-buttons-container left" ng-if="mine">
+            <div class="controll-buttons">
+              <a title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"><i class="fa fa-pencil"></i></a>
+              <a title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive"
+                 ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"><i class="fa "
+                                                                            ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i></a>
+              <a title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive"
+                 ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"><i
+                class="fa fa-pause"></i></a>
+              <a title="{{:: 'AD_REMOVE_LABEL' | translate}}"
+                 ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"><i
+                class="fa fa-times"></i></a>
+            </div>
+          </div>
 
 
           <span ng-if="item.is_replied">
