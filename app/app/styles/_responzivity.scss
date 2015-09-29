@@ -1,11 +1,4 @@
 
-// foundation breakpoint for large screens
-@media #{$large-up} {
-	#homepage-hero {
-		margin-top: 150px;
-	}
-}
-
 // foundation breakpoint for large screens 
 @media #{$medium-up} { 
 	.web-width {
@@ -15,17 +8,22 @@
 		min-width:960px;
 		max-width:960px;
 	}
+	.max-web-width {
+		max-width: 960px;
+	}
+
 	#navigation {
 		margin: 0 auto;
 	}
+
+	#homepage-hero {
+		margin-top: 150px;
+	}
 }
 
-.max-web-width {
-	max-width: 960px;
-}
 
 // small screens only
-@media #{$small-only} {
+@media #{$small-only} { 
 	#notify-top {
 		width: unset !important;
 	}

@@ -29,27 +29,21 @@
 	}
 
 	.ad-author-column {
-		/*padding-right:0;*/
-		/*padding-left:$ui-grid-size;*/
+		float:right;
+		clear:left;
+		padding-right:0;
+		padding-left:$ui-grid-size;
 
-		&>div {
-			display: inline-block;
-			max-width: 12rem;
-		}
-		@media #{$large-up} {
-			&:before {
-				content:"";
-				display:block;
-				position:absolute;
-				background:image-url("delimiter.png");
-				opacity:.5;
-				background-position:0 0;
-				width:40px;
-				height:500px;
-				background-size: 20px 500px;
-				background-position: 20px 0px;
-				background-repeat: no-repeat;
-			}
+		&:before {
+			content:"";
+			display:block;
+			position:absolute;
+			background:image-url("delimiter.png");
+			opacity:.5;
+			background-position:0 0;
+			width:20px;
+			height:500px;
+			background-size: 20px 500px;
 		}
 
 		h2 {
@@ -69,6 +63,7 @@
 			box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
 			text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
 			color: color(4);
+			margin-left:3rem;
 
 			.bar:first-child {
 				border-top-left-radius: $global-radius;
@@ -251,7 +246,7 @@
 		}
 		footer {
 			background:color(4);
-			min-height:60px;
+			height:60px;
 			box-sizing: border-box;
 			position: relative;
 			top: $ui-grid-size;

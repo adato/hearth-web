@@ -26,39 +26,21 @@
     .filter-container {
         @extend .box;
         padding:$ui-grid-size;
+        clear:both;
+        float:right;
         margin-top:2 * $ui-small-grid-size;
+        width:770px;
         transition:all .3s ease-in;
         opacity:1;
         max-height:800px;
     }
     .animated-hidden {
         opacity:0;
-        max-height:0 !important;
+        max-height:0;
         margin-top:0;
         margin-bottom:0;
         padding-top:0;
         padding-bottom:0;
-        overflow:hidden;
-    }
-
-    // RESPONSIVE //
-    @media #{$small-only} { 
-        left:initial;
-        position:initial;
-        margin:3* $ui-small-grid-size;
-        .filter-button-container {
-            margin-left:0;
-        }
-        .insert-button-container { float:none; }
-        .insert-button-container>.button {
-            width:100%;
-            margin:2 * $ui-small-grid-size 0;
-        }
-    }
-
-    @media #{$medium-up} { 
-        .filter-container {
-            width:770px;
-        }
+        overflow-y:hidden;
     }
 }

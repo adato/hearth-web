@@ -177,6 +177,15 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			
 			marketInited.promise.then($scope.retrievePosts.bind($scope, params));
 		};
+		
+		function init() {
+			ItemFilter.clear();
+			refreshTags();
+			Filter.checkUserFilter();
+			Filter.getCommonKeywords();
+
+			$scope.filterIsOn = Filter.isSet();
+		}
 
 		/**
 		 * When applied filter - refresh post on marketplace
@@ -195,6 +204,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('filterApplied', refreshPosts);
 		$scope.$on('filterReseted', function() {
+
 			$scope.filter = {};
 			$scope.user.filter = {};
 			refreshPosts();
@@ -202,6 +212,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
+
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
@@ -210,7 +221,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					templateFunction(post, function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 						
-						$timeout(function() {
+						setTimeout(function() {
 							$('#post_'+data._id).slideDown();
 						});
 					});
@@ -229,7 +240,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			templateFunction(getPostScope(post), function(clone){
 				$('#market-item-list').prepend(clone);
 				
-				$timeout(function() {
+				setTimeout(function() {
 					$('#post_'+post._id).slideDown();
 				});
 			});
