@@ -1,10 +1,10 @@
 <div ng-include="'templates/profile/subviews/followingPanel.html'"></div>
 
 <div ng-if="subPageLoaded">
-	<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
+	<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
 		<p>{{:: 'PROFILE.FRIENDS.NO_FRIENDS_ME' | translate }}</p>
 	</div>
-	<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
+	<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
 		<p>{{:: 'PROFILE.FRIENDS.NO_FRIENDS_OTHER' | translate }}</p>
 	</div>
 

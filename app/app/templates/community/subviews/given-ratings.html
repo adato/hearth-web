@@ -1,9 +1,9 @@
 <div ng-include="'templates/community/subviews/ratingsPanel.html'"></div>
 
-<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! data.length">
+<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! data.length">
 	<p>{{:: 'PROFILE.POSTS.NO_GIVEN_RATINGS_ME' | translate }}</p>
 </div>
-<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! mine && ! data.length">
+<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! mine && ! data.length">
 	<p>{{:: 'PROFILE.POSTS.NO_GIVEN_RATINGS_OTHER' | translate }}</p>
 </div>
 

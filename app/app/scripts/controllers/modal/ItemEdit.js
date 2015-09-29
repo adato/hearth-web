@@ -17,7 +17,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.uploadResource = $$config.apiPath+'/posts/'+$scope.post._id+'/attachments';
 		$scope.imagesCount = 0;
 		$scope.imageSizesSum = 0;
-		$scope.imageUploading = false;
 		$scope.imageSizes = [];
 		$scope.defaultPost = {
 			type: true,
@@ -312,15 +311,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}, $scope.processErrorResult);
 		};
 
-		$scope.uploadingNotifierFunc = function(val) {
-			$scope.imageUploading = val;
-		};
-
 		$scope.save = function(post, activate) {
 			var postData, postDataCopy;
-
-			if($scope.imageUploading)
-				return false;
 
 			// return $rootScope.globalLoading = true;
 			// hide top "action failed" message

@@ -1,7 +1,7 @@
 <article class="row fulltext" when-scrolled="load(1)" offset="300" loading-in-progress="!loaded">
-    <section class="large-12 small-12 medium-12  columns box  margin-bottom-20">
+    <section class="large-12  columns box  margin-bottom-20">
         <article class="row">
-            <section class="large-12 small-12 medium-12 columns">
+            <section class="large-12 columns">
                 <header>
                     <div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {value: queryText}"></div>
                 </header>
@@ -9,7 +9,7 @@
         </article>
 
         <article class="row">
-            <section class="large-12 small-12 medium-12  columns">
+            <section class="large-12  columns">
                 <dl class="sub-nav filter">
                     <dt>{{:: 'FULLTEXT_FILTER_SEARCH_RESULTS' | translate }}:</dt>
                     <dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
@@ -28,13 +28,13 @@
             </section>
         </article>
 
-        <div ng-if="!items.length && loaded" class="large-8 small-8 medium-8 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
+        <div ng-if="!items.length && loaded" class="large-8 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
         <section id="fulltextSearchResults">
             <article ng-repeat="item in items" class="row search-item" ng-switch="item._type">
-                <section class="large-2 small-2 medium-2 columns text-center">
+                <section class="large-2 columns text-center">
                     <avatar src="item.avatar.normal" href="getProfileLink(item.author._type || item._type, item.author._id || item._id)" type="item.item_type"></avatar>
                 </section>
-                <section class="large-10 small-10 medium-10 columns">
+                <section class="large-10 columns">
                     <i class="fa" ng-class="{'icon-marketplace' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
                     <a class="title" ng-href="{{:: getProfileLink(item._type, item._id)}}">
                         <span ng-if="title">{{item.title}}</span>

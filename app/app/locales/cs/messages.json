@@ -429,16 +429,6 @@
         "error404": "Stránka nenalezena",
         "community-profile-page": "Profil komunity"
     },
-    "TOP_BAR": {
-        "ADD_NEW_POST": "Nový dar/přáni",
-        "SEARCH": {
-            "EVERYWHERE": "Všude",
-            "MARKET": "Na tržišti",
-            "COMMUNITY": "V komunitách",
-            "PEOPLE": "V lidech",
-            "MESSAGES": "Ve zprávách"
-        }
-    },
     "TOP_BAR_ABOUT": "O projektu",
     "TOP_BAR_COMMUNITY_PROFILE": "Náš profil",
     "TOP_BAR_PROFILE": "Můj profil",
@@ -465,7 +455,7 @@
     "WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Zde povězte, co věnujete či přijmete:",
     "WHERE": "Místa, kde se vyskytuji",
     "WHO": "Kdo jsem",
-    "WISH_GIFT": "<b>Pož&aacute;dat<\/b> o dar",
+    "WISH_GIFT": "<p><strong>Pož&aacute;dat<\/strong> o dar<\/p>",
     "WRITE_US": "Spojte se s námi",
     "WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "WRONG_NAME_LENGTH": "Příliš dlouhý text, pane Shakespeare.",

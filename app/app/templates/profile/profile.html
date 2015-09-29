@@ -7,8 +7,8 @@
         <p>{{:: 'ERR_USER_NOT_FOUND' | translate }}</p>
     </div>
     <header ng-show="info">
-        <div class="user-basic large-12">
-            <div class="button-bar small-12 large-5">
+        <div class="user-basic">
+            <div class="button-bar text-right">
                 <button class="others profile-button tall solid" ng-click="openUserRatingForm(true)">
                     {{:: 'THUMB_UP' | translate }}
                 </button>
@@ -25,11 +25,9 @@
                     <button class="profile-button button-red tall"><i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
                 </a>
             </div>
-            <div class="small-12 large-7">
-                <h1 style="display: inline;">
-                    <a href="{{:: profileLink }}"><span>{{:: info.name }}</span></a>
-                </h1>
-            </div>
+            <h1 style="display: inline;">
+                <a href="{{:: profileLink }}"><span>{{:: info.name }}</span></a>
+            </h1>
             <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{:: info.about | ellipsis}}</div>
         </div>
         <div class="highlights">

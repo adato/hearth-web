@@ -7,18 +7,18 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
+	'$scope', '$rootScope', 'Post', '$q', '$filter', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
 
-	function($scope, $rootScope, Post, $filter, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
+	function($scope, $rootScope, Post, $q, $filter, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
 		$scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
 		$scope.loading = false;
-		$scope.marketInitFinished = false;
 		$scope.keywordsActive = [];
 		$scope.author = null;
 		$scope.filterIsOn = false;
+		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
 		var templateFunction = null;
 		var templateUrl = $sce.getTrustedResourceUrl('templates/directives/item.html');
@@ -125,30 +125,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			return data;
 		};
 
-		/**
-		 * This will load new posts to marketplace
-		 */
-		$scope.load = function() {
-			$(".loading").show();
-			
-			// load only if map is not shown
-			// load only once in a time
-			if ($scope.showMap || $scope.loading) return;
-			$scope.loading = true;
-
-			var params = angular.extend(angular.copy($location.search()), {
-				offset: $scope.items.length,
-				limit: $scope.limit
-			});
-
-			// if there are keywords, add them to search
-			if ( $.isArray(params.keywords)) {
-				params.keywords = params.keywords.join(",");
-			}
-
-			$scope.debug && console.time("Market posts loaded and displayed");
-			$scope.debug && console.time("Market posts loaded from API");
-			// load based on given params
+		$scope.retrievePosts = function(params) {
 			Post.query(params, function(data) {
 				$scope.loaded = true;
 				$(".loading").hide();
@@ -174,6 +151,43 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 
 		/**
+		 * This will load new posts to marketplace
+		 */
+		$scope.load = function() {
+			$(".loading").show();
+			
+			// load only if map is not shown
+			// load only once in a time
+			if ($scope.showMap || $scope.loading) return;
+			$scope.loading = true;
+
+			var params = angular.extend(angular.copy($location.search()), {
+				offset: $scope.items.length,
+				limit: $scope.limit
+			});
+
+			// if there are keywords, add them to search
+			if ( $.isArray(params.keywords)) {
+				params.keywords = params.keywords.join(",");
+			}
+
+			$scope.debug && console.time("Market posts loaded and displayed");
+			$scope.debug && console.time("Market posts loaded from API");
+			// load based on given params
+			
+			marketInited.promise.then($scope.retrievePosts.bind($scope, params));
+		};
+		
+		function init() {
+			ItemFilter.clear();
+			refreshTags();
+			Filter.checkUserFilter();
+			Filter.getCommonKeywords();
+
+			$scope.filterIsOn = Filter.isSet();
+		}
+
+		/**
 		 * When applied filter - refresh post on marketplace
 		 */
 		function refreshPosts() {
@@ -190,6 +204,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('filterApplied', refreshPosts);
 		$scope.$on('filterReseted', function() {
+
 			$scope.filter = {};
 			$scope.user.filter = {};
 			refreshPosts();
@@ -197,6 +212,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
+
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
@@ -205,7 +221,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					templateFunction(post, function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 						
-						$timeout(function() {
+						setTimeout(function() {
 							$('#post_'+data._id).slideDown();
 						});
 					});
@@ -224,7 +240,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			templateFunction(getPostScope(post), function(clone){
 				$('#market-item-list').prepend(clone);
 				
-				$timeout(function() {
+				setTimeout(function() {
 					$('#post_'+post._id).slideDown();
 				});
 			});
@@ -250,8 +266,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 	    	templateFunction = $compile(template);
 
 			$scope.filterIsOn = Filter.isSet();
-			$scope.marketInitFinished = true;
-			// $scope.load();
+			marketInited.resolve();
 	    });
 	}
 ]);

@@ -1,4 +1,4 @@
-<section class="large-2 small-2 medium-2 columns user">
+<section class="large-2 columns user">
 	<div info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }">
 		<a ng-href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id) }}">
 			<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
@@ -6,7 +6,7 @@
 		</a>
 	</div>
 </section>
-<section class="large-10 small-10 medium-10 columns" id="rating_{{item._id}}">
+<section class="large-10 columns" id="rating_{{item._id}}">
 	<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
 		<div class="content">
 			<div class="left">
