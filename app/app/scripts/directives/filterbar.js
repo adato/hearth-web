@@ -6,13 +6,13 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('filterbar', [
-	'$anchorScroll', '$location', 'Filter', '$window', '$rootScope', '$timeout', '$analytics', 'User',
+	'$state', '$anchorScroll', '$location', 'Filter', '$window', '$rootScope', '$timeout', '$analytics', 'User',
 
-	function($anchorScroll, $location, Filter, $window, $rootScope, $timeout, $analytics, User) {
+	function($state, $anchorScroll, $location, Filter, $window, $rootScope, $timeout, $analytics, User) {
 		return {
 			replace: true,
 			restrict: 'E',
-			templateUrl: 'templates/directives/filterbar.html',
+			templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filterbar.html' : 'templates/directives/filterbar.html',
 			scope: true,
 			link: function(scope) {
 				scope.searchParams = '';
@@ -21,7 +21,7 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.sendFilterStatusOnApi = function() {
 					if($.cookie('closedFilterSent') || !$rootScope.loggedUser._id)
 						return false; // filter close date was already sent or user is not logged in
-					
+
 					User.setClosedFilter({time: moment(parseInt($.cookie('closedFilter'))).format()}, angular.noop, angular.noop);
 					$.cookie('closedFilterSent', Date.now(), {expires: 30 * 12 * 20, path: '/' });
 				};
@@ -72,7 +72,7 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.cancelFilter = function() {
 					Filter.reset();
 				};
-				
+
 				scope.toggleFilter = function() {
 					scope.setCookieFiltered();
 					scope.filterSelected = !scope.filterSelected;

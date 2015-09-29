@@ -40,8 +40,11 @@
 .ngdialog .itemReply, .ngdialog .itemEdit {
 
     font-size: $ui-text-font-size;
-    width: 650px;
     padding: $ui-grid-size;
+
+    @media #{$medium-up} {
+        width: 650px;
+    }
 
     textarea {
         height: 85px;

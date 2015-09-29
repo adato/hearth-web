@@ -6,14 +6,13 @@ $large-avatar-size: 295px;
 .avatar {
   display: inline-block;
   border-radius: 50%;
-  overflow: hidden;
   & > * {
     display: inline-block;
     position: relative;
     img {
       border-radius: 50%;
-      width: $medium-avatar-size;
-      height: $medium-avatar-size;
+      max-width: $medium-avatar-size;
+      max-height: $medium-avatar-size;
     }
     &::before {
       position: absolute;
@@ -21,8 +20,8 @@ $large-avatar-size: 295px;
       top: 0;
       border-radius: 50%;
       box-shadow: inset -3px 3px 6px rgba(black, 0.5);
-      width: $medium-avatar-size;
-      height: $medium-avatar-size;
+      max-width: $medium-avatar-size;
+      max-height: $medium-avatar-size;
       left: 0;
     }
   }
@@ -33,12 +32,12 @@ $large-avatar-size: 295px;
   height: $small-avatar-size;
   & > * {
     img {
-      width: $small-avatar-size;
-      height: $small-avatar-size;
+      max-width: $small-avatar-size;
+      max-height: $small-avatar-size;
     }
     &::before {
-      width: $small-avatar-size;
-      height: $small-avatar-size;
+      max-width: $small-avatar-size;
+      max-height: $small-avatar-size;
     }
   }
 }
@@ -46,12 +45,12 @@ $large-avatar-size: 295px;
 .avatar-large {
   & > * {
     img {
-      width: $large-avatar-size;
-      height: $large-avatar-size;
+      max-width: $large-avatar-size;
+      max-height: $large-avatar-size;
     }
     &::before {
-      width: $large-avatar-size;
-      height: $large-avatar-size;
+      max-width: $large-avatar-size;
+      max-height: $large-avatar-size;
     }
   }
 }

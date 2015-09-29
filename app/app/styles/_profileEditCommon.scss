@@ -2,7 +2,6 @@
     background-color: white;
     border-radius: 10px;
     box-shadow: -1px 1px 10px #777;
-    margin-bottom: 200px;
     padding: 40px 30px 30px;
     h2 {
         font-size: 1.7em;
@@ -190,6 +189,28 @@
         line-height: 1.33 !important;
         padding: 15px;
         min-height: 200px;
+    }
+
+
+
+    // RESPONSIVE //
+    @media #{$small-only} {
+        h2 { display:inline-block; }
+        section {
+            margin-left:0;
+            &.who, &.languages {
+                margin-left:0 !important;
+            }
+            &.location {
+                position:initial;
+                left:0;
+                width:100%;
+            }
+            &>.columns {
+                padding-left:0;
+                padding-right:0;
+            }
+        }
     }
 }
 

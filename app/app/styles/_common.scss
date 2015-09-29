@@ -72,16 +72,6 @@
     @extend .box;
 }
 
-.logo {
-    background-image: inline-image("logo.png");
-    background-position: center center; 
-    background-color: color(1);
-    background-repeat: no-repeat;
-    width: 200px !important;
-    height: $topbar-height !important;
-    border-radius: $global-radius;
-}
-
 button {
 }
 
