@@ -25,7 +25,7 @@ angular.module('hearth.directives').directive('lemmonSlider',
 						$(".controll", element).fadeIn();
 	                	slider.lemmonSlider();
 					}
-            	});
+            	}, 100);
 
             	// test if we have more images than there is space
             	// if yes, we will init slider
