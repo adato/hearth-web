@@ -65,6 +65,7 @@
         animation: ngdialog-flyout .5s;
     }
     .ngdialog-content {
+        background: #fff;
         -webkit-animation: ngdialog-flyin .5s;
         animation: ngdialog-flyin .5s;
         border-radius: $global-radius;
@@ -78,7 +79,7 @@
         position: relative;
         width: auto;
         text-align: left;
-        margin-top: 4%;
+        margin-top: 6%;
         margin-bottom: 4%;
     }
     .ngdialog-close {
@@ -186,15 +187,28 @@
     }
 }
 
-@media (max-width: 568px) {
+// when dialog is shown, allow scrolling it
+body.ngdialog-open {
+    overflow:hidden;
+    .ngdialog {
+        overflow:scroll;
+    }  
+}
+
+@media #{$small-only} {
     .ngdialog.ngdialog-theme-default .ngdialog-button:focus {
         -webkit-animation: none;
         animation: none;
     }
+
+
+    .ngdialog-content .modal {
+        max-width:100%;
+    }
 }
 
 .ngdialog {
-    z-index: 100 !important;
+    z-index: 2000 !important;
     animation: 0.5s ease 0s normal none 1 ngdialog-fadein;
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
     bottom: 0;

@@ -1,0 +1,131 @@
+.v-m-small {
+  @media #{$small-only} {
+    display: flex;
+    align-items: center;
+  }
+}
+
+body {
+  .main-container {
+    //margin-top: auto!important;
+  }
+}
+
+._market {
+  ._filter {
+    background: #fafafa;
+
+    ._filterbar-wrap {
+      ._filterbar-header {
+        padding: 1em 0;
+      }
+
+      .filter-container {
+        transition: all .3s ease-in;
+        opacity: 1;
+        max-height: 800px;
+      }
+
+      .animated-hidden {
+        opacity: 0;
+        max-height: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+      }
+
+      @media #{$large-up} {
+        .filter-container {
+          max-height: none;
+        }
+
+        .animated-hidden {
+          opacity: 1;
+          max-height: none;
+          overflow: auto;
+        }
+      }
+    }
+  }
+
+  ._item {
+    padding: 1em 0;
+    border-bottom: 1px solid white;
+
+    ._avatar {
+      ._photo {
+        img {
+          border-radius: 50%;
+          max-width: 100%;
+          margin-bottom: 1em;
+        }
+      }
+
+      ._name {
+        text-align: center;
+
+        a {
+          color: black;
+        }
+      }
+    }
+
+    ._karma {
+      .karma {
+        width: 100%;
+      }
+    }
+
+    ._content {
+      ._title {
+        h2 {
+          font-size: rem-calc(16);
+          font-weight: 700;
+
+          a {
+            color: black;
+          }
+        }
+      }
+    }
+
+    ._reply-info {
+      padding: .5em 0;
+      color: grey;
+    }
+
+    &.need {
+      background-color: lighten(color(1), 50%);
+
+      ._content {
+        ._title {
+          h2 {
+            a {
+              span {
+                color: color(1);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.offer {
+      background-color: lighten(color(2), 50%);
+
+      ._content {
+        ._title {
+          h2 {
+            a {
+              span {
+                color: color(2);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
