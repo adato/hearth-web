@@ -64,6 +64,26 @@
 	</div>
 </div>
 
+
+<div class="component component-avatar row">
+	<div class="large-6 columns">
+
+		<div info-box="loggedUser">
+			<avatar type="loggedUser._type" src="author.avatar_large" size="medium" href="'#'"></avatar>
+		</div>
+	</div>
+
+	<div class="large-6 columns">
+		<h4>Avatar with infobox</h4>
+		<code>
+		
+			&lt;div info-box=&quot;loggedUser&quot;&gt;<br>
+			&nbsp;&nbsp;&lt;avatar type="author.type" src="author.avatar_src" size="medium" href="#"&gt;&lt;/avatar&gt;<br>
+			&lt;/div&gt;
+		</code>
+	</div>
+</div>
+
 <div class="component component-tabs row">
 	<div class="large-6 columns">
 		<div class="bottom-tabs">
@@ -89,9 +109,10 @@
 
 <div class="component component-inputs row">
 	<div class="large-6 columns">
+		<h4>&nbsp;</h4>
 		<div class="alert-box alert radius"><i class="fa fa-exclamation-triangle"></i> Error!</div>
-		<input type="text" placeholder="Type here"><br>
-		<textarea autosize-textarea ng-attr-placeholder="Type here to type here" name="text"></textarea><br>
+		<input type="text" placeholder="Type here" ng-model="components.textinput"><br>
+		<textarea autosize-textarea ng-attr-placeholder="Type here to type here" ng-model="components.textarea" name="text"></textarea><br>
 		<tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2" max-length="20">
                 <auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
         </tags-input><br>
@@ -128,23 +149,8 @@
 		<h5>Checkbox:</h5>
 		<code>&lt;checkbox model="components.checkbox" on-update="void()" value="1"&gt;Checkbox item 1&lt;/checkbox&gt;</code>
 
-		<br><br>
-		Radio:<br>
+		<h5>Radio:</h5>
 		<code>&lt;radio model="components.radio" type="radio" value="true" value-off="false" checked="components.radio"&gt;Radio item 2&lt;/radio&gt;</code>
-	</div>
-</div>
-
-
-
-<div class="component component-errors row">
-	<div class="large-6 columns">
-		
-		
-	</div>
-
-	<div class="large-6 columns">
-		<h4>Form error</h4>
-
 	</div>
 </div>
 
@@ -164,7 +170,7 @@
 	</div>
 
 	<div class="large-6 columns">
-		Expandable group<br>
+		<h4>Expandable group</h4>
 		<code>
 		&lt;section class="collapse" lazy-render duration="0.2"&gt;<br>
 		&nbsp;&lt;label class="collapse-trigger" slide-trigger="components.expandGroup"&gt;<br>
@@ -187,10 +193,34 @@
 	</div>
 
 	<div class="large-6 columns">
-		Author selector<br><br>
+		<h4>Author selector</h4>
 		<code>
 		&lt;author-selector ng-disabled="components.authorSelectorDisabled" author-id="MODEL" author="loggedUser" author-list="components.authorList"&gt;&lt;/author-selector&gt;
 		</code>
 	</div>
 </div>
 
+
+
+<div class="component component-timeago row">
+	<div class="large-6 columns">
+		<h1>Heading</h1>
+		<h2>Subheading</h2>
+		<h3>Subsubheading</h3>
+		<h4>Subsubsubheading</h4>
+		<h5>Subsubsubsubheading</h5>
+		<p>Default paragraph</p>
+	</div>
+
+	<div class="large-6 columns">
+		<h4>Headings</h4>
+		<code>
+			&lt;h1&gt;Heading&lt;/h1&gt;<br>
+			&lt;h2&gt;Subheading&lt;/h2&gt;<br>
+			&lt;h3&gt;Subsubheading&lt;/h3&gt;<br>
+			&lt;h4&gt;Subsubsubheading&lt;/h4&gt;<br>
+			&lt;h5&gt;Subsubsubsubheading&lt;/h5&gt;<br>
+			&lt;p&gt;Default paragraph&lt;/p&gt;
+		</code>
+	</div>
+</div>

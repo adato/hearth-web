@@ -14,8 +14,9 @@ angular.module('hearth.controllers').controller('ComponentsCtrl', [
                                     _id: '521f5d48b8f421d7200049d2', 
                                     _type: 'User', 
                                     avatar_large: null, 
-                                    size: [400, 400] 
                                 },
+                                "textinput": null,
+                                "textarea": null,
                                 "checkbox": [],
                                 "radio": false,
                                 "expandGroup": false,
