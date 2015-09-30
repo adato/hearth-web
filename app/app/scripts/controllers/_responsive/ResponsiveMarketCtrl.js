@@ -20,7 +20,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 		$scope.filterIsOn = false;
 		var ItemFilter = new UniqueFilter();
 		var templateFunction = null;
-		var templateUrl = $sce.getTrustedResourceUrl('templates/_responsive/directives/item.html');
+		var templateUrl = $sce.getTrustedResourceUrl('templates/_responsive/directives/items/post.html');
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
