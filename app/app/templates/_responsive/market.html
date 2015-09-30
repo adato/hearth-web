@@ -5,9 +5,32 @@
     <filterbar filter=filter></filterbar>
     <!-- MARKET FILTER End -->
   </div>
-  <!-- MARKET ITEMS Start -->
-  <div class="large-9 columns" id="market-item-list" when-scrolled="load()"
-       offset="1000" loading-in-progress="loading">
+
+  <div class="large-9 columns">
+    <div class="marketplace-items-container" ng-if="loaded && !items.length">
+      <div ng-show="filterIsOn" class="row">
+        <div class="large-10 small-10 medium-10 push-2 columns box text-center not-found-box">
+          <p translate class="padding-2">MARKETPLACE.FILTER_NOT_FOUND</p>
+          <div class="large-6 small-6 medium-6 columns text-center">
+            <a ng-click="toggleFilter()">{{:: "MARKETPLACE.EDIT_FILTER" | translate}}</a>
+          </div>
+          <div  class="large-6 small-6 medium-6 columns text-center">
+            <a ng-click="resetFilter()">{{:: "MARKETPLACE.RESET_FILTER" | translate}}</a>
+          </div>
+        </div>
+      </div>
+      <div ng-show="!filterIsOn" class="row">
+        <div class="large-10 small-10 medium-10 push-2 columns box text-center not-found-box">
+          <p class="padding-2">{{:: "MARKETPLACE.NOTHING_FOUND" | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKET ITEMS Start -->
+    <div id="market-item-list" when-scrolled="load()"
+         offset="1000" loading-in-progress="loading">
+    </div>
+    <div loading show="loading"></div>
   </div>
   <!-- MARKET ITEMS End -->
   <!-- MARKET End -->
