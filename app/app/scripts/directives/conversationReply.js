@@ -69,6 +69,10 @@ angular.module('hearth.directives').directive('conversationReply', [
 					});
 				};
 
+				$scope.closeConversation = function () {
+					$scope.$emit('closeConversation');
+				}
+
 				$scope.init = function() {
 					$scope.actors = $scope.conversation.possible_actings;
 					
@@ -76,6 +80,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? undefined : $scope.actors[0]._id);
 					}
  				};
+
 
 				$scope.init();
 			}
