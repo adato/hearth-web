@@ -70,13 +70,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.detail.read = true;
 		};
 		
-		$scope.setCurrentConversationAsReaded = function() {
-			if (!$scope.detail || $scope.detail.read)
-				return false;
+		// $scope.setCurrentConversationAsReaded = function() {
+		// 	if (!$scope.detail || $scope.detail.read)
+		// 		return false;
 
-			Messenger.decrUnreaded();
-			$scope.detail.read = true;
-		};
+		// 	Messenger.decrUnreaded();
+		// 	$scope.detail.read = true;
+		// };
 
 		$scope.loadNewConversations = function() {
 			$scope.$broadcast('loadNewMessages');
@@ -134,6 +134,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.markReaded = function(info) {
+			if(info.read)
+				return false;
 			
 			Messenger.decrUnreaded();
 			info.read = true;
