@@ -65,6 +65,23 @@
 	#homepage-hero {
 		margin-top: -40px;
 	}
+
+	.messages .conversations {
+		width:100%;
+		.nano-content {	right: 0 !important;}
+		.nano-content-inner { width: 100% !important; }
+	}
+
+	.messages .conversation-detail-container {
+		width:100%;
+		position:absolute;
+		.conversation-detail .messages-container article.message {
+			width:unset;
+		}
+	}
+	.messages.message-detail-displayed .messages-top { display:none; }
+
+	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
 }
 
 

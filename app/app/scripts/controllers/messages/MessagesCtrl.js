@@ -144,12 +144,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		 * This will show requested conversation in right column
 		 * and optionally mark it as readed
 		 */
+		 $scope.$on('closeConversation', function () {
+		 	$scope.detail = null;
+		 });
+
+
 		$scope.showConversation = function(info, index, dontMarkAsReaded, clicked) {
 			var title;
+
 			if(clicked)
 				$scope.markReaded(info);
 
-			if(info._id == $scope.detail._id)
+			if($scope.detail && info._id == $scope.detail._id)
 				return false;
 
 			if (!info.read && !dontMarkAsReaded)
@@ -366,8 +372,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				// load first conversation on init
 				if (paramId)
 					$scope.loadConversationDetail(paramId, true);
-				else if (list.length)
+				else if (list.length) {
+					// do not load on small devices. Load on user request only.
+					if (Foundation.utils.is_small_only()) {
+						return false;
+					}
 					$scope.showConversation(list[0], 0, true);
+				}
 
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 
@@ -375,7 +386,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		var changeDetail = function(ev, state, params) {
-			
 			// load first conversation on init
 			if (params.id)
 				$scope.loadConversationDetail(params.id, true);

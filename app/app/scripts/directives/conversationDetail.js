@@ -330,9 +330,16 @@ angular.module('hearth.directives').directive('conversationDetail', [
                 
                 $scope.resizeMessagesBox = function() {
                     var container = $(".messages-container", element);
+                    var offset = -50;
+                    var measureContainer = $(".messages-container");
+                    
+                    if (Foundation.utils.is_small_only()) {
+                        // box needs to be tall on mobile devices, so we count on whole-page-height
+                        measureContainer = $('#homepage-hero');
+                        offset = 0;
+                    }
                     $scope.testScrollBottom();
-                    var maxBoxHeight = $(".messages-container").height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() - 50;
-
+                    var maxBoxHeight = measureContainer.height() - element.find(".conversation-detail-top").outerHeight() - element.find(".messages-reply").outerHeight() + offset;
                     container.css("max-height", maxBoxHeight);
                     container.fadeIn();
 
