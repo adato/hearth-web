@@ -7,41 +7,47 @@
     </tags-input>
   </section-->
 
-  <section class="radio-container type-switch-container">
-		<h4>{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h4>
-		<radio type="radio" model="filter.type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
-		<radio type="radio" model="filter.type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
-		<radio type="radio" model="filter.type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
-	</section>
+  <section class="radio-container type-switch-container type-market">
+    <h4>{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h4>
+    <radio type="radio" model="filter.type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
+    <radio type="radio" model="filter.type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
+    <radio type="radio" model="filter.type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
+  </section>
 
-	<section class="radio-container time-switch-container">
-		<h4>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h4>
-		<radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
-	</section>
+  <section class="radio-container time-switch-container type-all type-market type-people type-community">
+    <h4>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h4>
+    <radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
+    <radio type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
+    <radio type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
+    <radio type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
+  </section>
 
-  <section class="radio-container author-switch-container">
-		<h4>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h4>
-		<checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
-		<checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
-		<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}</checkbox>
-	</section>
+  <section class="radio-container author-switch-container type-market">
+    <h4>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h4>
+    <checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
+    <checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
+    <checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' |
+      translate}}
+    </checkbox>
+  </section>
 
-  <section class="location-container">
-		<h4>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h4>
-			<div class="range-select-container" ng-show="filter.lat && filter.lon && filter.name">
-				<input type="range" ng-model="filter.distance" step="25" min="25" max="100" >
-				<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
-			</div>
-			<input type="text" id="geolocation" ng-model="filter.name" />
-	</section>
+  <section class="location-container type-all type-market type-people type-community">
+    <h4>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h4>
+
+    <div class="range-select-container" ng-show="filter.lat && filter.lon && filter.name">
+      <input type="range" ng-model="filter.distance" step="25" min="25" max="100">
+      <span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+    </div>
+    <input type="text" id="geolocation" ng-model="filter.name"/>
+  </section>
 
   <hr/>
 
-			<!--a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CLOSE_FILTER' | translate}}</a-->
-      <button ng-click="applyFilter()" class="button expand">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}} <b ng-if="filterPostCount !== false">({{filterPostCount}})</b></button>
-      <checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}</checkbox>
+  <!--a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CLOSE_FILTER' | translate}}</a-->
+  <button ng-click="applyFilter()" class="button expand">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}} <b
+    ng-if="filterPostCount !== false">({{filterPostCount}})</b></button>
+  <checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{::
+    'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
+  </checkbox>
 
 </div>

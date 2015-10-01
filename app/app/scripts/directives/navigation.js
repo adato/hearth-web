@@ -14,6 +14,7 @@ angular.module('hearth.directives').directive('navigation', [
             replace: true,
             templateUrl: 'templates/navigation.html',
             link: function($scope, element) {
+              console.log($scope);
             }
 
         };
