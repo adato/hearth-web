@@ -48,7 +48,12 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 		}
 
 	 	function getPostScope(post) {
+	 		var author = post;
 
+	 		if(post._type == 'Post')
+	 			author = post.author;
+
+	 		console.log(post);
 			var scope = $scope.$new(true);
             scope.keywords = $scope.keywordsActive;
             scope.item = post;
@@ -62,7 +67,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;
             scope.isActive = $rootScope.isPostActive(post);
-            scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes)+'%';
+            scope.item.karma = Karma.count(author.up_votes, author.down_votes)+'%';
 
             // is this my post? if so, show controll buttons and etc
             scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
@@ -139,6 +144,8 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
 
 		$scope.retrievePosts = function(params) {
+			// params.type = "community,user,post";
+			// params.query = "*";
 			Post.query(params, function(data) {
 				$scope.loaded = true;
 				$(".loading").hide();
