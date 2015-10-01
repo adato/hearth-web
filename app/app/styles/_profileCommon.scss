@@ -279,10 +279,14 @@
   .rating-reply, .ratingReply {
     .avatar {
       margin-right: 10px;
+      position: relative;
+      top: -5px;
     }
     margin-top: 10px;
-    align-items: center;
-    display: flex;
+
+    &>div {
+      margin-left: 30px;
+    }
   }
     
   .rating-reply {
