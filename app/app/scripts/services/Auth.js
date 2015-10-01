@@ -39,6 +39,9 @@ angular.module('hearth.services').factory('Auth', [
 			login: function(credentials, cb) {
 				return $http.post($$config.apiPath + '/login', credentials, {nointercept: true}).then(cb, cb);
 			},
+			resendActivationEmail: function(email, cb) {
+				return $http.post($$config.apiPath + '/users/resend_confirmation', {user: {email: email}}).then(cb, cb);
+			},
 			logout: function(cb) {
 				return $session.then(function(session) {
 					if (session._id) {
