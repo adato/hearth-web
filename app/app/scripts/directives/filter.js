@@ -13,7 +13,8 @@ angular.module('hearth.directives').directive('filter', [
       restrict: 'E',
       replace: true,
       scope: {
-        filterShown: "="
+        filterShown: '=',
+        filterSelected: '='
       },
       templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filter.html' : 'templates/directives/filter.html',
       link: function (scope, element) {
@@ -219,6 +220,15 @@ angular.module('hearth.directives').directive('filter', [
         scope.$watch('filter', scope.recountPosts, true);
         scope.$watch('filterShown', scope.recountPosts);
         // scope.$watch('filterSave', scope.toggleSaveFilter);
+
+        scope.$watchCollection('filterSelected', function (newValue, oldValue) {
+          if (newValue) {
+            var className = 'type-' + newValue;
+            $('section', element).not('.' + className).slideUp('slow');
+            $('section.' + className, element).slideDown('slow');
+          }
+        });
+
         scope.$on('initFinished', scope.init);
         $rootScope.initFinished && scope.init();
 
