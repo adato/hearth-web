@@ -47,15 +47,14 @@
       <script src="scripts/newRelic.js"></script>
     <!-- endbuild -->
 
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/app/vendor/ngDialog/css/ngDialog.min.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/flexslider-min.css">
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/css/nanoscroller.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/app/vendor/flexslider/flexslider.css">
+    <link rel="stylesheet" type="text/css" href="/app/vendor/fancybox/source/jquery.fancybox.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/app/vendor/nanoscroller/bin/css/nanoscroller.css" media="screen" />
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/app/vendor/jquery/dist/jquery.min.js"></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script>
   </head>
   <body ng-controller="BaseCtrl" ng-init="init()" ng-class="{offline: isOfflineMode}" ng-keydown="escapeKey($event)">
  
@@ -138,7 +137,7 @@
 
       <!--[if lt IE 9]>
         <script src="/app/vendor/es5-shim/es5-shim.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+        <script src="/app/vendor/json3/lib/json3.min.js"></script>
       <![endif]-->
 
       <div class="all-visible row max-width">
@@ -152,45 +151,40 @@
         </div>
       </div>
 
-      <script src="//code.angularjs.org/1.4.3/angular.min.js"></script>
-      <script src="//code.angularjs.org/1.4.3/angular-sanitize.min.js"></script>
-      <script src="//code.angularjs.org/1.4.3/angular-resource.min.js"></script>
+      <script src="/app/vendor/angular/angular.min.js"></script>
+      <script src="/app/vendor/angular-resource/angular-resource.min.js"></script>
+      <script src="/app/vendor/angular-sanitize/angular-sanitize.min.js"></script>
+      <script src="/app/vendor/angular-translate/angular-translate.min.js"></script>
+      <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+      <script src="/app/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
       
-      <script src="//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.1.1-1/ng-tags-input.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.16/jquery.autosize.min.js"></script>
-      <script src="//code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.12.1/select.min.js"></script>
-
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/javascripts/jquery.nanoscroller.min.js"></script>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/jquery.flexslider-min.js"></script>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <script type="text/javascript" src="/app/libs/lemmon-slider.js"></script>
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.2/jquery.tipsy.min.js"></script>
-
-      <script src="//cdnjs.cloudflare.com/ajax/libs/async/1.4.2/async.min.js"></script>
-      <script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
-      <script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.4.0/js/ngDialog.min.js"></script>
+      <script src="/app/vendor/ngDialog/js/ngDialog.min.js"></script>
+      <script src="/app/libs/lemmon-slider.js"></script>
+      <script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
       <script src="/app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
       <script src="/app/vendor/angular-flexslider/angular-flexslider.js"></script>
       <script src="/app/vendor/angular-loading-bar/build/loading-bar.js"></script>
-      <script src="/app/vendor/angular-cookie/angular-cookie.min.js"></script>
-      <script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
-      <script src="/app/vendor/SHA-1/sha1.js"></script>
       <script src="/app/vendor/angularitics/dist/angulartics.min.js"></script>
       <script src="/app/vendor/angularitics/dist/angulartics-ga.min.js"></script>
       <script src="/app/vendor/angularitics/dist/angulartics-mixpanel.min.js"></script>
+      <script src="/app/vendor/async/lib/async.js"></script>
+      <script src="/app/libs/jquery.autosize.js"></script>
       <script src="/app/vendor/fastclick/lib/fastclick.js"></script>
+      <script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
+      <script src="/app/vendor/jquery-color/jquery.color.js"></script>
+      <script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
+      <script src="/app/vendor/moment/min/moment.min.js"></script>
+      <script src="/app/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"></script>
+      <script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
       <script src="/app/vendor/satellizer/satellizer.min.js"></script>
-
-      <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
-      <script src="/app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-
+      <script src="/app/vendor/SHA-1/sha1.js"></script>
+      <script src="/app/vendor/ui-select/dist/select.min.js"></script>
       <script src="/app/vendor/exif-js/exif.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+      <script src="/app/vendor/fancybox/source/jquery.fancybox.js"></script>
+      <script src="/app/vendor/jquery.tipsy/js/jquery.tipsy.min.js"></script>
+      <script src="/app/vendor/flexslider/jquery.flexslider-min.js"></script>
 
+      <script src="/app/vendor/ng-tags-input/ng-tags-input.min.js"></script>
 
     <script>
       preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
@@ -203,7 +197,6 @@
       document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
     </script>
     <script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
-    <!-- // <script src="//googlemaps.github.io/js-marker-clusterer/src/markerclusterer.js"></script> -->
     
     <script>
       $(function() { 

@@ -3,24 +3,23 @@ marketplace-banner {
 }
 section.banner {
 	.marketplace-banner {
-		background-color:#e55d23;
-		background-image: image-url("banner/01.png");
+		/**background-color:#e55d23;**/
 		background-repeat:no-repeat;
 		background-position: 0 0;
 		margin-left:27px;
-		width:772px;
+		width:770px;
 		height:130px;
 		margin-bottom: 5 * $ui-small-grid-size;
 		margin-top: -2 * $ui-small-grid-size;
 	}
-
+	
 	.close {
 		display:block;
 		font-size:30px;
 		color:#666;
 		float:right;
 		position:relative;
-		top:78px;
-		right:18px;
+		top:-5px;
+		right:15px;
 	}
 }
