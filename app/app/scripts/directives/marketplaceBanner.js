@@ -6,18 +6,29 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('marketplaceBanner',
-	function() {
+	['$rootScope',
+	function($rootScope) {
 		return {
 			restrict: 'E',
-			scope: false,
+			scope: {
+				'code': '@',
+				'image': '@',
+				'title': '@?',
+				'href': '@?',
+			},
 			templateUrl: 'templates/directives/marketplaceBanner.html',
 			link: function(scope, element, attrs) {
-				scope.closed = $.cookie('showTechLeaderBanner') || false;
+				scope.closed = $.cookie(scope.code) || false;
+				scope.title = scope.title || '';
+				scope.href = scope.href || false;
+				scope.style = {'background-image': scope.image};
+
 				scope.close = function () {
+
 					scope.closed = !scope.closed;
-					$.cookie('showTechLeaderBanner', scope.closed, { path: '/', expires: 99999 });
+					$.cookie(scope.code, scope.closed, { path: '/', expires: 99999 });
 				}
 			}
 		};
-	}
+	}]
 );
