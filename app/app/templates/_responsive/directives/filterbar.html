@@ -16,8 +16,7 @@
         translate}}</a-->
     </div>
   </div>
-  <article class="filter-container animated-hidden"
-           ng-class="{ 'animated-hidden': !filterSelected }">
-    <filter id="filter" filter-shown="filterSelected"></filter>
+  <article class="filter-container animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
+    <filter id="filter" filter-shown="filterSelected" filter-selected="filter.type"></filter>
   </article>
 </div>
