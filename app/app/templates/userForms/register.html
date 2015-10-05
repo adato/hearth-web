@@ -9,7 +9,8 @@
         <form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
             <div class="register-notify-area"></div>
             
-            <p>{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
+            <p ng-if="!params.facebook">{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
+            <p ng-bind-html="'SIGNUP_HEADING_TEXT_FB' | translate" ng-if="params.facebook"></p>
             <input type="text" class="register_name" name="name" ng-model="user.name" ng-focus="showError.name = false" ng-blur="showError.name = true" placeholder="{{ 'NAME_PLACEHOLDER' | translate }}" class="form-control text-input top" required />
             <div class="moveUp error" ng-show="showError.name">
                 <span ng-show="registerForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
