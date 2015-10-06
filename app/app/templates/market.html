@@ -1,6 +1,6 @@
 <div id="notify-container-market"></div>
 <div class="market row">
-	<marketplace-banner></marketplace-banner>
+	<marketplace-banner ng-if="language == 'sk'" image="/app/images/banner/skBanner.png" title="Vitajte!" code="sk-welcome-banner"></marketplace-banner>
 	<filterbar filter=filter></filterbar>
 
 	<div ng-hide="loaded" class="margin-top">&nbsp;</div>

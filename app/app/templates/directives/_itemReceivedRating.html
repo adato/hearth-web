@@ -33,7 +33,7 @@
 				<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
 					<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="mini"></avatar>
 				</a>
-				<div class="inline-block">
+				<div class="">
 					<div class="reply-top">
 						{{:: item.entity_to.name | ellipsis:40}}<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>

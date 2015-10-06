@@ -277,15 +277,21 @@
   }
 
   .rating-reply, .ratingReply {
+    .avatar {
+      margin-right: 10px;
+      position: relative;
+      top: -5px;
+    }
     margin-top: 10px;
-    align-items: center;
-    display: flex;
+
+    &>div {
+      /* margin-left: 30px; */
+    }
   }
     
   .rating-reply {
     .reply-top {
       margin-bottom: 5px;
-
       small {
         color: #999999;
       }
@@ -301,7 +307,7 @@
 
     .infobox-avatar-wrapper {
       width: 110px;
-      height:100px;
+      min-height:100px;
       float:left;
     }
 
@@ -318,9 +324,6 @@
       margin-top: 20px;
       .date {
         float: none !important;
-      }
-      .avatar {
-        margin-right: 10px;
       }
     }
   }
@@ -498,7 +501,7 @@
             margin-bottom: 5px;
           }
           .rating-text {
-            font-size: 1rem;
+            margin-left: 10px;
             line-height: 150%;
           }
           margin: {
