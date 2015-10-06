@@ -220,12 +220,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             });
         };
 
-        function loadGivenRatings(id, done, doneErr) {
-            CommunityRatings.received({communityId: id}, done, doneErr);
-        }
-
-
-
         function loadCommunityHome(id) {
             async.parallel([
                 function(done) {
