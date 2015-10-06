@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('LoginCtrl', [
-	'$scope', '$location', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth',
-	function($scope, $location, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth) {
+	'$scope', '$location', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth', 'Notify',
+	function($scope, $location, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth, Notify) {
+		var invalidEmail = null;
 		$scope.data = {
 			username: '',
 			password: ''
@@ -16,7 +17,8 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 		$scope.loginError = false;
 		$scope.showError = {
-			badCredentials: false
+			badCredentials: false,
+            inactiveAccount: false
 		};
 		
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
@@ -25,7 +27,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			if(res.data && res.data.ok === true) {
 				Auth.processLoginResponse(res.data);
 			} else {
-				showErrorCredentials();
+				showErrorCredentials(res.data);
 			}
 		}
 
@@ -38,17 +40,33 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			});
 		};
 
+		$scope.resendActivationEmail = function() {
+			Auth.resendActivationEmail(invalidEmail, function(res) {
+				if(res.data && res.data.ok === true) {
+					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
+					$scope.showError.inactiveAccount = false;
+				} else {
+					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_FAILED', Notify.T_ERROR);
+				}
+			});
+		};
 
-		function showErrorCredentials() {
-			
-			// focus to password field
-			$(".login_password").focus();
+		function showErrorCredentials(res) {
+			if(res && res.error && res.error == 'account_not_confirmed') {
+				invalidEmail = $scope.data.username;
+				$scope.showError.inactiveAccount = true;
+				$scope.showError.badCredentials = false;
+			} else {
+					
+				// focus to password field
+				$(".login_password").focus();
 
-			// show top error message
-			$scope.showError.badCredentials = true;
-			$scope.showMsgOnlyLogged = false;
+				// show top error message
+				$scope.showError.badCredentials = true;
+			}
 
 			// set blank password - try it again
+			$scope.showMsgOnlyLogged = false;
 			$scope.data.password = '';
 		}
 
