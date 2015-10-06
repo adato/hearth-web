@@ -78,7 +78,7 @@ angular.module('hearth').config([
 			    controller: 'LoginCtrl'
 			})
 			.state('reg', {
-				url: '/register',
+				url: '/register?facebook',
 				templateUrl: 'templates/userForms/register.html',
 			    controller: 'RegisterCtrl'
 			})
