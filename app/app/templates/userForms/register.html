@@ -3,7 +3,8 @@
         <div class="headMessage error">
         </div>
         <div class="head">
-            <h2>{{ 'SIGNUP_HEADING' | translate }}</h2>
+            <h2 ng-if="!params.facebook">{{ 'SIGNUP_HEADING' | translate }}</h2>
+            <h2 ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</h2>
         </div>
         <hr />
         <form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
