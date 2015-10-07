@@ -45,7 +45,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
 
-			scope.item.name_short = $filter('ellipsis')(scope.item.name, 270, true);
+			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
 
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;

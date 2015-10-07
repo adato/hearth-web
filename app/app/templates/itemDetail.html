@@ -12,7 +12,7 @@
 			<p class="margin-0">{{ 'POST_WAS_DELETED' | translate }}</p>
 		</section>
 
-		<section ng-if="! adDeleted && ad && ad.name" class="large-12 small-12 medium-12 content row" id="item_container_{{ ad._id }}">
+		<section ng-if="! adDeleted && ad && ad.text" class="large-12 small-12 medium-12 content row" id="item_container_{{ ad._id }}">
 			<div class="large-4 small-12 medium-12 ad-author-column text-center right">
 				<div>
 					<avatar type="ad.author._type" src="ad.author.avatar.large" size="large" href="getProfileLink(ad.author._type, ad.author._id)" /></avatar>
@@ -105,7 +105,7 @@
 						</div>
 					</header>
 					<div class="text-container">
-						<p ng-bind-html="ad.name | linky:'_blank' | nl2br"></p>
+						<p ng-bind-html="ad.text | linky:'_blank' | nl2br"></p>
 					</div>
 
 					<ul lemmon-slider fancybox ng-if="ad.attachments_attributes.length">

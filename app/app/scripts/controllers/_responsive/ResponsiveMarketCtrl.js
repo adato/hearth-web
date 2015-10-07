@@ -53,7 +53,6 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 	 		if(post._type == 'Post')
 	 			author = post.author;
 
-	 		console.log(post);
 			var scope = $scope.$new(true);
             scope.keywords = $scope.keywordsActive;
             scope.item = post;
@@ -62,7 +61,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
 
-			scope.item.name_short = $filter('ellipsis')(scope.item.name, 270, true);
+			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
 
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;

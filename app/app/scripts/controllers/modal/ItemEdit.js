@@ -139,7 +139,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					post.valid_until = '';
 				}
 
-				post.name = $.trim(post.name);
+				post.text = $.trim(post.text);
 
 				if (!post.locations || !post.locations.length || post.location_unlimited) {
 					post.locations = [];

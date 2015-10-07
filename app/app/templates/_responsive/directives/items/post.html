@@ -66,13 +66,12 @@
         </span>
       </p>
 
-      <div ng-if="item.name.length < 270 || item.expanded == true">
-        <p ng-bind-html="item.name | linky:'_blank' | nl2br"></p>
+      <div ng-if="item.text.length < 270 || item.expanded == true">
+        <p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
       </div>
-      <div ng-if="item.name.length >= 270 && !item.expanded">
+      <div ng-if="item.text.length >= 270 && !item.expanded">
         <p>
-          <span ng-bind-html="item.name_short | linky:'_blank'"></span> <a ng-click="item.expanded = true"> {{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' |
-          translate }}</a>
+          <span ng-bind-html="item.text_short | linky:'_blank'"></span> <a ng-click="item.expanded = true"> {{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
         </p>
       </div>
 

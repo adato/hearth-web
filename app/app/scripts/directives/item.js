@@ -74,7 +74,7 @@ angular.module('hearth.directives').directive('item', [
                     // post address for social links
                     scope.postAddress = $rootScope.appUrl+'post/'+item._id;
                     scope.isActive = scope.isPostActive(item);
-                    item.name_short = $filter('ellipsis')(item.name, 270, true);
+                    item.text_short = $filter('ellipsis')(item.text, 270, true);
 
                     // is this my post? if so, show controll buttons and etc
                     scope.mine = scope.item.owner_id === ((scope.user) ? scope.user._id : null);
