@@ -42,7 +42,10 @@
   "devDependencies": {},
   "resolutions": {
     "angular": "^1.4.x",
-    "angular": "~1.4",
-    "angular-translate": "~2.8.1"
+    "angular-translate": "~2.8.1",
+    "jquery": "2.0.2",
+    "font-awesome": "~4.3.0",
+    "ngDialog": "~0.5.4",
+    "async": "~1.4.2"
   }
 }
