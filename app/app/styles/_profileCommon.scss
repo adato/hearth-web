@@ -262,7 +262,7 @@
     .avatar {
       margin-right: 10px;
       position: relative;
-      top: -5px;
+      top: -3px;
     }
     margin-top: 10px;
 
@@ -277,6 +277,9 @@
       small {
         color: #999999;
       }
+    }
+    i {
+      line-height: 1.4;
     }
   }
 
@@ -482,7 +485,7 @@
           .score {
             margin-bottom: 5px;
           }
-          .rating-text {
+          .rating-body {
             margin-left: 10px;
             line-height: 150%;
           }
