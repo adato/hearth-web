@@ -1,9 +1,9 @@
 <br />
 <br />
 
-<div class="community-listings" ng-if="subPageLoaded">
+<div class="profile-listings-v1 community-listings" ng-if="subPageLoaded">
     <div class="left-pane">
-        <div class="applications" ng-if="mine">
+        <div class="box applications" ng-if="mine">
             <div ng-if="!applications.length">
                 <h3>{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
                 <p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
@@ -41,7 +41,7 @@
 	            </div>
 	        </div>
         </div>
-        <div class="ratings home-ratings" ng-if="receivedRatings.length">
+        <div class="ratings box home-ratings" ng-if="receivedRatings.length">
             <h3>{{:: 'COMMUNITY_RATING_TITLE' | translate}}</h3>
 
             <div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
@@ -52,7 +52,7 @@
                 </a>
             </div>
         </div>
-        <div class="ads">
+        <div class="ads box">
             <h3 class="iblock">
                 {{:: 'COMMUNITY_POSTS' | translate }}
                 
@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="right-pane">
-        <div class="activities">
+        <div class="activities box">
             <h3>{{:: 'COMMUNITY_ACTIVITY' | translate }}</h3>
             <p ng-if="mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
             <p ng-if="! mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>

@@ -5,8 +5,8 @@
 		<p>{{:: 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
 	</div>
 	<header ng-if="info">
-		<div class="user-basic">
-			<div class="button-bar text-right">
+		<div class="user-basic large-12 columns">
+			<div class="button-bar">
 				<button ng-if="!mine" class="profile-button tall solid right" ng-click="openRatingForm(true)">
                     {{:: 'THUMB_UP' | translate }}
                 </button>
@@ -29,9 +29,7 @@
 				</a>
 			</div>
 			<h1>
-				<a href="{{:: communityLink }}">
-					{{:: info.name }}
-				</a>
+				<a href="{{:: communityLink }}"><span>{{:: info.name }}</span></a>
 			</h1>
 			<div class="clear"></div>
 		</div>
@@ -72,7 +70,7 @@
             </span>
 
             <a href="{{:: communityLink }}/received-ratings">
-                <div ng-if="info" class="karma-bar" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
+                <div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
                     <span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
                         <span>{{ info.karma }}% <i class="fa icon-rating-positive"></i></span>
                     </span>

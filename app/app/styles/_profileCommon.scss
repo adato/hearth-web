@@ -4,10 +4,7 @@
   }
   header {
     .user-basic {
-      @extend .columns;
-      padding: 0;
-      margin-left: 1rem;
-      margin-right: -1rem;
+      padding: 1rem;
       h1 {
         overflow: hidden;
         line-height: 1.5;
@@ -31,23 +28,21 @@
         }
       }
     }
+
+    // RESPONSIVE //
+    @media #{$small-only} {
+      h1 { display:block !important; }
+      .button-bar { float:none !important; }
+    }
+
     .button-bar {
-      font-size: 1rem;
       margin-left: 1rem;
-      max-width: 41%;
       float: right;
+      text-align:right;
       padding-left: 0px;
       padding-right: 0px;
-
-      // RESPONSIVE //
-      @media #{$small-only} {
-        float:initial;
-        max-width:100%;
-        margin-left:0;
-      }
     }
     .highlights {
-      @extend .columns;
       display: block;
       min-height: 320px;
       padding: 1rem;
@@ -58,8 +53,6 @@
       }
 
       .bubble {
-        @extend .columns;
-
         display: table;
         position: relative;
         border-radius: 50%;
@@ -117,12 +110,10 @@
         }
 
         &.large {
-          @extend .large-2;
           width: 160px;
           height: 160px;
         }
         &.small {
-          @extend .large-3;
           width: 124px;
           height: 124px;
           p {
@@ -130,7 +121,6 @@
           }
         }
         &.medium {
-          @extend .large-3;
           width: 150px;
           height: 150px;
         }
@@ -162,8 +152,6 @@
       }
 
       .karma-bar {
-        @extend .large-8, .columns, .pull-right;
-
         padding: 0;
         max-width: 600px;
 
@@ -175,7 +163,7 @@
         text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
         position: relative;
         top: 0.5em;
-        right: 0px;
+        right:0;
         float: right;
 
         color: color(4);
@@ -415,8 +403,15 @@
   }
 }
 
-.profile-listings {
+.profile-listings-v1 {
   @extend .clearfix;
+
+  display:flex;
+  justify-content: center;
+  flex-flow:row wrap;
+  width:100%;
+
+
   .grey {
     color: darken(color(4), 30%);
   }
@@ -425,7 +420,7 @@
     padding: 0;
     border-radius: $global-radius;
     box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
-    margin-bottom: 15px;
+    margin: 3*$ui-small-grid-size (3*$ui-small-grid-size) / 2;
     overflow: hidden;
     h3 {
       font-size: 120%;
@@ -452,9 +447,8 @@
     }
   }
   .left-pane {
-    @extend .large-7, .columns;
+    width:59%;
     .messages {
-      @extend .box;
       text-align: center;
       font-size: 130%;
       border: 2px solid color(5);
@@ -475,7 +469,6 @@
       }
     }
     .ratings {
-      @extend .box;
       .rating {
         @extend .clearfix;
         margin-bottom: 5px;
@@ -520,7 +513,6 @@
       }
     }
     .ads {
-      @extend .box;
       a.create-ad-sign {
         float: right;
         display: block;
@@ -563,11 +555,10 @@
     }
   }
   .right-pane {
-    @extend .large-5, .columns;
+    width:40%;
     padding: 0;
     float: right;
     .user-about {
-      @extend .box;
       .line {
         margin-left: 20px;
         margin-right: 20px;
@@ -619,7 +610,6 @@
       }
     }
     .activities {
-      @extend .box;
       h4 {
         margin-left: 30px;
         font-size: 1.2rem;
@@ -674,12 +664,11 @@
         }
       }
     }
-
+  }
     // RESPONSIVE //
     @media #{$small-only} {
-      padding:3*$ui-small-grid-size;
-    }
-  }
+      .left-pane, .right-pane { width:100%; }
+    } 
 }
 
 .bottom-tabs {
@@ -801,6 +790,7 @@
   padding-right: 1rem;
   border-width: 0;
   font-weight: bold;
+  font-size:$global-font-size;
   margin: 0;
   margin-left: .5rem;
   margin-right: .5rem;
@@ -873,9 +863,7 @@
 
   // RESPONSIVE //
   @media #{$small-only} {
-    padding:$ui-small-grid-size;
     margin: $ui-small-grid-size $ui-small-grid-size / 2;
-    font-size:$ui-text-font-size;
   }
 }
 
