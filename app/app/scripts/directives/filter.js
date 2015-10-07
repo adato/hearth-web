@@ -221,7 +221,7 @@ angular.module('hearth.directives').directive('filter', [
         scope.$watch('filterShown', scope.recountPosts);
         // scope.$watch('filterSave', scope.toggleSaveFilter);
 
-        scope.$watchCollection('filterSelected', function (newValue, oldValue) {
+        scope.$watch('filterSelected', function (newValue, oldValue) {
           if (newValue) {
             var className = 'type-' + newValue;
             $('section', element).not('.' + className).slideUp('slow');
