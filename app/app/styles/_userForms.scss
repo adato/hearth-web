@@ -1,11 +1,6 @@
-$terms-width: 30em;
-$max-modal-window-width:23em;
+$terms-width: 32em;
+$max-modal-window-width:32em;
 
-
-.register-form {
-	position: relative;
-
-}
 .register-login-dialog {
    	background: none repeat scroll 0 0 #fff;
     border-radius: $global-radius;
@@ -13,11 +8,8 @@ $max-modal-window-width:23em;
     line-height: 1.5em;
     margin: 4% auto 0;
     margin-top: 0px;
-    max-width: 100%;
     position: relative;
-    width: auto;
 	@include social;
-	max-width:$max-modal-window-width;
 	padding:.5rem;
 
 	h2 {
@@ -29,6 +21,7 @@ $max-modal-window-width:23em;
 	
 	hr {
 		margin-bottom:.5rem;
+		margin-top: 0px;
 	}
 	.success {
 		color:color(6);
@@ -118,32 +111,20 @@ $max-modal-window-width:23em;
 		display: none;
 	}
 }
+
 .terms {
 	display:block !important;
-	box-sizing:initial;
-	background:lighten(color(4), 10%);
-	border-top-right-radius:$global-radius;
-	border-bottom-right-radius:$global-radius;
-	border-left:1px solid color(3);
-	position:absolute;
-	left:99%;
-	top:0px;
-	bottom: 0px;
-	width:$terms-width;
 	font-size:.7rem;
 	padding:1rem;
 	padding-right:.5rem;
 	text-align:left;
-	transition:0.5s linear all;
-	opacity:1;	
 
 	h3 {
 		font-size:1.3rem;
 	}
 
 	.scroll {
-		overflow-y:scroll;
-		height:31em;
+		padding-right: 1em;
 	}
 
 	p {
@@ -170,6 +151,59 @@ $max-modal-window-width:23em;
 	}
 }
 
-.shifted-left {
-	margin-left:-1*($terms-width/2);
+
+@media #{$large-up} {
+	.register-login-dialog {
+		max-width: $max-modal-window-width;
+		
+		&.terms-opened {
+			/* margin-left:-1*($terms-width/2);*/
+			margin-left: 3em;
+		}
+
+		.terms {
+			position:absolute;
+			top:0px;
+			bottom: 0px;
+
+			background:lighten(color(4), 10%);
+			border-top-right-radius:$global-radius;
+			border-bottom-right-radius:$global-radius;
+			border-left:1px solid color(3);
+			left:99%;
+			width:$terms-width;
+			
+			.scroll {
+				overflow-y:scroll;
+				height:31em;
+			}
+			.close-terms, .close-terms-link {
+				display: none;
+			}
+		}
+	}
+}
+
+
+@media #{$medium-down} {
+	.terms-opened {
+		.register-form {
+			display: none;
+		}
+	}
+	.terms {
+		.close-terms {
+		    position: absolute;
+			right: 6px;
+			font-size: 20px;
+			width: 20px;
+			opacity: 0.5;
+			cursor: pointer;
+		}
+
+		.close-terms-link {
+			font-size: 140%;
+			margin-top: 10px;
+		}
+	}
 }

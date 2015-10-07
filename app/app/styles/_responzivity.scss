@@ -1,3 +1,6 @@
+.max-web-width {
+	max-width: 960px;
+}
 
 // foundation breakpoint for large screens
 @media #{$large-up} {
@@ -8,20 +11,14 @@
 
 // foundation breakpoint for large screens 
 @media #{$medium-up} { 
-	.web-width {
-		width: 940px;
-	}
-	body .main-container {
+/*	body .main-container {
 		min-width:960px;
 		max-width:960px;
 	}
+*/
 	#navigation {
 		margin: 0 auto;
 	}
-}
-
-.max-web-width {
-	max-width: 960px;
 }
 
 // small screens only

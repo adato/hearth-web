@@ -455,7 +455,7 @@
     "WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Povedzte svetu, čo venujete či prijmete",
     "WHERE": "Miesta kde sa pohybujem",
     "WHO": "Kto som",
-    "WISH_GIFT": "<b>Požiadať<\/b> o dar",
+    "WISH_GIFT": "<p><strong>Požiadať<\/strong> o dar<\/p>",
     "WRITE_US": "Spojte sa s nami",
     "WRONG_ABOUT_LENGTH": "Príliš dlhý text, pán Shakespeare.",
     "WRONG_NAME_LENGTH": "Príliš dlhý text, pán Shakespeare.",
@@ -1274,6 +1274,9 @@
     "LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
     "RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
     "RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíte se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
-    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je nekonečn&yacute; prostor &scaron;tědr&yacute;ch možnost&iacute;. Je jen na v&aacute;s, jak ho budete použ&iacute;vat. S&iacute;la Hearthu lež&iacute; za magickou branou zvanou registrace. Už jste opravdu bl&iacute;zko!<\/p>",
-    "SIGNUP_HEADING_FB": "Pojďte dál"
+    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.<\/p>",
+    "SIGNUP_HEADING_FB": "Poďte ďalej",
+    "SIGN_UP": {
+        "CONTINUE_TO_REGISTER": "Zavřít a pokračovat v registraci."
+    }
 }
