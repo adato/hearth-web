@@ -50,11 +50,11 @@
 					</span>
 				</div>
 			</header>
-			 <div class="text-container" ng-if="item.name.length < 270 || marketplace.expanded == true">
-				<p ng-bind-html="item.name | linky:'_blank' | nl2br"></p>
+			 <div class="text-container" ng-if="item.text.length < 270 || marketplace.expanded == true">
+				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 			</div>
-			<div class="text-container" ng-if="item.name.length >= 270 && !marketplace.expanded">
-				<p><span ng-bind-html="item.name_short | linky:'_blank'"></span> <a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
+			<div class="text-container" ng-if="item.text.length >= 270 && !marketplace.expanded">
+				<p><span ng-bind-html="item.text_short | linky:'_blank'"></span> <a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
 			</div>			
 
 			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
