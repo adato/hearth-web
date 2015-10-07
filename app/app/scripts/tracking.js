@@ -14,13 +14,11 @@ $(function() {
  
 });
 
-<!-- Crazy Egg tracking script -->
 setTimeout(function(){var a=document.createElement("script");
 var b=document.getElementsByTagName("script")[0];
 a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0018/6260.js?"+Math.floor(new Date().getTime()/3600000);
 a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 
-<!-- Hotjar Tracking Code for hearth.net -->
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:$$config.hotjar,hjsv:5};
