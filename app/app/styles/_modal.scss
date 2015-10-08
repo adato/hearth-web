@@ -322,11 +322,10 @@ body.ngdialog-open {
         border: none;
         border-radius: $global-radius;
         min-height: 100px !important;
-        position: absolute;
-        left: 50%;
+        position: relative;
         top: 20%;
-        width: 420px !important;
-        margin-left: -210px !important;
+        max-width: 420px !important;
+        margin: 0 auto;
         padding: 15px;
         padding-top: 10px;
         header {

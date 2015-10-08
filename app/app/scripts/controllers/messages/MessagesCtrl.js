@@ -7,8 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger'
+	, '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger
+		, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport) {
+
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
 		$scope.loaded = false;
@@ -374,7 +377,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					$scope.loadConversationDetail(paramId, true);
 				else if (list.length) {
 					// do not load on small devices. Load on user request only.
-					if (Foundation.utils.is_small_only()) {
+					if (ResponsiveViewport().isSmall()) {
 						return false;
 					}
 					$scope.showConversation(list[0], 0, true);
