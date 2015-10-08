@@ -179,14 +179,14 @@
 				<div>
 					<select ng-model="searchQuery.type">
 						<option value="all">{{:: 'TOP_BAR.SEARCH.EVERYWHERE' | translate }}</option>
-						<option value="market">{{:: 'TOP_BAR.SEARCH.MARKET' | translate }}</option>
+						<option value="post">{{:: 'TOP_BAR.SEARCH.MARKET' | translate }}</option>
 						<option value="community">{{:: 'TOP_BAR.SEARCH.COMMUNITY' | translate }}</option>
-						<option value="people">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</option>
+						<option value="user">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</option>
 						<!-- <option value="messages">{{:: 'TOP_BAR.SEARCH.MESSAGES' | translate }}</option> -->
 					</select>
 					<i class="fa fa-search" ng-click="search(searchQuery)"></i>
 					<div class="middle">
-						<input type="text" id="search" ng-model="searchQuery.text" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
+						<input type="text" id="search" ng-model="searchQuery.q" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
 					</div>
 				</div>
 			</div>
