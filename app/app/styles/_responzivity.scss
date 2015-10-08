@@ -2,20 +2,18 @@
 	max-width: 960px;
 }
 
-// foundation breakpoint for large screens
-@media #{$large-up} {
-	#homepage-hero {
-		margin-top: 150px;
-	}
-}
 
 // foundation breakpoint for large screens 
 @media #{$medium-up} { 
-/*	body .main-container {
+/* 
+	.web-width {
+		width: 940px;
+	}
+	body .main-container {
 		min-width:960px;
 		max-width:960px;
-	}
-*/
+	} */
+
 	#navigation {
 		margin: 0 auto;
 	}
@@ -57,10 +55,6 @@
 
 	.small-margin-bottom {
 		margin-bottom:3*$ui-small-grid-size;
-	}
-
-	#homepage-hero {
-		margin-top: -40px;
 	}
 
 	.messages .conversations {

@@ -8,7 +8,7 @@
   }
   header {
     .user-basic {
-      padding: 1rem;
+      padding: 0 1rem;
       h1 {
         overflow: hidden;
         line-height: 1.5;
@@ -37,6 +37,7 @@
     @media #{$small-only} {
       h1 { display:block !important; }
       .button-bar { float:none !important; margin-left:0 !important; }
+      .highlights { zoom:0.8; }
     }
 
     .button-bar {
@@ -50,6 +51,9 @@
       display: block;
       min-height: 320px;
       padding: 1rem;
+
+
+
 
       .avatar {
         box-shadow: 1px 0 16px 0 #fff;
@@ -679,7 +683,6 @@
 }
 
 .bottom-tabs {
-  @extend .large-12, .columns, .clearfix;
   text-align: center;
   font-weight: bold;
   margin: {
@@ -688,11 +691,10 @@
   }
   h2 {
     color: #F95800;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 20px;
   }
   ul {
-    margin:0;
+    margin:0 3*$ui-small-grid-size;
     li {
       display:inline-block;
       margin: {
@@ -903,6 +905,7 @@
     }
     .ad-date {
       display: inline-block;
+      margin:3*$ui-small-grid-size 0;
     }
     .ad-date::first-letter {
       text-transform: uppercase;
