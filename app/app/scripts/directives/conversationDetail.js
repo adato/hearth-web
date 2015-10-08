@@ -7,8 +7,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationDetail', [
-    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate',
-    function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate) {
+    '$rootScope', 'Conversations', '$timeout', 'Notify', 'Viewport', 'Messenger', 'PageTitle', '$translate', 'ResponsiveViewport',
+    function($rootScope, Conversations, $timeout, Notify, Viewport, Messenger, PageTitle, $translate, ResponsiveViewport) {
         return {
             restrict: 'E',
             replace: true,
@@ -333,7 +333,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     var offset = -50;
                     var measureContainer = $(".messages-container");
                     
-                    if (Foundation.utils.is_small_only()) {
+                    if (ResponsiveViewport().isSmall()) {
                         // box needs to be tall on mobile devices, so we count on whole-page-height
                         measureContainer = $('#homepage-hero');
                         offset = 0;
