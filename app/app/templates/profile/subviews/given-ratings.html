@@ -1,10 +1,10 @@
 <div ng-include="'templates/profile/subviews/ratingsPanel.html'"></div>
 
-<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! data.length">
-	<p>{{:: 'PROFILE.POSTS.NO_GIVEN_RATINGS_ME' | translate }}</p>
+<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! data.length">
+	<div class="item"><p>{{:: 'PROFILE.POSTS.NO_GIVEN_RATINGS_ME' | translate }}</p></div>
 </div>
-<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! mine && ! data.length">
-	<p>{{:: 'PROFILE.POSTS.NO_GIVEN_RATINGS_OTHER' | translate }}</p>
+<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! mine && ! data.length">
+	<div class="item"><p>{{:: 'PROFILE.POSTS.NO_GIVEN_RATINGS_OTHER' | translate }}</p></div>
 </div>
 
 <div class="ratings-given rating-listing" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">

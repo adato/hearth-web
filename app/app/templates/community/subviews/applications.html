@@ -1,4 +1,9 @@
 <div ng-include="'templates/community/subviews/membersPanel.html'"></div>
+
+<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! data.length">
+	<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
+</div>
+
 <div class="community-applications-list" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div ng-repeat="(id, item) in data track by item._id" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
 
@@ -21,9 +26,6 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! data.length">
-	<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
 </div>
 
 <div loading show="!subPageLoaded"></div>
