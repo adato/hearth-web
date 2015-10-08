@@ -14,12 +14,14 @@ angular.module('hearth.services').factory('ResponsiveViewport', function() {
 		if (!Foundation) throw new Exception('Foundation not found');
 
 		ResponsiveViewport.isSmall = function () {
+			var ret;
 			if (Foundation.utils && Foundation.utils.is_small_only) 
-				return Foundation.utils.is_small_only;
+				ret = Foundation.utils.is_small_only();
 			else if (Foundation.match) 
-				return Foundation.match(Foundation.media_queries.small).matches;
-			else 
-				return window.matchMedia(Foundation.media_queries.small).matches && !window.matchMedia(Foundation.media_queries.medium).matches;
+				ret = Foundation.match(Foundation.media_queries.small).matches && !Foundation.match(Foundation.media_queries.medium).matches;
+			else
+				ret = window.matchMedia(Foundation.media_queries.small).matches && !window.matchMedia(Foundation.media_queries.medium).matches;
+			return ret;
 		}
 		return ResponsiveViewport;
 		
