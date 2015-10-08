@@ -14,7 +14,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     $rootScope.pageName = '';
     $rootScope.searchText = '';
     $rootScope.searchQuery = {
-      q: '',
+      query: '',
       type: 'post'
     };
     $rootScope.appUrl = '';
@@ -155,7 +155,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
      * When submitted fulltext search
      */
     $scope.search = function (searchQuery) {
-      if (!searchQuery.q) {
+      if (!searchQuery.query) {
         $("#search").focus();
         return false;
       }
@@ -163,7 +163,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
       $rootScope.top(0, 1);
 
       $state.go('market-responsive', {
-        q: searchQuery.q,
+        query: searchQuery.query,
         type: searchQuery.type
       }, {
         reload: true

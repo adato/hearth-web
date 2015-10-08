@@ -14,7 +14,7 @@
     <radio type="radio" model="filter.type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
   </section>
 
-  <section class="radio-container time-switch-container type-all type-post type-user type-community">
+  <section class="radio-container time-switch-container type-post type-user type-community">
     <h4>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h4>
     <radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
     <radio type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
@@ -31,7 +31,7 @@
     </checkbox>
   </section>
 
-  <section class="location-container type-all type-post type-user type-community">
+  <section class="location-container type-post type-user type-community">
     <h4>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h4>
 
     <div class="range-select-container" ng-show="filter.lat && filter.lon && filter.name">
