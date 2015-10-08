@@ -9,11 +9,13 @@
 angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
     '$scope', 'Auth', '$location', 'ResponseErrors', 'Email', 'Notify',
     function($scope, Auth, $location, ResponseErrors, Email, Notify) {
+        var invalidEmail = null;
         $scope.data = {
             email: ''
         };
         $scope.showError = {
-            email: false
+            email: false,
+            inactiveAccount: false
         };
 
         $scope.errors = new ResponseErrors();
@@ -41,6 +43,17 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
             });
         };
 
+        $scope.resendActivationEmail = function() {
+            Auth.resendActivationEmail(invalidEmail, function(res) {
+                if(res.data && res.data.ok === true) {
+                    Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
+                    $scope.showError.inactiveAccount = false;
+                } else {
+                    Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_FAILED', Notify.T_ERROR);
+                }
+            });
+        };
+
         $scope.validateEmail = function(form, cb) {
             $scope.showError.email = true;
             // if form is not valid, return false
@@ -53,6 +66,10 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
         };
 
         $scope.resetPassword = function() {
+            $.each($scope.showError, function(key) {
+                $scope.showError[key] = false;
+            });
+
             // is email valid?
             $scope.validateEmail($scope.data, function(res) {
                 if(!res) return false;
@@ -61,11 +78,16 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
                     return false;
                 $scope.sending = true;
 
-                return Auth.requestPasswordReset($scope.data.email).success(function() {
+                return Auth.requestPasswordReset($scope.data.email).success(function(res) {
                     $scope.sending = false;
-                    Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
-                    $location.url("/login");
-
+                    
+                    if(res.ok == false && res.error && res.error == 'account_not_confirmed') {
+                        $scope.showError.inactiveAccount = true;
+                        invalidEmail = $scope.data.email;
+                    } else {
+                        Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_SUCCESS', Notify.T_SUCCESS);
+                        $location.url("/login");
+                    }
                 }).error(function(data, status) {
                     $scope.sending = false;
                     Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_FAILED', Notify.T_ERROR, '.forgot-pass-notify-container');

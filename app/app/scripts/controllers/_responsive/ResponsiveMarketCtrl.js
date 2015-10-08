@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
 
-	function($scope, $rootScope, Post, $filter, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
+	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
 		$scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
 		$scope.limit = 15;
 		$scope.items = [];
@@ -18,9 +18,11 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 		$scope.keywordsActive = [];
 		$scope.author = null;
 		$scope.filterIsOn = false;
+		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
-		var templateFunction = null;
-		var templateUrl = $sce.getTrustedResourceUrl('templates/_responsive/directives/item.html');
+		var templates = {};
+		var itemTypes = ['post', 'community', 'user', 'conversation'];
+		var templateDir = 'templates/_responsive/directives/items/';
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
@@ -34,8 +36,24 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			$scope.$broadcast("filterOpen");
 		};
 
-	 	function getPostScope(post) {
+		function compileTemplate(scope, done) {
+			var item = scope.item;
+			if(!item._type || !templates[item._type.toLowerCase()]) {
+				Rollbar.error("HEARTH: No template found for this content", item);
+				done('No template found for this content', '');
+				return false;
+			}
 
+			templates[item._type.toLowerCase()](scope, done);
+		}
+
+	 	function getPostScope(post) {
+	 		var author = post;
+
+	 		if(post._type == 'Post')
+	 			author = post.author;
+
+	 		console.log(post);
 			var scope = $scope.$new(true);
             scope.keywords = $scope.keywordsActive;
             scope.item = post;
@@ -49,7 +67,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;
             scope.isActive = $rootScope.isPostActive(post);
-            scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes)+'%';
+            scope.item.karma = Karma.count(author.up_votes, author.down_votes)+'%';
 
             // is this my post? if so, show controll buttons and etc
             scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
@@ -68,7 +86,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 				$scope.debug && console.time("Single post ("+(index)+") built");
 				$scope.items.push(post);
 
-				return templateFunction(getPostScope(post), function(clone){
+				return compileTemplate(getPostScope(post), function(clone){
 					container.append(clone[0]);
 
 					return $timeout(function() {
@@ -124,6 +142,34 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			return data;
 		};
 
+
+		$scope.retrievePosts = function(params) {
+			// params.type = "community,user,post";
+			// params.query = "*";
+			Post.query(params, function(data) {
+				$scope.loaded = true;
+				$(".loading").hide();
+
+				if(!data.data.length) {
+					finishLoading(data.data, true);
+					return;
+				}
+
+				$scope.debug && console.timeEnd("Market posts loaded from API");
+				if(data.data) {
+
+					data.data = insertLastPostIfMissing(data.data);
+					data.data = ItemFilter.filter(data.data);
+
+				}
+				$scope.debug && console.time("Posts pushed to array and built");
+				// iterativly add loaded data to the list and then call finishLoading
+				addItemsToList($('#market-item-list'), data, 0, finishLoading);
+				
+				$rootScope.$broadcast('postsLoaded');
+			});
+		};
+
 		/**
 		 * This will load new posts to marketplace
 		 */
@@ -147,40 +193,11 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
 			$scope.debug && console.time("Market posts loaded and displayed");
 			$scope.debug && console.time("Market posts loaded from API");
+			
+			if($scope.debug) console.log('Loading content');
+			marketInited.promise.then($scope.retrievePosts.bind($scope, params));
 			// load based on given params
-			Post.query(params, function(data) {
-				$scope.loaded = true;
-				$(".loading").hide();
-
-				if(!data.data.length) {
-					finishLoading(data.data, true);
-					return;
-				}
-
-				$scope.debug && console.timeEnd("Market posts loaded from API");
-				if(data.data) {
-
-					data.data = insertLastPostIfMissing(data.data);
-					data.data = ItemFilter.filter(data.data);
-
-				}
-				$scope.debug && console.time("Posts pushed to array and built");
-				// iterativly add loaded data to the list and then call finishLoading
-				addItemsToList($('#market-item-list'), data, 0, finishLoading);
-
-
-				$rootScope.$broadcast('postsLoaded');
-			});
 		};
-
-		function init() {
-			ItemFilter.clear();
-			refreshTags();
-			Filter.checkUserFilter();
-			Filter.getCommonKeywords();
-
-			$scope.filterIsOn = Filter.isSet();
-		}
 
 		/**
 		 * When applied filter - refresh post on marketplace
@@ -213,7 +230,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 					$scope.items[i] = data;
 					var post = getPostScope(angular.copy(data));
 
-					templateFunction(post, function(clone){
+					compileTemplate(post, function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 
 						setTimeout(function() {
@@ -232,7 +249,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			post.hidden = true;
 			$scope.items.unshift(post);
 
-			templateFunction(getPostScope(post), function(clone){
+			compileTemplate(getPostScope(post), function(clone){
 				$('#market-item-list').prepend(clone);
 
 				setTimeout(function() {
@@ -258,12 +275,22 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 		});
 
 
-	    $templateRequest(templateUrl).then(function(template) {
-	    	templateFunction = $compile(template);
+		function init() {
+			async.each(itemTypes, function(type, done) {
+				var tplUrl = $sce.getTrustedResourceUrl(templateDir+type+'.html');
+				if($scope.debug) console.log('Compiling template for ', type);
+				
+			    $templateRequest(tplUrl).then(function(template) {
+					templates[type] = $compile(template);
+					done();
+			    });
 
-			$scope.filterIsOn = Filter.isSet();
-			// $scope.load();
-	    });
+			}, function(err, res) {
+				$scope.filterIsOn = Filter.isSet();
+				marketInited.resolve();
+			});
+		};
 
+		init();
 	}
 ]);
