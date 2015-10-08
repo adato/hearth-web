@@ -176,9 +176,11 @@
          // RESPONSIVE //
         @media #{$small-only} {
             .rating-score,.rating-relation {
-              margin: 3 * $ui-small-grid-size;
+              margin: $ui-small-grid-size 3 * $ui-small-grid-size;
+              display:inline-block;
             }
             .rating-score { 
+              display:inline;
               line-height:230%;
             }
         }

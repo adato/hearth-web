@@ -2,6 +2,10 @@
   .error {
     color: red;
   }
+  article.row {
+    margin-left:0; 
+    margin-right:0;
+  }
   header {
     .user-basic {
       padding: 1rem;
@@ -671,8 +675,6 @@
 .bottom-tabs {
   @extend .large-12, .columns, .clearfix;
   text-align: center;
-  border-bottom: 4px solid color(1);
-  padding-bottom: 2px;
   font-weight: bold;
   margin: {
     top: 30px;
@@ -684,44 +686,62 @@
     font-weight: bold;
   }
   ul {
-    @include inline-list;
-    li > a {
-      width:initial;
-      background: darken(color(4), 30%);
-      color: lighten(color(4), 20%);
-      border-top: 2px solid darken(color(4), 20%);
-      text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
-      min-width: 250px;
-      font-size: 1.1rem;
-      padding: {
-        left: 30px;
-        right: 30px;
-        top: 5px;
-        bottom: 5px;
-      }
-    
+    margin:0;
+    li {
+      display:inline-block;
       margin: {
-        left: 5px;
-        right: 5px;
-        top: 5px;
+        left: $ui-small-grid-size;
+        right: $ui-small-grid-size;
+        top: $ui-small-grid-size;
+        bottom:0; 
       }
-    
-      border-top-left-radius: $global-radius / 2;
-      border-top-right-radius: $global-radius / 2;
-      &:hover {
-        border-top: 2px solid darken(color(4), 30%);
-        background: darken(color(4), 40%);
-      }
-      &.selected {
-        background: color(1);
-        border-top: 2px solid lighten(color(1), 20%);
+      & > a {
+        position:relative;
+        top:-3px;
+        width:initial;
+        background: darken(color(4), 30%);
+        color: lighten(color(4), 20%);
+        border-top: 2px solid darken(color(4), 20%);
+        text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
+        min-width: 250px;
+        font-size: 1rem;
+        padding: {
+          left: $ui-grid-size;
+          right: $ui-grid-size;
+          top: $ui-small-grid-size;
+          bottom: $ui-small-grid-size;
+        }
+
+      
+        border-top-left-radius: $global-radius / 2;
+        border-top-right-radius: $global-radius / 2;
+        &:hover {
+          border-top: 2px solid darken(color(4), 30%);
+          background: darken(color(4), 40%);
+        }
+        &.selected {
+          background: color(1);
+          border-top: 2px solid lighten(color(1), 20%);
+        }
       }
     }
   }
 
   // RESPONSIVE //
   @media #{$small-only} {
-    ul>li>a { width:100%; display:inline-block; }
+    ul>li {
+      margin-left:0; 
+      margin-right:0;
+      width:100%;
+      &>a { width:100%; display:block; }
+    }
+  }
+
+  &:after {
+    content:" ";
+    display:block;
+    border-bottom: 4px solid color(1);
+    width:100%;
   }
 }
 
