@@ -32,7 +32,7 @@
     // RESPONSIVE //
     @media #{$small-only} {
       h1 { display:block !important; }
-      .button-bar { float:none !important; }
+      .button-bar { float:none !important; margin-left:0 !important; }
     }
 
     .button-bar {
@@ -481,7 +481,7 @@
           left: 20px;
           right: 20px;
         }
-        
+
         &.positive {
           background: lighten(color(2), 45%);
         }

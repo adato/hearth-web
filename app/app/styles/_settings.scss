@@ -13,12 +13,21 @@ $global-font-size: 14px;
 $primary-color: color(1);
 $secondary-color: color(2);
 
+$hr-margin: rem-calc(1);
+$f-dropdown-border-color: color(3);
+$f-dropdown-font-color: color(3);
+$f-dropdown-font-size: rem-calc(16);
+$form-label-font-size: rem-calc(14);
+$input-font-color: nth($color,3);
+$input-font-size: rem-calc(14);
+$input-border-color: nth($color,3);
+
 $button-function-factor: -20%;
 $button-border-width: 2px;
 $button-border-style: solid;  $button-radius: $global-radius;
 
 $ui-title-font-size: 16px;
-$ui-text-font-size: 14px;
+$ui-text-font-size: $global-font-size;
 $ui-text-weight-bolder: 600;
 $ui-small-grid-size: 5px;
 $ui-grid-size: 5 * $ui-small-grid-size;
@@ -38,9 +47,8 @@ $h4-font-size: rem-calc(21);
 $h5-font-size: rem-calc(16);
 $h6-font-size: 1rem;
 
-$paragraph-font-size: 1rem;
+$paragraph-font-size: rem-calc($ui-text-font-size);
 
-//
 // @import "foundation/functions";
 //
 // $radius: true;

@@ -110,6 +110,11 @@
         width: 25px;
         height: 25px;
         background:white;
+
+        // RESPONSIVE //
+        @media #{$small-only} {
+          display:none;
+        } 
     }
 }
 
@@ -167,6 +172,16 @@
         
         .date {
             font-size: .8rem;
+        }
+
+         // RESPONSIVE //
+        @media #{$small-only} {
+            .rating-score,.rating-relation {
+              margin: 3 * $ui-small-grid-size;
+            }
+            .rating-score { 
+              line-height:230%;
+            }
         }
     }
 
