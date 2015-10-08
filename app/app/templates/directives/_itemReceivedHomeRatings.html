@@ -11,10 +11,10 @@
 			<div class="clear-right"></div>
 			<div>
 			    <div class="score">
-					<b ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
-					<b ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
+					<b class="rating-score" ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
+					<b class="rating-score" ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
 
-					<small ng-if="item.post_id">
+					<small ng-if="item.post_id" class="rating-relation">
 						&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a>.
 					</small>
 				</div>
