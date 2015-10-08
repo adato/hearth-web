@@ -13,8 +13,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     $rootScope.myCommunities = false;
     $rootScope.pageName = '';
     $rootScope.searchText = '';
-    $rootScope.filter = {
-      type: 'all'
+    $rootScope.searchQuery = {
+      query: '',
+      type: 'post'
     };
     $rootScope.appUrl = '';
     $rootScope.addressOld = '';
@@ -151,13 +152,24 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     };
 
     /**
-     * When subbmitet fulltext search
+     * When submitted fulltext search
      */
-    $scope.search = function (text) {
-      if (!text) return false;
+    $scope.search = function (searchQuery) {
+      if (!searchQuery.query) {
+        $("#search").focus();
+        return false;
+      }
+
       $rootScope.top(0, 1);
 
-      $location.path('/search?q=' + (text || ""));
+      $state.go('market-responsive', {
+        query: searchQuery.query,
+        type: searchQuery.type
+      }, {
+        reload: true
+      });
+
+      //$location.path('/?q=' + (text || "") + '&type=' + type);
     };
 
     /**

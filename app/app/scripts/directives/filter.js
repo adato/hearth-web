@@ -221,11 +221,15 @@ angular.module('hearth.directives').directive('filter', [
         scope.$watch('filterShown', scope.recountPosts);
         // scope.$watch('filterSave', scope.toggleSaveFilter);
 
-        scope.$watchCollection('filterSelected', function (newValue, oldValue) {
+        scope.$watch('filterSelected', function (newValue, oldValue) {
           if (newValue) {
-            var className = 'type-' + newValue;
-            $('section', element).not('.' + className).slideUp('slow');
-            $('section.' + className, element).slideDown('slow');
+            var types = newValue.split(",");
+
+            angular.forEach(types, function(type, key) {
+              var className = 'type-' + type;
+              $('section', element).not('.' + className).slideUp('slow');
+              $('section.' + className, element).slideDown('slow');
+            });
           }
         });
 
