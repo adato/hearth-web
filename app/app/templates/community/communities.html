@@ -28,17 +28,18 @@
             <div class="clear"></div>
         </div>
     </div>
-    <div class="bottom-tabs" ng-if="loadedFirstBatch">
-        <ul>
-            <li>
-                <a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
-            </li>
-            <li>
-                <a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>
-            </li> 
-        </ul>
-    </div>
-    <div class="clear"></div>
-
+</div>
+<div class="bottom-tabs" ng-if="loadedFirstBatch">
+    <ul>
+        <li>
+            <a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
+        </li>
+        <li>
+            <a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>
+        </li> 
+    </ul>
+</div>
+<div class="clear"></div>
+<div class="communities">
     <div ui-view></div>
 </div>
