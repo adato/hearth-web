@@ -12,9 +12,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     var timeout;
     $rootScope.myCommunities = false;
     $rootScope.pageName = '';
-    $rootScope.searchText = '';
+    //$rootScope.searchText = '';
     $rootScope.searchQuery = {
-      query: '',
+      query: null,
       type: 'post'
     };
     $rootScope.appUrl = '';

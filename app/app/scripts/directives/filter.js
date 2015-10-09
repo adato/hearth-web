@@ -21,7 +21,9 @@ angular.module('hearth.directives').directive('filter', [
         var searchBoxElement = $('input#geolocation', element),
           searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
           filterDefault = {
+            query: null,
             type: null,
+            post_type: null,
             distance: 25,
             keywords: [],
             days: null
@@ -76,8 +78,14 @@ angular.module('hearth.directives').directive('filter', [
           var related = [],
             params = {};
 
-          if (filter.type) {
-            params.type = filter.type;
+          if ($rootScope.searchQuery.query) {
+            params.query = $rootScope.searchQuery.query;
+          }
+          if ($rootScope.searchQuery.type) {
+            params.type = $rootScope.searchQuery.type;
+          }
+          if (filter.post_type) {
+            params.post_type = filter.post_type;
           }
           if (filter.days) {
             params.days = filter.days;
@@ -115,7 +123,9 @@ angular.module('hearth.directives').directive('filter', [
           }
 
           var filter = {
+            query: params.query || filterDefault.query,
             type: params.type || filterDefault.type,
+            post_type: params.post_type || filterDefault.post_type,
             days: params.days || filterDefault.days,
             my_section: params.my_section,
             user: (params.related || '').indexOf('user') > -1 ? true : undefined,
