@@ -18,15 +18,18 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
     $scope.keywordsActive = [];
     $scope.author = null;
     $scope.filterIsOn = false;
-    $rootScope.searchQuery = {
-      query: $stateParams.query || null,
-      type: $stateParams.type || 'post'
-    };
     var marketInited = $q.defer();
     var ItemFilter = new UniqueFilter();
     var templates = {};
     var itemTypes = ['post', 'community', 'user', 'conversation'];
     var templateDir = 'templates/_responsive/directives/items/';
+
+    if ($stateParams.query) {
+      $rootScope.searchQuery.query = $stateParams.query;
+    }
+    if ($stateParams.type) {
+      $rootScope.searchQuery.type = $stateParams.type;
+    }
 
     function refreshTags() {
       $scope.keywordsActive = Filter.getActiveTags();
@@ -219,7 +222,6 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
     $scope.$on('filterApplied', refreshPosts);
     $scope.$on('filterReseted', function () {
-
       $scope.filter = {};
       $scope.user.filter = {};
       refreshPosts();

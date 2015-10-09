@@ -12,6 +12,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     var timeout;
     $rootScope.myCommunities = false;
     $rootScope.pageName = '';
+    $rootScope.searchQuery = {
+      query: null,
+      type: 'post'
+    };
     $rootScope.appUrl = '';
     $rootScope.addressOld = '';
     $rootScope.addressNew = '';
@@ -156,15 +160,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
       }
 
       $rootScope.top(0, 1);
-
       $state.go('market-responsive', {
         query: searchQuery.query,
         type: searchQuery.type
       }, {
         reload: true
       });
-
-      //$location.path('/?q=' + (text || "") + '&type=' + type);
     };
 
     /**
