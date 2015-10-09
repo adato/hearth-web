@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-  '$q', '$location', '$rootScope', 'User', 'KeywordsService', 'Post',
-  function ($q, $location, $rootScope, User, KeywordsService, Post) {
+  '$q', '$location', '$state', '$rootScope', 'User', 'KeywordsService', 'Post',
+  function ($q, $location, $state, $rootScope, User, KeywordsService, Post) {
     return {
       _commonKeywords: [],
       getCommonKeywords: function (cb) {
@@ -68,7 +68,14 @@ angular.module('hearth.services').factory('Filter', [
         filter.counters = true;
 
         Post.query(filter, function (res) {
-          cb((res.counters && res.counters.post) ? res.counters.post : 0);
+          var count = 0;
+          var counter = res.counters;
+          for (var k in counter) {
+            if (counter.hasOwnProperty(k)) {
+              count += counter[k];
+            }
+          }
+          cb(count);
         });
       },
       get: function () {
@@ -115,6 +122,13 @@ angular.module('hearth.services').factory('Filter', [
       },
       reset: function () {
         $location.search('');
+
+        $state.go('market-responsive', {
+          query: null,
+          type: null
+        }, {
+          reload: true
+        });
 
         if ($rootScope.loggedUser._id) {
           this.deleteUserFilter();
