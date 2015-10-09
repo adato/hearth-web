@@ -896,8 +896,11 @@
         "CONVERSATION_ARCHIVE_SUCCESS": "Konverzácia bola úspešne archivovaná.",
         "CONVERSATION_ARCHIVE_FAILED": "Pri archivácii došlo k chybe. Teda, tá archivácia!",
         "RATING_REPLY_SUCCESS": "A je to! Komentár bol úspešne pridaný.",
-        "RATING_REPLY_FAILED": "Pri pridávaní komentáre k hodnotenie došlo k chybe"
+        "RATING_REPLY_FAILED": "Pri pridávaní komentáre k hodnotenie došlo k chybe",
+        "REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na Vaši emailovou adresu.",
+        "REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě."
     },
+    "ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máte niekoľko neaktívnych inzerátov.",
     "USER_RATING_SCORE_SELECT_TEXT": "Ako sa vám spolu komunikovalo?",
@@ -1267,5 +1270,13 @@
             "MESSAGES": "V správach"
         }
     },
-    "ERROR_WHILE_UPLOADING": "Pri nahrávaní došlo k chybe"
+    "ERROR_WHILE_UPLOADING": "Pri nahrávaní došlo k chybe",
+    "LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+    "RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
+    "RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíte se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.<\/p>",
+    "SIGNUP_HEADING_FB": "Pridajte sa",
+    "SIGN_UP": {
+        "CONTINUE_TO_REGISTER": "Zatvoriť a pokračovať v registrácii."
+    }
 }

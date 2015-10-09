@@ -493,7 +493,6 @@
             "new_post": "Přidal(a) jste inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
             "new_rating": "Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}<\/a>.",
             "new_rating_received": "Dostal(a) jste hodnocení od <a href=\"{{url}}\">{{name}}<\/a>.",
-            "new_rating_received_comm": "Dostal(a) jste hodnocení od komunity <a href=\"{{url}}\">{{name}}<\/a>.",
             "new_reply": "Odpověděl(a) jste na inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
             "wants_into_community": "Přihlásil(a) jste se do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
             "accepted_into_community": "Přijali vás do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
@@ -505,7 +504,8 @@
             "suspend_post": "<p>Pozastavil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "prolong_post": "<p>Obnovil(a) jste&nbsp;inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "publish_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_comm": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_comm": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+            "new_rating_received_comm": "<p>Dostal(a) jste hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         },
         "third_person": {
             "new_post": "<p>{{user}} přidal(a) inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -531,7 +531,7 @@
             "prolong_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "publish_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_rating_comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>. Super!<\/p>"
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
@@ -747,9 +747,7 @@
     "USER_HAS": "Uživatel má",
     "COMMUNITIES": "Komunity",
     "ERROR_BAD_IMAGE_FORMAT": "Obrázek má špatný formát! Povolené formáty jsou: {{ formats}}",
-    "ERROR_WHILE_UPLOADING": "Při nahrávání došlo k chybě",
     "ERROR_BAD_IMAGE_SIZE": "Obrázek je moc veliký. Mooc. Maximální velikost je {{ maxSize }}MB",
-    "ERROR_BAD_IMAGE_SIZE_ALL": "Celková velikost obrázků nesmí překročit velikost {{maxSize}}MB",
     "TOTAL_COUNT": "{{value}} celkem",
     "USING_HEARTH_IN_LANG": "Momentálně používáte Hearth",
     "HEARTH_IN_THIS_LANG": "v českém jazyce",
@@ -897,9 +895,12 @@
         "MESSAGE_REPLY_FAILED": "Jaj. Při odesílání zprávy došlo k chybě.",
         "CONVERSATION_ARCHIVE_SUCCESS": "Konverzace byla úspěšně archivována.",
         "CONVERSATION_ARCHIVE_FAILED": "Při archivaci došlo k chybě. Ta archivace!",
-        "RATING_REPLY_SUCCESS": "Komentář byl úspěšně přidán.",
-        "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě"
+        "RATING_REPLY_SUCCESS": "A je to! Komentář byl úspěšně přidán.",
+        "RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě",
+        "REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na Vaši emailovou adresu.",
+        "REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě."
     },
+    "ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
     "YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáte žádné inzeráty, můžete si je ale přidat ",
     "BUT_YOU_HAVE_INACTIVE_POSTS": "Ale zato máte několik neaktivních inzerátů.",
     "USER_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
@@ -914,7 +915,6 @@
     "EMAIL_CONFIRMATION_HEADER": "Potvrzení emailu",
     "NAME_PLACEHOLDER": "Jméno a příjmení",
     "WHOLE_PROFILE": "Celý profil",
-    "ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
     "DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Komunikovali jste spolu? Dejte světu vědět, že všechno klaplo nebo že se naopak něco nepovedlo...",
     "OR_GIVE_NEGATIVE_RATING": " nebo upozornit na chybu ",
     "YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST": "Na dar\/přání jste již odpověděl(a).",
@@ -1051,7 +1051,7 @@
             "NO_ACTIVITY_OTHER": "Uživatel je tady nový, nemáme vám tady zatím co ukázat.",
             "NO_POSTS_ME": "Zatím jste nevytvořil(a) žádný inzerát. No toto! Pojďme s tím něco udělat. Můžete darovat či přijmout, co vás jen napadne.",
             "NO_ACTIVITY_ME_OLDER": "Zatím zde nemáte žádnou aktivitu.",
-            "NO_ACTIVITY_OTHER_OLDER": "Uživatel zde nemá zatím žádnou aktivitu. Lenoch..."
+            "NO_ACTIVITY_OTHER_OLDER": "Uživatel se zde zatím moc neprojevil. Chystá nám všem překvápko?"
         },
         "INVITATION": {
             "ADDRESSES": "Adresy",
@@ -1212,15 +1212,15 @@
     "SELECT_USERS": "Vyberte jednoho nebo více příjemců",
     "ATTACHE_IMAGES": "Přiložit obrázky",
     "ERR_REPORT_TEXT_MIN_LEN": "Napište prosím důvod nahlášení inzerátu",
-    "ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen.",
+    "ERR_REPORT_TEXT_MAX_LEN": "Text je příliš dlouhý.. maximum je 2500 písmen. Vzpomeňte na Twitter nebo esemesky.",
     "REPORT_HARMFUL_AD_ONLY_ONCE": "Tento dar nebo přání už jste označil(a) jako nevhodný.",
     "POST_CANT_SELECT_COMMUNITIES_WHEN_POST_IS_PRIVATE": "Pro přidání inzerátu do komunity nesmíte mít inzerát jen pro přátele.",
     "SOCIAL_NETWORKS": "Jsme také na:",
-    "COMMUNITY_WAS_NOT_FOUND": "Taková komunita tu není..",
+    "COMMUNITY_WAS_NOT_FOUND": "Bohužel. Taková komunita tu není..",
     "AD_REMOVE_FROM_COMMUNITY_LABEL": "Odstranit inzerát z komunity",
     "POST_COMMUNITY_REMOVE": {
         "HEADING": "Odstranit inzerát z komunity",
-        "INFO": "Inzerát do Vaší komunity nepatří? Můžete ho jednodušše odstranit..",
+        "INFO": "Inzerát do Vaší komunity nepatří? Můžete ho jednoduše odstranit...",
         "REASON_PLACEHOLDER": "Napište uživateli důvod, proč je inzerát nevhodný ve Vašich komunitách...",
         "SELECT_COMMUNITIES": "Vyberte komunity, z kterých se má inzerát odstranit:",
         "REASON_LABEL": "Důvod odstranění:",
@@ -1237,7 +1237,6 @@
     "COMMUNITY_TERMS": "Podmínky členství",
     "NEW_VERSION_NOTIFICATION": "Máme pro vás připravenou novější verzi Hearth. Chcete Hearth aktualizovat teď nebo to necháte na později?",
     "RELOAD": "Aktualizovat",
-    "RELOAD_PAGE": "Obnovit stránku",
     "ALL_COMMUNITIES": "Všechny komunity",
     "RATINGS_COUNT": "hodnocení",
     "MY_POST_REPLIES": "Moje odpovědi",
@@ -1255,8 +1254,29 @@
     "COMMUNITY_RATING_TITLE": "Hodnocení komunity",
     "RATINGS": {
         "REPLY": {
-            "TEXT_PLACEHOLDER": "Text odpovědi.."
+            "TEXT_PLACEHOLDER": "Text odpovědi..."
         }
     },
-    "YOU_ARE_OFFLINE": "<p><b>Došlo k chybě při spojení<\/b> Nemáte problém s připojením k internetu?<\/p>"
+    "YOU_ARE_OFFLINE": "<p><strong>Do&scaron;lo k chybě při spojen&iacute;<\/strong> Nem&aacute;te probl&eacute;m s připojen&iacute;m k internetu?<\/p>",
+    "ERROR_BAD_IMAGE_SIZE_ALL": "Celková velikost nahrávaných obrázků nesmí překročit velikost {{maxSize}}MB.",
+    "RELOAD_PAGE": "Obnovit stránku",
+    "TOP_BAR": {
+        "ADD_NEW_POST": "Nový dar\/přání",
+        "SEARCH": {
+            "EVERYWHERE": "Všude",
+            "MARKET": "Na tržišti",
+            "COMMUNITY": "V komunitách",
+            "PEOPLE": "V lidech",
+            "MESSAGES": "Ve zprávách"
+        }
+    },
+    "ERROR_WHILE_UPLOADING": "Při nahrávání došlo k chybě",
+    "LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+    "RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
+    "RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíte se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tědr&aacute; soci&aacute;ln&iacute; s&iacute;ť pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteř&iacute; maj&iacute; odvahu darovat. M&aacute;te ji i vy? Svůj profil vytvoř&iacute;te během chvilky a svět darů je r&aacute;zem i v&aacute;&scaron;.<\/p>",
+    "SIGNUP_HEADING_FB": "Přidejte se",
+    "SIGN_UP": {
+        "CONTINUE_TO_REGISTER": "Zavřít a pokračovat v registraci."
+    }
 }

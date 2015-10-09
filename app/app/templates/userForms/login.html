@@ -15,7 +15,13 @@
       </div>
     </div>
     <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
-    <input type="email" validate-email name="username" class="login_name" ng-model="data.username"
+    <p ng-show="showError.inactiveAccount" class="error">
+      {{ 'LOGIN_INACTIVE_ACCOUNT' | translate }}
+      <a ng-click="resendActivationEmail()">
+        {{ 'RESEND_ACTIVATING_EMAIL' | translate }}
+      </a>
+    </p>
+    <input type="email" validate-email admin-email name="username" class="login_name" ng-model="data.username"
            ng-model-options="{ updateOn: 'blur' }" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}"
            class="form-control text-input top" required>
 

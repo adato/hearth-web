@@ -1,5 +1,5 @@
 $terms-width: 30em;
-$max-modal-window-width:23em;
+$max-modal-window-width:30em;
 
 
 .register-form {
@@ -171,5 +171,6 @@ $max-modal-window-width:23em;
 }
 
 .shifted-left {
-	margin-left:-1*($terms-width/2);
+	/*margin-left:-1*($terms-width/2);*/
+	margin-left: -23em;
 }
