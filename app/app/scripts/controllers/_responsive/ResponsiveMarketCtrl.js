@@ -18,6 +18,9 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
     $scope.keywordsActive = [];
     $scope.author = null;
     $scope.filterIsOn = false;
+    $scope.disableLazyLoad = true;
+
+    var lFilter;
     var marketInited = $q.defer();
     var ItemFilter = new UniqueFilter();
     var templates = {};
@@ -36,11 +39,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
     }
 
     $scope.resetFilter = function () {
-      $scope.$broadcast('filterReset');
-    };
-
-    $scope.toggleFilter = function () {
-      $scope.$broadcast("filterOpen");
+      Filter.reset();
     };
 
     function compileTemplate(scope, done) {
@@ -122,6 +121,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
       // finish loading and allow to show loading again
 
       $timeout(function () {
+        $scope.disableLazyLoad = false;
         if (!isLast)
           $scope.loading = false;
       });
@@ -149,7 +149,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
     };
 
 
-    $scope.retrievePosts = function (params) {
+    $scope.retrievePosts = function(params) {
       // params.type = "community,user,post";
       // params.query = "*";
       Post.query(params, function (data) {
@@ -157,8 +157,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
         $(".loading").hide();
 
         if (!data.data.length) {
-          finishLoading(data.data, true);
-          return;
+          return finishLoading(data.data, true);
         }
 
         $scope.debug && console.timeEnd("Market posts loaded from API");
@@ -166,12 +165,10 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
           data.data = insertLastPostIfMissing(data.data);
           data.data = ItemFilter.filter(data.data);
-
         }
         $scope.debug && console.time("Posts pushed to array and built");
         // iterativly add loaded data to the list and then call finishLoading
-        addItemsToList($('#market-item-list'), data, 0, finishLoading);
-
+        addItemsToList($('#market-item-list'), data, 0, finishLoading.bind($scope));
         $rootScope.$broadcast('postsLoaded');
       });
     };
@@ -179,14 +176,14 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
     /**
      * This will load new posts to marketplace
      */
-    $scope.load = function () {
+    $scope.load = function() {
       $(".loading").show();
 
       // load only if map is not shown
       // load only once in a time
       if ($scope.showMap || $scope.loading) return;
       $scope.loading = true;
-
+      
       var params = angular.extend(angular.copy($location.search()), {
         offset: $scope.items.length,
         limit: $scope.limit
@@ -213,19 +210,20 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
       refreshTags();
       ItemFilter.clear();
 
+      $scope.disableLazyLoad = true;
       $scope.loaded = false;
       $scope.loading = false;
       $scope.items = [];
+
       $('#market-item-list').html('');
       $scope.load();
     }
 
     $scope.$on('filterApplied', refreshPosts);
-    $scope.$on('filterReseted', function () {
-      $scope.filter = {};
-      $scope.user.filter = {};
-      refreshPosts();
-    });
+    // $scope.$on('filterReseted', function () {
+    //   console.log('RESETED');
+    //   refreshPosts();
+    // });
 
     $scope.$on('postUpdated', function ($event, data) {
       var item, i;
@@ -279,7 +277,6 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
       $rootScope.cacheInfoBox = {};
     });
 
-
     function init() {
       async.each(itemTypes, function (type, done) {
         var tplUrl = $sce.getTrustedResourceUrl(templateDir + type + '.html');
@@ -293,6 +290,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
       }, function (err, res) {
         $scope.filterIsOn = Filter.isSet();
         marketInited.resolve();
+        $scope.load();
       });
     };
 

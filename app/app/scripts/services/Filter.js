@@ -49,7 +49,7 @@ angular.module('hearth.services').factory('Filter', [
           delete params.keywords;
 
         $location.search(params);
-        $rootScope.$broadcast("filterApplied", params);
+        // $rootScope.$broadcast("filterApplied", params);
       },
       getActiveTags: function () {
         var params = $location.search();
@@ -121,20 +121,9 @@ angular.module('hearth.services').factory('Filter', [
         this.setUserFilter({});
       },
       reset: function () {
-        $location.search('');
+        this.apply({}, true, true);
 
-        $state.go('market-responsive', {
-          query: null,
-          type: null
-        }, {
-          reload: true
-        });
-
-        if ($rootScope.loggedUser._id) {
-          this.deleteUserFilter();
-        }
-
-        $rootScope.$broadcast("filterReseted");
+        // $rootScope.$broadcast("filterReseted");
       }
     };
   }

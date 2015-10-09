@@ -1,15 +1,10 @@
 
-.marketplace-items-container {
-	margin-top:$ui-grid-size;
-}
-
 .marketplace-map-container {
 	margin-top:3 * $ui-small-grid-size;
 }
 
 .not-found-box {
 	padding:$ui-grid-size;
-	margin-left: 3*$ui-small-grid-size;
 	max-width: 770px;
 	a {
 		color:color(5);

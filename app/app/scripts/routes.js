@@ -21,11 +21,11 @@ angular.module('hearth').config([
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
 			})
-      .state('market-responsive', {
-        url: '/responsive?query&type',
-        templateUrl: 'templates/_responsive/market.html',
-        controller: 'ResponsiveMarketCtrl',
-      })
+			.state('market-responsive', {
+				url: '/responsive',
+				templateUrl: 'templates/_responsive/market.html',
+				controller: 'ResponsiveMarketCtrl',
+			})
 			.state('market-refresh', {
 				url: "/market",
 				controller: ['$location', function($location) {
