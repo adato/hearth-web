@@ -20,9 +20,16 @@
 
 
 // small screens only
+<<<<<<< Updated upstream
 @media #{$small-only} { 
 	#notify-top {
 		width: unset !important;
+=======
+@media #{$small-only} {
+
+	.off-canvas-wrap {
+		overflow-y:auto;
+>>>>>>> Stashed changes
 	}
 
 	.profile-view {
@@ -35,6 +42,7 @@
 	.main-container {
 		min-width: unset !important;
 		width: 100%;
+		padding:0 2*$ui-small-grid-size;
 	}
 
 	.market .avatar {
