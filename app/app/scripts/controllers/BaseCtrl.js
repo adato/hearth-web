@@ -300,10 +300,16 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 
     $rootScope.reloadToMarketplace = function () {
-      if ($state.current.name == 'market')
-        $state.reload();
-      else
-        $state.go('market');
+      $rootScope.searchQuery = {
+        query: null,
+        type: 'post'
+      };
+      $state.go('market', {
+        query: null,
+        type: null
+      }, {
+        reload: true
+      });
     };
 
     /**
