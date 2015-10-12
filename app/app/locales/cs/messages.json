@@ -1284,6 +1284,9 @@
     "LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
     "RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
     "RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíte se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
-    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je nekonečn&yacute; prostor &scaron;tědr&yacute;ch možnost&iacute;. Je jen na v&aacute;s, jak ho budete použ&iacute;vat. S&iacute;la Hearthu lež&iacute; za magickou branou zvanou registrace. Už jste opravdu bl&iacute;zko!<\/p>",
-    "SIGNUP_HEADING_FB": "Pojďte dál"
+    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tědr&aacute; soci&aacute;ln&iacute; s&iacute;ť pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteř&iacute; maj&iacute; odvahu darovat. M&aacute;te ji i vy? Svůj profil vytvoř&iacute;te během chvilky a svět darů je r&aacute;zem i v&aacute;&scaron;.<\/p>",
+    "SIGNUP_HEADING_FB": "Přidejte se",
+    "SIGN_UP": {
+        "CONTINUE_TO_REGISTER": "Zavřít a pokračovat v registraci."
+    }
 }
