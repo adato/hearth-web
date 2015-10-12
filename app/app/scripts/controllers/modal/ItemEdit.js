@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
     $scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
     $scope.imagesCount = 0;
     $scope.imageSizesSum = 0;
+    $scope.imageUploading = false;
     $scope.imageSizes = [];
 
     $scope.slide = {
@@ -125,9 +126,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
         if (!post.valid_until_unlimited) {
           post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
+        } else {
+          post.valid_until = '';
         }
-
-        post.name = $.trim(post.name);
 
         if (!post.locations || !post.locations.length || post.location_unlimited) {
           post.locations = [];
@@ -309,8 +310,15 @@ angular.module('hearth.controllers').controller('ItemEdit', [
       }, $scope.processErrorResult);
     };
 
+    $scope.uploadingNotifierFunc = function(val) {
+      $scope.imageUploading = val;
+    };
+
     $scope.save = function(post, activate) {
       var postData, postDataCopy;
+
+      if ($scope.imageUploading)
+        return false;
 
       // return $rootScope.globalLoading = true;
       // hide top "action failed" message
