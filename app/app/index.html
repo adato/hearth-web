@@ -43,8 +43,6 @@
     <script src="scripts/analytics.js"></script>
     <script src="scripts/newRelic.js"></script>
     <!-- endbuild -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.6/css/nanoscroller.min.css" rel="stylesheet">
@@ -55,7 +53,6 @@
 </head>
 <body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
   <div id="fb-root"></div>
-  <div id="notify-top"></div>
   <script src="//connect.facebook.net/en_US/all.js"></script>
   <script type='text/javascript'>
   <!--
@@ -107,10 +104,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
   <![endif]-->
 
-
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
       <section ng-if="initFinished" ng-include="'/app/templates/navigation.html'" id="navigation"></section>
+      
+      <div id="notify-top"></div>
+
       <section id="homepage-hero">
          
         <div ui-view class="main-container"></div>

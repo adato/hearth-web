@@ -1,5 +1,5 @@
 <div class="info-box" ng-mouseenter="hoverIn()" ng-mouseleave="hoverOut()">
-	<div class="user-info {{ infoboxClass }}" ng-class="{'placement-left': (infoboxIndex+1) % 3 == 0}" ng-class="" ng-if="show" ng-mouseenter="show=true" ng-mouseleave="show=false">
+	<div class="user-info {{ infoboxClass }}" ng-class="{'placement-left': (infoboxIndex+1) % 3 == 0}" ng-if="show" ng-mouseenter="show=true" ng-mouseleave="show=false">
 		<div loading delayed="false" show="!info && !error" class="loading-bar"></div>
 		<article class="row text-center" ng-if="error">
 			<span class="text-error">{{:: 'INFO_BOX_LOADING_ERROR' | translate }}</span>

@@ -8,7 +8,7 @@
   }
   header {
     .user-basic {
-      padding: 0 1rem;
+      padding: 0 1rem 1rem;
       h1 {
         overflow: hidden;
         line-height: 1.5;
@@ -296,9 +296,10 @@
     }
 
     .infobox-avatar-wrapper {
-      width: 110px;
-      height:100px;
-      float:left;
+      position:relative;
+      .user-info {
+        left:100px;
+      }
     }
 
     .name {
@@ -426,7 +427,6 @@
     border-radius: $global-radius;
     box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
     margin: 3*$ui-small-grid-size (3*$ui-small-grid-size) / 2;
-    overflow: hidden;
     h3 {
       font-size: 120%;
       color: color(3);
