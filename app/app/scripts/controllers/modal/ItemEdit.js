@@ -126,6 +126,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				if(!post.valid_until_unlimited) {
 					post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
+				} else {
+					post.valid_until = '';
 				}
 
 				if (!post.locations || !post.locations.length || post.location_unlimited) {
