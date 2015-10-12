@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('filter', [
         filterShown: '=',
         filterSelected: '='
       },
-      templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filter.html' : 'templates/directives/filter.html',
+      templateUrl: 'templates/_responsive/directives/filter.html',
       link: function (scope, element) {
         var searchBoxElement = $('input#geolocation', element),
           searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
@@ -78,11 +78,11 @@ angular.module('hearth.directives').directive('filter', [
           var related = [],
             params = {};
 
-          if ($rootScope.searchQuery.query) {
-            params.query = $rootScope.searchQuery.query;
+          if (filter.query) {
+            params.query = filter.query;
           }
-          if ($rootScope.searchQuery.type) {
-            params.type = $rootScope.searchQuery.type;
+          if (filter.type) {
+            params.type = filter.type;
           }
           if (filter.post_type) {
             params.post_type = filter.post_type;
@@ -148,7 +148,6 @@ angular.module('hearth.directives').directive('filter', [
             delete filter.name;
             delete filter.distance;
           }
-
           return filter;
         };
 
@@ -181,6 +180,7 @@ angular.module('hearth.directives').directive('filter', [
         };
 
         scope.$on('filterReseted', function () {
+          $rootScope.searchQuery.query = null;
           scope.filter = angular.copy(filterDefault);
           scope.filterSave = false;
           scope.close();

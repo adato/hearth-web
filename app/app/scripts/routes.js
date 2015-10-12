@@ -17,14 +17,14 @@ angular.module('hearth').config([
 
 		$stateProvider
 			.state('market', {
-				url: '/',
+				url: '/?query&type',
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
 			})
-			.state('market-responsive', {
-				url: '/responsive',
-				templateUrl: 'templates/_responsive/market.html',
-				controller: 'ResponsiveMarketCtrl',
+			.state('market-old', {
+				url: '/old',
+				templateUrl: 'templates/_market.html',
+				controller: '_MarketCtrl',
 			})
 			.state('market-refresh', {
 				url: "/market",

@@ -160,11 +160,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
       }
 
       $rootScope.top(0, 1);
-      $state.go('market-responsive', {
+      $state.go('market', {
         query: searchQuery.query,
         type: searchQuery.type
-      }, {
-        reload: true
       });
     };
 
