@@ -71,16 +71,16 @@
         border-radius: $global-radius;
         color: black;
         font-size: $global-font-size;
-        //line-height: $global-line-height;
         margin: 0 auto;
         max-width: 100%;
         display: inline-block;
-        //padding: 0.2em;
+        min-width: 300px;
         position: relative;
-        width: auto;
         text-align: left;
         margin-top: 6%;
         margin-bottom: 4%;
+        margin-left:$ui-small-grid-size;
+        margin-right:$ui-small-grid-size;
     }
     .ngdialog-close {
         border-radius: 5px;
@@ -201,16 +201,19 @@ body.ngdialog-open {
         animation: none;
     }
 
+    .ngdialog-content {
+        width:97%;
+    }
 
     .ngdialog-content .modal {
-        max-width:100%;
+        width:100%;
     }
 }
 
 .ngdialog {
     z-index: 2000 !important;
     animation: 0.5s ease 0s normal none 1 ngdialog-fadein;
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+    background:rgba(0,0,0,0.8);
     bottom: 0;
     left: 0;
     position: fixed;

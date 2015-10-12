@@ -58,7 +58,6 @@
                             <span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
                         </div>
                     </td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td valign="top">
@@ -70,14 +69,6 @@
                         <textarea name="message" autosize-textarea max-len="300" ng-attr-placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" ng-model="inv.message" ng-focus="showError.message = false" ng-blur="showError.message = true" required></textarea>
                         <max-len-counter max-len="300" value="inv.message"></max-len-counter>
                     </td>
-                    <td valign="top">
-                        <a class="submit" ng-click="sendEmailInvitation(inv)">
-                            <i class="fa fa-envelope"></i>
-                            {{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}
-                        </a>
-                        <button type="submit" class="hidden button-send-by-email right" analytics-custom analytics-event="send email invitation" analytics-category="General" analytics-value="1">
-                        </button>
-                    </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -87,7 +78,14 @@
                             <span ng-show="inviteForm.message.$error.maxlength">{{:: 'ERR_FILLED_INVITE_TEXT_TOO_LONG' | translate }}</span>
                         </div>
                     </td>
+                </tr>
+                <tr>
                     <td></td>
+                    <td valign="top">
+                        <button type="submit" class="button-send button-send-by-email right" analytics-custom analytics-event="send email invitation" analytics-category="General" analytics-value="1">
+                            {{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}
+                        </button>
+                    </td>
                 </tr>
             </table>
         </form>
