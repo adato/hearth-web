@@ -390,7 +390,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
         };
 
         $rootScope.openEditForm = function(scope) {
-            
             var dialog = ngDialog.open({
                 template: $$config.modalTemplates + 'itemEdit.html',
                 controller: 'ItemEdit',
@@ -413,10 +412,12 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
             if(post) {
 
-                scope.post = angular.copy(post);
-                scope.postOrig = post;
-                scope.isDraft = false;
-                $rootScope.openEditForm(scope);
+                Post.get({postId: post._id}, function(detail) {
+                    scope.post = detail;
+                    scope.postOrig = detail;
+                    scope.isDraft = false;
+                    $rootScope.openEditForm(scope);
+                });
             } else {
 
                 Post.createDraft({}, function(draft) {

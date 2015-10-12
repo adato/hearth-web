@@ -19,19 +19,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
 		$scope.imageSizes = [];
-		$scope.defaultPost = {
-			type: true,
-			keywords: [],
-			valid_until: $filter('date')(new Date().getTime() + defaultValidToTime, $scope.dateFormat),
-			locations: [],
-			current_community_id: null,
-			related_communities: [],
-			location_unlimited: false,
-			valid_until_unlimited: false,
-			attachments_attributes: [],
-			state: 'active',
-			is_private: false,
-		};
+		
 		$scope.slide = {
 			files: false,
 			date: false,
@@ -129,17 +117,16 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		 */
 		$scope.transformDataIn = function(post) {
 			if (post) {
+				post.text = $.trim(post.text);
 				post.dateOrig = post.valid_until;
-				post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
+				post.valid_until_unlimited = (post.valid_until == 'unlimited');
 
 				if(post.author._type == 'Community')
 					post.current_community_id = post.author._id;
 
-				if(post.valid_until_unlimited) {
-					post.valid_until = '';
+				if(!post.valid_until_unlimited) {
+					post.valid_until = $filter('date')(post.valid_until, $scope.dateFormat);
 				}
-
-				post.text = $.trim(post.text);
 
 				if (!post.locations || !post.locations.length || post.location_unlimited) {
 					post.locations = [];
@@ -175,11 +162,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.locations = [];
 			}
 
-			if(!data.valid_until_unlimited) {
-				data.valid_until_unlimited = false;
+			if(data.valid_until_unlimited) {
+				data.valid_until = 'unlimited';
 			}
 
 			data.type = values[data.type];
+			delete data.valid_until_unlimited;
 			return data;
 		};
 
@@ -400,7 +388,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.init = function() {
 			$scope.newPost = !$scope.post;
-			$scope.post = $scope.transformDataIn($scope.post) || $scope.defaultPost;
+			$scope.post = $scope.transformDataIn($scope.post);
 			$scope.recountImages();
 
 			if($scope.preset)

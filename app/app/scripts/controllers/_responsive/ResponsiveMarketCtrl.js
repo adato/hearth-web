@@ -71,7 +71,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
             // is this my post? if so, show controll buttons and etc
             scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
 
-            scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
+            scope.isExpiringSoon = !scope.item.valid_until == 'unlimited' && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
             return scope;
 		};
 
