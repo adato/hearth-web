@@ -2,7 +2,12 @@
 @media #{$medium-up} { 
 
 	body .main-container {
+		min-width:960px;
+		max-width:960px;
 		padding: 0 3*$ui-small-grid-size;
+	}
+	.max-web-width {
+		max-width: 960px;
 	}
 
 	#navigation {
