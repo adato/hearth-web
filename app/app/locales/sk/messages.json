@@ -491,8 +491,6 @@
     "activities": {
         "first_person": {
             "new_post": "<p>Pridal(a) ste inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating": "<p>Ohodnotil(a) ste už&iacute;vateľa <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received": "<p>Dostal(a) ste hodnotenie od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_reply": "<p>Odpovedal(a) ste na inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "wants_into_community": "<p>Prihl&aacute;sil(a) ste sa do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "accepted_into_community": "<p>Prijali v&aacute;s do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -503,14 +501,10 @@
             "new_comm_rating_received": "<p>Dostal(a) ste hodnotenie od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "suspend_post": "<p>Pozastavil(a) ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "prolong_post": "<p>Obnovil(a) ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "publish_post": "<p>Obnovili ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>\n",
-            "new_rating_comm": "<p>Ohodnotil(a) ste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Dostal(a) ste hodnotenia od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "publish_post": "<p>Obnovili ste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>\n"
         },
         "third_person": {
             "new_post": "<p>{{user}} pridal(a) inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating": "<p>{{user}} ohodnotil(a) už&iacute;vateľa&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received": "<p>{{user}} dostal(a) hodnotenie od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_reply": "<p>{{user}} odpovedal(a) na inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "wants_into_community": "<p>{{user}} prihl&aacute;sil(a) sa do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "accepted_into_community": "<p>{{user}} bol(a) prijat&yacute;\/&aacute; do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -529,9 +523,43 @@
             "new_comm_rating_received": "<p>Už&iacute;vateľ dostal hodnotenie od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "suspend_post": "<p>Už&iacute;vateľ pozastavil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "prolong_post": "<p>Už&iacute;vateľ obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "publish_post": "<p>Používateľ obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>\n",
-            "new_rating_comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnotenie od <a href=\"{{url}}\">{{name}}<\/a>. Super!<\/p>"
+            "publish_post": "<p>Používateľ obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>\n"
+        },
+        "rating": {
+            "first": {
+                "user": {
+                    "user": "<p>Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Ohodnotil(a) jste komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}} ohodnotil(a) uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                },
+                "comm": {
+                    "user": "<p>{{user}} ohodnotila uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}} ohodnotila komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            }
+        },
+        "rating_received": {
+            "first": {
+                "user": {
+                    "user": "<p>Dostal(a) jste hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Dostal(a) jste hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}} dostal(a) hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}}&nbsp;dostal(a) hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                },
+                "comm": {
+                    "user": "<p>{{user}} dostala hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}} dostala hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            }
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Ste prihlásený pomocou externej sociálnej služby, takže si heslo musíte zmeniť tam.",
