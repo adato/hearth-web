@@ -1,16 +1,8 @@
 // foundation breakpoint for larger screens 
 @media #{$medium-up} { 
 
-	.web-width {
-		width: 940px;
-	}
 	body .main-container {
-		min-width:960px;
-		max-width:960px;
 		padding: 0 3*$ui-small-grid-size;
-	}
-	.max-web-width {
-		max-width: 960px;
 	}
 
 	#navigation {
@@ -24,8 +16,6 @@
 	.off-canvas-wrap {
 		overflow-y:auto;
 	}
-
-	.columns { padding-left:0; padding-right:0; }
 
 	.profile-view {
 		max-width: unset !important;
