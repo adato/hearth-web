@@ -38,8 +38,7 @@
 		}
 
 		@media #{$small-only} { 
-			.button-send, select.messages-filter { width: 96%; margin:$ui-small-grid-size; margin-bottom:2*$ui-small-grid-size; }
-			.button-send { margin:$ui-small-grid-size 7px;}
+			.button-send, select.messages-filter { width:100% }
 		}
 	}
 	.conversations {
@@ -195,7 +194,7 @@
 	}
 
 	.conversation-detail-container {
-		width: 600px;
+		width: 570px;
 		padding: 20px;
 		padding-right: 10px;
 		max-height: 100%;
@@ -354,7 +353,6 @@
 				    max-height:100%;
 				    
 				    article {
-				    	width: 560px;
 				    	margin-right: 45px;
 				    	margin-top: 10px;
 					    p {

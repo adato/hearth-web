@@ -8,7 +8,7 @@
   }
   header {
     .user-basic {
-      padding: 0 1rem 1rem;
+      padding: 0 0 1rem 0;
       h1 {
         overflow: hidden;
         line-height: 1.5;
@@ -37,7 +37,6 @@
     @media #{$small-only} {
       h1 { display:block !important; }
       .button-bar { float:none !important; margin-left:0 !important; }
-      .highlights { zoom:0.8; }
     }
 
     .button-bar {
@@ -50,10 +49,7 @@
     .highlights {
       display: block;
       min-height: 320px;
-      padding: 1rem;
-
-
-
+      padding: 1rem 0;
 
       .avatar {
         box-shadow: 1px 0 16px 0 #fff;
@@ -426,7 +422,7 @@
     padding: 0;
     border-radius: $global-radius;
     box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
-    margin: 3*$ui-small-grid-size (3*$ui-small-grid-size) / 2;
+    margin: 3*$ui-small-grid-size 0;
     h3 {
       font-size: 120%;
       color: color(3);
