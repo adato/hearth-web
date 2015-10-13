@@ -12,7 +12,7 @@
             <label>{{ 'EMAIL_SHARING.ADDRESS_LABEL' | translate }}</label>
             <br />
             <input type="text" ng-focus="showErrors.emails = false" ng-blur="showErrors.emails = true; testEmailsFormat(sharing.emails)" placeholder="{{ 'EMAIL_SHARING.ADDRESS_PLACEHOLDER' | translate }}" ng-model="sharing.emails" name="emails" required />
-            <div class="moveUp error" ng-show="showErrors.emails">
+            <div class="moveUp error" ng-show="showErrors.emails && emailForm.$dirty">
                 <span ng-show="emailForm.emails.$error.required">{{ 'ERR_NOT_FILLED_SHARING_EMAIL_ADDRS' | translate }}</span>
                 <span ng-show="emailForm.emails.$error.format">{{ 'ERR_SHARING_EMAIL_ADDRESS_INVALID' | translate }}</span>
             </div>
