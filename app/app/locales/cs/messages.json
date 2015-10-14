@@ -36,7 +36,8 @@
             "LOCATION_ANYWHERE_HEADING": "Kdekoliv",
             "SHARE_WITH": "Sdílet přes",
             "PUBLISHED_AT": "Přidáno",
-            "REMOVE_FROM_COMMUNITY": "Odstranit z komunity"
+            "REMOVE_FROM_COMMUNITY": "Odstranit z komunity",
+            "CLICK_TO_COLLAPSE": "Zobrazit zkrácený text"
         },
         "EDIT_FILTER": "Upravit filtr",
         "FILTER_NOT_FOUND": "<p>Ajta! Zadan&eacute; kombinaci neodpov&iacute;d&aacute; vůbec, ale vůbec ž&aacute;dn&yacute; inzer&aacute;t.<br \/>Co nějak&eacute; to krit&eacute;rium ubrat?<\/p>",
@@ -347,7 +348,7 @@
     "NO_REPLY": "Zatím nikdo nic.",
     "NO_WISHES_FOUND": "ještě jste se nezapojili",
     "OFFER": "Věnuji",
-    "OFFER_GIFT": "<b>Nabídnout<\/b> dar",
+    "OFFER_GIFT": "<p><b>Nabídnout<\/b> dar</p>",
     "OK": "OK",
     "OK_ACCOUNT_CREATED": "Hurá! Váš účet v Hearth byl právě vytvořen.",
     "OK_CHECK_YOUR_EMAIL_AND_CONFIG": "Na váš email jsme právě poslali ověřovací odkaz. Klikněte na něj a můžete hned skočit do dění v Hearth. Těšíme se.",

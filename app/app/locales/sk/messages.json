@@ -36,7 +36,8 @@
             "LOCATION_ANYWHERE_HEADING": "Kdekoľvek",
             "SHARE_WITH": "Zdieľať cez",
             "PUBLISHED_AT": "Pridané",
-            "REMOVE_FROM_COMMUNITY": "Odstrániť z komunity"
+            "REMOVE_FROM_COMMUNITY": "Odstrániť z komunity",
+            "CLICK_TO_COLLAPSE": "Zobrazit zkrácený text"
         },
         "EDIT_FILTER": "Upraviť filter",
         "FILTER_NOT_FOUND": "Hups, zadanej kombinácii nezodpovedá vôbec, ale vôbec žiadny inzerát.<br \/>Čo takto nejaké to kritérium ubrať?",

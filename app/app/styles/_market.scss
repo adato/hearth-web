@@ -1,5 +1,6 @@
-    $itemBorderWidth: 5px;
-$itemBorderColor: darken(white, 30%);
+$itemBorderWidth: 5px;
+$itemBorder: 2px solid darken(white, 30%);
+
 .not-found-box {
     padding: $ui-grid-size;
     max-width: 770px;
@@ -64,7 +65,7 @@ body {
             position: absolute;
             right: 0;
             top: 0;
-            z-index: 999;
+            z-index: 20;
             a {
                 height: 2em;
                 text-align: center;
@@ -130,6 +131,7 @@ body {
             padding-right: 2em;
         }
         ._content {
+        	margin-bottom: 50px;
             ._title {
                 h2 {
                     font-size: rem-calc(16);
@@ -149,12 +151,26 @@ body {
                 color: color(5);
             }
         }
+
+    }
+
+
+    .location {
+
+    	li {
+    		list-style: none;
+    		display: inline-block;
+    	}
     }
 }
 
 @media #{$large-up} {
     ._market {
         article {
+    		&.row {
+    			margin-bottom: 20px;
+			}
+
             &.need {
                 ._content ._title h2 a span {
                     color: color(1);
@@ -167,13 +183,24 @@ body {
             }
         }
 
-        .location-item {
-        	.delimiter::after {
-        		content: "; ";
-        	}
+
+        .location {
+    		margin-bottom: 10px;
+
+		    &>ul {
+	            display: inline-block;
+	    		list-style: none;
+	    		margin: 0px;
+
+	        	.delimiter::after {
+	        		content: ";";
+	        		margin-right: 5px;
+	        	}
+		    }
         }
     }
 }
+
 @media #{$medium-down} {
     #market-item-list {
         margin-top: 20px;
@@ -181,9 +208,9 @@ body {
     ._market {
         article {
             &.row {
-                margin-bottom: 50px;
-                border: 2px solid $itemBorderColor;
-                border-radius: 4px;
+                margin-bottom: 100px;
+                border: $itemBorder;
+                border-radius: 8px;
                 background-color: white;
             }
             &.offer {
@@ -197,11 +224,11 @@ body {
             }
 
             .item-top {
-            	height: 50px;
+            	height: 40px;
             	padding-bottom: 0.5em;
             	padding-top: 0.2em;
             	border-bottom: 2px solid #BBB;
-            	margin-bottom: 40px;
+            	margin-bottom: 20px;
 
 	            ._avatar {
 				    background-color: white;
@@ -219,14 +246,21 @@ body {
             	}
             }
 
-            ._content ._title h2 {
-            	font-size: 1.5rem !important;
+            ._content {
+            	margin-bottom: 25px;
+
+            	._title h2 {
+	            	font-size: 1.5rem !important;
+		            margin-bottom: 10px;
+	            }
             }
 
             .location {
             	padding: 20px;
 			    background-color: #F3F3F3;
 			    position: relative;
+            	margin-bottom: 10px;
+
 
 			    i.fa-map-marker {
 		       		background-color: white;
@@ -242,19 +276,27 @@ body {
 				    margin-top: -20px;
 			    }
 
-			    &>span {
+			    &>ul {
+    	            margin: 0px;
     	            margin-left: 60px;
 				    float: left;
 				    font-size: 1rem;
 				    color: #444;
 				    font-weight: 600;
 			    	display: block;
+
+			    	li {
+			    		display: block;
+			    	}
 			    }
             }
 
             .text {
+        		margin-bottom: 10px;
+        		font-size: 1.2rem;
             	p {
             		font-size: 1.2rem;
+            		margin-bottom: 0px;
             	}
             }
         }
@@ -278,13 +320,66 @@ body {
         }
         ._reply-info {
             position: absolute;
-            bottom: -50px;
+            bottom: -40px;
             font-weight: bold;
+            font-size: 18px;
         }
         .action-dropdown {
-            padding-top: 5px;
-            padding-right: 20px;
+            padding-right: 10px;
             font-size: 25px;
         }
+
+        ._action {
+	        text-align: center;
+		    position: absolute;
+		    left: 0px;
+		    right: 0px;
+		    bottom: -40px;
+
+		    .controll {
+		    	margin: auto;
+		    	float: none;
+		    	position: relative;
+		    	background-color: white;
+			    padding: 8px;
+			    border-radius: 8px;
+			    border: $itemBorder;
+			    height: 76px;
+
+			    &>span {
+		    	    z-index: 2000;
+				    position: relative;
+				    top: 25px;
+			    }
+
+		    	.button {
+		    		height: 3.5rem;
+
+		    		p {
+		    			font-size: 1.5rem;
+		    			padding-top: 10px;
+		    		}
+		    	}
+
+		    	.post-edit-buttons-container {
+		    		padding-top: 20px;
+		    		a {
+					    margin-left: 0.70em;
+					    font-size: 2em;;
+					    display: inline-block !important;
+		    		}
+		    	}
+
+		    	.border {
+	    		    position: absolute;
+				    background-color: white;
+				    right: -2px;
+				    left: -2px;
+				    top: -2px;
+				    bottom: 31px;
+		    	}
+		    }
+        }
+
     }
 }
