@@ -166,6 +166,12 @@ body {
                 }
             }
         }
+
+        .location-item {
+        	.delimiter::after {
+        		content: "; ";
+        	}
+        }
     }
 }
 @media #{$medium-down} {
@@ -236,12 +242,13 @@ body {
 				    margin-top: -20px;
 			    }
 
-			    span {
+			    &>span {
     	            margin-left: 60px;
 				    float: left;
 				    font-size: 1rem;
 				    color: #444;
 				    font-weight: 600;
+			    	display: block;
 			    }
             }
 

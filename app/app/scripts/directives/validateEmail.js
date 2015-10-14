@@ -18,8 +18,13 @@ angular.module('hearth.directives').directive('validateEmail', ['Validators', fu
 
         // this will overwrite the default Angular email validator
         ctrl.$validators.email = function (modelValue) {
-          var validatorResult = Validators.email(modelValue) || false;
-          return ctrl.$isEmpty(modelValue) || validatorResult;
+          var validatorResult, re;
+          
+          if(attrs.hasOwnProperty("adminEmail"))
+            re = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))(#[0-9a-zA-Z]*){0,1}$/);
+
+          validatorResult = Validators.email(modelValue, re);
+          return ctrl.$isEmpty(modelValue) || validatorResult || false
         };
       }
     }

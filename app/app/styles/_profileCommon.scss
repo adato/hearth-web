@@ -281,7 +281,7 @@
     margin-top: 10px;
 
     &>div {
-      margin-left: 30px;
+      margin-left: 50px;
     }
   }
     
@@ -310,6 +310,9 @@
       float:left;
     }
 
+    .rating-reply > div {
+      margin-left: 30px;
+    }
     .name {
       text-align: center;
       color: #383838;

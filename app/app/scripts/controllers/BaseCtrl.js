@@ -679,7 +679,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
               $timeout(function () {
                 $rootScope.scrollToElement("#rating_" + id);
                 $("#rating_" + id).find('textarea').focus();
-
               });
               return;
             }

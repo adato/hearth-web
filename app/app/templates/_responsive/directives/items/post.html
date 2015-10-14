@@ -57,11 +57,11 @@
         </div>
       </div>
 
-      <p ng-if="item.location.length" class="location row"><i class="fa fa-map-marker"></i>
+      <p ng-if="item.locations.length" class="location row"><i class="fa fa-map-marker"></i>
         <span ng-if="item.location_unlimited">{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}</span>
         <span ng-if="!item.location_unlimited">
-          <span ng-repeat="(locationId, location) in item.locations" ng-if="location.address">
-						{{ location.short_address }}<span ng-if="!$last">;</span>
+          <span ng-repeat="(locationId, location) in item.locations" class="location-item" ng-if="location.short_address">
+						{{ location.short_address }}<span class="delimiter" ng-if="!$last"></span>
 					</span>
         </span>
       </p>
