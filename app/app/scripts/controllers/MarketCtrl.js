@@ -170,6 +170,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
         // iterativly add loaded data to the list and then call finishLoading
         addItemsToList($('#market-item-list'), data, 0, finishLoading.bind($scope));
         $rootScope.$broadcast('postsLoaded');
+      }, function(err) {
+        // error handler
+
+        $scope.loaded = true;
+        $(".loading").hide();
       });
     };
 
@@ -205,7 +210,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
     /**
      * When applied filter - refresh post on marketplace
      */
-    function refreshPosts() {
+    $scope.refreshPosts = function() {
       $scope.filterIsOn = Filter.isSet();
       refreshTags();
       ItemFilter.clear();
@@ -219,7 +224,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
       $scope.load();
     }
 
-    $scope.$on('filterApplied', refreshPosts);
+    $scope.$on('filterApplied', $scope.refreshPosts);
     // $scope.$on('filterReseted', function () {
     //   console.log('RESETED');
     //   refreshPosts();

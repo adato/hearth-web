@@ -45,7 +45,8 @@
         "SHOW_POSTS_IN_LIST": "Zobrazit seznam",
         "SHOW_POSTS_ON_MAP": "Zobrazit na mapě",
         "HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
-        "CREATE_NEW_ADD": "Vložit nový dar nebo přání"
+        "CREATE_NEW_ADD": "Vložit nový dar nebo přání",
+        "REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
     },
     "404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáte, pravděpodobně neexistuje.",
     "404_NOT_FOUND_TITLE": "404 Nenalezeno",
@@ -491,8 +492,6 @@
     "activities": {
         "first_person": {
             "new_post": "Přidal(a) jste inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
-            "new_rating": "Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}<\/a>.",
-            "new_rating_received": "Dostal(a) jste hodnocení od <a href=\"{{url}}\">{{name}}<\/a>.",
             "new_reply": "Odpověděl(a) jste na inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
             "wants_into_community": "Přihlásil(a) jste se do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
             "accepted_into_community": "Přijali vás do komunity <a href=\"{{url}}\">{{name}}<\/a>.",
@@ -503,14 +502,10 @@
             "new_comm_rating_received": "<p>Dostal(a) jste hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "suspend_post": "<p>Pozastavil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "prolong_post": "<p>Obnovil(a) jste&nbsp;inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "publish_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_comm": "<p>Ohodnotil(a) jste komunitu <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Dostal(a) jste hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+            "publish_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
         },
         "third_person": {
             "new_post": "<p>{{user}} přidal(a) inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating": "<p>{{user}} ohodnotil(a) uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received": "<p>{{user}} dostal(a) hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "new_reply": "<p>{{user}} odpověděl(a) na inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "wants_into_community": "<p>{{user}} přihl&aacute;sil(a) se do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "accepted_into_community": "<p>{{user}} byl přijat do komunity <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -529,9 +524,43 @@
             "new_comm_rating_received": "<p>Uživatel dostal&nbsp;hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "suspend_post": "<p>Uživatel pozastavil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
             "prolong_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "publish_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-            "new_rating_received_comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od <a href=\"{{url}}\">{{name}}<\/a>. Super!<\/p>"
+            "publish_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+        },
+        "rating": {
+            "first": {
+                "user": {
+                    "user": "<p>Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Ohodnotil(a) jste komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}} ohodnotil(a) uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                },
+                "comm": {
+                    "user": "<p>{{user}} ohodnotila uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}} ohodnotila komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            }
+        },
+        "rating_received": {
+            "first": {
+                "user": {
+                    "user": "<p>Dostal(a) jste hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Dostal(a) jste hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            },
+            "third": {
+                "user": {
+                    "user": "<p>{{user}} dostal(a) hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}}&nbsp;dostal(a) hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                },
+                "comm": {
+                    "user": "<p>{{user}} dostala hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}} dostala hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                }
+            }
         }
     },
     "CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH": "Jste přihlášení pomocí externí sociální služby, takže si heslo musíte změnit tam.",
@@ -1274,8 +1303,8 @@
     "LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
     "RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
     "RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíte se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
-    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je nekonečn&yacute; prostor &scaron;tědr&yacute;ch možnost&iacute;. Je jen na v&aacute;s, jak ho budete použ&iacute;vat. S&iacute;la Hearthu lež&iacute; za magickou branou zvanou registrace. Už jste opravdu bl&iacute;zko!<\/p>",
-    "SIGNUP_HEADING_FB": "Pojďte dál",
+    "SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tědr&aacute; soci&aacute;ln&iacute; s&iacute;ť pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteř&iacute; maj&iacute; odvahu darovat. M&aacute;te ji i vy? Svůj profil vytvoř&iacute;te během chvilky a svět darů je r&aacute;zem i v&aacute;&scaron;.<\/p>",
+    "SIGNUP_HEADING_FB": "Přidejte se",
     "SIGN_UP": {
         "CONTINUE_TO_REGISTER": "Zavřít a pokračovat v registraci."
     }

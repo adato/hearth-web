@@ -1,25 +1,25 @@
 <article class="_item {{item.type}} row" id="post_{{:: item._id }}">
 
-  <div class="action-dropdown" ng-if="!mine">
+  <div class="controll-buttons action-dropdown" ng-if="!mine">
     <a class="fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}"
        dropdown="#more-actions-{{:: item._id }}"></a>
-  </div>
 
-  <div class="more-actions-dropdown" id="more-actions-{{:: item._id }}">
-    <a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{::
-      'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-    <a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}"
-       ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-    <a ng-if="! mine && item.admin_communities.length"
-       title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{::
-      'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+    <div class="more-actions-dropdown" id="more-actions-{{:: item._id }}">
+      <a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{::
+        'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+      <a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}"
+         ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+      <a ng-if="! mine && item.admin_communities.length"
+         title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{::
+        'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+    </div>
   </div>
 
   <!-- MARKET ITEM Start -->
-  <div class="medium-2 columns">
+  <div class="medium-2 columns item-top">
     <!-- MARKET ITEM AVATAR Start -->
     <div class="row v-m-small">
-      <div class="_avatar small-3 medium-12 columns">
+      <div class="_avatar small-2 medium-12 column">
         <div class="_photo">
           <a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
             <img ng-src="{{item.author.avatar.large}}" alt="{{item.author.name}}"/>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="_karma small-3 medium-12 columns">
-        <div class="karma" ng-class="{empty: !item.karma}"
+        <div class="karma" ng-class="{empty: !item.karma, separator: !item.author.up_votes || !item.author.down_votes}"
              title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
           <div class="positive" style="width:{{:: item.karma}}"></div>
         </div>
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <p class="location"><i class="fa fa-map-marker"></i>
+      <p ng-if="item.location.length" class="location row"><i class="fa fa-map-marker"></i>
         <span ng-if="item.location_unlimited">{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}</span>
         <span ng-if="!item.location_unlimited">
           <span ng-repeat="(locationId, location) in item.locations" ng-if="location.address">
@@ -66,10 +66,10 @@
         </span>
       </p>
 
-      <div ng-if="item.text.length < 270 || item.expanded == true">
+      <div class="text" ng-if="item.text.length < 270 || item.expanded == true">
         <p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
       </div>
-      <div ng-if="item.text.length >= 270 && !item.expanded">
+      <div class="text" ng-if="item.text.length >= 270 && !item.expanded">
         <p>
           <span ng-bind-html="item.text_short | linky:'_blank'"></span> <a ng-click="item.expanded = true"> {{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
         </p>
@@ -120,6 +120,7 @@
               <a title="{{:: 'AD_REMOVE_LABEL' | translate}}"
                  ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"><i
                 class="fa fa-times"></i></a>
+              <a class="hide-for-large-up" title="{{:: 'SHARE' | translate}}"><i class="fa fa-share-alt"></i></a>
             </div>
           </div>
 
