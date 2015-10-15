@@ -88,8 +88,8 @@
             "other": "{{count}} people waiting for approval"
         },
         "COMMUNITY_HAS_X_MEMBERS": {
-            "one": "Community has <b>{{count}}</b><br /> member",
-            "other": "Community has <b>{{count}}</b><br /> members"
+            "one": "Community has one member",
+            "other": "Community has {{count}} members"
         },
         "COMMUNITY_REMOVE_ARE_YOU_SURE": "Do you really want to delete this community?",
         "COMMUNITY_REMOVE_LABEL": "Delete community",
