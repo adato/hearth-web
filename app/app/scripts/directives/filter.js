@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('filter', [
         filterShown: '=',
         filterSelected: '='
       },
-      templateUrl: 'templates/_responsive/directives/filter.html',
+      templateUrl: 'templates/directives/filter.html',
       link: function (scope, element) {
         var searchBoxElement = $('input#geolocation', element),
           searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),

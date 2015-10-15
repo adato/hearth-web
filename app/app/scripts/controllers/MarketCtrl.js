@@ -25,7 +25,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
     var ItemFilter = new UniqueFilter();
     var templates = {};
     var itemTypes = ['post', 'community', 'user', 'conversation'];
-    var templateDir = 'templates/_responsive/directives/items/';
+    var templateDir = 'templates/directives/items/';
 
     if ($stateParams.query) {
       $rootScope.searchQuery.query = $stateParams.query;

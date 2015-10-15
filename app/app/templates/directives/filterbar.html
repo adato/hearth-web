@@ -1,19 +1,22 @@
-<div class="filterbar-wrap">
-	<div class="insert-button-container">
-		<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button">{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}</a>
-	</div>
-	<div class="filter-button-container">
-		<a ng-click="toggleFilter()" ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" class="fleft">
-			<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
-			<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
-			<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
-		</a>
-		<a ng-show="filterOn" ng-click="cancelFilter()" class="filter-cancel-button">{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}</a>
-
-		<a ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}" class="fright">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' | translate}}</a>
-		<a ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}" class="fright">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' | translate}}</a>
-	</div>
-	<article class="filter-container animated-hidden small-12 pull-right" ng-class="{ 'animated-hidden': !filterSelected }" >
-		<filter id="filter" filter-shown="filterSelected"></filter>
-	</article>
+<div class="_filterbar-wrap">
+  <div class="_filterbar-header row hidden-for-large-up">
+    <div class="small-6 columns">
+      <a ng-click="toggleFilter()" ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}">
+        <i ng-show="filterSelected" class="fa fa-chevron-up"></i>
+        <i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
+        <span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
+      </a>
+    </div>
+    <div class="small-6 columns">
+      <a ng-show="filterOn" ng-click="cancelFilter()">{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate |
+        lowercase}}</a>
+      <!--a ng-if="!mapSelected" href="{{:: basePath }}map{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_ON_MAP' |
+        translate}}</a>
+      <a ng-if="mapSelected" href="{{:: basePath }}{{ searchParams }}">{{::'MARKETPLACE.SHOW_POSTS_IN_LIST' |
+        translate}}</a-->
+    </div>
+  </div>
+  <article class="filter-container animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
+    <filter id="filter" filter-shown="filterSelected" filter-selected="filterType"></filter>
+  </article>
 </div>

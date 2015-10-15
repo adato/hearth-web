@@ -12,7 +12,7 @@ angular.module('hearth.directives').directive('filterbar', [
 		return {
 			replace: true,
 			restrict: 'E',
-			templateUrl: 'templates/_responsive/directives/filterbar.html',
+			templateUrl: 'templates/directives/filterbar.html',
 			scope: true,
 			link: function(scope) {
         scope.filterType = $state.params.type;
