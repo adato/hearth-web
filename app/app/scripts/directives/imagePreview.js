@@ -13,16 +13,48 @@ angular.module('hearth.directives').service('ImageLib', ['$http', function ($htt
 		    var ratio = Math.min(ratioX, ratioY);
 		}
 
-	    return {width: (width * ratio), height: (height * ratio)};
+	    return {width: Math.floor(width * ratio), height: Math.floor(height * ratio)};
 	};
 
-	this.resize = function(img, newSize) {
+	this.resize = function(img, newSize, outputCanvas) {
 		var canvas = document.createElement('canvas');
 		canvas.width = newSize.width;
 		canvas.height = newSize.height;
 		var ctx = canvas.getContext("2d");
 		ctx.drawImage(img, 0, 0, newSize.width, newSize.height);
-	    return canvas.toDataURL("image/jpeg");
+		return outputCanvas ? canvas : canvas.toDataURL("image/jpeg");
+	};
+
+	this.cropSquareCenter = function(img, size, done) {
+		var oh = 0, ow = 0;
+		var squareSize = Math.min(size.width, size.height);
+
+		if(size.width > size.height) {
+			ow = Math.round((size.width - squareSize) / 2);
+
+		} else if(size.width < size.height) {
+			oh = Math.round((size.height - squareSize) / 2);
+		}
+
+		var canvas = document.createElement('canvas');
+		canvas.width = squareSize;
+		canvas.height = squareSize;
+		var ctx = canvas.getContext("2d");
+		ctx.drawImage(img, ow, oh, squareSize, squareSize, 0, 0, squareSize, squareSize);
+	    return done(canvas.toDataURL("image/jpeg"));
+	};
+
+	this.cropSmart = function(img, size, done) {
+		var squareSize = Math.min(size.width, size.height);
+
+		SmartCrop.crop(img, {width: squareSize, height: squareSize}, function(result){
+			var canvas = document.createElement('canvas');
+			canvas.width = squareSize;
+			canvas.height = squareSize;
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(img, result.topCrop.x, result.topCrop.y, result.topCrop.width, result.topCrop.height, 0, 0, result.topCrop.width, result.topCrop.height);
+		    done(canvas.toDataURL("image/jpeg"));
+		});
 	};
 
     this.upload = function(file, uploadUrl, done, doneErr){
@@ -104,12 +136,14 @@ angular.module('hearth.directives').directive('imagePreview', [
 				function isInvalidFile(file) {
 					var device = detectDevice();
 					var imageType = /image.*/;
-					
+					if(!file)
+						return true;
+
 					if (!device.android) {
 					 // Since android doesn't handle file types right, do not do this check for phones
 						if(!file || !file.type) {
 							console.log("File does not have type attribute", file);
-							return;
+							return true;
 						}
 
 						if (!file.type.match(imageType)) {
@@ -155,10 +189,17 @@ angular.module('hearth.directives').directive('imagePreview', [
 
 					// if there is not upload resource, upload images later
 					if(!scope.uploadResource) {
-						if(imgFile.total > limitSize * 1024 * 1024)
-							return scope.error.badSize = true;
+						var size = ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
+						
+						var canvas = ImageLib.resize(img, size, true);
+						return ImageLib.cropSmart(canvas, size, function(resized) {
+							
+							resized = ExifRestorer.restore(imgFile.target.result, resized);
 
-						return pushResult({file: imgFile.target.result}, imgFile);
+							if(resized.split(',').length == 1)
+								resized = 'data:image/jpeg;base64,'+resized;
+							pushResult({file: resized}, {total: 0});
+						});
 					}
 
 					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize
