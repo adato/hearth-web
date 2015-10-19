@@ -1,4 +1,3 @@
-#navigation { height:$ui-navbar-height;}
 
 .top-bar,
 .left-off-canvas-menu {
@@ -14,21 +13,12 @@
     }
 }
 
-.tab-bar-closed {
-    .menu-icon{
-        display: inline-block;
-        margin-right: 20px;
-        text-indent: 1.1875rem;
-        position: relative;
-        top: -1px;
-    }
-}
-
-
 .orange-bar {
     background-color: color(1);
     box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
-    padding:10px 0;
+    padding-bottom: 15px;
+    transition: max-height .3s ease-in-out;
+    overflow: hidden;
 
     .logo {
         display: inline-block;
@@ -123,12 +113,45 @@
 }
 
 .tab-bar {
-    
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: unset !important;
+
+    &.tab-bar-closed {
+        .menu-icon{
+            display: inline-block;
+            margin-right: 20px;
+            text-indent: 1.1875rem;
+            position: relative;
+            top: -1px;
+        }
+    }
+
+    span {
+        float: right;
+        margin-right: 4px;
+        letter-spacing: 9px;
+        font-size: 29px;
+        cursor: pointer;
+
+        i {
+            cursor: pointer;
+
+            &.active {
+                color: #FFD166;
+            }
+        }
+    }
+
     .fa-bars {
         font-size: 30px;
         position: relative;
         top: 10px;
         left: -10px;
+    }
+
+    i:hover {
+        color: #DDD;
     }
 }
 
@@ -155,5 +178,18 @@
         
         font-weight: bold;
         font-size: 15px;
+    }
+}
+
+
+@media #{$large-up} {
+    #homepage-hero {
+        margin-top: 120px;
+    }
+
+    .orange-bar {
+        padding-bottom: 10px !important;
+        padding-top: 18px !important;
+        max-height: unset !important;
     }
 }

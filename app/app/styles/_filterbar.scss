@@ -31,15 +31,6 @@
         opacity:1;
         max-height:800px;
     }
-    .animated-hidden {
-        opacity:0;
-        max-height:0 !important;
-        margin-top:0;
-        margin-bottom:0;
-        padding-top:0;
-        padding-bottom:0;
-        overflow:hidden;
-    }
 
     // RESPONSIVE //
     @media #{$small-only} { 

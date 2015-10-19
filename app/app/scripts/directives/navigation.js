@@ -12,9 +12,9 @@ angular.module('hearth.directives').directive('navigation', [
             restrict: 'E',
             scope: true,
             replace: true,
-            templateUrl: 'templates/navigation.html',
+            templateUrl: 'templates/directives/navigation.html',
             link: function($scope, element) {
-              console.log($scope);
+                $scope.searchHidden = true;
             }
 
         };

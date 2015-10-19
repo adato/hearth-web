@@ -74,7 +74,7 @@
 
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
-      <section ng-if="initFinished" ng-include="'/app/templates/navigation.html'" id="navigation"></section>
+      <navigation ng-if="initFinished"></navigation>
       <section id="homepage-hero">
         <div class="all-visible max-width">
 
@@ -202,6 +202,7 @@
 
     <script src="scripts/filters/filters.js"></script>
 
+    <script src="scripts/directives/navigation.js"></script>
     <script src="scripts/directives/ratingReply.js"></script>
     <script src="scripts/directives/analyticsCustom.js"></script>
     <script src="scripts/directives/communitySelector.js"></script>

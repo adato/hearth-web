@@ -317,6 +317,8 @@ body {
       bottom: -40px;
 
       .controll {
+        width: auto;
+        display: inline-block;
         min-width: 170px;
         margin: auto;
         float: none;
@@ -330,13 +332,14 @@ body {
         & > span {
           z-index: 2000;
           position: relative;
-          top: 25px;
+          top: 35px;
+          padding: 0px 10px;
         }
 
         .button {
           height: 3.5rem;
           display: table;
-
+          padding: 0px 10px;
           p {
             display: table-cell;
             vertical-align: middle;
