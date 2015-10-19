@@ -136,7 +136,6 @@ body {
   }
 
   .location {
-
     li {
       list-style: none;
       display: inline-block;
@@ -324,10 +323,11 @@ body {
         float: none;
         position: relative;
         background-color: white;
-        padding: 8px;
+        padding: 6px;
         border-radius: 8px;
         border: $itemBorder;
-        height: 76px;
+        height: 70px;
+        min-width: 60%;
 
         & > span {
           z-index: 2000;
@@ -354,7 +354,8 @@ body {
           padding-right: 0.2em;
 
           .controll-buttons {
-            width: 100%;
+            width: 70%;
+            margin: auto;
             display: flex;
             justify-content: space-between;
 
