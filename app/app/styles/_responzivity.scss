@@ -1,11 +1,13 @@
-// foundation breakpoint for larger screens 
-@media #{$medium-up} { 
-
+// foundation breakpoint for large screens 
+@media #{$large-up} { 
 	body .main-container {
 		min-width:960px;
 		max-width:960px;
 		padding: 0 3*$ui-small-grid-size;
 	}
+}
+
+@media #{$medium-up} {
 	.max-web-width {
 		max-width: 960px;
 	}
@@ -15,7 +17,26 @@
 	}
 }
 
+// medium screens only
+@media #{$medium-only} {
+	.messages .conversations {
+		width:100%;
+		.nano-content {	right: 0 !important;}
+		.nano-content-inner { width: 100% !important; }
+	}
 
+	.messages .conversation-detail-container {
+		width:100%;
+		position:absolute;
+		left:0;
+		top:120px;
+		.conversation-detail .messages-container article.message {
+			width:unset;
+		}
+	}
+
+	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
+}
 // small screens only
 @media #{$small-only} {
 	.off-canvas-wrap {

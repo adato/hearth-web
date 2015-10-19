@@ -36,7 +36,7 @@
                 overflow:hidden;
                 margin-left:$ui-small-grid-size;
                 margin-right:$ui-small-grid-size;
-                max-width:49.4%;
+                width:100%;
                 .content {
                     height: 10.6rem;
                     overflow: hidden;
@@ -60,6 +60,9 @@
     }
 
     // RESPONSIVE //
+    @media #{$large-up} {
+        max-width:49.4%;
+    }
     @media #{$small-only} {
         .community-list.small .community-item {
             &:nth-child(2n), &:nth-child(2n-1) {

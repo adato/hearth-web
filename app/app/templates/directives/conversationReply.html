@@ -18,7 +18,7 @@
 		<div class="error fleft" ng-show="msgReplyForm.text.$invalid && showError.text">
             <span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
         </div>
-       <a href="#" class="left link hide-for-medium-up" ng-click="closeConversation()">
+       <a href="#" class="left link hide-for-large-up" ng-click="closeConversation()">
 	    	{{ 'CLOSE' | translate }}
 	   </a>
        <button ng-disabled="!conversation.is_member" type="submit" class="margin-0 button-send right">
