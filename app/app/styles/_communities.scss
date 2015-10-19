@@ -63,6 +63,13 @@
     @media #{$large-up} {
         max-width:49.4%;
     }
+
+    // duplicates, how to solve this?
+    @media #{$medium-only} {
+        .community-list.small .community-item {
+            margin:0;
+        }
+    }
     @media #{$small-only} {
         .community-list.small .community-item {
             &:nth-child(2n), &:nth-child(2n-1) {

@@ -377,7 +377,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					$scope.loadConversationDetail(paramId, true);
 				else if (list.length) {
 					// do not load on small devices. Load on user request only.
-					if (ResponsiveViewport().isSmall()) {
+					if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) {
 						return false;
 					}
 					$scope.showConversation(list[0], 0, true);

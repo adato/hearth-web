@@ -333,7 +333,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
                     var offset = -50;
                     var measureContainer = $(".messages-container");
                     
-                    if (ResponsiveViewport().isSmall()) {
+                    if (ResponsiveViewport.isSmall()) {
                         // box needs to be tall on mobile devices, so we count on whole-page-height
                         measureContainer = $('#homepage-hero');
                         offset = 0;
