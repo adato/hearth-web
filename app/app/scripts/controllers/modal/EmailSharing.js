@@ -36,6 +36,8 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 		$scope.validate = function(data) {
 			var invalid = false;
 
+			$scope.emailForm.$setDirty();
+
 			if(data.emails.length == 0) {
 				invalid = $scope.showErrors.emails = true;
 
