@@ -18,7 +18,6 @@
     box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
     padding-bottom: 15px;
     transition: max-height .3s ease-in-out;
-    overflow: hidden;
 
     .logo {
         display: inline-block;
@@ -121,16 +120,17 @@
         .menu-icon{
             display: inline-block;
             margin-right: 20px;
-            text-indent: 1.1875rem;
+            text-indent: 0px;
             position: relative;
             top: -1px;
+            left: 25px;
         }
     }
 
     span {
         float: right;
-        margin-right: 4px;
-        letter-spacing: 9px;
+        margin-right: 10px;
+        letter-spacing: 5px;
         font-size: 29px;
         cursor: pointer;
 
@@ -155,6 +155,95 @@
     }
 }
 
+@media #{$medium-down} {
+    
+    .small-search {
+
+        padding: 0px;
+        text-align: center;
+
+        a.button {
+            height: 2.3125rem;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 19px;
+            background-color: #4CCBDE;
+            border-radius: 4px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            color: white;
+            left: 0px;
+            padding-top: 4px;
+            min-width: unset;
+
+            &:hover {
+                background-color: darken(#4CCBDE, 20%);
+            }
+        }
+
+        .search-controll {
+            position: relative;
+            float: right;
+            
+            .search-filters {
+                position: absolute;
+                top: 36px;
+                left: -150px;
+                z-index: 10;
+
+                ul {
+                    background-color: white;
+                    border: 1px solid #DDD;
+                    width: 150px;
+                    text-align: left;
+                    margin-left: 0px;
+                    list-style: none;
+
+                    li {
+                        padding: 10px;
+                        padding-left: 20px;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #EEE;
+                        }
+                    }
+                }
+            }
+        }
+        .middle {
+            overflow: hidden;
+            display: block;
+            position: relative;
+            
+            input {
+                width: 100%;
+                display: block;
+                background-color: white;
+                border-top-right-radius: 0em;
+                border-bottom-right-radius: 0em;
+                margin:0;
+                padding-right: 45px;
+            }
+
+            .search-icons {
+                cursor: pointer;
+                i {
+                    position: absolute;
+                    top: 12px;
+                    right: 30px;
+                    color: #9B9B9B;
+
+                    &.fa-sort-desc {
+                        font-size: 20px;
+                        right: 13px;
+                        top: 6px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media #{$large-up} {
     .top-bar {
         position: fixed;
@@ -171,18 +260,6 @@
         z-index: 40;
     }
 
-}
-
-#unreaded-messages-counter {
-    .alert {
-        
-        font-weight: bold;
-        font-size: 15px;
-    }
-}
-
-
-@media #{$large-up} {
     #homepage-hero {
         margin-top: 120px;
     }
@@ -191,5 +268,14 @@
         padding-bottom: 10px !important;
         padding-top: 18px !important;
         max-height: unset !important;
+    }
+}
+
+
+#unreaded-messages-counter {
+    .alert {
+        
+        font-weight: bold;
+        font-size: 15px;
     }
 }

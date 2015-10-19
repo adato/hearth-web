@@ -15,6 +15,18 @@ angular.module('hearth.directives').directive('navigation', [
             templateUrl: 'templates/directives/navigation.html',
             link: function($scope, element) {
                 $scope.searchHidden = true;
+                $scope.searchHidden = false;
+                $scope.searchFilterDisplayed = false;
+                
+                $scope.toggleSearchFilter = function() {
+
+                    $scope.searchFilterDisplayed = !$scope.searchFilterDisplayed;
+                };
+
+                $scope.selectSearchFilter = function(filter) {
+                    $scope.searchFilterDisplayed = false;
+                    $scope.searchQuery.type = filter;
+                };
             }
 
         };
