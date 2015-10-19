@@ -442,7 +442,6 @@
         bottom: 10px;
         right: 20px;
       }
-    ;
     }
     .buttons {
       text-align: center;
@@ -911,4 +910,8 @@
       text-transform: uppercase;
     }
   }
+}
+
+.no-result {
+  margin-bottom:$ui-grid-size;
 }
