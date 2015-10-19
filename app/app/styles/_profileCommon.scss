@@ -402,6 +402,14 @@
       display: inline-block;
       margin-top: 12px;
     }
+    .author-selector {
+      width:50%;
+      @media #{$small-only} {
+        width:initial;
+      }
+    }
+
+
   }
 }
 
@@ -449,6 +457,7 @@
   }
   .left-pane {
     width:59%;
+    padding-right:3*$ui-small-grid-size;
     .messages {
       text-align: center;
       font-size: 130%;
@@ -668,7 +677,7 @@
   }
     // RESPONSIVE //
     @media #{$small-only} {
-      .left-pane, .right-pane { width:100%; }
+      .left-pane, .right-pane { width:100%; padding:0; }
     } 
 }
 

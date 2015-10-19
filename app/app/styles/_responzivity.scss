@@ -65,11 +65,11 @@
 		width:100%;
 		position:absolute;
 		left:0;
+		top:120px;
 		.conversation-detail .messages-container article.message {
 			width:unset;
 		}
 	}
-	.messages.message-detail-displayed .messages-top { display:none; }
 
 	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
 }
