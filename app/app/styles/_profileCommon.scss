@@ -431,6 +431,7 @@
     border-radius: $global-radius;
     box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
     margin: 3*$ui-small-grid-size 0;
+    overflow-y:auto;
     h3 {
       font-size: 120%;
       color: color(3);
