@@ -430,7 +430,7 @@
   }
   .box {
     background: lighten(color(4), 10%);
-    padding: 0;
+    padding:0 0 1px 0;
     border-radius: $global-radius;
     box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
     margin: 3*$ui-small-grid-size 0;
