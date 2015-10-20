@@ -38,6 +38,9 @@
       h1 { display:block !important; }
       .button-bar { float:none !important; margin-left:0 !important; }
     }
+    @media #{$medium-only} {
+      .highlights { zoom:.82; }
+    }
 
     .button-bar {
       margin-left: 1rem;
