@@ -69,7 +69,8 @@
     // duplicates, how to solve this?
     @media #{$medium-only} {
         .community-list.small .community-item {
-            margin:0;
+            margin:1.5*$ui-small-grid-size 0;
+            height:8rem;
         }
     }
     @media #{$small-only} {
