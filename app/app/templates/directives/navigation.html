@@ -181,7 +181,7 @@
 					<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title"><img class="zurb-logo-mobile" src="/app/images/logo.png" width="200"></a>
 				</div>
 				<div class="show-for-large-up search column large-6">
-					<form>
+					<form ng-submit="search(searchQuery)">
 						<select ng-model="searchQuery.type">
 							<option value="post,community,user">{{:: 'TOP_BAR.SEARCH.EVERYWHERE' | translate }}</option>
 							<option value="post">{{:: 'TOP_BAR.SEARCH.MARKET' | translate }}</option>
@@ -196,14 +196,14 @@
 					</form>
 				</div>
 				<div class="hide-for-large-up small-search column small-12 medium-12">
-					<form>
+					<form ng-submit="search(searchQuery)">
 						<span class="search-controll">
 							<div class="search-filters" ng-class="{'animated-hidden': !searchFilterDisplayed}">
 								<ul>
-									<li ng-click="selectSearchFilter('post,community,user')">{{:: 'TOP_BAR.SEARCH.EVERYWHERE' | translate }}</li>
-									<li ng-click="selectSearchFilter('post')">{{:: 'TOP_BAR.SEARCH.MARKET' | translate }}</li>
-									<li ng-click="selectSearchFilter('community')">{{:: 'TOP_BAR.SEARCH.COMMUNITY' | translate }}</li>
-									<li ng-click="selectSearchFilter('user')">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</li>
+									<li ng-class="{active: isFilterActive('post,community,user')}" ng-click="selectSearchFilter('post,community,user')">{{:: 'TOP_BAR.SEARCH.EVERYWHERE' | translate }}</li>
+									<li ng-class="{active: isFilterActive('post')}" ng-click="selectSearchFilter('post')">{{:: 'TOP_BAR.SEARCH.MARKET' | translate }}</li>
+									<li ng-class="{active: isFilterActive('community')}" ng-click="selectSearchFilter('community')">{{:: 'TOP_BAR.SEARCH.COMMUNITY' | translate }}</li>
+									<li ng-class="{active: isFilterActive('user')}" ng-click="selectSearchFilter('user')">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</li>
 								</ul>
 							</div>
 							<a class="search-submit button" ng-click="search(searchQuery)">Hledat</a>

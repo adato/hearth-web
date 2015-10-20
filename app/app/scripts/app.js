@@ -77,7 +77,7 @@ angular.module('hearth', [
             $httpProvider.defaults.useXDomain = true;
             $httpProvider.defaults.withCredentials=true;
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
-           
+
             // Add language header
             $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
             // $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
@@ -109,7 +109,7 @@ angular.module('hearth', [
 /*            $http.get('https://api.dev.hearth.net/', function(err, res) {
                 console.log(err, res);
             });*/
-            
+
             /**
              * This will cache some files at start
              */
@@ -188,7 +188,7 @@ angular.module('hearth', [
             function initOpenGraph(done) {
 
                 $rootScope.$on('$translateChangeSuccess', function() {
-                    
+
                     OpenGraph.setDefaultInfo($translate.instant('OG_DEFAULT_TITLE'), $translate.instant('OG_DEFAULT_DESCRIPTION'), $$config.appUrl+$$config.defaultHearthImage, $$config.defaultHearthImageWidth, $$config.defaultHearthImageHeight);
                     OpenGraph.setDefault();
 
@@ -223,7 +223,7 @@ angular.module('hearth', [
             PageTitle.setDefault('', 'Hearth.net');
         }
     ]);
-
+  
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
 angular.module('hearth.services', []);

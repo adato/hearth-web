@@ -206,6 +206,10 @@
                         &:hover {
                             background-color: #EEE;
                         }
+
+                        &.active {
+                            font-weight: bold;
+                        }
                     }
                 }
             }
@@ -227,16 +231,18 @@
 
             .search-icons {
                 cursor: pointer;
+                color: #9B9B9B;
+                position: absolute;
+                top: 7px;
+                right: 15px;
+                
                 i {
-                    position: absolute;
-                    top: 12px;
-                    right: 30px;
-                    color: #9B9B9B;
-
                     &.fa-sort-desc {
+                        position: relative;
                         font-size: 20px;
-                        right: 13px;
-                        top: 6px;
+                        top: -2px;
+                        margin-left: 0px;
+
                     }
                 }
             }
