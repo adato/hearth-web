@@ -5,6 +5,10 @@
 		max-width:960px;
 		
 	}
+
+	#navigation {
+		margin: 0 auto;
+	}
 }
 
 @media #{$medium-up} {
@@ -16,9 +20,6 @@
 		max-width: 960px;
 	}
 
-	#navigation {
-		margin: 0 auto;
-	}
 }
 
 // medium screens only
@@ -30,16 +31,17 @@
 	}
 
 	.messages .conversation-detail-container {
-		width:100%;
+		width:97%;
 		position:absolute;
-		left:0;
-		top:$ui-navbar-height + (2*$ui-grid-size);
+		left:2*$ui-small-grid-size;
+		top:$ui-navbar-height + $ui-grid-size;
 		.conversation-detail .messages-container article.message {
 			width:unset;
 		}
 	}
 
 	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
+	
 }
 // small screens only
 @media #{$small-only} {
@@ -87,20 +89,16 @@
 	}
 
 	.messages .conversation-detail-container {
-		width:100%;
+		width:96%;
 		position:absolute;
-		left:0;
-		top:$ui-navbar-height + (2*$ui-grid-size);
+		left:2*$ui-small-grid-size;
+		top:$ui-navbar-height + $ui-grid-size;
 		.conversation-detail .messages-container article.message {
 			width:unset;
 		}
 	}
 
 	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
-
-	#navigation {
-		margin-bottom:3*$ui-small-grid-size;
-	}
 }
 
 
