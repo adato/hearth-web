@@ -61,7 +61,9 @@
 
     // RESPONSIVE //
     @media #{$large-up} {
-        max-width:49.4%;
+        .small.community-list .community-item {
+            max-width:49.4%;
+        }
     }
 
     // duplicates, how to solve this?
