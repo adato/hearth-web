@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="_karma small-3 medium-12 columns">
-        <div class="karma" ng-class="{empty: !item.karma, separator: !item.author.up_votes && !item.author.down_votes}"
+        <div class="karma" ng-class="{empty: !item.karma, separator: item.author.up_votes && item.author.down_votes}"
              title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
           <div class="positive" style="width:{{:: item.karma}}"></div>
         </div>
@@ -86,7 +86,7 @@
         </li>
       </ul>
 
-      <p class="labels" ng-if="item.keywords.length">
+      <p class="labels show-for-medium-up" ng-if="item.keywords.length">
         <span ng-repeat="tag in item.keywords"><span ng-click="toggleTag(tag)"
                                                      ng-class="{'secondary': keywords.indexOf(tag) !== -1}"
                                                      class="label"
