@@ -33,7 +33,7 @@
 		width:100%;
 		position:absolute;
 		left:0;
-		top:120px;
+		top:$ui-navbar-height + (2*$ui-grid-size);
 		.conversation-detail .messages-container article.message {
 			width:unset;
 		}
@@ -90,13 +90,17 @@
 		width:100%;
 		position:absolute;
 		left:0;
-		top:120px;
+		top:$ui-navbar-height + (2*$ui-grid-size);
 		.conversation-detail .messages-container article.message {
 			width:unset;
 		}
 	}
 
 	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
+
+	#navigation {
+		margin-bottom:3*$ui-small-grid-size;
+	}
 }
 
 
