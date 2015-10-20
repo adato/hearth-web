@@ -15,7 +15,6 @@ angular.module('hearth.directives').directive('navigation', [
             templateUrl: 'templates/directives/navigation.html',
             link: function($scope, element) {
                 $scope.searchHidden = true;
-                $scope.searchHidden = false;
                 $scope.searchFilterDisplayed = false;
 
                 $scope.closeFilter = function() {

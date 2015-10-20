@@ -1,5 +1,5 @@
-$itemBorderWidth: 5px;
-$itemBorder: 2px solid darken(white, 30%);
+$itemBorderWidth: 3px;
+$itemBorder: 1px solid #D7D7D7;
 
 .not-found-box {
   padding: $ui-grid-size;
@@ -26,7 +26,7 @@ body {
 ._market {
   ._item {
     min-width: 188px;
-    padding: 0.5em 0;
+    padding: 0px;
     border-bottom: 1px solid white;
     position: relative;
     background-color: white;
@@ -77,10 +77,10 @@ body {
       }
     }
     ._avatar {
-      min-width: 70px;
-      max-width: 70px;
-      min-height: 60px;
-      max-height: 60px;
+      min-width: 55px;
+      max-width: 55px;
+      min-height: 52px;
+      max-height: 45px;
       padding-left: 10px;
 
       ._photo {
@@ -106,7 +106,7 @@ body {
     }
     ._time {
       padding-right: 2em;
-      font-size: 4vw;
+      font-size: 14px;
     }
     ._content {
       margin-bottom: 50px;
@@ -188,7 +188,7 @@ body {
       &.row {
         margin-left: 0;
         margin-right: 0;
-        margin-bottom: 100px;
+        margin-bottom: 80px;
         border: $itemBorder;
         border-radius: 8px;
         background-color: white;
@@ -204,10 +204,10 @@ body {
       }
 
       .item-top {
-        height: 40px;
+        height: 36px;
         padding-bottom: 0.5em;
-        padding-top: 0.2em;
-        border-bottom: 2px solid #BBB;
+        padding-top: 5px;
+        border-bottom: 1px solid #F0F0F0;
         margin-bottom: 20px;
 
         ._avatar {
@@ -217,12 +217,12 @@ body {
           border-radius: 0 30% 30% 0px;
         }
         ._time {
-          font-size: 20px;;
+          font-size: 12px;
         }
 
         ._karma, ._time {
           position: relative !important;
-          top: -18px;
+          top: -13px;
         }
       }
 
@@ -230,26 +230,26 @@ body {
         margin-bottom: 25px;
 
         ._title h2 {
-          font-size: 1.5rem !important;
+          font-size: 17px !important;
           margin-bottom: 10px;
         }
       }
 
       .location {
-        padding: 20px;
+        padding: 10px 20px;
         background-color: #F3F3F3;
         position: relative;
         margin-bottom: 10px;
 
         i.fa-map-marker {
           background-color: white;
-          font-size: 1.8rem;
-          width: 40px;
+          font-size: 20px;
+          width: 35px;
           color: #999;
-          height: 40px;
+          height: 35px;
           border-radius: 50%;
           text-align: center;
-          padding-top: 7px;
+          padding-top: 8px;
           position: absolute;
           top: 50%;
           margin-top: -20px;
@@ -259,7 +259,7 @@ body {
           margin: 0px;
           margin-left: 60px;
           float: left;
-          font-size: 1rem;
+          font-size: 12px;
           color: #444;
           font-weight: 600;
           display: block;
@@ -272,16 +272,16 @@ body {
 
       .text {
         margin-bottom: 10px;
-        font-size: 1.2rem;
+        font-size: 14px;
         p {
-          font-size: 1.2rem;
+          font-size: 14px;
           margin-bottom: 0px;
         }
       }
     }
     .karma {
       margin: 0px;
-      height: 15px;
+      height: 8px;
       overflow: hidden;
       border-radius: 20px;
       background: unset !important;
@@ -299,13 +299,14 @@ body {
     }
     ._reply-info {
       position: absolute;
-      bottom: -40px;
-      font-weight: bold;
-      font-size: 18px;
+      bottom: -25px;
+      /*font-weight: bold; */
+      font-size: 12px;
     }
     .action-dropdown {
-      padding-right: 10px;
-      font-size: 25px;
+      padding-right: 5px;
+      font-size: 14px;
+      padding-top: 4px;
     }
 
     ._action {
@@ -313,7 +314,7 @@ body {
       position: absolute;
       left: 0px;
       right: 0px;
-      bottom: -40px;
+      bottom: -33px;
 
       .controll {
         width: auto;
@@ -326,7 +327,6 @@ body {
         padding: 6px;
         border-radius: 8px;
         border: $itemBorder;
-        height: 70px;
         min-width: 60%;
 
         & > span {
@@ -337,13 +337,13 @@ body {
         }
 
         .button {
-          height: 3.5rem;
+          height: 44px;
           display: table;
           padding: 0px 10px;
           p {
             display: table-cell;
             vertical-align: middle;
-            font-size: 20px;
+            font-size: 18px;
           }
         }
 
