@@ -22,7 +22,11 @@
 // small screens only
 @media #{$small-only} {
 	#notify-top {
-		width: unset !important;
+	    right: 0;
+	    left: 0;
+	    top: 0px;
+	    margin: 0px;
+	    width: unset;
 	}
 
 	.profile-view {
