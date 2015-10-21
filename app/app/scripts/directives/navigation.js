@@ -6,15 +6,15 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('navigation', [
-    '$rootScope', 'Auth', '$state',
-    function($rootScope, Auth, $state) {
+    '$rootScope', 'Auth', '$state', '$location',
+    function($rootScope, Auth, $state, $location) {
         return {
             restrict: 'E',
             scope: true,
             replace: true,
             templateUrl: 'templates/directives/navigation.html',
             link: function($scope, element) {
-                $scope.searchHidden = true;
+                $scope.searchHidden = !$location.search().query;
                 $scope.searchFilterDisplayed = false;
 
                 $scope.closeFilter = function() {

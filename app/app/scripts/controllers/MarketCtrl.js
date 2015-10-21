@@ -148,6 +148,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
       return data;
     };
 
+    $scope.toggleFilter = function() {
+      $scope.$broadcast("filterOpen");
+    };
 
     $scope.retrievePosts = function(params) {
       // params.type = "community,user,post";
