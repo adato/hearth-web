@@ -18,7 +18,6 @@ angular.module('hearth.directives').directive('activityAvatar', [
       },
       template: '<span><avatar class="left" size="small" type="avatarType" src="src"></avatar></span>',
       link: function ($scope, el, attrs) {
-        console.log($scope.item);
         $scope.src = null;
         $scope.avatarType = ($scope.item.target_object && $scope.item.verb === 'new_rating') ? $scope.item.target_object._type : 'User';
 
