@@ -4,9 +4,15 @@
 
   ._filterbar-wrap {
     ._filterbar-header {
-      padding: 0.9375rem 0;
       background-color: #CC4615;
       font-size: 16px;
+      cursor: pointer;
+
+      &>div {
+        padding: 0.9375rem 15px;
+        display: inline-block;
+      }
+
       a {   
         color: white;
       }

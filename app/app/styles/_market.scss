@@ -34,7 +34,7 @@ body {
       position: absolute;
       right: 0;
       top: 0;
-      z-index: 20;
+      z-index: 10;
       a {
         height: 2em;
         text-align: center;
@@ -45,6 +45,8 @@ body {
     .more-actions-dropdown {
       position: absolute;
       display: none;
+      width: 180px;
+      font-size: 14px;
       right: 0;
       top: 2em;
       z-index: 1000;
@@ -105,8 +107,11 @@ body {
       }
     }
     ._time {
-      padding-right: 2em;
+      padding-right: 2.5em;
+      width: 58.33333%;
+      text-align: right;
       font-size: 14px;
+
     }
     ._content {
       margin-bottom: 50px;
@@ -183,6 +188,10 @@ body {
   #market-item-list {
     margin-top: 20px;
   }
+  .page-market .main-container {
+    padding: 0px;
+  }
+
   ._market {
     article {
       &.row {
@@ -203,6 +212,10 @@ body {
         display: none;
       }
 
+      .more-actions-dropdown {
+        top: 35px !important;
+      }
+
       .item-top {
         height: 36px;
         padding-bottom: 0.5em;
@@ -212,7 +225,6 @@ body {
 
         ._avatar {
           background-color: white;
-          padding-right: 0px;
           padding-right: 5px;
           border-radius: 0 30% 30% 0px;
         }
@@ -240,10 +252,14 @@ body {
         background-color: #F3F3F3;
         position: relative;
         margin-bottom: 10px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
 
         i.fa-map-marker {
           background-color: white;
           font-size: 20px;
+
           width: 35px;
           color: #999;
           height: 35px;
@@ -252,7 +268,7 @@ body {
           padding-top: 8px;
           position: absolute;
           top: 50%;
-          margin-top: -20px;
+          margin-top: -18px;
         }
 
         & > ul {
@@ -305,7 +321,6 @@ body {
       font-size: 12px;
     }
     .action-dropdown {
-      padding-right: 5px;
       font-size: 14px;
       padding-top: 4px;
     }
@@ -331,10 +346,10 @@ body {
         min-width: 60%;
 
         & > span {
-          z-index: 2000;
           margin-top: 25px;
           padding: 0px 10px;
           display: inline-block;
+          padding-bottom: 5px;
         }
 
         .button {
