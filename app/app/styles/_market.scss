@@ -381,6 +381,24 @@ body {
               font-size: 18px;
               display: inline-block !important;
             }
+
+            .sharing-dropup {
+              width: 30px;
+              position: absolute;
+              right: 31px;
+              bottom: 40px;
+              background-color: #fff;
+              border: 1px solid #DDD;
+              text-align: center;
+              border-bottom: 0;
+
+              &>a {
+                display: block !important;
+                margin-top: 5px;
+                margin-bottom: 5px;
+              }
+            }
+
           }
         }
 
