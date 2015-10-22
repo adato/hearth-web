@@ -20,7 +20,8 @@ angular.module('hearth.directives').directive('filter', [
                 var searchBoxElement = $('input#geolocation', element),
                     searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
                     filterDefault = {
-                        type: null,
+                        type: 'post',
+                        post_type: null,
                         distance: 25,
                         keywords: [],
                         days: null
@@ -64,7 +65,7 @@ angular.module('hearth.directives').directive('filter', [
 
                     if(!$rootScope.loggedUser._id)
                         return false;
-                    
+
                     if(save)
                         Filter.setUserFilter(scope.convertFilterToParams(scope.filter));
                     else
@@ -77,6 +78,9 @@ angular.module('hearth.directives').directive('filter', [
 
                     if (filter.type) {
                         params.type = filter.type;
+                    }
+                    if (filter.post_type) {
+                        params.post_type = filter.post_type;
                     }
                     if (filter.days) {
                         params.days = filter.days;
@@ -115,6 +119,7 @@ angular.module('hearth.directives').directive('filter', [
 
                     var filter = {
                         type: params.type || filterDefault.type,
+                        post_type: params.post_type || filterDefault.post_type,
                         days: params.days || filterDefault.days,
                         my_section: params.my_section,
                         user: (params.related || '').indexOf('user') > -1 ? true : undefined,
@@ -158,7 +163,7 @@ angular.module('hearth.directives').directive('filter', [
                                 exists = true;
                         });
                     }
-                    
+
                     if(!exists)
                         scope.filter.keywords.push({text: keyword})
                 };
