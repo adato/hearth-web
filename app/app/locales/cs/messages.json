@@ -467,7 +467,7 @@
             "BY_TIME": "Podle času",
             "BY_TYPE": "Podle typu",
             "CANCEL_FILTER": "Zrušit filtr",
-            "CANCEL_FILTER_BAR": "zrušit filtr",
+            "CANCEL_FILTER_BAR": "Zrušit filtr",
             "CLOSE_FILTER": "Zavřít filtr",
             "COMMUNITIES": "Komunity",
             "INDIVIDUALS": "Jednotlivci",
@@ -556,9 +556,6 @@
             "POST_REPLIES": "Odpovědi na dary a přání",
             "USERS_POSTS": "Zprávy od uživatelů"
         },
-        "FILTER_ADS": "Filtrovat inzeráty",
-        "FILTER_IS_ON": "Filtr (aktivní)",
-        "JUST_MINE_CONNECTION": "jen mí přátelé",
         "LEAVE_CONFIRM": {
             "LABEL": "Chcete konverzaci opustit?",
             "TEXT": "Když opustíte konverzaci, ostatní příjemci budou pokračovat v konverzaci, vy ji ale nebudete moct sledovat. Bez obav! Konverzaci vám uložíme do Archivu, kde se k její historii budete moct kdykoliv vrátit."
@@ -579,8 +576,6 @@
         },
         "REPLY_AS_COMMUNITY": "Odpovědět jako:",
         "REPLY_AS_USER": "jako",
-        "RETURN_THE_FILTER_TO_ORIGINAL_SETTINGS": "Zrušit filtr",
-        "SAVE_THE_FILTER_FOR_FUTURE_USE": "Zapamatovat filtr",
         "SYSTEM_MESSAGE": {
             "Community": {
                 "left": "<p>Komunita <strong>{{target.name}}</strong> opustila konverzaci.</p>"
@@ -592,135 +587,7 @@
         "SYSTEM_MESSAGE_YOU": {
             "left": "<p>Opustili jste konverzaci.</p>"
         },
-        "TOP_BAR_ABOUT": "O projektu",
-        "TOP_BAR_COMMUNITY_PROFILE": "Náš profil",
-        "TOP_BAR_PROFILE": "Můj profil",
-        "TOP_BAR_SIGN_IN": "Přihlásit",
-        "TYPE_IN_WHAT_YOU_SEARCH_FOR": "Hledáte něco či někoho? Pomůžeme!",
-        "UNFOLLOW_BUTTON_CAPTION": "Přestat sledovat",
-        "UNLIMITED": "Neomezeně",
-        "USERNAME_INPUT_PLACEHOLDER": "Váš email",
-        "USER_HAS_BEEN_DELETED": "Váš účet byl zrušen. Úplně.",
-        "USER_HAS_NOT_BEEN_RATED": "Uživatel zatím nemá žádná hodnocení.",
-        "USER_HAS_NO_WISHES": "Uživatel se zatím nezapojil.",
-        "USE_FACEBOOK": "Použít Facebook",
-        "USE_GOOGLE": "Použít Google",
-        "USE_MY_CURRENT_LOCATION_LINK": "Použít mou aktuální lokalitu",
-        "VALIDATION_EMAIL": "Email není validní.",
-        "VALIDATION_MAX_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
-        "VALID_UNTIL": "Platnost do:",
-        "VISIBLE_FOR_ALL": "Viditelné pro všechny",
-        "VISIBLE_FOR_FRIENDS": "Jen pro přátele",
-        "VISIBLE_FOR_MEMBERS": "Viditelné pouze pro členy",
-        "WE_GIVE": "Nabízíme",
-        "WE_NEED": "Přijmeme",
-        "WE_WILL_MISS_YOU__TELL_US_WHY_YOU_LEAVE": "Škoda, že odcházíte.  Budete nám chybět.  Napište nám, prosím, co vás k tomu vedlo i jak můžeme Hearth.net vylepšit a my se o to pokusíme. Uvidíte.",
-        "WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Zde povězte, co věnujete či přijmete:",
-        "WHERE": "Místa, kde se vyskytuji",
-        "WHO": "Kdo jsem",
-        "WISH_GIFT": "<p><strong>Pož&aacute;dat</strong> o dar</p>",
-        "WRITE_US": "Spojte se s námi",
-        "WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
-        "WRONG_NAME_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
-        "YEAR_AGO": "před rokem",
-        "YES_DELETE_ACCOUNT": "Ano",
-        "YOU": "Vy",
-        "YOUR_NAME": "Vaše jméno",
-        "YOU_HAVE_NOT_BEEN_RATED": "Zatím vás ještě nikdo neohodnotil.",
-        "YOU_HAVE_NO_WISHES": "Zatím jste se nezapojili.",
-        "activities": {
-            "first_person": {
-                "accepted_into_community": "Přijali vás do komunity <a href=\"{{url}}\">{{name}}</a>.",
-                "new_comm_rating_received": "<p>Dostal(a) jste hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "new_post": "Přidal(a) jste inzerát <a href=\"{{url}}\">{{name}}</a>.",
-                "new_reply": "Odpověděl(a) jste na inzerát <a href=\"{{url}}\">{{name}}</a>.",
-                "prolong_post": "<p>Obnovil(a) jste&nbsp;inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "publish_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "rejected_into_community": "Byl(a) jste odmítnut(á) komunitou <a href=\"{{url}}\">{{name}}</a>.",
-                "resume_post": "<p>Obnovil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "start_being_followed": "<p><a href=\"{{url}}\">{{name}}</a> v&aacute;s začal(a) sledovat.</p>",
-                "start_following": "Začal(a) jste sledovat uživatele <a href=\"{{url}}\">{{name}}</a>.",
-                "suspend_post": "<p>Pozastavil(a) jste inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "wants_into_community": "Přihlásil(a) jste se do komunity <a href=\"{{url}}\">{{name}}</a>."
-            },
-            "rating": {
-                "first": {
-                    "user": {
-                        "comm": "<p>Ohodnotil(a) jste komunitu&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                        "user": "<p>Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}</a>.</p>"
-                    }
-                },
-                "third": {
-                    "comm": {
-                        "comm": "<p>{{user}} ohodnotila komunitu&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                        "user": "<p>{{user}} ohodnotila uživatele&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
-                    },
-                    "user": {
-                        "comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                        "user": "<p>{{user}} ohodnotil(a) uživatele <a href=\"{{url}}\">{{name}}</a>.</p>"
-                    }
-                }
-            },
-            "rating_received": {
-                "first": {
-                    "user": {
-                        "comm": "<p>Dostal(a) jste hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                        "user": "<p>Dostal(a) jste hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
-                    }
-                },
-                "third": {
-                    "comm": {
-                        "comm": "<p>{{user}} dostala hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                        "user": "<p>{{user}} dostala hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
-                    },
-                    "user": {
-                        "comm": "<p>{{user}}&nbsp;dostal(a) hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                        "user": "<p>{{user}} dostal(a) hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
-                    }
-                }
-            },
-            "third_person": {
-                "accepted_into_community": "<p>{{user}} byl přijat do komunity <a href=\"{{url}}\">{{name}}</a>.</p>",
-                "community_accepted_user": "<p><a href=\"{{url}}\">{{name}}</a>&nbsp;je nov&yacute; člen komunity.</p>",
-                "community_excluded_member": "<p>Komunita vyloučila uživatele&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "community_new_post": "<p>Nov&yacute; inzer&aacute;t v komunitě&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "community_rejected_user": "<p>Komunita odm&iacute;tla uživatele &nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "member_left": "<p>Komunitu opustil uživatel <a href=\"{{url}}\">{{name}}</a>.</p>",
-                "new_admin": "<p><a href=\"{{url}}\">{{name}}</a>&nbsp;je nov&yacute; spr&aacute;vce komunity.</p>",
-                "new_application": "<p>Uživatel&nbsp;<a href=\"{{url}}\">{{name}}</a>&nbsp;odeslal novou ž&aacute;dost o vstup do komunity.</p>",
-                "new_comm_rating_received": "<p>Uživatel dostal&nbsp;hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "new_community_rating": "<p>Komunita ohodnotila uživatele <a href=\"{{url}}\">{{name}}</a>.</p>",
-                "new_post": "<p>{{user}} přidal(a) inzer&aacute;t <a href=\"{{url}}\">{{name}}</a>.</p>",
-                "new_reply": "<p>{{user}} odpověděl(a) na inzer&aacute;t <a href=\"{{url}}\">{{name}}</a>.</p>",
-                "prolong_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "publish_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "rejected_into_community": "<p>{{user}} byl odm&iacute;tnut komunitou <a href=\"{{url}}\">{{name}}</a>.</p>",
-                "resume_post": "<p>Uživatel obnovil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "start_being_followed": "<p><a href=\"{{url}}\">{{name}}</a> začal(a) sledovat uživatele {{user}}.</p>",
-                "start_following": "<p>{{user}}&nbsp;sleduje uživatele <a href=\"{{url}}\">{{name}}</a>.</p>",
-                "suspend_post": "<p>Uživatel pozastavil inzer&aacute;t&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
-                "wants_into_community": "<p>{{user}} přihl&aacute;sil(a) se do komunity <a href=\"{{url}}\">{{name}}</a>.</p>"
-            }
-        },
-        "ads-has-been-read": "{{value}} inzerátů zobrazeno",
-        "and-next": "a {{value}} dalších",
-        "and-on-social-networks": "A na sociálních sítích",
-        "author": "Autor",
-        "community": "komunity",
-        "count-of-wished-and-gifts": "<p>Aktuálně<strong> {{value}}</strong> aktivn&iacute;ch inzer&aacute;tů</p>",
-        "in-area": "v okruhu",
-        "market": "Tržiště",
-        "og_default_description": "Prostor, kde dávat znamená dostat mnohem víc",
-        "og_default_title": "Hearth.net",
-        "place": "Místo",
-        "required": "Toto pole je povinné. Nechceme si hrát na četníka, ale znáte tahle pole...",
-        "send_fb_invitation": "Pozvěte přátele na Facebooku",
-        "show-less": "Skrýt",
-        "time": "Čas",
-        "title-maxlength": "Titulek je příliš dlouhý, pane Shakespeare. To nás mrzí, naše maximální délka je {{value}} znaků.",
-        "title-required": "Titulek je příliš krátký. Přidejte ještě aspoň pár slov...",
-        "user": "jednotlivci",
-        "you-will-find-me": "Najdete mne v"
+        "YOU": "Vy"
     },
     "MESSAGES_ARCHIVE": "Archív zpráv",
     "MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
