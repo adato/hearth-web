@@ -216,7 +216,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         $scope.refreshItemInfo = function ($event, itemNew) {
             $scope.posts.data.forEach(function (item, key) {
                 if (item._id === itemNew._id) {
-                    $scope.posts.data[key] = itemNew;
+                    $scope.posts.data.splice(key, 1);
                 }
             });
         };
@@ -256,7 +256,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                     }, done);
                 },
                 function (done) {
-                    Community.getPosts({communityId: id, limit: 5, offset: 0}, function (res) {
+                    Community.getPosts({communityId: id, limit: 5, offset: 0, state: 'active'}, function (res) {
                         $scope.posts = res;
                         done(null);
                     }, done);
