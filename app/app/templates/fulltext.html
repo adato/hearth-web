@@ -42,7 +42,7 @@
                         <span ng-if="item.author.name">({{item.author.name}})</span>
 
                     </a>
-                    <p ng-switch-when="Post">{{item.name | ellipsis: 150}}</p>
+                    <p ng-switch-when="Post">{{item.text | ellipsis: 150}}</p>
                     <p ng-switch-when="User">{{item.about | ellipsis: 150}}</p>
                     <p ng-switch-when="Community">{{item.description | ellipsis: 150}}</p>
 
