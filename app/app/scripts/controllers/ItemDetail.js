@@ -9,8 +9,8 @@
 angular.module('hearth.controllers').controller('ItemDetail', [
   '$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
   function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
-    $scope.ad = false;
-    $scope.adDeleted = false;
+    $scope.item = false;
+    $scope.itemDeleted = false;
     $scope.loaded = false;
     $scope.isPrivate = false;
     $scope.profile = false;
@@ -48,7 +48,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
       Post.get({
         postId: $stateParams.id
       }, function(data) {
-        $scope.ad = data;
+        $scope.item = data;
 
         if ($rootScope.loggedUser._id && data.text)
           UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
@@ -65,7 +65,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
           $scope.profile = data.author;
           $scope.isMine = $rootScope.isMine(data.owner_id);
-          $scope.karma = Karma.count($scope.ad.author.up_votes, $scope.ad.author.down_votes);
+          $scope.karma = Karma.count($scope.item.author.up_votes, $scope.item.author.down_votes);
           //$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
           $scope.initMap();
 
@@ -78,22 +78,22 @@ angular.module('hearth.controllers').controller('ItemDetail', [
           });
 
           $scope.isMine && $scope.loadReplies();
-          $scope.postAddress = $rootScope.appUrl + 'post/' + $scope.ad._id;
-          $scope.isActive = $rootScope.isPostActive($scope.ad);
+          $scope.postAddress = $rootScope.appUrl + 'post/' + $scope.item._id;
+          $scope.isActive = $rootScope.isPostActive($scope.item);
         }
       }, function(res) {
         $scope.loaded = true;
-        $scope.ad = false;
+        $scope.item = false;
       });
     };
 
     // fade out post and set him as deleted
     $scope.removeAd = function($event, item) {
-      if (item._id != $scope.ad._id)
+      if (item._id != $scope.item._id)
         return false;
 
       $("#item_container_" + item._id).fadeOut("slow", function() {
-        $scope.adDeleted = true;
+        $scope.itemDeleted = true;
         $scope.$apply();
       });
     };
