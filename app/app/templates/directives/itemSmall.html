@@ -1,16 +1,18 @@
-<div class="ad post_{{item._id}}" id="post_{{item._id}}" ng-class="{inactive: !isPostActive(item)}">
-    <i ng-if="item.type == 'need'" class="fa fa-caret-left gift-receive"></i> &nbsp;
-    <i ng-if="item.type == 'offer'" class="fa fa-caret-right gift-give"></i> &nbsp;
+<div class="ad post_{{item._id}}" id="post_{{item._id}}" ng-if="isPostActive(item)">
+    <span>{{ postTypes[item.author._type][item.type] | translate }}</span>
     <span>
         <a ng-if="item.title" href="{{ basePath }}post/{{ item._id }}">{{item.title | ellipsis:30}}</a>
-        <a ng-if="!item.title" href="{{ basePath }}post/{{ item._id }}">{{item.name | ellipsis:30}}</a>
-        <span ng-if="item.locations.length && item.locations[0].city" class="grey">/ {{item.locations[0].city}}</span>
-        <span ng-if="!item.locations.length || ! item.locations[0].city" class="grey">/ {{:: 'LOCATION_UNLIMITED_MESSAGE' | translate }}</span>
+        <a ng-if="!item.title" href="{{ basePath }}post/{{ item._id }}">{{item.text | ellipsis:30}}</a>
     </span>
-    <div class="ad-controls" ng-if="item.owner_id == loggedUser._id">
+    <span ng-if="showAuthorName && item.author._type === 'User'">({{item.author.name}})</span>
+
+    <div class="ad-controls" ng-if="item.owner_id === loggedUser._id">
         <i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
-        <i class="fa" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)"></i>
-        <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"></i>
-        <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></i>
+        <i class="fa" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"
+           title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)"></i>
+        <i class="fa fa-pause" title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isPostActive(item)"
+           ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"></i>
+        <i class="fa fa-times" title="{{'AD_REMOVE_LABEL' | translate}}"
+           ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"></i>
     </div>
 </div>

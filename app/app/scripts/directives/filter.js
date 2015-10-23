@@ -8,7 +8,7 @@
 angular.module('hearth.directives').directive('filter', [
     'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
 
-    function(geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
+    function (geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
         return {
             restrict: 'E',
             replace: true,
@@ -16,22 +16,23 @@ angular.module('hearth.directives').directive('filter', [
                 filterShown: "="
             },
             templateUrl: 'templates/directives/filter.html',
-            link: function(scope, element) {
+            link: function (scope, element) {
                 var searchBoxElement = $('input#geolocation', element),
                     searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
                     filterDefault = {
-                        type: null,
+                        type: 'post',
+                        post_type: null,
                         distance: 25,
                         keywords: [],
                         days: null
                     };
 
                 var timeout = $timeout(function () {
-                    $(".tags input", element).keypress(function(e) {
-                        if($(e.target).val() != '') {
+                    $(".tags input", element).keypress(function (e) {
+                        if ($(e.target).val() != '') {
                             if (e.keyCode == 9) {
                                 var self = this;
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     $(".tags input", element).focus();
                                 });
                             }
@@ -43,14 +44,14 @@ angular.module('hearth.directives').directive('filter', [
                 scope.inited = false;
                 scope.filterPostCount = false;
 
-                scope.queryKeywords = function($query) {
+                scope.queryKeywords = function ($query) {
                     if ($query === '' || $query.length < 3) {
                         return Filter.queryCommonKeywords($query);
                     }
                     return KeywordsService.queryKeywords($query);
                 };
 
-                scope.applyFilter = function() {
+                scope.applyFilter = function () {
                     if ($.isEmptyObject(scope.filter)) {
                         scope.reset();
                     } else {
@@ -60,23 +61,26 @@ angular.module('hearth.directives').directive('filter', [
                 };
 
                 // when (un)checked checkbox for save filter - send request also to api
-                scope.toggleSaveFilter = function(save) {
+                scope.toggleSaveFilter = function (save) {
 
-                    if(!$rootScope.loggedUser._id)
+                    if (!$rootScope.loggedUser._id)
                         return false;
-                    
-                    if(save)
+
+                    if (save)
                         Filter.setUserFilter(scope.convertFilterToParams(scope.filter));
                     else
                         Filter.deleteUserFilter();
                 };
 
-                scope.convertFilterToParams = function(filter) {
+                scope.convertFilterToParams = function (filter) {
                     var related = [],
                         params = {};
 
                     if (filter.type) {
                         params.type = filter.type;
+                    }
+                    if (filter.post_type) {
+                        params.post_type = filter.post_type;
                     }
                     if (filter.days) {
                         params.days = filter.days;
@@ -94,7 +98,7 @@ angular.module('hearth.directives').directive('filter', [
                         params.related = related.join(',');
                     }
                     if (filter.keywords.length) {
-                        params.keywords = $.map(filter.keywords || [], function(item) {
+                        params.keywords = $.map(filter.keywords || [], function (item) {
                             return item.text;
                         }).join(',');
                     }
@@ -108,18 +112,19 @@ angular.module('hearth.directives').directive('filter', [
                     return params;
                 };
 
-                scope.convertParamsToFilter = function(params) {
-                    if(params.keywords && ! $.isArray(params.keywords)) {
+                scope.convertParamsToFilter = function (params) {
+                    if (params.keywords && !$.isArray(params.keywords)) {
                         params.keywords = params.keywords.split(",");
                     }
 
                     var filter = {
                         type: params.type || filterDefault.type,
+                        post_type: params.post_type || filterDefault.post_type,
                         days: params.days || filterDefault.days,
                         my_section: params.my_section,
                         user: (params.related || '').indexOf('user') > -1 ? true : undefined,
                         community: (params.related || '').indexOf('community') > -1 ? true : undefined,
-                        keywords: $.map(params.keywords || {}, function(keyword) {
+                        keywords: $.map(params.keywords || {}, function (keyword) {
                             return {
                                 text: keyword
                             };
@@ -141,78 +146,78 @@ angular.module('hearth.directives').directive('filter', [
                     return filter;
                 };
 
-                scope.close = function() {
+                scope.close = function () {
                     scope.$emit('filterClose');
                 };
 
-                scope.reset = function() {
+                scope.reset = function () {
                     Filter.reset();
                 };
 
-                scope.insertKeyword = function(keyword) {
+                scope.insertKeyword = function (keyword) {
                     var exists = false;
 
-                    if(scope.filter.keywords) {
-                        scope.filter.keywords.forEach(function(val) {
-                            if(val.text === keyword)
+                    if (scope.filter.keywords) {
+                        scope.filter.keywords.forEach(function (val) {
+                            if (val.text === keyword)
                                 exists = true;
                         });
                     }
-                    
-                    if(!exists)
+
+                    if (!exists)
                         scope.filter.keywords.push({text: keyword})
                 };
 
-                scope.loadKeywords = function() {
-                    Filter.getCommonKeywords(function(res) {
+                scope.loadKeywords = function () {
+                    Filter.getCommonKeywords(function (res) {
                         scope.commonKeywords = res;
                     });
                 };
 
-                scope.$on('filterReseted', function() {
+                scope.$on('filterReseted', function () {
                     scope.filter = angular.copy(filterDefault);
                     scope.filterSave = false;
                     scope.close();
                 });
 
-                google.maps.event.addListener(searchBox, 'places_changed', function() {
+                google.maps.event.addListener(searchBox, 'places_changed', function () {
                     var places = searchBox.getPlaces();
 
                     if (places && places.length > 0) {
                         var location = places[0].geometry.location,
                             name = places[0].formatted_address;
 
-                        scope.$apply(function() {
+                        scope.$apply(function () {
                             scope.filter.name = name;
                             scope.filter.lat = location.lat();
                             scope.filter.lon = location.lng();
                         });
                     }
                 });
-                scope.$on('filterApplied', function() {
+                scope.$on('filterApplied', function () {
                     scope.updateFilterByRoute();
                 });
 
-                scope.recountPosts = function() {
-                    if(!scope.filterShown)
+                scope.recountPosts = function () {
+                    if (!scope.filterShown)
                         return false;
 
-                    Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function(count) {
+                    Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function (count) {
                         scope.filterPostCount = count;
                     });
                 };
 
-                scope.updateFilterByRoute = function() {
+                scope.updateFilterByRoute = function () {
                     var search = $location.search();
                     scope.filter = $.isEmptyObject(search) ? angular.copy(filterDefault) : scope.convertParamsToFilter(search);
                 };
                 scope.updateFilterByRoute();
 
-                scope.init = function() {
+                scope.init = function () {
                     scope.inited = true;
                     scope.loadKeywords();
 
-                    if($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length)
+                    if ($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length)
                         scope.filterSave = true;
                 };
 

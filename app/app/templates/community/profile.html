@@ -6,18 +6,18 @@
 	</div>
 	<header ng-if="info">
 		<div class="user-basic">
-			<div class="button-bar text-right">
-				<button ng-if="!mine" class="profile-button tall solid right" ng-click="openRatingForm(true)">
+			<div class="button-bar">
+				<button ng-if="!mine" class="profile-button tall solid" ng-click="openRatingForm(true)">
                     {{:: 'THUMB_UP' | translate }}
                 </button>
 				<button class="profile-button tall outline" ng-if="!mine && info.is_member" ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
 					<i class="fa fa-minus"></i> {{:: 'LEAVE_COMMUNITY' | translate}}
 				</button>
-				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="profile-button tall">
-					<i class="fa fa-smile-o"></i> {{:: 'COMMUNITY_APPLY' | translate}}
+				<button ng-if="!mine && !info.is_member && loggedUser._id && ! info.is_applicant" ng-click="applyForCommunity()" class="profile-button tall outline">
+					<i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLY' | translate}}
 				</button>
 				<button ng-if="!mine && info.is_applicant" class="profile-button tall outline">
-					<i class="fa fa-smile-o"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
+					<i class="fa fa-plus"></i> {{:: 'COMMUNITY_APPLICATION_SENT' | translate}}
 				</button>
 				<a href="{{:: communityLink }}/invite-friends" class="right" ng-if="false">
 					<button class="profile-button tall"><i class="fa fa-share"></i> {{:: 'COMMUNITY_INVITE_FRIENDS' | translate}}</button>
@@ -37,7 +37,7 @@
 		</div>
 		<div class="highlights">
             <avatar size="large" class="left" src="info.avatar.large" href="basePath+'community/'+info._id" type="info._type"></avatar>
-				
+
 			<span class="shadow large">
 				<a href="{{:: communityLink }}/posts" ng-class="{'active': (activePage == 'posts')}" class="bubble large">
 	                <span>
