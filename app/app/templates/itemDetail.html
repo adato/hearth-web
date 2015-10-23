@@ -131,21 +131,21 @@
           </div>
           <footer class="clearfix">
             <div class="sharing fright">
-              <a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(ad)"></a>
+              <a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
               <a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank"></a>
               <a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
               <a analytics-custom analytics-event="Share" analytics-category="Twitter" analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
             </div>
             <div class="post-edit-buttons-container fleft" ng-if="isMine">
               <div class="controll-buttons">
-                <a title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(ad)"><i class="fa fa-pencil"></i></a>
-                <a title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(ad, 'confirm-pause-'+item._id)"><i class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i></a>
+                <a title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"><i class="fa fa-pencil"></i></a>
+                <a title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"><i class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i></a>
                 <a title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"><i class="fa fa-pause"></i></a>
                 <a title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"><i class="fa fa-times"></i></a>
               </div>
             </div>
             <div class="reply-button-container fleft">
-              <button ng-if="!item.is_replied && !isMine" ng-click="replyItem(ad)" class="reply-button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
+              <button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="reply-button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
               <div ng-if="item.is_replied">
                 {{ 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
               </div>
