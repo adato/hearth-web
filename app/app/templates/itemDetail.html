@@ -88,13 +88,13 @@
 								<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id && item.spam_reported" tipsy title="{{'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" ng-click="openReportBox(ad)"></a>
 								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !item.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(ad)"></a>
 							</span> -->
-              <span class="ad-flag-container fright" ng-if="!mine">
+              <span class="ad-flag-container fright" ng-if="!isMine">
 								<a class="action-dropdown fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
 							</span>
               <div class="more-actions-dropdown" id="more-actions-{{ item._id }}" style="display:none;">
-                <a ng-if="! mine && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-                <a ng-if="! mine && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-                <a ng-if="! mine && item.admin_communities.length" title="{{ 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+                <a ng-if="! isMine && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+                <a ng-if="! isMine && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+                <a ng-if="! isMine && item.admin_communities.length" title="{{ 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
               </div>
               <span class="date fright" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">
 								{{item.updated_at | ago}}
