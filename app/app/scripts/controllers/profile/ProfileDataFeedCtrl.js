@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-    '$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities',
-    function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities) {
+    '$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices',
+    function ($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices) {
+        angular.extend($scope, ItemServices);
         var loadServices = {
                 'home': loadUserHome,
                 'posts': loadUserPosts,
@@ -31,34 +32,34 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         var selectedAuthor = false;
         var inited = false;
         $scope.subPageLoaded = false;
-        
-        $scope.paginate = function(params) {
+
+        $scope.paginate = function (params) {
             params.offset = $scope.data.length;
             return params;
         };
 
-        $scope.addPagination = function(params) {
-            if(params.limit) return params;
-            
+        $scope.addPagination = function (params) {
+            if (params.limit) return params;
+
             params.offset = $scope.data.length;
             params.limit = 15;
             return params;
         };
 
-        $scope.loadBottom = function() {
+        $scope.loadBottom = function () {
             $scope.loadingData = true;
 
             loadServices[$scope.pageSegment]($scope.paginate(params), processData, processDataErr);
         };
-        
-        $scope.openRatingReplyForm = function(rating) {
-            if($scope.data) $scope.data.forEach(function(item) {
+
+        $scope.openRatingReplyForm = function (rating) {
+            if ($scope.data) $scope.data.forEach(function (item) {
                 item.formOpened = false;
             });
 
             rating.formOpened = true;
         };
-        
+
         function loadFriends(params, done, doneErr) {
             params.related = "user";
             $scope.addPagination(params);
@@ -78,38 +79,38 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
             params.offset = $scope.data.length;
             params.limit = 10;
-            UserRatings.received(params, function(err, res) {
+            UserRatings.received(params, function (err, res) {
                 done(err, res);
                 $rootScope.receivedRepliesAfterLoadHandler($scope.data, $scope);
             }, doneErr);
-            
-            $scope.$watch('rating.current_community_id', function(val) {
-                if(val === selectedAuthor) return;
+
+            $scope.$watch('rating.current_community_id', function (val) {
+                if (val === selectedAuthor) return;
                 selectedAuthor = val;
 
-                if(!$rootScope.isMine(params.user_id)) {
+                if (!$rootScope.isMine(params.user_id)) {
                     $scope.rating.post_id = 0;
-                    UserRatings.possiblePosts({userId: params.user_id, current_community_id: val}, function(res) {
+                    UserRatings.possiblePosts({userId: params.user_id, current_community_id: val}, function (res) {
                         var posts = [];
-                        
-                        res.needed.forEach(function(item) {
+
+                        res.needed.forEach(function (item) {
                             item.post_type = "needed";
                             posts.push(item);
                         });
-                        res.offered.forEach(function(item) {
+                        res.offered.forEach(function (item) {
                             item.post_type = "offered";
                             posts.push(item);
                         });
 
                         $scope.ratingPosts = posts;
                         $scope.loadedRatingPosts = true;
-                    }, function(res) {
+                    }, function (res) {
                         $scope.loadedRatingPosts = true;
                     });
                 }
             });
 
-            var removeListener = $scope.$on('$routeChangeStart', function() {
+            var removeListener = $scope.$on('$routeChangeStart', function () {
                 $scope.closeUserRatingForm();
                 removeListener();
             });
@@ -117,7 +118,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadFollowees(params, done, doneErr) {
             $scope.addPagination(params);
-            
+
             params.related = "user";
             Followees.query(params, done, doneErr);
         }
@@ -135,20 +136,18 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function loadUserReplies(params, done, doneErr) {
             $scope.addPagination(params);
-            User.getReplies(params, function(res) {
+            User.getReplies(params, function (res) {
                 done(res.replies);
             }, doneErr);
         }
 
         function loadUserPosts(params, done, doneErr) {
-
-            User.getPosts(params, function(res) {
-
+            User.getPosts(params, function (res) {
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
 
-                res.data.forEach(function(item) {
-                    if($rootScope.isPostActive(item))
+                res.data.forEach(function (item) {
+                    if ($rootScope.isPostActive(item))
                         $scope.postsActive.push(item);
                     else
                         $scope.postsInactive.push(item);
@@ -158,29 +157,29 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             }, doneErr);
         }
 
-        $scope.refreshItemInfo = function($event, itemNew) {
-            // load new posts
-            $scope.posts.data.forEach(function(item, key) {
-                if(item._id === itemNew._id) {
-                    $scope.posts.data[key] = itemNew;
+        $scope.refreshItemInfo = function ($event, itemNew) {
+            // remove inactive posts
+            $scope.posts.data.forEach(function (item, key) {
+                if (item._id === itemNew._id) {
+                    $scope.posts.data.splice(key, 1);
                 }
             });
         };
 
         function loadUserHome(params) {
-            params.limit  = 5;
+            params.limit = 5;
             params.offset = 0;
 
             async.parallel([
-                function(done) {
-                    UserRatings.received(params, function(res) {
+                function (done) {
+                    UserRatings.received(params, function (res) {
                         $scope.receivedRatings = res;
                         done(null);
                     }, done);
                 },
-                function(done) {
-                    UsersActivityLog.get(params, function(res) {
-                        res.map(function(activity) {
+                function (done) {
+                    UsersActivityLog.get(params, function (res) {
+                        res.map(function (activity) {
                             activity.text = Activities.getActivityTranslation(activity);
                             return activity;
                         });
@@ -188,8 +187,10 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
                         done(null);
                     }, done);
                 },
-                function(done) {
-                    User.getPosts(params, function(res) {
+                function (done) {
+                    params.state = 'active';
+
+                    User.getPosts(params, function (res) {
                         $scope.posts = res;
                         done(null);
                     }, done);
@@ -199,20 +200,20 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             $scope.$on('postUpdated', $scope.refreshItemInfo);
         }
 
-        $scope.cancelEdit = function() {
+        $scope.cancelEdit = function () {
             init();
         };
 
-        $scope.close = function() {
+        $scope.close = function () {
             $scope.close();
         };
 
         function finishLoading(res) {
-            if(res && res.length)
+            if (res && res.length)
                 $scope.loadingData = false;
 
             $scope.subPageLoaded = true;
-            if(!$scope.$parent)
+            if (!$scope.$parent)
                 $scope.$parent = {};
             $scope.$parent.loaded = true;
             $rootScope.$emit("subPageLoaded");
@@ -231,7 +232,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
         function init(e) {
             $scope.pageSegment = $stateParams.page || 'home';
-            if(!loadServices[$scope.pageSegment]) return;
+            if (!loadServices[$scope.pageSegment]) return;
 
             $scope.subPageLoaded = false;
             $scope.loadingData = true;
@@ -239,12 +240,12 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
             loadServices[$scope.pageSegment](params, processData, processDataErr);
 
             // refresh after new post created
-            if (! inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
-                $scope.$on('postCreated', function() {
+            if (!inited && ($scope.pageSegment == 'profile' || $scope.pageSegment == 'profile.posts')) {
+                $scope.$on('postCreated', function () {
                     $scope.refreshUser(true);
                     loadServices[$scope.pageSegment](params, processData, processDataErr);
                 });
-                $scope.$on('postUpdated', function() {
+                $scope.$on('postUpdated', function () {
                     $scope.refreshUser(true);
                     loadServices[$scope.pageSegment](params, processData, processDataErr);
                 });
@@ -255,13 +256,14 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
         }
 
         // only hide post .. may be used later for delete revert
-        $scope.removeItemFromList = function($event, item) {
-            $("#post_"+item._id).slideUp( "slow", function() {});
+        $scope.removeItemFromList = function ($event, item) {
+            $("#post_" + item._id).slideUp("slow", function () {
+            });
             $scope.$emit("profileRefreshUserNoSubpage");
         };
-        
+
         // will add new rating to data array
-        $scope.addUserRating = function($event, item) {
+        $scope.addUserRating = function ($event, item) {
             $scope.data.unshift(item);
             $scope.flashRatingBackground(item);
         };
