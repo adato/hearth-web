@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter', 'Activities',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter, Activities) {
+    '$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices',
+    function ($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter, Activities, ItemServices) {
+        angular.extend($scope, ItemServices);
         $scope.activityShow = false;
         $scope.loadingData = false;
         var ItemFilter = new UniqueFilter();
@@ -25,21 +26,21 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             'given-ratings': loadGivenRatings,
         };
 
-        $scope.loadBottom = function() {
+        $scope.loadBottom = function () {
             $scope.loadingData = true;
             loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
         };
 
-        $scope.openRatingReplyForm = function(rating) {
-            if($scope.data) $scope.data.forEach(function(item) {
+        $scope.openRatingReplyForm = function (rating) {
+            if ($scope.data) $scope.data.forEach(function (item) {
                 item.formOpened = false;
             });
 
             rating.formOpened = true;
         };
-        
+
         // send rating to API
-        $scope.sendRating = function(ratingOrig) {
+        $scope.sendRating = function (ratingOrig) {
             var rating;
             var ratings = {
                 false: -1,
@@ -48,7 +49,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             $scope.showError.text = false;
 
-            if(!ratingOrig.text)
+            if (!ratingOrig.text)
                 return $scope.showError.text = true;
 
             // transform rating.score value from true/false to -1 and +1
@@ -63,12 +64,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             };
 
             // lock - dont send twice
-            if($scope.sendingRating)
+            if ($scope.sendingRating)
                 return false;
             $scope.sendingRating = true;
 
             // send rating to API
-            CommunityRatings.add(out, function(res) {
+            CommunityRatings.add(out, function (res) {
 
                 // remove lock
                 $scope.sendingRating = false;
@@ -80,7 +81,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                 $scope.$broadcast('communityRatingsAdded', res);
                 // Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
 
-            }, function(err) {
+            }, function (err) {
                 // remove lock
                 $scope.sendingRating = false;
 
@@ -90,17 +91,17 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         };
 
         function finishLoading(res) {
-            $timeout(function(){
-               $scope.subPageLoaded = true;
-               
-                if(!$scope.$parent)
+            $timeout(function () {
+                $scope.subPageLoaded = true;
+
+                if (!$scope.$parent)
                     $scope.$parent = {};
 
-               $scope.$parent.loaded = true;
-               $rootScope.$emit("subPageLoaded");
+                $scope.$parent.loaded = true;
+                $rootScope.$emit("subPageLoaded");
             });
 
-            if(res && res.length)
+            if (res && res.length)
                 $scope.loadingData = false;
         }
 
@@ -114,14 +115,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function processDataErr(res) {
             finishLoading([]);
         }
-        
+
         function loadGivenRatings(id, done, doneErr) {
             var obj = {
                 communityId: id,
                 limit: 10,
                 offset: $scope.data.length
             };
-            
+
             CommunityRatings.given(obj, done, doneErr);
         }
 
@@ -135,38 +136,38 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             $scope.loadedRatingPosts = false;
             $scope.ratingPosts = [];
 
-            CommunityRatings.received(obj, function(res) {
+            CommunityRatings.received(obj, function (res) {
                 done(res);
                 $rootScope.receivedRepliesAfterLoadHandler($scope.data, $scope);
             }, doneErr);
 
-            $scope.$watch('rating.current_community_id', function(val) {
-                if(val === selectedAuthor) return;
+            $scope.$watch('rating.current_community_id', function (val) {
+                if (val === selectedAuthor) return;
                 selectedAuthor = val;
 
                 $scope.rating.post_id = 0;
-                CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function(res, headers) {
+                CommunityRatings.possiblePosts({_id: id, current_community_id: val}, function (res, headers) {
                     var posts = [];
-                    if(!res.needed || !res.offered)
+                    if (!res.needed || !res.offered)
                         console.error('Undefined needed/offered posts: ', res, headers)
 
-                    res.needed.forEach(function(item) {
+                    res.needed.forEach(function (item) {
                         item.post_type = "needed";
                         posts.push(item);
                     });
-                    res.offered.forEach(function(item) {
+                    res.offered.forEach(function (item) {
                         item.post_type = "offered";
                         posts.push(item);
                     });
-                    
+
                     $scope.ratingPosts = posts;
                     $scope.loadedRatingPosts = true;
-                }, function(res) {
+                }, function (res) {
                     $scope.loadedRatingPosts = true;
                 });
             });
 
-            var removeListener = $scope.$on('$routeChangeStart', function() {
+            var removeListener = $scope.$on('$routeChangeStart', function () {
                 $scope.closeUserRatingForm();
                 removeListener();
             });
@@ -197,12 +198,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         function loadCommunityPosts(id, doneErr) {
-            Community.getPosts({communityId: id}, function(res) {
+            Community.getPosts({communityId: id}, function (res) {
                 $scope.postsActive = [];
                 $scope.postsInactive = [];
 
-                res.data.forEach(function(item) {
-                    if($rootScope.isPostActive(item))
+                res.data.forEach(function (item) {
+                    if ($rootScope.isPostActive(item))
                         $scope.postsActive.push(item);
                     else
                         $scope.postsInactive.push(item);
@@ -212,9 +213,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }, doneErr);
         }
 
-        $scope.refreshItemInfo = function($event, itemNew) {
-            $scope.posts.data.forEach(function(item, key) {
-                if(item._id === itemNew._id) {
+        $scope.refreshItemInfo = function ($event, itemNew) {
+            $scope.posts.data.forEach(function (item, key) {
+                if (item._id === itemNew._id) {
                     $scope.posts.data[key] = itemNew;
                 }
             });
@@ -222,14 +223,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
         function loadCommunityHome(id) {
             async.parallel([
-                function(done) {
-                    CommunityActivityLog.get({communityId: id, limit: 5}, function(res) {
+                function (done) {
+                    CommunityActivityLog.get({communityId: id, limit: 5}, function (res) {
 
                         $scope.activityShow = false;
                         $scope.activityLog = [];
-                        $timeout(function() {
+                        $timeout(function () {
 
-                            res.map(function(activity) {
+                            res.map(function (activity) {
                                 activity.text = Activities.getActivityTranslation(activity);
                                 return activity;
                             });
@@ -238,24 +239,24 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
                             $scope.activityLog = res;
                             $scope.activityShow = true;
                         });
-                        
+
                         done(null);
                     }, done);
                 },
-                function(done) {
-                    CommunityApplicants.query({communityId: id}, function(res) {
+                function (done) {
+                    CommunityApplicants.query({communityId: id}, function (res) {
                         $scope.applications = res;
                         done(null);
                     }, done);
                 },
-                function(done) {
-                    CommunityRatings.received({communityId: id, limit: 5, offset: 0}, function(res) {
+                function (done) {
+                    CommunityRatings.received({communityId: id, limit: 5, offset: 0}, function (res) {
                         $scope.receivedRatings = res;
                         done(null);
                     }, done);
                 },
-                function(done) {
-                    Community.getPosts({communityId:id, limit: 5, offset: 0}, function(res) {
+                function (done) {
+                    Community.getPosts({communityId: id, limit: 5, offset: 0}, function (res) {
                         $scope.posts = res;
                         done(null);
                     }, done);
@@ -268,9 +269,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         function loadCommunityActivityLog(id) {
             CommunityActivityLog.get({communityId: id}, processData, processDataErr);
         }
+
         // =================================== Public Methods ====================================
 
-        $scope.remove = function(item) {
+        $scope.remove = function (item) {
             Post.remove({postId: item._id}, function (res) {
 
                 $scope.$emit('postCreated', item._id); // refresh post list
@@ -278,23 +280,24 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }, processDataErr);
         };
 
-        $scope.removeMember = function(id) {
-            if($scope.sendingRemoveMember) return false;
+        $scope.removeMember = function (id) {
+            if ($scope.sendingRemoveMember) return false;
             $scope.sendingRemoveMember = true;
 
-            CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function(res) {
+            CommunityMembers.remove({communityId: $scope.info._id, memberId: id}, function (res) {
                 $scope.sendingRemoveMember = false;
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_SUCCESS', Notify.T_SUCCESS);
                 $scope.init();
-            }, function(res) {
+            }, function (res) {
                 $scope.sendingRemoveMember = false;
                 Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED', Notify.T_ERROR);
             });
         };
 
         // only hide post .. may be used later for delete revert
-        $scope.removeItemFromList = function($event, item) {
-            $( "#post_"+item._id ).slideUp( "slow", function() {});
+        $scope.removeItemFromList = function ($event, item) {
+            $("#post_" + item._id).slideUp("slow", function () {
+            });
             $scope.init();
         };
 
@@ -310,7 +313,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
             // refresh after new post created
             if ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts') {
-                $scope.$on('postCreated', function() {
+                $scope.$on('postCreated', function () {
                     // refresh whole page - load new counters, activity feed, posts list
                     $scope.init();
                     // loadServices[$scope.pageSegment]($stateParams.id, processData, processDataErr);
@@ -318,11 +321,11 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
             }
 
             // refresh after new post created
-            if (! inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts')) {
-                $scope.$on('postCreated', function() {
+            if (!inited && ($scope.pageSegment == 'community' || $scope.pageSegment == 'community.posts')) {
+                $scope.$on('postCreated', function () {
                     loadService($stateParams.id, processData, processDataErr);
                 });
-                $scope.$on('postUpdated', function() {
+                $scope.$on('postUpdated', function () {
                     loadService($stateParams.id, processData, processDataErr);
                 });
 
@@ -332,7 +335,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
         }
 
         // will add new rating to data array
-        $scope.addCommunityRating = function($event, item) {
+        $scope.addCommunityRating = function ($event, item) {
             $scope.data.unshift(item);
             $scope.flashRatingBackground(item);
         };

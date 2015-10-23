@@ -26,7 +26,7 @@
             "SAVE_FILTER": "Zapamätať si filter",
             "COMMUNITIES": "Komunity",
             "TITLE_ENABLED": "Filter je aktívny",
-            "CANCEL_FILTER_BAR": "zrušiť filter",
+            "CANCEL_FILTER_BAR": "Zrušiť filter",
             "KM": "Km",
             "CLOSE_FILTER": "Zavrieť filter"
         },
@@ -36,7 +36,8 @@
             "LOCATION_ANYWHERE_HEADING": "Kdekoľvek",
             "SHARE_WITH": "Zdieľať cez",
             "PUBLISHED_AT": "Pridané",
-            "REMOVE_FROM_COMMUNITY": "Odstrániť z komunity"
+            "REMOVE_FROM_COMMUNITY": "Odstrániť z komunity",
+            "CLICK_TO_COLLAPSE": "Zobrazit zkrácený text"
         },
         "EDIT_FILTER": "Upraviť filter",
         "FILTER_NOT_FOUND": "Hups, zadanej kombinácii nezodpovedá vôbec, ale vôbec žiadny inzerát.<br \/>Čo takto nejaké to kritérium ubrať?",
@@ -45,7 +46,8 @@
         "SHOW_POSTS_IN_LIST": "Zobraziť zoznam inzerátov",
         "SHOW_POSTS_ON_MAP": "Zobraziť inzeráty na mape",
         "HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
-        "CREATE_NEW_ADD": "Vložiť nový dar alebo prianie"
+        "CREATE_NEW_ADD": "Vložiť nový dar alebo prianie",
+        "REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
     },
     "404_NOT_FOUND_TEXT": "Je nám to ľúto, ale stránka, ktorú hľadáte, pravdepodobne neexistuje.",
     "404_NOT_FOUND_TITLE": "404 Nenájdené",
@@ -346,7 +348,7 @@
     "NO_REPLY": "Zatiaľ nikto nič.",
     "NO_WISHES_FOUND": "ešte ste sa nezapojili",
     "OFFER": "Venujem",
-    "OFFER_GIFT": "<b>Ponúknuť<\/b> dar",
+    "OFFER_GIFT": "<p><strong>Pon&uacute;knuť<\/strong> dar<\/p>",
     "OK": "OK",
     "OK_ACCOUNT_CREATED": "Hurá! Váš účet v Hearth bol práve vytvorený.",
     "OK_CHECK_YOUR_EMAIL_AND_CONFIG": "Na váš email sme práve poslali overovací odkaz. Kliknite naň a môžete ihneď skočiť do diania v Hearth. Tešíme sa.",
@@ -528,36 +530,36 @@
         "rating": {
             "first": {
                 "user": {
-                    "user": "<p>Ohodnotil(a) jste uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-                    "comm": "<p>Ohodnotil(a) jste komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                    "user": "<p>Ohodnotila ste už&iacute;vateľa <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Ohodnotil(a) ste komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 }
             },
             "third": {
                 "user": {
-                    "user": "<p>{{user}} ohodnotil(a) uživatele <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "user": "<p>{{user}} ohodnotil(a) užívateľa <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
                     "comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 },
                 "comm": {
-                    "user": "<p>{{user}} ohodnotila uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-                    "comm": "<p>{{user}} ohodnotila komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                    "user": "<p>Komunita {{user}} ohodnotila užívateľa&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Komunita {{user}} ohodnotila komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 }
             }
         },
         "rating_received": {
             "first": {
                 "user": {
-                    "user": "<p>Dostal(a) jste hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-                    "comm": "<p>Dostal(a) jste hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                    "user": "<p>Dostal(a) ste hodnotenie od užívateľa&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Dostal(a) ste hodnotenie od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 }
             },
             "third": {
                 "user": {
-                    "user": "<p>{{user}} dostal(a) hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-                    "comm": "<p>{{user}}&nbsp;dostal(a) hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                    "user": "<p>{{user}} dostal(a) hodnotenie od užívateľa&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>{{user}}&nbsp;dostal(a) hodnotenie od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 },
                 "comm": {
-                    "user": "<p>{{user}} dostala hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-                    "comm": "<p>{{user}} dostala hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                    "user": "<p>Komunita {{user}} dostala hodnotenie od užívateľa&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Komunita {{user}} dostala hodnotenie od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 }
             }
         }
@@ -826,7 +828,7 @@
     "ALL_POSTS": "Všetky príspevky",
     "MEET_USER": "Spoznajte užívateľa",
     "USER_HAS_REGISTERED": "Užívateľ sa registroval",
-    "YOU_HAVE_REGISTERED": "Registroval\/a ste sa",
+    "YOU_HAVE_REGISTERED": "Registroval(a) ste sa",
     "THEY_WROTE_ME": "Ohodnotili ma",
     "ME_WROTE_THEM": "Ohodnotil(a) som",
     "ME_WROTE": "Napísal(a) som",

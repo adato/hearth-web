@@ -1181,6 +1181,42 @@
             "suspend_post": "<p>You suspended post&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
             "wants_into_community": "<p>You applied to a community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
         },
+        "rating": {
+            "first": {
+                "user": {
+                    "comm": "<p>You give a new rating to the community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "user": "<p>You give a new rating to the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            },
+            "third": {
+                "comm": {
+                    "comm": "<p>Community {{user}} give a new rating to community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "user": "<p>Community {{user}} give a new rating to user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                },
+                "user": {
+                    "comm": "<p>{{user}} give a new rating to the community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "user": "<p>{{user}} give a new rating to the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            }
+        },
+        "rating_received": {
+            "first": {
+                "user": {
+                    "comm": "<p>You get a rating from the community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "user": "<p>You get a rating from the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            },
+            "third": {
+                "comm": {
+                    "comm": "<p>Community {{user}} get a rating from the community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "user": "<p>Community {{user}} get a rating from the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                },
+                "user": {
+                    "comm": "<p>{{user}}&nbsp;get a rating from the community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
+                    "user": "<p>{{user}}&nbsp;get a rating from the user&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>"
+                }
+            }
+        },
         "third_person": {
             "accepted_into_community": "<p>{{user}} was accepted into community&nbsp;<a href=\"{{url}}\">{{name}}</a>.</p>",
             "community_accepted_user": "<p>Community accepted <a href=\"{{url}}\">{{name}}</a>.</p>",
