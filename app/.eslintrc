@@ -28,6 +28,7 @@
     "globals": {
         "angular": true,
         "$$config": true,
-        "$": true
+        "$": true,
+        "google": true
     }
 }
