@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 					'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
 				tasks: [
-					// 'newer:jshint:all'
+					'eslint',
 					'copy:localConfig'
 				],
 				options: {
@@ -346,25 +346,8 @@ module.exports = function(grunt) {
 		},
 
 		// Make sure code styles are up to par and there are no obvious mistakes
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc',
-				reporter: require('jshint-stylish'),
-				ignores: [
-					'<%= yeoman.app %>/scripts/foundation.topbar.js',
-					'<%= yeoman.app %>/scripts/oms.min.js'
-				]
-			},
-			all: [
-				'Gruntfile.js',
-				'<%= yeoman.app %>/scripts/{,*/}*.js'
-			],
-			test: {
-				options: {
-					jshintrc: 'test/.jshintrc'
-				},
-				src: ['test/spec/{,*/}*.js']
-			}
+		eslint: {
+			target: ['<%= yeoman.app %>/scripts/{,*/}*.js']
 		},
 
 		// Empties folders to start fresh
