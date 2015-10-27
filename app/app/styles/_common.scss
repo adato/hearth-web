@@ -83,6 +83,10 @@ button {
     }
 }
 
+a.link {
+    margin: 8px 8px 8px 0px;
+}
+
 .button-send {
     border: none;
     color: white;
@@ -120,10 +124,6 @@ a.button-send {
         max-height: 0;
         opacity: 0;
     }
-}
-
-.row {
-    max-width: 960px !important;
 }
 
 .remove {
@@ -408,11 +408,19 @@ button[disabled],
     font-weight: bold;
 }
 
-
 .lowercase {
     text-transform: lowercase;
 }
 
 .display-block {
     display: block !important;
+}
+
+.animated-hidden {
+    max-height:0;
+    margin-top:0;
+    margin-bottom:0;
+    padding-top:0;
+    padding-bottom:0;
+    overflow:hidden;
 }

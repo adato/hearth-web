@@ -44,7 +44,6 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
                         return $q.reject(rejection);
                         
                 } else {
-
                     return $q.reject(rejection);
                 }
             }

@@ -57,7 +57,7 @@
 
             <section class="text">
                 <label for="text">{{ 'POST_TEXT_LABEL' | translate }}</label>
-                <textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required ng-attr-placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.name" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
+                <textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required ng-attr-placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.text" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
                 <div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
                     <span ng-show="createAdForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
                     <span ng-show="createAdForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
@@ -159,7 +159,7 @@
                             <a ng-click="removeImage($index)" title="{{ 'CLICK_TO_REMOVE_PHOTO_HINT' | translate }}">
                                 <i class="fa fa-times"></i>
                             </a>
-                            <img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" class="padding-1">
+                            <img exif-rotated resized-thumbnail-image ng-src="{{ file.file || file.normal }}" />
                         </li>
                         <li class="file-upload">
                             <div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource' limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">

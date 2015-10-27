@@ -1,5 +1,5 @@
 .profile-view {
-    max-width: 960px;
+    max-width: $webWidth;
     padding-bottom: 100px;
     margin: {
         left: auto;
@@ -110,6 +110,11 @@
         width: 25px;
         height: 25px;
         background:white;
+
+        // RESPONSIVE //
+        @media #{$small-only} {
+          display:none;
+        } 
     }
 }
 
@@ -124,18 +129,19 @@
         margin-bottom:$ui-grid-size;
         padding-left: 3*$ui-small-grid-size;
         padding-right: 3*$ui-small-grid-size;
-        margin-left:67px;
     }
 
     .text-container {
         p {
             margin-bottom: 10px;
+            line-height: 1.4;
         }
     }
     
     .reply-form-link {
         font-size: 13px;
         font-weight: bold;
+        margin-top: 5px;
     }
 
     .item {
@@ -155,6 +161,7 @@
         i {
             position: relative;
             right: 4px;
+            line-height: 1.4;
         }
 
         i.icon-rating-positive:before {
@@ -167,6 +174,18 @@
         
         .date {
             font-size: .8rem;
+        }
+
+         // RESPONSIVE //
+        @media #{$small-only} {
+            .rating-score,.rating-relation {
+              margin: $ui-small-grid-size 3 * $ui-small-grid-size;
+              display:inline-block;
+            }
+            .rating-score { 
+              display:inline;
+              line-height:230%;
+            }
         }
     }
 

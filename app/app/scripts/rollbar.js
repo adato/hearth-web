@@ -1,6 +1,7 @@
 var _rollbarConfig = {
     accessToken: $$config.rollbar,
     captureUncaught: true,
+    enabled: $$config.env !== 'development',
     payload: {
         environment: $$config.env
     },

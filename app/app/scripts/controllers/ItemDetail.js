@@ -46,18 +46,18 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			Post.get({postId: $stateParams.id}, function(data) {
 				$scope.ad = data;
 				
-				if($rootScope.loggedUser._id && data.name)
+				if($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
 				else
 					$scope.loaded = true;
 
 				// if there are post data, process them
-				if(data.name) {
+				if(data.text) {
 					var image = $rootScope.getSharingImage(data.attachments_attributes, data.author.avatar);
 					var postType = $filter('translate')($scope.postTypes[data.author._type][data.type]);
 					var title = 'Hearth.net: '+postType+' '+data.title+' ('+data.author.name+')';
 
-					OpenGraph.set(title, data.name || "", null, image.large, image.size);
+					OpenGraph.set(title, data.text || "", null, image.large, image.size);
 
 					$scope.profile = data.author;
 					$scope.isMine = $rootScope.isMine(data.owner_id);
@@ -65,7 +65,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					//$scope.page = { 'currentPageSegment': ($scope.isMine ? 'detail.replies' : 'detail.map') };
 					$scope.initMap();
 
-					$scope.isExpiringSoon = !data.valid_until_unlimited && moment(data.valid_until).subtract(7, 'days').isBefore(new Date())
+					$scope.isExpiringSoon = !data.valid_until == 'unlimited' && moment(data.valid_until).subtract(7, 'days').isBefore(new Date())
 												&& moment(data.valid_until).isAfter(new Date());
 					
 					

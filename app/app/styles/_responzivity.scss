@@ -1,33 +1,32 @@
-
-// foundation breakpoint for large screens
-@media #{$large-up} {
-	#homepage-hero {
-		margin-top: 150px;
-	}
+.max-web-width {
+	max-width: 960px;
 }
+
 
 // foundation breakpoint for large screens 
 @media #{$medium-up} { 
+/* 
 	.web-width {
 		width: 940px;
 	}
 	body .main-container {
 		min-width:960px;
 		max-width:960px;
-	}
+	} */
+
 	#navigation {
 		margin: 0 auto;
 	}
 }
 
-.max-web-width {
-	max-width: 960px;
-}
-
 // small screens only
 @media #{$small-only} {
 	#notify-top {
-		width: unset !important;
+	    right: 0;
+	    left: 0;
+	    top: 0px;
+	    margin: 0px;
+	    width: unset;
 	}
 
 	.profile-view {
@@ -62,9 +61,22 @@
 		margin-bottom:3*$ui-small-grid-size;
 	}
 
-	#homepage-hero {
-		margin-top: -40px;
+	.messages .conversations {
+		width:100%;
+		.nano-content {	right: 0 !important;}
+		.nano-content-inner { width: 100% !important; }
 	}
+
+	.messages .conversation-detail-container {
+		width:100%;
+		position:absolute;
+		.conversation-detail .messages-container article.message {
+			width:unset;
+		}
+	}
+	.messages.message-detail-displayed .messages-top { display:none; }
+
+	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
 }
 
 

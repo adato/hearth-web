@@ -7,7 +7,7 @@
 			</a>
 		</div>
 		<div class="karma" ng-class="{empty: item.karma === null }" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
-			<div class="positive" ng-attr-style="width:{{:: item.karma}}%;"></div>
+			<div ng-if="item.karma" class="positive" ng-attr-style="width:{{:: item.karma}}%;"></div>
 		</div>
 	</section>
 	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">
@@ -50,11 +50,11 @@
 					</span>
 				</div>
 			</header>
-			 <div class="text-container" ng-if="item.name.length < 270 || marketplace.expanded == true">
-				<p ng-bind-html="item.name | linky:'_blank' | nl2br"></p>
+			 <div class="text-container" ng-if="item.text.length < 270 || marketplace.expanded == true">
+				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 			</div>
-			<div class="text-container" ng-if="item.name.length >= 270 && !marketplace.expanded">
-				<p><span ng-bind-html="item.name_short | linky:'_blank'"></span> <a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
+			<div class="text-container" ng-if="item.text.length >= 270 && !marketplace.expanded">
+				<p><span ng-bind-html="item.text_short | linky:'_blank'"></span> <a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
 			</div>			
 
 			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">

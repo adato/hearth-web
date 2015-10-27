@@ -12,9 +12,10 @@ angular.module('hearth.directives').directive('filterbar', [
 		return {
 			replace: true,
 			restrict: 'E',
-			templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filterbar.html' : 'templates/directives/filterbar.html',
+			templateUrl: 'templates/directives/filterbar.html',
 			scope: true,
 			link: function(scope) {
+        scope.filterType = $state.params.type;
 				scope.searchParams = '';
 				scope.basePath = $$config.basePath;
 

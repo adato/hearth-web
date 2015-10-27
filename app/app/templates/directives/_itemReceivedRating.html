@@ -1,4 +1,4 @@
-<section class="large-2 small-2 medium-2 columns user">
+<section class="large-2 medium-2 hide-for-small columns user">
 	<div info-box="{ '_id': item.entity_from._id, '_type': item.entity_from._type }">
 		<a ng-href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id) }}">
 			<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type"></avatar>
@@ -6,21 +6,26 @@
 		</a>
 	</div>
 </section>
-<section class="large-10 small-10 medium-10 columns" id="rating_{{item._id}}">
+<section class="large-10 small-12 medium-10 columns" id="rating_{{item._id}}">
 	<div class="item rating-received" ng-class="{ 'positive': item.score == 1, 'negative': item.score < 1}">
 		<div class="content">
-			<div class="left">
-				<b ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
-				<b ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
-
-				<small ng-if="item.post_id">
-					&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a>.
-				</small>
-			</div>
 
 			<div class="right">
 				<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
 			</div>
+
+			<div class="left">
+				<a ng-href="{{:: getProfileLink(item.entity_from._type, item.entity_from._id) }}" class="hide-for-medium-up left">
+					<avatar src="item.entity_from.avatar.normal" type="item.entity_from._type" size="small"></avatar>
+				</a>
+				<b class="rating-score" ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
+				<b class="rating-score" ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
+
+				<small ng-if="item.post_id" class="rating-relation">
+					&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a>.
+				</small>
+			</div>
+
 			<div class="clear"></div>	
 			<div class="text-container clearfix">
 				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
@@ -31,9 +36,9 @@
 			</div>
 			<div class="rating-reply" ng-if="item.comment">
 				<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
-					<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="mini"></avatar>
+					<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="small"></avatar>
 				</a>
-				<div class="inline-block">
+				<div class="">
 					<div class="reply-top">
 						{{:: item.entity_to.name | ellipsis:40}}<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>

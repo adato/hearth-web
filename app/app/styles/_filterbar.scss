@@ -31,28 +31,19 @@
         opacity:1;
         max-height:800px;
     }
-    .animated-hidden {
-        opacity:0;
-        max-height:0 !important;
-        margin-top:0;
-        margin-bottom:0;
-        padding-top:0;
-        padding-bottom:0;
-        overflow:hidden;
-    }
 
     // RESPONSIVE //
     @media #{$small-only} { 
         left:initial;
         position:initial;
-        margin:3* $ui-small-grid-size;
+        margin:0 3* $ui-small-grid-size;
         .filter-button-container {
             margin-left:0;
         }
         .insert-button-container { float:none; }
         .insert-button-container>.button {
             width:100%;
-            margin:2 * $ui-small-grid-size 0;
+            margin:0 0 2 * $ui-small-grid-size 0;
         }
     }
 

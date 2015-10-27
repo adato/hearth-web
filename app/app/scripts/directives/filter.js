@@ -13,14 +13,17 @@ angular.module('hearth.directives').directive('filter', [
       restrict: 'E',
       replace: true,
       scope: {
-        filterShown: "="
+        filterShown: '=',
+        filterSelected: '='
       },
-      templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filter.html' : 'templates/directives/filter.html',
+      templateUrl: 'templates/directives/filter.html',
       link: function (scope, element) {
         var searchBoxElement = $('input#geolocation', element),
           searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
           filterDefault = {
+            query: null,
             type: null,
+            post_type: null,
             distance: 25,
             keywords: [],
             days: null
@@ -75,8 +78,14 @@ angular.module('hearth.directives').directive('filter', [
           var related = [],
             params = {};
 
+          if (filter.query) {
+            params.query = filter.query;
+          }
           if (filter.type) {
             params.type = filter.type;
+          }
+          if (filter.post_type) {
+            params.post_type = filter.post_type;
           }
           if (filter.days) {
             params.days = filter.days;
@@ -114,7 +123,9 @@ angular.module('hearth.directives').directive('filter', [
           }
 
           var filter = {
+            query: params.query || filterDefault.query,
             type: params.type || filterDefault.type,
+            post_type: params.post_type || filterDefault.post_type,
             days: params.days || filterDefault.days,
             my_section: params.my_section,
             user: (params.related || '').indexOf('user') > -1 ? true : undefined,
@@ -137,7 +148,6 @@ angular.module('hearth.directives').directive('filter', [
             delete filter.name;
             delete filter.distance;
           }
-
           return filter;
         };
 
@@ -170,6 +180,7 @@ angular.module('hearth.directives').directive('filter', [
         };
 
         scope.$on('filterReseted', function () {
+          $rootScope.searchQuery.query = null;
           scope.filter = angular.copy(filterDefault);
           scope.filterSave = false;
           scope.close();
@@ -219,6 +230,19 @@ angular.module('hearth.directives').directive('filter', [
         scope.$watch('filter', scope.recountPosts, true);
         scope.$watch('filterShown', scope.recountPosts);
         // scope.$watch('filterSave', scope.toggleSaveFilter);
+
+        scope.$watch('filterSelected', function (newValue, oldValue) {
+          if (newValue) {
+            var types = newValue.split(",");
+
+            angular.forEach(types, function(type, key) {
+              var className = 'type-' + type;
+              $('section', element).not('.' + className).slideUp('slow');
+              $('section.' + className, element).slideDown('slow');
+            });
+          }
+        });
+
         scope.$on('initFinished', scope.init);
         $rootScope.initFinished && scope.init();
 

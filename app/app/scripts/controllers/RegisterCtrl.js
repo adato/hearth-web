@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-    '$scope', '$rootScope', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
-    function($scope, $rootScope, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
+    '$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
+    function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
 
         $scope.user = {
             email: '',
@@ -18,7 +18,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
         $scope.sent = false; // show result msg
         $scope.sending = false; // lock - send user only once
         $scope.termsPath = false;
-
+        $scope.params = $stateParams;
         $scope.apiErrors = {};
         $scope.showError = {
             topError: false,
@@ -26,7 +26,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
             email: false,
             password: false,
         };
-
 
         $scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
         

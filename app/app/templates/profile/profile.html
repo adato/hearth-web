@@ -7,8 +7,8 @@
         <p>{{:: 'ERR_USER_NOT_FOUND' | translate }}</p>
     </div>
     <header ng-show="info">
-        <div class="user-basic large-12">
-            <div class="button-bar small-12 large-5">
+        <div class="user-basic large-12 columns">
+            <div class="button-bar">
                 <button class="others profile-button tall solid" ng-click="openUserRatingForm(true)">
                     {{:: 'THUMB_UP' | translate }}
                 </button>
@@ -25,11 +25,9 @@
                     <button class="profile-button button-red tall"><i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
                 </a>
             </div>
-            <div class="small-12 large-7">
-                <h1 style="display: inline;">
-                    <a href="{{:: profileLink }}"><span>{{:: info.name }}</span></a>
-                </h1>
-            </div>
+            
+            <h1><a href="{{:: profileLink }}"><span>{{:: info.name }}</span></a></h1>
+
             <div class="short-about" ng-if="info.about"><i class="fa fa-quote-right"></i> {{:: info.about | ellipsis}}</div>
         </div>
         <div class="highlights">
@@ -80,7 +78,7 @@
             </span>
 
             <a href="{{:: profileLink }}/received-ratings">
-                <div ng-if="info" class="karma-bar" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
+                <div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
                     <span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
                         <span>{{ info.karma }}% <i class="fa icon-rating-positive"></i></span>
                     </span>
@@ -102,5 +100,5 @@
     </header>
     <div class="clear"></div>
 
-    <div ng-show="info" ui-view></div>
+    <div class="profile-pages-container" ng-show="info" ui-view></div>
 </div>

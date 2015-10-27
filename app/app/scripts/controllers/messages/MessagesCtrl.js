@@ -7,8 +7,11 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger'
+	, '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport',
+	function($scope, $rootScope, Conversations, UnauthReload, Messenger
+		, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport) {
+
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
 		$scope.loaded = false;
@@ -70,13 +73,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.detail.read = true;
 		};
 		
-		$scope.setCurrentConversationAsReaded = function() {
-			if (!$scope.detail || $scope.detail.read)
-				return false;
+		// $scope.setCurrentConversationAsReaded = function() {
+		// 	if (!$scope.detail || $scope.detail.read)
+		// 		return false;
 
-			Messenger.decrUnreaded();
-			$scope.detail.read = true;
-		};
+		// 	Messenger.decrUnreaded();
+		// 	$scope.detail.read = true;
+		// };
 
 		$scope.loadNewConversations = function() {
 			$scope.$broadcast('loadNewMessages');
@@ -134,6 +137,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.markReaded = function(info) {
+			if(info.read)
+				return false;
 			
 			Messenger.decrUnreaded();
 			info.read = true;
@@ -144,12 +149,18 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		 * This will show requested conversation in right column
 		 * and optionally mark it as readed
 		 */
+		 $scope.$on('closeConversation', function () {
+		 	$scope.detail = null;
+		 });
+
+
 		$scope.showConversation = function(info, index, dontMarkAsReaded, clicked) {
 			var title;
+
 			if(clicked)
 				$scope.markReaded(info);
 
-			if(info._id == $scope.detail._id)
+			if($scope.detail && info._id == $scope.detail._id)
 				return false;
 
 			if (!info.read && !dontMarkAsReaded)
@@ -366,8 +377,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				// load first conversation on init
 				if (paramId)
 					$scope.loadConversationDetail(paramId, true);
-				else if (list.length)
+				else if (list.length) {
+					// do not load on small devices. Load on user request only.
+					if (ResponsiveViewport().isSmall()) {
+						return false;
+					}
 					$scope.showConversation(list[0], 0, true);
+				}
 
 				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 
@@ -375,7 +391,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		var changeDetail = function(ev, state, params) {
-			
 			// load first conversation on init
 			if (params.id)
 				$scope.loadConversationDetail(params.id, true);

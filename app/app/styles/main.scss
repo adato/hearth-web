@@ -41,7 +41,7 @@ $fontSize: rem-calc(14);
   "foundation/components/buttons",
   "foundation/components/clearing",
   "foundation/components/dropdown",
-  "foundation/components/dropdown-buttons",
+//  "foundation/components/dropdown-buttons",
 //  "foundation/components/flex-video",
   "foundation/components/forms",
   "foundation/components/inline-lists",
@@ -118,7 +118,6 @@ $fontSize: rem-calc(14);
 @import "market";
 @import "marketplaceBanner";
 @import "responzivity";
-@import "responsive";
 
 body {
     background-image: inline-image("bg.png");
@@ -128,7 +127,7 @@ body {
     .main-container {
         display: block;
         margin: auto;
-        margin-top: 3em;
+        //margin-top: 3em;
         margin-bottom: 2em;
     }
     font-family: $body-font-family;

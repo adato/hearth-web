@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('filterStatus', [
 		return {
 			restrict: 'E',
 			replace: true,
-      templateUrl: $state.current.name === 'market-responsive' ? 'templates/_responsive/directives/filterStatus.html' : 'templates/directives/filterStatus.html',
+      templateUrl: 'templates/directives/filterStatus.html',
 			scope: {},
 			link: function(scope) {
 				scope.resetFilter = function() {

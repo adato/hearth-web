@@ -1,0 +1,179 @@
+<article class="_item {{item.type}} row" id="post_{{:: item._id }}">
+
+  <div class="controll-buttons action-dropdown" ng-if="!mine">
+    <a class="fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}"
+       dropdown="#more-actions-{{:: item._id }}"></a>
+
+    <div class="more-actions-dropdown" id="more-actions-{{:: item._id }}">
+      <a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{::
+        'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+      <a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}"
+         ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+      <a ng-if="! mine && item.admin_communities.length"
+         title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{::
+        'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+      <span class="show-for-medium-down">
+        <a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email"
+               class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
+          <a analytics-custom analytics-event="Share" analytics-category="Facebook"
+             analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook"
+             ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
+          <a analytics-custom analytics-event="Share" analytics-category="Google+"
+             analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+"
+             ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
+          <a analytics-custom analytics-event="Share" analytics-category="Twitter"
+             analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter"
+             ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
+      </span>
+    </div>
+  </div>
+
+  <!-- MARKET ITEM POST Start -->
+  <div class="medium-2 columns item-top">
+    <!-- MARKET ITEM POST AVATAR Start -->
+    <div class="row v-m-small">
+      <div class="_avatar small-2 medium-12 column">
+        <div class="_photo">
+          <a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
+            <img ng-src="{{item.author.avatar.large}}" alt="{{item.author.name}}"/>
+          </a>
+        </div>
+        <div class="_name show-for-medium-up">
+          <a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">{{ item.author.name }}</a>
+        </div>
+      </div>
+      <div class="_karma small-3 medium-12 columns">
+        <div class="karma" ng-class="{empty: !item.karma, separator: item.author.up_votes && item.author.down_votes}"
+             title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
+          <div class="positive" style="width:{{:: item.karma}}"></div>
+        </div>
+      </div>
+      <div class="_time small-6 columns hidden-for-medium-up">
+        <span>{{item.updated_at | ago}}</span>
+      </div>
+    </div>
+  </div>
+  <!-- MARKET ITEM POST AVATAR End -->
+  <!-- MARKET ITEM POST CONTENT Start -->
+  <div class="medium-10 columns">
+    <div class="_content">
+      <div class="_title clearfix">
+        <h2 class="left">
+          <a ng-href="{{:: getProfileLink('Post', item._id)}}">
+            <span>{{ postTypes[item.author._type][item.type] | translate }}</span>
+            {{item.title}}
+          </a>
+        </h2>
+
+        <div class="_time right show-for-medium-up">
+          {{item.updated_at | ago}}
+        </div>
+      </div>
+      <div class="location row">
+        <i class="fa fa-map-marker"></i>
+        <ul>
+          <li ng-if="item.location_unlimited || !item.locations.length">{{::
+            'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
+          </li>
+          <li ng-if="!item.location_unlimited" ng-repeat="(locationId, location) in item.locations"
+              ng-if="location.short_address" ng-class="{delimiter: !$last}">{{ location.short_address }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="text" ng-if="item.text.length < 270 || item.expanded == true">
+        <p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+        <a ng-if="item.text.length >= 270" ng-click="item.expanded = false">{{:: 'MARKETPLACE.POST.CLICK_TO_COLLAPSE' |
+          translate }}</a>
+      </div>
+      <div class="text" ng-if="item.text.length >= 270 && !item.expanded">
+        <p>
+          <span ng-bind-html="item.text_short | linky:'_blank'"></span>
+          <a ng-click="item.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
+        </p>
+      </div>
+
+      <ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
+        <li ng-repeat="photo in item.attachments_attributes track by $index">
+          <a class="fancy" ng-href="{{ photo.large }}" rel="{{:: item._id }}"><img ng-src="{{photo.normal}}"></a>
+        </li>
+      </ul>
+
+      <p class="labels show-for-medium-up" ng-if="item.keywords.length">
+        <span ng-repeat="tag in item.keywords"><span ng-click="toggleTag(tag)"
+                                                     ng-class="{'secondary': keywords.indexOf(tag) !== -1}"
+                                                     class="label"
+                                                     ng-bind-html="tag"/> </span>
+      </p>
+
+      <div class="_action row">
+        <div class="controll large-4 columns">
+          <div class="border"></div>
+          <a ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" data-item-type="{{ item.type }}"
+             class="button expand button-{{item.type}}" ng-bind-html="replyLabel[item.type] | translate">
+          </a>
+
+
+          <div class="sharing">
+            <a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email"
+               class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
+            <a analytics-custom analytics-event="Share" analytics-category="Facebook"
+               analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook"
+               ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
+            <a analytics-custom analytics-event="Share" analytics-category="Google+"
+               analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+"
+               ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
+            <a analytics-custom analytics-event="Share" analytics-category="Twitter"
+               analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter"
+               ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
+          </div>
+          <div class="post-edit-buttons-container left" ng-if="mine">
+            <div class="controll-buttons" ng-init="showSharing = false">
+              <a title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)"><i class="fa fa-pencil"></i></a>
+              <a title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive"
+                 ng-click="pauseToggle(item, 'confirm-pause-'+item._id)"><i class="fa "
+                                                                            ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i></a>
+              <a title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive"
+                 ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)"><i
+                class="fa fa-pause"></i></a>
+              <a title="{{:: 'AD_REMOVE_LABEL' | translate}}"
+                 ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)"><i
+                class="fa fa-times"></i></a>
+              
+              <a class="hide-for-large-up" ng-click="showSharing = !showSharing" title="{{:: 'SHARE' | translate}}"><i class="fa fa-share-alt"></i></a>
+              <div class="sharing-dropup" ng-show="showSharing">
+                  <a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by   email"
+                  class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
+                  <a analytics-custom analytics-event="Share" analytics-category="Facebook"
+                   analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook"
+                   ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
+                  <a analytics-custom analytics-event="Share" analytics-category="Google+"
+                   analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+"
+                   ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
+                  <a analytics-custom analytics-event="Share" analytics-category="Twitter"
+                   analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter"
+                   ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
+              </div>
+            </div>
+          </div>
+
+
+          <span ng-if="item.is_replied">
+            {{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+          </span>
+        </div>
+        <div class="_reply-info medium-7 large-8 columns small-only-text-center">
+          <span ng-if="item.reply_count && mine">
+            <a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies"
+               ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
+          </span>
+          <span ng-if="item.reply_count && !mine"
+                ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></span>
+          <span ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- MARKET ITEM POST CONTENT End -->
+  </div>
+  <!-- MARKET ITEM POST End -->
+</article>

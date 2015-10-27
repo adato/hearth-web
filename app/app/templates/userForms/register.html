@@ -1,15 +1,17 @@
-<div class="register-form" ng-class="{ 'shifted-left': showTerms && ! sent}" ng-cloak>
-    <div class="register-login-dialog">
+<div class="register-login-dialog" ng-class="{ 'terms-opened': showTerms && ! sent}" ng-cloak>
+    <div class="register-form">
         <div class="headMessage error">
         </div>
         <div class="head">
-            <h2>{{ 'SIGNUP_HEADING' | translate }}</h2>
+            <h2 ng-if="!params.facebook">{{ 'SIGNUP_HEADING' | translate }}</h2>
+            <h2 ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</h2>
         </div>
         <hr />
         <form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
             <div class="register-notify-area"></div>
             
-            <p>{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
+            <p ng-if="!params.facebook">{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
+            <p ng-bind-html="'SIGNUP_HEADING_TEXT_FB' | translate" ng-if="params.facebook"></p>
             <input type="text" class="register_name" name="name" ng-model="user.name" ng-focus="showError.name = false" ng-blur="showError.name = true" placeholder="{{ 'NAME_PLACEHOLDER' | translate }}" class="form-control text-input top" required />
             <div class="moveUp error" ng-show="showError.name">
                 <span ng-show="registerForm.name.$error.required">{{ 'ERR_NOT_FILLED_NAME' | translate }}</span>
@@ -51,12 +53,14 @@
                 <p>{{ 'YOU_ARE_ACCEPTING_TERMS' | translate }} <a href="" ng-click="showTerms = !showTerms">{{ 'WITH_TERMS_OF_USE' | translate }}</a></p>
                 <p>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }} <a href="{{ basePath }}login">{{ 'LOGIN_TO_HEARTH' | translate }}</a></p>
             </div>
-            <div class="terms" ng-show="showTerms && ! sent">
-                <ng-include src="termsPath"></ng-include>
-            </div>
         </form>
         <div class="register-successful success">
             <p ng-bind-html="'SIGNUP_WAS_SUCCESSFUL' | translate"></p>
         </div>
+    </div>
+    <div class="terms" ng-show="showTerms && ! sent">
+        <span ng-click="showTerms = !showTerms" class="close-terms fa fa-times"></span>
+        <ng-include src="termsPath"></ng-include>
+        <a href="" class="close-terms-link" ng-click="showTerms = !showTerms">{{ 'SIGN_UP.CONTINUE_TO_REGISTER' | translate }}</a>
     </div>
 </div>

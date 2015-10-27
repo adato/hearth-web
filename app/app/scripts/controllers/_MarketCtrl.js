@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ResponsiveMarketCtrl
+ * @name hearth.controllers.MarketCtrl
  * @description Market list controller, handler events from underlaying component
  */
 
-angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
+angular.module('hearth.controllers').controller('_MarketCtrl', [
+	'$scope', '$rootScope', 'Post', '$q', '$filter', '$location', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma',
 
-	function($scope, $rootScope, Post, $filter, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
+	function($scope, $rootScope, Post, $q, $filter, $location, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma) {
 		$scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
 		$scope.limit = 15;
 		$scope.items = [];
@@ -18,9 +18,10 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 		$scope.keywordsActive = [];
 		$scope.author = null;
 		$scope.filterIsOn = false;
+		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
 		var templateFunction = null;
-		var templateUrl = $sce.getTrustedResourceUrl('templates/_responsive/directives/item.html');
+		var templateUrl = $sce.getTrustedResourceUrl('templates/directives/item.html');
 
 		function refreshTags() {
 			$scope.keywordsActive = Filter.getActiveTags();
@@ -44,17 +45,17 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
 
-			scope.item.name_short = $filter('ellipsis')(scope.item.name, 270, true);
+			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
 
             // post address for social links
             scope.postAddress = $rootScope.appUrl+'post/'+post._id;
             scope.isActive = $rootScope.isPostActive(post);
-            scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes)+'%';
+            scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes);
 
             // is this my post? if so, show controll buttons and etc
             scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
 
-            scope.isExpiringSoon = !scope.item.valid_until_unlimited && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
+            scope.isExpiringSoon = !scope.item.valid_until == 'unlimited' && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
             return scope;
 		};
 
@@ -124,6 +125,31 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			return data;
 		};
 
+		$scope.retrievePosts = function(params) {
+			Post.query(params, function(data) {
+				$scope.loaded = true;
+				$(".loading").hide();
+
+				if(!data.data.length) {
+					finishLoading(data.data, true);
+					return;
+				}
+
+				$scope.debug && console.timeEnd("Market posts loaded from API");
+				if(data.data) {
+
+					data.data = insertLastPostIfMissing(data.data);
+					data.data = ItemFilter.filter(data.data);
+
+				}
+				$scope.debug && console.time("Posts pushed to array and built");
+				// iterativly add loaded data to the list and then call finishLoading
+				addItemsToList($('#market-item-list'), data, 0, finishLoading);
+
+				$rootScope.$broadcast('postsLoaded');
+			});
+		};
+
 		/**
 		 * This will load new posts to marketplace
 		 */
@@ -148,39 +174,9 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			$scope.debug && console.time("Market posts loaded and displayed");
 			$scope.debug && console.time("Market posts loaded from API");
 			// load based on given params
-			Post.query(params, function(data) {
-				$scope.loaded = true;
-				$(".loading").hide();
 
-				if(!data.data.length) {
-					finishLoading(data.data, true);
-					return;
-				}
-
-				$scope.debug && console.timeEnd("Market posts loaded from API");
-				if(data.data) {
-
-					data.data = insertLastPostIfMissing(data.data);
-					data.data = ItemFilter.filter(data.data);
-
-				}
-				$scope.debug && console.time("Posts pushed to array and built");
-				// iterativly add loaded data to the list and then call finishLoading
-				addItemsToList($('#market-item-list'), data, 0, finishLoading);
-
-
-				$rootScope.$broadcast('postsLoaded');
-			});
+			marketInited.promise.then($scope.retrievePosts.bind($scope, params));
 		};
-
-		function init() {
-			ItemFilter.clear();
-			refreshTags();
-			Filter.checkUserFilter();
-			Filter.getCommonKeywords();
-
-			$scope.filterIsOn = Filter.isSet();
-		}
 
 		/**
 		 * When applied filter - refresh post on marketplace
@@ -199,7 +195,6 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
 		$scope.$on('filterApplied', refreshPosts);
 		$scope.$on('filterReseted', function() {
-
 			$scope.filter = {};
 			$scope.user.filter = {};
 			refreshPosts();
@@ -207,7 +202,6 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
-
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;
@@ -216,7 +210,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 					templateFunction(post, function(clone){
 						$('#post_'+data._id).replaceWith(clone);
 
-						setTimeout(function() {
+						$timeout(function() {
 							$('#post_'+data._id).slideDown();
 						});
 					});
@@ -235,7 +229,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			templateFunction(getPostScope(post), function(clone){
 				$('#market-item-list').prepend(clone);
 
-				setTimeout(function() {
+				$timeout(function() {
 					$('#post_'+post._id).slideDown();
 				});
 			});
@@ -257,13 +251,11 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			$rootScope.cacheInfoBox = {};
 		});
 
-
 	    $templateRequest(templateUrl).then(function(template) {
 	    	templateFunction = $compile(template);
 
 			$scope.filterIsOn = Filter.isSet();
-			// $scope.load();
+			marketInited.resolve();
 	    });
-
 	}
 ]);

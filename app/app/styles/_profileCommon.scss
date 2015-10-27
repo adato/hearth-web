@@ -2,12 +2,13 @@
   .error {
     color: red;
   }
+  article.row {
+    margin-left:0; 
+    margin-right:0;
+  }
   header {
     .user-basic {
-      @extend .columns;
-      padding: 0;
-      margin-left: 1rem;
-      margin-right: -1rem;
+      padding: 0 1rem;
       h1 {
         overflow: hidden;
         line-height: 1.5;
@@ -31,26 +32,28 @@
         }
       }
     }
+
+    // RESPONSIVE //
+    @media #{$small-only} {
+      h1 { display:block !important; }
+      .button-bar { float:none !important; margin-left:0 !important; }
+      .highlights { zoom:0.8; }
+    }
+
     .button-bar {
-      font-size: 1rem;
       margin-left: 1rem;
-      max-width: 41%;
       float: right;
+      text-align:right;
       padding-left: 0px;
       padding-right: 0px;
-
-      // RESPONSIVE //
-      @media #{$small-only} {
-        float:initial;
-        max-width:100%;
-        margin-left:0;
-      }
     }
     .highlights {
-      @extend .columns;
       display: block;
       min-height: 320px;
       padding: 1rem;
+
+
+
 
       .avatar {
         box-shadow: 1px 0 16px 0 #fff;
@@ -58,8 +61,6 @@
       }
 
       .bubble {
-        @extend .columns;
-
         display: table;
         position: relative;
         border-radius: 50%;
@@ -117,12 +118,10 @@
         }
 
         &.large {
-          @extend .large-2;
           width: 160px;
           height: 160px;
         }
         &.small {
-          @extend .large-3;
           width: 124px;
           height: 124px;
           p {
@@ -130,7 +129,6 @@
           }
         }
         &.medium {
-          @extend .large-3;
           width: 150px;
           height: 150px;
         }
@@ -162,8 +160,6 @@
       }
 
       .karma-bar {
-        @extend .large-8, .columns, .pull-right;
-
         padding: 0;
         max-width: 600px;
 
@@ -175,7 +171,7 @@
         text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
         position: relative;
         top: 0.5em;
-        right: 0px;
+        right:0;
         float: right;
 
         color: color(4);
@@ -277,18 +273,27 @@
   }
 
   .rating-reply, .ratingReply {
+    .avatar {
+      margin-right: 10px;
+      position: relative;
+      top: -3px;
+    }
     margin-top: 10px;
-    align-items: center;
-    display: flex;
+
+    &>div {
+      margin-left: 50px;
+    }
   }
     
   .rating-reply {
     .reply-top {
       margin-bottom: 5px;
-
       small {
         color: #999999;
       }
+    }
+    i {
+      line-height: 1.4;
     }
   }
 
@@ -301,10 +306,13 @@
 
     .infobox-avatar-wrapper {
       width: 110px;
-      height:100px;
+      min-height:100px;
       float:left;
     }
 
+    .rating-reply > div {
+      margin-left: 30px;
+    }
     .name {
       text-align: center;
       color: #383838;
@@ -318,9 +326,6 @@
       margin-top: 20px;
       .date {
         float: none !important;
-      }
-      .avatar {
-        margin-right: 10px;
       }
     }
   }
@@ -412,8 +417,15 @@
   }
 }
 
-.profile-listings {
+.profile-listings-v1 {
   @extend .clearfix;
+
+  display:flex;
+  justify-content: center;
+  flex-flow:row wrap;
+  width:100%;
+
+
   .grey {
     color: darken(color(4), 30%);
   }
@@ -422,7 +434,7 @@
     padding: 0;
     border-radius: $global-radius;
     box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
-    margin-bottom: 15px;
+    margin: 3*$ui-small-grid-size (3*$ui-small-grid-size) / 2;
     overflow: hidden;
     h3 {
       font-size: 120%;
@@ -449,9 +461,8 @@
     }
   }
   .left-pane {
-    @extend .large-7, .columns;
+    width:59%;
     .messages {
-      @extend .box;
       text-align: center;
       font-size: 130%;
       border: 2px solid color(5);
@@ -472,7 +483,6 @@
       }
     }
     .ratings {
-      @extend .box;
       .rating {
         @extend .clearfix;
         margin-bottom: 5px;
@@ -482,7 +492,7 @@
           left: 20px;
           right: 20px;
         }
-        
+
         &.positive {
           background: lighten(color(2), 45%);
         }
@@ -497,8 +507,8 @@
           .score {
             margin-bottom: 5px;
           }
-          .rating-text {
-            font-size: 1rem;
+          .rating-body {
+            margin-left: 10px;
             line-height: 150%;
           }
           margin: {
@@ -517,7 +527,6 @@
       }
     }
     .ads {
-      @extend .box;
       a.create-ad-sign {
         float: right;
         display: block;
@@ -560,11 +569,10 @@
     }
   }
   .right-pane {
-    @extend .large-5, .columns;
+    width:40%;
     padding: 0;
     float: right;
     .user-about {
-      @extend .box;
       .line {
         margin-left: 20px;
         margin-right: 20px;
@@ -616,7 +624,6 @@
       }
     }
     .activities {
-      @extend .box;
       h4 {
         margin-left: 30px;
         font-size: 1.2rem;
@@ -671,19 +678,15 @@
         }
       }
     }
-
+  }
     // RESPONSIVE //
     @media #{$small-only} {
-      padding:3*$ui-small-grid-size;
-    }
-  }
+      .left-pane, .right-pane { width:100%; }
+    } 
 }
 
 .bottom-tabs {
-  @extend .large-12, .columns, .clearfix;
   text-align: center;
-  border-bottom: 4px solid color(1);
-  padding-bottom: 2px;
   font-weight: bold;
   margin: {
     top: 30px;
@@ -691,48 +694,65 @@
   }
   h2 {
     color: #F95800;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 20px;
   }
   ul {
-    @include inline-list;
-    li > a {
-      width:initial;
-      background: darken(color(4), 30%);
-      color: lighten(color(4), 20%);
-      border-top: 2px solid darken(color(4), 20%);
-      text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
-      min-width: 250px;
-      font-size: 1.1rem;
-      padding: {
-        left: 30px;
-        right: 30px;
-        top: 5px;
-        bottom: 5px;
-      }
-    
+    margin:0 3*$ui-small-grid-size;
+    li {
+      display:inline-block;
       margin: {
-        left: 5px;
-        right: 5px;
-        top: 5px;
+        left: $ui-small-grid-size;
+        right: $ui-small-grid-size;
+        top: $ui-small-grid-size;
+        bottom:0; 
       }
-    
-      border-top-left-radius: $global-radius / 2;
-      border-top-right-radius: $global-radius / 2;
-      &:hover {
-        border-top: 2px solid darken(color(4), 30%);
-        background: darken(color(4), 40%);
-      }
-      &.selected {
-        background: color(1);
-        border-top: 2px solid lighten(color(1), 20%);
+      & > a {
+        position:relative;
+        top:-3px;
+        width:initial;
+        background: darken(color(4), 30%);
+        color: lighten(color(4), 20%);
+        border-top: 2px solid darken(color(4), 20%);
+        text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
+        min-width: 250px;
+        font-size: 1rem;
+        padding: {
+          left: $ui-grid-size;
+          right: $ui-grid-size;
+          top: $ui-small-grid-size;
+          bottom: $ui-small-grid-size;
+        }
+
+      
+        border-top-left-radius: $global-radius / 2;
+        border-top-right-radius: $global-radius / 2;
+        &:hover {
+          border-top: 2px solid darken(color(4), 30%);
+          background: darken(color(4), 40%);
+        }
+        &.selected {
+          background: color(1);
+          border-top: 2px solid lighten(color(1), 20%);
+        }
       }
     }
   }
 
   // RESPONSIVE //
   @media #{$small-only} {
-    ul>li>a { width:100%; display:inline-block; }
+    ul>li {
+      margin-left:0; 
+      margin-right:0;
+      width:100%;
+      &>a { width:100%; display:block; }
+    }
+  }
+
+  &:after {
+    content:" ";
+    display:block;
+    border-bottom: 4px solid color(1);
+    width:100%;
   }
 }
 
@@ -798,6 +818,7 @@
   padding-right: 1rem;
   border-width: 0;
   font-weight: bold;
+  font-size:$global-font-size;
   margin: 0;
   margin-left: .5rem;
   margin-right: .5rem;
@@ -870,9 +891,7 @@
 
   // RESPONSIVE //
   @media #{$small-only} {
-    padding:$ui-small-grid-size;
     margin: $ui-small-grid-size $ui-small-grid-size / 2;
-    font-size:$ui-text-font-size;
   }
 }
 
@@ -889,6 +908,7 @@
     }
     .ad-date {
       display: inline-block;
+      margin:3*$ui-small-grid-size 0;
     }
     .ad-date::first-letter {
       text-transform: uppercase;

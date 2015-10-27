@@ -1,12 +1,12 @@
 <div ng-include="'templates/profile/subviews/postPanel.html'"></div>
 
 <div ng-if="subPageLoaded" class="reply-list" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
-	<div class="large-8 small-8 medium-8 large-centered columns box text-center no-result" ng-if="!data.length">
-		<p>{{:: 'PROFILE.REPLIES.NO_REPLIES' | translate }}</p>
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="!data.length">
+		<div class="item"><p>{{:: 'PROFILE.REPLIES.NO_REPLIES' | translate }}</p></div>
 	</div>
 	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}" >
 
-		<section class="large-2 small-2 medium-2 columns user">
+		<section class="large-2 hide-for-small medium-2 columns user">
 			<div info-box="item.post.author">
 				<a ng-href="{{:: getProfileLink(item.post.author._type, item.post.author._id) }}">
 					<avatar type="item.post.author._type" src="item.post.author.avatar.large"></avatar>
@@ -14,9 +14,11 @@
 				</a>
 			</div>
 		</section>
-		<div class="large-10 small-10 medium-10 fleft columns">
+		<div class="large-10 small-12 medium-10 fleft columns">
 			<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
-
+				<a ng-href="{{:: getProfileLink(item.post.author._type, item.post.author._id) }}" class="hide-for-medium-up left">
+					<avatar src="item.post.author._type" type="item.post.author.avatar.small" size="small"></avatar>
+				</a>
 				<p class="text-container">
 		        	{{:: item.message.text | ellipsis}}
 				</p>
