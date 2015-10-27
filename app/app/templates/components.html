@@ -1,8 +1,68 @@
+<div class="v2">
 <style>
 	.component { margin-bottom: 2em; background:rgba(120,120,120,.1); padding:1em; border-radius:8px;}
 	.move-bot { top:0 !important; }
 </style>
 <div class="component component-box row">
+		<div class="large-6 columns">
+			<p>
+				Z hlediska automobilismu třeba největší zlo za posledních deset let na území Prahy měl být tunelový komplex Blanka, z celosvětového hlediska pak aktuálně „podvodné“ motory Volkswagen (a Škoda), které v provozu nesplňují nejnovější a nejtvrdší emisní limity, ale při kontrolách… Zobrazit celý text
+			</p>
+		</div>
+		<div class="large-6 columns">
+			<h4>Paragraph</h4>
+			<code ng-non-bindable>
+				&lt;p&gt;
+				<br />
+				...
+				<br />
+				&lt;/p&gt;
+			</code>
+		</div>
+</div>
+
+<div class="component component-box row">
+		<div class="large-6 columns">
+			<karma-bar up="components.author.up_votes" down="components.author.down_votes"></karma-bar>
+	 	</div>
+	 	<div class="large-6 columns">
+		 	<h4>Karma bar</h4>
+			<code>
+		 		&lt;karma-bar up=&quot;components.author.up_votes&quot; down=&quot;components.author.down_votes&quot;&gt;&lt;/karma-bar&gt;
+	 		</code>
+	 	</div>
+</div>
+
+<div class="component component-box row">
+	<div class="large-6 columns">
+	  <span class="dropdown-container">
+	    <a dropdown="#some-dropdown-id"><i class="fa fa-chevron-down"></i></a>
+
+	    <div class="dropdown arrow-left" id="some-dropdown-id">
+        ...
+	    </div>
+		</span>
+	</div>
+	<div class="large-6 columns">
+		<h4>Dropdown</h4>
+		<code>
+		&lt;span class=&quot;dropdown-container&quot;&gt;
+		<br />
+			&lt;a dropdown=&quot;#some-dropdown-id&quot;&gt;
+			<br />
+			&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;
+			<br />
+			&lt;/a&gt; 
+			<br />
+			&lt;div class=&quot;dropdown arrow-left&quot; id=&quot;some-dropdown-id&quot;&gt; 
+			<br />
+			...
+			<br />
+			 &lt;/div&gt;
+			<br />
+		 	&lt;/span&gt;
+ 		</code>
+	</div>
 </div>
 
 <div class="component component-box row">
@@ -18,13 +78,24 @@
 </div>
 
 <div class="component component-box row">
+	<div class="large-6 columns">
+		<div class="date" title="{{:: components.author.updated_at | date:DATETIME_FORMATS.medium}}">
+			<i class="fa fa-clock-o"></i>
+			&nbsp; {{:: components.author.updated_at | ago }}
+		</div>
+	</div>
+	<div class="large-6 columns">
+		<h4>Time</h4>
+			<code ng-non-bindable>
+				&lt;div class=&quot;date&quot; title=&quot;&#123;&#123; updated_at | date:DATETIME_FORMATS.medium}}&quot;&gt;
+					<br />
+					&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt;
+					<br />
+					&#123;&#123;updated_at | ago }}&lt;/div&gt;
+			</code>
+	</div>
 </div>
 
-<div class="component component-box row">
-</div>
-
-<div class="component component-box row">
-</div>
 
 <div class="component component-box row">
 	<div class="large-6 columns">
