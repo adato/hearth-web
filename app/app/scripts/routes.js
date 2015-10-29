@@ -121,6 +121,11 @@ angular.module('hearth').config([
 				templateUrl: 'templates/terms.html',
 			    controller: 'TermsCtrl'
 			})
+			.state('components', {
+				url: '/components',
+				templateUrl: 'templates/components.html',
+			    controller: 'ComponentsCtrl'
+			})
 			.state('ad', {
 				url: '/ad/:id',
 			    controller: 'ItemDetailOld'

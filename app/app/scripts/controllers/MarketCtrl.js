@@ -72,7 +72,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
       // post address for social links
       scope.postAddress = $rootScope.appUrl + 'post/' + post._id;
       scope.isActive = $rootScope.isPostActive(post);
-      scope.item.karma = Karma.count(author.up_votes, author.down_votes) + '%';
 
       // is this my post? if so, show controll buttons and etc
       scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
