@@ -114,7 +114,7 @@
 .tab-bar {
     padding-top: 15px;
     padding-bottom: 15px;
-    height: unset !important;
+    height: inherit !important;
 
     &.tab-bar-closed {
         .menu-icon{
@@ -265,17 +265,15 @@
         right: 0px;
         top: 40px;
         z-index: 40;
+        max-height: 200px !important;
+        padding-bottom: 10px !important;
+        padding-top: 18px !important;
     }
 
     #homepage-hero {
         margin-top: 120px;
     }
 
-    .orange-bar {
-        padding-bottom: 10px !important;
-        padding-top: 18px !important;
-        max-height: unset !important;
-    }
 }
 
 
