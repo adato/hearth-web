@@ -24,9 +24,25 @@ body {
 }
 
 ._market {
+
   ._item {
+
+    &.row {
+      margin-left: 0;
+      margin-right: 0;
+      border: $itemBorder;
+      border-radius: 8px;
+      background-color: white;
+    }
+    &.offer {
+      border-left: $itemBorderWidth solid color(2);
+    }
+    &.need {
+      border-left: $itemBorderWidth solid color(1);
+    }
+    
+
     min-width: 188px;
-    padding: 0px;
     border-bottom: 1px solid white;
     position: relative;
     background-color: white;
@@ -114,7 +130,6 @@ body {
 
     }
     ._content {
-      margin-bottom: 40px;
       ._title {
         h2 {
           font-size: rem-calc(16);
@@ -150,20 +165,14 @@ body {
 
 @media #{$large-up} {
   ._market {
+    ._item-list {
+      padding: 0px;
+    }
+
     article {
+      padding: 10px 0px;
       &.row {
         margin-bottom: 20px;
-      }
-
-      &.need {
-        ._content ._title h2 a span {
-          color: color(1);
-        }
-      }
-      &.offer {
-        ._content ._title h2 a span {
-          color: color(2);
-        }
       }
     }
 
@@ -181,6 +190,15 @@ body {
         }
       }
     }
+
+    ._filter {
+
+    	._filterbar-wrap {
+    		margin-right: 20px;
+	    	background-color: #F0F0F0;
+	    	border: 1px solid #C9C9C9;
+    	}
+    }
   }
 }
 
@@ -195,19 +213,10 @@ body {
 
   ._market {
     article {
+      padding: 10px 0px;
+
       &.row {
-        margin-left: 0;
-        margin-right: 0;
         margin-bottom: 80px;
-        border: $itemBorder;
-        border-radius: 8px;
-        background-color: white;
-      }
-      &.offer {
-        border-left: $itemBorderWidth solid color(2);
-      }
-      &.need {
-        border-left: $itemBorderWidth solid color(1);
       }
       .sharing {
         display: none;
@@ -240,7 +249,7 @@ body {
       }
 
       ._content {
-        margin-bottom: 25px;
+        margin-bottom: 32px;
 
         ._title h2 {
           font-size: 17px !important;

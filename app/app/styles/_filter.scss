@@ -1,8 +1,9 @@
 ._filter {
-  color: #555555;
-  background-color: #dddddd;
+	padding: 0px;
 
   ._filterbar-wrap {
+	  color: #555555;
+	  background-color: #dddddd;
     ._filterbar-header {
       background-color: #CC4615;
       font-size: 16px;
@@ -21,12 +22,14 @@
       transition: all .3s ease-in;
       opacity: 1;
       max-height: 800px;
-      padding: 0.9375rem 0;
 
       section {
-        padding: 0 0.9375rem .5em 0.9375rem;
-        margin-bottom: .5em;
-        border-bottom: 1px solid #9b9b9b;
+      	padding: 1em;
+        border-bottom: 1px solid #C9C9C9;
+    	
+    	&:last-child {
+    		border-bottom: none;
+    	}
 
         h4 {
           margin-top: 0;
