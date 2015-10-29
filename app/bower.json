@@ -37,7 +37,8 @@
     "fancybox": "~2.1.5",
     "jquery.tipsy": "*",
     "ng-tags-input": "~3.0.0",
-    "jquery-autosize": "autosize#1.18.16"
+    "jquery-autosize": "autosize#1.18.16",
+    "smartcrop": "*"
   },
   "devDependencies": {},
   "resolutions": {

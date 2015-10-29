@@ -8,7 +8,6 @@
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
   '$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma', '$stateParams',
-
   function ($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma, $stateParams) {
     $scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
     $scope.limit = 15;
@@ -216,7 +215,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
       $scope.filterIsOn = Filter.isSet();
       refreshTags();
       ItemFilter.clear();
-
       $scope.disableLazyLoad = true;
       $scope.loaded = false;
       $scope.loading = false;

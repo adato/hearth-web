@@ -13,35 +13,48 @@ angular.module('hearth.directives').service('ImageLib', ['$http', function ($htt
 		    var ratio = Math.min(ratioX, ratioY);
 		}
 
-	    return {width: (width * ratio), height: (height * ratio)};
+	    return {width: Math.floor(width * ratio), height: Math.floor(height * ratio)};
 	};
 
-	this.resize = function(img, newSize) {
+	this.resize = function(img, newSize, outputCanvas) {
 		var canvas = document.createElement('canvas');
 		canvas.width = newSize.width;
 		canvas.height = newSize.height;
 		var ctx = canvas.getContext("2d");
 		ctx.drawImage(img, 0, 0, newSize.width, newSize.height);
-	    return canvas.toDataURL("image/jpeg");
+		return outputCanvas ? canvas : canvas.toDataURL("image/jpeg");
 	};
 
-	this.cropSquareCenter = function(img, size) {
+	this.cropSquareCenter = function(img, size, done) {
 		var oh = 0, ow = 0;
 		var squareSize = Math.min(size.width, size.height);
 
 		if(size.width > size.height) {
-			ow = (size.width - squareSize) / 2;
+			ow = Math.round((size.width - squareSize) / 2);
 
 		} else if(size.width < size.height) {
-			oh = (size.height - squareSize) / 2;
+			oh = Math.round((size.height - squareSize) / 2);
 		}
 
 		var canvas = document.createElement('canvas');
-		canvas.width = squareSize
-		canvas.height = squareSize
+		canvas.width = squareSize;
+		canvas.height = squareSize;
 		var ctx = canvas.getContext("2d");
 		ctx.drawImage(img, ow, oh, squareSize, squareSize, 0, 0, squareSize, squareSize);
-	    return canvas.toDataURL("image/jpeg");
+	    return done(canvas.toDataURL("image/jpeg"));
+	};
+
+	this.cropSmart = function(img, size, done) {
+		var squareSize = Math.min(size.width, size.height);
+
+		SmartCrop.crop(img, {width: squareSize, height: squareSize}, function(result){
+			var canvas = document.createElement('canvas');
+			canvas.width = squareSize;
+			canvas.height = squareSize;
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(img, result.topCrop.x, result.topCrop.y, result.topCrop.width, result.topCrop.height, 0, 0, result.topCrop.width, result.topCrop.height);
+		    done(canvas.toDataURL("image/jpeg"));
+		});
 	};
 
     this.upload = function(file, uploadUrl, done, doneErr){
@@ -178,14 +191,15 @@ angular.module('hearth.directives').directive('imagePreview', [
 					if(!scope.uploadResource) {
 						var size = ImageLib.getProportionalSize(img, $$config.imgMaxPixelSize, $$config.imgMaxPixelSize);
 						
-						resized = ImageLib.resize(img, size);
-						resized = ImageLib.cropSquareCenter(img, size);
-						resized = ExifRestorer.restore(imgFile.target.result, resized);
+						var canvas = ImageLib.resize(img, size, true);
+						return ImageLib.cropSmart(canvas, size, function(resized) {
+							
+							resized = ExifRestorer.restore(imgFile.target.result, resized);
 
-						if(resized.split(',').length == 1)
-							resized = 'data:image/jpeg;base64,'+resized;
-
-						return pushResult({file: resized}, {total: 0});
+							if(resized.split(',').length == 1)
+								resized = 'data:image/jpeg;base64,'+resized;
+							pushResult({file: resized}, {total: 0});
+						});
 					}
 
 					if (img.width <= $$config.imgMaxPixelSize && img.height <= $$config.imgMaxPixelSize

@@ -416,30 +416,32 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
     };
 
     // open modal window for item edit
-    $rootScope.editItem = function (post, isInvalid, preset) {
-      if (!Auth.isLoggedIn())
-        return $rootScope.showLoginBox(true);
+    $rootScope.editItem = function(post, isInvalid, preset) {
+        if (!Auth.isLoggedIn())
+            return $rootScope.showLoginBox(true);
 
-      // createDraft
-      var scope = $scope.$new();
-      scope.isInvalid = isInvalid;
-      scope.preset = preset;
+        // createDraft
+        var scope = $scope.$new();
+        scope.isInvalid = isInvalid;
+        scope.preset = preset;
 
-      if (post) {
+        if(post) {
 
-        scope.post = angular.copy(post);
-        scope.postOrig = post;
-        scope.isDraft = false;
-        $rootScope.openEditForm(scope);
-      } else {
+            Post.get({postId: post._id}, function(detail) {
+                scope.post = detail;
+                scope.postOrig = detail;
+                scope.isDraft = false;
+                $rootScope.openEditForm(scope);
+            });
+        } else {
 
-        Post.createDraft({}, function (draft) {
-          scope.post = draft;
-          scope.isDraft = true;
-          scope.postOrig = null;
-          $rootScope.openEditForm(scope);
-        });
-      }
+            Post.createDraft({}, function(draft) {
+                scope.post = draft;
+                scope.isDraft = true;
+                scope.postOrig = null;
+                $rootScope.openEditForm(scope);
+            });
+        }
     };
 
     $rootScope.removeItemFromList = function (id, list) {

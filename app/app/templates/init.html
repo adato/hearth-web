@@ -1,0 +1,39 @@
+<div class="ngdialog ngdialog-theme-default" id="maitenancePage">
+	<div class="ngdialog-overlay"></div>
+	<div class="ngdialog-content" ng-cloak>
+		<h2 ng-if="isMaintenanceMode" translate-cloak ng-bind-html="'SERVER_MAITENANCE_MESSAGE' | translate"></h2>
+	</div>
+</div>
+<div class="offline-dialog" id="offlineNotify" ng-class="{display: isOfflineMode}" ng-cloak>
+	<div class="content" ng-cloak>
+		<span ng-bind-html="'YOU_ARE_OFFLINE' | translate"></span> &nbsp;&nbsp;
+		<button class="others profile-button solid dontDisable" ng-click="checkOnlineState()">{{ 'RELOAD_PAGE' | translate }} <i class="fa fa-spinner fa-spin" ng-if="offlineHealthCheckInProgress"></i></button>
+	</div>
+</div>
+
+<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
+	<div>
+		<p>
+			<i class="fa fa-exclamation-circle"></i> {{ 'NEW_VERSION_NOTIFICATION' | translate }}
+		</p>
+		<span ng-click="refreshToPath()" class="left">{{ 'RELOAD' | translate }}</span>
+		<span ng-click="closeMaintenanceNotify();" class="right">{{ 'CLOSE' | translate }}</span>
+		<div class="clear"></div>
+	</div>
+</div>
+<div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
+<div class="off-canvas-wrap" data-offcanvas>
+	<div class="inner-wrap">
+		<navigation ng-if="initFinished"></navigation>
+		<section id="homepage-hero">
+			<div class="all-visible max-width">
+				<div ui-view class="main-container max-web-width"></div>
+				<div ng-click="top()" class="move2top show-for-scrolled show-for-large-up" title="{{'move-to-top' | translate}}">
+					{{topArrowText.top}}
+					<span class="fa fa-caret-square-o-up"></span> {{topArrowText.bottom}}
+				</div>
+		</section>
+		<a class="exit-off-canvas"></a>
+		</div>
+	</div>
+</div>
