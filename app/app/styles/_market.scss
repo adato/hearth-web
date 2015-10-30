@@ -106,6 +106,9 @@ body {
       padding: 0px;
     }
 
+    .v-m-small {
+    	text-align: center;
+    }
     article {
       padding: 10px 0px;
       &.row {
@@ -156,12 +159,15 @@ body {
     article {
       padding: 0px;
       ._avatar {
-        min-width: 55px;
-        max-width: 55px;
-        min-height: 52px;
-        max-height: 45px;
-        padding-left: 10px;
-
+        
+        &, & img {
+	        min-width: 55px;
+	        max-width: 55px;
+	        min-height: 52px;
+	        max-height: 45px;
+	        padding-left: 10px;
+        }
+        
         ._photo {
           img {
             border-radius: 50%;
