@@ -70,7 +70,7 @@ module.exports = function(grunt) {
 			},
 			compass: {
 				files: ['<%= yeoman.app %>/{,*/}*.{scss,sass}'],
-				tasks: ['compass:server', 'autoprefixer']
+				tasks: ['compass:server', 'autoprefixer', 'scsslint']
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -348,6 +348,25 @@ module.exports = function(grunt) {
 		// Make sure code styles are up to par and there are no obvious mistakes
 		eslint: {
 			target: ['<%= yeoman.app %>/scripts/{,*/}*.js']
+		},
+
+		scsslint: {
+			allFiles: ['<%= yeoman.app %>/styles/*.scss'],
+			options: {
+				colorizeOutput: true,
+				maxBuffer: 3000 * 1024,
+				force: true,
+			}
+		},
+
+		jsbeautifier: {
+			files : ["<%= yeoman.app %>/scripts/**/*.js"],
+			locales: {
+				src: ["app/locales/*/messages.json"],
+				options: {}
+			},
+			options : {
+			}
 		},
 
 		// Empties folders to start fresh
@@ -636,7 +655,8 @@ module.exports = function(grunt) {
 		// Run some tasks in parallel to speed up the build process
 		concurrent: {
 			server: [
-				'compass:server'
+				'compass:server',
+				'jsbeautifier'
 			],
 			test: [
 				'compass'
@@ -763,13 +783,7 @@ module.exports = function(grunt) {
 					}
 				}
 			}
-		},
-		jsbeautifier: {
-			locales: {
-				src: ["app/locales/*/messages.json"],
-				options: {}
-			}
-		},
+		}
 	});
 
 	grunt.registerTask('serve', function(target) {
