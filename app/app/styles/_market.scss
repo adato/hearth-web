@@ -65,7 +65,6 @@ body {
     }
     .time {
       padding-right: 2.5em;
-      width: 58.33333%;
       text-align: right;
     }
     ._content {
@@ -114,6 +113,10 @@ body {
       &.row {
         margin-bottom: 20px;
       }
+      .dropdown-container a {
+        padding-top: 4px;
+        padding-right: 20px;
+      }
     }
 
     ._avatar {
@@ -122,12 +125,38 @@ body {
 
     .location {
       margin-bottom: 10px;
+      margin-left: 0px;
+      margin-right: 0px;
+      
+      padding: 5px 10px;
+      background-color: #F3F3F3;
+      position: relative;
+      margin-bottom: 10px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+
+      i.fa-map-marker {
+        background-color: white;
+        font-size: 16px;
+
+        width: 26px;
+        color: #999;
+        height: 26px;
+        border-radius: 50%;
+        text-align: center;
+        padding-top: 5px;
+        position: absolute;
+        top: 50%;
+        margin-top: -14px;
+      }
 
       & > ul {
         display: inline-block;
         list-style: none;
         margin: 0px;
-
+        margin-left: 35px;
+        
         .delimiter::after {
           content: ";";
           margin-right: 5px;
@@ -160,14 +189,20 @@ body {
       padding: 0px;
       ._avatar {
         
-        &, & img {
+        & {
 	        min-width: 55px;
 	        max-width: 55px;
 	        min-height: 52px;
 	        max-height: 45px;
 	        padding-left: 10px;
+
+	        img {
+		        max-height: 45px;
+	        }
         }
-        
+        .time {
+          width: 58.33333%; 
+        }
         ._photo {
           img {
             border-radius: 50%;
