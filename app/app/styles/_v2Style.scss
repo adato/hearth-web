@@ -1,8 +1,6 @@
 $fontSize: $fontSize;
 
 .v2 {
-
-
 	
 	h2 {
 		font-size: 17px !important;
@@ -10,9 +8,14 @@ $fontSize: $fontSize;
 		font-weight: 700;
 	}
 
+
 	p {
 		font-size: $fontSize;
 		line-height: 1.6;
+		
+		a {
+			color: $colorBlue;
+		}
 	}
 
 	.karma-bar {
@@ -83,4 +86,20 @@ $fontSize: $fontSize;
 	  }
   }
 
+  .label {
+  	border: 1px solid $colorOrange;
+  	color: $colorOrange;
+  	background-color: inherit;
+  	border-radius: 20px;
+  	min-width: 60px;
+  	cursor: pointer;
+  	transition: all .3s ease-in-out;
+
+  	&.active,
+  	&:hover {
+  	
+  		background-color: $colorOrange;
+  		color: white;
+  	}
+  }
 }

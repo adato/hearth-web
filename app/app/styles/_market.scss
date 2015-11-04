@@ -36,6 +36,17 @@ body {
     }
     &.offer {
       border-left: $itemBorderWidth solid color(2);
+
+      .label {
+      	border-color: $colorGreen;
+      	color: $colorGreen;
+
+      	&.active,
+	  	&:hover {
+	  		background-color: $colorGreen;
+	  		color: white;
+	  	}
+      }
     }
     &.need {
       border-left: $itemBorderWidth solid color(1);
@@ -59,9 +70,18 @@ body {
       }
     }
     
+    ._name {
+    	a {
+    		display: block;
+    		clear: both;
+			padding-top: 10px;
+    	}
+    }
+
     ._karma {
-      padding-left: 5px;
-      padding-right: 0px;
+	  margin-top: 10px;
+	  padding-left: 10px;
+      padding-right: 10px;
     }
     .time {
       padding-right: 2.5em;
@@ -116,6 +136,25 @@ body {
       .dropdown-container a {
         padding-top: 4px;
         padding-right: 20px;
+      }
+
+      .item-body {
+      	width: 78%;
+      	padding: 0px;
+      	.time {
+      		padding-left: 1em;
+      	}
+      	.text {
+      		margin-right: 1em;
+      	}
+      }
+
+      .item-top {
+      	width: 22%;
+
+      	.v-m-small {
+      		margin: 0px;
+      	}
       }
     }
 

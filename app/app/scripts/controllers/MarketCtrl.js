@@ -185,6 +185,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
     $scope.load = function() {
       $(".loading").show();
 
+      
       // load only if map is not shown
       // load only once in a time
       if ($scope.showMap || $scope.loading) return;
@@ -195,6 +196,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
         limit: $scope.limit
       });
 
+	  refreshTags();
       // if there are keywords, add them to search
       if ($.isArray(params.keywords)) {
         params.keywords = params.keywords.join(",");
@@ -213,7 +215,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
      */
     $scope.refreshPosts = function() {
       $scope.filterIsOn = Filter.isSet();
-      refreshTags();
       ItemFilter.clear();
       $scope.disableLazyLoad = true;
       $scope.loaded = false;

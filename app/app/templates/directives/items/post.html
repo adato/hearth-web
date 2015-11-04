@@ -32,17 +32,7 @@
         <div class="_name show-for-medium-up">
           <a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">{{ item.author.name }}</a>
         </div>
-    </div>
-      <!-- 
-
-      <div class="">
-        <div class="_photo">
-          <a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-            <img ng-src="{{item.author.avatar.large}}" alt="{{item.author.name}}"/>
-          </a>
-        </div>
       </div>
-       -->
       <div class="_karma small-3 medium-12 columns">
         <karma-bar up="item.author.up_votes" down="item.author.down_votes"></karma-bar>
       </div>
@@ -53,18 +43,18 @@
   </div>
   <!-- MARKET ITEM POST AVATAR End -->
   <!-- MARKET ITEM POST CONTENT Start -->
-  <div class="medium-10 columns">
+  <div class="medium-10 columns item-body">
     <div class="_content">
       <div class="_title clearfix">
-        <h2 class="left">
+        <div class="time right show-for-medium-up">
+          {{item.updated_at | ago}}
+        </div>
+        <h2>
           <a ng-href="{{:: getProfileLink('Post', item._id)}}">
             <span>{{ postTypes[item.author._type][item.type] | translate }}</span>
             {{item.title}}
           </a>
         </h2>
-        <div class="time right show-for-medium-up">
-          {{item.updated_at | ago}}
-        </div>
       </div>
       <div class="location row">
         <i class="fa fa-map-marker"></i>
@@ -76,9 +66,13 @@
         </ul>
       </div>
       <div class="text" ng-if="item.text.length < 270 || item.expanded == true">
-        <p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
-        <a ng-if="item.text.length >= 270" ng-click="item.expanded = false">{{:: 'MARKETPLACE.POST.CLICK_TO_COLLAPSE' |
-          translate }}</a>
+        <p>
+          <span ng-bind-html="item.text | linky:'_blank' | nl2br"></span>
+          <a ng-if="item.text.length >= 270" ng-click="item.expanded = false">
+            <br />
+            {{:: 'MARKETPLACE.POST.CLICK_TO_COLLAPSE' | translate }}
+          </a>
+        </p>
       </div>
       <div class="text" ng-if="item.text.length >= 270 && !item.expanded">
         <p>
@@ -93,7 +87,7 @@
       </ul>
       <p class="labels show-for-medium-up" ng-if="item.keywords.length">
         <span ng-repeat="tag in item.keywords"><span ng-click="toggleTag(tag)"
-                                                     ng-class="{'secondary': keywords.indexOf(tag) !== -1}"
+                                                     ng-class="{'active': keywords.indexOf(tag.toLowerCase()) !== -1}"
                                                      class="label"
                                                      ng-bind-html="tag"/> </span>
       </p>

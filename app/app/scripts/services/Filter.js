@@ -30,7 +30,8 @@ angular.module('hearth.services').factory('Filter', [
       },
       toggleTag: function (tag) {
         var params, index;
-
+        tag = tag.toLowerCase();
+        
         params = $location.search();
         params.keywords = params.keywords || [];
 
@@ -49,14 +50,13 @@ angular.module('hearth.services').factory('Filter', [
           delete params.keywords;
 
         $location.search(params);
-        // $rootScope.$broadcast("filterApplied", params);
+        $rootScope.$broadcast("filterApplied", params);
       },
       getActiveTags: function () {
         var params = $location.search();
 
         if (!params.keywords)
           return [];
-
         if (!$.isArray(params.keywords))
           return angular.copy(params.keywords).split(",");
         else
