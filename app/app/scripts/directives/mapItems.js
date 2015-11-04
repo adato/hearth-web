@@ -20,10 +20,10 @@ angular.module('hearth.directives').directive('mapitems', [
 			template: '<div class="map-container"></div>',
 			link: function($scope, baseElement, attrs) {
 				var map, markers = [];
-			 	var markerImage = {
+				var markerImage = {
 					url: 'images/pin.png',
 					size: new google.maps.Size(49, 49),
-					origin: new google.maps.Point(0,0),
+					origin: new google.maps.Point(0, 0),
 					anchor: new google.maps.Point(14, 34)
 				};
 				var options = {};
@@ -40,7 +40,7 @@ angular.module('hearth.directives').directive('mapitems', [
 				 * This will init the map but only once
 				 */
 				$scope.initMap = function() {
-					if($scope.isInited())
+					if ($scope.isInited())
 						return false;
 
 					map = geo.createMap($(".map-container")[0], options);
@@ -62,20 +62,20 @@ angular.module('hearth.directives').directive('mapitems', [
 				 * Zoom out on all markers in map
 				 */
 				$scope.fitZoom = function() {
-				    var bounds = new google.maps.LatLngBounds();
-			    	
-			    	// add marker to bound
-				    markers.forEach(function(item) {
+					var bounds = new google.maps.LatLngBounds();
+
+					// add marker to bound
+					markers.forEach(function(item) {
 						bounds.extend(item.getPosition());
-				    });
+					});
 
-				    // fit marker to bound
-				    map.fitBounds(bounds);
+					// fit marker to bound
+					map.fitBounds(bounds);
 
-				    // dont zoom so close when in map is only one marker
-			    	var listener = google.maps.event.addListener(map, "idle", function() { 
-					  if (map.getZoom() > 16) map.setZoom(16); 
-					  google.maps.event.removeListener(listener); 
+					// dont zoom so close when in map is only one marker
+					var listener = google.maps.event.addListener(map, "idle", function() {
+						if (map.getZoom() > 16) map.setZoom(16);
+						google.maps.event.removeListener(listener);
 					});
 				};
 
@@ -87,7 +87,7 @@ angular.module('hearth.directives').directive('mapitems', [
 					$scope.clearMap();
 
 					// if there are no locations, dont continue
-					if(! $scope.items.length)
+					if (!$scope.items.length)
 						return false;
 
 					// add locations to map

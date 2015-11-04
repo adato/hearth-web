@@ -5,7 +5,7 @@
  * @name hearth.services.LanguageSwitch
  * @description
  */
- 
+
 angular.module('hearth.services').service('LanguageSwitch', [
 	'$feature', '$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
 	function($feature, $translate, $http, $rootScope, tmhDynamicLocale, Session, Notify) {
@@ -18,12 +18,12 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
 		};
-		
+
 		// get all languages
 		this.getLanguages = function() {
 			return self.languages;
 		};
-		
+
 		// test if language exists
 		this.langExists = function(lang) {
 			return !!~self.languages.indexOf(lang);
@@ -32,27 +32,32 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		// switch to given language code
 		this.swicthTo = function(lang) {
 
-			if(lang) {
-				self.setCookie(lang);
-	
-				Session.update({language: lang}, function(res) {
-					location.reload();
-				}, function() {
-					Notify.addSingleTranslate('NOTIFY.CHANGE_LANGUAGE_FAILED', Notify.T_ERROR);
-				});
+				if (lang) {
+					self.setCookie(lang);
+
+					Session.update({
+						language: lang
+					}, function(res) {
+						location.reload();
+					}, function() {
+						Notify.addSingleTranslate('NOTIFY.CHANGE_LANGUAGE_FAILED', Notify.T_ERROR);
+					});
+				}
+				return false;
 			}
-			return false;
-		}
-		// return current used language
+			// return current used language
 		this.uses = function() {
 			return $rootScope.language;
 		};
-		
+
 		// set cookie with language
 		this.setCookie = function(lang) {
-			$.cookie('language', lang, {expires: 21*30*100, path: '/' });
+			$.cookie('language', lang, {
+				expires: 21 * 30 * 100,
+				path: '/'
+			});
 		};
-		
+
 		// use language
 		this.use = function(language) {
 			self.setCookie(language);

@@ -16,6 +16,6 @@ angular.module('hearth.controllers').controller('TermsCtrl', [
 		};
 
 		$scope.$on('initFinished', $scope.init);
-        $rootScope.initFinished && $scope.init();
+		$rootScope.initFinished && $scope.init();
 	}
 ]);

@@ -5,7 +5,7 @@
  * @name hearth.controllers.CommunityListCtrl
  * @description 
  */
- 
+
 angular.module('hearth.controllers').controller('CommunityListCtrl', [
 	'$scope', 'Community', 'UnauthReload', '$state', '$filter', 'UniqueFilter',
 	function($scope, Community, UnauthReload, $state, $filter, UniqueFilter) {
@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 		var ItemFilter = new UniqueFilter();
 
 		$scope.load = function() {
-			if($scope.loadingFinished) return false;
+			if ($scope.loadingFinished) return false;
 
 			var conf = {
 				limit: 20,
@@ -27,9 +27,9 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 			var service = ($state.current.name == 'communities.suggested') ? Community.suggested : Community.query;
 			service(conf, function(res) {
 
-				if(res) {
+				if (res) {
 					res = ItemFilter.filter(res);
-					
+
 					res.forEach(function(item) {
 						item.description = $filter('ellipsis')($filter('linky')(item.description, '_blank'));
 					});
@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('CommunityListCtrl', [
 				$scope.loading = false;
 				$scope.$parent.loadedFirstBatch = true;
 
-				if(!res.length || $state.current.name == 'communities.suggested') {
+				if (!res.length || $state.current.name == 'communities.suggested') {
 					return $scope.loadingFinished = true;
 				}
 			});

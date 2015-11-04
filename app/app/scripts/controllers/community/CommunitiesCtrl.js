@@ -5,7 +5,7 @@
  * @name hearth.controllers.CommunityListCtrl
  * @description 
  */
- 
+
 angular.module('hearth.controllers').controller('CommunitiesCtrl', [
 	'$scope', '$rootScope', 'CommunityMemberships', 'Community', 'UnauthReload',
 	function($scope, $rootScope, CommunityMemberships, Community, UnauthReload) {

@@ -33,30 +33,30 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.validateReply = function(reply) {
 					var invalid = false;
 
-					if(!reply.text)
+					if (!reply.text)
 						invalid = $scope.showError.text = true;
 					return !invalid;
 				};
-				
+
 				$scope.onResize = function() {
 					$scope.$emit('conversationReplyFormResized');
 				};
 
 				$scope.sendReply = function(reply) {
 					reply.id = $scope.conversation._id;
-					if($scope.sendingReply || !$scope.validateReply(reply))
+					if ($scope.sendingReply || !$scope.validateReply(reply))
 						return false;
 					$scope.sendingReply = true;
 
-				 	Conversations.reply(reply, function(res) {
+					Conversations.reply(reply, function(res) {
 
 						$scope.reply.text = '';
-						
+
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
 							$scope.onResize();
 						});
-						
+
 						$scope.msgReplyForm.$setUntouched();
 						$scope.msgReplyForm.$setPristine();
 
@@ -69,17 +69,17 @@ angular.module('hearth.directives').directive('conversationReply', [
 					});
 				};
 
-				$scope.closeConversation = function () {
+				$scope.closeConversation = function() {
 					$scope.$emit('closeConversation');
 				}
 
 				$scope.init = function() {
 					$scope.actors = $scope.conversation.possible_actings;
-					
-					if ($scope.actors.length == 1){
+
+					if ($scope.actors.length == 1) {
 						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? undefined : $scope.actors[0]._id);
 					}
- 				};
+				};
 
 
 				$scope.init();

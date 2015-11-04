@@ -7,20 +7,20 @@
  */
 angular.module('hearth.directives').directive('flexslider', function() {
 
-    return {
-        link: function($scope, element, attrs) {
+	return {
+		link: function($scope, element, attrs) {
 
-            setTimeout(function() {
+			setTimeout(function() {
 
-                element.flexslider({
-                    animation: "slide",
-                    itemWidth: 650,
-                    itemMargin: 0,
-                    useCSS: false,
-                    directionNav: false,
-                    slideshow: false,
-                });
-            });
-        }
-    }
+				element.flexslider({
+					animation: "slide",
+					itemWidth: 650,
+					itemMargin: 0,
+					useCSS: false,
+					directionNav: false,
+					slideshow: false,
+				});
+			});
+		}
+	}
 });

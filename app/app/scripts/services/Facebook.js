@@ -8,7 +8,7 @@
 
 angular.module('hearth.services').service('Facebook', [
 	'$translate',
-	
+
 	function($translate) {
 		var inited = false;
 

@@ -7,7 +7,7 @@ $$config = {
 	templates: 'templates/',
 	lengthUnit: 'km',
 	defaultLanguage: 'cs',
-	maxImagesSize: 6,	// max size of all attached images in MB
+	maxImagesSize: 6, // max size of all attached images in MB
 	fbSharing: {
 		minWidth: 200,
 		minHeight: 200
@@ -47,32 +47,32 @@ $$config = {
 		newCreateEditForm: false
 	},
 	itemAddresses: {
-        "Community": "community",
-        "User": "profile",
-        "Post": "post",
-        "Conversation": "messages",
-    },
-    postTypes: {
-        User: {
-            need: 'DOES_WISH',
-            offer: 'DOES_GIVE'
-        },
-        Community: {
-            need: 'WE_NEED',
-            offer: 'WE_GIVE'
-       }
-    },
-    replyLabels: {
+		"Community": "community",
+		"User": "profile",
+		"Post": "post",
+		"Conversation": "messages",
+	},
+	postTypes: {
+		User: {
+			need: 'DOES_WISH',
+			offer: 'DOES_GIVE'
+		},
+		Community: {
+			need: 'WE_NEED',
+			offer: 'WE_GIVE'
+		}
+	},
+	replyLabels: {
 		offer: 'WISH_GIFT',
 		need: 'OFFER_GIFT'
 	},
 	replyCountTexts: {
-        offer: 'PEOPLE_COUNT_WISH_PL',
-        need: 'PEOPLE_COUNT_OFFER_PL'
-    }
+		offer: 'PEOPLE_COUNT_WISH_PL',
+		need: 'PEOPLE_COUNT_OFFER_PL'
+	}
 };
 
 // copy data from localConfig
-if($$localConfig) {
-	for(var key in $$localConfig) $$config[key]=$$localConfig[key];
+if ($$localConfig) {
+	for (var key in $$localConfig) $$config[key] = $$localConfig[key];
 }

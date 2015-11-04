@@ -35,28 +35,28 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 			$scope.$broadcast("filterOpen");
 		};
 
-	 	function getPostScope(post) {
+		function getPostScope(post) {
 
 			var scope = $scope.$new(true);
-            scope.keywords = $scope.keywordsActive;
-            scope.item = post;
-            scope.toggleTag = Filter.toggleTag;
-            scope.foundationColumnsClass = 'large-10';
+			scope.keywords = $scope.keywordsActive;
+			scope.item = post;
+			scope.toggleTag = Filter.toggleTag;
+			scope.foundationColumnsClass = 'large-10';
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
 
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
 
-            // post address for social links
-            scope.postAddress = $rootScope.appUrl+'post/'+post._id;
-            scope.isActive = $rootScope.isPostActive(post);
-            scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes);
+			// post address for social links
+			scope.postAddress = $rootScope.appUrl + 'post/' + post._id;
+			scope.isActive = $rootScope.isPostActive(post);
+			scope.item.karma = Karma.count(post.author.up_votes, post.author.down_votes);
 
-            // is this my post? if so, show controll buttons and etc
-            scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
+			// is this my post? if so, show controll buttons and etc
+			scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
 
-            scope.isExpiringSoon = !scope.item.valid_until == 'unlimited' && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
-            return scope;
+			scope.isExpiringSoon = !scope.item.valid_until == 'unlimited' && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
+			return scope;
 		};
 
 		function addItemsToList(container, data, index, done) {
@@ -66,16 +66,16 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 			if (posts.length > index) {
 				var post = posts[index];
 
-				$scope.debug && console.time("Single post ("+(index)+") built");
+				$scope.debug && console.time("Single post (" + (index) + ") built");
 				$scope.items.push(post);
 
-				return templateFunction(getPostScope(post), function(clone){
+				return templateFunction(getPostScope(post), function(clone) {
 					container.append(clone[0]);
 
 					return $timeout(function() {
-						$('#post_'+post._id).slideDown();
+						$('#post_' + post._id).slideDown();
 
-						$scope.debug && console.timeEnd("Single post ("+(index)+") built");
+						$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
 						addItemsToList(container, data, index + 1, done);
 					});
 				});
@@ -99,7 +99,7 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 			// finish loading and allow to show loading again
 
 			$timeout(function() {
-				if(!isLast)
+				if (!isLast)
 					$scope.loading = false;
 			});
 		};
@@ -110,13 +110,13 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 			var newPost = $rootScope.getPostIfMissing();
 
 			// if there is not new post, dont do anything
-			if(!newPost)
+			if (!newPost)
 				return data;
 
 			// go throught post array and if there is new post already
 			// dont add him again
-			for(var i = 0;i < data.length; i++) {
-				if(data[i]._id == newPost._id)
+			for (var i = 0; i < data.length; i++) {
+				if (data[i]._id == newPost._id)
 					return data;
 			}
 
@@ -130,13 +130,13 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 				$scope.loaded = true;
 				$(".loading").hide();
 
-				if(!data.data.length) {
+				if (!data.data.length) {
 					finishLoading(data.data, true);
 					return;
 				}
 
 				$scope.debug && console.timeEnd("Market posts loaded from API");
-				if(data.data) {
+				if (data.data) {
 
 					data.data = insertLastPostIfMissing(data.data);
 					data.data = ItemFilter.filter(data.data);
@@ -167,7 +167,7 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 			});
 
 			// if there are keywords, add them to search
-			if ( $.isArray(params.keywords)) {
+			if ($.isArray(params.keywords)) {
 				params.keywords = params.keywords.join(",");
 			}
 
@@ -207,11 +207,11 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 					$scope.items[i] = data;
 					var post = getPostScope(angular.copy(data));
 
-					templateFunction(post, function(clone){
-						$('#post_'+data._id).replaceWith(clone);
+					templateFunction(post, function(clone) {
+						$('#post_' + data._id).replaceWith(clone);
 
 						$timeout(function() {
-							$('#post_'+data._id).slideDown();
+							$('#post_' + data._id).slideDown();
 						});
 					});
 
@@ -226,11 +226,11 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 			post.hidden = true;
 			$scope.items.unshift(post);
 
-			templateFunction(getPostScope(post), function(clone){
+			templateFunction(getPostScope(post), function(clone) {
 				$('#market-item-list').prepend(clone);
 
 				$timeout(function() {
-					$('#post_'+post._id).slideDown();
+					$('#post_' + post._id).slideDown();
 				});
 			});
 		});
@@ -240,7 +240,7 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 		 * post class so we won't manipulate with him in future
 		 */
 		$scope.$on('itemDeleted', function($event, item) {
-			$( "#post_"+item._id ).slideUp( "slow", function() {
+			$("#post_" + item._id).slideUp("slow", function() {
 				$(this).removeClass("post");
 			});
 		});
@@ -251,11 +251,11 @@ angular.module('hearth.controllers').controller('_MarketCtrl', [
 			$rootScope.cacheInfoBox = {};
 		});
 
-	    $templateRequest(templateUrl).then(function(template) {
-	    	templateFunction = $compile(template);
+		$templateRequest(templateUrl).then(function(template) {
+			templateFunction = $compile(template);
 
 			$scope.filterIsOn = Filter.isSet();
 			marketInited.resolve();
-	    });
+		});
 	}
 ]);

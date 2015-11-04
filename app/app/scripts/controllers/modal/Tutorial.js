@@ -23,21 +23,23 @@ angular.module('hearth.controllers').controller('Tutorial', [
 
 		$scope.next = function() {
 
-		    $('.flexslider').flexslider('next');
+			$('.flexslider').flexslider('next');
 		};
 
 		$scope.prev = function() {
 
-		    $('.flexslider').flexslider('prev');
+			$('.flexslider').flexslider('prev');
 		};
 
 		$scope.loadTutorials = function() {
 
 			// if not loaded already from BaseCtrl
-			if(! $scope.tutorials)
+			if (!$scope.tutorials)
 				processResult($scope.tutorials)
 			else
-				Tutorial.get({user_id: $rootScope.loggedUser._id}, processResult, processError);
+				Tutorial.get({
+					user_id: $rootScope.loggedUser._id
+				}, processResult, processError);
 		};
 
 		$scope.closeAll = function() {

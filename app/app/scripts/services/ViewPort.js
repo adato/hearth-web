@@ -27,7 +27,7 @@ angular.module('hearth.services').service('Viewport', [
 				mid: $(base).scrollTop() + viewportHeight / 2,
 			};
 		};
-		
+
 		// this will get target element position of max, min Y coord, height & mid position
 		this.getTargetViewportPos = function(targetName) {
 			var targetElement = $(targetName);
@@ -42,7 +42,7 @@ angular.module('hearth.services').service('Viewport', [
 				mid: targetElement.offset().top + height / 2,
 			};
 		};
-		
+
 		// test if given element is in browser viewport
 		this.isInViewport = function(targetName, baseName) {
 			var viewportPosition = self.getViewportPos(baseName);
@@ -60,7 +60,7 @@ angular.module('hearth.services').service('Viewport', [
 
 			//if (!target.length || !viewport.length) throw "NoElementErr";
 
-			if(viewportPosition.min < targetPosition.min)
+			if (viewportPosition.min < targetPosition.min)
 				return -1 * (viewportPosition.max - targetPosition.max);
 			else
 				return (targetPosition.min - viewportPosition.min);
@@ -75,19 +75,21 @@ angular.module('hearth.services').service('Viewport', [
 		// smooth scroll given pixels with offset
 		this.scroll = function(h, offset, base) {
 			base = base || 'html';
-			if(h > 0) 
+			if (h > 0)
 				h += offset; // if we scroll bot, add offset
-			else	
+			else
 				h -= offset; // if we scroll up, substract offset
 
 			var scrollAmount = Math.abs($(base).scrollTop() + h);
-			$(base).animate({ scrollTop: scrollAmount +"px" });
+			$(base).animate({
+				scrollTop: scrollAmount + "px"
+			});
 		};
 
 		// test if target element is in viewport, if not, scroll to it
 		this.scrollIfHidden = function(target, offset, base) {
 			try {
-				if(!self.isInViewport(target, base)) {
+				if (!self.isInViewport(target, base)) {
 					var distance = self.getTargetsDistance(target);
 					self.scroll(distance, offset, base);
 				}

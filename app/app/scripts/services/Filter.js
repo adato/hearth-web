@@ -7,130 +7,129 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-  '$q', '$location', '$state', '$rootScope', 'User', 'KeywordsService', 'Post',
-  function ($q, $location, $state, $rootScope, User, KeywordsService, Post) {
-    return {
-      _commonKeywords: [],
-      getCommonKeywords: function (cb) {
-        var self = this;
-        cb = cb || function () {
-          };
+	'$q', '$location', '$state', '$rootScope', 'User', 'KeywordsService', 'Post',
+	function($q, $location, $state, $rootScope, User, KeywordsService, Post) {
+		return {
+			_commonKeywords: [],
+			getCommonKeywords: function(cb) {
+				var self = this;
+				cb = cb || function() {};
 
-        if (this._commonKeywords.length)
-          return cb(this._commonKeywords);
-        else
-          KeywordsService.queryKeywords().then(function (res) {
-            cb(self._commonKeywords = res);
-          });
-      },
-      queryCommonKeywords: function ($query) {
-        var deferred = $q.defer();
-        deferred.resolve(this._commonKeywords);
-        return deferred.promise;
-      },
-      toggleTag: function (tag) {
-        var params, index;
-        tag = tag.toLowerCase();
-        
-        params = $location.search();
-        params.keywords = params.keywords || [];
+				if (this._commonKeywords.length)
+					return cb(this._commonKeywords);
+				else
+					KeywordsService.queryKeywords().then(function(res) {
+						cb(self._commonKeywords = res);
+					});
+			},
+			queryCommonKeywords: function($query) {
+				var deferred = $q.defer();
+				deferred.resolve(this._commonKeywords);
+				return deferred.promise;
+			},
+			toggleTag: function(tag) {
+				var params, index;
+				tag = tag.toLowerCase();
 
-        if (!$.isArray(params.keywords))
-          params.keywords = params.keywords.split(",");
+				params = $location.search();
+				params.keywords = params.keywords || [];
 
-        index = params.keywords.indexOf(tag);
-        if (index == -1)
-          params.keywords.push(tag);
-        else {
-          params.keywords.splice(index, 1);
-        }
+				if (!$.isArray(params.keywords))
+					params.keywords = params.keywords.split(",");
 
-        params.keywords = params.keywords.join(",");
-        if (params.keywords == "")
-          delete params.keywords;
+				index = params.keywords.indexOf(tag);
+				if (index == -1)
+					params.keywords.push(tag);
+				else {
+					params.keywords.splice(index, 1);
+				}
 
-        $location.search(params);
-        $rootScope.$broadcast("filterApplied", params);
-      },
-      getActiveTags: function () {
-        var params = $location.search();
+				params.keywords = params.keywords.join(",");
+				if (params.keywords == "")
+					delete params.keywords;
 
-        if (!params.keywords)
-          return [];
-        if (!$.isArray(params.keywords))
-          return angular.copy(params.keywords).split(",");
-        else
-          return params.keywords;
+				$location.search(params);
+				$rootScope.$broadcast("filterApplied", params);
+			},
+			getActiveTags: function() {
+				var params = $location.search();
 
-      },
-      getFilterPostCount: function (filter, cb) {
-        filter = filter || {};
-        filter.counters = true;
+				if (!params.keywords)
+					return [];
+				if (!$.isArray(params.keywords))
+					return angular.copy(params.keywords).split(",");
+				else
+					return params.keywords;
 
-        Post.query(filter, function (res) {
-          var count = 0;
-          var counter = res.counters;
-          for (var k in counter) {
-            if (counter.hasOwnProperty(k)) {
-              count += counter[k];
-            }
-          }
-          cb(count);
-        });
-      },
-      get: function () {
-        return $location.search();
-      },
-      getParams: function () {
-        var params = this.get();
-        if ($.isArray(params.keywords))
-          params.keywords = params.keywords.join(',');
+			},
+			getFilterPostCount: function(filter, cb) {
+				filter = filter || {};
+				filter.counters = true;
 
-        return $.param(params);
-      },
-      isSet: function () {
-        return !$.isEmptyObject($location.search());
-      },
-      apply: function (filterData, save, applySave) {
+				Post.query(filter, function(res) {
+					var count = 0;
+					var counter = res.counters;
+					for (var k in counter) {
+						if (counter.hasOwnProperty(k)) {
+							count += counter[k];
+						}
+					}
+					cb(count);
+				});
+			},
+			get: function() {
+				return $location.search();
+			},
+			getParams: function() {
+				var params = this.get();
+				if ($.isArray(params.keywords))
+					params.keywords = params.keywords.join(',');
 
-        $location.search(filterData);
-        if (applySave && $rootScope.loggedUser._id) {
-          if (save) {
-            this.setUserFilter(filterData);
-          } else {
-            this.deleteUserFilter();
-          }
-        }
+				return $.param(params);
+			},
+			isSet: function() {
+				return !$.isEmptyObject($location.search());
+			},
+			apply: function(filterData, save, applySave) {
 
-        $rootScope.$broadcast("filterApplied", filterData);
-      },
-      checkUserFilter: function () {
-        // if user has saved filter, load it
-        if ($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length) {
-          this.apply($rootScope.user.filter);
-        }
-      },
-      setUserFilter: function (filter) {
-        User.edit({
-          _id: $rootScope.loggedUser._id,
-          filter: filter
-        });
-        $rootScope.user.filter = filter;
-      },
-      deleteUserFilter: function () {
-        this.setUserFilter({});
-      },
-      reset: function () {
-        $rootScope.$broadcast("filterReseted");
-        //this.apply({}, true, true);
-        $state.go('market', {
-          query: null,
-          type: null
-        }, {
-          reload: true
-        });
-        //this.apply({}, true, true);
-      }
-    };
-  }
+				$location.search(filterData);
+				if (applySave && $rootScope.loggedUser._id) {
+					if (save) {
+						this.setUserFilter(filterData);
+					} else {
+						this.deleteUserFilter();
+					}
+				}
+
+				$rootScope.$broadcast("filterApplied", filterData);
+			},
+			checkUserFilter: function() {
+				// if user has saved filter, load it
+				if ($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length) {
+					this.apply($rootScope.user.filter);
+				}
+			},
+			setUserFilter: function(filter) {
+				User.edit({
+					_id: $rootScope.loggedUser._id,
+					filter: filter
+				});
+				$rootScope.user.filter = filter;
+			},
+			deleteUserFilter: function() {
+				this.setUserFilter({});
+			},
+			reset: function() {
+				$rootScope.$broadcast("filterReseted");
+				//this.apply({}, true, true);
+				$state.go('market', {
+					query: null,
+					type: null
+				}, {
+					reload: true
+				});
+				//this.apply({}, true, true);
+			}
+		};
+	}
 ]);

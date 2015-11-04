@@ -17,18 +17,20 @@ angular.module('hearth.services').service('UnauthReload', [
 		 */
 		this.checkAuth = function() {
 			// if not logged
-			if(!$rootScope.loggedUser || ! $rootScope.loggedUser._id) {
-            	$rootScope.loginRequired = true;
+			if (!$rootScope.loggedUser || !$rootScope.loggedUser._id) {
+				$rootScope.loginRequired = true;
 				// set return path and refresh on login
-				$.cookie(cookieName, $location.path().slice(1), { path: '/' });
+				$.cookie(cookieName, $location.path().slice(1), {
+					path: '/'
+				});
 				$location.path('login');
 
-        		var destroy = $rootScope.$on('$routeChangeSuccess', function() {
-		            $timeout(function() {
-		            	$rootScope.$broadcast('loginRequired');
-	        			destroy();
-		            });
-		        });
+				var destroy = $rootScope.$on('$routeChangeSuccess', function() {
+					$timeout(function() {
+						$rootScope.$broadcast('loginRequired');
+						destroy();
+					});
+				});
 			}
 		};
 
@@ -44,16 +46,18 @@ angular.module('hearth.services').service('UnauthReload', [
 		this.checkLocation = function() {
 			var loc = self.getLocation();
 
-			if(loc) {
+			if (loc) {
 				$location.path(loc);
 				self.clearReloadLocation();
 			}
 		};
 
 		this.clearReloadLocation = function() {
-			$.cookie(cookieName, '', { path: '/' });
+			$.cookie(cookieName, '', {
+				path: '/'
+			});
 		};
-		
+
 		this.getLocation = function() {
 			return $.cookie(cookieName);
 		};

@@ -20,8 +20,8 @@ $$localConfig = {
 		token: "6b175f45d52ad5f52b7344b9cad15a8f"
 	},
 	newRelic: {
-		 licenseKey:"b7ed760467",
-		 applicationID:"5107330",
-		 agent:"js-agent.newrelic.com/nr-632.min.js"
+		licenseKey: "b7ed760467",
+		applicationID: "5107330",
+		agent: "js-agent.newrelic.com/nr-632.min.js"
 	}
 };

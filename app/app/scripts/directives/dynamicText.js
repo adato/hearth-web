@@ -4,9 +4,8 @@
  * @description Solves UI for selecting date
  * @restrict A
  */
-angular.module('hearth.directives').directive('dynamicText',
-	['$interpolate',
-	function( $interpolate ) {
+angular.module('hearth.directives').directive('dynamicText', ['$interpolate',
+	function($interpolate) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -23,5 +22,5 @@ angular.module('hearth.directives').directive('dynamicText',
 				refresh();
 			}
 		};
-	}]
-);
+	}
+]);

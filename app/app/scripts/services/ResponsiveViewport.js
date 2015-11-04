@@ -8,7 +8,7 @@
 
 angular.module('hearth.services').factory('ResponsiveViewport', function() {
 	return {
-		isSmall: function () {
+		isSmall: function() {
 			var ret;
 			if (Foundation.utils && Foundation.utils.is_small_only) {
 				ret = Foundation.utils.is_small_only();
@@ -20,7 +20,7 @@ angular.module('hearth.services').factory('ResponsiveViewport', function() {
 			return ret;
 		},
 
-		isMedium: function () {
+		isMedium: function() {
 			var ret;
 			if (Foundation.utils && Foundation.utils.is_medium_only) {
 				ret = Foundation.utils.is_medium_only();
@@ -31,6 +31,6 @@ angular.module('hearth.services').factory('ResponsiveViewport', function() {
 			}
 			return ret;
 		}
-		
+
 	};
 });

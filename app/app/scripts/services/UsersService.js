@@ -84,7 +84,7 @@ angular.module('hearth.services').service('UsersService', [
 				Notify.addSingleTranslate('NOTIFY.ADD_FOLLOWER_SUCCES', Notify.T_SUCCESS);
 				return deferred.resolve(data);
 			}, function(err) {
-				
+
 				Notify.addSingleTranslate('NOTIFY.ADD_FOLLOWER_FAILED', Notify.T_ERROR);
 				return deferred.reject(err);
 			});

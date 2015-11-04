@@ -44,13 +44,15 @@ angular.module('hearth.services').service('OpenGraph', [
 		};
 
 		this.setImageData = function(image, width, height) {
-			if(image) {
+			if (image) {
 				$rootScope.og_image = image;
 				$rootScope.og_image_width = width;
 				$rootScope.og_image_height = height;
 			} else {
 				var ogImg = self.getDefaultImage();
-				for (var attr in ogImg) { $rootScope[attr] = ogImg[attr]; }
+				for (var attr in ogImg) {
+					$rootScope[attr] = ogImg[attr];
+				}
 			}
 		};
 
@@ -63,7 +65,7 @@ angular.module('hearth.services').service('OpenGraph', [
 			$rootScope.og_description = (typeof desc === 'string') ? desc : defaults.description;
 			$rootScope.og_url = (typeof url === 'string') ? url : getUrl();
 
-			if(imageSize) {
+			if (imageSize) {
 				imageWidth = imageSize[0];
 				imageHeight = imageSize[1];
 			}

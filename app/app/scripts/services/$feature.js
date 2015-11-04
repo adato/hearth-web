@@ -16,7 +16,7 @@ angular.module('hearth.services').provider('$feature', function() {
 			}
 			index = cookie.indexOf('=');
 			name = cookie.substring(8, index);
-			value = !! cookie.substring(index + 1);
+			value = !!cookie.substring(index + 1);
 			cookies[name] = value;
 			return cookies;
 		}, {});

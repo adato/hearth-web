@@ -6,26 +6,28 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('tipsy', [
-    '$timeout',
-    function($timeout) {
-        return {
-            link: function($scope, element, attrs) {
-                var el = null;
-                var timeout = $timeout(function() {
-                    el = $(element);
+	'$timeout',
+	function($timeout) {
+		return {
+			link: function($scope, element, attrs) {
+				var el = null;
+				var timeout = $timeout(function() {
+					el = $(element);
 
-                    el.tipsy({gravity: 's'});
+					el.tipsy({
+						gravity: 's'
+					});
 
-                    el.mouseleave(function() {
-                        el.tipsy("hide");
-                    });
-                });
+					el.mouseleave(function() {
+						el.tipsy("hide");
+					});
+				});
 
-                $scope.$on('$destroy', function() {
-                    $timeout.cancel(timeout);
-                    el.unbind('mouseleave');
-                });
-            }
-        }
-    }
+				$scope.$on('$destroy', function() {
+					$timeout.cancel(timeout);
+					el.unbind('mouseleave');
+				});
+			}
+		}
+	}
 ]);

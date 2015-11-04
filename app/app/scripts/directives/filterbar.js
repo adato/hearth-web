@@ -15,16 +15,21 @@ angular.module('hearth.directives').directive('filterbar', [
 			templateUrl: 'templates/directives/filterbar.html',
 			scope: true,
 			link: function(scope) {
-        scope.filterType = $state.params.type;
+				scope.filterType = $state.params.type;
 				scope.searchParams = '';
 				scope.basePath = $$config.basePath;
 
 				scope.sendFilterStatusOnApi = function() {
-					if($.cookie('closedFilterSent') || !$rootScope.loggedUser._id)
+					if ($.cookie('closedFilterSent') || !$rootScope.loggedUser._id)
 						return false; // filter close date was already sent or user is not logged in
 
-					User.setClosedFilter({time: moment(parseInt($.cookie('closedFilter'))).format()}, angular.noop, angular.noop);
-					$.cookie('closedFilterSent', Date.now(), {expires: 30 * 12 * 20, path: '/' });
+					User.setClosedFilter({
+						time: moment(parseInt($.cookie('closedFilter'))).format()
+					}, angular.noop, angular.noop);
+					$.cookie('closedFilterSent', Date.now(), {
+						expires: 30 * 12 * 20,
+						path: '/'
+					});
 				};
 
 				/**
@@ -32,10 +37,13 @@ angular.module('hearth.directives').directive('filterbar', [
 				 * so we will not open him next time
 				 */
 				scope.sendFilterClosedInfo = function() {
-					if(scope.wasClosedFilterSent())
+					if (scope.wasClosedFilterSent())
 						return;
 
-					$.cookie('closedFilterSent', Date.now(), { expires: 30 * 12 * 20, path: '/' });
+					$.cookie('closedFilterSent', Date.now(), {
+						expires: 30 * 12 * 20,
+						path: '/'
+					});
 				};
 
 				scope.wasClosedFilterSent = function() {
@@ -47,7 +55,7 @@ angular.module('hearth.directives').directive('filterbar', [
 				 * so we will not open him next time
 				 */
 				scope.setCookieFiltered = function() {
-					if(scope.isCookieFiltered())
+					if (scope.isCookieFiltered())
 						return;
 
 					$analytics.eventTrack('filter closed', {
@@ -55,13 +63,19 @@ angular.module('hearth.directives').directive('filterbar', [
 						label: 'filter was closed for the first time'
 					});
 
-					$.cookie('closedFilter', Date.now(), { expires: 30 * 12 * 20, path: '/' });
+					$.cookie('closedFilter', Date.now(), {
+						expires: 30 * 12 * 20,
+						path: '/'
+					});
 					scope.sendFilterStatusOnApi();
 				};
 
 				scope.setUserFilterCookie = function() {
-					if(!scope.isCookieFiltered() && $rootScope.user && $rootScope.user.closed_filter)
-						$.cookie('closedFilter', +moment($rootScope.user.closed_filter), { expires: 30 * 12 * 20, path: '/' });
+					if (!scope.isCookieFiltered() && $rootScope.user && $rootScope.user.closed_filter)
+						$.cookie('closedFilter', +moment($rootScope.user.closed_filter), {
+							expires: 30 * 12 * 20,
+							path: '/'
+						});
 
 					scope.sendFilterClosedInfo();
 				};
@@ -82,7 +96,7 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.testFilterActive = function() {
 					var paramString = Filter.getParams();
 					scope.filterOn = !$.isEmptyObject($location.search());
-					scope.searchParams = (paramString) ? '?'+paramString : '';
+					scope.searchParams = (paramString) ? '?' + paramString : '';
 				};
 
 				scope.$on('filterClose', function() {
@@ -113,7 +127,7 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				$timeout(function() {
 					scope.setUserFilterCookie();
-					if(!scope.isCookieFiltered())
+					if (!scope.isCookieFiltered())
 						scope.filterSelected = true;
 				});
 				scope.testFilterActive();

@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('FeedbackCtrl', [
 				email: false,
 				text: false,
 			};
-			
+
 			$scope.errors = new ResponseErrors();
 			if ($location.search().fromDelete) {
 				$scope.fromAccountDelete = true;

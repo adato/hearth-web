@@ -24,7 +24,7 @@ angular.module('hearth.utils').directive('withErrors', function() {
 					}
 					switch (formControl.type) {
 						case 'checkbox':
-							if ( !! model.$viewValue !== !! formControl.checked) {
+							if (!!model.$viewValue !== !!formControl.checked) {
 								return model.$setViewValue(formControl.value);
 							}
 							break;

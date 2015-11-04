@@ -27,14 +27,29 @@ angular.module('hearth.directives').directive('exifRotated', function() {
 				}
 
 				switch (orientation) {
-					case 1: break;
-					case 2: transform = 'scaleX(-1)'; break; // no rotation needed
-					case 3: transform = 'rotate(180deg)'; break; // rotated 180deg
-					case 4: transform = 'rotate(180deg) scaleX(-1)'; break; // rotated 180deg and flipped
-					case 5: transform = 'rotate(90deg) scaleY(-1)'; break; // rotated 90, flipped
-					case 6: transform = 'rotate(90deg)'; break; // rotated 90deg
-					case 7: transform = 'rotate(270deg) scaleY(-1)'; break; // rotated -90deg, flipped
-					case 8: transform = 'rotate(270deg)'; break; // rotated -90deg
+					case 1:
+						break;
+					case 2:
+						transform = 'scaleX(-1)';
+						break; // no rotation needed
+					case 3:
+						transform = 'rotate(180deg)';
+						break; // rotated 180deg
+					case 4:
+						transform = 'rotate(180deg) scaleX(-1)';
+						break; // rotated 180deg and flipped
+					case 5:
+						transform = 'rotate(90deg) scaleY(-1)';
+						break; // rotated 90, flipped
+					case 6:
+						transform = 'rotate(90deg)';
+						break; // rotated 90deg
+					case 7:
+						transform = 'rotate(270deg) scaleY(-1)';
+						break; // rotated -90deg, flipped
+					case 8:
+						transform = 'rotate(270deg)';
+						break; // rotated -90deg
 				}
 
 				if (orientation > 4) {

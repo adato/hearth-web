@@ -7,7 +7,7 @@
  */
 angular.module('hearth.services').factory('Tutorial', [
 	'$resource',
-	
+
 	function($resource) {
 		return $resource($$config.apiPath + '/users/:user_id/tutorial', {
 			user_id: '@user_id',

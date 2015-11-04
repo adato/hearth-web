@@ -6,7 +6,7 @@
  * @description 
  * @restrict A
  */
- 
+
 angular.module('hearth.directives').directive('htmlLabel', function() {
 	return {
 		restrict: 'A',

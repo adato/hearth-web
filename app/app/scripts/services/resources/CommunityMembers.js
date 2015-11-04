@@ -5,7 +5,7 @@
  * @name hearth.services.CommunityMembers
  * @description 
  */
- 
+
 angular.module('hearth.services').factory('CommunityMembers', [
 	'$resource',
 

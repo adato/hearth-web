@@ -5,10 +5,10 @@
  * @name hearth.services.Community
  * @description 
  */
- 
+
 angular.module('hearth.services').factory('Community', [
 	'$resource',
-	
+
 	function($resource) {
 		return $resource($$config.apiPath + '/communities/:_id', {
 			_id: "@_id"

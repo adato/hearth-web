@@ -15,13 +15,13 @@ angular.module('hearth.services').service('Activities', [
 		this.buildRatingActivityCode = function(info) {
 			var arrCode = info.verb.split('_');
 			arrCode.shift();
-			
+
 			return [
 				'activities',
 				arrCode.join('_'),
 				info.narrative_mode.split('_')[0],
-				info.actor._type.toLowerCase().substr(0,4),
-				info.target_object._type.toLowerCase().substr(0,4)
+				info.actor._type.toLowerCase().substr(0, 4),
+				info.target_object._type.toLowerCase().substr(0, 4)
 			].join('.');
 		};
 
@@ -29,14 +29,14 @@ angular.module('hearth.services').service('Activities', [
 			var isTargetCommunity = '';
 			var code = '';
 
-			if(ratingActivities.indexOf(info.verb) > -1) {
+			if (ratingActivities.indexOf(info.verb) > -1) {
 
-				return self.buildRatingActivityCode(info);	
-			} else if(info.target_object && info.target_object._type == 'Community' && info.verb !== 'accepted_into_community') {
+				return self.buildRatingActivityCode(info);
+			} else if (info.target_object && info.target_object._type == 'Community' && info.verb !== 'accepted_into_community') {
 				isTargetCommunity = '_comm';
 			}
 
-			code = 'activities.'+info.narrative_mode+'.'+info.verb+isTargetCommunity;
+			code = 'activities.' + info.narrative_mode + '.' + info.verb + isTargetCommunity;
 			return code;
 		};
 

@@ -29,7 +29,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			newPass: false
 		};
 		$scope.d = new Date();
-		
+
 		/**
 		 * Validate delete account form
 		 */
@@ -60,7 +60,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 				Notify.addTranslateAfterRefresh('NOTIFY.ACCOUNT_DELETE_SUCCESS', Notify.T_SUCCESS);
 				window.location.replace("/app/");
-			} else if( res.reason == 'community admin' ) {
+			} else if (res.reason == 'community admin') {
 				// when user has community, show notify - hack for problem with view handling
 				setTimeout(function() {
 					return Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED_COMMUNITY', Notify.T_ERROR, '.notify-container-delete-user');
@@ -77,7 +77,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		$scope.sendDeleteRequest = function(data) {
 			return function(validationResult) {
 				if (!validationResult) return false;
-				
+
 				// serialize
 				var out = {
 					_id: $rootScope.loggedUser._id,
@@ -144,7 +144,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 					$scope.showError.oldPass = false;
 					$scope.showError.newPass = false;
 				});
-				
+
 				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_SUCCES', Notify.T_SUCCESS);
 			} else {
 
@@ -178,7 +178,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			if ($scope.profileSettingsForm.newPass.$invalid) {
 				invalid = $scope.showError.newPass = true;
 			}
-			
+
 			// async test
 			// if ($scope.profileSettingsForm.oldPass.$invalid) {
 			// 	invalid = $scope.showError.oldPass = true;
@@ -208,7 +208,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 			}, function(err) {
 				Notify.addSingleTranslate('NOTIFY.EMAIL_NOTIFY_CONFIG_FAILED', Notify.T_ERROR);
 			});
-			
+
 		};
 
 		$scope.init = function() {

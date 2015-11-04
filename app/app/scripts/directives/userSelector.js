@@ -39,7 +39,7 @@ angular.module('hearth.directives').directive('userSelector', [
 				 */
 				$scope.getIdList = function() {
 					var list = {};
-					for(var i in $scope.users)
+					for (var i in $scope.users)
 						list[$scope.users[i]._id] = true;
 					return list;
 				};
@@ -49,7 +49,7 @@ angular.module('hearth.directives').directive('userSelector', [
 				 */
 				$scope.filterUnique = function(users) {
 					var list = $scope.getIdList();
-					for(var i = 0; i < users.length; i++)
+					for (var i = 0; i < users.length; i++)
 						list[users[i]._id] && users.splice(i--, 1);
 					return users;
 				};
@@ -60,11 +60,11 @@ angular.module('hearth.directives').directive('userSelector', [
 				$scope.search = function(s) {
 					var params = {
 						limit: 10,
-						query: '*'+s+'*',
+						query: '*' + s + '*',
 						type: 'user'
 					};
 
-					if(!s || !s.length)
+					if (!s || !s.length)
 						return;
 
 					timer && $timeout.cancel(timer);
@@ -81,10 +81,10 @@ angular.module('hearth.directives').directive('userSelector', [
 					var input = baseElement.find('input');
 
 					input.bind('blur', function() {
-					 	$scope.ngBlur && $scope.ngBlur();
+						$scope.ngBlur && $scope.ngBlur();
 					});
 					input.bind('focus', function() {
-				 		$scope.ngFocus && $scope.ngFocus();
+						$scope.ngFocus && $scope.ngFocus();
 					});
 				});
 			}

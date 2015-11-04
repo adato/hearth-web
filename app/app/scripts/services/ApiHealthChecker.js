@@ -37,8 +37,8 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * Check version and optionally show notification
 		 */
 		this.checkVersion = function() {
-			if (!$("#maitenancePage").is(":visible"))  {
-				
+			if (!$("#maitenancePage").is(":visible")) {
+
 				self.getAppVersion(function(v) {
 
 					if (v === version)
@@ -68,7 +68,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		this.processHealthCheckResult = function(res) {
 			healthCheckRequestInProgress = false;
 
-			if (res && res.ok && res.ok == true){
+			if (res && res.ok && res.ok == true) {
 				return self.turnOff();
 			}
 
@@ -90,7 +90,7 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 * This will send health check request and process result
 		 */
 		this.sendHealthCheck = function(res) {
-			if(healthCheckRequestInProgress)
+			if (healthCheckRequestInProgress)
 				return;
 			healthCheckRequestInProgress = true;
 			$.getJSON($$config.apiPath + '/health').done(self.processHealthCheckResult).fail(self.processHealthCheckFailResult);
@@ -114,11 +114,14 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 
 			$.eventManager.disableAll($("*").not('.dontDisable'));
 
-			$('a').on('click.myDisable', function(e) { e.preventDefault(); return false;});
+			$('a').on('click.myDisable', function(e) {
+				e.preventDefault();
+				return false;
+			});
 		};
 
 		this.unsetOfflineMode = function() {
-			$('a').off('click.myDisable');			
+			$('a').off('click.myDisable');
 
 			$.eventManager.enableAll($("*").not('.dontDisable'));
 			$rootScope.isOfflineMode = false;
@@ -131,13 +134,13 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 		 */
 		this.turnOn = function(statusCode) {
 			$rootScope.$apply(function() {
-				if(statusCode == 503) {
+				if (statusCode == 503) {
 					$("#maitenancePage").fadeIn();
 					$("#offlineNotify").hide();
 					$rootScope.isMaintenanceMode = true;
 					$rootScope.isOfflineMode = false;
 				} else if (statusCode == 0) {
-					
+
 					self.setOfflineMode();
 				}
 			});
@@ -161,10 +164,10 @@ angular.module('hearth.services').service('ApiHealthChecker', [
 				return false;
 
 			// if app was not properly inited, reload page
-			if(!$rootScope.initFinished) {
+			if (!$rootScope.initFinished) {
 				window.location = document.URL;
 			}
-			
+
 			$("#maitenancePage").fadeOut('fast', function() {
 				self.checkVersion();
 			});

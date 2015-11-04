@@ -21,8 +21,8 @@ angular.module('hearth.directives').directive('maxLenCounter', [
 				$scope.maxLen = $scope.maxLen || 300;
 				$scope.len = 0;
 
-				$scope.$watch("value",function(val) {
-					if(val)
+				$scope.$watch("value", function(val) {
+					if (val)
 						$scope.len = val.length;
 					else
 						$scope.len = 0;

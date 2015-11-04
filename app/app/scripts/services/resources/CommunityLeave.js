@@ -5,7 +5,7 @@
  * @name hearth.services.CommunityLeave
  * @description 
  */
- 
+
 angular.module('hearth.services').factory('CommunityLeave', [
 	'$resource',
 

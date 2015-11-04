@@ -5,7 +5,7 @@
  * @name hearth.services.SessionLanguageStorage
  * @description
  */
- 
+
 angular.module('hearth.services').factory('SessionLanguageStorage', [
 	'$session', '$log',
 	function($session, $log) {

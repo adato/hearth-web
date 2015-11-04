@@ -15,12 +15,12 @@ module.exports = function(grunt) {
 
 	require('load-grunt-tasks')(grunt); // Load grunt tasks automatically
 	require('time-grunt')(grunt); // Time how long tasks take. Can help when optimizing build times
-	
+
 	var rewriteRulesSnippet = require('grunt-connect-rewrite/lib/utils').rewriteRequest;
 	var env = grunt.option("target") || 'development';
 
 	// test if the environment file exists
-	if (!fs.existsSync(envFolder+'/'+env+'.js')) {
+	if (!fs.existsSync(envFolder + '/' + env + '.js')) {
 		grunt.log.error("Unknown environment".red, env);
 		return -1;
 	}
@@ -57,8 +57,8 @@ module.exports = function(grunt) {
 						key: grunt.file.read('./cert/server.key'),
 						cert: grunt.file.read('./cert/server.crt'),
 						// key: grunt.file.read('path/to/ssl.key'),
-        				// cert: grunt.file.read('path/to/ssl.crt')
-        			}
+						// cert: grunt.file.read('path/to/ssl.crt')
+					}
 				}
 			},
 			jsTest: {
@@ -77,14 +77,14 @@ module.exports = function(grunt) {
 			},
 			livereload: {
 				options: {
-					livereload:  {
-        			// '<%= connect.options.livereload %>'
+					livereload: {
+						// '<%= connect.options.livereload %>'
 						port: 3333,
 						key: grunt.file.read('./cert/server.key'),
 						cert: grunt.file.read('./cert/server.crt'),
 						// key: grunt.file.read('path/to/ssl.key'),
-        				// cert: grunt.file.read('path/to/ssl.crt')
-        			}
+						// cert: grunt.file.read('path/to/ssl.crt')
+					}
 				},
 				files: [
 					'<%= yeoman.app %>/{,*/}*.html',
@@ -173,7 +173,7 @@ module.exports = function(grunt) {
 			options: {
 				port: 9000,
 				protocol: 'https',
-			 	key: grunt.file.read('./cert/server.key').toString(),
+				key: grunt.file.read('./cert/server.key').toString(),
 				cert: grunt.file.read('./cert/server.crt').toString(),
 				// ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
@@ -220,18 +220,24 @@ module.exports = function(grunt) {
 				}
 			},
 
-			rules: [
-				{from: '^/api/(.*)$',to: '/api/$1'},
-				{from: '^/app(.*)$',to: '$1'},
-				{from: '^(?!/app)(.*)',to: '/app$1', redirect: 'temporary'},
-			],
+			rules: [{
+				from: '^/api/(.*)$',
+				to: '/api/$1'
+			}, {
+				from: '^/app(.*)$',
+				to: '$1'
+			}, {
+				from: '^(?!/app)(.*)',
+				to: '/app$1',
+				redirect: 'temporary'
+			}, ],
 
 			proxies: [{
 				context: '/api', // the context of the data service
 				changeOrigin: true,
-				host: process.env.GRUNT_HOST || '<%= yeoman.api %>.hearth.net',  // wherever the data service is running,
+				host: process.env.GRUNT_HOST || '<%= yeoman.api %>.hearth.net', // wherever the data service is running,
 				https: process.env.GRUNT_SSL == null, // true,
-				port: process.env.GRUNT_PORT || 443  // the port that the data service is running on
+				port: process.env.GRUNT_PORT || 443 // the port that the data service is running on
 			}],
 
 			livereload: {
@@ -250,7 +256,7 @@ module.exports = function(grunt) {
 						if (!Array.isArray(options.base)) {
 							options.base = [options.base];
 						}
-	
+
 						middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
 
 						var directory = options.directory || options.base[options.base.length - 1];
@@ -264,12 +270,12 @@ module.exports = function(grunt) {
 
 
 						// if not found, just send index.html
-						middlewares.push(function(req, res){
-							for(var file, i = 0; i < options.base.length; i++){
+						middlewares.push(function(req, res) {
+							for (var file, i = 0; i < options.base.length; i++) {
 								// console.log(options.base);
 								file = options.base[i] + "/index.html";
-								
-								if (grunt.file.exists(file)){
+
+								if (grunt.file.exists(file)) {
 									require('fs').createReadStream(file).pipe(res);
 									return; // we're done
 								}
@@ -277,7 +283,7 @@ module.exports = function(grunt) {
 							res.statusCode(404); // where's index.html?
 							res.end();
 						});
-					
+
 						return middlewares;
 					}
 				}
@@ -305,7 +311,7 @@ module.exports = function(grunt) {
 						if (!Array.isArray(options.base)) {
 							options.base = [options.base];
 						}
-	
+
 						middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
 
 						var directory = options.directory || options.base[options.base.length - 1];
@@ -673,29 +679,29 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				sourceMap: true,
-				sourceMapIncludeSources : true,
-		    },
+				sourceMapIncludeSources: true,
+			},
 			scripts: {
 				options: {
-	    			sourceMapIn : '.tmp/concat/scripts.js.map'
-			    },
+					sourceMapIn: '.tmp/concat/scripts.js.map'
+				},
 				files: {
 					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
 				}
-			},	   
+			},
 			config: {
 				options: {
-	    			sourceMapIn : '.tmp/concat/config.js.map'
-			    },
+					sourceMapIn: '.tmp/concat/config.js.map'
+				},
 				files: {
 					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
 				}
-			},	   
+			},
 		},
 		concat: {
 			options: {
 				separator: ';',
-			    sourceMap: true
+				sourceMap: true
 			},
 			scripts: {
 				src: ['.tmp/scripts/**/*.js'],
@@ -723,7 +729,7 @@ module.exports = function(grunt) {
 				base: '.tmp'
 			},
 			main: {
-				src: ['.tmp/templates/**/*.html'], 	// compiled source
+				src: ['.tmp/templates/**/*.html'], // compiled source
 				dest: '.tmp/concat/templates.js'
 			},
 		},
@@ -832,33 +838,33 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
-		'clean:dist',			// remove .tmp and dist folder
-		'bower-install-simple',	// install vendor scripts with bower
-		'useminPrepare',		// scan index.html file for usemin marks
-		'concurrent:dist',		// minify images to dist folder
-		'compass:dist',			// process compass scss styles
-		'autoprefixer',			// autoprefix css3 styles
-		'copy:dist',			// copy app to .tmp for concatenation and assets to dist folder
-		'rename:configDist',	// move config-global to .tmp/concat folder
-		'rename:analytics',	// move analytics.js to ./tmp concat folder
-		'rename:newRelic',		// move newrelic.js to ./tmp concat folder
-		'rename:rollbar',		// move rollbar.js to ./tmp concat folder
-		'preprocess',			
+		'clean:dist', // remove .tmp and dist folder
+		'bower-install-simple', // install vendor scripts with bower
+		'useminPrepare', // scan index.html file for usemin marks
+		'concurrent:dist', // minify images to dist folder
+		'compass:dist', // process compass scss styles
+		'autoprefixer', // autoprefix css3 styles
+		'copy:dist', // copy app to .tmp for concatenation and assets to dist folder
+		'rename:configDist', // move config-global to .tmp/concat folder
+		'rename:analytics', // move analytics.js to ./tmp concat folder
+		'rename:newRelic', // move newrelic.js to ./tmp concat folder
+		'rename:rollbar', // move rollbar.js to ./tmp concat folder
+		'preprocess',
 		'ngmin',
 		'cdnify',
-		'cssmin',					// minify css files
+		'cssmin', // minify css files
 		'usemin',
 		'htmlmin',
-		'htmlmin:distTemplates', 	// minify template files before concatenation
-		'html2js', 					// merge all templates to one js file
+		'htmlmin:distTemplates', // minify template files before concatenation
+		'html2js', // merge all templates to one js file
 		'concat:scripts',
 		'concat:config',
-		'replace:tmplMinify', 		// minify merged templates
-		'concat:tmpl',			// concat templates merged to JS into scripts
+		'replace:tmplMinify', // minify merged templates
+		'concat:tmpl', // concat templates merged to JS into scripts
 		// 'rename:tmplMin',			// move templates to dist folder
-		'replace:dist', 			// inject angular module for merged templates
-		'rename:scriptsMin',			// use instead of uglify for debug purpose
-		'rename:configMin',			// use instead of uglify for debug purpose
+		'replace:dist', // inject angular module for merged templates
+		'rename:scriptsMin', // use instead of uglify for debug purpose
+		'rename:configMin', // use instead of uglify for debug purpose
 		// 'uglify',
 		'cacheBust'
 	]);

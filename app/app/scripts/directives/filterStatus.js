@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('filterStatus', [
 		return {
 			restrict: 'E',
 			replace: true,
-      templateUrl: 'templates/directives/filterStatus.html',
+			templateUrl: 'templates/directives/filterStatus.html',
 			scope: {},
 			link: function(scope) {
 				scope.resetFilter = function() {
@@ -26,7 +26,7 @@ angular.module('hearth.directives').directive('filterStatus', [
 
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;
 
-					if(scope.filterData && $.isArray(scope.filterData.keywords)) {
+					if (scope.filterData && $.isArray(scope.filterData.keywords)) {
 						scope.filterData.keywords = scope.filterData.keywords.join(", ");
 					}
 
