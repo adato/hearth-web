@@ -50,13 +50,12 @@
 					</span>
 				</div>
 			</header>
-			 <div class="text-container" ng-if="item.text.length < 270 || marketplace.expanded == true">
+			<div class="text-container" ng-if="item.text.length < 270 || marketplace.expanded == true">
 				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 			</div>
 			<div class="text-container" ng-if="item.text.length >= 270 && !marketplace.expanded">
 				<p><span ng-bind-html="item.text_short | linky:'_blank'"></span> <a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a></p>
-			</div>			
-
+			</div>
 			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
 				<li ng-repeat="photo in item.attachments_attributes track by $index">
 					<a class="fancy" ng-href="{{ photo.large }}" rel="{{:: item._id }}"><img ng-src="{{photo.normal}}"></a>
@@ -76,7 +75,7 @@
 						{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 					</div>
 				</div>
- 				<div class="sharing fright">
+				<div class="sharing fright">
 					<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
 					<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
 					<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+" ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
@@ -91,7 +90,9 @@
 					</div>
 				</div>
 				<div class="reply-count-container fleft">
-					<div ng-if="item.reply_count && mine"><a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a></div>
+					<div ng-if="item.reply_count && mine">
+						<a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
+					</div>
 					<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
 					<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
 				</div>

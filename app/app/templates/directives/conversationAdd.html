@@ -1,50 +1,49 @@
 <div class="messages messages-add">
 	<form ng-submit="addMessage(message)" novalidate name="addMessageForm" class="formStyle">
-        <div class="recipient" ng-if="recipient">
-          <br />
-          <label>
-            {{ 'MESSAGES.ADD.RECIPIENT' | translate }}
-          </label>
-          <avatar src="recipient.avatar.normal" type="recipient._type" size="mini" class="move-bot"></avatar><span title="{{ recipient.name }}">{{ recipient.name | ellipsis:55 }}</span>
-          <br />
-          <br />
-          <br />
-        </div>
-        <div class="recipient" ng-if="!recipient">
-          <label>
-            {{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
-            <user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.participant_ids"></user-selector>
-          </label>
-          <div class="error moveUp" ng-show="showError.participant_ids">
-              <span>{{ 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</span>
-          </div>
-        </div>
-        <div class="subject">
-          <label>
-            {{ 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
-            <input name="title" ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
-          </label>
-        </div>
-        <div class="text">
-          <label>
-            {{ 'MESSAGES.ADD.TEXT_LABEL' | translate }} *
-            <textarea rows="5" name="text" ng-attr-placeholder="{{ 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea>
-          </label>
-          <div class="error" ng-show="addMessageForm.text.$invalid && showError.text">
-            <span ng-show="addMessageForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-            <span ng-show="addMessageForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-            <span ng-show="addMessageForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
-          </div>
-        </div>
-        <br />
-        <div class="bottom">
-          <a ng-click="close()" class="action-link">
-            <span class="fa fa-chevron-left"></span> {{ 'CANCEL' | translate }}
-          </a>
-            
-          <button type="submit" class="button-send right">
-              {{ 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
-          </button>
-        </div>
+		<div class="recipient" ng-if="recipient">
+			<br />
+			<label>
+				{{ 'MESSAGES.ADD.RECIPIENT' | translate }}
+			</label>
+			<avatar src="recipient.avatar.normal" type="recipient._type" size="mini" class="move-bot"></avatar><span title="{{ recipient.name }}">{{ recipient.name | ellipsis:55 }}</span>
+			<br />
+			<br />
+			<br />
+		</div>
+		<div class="recipient" ng-if="!recipient">
+			<label>
+				{{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
+				<user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.participant_ids"></user-selector>
+			</label>
+			<div class="error moveUp" ng-show="showError.participant_ids">
+				<span>{{ 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</span>
+			</div>
+		</div>
+		<div class="subject">
+			<label>
+				{{ 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
+				<input name="title" ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
+			</label>
+		</div>
+		<div class="text">
+			<label>
+				{{ 'MESSAGES.ADD.TEXT_LABEL' | translate }} *
+				<textarea rows="5" name="text" ng-attr-placeholder="{{ 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea>
+			</label>
+			<div class="error" ng-show="addMessageForm.text.$invalid && showError.text">
+				<span ng-show="addMessageForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+				<span ng-show="addMessageForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+				<span ng-show="addMessageForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+			</div>
+		</div>
+		<br />
+		<div class="bottom">
+			<a ng-click="close()" class="action-link">
+				<span class="fa fa-chevron-left"></span> {{ 'CANCEL' | translate }}
+			</a>
+			<button type="submit" class="button-send right">
+				{{ 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
+			</button>
+		</div>
 	</form>
 </div>

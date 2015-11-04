@@ -5,16 +5,14 @@
 			<span class="fleft conversation-title" ng-if="info">
 				<span class="left" ng-if="info.titleDetail && !info.titleCustom">
 					<span ng-if="!info.post">{{:: info.titleDetail| ellipsis:120 }}</span>
-					
-					<span ng-if="info.post">{{:: 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="{{:: getProfileLink('Post', info.post._id)}}">{{:: info.post.type_code | translate }} {{:: info.titleDetail | ellipsis:100 }}</a></span>
-					 
-					 (&nbsp;<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()" >{{:: 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a><a ng-if="info.participants_count == 1" href="{{:: getProfileLink(info.participants[0]._type, info.participants[0]._id) }}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a><span ng-if="!info.participants_count">{{:: 'MESSAGES.DETAIL.CONVERSATION_IS_EMPTY' | translate }}</span>&nbsp;)
-				</span>
-				<a class="left" ng-click="toggleParticipants()" ng-if="info.titleDetail && info.titleCustom">
+			<span ng-if="info.post">{{:: 'MESSAGES.DETAIL.REPLY_TO_POST' | translate }} <a class="post_link" href="{{:: getProfileLink('Post', info.post._id)}}">{{:: info.post.type_code | translate }} {{:: info.titleDetail | ellipsis:100 }}</a></span> (&nbsp;
+			<a ng-if="info.participants_count > 1" ng-click="toggleParticipants()">{{:: 'MESSAGES.DETAIL.USERS.'+pluralCat(info.participants_count) | translate: '{count: '+info.participants_count+'}'}}</a><a ng-if="info.participants_count == 1" href="{{:: getProfileLink(info.participants[0]._type, info.participants[0]._id) }}">{{ info.participants[0].name.replace(' ', '&nbsp;') }}</a><span ng-if="!info.participants_count">{{:: 'MESSAGES.DETAIL.CONVERSATION_IS_EMPTY' | translate }}</span>&nbsp;)
+			</span>
+			<a class="left" ng-click="toggleParticipants()" ng-if="info.titleDetail && info.titleCustom">
 					{{:: info.titleDetail }}
 					<span ng-if="info.participants_count > 3">{{'MESSAGES.DETAIL.AND_X_MORE.'+pluralCat(info.participants_count-3) | translate: '{count: '+(info.participants_count-3)+'}'}}</span>
 				</a>
-				<span class="left" ng-if="!info.titleDetail">{{:: 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</span>
+			<span class="left" ng-if="!info.titleDetail">{{:: 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}</span>
 			</span>
 			<span class="right">
 				<a class="fa fa-chevron-down" dropdown="#conversation-actions-{{:: info._id }}" title="{{:: 'MESSAGES.DETAIL.EXPAND_ACTIONS' | translate }}"></a>
@@ -28,8 +26,8 @@
 			<div ng-if="showParticipants">
 				<hr />
 				<div class="conversation-participants" ng-class="{nano: participants && participants.length > 9}" ng-attr-custom-scrollbar="participants && participants.length > 9">
-		    		<div class="nano-content">
-			    		<div class="nano-content-inner">
+					<div class="nano-content">
+						<div class="nano-content-inner">
 							<div loading show="!participants"></div>
 							<ul>
 								<li ng-repeat="item in participants">
@@ -50,11 +48,11 @@
 		<div loading class="older-messages-loader" show="loadingOlderMessages"></div>
 		<div class-if-overflow="shadow-top" outer=".nano" inner=".nano-content-inner">
 			<div class="nano messages-container" custom-scrollbar>
-	    		<div class="nano-content">
-		    		<div class="nano-content-inner">
+				<div class="nano-content">
+					<div class="nano-content-inner">
 						<article class="message" ng-repeat="item in messages track by $index">
 							<div ng-if="item.author">
-								<div class="message-head"  ng-class="{'owner-name': item.author._type == 'Community'}">
+								<div class="message-head" ng-class="{'owner-name': item.author._type == 'Community'}">
 									<a class="left" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
 										<avatar class="left move-bot" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
 										<h5 class="fleft">

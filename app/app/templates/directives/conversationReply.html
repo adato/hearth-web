@@ -1,6 +1,5 @@
 <div class="message-reply">
 	<form novalidate name="msgReplyForm" ng-submit="sendReply(reply)" class="formStyle">
-		
 		<label for="reply-text">
 			<div class="author-info">
 				<div ng-if="actors.length == 1 && actors[0]._type != 'Community'">
@@ -12,17 +11,16 @@
 				</div>
 			</div>
 			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
-
 			<textarea ng-disabled="!conversation.is_member" rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
 		</label>
 		<div class="error fleft" ng-show="msgReplyForm.text.$invalid && showError.text">
-            <span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
-        </div>
-       <a href="#" class="left link hide-for-large-up" ng-click="closeConversation()">
+			<span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
+		</div>
+		<a href="#" class="left link hide-for-large-up" ng-click="closeConversation()">
 	    	{{ 'CLOSE' | translate }}
 	   </a>
-       <button ng-disabled="!conversation.is_member" type="submit" class="margin-0 button-send right">
-	    	{{ 'SEND' | translate }}
+		<button ng-disabled="!conversation.is_member" type="submit" class="margin-0 button-send right">
+			{{ 'SEND' | translate }}
 		</button>
 		<div class="clear"></div>
 	</form>

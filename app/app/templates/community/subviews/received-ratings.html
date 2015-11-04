@@ -1,33 +1,34 @@
 <div ng-include="'templates/community/subviews/ratingsPanel.html'"></div>
-
 <div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! data.length">
-	<div class="item"><p>{{:: 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p></div>
+	<div class="item">
+		<p>{{:: 'PROFILE.POSTS.NO_RECEIVED_RATINGS_ME' | translate }}</p>
+	</div>
 </div>
-
 <div class="ratings-received row rating-item" id="received-rating-form" ng-show="showUserRatingForm && ! mine">
 	<section class="large-2 hide-for-small medium-2 columns user">
 		<avatar src="rating.current_community.avatar.normal" type="rating.current_community._type"></avatar>
 	</section>
 	<section class="large-10 small-12 medium-10 columns rating-form">
-		<div class="item rating-received" ng-include="'templates/community/subviews/ratingForm.html'"><!-- include --></div>
+		<div class="item rating-received" ng-include="'templates/community/subviews/ratingForm.html'">
+			<!-- include -->
+		</div>
 	</section>
 </div>
 <div class="clear"></div>
-
 <div class="rating-listing ratings-received" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div class="columns hide-for-small" ng-class="{ 'large-2': data.length, 'large-1': !data.length }">&nbsp;</div>
 	<section class="large-10 small-12 columns rating-call-to-action" ng-if="!showUserRatingForm && ! mine && loggedUser._id">
 		<div class="item rating-received-bar">
 			<div class="content">
-				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}<br /><br />
+				{{:: 'DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING' | translate:'{name: "'+info.name+'" }'}}
+				<br />
+				<br />
 				<a href="" ng-click="openUserRatingForm(true)"><b>{{:: 'THUMB_UP' | translate }}</b></a>
 			</div>
 		</div>
 	</section>
 	<div class="clear"></div>
-
 	<article class="row rating-item" id="rating_{{ item._id }}" ng-repeat="(id, item) in data track by item._id" ng-include="'templates/directives/_itemReceivedRating.html'">
 	</article>
 </div>
-
 <div loading show="!subPageLoaded"></div>

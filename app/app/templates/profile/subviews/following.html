@@ -1,13 +1,15 @@
 <div ng-include="'templates/profile/subviews/followingPanel.html'"></div>
-
 <div ng-if="subPageLoaded">
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="mine && ! data.length">
-		<div class="item"><p>{{:: 'PROFILE.FOLLOWEES.NO_FOLLOWEES_ME' | translate }}</p></div>
+		<div class="item">
+			<p>{{:: 'PROFILE.FOLLOWEES.NO_FOLLOWEES_ME' | translate }}</p>
+		</div>
 	</div>
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="! mine && ! data.length">
-		<div class="item"><p>{{:: 'PROFILE.FOLLOWEES.NO_FOLLOWEES_OTHER' | translate }}</p></div>
+		<div class="item">
+			<p>{{:: 'PROFILE.FOLLOWEES.NO_FOLLOWEES_OTHER' | translate }}</p>
+		</div>
 	</div>
-
 	<div class="people-listing" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 		<div class="person" ng-repeat="(id, item) in data track by item._id">
 			<div class="info-avatar" info-box="item" infobox-index="$index" infobox-class="'on-profile'">
@@ -22,5 +24,4 @@
 		</div>
 	</div>
 </div>
-
 <div loading show="!subPageLoaded"></div>

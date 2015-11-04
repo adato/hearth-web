@@ -1,9 +1,9 @@
 <div class="modal">
-    <header class="text-center">
-        <span class="controlls">
+	<header class="text-center">
+		<span class="controlls">
         	<span ng-click="close()" class="close fa fa-times"></span>
-        </span>
-    </header>
+		</span>
+	</header>
 	<section class="tutorial">
 		<article class="opening text-center" ng-if="! slider">
 			<h3>{{:: 'TUTORIAL_HEADER' | translate }}</h3>
@@ -15,7 +15,7 @@
 				<ul class="slides">
 					<li class="slider-item" ng-repeat="item in tutorials">
 						<header>
-							<i class="fa {{ item.icon }}"></i> 
+							<i class="fa {{ item.icon }}"></i>
 							<p>{{ item.text }}</p>
 							<div class="clear"></div>
 						</header>
@@ -31,12 +31,12 @@
 			</span>
 		</section>
 	</section>
-    <footer>
-    	<span ng-if="!slider">
+	<footer>
+		<span ng-if="!slider">
 			<a ng-click="closeAll()">{{:: 'TUTORIAL_DONT_SHOW_ANYTHING' | translate }}</a>
     	</span>
-    	<div ng-if="slider" class="text-center closeAll">
+		<div ng-if="slider" class="text-center closeAll">
 			<a ng-click="closeAll()">{{:: 'TUTORIAL_DONT_SHOW_ANYTHING_BELOW_SLIDE' | translate }}</a>
 		</div>
-    </footer>
+	</footer>
 </div>

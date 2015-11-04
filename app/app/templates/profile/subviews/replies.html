@@ -1,11 +1,11 @@
 <div ng-include="'templates/profile/subviews/postPanel.html'"></div>
-
 <div ng-if="subPageLoaded" class="reply-list" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="!data.length">
-		<div class="item"><p>{{:: 'PROFILE.REPLIES.NO_REPLIES' | translate }}</p></div>
+		<div class="item">
+			<p>{{:: 'PROFILE.REPLIES.NO_REPLIES' | translate }}</p>
+		</div>
 	</div>
-	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}" >
-
+	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}">
 		<section class="large-2 hide-for-small medium-2 columns user">
 			<div info-box="item.post.author">
 				<a ng-href="{{:: getProfileLink(item.post.author._type, item.post.author._id) }}">
@@ -20,7 +20,7 @@
 					<avatar src="item.post.author._type" type="item.post.author.avatar.small" size="small"></avatar>
 				</a>
 				<p class="text-container">
-		        	{{:: item.message.text | ellipsis}}
+					{{:: item.message.text | ellipsis}}
 				</p>
 				<span class="ad-date">
 					{{item.created_at | ago}}
@@ -29,7 +29,7 @@
 						{{:: postTypes[item.post.author._type][item.post.type] | translate }} {{:: item.post.title | ellipsis:60 }}
 					</a>
 				</span>
-		        <a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="right">
+				<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="right">
 		        {{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
 		        	<i class="fa fa-comments-o"></i>
 		        </a>
@@ -38,5 +38,4 @@
 		</div>
 	</article>
 </div>
-
 <div loading show="!subPageLoaded"></div>

@@ -1,31 +1,27 @@
 <div ng-include="'templates/community/subviews/membersPanel.html'"></div>
-
 <div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! data.length">
 	<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
 </div>
-
 <div class="community-applications-list" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div ng-repeat="(id, item) in data track by item._id" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
-
 		<div class="application">
 			<div class="applications-item">
-				<div info-box="item"  infobox-index="$index" infobox-class="'on-profile'">
-		        	<avatar class="left margin-bottom-20" href="getProfileLink(item._type,item._id)" src="item.avatar.normal" type="item._type"></avatar>
-	        	</div>
-		        <div class="applications-text">
-		            <a href="{{:: getProfileLink('User', item._id) }}">
+				<div info-box="item" infobox-index="$index" infobox-class="'on-profile'">
+					<avatar class="left margin-bottom-20" href="getProfileLink(item._type,item._id)" src="item.avatar.normal" type="item._type"></avatar>
+				</div>
+				<div class="applications-text">
+					<a href="{{:: getProfileLink('User', item._id) }}">
 		            	{{:: item.name | ellipsis}}
 		            	<br>
 		            	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
 		            </a>
-		        </div>
-		        <div class="applications-buttons">
-		            <a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
-		            <a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
-		        </div>
+				</div>
+				<div class="applications-buttons">
+					<a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
+					<a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 <div loading show="!subPageLoaded"></div>

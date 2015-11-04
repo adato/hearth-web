@@ -1,61 +1,51 @@
 <div class="register-login-dialog">
-  <div class="head">
-    <h2>{{ 'LOGIN_HEADING' | translate }}</h2>
-    <span ng-click="closeThisDialog()" class="close fa fa-times"></span>
-  </div>
-  <hr/>
-  <form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form login-form">
-    <div ng-if="showMsgOnlyLogged">
-      <div class="alert-box alert radius"><i class="fa fa-exclamation-triangle"></i>{{ 'LOGIN_REQUIRED' | translate }}
-      </div>
-    </div>
-    <div ng-if="loginError">
-      <div class="alert-box alert radius"><i class="fa fa-exclamation-triangle"></i>{{ 'ACCOUNT.LOGIN.LOGIN_FAILED' |
-        translate }}
-      </div>
-    </div>
-    <p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
-    <p ng-show="showError.inactiveAccount" class="error">
-      {{ 'LOGIN_INACTIVE_ACCOUNT' | translate }}
-      <a ng-click="resendActivationEmail()">
+	<div class="head">
+		<h2>{{ 'LOGIN_HEADING' | translate }}</h2>
+		<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+	</div>
+	<hr/>
+	<form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form login-form">
+		<div ng-if="showMsgOnlyLogged">
+			<div class="alert-box alert radius"><i class="fa fa-exclamation-triangle"></i>{{ 'LOGIN_REQUIRED' | translate }}
+			</div>
+		</div>
+		<div ng-if="loginError">
+			<div class="alert-box alert radius"><i class="fa fa-exclamation-triangle"></i>{{ 'ACCOUNT.LOGIN.LOGIN_FAILED' | translate }}
+			</div>
+		</div>
+		<p ng-show="showError.badCredentials" class="error">{{ 'LOGIN_BAD_CREDENTIALS' | translate }}</p>
+		<p ng-show="showError.inactiveAccount" class="error">
+			{{ 'LOGIN_INACTIVE_ACCOUNT' | translate }}
+			<a ng-click="resendActivationEmail()">
         {{ 'RESEND_ACTIVATING_EMAIL' | translate }}
       </a>
-    </p>
-    <input type="email" validate-email admin-email name="username" class="login_name" ng-model="data.username"
-           ng-model-options="{ updateOn: 'blur' }" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}"
-           class="form-control text-input top" required>
-
-    <p ng-show="loginForm.username.$dirty && loginForm.username.$invalid" class="error">
-      <span ng-show="loginForm.username.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
-    </p>
-    <input type="password" class="login_password" name="password" ng-model="data.password"
-           ng-model-options="{ updateOn: 'blur' }" ng-minlength="5" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}"
-           class="form-control text-input top" required>
-
-    <p ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="error">
-      <span ng-show="loginForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
-    </p>
-
-    <div class="text-center">
-      <button class="primary button-send pointer center" type="submit"><i class="fa fa-sign-in"></i> {{ 'LOGIN_BUTTON' |
-        translate }}
-      </button>
-    </div>
-    <p><a ng-click="closeModal()" href="{{ basePath }}forgotten-password">{{ 'HAVE_YOU_FORGOT_PASS' | translate }}</a>
-    </p>
-
-    <div class="clear"></div>
-    <hr/>
-    <div class="social-login">
-      <p>{{ 'ACCOUNT.LOGIN.VIA_SOCIAL_NETWORKS' | translate }}</p>
-      <a ng-click="oauth('facebook')" class="fa fa-facebook"></a>
-      <a ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
-      <a ng-click="oauth('google')" class="fa fa-google"></a>
-    </div>
-    <hr/>
-    <div class="bottom">
-      <p>{{ 'DONT_HAVE_ACCOUNT_YET' | translate }} <a ng-click="closeModal()" href="{{ basePath }}register">{{ 'SIGNUP'
+		</p>
+		<input type="email" validate-email admin-email name="username" class="login_name" ng-model="data.username" ng-model-options="{ updateOn: 'blur' }" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" required>
+		<p ng-show="loginForm.username.$dirty && loginForm.username.$invalid" class="error">
+			<span ng-show="loginForm.username.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
+		</p>
+		<input type="password" class="login_password" name="password" ng-model="data.password" ng-model-options="{ updateOn: 'blur' }" ng-minlength="5" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" required>
+		<p ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="error">
+			<span ng-show="loginForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
+		</p>
+		<div class="text-center">
+			<button class="primary button-send pointer center" type="submit"><i class="fa fa-sign-in"></i> {{ 'LOGIN_BUTTON' | translate }}
+			</button>
+		</div>
+		<p><a ng-click="closeModal()" href="{{ basePath }}forgotten-password">{{ 'HAVE_YOU_FORGOT_PASS' | translate }}</a>
+		</p>
+		<div class="clear"></div>
+		<hr/>
+		<div class="social-login">
+			<p>{{ 'ACCOUNT.LOGIN.VIA_SOCIAL_NETWORKS' | translate }}</p>
+			<a ng-click="oauth('facebook')" class="fa fa-facebook"></a>
+			<a ng-href="{{ twitterAuthUrl }}" class="fa fa-twitter"></a>
+			<a ng-click="oauth('google')" class="fa fa-google"></a>
+		</div>
+		<hr/>
+		<div class="bottom">
+			<p>{{ 'DONT_HAVE_ACCOUNT_YET' | translate }} <a ng-click="closeModal()" href="{{ basePath }}register">{{ 'SIGNUP'
         | translate }}</a></p>
-    </div>
-  </form>
+		</div>
+	</form>
 </div>

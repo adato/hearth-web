@@ -1,14 +1,14 @@
 <div class="communities">
-    <a ng-if="loggedUser._id" ng-click="toggleForm()" class="button button-send community-list-add-button small-12 medium-3 large-3 pull-right">
-        <i class="fa fa-plus"></i>&nbsp; {{:: 'CREATE_COMMUNITY' | translate}}
-    </a>
-    <div class="community-list-add-form clearfix hide">
-        <community-create-edit close="toggleForm()"></community-create-edit>
-    </div>
-    <div class="myCommunities small-12" ng-if="myCommunities !== false">
-        <h4 ng-bind=":: 'YOUR_COMMUNITIES' | translate "></h4>
-        <div class="my-communities" ng-if="myCommunities.length">
-            <h5>
+	<a ng-if="loggedUser._id" ng-click="toggleForm()" class="button button-send community-list-add-button small-12 medium-3 large-3 pull-right">
+		<i class="fa fa-plus"></i>&nbsp; {{:: 'CREATE_COMMUNITY' | translate}}
+	</a>
+	<div class="community-list-add-form clearfix hide">
+		<community-create-edit close="toggleForm()"></community-create-edit>
+	</div>
+	<div class="myCommunities small-12" ng-if="myCommunities !== false">
+		<h4 ng-bind=":: 'YOUR_COMMUNITIES' | translate "></h4>
+		<div class="my-communities" ng-if="myCommunities.length">
+			<h5>
                 {{:: 'YOU_ARE_MEMBER' | translate}}
                 {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
                 <span ng-if="myAdminCommunities.length">
@@ -17,29 +17,29 @@
                     {{:: 'ADMIN_7_CASE' | translate }}
                 </span>
             </h5>
-            <div class="clear"></div>
-            <br />
-            <div class="community-list clearfix">
-                <community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
-            </div>
-        </div>
-        <div class="my-communities" ng-if="! myCommunities.length">
-            <h5>{{:: 'COMMUNITY.USER_ISNT_MEMBER_OF_ANY_COMMUNITY' | translate }}</h5>
-            <div class="clear"></div>
-        </div>
-    </div>
+			<div class="clear"></div>
+			<br />
+			<div class="community-list clearfix">
+				<community-item item="item" ng-repeat="(id, item) in myCommunities track by $index" user="loggedUser"></community-item>
+			</div>
+		</div>
+		<div class="my-communities" ng-if="! myCommunities.length">
+			<h5>{{:: 'COMMUNITY.USER_ISNT_MEMBER_OF_ANY_COMMUNITY' | translate }}</h5>
+			<div class="clear"></div>
+		</div>
+	</div>
 </div>
 <div class="bottom-tabs" ng-if="loadedFirstBatch">
-    <ul>
-        <li>
-            <a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
-        </li>
-        <li>
-            <a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>
-        </li> 
-    </ul>
+	<ul>
+		<li>
+			<a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
+		</li>
+		<li>
+			<a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>
+		</li>
+	</ul>
 </div>
 <div class="clear"></div>
 <div class="communities">
-    <div ui-view></div>
+	<div ui-view></div>
 </div>

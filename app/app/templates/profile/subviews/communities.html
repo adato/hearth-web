@@ -1,14 +1,16 @@
 <div ng-if="! data.length" class="bottom-tabs"></div>
 <div ng-if="! data.length" class="clear"></div>
-
 <div ng-if="subPageLoaded">
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="mine && ! data.length">
-		<div class="item"><p>{{:: 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_ME' | translate }}</p></div>
+		<div class="item">
+			<p>{{:: 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_ME' | translate }}</p>
+		</div>
 	</div>
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="! mine && ! data.length">
-		<div class="item"><p>{{:: 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_OTHER' | translate }}</p></div>
+		<div class="item">
+			<p>{{:: 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_OTHER' | translate }}</p>
+		</div>
 	</div>
-
 	<div ng-if="data.length" class="bottom-tabs">
 		<h2 ng-if="mine">
 			{{:: 'YOU_ARE_MEMBER' | translate}}
@@ -27,10 +29,9 @@
 	<div class="clear"></div>
 	<div class="communities">
 		<div class="community-list">
-		    <community-item item="item" ng-repeat="(id, item) in data track by item._id" user="mine && info"></community-item>
+			<community-item item="item" ng-repeat="(id, item) in data track by item._id" user="mine && info"></community-item>
 			<div class="clear"></div>
 		</div>
 	</div>
 </div>
-
 <div loading show="!subPageLoaded"></div>
