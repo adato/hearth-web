@@ -7,23 +7,30 @@
  */
 
 angular.module('hearth.services').factory('ResponsiveViewport', function() {
-	return function(res) {
-		var ResponsiveViewport = {};
-		var isEnabled = false;
-
-		if (!Foundation) throw new Exception('Foundation not found');
-
-		ResponsiveViewport.isSmall = function () {
+	return {
+		isSmall: function () {
 			var ret;
-			if (Foundation.utils && Foundation.utils.is_small_only) 
+			if (Foundation.utils && Foundation.utils.is_small_only) {
 				ret = Foundation.utils.is_small_only();
-			else if (Foundation.match) 
+			} else if (Foundation.match) {
 				ret = Foundation.match(Foundation.media_queries.small).matches && !Foundation.match(Foundation.media_queries.medium).matches;
-			else
+			} else {
 				ret = window.matchMedia(Foundation.media_queries.small).matches && !window.matchMedia(Foundation.media_queries.medium).matches;
+			}
+			return ret;
+		},
+
+		isMedium: function () {
+			var ret;
+			if (Foundation.utils && Foundation.utils.is_medium_only) {
+				ret = Foundation.utils.is_medium_only();
+			} else if (Foundation.match) {
+				ret = Foundation.match(Foundation.media_queries.medium).matches && !Foundation.match(Foundation.media_queries.large).matches;
+			} else {
+				ret = window.matchMedia(Foundation.media_queries.medium).matches && !window.matchMedia(Foundation.media_queries.large).matches;
+			}
 			return ret;
 		}
-		return ResponsiveViewport;
 		
 	};
 });

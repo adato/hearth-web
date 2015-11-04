@@ -1,22 +1,25 @@
-
-.ngdialog-invite-box {
+.ngdialog-invite-box { 
 	@extend .ngdialog-theme-default;
 	.ngdialog-content {
+		margin:auto;
+		margin-top:15%;
+	}
+}
+
+@media #{$large-up} {
+	.ngdialog-invite-box .ngdialog-content {
 		margin-left:335px !important;
-		margin-top:180px !important;
-		min-height: 310px;
-		
-		/*
 		margin-top:240px !important;
-		margin-left:320px !important;
-		*/
+	}
+	.invite-box {
+		min-width: 600px;
 	}
 }
 
 .invite-box {
 	text-align: left;
-    min-width: 600px;
-	
+	min-width:initial;
+	width:100%;
 	h2 {
 	    font-size: 20px;
 		text-align: left;
@@ -26,8 +29,9 @@
 	ul {
 	   	list-style: none;
     	text-align: center;
-    	margin-top:4rem;
-    	margin-bottom:3rem;
+    	margin-top:3rem;
+    	margin-bottom:2rem;
+    	margin-left:0;
 
     	li {
     		padding:.5rem;
@@ -43,6 +47,7 @@
 		li {
 			a {
 				display: inline-block;
+				padding:$ui-small-grid-size;
 				i {
 					border: 2px solid color(5);
 					padding: 5px;

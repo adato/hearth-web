@@ -1,7 +1,14 @@
 .author-selector {
     margin-right:$ui-grid-size;
+    width:100%;
+    display:block;
+    .avatar {
+        margin:3*$ui-small-grid-size;
+        margin-left:0;
+    }
     select {
-        width:60*$ui-small-grid-size;
+        width:80%;
+        max-width:400px;
         outline:none;
         border-radius: $global-radius;
         height:$ui-input-height;

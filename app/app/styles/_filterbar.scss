@@ -36,7 +36,7 @@
     @media #{$small-only} { 
         left:initial;
         position:initial;
-        margin:0 3* $ui-small-grid-size;
+        margin:0;
         .filter-button-container {
             margin-left:0;
         }

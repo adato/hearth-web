@@ -1,24 +1,53 @@
-.max-web-width {
-	max-width: 960px;
-}
-
 
 // foundation breakpoint for large screens 
-@media #{$medium-up} { 
+@media #{$large-up} { 
+	body .main-container {
+		min-width:960px;
+		max-width:960px;
+		
+	}
 
 	#navigation {
 		margin: 0 auto;
 	}
 }
 
+@media #{$medium-up} {
+	body .main-container {
+		padding: 0 3*$ui-small-grid-size;
+	}
+
+	.max-web-width {
+		max-width: 960px;
+	}
+
+}
+
+// medium screens only
+@media #{$medium-only} {
+	.messages .conversations {
+		width:100%;
+		.nano-content {	right: 0 !important;}
+		.nano-content-inner { width: 100% !important; }
+	}
+
+	.messages .conversation-detail-container {
+		width:97%;
+		position:absolute;
+		left:2*$ui-small-grid-size;
+		top:$ui-navbar-height + $ui-grid-size;
+		.conversation-detail .messages-container article.message {
+			width:unset;
+		}
+	}
+
+	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
+	
+}
 // small screens only
 @media #{$small-only} {
-	#notify-top {
-	    right: 0;
-	    left: 0;
-	    top: 0px;
-	    margin: 0px;
-	    width: unset;
+	.off-canvas-wrap {
+		overflow-y:auto;
 	}
 
 	.profile-view {
@@ -31,6 +60,7 @@
 	.main-container {
 		min-width: unset !important;
 		width: 100%;
+		padding: 0 2*$ui-small-grid-size;
 	}
 
 	.market .avatar {
@@ -60,13 +90,14 @@
 	}
 
 	.messages .conversation-detail-container {
-		width:100%;
+		width:96%;
 		position:absolute;
+		left:2*$ui-small-grid-size;
+		top:$ui-navbar-height + $ui-grid-size;
 		.conversation-detail .messages-container article.message {
 			width:unset;
 		}
 	}
-	.messages.message-detail-displayed .messages-top { display:none; }
 
 	.messages .messages-add .bottom { margin-bottom:$ui-grid-size; }
 }

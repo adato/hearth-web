@@ -8,7 +8,7 @@
 				</div>
 				<div ng-if="actors.length == 1 && actors[0]._type == 'Community'">
 					<strong>{{ 'MESSAGES.REPLY_AS_COMMUNITY' | translate }}</strong>
-					<avatar src="actors[0].avatar.normal" type="actors[0]._type" class="move-bot" size="mini"></avatar><span>{{ actors[0].name | ellipsis:55 }}</span>
+					<avatar src="actors[0].avatar.normal" type="actors[0]._type" class="" size="mini"></avatar><span>{{ actors[0].name | ellipsis:55 }}</span>
 				</div>
 			</div>
 			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
@@ -18,7 +18,7 @@
 		<div class="error fleft" ng-show="msgReplyForm.text.$invalid && showError.text">
             <span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
         </div>
-       <a href="#" class="left link hide-for-medium-up" ng-click="closeConversation()">
+       <a href="#" class="left link hide-for-large-up" ng-click="closeConversation()">
 	    	{{ 'CLOSE' | translate }}
 	   </a>
        <button ng-disabled="!conversation.is_member" type="submit" class="margin-0 button-send right">

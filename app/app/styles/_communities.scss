@@ -1,8 +1,11 @@
 .communities {
-    margin: 0px auto;
-    padding:0 1rem;
+    margin: 0 auto;
+    padding:0;
     .avatar {
         margin-left:3*$ui-small-grid-size;
+    }
+    h5 {
+        font-size:$global-font-size;
     }
 
     .community-list-add-form {
@@ -33,7 +36,7 @@
                 overflow:hidden;
                 margin-left:$ui-small-grid-size;
                 margin-right:$ui-small-grid-size;
-                max-width:49.4%;
+                width:100%;
                 .content {
                     height: 10.6rem;
                     overflow: hidden;
@@ -57,6 +60,19 @@
     }
 
     // RESPONSIVE //
+    @media #{$large-up} {
+        .small.community-list .community-item {
+            max-width:49.4%;
+        }
+    }
+
+    // duplicates, how to solve this?
+    @media #{$medium-only} {
+        .community-list.small .community-item {
+            margin:1.5*$ui-small-grid-size 0;
+            height:8rem;
+        }
+    }
     @media #{$small-only} {
         .community-list.small .community-item {
             &:nth-child(2n), &:nth-child(2n-1) {

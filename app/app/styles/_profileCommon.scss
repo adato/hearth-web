@@ -8,7 +8,7 @@
   }
   header {
     .user-basic {
-      padding: 0 1rem;
+      padding: 0 0 1rem 0;
       h1 {
         overflow: hidden;
         line-height: 1.5;
@@ -37,7 +37,9 @@
     @media #{$small-only} {
       h1 { display:block !important; }
       .button-bar { float:none !important; margin-left:0 !important; }
-      .highlights { zoom:0.8; }
+    }
+    @media #{$medium-only} {
+      .highlights { zoom:.82; }
     }
 
     .button-bar {
@@ -50,10 +52,7 @@
     .highlights {
       display: block;
       min-height: 320px;
-      padding: 1rem;
-
-
-
+      padding: 1rem 0;
 
       .avatar {
         box-shadow: 1px 0 16px 0 #fff;
@@ -305,9 +304,10 @@
     }
 
     .infobox-avatar-wrapper {
-      width: 110px;
-      min-height:100px;
-      float:left;
+      position:relative;
+      .user-info {
+        left:100px;
+      }
     }
 
     .rating-reply > div {
@@ -414,6 +414,14 @@
       display: inline-block;
       margin-top: 12px;
     }
+    .author-selector {
+      width:50%;
+      @media #{$small-only} {
+        width:initial;
+      }
+    }
+
+
   }
 }
 
@@ -431,11 +439,11 @@
   }
   .box {
     background: lighten(color(4), 10%);
-    padding: 0;
+    padding:0 0 1px 0;
     border-radius: $global-radius;
     box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
-    margin: 3*$ui-small-grid-size (3*$ui-small-grid-size) / 2;
-    overflow: hidden;
+    margin: 3*$ui-small-grid-size 0;
+    overflow-y:visible;
     h3 {
       font-size: 120%;
       color: color(3);
@@ -446,7 +454,6 @@
         bottom: 10px;
         right: 20px;
       }
-    ;
     }
     .buttons {
       text-align: center;
@@ -462,6 +469,7 @@
   }
   .left-pane {
     width:59%;
+    padding-right:3*$ui-small-grid-size;
     .messages {
       text-align: center;
       font-size: 130%;
@@ -681,7 +689,7 @@
   }
     // RESPONSIVE //
     @media #{$small-only} {
-      .left-pane, .right-pane { width:100%; }
+      .left-pane, .right-pane { width:100%; padding:0; }
     } 
 }
 
@@ -914,4 +922,8 @@
       text-transform: uppercase;
     }
   }
+}
+
+.no-result {
+  margin-bottom:$ui-grid-size;
 }
