@@ -17,7 +17,8 @@ angular.module('hearth.controllers').controller('ComponentsCtrl', [
                 updated_at: "2015-10-26T11:00:05.948+01:00",
                 down_votes: 10,
                 up_votes: 8,
-                karma: "44%"
+                karma: "44%",
+                avatar: { large: null, normal: null },
             },
             "textinput": null,
             "textarea": null,

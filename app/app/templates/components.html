@@ -35,30 +35,56 @@
 
 <div class="component component-box row">
 	<div class="large-6 columns">
-	  <span class="dropdown-container">
-	    <a dropdown="#some-dropdown-id"><i class="fa fa-chevron-down"></i></a>
-
-	    <div class="dropdown arrow-left" id="some-dropdown-id">
-        ...
-	    </div>
+		<span class="dropdown-container">
+	    	<a dropdown="#some-dropdown-id"><i class="fa fa-chevron-down"></i></a>
+    		<div class="dropdown arrow-left" id="some-dropdown-id">
+    			Left positioned
+    		</div>
 		</span>
+		or 
+		<span class="dropdown-container">
+	    	<a dropdown="#some-dropdown-id2"><i class="fa fa-chevron-down"></i></a>
+    		<div class="dropdown arrow-right" id="some-dropdown-id2">
+    			Right positioned
+    		</div>
+		</span>
+
 	</div>
 	<div class="large-6 columns">
 		<h4>Dropdown</h4>
+		<h5>Left arrow</h5>
 		<code>
 		&lt;span class=&quot;dropdown-container&quot;&gt;
 		<br />
-			&lt;a dropdown=&quot;#some-dropdown-id&quot;&gt;
+			&nbsp;&nbsp;&lt;a dropdown=&quot;#some-dropdown-id&quot;&gt;
 			<br />
-			&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;
 			<br />
-			&lt;/a&gt; 
+			&nbsp;&nbsp;&lt;/a&gt; 
 			<br />
-			&lt;div class=&quot;dropdown arrow-left&quot; id=&quot;some-dropdown-id&quot;&gt; 
+			&nbsp;&nbsp;&lt;div class=&quot;dropdown <b>arrow-left</b>&quot; id=&quot;some-dropdown-id&quot;&gt; 
 			<br />
-			...
+			&nbsp;&nbsp;&nbsp;&nbsp;...
 			<br />
-			 &lt;/div&gt;
+			 &nbsp;&nbsp;&lt;/div&gt;
+			<br />
+		 	&lt;/span&gt;
+ 		</code>
+ 		<br><h5>Right arrow</h5>
+		<code>
+		&lt;span class=&quot;dropdown-container&quot;&gt;
+		<br />
+			&nbsp;&nbsp;&lt;a dropdown=&quot;#some-dropdown-id&quot;&gt;
+			<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;
+			<br />
+			&nbsp;&nbsp;&lt;/a&gt; 
+			<br />
+			&nbsp;&nbsp;&lt;div class=&quot;dropdown <b>arrow-right</b>&quot; id=&quot;some-dropdown-id&quot;&gt; 
+			<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;...
+			<br />
+			 &nbsp;&nbsp;&lt;/div&gt;
 			<br />
 		 	&lt;/span&gt;
  		</code>
