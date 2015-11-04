@@ -33,12 +33,6 @@ var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
     'sensor=true&libraries=places,geometry&language=';
 document.write('<script id="google-maps-script" src="'+googleApiScriptUrl+preferredLanguage+'"><\/script>');
 
-$(document).foundation({
-  offcanvas: {
-    close_on_click: true
-  }
-});
-
 $(function() { FastClick.attach(document.body);});
 
 /**

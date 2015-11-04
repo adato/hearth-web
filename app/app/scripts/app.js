@@ -212,6 +212,12 @@ angular.module('hearth', [
                 $urlRouter.sync();
                 $urlRouter.listen();
 
+                $(document).foundation({
+                  offcanvas: {
+                    close_on_click: true
+                  }
+                });
+                
                 $rootScope.initFinished = true;
                 $rootScope.$broadcast("initFinished");
             });
