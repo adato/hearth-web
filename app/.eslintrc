@@ -23,7 +23,17 @@
     "extends": "eslint:recommended",
     "rules": {
         "no-alert": 1,
-        "no-script-url": 1
+        "no-script-url": 1,
+        "no-unused-vars": 1,
+        "comma-dangle": 1,
+        "no-mixed-spaces-and-tabs": 1,
+        "no-extra-semi": 1,
+        "no-undef": 1,
+        "no-console": 1,
+        "no-empty": 1,
+        "no-constant-condition": 1,
+        "no-cond-assign": 1,
+        "no-redeclare": 1
     },
     "globals": {
         "angular": true,
