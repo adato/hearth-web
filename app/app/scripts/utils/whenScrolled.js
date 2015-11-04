@@ -33,7 +33,6 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					
 					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
 					if(childHeight - el.height() - el.scrollTop() - offset <= 0) {
-						console.log('SCROLLED');
 						scope.whenScrolled();
 					}
 				}
