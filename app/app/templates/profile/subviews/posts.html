@@ -1,5 +1,4 @@
 <div ng-include="'templates/profile/subviews/postPanel.html'"></div>
-
 <div ng-if="subPageLoaded">
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && mine && ! postsActive.length && ! postsInactive.length">
 		<p>{{:: 'PROFILE.POSTS.NO_POSTS_ME' | translate }}</p>
@@ -8,15 +7,12 @@
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="subPageLoaded && ! mine && ! postsActive.length">
 		<p>{{:: 'PROFILE.POSTS.NO_POSTS_OTHER' | translate }}</p>
 	</div>
-
 	<div class="ads-listing active">
 		<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsActive track by item._id" user="loggedUser" community="null" inactivate-tags='true'></item>
 	</div>
-
 	<div ng-if="mine && postsInactive.length" class="ads-listing">
 		<h3>{{:: 'POSTS_INACTIVE' | translate }}</h3>
 		<item item='item' hide-avatar="true" ng-repeat="(id, item) in postsInactive track by item._id" user="loggedUser" community="null" inactivate-tags='true'></item>
 	</div>
 </div>
-
 <div loading show="!subPageLoaded"></div>

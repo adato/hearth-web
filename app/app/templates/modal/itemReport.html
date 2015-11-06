@@ -1,32 +1,32 @@
 <div class="itemReport formStyle itemEdit modal">
-    <div class="head">
-        <h2>
+	<div class="head">
+		<h2>
             {{ 'POST_REPORT.HEADING' | translate}}
         </h2>
-        <span ng-click="close()" class="close fa fa-times"></span>
-        <hr />
-    </div>
-    <form ng-submit="sendReport()" name="reportForm" novalidate class="report-ad">
-        <div class="notify-report-container"></div>
-        <div>
-            <label ng-bind-html="'POST_REPORT.REPORT_INFO' | translate"></label>
-            <textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'POST_REPORT.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
-            <div class="moveUp error" ng-show="showErrors.message">
-                <span ng-show="reportForm.message.$error.required">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="reportForm.message.$error.minlength">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
-                <span ng-show="reportForm.message.$error.maxlength">{{ 'ERR_REPORT_TEXT_MAX_LEN' | translate }}</span>
-            </div>
-            <div class="bottom">
-                <a href="" ng-click="close()" class="fleft close">
+		<span ng-click="close()" class="close fa fa-times"></span>
+		<hr />
+	</div>
+	<form ng-submit="sendReport()" name="reportForm" novalidate class="report-ad">
+		<div class="notify-report-container"></div>
+		<div>
+			<label ng-bind-html="'POST_REPORT.REPORT_INFO' | translate"></label>
+			<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'POST_REPORT.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message" ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
+			<div class="moveUp error" ng-show="showErrors.message">
+				<span ng-show="reportForm.message.$error.required">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
+				<span ng-show="reportForm.message.$error.minlength">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
+				<span ng-show="reportForm.message.$error.maxlength">{{ 'ERR_REPORT_TEXT_MAX_LEN' | translate }}</span>
+			</div>
+			<div class="bottom">
+				<a href="" ng-click="close()" class="fleft close">
                     {{ 'CLOSE' | translate }}
                 </a>
-                <button class="primary button-send fright pointer" type="submit" translate>REPORT</button>
-            </div>
-        </div>
-    </form>
-    <div class="report-ad success success-msg hidden">
-        <p>{{ 'POST_REPORT.SUCCESS_MESSAGE' | translate }}</p>
-        <button class="primary button-send fright pointer" ng-click="close()" translate>CLOSE</button>
-    </div>
-    <div class="clear"></div>
+				<button class="primary button-send fright pointer" type="submit" translate>REPORT</button>
+			</div>
+		</div>
+	</form>
+	<div class="report-ad success success-msg hidden">
+		<p>{{ 'POST_REPORT.SUCCESS_MESSAGE' | translate }}</p>
+		<button class="primary button-send fright pointer" ng-click="close()" translate>CLOSE</button>
+	</div>
+	<div class="clear"></div>
 </div>

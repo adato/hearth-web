@@ -1,63 +1,59 @@
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
-  <form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
-    <div class="right-column small-12 large-5 columns push-7" ng-cloak>
-      <div image-preview files="profile.avatar" limit="5" limit-pixel-size="400" single-file="true">
-        <img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image exif-rotated />
-        <img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" resized-thumbnail-image />
-        <div class="text">
-          <span class="fa fa-plus-square-o"></span>
-          <span>{{:: 'CHOOSE_AVATAR_FILE' | translate}}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="fleft small-12 large-7 pull-5 alt-bg">
-      <h2 class="hide-border">
+	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
+		<div class="right-column small-12 large-5 columns push-7" ng-cloak>
+			<div image-preview files="profile.avatar" limit="5" limit-pixel-size="400" single-file="true">
+				<img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image exif-rotated />
+				<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" resized-thumbnail-image />
+				<div class="text">
+					<span class="fa fa-plus-square-o"></span>
+					<span>{{:: 'CHOOSE_AVATAR_FILE' | translate}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="fleft small-12 large-7 pull-5 alt-bg">
+			<h2 class="hide-border">
         <span class="content">
           <span class="fa fa-user"></span>{{:: 'WHO' | translate }}
         </span>
       </h2>
-      <section class="who">
-        <div class="name margin">
-          <label>
-            {{:: 'NAME' | translate }} *
-            <input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="profile.name" class="text-input" type='text' ng-required="true">
-            <div class="absolute error" ng-show="showError.name">
-                <span ng-show="profileEditForm.name.$error.required">{{:: 'ERR_NOT_FILLED_NAME' | translate }}</span>
-            </div>
-          </label>
-        </div>
-        <div class="work margin">
-          <label>
-            {{:: 'MY_WORK' | translate }}
-            <input class="text-input" type='text' placeholder="{{'MY_WORK_EXAMPLE' | translate}}" ng-model="profile.work" name="my_work">
-          </label>
-        </div>
-      </section>
-    </div>
-
-    <div class="clear"></div>
-
-    <div class="large-12">
-      <h2>
+			<section class="who">
+				<div class="name margin">
+					<label>
+						{{:: 'NAME' | translate }} *
+						<input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="profile.name" class="text-input" type='text' ng-required="true">
+						<div class="absolute error" ng-show="showError.name">
+							<span ng-show="profileEditForm.name.$error.required">{{:: 'ERR_NOT_FILLED_NAME' | translate }}</span>
+						</div>
+					</label>
+				</div>
+				<div class="work margin">
+					<label>
+						{{:: 'MY_WORK' | translate }}
+						<input class="text-input" type='text' placeholder="{{'MY_WORK_EXAMPLE' | translate}}" ng-model="profile.work" name="my_work">
+					</label>
+				</div>
+			</section>
+		</div>
+		<div class="clear"></div>
+		<div class="large-12">
+			<h2>
         <span class="content">
           <span class="fa fa-globe"></span>{{:: 'WHERE' | translate }}
         </span>
       </h2>
-      <section class="location" ng-if="profile">
-        <locations locations="profile.locations" is-required="true" show-error="showError.locations"></locations>
-      </section>
-      <h2>
+			<section class="location" ng-if="profile">
+				<locations locations="profile.locations" is-required="true" show-error="showError.locations"></locations>
+			</section>
+			<h2>
         <span class="content">
           <span class="fa fa-comments"></span>{{:: 'MY_LANGUAGES' | translate }}
         </span>
       </h2>
-      <section class="languages">
-          <label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
-            <checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG.' + lang | translate }}</checkbox>
-          </label>
-
-          <span class="dropdown-container" dropdown="#language-drop">
+			<section class="languages">
+				<label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
+					<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG.' + lang | translate }}</checkbox>
+				</label>
+				<span class="dropdown-container" dropdown="#language-drop">
             <label class="trigger">
               {{:: 'ADD_OTHER_LANG' | translate }}
             </label>
@@ -67,154 +63,144 @@
                 </label>
             </ul>
           </span>
-      </section>
-      <div class="clear"></div>
-
-      <h2>
+			</section>
+			<div class="clear"></div>
+			<h2>
         <span class="content">
           <span class="fa fa-phone"></span>{{:: 'CONTACTS' | translate }}
         </span>
       </h2>
-      <section>
-        <div class="contact large-6 columns">
-          <div class="margin">
-            <label>
-              {{:: 'MY_EMAIL' | translate }} *
-              <input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
-              <div class="error" ng-class="{absolute: showContactMail}" ng-show="showError.email">
-                  <span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
-                  <span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
-              </div>
-            </label>
-            <div class="clear"></div>
-            <a ng-click="showContactMail = true || profile.contact_email !=''" ng-hide="showContactMail" class="controll">
-              <span class="fa fa-plus-square"></span>{{:: 'ADD' | translate }}
-            </a>
-          </div>
-          <div ng-show="showContactMail">
-            <label>
-              {{:: 'MY_CONTACT_EMAIL' | translate }}
-              <input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email' ng-required="true">
-              <div class="error" ng-show="showError.contact_email">
-                  <span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
-                  <span ng-show="profileEditForm.contact_email.$error.required">{{:: 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
-              </div>
-              <em>{{:: 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
-            </label>
-            <div>
-              <a ng-click="hideContactEmail()" class="controll">
-                <span class="fa fa-minus-square"></span>{{:: 'REMOVE' | translate }}
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="large-6 columns">
-          <label>
-            <div class="fa fa-phone"></div>
-            {{:: 'MY_PHONE' | translate }}
-            <input ng-model="profile.phone" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input" type="text" ng-pattern="/((\+420|00420) ?)?\d{3}( |-)?\d{3}( |-)?\d{3}/">
-             <div class="error" ng-show="showError.phone">
-                <span ng-show="profileEditForm.phone.$error.pattern">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
-            </div>
-          </label>
-        </div>
-      </section>
-      <div class="clear"></div>
-
-      <h2>
+			<section>
+				<div class="contact large-6 columns">
+					<div class="margin">
+						<label>
+							{{:: 'MY_EMAIL' | translate }} *
+							<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
+							<div class="error" ng-class="{absolute: showContactMail}" ng-show="showError.email">
+								<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+								<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+							</div>
+						</label>
+						<div class="clear"></div>
+						<a ng-click="showContactMail = true || profile.contact_email !=''" ng-hide="showContactMail" class="controll">
+							<span class="fa fa-plus-square"></span>{{:: 'ADD' | translate }}
+						</a>
+					</div>
+					<div ng-show="showContactMail">
+						<label>
+							{{:: 'MY_CONTACT_EMAIL' | translate }}
+							<input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email' ng-required="true">
+							<div class="error" ng-show="showError.contact_email">
+								<span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+								<span ng-show="profileEditForm.contact_email.$error.required">{{:: 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
+							</div>
+							<em>{{:: 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
+						</label>
+						<div>
+							<a ng-click="hideContactEmail()" class="controll">
+								<span class="fa fa-minus-square"></span>{{:: 'REMOVE' | translate }}
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="large-6 columns">
+					<label>
+						<div class="fa fa-phone"></div>
+						{{:: 'MY_PHONE' | translate }}
+						<input ng-model="profile.phone" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input" type="text" ng-pattern="/((\+420|00420) ?)?\d{3}( |-)?\d{3}( |-)?\d{3}/">
+						<div class="error" ng-show="showError.phone">
+							<span ng-show="profileEditForm.phone.$error.pattern">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
+						</div>
+					</label>
+				</div>
+			</section>
+			<div class="clear"></div>
+			<h2>
         <span class="content">
           <span class="fa fa-envelope"></span>{{:: 'MY_NETWORKS' | translate }}
         </span>
       </h2>
-      <section>
-
-        <div class="margin large-6 columns">
-          <label>
-            {{:: 'MY_FACEBOOK' | translate }}
-            <input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'facebook')">
-          </label>
-        </div>
-
-        <div class="margin large-6 columns">
-          <label>
-            {{:: 'MY_TWITTER' | translate }}
-            <input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'twitter')">
-          </label>
-        </div>
-
-        <div class="margin large-6 columns">
-          <label>
-            {{:: 'MY_LINKEDIN' | translate }}
-            <input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'linkedin')">
-          </label>
-        </div>
-
-        <div class="margin large-6 columns">
-          <label>
-            {{:: 'MY_GOOGLEPLUS' | translate }}
-            <input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'googleplus')">
-          </label>
-        </div>
-      </section>
-
-      <div class="clear"></div>
-      <section class="webs">
-        <div class="large-6 columns">
-          <label>
-            <span class="fa fa-globe"></span>
-            {{:: 'MY_WEB' | translate }}
-          </label>
-          <div ng-repeat="web in profile.webs track by $index" class="web-item">
-            <input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
-            <div class="remove" ng-hide="$first">
-              <span class="fa fa-times-circle" ng-click="profile.webs.splice($index,1)"></span>
-            </div>
-          </div>
-          <a ng-click="profile.webs.push('')">
-            <span class="fa fa-plus-square"></span>{{:: 'ADD_NEXT_WEB' | translate }}
-          </a>
-        </div>
-        <div class="clear"></div>
-      </section>
-      <div class="clear"></div>
-
-      <h2>
+			<section>
+				<div class="margin large-6 columns">
+					<label>
+						{{:: 'MY_FACEBOOK' | translate }}
+						<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'facebook')">
+					</label>
+				</div>
+				<div class="margin large-6 columns">
+					<label>
+						{{:: 'MY_TWITTER' | translate }}
+						<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'twitter')">
+					</label>
+				</div>
+				<div class="margin large-6 columns">
+					<label>
+						{{:: 'MY_LINKEDIN' | translate }}
+						<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'linkedin')">
+					</label>
+				</div>
+				<div class="margin large-6 columns">
+					<label>
+						{{:: 'MY_GOOGLEPLUS' | translate }}
+						<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'googleplus')">
+					</label>
+				</div>
+			</section>
+			<div class="clear"></div>
+			<section class="webs">
+				<div class="large-6 columns">
+					<label>
+						<span class="fa fa-globe"></span> {{:: 'MY_WEB' | translate }}
+					</label>
+					<div ng-repeat="web in profile.webs track by $index" class="web-item">
+						<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
+						<div class="remove" ng-hide="$first">
+							<span class="fa fa-times-circle" ng-click="profile.webs.splice($index,1)"></span>
+						</div>
+					</div>
+					<a ng-click="profile.webs.push('')">
+						<span class="fa fa-plus-square"></span>{{:: 'ADD_NEXT_WEB' | translate }}
+					</a>
+				</div>
+				<div class="clear"></div>
+			</section>
+			<div class="clear"></div>
+			<h2>
         <span class="content">
           <span class="fa fa-heart"></span>{{:: 'ABOUT_ME' | translate }}
         </span>
       </h2>
-      <section>
-        <div class="large-6 columns">
-          <label>
-            {{:: 'MY_TELL_ABOUT' | translate }}
-          </label>
-          <textarea autosize-textarea max-len="300" ng-attr-placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" ng-model="profile.about"></textarea>
-          <max-len-counter max-len="300" value="profile.about"></max-len-counter>
-        </div>
-        <div class="large-6 columns">
-          <label>
-            {{:: 'MY_INTERESTS' | translate }}
-          </label>
-          <textarea autosize-textarea class="text-input" type="text" ng-model="profile.interests" ng-attr-placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}"></textarea>
-          <max-len-counter max-len="300" value="profile.interests"></max-len-counter>
-        </div>
-      </section>
-      <div class="clear"></div>
-      <br />
-      <br />
-      <section>
-        <div class="large-12 columns">
-          <a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
-            <span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
-          </a>
-          <button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
-          <div class="fright error down-error" ng-show="messageBottom">
-              <span>{{ messageBottom | translate}}</span>
-          </div>
-        </div>
-      </section>
-  </form>
-  </div>
+			<section>
+				<div class="large-6 columns">
+					<label>
+						{{:: 'MY_TELL_ABOUT' | translate }}
+					</label>
+					<textarea autosize-textarea max-len="300" ng-attr-placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" ng-model="profile.about"></textarea>
+					<max-len-counter max-len="300" value="profile.about"></max-len-counter>
+				</div>
+				<div class="large-6 columns">
+					<label>
+						{{:: 'MY_INTERESTS' | translate }}
+					</label>
+					<textarea autosize-textarea class="text-input" type="text" ng-model="profile.interests" ng-attr-placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}"></textarea>
+					<max-len-counter max-len="300" value="profile.interests"></max-len-counter>
+				</div>
+			</section>
+			<div class="clear"></div>
+			<br />
+			<br />
+			<section>
+				<div class="large-12 columns">
+					<a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
+						<span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
+					</a>
+					<button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+					<div class="fright error down-error" ng-show="messageBottom">
+						<span>{{ messageBottom | translate}}</span>
+					</div>
+				</div>
+			</section>
+	</form>
+	</div>
 </div>
-
 <div loading show="!loaded"></div>

@@ -26,11 +26,11 @@
 	</section>
 	<section class="location-container">
 		<label>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</label>
-			<div class="range-select-container" ng-show="filter.lat && filter.lon && filter.name">
-				<input type="range" ng-model="filter.distance" step="25" min="25" max="100" >
-				<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
-			</div>
-			<input type="text" id="geolocation" ng-model="filter.name" />
+		<div class="range-select-container" ng-show="filter.lat && filter.lon && filter.name">
+			<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
+			<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+		</div>
+		<input type="text" id="geolocation" ng-model="filter.name" />
 	</section>
 	<section class="footer">
 		<div class="fleft">

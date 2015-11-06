@@ -12,16 +12,14 @@
 			<div class="left">
 				<b ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
 				<b ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
-
 				<small ng-if="item.post_id">
 					&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:40}}</a>.
 				</small>
 			</div>
-
 			<div class="right">
 				<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
 			</div>
-			<div class="clear"></div>	
+			<div class="clear"></div>
 			<div class="text-container clearfix">
 				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 			</div>
@@ -37,7 +35,6 @@
 					<div class="reply-top">
 						{{:: item.entity_to.name | ellipsis:40}}<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
-					
 					<i>„{{ item.comment.text }}”</i>
 				</div>
 				<div class="clear"></div>

@@ -3,7 +3,6 @@
 	<marketplace-banner ng-if="language == 'sk'" image="/app/images/banner/skBanner.png" title="Vitajte!" code="sk-welcome-banner"></marketplace-banner>
 	<filterbar filter=filter></filterbar>
 	<div ng-hide="loaded" class="margin-top">&nbsp;</div>
-
 	<div class="large-12 columns" ng-hide="!loaded">
 		<div class="marketplace-items-container" ng-if="!items.length">
 			<div ng-show="filterIsOn" class="row">
@@ -12,7 +11,7 @@
 					<div class="large-6 columns text-center">
 						<a ng-click="toggleFilter()">{{:: "MARKETPLACE.EDIT_FILTER" | translate}}</a>
 					</div>
-					<div  class="large-6 columns text-center">
+					<div class="large-6 columns text-center">
 						<a ng-click="resetFilter()">{{:: "MARKETPLACE.RESET_FILTER" | translate}}</a>
 					</div>
 				</div>
@@ -23,7 +22,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading" class="marketplace-items-container">
 			<!-- <item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by item._id" user="user" community="null"></item> -->
 		</div>

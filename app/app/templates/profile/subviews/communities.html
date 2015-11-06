@@ -1,6 +1,5 @@
 <div ng-if="! data.length" class="bottom-tabs"></div>
 <div ng-if="! data.length" class="clear"></div>
-
 <div ng-if="subPageLoaded">
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="mine && ! data.length">
 		<p>{{:: 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_ME' | translate }}</p>
@@ -8,7 +7,6 @@
 	<div class="large-8 large-centered columns box text-center no-result" ng-if="! mine && ! data.length">
 		<p>{{:: 'PROFILE.COMMUNITTIES.NO_COMMUNITTIES_OTHER' | translate }}</p>
 	</div>
-
 	<div ng-if="data.length" class="bottom-tabs">
 		<h2 ng-if="mine">
 			{{:: 'YOU_ARE_MEMBER' | translate}}
@@ -27,10 +25,9 @@
 	<div class="clear"></div>
 	<div class="communities">
 		<div class="community-list">
-		    <community-item item="item" ng-repeat="(id, item) in data track by item._id" user="mine && info"></community-item>
+			<community-item item="item" ng-repeat="(id, item) in data track by item._id" user="mine && info"></community-item>
 			<div class="clear"></div>
 		</div>
 	</div>
 </div>
-
 <div loading show="!subPageLoaded"></div>

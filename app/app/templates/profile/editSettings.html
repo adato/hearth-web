@@ -1,163 +1,133 @@
 <div class="row profile-edit profile-edit-common profile-settings" ng-show="loaded">
-
-    <div class="large-12">
-      <h2>
+	<div class="large-12">
+		<h2>
         <span class="content">
           <span class="fa fa-language"></span>{{:: 'USER_LANGUAGE' | translate }}
         </span>
       </h2>
-      <section class="change-language">
-
-        {{:: 'USING_HEARTH_IN_LANG' | translate }} <b>{{:: 'HEARTH_IN_THIS_LANG' | translate }}</b>.
-         {{:: 'CHOOSE_LANGUAGE' | translate }}
-         &nbsp;
-        <select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
-          <option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
-        </select>
-
-      </section>
-      <div class="clear"></div>
-
-      <h2>
+		<section class="change-language">
+			{{:: 'USING_HEARTH_IN_LANG' | translate }} <b>{{:: 'HEARTH_IN_THIS_LANG' | translate }}</b>. {{:: 'CHOOSE_LANGUAGE' | translate }} &nbsp;
+			<select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
+				<option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
+			</select>
+		</section>
+		<div class="clear"></div>
+		<h2>
         <span class="content">
           <span class="fa fa-bell"></span>{{:: 'USER_NOTIFICATION' | translate }}
         </span>
       </h2>
-      <section class="configure-notifications">
-
-        <form ng-submit="saveNotificationSettings(notify)">
-          <checkbox model="notify.send_emails.expiring" type="checkbox" value="true" value-off="false">
-            {{ 'NOTIFICATION.ALERT_EXPIRING_POSTS' | translate }}
-          </checkbox>
-          
-          <br />
-          <checkbox model="notify.send_emails.expired" type="checkbox" value="true" value-off="false">
-            {{ 'NOTIFICATION.ALERT_EXPIRED_POSTS' | translate }}
-          </checkbox>
-          
-          <br />
-          <checkbox model="notify.send_emails.not_expiring" type="checkbox" value="true" value-off="false">
-            {{ 'NOTIFICATION.ALERT_TIME_UNLIMITED_POSTS' | translate }}
-          </checkbox>
-          
-          <br />
-          <checkbox model="notify.send_emails.new_conversation" type="checkbox" value="true" value-off="false">
-            {{ 'NOTIFICATION.ALERT_NEW_CONVERSATION' | translate }}
-          </checkbox>
-
-          <br />
-          <checkbox model="notify.send_emails.new_message" type="checkbox" value="true" value-off="false">
-            {{ 'NOTIFICATION.ALERT_NEW_MESSAGES_IN_CONVERSATION' | translate }}
-          </checkbox>
-
-          <br />
-          
-          <button type="submit" class="button-send right" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1">{{:: 'SAVE' | translate }}</button>
-        </form>
-      </section>
-      <div class="clear"></div>
-
-      <h2>
+		<section class="configure-notifications">
+			<form ng-submit="saveNotificationSettings(notify)">
+				<checkbox model="notify.send_emails.expiring" type="checkbox" value="true" value-off="false">
+					{{ 'NOTIFICATION.ALERT_EXPIRING_POSTS' | translate }}
+				</checkbox>
+				<br />
+				<checkbox model="notify.send_emails.expired" type="checkbox" value="true" value-off="false">
+					{{ 'NOTIFICATION.ALERT_EXPIRED_POSTS' | translate }}
+				</checkbox>
+				<br />
+				<checkbox model="notify.send_emails.not_expiring" type="checkbox" value="true" value-off="false">
+					{{ 'NOTIFICATION.ALERT_TIME_UNLIMITED_POSTS' | translate }}
+				</checkbox>
+				<br />
+				<checkbox model="notify.send_emails.new_conversation" type="checkbox" value="true" value-off="false">
+					{{ 'NOTIFICATION.ALERT_NEW_CONVERSATION' | translate }}
+				</checkbox>
+				<br />
+				<checkbox model="notify.send_emails.new_message" type="checkbox" value="true" value-off="false">
+					{{ 'NOTIFICATION.ALERT_NEW_MESSAGES_IN_CONVERSATION' | translate }}
+				</checkbox>
+				<br />
+				<button type="submit" class="button-send right" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1">{{:: 'SAVE' | translate }}</button>
+			</form>
+		</section>
+		<div class="clear"></div>
+		<h2>
         <span class="content">
           <span class="fa fa-envelope"></span>{{ 'USER_MESSAGES' | translate }}
         </span>
       </h2>
-      <section class="configure-messages">
-
-          <form ng-submit="saveNotificationSettings(notify)">
-          
-          <br />
-          <checkbox model="notify.get_messages.only_replies" type="checkbox" value="true" value-off="false">
-            {{ 'NOTIFICATION.MESSAGES_ALLOW_ONLY_POST_REPLIES' | translate }}
-          </checkbox>
-
-          <br />
-          
-          <button type="submit" class="button-send right" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1">{{ 'SAVE' | translate }}</button>
-        </form>
-
-      </section>
-      <div class="clear"></div>
-
-
-      <form id="profileSettingsForm" name="profileSettingsForm" ng-submit="changePassword(pass)" novalidate ng-show="loaded">
-        <h2>
+		<section class="configure-messages">
+			<form ng-submit="saveNotificationSettings(notify)">
+				<br />
+				<checkbox model="notify.get_messages.only_replies" type="checkbox" value="true" value-off="false">
+					{{ 'NOTIFICATION.MESSAGES_ALLOW_ONLY_POST_REPLIES' | translate }}
+				</checkbox>
+				<br />
+				<button type="submit" class="button-send right" analytics-custom analytics-event="configure notifications" analytics-category="Configure notifications" analytics-value="1">{{ 'SAVE' | translate }}</button>
+			</form>
+		</section>
+		<div class="clear"></div>
+		<form id="profileSettingsForm" name="profileSettingsForm" ng-submit="changePassword(pass)" novalidate ng-show="loaded">
+			<h2>
           <span class="content">
             <span class="fa fa-unlock-alt"></span>{{:: 'USER_CHANGE_CREDENTIALS' | translate }}
           </span>
         </h2>
-        <section class="change-pass">
-          <div ng-if="user.logged_in_using_omniauth">
-            {{:: 'CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH' | translate }}
-          </div>
-          <div ng-if="!user.logged_in_using_omniauth">
-
-            <div class="fleft large-6">
-              <div class="fleft large-11">
-                <label for="oldPass">{{:: 'FILL_CURRENT_PASS' | translate }}</label>
-                <input type="password" ng-focus="showError.oldPass = false;" ng-blur="showError.oldPass = true; testOldPassword(pass.old, 'profileSettingsForm', 'oldPass')" name="oldPass" id="oldPass" ng-model="pass.old" required />
-                <div class="absolute error" ng-show="showError.oldPass">
-                    <span ng-show="profileSettingsForm.oldPass.$error.required">{{:: 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
-                    <span ng-show="profileSettingsForm.oldPass.$error.notValid">{{:: 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="fright large-6">
-              <div class="fright large-11">
-                <label for="newPass">{{:: 'FILL_NEW_PASS' | translate }}</label>
-                
-                <show-text-in-password>
-                  <input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" required ng-minlength="5" />
-                </show-text-in-password>
-                <div class=" error" ng-show="showError.newPass">
-                    <span ng-show="profileSettingsForm.newPass.$error.required">{{:: 'ERR_NOT_FILLED_NEW_PASS' | translate }}</span>
-                    <span ng-show="profileSettingsForm.newPass.$error.minlength">{{:: 'ERR_TOO_SHORT_NEW_PASS' | translate }}</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="clear"></div>
-            <br />
-            <button type="submit" class="button-send right" analytics-custom analytics-event="edit password" analytics-category="Profile settings" analytics-value="1">{{:: 'SAVE' | translate }}</button>
-          </div>
-        </section>
-        <br />
-        <br />
-      </form>
-
-      <form id="profileDeleteForm" name="profileDeleteForm" ng-submit="deleteAccount(leave)" novalidate ng-show="loaded">
-        <h2>
+			<section class="change-pass">
+				<div ng-if="user.logged_in_using_omniauth">
+					{{:: 'CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH' | translate }}
+				</div>
+				<div ng-if="!user.logged_in_using_omniauth">
+					<div class="fleft large-6">
+						<div class="fleft large-11">
+							<label for="oldPass">{{:: 'FILL_CURRENT_PASS' | translate }}</label>
+							<input type="password" ng-focus="showError.oldPass = false;" ng-blur="showError.oldPass = true; testOldPassword(pass.old, 'profileSettingsForm', 'oldPass')" name="oldPass" id="oldPass" ng-model="pass.old" required />
+							<div class="absolute error" ng-show="showError.oldPass">
+								<span ng-show="profileSettingsForm.oldPass.$error.required">{{:: 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
+								<span ng-show="profileSettingsForm.oldPass.$error.notValid">{{:: 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
+							</div>
+						</div>
+					</div>
+					<div class="fright large-6">
+						<div class="fright large-11">
+							<label for="newPass">{{:: 'FILL_NEW_PASS' | translate }}</label>
+							<show-text-in-password>
+								<input type="password" ng-focus="showError.newPass = false" ng-blur="showError.newPass = true" name="newPass" ng-model="pass.changed" id="newPass" required ng-minlength="5" />
+							</show-text-in-password>
+							<div class=" error" ng-show="showError.newPass">
+								<span ng-show="profileSettingsForm.newPass.$error.required">{{:: 'ERR_NOT_FILLED_NEW_PASS' | translate }}</span>
+								<span ng-show="profileSettingsForm.newPass.$error.minlength">{{:: 'ERR_TOO_SHORT_NEW_PASS' | translate }}</span>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<br />
+					<button type="submit" class="button-send right" analytics-custom analytics-event="edit password" analytics-category="Profile settings" analytics-value="1">{{:: 'SAVE' | translate }}</button>
+				</div>
+			</section>
+			<br />
+			<br />
+		</form>
+		<form id="profileDeleteForm" name="profileDeleteForm" ng-submit="deleteAccount(leave)" novalidate ng-show="loaded">
+			<h2>
           <span class="content">
             <span class="fa fa-times"></span>{{:: 'USER_DELETE_PROFILE' | translate }}
           </span>
         </h2>
-        <div class="notify-container-delete-user"></div>
-        
-        <section class="delete-account">
-          <label for="text">{{:: 'WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE' | translate }}</label>
-          <textarea ng-model="leave.reason" autosize-textarea></textarea>
-          <div class="fleft large-6">
-            <div class="fleft large-11">
-              <label for="oldPassLeave">{{:: 'FILL_CURRENT_PASS' | translate }}</label>
-              <input type="password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass" id="oldPassLeave" required />
-              <div class="absolute error" ng-show="showError.oldPassLeave">
-                  <span ng-show="profileDeleteForm.oldPassLeave.$error.required">{{:: 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
-                  <span ng-show="profileDeleteForm.oldPassLeave.$error.notValid">{{:: 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
-              </div>
-            </div>
-          </div>
-          <div class="fright tright large-6">
-            <br />
-            <button type="submit" class="button-send" analytics-custom analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1">{{:: 'USER_DELETE_PROFILE' | translate }}</button>
-          </div>
-
-          <div class="clear"></div>
-        </section>
-        <div class="clear"></div>
-      </form>
-
-  </div>
+			<div class="notify-container-delete-user"></div>
+			<section class="delete-account">
+				<label for="text">{{:: 'WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE' | translate }}</label>
+				<textarea ng-model="leave.reason" autosize-textarea></textarea>
+				<div class="fleft large-6">
+					<div class="fleft large-11">
+						<label for="oldPassLeave">{{:: 'FILL_CURRENT_PASS' | translate }}</label>
+						<input type="password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass" id="oldPassLeave" required />
+						<div class="absolute error" ng-show="showError.oldPassLeave">
+							<span ng-show="profileDeleteForm.oldPassLeave.$error.required">{{:: 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
+							<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid">{{:: 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
+						</div>
+					</div>
+				</div>
+				<div class="fright tright large-6">
+					<br />
+					<button type="submit" class="button-send" analytics-custom analytics-event="delete user account" analytics-category="Profile settings" analytics-value="1">{{:: 'USER_DELETE_PROFILE' | translate }}</button>
+				</div>
+				<div class="clear"></div>
+			</section>
+			<div class="clear"></div>
+		</form>
+	</div>
 </div>
-
 <div loading show="!loaded"></div>
