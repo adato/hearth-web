@@ -1,149 +1,137 @@
 .community-view {
-    max-width:960px;
-    padding-bottom: 100px;
-    margin: {
-        left: auto;
-        right: auto;
-    }
-
-    .clearfix {
-        &:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-    }
-
-    .posts-count strong {
-        line-height: 55px;
-        font-size: 55px;
-    }
-
-    .gift-receive {
-        font-size:170%;
-        color:color(1);
-    }
-    .gift-give {
-        font-size:170%;
-        color:color(2);
-    }    
-    a {
-        color:color(5);
-    }
-    
-    .community-listings {
-        @extend .clearfix, .profile-listings;
-        .applications {
-            @extend .box, .community-applications-list;
-            padding-bottom:0.1px; // fix for not shown bottom space
-
-            overflow:visible;
-        }
-    }
-
-    .button-bar {
-        max-width: 55% !important;
-    }
-
+	max-width: 960px;
+	padding-bottom: 100px;
+	margin: {
+		left: auto;
+		right: auto;
+	}
+	.clearfix {
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	}
+	.posts-count strong {
+		line-height: 55px;
+		font-size: 55px;
+	}
+	.gift-receive {
+		font-size: 170%;
+		color: color(1);
+	}
+	.gift-give {
+		font-size: 170%;
+		color: color(2);
+	}
+	a {
+		color: color(5);
+	}
+	.community-listings {
+		@extend .clearfix, .profile-listings;
+		.applications {
+			@extend .box, .community-applications-list;
+			padding-bottom: 0.1px; // fix for not shown bottom space
+			overflow: visible;
+		}
+	}
+	.button-bar {
+		max-width: 55% !important;
+	}
 }
 
-
 .community-applications-list {
-    .application {
-        @extend .clearfix;
-        margin-bottom:5px;
-        background:lighten(color(5), 45%);
-        padding: {
-            top:10px;
-            bottom:0px;
-            left:20px;
-            right:20px;
-        }
-
-        
-        small {
-            font-size:0.85rem;
-            line-height:125%;
-        }
-        
-        .applications-item {
-            position: relative;
-        }
-        .applications-text {
-            font-size:1.2rem;
-            line-height:125%;
-            position: relative;
-            top: 10px;
-            padding-right: 150px;
-
-            margin: {
-                top:10px;
-                bottom:10px;
-                left:110px; 
-            }
-            .applications-from {
-                display:inline-block;
-                margin-top:10px;
-            }
-            a {
-                color:darken(color(3), 20%);
-                &:hover {
-                    color:color(5);
-                }
-            }
-        }
-        .applications-buttons {
-            @extend .community-applications-buttons;
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-        .date {
-            float:right;
-        }
-    }
-    .buttons {
-        clear:both;
-    }
-    button {
-        margin: {
-            left:auto;
-            right:auto;
-        }
-    }
+	.application {
+		@extend .clearfix;
+		margin-bottom: 5px;
+		background: lighten(color(5), 45%);
+		padding: {
+			top: 10px;
+			bottom: 0px;
+			left: 20px;
+			right: 20px;
+		}
+		small {
+			font-size: 0.85rem;
+			line-height: 125%;
+		}
+		.applications-item {
+			position: relative;
+		}
+		.applications-text {
+			font-size: 1.2rem;
+			line-height: 125%;
+			position: relative;
+			top: 10px;
+			padding-right: 150px;
+			margin: {
+				top: 10px;
+				bottom: 10px;
+				left: 110px;
+			}
+			.applications-from {
+				display: inline-block;
+				margin-top: 10px;
+			}
+			a {
+				color: darken(color(3), 20%);
+				&:hover {
+					color: color(5);
+				}
+			}
+		}
+		.applications-buttons {
+			@extend .community-applications-buttons;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		.date {
+			float: right;
+		}
+	}
+	.buttons {
+		clear: both;
+	}
+	button {
+		margin: {
+			left: auto;
+			right: auto;
+		}
+	}
 }
 
 .community-applications-buttons {
-    a {
-        @extend .clearfix;
-        font-size:2em;
-        border:2px solid color(5);
-        border-radius:50%;
-        margin:.5rem;
-        padding:.5rem;
-        width:3.2rem;
-        height:3.2rem;
-        text-align:center;
-        display:inline-block;
-        &.yes:hover {
-            color:color(2);
-            border-color:color(2);
-        }
-        &.no:hover {
-            border-color:color(1);
-            color:color(1);
-        }
-    }
+	a {
+		@extend .clearfix;
+		font-size: 2em;
+		border: 2px solid color(5);
+		border-radius: 50%;
+		margin: .5rem;
+		padding: .5rem;
+		width: 3.2rem;
+		height: 3.2rem;
+		text-align: center;
+		display: inline-block;
+		&.yes:hover {
+			color: color(2);
+			border-color: color(2);
+		}
+		&.no:hover {
+			border-color: color(1);
+			color: color(1);
+		}
+	}
 }
 
 .mine-community {
-    .others {
-        display: none;
-    }
+	.others {
+		display: none;
+	}
 }
 
 .others-community {
-    .mine {
-        display: none;
-    }
+	.mine {
+		display: none;
+	}
 }

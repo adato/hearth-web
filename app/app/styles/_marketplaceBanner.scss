@@ -1,25 +1,25 @@
 marketplace-banner {
-	display:block;
+	display: block;
 }
+
 section.banner {
 	.marketplace-banner {
 		/**background-color:#e55d23;**/
-		background-repeat:no-repeat;
+		background-repeat: no-repeat;
 		background-position: 0 0;
-		margin-left:27px;
-		width:770px;
-		height:130px;
+		margin-left: 27px;
+		width: 770px;
+		height: 130px;
 		margin-bottom: 5 * $ui-small-grid-size;
 		margin-top: -2 * $ui-small-grid-size;
 	}
-	
 	.close {
-		display:block;
-		font-size:30px;
-		color:#666;
-		float:right;
-		position:relative;
-		top:-5px;
-		right:15px;
+		display: block;
+		font-size: 30px;
+		color: #666;
+		float: right;
+		position: relative;
+		top: -5px;
+		right: 15px;
 	}
 }

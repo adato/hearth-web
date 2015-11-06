@@ -1,46 +1,45 @@
 .filterbar-wrap {
-    line-height:$ui-input-height;
-    height:$ui-input-height;
-    position:relative;
-    left:-3 * $ui-small-grid-size;
-    .filter-button-container {
-        @extend .box;
-        width:auto;
-        padding:0 $ui-grid-size;
-        margin-left:189px;
-        overflow: hidden;
-        a {
-            color: color(5);
-            font-weight: $ui-text-weight-bolder;
-        }
-        a.filter-cancel-button {
-            font-size:12px;
-            margin-left:2*$ui-small-grid-size;
-        }
-    }
-    .insert-button-container {
-        margin-right:-2px;
-        float:right;
-    }
-
-    .filter-container {
-        @extend .box;
-        padding:$ui-grid-size;
-        clear:both;
-        float:right;
-        margin-top:2 * $ui-small-grid-size;
-        width:770px;
-        transition:all .3s ease-in;
-        opacity:1;
-        max-height:800px;
-    }
-    .animated-hidden {
-        opacity:0;
-        max-height:0;
-        margin-top:0;
-        margin-bottom:0;
-        padding-top:0;
-        padding-bottom:0;
-        overflow-y:hidden;
-    }
+	line-height: $ui-input-height;
+	height: $ui-input-height;
+	position: relative;
+	left: -3 * $ui-small-grid-size;
+	.filter-button-container {
+		@extend .box;
+		width: auto;
+		padding: 0 $ui-grid-size;
+		margin-left: 189px;
+		overflow: hidden;
+		a {
+			color: color(5);
+			font-weight: $ui-text-weight-bolder;
+		}
+		a.filter-cancel-button {
+			font-size: 12px;
+			margin-left: 2*$ui-small-grid-size;
+		}
+	}
+	.insert-button-container {
+		margin-right: -2px;
+		float: right;
+	}
+	.filter-container {
+		@extend .box;
+		padding: $ui-grid-size;
+		clear: both;
+		float: right;
+		margin-top: 2 * $ui-small-grid-size;
+		width: 770px;
+		transition: all .3s ease-in;
+		opacity: 1;
+		max-height: 800px;
+	}
+	.animated-hidden {
+		opacity: 0;
+		max-height: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		overflow-y: hidden;
+	}
 }

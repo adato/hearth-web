@@ -1,107 +1,106 @@
 .info-box {
-    
-    .user-info {
-        background-color: white;
-        border: 2px solid color(1);
-        position: absolute;
-        color: #9F9F9F;
-        margin-top: 8px;
-        left: 140px;
-        z-index: 1000;
-        width: 500px;
-        min-height: 3.2rem;
-        font-weight: normal;
-        padding: 1em;
-        text-align: left;
-        border-radius: $global-radius;
-        font-size: 130%;
-        box-shadow: $defaultShadow;
-
-        &.on-profile {
-            left:110px;
-            &.placement-left {
-                left:-500px;
-            }
-        }
-        &.on-item-detail {
-            left:80px;
-            margin-top:0;
-        }
-        .loading-bar {
-            margin-bottom: 1.8rem;
-        }
-        .text-error {
-            color: color(1);
-        }
-        div {
-            margin: {
-                bottom: 0.8em;
-            };
-        }
-        .user-info-text {
-            font-size: 15px;
-            padding-left: 2px;
-            margin-bottom: 15px;
-            div {
-                word-wrap: break-word;
-                margin-left:40px;
-                .fa { 
-                    margin-left:-28px; 
-                    float:left;
-                }
-            }
-        }
-        .inner {
-            .fa {
-                color: color(1);
-                margin-right: 10px;
-                text-align: center;
-                width: 18px;
-            }
-            .summary {
-                margin-left: 2em;
-            }
-            .count_accomplished {
-                color: color(1);
-                text-align: center;
-                margin-left:30px;
-            }
-            .social {
-                a {
-                    line-height: 20px;
-                    font-size: 20px;
-                    color: color(5);
-                }
-            }
-            .profil-link {
-                font-weight: 600;
-                font-size:14px;
-                a {
-                    line-height: 20px;
-                    color: color(5);
-                }
-            }
-            .links {
-                height: 18px;
-                .fa {
-                    //font-size: 20px;
-                    margin-right: 3px;
-                }
-            }
-            .author-about {
-                color: black;
-                font-weight: bold;
-                position: relative;
-                text-align: center;
-                margin-left:0;
-                div {
-                    background-color: white;
-                    padding-left: 8px;
-                    padding-right: 8px;
-                    position: relative;
-                    top: -12px;
-                }
-            }
-        }
-    }
+	.user-info {
+		background-color: white;
+		border: 2px solid color(1);
+		position: absolute;
+		color: #9F9F9F;
+		margin-top: 8px;
+		left: 140px;
+		z-index: 1000;
+		width: 500px;
+		min-height: 3.2rem;
+		font-weight: normal;
+		padding: 1em;
+		text-align: left;
+		border-radius: $global-radius;
+		font-size: 130%;
+		box-shadow: $defaultShadow;
+		&.on-profile {
+			left: 110px;
+			&.placement-left {
+				left: -500px;
+			}
+		}
+		&.on-item-detail {
+			left: 80px;
+			margin-top: 0;
+		}
+		.loading-bar {
+			margin-bottom: 1.8rem;
+		}
+		.text-error {
+			color: color(1);
+		}
+		div {
+			margin: {
+				bottom: 0.8em;
+			}
+			;
+		}
+		.user-info-text {
+			font-size: 15px;
+			padding-left: 2px;
+			margin-bottom: 15px;
+			div {
+				word-wrap: break-word;
+				margin-left: 40px;
+				.fa {
+					margin-left: -28px;
+					float: left;
+				}
+			}
+		}
+		.inner {
+			.fa {
+				color: color(1);
+				margin-right: 10px;
+				text-align: center;
+				width: 18px;
+			}
+			.summary {
+				margin-left: 2em;
+			}
+			.count_accomplished {
+				color: color(1);
+				text-align: center;
+				margin-left: 30px;
+			}
+			.social {
+				a {
+					line-height: 20px;
+					font-size: 20px;
+					color: color(5);
+				}
+			}
+			.profil-link {
+				font-weight: 600;
+				font-size: 14px;
+				a {
+					line-height: 20px;
+					color: color(5);
+				}
+			}
+			.links {
+				height: 18px;
+				.fa {
+					//font-size: 20px;
+					margin-right: 3px;
+				}
+			}
+			.author-about {
+				color: black;
+				font-weight: bold;
+				position: relative;
+				text-align: center;
+				margin-left: 0;
+				div {
+					background-color: white;
+					padding-left: 8px;
+					padding-right: 8px;
+					position: relative;
+					top: -12px;
+				}
+			}
+		}
+	}
 }

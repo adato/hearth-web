@@ -1,23 +1,23 @@
 @mixin palette($colors, $size: 2em) {
-    $grad: ();
-    $width: 100% / length($color);
-    $i: 0;
-    @each $color in $colors {
-        $grad: append($grad, $color $i);
-        $i: $i + $width;
-        $grad: append($grad, $color $i);
-    }
-    body:before {
-        display: none;
-        position: fixed;
-        z-index: 10000;
-        width: length($color) * $size;
-        height: $size;
-        right: 5*$size;
-        bottom: 80px;
-        border: 1px solid black;
-        content: "";
-        @include background(linear-gradient(left, $grad));
-        @include box-shadow;
-    }
+	$grad: ();
+	$width: 100% / length($color);
+	$i: 0;
+	@each $color in $colors {
+		$grad: append($grad, $color $i);
+		$i: $i + $width;
+		$grad: append($grad, $color $i);
+	}
+	body:before {
+		display: none;
+		position: fixed;
+		z-index: 10000;
+		width: length($color) * $size;
+		height: $size;
+		right: 5*$size;
+		bottom: 80px;
+		border: 1px solid black;
+		content: "";
+		@include background(linear-gradient(left, $grad));
+		@include box-shadow;
+	}
 }

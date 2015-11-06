@@ -1,20 +1,19 @@
 .author-selector {
-    margin-right:$ui-grid-size;
-    select {
-        width:60*$ui-small-grid-size;
-        outline:none;
-        border-radius: $global-radius;
-        height:$ui-input-height;
-        line-height:$ui-text-font-size;
-        padding:0 15px;
-        font-weight:600;
-        -moz-appearance:none;
-
-        &:focus {
-            border:1px solid color(5);
-        }
-        &:disabled {
-            background-color: #ddd !important;
-        }
-    }
+	margin-right: $ui-grid-size;
+	select {
+		width: 60*$ui-small-grid-size;
+		outline: none;
+		border-radius: $global-radius;
+		height: $ui-input-height;
+		line-height: $ui-text-font-size;
+		padding: 0 15px;
+		font-weight: 600;
+		-moz-appearance: none;
+		&:focus {
+			border: 1px solid color(5);
+		}
+		&:disabled {
+			background-color: #ddd !important;
+		}
+	}
 }

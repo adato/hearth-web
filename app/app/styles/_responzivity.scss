@@ -1,33 +1,28 @@
-
 // foundation breakpoint for large screens 
-@media #{$medium-up} { 
+@media #{$medium-up} {
 	.web-width {
 		width: 940px;
 	}
 	body .main-container {
-		min-width:960px;
-		max-width:960px;
+		min-width: 960px;
+		max-width: 960px;
 	}
 	.max-web-width {
 		max-width: 960px;
 	}
-
 	#navigation {
 		margin: 0 auto;
 	}
-
 	#homepage-hero {
 		margin-top: 150px;
 	}
 }
 
-
 // small screens only
-@media #{$small-only} { 
+@media #{$small-only} {
 	#notify-top {
 		width: unset !important;
 	}
-
 	.profile-view {
 		max-width: unset !important;
 	}
@@ -39,9 +34,10 @@
 		min-width: unset !important;
 		width: 100%;
 	}
-
 	.market .avatar {
-		& > div,span,a {
+		& > div,
+		span,
+		a {
 			img {
 				max-width: $small-avatar-size;
 				max-height: $small-avatar-size;
@@ -53,18 +49,15 @@
 		}
 	}
 	.communities .community-list.small .community-item {
-		max-width:100%;
+		max-width: 100%;
 	}
-
 	.small-margin-bottom {
-		margin-bottom:3*$ui-small-grid-size;
+		margin-bottom: 3*$ui-small-grid-size;
 	}
-
 	#homepage-hero {
 		margin-top: -40px;
 	}
 }
-
 
 .padding-1 {
 	padding-left: 1rem;
@@ -80,6 +73,7 @@
 	margin-right: auto;
 }
 
-.off-canvas-wrap, .off-canvas-wrap > .inner-wrap {
-  min-height: 100vh;
+.off-canvas-wrap,
+.off-canvas-wrap > .inner-wrap {
+	min-height: 100vh;
 }

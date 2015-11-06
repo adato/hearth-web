@@ -1,117 +1,117 @@
-tags-input *, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+tags-input *,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 tags-input {
-
-    .host:active {
-        outline: none;
-    }
-    .tags {
-        min-height: 30px;
-        overflow: hidden;
-        word-wrap: break-word;
-        cursor: text;
-        background-color: white;
-        border-radius: $global-radius;
-        background: none repeat scroll 0 0 transparent !important;
-        border: 1px solid #d7d7d7 !important;
-        //box-shadow: 0 0 5px #d7d7d7 inset !important;
-        .focused {
-        }
-        .tag-list {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-            border:0 !important;
-        }
-        .tag-item {
-            padding: 0 5px;
-            display: inline-block;
-            float: left;
-            height: 22px;
-            line-height: 20px;
-            border: 1px solid #acacac;
-            border-radius: 8px;
-            background-color: white;
-            font-size:$global-font-size;
-            margin:3px;
-            .remove-button {
-                margin: 0 0 0 5px;
-                padding: 0;
-                border: none;
-                background: none;
-                cursor: pointer;
-                color: #585858;
-                font-weight: bold;
-                font-size:14px;
-                &:active {
-                    color: red;
-                }
-            }
-        }
-        .input {
-            border: 0 !important;
-            box-shadow: none !important;
-            outline: none;
-            margin: 0px;
-            margin-left: 5px;
-            padding: 0;
-            float: left;
-            height: 30px;
-            font-size: $global-font-size;
-            min-width: 250px;
-        }
-        .input.invalid-tag {
-            /* color: red; */
-        }
-        .input::-ms-clear {
-            display: none;
-        }
-    }
-    .ng-invalid {
-        .tags {
-            box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
-        }
-    }
-    .autocomplete {
-        margin-top: 5px;
-        position: absolute;
-        padding: 5px 0;
-        z-index: 999;
-        width: 100%;
-        background-color: white;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        .suggestion-list {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-        }
-        .suggestion-item {
-            padding: 5px 10px;
-            cursor: pointer;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: black;
-            background-color: white;
-        }
-        .suggestion-item.selected {
-            color: white;
-            background-color: #0097cf;
-        }
-        .suggestion-item.selected em {
-            color: white;
-            background-color: #0097cf;
-        }
-        .suggestion-item em {
-            font: normal bold 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: black;
-            background-color: white;
-        }
-    }
+	.host:active {
+		outline: none;
+	}
+	.tags {
+		min-height: 30px;
+		overflow: hidden;
+		word-wrap: break-word;
+		cursor: text;
+		background-color: white;
+		border-radius: $global-radius;
+		background: none repeat scroll 0 0 transparent !important;
+		border: 1px solid #d7d7d7 !important;
+		//box-shadow: 0 0 5px #d7d7d7 inset !important;
+		.focused {}
+		.tag-list {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			border: 0 !important;
+		}
+		.tag-item {
+			padding: 0 5px;
+			display: inline-block;
+			float: left;
+			height: 22px;
+			line-height: 20px;
+			border: 1px solid #acacac;
+			border-radius: 8px;
+			background-color: white;
+			font-size: $global-font-size;
+			margin: 3px;
+			.remove-button {
+				margin: 0 0 0 5px;
+				padding: 0;
+				border: none;
+				background: none;
+				cursor: pointer;
+				color: #585858;
+				font-weight: bold;
+				font-size: 14px;
+				&:active {
+					color: red;
+				}
+			}
+		}
+		.input {
+			border: 0 !important;
+			box-shadow: none !important;
+			outline: none;
+			margin: 0px;
+			margin-left: 5px;
+			padding: 0;
+			float: left;
+			height: 30px;
+			font-size: $global-font-size;
+			min-width: 250px;
+		}
+		.input.invalid-tag {
+			/* color: red; */
+		}
+		.input::-ms-clear {
+			display: none;
+		}
+	}
+	.ng-invalid {
+		.tags {
+			box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
+		}
+	}
+	.autocomplete {
+		margin-top: 5px;
+		position: absolute;
+		padding: 5px 0;
+		z-index: 999;
+		width: 100%;
+		background-color: white;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		.suggestion-list {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+		.suggestion-item {
+			padding: 5px 10px;
+			cursor: pointer;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color: black;
+			background-color: white;
+		}
+		.suggestion-item.selected {
+			color: white;
+			background-color: #0097cf;
+		}
+		.suggestion-item.selected em {
+			color: white;
+			background-color: #0097cf;
+		}
+		.suggestion-item em {
+			font: normal bold 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color: black;
+			background-color: white;
+		}
+	}
 }

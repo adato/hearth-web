@@ -1,32 +1,33 @@
 .filter-status {
-    background-color: color(5);
-    top: 60px;
-    width: 100%;
-    padding: {
-        top: 0.5em;
-        left: 0.5em;
-        right: 0.5em;
-        bottom: 0.5em;
-    };
-    opacity: 0.7;
-    z-index: 98;
-    .scrolled & {
-        top: 20px;
-    }
-    text-align: center;
-    dl {
-        display: inline-block;
-        margin: {
-            bottom: 0;
-        };
-        dt,
-        dd {
-            display: inline;
-            color: white;
-            margin: {
-                left: 0.5em;
-                right: 0.5em;
-            };
-        }
-    }
+	background-color: color(5);
+	top: 60px;
+	width: 100%;
+	padding: {
+		top: 0.5em;
+		left: 0.5em;
+		right: 0.5em;
+		bottom: 0.5em;
+	}
+	opacity: 0.7;
+	z-index: 98;
+	.scrolled & {
+		top: 20px;
+	}
+	text-align: center;
+	dl {
+		display: inline-block;
+		margin: {
+			bottom: 0;
+		}
+		dt,
+		dd {
+			display: inline;
+			color: white;
+			margin: {
+				left: 0.5em;
+				right: 0.5em;
+			}
+			;
+		}
+	}
 }
