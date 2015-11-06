@@ -208,8 +208,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * Return profile of item based on its type and id
 		 */
-		$rootScope.getProfileLink = function(type, id) {
-			return $$config.basePath + $rootScope.getProfileLinkByType(type) + "/" + id;
+		$rootScope.getProfileLink = function(type, id, fullPath) {
+			return (fullPath ? $$config.appUrl : $$config.basePath) + $rootScope.getProfileLinkByType(type) + "/" + id;
 		};
 
 

@@ -5,6 +5,12 @@ $fontSize: $fontSize;
 		margin-bottom: 10px;
 		font-weight: 700;
 	}
+
+	h3 {
+		font-size: 18px;
+		font-weight: bold;
+	}
+	
 	p {
 		font-size: $fontSize;
 		line-height: 1.6;

@@ -26,7 +26,7 @@
             "SAVE_FILTER": "Zapamatovat filtr",
             "COMMUNITIES": "Komunity",
             "TITLE_ENABLED": "Filtr je aktivní",
-            "CANCEL_FILTER_BAR": "zrušit filtr",
+            "CANCEL_FILTER_BAR": "Zrušit filtr",
             "KM": "Km",
             "CLOSE_FILTER": "Zavřít filtr"
         },
@@ -37,7 +37,8 @@
             "SHARE_WITH": "Sdílet přes",
             "PUBLISHED_AT": "Přidáno",
             "REMOVE_FROM_COMMUNITY": "Odstranit z komunity",
-            "CLICK_TO_COLLAPSE": "Zobrazit zkrácený text"
+            "CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
+            "SHARE_LINK": "Sdílet odkaz"
         },
         "EDIT_FILTER": "Upravit filtr",
         "FILTER_NOT_FOUND": "<p>Ajta! Zadan&eacute; kombinaci neodpov&iacute;d&aacute; vůbec, ale vůbec ž&aacute;dn&yacute; inzer&aacute;t.<br \/>Co nějak&eacute; to krit&eacute;rium ubrat?<\/p>",
@@ -348,7 +349,7 @@
     "NO_REPLY": "Zatím nikdo nic.",
     "NO_WISHES_FOUND": "ještě jste se nezapojili",
     "OFFER": "Věnuji",
-    "OFFER_GIFT": "<b>Nabídnout<\/b> dar",
+    "OFFER_GIFT": "Nabídnout dar",
     "OK": "OK",
     "OK_ACCOUNT_CREATED": "Hurá! Váš účet v Hearth byl právě vytvořen.",
     "OK_CHECK_YOUR_EMAIL_AND_CONFIG": "Na váš email jsme právě poslali ověřovací odkaz. Klikněte na něj a můžete hned skočit do dění v Hearth. Těšíme se.",
@@ -457,7 +458,7 @@
     "WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Zde povězte, co věnujete či přijmete:",
     "WHERE": "Místa, kde se vyskytuji",
     "WHO": "Kdo jsem",
-    "WISH_GIFT": "<strong>Pož&aacute;dat<\/strong> o dar",
+    "WISH_GIFT": "Požádat o dar",
     "WRITE_US": "Spojte se s námi",
     "WRONG_ABOUT_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
     "WRONG_NAME_LENGTH": "Příliš dlouhý text, pane Shakespeare.",
@@ -540,8 +541,8 @@
                     "comm": "<p>{{user}} ohodnotil(a) komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 },
                 "comm": {
-                    "user": "<p>{{user}} ohodnotila uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-                    "comm": "<p>{{user}} ohodnotila komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                    "user": "<p>Komunita {{user}} ohodnotila uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Komunita {{user}} ohodnotila komunitu&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 }
             }
         },
@@ -558,8 +559,8 @@
                     "comm": "<p>{{user}}&nbsp;dostal(a) hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 },
                 "comm": {
-                    "user": "<p>{{user}} dostala hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-                    "comm": "<p>{{user}} dostala hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
+                    "user": "<p>Komunita {{user}} dostala hodnocen&iacute; od uživatele&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+                    "comm": "<p>Komunita {{user}} dostala hodnocen&iacute; od komunity&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
                 }
             }
         }
@@ -963,7 +964,7 @@
         "other": "Už požádalo {{value}} lidí."
     },
     "PEOPLE_COUNT_OFFER_PL": {
-        "one": "Už nabídl jeden člověk.",
+        "one": "Už nabídl {{value}} člověk.",
         "few": "Už nabídli {{value}} lidé.",
         "other": "Už nabídlo {{value}} lidí."
     },

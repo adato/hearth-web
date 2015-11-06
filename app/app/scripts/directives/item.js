@@ -34,6 +34,7 @@ angular.module('hearth.directives').directive('item', [
 				// default values
 				scope.toggleTag = (scope.inactivateTags) ? function() {} : Filter.toggleTag;
 				scope.keywords = scope.keywordsActive || [];
+				scope.showSharing = false;
 				scope.showListener = false; // waiting to be called for show post
 				scope.foundationColumnsClass = scope.foundationColumnsClassname || 'large-10';
 

@@ -63,6 +63,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			scope.item = post;
 			scope.toggleTag = Filter.toggleTag;
 			scope.foundationColumnsClass = 'large-10';
+			scope.showSharing = false;
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
 

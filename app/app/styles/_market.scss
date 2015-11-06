@@ -24,12 +24,77 @@ body {
 
 ._market {
 	._item {
+		min-width: 188px;
+		border-bottom: 1px solid white;
+		position: relative;
 		&.row {
 			margin-left: 0;
 			margin-right: 0;
 			border: $itemBorder;
 			border-radius: 8px;
 			background-color: white;
+		}
+		.sharing-container {
+			position: absolute;
+			z-index: 10;
+			top: 0px;
+			bottom: 0px;
+			right: 0px;
+			left: 0px;
+			background-color: rgba(0, 0, 0, 0.6);
+			border-radius: 4px;
+			text-align: center;
+			padding-top: 60px;
+			visibility: hidden;
+			opacity: 0;
+			transition: visibility 0s, opacity 0.5s linear;
+			&.active {
+				visibility: visible;
+				opacity: 1;
+			}
+			.fa {
+				cursor: pointer;
+			}
+			h3 {
+				color: white;
+				margin-bottom: 10px;
+			}
+			input {
+				margin: 0px auto;
+				margin-bottom: 10px;
+				width: 60%;
+				color: $colorOrange;
+				transition: none;
+			}
+			ul {
+				list-style: none;
+				li {
+					display: inline;
+					font-size: 18px;
+					.fa {
+						width: 36px;
+						height: 36px;
+						color: white;
+						border: 2px solid white;
+						border-radius: 50%;
+						text-align: center;
+						padding-top: 7px;
+						margin-left: 5px;
+						margin-right: 5px;
+						&:hover {
+							color: #DDD;
+							border-color: #DDD;
+						}
+					}
+				}
+			}
+			.close {
+				color: white;
+				font-size: 20px;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
 		}
 		&.offer {
 			border-left: $itemBorderWidth solid color(2);
@@ -46,9 +111,6 @@ body {
 		&.need {
 			border-left: $itemBorderWidth solid color(1);
 		}
-		min-width: 188px;
-		border-bottom: 1px solid white;
-		position: relative;
 		.dropdown-container {
 			position: absolute;
 			right: 0;
@@ -337,6 +399,7 @@ body {
 					padding-bottom: 5px;
 				}
 				.button {
+					z-index: 6;
 					height: 44px;
 					display: table;
 					padding: 0px 10px;
@@ -348,6 +411,8 @@ body {
 				}
 				.post-edit-buttons-container {
 					width: 100%;
+					z-index: 5;
+					position: relative;
 					padding-top: 20px;
 					padding-bottom: 10px;
 					padding-left: 0.1em;
@@ -385,6 +450,30 @@ body {
 					left: -2px;
 					top: -2px;
 					bottom: 31px;
+					z-index: 5;
+				}
+				.sharing-overlay {
+					left: 0px;
+					top: 0px;
+					right: 0px;
+					bottom: 0px;
+					position: absolute;
+					z-index: 5;
+					visibility: hidden;
+					opacity: 0;
+					transition: visibility 0s, opacity 0.5s linear;
+					background-color: rgba(0, 0, 0, 0.6);
+					border-radius: 4px;
+					&.active {
+						visibility: visible;
+						opacity: 1;
+					}
+				}
+
+				&.active-overlay {
+					.post-edit-buttons-container {
+						z-index: 4 !important;
+					}
 				}
 			}
 		}
