@@ -1,152 +1,138 @@
 $terms-width: 32em;
 $max-modal-window-width:32em;
-
 .register-login-dialog {
-   	background: none repeat scroll 0 0 #fff;
-    border-radius: $global-radius;
-    font-size: 1.1em;
-    line-height: 1.5em;
-    margin: 4% auto 0;
-    margin-top: 0px;
-    position: relative;
+	background: none repeat scroll 0 0 #fff;
+	border-radius: $global-radius;
+	font-size: 1.1em;
+	line-height: 1.5em;
+	margin: 4% auto 0;
+	margin-top: 0px;
+	position: relative;
 	@include social;
-	padding:.5rem;
-
+	padding: .5rem;
 	h2 {
-		margin:0;
+		margin: 0;
 		font-size: 25px;
-	    font-weight: normal;
-	    text-align: center;
+		font-weight: normal;
+		text-align: center;
 	}
-	
 	hr {
-		margin-bottom:.5rem;
+		margin-bottom: .5rem;
 		margin-top: 0px;
 	}
 	.success {
-		color:color(6);
+		color: color(6);
 	}
 	p {
 		text-align: center;
 	}
-
 	a,
 	a:visited {
 		color: color(5);
 	}
-	
 	.register-successful {
 		display: none;
 	}
 	.register-login-form {
 		padding: {
-			left:0.9rem;
-			right:0.9rem;
-			top:.5rem;
-			bottom:0px;
+			left: 0.9rem;
+			right: 0.9rem;
+			top: .5rem;
+			bottom: 0px;
 		}
-		
 		.error {
-			text-align:left;
+			text-align: left;
 			&.moveUp {
 				position: relative;
 				top: -15px;
 			}
 		}
-
 	}
-
 	.social-login {
-		text-align:center;
-		padding:10px;
-		padding-bottom:1rem;
+		text-align: center;
+		padding: 10px;
+		padding-bottom: 1rem;
 		a {
 			border: 2px solid color(5);
-			border-radius:50%;
-			padding:8px;
-			font-size:150%;
-			line-height:150%;
-			margin-left:10px;
-			margin-right:10px;
-			color:color(5);
-			display:inline-block;
-			width:55px;
-			height:55px;
+			border-radius: 50%;
+			padding: 8px;
+			font-size: 150%;
+			line-height: 150%;
+			margin-left: 10px;
+			margin-right: 10px;
+			color: color(5);
+			display: inline-block;
+			width: 55px;
+			height: 55px;
 			transition: background-color .5s;
 		}
 		a:hover {
-			background:lighten(color(5), 30%);
+			background: lighten(color(5), 30%);
 		}
 		a:visited {
-			color:color(5);
+			color: color(5);
 		}
 	}
 	button {
-		text-transform:none;
+		text-transform: none;
 		i.fa {
-			margin-right:0.5rem;
+			margin-right: 0.5rem;
 		}
 	}
-	p, button {
-		margin-bottom:1rem;
+	p,
+	button {
+		margin-bottom: 1rem;
 	}
 	.bottom {
 		p {
-			margin-bottom:.2rem;
+			margin-bottom: .2rem;
 		}
 	}
-
 	.head {
 		span.close {
-			top:5px;
+			top: 5px;
 		}
 	}
-
 	.head,
 	.bottom {
 		text-align: center;
 	}
-
 	.close {
 		display: none;
 	}
 }
 
 .terms {
-	display:block !important;
-	font-size:.7rem;
-	padding:1rem;
-	padding-right:.5rem;
-	text-align:left;
-
+	display: block !important;
+	font-size: .7rem;
+	padding: 1rem;
+	padding-right: .5rem;
+	text-align: left;
 	h3 {
-		font-size:1.3rem;
+		font-size: 1.3rem;
 	}
-
 	.scroll {
 		padding-right: 1em;
 	}
-
 	p {
 		text-align: justify;
 	}
-
 	&.ng-hide {
-	  opacity:0;
+		opacity: 0;
 	}
 }
 
 .ngdialog {
-	.register-login-dialog { // for displaying in page, not modal
-		position:initial;
-		overflow:initial;
-
+	.register-login-dialog {
+		// for displaying in page, not modal
+		position: initial;
+		overflow: initial;
 		.ngdialog-content {
-			margin-top:-3rem;
+			margin-top: -3rem;
 		}
-
-		span.close { 		// hide close button?
-			display:inline-block;
+		span.close {
+			// hide close button?
+			display: inline-block;
 		}
 	}
 }
@@ -154,35 +140,31 @@ $max-modal-window-width:32em;
 @media #{$large-up} {
 	.register-login-dialog {
 		max-width: $max-modal-window-width;
-		
 		&.terms-opened {
 			/* margin-left:-1*($terms-width/2);*/
 			margin-left: 3em;
 		}
-
 		.terms {
-			position:absolute;
-			top:0px;
+			position: absolute;
+			top: 0px;
 			bottom: 0px;
-
-			background:lighten(color(4), 10%);
-			border-top-right-radius:$global-radius;
-			border-bottom-right-radius:$global-radius;
-			border-left:1px solid color(3);
-			left:99%;
-			width:$terms-width;
-			
+			background: lighten(color(4), 10%);
+			border-top-right-radius: $global-radius;
+			border-bottom-right-radius: $global-radius;
+			border-left: 1px solid color(3);
+			left: 99%;
+			width: $terms-width;
 			.scroll {
-				overflow-y:scroll;
-				height:31em;
+				overflow-y: scroll;
+				height: 31em;
 			}
-			.close-terms, .close-terms-link {
+			.close-terms,
+			.close-terms-link {
 				display: none;
 			}
 		}
 	}
 }
-
 
 @media #{$medium-down} {
 	.terms-opened {
@@ -192,14 +174,13 @@ $max-modal-window-width:32em;
 	}
 	.terms {
 		.close-terms {
-		    position: absolute;
+			position: absolute;
 			right: 6px;
 			font-size: 20px;
 			width: 20px;
 			opacity: 0.5;
 			cursor: pointer;
 		}
-
 		.close-terms-link {
 			font-size: 140%;
 			margin-top: 10px;

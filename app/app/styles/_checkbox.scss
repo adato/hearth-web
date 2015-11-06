@@ -1,41 +1,39 @@
 .checkbox {
-  margin: {
-    bottom: $fontSize / 2;
-  }
-  height: 3em;
-  display: inline-block;
-  padding: {
-    top: 0.8em;
-    left: 1em;
-  }
-  .fa {
-    font-size: 36px;
-    width: 31px;
-    color: color(5);
-  }
-
-  span {
-    margin-left: 4px;
-    position: relative;
-    top: -4px;
-  }
-  &.on {
-    font-weight: bold;
-  }
+	margin: {
+		bottom: $fontSize / 2;
+	}
+	height: 3em;
+	display: inline-block;
+	padding: {
+		top: 0.8em;
+		left: 1em;
+	}
+	.fa {
+		font-size: 36px;
+		width: 31px;
+		color: color(5);
+	}
+	span {
+		margin-left: 4px;
+		position: relative;
+		top: -4px;
+	}
+	&.on {
+		font-weight: bold;
+	}
 }
 
 // new version, smaller, nicer
 .ui-checkbox {
-  margin-bottom: .5em;
-  margin-left: .5em;
-
-  .fa {
-    width: rem-calc(16);
-    font-size: rem-calc(16);
-    color: color(5);
-  }
-  > span {
-    margin-left: .5em;
-    top: 0;
-  }
+	margin-bottom: .5em;
+	margin-left: .5em;
+	.fa {
+		width: rem-calc(16);
+		font-size: rem-calc(16);
+		color: color(5);
+	}
+	> span {
+		margin-left: .5em;
+		top: 0;
+	}
 }

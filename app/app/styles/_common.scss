@@ -1,426 +1,426 @@
 .select-style {
-    position: relative;
-    top: 2px;
-    width: unset;
-    min-width: 120px;
-    background-color: white;
-    border: 1px solid #d7d7d7;
-    border-radius: 8px;
-    box-shadow: 0 0 7px #ddd inset;
-    z-index: 20;
+	position: relative;
+	top: 2px;
+	width: unset;
+	min-width: 120px;
+	background-color: white;
+	border: 1px solid #d7d7d7;
+	border-radius: 8px;
+	box-shadow: 0 0 7px #ddd inset;
+	z-index: 20;
 }
 
 .full-width {
-    width: 100%;
+	width: 100%;
 }
 
 .bold {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .error {
-    color:red;
+	color: red;
 }
 
 .green {
-    color: #a7bd1d;
+	color: #a7bd1d;
 }
 
 .red {
-    color: #fa5800;
+	color: #fa5800;
 }
 
 .action-link {
-    color: #20b1ea;
-    font-weight: bold;
+	color: #20b1ea;
+	font-weight: bold;
 }
 
 .moveUp {
-    position: relative;
-    top: -15px;
+	position: relative;
+	top: -15px;
 }
 
 .inline-block {
-    display: inline-block;
+	display: inline-block;
 }
 
 .box {
-    background-color: white;
-    border-radius: $global-radius;
-    padding: $ui-grid-size;
-    box-shadow: $ui-box-shadow;
-    //overflow: hidden;
-    .header {
-        background-color: color(1);
-        color: color(4);
-        border: {
-            bottom: 1px solid color(3);
-        };
-        margin-bottom: 1em;
-        padding: 1em;
-        margin: {
-            left: -20px;
-            right: -20px;
-        };
-    }
-    &.no-result p {
-        margin: 1.25rem 0.5rem;
-    }
+	background-color: white;
+	border-radius: $global-radius;
+	padding: $ui-grid-size;
+	box-shadow: $ui-box-shadow;
+	//overflow: hidden;
+	.header {
+		background-color: color(1);
+		color: color(4);
+		border: {
+			bottom: 1px solid color(3);
+		}
+		;
+		margin-bottom: 1em;
+		padding: 1em;
+		margin: {
+			left: -20px;
+			right: -20px;
+		}
+		;
+	}
+	&.no-result p {
+		margin: 1.25rem 0.5rem;
+	}
 }
 
 .item {
-    @extend .box;
+	@extend .box;
 }
 
-button {
-}
+button {}
 
 .link-button {
-    display: block;
-    margin-top: rem-calc(8);
-    &:hover {
-        text-decoration: underline;
-    }
+	display: block;
+	margin-top: rem-calc(8);
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 a.link {
-    margin: 8px 8px 8px 0px;
+	margin: 8px 8px 8px 0px;
 }
 
 .button-send {
-    border: none;
-    color: white;
-    border-radius: $global-radius;
-    font-weight: bold;
-    display: inline-block;
-    font-size: 1.2rem;
-    margin: 0 0 1.25rem;
-    padding: 0.5rem 2rem;
-    transition: background-color 300ms ease-out 0s;
-    opacity: 1;
-    cursor: pointer;
-    background-color: color(5);
-    &:hover, &:focus {
-        background-color: darken(color(5), abs($button-function-factor));
-    }
-    @extend .button;
+	border: none;
+	color: white;
+	border-radius: $global-radius;
+	font-weight: bold;
+	display: inline-block;
+	font-size: 1.2rem;
+	margin: 0 0 1.25rem;
+	padding: 0.5rem 2rem;
+	transition: background-color 300ms ease-out 0s;
+	opacity: 1;
+	cursor: pointer;
+	background-color: color(5);
+	&:hover,
+	&:focus {
+		background-color: darken(color(5), abs($button-function-factor));
+	}
+	@extend .button;
 }
 
 a.button-send {
-    &:hover, &:focus {
-        color: white;
-        background-color: darken(color(5), abs($button-function-factor));
-    }
+	&:hover,
+	&:focus {
+		color: white;
+		background-color: darken(color(5), abs($button-function-factor));
+	}
 }
 
 .animate-show {
-    opacity: 1;
-    max-height: 2000px;
-    @include transition(max-height 0.8s, opacity 1s);
-    @include box-sizing(border-box);
-    overflow: hidden;
-    &.ng-hide {
-        display: block !important;
-        max-height: 0;
-        opacity: 0;
-    }
+	opacity: 1;
+	max-height: 2000px;
+	@include transition(max-height 0.8s, opacity 1s);
+	@include box-sizing(border-box);
+	overflow: hidden;
+	&.ng-hide {
+		display: block !important;
+		max-height: 0;
+		opacity: 0;
+	}
 }
 
 .remove {
-    position: absolute;
-    top: rem-calc(18 / 3);
-    right: rem-calc(7);
-    color: color(3);
-    cursor: pointer;
-    font-size: rem-calc(18);
-    transition: color 0.8s;
-    &:hover {
-        color: darken(color(3), 20%);
-    }
+	position: absolute;
+	top: rem-calc(18 / 3);
+	right: rem-calc(7);
+	color: color(3);
+	cursor: pointer;
+	font-size: rem-calc(18);
+	transition: color 0.8s;
+	&:hover {
+		color: darken(color(3), 20%);
+	}
 }
 
 .file-upload {
-    z-index: 1;
-    display: block;
-    width: 100%;
-    //height: $button-height;
-    overflow: hidden;
-    text-align: center;
-    position: relative;
+	z-index: 1;
+	display: block;
+	width: 100%;
+	//height: $button-height;
+	overflow: hidden;
+	text-align: center;
+	position: relative;
 }
 
 .file-upload-input {
-    &::-ms-browse {
-        width: 1000px;
-    }
-    cursor: pointer;
-    // height: $button-height;
-    opacity: 0;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    left: 0;
-    z-index: 9;
+	&::-ms-browse {
+		width: 1000px;
+	}
+	cursor: pointer;
+	// height: $button-height;
+	opacity: 0;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	left: 0;
+	z-index: 9;
 }
 
 .image-upload {
-    .file-upload-overlay {
-        display: none;
-    }
-    
-    &.uploading {
-        
-        .file-upload-overlay {
-            display: block;
-            cursor: default;
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            z-index: 10;
-        }
-    }
+	.file-upload-overlay {
+		display: none;
+	}
+	&.uploading {
+		.file-upload-overlay {
+			display: block;
+			cursor: default;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 10;
+		}
+	}
 }
 
 .attachments {
-    li {
-        list-style-type: none;
-        a {
-            display: block;
-        }
-        img {
-            max-height: 185px;
-        }
-    }
+	li {
+		list-style-type: none;
+		a {
+			display: block;
+		}
+		img {
+			max-height: 185px;
+		}
+	}
 }
 
 .file-upload-pogress {
-    .progress {
-        left: -3px;
-        margin-top: 20px;
-        position: relative;
-    }
+	.progress {
+		left: -3px;
+		margin-top: 20px;
+		position: relative;
+	}
 }
 
 .show-for-scrolled {
-    display: none;
+	display: none;
 }
 
 .scrolled {
-    .MarketCtrl {
-        .show-for-scrolled {
-            display: block;
-        }
-    }
-    .MarketCtrl {
-        .hide-for-scrolled {
-            display: none;
-        }
-    }
+	.MarketCtrl {
+		.show-for-scrolled {
+			display: block;
+		}
+	}
+	.MarketCtrl {
+		.hide-for-scrolled {
+			display: none;
+		}
+	}
 }
 
 .scrolled {
-    .move2top.show-for-scrolled {
-        opacity: 1;
-    }
-    .move2top.hide-for-scrolled {
-        opacity: 0;
-    }
+	.move2top.show-for-scrolled {
+		opacity: 1;
+	}
+	.move2top.hide-for-scrolled {
+		opacity: 0;
+	}
 }
 
 .move2top.show-for-scrolled {
-    opacity: 0;
+	opacity: 0;
 }
 
 .move2top {
-    height: 2 * $fontSize;
-    width: 4 * $fontSize;
-    position: fixed;
-    cursor: pointer;
-    right: $fontSize;
-    text-align: center;
-    bottom: 10%;
-    font-size: 10px;
-    opacity: 1;
-    display: block;
-    .fa {
-        font-size: 2 * $fontSize;
-        display: block;
-    }
-    color: color(3);
-    transition: opacity 0.8s;
-    &:hover {
-        color: darken(color(3), 20%);
-    }
+	height: 2 * $fontSize;
+	width: 4 * $fontSize;
+	position: fixed;
+	cursor: pointer;
+	right: $fontSize;
+	text-align: center;
+	bottom: 10%;
+	font-size: 10px;
+	opacity: 1;
+	display: block;
+	.fa {
+		font-size: 2 * $fontSize;
+		display: block;
+	}
+	color: color(3);
+	transition: opacity 0.8s;
+	&:hover {
+		color: darken(color(3), 20%);
+	}
 }
 
 input:not([type]),
 input[type='text'],
 textarea {
-    border: 1px solid darken(color(4), 20%);
-    @include transition(background-color, 0.5s);
-    box-shadow: none;
-    &:focus {
-        background-color: white;
-        box-shadow: none;
-        border: 1px solid darken(color(4), 40%);
-    }
+	border: 1px solid darken(color(4), 20%);
+	@include transition(background-color, 0.5s);
+	box-shadow: none;
+	&:focus {
+		background-color: white;
+		box-shadow: none;
+		border: 1px solid darken(color(4), 40%);
+	}
 }
 
 .fleft {
-    float: left;
+	float: left;
 }
 
 .fright {
-    float: right;
+	float: right;
 }
 
 .clear {
-    clear: both;
+	clear: both;
 }
 
 .clear-right {
-    clear: right;
+	clear: right;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 .pointer {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .datepicker {
-    border: 1px solid color(5) !important;
-    border-radius: $global-radius;
-    thead {
-        tr {
-            th {
-                color: color(5) !important;
-            }
-        }
-    }
-    td {
-        &.active {
-            background-color: color(5) !important;
-        }
-    }
+	border: 1px solid color(5) !important;
+	border-radius: $global-radius;
+	thead {
+		tr {
+			th {
+				color: color(5) !important;
+			}
+		}
+	}
+	td {
+		&.active {
+			background-color: color(5) !important;
+		}
+	}
 }
 
 .tleft {
-    text-align: left;
+	text-align: left;
 }
 
 .tright {
-    text-align: right;
+	text-align: right;
 }
 
 input::-ms-clear,
 input::-ms-reveal,
 textarea::-ms-clear {
-    display: none;
+	display: none;
 }
 
 .globalLoading {
-    display: none;
-    background-color: rgba(0, 0, 0, 0.63);
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 9999;
-
-    .loading {
-        color: white;
-        width: 100%;
-        text-align: center;
-        margin-top: -20px;
-        position: absolute;
-        top: 50%;
-    }
+	display: none;
+	background-color: rgba(0, 0, 0, 0.63);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+	.loading {
+		color: white;
+		width: 100%;
+		text-align: center;
+		margin-top: -20px;
+		position: absolute;
+		top: 50%;
+	}
 }
 
 .padding-top {
-    padding-top: 1rem;
+	padding-top: 1rem;
 }
 
 .padding-bottom {
-    padding-bottom: 1rem;
+	padding-bottom: 1rem;
 }
 
-.padding-bottom-3{
-    padding-bottom: 0.3rem;
+.padding-bottom-3 {
+	padding-bottom: 0.3rem;
 }
 
 .padding-left-0 {
-    padding-left: 0px;
+	padding-left: 0px;
 }
 
 .hyphenate {
-    -ms-word-break: break-word;
-    word-break: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
+	-ms-word-break: break-word;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
 }
 
 .margin-bottom-20 {
-    margin-bottom: 20px;   
+	margin-bottom: 20px;
 }
 
 button.disabled,
 button[disabled],
 .button.disabled,
 .button[disabled] {
-    background-color: lighten(color(5), 30%);
-    &:hover {
-        background-color: lighten(color(5), 30%);
-    }
+	background-color: lighten(color(5), 30%);
+	&:hover {
+		background-color: lighten(color(5), 30%);
+	}
 }
 
 .margin-auto {
-    margin: auto;
+	margin: auto;
 }
 
 .margin-left-10 {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .margin-0 {
-    margin: 0px;   
+	margin: 0px;
 }
 
 .padding-0 {
-    margin: 0px;   
+	margin: 0px;
 }
 
 .label-block {
-    display: inline-block;
-    margin-right: 10px;
+	display: inline-block;
+	margin-right: 10px;
 }
 
 .label-checked {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .lowercase {
-    text-transform: lowercase;
+	text-transform: lowercase;
 }
 
 .display-block {
-    display: block !important;
+	display: block !important;
 }
 
 .animated-hidden {
-    max-height:0;
-    margin-top:0;
-    margin-bottom:0;
-    padding-top:0;
-    padding-bottom:0;
-    overflow:hidden;
+	max-height: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	overflow: hidden;
 }

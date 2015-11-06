@@ -1,45 +1,40 @@
 .marketplace-map-container {
-    margin-top:3 * $ui-small-grid-size;
+	margin-top: 3 * $ui-small-grid-size;
 }
 
 .map {
-    .map-canvas {
-        height: 400px;
-        display: block;
-        img {
-            max-width: inherit;
-        }
-        .content {
-            margin-left: 3.7em;
-            font-weight: normal;
-            line-height: 180%;
-
-            div {
-                color: #f50;
-            }
-            span {
-                font-weight: bold;
-            }
-
-            .need {
-            	color: #f50;
-            }
-
-            .offer {
-            	color: #50a330;
-            }
-        }
- 
-        .marker-tooltip {
-            text-align: left;
-            cursor: pointer;
-
-        	img {
-	            -o-border-radius: 8px;
-	            border-radius: 8px;
-	            width: 3em;
-	            float: left;
-	        }
-        }
-    }
+	.map-canvas {
+		height: 400px;
+		display: block;
+		img {
+			max-width: inherit;
+		}
+		.content {
+			margin-left: 3.7em;
+			font-weight: normal;
+			line-height: 180%;
+			div {
+				color: #f50;
+			}
+			span {
+				font-weight: bold;
+			}
+			.need {
+				color: #f50;
+			}
+			.offer {
+				color: #50a330;
+			}
+		}
+		.marker-tooltip {
+			text-align: left;
+			cursor: pointer;
+			img {
+				-o-border-radius: 8px;
+				border-radius: 8px;
+				width: 3em;
+				float: left;
+			}
+		}
+	}
 }

@@ -17,7 +17,7 @@
             &:hover {
                 @include text-shadow(0 -1px color(3));
                 background-color: lighten(color(1), 5%);
-                color: white  !important;
+                color: white !important;
             }
             &.fa:before {
                 font-size: $size / 2;

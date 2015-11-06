@@ -2,76 +2,73 @@ $mini-avatar-size: 24px;
 $small-avatar-size: 40px;
 $medium-avatar-size: 80px;
 $large-avatar-size: 295px;
-
 .avatar {
-  display: inline-block;
-  border-radius: 50%;
-  & > * {
-    display: inline-block;
-    position: relative;
-    img {
-      border-radius: 50%;
-      max-width: $medium-avatar-size;
-      max-height: $medium-avatar-size;
-    }
-    &::before {
-      position: absolute;
-      content: '';
-      top: 0;
-      border-radius: 50%;
-      box-shadow: inset -3px 3px 6px rgba(black, 0.5);
-      max-width: $medium-avatar-size;
-      max-height: $medium-avatar-size;
-      left: 0;
-    }
-  }
+	display: inline-block;
+	border-radius: 50%;
+	& > * {
+		display: inline-block;
+		position: relative;
+		img {
+			border-radius: 50%;
+			max-width: $medium-avatar-size;
+			max-height: $medium-avatar-size;
+		}
+		&::before {
+			position: absolute;
+			content: '';
+			top: 0;
+			border-radius: 50%;
+			box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+			max-width: $medium-avatar-size;
+			max-height: $medium-avatar-size;
+			left: 0;
+		}
+	}
 }
 
 .avatar-small {
-  width: $small-avatar-size;
-  height: $small-avatar-size;
-  & > * {
-    img {
-      max-width: $small-avatar-size;
-      max-height: $small-avatar-size;
-    }
-    &::before {
-      max-width: $small-avatar-size;
-      max-height: $small-avatar-size;
-    }
-  }
+	width: $small-avatar-size;
+	height: $small-avatar-size;
+	& > * {
+		img {
+			max-width: $small-avatar-size;
+			max-height: $small-avatar-size;
+		}
+		&::before {
+			max-width: $small-avatar-size;
+			max-height: $small-avatar-size;
+		}
+	}
 }
 
 .avatar-large {
-  & > * {
-    img {
-      max-width: $large-avatar-size;
-      max-height: $large-avatar-size;
-    }
-    &::before {
-      max-width: $large-avatar-size;
-      max-height: $large-avatar-size;
-    }
-  }
+	& > * {
+		img {
+			max-width: $large-avatar-size;
+			max-height: $large-avatar-size;
+		}
+		&::before {
+			max-width: $large-avatar-size;
+			max-height: $large-avatar-size;
+		}
+	}
 }
 
 .avatar-mini {
-  position: relative;
-
-  &.move-bot {
-    top: 6px;
-  }
-  margin-right: 10px;
-  min-width: $mini-avatar-size;
-  min-height: $mini-avatar-size;
-
-  img {
-    width: $mini-avatar-size;
-    height: $mini-avatar-size;
-  }
-  *:before {
-    width: $mini-avatar-size;
-    height: $mini-avatar-size;
-    box-shadow: none !important;
-  }
+	position: relative;
+	&.move-bot {
+		top: 6px;
+	}
+	margin-right: 10px;
+	min-width: $mini-avatar-size;
+	min-height: $mini-avatar-size;
+	img {
+		width: $mini-avatar-size;
+		height: $mini-avatar-size;
+	}
+	*:before {
+		width: $mini-avatar-size;
+		height: $mini-avatar-size;
+		box-shadow: none !important;
+	}
 }

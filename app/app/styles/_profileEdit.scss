@@ -1,88 +1,87 @@
 .profile-edit {
-    section {
-        &.languages {
-            margin-left: 70px;
-            .checkbox {
-                padding-left: 0px;
-                padding-right: 1em;
-                span {
-                    margin: 0;
-                }
-            }
-            .dropdown-container {
-                .trigger {
-                    border: 3px solid #f3a17c;
-                    border-radius: 13px;
-                    color: #f3a17c;
-                    font-size: 14px;
-                    padding: 3px 6px;
-                    position: relative;
-                    top: -10px;
-                    margin-top: 20px;
-                }
-                .dropdown {
-                    li {
-                        margin: {
-                            bottom: 1em;
-                        };
-                    }
-                    padding: {
-                        bottom: 1em;
-                    };
-                }
-            }
-            label {
-                white-space: nowrap;
-                display: inline-block;
-            }
-            ul {
-                padding: 1em;
-                padding: {
-                    bottom: 0;
-                };
-            }
-        }
-    }
-    .webs {
-        .web-item {
-            position: relative;
-            .fa-times-circle {
-                position: absolute;
-                top: 5px;
-                right: 5px;
-            }
-        }
-    }
-    .revert-changes {
-        color: #3FACED;
-        font-weight: bold;
-        position: relative;
-        top: 20px;
-        .fa {
-            margin-right: 5px;
-        }
-    }
-    .down-error {
-        display: inline-block;
-        margin-top: 15px;
-        margin-right: 15px;
-    }
+	section {
+		&.languages {
+			margin-left: 70px;
+			.checkbox {
+				padding-left: 0px;
+				padding-right: 1em;
+				span {
+					margin: 0;
+				}
+			}
+			.dropdown-container {
+				.trigger {
+					border: 3px solid #f3a17c;
+					border-radius: 13px;
+					color: #f3a17c;
+					font-size: 14px;
+					padding: 3px 6px;
+					position: relative;
+					top: -10px;
+					margin-top: 20px;
+				}
+				.dropdown {
+					li {
+						margin: {
+							bottom: 1em;
+						}
+					}
+					padding: {
+						bottom: 1em;
+					}
+				}
+			}
+			label {
+				white-space: nowrap;
+				display: inline-block;
+			}
+			ul {
+				padding: 1em;
+				padding: {
+					bottom: 0;
+				}
+				;
+			}
+		}
+	}
+	.webs {
+		.web-item {
+			position: relative;
+			.fa-times-circle {
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+		}
+	}
+	.revert-changes {
+		color: #3FACED;
+		font-weight: bold;
+		position: relative;
+		top: 20px;
+		.fa {
+			margin-right: 5px;
+		}
+	}
+	.down-error {
+		display: inline-block;
+		margin-top: 15px;
+		margin-right: 15px;
+	}
 }
 
 .profile-settings {
-    @extend .common-profile-settings;
-
-    .language-select {
-        width: initial !important;
-        min-width: 200px;
-    }
-
-    .configure-notifications {
-        .checkbox {
-            padding-left: 0px;
-        }
-        .button-send {
-            margin-bottom: 0px;
-        }
-    }
+	@extend .common-profile-settings;
+	.language-select {
+		width: initial !important;
+		min-width: 200px;
+	}
+	.configure-notifications {
+		.checkbox {
+			padding-left: 0px;
+		}
+		.button-send {
+			margin-bottom: 0px;
+		}
+	}
 }

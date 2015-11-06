@@ -1,16 +1,15 @@
 .community-edit {
-
-    input {
-        margin: {
-            bottom: 0;
-        };
-    }
-
-    .image-upload { 
-        margin-top:0 !important;
-    }
+	input {
+		margin: {
+			bottom: 0;
+		}
+		;
+	}
+	.image-upload {
+		margin-top: 0 !important;
+	}
 }
 
 .community-settings {
-    @extend .common-profile-settings;
+	@extend .common-profile-settings;
 }

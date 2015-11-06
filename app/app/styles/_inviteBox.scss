@@ -1,15 +1,15 @@
-.ngdialog-invite-box { 
+.ngdialog-invite-box {
 	@extend .ngdialog-theme-default;
 	.ngdialog-content {
-		margin:auto;
-		margin-top:15%;
+		margin: auto;
+		margin-top: 15%;
 	}
 }
 
 @media #{$large-up} {
 	.ngdialog-invite-box .ngdialog-content {
-		margin-left:335px !important;
-		margin-top:240px !important;
+		margin-left: 335px !important;
+		margin-top: 240px !important;
 	}
 	.invite-box {
 		min-width: 600px;
@@ -18,97 +18,85 @@
 
 .invite-box {
 	text-align: left;
-	min-width:initial;
-	width:100%;
+	min-width: initial;
+	width: 100%;
 	h2 {
-	    font-size: 20px;
+		font-size: 20px;
 		text-align: left;
-	    padding: 10px;
-	    padding-top: 0px;
+		padding: 10px;
+		padding-top: 0px;
 	}
 	ul {
-	   	list-style: none;
-    	text-align: center;
-    	margin-top:3rem;
-    	margin-bottom:2rem;
-    	margin-left:0;
-
-    	li {
-    		padding:.5rem;
-    		display: inline;
-    		text-align: center;
-    	}
+		list-style: none;
+		text-align: center;
+		margin-top: 3rem;
+		margin-bottom: 2rem;
+		margin-left: 0;
+		li {
+			padding: .5rem;
+			display: inline;
+			text-align: center;
+		}
 	}
-
 	.social {
-		text-align:center;
-		padding:10px;
-		padding-bottom:1rem;
+		text-align: center;
+		padding: 10px;
+		padding-bottom: 1rem;
 		li {
 			a {
 				display: inline-block;
-				padding:$ui-small-grid-size;
+				padding: $ui-small-grid-size;
 				i {
 					border: 2px solid color(5);
 					padding: 5px;
-					font-size:150%;
-					line-height:150%;
-					margin-left:10px !important; /* uff, ugly! but because in @social is redefined */
-					margin-right:10px !important;
+					font-size: 150%;
+					line-height: 150%;
+					margin-left: 10px !important;
+					/* uff, ugly! but because in @social is redefined */
+					margin-right: 10px !important;
 					display: block;
-
-				    border-radius: 50%;
-				    height: 2em;
-				    width: 2em;
-				    text-align: center;
-				    transition: color 1s ease 0s, background-color 1s ease 0s, text-shadow 1s ease 0s;
+					border-radius: 50%;
+					height: 2em;
+					width: 2em;
+					text-align: center;
+					transition: color 1s ease 0s, background-color 1s ease 0s, text-shadow 1s ease 0s;
 				}
 				&:hover {
 					i {
-						background:lighten(color(5), 20%);
+						background: lighten(color(5), 20%);
 						color: white;
-	                    text-shadow: 0 -1px 1px darken(color(5), 15%);
+						text-shadow: 0 -1px 1px darken(color(5), 15%);
 					}
 				}
 			}
 		}
 	}
-
 	.emailForm {
-
 		font-size: 1.1em;
 		line-height: 1.5em;
 		padding: 0.5rem;
 		margin-left: 40px;
 		padding-top: 25px;
-
 		label {
 			display: block;
-
 		}
-
-	    table {
-		    margin: 0px;
-		    border: none;
-		    background-color: inherit;
-
-	    	tr td {
-	    		padding: 5px;
-		    	
-		    	&:nth-child(2) {
+		table {
+			margin: 0px;
+			border: none;
+			background-color: inherit;
+			tr td {
+				padding: 5px;
+				&:nth-child(2) {
 					width: 400px;
-	    		}
-
-	    		input {
-	    			margin-bottom: 0px;
-	    		}
-		    }
-
-		    tr:nth-of-type(2n) {
-		    	background-color: inherit;
-		    }
-
-		    .submit {
+				}
+				input {
+					margin-bottom: 0px;
+				}
+			}
+			tr:nth-of-type(2n) {
+				background-color: inherit;
+			}
+			.submit {
 				background-color: transparent;
 				border: none;
 				text-align: center;
@@ -128,39 +116,31 @@
 					width: 2em;
 					margin: auto;
 				}
-
 				&:hover {
 					i {
-						background:lighten(color(5), 20%);
+						background: lighten(color(5), 20%);
 						color: white;
-	                    text-shadow: 0 -1px 1px darken(color(5), 15%);
+						text-shadow: 0 -1px 1px darken(color(5), 15%);
 					}
 				}
-
-		    }
-	    }
-
-
+			}
+		}
 		textarea {
 			resize: none;
 			min-height: 100px;
 		}
-
 		input {
 			max-width: 80%
 		}
-
 		.toggle-form {
-		    font-size: 30px;
-		    left: 10px;
-		    position: absolute;
-		    top: 40px;
-		    cursor: pointer;
-	    	
-
-		    &:hover {
-		    	opacity: 0.7;
-		    }
+			font-size: 30px;
+			left: 10px;
+			position: absolute;
+			top: 40px;
+			cursor: pointer;
+			&:hover {
+				opacity: 0.7;
+			}
 		}
 	}
 }
