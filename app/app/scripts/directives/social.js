@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('social', [
 					var title = encodeURIComponent(scope.title);
 					var summary = encodeURIComponent(scope.summary);
 
-				 	$scope.url = $scope.config.appUrl;
+					$scope.url = $scope.config.appUrl;
 					if (value) {
 						$scope.url += '/post/' + value;
 					}

@@ -46,21 +46,21 @@ angular.module('hearth.controllers').controller('ItemReport', [
 
 			$rootScope.globalLoading = true;
 			$scope.sending = true;
-			
+
 			Post.spam(data, function(res) {
-                $rootScope.$broadcast('reportItem', $scope.post);
-                
+				$rootScope.$broadcast('reportItem', $scope.post);
+
 				$scope.post.spam_reported = true;
 				$scope.sending = false;
-                $rootScope.globalLoading = false;
-                $scope.showFinished();
-                // Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
-            }, function(err) {
-                
+				$rootScope.globalLoading = false;
+				$scope.showFinished();
+				// Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_SUCCESS', Notify.T_SUCCESS);
+			}, function(err) {
+
 				$scope.sending = false;
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR,  '.notify-report-container');
-            });
+				$rootScope.globalLoading = false;
+				Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR, '.notify-report-container');
+			});
 		};
 	}
 ]);

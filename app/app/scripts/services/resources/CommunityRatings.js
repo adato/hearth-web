@@ -39,8 +39,10 @@ angular.module('hearth.services').factory('CommunityRatings', [
 				}
 			},
 			possiblePosts: {
-				url: $$config.apiPath +'/communities/:_id/ratings/possible_posts',
-				params: {'communityId': '@_id'},
+				url: $$config.apiPath + '/communities/:_id/ratings/possible_posts',
+				params: {
+					'communityId': '@_id'
+				},
 				method: 'GET',
 			}
 		});

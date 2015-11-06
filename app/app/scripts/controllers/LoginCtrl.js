@@ -18,13 +18,13 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.loginError = false;
 		$scope.showError = {
 			badCredentials: false,
-            inactiveAccount: false
+			inactiveAccount: false
 		};
-		
+
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
-		
+
 		function processLoginResult(res) {
-			if(res.data && res.data.ok === true) {
+			if (res.data && res.data.ok === true) {
 				Auth.processLoginResponse(res.data);
 			} else {
 				showErrorCredentials(res.data);
@@ -32,8 +32,10 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		}
 
 		$scope.oauth = function(provider) {
-			$auth.authenticate(provider, {language: preferredLanguage}).then(function(response) {
-				if(response.status == 200)
+			$auth.authenticate(provider, {
+				language: preferredLanguage
+			}).then(function(response) {
+				if (response.status == 200)
 					processLoginResult(response);
 				else
 					$scope.loginError = true;
@@ -42,7 +44,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 		$scope.resendActivationEmail = function() {
 			Auth.resendActivationEmail(invalidEmail, function(res) {
-				if(res.data && res.data.ok === true) {
+				if (res.data && res.data.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
 				} else {
@@ -52,12 +54,12 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		};
 
 		function showErrorCredentials(res) {
-			if(res && res.error && res.error == 'account_not_confirmed') {
+			if (res && res.error && res.error == 'account_not_confirmed') {
 				invalidEmail = $scope.data.username;
 				$scope.showError.inactiveAccount = true;
 				$scope.showError.badCredentials = false;
 			} else {
-					
+
 				// focus to password field
 				$(".login_password").focus();
 
@@ -76,13 +78,13 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 		// if login is opened in modal window, close him
 		$scope.closeModal = function() {
-			if($scope.closeThisDialog) $scope.closeThisDialog();
+			if ($scope.closeThisDialog) $scope.closeThisDialog();
 		};
 
 		$scope.login = function(data) {
 			$scope.loginError = false;
 			// $scope.showError.badCredentials = false;
-			if(! $scope.validateLogin(data))
+			if (!$scope.validateLogin(data))
 				return showErrorCredentials();
 
 			Auth.login(data, processLoginResult);
@@ -91,11 +93,11 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.init = function() {
 
 			var params = $location.search();
-			if(params.error)
+			if (params.error)
 				$scope.loginError = true;
-			
+
 			if (Auth.isLoggedIn()) {
-				return $location.path( $rootScope.referrerUrl || '/');
+				return $location.path($rootScope.referrerUrl || '/');
 			}
 
 			$(".login_name").focus();
@@ -107,7 +109,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			$scope.loginError = false;
 		};
 
-		if($rootScope.loginRequired) {
+		if ($rootScope.loginRequired) {
 			$scope.setLoginRequired();
 		} else {
 			$scope.$on('loginRequired', $scope.setLoginRequired);

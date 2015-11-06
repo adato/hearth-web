@@ -13,9 +13,9 @@ angular.module('hearth.utils').directive('whenScrolled', [
 		return {
 			restrict: 'A',
 			scope: {
-				loadingInProgress: '=',	// lock - dont overhelm callback
-				whenScrolled: '&',		// callback funct to call when scroller
-				innerScrolling: '=',	// if we scroll in inner div or in window
+				loadingInProgress: '=', // lock - dont overhelm callback
+				whenScrolled: '&', // callback funct to call when scroller
+				innerScrolling: '=', // if we scroll in inner div or in window
 				offset: '='
 			},
 			link: function(scope, element, attr) {
@@ -23,17 +23,17 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					offset = scope.offset || 100,
 					innerHeight = el[0].innerHeight;
 
-				function process ($event) {
-					if(scope.loadingInProgress)
+				function process($event) {
+					if (scope.loadingInProgress)
 						return false;
-					
+
 					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
 
-					if(childHeight - el.height() - el.scrollTop() - offset <= 0)
+					if (childHeight - el.height() - el.scrollTop() - offset <= 0)
 						scope.whenScrolled();
 				}
 
-				function processWithResite () {
+				function processWithResite() {
 					innerHeight = el[0].innerHeight;
 					process();
 				}

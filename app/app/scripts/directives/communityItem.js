@@ -7,20 +7,20 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityItem', [
-    '$rootScope', 
-    function($rootScope) {
-        return {
-            restrict: 'E',
-            replace: true,
-            transclude: true,
-            scope: {
-                item: '=',
-                user: '='
-            },
-            templateUrl: 'templates/directives/communityItem.html',
-            link: function(scope, element) {
-                scope.getProfileLink = $rootScope.getProfileLink;
-            }
-        };
-    }
+	'$rootScope',
+	function($rootScope) {
+		return {
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+			scope: {
+				item: '=',
+				user: '='
+			},
+			templateUrl: 'templates/directives/communityItem.html',
+			link: function(scope, element) {
+				scope.getProfileLink = $rootScope.getProfileLink;
+			}
+		};
+	}
 ]);

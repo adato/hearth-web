@@ -10,7 +10,7 @@ angular.module('hearth.services').service('Time', [
 	'$translate', '$interval', '$rootScope',
 	function($translate, $interval, $rootScope) {
 		var self = this;
-		
+
 		this.getMomentTimeObject = function(datetime, format) {
 
 			// make dates format same as moment.js format
@@ -18,7 +18,7 @@ angular.module('hearth.services').service('Time', [
 			format = format.toUpperCase();
 			format = format.replace(/([^Y]|Y)YY(?!Y)/g, '$1YYYY');
 			format = format.replace(/([^Y]|^)Y(?!Y)/g, '$1YYYY');
-			
+
 			return moment(datetime, format);
 		};
 

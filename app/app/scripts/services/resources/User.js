@@ -43,4 +43,3 @@ angular.module('hearth.services').factory('User', [
 		});
 	}
 ]);
-

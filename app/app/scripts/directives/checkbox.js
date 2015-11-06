@@ -34,12 +34,14 @@ angular.module('hearth.directives').directive('checkbox', function() {
 					}
 				} else {
 					// if(typeof scope.model !== 'undefined') {
-						scope.model = scope.checked ? scope.value : scope.valueOff;
+					scope.model = scope.checked ? scope.value : scope.valueOff;
 					// }
 				}
 
-				if(scope.onUpdate)
-					scope.onUpdate({value: scope.model});
+				if (scope.onUpdate)
+					scope.onUpdate({
+						value: scope.model
+					});
 			};
 
 			scope.$watch('model', function(value) {

@@ -12,7 +12,7 @@ angular.module('hearth.directives').directive('ratingReply', [
 	function($rootScope, Ratings, Notify) {
 		return {
 			restrict: 'E',
-            replace: true,
+			replace: true,
 			scope: {
 				rating: "="
 			},
@@ -30,16 +30,21 @@ angular.module('hearth.directives').directive('ratingReply', [
 				scope.sendReply = function(text) {
 					scope.showError = false;
 
-					if(sendingReply) return;
+					if (sendingReply) return;
 					sendingReply = true;
 
-					if(!text) {
+					if (!text) {
 						sendingReply = false;
 						scope.showError = true;
 						return false;
 					}
 
-					Ratings.add({comment: {text: text}, _id: scope.rating._id}, function(res) {
+					Ratings.add({
+						comment: {
+							text: text
+						},
+						_id: scope.rating._id
+					}, function(res) {
 						scope.rating.comment = res;
 						scope.closeReply();
 						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);

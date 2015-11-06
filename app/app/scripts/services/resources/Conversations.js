@@ -5,10 +5,10 @@
  * @name hearth.services.Messages
  * @description 
  */
- 
+
 angular.module('hearth.services').factory('Conversations', [
 	'$resource',
-	
+
 	function($resource) {
 		return $resource($$config.apiPath + '/conversations/:id', {
 			id: '@id',
@@ -18,7 +18,7 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			get: {
 				method: 'GET',
-		      	ignoreLoadingBar: true
+				ignoreLoadingBar: true
 			},
 			leave: {
 				url: $$config.apiPath + '/conversations/:id/leave',
@@ -31,12 +31,12 @@ angular.module('hearth.services').factory('Conversations', [
 			getCounters: {
 				url: $$config.apiPath + '/conversations/counter',
 				method: 'GET',
-		      	ignoreLoadingBar: true
+				ignoreLoadingBar: true
 			},
 			getMessages: {
 				url: $$config.apiPath + '/conversations/:id/messages',
 				method: 'GET',
-		      	ignoreLoadingBar: true
+				ignoreLoadingBar: true
 			},
 			getParticipants: {
 				url: $$config.apiPath + '/conversations/:id/users',

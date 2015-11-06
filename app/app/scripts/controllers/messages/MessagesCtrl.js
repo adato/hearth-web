@@ -69,7 +69,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.setCurrentConversationAsReadedSoft = function() {
 			$scope.detail.read = true;
 		};
-		
+
 		// $scope.setCurrentConversationAsReaded = function() {
 		// 	if (!$scope.detail || $scope.detail.read)
 		// 		return false;
@@ -98,7 +98,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Messenger.loadCounters();
 			Conversations.get(conf, function(res) {
 				// if we didnt end loading..
-				if(_loadTimeoutPromise !== -1)
+				if (_loadTimeoutPromise !== -1)
 					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 				_loadLock = false;
 
@@ -107,7 +107,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				}
 			}, function() {
 				_loadLock = false;
-				if(_loadTimeoutPromise !== -1)
+				if (_loadTimeoutPromise !== -1)
 					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 			});
 		};
@@ -134,12 +134,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.markReaded = function(info) {
-			if(info.read)
+			if (info.read)
 				return false;
-			
+
 			Messenger.decrUnreaded();
 			info.read = true;
-			Conversations.setReaded({id: info._id});
+			Conversations.setReaded({
+				id: info._id
+			});
 		};
 
 		/**
@@ -148,10 +150,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		 */
 		$scope.showConversation = function(info, index, dontMarkAsReaded, clicked) {
 			var title;
-			if(clicked)
+			if (clicked)
 				$scope.markReaded(info);
 
-			if(info._id == $scope.detail._id)
+			if (info._id == $scope.detail._id)
 				return false;
 
 			if (!info.read && !dontMarkAsReaded)
@@ -167,8 +169,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// (and change URL)
 			Messenger.disableLoading();
 			$location.url("/messages/" + info._id + "?" + jQuery.param($location.search()));
-			
-			
+
+
 			// enable counters loading after URL is changed
 			$timeout(function() {
 				Messenger.enableLoading();
@@ -212,11 +214,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.deserialize = function(conversations) {
 			var newArray = [];
 
-			for(var i in conversations) {
+			for (var i in conversations) {
 				var conv = $scope.deserializeConversation(conversations[i]);
 
-				if(conversations[i]._id === $scope.detail._id) {
-				 	angular.copy(conv, $scope.detail);;
+				if (conversations[i]._id === $scope.detail._id) {
+					angular.copy(conv, $scope.detail);;
 				}
 				newArray.push(conv);
 			}
@@ -333,9 +335,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			angular.extend(conf, $scope.getFilter());
 			Conversations.get(conf, function(res) {
 				$scope.addToBottom(res.conversations);
-				
+
 				// continue in loading only if there are more conversations
-				if(res.conversations.length)
+				if (res.conversations.length)
 					$scope.loadingBottom = false;
 
 				$timeout(function() {
@@ -377,7 +379,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		var changeDetail = function(ev, state, params) {
-			
+
 			// load first conversation on init
 			if (params.id)
 				$scope.loadConversationDetail(params.id, true);

@@ -15,13 +15,12 @@ angular.module('hearth.controllers').controller('NewMessage', [
 			Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR, '.notify-new-message-container');
 		};
 
-		$scope.onSuccess = function() {
-		};
+		$scope.onSuccess = function() {};
 
 		$scope.close = function(res) {
 			$timeout.cancel(timeout);
-			
-			if(!res) return $scope.closeThisDialog();
+
+			if (!res) return $scope.closeThisDialog();
 			$scope.showFinished();
 		};
 

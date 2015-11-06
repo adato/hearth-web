@@ -14,15 +14,15 @@ angular.module('hearth.directives').directive('dropdown', [
 			restrict: 'A',
 			replace: false,
 			scope: {
-				dropdown: "@",	// class or id of element to show/hide
-				hover: "="		// show/hide dropdown also on hover event
-			},	
+				dropdown: "@", // class or id of element to show/hide
+				hover: "=" // show/hide dropdown also on hover event
+			},
 			link: function($scope, el, attrs) {
 				var target;
 
 				// get target element to show/hide 
 				function getTarget() {
-					if(target)
+					if (target)
 						return target;
 					return target = $document.find($scope.dropdown);
 				}
@@ -40,14 +40,14 @@ angular.module('hearth.directives').directive('dropdown', [
 
 				// on element click toggle dropdown
 				el.on('click', function($event) {
-					
+
 					$event.stopPropagation();
 					getTarget().css("display") == 'block' ? hide() : show();
 				});
 
-				if($scope.hover) {
+				if ($scope.hover) {
 					el.parent().on('mouseenter', show);
-		            el.parent().on('mouseleave', hide);
+					el.parent().on('mouseleave', hide);
 				}
 
 				// when clicked somewhere else, hide dropdown
@@ -58,7 +58,7 @@ angular.module('hearth.directives').directive('dropdown', [
 					target = null;
 				});
 
-				$scope.$on('$destroy', function () {
+				$scope.$on('$destroy', function() {
 					$document.off('click', hide);
 				})
 			}

@@ -5,7 +5,7 @@
  * @name hearth.services.timeAgoService
  * @description
  */
- 
+
 angular.module('hearth.services').service('timeAgoService', [
 	'$interval', '$translate', '$rootScope',
 	function($interval, $translate, $rootScope) {

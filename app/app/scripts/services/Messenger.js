@@ -18,11 +18,11 @@ angular.module('hearth.services').service('Messenger', [
 
 		// load counters and send it to callback
 		this.loadCounters = function(done) {
-			if(!_loadingEnabled || _loadingCounters) return false;
+			if (!_loadingEnabled || _loadingCounters) return false;
 			_loadingCounters = true;
 
 			Conversations.getCounters({}, function(res) {
-				if(!_loadingEnabled) return false;
+				if (!_loadingEnabled) return false;
 
 				_loadingCounters = false;
 				self.counters = res;

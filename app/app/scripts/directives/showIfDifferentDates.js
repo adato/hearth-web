@@ -11,7 +11,7 @@ angular.module('hearth.directives').directive('showIfDifferentDates', [
 	'$filter',
 	function($filter) {
 		return {
-		    transclude:true,
+			transclude: true,
 			restrict: 'A',
 			scope: {
 				oldDate: "=",

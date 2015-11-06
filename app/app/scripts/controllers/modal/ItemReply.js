@@ -33,7 +33,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 
 		$scope.toggleMail = function() {
 			$scope.reply.agree = !$scope.reply.agree;
-			$scope.showErrors.agree = ! $scope.reply.agree;
+			$scope.showErrors.agree = !$scope.reply.agree;
 		};
 
 		$scope.showFinished = function() {
@@ -70,7 +70,7 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				$scope.post.reply_count += 1;
 				$scope.post.is_replied = true;
 
-	            // Notify.addSingleTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
+				// Notify.addSingleTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
 
 			}, function(res) {
 				Notify.addSingleTranslate('NOTIFY.REPLY_FAILED', Notify.T_ERROR, '.notify-reply-container');

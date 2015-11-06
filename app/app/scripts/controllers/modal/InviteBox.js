@@ -7,138 +7,140 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-    '$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators',
-    function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators) {
-        $scope.showEmailForm = false;
-        $scope.url = '';
-        $scope.sending = false;
-        
-        var timeoutClose = false;
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators',
+	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators) {
+		$scope.showEmailForm = false;
+		$scope.url = '';
+		$scope.sending = false;
 
-        $scope.fbInvite = function() {
-            Facebook.inviteFriends();
-            return false;
-        };
+		var timeoutClose = false;
 
-        $scope.showFinished = function() {
+		$scope.fbInvite = function() {
+			Facebook.inviteFriends();
+			return false;
+		};
 
-            $(".invite-form").slideToggle();
-            timeoutClose = setTimeout(function() {
-                $scope.closeThisDialog();
-            }, 5000);
-        };
+		$scope.showFinished = function() {
 
-        $scope.init = function() {
-            var inviteInfo = OpenGraph.getDefaultInfo();
-            var title = encodeURIComponent(inviteInfo.title);
-            var description = encodeURIComponent(inviteInfo.description);
+			$(".invite-form").slideToggle();
+			timeoutClose = setTimeout(function() {
+				$scope.closeThisDialog();
+			}, 5000);
+		};
 
-            $scope.url = window.location.href.replace(window.location.hash, '');
-            $scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;
+		$scope.init = function() {
+			var inviteInfo = OpenGraph.getDefaultInfo();
+			var title = encodeURIComponent(inviteInfo.title);
+			var description = encodeURIComponent(inviteInfo.description);
 
-            $scope.endpoints = $$config.sharingEndpoints;
-        };
+			$scope.url = window.location.href.replace(window.location.hash, '');
+			$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;
 
-        /**
-         * This function will test given emails and if they are wrong
-         * it will show error and return false
-         */
-        $scope.testEmailsFormat = function(data) {
-            var emails = data;
-            $scope.inviteForm.to_email.$error.format = false;
+			$scope.endpoints = $$config.sharingEndpoints;
+		};
 
-            if(!data) return false;
+		/**
+		 * This function will test given emails and if they are wrong
+		 * it will show error and return false
+		 */
+		$scope.testEmailsFormat = function(data) {
+			var emails = data;
+			$scope.inviteForm.to_email.$error.format = false;
 
-            // if emails are not array, split it by comma
-            if(!angular.isArray(emails)) {
-                emails = angular.copy(emails).split(",");
-            }
-            // validate emails 
-            if(!Validators.emails(emails)) {
+			if (!data) return false;
 
-                $scope.showError.to_email = true;
-                $scope.inviteForm.to_email.$error.format = true;
-                return false;
-            }
-            return true;
-        };
+			// if emails are not array, split it by comma
+			if (!angular.isArray(emails)) {
+				emails = angular.copy(emails).split(",");
+			}
+			// validate emails 
+			if (!Validators.emails(emails)) {
 
-        $scope.validateInvitationForm = function(data) {
-            var invalid = false;
+				$scope.showError.to_email = true;
+				$scope.inviteForm.to_email.$error.format = true;
+				return false;
+			}
+			return true;
+		};
 
-            // is message filled?
-            if($scope.inviteForm.message.$invalid) {
-                invalid = $scope.showError.message = true;
-            }
+		$scope.validateInvitationForm = function(data) {
+			var invalid = false;
 
-            if(!data.to_email || ! $scope.testEmailsFormat(data.to_email)) {
-                invalid = true;
-            }
-            return !invalid;
-        };
-        
-        $scope.transformInvitationOut = function(data) {
-            
-            if(data.to_email) {
-                data.to_email = data.to_email.split(",");
-            }
-            return data;
-        };
+			// is message filled?
+			if ($scope.inviteForm.message.$invalid) {
+				invalid = $scope.showError.message = true;
+			}
 
-        function handleEmailResult(res) {
-            $rootScope.globalLoading = false;
-            $scope.sending = false;
-            if(res.ok) {
-                $scope.showFinished();
-            } else {
-                Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
-            }
-        }
+			if (!data.to_email || !$scope.testEmailsFormat(data.to_email)) {
+				invalid = true;
+			}
+			return !invalid;
+		};
 
-        $scope.sendEmailInvitation = function(data) {
-            var dataOut;
+		$scope.transformInvitationOut = function(data) {
 
-            if(!$scope.validateInvitationForm(data) || $scope.sending)
-                return false;
+			if (data.to_email) {
+				data.to_email = data.to_email.split(",");
+			}
+			return data;
+		};
 
-            $scope.sending = true;
-            $rootScope.globalLoading = true;
-            // split emails to array and copy it to new object
-            dataOut = $scope.transformInvitationOut(angular.copy(data));
-            Invitation.add({invitation: dataOut}, handleEmailResult, handleEmailResult);
-        };
+		function handleEmailResult(res) {
+			$rootScope.globalLoading = false;
+			$scope.sending = false;
+			if (res.ok) {
+				$scope.showFinished();
+			} else {
+				Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
+			}
+		}
 
-        $scope.initForm = function() {
-            angular.forEach($scope.showError, function(value, key) {
-              $scope.showError[key] = false;
-            });
-            
-            $("form.invite-form").show();
-            $("div.invite-form").hide();
-    
-            if(timeoutClose)
-                clearTimeout(timeoutClose);
+		$scope.sendEmailInvitation = function(data) {
+			var dataOut;
 
-            $scope.inv = {
-                message: '',
-                to_email: '',
-            };
+			if (!$scope.validateInvitationForm(data) || $scope.sending)
+				return false;
 
-            $scope.showError = {
-                message: false,
-                to_email: false,
-            };
+			$scope.sending = true;
+			$rootScope.globalLoading = true;
+			// split emails to array and copy it to new object
+			dataOut = $scope.transformInvitationOut(angular.copy(data));
+			Invitation.add({
+				invitation: dataOut
+			}, handleEmailResult, handleEmailResult);
+		};
 
-            $scope.sent = false;
-        };
+		$scope.initForm = function() {
+			angular.forEach($scope.showError, function(value, key) {
+				$scope.showError[key] = false;
+			});
 
-        // function will show or hide email form
-        $scope.toggleEmailForm = function() {
-            $scope.initForm();
-            $scope.showEmailForm = !$scope.showEmailForm;
-        };
+			$("form.invite-form").show();
+			$("div.invite-form").hide();
 
-        $scope.$on('initFinished', $scope.init);
-        $rootScope.initFinished && $scope.init();
-    }
+			if (timeoutClose)
+				clearTimeout(timeoutClose);
+
+			$scope.inv = {
+				message: '',
+				to_email: '',
+			};
+
+			$scope.showError = {
+				message: false,
+				to_email: false,
+			};
+
+			$scope.sent = false;
+		};
+
+		// function will show or hide email form
+		$scope.toggleEmailForm = function() {
+			$scope.initForm();
+			$scope.showEmailForm = !$scope.showEmailForm;
+		};
+
+		$scope.$on('initFinished', $scope.init);
+		$rootScope.initFinished && $scope.init();
+	}
 ]);

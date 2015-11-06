@@ -24,7 +24,7 @@ angular.module('hearth.directives').directive('radio', function() {
 			scope.checked = false;
 
 			scope.toggle = function() {
-				if(scope.ngDisabled)
+				if (scope.ngDisabled)
 					return false;
 
 				if (!scope.checked) {
@@ -39,12 +39,12 @@ angular.module('hearth.directives').directive('radio', function() {
 						scope.model.push(scope.value);
 					}
 				} else {
-					if(typeof scope.model !== 'undefined') {
+					if (typeof scope.model !== 'undefined') {
 						scope.model = scope.checked ? scope.value : scope.valueOff;
 					}
 				}
 
-				if(scope.onUpdate)
+				if (scope.onUpdate)
 					scope.onUpdate(scope.model);
 			};
 

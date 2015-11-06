@@ -23,10 +23,10 @@ angular.module('hearth.directives').directive('filterStatus', [
 					var searchParams = angular.copy($location.search()),
 						related = searchParams.related;
 
-					
+
 					scope.filterData = !$.isEmptyObject(searchParams) ? searchParams : undefined;
 
-					if(scope.filterData && $.isArray(scope.filterData.keywords)) {
+					if (scope.filterData && $.isArray(scope.filterData.keywords)) {
 						scope.filterData.keywords = scope.filterData.keywords.join(", ");
 					}
 

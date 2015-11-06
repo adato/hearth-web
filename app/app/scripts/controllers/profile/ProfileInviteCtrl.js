@@ -7,6 +7,6 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileInviteCtrl', [
-	'$scope', 
+	'$scope',
 	function($scope) {}
 ]);

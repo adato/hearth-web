@@ -18,12 +18,12 @@ angular.module('hearth.services').service('Communities', [
 			$timeout(function() {
 				var retData = [];
 
-				if($rootScope.myCommunities)
+				if ($rootScope.myCommunities)
 					$rootScope.myCommunities.forEach(function(item) {
-						if(!item.name.toLowerCase().indexOf($query))
+						if (!item.name.toLowerCase().indexOf($query))
 							return retData.push(item);
 					});
-				
+
 				return deferred.resolve(retData);
 			});
 
@@ -31,16 +31,16 @@ angular.module('hearth.services').service('Communities', [
 		};
 
 		this.getByName = function(name) {
-			if($rootScope.myCommunities)
-				for(var i in $rootScope.myCommunities) {
+			if ($rootScope.myCommunities)
+				for (var i in $rootScope.myCommunities) {
 					var item = $rootScope.myCommunities[i];
 
-					if(!item.name.toLowerCase() == name.toLowerCase())
+					if (!item.name.toLowerCase() == name.toLowerCase())
 						return item;
 				}
 			return null;
 		};
-		
+
 		return this;
 	}
 ]);

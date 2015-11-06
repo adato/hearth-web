@@ -6,21 +6,21 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('customScrollbar', [
-    '$rootScope', '$timeout',
-    function($rootScope, $timeout) {
-        return {
-            restrict: 'A',
-            replace: true,
-            scope: false,
-            template: false,
-            link: function(scope, element, attrs) {
-                function addScrollbar() {
-                    $(element).nanoScroller();
-                }
+	'$rootScope', '$timeout',
+	function($rootScope, $timeout) {
+		return {
+			restrict: 'A',
+			replace: true,
+			scope: false,
+			template: false,
+			link: function(scope, element, attrs) {
+				function addScrollbar() {
+					$(element).nanoScroller();
+				}
 
-                $timeout(addScrollbar);
-                scope.$on("scrollbarResize", addScrollbar);
-            }
-        };
-    }
+				$timeout(addScrollbar);
+				scope.$on("scrollbarResize", addScrollbar);
+			}
+		};
+	}
 ]);

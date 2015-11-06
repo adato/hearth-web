@@ -36,13 +36,13 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 		$scope.getCheckedCommunities = function() {
 			// if we have only one community to remove post from,
 			// return it as a default community	
-			if($scope.communitiesCount == 1)
+			if ($scope.communitiesCount == 1)
 				return [$scope.communityObj._id];
 
 			var res = [];
 			// walk throught all communities and pick checked IDs
-			for(var id in $scope.communities)
-				if($scope.communities[id]) res.push(id);
+			for (var id in $scope.communities)
+				if ($scope.communities[id]) res.push(id);
 
 			return res;
 		};
@@ -50,10 +50,10 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 		$scope.validate = function(data) {
 			var invalid = false;
 
-			if($scope.reportForm.message.$invalid)
+			if ($scope.reportForm.message.$invalid)
 				invalid = $scope.showErrors.message = true;
-			
-			if(!data["ids[]"].length)
+
+			if (!data["ids[]"].length)
 				invalid = $scope.showErrors.communities = true;
 
 			return !invalid;
@@ -61,7 +61,9 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 
 		$scope.removeCommunities = function(item, ids) {
 			item.admin_communities = $(item.admin_communities).not(ids).get();
-			item.related_communities = item.related_communities.filter(function(item) {return !~ids.indexOf(item._id)});
+			item.related_communities = item.related_communities.filter(function(item) {
+				return !~ids.indexOf(item._id)
+			});
 		};
 
 		$scope.sendRemoval = function() {
@@ -71,7 +73,7 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 				message: encodeURIComponent($scope.message),
 			};
 
-			if($scope.sending || !$scope.validate(data))
+			if ($scope.sending || !$scope.validate(data))
 				return false;
 
 			$rootScope.globalLoading = true;
@@ -79,22 +81,22 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 
 			Post.communityRemove(data, function(res) {
 				$scope.removeCommunities($scope.post, data["ids[]"]);
-                
+
 				$scope.sending = false;
-                $rootScope.globalLoading = false;
-                $scope.showFinished();
-            }, function(err) {
-                
+				$rootScope.globalLoading = false;
+				$scope.showFinished();
+			}, function(err) {
+
 				$scope.sending = false;
-                $rootScope.globalLoading = false;
-                Notify.addSingleTranslate('NOTIFY.POST_REMOVE_FROM_COMMUNITY_FAILED', Notify.T_ERROR,  '.notify-report-container');
-            });
+				$rootScope.globalLoading = false;
+				Notify.addSingleTranslate('NOTIFY.POST_REMOVE_FROM_COMMUNITY_FAILED', Notify.T_ERROR, '.notify-report-container');
+			});
 		};
 
 		$scope.init = function() {
 			$($rootScope.myAdminCommunities).each(function(index, community) {
-				
-				if(1+$scope.post.admin_communities.indexOf(community._id)) {
+
+				if (1 + $scope.post.admin_communities.indexOf(community._id)) {
 
 					$scope.communities[community._id] = false;
 					$scope.communityObj = community;

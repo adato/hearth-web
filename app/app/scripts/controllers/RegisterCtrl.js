@@ -7,119 +7,121 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-    '$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
-    function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
+	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
+	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
 
-        $scope.user = {
-            email: '',
-            name: '',
-            password: ''
-        };
-        $scope.sent = false; // show result msg
-        $scope.sending = false; // lock - send user only once
-        $scope.termsPath = false;
-        $scope.params = $stateParams;
-        $scope.apiErrors = {};
-        $scope.showError = {
-            topError: false,
-            name: false,
-            email: false,
-            password: false,
-        };
+		$scope.user = {
+			email: '',
+			name: '',
+			password: ''
+		};
+		$scope.sent = false; // show result msg
+		$scope.sending = false; // lock - send user only once
+		$scope.termsPath = false;
+		$scope.params = $stateParams;
+		$scope.apiErrors = {};
+		$scope.showError = {
+			topError: false,
+			name: false,
+			email: false,
+			password: false,
+		};
 
-        $scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
-        
-        $scope.oauth = function(provider) {
-            $auth.authenticate(provider, {language: preferredLanguage}).then(function(response) {
-                if(response.status == 200)
-                    Auth.processLoginResponse(response.data);
-                else
-                    $scope.loginError = true;
-            });
-        };
+		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
 
-        $scope.validateData = function(user) {
-            var invalid = false;
+		$scope.oauth = function(provider) {
+			$auth.authenticate(provider, {
+				language: preferredLanguage
+			}).then(function(response) {
+				if (response.status == 200)
+					Auth.processLoginResponse(response.data);
+				else
+					$scope.loginError = true;
+			});
+		};
 
-            // invalidate when requests pending
-            if ($scope.registerForm.$pending && $scope.registerForm.$pending.used) {
-                invalid = $scope.showError.email = true;
-            }
+		$scope.validateData = function(user) {
+			var invalid = false;
 
-            if ($scope.registerForm.name.$invalid) {
-                invalid = $scope.showError.name = true;
-            }
+			// invalidate when requests pending
+			if ($scope.registerForm.$pending && $scope.registerForm.$pending.used) {
+				invalid = $scope.showError.email = true;
+			}
 
-            if ($scope.registerForm.email.$invalid) {
-                invalid = $scope.showError.email = true;
-            }
+			if ($scope.registerForm.name.$invalid) {
+				invalid = $scope.showError.name = true;
+			}
 
-            if ($scope.registerForm.password.$invalid) {
-                invalid = $scope.showError.password = true;
-            }
+			if ($scope.registerForm.email.$invalid) {
+				invalid = $scope.showError.email = true;
+			}
 
-            return !invalid;
-        };
+			if ($scope.registerForm.password.$invalid) {
+				invalid = $scope.showError.password = true;
+			}
 
-        $scope.hideForm = function() {
-            $(".register-login-form").slideUp('slow', function() {});
-            $(".register-successful").slideDown('slow', function() {});
-        };
+			return !invalid;
+		};
 
-        $scope.sendRegistration = function(user) {
+		$scope.hideForm = function() {
+			$(".register-login-form").slideUp('slow', function() {});
+			$(".register-successful").slideDown('slow', function() {});
+		};
 
-            $scope.registerForm.email.$error.used = false;
-            $scope.showError.topError = false;
+		$scope.sendRegistration = function(user) {
 
-            // lock - dont send form twice
-            if ($scope.sending) return false;
-            $scope.sending = true;
+			$scope.registerForm.email.$error.used = false;
+			$scope.showError.topError = false;
 
-            User.add($scope.user, function() {
-                $scope.sending = false;
+			// lock - dont send form twice
+			if ($scope.sending) return false;
+			$scope.sending = true;
 
-            //     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
-            //     // $location.path('/');
-                
-                $scope.hideForm();
+			User.add($scope.user, function() {
+				$scope.sending = false;
 
-                return $analytics.eventTrack('registration email sent', {
-                    category: 'registration',
-                    label: 'registration email sent'
-                });
+				//     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
+				//     // $location.path('/');
 
-            }, function(err) {
-                $scope.sending = false;
-                $scope.showError.topError = true;
-                $scope.apiErrors = new ResponseErrors(err);
-                if ($scope.apiErrors.email)
-                    $scope.showError.email = true;
+				$scope.hideForm();
 
-                Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_ERROR', Notify.T_ERROR, '.register-notify-area');
+				return $analytics.eventTrack('registration email sent', {
+					category: 'registration',
+					label: 'registration email sent'
+				});
 
-                return $analytics.eventTrack('error during registration', {
-                    category: 'registration',
-                    label: 'error during registration'
-                });
-            });
-        };
+			}, function(err) {
+				$scope.sending = false;
+				$scope.showError.topError = true;
+				$scope.apiErrors = new ResponseErrors(err);
+				if ($scope.apiErrors.email)
+					$scope.showError.email = true;
 
-        $scope.register = function(user) {
-            user.language = LanguageSwitch.uses();
+				Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_ERROR', Notify.T_ERROR, '.register-notify-area');
 
-            if (!$scope.validateData(user)) return false;
-            $scope.sendRegistration(user);
-        };
+				return $analytics.eventTrack('error during registration', {
+					category: 'registration',
+					label: 'error during registration'
+				});
+			});
+		};
 
-        $scope.init = function() {
-            if (Auth.isLoggedIn()) {
-                return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
-            }
+		$scope.register = function(user) {
+			user.language = LanguageSwitch.uses();
 
-            $scope.termsPath = '/app/locales/' + $rootScope.language + '/terms.html';
-        };
+			if (!$scope.validateData(user)) return false;
+			$scope.sendRegistration(user);
+		};
 
-        $scope.$on('initFinished', $scope.init);
-        $rootScope.initFinished && $scope.init();
-    }
+		$scope.init = function() {
+			if (Auth.isLoggedIn()) {
+				return $location.path($rootScope.referrerUrl || 'profile/' + Auth.getCredentials()._id);
+			}
+
+			$scope.termsPath = '/app/locales/' + $rootScope.language + '/terms.html';
+		};
+
+		$scope.$on('initFinished', $scope.init);
+		$rootScope.initFinished && $scope.init();
+	}
 ]);

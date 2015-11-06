@@ -22,8 +22,7 @@ angular.module('hearth.services').factory('Auth', [
 						$rootScope.user = session;
 						$rootScope.user.loggedIn = true;
 						$rootScope.$broadcast('onUserLogin');
-					}
-					else {
+					} else {
 						$rootScope.$broadcast('unathorizedUserLogin');
 					}
 					$rootScope.$broadcast('authorize');
@@ -32,15 +31,21 @@ angular.module('hearth.services').factory('Auth', [
 			},
 			refreshUserInfo: function() {
 				Session.show(function(res) {
-					if(res.get_logged_in_user)
+					if (res.get_logged_in_user)
 						$rootScope.loggedUser = res.get_logged_in_user;
 				});
 			},
 			login: function(credentials, cb) {
-				return $http.post($$config.apiPath + '/login', credentials, {nointercept: true}).then(cb, cb);
+				return $http.post($$config.apiPath + '/login', credentials, {
+					nointercept: true
+				}).then(cb, cb);
 			},
 			resendActivationEmail: function(email, cb) {
-				return $http.post($$config.apiPath + '/users/resend_confirmation', {user: {email: email}}).then(cb, cb);
+				return $http.post($$config.apiPath + '/users/resend_confirmation', {
+					user: {
+						email: email
+					}
+				}).then(cb, cb);
 			},
 			logout: function(cb) {
 				return $session.then(function(session) {
@@ -52,11 +57,16 @@ angular.module('hearth.services').factory('Auth', [
 					$http.post($$config.apiPath + '/logout').success(cb).error(cb);
 				});
 			},
-			setToken: function (token) {
-				$.cookie(TOKEN_NAME, token, { expires: 30 * 12 * 30, path: '/' });
+			setToken: function(token) {
+				$.cookie(TOKEN_NAME, token, {
+					expires: 30 * 12 * 30,
+					path: '/'
+				});
 			},
-			destroyLogin: function () {
-				$.removeCookie(TOKEN_NAME, {path: $$config.basePath});
+			destroyLogin: function() {
+				$.removeCookie(TOKEN_NAME, {
+					path: $$config.basePath
+				});
 				$rootScope.user.loggedIn = false;
 			},
 			isLoggedIn: function() {
@@ -89,8 +99,8 @@ angular.module('hearth.services').factory('Auth', [
 			},
 			getSessionInfo: function() {
 				return {
-                    loggedUser: this.getCredentials(),
-                    loggedEntity: this.getBaseCredentials(),
+					loggedUser: this.getCredentials(),
+					loggedEntity: this.getBaseCredentials(),
 				}
 			},
 			confirmRegistration: function(hash, success, err) {
@@ -112,7 +122,7 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			checkResetPasswordToken: function(token, cb) {
-				return $http.get($$config.apiPath + '/users/check_reset_password_token?token='+token).success(function(res) {
+				return $http.get($$config.apiPath + '/users/check_reset_password_token?token=' + token).success(function(res) {
 					return cb(res);
 				}).error(function(res) {
 					return cb(res);
@@ -130,26 +140,26 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			processLoginResponse: function(data) {
-				if(data.email_token)
-					return $location.path($$config.appUrl+'fill-email/'+data.email_token);
-				
-				// when user logged, use his language configured on API
-	            if(data.language)
-	                LanguageSwitch.setCookie(data.language);
+				if (data.email_token)
+					return $location.path($$config.appUrl + 'fill-email/' + data.email_token);
 
-	            if(data.api_token) {
-	                this.setToken(data.api_token);
-	            }
+				// when user logged, use his language configured on API
+				if (data.language)
+					LanguageSwitch.setCookie(data.language);
+
+				if (data.api_token) {
+					this.setToken(data.api_token);
+				}
 
 				var reloadLoc = UnauthReload.getLocation();
 				UnauthReload.clearReloadLocation();
-				
-				$rootScope.refreshToPath(reloadLoc ? $$config.basePath+reloadLoc : $$config.basePath);
+
+				$rootScope.refreshToPath(reloadLoc ? $$config.basePath + reloadLoc : $$config.basePath);
 			},
 			getTwitterAuthUrl: function() {
-				var fillEmailUrl = $$config.appUrl +'fill-email/%{token}';
-				var twitterSuccessUrl  = $$config.appUrl +'token-login/%{token}';
-				return $$config.apiPath + '/users/auth/twitter?success_url='+encodeURIComponent(twitterSuccessUrl)+'&email_url='+encodeURIComponent(fillEmailUrl);
+				var fillEmailUrl = $$config.appUrl + 'fill-email/%{token}';
+				var twitterSuccessUrl = $$config.appUrl + 'token-login/%{token}';
+				return $$config.apiPath + '/users/auth/twitter?success_url=' + encodeURIComponent(twitterSuccessUrl) + '&email_url=' + encodeURIComponent(fillEmailUrl);
 			},
 		};
 	}

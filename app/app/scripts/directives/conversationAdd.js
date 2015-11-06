@@ -6,94 +6,96 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationAdd', [
-    '$rootScope', 'Conversations', 'Notify',
-    function($rootScope, Conversations, Notify) {
-        return {
-            restrict: 'E',
-            replace: true,
-            scope: {
-                recipient: '=?',
-                onError: '=',
-                onSuccess: '=',
-                notifyContainer: '@',
-                close: '=',
-            },
-            templateUrl: 'templates/directives/conversationAdd.html',
-            link: function($scope, element) {
-                $scope.sendingMessage = false;
-                $scope.showError = {
-                    text: false,
-                    participant_ids: false,
-                };
-                $scope.message = {
-                    participant_ids: [],
-                    title: '',
-                    text: '',
-                };
+	'$rootScope', 'Conversations', 'Notify',
+	function($rootScope, Conversations, Notify) {
+		return {
+			restrict: 'E',
+			replace: true,
+			scope: {
+				recipient: '=?',
+				onError: '=',
+				onSuccess: '=',
+				notifyContainer: '@',
+				close: '=',
+			},
+			templateUrl: 'templates/directives/conversationAdd.html',
+			link: function($scope, element) {
+				$scope.sendingMessage = false;
+				$scope.showError = {
+					text: false,
+					participant_ids: false,
+				};
+				$scope.message = {
+					participant_ids: [],
+					title: '',
+					text: '',
+				};
 
-                $scope.hideRecipientsError = function() {
-                    $scope.showError.participant_ids = false;
-                };
-                
-                $scope.showRecipientsError = function() {
-                    if(!$scope.message.participant_ids.length)
-                        $scope.showError.participant_ids = true;
-                };
-                
-                $scope.isValid = function(msg) {
-                    var invalid = false;
+				$scope.hideRecipientsError = function() {
+					$scope.showError.participant_ids = false;
+				};
 
-                    // if there is presetted recipient, add him to list
-                    if($scope.recipient) {
-                        msg.participant_ids = [$scope.recipient];
+				$scope.showRecipientsError = function() {
+					if (!$scope.message.participant_ids.length)
+						$scope.showError.participant_ids = true;
+				};
 
-                    // else test if there are selected recipients
-                    } else if(!msg.participant_ids.length) {
-                        invalid = $scope.showError.participant_ids = true;
-                    }
+				$scope.isValid = function(msg) {
+					var invalid = false;
 
-                    if($scope.addMessageForm.text.$invalid)
-                        invalid = $scope.showError.text = true;
-                    return !invalid;
-                };
+					// if there is presetted recipient, add him to list
+					if ($scope.recipient) {
+						msg.participant_ids = [$scope.recipient];
 
-                $scope.serialize = function(msg) {
-                    msg.participant_ids = msg.participant_ids.map(function(item){ return item._id});
-                    return msg;
-                };
+						// else test if there are selected recipients
+					} else if (!msg.participant_ids.length) {
+						invalid = $scope.showError.participant_ids = true;
+					}
 
-                /**
-                 * Validate message and send to API
-                 */
-                $scope.addMessage = function(msg) {
-                    if(!$scope.isValid(msg))
-                        return false;
+					if ($scope.addMessageForm.text.$invalid)
+						invalid = $scope.showError.text = true;
+					return !invalid;
+				};
 
-                    var data = $scope.serialize(angular.copy(msg));
+				$scope.serialize = function(msg) {
+					msg.participant_ids = msg.participant_ids.map(function(item) {
+						return item._id
+					});
+					return msg;
+				};
 
-                    if($scope.sendingMessage) return false;
-                    $scope.sendingMessage = true;
+				/**
+				 * Validate message and send to API
+				 */
+				$scope.addMessage = function(msg) {
+					if (!$scope.isValid(msg))
+						return false;
 
-                    Conversations.add(data, function(res) {
-                        // $scope.sendingMessage = false;
+					var data = $scope.serialize(angular.copy(msg));
 
-                        if($scope.onSuccess)
-                            $scope.onSuccess(res);
-                        else
-                            Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
-                            
-                        $scope.$emit("conversationCreated", res);
-                        $scope.close(res);
-                    }, function(err) {
-                        // $scope.sendingMessage = false;
-                        
-                        if($scope.onError)
-                            $scope.onError(err);
-                        else
-                            Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR);
-                    });
-                };
-            }
-        };
-    }
+					if ($scope.sendingMessage) return false;
+					$scope.sendingMessage = true;
+
+					Conversations.add(data, function(res) {
+						// $scope.sendingMessage = false;
+
+						if ($scope.onSuccess)
+							$scope.onSuccess(res);
+						else
+							Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
+
+						$scope.$emit("conversationCreated", res);
+						$scope.close(res);
+					}, function(err) {
+						// $scope.sendingMessage = false;
+
+						if ($scope.onError)
+							$scope.onError(err);
+						else
+							Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR);
+					});
+				};
+			}
+		};
+	}
 ]);

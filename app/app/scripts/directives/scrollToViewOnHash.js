@@ -17,9 +17,11 @@ angular.module('hearth.directives').directive('scrollToViewOnHash', [
 				if ($location.hash() !== attrs.scrollToViewOnHash) // go-on only on matching elements
 					return;
 
-				$timeout(function () {
+				$timeout(function() {
 					var target = $(el);
-					$('html,body').stop().animate({scrollTop: target.offset().top - offset}, animationLength);
+					$('html,body').stop().animate({
+						scrollTop: target.offset().top - offset
+					}, animationLength);
 				});
 			}
 		};

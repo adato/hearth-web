@@ -30,18 +30,18 @@ angular.module('hearth.services').service('PageTitle', [
 
 		this.setTranslate = function(titleCode, append) {
 			var translate = $translate.instant(titleCode);
-			if(translate == titleCode)
+			if (translate == titleCode)
 				translate = self.getDefault();
 			self.set(translate, append);
 		};
-		
-		this.set = function(title, append) {
-            
-            title +=  ((append) ? ' '+append : '');
 
-			if(title && postfix)
+		this.set = function(title, append) {
+
+			title += ((append) ? ' ' + append : '');
+
+			if (title && postfix)
 				title += delimiter + postfix;
-			else if(!title)
+			else if (!title)
 				title = postfix;
 
 			self.setTitle(title);

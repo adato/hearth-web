@@ -10,6 +10,6 @@ angular.module('hearth.controllers').controller('ItemDetailOld', [
 	'$scope', '$stateParams', '$location',
 
 	function($scope, $stateParams, $location) {
-		$location.path("post/"+$stateParams.id);
+		$location.path("post/" + $stateParams.id);
 	}
 ]);

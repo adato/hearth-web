@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 
 			function processScheduled() {
 				// show
-				if($scope.showSchedule) {
+				if ($scope.showSchedule) {
 					$scope.display = $scope.showSchedule;
 					$(el).fadeIn('fast');
 				} else {
@@ -42,9 +42,9 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 			});
 
 			$scope.$watch('show', function(show) {
-				
+
 				// if not show - cancel scheduled timeout if exists
-				if(!show && $scope.showTimeout) {
+				if (!show && $scope.showTimeout) {
 					$timeout.cancel($scope.showTimeout);
 				}
 
@@ -52,7 +52,7 @@ angular.module('hearth.directives').directive('loading', ['$timeout', '$translat
 				$scope.showSchedule = show;
 
 				// display or hide
-				if($scope.delayed) {
+				if ($scope.delayed) {
 					$scope.showTimeout = $timeout(processScheduled, $scope.timeout);
 				} else {
 					processScheduled();

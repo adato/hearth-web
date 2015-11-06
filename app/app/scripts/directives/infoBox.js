@@ -20,9 +20,9 @@ angular.module('hearth.directives').directive('infoBox', [
 			},
 			templateUrl: 'templates/directives/infoBox.html',
 			link: function(scope, el, attrs) {
-				scope.show = false;	// infobox shown
+				scope.show = false; // infobox shown
 				scope.error = false; // an error occured when loading info
-				scope.info = false;  // we will cache infobox content
+				scope.info = false; // we will cache infobox content
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.infoboxIndex = 0 || scope.infoboxIndex;
 				scope.infoboxClass = '' || scope.infoboxClass;
@@ -33,11 +33,11 @@ angular.module('hearth.directives').directive('infoBox', [
 				function fillUserInfo(info) {
 					scope.info = info;
 
-				 	$analytics.eventTrack('InfoBox shown', {
-			      		Id: info._id,
-			      		name: info.name,
-			      		context: $state.current.name
-				    });
+					$analytics.eventTrack('InfoBox shown', {
+						Id: info._id,
+						name: info.name,
+						context: $state.current.name
+					});
 				};
 
 				/**
@@ -51,13 +51,13 @@ angular.module('hearth.directives').directive('infoBox', [
 				 * On mouse in, show info box
 				 */
 				scope.hoverIn = function() {
-					if($rootScope.loggedUser._id) {
+					if ($rootScope.loggedUser._id) {
 						scope.show = true;
 						scope.error = false;
 						UsersCommunitiesService.loadProfileInfo(scope.infoBox, fillUserInfo, displayError);
 					}
 				};
-				
+
 				/**
 				 * On mouse out, hide info box
 				 */

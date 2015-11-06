@@ -38,7 +38,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
 		function compileTemplate(scope, done) {
 			var item = scope.item;
-			if(!item._type || !templates[item._type.toLowerCase()]) {
+			if (!item._type || !templates[item._type.toLowerCase()]) {
 				Rollbar.error("HEARTH: No template found for this content", item);
 				done('No template found for this content', '');
 				return false;
@@ -47,32 +47,32 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			templates[item._type.toLowerCase()](scope, done);
 		}
 
-	 	function getPostScope(post) {
-	 		var author = post;
+		function getPostScope(post) {
+			var author = post;
 
-	 		if(post._type == 'Post')
-	 			author = post.author;
+			if (post._type == 'Post')
+				author = post.author;
 
 			var scope = $scope.$new(true);
-            scope.keywords = $scope.keywordsActive;
-            scope.item = post;
-            scope.toggleTag = Filter.toggleTag;
-            scope.foundationColumnsClass = 'large-10';
+			scope.keywords = $scope.keywordsActive;
+			scope.item = post;
+			scope.toggleTag = Filter.toggleTag;
+			scope.foundationColumnsClass = 'large-10';
 			scope.delayedView = true;
 			angular.extend(scope, ItemServices);
 
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
 
-            // post address for social links
-            scope.postAddress = $rootScope.appUrl+'post/'+post._id;
-            scope.isActive = $rootScope.isPostActive(post);
-            scope.item.karma = Karma.count(author.up_votes, author.down_votes)+'%';
+			// post address for social links
+			scope.postAddress = $rootScope.appUrl + 'post/' + post._id;
+			scope.isActive = $rootScope.isPostActive(post);
+			scope.item.karma = Karma.count(author.up_votes, author.down_votes) + '%';
 
-            // is this my post? if so, show controll buttons and etc
-            scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
+			// is this my post? if so, show controll buttons and etc
+			scope.mine = scope.item.owner_id === (($rootScope.user) ? $rootScope.user._id : null);
 
-            scope.isExpiringSoon = !scope.item.valid_until == 'unlimited' && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
-            return scope;
+			scope.isExpiringSoon = !scope.item.valid_until == 'unlimited' && moment(scope.item.valid_until).subtract(7, 'days').isBefore(new Date()) && moment(scope.item.valid_until).isAfter(new Date());
+			return scope;
 		};
 
 		function addItemsToList(container, data, index, done) {
@@ -82,16 +82,16 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			if (posts.length > index) {
 				var post = posts[index];
 
-				$scope.debug && console.time("Single post ("+(index)+") built");
+				$scope.debug && console.time("Single post (" + (index) + ") built");
 				$scope.items.push(post);
 
-				return compileTemplate(getPostScope(post), function(clone){
+				return compileTemplate(getPostScope(post), function(clone) {
 					container.append(clone[0]);
 
 					return $timeout(function() {
-						$('#post_'+post._id).slideDown();
+						$('#post_' + post._id).slideDown();
 
-						$scope.debug && console.timeEnd("Single post ("+(index)+") built");
+						$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
 						addItemsToList(container, data, index + 1, done);
 					});
 				});
@@ -115,7 +115,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			// finish loading and allow to show loading again
 
 			$timeout(function() {
-				if(!isLast)
+				if (!isLast)
 					$scope.loading = false;
 			});
 		};
@@ -126,13 +126,13 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			var newPost = $rootScope.getPostIfMissing();
 
 			// if there is not new post, dont do anything
-			if(!newPost)
+			if (!newPost)
 				return data;
 
 			// go throught post array and if there is new post already
 			// dont add him again
-			for(var i = 0;i < data.length; i++) {
-				if(data[i]._id == newPost._id)
+			for (var i = 0; i < data.length; i++) {
+				if (data[i]._id == newPost._id)
 					return data;
 			}
 
@@ -149,13 +149,13 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 				$scope.loaded = true;
 				$(".loading").hide();
 
-				if(!data.data.length) {
+				if (!data.data.length) {
 					finishLoading(data.data, true);
 					return;
 				}
 
 				$scope.debug && console.timeEnd("Market posts loaded from API");
-				if(data.data) {
+				if (data.data) {
 
 					data.data = insertLastPostIfMissing(data.data);
 					data.data = ItemFilter.filter(data.data);
@@ -164,7 +164,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 				$scope.debug && console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
 				addItemsToList($('#market-item-list'), data, 0, finishLoading);
-				
+
 				$rootScope.$broadcast('postsLoaded');
 			});
 		};
@@ -186,14 +186,14 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			});
 
 			// if there are keywords, add them to search
-			if ( $.isArray(params.keywords)) {
+			if ($.isArray(params.keywords)) {
 				params.keywords = params.keywords.join(",");
 			}
 
 			$scope.debug && console.time("Market posts loaded and displayed");
 			$scope.debug && console.time("Market posts loaded from API");
-			
-			if($scope.debug) console.log('Loading content');
+
+			if ($scope.debug) console.log('Loading content');
 			marketInited.promise.then($scope.retrievePosts.bind($scope, params));
 			// load based on given params
 		};
@@ -229,11 +229,11 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 					$scope.items[i] = data;
 					var post = getPostScope(angular.copy(data));
 
-					compileTemplate(post, function(clone){
-						$('#post_'+data._id).replaceWith(clone);
+					compileTemplate(post, function(clone) {
+						$('#post_' + data._id).replaceWith(clone);
 
 						setTimeout(function() {
-							$('#post_'+data._id).slideDown();
+							$('#post_' + data._id).slideDown();
 						});
 					});
 
@@ -248,11 +248,11 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 			post.hidden = true;
 			$scope.items.unshift(post);
 
-			compileTemplate(getPostScope(post), function(clone){
+			compileTemplate(getPostScope(post), function(clone) {
 				$('#market-item-list').prepend(clone);
 
 				setTimeout(function() {
-					$('#post_'+post._id).slideDown();
+					$('#post_' + post._id).slideDown();
 				});
 			});
 		});
@@ -262,7 +262,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 		 * post class so we won't manipulate with him in future
 		 */
 		$scope.$on('itemDeleted', function($event, item) {
-			$( "#post_"+item._id ).slideUp( "slow", function() {
+			$("#post_" + item._id).slideUp("slow", function() {
 				$(this).removeClass("post");
 			});
 		});
@@ -276,13 +276,13 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
 		function init() {
 			async.each(itemTypes, function(type, done) {
-				var tplUrl = $sce.getTrustedResourceUrl(templateDir+type+'.html');
-				if($scope.debug) console.log('Compiling template for ', type);
-				
-			    $templateRequest(tplUrl).then(function(template) {
+				var tplUrl = $sce.getTrustedResourceUrl(templateDir + type + '.html');
+				if ($scope.debug) console.log('Compiling template for ', type);
+
+				$templateRequest(tplUrl).then(function(template) {
 					templates[type] = $compile(template);
 					done();
-			    });
+				});
 
 			}, function(err, res) {
 				$scope.filterIsOn = Filter.isSet();
