@@ -5,36 +5,34 @@
 			<div class="name">{{:: item.entity_from.name}}</div>
 		</a>
 	</div>
-	<div>
-		<div class="rating-info">
-			<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
-			<div class="clear-right"></div>
-			<div class="rating-body">
-				<div class="score">
-					<b class="rating-score" ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
-					<b class="rating-score" ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
-					<small ng-if="item.post_id" class="rating-relation">
-						&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:25}}</a>.
-					</small>
-				</div>
-				<div class="rating-text">{{:: item.text}}</div>
-				<div class="rating-reply" ng-if="item.comment">
-					<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
-						<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="small"></avatar>
-					</a>
-					<div>
-						<div class="reply-top">
-							{{:: item.entity_to.name | ellipsis:30}} <small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
-						</div>
-						<i>„{{ item.comment.text }}”</i>
+	<div class="rating-info">
+		<div class="date" title="{{:: item.created_at | date:DATETIME_FORMATS.medium}}"><i class="fa fa-clock-o"></i>&nbsp; {{:: item.created_at | ago }}</div>
+		<div class="clear-right"></div>
+		<div class="rating-body">
+			<div class="score">
+				<b class="rating-score" ng-if="item.score == -1"><i class="score-icon fa icon-rating-negative"></i>{{:: 'NEGATIVE' | translate}}</b>
+				<b class="rating-score" ng-if="item.score == 1"><i class="score-icon bold fa icon-rating-positive"></i>{{:: 'POSITIVE' | translate}}</b>
+				<small ng-if="item.post_id" class="rating-relation">
+					&nbsp;{{:: 'RATING_TO_POST' | translate }} <a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:25}}</a>.
+				</small>
+			</div>
+			<div class="rating-text">{{:: item.text}}</div>
+			<div class="rating-reply" ng-if="item.comment">
+				<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
+					<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="small"></avatar>
+				</a>
+				<div>
+					<div class="reply-top">
+						{{:: item.entity_to.name | ellipsis:30}} <small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
+					<i>„{{ item.comment.text }}”</i>
 				</div>
-				<div class="clear"></div>
 			</div>
-			<div ng-if="!item.comment && mine">
-				<a class="right reply-form-link" href="{{ getProfileLink( info._type, info._id)}}/received-ratings?reply={{item._id}}">{{:: 'PROFILE.RATING.OPEN_REPLY_FORM' | translate }}</a>
-				<div class="clear"></div>
-			</div>
+			<div class="clear"></div>
+		</div>
+		<div ng-if="!item.comment && mine">
+			<a class="right reply-form-link" href="{{ getProfileLink( info._type, info._id)}}/received-ratings?reply={{item._id}}">{{:: 'PROFILE.RATING.OPEN_REPLY_FORM' | translate }}</a>
+			<div class="clear"></div>
 		</div>
 	</div>
 </div>

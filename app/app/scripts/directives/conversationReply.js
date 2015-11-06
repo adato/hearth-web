@@ -80,8 +80,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? undefined : $scope.actors[0]._id);
 					}
 				};
-
-
 				$scope.init();
 			}
 		};

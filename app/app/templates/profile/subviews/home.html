@@ -1,6 +1,6 @@
-<div class="profile-listings-v1" ng-show="subPageLoaded">
+<div class="profile-listings" ng-show="subPageLoaded">
 	<div class="left-pane">
-		<div class="box ratings home-ratings" ng-if="receivedRatings.length">
+		<div class="ratings home-ratings" ng-if="receivedRatings.length">
 			<h3 class="mine">{{:: 'YOUR_RATING' | translate}}</h3>
 			<h3 class="others">{{:: 'USERS_RATINGS' | translate}}</h3>
 			<div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>

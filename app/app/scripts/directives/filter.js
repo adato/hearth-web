@@ -7,7 +7,6 @@
  */
 angular.module('hearth.directives').directive('filter', [
 	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
-
 	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
 		return {
 			restrict: 'E',
@@ -207,9 +206,6 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.recountPosts = function() {
-					/*if(!scope.filterShown)
-					 return false;
-					 */
 					Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function(count) {
 						scope.filterPostCount = count;
 					});

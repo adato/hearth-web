@@ -33,7 +33,6 @@ angular.module('hearth.services').factory('Filter', [
 
 				params = $location.search();
 				params.keywords = params.keywords || [];
-
 				if (!$.isArray(params.keywords))
 					params.keywords = params.keywords.split(",");
 
@@ -61,6 +60,7 @@ angular.module('hearth.services').factory('Filter', [
 				else
 					return params.keywords;
 
+				$rootScope.$broadcast("filterApplied", filterData);
 			},
 			getFilterPostCount: function(filter, cb) {
 				filter = filter || {};

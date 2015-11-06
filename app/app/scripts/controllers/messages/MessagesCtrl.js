@@ -400,7 +400,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.$on('$stateChangeSuccess', changeDetail);
 
-
 		UnauthReload.check();
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);

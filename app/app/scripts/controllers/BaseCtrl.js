@@ -144,7 +144,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		});
 
-
 		$scope.showUI = function(ui) {
 			$scope.$broadcast('showUI', ui);
 		};
@@ -277,8 +276,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					path: '/'
 				});
 			}
-
-
 			timeAgoService.init();
 			Notify.checkRefreshMessage();
 			Auth.isLoggedIn() && Messenger.loadCounters();
@@ -325,7 +322,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$rootScope.refreshToPath($$config.basePath);
 			});
 		};
-
 
 		/**
 		 * This will test, if image size is sufficient for facebook sharing
@@ -410,7 +406,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$rootScope.openEditForm = function(scope) {
-
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'itemEdit.html',
 				controller: 'ItemEdit',
