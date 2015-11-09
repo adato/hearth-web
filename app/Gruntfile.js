@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 					'<%= yeoman.app %>/templates/{,*/}*.html',
 				],
 				tasks: [
-					'eslint',
+//					'eslint',
 					'copy:localConfig',
 					'jsbeautifier'
 				],
@@ -71,7 +71,10 @@ module.exports = function(grunt) {
 			},
 			compass: {
 				files: ['<%= yeoman.app %>/{,*/}*.{scss,sass}'],
-				tasks: ['compass:server', 'autoprefixer', 'scsslint', 'jsbeautifier']
+				tasks: ['compass:server', 
+						'autoprefixer',
+//						'scsslint',
+						'jsbeautifier'];
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
