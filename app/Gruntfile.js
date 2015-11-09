@@ -74,7 +74,7 @@ module.exports = function(grunt) {
 				tasks: ['compass:server', 
 						'autoprefixer',
 //						'scsslint',
-						'jsbeautifier'];
+						'jsbeautifier'],
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
