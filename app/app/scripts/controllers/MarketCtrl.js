@@ -9,7 +9,6 @@
 angular.module('hearth.controllers').controller('MarketCtrl', [
 	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', 'Karma', '$stateParams',
 	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, Karma, $stateParams) {
-		$scope.debug = false; // measure and show time spent in post fetching and showing (false = disabled)
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -189,7 +188,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 			// load only if map is not shown
 			// load only once in a time
-			if ($scope.showMap || $scope.loading) return;
+			if ($scope.loading) return;
 			$scope.loading = true;
 
 			var params = angular.extend(angular.copy($location.search()), {
@@ -227,10 +226,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		$scope.$on('filterApplied', $scope.refreshPosts);
-		// $scope.$on('filterReseted', function () {
-		//   console.log('RESETED');
-		//   refreshPosts();
-		// });
 
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;

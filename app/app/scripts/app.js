@@ -230,6 +230,7 @@ angular.module('hearth', [
 					}
 				});
 
+				$rootScope.debug = !!$.cookie("debug");
 				$rootScope.initFinished = true;
 				$rootScope.$broadcast("initFinished");
 			});

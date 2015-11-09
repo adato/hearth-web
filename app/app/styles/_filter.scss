@@ -30,6 +30,14 @@
 					font-weight: bold;
 				}
 			}
+			
+			.range-select-container {
+				margin-bottom: 10px;
+
+				input {
+					border: 1px solid color(5) !important;
+				}
+			}
 		}
 		.animated-hidden {
 			opacity: 0;
@@ -41,6 +49,7 @@
 			overflow: hidden;
 			position: static;
 		}
+
 		@media #{$large-up} {
 			.filter-container {
 				max-height: none;
