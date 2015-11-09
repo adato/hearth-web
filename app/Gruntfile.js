@@ -344,21 +344,21 @@ module.exports = function(grunt) {
 		},
 
 		// Make sure code styles are up to par and there are no obvious mistakes
-		eslint: {
-			target: ['<%= yeoman.app %>/scripts/{,*/}*.js']
-		},
+//		eslint: {
+//			target: ['<%= yeoman.app %>/scripts/{,*/}*.js']
+//		},
 
-		scsslint: {
-			allFiles: ['<%= yeoman.app %>/styles/*.scss'],
-			options: {
-				colorizeOutput: true,
-				maxBuffer: 3000 * 1024,
-				force: true,
-			}
-		},
+//		scsslint: {
+//			allFiles: ['<%= yeoman.app %>/styles/*.scss'],
+//			options: {
+//				colorizeOutput: true,
+//				maxBuffer: 3000 * 1024,
+//				force: true,
+//			}
+//		},
 
 		jsbeautifier: {
-			files : ["<%= yeoman.app %>/scripts/**/*.js"],
+			files : ["<%= yeoman.app %>/scripts/**/*.js","<%= yeoman.app %>/templates/**/*.html"],
 			locales: {
 				src: ["app/locales/*/messages.json"],
 				options: {}
