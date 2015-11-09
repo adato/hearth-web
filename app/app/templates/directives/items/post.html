@@ -109,8 +109,7 @@
 				<div class="controll large-4 columns" ng-class="{'active-overlay': showSharing}">
 					<div class="sharing-overlay" ng-class="{active: showSharing}"></div>
 					<div class="border"></div>
-					<a ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" data-item-type="{{ item.type }}" class="button expand button-{{item.type}}">
-						<p ng-bind-html="replyLabel[item.type] | translate"></p>
+					<a ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" data-item-type="{{ item.type }}" class="button expand button-{{item.type}}" ng-bind-html="replyLabel[item.type] | translate">
 					</a>
 					<div class="post-edit-buttons-container left" ng-if="mine">
 						<div class="controll-buttons">
