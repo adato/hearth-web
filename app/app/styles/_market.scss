@@ -1,4 +1,4 @@
-$itemBorderWidth: 3px;
+$itemBorderWidth: 5px;
 $itemBorder: 1px solid #D7D7D7;
 .not-found-box {
 	padding: $ui-grid-size;
@@ -190,6 +190,7 @@ body {
 				width: 78%;
 				padding: 0px;
 				.time {
+					padding-top: 2px;
 					padding-left: 1em;
 				}
 				.text {
@@ -398,7 +399,7 @@ body {
 				position: relative;
 				background-color: white;
 				padding: 6px;
-				border-radius: 8px;
+				border-radius: 6px;
 				border: $itemBorder;
 				min-width: 60%;
 				& > span {
