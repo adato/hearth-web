@@ -49,7 +49,8 @@ module.exports = function(grunt) {
 				],
 				tasks: [
 					'eslint',
-					'copy:localConfig'
+					'copy:localConfig',
+					'jsbeautifier'
 				],
 				options: {
 					livereload: {
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
 			},
 			compass: {
 				files: ['<%= yeoman.app %>/{,*/}*.{scss,sass}'],
-				tasks: ['compass:server', 'autoprefixer', 'scsslint']
+				tasks: ['compass:server', 'autoprefixer', 'scsslint', 'jsbeautifier']
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -360,6 +361,18 @@ module.exports = function(grunt) {
 				options: {}
 			},
 			options : {
+				html: {
+					indentWithTabs: true,
+					endWithNewline: false
+				},
+				css: {
+					indentWithTabs: true,
+					endWithNewline: false,
+				},
+				js: {
+					indentWithTabs: true,
+					endWithNewline: false
+				}
 			}
 		},
 
