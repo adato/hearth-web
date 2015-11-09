@@ -20,7 +20,8 @@
 				</article>
 				<article class="row">
 					<section class="small-12 columns">
-						<input class="text-input bottom round connect-right" name="email" type="email" autocorrect="off" autocapitalize="off" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" ng-focus="showError.email = false" ng-blur="showError.email = true" ng-model="feedback.email" ng-required="true">
+						<input class="text-input bottom round connect-right" name="email" type="email" autocorrect="off" autocapitalize="off" placeholder="{{ 'USERNAME_INPUT_PLACEHOLDER' | translate }}" ng-focus="showError.email = false" ng-blur="showError.email = true" ng-model="feedback.email"
+						ng-required="true">
 						<div class="error" ng-show="showError.email">
 							<span ng-show="feedbackForm.email.$error.email">{{ 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 							<span ng-show="feedbackForm.email.$error.required">{{ 'ERR_NOT_FILLED_EMAIL' | translate }}</span>

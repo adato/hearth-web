@@ -9,7 +9,6 @@
     "recursive-readdir": "^1.2.0"
   },
   "devDependencies": {
-    "eslint": "^1.7.3",
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
     "grunt-bower-install": "~1.4.0",
@@ -29,7 +28,6 @@
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-contrib-uglify": "~0.9.0",
     "grunt-contrib-watch": "~0.5.2",
-    "grunt-eslint": "~17.3.1",
     "grunt-google-cdn": "~0.2.0",
     "grunt-html2js": "^0.2.7",
     "grunt-jsbeautifier": "^0.2.10",
@@ -39,7 +37,6 @@
     "grunt-ngmin": "~0.0.2",
     "grunt-preprocess": "^4.0.0",
     "grunt-rev": "~0.1.0",
-    "grunt-scss-lint": "^0.3.8",
     "grunt-search": "^0.1.4",
     "grunt-svgmin": "~0.2.0",
     "grunt-text-replace": "^0.3.12",

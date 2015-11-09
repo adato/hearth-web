@@ -113,7 +113,8 @@
 				<div class="fleft large-6 small-12 medium-6">
 					<div class="fleft large-11 small-12 medium-11">
 						<label for="oldPassLeave">{{:: 'FILL_CURRENT_PASS' | translate }}</label>
-						<input type="password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass" id="oldPassLeave" required />
+						<input type="password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass"
+						id="oldPassLeave" required />
 						<div class="absolute error" ng-show="showError.oldPassLeave">
 							<span ng-show="profileDeleteForm.oldPassLeave.$error.required">{{:: 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
 							<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid">{{:: 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
