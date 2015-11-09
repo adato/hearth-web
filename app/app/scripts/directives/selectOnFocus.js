@@ -12,8 +12,8 @@ angular.module('hearth.directives').directive('selectOnFocus', [
 		return {
 			restrict: 'A',
 			link: function(scope, element) {
-				$(element).on("click", function () {
-				   $(this).select();
+				$(element).on("click", function() {
+					$(this).select();
 				});
 			}
 		};
