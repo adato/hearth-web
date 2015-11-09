@@ -1,5 +1,7 @@
 $itemBorderWidth: 5px;
 $itemBorder: 1px solid #D7D7D7;
+$sharingOverlayBackground: rgba(0, 0, 0, 0.75);
+
 .not-found-box {
 	padding: $ui-grid-size;
 	max-width: 770px;
@@ -43,7 +45,7 @@ body {
 			bottom: 0px;
 			right: 0px;
 			left: 0px;
-			background-color: rgba(0, 0, 0, 0.6);
+			background-color: $sharingOverlayBackground;
 			border-radius: 4px;
 			text-align: center;
 			visibility: hidden;
@@ -473,7 +475,7 @@ body {
 					visibility: hidden;
 					opacity: 0;
 					transition: visibility 0s, opacity 0.5s linear;
-					background-color: rgba(0, 0, 0, 0.6);
+					background-color: $sharingOverlayBackground;
 					border-radius: 4px;
 					&.active {
 						visibility: visible;
