@@ -37,11 +37,14 @@
 }
 
 #notify-top {
-	position: relative;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    max-width: 960px;
 	margin: 0 auto;
-	max-width: 960px;
-	top: -20px;
-	z-index: 0;
+    z-index: 60;
+    top: 0px;
+    
 	/** under navigation bar */
 	.alert-box {
 		border-top-left-radius: 0px;
@@ -57,6 +60,13 @@
 	}
 }
 
+
+@media #{$large-up} {
+
+	#notify-top {
+	    top: 109px;
+	}
+}
 
 /** above filter bar */
 

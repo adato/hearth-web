@@ -1,4 +1,4 @@
-<article class="_item {{item.type}} row" id="post_{{:: item._id }}">
+<article class="_item {{item.type}} row" id="post_{{:: item._id }}" ng-class="{paused: item.state !== 'active'}">
 	<div class="sharing-container" ng-class="{active: showSharing}">
 		<div>
 			<i class="fa fa-times close" ng-click="showSharing = false"></i>

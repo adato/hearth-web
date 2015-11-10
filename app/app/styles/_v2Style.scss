@@ -19,6 +19,15 @@ $fontSize: $fontSize;
 			color: $colorBlue;
 		}
 	}
+
+	a {
+		color: $colorLink;
+	}
+
+	.button {
+		color: white;
+	}
+
 	.karma-bar {
 		margin: 0px;
 		height: 8px;

@@ -29,6 +29,10 @@ body {
 		min-width: 188px;
 		border-bottom: 1px solid white;
 		position: relative;
+
+		&.paused {
+			opacity: 0.5;
+		}
 		&.row {
 			margin-left: 0;
 			margin-right: 0;
@@ -132,11 +136,13 @@ body {
 		._name {
 			a {
 				display: block;
+				color: $colorOrange;
 				clear: both;
 				padding-top: 10px;
 				word-wrap: break-word;
 			}
 		}
+
 		._karma {
 			margin-top: 10px;
 			padding-left: 10px;
@@ -209,8 +215,12 @@ body {
 				}
 
 				.hide-for-medium-down {
-					padding-left: 0px;
-					padding-top: 0.5em;
+					padding-left: 5px;
+					padding-top: 0.7em;
+				}
+
+				.reply-info-link {
+					color: $colorOrange;
 				}
 			}
 			.item-top {
