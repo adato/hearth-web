@@ -31,8 +31,6 @@
 		font-weight: 600;
 	}
 	.ad-author-column {
-		/*padding-right:0;*/
-		/*padding-left:$ui-grid-size;*/
 		&>div {
 			display: inline-block;
 			max-width: 12rem;
@@ -65,88 +63,12 @@
 				box-shadow: none;
 			}
 		}
-		.karma-bar {
-			padding: 0;
-			width: 200px;
-			height: 10px;
-			background-color: #7c766a;
-			border-radius: $global-radius;
-			box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
-			text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.5);
-			color: color(4);
-			.bar:first-child {
-				border-top-left-radius: $global-radius;
-				border-bottom-left-radius: $global-radius;
-			}
-			.bar:last-child {
-				border-top-right-radius: $global-radius;
-				border-bottom-right-radius: $global-radius;
-			}
-			.empty {
-				display: block;
-				text-align: center;
-				margin-top: 4px;
-			}
-			.full {
-				max-width: 100% !important;
-			}
-			.positive,
-			.negative {
-				height: 10px;
-				display: inline-block;
-				float: left;
-				min-width: 20px;
-				max-width: 180px;
-				color: color(4);
-				font-weight: bold;
-				box-shadow: inset 0px 0px 10px 0px rgba(30, 30, 30, 0.3);
-				white-space: nowrap;
-				span {
-					position: relative;
-					top: 4px;
-				}
-			}
-			.positive {
-				background: #58af08;
-				background: linear-gradient(210deg, #58af08, #b5f561);
-				text-align: right;
-				.fa {
-					display: inline-block;
-					margin-left: $ui-small-grid-size;
-				}
-				span {
-					margin-right: 10px;
-				}
-			}
-			.negative {
-				background: #275f80;
-				background: linear-gradient(30deg, #275f80, #4ca5c7);
-				position: relative;
-				overflow: hidden;
-				img {
-					display: inline-block;
-					left: -20px;
-					margin-right: $ui-small-grid-size;
-					max-height: 16px;
-					position: absolute;
-					top: 3px;
-				}
-				span {
-					margin-left: 1rem;
-				}
-			}
-		}
 		.box {
 			box-shadow: none;
 			background: none;
-			margin: 1rem;
-			margin-top: .5rem;
-			padding: {
-				top: .5rem;
-				bottom: .5rem;
-				left: 1rem;
-				right: 1rem;
-			}
+			width:100%;
+			padding:0;
+			margin:0;
 			.line {
 				overflow-x: hidden;
 				word-wrap: break-word;

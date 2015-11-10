@@ -1,4 +1,4 @@
-<article class="_item {{item.type}} row" id="post_{{:: item._id }}">
+<article class="_item {{item.type}} row" id="post_{{:: item._id }}" ng-class="{paused: item.state !== 'active'}">
 	<div class="sharing-container" ng-class="{active: showSharing}">
 		<div>
 			<i class="fa fa-times close" ng-click="showSharing = false"></i>
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="_karma small-3 medium-12 columns">
-				<karma-bar up="item.author.up_votes" down="item.author.down_votes"></karma-bar>
+				<karma-bar for="item.author"></karma-bar>
 			</div>
 			<div class="time small-6 columns hidden-for-medium-up">
 				<span>{{item.updated_at | ago}}</span>
@@ -103,7 +103,7 @@
 				</span>
 			</p>
 			<div class="_action row">
-				<div class="controll large-4 columns" ng-class="{'active-overlay': showSharing}">
+				<div class="controll large-4 medium-4 columns" ng-class="{'active-overlay': showSharing}">
 					<div class="sharing-overlay" ng-class="{active: showSharing}"></div>
 					<div class="border"></div>
 					<a ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" data-item-type="{{ item.type }}" class="button expand button-{{item.type}}" ng-bind-html="replyLabel[item.type] | translate">
@@ -122,7 +122,7 @@
 							<a title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
 								<i class="fa fa-times"></i>
 							</a>
-							<a class="hide-for-large-up" ng-click="$parent.showSharing = true" title="{{:: 'SHARE' | translate}}">
+							<a class="hide-for-medium-up" ng-click="$parent.showSharing = true" title="{{:: 'SHARE' | translate}}">
 								<i class="fa fa-share-alt"></i>
 							</a>
 						</div>
@@ -138,7 +138,7 @@
 					<span ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></span>
 					<span ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</span>
 				</div>
-				<div class="hide-for-medium-down large-1 columns">
+				<div class="hide-for-small-down share-icon large-1 medium-1 columns">
 					<a ng-click="showSharing = !showSharing" title="{{:: 'SHARE' | translate}}">
 						<i class="fa fa-share-alt"></i>
 					</a>

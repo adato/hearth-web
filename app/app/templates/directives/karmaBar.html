@@ -1,3 +1,3 @@
-<div class="karma-bar" ng-class="{empty: !karma, separator: up && down}" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: up }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: down }}">
-	<div class="positive" style="width:{{:: karma}}%"></div>
+<div class="karma-bar" ng-class="{empty: null == karma, separator: up && down}" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: up }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: down }}">
+	<div ng-if="karma !== null" class="positive" style="width:{{:: karma}}%"></div>
 </div>

@@ -29,6 +29,10 @@ body {
 		min-width: 188px;
 		border-bottom: 1px solid white;
 		position: relative;
+
+		&.paused {
+			opacity: 0.5;
+		}
 		&.row {
 			margin-left: 0;
 			margin-right: 0;
@@ -132,11 +136,13 @@ body {
 		._name {
 			a {
 				display: block;
+				color: $colorOrange;
 				clear: both;
 				padding-top: 10px;
 				word-wrap: break-word;
 			}
 		}
+
 		._karma {
 			margin-top: 10px;
 			padding-left: 10px;
@@ -178,9 +184,23 @@ body {
 
 @media #{$large-up} {
 	._market {
+		._filter {
+			._filterbar-wrap {
+				margin-right: 20px;
+				background-color: #F0F0F0;
+				border: 1px solid #C9C9C9;
+			}
+		}
+
 		._item-list {
 			padding: 0px;
 		}
+	}
+}
+
+@media #{$medium-up} {
+	._market {
+		
 		.v-m-small {
 			text-align: center;
 		}
@@ -208,9 +228,13 @@ body {
 					padding-top: 0.5em;
 				}
 
-				.hide-for-medium-down {
-					padding-left: 0px;
-					padding-top: 0.5em;
+				.share-icon {
+					padding-left: 5px;
+					padding-top: 0.7em;
+				}
+
+				.reply-info-link {
+					color: $colorOrange;
 				}
 			}
 			.item-top {
@@ -258,13 +282,6 @@ body {
 				}
 			}
 		}
-		._filter {
-			._filterbar-wrap {
-				margin-right: 20px;
-				background-color: #F0F0F0;
-				border: 1px solid #C9C9C9;
-			}
-		}
 	}
 }
 
@@ -272,6 +289,10 @@ body {
 	._market>.large-9 {
 		margin-top: 20px;
 	}
+}
+
+@media #{$small-down} {
+	
 	.page-market .main-container {
 		padding: 0px;
 	}

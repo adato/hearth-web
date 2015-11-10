@@ -19,6 +19,15 @@ $fontSize: $fontSize;
 			color: $colorBlue;
 		}
 	}
+
+	a {
+		color: $colorLink;
+	}
+
+	.button {
+		color: white;
+	}
+
 	.karma-bar {
 		margin: 0px;
 		height: 8px;
@@ -33,6 +42,10 @@ $fontSize: $fontSize;
 		}
 		&.separator .positive {
 			border-right: 1px solid white;
+		}
+
+		&.empty {
+			background-color: #ABABAB !important;
 		}
 	}
 	.time {
@@ -98,6 +111,7 @@ $fontSize: $fontSize;
 		.label {
 			border: 1px solid $colorOrange;
 			margin: 0px 4px;
+			margin-bottom: 8px;
 			padding-top: 5px;
 			color: $colorOrange;
 			background-color: inherit;

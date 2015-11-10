@@ -13,11 +13,22 @@ angular.module('hearth.controllers').controller('ComponentsCtrl', [
 			"author": {
 				_id: '521f5d48b8f421d7200049d2',
 				_type: 'User',
-				avatar_large: null,
 				updated_at: "2015-10-26T11:00:05.948+01:00",
 				down_votes: 10,
 				up_votes: 8,
 				karma: "44%",
+				avatar: {
+					large: null,
+					normal: null
+				},
+			},
+			"communityAuthor": {
+				_id: '521f5d48b8f421d7200049d2',
+				_type: 'Community',
+				updated_at: "2015-10-26T11:00:05.948+01:00",
+				down_votes: 10,
+				up_votes: 8,
+				karma: "96%",
 				avatar: {
 					large: null,
 					normal: null
