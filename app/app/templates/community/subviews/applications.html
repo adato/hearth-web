@@ -11,14 +11,18 @@
 				</div>
 				<div class="applications-text">
 					<a href="{{:: getProfileLink('User', item._id) }}">
-		            	{{:: item.name | ellipsis}}
-		            	<br>
-		            	<small>{{:: 'SHOW_PROFILE' | translate}}</small>
-		            </a>
+						{{:: item.name | ellipsis}}
+						<br>
+						<small>{{:: 'SHOW_PROFILE' | translate}}</small>
+					</a>
 				</div>
 				<div class="applications-buttons">
-					<a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i class="fa fa-check"></i></a>
-					<a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i class="fa fa-times"></i></a>
+					<a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes">
+						<i class="fa fa-check"></i>
+					</a>
+					<a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
 			</div>
 		</div>

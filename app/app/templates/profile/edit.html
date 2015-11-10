@@ -12,10 +12,10 @@
 		</div>
 		<div class="left small-12 large-7 medium-12 alt-bg">
 			<h2 class="hide-border">
-        <span class="content">
-          <span class="fa fa-user"></span>{{:: 'WHO' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-user"></span>{{:: 'WHO' | translate }}
+				</span>
+			</h2>
 			<section class="who">
 				<div class="name margin">
 					<label>
@@ -37,39 +37,39 @@
 		<div class="clear"></div>
 		<div class="large-12 small-12 medium-12">
 			<h2>
-        <span class="content">
-          <span class="fa fa-globe"></span>{{:: 'WHERE' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-globe"></span>{{:: 'WHERE' | translate }}
+				</span>
+			</h2>
 			<section class="location" ng-if="profile">
 				<locations locations="profile.locations" is-required="true" show-error="showError.locations"></locations>
 			</section>
 			<h2>
-        <span class="content">
-          <span class="fa fa-comments"></span>{{:: 'MY_LANGUAGES' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-comments"></span>{{:: 'MY_LANGUAGES' | translate }}
+				</span>
+			</h2>
 			<section class="languages">
 				<label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
 					<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG.' + lang | translate }}</checkbox>
 				</label>
 				<span class="dropdown-container" dropdown="#language-drop">
-            <label class="trigger">
-              {{:: 'ADD_OTHER_LANG' | translate }}
-            </label>
-            <ul id="language-drop" class="dropdown">
-                <label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) >-1 || profile.user_languages[lang]">
-                  <checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{:: 'MY_LANG.' + lang | translate }}</checkbox>
-                </label>
-            </ul>
-          </span>
+					<label class="trigger">
+						{{:: 'ADD_OTHER_LANG' | translate }}
+					</label>
+					<ul id="language-drop" class="dropdown">
+						<label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) >-1 || profile.user_languages[lang]">
+							<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{:: 'MY_LANG.' + lang | translate }}</checkbox>
+						</label>
+					</ul>
+				</span>
 			</section>
 			<div class="clear"></div>
 			<h2>
-        <span class="content">
-          <span class="fa fa-phone"></span>{{:: 'CONTACTS' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-phone"></span>{{:: 'CONTACTS' | translate }}
+				</span>
+			</h2>
 			<section>
 				<div class="contact large-6 small-12 medium-6 columns">
 					<div class="margin">
@@ -116,10 +116,10 @@
 			</section>
 			<div class="clear"></div>
 			<h2>
-        <span class="content">
-          <span class="fa fa-envelope"></span>{{:: 'MY_NETWORKS' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-envelope"></span>{{:: 'MY_NETWORKS' | translate }}
+				</span>
+			</h2>
 			<section>
 				<div class="margin large-6 small-12 medium-6 columns">
 					<label>
@@ -166,10 +166,10 @@
 			</section>
 			<div class="clear"></div>
 			<h2>
-        <span class="content">
-          <span class="fa fa-heart"></span>{{:: 'ABOUT_ME' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-heart"></span>{{:: 'ABOUT_ME' | translate }}
+				</span>
+			</h2>
 			<section>
 				<div class="large-6 small-12 medium-6 columns small-margin-bottom">
 					<label>

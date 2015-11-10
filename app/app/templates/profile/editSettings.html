@@ -1,22 +1,23 @@
 <div class="row profile-edit profile-edit-common profile-settings" ng-show="loaded">
 	<div class="large-12 small-12 medium-12">
 		<h2>
-        <span class="content">
-          <span class="fa fa-language"></span>{{:: 'USER_LANGUAGE' | translate }}
-        </span>
-      </h2>
+			<span class="content">
+				<span class="fa fa-language"></span>{{:: 'USER_LANGUAGE' | translate }}
+			</span>
+		</h2>
 		<section class="change-language">
-			{{:: 'USING_HEARTH_IN_LANG' | translate }} <b>{{:: 'HEARTH_IN_THIS_LANG' | translate }}</b>. {{:: 'CHOOSE_LANGUAGE' | translate }} &nbsp;
+			{{:: 'USING_HEARTH_IN_LANG' | translate }}
+			<b>{{:: 'HEARTH_IN_THIS_LANG' | translate }}</b>. {{:: 'CHOOSE_LANGUAGE' | translate }} &nbsp;
 			<select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
 				<option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
 			</select>
 		</section>
 		<div class="clear"></div>
 		<h2>
-        <span class="content">
-          <span class="fa fa-bell"></span>{{:: 'USER_NOTIFICATION' | translate }}
-        </span>
-      </h2>
+			<span class="content">
+				<span class="fa fa-bell"></span>{{:: 'USER_NOTIFICATION' | translate }}
+			</span>
+		</h2>
 		<section class="configure-notifications">
 			<form ng-submit="saveNotificationSettings(notify)">
 				<checkbox model="notify.send_emails.expiring" type="checkbox" value="true" value-off="false">
@@ -44,10 +45,10 @@
 		</section>
 		<div class="clear"></div>
 		<h2>
-        <span class="content">
-          <span class="fa fa-envelope"></span>{{ 'USER_MESSAGES' | translate }}
-        </span>
-      </h2>
+			<span class="content">
+				<span class="fa fa-envelope"></span>{{ 'USER_MESSAGES' | translate }}
+			</span>
+		</h2>
 		<section class="configure-messages">
 			<form ng-submit="saveNotificationSettings(notify)">
 				<br />
@@ -61,10 +62,10 @@
 		<div class="clear"></div>
 		<form id="profileSettingsForm" name="profileSettingsForm" ng-submit="changePassword(pass)" novalidate ng-show="loaded">
 			<h2>
-          <span class="content">
-            <span class="fa fa-unlock-alt"></span>{{:: 'USER_CHANGE_CREDENTIALS' | translate }}
-          </span>
-        </h2>
+				<span class="content">
+					<span class="fa fa-unlock-alt"></span>{{:: 'USER_CHANGE_CREDENTIALS' | translate }}
+				</span>
+			</h2>
 			<section class="change-pass">
 				<div ng-if="user.logged_in_using_omniauth">
 					{{:: 'CANT_CHANGE_PASSWORD_LOGGED_IN_USING_OMNIAUTH' | translate }}
@@ -102,10 +103,10 @@
 		</form>
 		<form id="profileDeleteForm" name="profileDeleteForm" ng-submit="deleteAccount(leave)" novalidate ng-show="loaded">
 			<h2>
-          <span class="content">
-            <span class="fa fa-times"></span>{{:: 'USER_DELETE_PROFILE' | translate }}
-          </span>
-        </h2>
+				<span class="content">
+					<span class="fa fa-times"></span>{{:: 'USER_DELETE_PROFILE' | translate }}
+				</span>
+			</h2>
 			<div class="notify-container-delete-user"></div>
 			<section class="delete-account">
 				<label for="text">{{:: 'WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE' | translate }}</label>

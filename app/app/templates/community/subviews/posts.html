@@ -4,7 +4,11 @@
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="loaded && mine && ! postsActive.length && ! postsInactive.length">
 		<div class="item">
 			<p>{{:: 'COMMUNITY.POSTS.NO_POSTS_ADMIN' | translate }}</p>
-			<p><a ng-if="mine" class="create-ad-sign" ng-click="editItem(null)"><b>{{ 'AD_ADD_LABEL' | translate}}</b></a></p>
+			<p>
+				<a ng-if="mine" class="create-ad-sign" ng-click="editItem(null)">
+					<b>{{ 'AD_ADD_LABEL' | translate}}</b>
+				</a>
+			</p>
 		</div>
 	</div>
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="loaded && ! mine && ! postsActive.length && ! postsInactive.length">

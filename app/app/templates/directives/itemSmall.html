@@ -1,9 +1,9 @@
 <div class="ad post_{{item._id}}" id="post_{{item._id}}">
 	<span>{{ postTypes[item.author._type][item.type] | translate }}</span>
 	<span>
-        <a ng-if="item.title" href="{{ basePath }}post/{{ item._id }}">{{item.title | ellipsis:30}}</a>
-        <a ng-if="!item.title" href="{{ basePath }}post/{{ item._id }}">{{item.text | ellipsis:30}}</a>
-    </span>
+		<a ng-if="item.title" href="{{ basePath }}post/{{ item._id }}">{{item.title | ellipsis:30}}</a>
+		<a ng-if="!item.title" href="{{ basePath }}post/{{ item._id }}">{{item.text | ellipsis:30}}</a>
+	</span>
 	<span ng-if="showAuthorName && item.author._type === 'User'">({{item.author.name}})</span>
 	<div class="ad-controls" ng-if="item.owner_id === loggedUser._id">
 		<i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>

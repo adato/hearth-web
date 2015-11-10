@@ -23,16 +23,15 @@
 					{{:: item.message.text | ellipsis}}
 				</p>
 				<span class="ad-date">
-					{{item.created_at | ago}}
-					{{:: 'REPLY_TO_POST' | translate }}
+					{{item.created_at | ago}} {{:: 'REPLY_TO_POST' | translate }}
 					<a ng-href="{{:: getProfileLink('Post', item.post._id) }}">
 						{{:: postTypes[item.post.author._type][item.post.type] | translate }} {{:: item.post.title | ellipsis:60 }}
 					</a>
 				</span>
 				<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="right">
-		        {{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
-		        	<i class="fa fa-comments-o"></i>
-		        </a>
+					{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
+					<i class="fa fa-comments-o"></i>
+				</a>
 				<div class="clear"></div>
 			</article>
 		</div>

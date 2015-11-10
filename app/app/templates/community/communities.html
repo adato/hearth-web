@@ -9,14 +9,11 @@
 		<h4 ng-bind=":: 'YOUR_COMMUNITIES' | translate "></h4>
 		<div class="my-communities" ng-if="myCommunities.length">
 			<h5>
-                {{:: 'YOU_ARE_MEMBER' | translate}}
-                {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
-                <span ng-if="myAdminCommunities.length">
-                    {{:: 'FROM_THAT' | translate }}
-                    {{'IN_X.'+pluralCat(myAdminCommunities.length)  | translate:'{count:'+myAdminCommunities.length+'}'}}
-                    {{:: 'ADMIN_7_CASE' | translate }}
-                </span>
-            </h5>
+				{{:: 'YOU_ARE_MEMBER' | translate}} {{'OF_X_COMMUNITIES.'+pluralCat(myCommunities.length) | translate:'{count:'+myCommunities.length+'}' }}
+				<span ng-if="myAdminCommunities.length">
+					{{:: 'FROM_THAT' | translate }} {{'IN_X.'+pluralCat(myAdminCommunities.length) | translate:'{count:'+myAdminCommunities.length+'}'}} {{:: 'ADMIN_7_CASE' | translate }}
+				</span>
+			</h5>
 			<div class="clear"></div>
 			<br />
 			<div class="community-list clearfix">
