@@ -12,11 +12,16 @@
 				<div class="author-about" ng-if="info.about">
 					<div>{{:: info.about | ellipsis:80}}</div>
 				</div>
-				<div ng-if="info.interests.length && info.interests[0]"><i class="fa fa-heart"></i> {{:: info.interests.join(', ')}}</div>
-				<div ng-if="info.work"><i class="fa fa-suitcase"></i> {{:: info.work}}</div>
+				<div ng-if="info.interests.length && info.interests[0]">
+					<i class="fa fa-heart"></i> {{:: info.interests.join(', ')}}</div>
+				<div ng-if="info.work">
+					<i class="fa fa-suitcase"></i> {{:: info.work}}</div>
 				<div ng-if="info.locations.length && locations[0].short_address">
 					<i class="fa fa-map-marker"></i> {{:: 'you-will-find-me' | translate}}
-					<span ng-repeat="location in info.locations"><span ng-if="location.short_address">{{:: location.short_address}} <span ng-if="!$last">, </span> </span>
+					<span ng-repeat="location in info.locations">
+						<span ng-if="location.short_address">{{:: location.short_address}}
+							<span ng-if="!$last">, </span>
+						</span>
 					</span>.
 				</div>
 			</section>

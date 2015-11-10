@@ -18,24 +18,27 @@
 						</div>
 						<div class="applications-text">
 							<a href="{{:: getProfileLink('User', item._id)}} ">
-                                {{:: item.name | ellipsis}}
-                            </a>
+								{{:: item.name | ellipsis}}
+							</a>
 							<br>
 							<a href="{{:: getProfileLink('User', item._id)}} ">
 								<small>{{:: 'SHOW_PROFILE' | translate}}</small>
 							</a>
 						</div>
 						<div class="applications-buttons">
-							<a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes"><i
-                                    class="fa fa-check"></i></a>
-							<a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no"><i
-                                    class="fa fa-times"></i></a>
+							<a ng-click="approveApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_ACCEPT' | translate }}" class="yes">
+								<i class="fa fa-check"></i>
+							</a>
+							<a ng-click="rejectApplication(item._id)" title="{{:: 'COMMUNITY_MEMBER_REJECT' | translate }}" class="no">
+								<i class="fa fa-times"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 				<div class="buttons">
 					<a href="{{:: communityLink }}/applications">
-						<button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}
+						<button class="profile-button big-margin">
+							<i class="fa fa-angle-double-right"></i> {{:: 'COMMUNITY_SEE_ALL_APPLICATIONS' | translate }}
 						</button>
 					</a>
 				</div>
@@ -46,20 +49,20 @@
 			<div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
 			<div class="buttons">
 				<a href="{{:: getProfileLink('Community', info._id)}}/received-ratings">
-					<button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'OLDER_RATINGS' | translate }}
+					<button class="profile-button big-margin">
+						<i class="fa fa-angle-double-right"></i> {{:: 'OLDER_RATINGS' | translate }}
 					</button>
 				</a>
 			</div>
 		</div>
 		<div class="ads box">
 			<h3 class="iblock">
-                {{:: 'COMMUNITY_POSTS' | translate }}
+				{{:: 'COMMUNITY_POSTS' | translate }}
 
-                <a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()"
-                   title="{{:: 'AD_ADD_LABEL' | translate}}">
-                    <i class="fa fa-plus-square"></i>
-                </a>
-            </h3>
+				<a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{:: 'AD_ADD_LABEL' | translate}}">
+					<i class="fa fa-plus-square"></i>
+				</a>
+			</h3>
 			<div class="clear"></div>
 			<div ng-if="mine">
 				<p ng-if="! posts.data.length && !info.post_total">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
@@ -71,7 +74,8 @@
 			<div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by item._id" ng-init="hidePost = !mine; showAuthorName = true"></div>
 			<div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 && mine)">
 				<a href="{{:: communityLink }}/posts">
-					<button class="profile-button big-margin"><i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}
+					<button class="profile-button big-margin">
+						<i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}
 					</button>
 				</a>
 			</div>

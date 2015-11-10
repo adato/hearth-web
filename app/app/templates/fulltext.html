@@ -12,16 +12,24 @@
 				<dl class="sub-nav filter">
 					<dt>{{:: 'FULLTEXT_FILTER_SEARCH_RESULTS' | translate }}:</dt>
 					<dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
-						<a>{{:: 'FULLTEXT_ALL' | translate }} <b>{{counters.post + counters.community + counters.user}}</b></a>
+						<a>{{:: 'FULLTEXT_ALL' | translate }}
+							<b>{{counters.post + counters.community + counters.user}}</b>
+						</a>
 					</dd>
 					<dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
-						<a>{{:: 'FULLTEXT_MARKET' | translate }} <b>{{counters.post}}</b></a>
+						<a>{{:: 'FULLTEXT_MARKET' | translate }}
+							<b>{{counters.post}}</b>
+						</a>
 					</dd>
 					<dd ng-click="setFilter('community')" ng-class="{active: selectedFilter == 'community'}">
-						<a>{{:: 'FULLTEXT_COMMUNITY' | translate }} <b>{{counters.community}}</b></a>
+						<a>{{:: 'FULLTEXT_COMMUNITY' | translate }}
+							<b>{{counters.community}}</b>
+						</a>
 					</dd>
 					<dd ng-click="setFilter('user')" ng-class="{active: selectedFilter == 'user'}">
-						<a>{{:: 'FULLTEXT_USERS' | translate }} <b>{{counters.user}}</b></a>
+						<a>{{:: 'FULLTEXT_USERS' | translate }}
+							<b>{{counters.user}}</b>
+						</a>
 					</dd>
 				</dl>
 			</section>
@@ -44,16 +52,16 @@
 					<p ng-switch-when="Community">{{item.description | ellipsis: 150}}</p>
 					<div class="breadcrumb" ng-switch-when="Post">
 						<a ng-href="{{:: basePath }}">{{:: 'HOMEPAGE_MARKET' | translate}}</a> &gt;
-						<a ng-href="{{:: getProfileLink('Post', item._id) }}">{{item.title || item.name  | ellipsis: 50}}</a>
+						<a ng-href="{{:: getProfileLink('Post', item._id) }}">{{item.title || item.name | ellipsis: 50}}</a>
 						<span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : DATETIME_FORMATS.mediumDate}}
 					</div>
 					<div class="breadcrumb" ng-switch-when="User">
 						{{'people' | translate}} &gt;
-						<a ng-href="{{:: getProfileLink('User', item._id)}}">{{item.title || item.name  | ellipsis: 50}}</a>
+						<a ng-href="{{:: getProfileLink('User', item._id)}}">{{item.title || item.name | ellipsis: 50}}</a>
 					</div>
 					<div class="breadcrumb" ng-switch-when="Community">
 						<a ng-href="{{:: basePath }}communities">{{:: 'COMMUNITIES' | translate}}</a> &gt;
-						<a ng-href="{{:: getProfileLink('User', item._id)}}">{{item.title || item.name  | ellipsis: 50}}</a>
+						<a ng-href="{{:: getProfileLink('User', item._id)}}">{{item.title || item.name | ellipsis: 50}}</a>
 					</div>
 				</section>
 			</article>

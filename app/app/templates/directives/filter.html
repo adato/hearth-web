@@ -39,7 +39,9 @@
 	</section>
 	<section>
 		<!--a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CLOSE_FILTER' | translate}}</a-->
-		<button ng-click="applyFilter()" class="button expand" ng-disabled="!filterPostCount">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}} <b ng-if="filterPostCount !== false">({{filterPostCount}})</b></button>
+		<button ng-click="applyFilter()" class="button expand" ng-disabled="!filterPostCount">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}
+			<b ng-if="filterPostCount !== false">({{filterPostCount}})</b>
+		</button>
 		<checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
 		</checkbox>
 	</section>
