@@ -138,7 +138,7 @@
 					<span ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></span>
 					<span ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</span>
 				</div>
-				<div class="hide-for-medium-down large-1 medium-1 columns">
+				<div class="hide-for-small-down share-icon large-1 medium-1 columns">
 					<a ng-click="showSharing = !showSharing" title="{{:: 'SHARE' | translate}}">
 						<i class="fa fa-share-alt"></i>
 					</a>
