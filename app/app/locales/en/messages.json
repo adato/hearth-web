@@ -160,6 +160,7 @@
     "COMMUNITY_HAS_NO_POSTS_YET": "This community has no ads yet. But here you are so maybe...?",
     "COMMUNITY_HAS_NO_WISHES": "Community has no wishes",
     "COMMUNITY_HAS_ONLY_INACTIVE_POSTS": "Community has only inactive ads. You can manage them in list of all posts.",
+    "COMMUNITY_HAS_REGISTERED": "Community registered",
     "COMMUNITY_INVITE_FRIENDS": "Invite friends to community",
     "COMMUNITY_KICK_MEMBER": "Dismiss member from community",
     "COMMUNITY_LAST_ACTIVITY": "Last activity on community",
@@ -484,6 +485,7 @@
         "SHOW_POSTS_ON_MAP": "Show posts on map"
     },
     "MEET_USER": "Meet user",
+    "MEET_COMMUNITY": "Meet community",
     "MEMBER_OF_COMMUNITIES_LABEL": "Is member of communities",
     "MENU": {
         "FAQ": "FAQs",
@@ -1263,5 +1265,6 @@
     "title-maxlength": "Tittle too long, Mr Shakespeare. Sorry for that but our maximum length is {{value}} characters.",
     "title-required": "Title is too short. Add a couple more words please...",
     "user": "users",
-    "you-will-find-me": "You can find me in"
+    "you-will-find-me": "You can find me in",
+    "community-operate-in": "We operate in"
 }

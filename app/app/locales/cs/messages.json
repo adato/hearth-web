@@ -168,6 +168,7 @@
     "COMMUNITY_HAS_NO_POSTS_YET": "Komunita zatím nemá žádné inzeráty. A vy zrovna zde, že by...?",
     "COMMUNITY_HAS_NO_WISHES": "Komunita zatím nemá žádné inzeráty",
     "COMMUNITY_HAS_ONLY_INACTIVE_POSTS": "V komunitě jsou pouze neaktivní inzeráty. Spravovat je můžete v seznamu všech inzerátů",
+    "COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
     "COMMUNITY_INVITE_FRIENDS": "Pozvat přátele do komunity",
     "COMMUNITY_KICK_MEMBER": "Odstranit člena z komunity",
     "COMMUNITY_LAST_ACTIVITY": "Poslední aktivita v komunitě",
@@ -499,6 +500,7 @@
         "SHOW_POSTS_ON_MAP": "Zobrazit na mapě"
     },
     "MEET_USER": "Poznejte uživatele",
+    "MEET_COMMUNITY": "Poznejte komunitu",
     "MEMBER_OF_COMMUNITIES_LABEL": "Členem komunit",
     "MENU": {
         "FAQ": "Časté dotazy",
@@ -1308,5 +1310,6 @@
     "title-maxlength": "Titulek je příliš dlouhý, pane Shakespeare. To nás mrzí, naše maximální délka je {{value}} znaků.",
     "title-required": "Titulek je příliš krátký. Přidejte ještě aspoň pár slov...",
     "user": "jednotlivci",
-    "you-will-find-me": "Najdete mne v"
+    "you-will-find-me": "Najdete mne v",
+    "community-operate-in": "Působíme v"
 }
