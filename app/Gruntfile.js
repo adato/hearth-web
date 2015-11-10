@@ -94,8 +94,7 @@ module.exports = function(grunt) {
 					'<%= yeoman.app %>/{,*/}*.html',
 					'.tmp/styles/{,*/}*.css',
 					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-				],
-				tasks: ['jsbeautifier'],
+				]
 			}
 		},
 
@@ -373,7 +372,8 @@ module.exports = function(grunt) {
 			options : {
 				html: {
 					indentWithTabs: true,
-					endWithNewline: false
+					endWithNewline: false,
+					unformatted:[],
 				},
 				css: {
 					indentWithTabs: true,
