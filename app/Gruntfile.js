@@ -58,8 +58,8 @@ module.exports = function(grunt) {
 						key: grunt.file.read('./cert/server.key'),
 						cert: grunt.file.read('./cert/server.crt'),
 						// key: grunt.file.read('path/to/ssl.key'),
-        				// cert: grunt.file.read('path/to/ssl.crt')
-        			}
+						// cert: grunt.file.read('path/to/ssl.crt')
+					}
 				}
 			},
 			jsTest: {
@@ -82,20 +82,19 @@ module.exports = function(grunt) {
 			livereload: {
 				options: {
 					livereload:  {
-        			// '<%= connect.options.livereload %>'
+					// '<%= connect.options.livereload %>'
 						port: 3333,
 						key: grunt.file.read('./cert/server.key'),
 						cert: grunt.file.read('./cert/server.crt'),
 						// key: grunt.file.read('path/to/ssl.key'),
-        				// cert: grunt.file.read('path/to/ssl.crt')
-        			}
+						// cert: grunt.file.read('path/to/ssl.crt')
+					}
 				},
 				files: [
 					'<%= yeoman.app %>/{,*/}*.html',
 					'.tmp/styles/{,*/}*.css',
 					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-				],
-				tasks: ['jsbeautifier'],
+				]
 			}
 		},
 
@@ -178,7 +177,7 @@ module.exports = function(grunt) {
 			options: {
 				port: 9000,
 				protocol: 'https',
-			 	key: grunt.file.read('./cert/server.key').toString(),
+				key: grunt.file.read('./cert/server.key').toString(),
 				cert: grunt.file.read('./cert/server.crt').toString(),
 				// ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
@@ -367,7 +366,8 @@ module.exports = function(grunt) {
 			options : {
 				html: {
 					indentWithTabs: true,
-					endWithNewline: false
+					endWithNewline: false,
+					unformatted:[],
 				},
 				css: {
 					indentWithTabs: true,
@@ -694,19 +694,19 @@ module.exports = function(grunt) {
 			options: {
 				sourceMap: true,
 				sourceMapIncludeSources : true,
-		    },
+			},
 			scripts: {
 				options: {
-	    			sourceMapIn : '.tmp/concat/scripts.js.map'
-			    },
+					sourceMapIn : '.tmp/concat/scripts.js.map'
+				},
 				files: {
 					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
 				}
 			},	   
 			config: {
 				options: {
-	    			sourceMapIn : '.tmp/concat/config.js.map'
-			    },
+					sourceMapIn : '.tmp/concat/config.js.map'
+				},
 				files: {
 					'<%= yeoman.dist %>/scripts/config.min.js': ['.tmp/concat/config.js'],
 				}
@@ -715,7 +715,7 @@ module.exports = function(grunt) {
 		concat: {
 			options: {
 				separator: ';',
-			    sourceMap: true
+				sourceMap: true
 			},
 			scripts: {
 				src: ['.tmp/scripts/**/*.js'],
