@@ -96,11 +96,12 @@ $fontSize: $fontSize;
 		margin-right: -4px;
 
 		.label {
-			border: 2px solid $colorOrange;
+			border: 1px solid $colorOrange;
 			margin: 0px 4px;
+			padding-top: 5px;
 			color: $colorOrange;
 			background-color: inherit;
-			border-radius: 20px;
+			border-radius: $borderRadius;
 			min-width: 60px;
 			cursor: pointer;
 			transition: all .3s ease-in-out;
