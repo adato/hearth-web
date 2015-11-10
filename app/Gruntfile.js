@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 					'<%= yeoman.app %>/scripts/{,*/}*.js',
 					'<%= yeoman.envFolder %>/{,*/}*.js',
 					'<%= yeoman.app %>/locales/{,*/}*.json',
-					'<%= yeoman.app %>/templates/{,*/}*.html',
+					'<%= yeoman.app %>/templates/**/*.html',
 				],
 				tasks: [
 //					'eslint',
@@ -372,7 +372,8 @@ module.exports = function(grunt) {
 			options : {
 				html: {
 					indentWithTabs: true,
-					endWithNewline: false
+					endWithNewline: false,
+					unformatted:[],
 				},
 				css: {
 					indentWithTabs: true,

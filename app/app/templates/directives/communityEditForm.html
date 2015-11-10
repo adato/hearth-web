@@ -17,12 +17,12 @@
 			</div>
 			<div class="fleft small-12 large-7 small-7 medium-7 pull-5 alt-bg">
 				<h2 class="hide-border">
-          <span class="content">
-            <span class="fa fa-users"></span>
-            <span ng-if="! community._id">{{:: 'COMMUNITY_ADD' | translate }}</span>
-            <span ng-if="community._id">{{:: 'COMMUNITY_EDIT' | translate }}</span>
-          </span>
-        </h2>
+					<span class="content">
+						<span class="fa fa-users"></span>
+						<span ng-if="! community._id">{{:: 'COMMUNITY_ADD' | translate }}</span>
+						<span ng-if="community._id">{{:: 'COMMUNITY_EDIT' | translate }}</span>
+					</span>
+				</h2>
 				<section class="who">
 					<div class="name margin">
 						<label>
@@ -39,18 +39,18 @@
 			<div class="clear"></div>
 			<div class="large-12 small-12 medium-12">
 				<h2>
-          <span class="content">
-            <span class="fa fa-globe"></span>{{:: 'COMMUNITY_PLACE' | translate }}
-          </span>
-        </h2>
+					<span class="content">
+						<span class="fa fa-globe"></span>{{:: 'COMMUNITY_PLACE' | translate }}
+					</span>
+				</h2>
 				<section class="location">
 					<locations locations="community.locations" is-required="true" error-code="COMMUNITY_LOCATIONS_IS_EMPTY_STRICT" show-error="showError.locations"></locations>
 				</section>
 				<h2>
-          <span class="content">
-            <span class="fa fa-info"></span>{{:: 'COMMUNITY_ABOUT' | translate }}
-          </span>
-        </h2>
+					<span class="content">
+						<span class="fa fa-info"></span>{{:: 'COMMUNITY_ABOUT' | translate }}
+					</span>
+				</h2>
 				<section>
 					<div class="large-6 small-12 medium-12 columns">
 						<label>
@@ -91,16 +91,15 @@
 		<!-- ==================================== Change admin in community ================================ -->
 		<div ng-if="community._id">
 			<h2>
-        <span class="content">
-          <span class="fa fa-share"></span>{{:: 'COMMUNITY_CHANGE_ADMIN' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-share"></span>{{:: 'COMMUNITY_CHANGE_ADMIN' | translate }}
+				</span>
+			</h2>
 			<section class="change-admin" ng-if="community.member_count > 1">
 				<span>
-          {{:: 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }}
-          &nbsp;
-          <select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
-        </span>
+					{{:: 'COMMUNITY_SELECT_PERSON_TO_PASS_ADMIN' | translate }} &nbsp;
+					<select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
+				</span>
 				<button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-custom analytics-event="delegate admin community" analytics-category="My community"
 				analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
 			</section>
@@ -114,10 +113,10 @@
 		<!-- ==================================== Delete community ================================ -->
 		<div ng-if="community._id">
 			<h2>
-        <span class="content">
-          <span class="fa fa-minus-circle"></span>{{:: 'COMMUNITY_DELETE' | translate }}
-        </span>
-      </h2>
+				<span class="content">
+					<span class="fa fa-minus-circle"></span>{{:: 'COMMUNITY_DELETE' | translate }}
+				</span>
+			</h2>
 			<br />
 			<br />
 			<section class="delete">

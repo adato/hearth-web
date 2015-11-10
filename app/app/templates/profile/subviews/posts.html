@@ -3,7 +3,11 @@
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && ! postsActive.length && ! postsInactive.length">
 		<div class="item">
 			<p>{{:: 'PROFILE.POSTS.NO_POSTS_ME' | translate }}</p>
-			<p><a class="create-ad-sign" ng-click="editItem(null)"><b>{{:: 'AD_ADD_LABEL' | translate}}</b></a></p>
+			<p>
+				<a class="create-ad-sign" ng-click="editItem(null)">
+					<b>{{:: 'AD_ADD_LABEL' | translate}}</b>
+				</a>
+			</p>
 		</div>
 	</div>
 	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && ! mine && ! postsActive.length">

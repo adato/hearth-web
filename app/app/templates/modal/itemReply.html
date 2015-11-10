@@ -2,9 +2,9 @@
 	<div class="head">
 		<span ng-click="close()" class="fright close fa fa-times"></span>
 		<h2>
-            <span ng-if="post.type =='offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
-            <span ng-if="post.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
-        </h2>
+			<span ng-if="post.type =='offer'" ng-bind-html="'WISH_GIFT' | translate"></span>
+			<span ng-if="post.type == 'need'" ng-bind-html="'OFFER_GIFT' | translate"></span>
+		</h2>
 		<hr />
 	</div>
 	<form ng-submit="sendReply()" name="replyForm" novalidate class="reply-ad">
@@ -23,8 +23,8 @@
 			</div>
 			<section class="bottom">
 				<a href="" ng-click="close()" class="fleft close">
-                    {{ 'CLOSE' | translate }}
-                </a>
+					{{ 'CLOSE' | translate }}
+				</a>
 				<button class="primary button-send fright pointer" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SUBMIT</button>
 			</section>
 		</div>

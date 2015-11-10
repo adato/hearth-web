@@ -7,7 +7,9 @@
 <div class="offline-dialog" id="offlineNotify" ng-class="{display: isOfflineMode}" ng-cloak>
 	<div class="content" ng-cloak>
 		<span ng-bind-html="'YOU_ARE_OFFLINE' | translate"></span> &nbsp;&nbsp;
-		<button class="others profile-button solid dontDisable" ng-click="checkOnlineState()">{{ 'RELOAD_PAGE' | translate }} <i class="fa fa-spinner fa-spin" ng-if="offlineHealthCheckInProgress"></i></button>
+		<button class="others profile-button solid dontDisable" ng-click="checkOnlineState()">{{ 'RELOAD_PAGE' | translate }}
+			<i class="fa fa-spinner fa-spin" ng-if="offlineHealthCheckInProgress"></i>
+		</button>
 	</div>
 </div>
 <div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
