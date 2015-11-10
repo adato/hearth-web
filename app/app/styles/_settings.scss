@@ -1,10 +1,11 @@
 @import "foundation/functions";
 
+// ====== Local Settings =======
 $radius: true;
 $global-radius: 8px;
 $base-font-size: 95%;
 $borderRadius: 4px;
-
+$colorLink: $colorBlue;
 
 $base-line-height: 100%;
 $body-bg: color(4);
