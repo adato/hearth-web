@@ -43,6 +43,10 @@ $fontSize: $fontSize;
 		&.separator .positive {
 			border-right: 1px solid white;
 		}
+
+		&.empty {
+			background-color: #ABABAB !important;
+		}
 	}
 	.time {
 		font-size: $fontSize;
