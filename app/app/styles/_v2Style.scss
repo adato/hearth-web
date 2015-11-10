@@ -1,4 +1,5 @@
 $fontSize: $fontSize;
+
 .v2 {
 	h2 {
 		font-size: 17px !important;
@@ -89,18 +90,26 @@ $fontSize: $fontSize;
 			}
 		}
 	}
-	.label {
-		border: 1px solid $colorOrange;
-		color: $colorOrange;
-		background-color: inherit;
-		border-radius: 20px;
-		min-width: 60px;
-		cursor: pointer;
-		transition: all .3s ease-in-out;
-		&.active,
-		&:hover {
-			background-color: $colorOrange;
-			color: white;
+
+	.labels {
+		margin-left: -4px;
+		margin-right: -4px;
+
+		.label {
+			border: 1px solid $colorOrange;
+			margin: 0px 4px;
+			padding-top: 5px;
+			color: $colorOrange;
+			background-color: inherit;
+			border-radius: $borderRadius;
+			min-width: 60px;
+			cursor: pointer;
+			transition: all .3s ease-in-out;
+			&.active,
+			&:hover {
+				background-color: $colorOrange;
+				color: white;
+			}
 		}
 	}
 }
