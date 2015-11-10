@@ -6,7 +6,7 @@
 			<input type="text" select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" />
 			<ul>
 				<li>
-					<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
+					<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" ng-click="openEmailSharingBox(item)"></a>
 				</li>
 				<li>
 					<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
@@ -103,7 +103,7 @@
 				</li>
 			</ul>
 			<p class="labels show-for-medium-up" ng-if="item.keywords.length">
-				<span ng-repeat="tag in item.keywords"><span ng-click="toggleTag(tag)" ng-class="{'active': keywords.indexOf(tag.toLowerCase()) !== -1}" class="label" ng-bind-html="tag"/> </span>
+				<span ng-repeat="tag in item.keywords"><span ng-click="toggleTag(tag)" ng-class="{'active': keywords.indexOf(tag.toLowerCase()) !== -1}" class="label" ng-bind-html="tag"/></span>
 			</p>
 			<div class="_action row">
 				<div class="controll large-4 columns" ng-class="{'active-overlay': showSharing}">
