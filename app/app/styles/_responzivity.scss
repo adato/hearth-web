@@ -44,6 +44,14 @@
 }
 
 // small screens only
+@media #{$medium-down} {
+	.main-container {
+		min-width: unset !important;
+		width: 100%;
+		padding: 0 2*$ui-small-grid-size;
+		padding-top: 20px;
+	}
+}
 @media #{$small-only} {
 	.off-canvas-wrap {
 		overflow-y: auto;
@@ -55,11 +63,7 @@
 		width: unset !important;
 		width: 100%;
 	}
-	.main-container {
-		min-width: unset !important;
-		width: 100%;
-		padding: 0 2*$ui-small-grid-size;
-	}
+	
 	.market .avatar {
 		& > div,
 		span,

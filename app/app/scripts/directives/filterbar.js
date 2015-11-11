@@ -19,37 +19,6 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.searchParams = '';
 				scope.basePath = $$config.basePath;
 
-				scope.sendFilterStatusOnApi = function() {
-					if ($.cookie('closedFilterSent') || !$rootScope.loggedUser._id)
-						return false; // filter close date was already sent or user is not logged in
-
-					User.setClosedFilter({
-						time: moment(parseInt($.cookie('closedFilter'))).format()
-					}, angular.noop, angular.noop);
-					$.cookie('closedFilterSent', Date.now(), {
-						expires: 30 * 12 * 20,
-						path: '/'
-					});
-				};
-
-				/**
-				 * Set cookie info that we have closed filter
-				 * so we will not open him next time
-				 */
-				scope.sendFilterClosedInfo = function() {
-					if (scope.wasClosedFilterSent())
-						return;
-
-					$.cookie('closedFilterSent', Date.now(), {
-						expires: 30 * 12 * 20,
-						path: '/'
-					});
-				};
-
-				scope.wasClosedFilterSent = function() {
-					return !!$.cookie('closedFilterSent');
-				};
-
 				/**
 				 * Set cookie info that we have closed filter
 				 * so we will not open him next time
@@ -62,12 +31,6 @@ angular.module('hearth.directives').directive('filterbar', [
 						category: 'filter',
 						label: 'filter was closed for the first time'
 					});
-
-					$.cookie('closedFilter', Date.now(), {
-						expires: 30 * 12 * 20,
-						path: '/'
-					});
-					scope.sendFilterStatusOnApi();
 				};
 
 				scope.setUserFilterCookie = function() {
@@ -131,7 +94,6 @@ angular.module('hearth.directives').directive('filterbar', [
 						scope.filterSelected = true;
 				});
 				scope.testFilterActive();
-				scope.sendFilterStatusOnApi();
 			}
 		};
 	}
