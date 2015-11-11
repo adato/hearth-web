@@ -48,7 +48,13 @@
 		"SHOW_POSTS_ON_MAP": "Zobrazit na mapě",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
 		"CREATE_NEW_ADD": "Vložit nový dar nebo přání",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
+		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"USER": {
+			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
+		},
+		"COMMUNITY": {
+			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+		}
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáte, pravděpodobně neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenalezeno",

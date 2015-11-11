@@ -48,7 +48,13 @@
 		"SHOW_POSTS_ON_MAP": "Zobraziť inzeráty na mape",
 		"HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
 		"CREATE_NEW_ADD": "Vložiť nový dar alebo prianie",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
+		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"USER": {
+			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
+		},
+		"COMMUNITY": {
+			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+		}
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to ľúto, ale stránka, ktorú hľadáte, pravdepodobne neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenájdené",
