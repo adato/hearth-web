@@ -39,8 +39,6 @@ angular.module('hearth.directives').directive('filterbar', [
 							expires: 30 * 12 * 20,
 							path: '/'
 						});
-
-					scope.sendFilterClosedInfo();
 				};
 
 				scope.isCookieFiltered = function() {
