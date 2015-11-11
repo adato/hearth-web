@@ -12,18 +12,13 @@
 		</section>
 		<section ng-if="! itemDeleted && item && item.text" class="large-12 small-12 medium-12 content row" id="item_container_{{ item._id }}">
 			<div class="large-4 small-12 medium-12 ad-author-column text-center right">
-				<div>
+				<div class="box">
 					<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="getProfileLink(item.author._type, item.author._id)" /></avatar>
 					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
 						<h2>{{ item.author.name}}</h2>
 					</a>
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
-						<div ng-if="item.author" class="karma-bar" title="{{ 'COUNT_OF_PLUS_POINTS' | translate }}: {{ item.author.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ item.author.down_votes }}">
-							<span class="positive bar" ng-style="{width: (karma)+'%'}" ng-class="{full: karma == 100}" ng-if="karma != null && karma > 0">
-							</span>
-							<span class="negative bar" ng-style="{width: (100 - karma)+'%'}" ng-class="{full: karma == 0}" ng-if="karma != null && karma < 100">
-							</span>
-						</div>
+					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="v2">
+						<karma-bar for="item.author"></karma-bar>
 					</a>
 					<div class="text-left" ng-if="profile">
 						<div class="line">

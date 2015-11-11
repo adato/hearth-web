@@ -7,6 +7,22 @@
 			border-radius: 8px;
 		}
 		
+		code {
+			color: #5E5D5E;
+		}
+		
+		.deprecated {
+			display: inline-block;
+			margin-top: 20px;
+			opacity: .8;
+			color: #999;
+		}
+		
+		.deprecated:before {
+			content: "deprecated:";
+			color: red;
+		}
+		
 		.move-bot {
 			top: 0 !important;
 		}
@@ -27,13 +43,40 @@
 			</code>
 		</div>
 	</div>
+	<div class="component component-link row">
+		<div class="large-6 columns">
+			<a href="#">Link</a>
+		</div>
+		<div class="large-6 columns">
+			<h4>Link</h4>
+			<code>
+				&lt;a href="#"&gt;Link&lt;/a&gt;
+			</code>
+		</div>
+	</div>
+	<div class="component component-button row">
+		<div class="large-6 columns">
+			<button type="button" class="button">Button</button>
+			<a href="#" class="button">Link</a>
+		</div>
+		<div class="large-6 columns">
+			<h4>Button</h4>
+			<code>
+				&lt;button type="button" class="button"&gt;Button&lt;/button&gt;
+				<br> &lt;a href="#" class="button"&gt;Link&lt;/a&gt;
+			</code>
+		</div>
+	</div>
 	<div class="component component-box row">
 		<div class="large-6 columns">
-			<karma-bar up="components.author.up_votes" down="components.author.down_votes"></karma-bar>
+			<karma-bar for="components.author"></karma-bar>
 		</div>
 		<div class="large-6 columns">
 			<h4>Karma bar</h4>
 			<code>
+				&lt;karma-bar for=&quot;components.author&quot;&gt;&lt;/karma-bar&gt;
+			</code>
+			<code class="deprecated">
 				&lt;karma-bar up=&quot;components.author.up_votes&quot; down=&quot;components.author.down_votes&quot;&gt;&lt;/karma-bar&gt;
 			</code>
 		</div>
@@ -86,14 +129,14 @@
 			</code>
 		</div>
 	</div>
-	<div class="component component-box row">
+	<!-- 	<div class="component component-box row">
 	</div>
 	<div class="component component-box row">
 	</div>
 	<div class="component component-box row">
 	</div>
 	<div class="component component-box row">
-	</div>
+	</div>-->
 	<div class="component component-box row">
 		<div class="large-6 columns">
 			<div class="date" title="{{:: components.author.updated_at | date:DATETIME_FORMATS.medium}}">
@@ -122,34 +165,10 @@
 			</code>
 		</div>
 	</div>
-	<div class="component component-link row">
-		<div class="large-6 columns">
-			<a href="#">Link</a>
-		</div>
-		<div class="large-6 columns">
-			<h4>Link</h4>
-			<code>
-				&lt;a href="#"&gt;Link&lt;/a&gt;
-			</code>
-		</div>
-	</div>
-	<div class="component component-button row">
-		<div class="large-6 columns">
-			<button type="button" class="button">Button</button>
-			<a href="#" class="button">Link</a>
-		</div>
-		<div class="large-6 columns">
-			<h4>Button</h4>
-			<code>
-				&lt;button type="button" class="button"&gt;Button&lt;/button&gt;
-				<br> &lt;a href="#" class="button"&gt;Link&lt;/a&gt;
-			</code>
-		</div>
-	</div>
 	<div class="component component-avatar row">
 		<div class="large-6 columns">
-			<avatar type="author._type" src="author.avatar_large" size="mini" href="'#'" /></avatar>
-			<avatar type="author._type" src="author.avatar_large" size="medium" href="'#'" /></avatar>
+			<avatar type="author._type" src="author.avatar_mini" size="mini" href="'#'" /></avatar>
+			<avatar type="author._type" src="author.avatar_medium" size="medium" href="'#'" /></avatar>
 			<avatar type="author._type" src="author.avatar_large" size="large" href="'#'" /></avatar>
 		</div>
 		<div class="large-6 columns">
@@ -207,45 +226,84 @@
 		</div>
 	</div>
 	<div class="component component-inputs row">
-		<div class="large-6 columns">
-			<h4>&nbsp;</h4>
-			<div class="alert-box alert radius">
-				<i class="fa fa-exclamation-triangle"></i> Error!</div>
-			<input type="text" placeholder="Type here" ng-model="components.textinput">
-			<br>
-			<textarea autosize-textarea ng-attr-placeholder="Type here to type here" ng-model="components.textarea" name="text"></textarea>
-			<br>
-			<tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2" max-length="20">
-				<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
-			</tags-input>
-			<br>
-			<br>
-			<br>
-			<checkbox model="components.checkbox" on-update="void()" value="1">Checkbox item 1</checkbox>
-			<checkbox model="components.checkbox" on-update="void()" value="2">Checkbox item 2</checkbox> {{ components.checkbox }}
-			<br>
-			<br>
-			<radio model="components.radio" type="radio" value="false" value-off="true" checked="!components.radio">Radio item 1</radio>
-			<radio model="components.radio" type="radio" value="true" value-off="false" checked="components.radio">Radio item 2</radio>
-			{{ components.radio }}
+		<div class="large-6 columns" style="background:#fff; padding-bottom:15px;">
+			<form name="form">
+				<h4>&nbsp;</h4>
+				<div class="alert-box alert radius">
+					<i class="fa fa-exclamation-triangle"></i> Error!</div>
+				<br>
+				<br>
+				<br>
+				<input type="text" required placeholder="Type here" ng-model="components.textinput">
+
+				<br>
+				<br>
+				<input type="email" name="email" placeholder="Type email" ng-model="components.email" class="form-control" required ng-blur="showError.email = true" ng-focus="showError.email = false">
+				<p class="error" ng-show="showError.email">
+					<span ng-show="form.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
+				</p>
+				<br>
+				<Br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<textarea autosize-textarea ng-attr-placeholder="Type here to type here" ng-model="components.textarea" name="text"></textarea>
+				<max-len-counter value="components.textarea" max-len="300"></max-len-counter>
+				<br>
+				<br>
+				<Br>
+				<br>
+				<tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2" max-length="20">
+					<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+				</tags-input>
+				<br>
+				<br>
+				<br>
+				<checkbox model="components.checkbox" on-update="void()" value="1">Checkbox item 1</checkbox>
+				<checkbox model="components.checkbox" on-update="void()" value="2">Checkbox item 2</checkbox> {{ components.checkbox }}
+				<br>
+				<br>
+				<radio model="components.radio" type="radio" value="false" value-off="true" checked="!components.radio">Radio item 1</radio>
+				<radio model="components.radio" type="radio" value="true" value-off="false" checked="components.radio">Radio item 2</radio>
+				{{ components.radio }}
+				<br>
+				<br>
+				<button class="button button-send" type="submit">{{ 'SUBMIT' | translate }}</button>
+			</form>
 		</div>
 		<div class="large-6 columns">
-			<h4>Form elements</h4>
+			<h4>Forms</h4>
 			<h5>Form error</h5>
 			<code>
 				&lt;div class="alert-box alert radius"&gt;&lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; Error!&lt;/div&gt;
 			</code>
+			<br>
+			<br>
 			<h5>Text input</h5>
 			<code>
-				&lt;input type="text" placeholder="Type here"&gt;
+				&lt;input type="text" required placeholder="Type here"&gt;
 			</code>
-			<h5>Textarea (autosize-y)</h5>
+			<br>
+			<br>
+			<h5>Email input with validation</h5>
+			<code>&lt;input type=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;Type email&quot; ng-model=&quot;components.email&quot; class=&quot;form-control&quot; required ng-blur=&quot;showError.email = true&quot; ng-focus=&quot;showError.email = false&quot;&gt;
+				<br>&lt;p class=&quot;error&quot; ng-show=&quot;showError.email&quot;&gt;
+				<br>&nbsp;&nbsp;&nbsp;&lt;span ng-show=&quot;form.email.$error.email&quot;&gt;validation message&lt;/span&gt;
+				<br>&lt;/p&gt;
+			</code>
+			<br>
+			<br>
+			<br>
+			<h5>Textarea (autosize a max-len-counter)</h5>
 			<code>
 				&lt;textarea autosize-textarea ng-attr-placeholder="Type here to type here" name="text"&gt;&lt;/textarea&gt;
+				<br>&lt;max-len-counter value=&quot;components.textarea&quot; max-len=&quot;300&quot;&gt;&lt;/max-len-counter&gt;
 			</code>
-			<h5>Tags input. See
-				<a href="https://github.com/mbenford/ngTagsInput">ngTagsInput</a>
-			</h5>
+			<h5>Tags input. (ngTagsInput) </h5>
 			<code>
 				&lt;tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2"
 				max-length="20"&gt;
