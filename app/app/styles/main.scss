@@ -123,9 +123,9 @@ body {
 		margin: auto;
 		//margin-top: 3em;
 		margin-bottom: 2em;
-		&>div:not(._market) {
-			margin-top: 3*$ui-small-grid-size;
-		}
+//		&>div:not(._market) {
+//			margin-top: 3*$ui-small-grid-size;
+//		}
 	}
 	font-family: $body-font-family;
 	font-size:$global-font-size;

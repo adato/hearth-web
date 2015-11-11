@@ -229,8 +229,9 @@ body {
 				}
 
 				.share-icon {
-					padding-left: 5px;
-					padding-top: 0.7em;
+					padding-right: 30px;
+					padding-top: .7em;
+					text-align: right;
 				}
 
 				.reply-info-link {
@@ -289,13 +290,13 @@ body {
 	._market>.large-9 {
 		margin-top: 20px;
 	}
-}
-
-@media #{$small-down} {
 	
 	.page-market .main-container {
 		padding: 0px;
 	}
+}
+
+@media #{$small-down} {
 	._market {
 		article {
 			padding: 0px;
