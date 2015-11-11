@@ -48,7 +48,13 @@
 		"SHOW_POSTS_ON_MAP": "Show posts on map",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
 		"CREATE_NEW_ADD": "Add a new gift or wish",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
+		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"USER": {
+			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
+		},
+		"COMMUNITY": {
+			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+		}
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
