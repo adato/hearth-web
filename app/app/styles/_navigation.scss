@@ -12,6 +12,7 @@
 }
 
 .orange-bar {
+	width: 100%;
 	background-color: color(1);
 	box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
 	padding-bottom: 15px;
@@ -224,6 +225,7 @@
 }
 
 @media #{$large-up} {
+	/*
 	.top-bar {
 		position: fixed;
 		left: 0px;
@@ -231,11 +233,14 @@
 		top: 0px;
 		z-index: 50;
 	}
+	*/
 	.orange-bar {
+	/*
 		position: fixed;
 		left: 0px;
 		right: 0px;
 		top: 40px;
+	*/
 		z-index: 40;
 		max-height: 200px !important;
 		padding-bottom: 10px !important;
@@ -251,4 +256,34 @@
 		font-weight: bold;
 		font-size: 15px;
 	}
+}
+
+
+#navigation .autohide {
+	z-index: 50;
+}
+
+.autohide {
+	position: fixed;
+	top: 0;
+	left: 0px;
+	right: 0px;
+	display: block;
+	width: 100%;
+	//background-color: rgba(0, 0, 0, 0.1);
+	// On Scroll animation
+	-webkit-transition: -webkit-transform 0.7s .3s ease;
+	-moz-transition: -moz-transform 0.7s .3s ease;
+	-ms-transition: -ms-transform 0.7s .3s ease;
+	transition: transform 0.7s .3s ease;
+	// Stop animation flicker
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+}
+.autohide.hide-nav-bar {
+	-webkit-transform: translate(0, -100%);
+	-moz-transform: translate(0, -100%);
+	-ms-transform: translate(0, -100%);
+	transform: translate(0, -100%);
+	-webkit-backface-visibility: hidden;
 }
