@@ -89,6 +89,12 @@ angular.module('hearth.directives').directive('filter', [
 					if (filter.days) {
 						params.days = filter.days;
 					}
+					if (filter.lang) {
+						params.lang = filter.lang;
+					}
+					if (filter.r_lang) {
+						params.r_lang = filter.r_lang;
+					}
 					if (filter.my_section) {
 						params.my_section = filter.my_section;
 					}
@@ -126,6 +132,8 @@ angular.module('hearth.directives').directive('filter', [
 						type: params.type || filterDefault.type,
 						post_type: params.post_type || filterDefault.post_type,
 						days: params.days || filterDefault.days,
+						lang: params.lang,
+						r_lang: params.r_lang,
 						my_section: params.my_section,
 						user: (params.related || '').indexOf('user') > -1 ? true : undefined,
 						community: (params.related || '').indexOf('community') > -1 ? true : undefined,
