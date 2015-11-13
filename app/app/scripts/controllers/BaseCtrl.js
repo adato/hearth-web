@@ -10,6 +10,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state',
 	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state) {
 		var timeout;
+		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
 		$rootScope.pageName = '';
 		$rootScope.searchQuery = {
@@ -418,6 +419,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		// open modal window for item edit
 		$rootScope.editItem = function(post, isInvalid, preset) {
+			if (itemEditOpened)
+				return false;
+			itemEditOpened = true;
+
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
@@ -425,7 +430,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var scope = $scope.$new();
 			scope.isInvalid = isInvalid;
 			scope.preset = preset;
-
 			if (post) {
 
 				Post.get({
@@ -445,6 +449,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					$rootScope.openEditForm(scope);
 				});
 			}
+
+			$timeout(function() {
+				itemEditOpened = false;
+			}, 1000);
 		};
 
 		$rootScope.removeItemFromList = function(id, list) {
@@ -598,7 +606,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				template: $$config.modalTemplates + 'confirmBox.html',
 				controller: 'ConfirmBox',
 				scope: scope,
-				className: 'ngdialog-confirm-box',
+				className: 'ngdialog-tutorial ngdialog-theme-default ngdialog-confirm-box',
 				closeByDocument: false,
 				showClose: false,
 				closeByEscape: true,
