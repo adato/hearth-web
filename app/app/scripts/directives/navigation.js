@@ -6,8 +6,8 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('navigation', [
-	'$rootScope', 'Auth', '$state', '$location', '$timeout',
-	function($rootScope, Auth, $state, $location, $timeout) {
+	'$rootScope', 'Auth', '$state', '$location',
+	function($rootScope, Auth, $state, $location) {
 		return {
 			restrict: 'E',
 			scope: true,
@@ -36,6 +36,7 @@ angular.module('hearth.directives').directive('navigation', [
 					$scope.searchFilterDisplayed = !$scope.searchFilterDisplayed;
 
 					if ($scope.searchFilterDisplayed) {
+						console.log('WATCH');
 						setTimeout(function() {
 							$(document).on('click', $scope.closeFilter);
 							$(document).keyup($scope.watchFilterKey);
@@ -55,20 +56,6 @@ angular.module('hearth.directives').directive('navigation', [
 				$scope.isFilterActive = function(filter) {
 					return $scope.searchQuery.type == filter;
 				};
-
-				$timeout(function() {
-					$('html').on('DOMMouseScroll mousewheel', function(e) {
-						if (e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0) { //alternative options for wheelData: wheelDeltaX & wheelDeltaY
-							//scroll down
-							console.log('Down');
-							$("#navigation .autohide").addClass("hide-nav-bar");
-						} else {
-							//scroll up
-							console.log('Up');
-							$("#navigation .autohide").removeClass("hide-nav-bar");
-						}
-					});
-				});
 			}
 
 		};
