@@ -16,7 +16,7 @@ angular.module('hearth.directives').directive('datepicker', [
 			link: function(scope, element, attrs) {
 				attrs.$observe('datepicker', function() {
 					var now = new Date(),
-						limit = (new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)).getTime();
+						limit = (new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0)).getTime();
 					var dateFormat = attrs.datepickerFormat || 'd. M. y';
 					// var dateFormat = 'd. M. y';
 

@@ -385,14 +385,12 @@
 			bottom: 0;
 			right: $global-radius;
 		}
-		;
 		font-size: 0.8em;
 	}
 	.row {
 		margin: {
 			bottom: $fontSize / 2;
 		}
-		;
 	}
 	.messageBox {
 		position: relative;
@@ -405,6 +403,13 @@
 	.community-selector {
 		display: block;
 		height: auto !important;
+	}
+
+	.alert-box {
+		color: red !important;
+		background-color: white !important;
+		top: 0px !important;
+		margin-bottom: 0px !important;
 	}
 }
 

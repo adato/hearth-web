@@ -289,7 +289,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.processErrorResult = function() {
-			Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
+			Notify.addSingleTranslate('NOTIFY.POST_EDIT_FAILED', Notify.T_ERROR, ".edit-post-notify-container");
 			$scope.sending = false;
 			$rootScope.globalLoading = false;
 		};
