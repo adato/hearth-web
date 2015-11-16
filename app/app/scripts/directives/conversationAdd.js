@@ -7,7 +7,7 @@
  */
 angular.module('hearth.directives').directive('conversationAdd', [
 	'$rootScope', 'Conversations', 'Notify',
-	function($rootScope, Conversations, Notify) {
+	function ($rootScope, Conversations, Notify) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -19,36 +19,36 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				close: '=',
 			},
 			templateUrl: 'templates/directives/conversationAdd.html',
-			link: function($scope, element) {
+			link: function ($scope, element) {
 				$scope.sendingMessage = false;
 				$scope.showError = {
 					text: false,
 					participant_ids: false,
 				};
 				$scope.message = {
-					participant_ids: [],
+					recipients_ids: [],
 					title: '',
 					text: '',
 				};
 
-				$scope.hideRecipientsError = function() {
+				$scope.hideRecipientsError = function () {
 					$scope.showError.participant_ids = false;
 				};
 
-				$scope.showRecipientsError = function() {
+				$scope.showRecipientsError = function () {
 					if (!$scope.message.participant_ids.length)
 						$scope.showError.participant_ids = true;
 				};
 
-				$scope.isValid = function(msg) {
+				$scope.isValid = function (msg) {
 					var invalid = false;
 
 					// if there is presetted recipient, add him to list
 					if ($scope.recipient) {
-						msg.participant_ids = [$scope.recipient];
+						msg.recipients_ids = [$scope.recipient];
 
 						// else test if there are selected recipients
-					} else if (!msg.participant_ids.length) {
+					} else if (!msg.recipients_ids.length) {
 						invalid = $scope.showError.participant_ids = true;
 					}
 
@@ -57,17 +57,29 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					return !invalid;
 				};
 
-				$scope.serialize = function(msg) {
-					msg.participant_ids = msg.participant_ids.map(function(item) {
-						return item._id
+				$scope.serialize = function (msg) {
+					msg.recipients_ids.map(function (item) {
+						if (item._type === 'Community') {
+							if (!msg.community_ids) {
+								msg.community_ids = [];
+							}
+							msg.community_ids.push(item._id);
+						} else {
+							if (!msg.participant_ids) {
+								msg.participant_ids = [];
+							}
+							msg.participant_ids.push(item._id);
+						}
 					});
+
+					delete msg.recipients_ids;
 					return msg;
 				};
 
 				/**
 				 * Validate message and send to API
 				 */
-				$scope.addMessage = function(msg) {
+				$scope.addMessage = function (msg) {
 					if (!$scope.isValid(msg))
 						return false;
 
@@ -76,7 +88,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					if ($scope.sendingMessage) return false;
 					$scope.sendingMessage = true;
 
-					Conversations.add(data, function(res) {
+					Conversations.add(data, function (res) {
 						// $scope.sendingMessage = false;
 
 						if ($scope.onSuccess)
@@ -86,7 +98,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
 						$scope.$emit("conversationCreated", res);
 						$scope.close(res);
-					}, function(err) {
+					}, function (err) {
 						// $scope.sendingMessage = false;
 
 						if ($scope.onError)
