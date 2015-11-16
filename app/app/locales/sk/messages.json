@@ -48,7 +48,13 @@
 		"SHOW_POSTS_ON_MAP": "Zobraziť inzeráty na mape",
 		"HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
 		"CREATE_NEW_ADD": "Vložiť nový dar alebo prianie",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
+		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"USER": {
+			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
+		},
+		"COMMUNITY": {
+			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+		}
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to ľúto, ale stránka, ktorú hľadáte, pravdepodobne neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenájdené",
@@ -491,6 +497,7 @@
 	"title-required": "Titulok je príliš krátky. Pridajte ešte aspoň pár slov...",
 	"user": "jednotlivci",
 	"you-will-find-me": "Nájdete ma v",
+	"community-operate-in": "Pôsobíme v",
 	"activities": {
 		"first_person": {
 			"new_post": "<p>Pridal(a) ste inzer&aacute;t <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
@@ -828,6 +835,7 @@
 	"USER_HAS_NO_POSTS_YET": "Užívateľ zatiaľ nemá žiadne inzeráty",
 	"ALL_POSTS": "Všetky príspevky",
 	"MEET_USER": "Spoznajte užívateľa",
+	"MEET_COMMUNITY": "Spoznajte komunitu",
 	"USER_HAS_REGISTERED": "Užívateľ sa registroval",
 	"YOU_HAVE_REGISTERED": "Registroval(a) ste sa",
 	"THEY_WROTE_ME": "Ohodnotili ma",
@@ -893,6 +901,7 @@
 		"COMMUNITY_LEAVE_FAILED": "Opustenie komunity sa nepodarilo.",
 		"COMMUNITY_APPROVE_APPLICATION_SUCCESS": "Schválenie prihlášky prebehlo úspešne.",
 		"COMMUNITY_APPROVE_APPLICATION_FAILED": "Pri schvaľovaní došlo k chybe.",
+		"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
 		"SIGNUP_PROCESS_SUCCESS": "Registrácia bola úspešná.",
 		"SIGNUP_PROCESS_ERROR": "Pri registrácii došlo k chybe.",
 		"RESET_PASSWORD_FAILED": "Požiadavka na obnovu hesla sa nepodarila.",

@@ -48,7 +48,13 @@
 		"SHOW_POSTS_ON_MAP": "Show posts on map",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
 		"CREATE_NEW_ADD": "Add a new gift or wish",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
+		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"USER": {
+			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
+		},
+		"COMMUNITY": {
+			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+		}
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -489,6 +495,7 @@
 	"title-required": "Title is too short. Add a few more words please...",
 	"user": "Users",
 	"you-will-find-me": "You can find me in",
+	"community-operate-in": "We operate in",
 	"activities": {
 		"first_person": {
 			"new_post": "<p>You have created the new ad <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
@@ -817,6 +824,7 @@
 	"USER_HAS_NO_POSTS_YET": "User has no posts yet.",
 	"ALL_POSTS": "All posts",
 	"MEET_USER": "Meet user",
+	"MEET_COMMUNITY": "Meet community",
 	"USER_HAS_REGISTERED": "User has joined",
 	"YOU_HAVE_REGISTERED": "You have joined",
 	"THEY_WROTE_ME": "Rated me",
@@ -882,6 +890,7 @@
 		"COMMUNITY_LEAVE_FAILED": "Leaving community has failed.",
 		"COMMUNITY_APPROVE_APPLICATION_SUCCESS": "Application has been successfully approved.",
 		"COMMUNITY_APPROVE_APPLICATION_FAILED": "Approval has failed.",
+		"COMMUNITY_HAS_REGISTERED": "Community registered",
 		"SIGNUP_PROCESS_SUCCESS": "Registration has been successful.",
 		"SIGNUP_PROCESS_ERROR": "Registration has failed. Sorry...",
 		"RESET_PASSWORD_FAILED": "Request to renew password has failed.",

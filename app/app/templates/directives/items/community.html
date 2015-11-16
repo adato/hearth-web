@@ -1,53 +1,44 @@
-<article class="_item {{item.type}} _type_community row" id="post_{{:: item._id }}">
+<article class="_item row" id="user_{{:: item._id }}">
 	<!-- MARKET ITEM POST Start -->
 	<div class="medium-2 columns item-top">
 		<!-- MARKET ITEM POST AVATAR Start -->
 		<div class="row v-m-small">
-			<div class="_avatar small-2 medium-12 column">
-				<div class="_photo">
-					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">
-						<img ng-src="{{item.avatar.large}}" alt="{{item.name}}" />
-					</a>
-				</div>
+			<div info-box="item">
+				<avatar class="_avatar small-2 medium-12 column" href="getProfileLink(item._type, item._id)" src="item.avatar.normal" type="item._type"></avatar>
 				<div class="_name show-for-medium-up">
 					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">{{ item.name }}</a>
 				</div>
 			</div>
 			<div class="_karma small-3 medium-12 columns">
-				<div class="karma" ng-class="{empty: !item.karma, separator: item.up_votes && item.down_votes}" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.down_votes }}">
-					<div class="positive" style="width:{{:: item.karma}}"></div>
-				</div>
+				<karma-bar for="item"></karma-bar>
 			</div>
-			<div class="_time small-6 columns hidden-for-medium-up">
+			<div class="time small-6 columns hidden-for-medium-up">
 				<span>{{item.created_at | ago}}</span>
 			</div>
 		</div>
 	</div>
 	<!-- MARKET ITEM POST AVATAR End -->
 	<!-- MARKET ITEM POST CONTENT Start -->
-	<div class="medium-10 columns">
+	<div class="medium-10 columns item-body">
 		<div class="_content">
 			<div class="_title clearfix">
-				<h2 class="left">
-					<a ng-href="{{:: getProfileLink(item._type, item._id)}}">
-						{{item.name}}
-					</a>
-				</h2>
-				<div class="_time right show-for-medium-up">
+				<div class="time right show-for-medium-up">
 					{{item.created_at | ago}}
 				</div>
+				<h2>
+					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">{{ item.name }}</a>
+				</h2>
 			</div>
-			<div class="location row">
+			<div class="location row" ng-if="item.locations.length">
 				<i class="fa fa-map-marker"></i>
 				<ul>
-					<li ng-if="item.location_unlimited || !item.locations.length">{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
-					</li>
-					<li ng-if="!item.location_unlimited" ng-repeat="(locationId, location) in item.locations" ng-if="location.short_address" ng-class="{delimiter: !$last}">{{ location.short_address }}
+					<li ng-repeat="(locationId, location) in item.locations" ng-if="location.short_address" ng-class="{delimiter: !$last}">{{ location.short_address }}
 					</li>
 				</ul>
 			</div>
 			<div class="text">
-				<p ng-bind-html="item.description | linky:'_blank' | nl2br"></p>
+				<p ng-if="item.description" ng-bind-html="item.description | linky:'_blank' | nl2br"></p>
+				<p ng-if="!item.description" ng-bind-html="'MARKETPLACE.COMMUNITY.INFO_NOT_FILLED' | translate"></p>
 			</div>
 		</div>
 		<!-- MARKET ITEM POST CONTENT End -->

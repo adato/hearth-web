@@ -48,7 +48,13 @@
 		"SHOW_POSTS_ON_MAP": "Zobrazit na mapě",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
 		"CREATE_NEW_ADD": "Vložit nový dar nebo přání",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu."
+		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"USER": {
+			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
+		},
+		"COMMUNITY": {
+			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
+		}
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáte, pravděpodobně neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenalezeno",
@@ -491,6 +497,7 @@
 	"title-required": "Titulek je příliš krátký. Přidejte ještě aspoň pár slov...",
 	"user": "jednotlivci",
 	"you-will-find-me": "Najdete mne v",
+	"community-operate-in": "Působíme v",
 	"activities": {
 		"first_person": {
 			"new_post": "Přidal(a) jste inzerát <a href=\"{{url}}\">{{name}}<\/a>.",
@@ -828,6 +835,7 @@
 	"USER_HAS_NO_POSTS_YET": "Uživatel zatím nemá žádné inzeráty",
 	"ALL_POSTS": "Všechny příspěvky",
 	"MEET_USER": "Poznejte uživatele",
+	"MEET_COMMUNITY": "Poznejte komunitu",
 	"USER_HAS_REGISTERED": "Uživatel se přidal",
 	"YOU_HAVE_REGISTERED": "Přidal\/a jste se",
 	"THEY_WROTE_ME": "Ohodnotili mne",
@@ -893,6 +901,7 @@
 		"COMMUNITY_LEAVE_FAILED": "Opuštění komunity se nezdařilo.",
 		"COMMUNITY_APPROVE_APPLICATION_SUCCESS": "Schválení přihlášky proběhlo úspěšně",
 		"COMMUNITY_APPROVE_APPLICATION_FAILED": "Při schvalování došlo k chybě.",
+		"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
 		"SIGNUP_PROCESS_SUCCESS": "Registrace byla úspěšná.",
 		"SIGNUP_PROCESS_ERROR": "Při registraci došlo k chybě.",
 		"RESET_PASSWORD_FAILED": "Požadavek na obnovu hesla se nezdařil.",
