@@ -251,8 +251,12 @@
 				<br>
 				<br>
 
-				<textarea autosize-textarea ng-attr-placeholder="Type here to type here" ng-model="components.textarea" name="text"></textarea>
-				<max-len-counter value="components.textarea" max-len="300"></max-len-counter>
+				<input-max-length input-type="textarea" show-counter="false" min-length="5" max-length="50" placeholder="Type here to type here" model="components.textarea" name="text"></input-max-length>
+
+
+				<!--textarea autosize-textarea ng-attr-placeholder="Type here to type here" ng-model="components.textarea" name="text"></textarea>
+
+				<max-len-counter value="components.textarea" max-len="300"></max-len-counter-->
 				<br>
 				<br>
 				<Br>
