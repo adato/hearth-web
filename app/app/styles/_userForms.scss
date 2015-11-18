@@ -133,13 +133,14 @@ $max-modal-window-width:30em;
 			font-size: $ui-text-font-size;
 			padding:$ui-small-grid-size;
 			font-weight:normal;
-			background:#F7F7F7;
+			background:color(4);
 		}
 	}
 	.scroll {
 		overflow-y: scroll;
 		height: 31em;
-		&>* {
+		padding-right:5px;
+		* {
 			font-size:$ui-text-font-size;
 		}
 	}
