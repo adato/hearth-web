@@ -243,7 +243,9 @@
 					<span ng-show="form.email.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
 				</p>
 				<br>
-				<Br>
+				<br>
+				<br>
+				<br>
 				<br>
 				<br>
 				<br>
@@ -251,16 +253,22 @@
 				<br>
 				<br>
 
-				<input-max-length input-type="textarea" show-counter="false" min-length="5" max-length="50" placeholder="Type here to type here" model="components.textarea" name="text"></input-max-length>
+				<input-max-length input-type="input" show-counter="false" min-length="0" max-length="12" placeholder="Type here to input [min=0, max=12, counter=false]" model="components.text.input" name="textInput"></input-max-length>
 
-
-				<!--textarea autosize-textarea ng-attr-placeholder="Type here to type here" ng-model="components.textarea" name="text"></textarea>
-
-				<max-len-counter value="components.textarea" max-len="300"></max-len-counter-->
 				<br>
 				<br>
-				<Br>
 				<br>
+				<br>
+				<br>
+				<br>
+
+				<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="50" placeholder="Type here to textarea min=3, max=50, counter=true" model="components.text.textarea" name="textTextarea"></input-max-length>
+
+				<br>
+				<br>
+				<br>
+				<br>
+
 				<tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2" max-length="20">
 					<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 				</tags-input>
@@ -302,11 +310,24 @@
 			<br>
 			<br>
 			<br>
-			<h5>Textarea (autosize a max-len-counter)</h5>
+
+			<h5>Input Min and Max Length</h5>
 			<code>
-				&lt;textarea autosize-textarea ng-attr-placeholder="Type here to type here" name="text"&gt;&lt;/textarea&gt;
-				<br>&lt;max-len-counter value=&quot;components.textarea&quot; max-len=&quot;300&quot;&gt;&lt;/max-len-counter&gt;
+				&lt;input-max-length input-type="input" show-counter="false" min-length="0" max-length="12" placeholder="Type here to input [min=0, max=12, counter=false]" model="components.text.input" name="textInput"&gt;&lt;/input-max-length&gt;
 			</code>
+			<br>
+			<br>
+			<br>
+
+			<h5>Textarea Min and Max Length</h5>
+			<code>
+				&lt;input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="50" placeholder="Type here to textarea min=3, max=50, counter=true" model="components.text.textarea" name="textTextarea"&gt;&lt;/input-max-length&gt;
+			</code>
+			<br>
+			<br>
+			<br>
+
+
 			<h5>Tags input. (ngTagsInput) </h5>
 			<code>
 				&lt;tags-input refocus-input-on-tab class="tags" ng-model="MODEL" placeholder="Type here" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="2"

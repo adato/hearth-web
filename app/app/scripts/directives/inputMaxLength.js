@@ -11,6 +11,7 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 			restrict: 'AE',
 			replace: true,
 			transclude: true,
+			require: '^form',
 			scope: {
 				inputType: '@',
 				name: '@',
@@ -22,11 +23,9 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 				resized: "&"
 			},
 			templateUrl: 'templates/directives/inputMaxLength.html',
-			link: function(scope, element, attrs) {
-				scope.showError = false;
-
+			link: function(scope, element, attrs, formCtrl) {
 				setTimeout(function() {
-					var el = ($(element).prop('tagName') == 'TEXTAREA') ? $(element) : $('textarea', element);
+					var el = ($(element).prop('tagName') === 'TEXTAREA') ? $(element) : $('textarea', element);
 					var p = el.attr('placeholder');
 					el.attr('placeholder', '').autosize({
 						append: '',
@@ -34,18 +33,30 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 					}).show().trigger('autosize.resize').attr('placeholder', p);
 				});
 
+				scope.isBlur = function() {
+					scope.showErrorMin = true;
+				}
+				scope.isFocus = function() {
+					scope.showErrorMin = false;
+				}
 
 				scope.$watch('model', function(val) {
+					scope.form = formCtrl[scope.name];
+
 					if (val) {
 						scope.typed = val.length;
+
+						if (scope.typed > scope.maxLength) {
+							scope.showError = true;
+						} else {
+							scope.showError = false;
+						}
 					} else {
 						scope.typed = 0;
+						scope.showError = false;
 					}
 				});
 
-				if (scope.showCounter) {
-
-				}
 			}
 		};
 	}
