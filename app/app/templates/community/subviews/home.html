@@ -5,11 +5,13 @@
 		<div class="box applications" ng-if="mine">
 			<div ng-if="!applications.length">
 				<h3>{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}</h3>
+
 				<p>{{:: 'COMMUNITY_HAS_NO_APPLICATIONS' | translate}}</p>
 			</div>
 			<div ng-if="applications.length">
 				<h3 class="small-8 fleft">{{:: 'COMMUNITY_NEW_APPLICATIONS' | translate}}: {{applications.length}}</h3>
 				<a class="fright" ng-if="false">{{:: 'COMMUNITY_ACCEPT_ALL' | translate}}</a>
+
 				<div class="clear"></div>
 				<div ng-repeat="(id, item) in applications track by item._id" class="application" ng-init="item.prevDate = ($index > 0) ? applications[$index-1].followed_since : null">
 					<div class="applications-item">
@@ -46,6 +48,7 @@
 		</div>
 		<div class="ratings box home-ratings" ng-if="receivedRatings.length">
 			<h3>{{:: 'COMMUNITY_RATING_TITLE' | translate}}</h3>
+
 			<div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
 			<div class="buttons">
 				<a href="{{:: getProfileLink('Community', info._id)}}/received-ratings">
@@ -58,7 +61,6 @@
 		<div class="ads box">
 			<h3 class="iblock">
 				{{:: 'COMMUNITY_POSTS' | translate }}
-
 				<a ng-if="mine || info.is_member" class="create-ad-sig fright" ng-click="addItem()" title="{{:: 'AD_ADD_LABEL' | translate}}">
 					<i class="fa fa-plus-square"></i>
 				</a>
@@ -66,6 +68,7 @@
 			<div class="clear"></div>
 			<div ng-if="mine">
 				<p ng-if="! posts.data.length && !info.post_total">{{:: 'COMMUNITY_HAS_NO_POSTS_YET' | translate }}</p>
+
 				<p ng-if="! posts.data.length && info.post_total > 0">{{:: 'COMMUNITY_HAS_ONLY_INACTIVE_POSTS' | translate }}</p>
 			</div>
 			<div ng-if="!mine">
@@ -82,10 +85,39 @@
 		</div>
 	</div>
 	<div class="right-pane">
-		<div class="activities box">
+		<div class="user-about">
+			<h3>{{:: 'MEET_COMMUNITY' | translate }} {{ info.name }}</h3>
+
+			<div class="line">
+				<div class="descr" ng-if="info.locations.length">
+					<i class="fa fa-map-marker"></i> {{:: 'community-operate-in' | translate}}
+					<span ng-repeat="(locationId, location) in info.locations">
+						<span ng-if="location.short_address">{{:: location.short_address}}
+							<span ng-if="!$last">;&nbsp;</span>
+						</span>
+					</span>
+				</div>
+				<div class="descr reg-date fleft">
+					<i class="fa fa-asterisk"></i>
+					<span>{{:: 'COMMUNITY_HAS_REGISTERED' | translate }}</span> {{ info.created_at | ago}}
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="line">
+				<div class="margin-top fleft">
+					<a class="bold" ng-if="!info.only_replies" ng-click="sendMessage(info)">{{:: 'SEND_MESSAGE' | translate }}</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear">&nbsp;</div>
+		</div>
+		<div class="activities">
 			<h3>{{:: 'COMMUNITY_ACTIVITY' | translate }}</h3>
+
 			<p ng-if="mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_ME' | translate }}</p>
+
 			<p ng-if="! mine && ! activityLog.length">{{:: 'COMMUNITY.HOME.NO_ACTIVITY_OTHER' | translate }}</p>
+
 			<div ng-if="activityLog.length">
 				<div ng-include="'templates/_activityList.html'"></div>
 			</div>

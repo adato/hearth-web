@@ -26,7 +26,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					participant_ids: false,
 				};
 				$scope.message = {
-					participant_ids: [],
+					recipients_ids: [],
 					title: '',
 					text: '',
 				};
@@ -45,10 +45,10 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
 					// if there is presetted recipient, add him to list
 					if ($scope.recipient) {
-						msg.participant_ids = [$scope.recipient];
+						msg.recipients_ids = [$scope.recipient];
 
 						// else test if there are selected recipients
-					} else if (!msg.participant_ids.length) {
+					} else if (!msg.recipients_ids.length) {
 						invalid = $scope.showError.participant_ids = true;
 					}
 
@@ -58,9 +58,21 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				};
 
 				$scope.serialize = function(msg) {
-					msg.participant_ids = msg.participant_ids.map(function(item) {
-						return item._id
+					msg.recipients_ids.map(function(item) {
+						if (item._type === 'Community') {
+							if (!msg.community_ids) {
+								msg.community_ids = [];
+							}
+							msg.community_ids.push(item._id);
+						} else {
+							if (!msg.participant_ids) {
+								msg.participant_ids = [];
+							}
+							msg.participant_ids.push(item._id);
+						}
 					});
+
+					delete msg.recipients_ids;
 					return msg;
 				};
 
