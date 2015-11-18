@@ -70,7 +70,7 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 			var data = {
 				postId: $scope.post._id,
 				"ids[]": $scope.getCheckedCommunities(),
-				message: encodeURIComponent($scope.message),
+				message: $scope.message,
 			};
 
 			if ($scope.sending || !$scope.validate(data))
