@@ -120,18 +120,28 @@ $max-modal-window-width:30em;
 	top: 0px;
 	bottom: 0px;
 	width: $terms-width;
-	font-size: .7rem;
+	font-size: $ui-text-font-size;
 	padding: 1rem;
 	padding-right: .5rem;
 	text-align: left;
 	transition: 0.5s linear all;
 	opacity: 1;
 	h3 {
-		font-size: 1.3rem;
+		font-size: $ui-title-font-size;
+		font-weight:bold;
+		&.new-terms { 
+			font-size: $ui-text-font-size;
+			padding:$ui-small-grid-size;
+			font-weight:normal;
+			background:#F7F7F7;
+		}
 	}
 	.scroll {
 		overflow-y: scroll;
 		height: 31em;
+		&>* {
+			font-size:$ui-text-font-size;
+		}
 	}
 	p {
 		text-align: justify;

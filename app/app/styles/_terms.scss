@@ -93,10 +93,19 @@
 	}
 }
 
-.static-page-container .new-terms {
+.static-page-container h3.new-terms {
 	background: #eee;
 	padding: 25px;
 }
+
+.static-page-container div.new-terms {
+	li { list-style-type:none;}
+	dd { 
+		margin-left:15px; 
+		ul { margin-top: 10px; }
+	}
+}
+
 
 .static-page-container .abstract {
 	margin-left: 0;
