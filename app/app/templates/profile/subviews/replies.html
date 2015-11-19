@@ -6,9 +6,9 @@
 	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}">
 		<section class="large-2 columns user">
 			<div info-box="item.post.author">
-				<a ng-href="{{:: getProfileLink(item.post.author._type, item.post.author._id) }}">
-					<avatar type="item.post.author._type" src="item.post.author.avatar.large"></avatar>
-					<div class="name">{{:: item.post.author.name }}</div>
+				<a ng-href="{{:: getProfileLink(info._type, info._id) }}">
+					<avatar type="info._type" src="info.avatar.large"></avatar>
+					<div class="name">{{:: info.name }}</div>
 				</a>
 			</div>
 		</section>
