@@ -4,3 +4,4 @@ dist
 .sass-cache
 app/app/vendor
 target/
+public
