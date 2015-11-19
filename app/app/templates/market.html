@@ -1,14 +1,12 @@
-<div class="_market v2 row">
-	<!-- MARKET Start -->
-	<div class="large-3 columns _filter">
-		<!-- MARKET FILTER Start -->
-		<filterbar filter=filter></filterbar>
-		<!-- MARKET FILTER End -->
-	</div>
-	<div class="large-9 columns _item-list">
-		<div class="marketplace-items-container row" ng-if="loaded && !items.length">
-			<div ng-show="filterIsOn" class="columns">
-				<div class="large-12 small-12 medium-12 columns box text-center not-found-box">
+<div id="notify-container-market"></div>
+<div class="market row">
+	<marketplace-banner ng-if="language == 'sk'" image="/app/images/banner/skBanner.png" title="Vitajte!" code="sk-welcome-banner"></marketplace-banner>
+	<filterbar filter=filter></filterbar>
+	<div ng-hide="loaded" class="margin-top">&nbsp;</div>
+	<div class="large-12 small-12 medium-12 columns" ng-hide="!loaded">
+		<div class="marketplace-items-container" ng-if="!items.length">
+			<div ng-show="filterIsOn" class="row">
+				<div class="large-10 small-10 medium-10 push-2 columns box text-center not-found-box">
 					<p translate class="padding-2">MARKETPLACE.FILTER_NOT_FOUND</p>
 					<div class="large-6 small-6 medium-6 columns text-center">
 						<a ng-click="toggleFilter()">{{:: "MARKETPLACE.EDIT_FILTER" | translate}}</a>
@@ -19,17 +17,15 @@
 				</div>
 			</div>
 			<div ng-show="!filterIsOn" class="row">
-				<div class="large-12 small-12 medium-12 columns box text-center not-found-box">
+				<div class="large-10 small-10 medium-10 push-2 columns box text-center not-found-box">
 					<p class="padding-2">{{:: "MARKETPLACE.NOTHING_FOUND" | translate }}</p>
-					<div class="text-center">
-						<a ng-click="refreshPosts()">{{:: "MARKETPLACE.REFRESH_AFTER_ERROR" | translate}}</a>
-					</div>
 				</div>
 			</div>
 		</div>
-		<!-- MARKET ITEMS Start -->
 		<div id="market-item-list" when-scrolled="load()" offset="1000" loading-in-progress="loading || disableLazyLoad" class="marketplace-items-container">
+			<!-- <item keywords-active="keywordsActive" delayed-view="item.index" item="item" ng-repeat="item in items track by item._id" user="user" community="null"></item> -->
 		</div>
-		<div loading show="loading"></div>
 	</div>
+	<div class="clear"></div>
+	<div loading show="loading"></div>
 </div>

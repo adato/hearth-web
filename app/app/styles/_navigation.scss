@@ -1,4 +1,7 @@
-.top-bar,
+$topBarHeight: rem-calc(40);
+$topBarLabelSize: rem-calc(14);
+$topBarImageSize: 1.8em;
+
 .left-off-canvas-menu {
 	a.active {
 		font-weight: bold;
@@ -69,39 +72,6 @@
 	}
 }
 
-.top-bar ul > li.has-dropdown .dropdown:before {
-	display: none;
-}
-
-.top-bar ul > li.has-dropdown .dropdown:after {
-	display: none;
-}
-
-.top-bar-section {
-	.has-dropdown {
-		&:hover {
-			.dropdown {
-				display: block;
-			}
-		}
-		.dropdown {
-			min-width: 177px;
-		}
-	}
-	.no-hover:hover {
-		background-color: white;
-		span {
-			background-color: white;
-		}
-	}
-	.social-menu {
-		li {
-			display: inline-block;
-			width: auto !important;
-		}
-	}
-}
-
 .tab-bar {
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -141,6 +111,13 @@
 }
 
 @media #{$medium-down} {
+
+	#unreaded-messages-counter {
+		.alert {
+			font-weight: bold;
+			font-size: 15px;
+		}
+	}
 	.small-search {
 		padding: 0px;
 		text-align: center;
@@ -224,31 +201,165 @@
 }
 
 @media #{$large-up} {
-	.top-bar {
-		position: fixed;
-		left: 0px;
-		right: 0px;
-		top: 0px;
-		z-index: 50;
-	}
-	.orange-bar {
-		position: fixed;
-		left: 0px;
-		right: 0px;
-		top: 40px;
-		z-index: 40;
-		max-height: 200px !important;
-		padding-bottom: 10px !important;
-		padding-top: 18px !important;
-	}
-	#homepage-hero {
-		margin-top: 120px;
-	}
-}
-
-#unreaded-messages-counter {
-	.alert {
-		font-weight: bold;
-		font-size: 15px;
+	.navigation {
+		box-shadow: 0 2px 2px rgba(black, 0.3);
+		background-color: color(1);
+		padding: $fontSize / 2;
+		width: 100%;
+		.row {
+			margin: 0px auto !important;
+		}
+		.fa.icon-community {
+			position: relative;
+			top: -3px;
+			left: -7px;
+		}
+		.fa.icon-marketplace,
+		.fa.fa-question-circle,
+		.fa.fa-sign-in {
+			position: relative;
+			top: -3px;
+		}
+		.columns {
+			&.icons {
+				text-align: right;
+			}
+			>.separator {
+				width: $topBarHeight;
+				height: $topBarHeight;
+				display: inline-block;
+			}
+			> a,
+			>span>a {
+				display: inline-block;
+				color: lighten(color(1), 25%);
+				text-align: center;
+				transition: color 1s, text-shadow 2s;
+				label {
+					color: lighten(color(1), 25%);
+					transition: color 1s, text-shadow 2s;
+					line-height: 1;
+					font-size: $topBarLabelSize;
+				}
+				margin: {
+					left: $fontSize / 2;
+					right: $fontSize / 2;
+				}
+				.fa {
+					font-size: $topBarHeight - $topBarLabelSize;
+				}
+				.img {
+					opacity: 0.8;
+					overflow: hidden;
+					transition: opacity 1s;
+					border: 2px solid lighten(color(1), 25%);
+					img {
+						border-radius: 50%;
+					}
+				}
+				&.active,
+				&:hover {
+					color: lighten(color(1), 50%);
+					.fa {
+						text-shadow: 0 0 5px white;
+					}
+					label {
+						color: lighten(color(1), 50%);
+					}
+					.img {
+						opacity: 1;
+						box-shadow: 0 0 5px white;
+					}
+				}
+				&.logo {
+					display: block;
+					height: $topBarHeight !important;
+					margin: {
+						bottom: 0;
+						right: 0;
+						top: 0;
+						left: -32px;
+					}
+				}
+			}
+		}
+		.dropdown {
+			box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+			left: 6px;
+			.fa {
+				width: $fontSize;
+			}
+		}
+		.avatar {
+			position: static;
+			margin: 0px;
+			img {
+				width: 25px;
+				height: 25px;
+			}
+		}
+		.user-dropdown {
+			p.heading {
+				text-align: left;
+				padding-left: 5px;
+				margin-bottom: 0px;
+				color: #7c766a;
+			}
+			.fa {
+				margin-right: 5px;
+			}
+			.user-switch-item {
+				padding-top: 6px;
+				padding-bottom: 3px;
+			}
+			.avatar {
+				margin-right: 5px;
+			}
+			span.name {
+				position: relative;
+				top: -6px;
+			}
+			.user-switch-item {
+				margin-left: 10px;
+			}
+		}
+		.search-button {
+			position: absolute;
+			right: .8rem;
+			top: 12px;
+			color: color(1);
+			cursor: pointer;
+		}
+		.top-bar-messages {
+			.messages-icon::after {
+				color: #ffa97a;
+				content: "";
+				font-family: FontAwesome;
+				font-size: 30px;
+				font-style: normal;
+				font-weight: normal;
+				left: 0;
+				right: 0;
+				top: -7px;
+				position: absolute;
+				text-decoration: inherit;
+				z-index: -1;
+				transition: color 1s, text-shadow 2s;
+			}
+			&>a:hover .messages-icon::after,
+			&>a.active .messages-icon::after {
+				color: lighten(color(1), 50%);
+			}
+			.messages-icon {
+				background: none;
+				color: #fa5800;
+				font-weight: bold;
+				position: relative;
+				height: 30px;
+				width: 30px;
+				top: 5px;
+				display: inline-block;
+			}
+		}
 	}
 }
