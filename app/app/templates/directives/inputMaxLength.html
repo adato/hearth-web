@@ -1,0 +1,10 @@
+<div>
+	<textarea ng-if="inputType === 'textarea'" ng-model="$parent.model" ng-attr-placeholder="{{placeholder}}" name="{{name}}" ng-minlength="minLength" ng-maxlength="maxLength" ng-model-options="{allowInvalid: true}" ng-blur="isBlur()" ng-focus="isFocus()"></textarea>
+	<input ng-if="inputType === 'input'" type="text" ng-model="$parent.model" ng-attr-placeholder="{{placeholder}}" name="{{name}}" ng-minlength="minLength" ng-maxlength="maxLength" ng-model-options="{ allowInvalid: true }" ng-blur="isBlur()" ng-focus="isFocus()"
+	/>
+	<div ng-if="showCounter" translate="WRITTEN_FROM_ALLOWED" translate-values="{maxLen: maxLength, len: typed}" ng-class="{'error': showError}"></div>
+	<p class="error" ng-if="!showCounter && form.$error">
+		<span ng-show="form.$error.minlength && showErrorMin">Text je příliš krátký.</span>
+		<span ng-show="form.$error.maxlength">Text je příliš dlouhý.</span>
+	</p>
+</div>
