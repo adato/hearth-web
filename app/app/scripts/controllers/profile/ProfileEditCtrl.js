@@ -132,7 +132,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			if ($scope.showContactMail && $scope.profileEditForm.contact_email.$invalid) {
 				res = false;
-				console.log($scope.showContactMail);
 				$scope.showError.contact_email = true;
 			}
 
