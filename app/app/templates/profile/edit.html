@@ -21,11 +21,7 @@
 				<div class="name margin">
 					<label>
 						{{:: 'NAME' | translate }} *
-						<input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="profile.name" class="text-input" type='text' ng-required="true">
-
-						<div class="absolute error" ng-show="showError.name">
-							<span ng-show="profileEditForm.name.$error.required">{{:: 'ERR_NOT_FILLED_NAME' | translate }}</span>
-						</div>
+						<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" placeholder="{{:: 'NAME' | translate }}" model="profile.name" name="name"></input-max-length>
 					</label>
 				</div>
 				<div class="work margin">
