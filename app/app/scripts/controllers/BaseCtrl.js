@@ -724,7 +724,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// this will scroll to given element or first error message on page
 		$rootScope.scrollToError = function(el, cont) {
 			setTimeout(function() {
-				$rootScope.scrollToElement(el || $('.error').not('.alert-box'), cont);
+				$rootScope.scrollToElement(el || $('.error').not('.alert-box,.ng-hide'), cont);
 			});
 		};
 

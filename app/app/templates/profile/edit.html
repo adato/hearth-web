@@ -2,8 +2,9 @@
 	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
 		<div class="right small-12 large-5 medium-12 columns" ng-cloak>
 			<div image-preview files="profile.avatar" limit="5" limit-pixel-size="400" single-file="true">
-				<img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image exif-rotated />
-				<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" resized-thumbnail-image />
+				<img class="preview" ng-if="profile.avatar.file" ng-src="{{profile.avatar.file}}" resized-thumbnail-image exif-rotated/>
+				<img class="preview" ng-if="!profile.avatar.file && profile.avatar.large" ng-src="{{profile.avatar.large}}" resized-thumbnail-image/>
+
 				<div class="text">
 					<span class="fa fa-plus-square-o"></span>
 					<span>{{:: 'CHOOSE_AVATAR_FILE' | translate}}</span>
@@ -21,6 +22,7 @@
 					<label>
 						{{:: 'NAME' | translate }} *
 						<input name="name" ng-focus="showError.name = false" ng-blur="showError.name = true" ng-model="profile.name" class="text-input" type='text' ng-required="true">
+
 						<div class="absolute error" ng-show="showError.name">
 							<span ng-show="profileEditForm.name.$error.required">{{:: 'ERR_NOT_FILLED_NAME' | translate }}</span>
 						</div>
@@ -51,7 +53,8 @@
 			</h2>
 			<section class="languages">
 				<label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
-					<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG.' + lang | translate }}</checkbox>
+					<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG.' + lang | translate }}
+					</checkbox>
 				</label>
 				<span class="dropdown-container" dropdown="#language-drop">
 					<label class="trigger">
@@ -59,7 +62,8 @@
 					</label>
 					<ul id="language-drop" class="dropdown">
 						<label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) >-1 || profile.user_languages[lang]">
-							<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{:: 'MY_LANG.' + lang | translate }}</checkbox>
+							<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{:: 'MY_LANG.' + lang | translate }}
+							</checkbox>
 						</label>
 					</ul>
 				</span>
@@ -76,11 +80,13 @@
 						<label>
 							{{:: 'MY_EMAIL' | translate }} *
 							<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
+
 							<div class="error" ng-class="{absolute: showContactMail}" ng-show="showError.email">
 								<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 								<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
 							</div>
 						</label>
+
 						<div class="clear"></div>
 						<a ng-click="showContactMail = true || profile.contact_email !=''" ng-hide="showContactMail" class="controll">
 							<span class="fa fa-plus-square"></span>{{:: 'ADD' | translate }}
@@ -89,13 +95,15 @@
 					<div ng-show="showContactMail">
 						<label>
 							{{:: 'MY_CONTACT_EMAIL' | translate }}
-							<input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email' ng-required="true">
+							<input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email'>
+
 							<div class="error" ng-show="showError.contact_email">
 								<span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 								<span ng-show="profileEditForm.contact_email.$error.required">{{:: 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
 							</div>
 							<em>{{:: 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
 						</label>
+
 						<div>
 							<a ng-click="hideContactEmail()" class="controll">
 								<span class="fa fa-minus-square"></span>{{:: 'REMOVE' | translate }}
@@ -108,6 +116,7 @@
 						<div class="fa fa-phone"></div>
 						{{:: 'MY_PHONE' | translate }}
 						<input ng-model="profile.phone" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input" type="text" ng-pattern="/((\+420|00420) ?)?\d{3}( |-)?\d{3}( |-)?\d{3}/">
+
 						<div class="error" ng-show="showError.phone">
 							<span ng-show="profileEditForm.phone.$error.pattern">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
 						</div>
@@ -152,8 +161,10 @@
 					<label>
 						<span class="fa fa-globe"></span> {{:: 'MY_WEB' | translate }}
 					</label>
+
 					<div ng-repeat="web in profile.webs track by $index" class="web-item">
 						<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="profile.webs[$index]" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, profile.webs, $index)">
+
 						<div class="remove" ng-hide="$first">
 							<span class="fa fa-times-circle" ng-click="profile.webs.splice($index,1)"></span>
 						</div>
@@ -175,32 +186,31 @@
 					<label>
 						{{:: 'MY_TELL_ABOUT' | translate }}
 					</label>
-					<textarea autosize-textarea max-len="300" ng-attr-placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" ng-model="profile.about"></textarea>
-					<max-len-counter max-len="300" value="profile.about"></max-len-counter>
+					<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" model="profile.about" name="about"></input-max-length>
 				</div>
 				<div class="large-6 small-12 medium-6 columns">
 					<label>
 						{{:: 'MY_INTERESTS' | translate }}
 					</label>
-					<textarea autosize-textarea class="text-input" type="text" ng-model="profile.interests" ng-attr-placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}"></textarea>
-					<max-len-counter max-len="300" value="profile.interests"></max-len-counter>
+					<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" model="profile.interests" name="interests"></input-max-length>
 				</div>
 			</section>
 			<div class="clear"></div>
-			<br />
-			<br />
+			<br/>
+			<br/>
 			<section>
 				<div class="large-12 small-12 medium-12 columns">
 					<a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
 						<span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
 					</a>
-					<button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+					<button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}
+					</button>
 					<div class="fright error down-error" ng-show="messageBottom">
 						<span>{{ messageBottom | translate}}</span>
 					</div>
 				</div>
 			</section>
+		</div>
 	</form>
-	</div>
 </div>
 <div loading show="!loaded"></div>
