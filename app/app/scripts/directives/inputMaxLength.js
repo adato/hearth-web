@@ -18,12 +18,15 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 				placeholder: '@',
 				maxLength: '@',
 				minLength: '@',
+				required: '@',
 				showCounter: '=',
 				model: '=',
 				resized: "&"
 			},
 			templateUrl: 'templates/directives/inputMaxLength.html',
 			link: function(scope, element, attrs, formCtrl) {
+				scope.required = scope.required ? true : false;
+
 				setTimeout(function() {
 					var el = ($(element).prop('tagName') === 'TEXTAREA') ? $(element) : $('textarea', element);
 					var p = el.attr('placeholder');
