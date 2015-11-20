@@ -3,18 +3,10 @@
 	body .main-container {
 		min-width: 960px;
 		max-width: 960px;
+		padding: 0 3*$ui-small-grid-size;
 	}
 	#navigation {
 		margin: 0 auto;
-	}
-}
-
-@media #{$large-up} {
-	body .main-container {
-		padding: 0 3*$ui-small-grid-size;
-	}
-	.max-web-width {
-		max-width: 960px;
 	}
 }
 
