@@ -343,20 +343,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Make sure code styles are up to par and there are no obvious mistakes
-//		eslint: {
-//			target: ['<%= yeoman.app %>/scripts/{,*/}*.js']
-//		},
-
-//		scsslint: {
-//			allFiles: ['<%= yeoman.app %>/styles/*.scss'],
-//			options: {
-//				colorizeOutput: true,
-//				maxBuffer: 3000 * 1024,
-//				force: true,
-//			}
-//		},
-
 		jsbeautifier: {
 			files : ["<%= yeoman.app %>/scripts/**/*.js","<%= yeoman.app %>/templates/**/*.html"],
 			locales: {
@@ -367,11 +353,11 @@ module.exports = function(grunt) {
 				html: {
 					indentWithTabs: true,
 					endWithNewline: false,
-					unformatted:[],
+					unformatted:[]
 				},
 				css: {
 					indentWithTabs: true,
-					endWithNewline: false,
+					endWithNewline: false
 				},
 				js: {
 					indentWithTabs: true,
