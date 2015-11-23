@@ -4,7 +4,7 @@
 		<a ng-if="item.title" href="{{ basePath }}post/{{ item._id }}">{{item.title | ellipsis:30}}</a>
 		<a ng-if="!item.title" href="{{ basePath }}post/{{ item._id }}">{{item.text | ellipsis:30}}</a>
 	</span>
-	<span ng-if="showAuthorName && item.author._type === 'User'">({{item.author.name}})</span>
+	<span ng-if="showAuthorName && item.author._type === 'User'" title="{{item.author.name}}">({{item.author.name | ellipsis:9}})</span>
 	<div class="ad-controls" ng-if="item.owner_id === loggedUser._id">
 		<i class="fa fa-pencil" title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)"></i>
 		<i class="fa" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}" title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)"></i>

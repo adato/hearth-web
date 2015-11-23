@@ -11,6 +11,8 @@
 			padding: 0 0 1rem 0;
 			h1 {
 				overflow: hidden;
+				display: inline;
+				word-wrap: break-word;
 				line-height: 1.5;
 				text-shadow: 1px 1px 8px rgba(50, 50, 50, 0.3);
 				a {
