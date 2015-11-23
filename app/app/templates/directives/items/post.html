@@ -1,14 +1,15 @@
 <article class="item-common row post post-on-market" id="post_{{:: item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
-	<section ng-if="! hideAvatar" class="large-2 show-for-medium-up medium-2 columns user">
+	<section ng-if="! hideAvatar" class="large-2 show-for-medium-up medium-2 columns user v2">
 		<div info-box="item.author">
 			<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
 				<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
 				<div class="name">{{ item.author.name }}</div>
 			</a>
 		</div>
-		<div class="karma" ng-class="{empty: item.karma === null }" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
+		<!-- 		<div class="karma" ng-class="{empty: item.karma === null }" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
 			<div ng-if="item.karma" class="positive" ng-attr-style="width:{{:: item.karma}}%;"></div>
-		</div>
+		</div> -->
+		<karma-bar for="item.author" style="margin-top:5px;"></karma-bar>
 	</section>
 	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
