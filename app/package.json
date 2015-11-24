@@ -1,9 +1,9 @@
 {
-  "name": "ang2",
+  "name": "hearth-net-app",
   "version": "0.0.0",
   "dependencies": {
     "grunt-connect-rewrite": "0.2.1",
-    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-contrib-imagemin": "1.0.0",
     "grunt-fetch-locales": "0.1.2",
     "grunt-jsbeautifier": "0.2.8",
     "grunt-rename": "0.1.4",
