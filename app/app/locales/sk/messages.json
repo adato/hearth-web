@@ -256,12 +256,12 @@
 		"DETAIL": {
 			"USERS": {
 				"one": "1 príjemca",
-				"few": "2 príjemcovia",
+				"few": "{{count}} príjemcovia",
 				"other": "{{count}} príjemcov\n"
 			},
 			"AND_X_MORE": {
 				"one": "a 1 ďalší",
-				"few": "a 2 ďalší",
+				"few": "a {{count}} ďalší",
 				"other": "a {{count}} ďalších\n"
 			},
 			"EXPAND_ACTIONS": "Menu konverzácie",
@@ -1315,5 +1315,6 @@
 	"SIGNUP_HEADING_FB": "Pridajte sa",
 	"SIGN_UP": {
 		"CONTINUE_TO_REGISTER": "Zatvoriť a pokračovať v registrácii."
-	}
+	},
+	"SEARCH": "Hledat"
 }

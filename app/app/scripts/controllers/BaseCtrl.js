@@ -159,9 +159,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 
 			$rootScope.top(0, 1);
-			$state.go('market', {
-				query: searchQuery.query,
-				type: searchQuery.type
+			$state.go('search', {
+				q: searchQuery.query,
+				// type: searchQuery.type
 			});
 		};
 

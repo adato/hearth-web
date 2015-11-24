@@ -121,7 +121,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			$scope.selectedFilter = $location.search().type || 'all';
 
 			$("#fulltextSearchResults").addClass("searchInProgress");
-
 			Fulltext.query(params, $scope.processData(params));
 			Fulltext.stats({
 				query: params.query

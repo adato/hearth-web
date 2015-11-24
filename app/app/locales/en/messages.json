@@ -256,7 +256,7 @@
 		"DETAIL": {
 			"USERS": {
 				"one": "1 recipient",
-				"other": "<strong>{{count}}<\/strong>recipients"
+				"other": "{{count}} recipients"
 			},
 			"AND_X_MORE": {
 				"one": "and 1 more",
@@ -1283,5 +1283,6 @@
 	"SIGNUP_HEADING_FB": "Come in",
 	"SIGN_UP": {
 		"CONTINUE_TO_REGISTER": "Close and continue registration."
-	}
+	},
+	"SEARCH": "Hledat"
 }

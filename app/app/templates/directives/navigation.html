@@ -120,6 +120,7 @@
 						<img class="zurb-logo-mobile" src="/app/images/logo.png" width="200">
 					</a>
 				</div>
+				<!-- 
 				<div class="show-for-large-up search column large-6">
 					<form ng-submit="search(searchQuery)">
 						<select ng-model="searchQuery.type">
@@ -127,14 +128,14 @@
 							<option value="post">{{:: 'TOP_BAR.SEARCH.MARKET' | translate }}</option>
 							<option value="community">{{:: 'TOP_BAR.SEARCH.COMMUNITY' | translate }}</option>
 							<option value="user">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</option>
-							<!-- <option value="messages">{{:: 'TOP_BAR.SEARCH.MESSAGES' | translate }}</option> -->
 						</select>
 						<button class="search-submit fa fa-search" ng-click="search(searchQuery)"></button>
 						<div class="middle">
-							<input type="text" id="search" ng-model="searchQuery.query" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
+							<input type="text" id="search" ng-model="searchText" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
 						</div>
 					</form>
 				</div>
+				-->
 				<div class="hide-for-large-up small-search column small-12 medium-12">
 					<form ng-submit="search(searchQuery)">
 						<span class="search-controll">
@@ -146,13 +147,14 @@
 									<li ng-class="{active: isFilterActive('user')}" ng-click="selectSearchFilter('user')">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</li>
 								</ul>
 							</div>
-							<a class="search-submit button" ng-click="search(searchQuery)">Hledat</a>
+							<a class="search-submit button" ng-click="search(searchQuery)">{{ 'SEARCH' | translate }}</a>
 						</span>
 						<div class="middle">
-							<span class="search-icons" ng-click="toggleSearchFilter()">
+							<!-- <span class="search-icons" ng-click="toggleSearchFilter()">
 								<i class="fa" ng-class="{'fa-rocket': searchQuery.type == 'post,community,user', 'fa-user': searchQuery.type == 'user', 'fa-users': searchQuery.type == 'community', 'fa-tree': searchQuery.type == 'post'}"></i>
 								<i class="fa fa-sort-desc"></i>
-							</span>
+							</span> -->
+							{{ searchQuery }}
 							<input type="text" id="search" ng-model="searchQuery.query" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
 						</div>
 					</form>
@@ -174,8 +176,8 @@
 				</a>
 			</section>
 			<section class="large-4 columns">
-				<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchText" ng-enter="search(searchText)">
-				<span class="search-button fa fa-search" ng-click="search(searchText)"></span>
+				<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
+				<span class="search-button fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 			<section class="large-6 icons columns">
 				<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
