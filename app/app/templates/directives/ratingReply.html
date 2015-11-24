@@ -9,19 +9,16 @@
 					</span>:
 				</div>
 			</div>
-			<textarea ng-model="rating.reply_text" ng-attr-placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-required="true" autosize-textarea="" name="text" id="reply-text" rows="1"></textarea>
 		</label>
+		<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="500" required="true" placeholder="{{ 'RATINGS.REPLY.TEXT_PLACEHOLDER' | translate }}" model="rating.reply_text" name="text" id="reply-text"></input-max-length>
+		<div class="clearfix">&nbsp;</div>
 		<div>
 			<a class="left cancel-reply" ng-click="closeReply(rating)">
 				{{:: 'CANCEL' | translate }}
 			</a>
-			<button type="submit" class="margin-0 button-send right ng-binding">
+			<button type="submit" ng-disabled="ratingReplyForm.text.$invalid" class="margin-0 button-send right ng-binding">
 				{{:: 'SEND' | translate }}
 			</button>
-			<div ng-show="ratingReplyForm.text.$invalid && showError" class="error right ng-hide">
-				<span ng-show="ratingReplyForm.text.$error.required" class="ng-binding">{{:: 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
-			</div>
 		</div>
-		<div class="clear"></div>
 	</form>
 </div>
