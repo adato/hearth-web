@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: './',
 					dest: 'public/',
-					src: ['_redirects']
+					src: ['_redirects', '.netlify']
 				}]
 			}
 		},
