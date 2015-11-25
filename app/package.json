@@ -29,7 +29,6 @@
     "grunt-google-cdn": "0.2.0",
     "grunt-html2js": "0.2.7",
     "grunt-jsbeautifier": "0.2.10",
-    "grunt-karma": "0.8.2",
     "grunt-newer": "0.5.4",
     "grunt-ngdocs": "0.2.2",
     "grunt-ngmin": "0.0.2",
