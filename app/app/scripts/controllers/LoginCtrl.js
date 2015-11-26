@@ -59,7 +59,6 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				$scope.showError.inactiveAccount = true;
 				$scope.showError.badCredentials = false;
 			} else {
-
 				// focus to password field
 				$(".login_password").focus();
 

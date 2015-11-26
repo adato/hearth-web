@@ -7,6 +7,10 @@
 	i {
 		margin-right: 10px;
 	}
+	p {
+		display: inline;
+		margin: 0;
+	}
 	/*     padding-top: 1rem;
         padding-bottom: 1rem;
         font-size:1rem; */
@@ -39,14 +43,9 @@
 }
 
 #notify-top {
-    position: fixed;
-    left: 0px;
-    right: 0px;
-    max-width: 960px;
-	margin: 0 auto;
-    z-index: 60;
-    top: 0px;
-    
+
+	position: relative;
+	z-index: 80;
 	/** under navigation bar */
 	.alert-box {
 		border-top-left-radius: 0px;

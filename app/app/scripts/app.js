@@ -89,6 +89,7 @@ angular.module('hearth', [
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 
 			// // ======== Watch for unauth responses
+			$httpProvider.interceptors.push('HearthApiInterceptor');
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 
