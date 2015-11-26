@@ -58,15 +58,11 @@ angular.module('hearth.services').service('Notify', [
 			// create notify with given type and text
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
 				// hide it at start
-				.css('display', 'none')
-				// add trigger for close on click
-				.click(self.closeNotify);
-
+				.css('display', 'none');
 
 			// also add trigger on click on cross icon
 			newNotify.find('.close').click(function(ev) {
-				// trigger close event on parent -> self.closeNotify
-				$(ev.target).parent().click();
+				self.closeNotify(newNotify);
 				ev.stopPropagation();
 			});
 
@@ -80,7 +76,7 @@ angular.module('hearth.services').service('Notify', [
 
 				// if timeout is set, trigger close event after given time
 				if (ttlCustom >= 0) setTimeout(function() {
-					newNotify.click();
+					self.closeNotify(newNotify);
 				}, ttlCustom);
 
 			}, delay);
@@ -161,8 +157,8 @@ angular.module('hearth.services').service('Notify', [
 
 		// close notify on some event
 		this.closeNotify = function(ev) {
-			$(ev.target).slideUp('fast', function() {
-				$(ev.target).remove();
+			ev.slideUp('fast', function() {
+				ev.remove();
 			});
 			return false;
 		};
