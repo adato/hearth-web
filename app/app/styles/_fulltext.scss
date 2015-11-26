@@ -1,30 +1,8 @@
 .fulltext {
 	header {
-		margin: 2em;
 		text-align: center;
-		position: relative;
-		height: 2em;
-		div {
-			z-index: 2;
-			background-color: white;
-			display: inline-block;
-			position: absolute;
-			padding: {
-				left: 2em;
-				right: 1em;
-			}
-			left: 25%;
-		}
-		&:before {
-			content: '';
-			height: 1px;
-			width: 100%;
-			left: 0;
-			position: absolute;
-			background-color: lighten(color(3), 20%);
-			top: 0.5em;
-			z-index: 1;
-		}
+		margin:3*$ui-small-grid-size;
+		margin-bottom:$ui-grid-size;
 	}
 	.searchInProgress {
 		opacity: 0.3;
@@ -34,15 +12,19 @@
 		-o-transition: opacity .3s ease-out;
 	}
 	.filter {
-		margin: {
-			bottom: $fontSize;
-		}
+		margin:0;
+		margin-bottom:$ui-grid-size;
 		dt {
 			color: color(3);
 			text-transform: none;
+			margin:$ui-small-grid-size 0;
+			margin-right:3*$ui-small-grid-size;
+			line-height:200%;
 		}
 		dd {
+			margin: 3px (3*$ui-small-grid-size / 2);
 			a {
+				display:inline-block;
 				font-weight: bold;
 				border: 1px solid color(5);
 				border-radius: $global-radius;
@@ -50,14 +32,12 @@
 					left: $fontSize;
 					right: $fontSize;
 				}
-				;
 				b {
 					background-color: lighten(color(5), 20%);
 					padding: {
 						left: 0.5em;
 						right: 0.5em;
 					}
-					;
 					border-radius: $global-radius / 2;
 					position: relative;
 					top: -3px;
@@ -70,6 +50,7 @@
 			&.active {
 				overflow: visible;
 				position: relative;
+				a { background-color: color(5); }
 				&:after {
 					content: '';
 					background-color: color(5);

@@ -738,12 +738,12 @@ module.exports = function(grunt) {
 		},
 
 		// Test settings
-		karma: {
-			unit: {
-				configFile: 'karma.conf.js',
-				autoWatch: true
-			}
-		},
+		// karma: {
+		// 	unit: {
+		// 		configFile: 'karma.conf.js',
+		// 		autoWatch: true
+		// 	}
+		// },
 		html2js: {
 			options: {
 				base: '.tmp'
@@ -844,12 +844,12 @@ module.exports = function(grunt) {
 		grunt.task.run(['serve']);
 	});
 
-	grunt.registerTask('test', [
-		'clean:server',
-		'concurrent:test',
-		'autoprefixer',
-		'karma'
-	]);
+	// grunt.registerTask('test', [
+	// 	'clean:server',
+	// 	'concurrent:test',
+	// 	'autoprefixer',
+	// 	'karma'
+	// ]);
 
 	grunt.registerTask('build', [
 		'clean:dist', // remove .tmp and dist folder

@@ -61,7 +61,7 @@ $fontSize: rem-calc(14);
 //  "foundation/components/tabs",
 "foundation/components/thumbs",
 //  "foundation/components/tooltips",
-"foundation/components/top-bar",
+// "foundation/components/top-bar",
 "foundation/components/type",
 "foundation/components/offcanvas",
 "foundation/components/visibility";
@@ -192,7 +192,7 @@ img.blur {
 	position: relative;
 	font-size: 2rem;
 	opacity: 0.7;
-	height: 40px;
+	/* height: 40px; */
 	.fa {
 		margin-right: 0.5rem;
 	}

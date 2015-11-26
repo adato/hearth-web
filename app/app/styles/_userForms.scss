@@ -104,15 +104,37 @@ $max-modal-window-width:32em;
 
 .terms {
 	display: block !important;
-	font-size: .7rem;
+	box-sizing: initial;
+	background: lighten(color(4), 10%);
+	border-top-right-radius: $global-radius;
+	border-bottom-right-radius: $global-radius;
+	border-left: 1px solid color(3);
+	position: absolute;
+	left: 99%;
+	top: 0px;
+	bottom: 0px;
+	width: $terms-width;
+	font-size: $ui-text-font-size;
 	padding: 1rem;
 	padding-right: .5rem;
 	text-align: left;
 	h3 {
-		font-size: 1.3rem;
+		font-size: $ui-title-font-size;
+		font-weight:bold;
+		&.new-terms { 
+			font-size: $ui-text-font-size;
+			padding:$ui-small-grid-size;
+			font-weight:normal;
+			background:color(4);
+		}
 	}
 	.scroll {
-		padding-right: 1em;
+		overflow-y: scroll;
+		height: 31em;
+		padding-right:5px;
+		* {
+			font-size:$ui-text-font-size;
+		}
 	}
 	p {
 		text-align: justify;

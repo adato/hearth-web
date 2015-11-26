@@ -14,8 +14,11 @@ angular.module('hearth.directives').directive('navigation', [
 			replace: true,
 			templateUrl: 'templates/directives/navigation.html',
 			link: function($scope, element) {
-				$scope.searchHidden = !$location.search().query;
+				$scope.searchHidden = !$location.search().q;
 				$scope.searchFilterDisplayed = false;
+				$scope.searchQuery = {
+					query: $location.search().query
+				}
 
 				$scope.closeFilter = function() {
 					$(document).off("click", $scope.closeFilter);
@@ -36,7 +39,6 @@ angular.module('hearth.directives').directive('navigation', [
 					$scope.searchFilterDisplayed = !$scope.searchFilterDisplayed;
 
 					if ($scope.searchFilterDisplayed) {
-						console.log('WATCH');
 						setTimeout(function() {
 							$(document).on('click', $scope.closeFilter);
 							$(document).keyup($scope.watchFilterKey);

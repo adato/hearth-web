@@ -116,6 +116,11 @@ angular.module('hearth').config([
 				templateUrl: 'templates/terms.html',
 				controller: 'TermsCtrl'
 			})
+			.state('new-terms', {
+				url: '/:isNew-terms',
+				templateUrl: 'templates/terms.html',
+				controller: 'TermsCtrl'
+			})
 			.state('about', {
 				url: '/about',
 				templateUrl: 'templates/terms.html',

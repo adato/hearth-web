@@ -54,7 +54,8 @@
 		},
 		"COMMUNITY": {
 			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
-		}
+		},
+		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě"
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -256,7 +257,7 @@
 		"DETAIL": {
 			"USERS": {
 				"one": "1 recipient",
-				"other": "<strong>{{count}}<\/strong>recipients"
+				"other": "{{count}} recipients"
 			},
 			"AND_X_MORE": {
 				"one": "and 1 more",
@@ -1286,5 +1287,6 @@
 	"SIGNUP_HEADING_FB": "Come in",
 	"SIGN_UP": {
 		"CONTINUE_TO_REGISTER": "Close and continue registration."
-	}
+	},
+	"SEARCH": "Hledat"
 }
