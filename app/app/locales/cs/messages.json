@@ -54,7 +54,8 @@
 		},
 		"COMMUNITY": {
 			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
-		}
+		},
+		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě"
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáte, pravděpodobně neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenalezeno",

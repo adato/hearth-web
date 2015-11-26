@@ -1,54 +1,58 @@
 .filterbar-wrap {
-	line-height: $ui-input-height;
-	height: $ui-input-height;
-	position: relative;
-	left: -3 * $ui-small-grid-size;
-	.filter-button-container {
-		@extend .box;
-		width: auto;
-		padding: 0 $ui-grid-size;
-		margin-left: 189px;
-		overflow: hidden;
-		a {
-			color: color(5);
-			font-weight: $ui-text-weight-bolder;
+	margin-bottom: 25px;
+
+	.filterbar-header {
+
+		.insert-button-container {
+			float: right;
+			a {
+				margin-left: 10px;
+			}
 		}
-		a.filter-cancel-button {
-			font-size: 12px;
-			margin-left: 2*$ui-small-grid-size;
+
+		.filter-left {
+			line-height: 30px;
+		    margin-left: 153px;
+		    background-color: white;
+		    border-radius: 8px;
+		    padding: 0 25px;
+		    width: auto;
+		    display: block;
+		    overflow: hidden;
+		    margin-right: 8px;
+		    box-shadow: 0 0 5px rgba(100,100,100,.5);
+		    
+		    a {
+		    	color: #1fb1e8;
+		    	font-weight: 600;
+
+		    	&.cancelFilter {
+
+				    font-size: 12px;
+				    margin-left: 10px;
+		    	}
+		    }
 		}
 	}
-	.insert-button-container {
-		margin-right: -2px;
-		float: right;
-	}
+
 	.filter-container {
 		@extend .box;
 		padding: $ui-grid-size;
+		clear: both;
+		float: right;
 		margin-top: 2 * $ui-small-grid-size;
-		transition: all .3s ease-in;
+		width: 775px;
+		transition: height .3s ease-in;
 		opacity: 1;
 		max-height: 800px;
 	}
-	// RESPONSIVE //
-	@media #{$small-only} {
-		left: initial;
-		position: initial;
-		margin: 0;
-		.filter-button-container {
-			margin-left: 0;
-		}
-		.insert-button-container {
-			float: none;
-		}
-		.insert-button-container>.button {
-			width: 100%;
-			margin: 0 0 2 * $ui-small-grid-size 0;
-		}
-	}
-	@media #{$medium-up} {
-		.filter-container {
-			width: 770px;
-		}
+	.animated-hidden {
+		opacity: 0;
+		max-height: 0px;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		overflow-y: hidden;
 	}
 }
