@@ -17,7 +17,6 @@ angular.module('hearth.services').factory('HearthApiInterceptor', [
 			responseError: function(rejection) {
 				switch (rejection.status) {
 					case 401:
-						Notify.addSingleTranslate('NOTIFY.API_401', Notify.T_INFO);
 						break;
 					case 422:
 						Notify.addSingleTranslate('NOTIFY.API_422', Notify.T_WARNING);
