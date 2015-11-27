@@ -30,7 +30,7 @@
 				<span ng-show="apiErrors.email">{{ apiErrors.email | translate }}</span>
 			</div>
 			<show-text-in-password>
-				<input type="password" name="password" ng-model="user.password" ng-focus="showError.password = false" ng-blur="showError.password = true" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" required ng-minlength="3"
+				<input type="password" name="password" ng-model="user.password" ng-focus="showError.password = false" ng-blur="showError.password = true" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" required ng-minlength="4"
 				/>
 			</show-text-in-password>
 			<div class="moveUp error" ng-show="showError.password">
