@@ -1,22 +1,22 @@
 .filterbar-wrap {
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 
 	.filterbar-header {
 
 		.insert-button-container {
 			float: right;
 			a {
-				margin-left: 10px;
+				padding: 0px;
+				overflow: hidden;
+				display: block;
 			}
 		}
 
 		.filter-left {
 			line-height: 30px;
-		    margin-left: 153px;
 		    background-color: white;
 		    border-radius: 8px;
 		    padding: 0 25px;
-		    width: auto;
 		    display: block;
 		    overflow: hidden;
 		    margin-right: 8px;
@@ -39,9 +39,7 @@
 		@extend .box;
 		padding: $ui-grid-size;
 		clear: both;
-		float: right;
 		margin-top: 2 * $ui-small-grid-size;
-		width: 775px;
 		transition: height .3s ease-in;
 		opacity: 1;
 		max-height: 800px;
@@ -54,5 +52,11 @@
 		padding-top: 0;
 		padding-bottom: 0;
 		overflow-y: hidden;
+	}
+}
+
+@media #{$large-up} {
+	.insert-button-container {
+		padding-left: 10px;
 	}
 }

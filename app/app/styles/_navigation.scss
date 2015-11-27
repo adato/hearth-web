@@ -201,9 +201,6 @@ $topBarImageSize: 1.8em;
 }
 
 @media #{$large-up} {
-	.main-container {
-		margin-top: 80px;
-	}
 	nav {
 		width: 100%;
 	    left: 0;
@@ -247,7 +244,7 @@ $topBarImageSize: 1.8em;
 				text-align: center;
 				transition: color 1s, text-shadow 2s;
 				label {
-					color: lighten(color(1), 25%);
+					color: white;
 					transition: color 1s, text-shadow 2s;
 					line-height: 1;
 					font-size: $topBarLabelSize;
