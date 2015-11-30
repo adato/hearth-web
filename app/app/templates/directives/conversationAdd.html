@@ -14,7 +14,7 @@
 		<div class="recipient" ng-if="!recipient">
 			<label>
 				{{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
-				<user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.participant_ids"></user-selector>
+				<user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.recipients_ids"></user-selector>
 			</label>
 			<div class="error moveUp" ng-show="showError.participant_ids">
 				<span>{{ 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</span>
