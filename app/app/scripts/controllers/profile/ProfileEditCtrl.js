@@ -134,6 +134,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				res = false;
 				$scope.showError.contact_email = true;
 			}
+
+			if ($scope.profileEditForm.about.$invalid || $scope.profileEditForm.interests.$invalid) {
+				res = false;
+			}
+
 			return res;
 		}
 
