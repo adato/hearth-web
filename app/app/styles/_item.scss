@@ -35,6 +35,10 @@ article.post-on-market {
 			box-shadow: none;
 		}
 	}
+	.avatar.avatar-small {
+		margin-top:0;
+		margin-bottom:2 * $ui-small-grid-size;
+	}
 	.ad-flag-container {
 		.action-dropdown:hover {
 			color: color(5) !important;
