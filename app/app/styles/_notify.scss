@@ -3,14 +3,8 @@
 	padding-bottom: 10px !important;
 	color: white !important;
 	font-size: 15px;
-	margin: 0;
-	border: none;
 	i {
 		margin-right: 10px;
-	}
-	p {
-		display: inline;
-		margin: 0;
 	}
 	/*     padding-top: 1rem;
         padding-bottom: 1rem;
@@ -38,20 +32,17 @@
 		padding-left: 10px !important;
 		padding-right: 10px !important;
 		text-align: center;
-		margin: 0px;
-		margin-bottom: 15px;
 	}
 }
 
 #notify-top {
-    position: fixed;
-    left: 0px;
-    right: 0px;
-    max-width: 960px;
-	margin: 0 auto;
-    z-index: 60;
-    top: 0px;
-    
+	left: 50%;
+	width: 960px;
+	margin-left: -475px;
+	position: fixed;
+	right: 0;
+	top: 55px;
+	z-index: 80;
 	/** under navigation bar */
 	.alert-box {
 		border-top-left-radius: 0px;
@@ -67,13 +58,6 @@
 	}
 }
 
-
-@media #{$large-up} {
-
-	#notify-top {
-	    top: 109px;
-	}
-}
 
 /** above filter bar */
 

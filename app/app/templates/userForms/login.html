@@ -26,7 +26,7 @@
 		<p ng-show="loginForm.username.$dirty && loginForm.username.$invalid" class="error">
 			<span ng-show="loginForm.username.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
 		</p>
-		<input type="password" class="login_password" name="password" ng-model="data.password" ng-model-options="{ updateOn: 'blur' }" ng-minlength="5" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" required>
+		<input type="password" class="login_password" name="password" ng-model="data.password" ng-model-options="{ updateOn: 'blur' }" ng-minlength="4" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" required>
 		<p ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="error">
 			<span ng-show="loginForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
 		</p>
