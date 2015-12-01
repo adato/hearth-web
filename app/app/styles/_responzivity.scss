@@ -58,6 +58,10 @@
 		width: unset !important;
 		width: 100%;
 	}
+
+	.market {
+		padding: 0 $ui-small-grid-size;
+	}
 	
 	.market .avatar {
 		& > div,
