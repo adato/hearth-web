@@ -58,6 +58,11 @@
 	}
 }
 
+@media #{$large-up} {
+	#notify-top {
+	    top: 58px;
+	}
+}
 
 /** above filter bar */
 

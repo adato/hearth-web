@@ -1,5 +1,5 @@
 $topBarHeight: rem-calc(40);
-$topBarLabelSize: rem-calc(14);
+$topBarLabelSize: rem-calc($ui-smaller-font-size);
 $topBarImageSize: 1.8em;
 
 .left-off-canvas-menu {
@@ -244,7 +244,7 @@ $topBarImageSize: 1.8em;
 				text-align: center;
 				transition: color 1s, text-shadow 2s;
 				label {
-					color: white;
+					color: lighten(color(1), 25%);
 					transition: color 1s, text-shadow 2s;
 					line-height: 1;
 					font-size: $topBarLabelSize;

@@ -93,6 +93,10 @@
 	}
 }
 
+.v2.static-page-container h3, .v2.static-page-container h4 {
+	font-size:$ui-text-font-size;
+}
+
 .static-page-container h3.new-terms {
 	background: color(4);
 	padding: 25px;
