@@ -3,16 +3,30 @@ $topBarLabelSize: rem-calc($ui-smaller-font-size);
 $topBarImageSize: 1.8em;
 
 .left-off-canvas-menu {
-	a.active {
-		font-weight: bold;
+	a {
+		border-bottom: 0px !important;
+		&.active {
+			font-weight: bold;
+			color: white;
+			background-color: $colorOrange;
+		}
 	}
-}
 
-.left-off-canvas-menu {
 	.socials span {
 		margin-right: 2px;
 	}
+
+	.off-canvas-list {
+		.first {
+			border-top: none;
+		}
+	}
 }
+
+.exit-off-canvas {
+	box-shadow: -4px 0 4px rgba(0, 0, 0, 0.3), 4px 0 4px rgba(0, 0, 0, 0.5);
+}
+
 
 nav {
     z-index: 99;

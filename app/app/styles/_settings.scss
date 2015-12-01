@@ -164,14 +164,9 @@ $topbar-link-font-size: rem-calc(16);
 // ============== OFF CANVAS MENU ==================
 // =================================================
 
-// $off-canvas-bg: white !default;
-// $off-canvas-bg-hover: scale-color($tabbar-bg, $lightness: -30%);
-// $off-canvas-bg-active: scale-color($tabbar-bg, $lightness: -30%);
-// $off-canvas-label-color: white !default;
-// $off-canvas-label-bg: black !default;
-// $off-canvas-link-color: rgba(white, 0.7) !default;
-// $off-canvas-back-bg: #444 !default;
-// $off-canvas-back-hover-bg: scale-color($off-canvas-back-bg, $lightness: -30%) !default;
+$off-canvas-bg-active: $colorOrange;
+$off-canvas-label-border-bottom: none !default;
+$off-canvas-label-border-top: none !default;
 
 
 // =================================================
