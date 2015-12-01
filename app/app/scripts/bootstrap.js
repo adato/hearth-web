@@ -3,5 +3,5 @@ preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
 
 var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
 	($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-	'sensor=true&libraries=places,geometry&language=';
+	'libraries=places,geometry&language=';
 document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + preferredLanguage + '"><\/script>');
