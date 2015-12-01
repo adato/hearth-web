@@ -6,7 +6,7 @@
  * @restrict AE
  */
 angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
-	function ($timeout) {
+	function($timeout) {
 		return {
 			restrict: 'AE',
 			replace: true,
@@ -24,10 +24,10 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 				resized: "&"
 			},
 			templateUrl: 'templates/directives/inputMaxLength.html',
-			link: function (scope, element, attrs, formCtrl) {
+			link: function(scope, element, attrs, formCtrl) {
 				scope.required = scope.required ? true : false;
 
-				setTimeout(function () {
+				setTimeout(function() {
 					var el = ($(element).prop('tagName') === 'TEXTAREA') ? $(element) : $('textarea', element);
 					var p = el.attr('placeholder');
 					el.attr('placeholder', '').autosize({
@@ -35,14 +35,14 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 						callback: scope.resized
 					}).show().trigger('autosize.resize').attr('placeholder', p);
 				});
-				scope.isBlur = function () {
+				scope.isBlur = function() {
 					scope.showErrorMin = true;
 				}
-				scope.isFocus = function () {
+				scope.isFocus = function() {
 					scope.showErrorMin = false;
 				}
 
-				scope.$watch('model', function (val) {
+				scope.$watch('model', function(val) {
 					scope.form = formCtrl[scope.name];
 
 					if (val) {
