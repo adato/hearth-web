@@ -36,9 +36,7 @@
 }
 
 #notify-top {
-	right: 0;
 	z-index: 99990;
-	/** under navigation bar */
 	.alert-box {
 		border-radius: 0px;
 		margin-bottom: 0px;
@@ -52,9 +50,6 @@
 		opacity: 1;
 	}
 
-}
-
-@media #{$large-up} {
 }
 
 /** above filter bar */

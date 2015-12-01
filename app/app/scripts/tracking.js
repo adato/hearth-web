@@ -1,5 +1,3 @@
-preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
-
 $(function() {
 
 	$(window).scroll(function() {
@@ -38,10 +36,6 @@ setTimeout(function() {
 	a.appendChild(r);
 })(window, document, '//static.hotjar.com/c/hotjar-', '.js?sv=');
 
-var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
-	($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-	'sensor=true&libraries=places,geometry&language=';
-document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + preferredLanguage + '"><\/script>');
 
 $(function() {
 	FastClick.attach(document.body);
