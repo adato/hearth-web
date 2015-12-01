@@ -36,17 +36,12 @@
 }
 
 #notify-top {
-	left: 50%;
-	width: 960px;
-	margin-left: -475px;
-	position: fixed;
 	right: 0;
-	top: 55px;
-	z-index: 80;
+	z-index: 99990;
 	/** under navigation bar */
 	.alert-box {
-		border-top-left-radius: 0px;
-		border-top-right-radius: 0px;
+		border-radius: 0px;
+		margin-bottom: 0px;
 	}
 	.fa {
 		margin-right: 1rem;
@@ -56,12 +51,10 @@
 		color: white;
 		opacity: 1;
 	}
+
 }
 
 @media #{$large-up} {
-	#notify-top {
-	    top: 58px;
-	}
 }
 
 /** above filter bar */
