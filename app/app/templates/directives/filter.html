@@ -7,42 +7,46 @@
 	    </tags-input>
   	</section>
   	-->
-	<input type="hidden" ng-model="filter.query" value="searchQuery.query" />
-	<input type="hidden" ng-model="filter.type" value="searchQuery.type" />
-	<section class="keywords-container" ng-if="inited">
-		<h5>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
-		<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
-		max-length="20">
-			<auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
-		</tags-input>
-	</section>
-	<section class="radio-container type-switch-container type-post">
-		<h5>{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h5>
-		<radio type="radio" model="filter.post_type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
-		<radio type="radio" model="filter.post_type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
-		<radio type="radio" model="filter.post_type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
-	</section>
-	<section class="radio-container time-switch-container type-post type-user type-community">
-		<h5>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h5>
-		<radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
-		<radio type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
-	</section>
-	<section class="radio-container author-switch-container type-post">
-		<h5>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h5>
-		<checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
-		<checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
-		<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}
-		</checkbox>
-	</section>
-	<section class="location-container type-post type-user type-community">
-		<h5>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
-		<div class="range-select-container" ng-show="filter.lat && filter.lon && filter.name">
-			<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
-			<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
-		</div>
-		<input type="text" id="geolocation" ng-model="filter.name" />
+	<section class="filter-inner">
+		<input type="hidden" ng-model="filter.query" value="searchQuery.query" />
+		<input type="hidden" ng-model="filter.type" value="searchQuery.type" />
+		<section class="keywords-container" ng-if="inited">
+			<h5>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
+			<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
+			max-length="20">
+				<auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
+			</tags-input>
+		</section>
+		<section class="radio-container type-switch-container type-post">
+			<h5>{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h5>
+			<radio type="radio" model="filter.post_type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
+			<radio type="radio" model="filter.post_type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
+			<radio type="radio" model="filter.post_type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
+		</section>
+		<section class="radio-container time-switch-container type-post type-user type-community">
+			<h5>{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h5>
+			<radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
+			<radio type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
+			<radio type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
+			<radio type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
+		</section>
+		<section class="radio-container author-switch-container type-post">
+			<h5>{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h5>
+			<checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
+			<checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
+			<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}
+			</checkbox>
+		</section>
+		<section class="location-container type-post type-user type-community">
+			<h5>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
+			<div class="range-select-container large-6 small-6 medium-6" ng-show="filter.lat && filter.lon && filter.name">
+				<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
+				<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+			</div>
+			<div ng-class="{'large-6 small-6 medium-6': filter.lat && filter.lon && filter.name}">
+				<input type="text" id="geolocation" ng-model="filter.name" />
+			</div>
+		</section>
 	</section>
 	<section class="footer row">
 		<div class="large-6 column right">
