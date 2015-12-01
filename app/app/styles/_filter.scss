@@ -131,7 +131,7 @@
 }
 
 @media #{$small-down} {
-	.filter {
+	.filter .filter-inner {
 		label {
 			display: block !important;
 		}
