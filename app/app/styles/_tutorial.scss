@@ -1,6 +1,5 @@
 .ngdialog-tutorial {
 	.ngdialog-content {
-		width: 650px !important;
 		hr {
 			margin-bottom: 0px;
 		}
@@ -147,6 +146,15 @@
 			border-radius: 0 0 8px 8px;
 			height: 40px;
 			padding: 0.5625rem 1.125rem 0.5625rem 0.5625rem;
+		}
+	}
+}
+
+
+@media #{$large-up} {
+	.ngdialog-tutorial {
+		.ngdialog-content {
+				width: 650px !important;
 		}
 	}
 }

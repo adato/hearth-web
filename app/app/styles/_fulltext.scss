@@ -13,7 +13,9 @@
 	}
 	.filter {
 		margin:0;
-		margin-bottom:$ui-grid-size;
+		margin-bottom: 20px;
+		padding-bottom: 5px;
+
 		dt {
 			color: color(3);
 			text-transform: none;
@@ -105,6 +107,18 @@
 					color: darken(color(3), 10%);
 					text-decoration: underline;
 				}
+			}
+		}
+	}
+}
+
+
+
+@media #{$medium-down} {
+	.fulltext {
+		.filter {
+			dt {
+				width: 100%;
 			}
 		}
 	}
