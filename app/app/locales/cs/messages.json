@@ -936,10 +936,7 @@
 		"RATING_REPLY_SUCCESS": "A je to! Komentář byl úspěšně přidán.",
 		"RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě",
 		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na Vaši emailovou adresu.",
-		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
-		"API_401": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_422": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_500": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>"
+		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáte žádné inzeráty, můžete si je ale přidat ",

@@ -22,16 +22,6 @@ $topBarImageSize: 1.8em;
 	.logo {
 		display: inline-block;
 	}
-
-	.padding {
-		padding: $fontSize / 2;
-	}
-
-	// ============ Removed responzivity ======
-	min-width: 950px;
-	.row {
-		margin: 0px auto !important;
-	}
 	.button {
 		white-space: nowrap;
 		padding-top: 5px;
