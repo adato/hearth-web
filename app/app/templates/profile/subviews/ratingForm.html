@@ -33,7 +33,6 @@
 			<span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
 			<span ng-show="ratingForm.text.$error.minlength">{{:: 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
 		</div>
-		<max-len-counter max-len="300" value="rating.text"></max-len-counter>
 		<div class="clearfix">&nbsp;</div>
 		<strong>
 			<a ng-click="closeUserRatingForm()" class="revert-changes">
