@@ -14,6 +14,7 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 				'image': '@',
 				'title': '@?',
 				'href': '@?',
+				'language': '@',
 			},
 			templateUrl: 'templates/directives/marketplaceBanner.html',
 			link: function(scope, element, attrs) {
