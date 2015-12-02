@@ -36,6 +36,10 @@
 	.messages .messages-add .bottom {
 		margin-bottom: $ui-grid-size;
 	}
+
+	.market {
+		padding: 0 2*$ui-small-grid-size;
+	}
 }
 
 // small screens only
