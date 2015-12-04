@@ -1,1 +1,10 @@
-{"site_id":"a6edec0d-c776-4152-9034-f58f05759d3b","path":"./"}
+{
+	"development": {
+		"site_id":"a6edec0d-c776-4152-9034-f58f05759d3b",
+		"path":"./"
+	},
+	"beta": {
+		"site_id":"7638086c-0743-4730-87d9-5f5dc988d2db",
+		"path":"./"
+	}
+}
