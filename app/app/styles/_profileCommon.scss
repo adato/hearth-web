@@ -726,7 +726,7 @@
 	.person {
 		height: 115px;
 		word-wrap: break-word;
-		@extend .large-4, .columns;
+		//@extend .large-4, .columns;
 		padding: 0;
 		.info-avatar {
 			display: block;

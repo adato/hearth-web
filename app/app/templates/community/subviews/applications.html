@@ -4,7 +4,7 @@
 </div>
 <div class="community-applications-list" ng-if="subPageLoaded" when-scrolled="loadBottom()" offset="500" loading-in-progress="loadingData">
 	<div ng-repeat="(id, item) in data track by item._id" ng-init="item.prevDate = ($index > 0) ? data[$index-1].followed_since : null">
-		<div class="application">
+		<div class="application small-12 medium-12 large-6 columns" ng-class="{'end': $last, 'large-12': data.length === 1}">
 			<div class="applications-item">
 				<div info-box="item" infobox-index="$index" infobox-class="'on-profile'">
 					<avatar class="left margin-bottom-20" href="getProfileLink(item._type,item._id)" src="item.avatar.normal" type="item._type"></avatar>
