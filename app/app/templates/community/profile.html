@@ -5,6 +5,11 @@
 	</div>
 	<header ng-if="info">
 		<div class="user-basic large-12 columns">
+			<h1>
+				<a href="{{:: communityLink }}">
+					<span>{{:: info.name }}</span>
+				</a>
+			</h1>
 			<div class="button-bar">
 				<button ng-if="!mine" class="profile-button tall solid" ng-click="openRatingForm(true)">
 					{{:: 'THUMB_UP' | translate }}
@@ -28,12 +33,6 @@
 					</button>
 				</a>
 			</div>
-			<h1>
-				<a href="{{:: communityLink }}">
-					<span>{{:: info.name }}</span>
-				</a>
-			</h1>
-			<div class="clear"></div>
 		</div>
 		<div class="highlights">
 			<avatar size="large" class="left" src="info.avatar.large" href="basePath+'community/'+info._id" type="info._type"></avatar>
