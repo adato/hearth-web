@@ -5,6 +5,11 @@
 	</div>
 	<header ng-show="info">
 		<div class="user-basic large-12 columns">
+			<h1>
+				<a href="{{:: profileLink }}">
+					<span>{{:: info.name }}</span>
+				</a>
+			</h1>
 			<div class="button-bar">
 				<button class="others profile-button tall solid" ng-click="openUserRatingForm(true)">
 					{{:: 'THUMB_UP' | translate }}
@@ -24,13 +29,10 @@
 						<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER' | translate}}</button>
 				</a>
 			</div>
-			<h1>
-				<a href="{{:: profileLink }}">
-					<span>{{:: info.name }}</span>
-				</a>
-			</h1>
+			<div class="clear"></div>
 			<div class="short-about" ng-if="info.about">
-				<i class="fa fa-quote-right"></i> {{:: info.about | ellipsis}}</div>
+				<i class="fa fa-quote-right"></i> {{:: info.about | ellipsis}}
+			</div>
 		</div>
 		<div class="highlights">
 			<avatar size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
