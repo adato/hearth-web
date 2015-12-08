@@ -154,13 +154,15 @@
 			</div>
 			<div class="large-4 small-12 medium-12 ad-author-column text-center right small-push-12">
 				<div class="box">
-					<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="getProfileLink(item.author._type, item.author._id)" /></avatar>
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
-						<h2>{{ item.author.name}}</h2>
-					</a>
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="v2">
-						<karma-bar for="item.author"></karma-bar>
-					</a>
+					<div class="detail-user">
+						<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="getProfileLink(item.author._type, item.author._id)" /></avatar>
+						<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
+							<h2>{{ item.author.name}}</h2>
+						</a>
+						<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="v2">
+							<karma-bar for="item.author"></karma-bar>
+						</a>
+					</div>
 					<div class="text-left" ng-if="profile">
 						<div class="line">
 							<div class="descr" ng-if="profile.about">
