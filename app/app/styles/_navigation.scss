@@ -20,6 +20,12 @@ $topBarImageSize: 1.8em;
 		.first {
 			border-top: none;
 		}
+
+		i {
+			&.fa {
+				width: 24px;
+			}
+		}
 	}
 }
 
@@ -405,7 +411,7 @@ nav {
 				color: #fa5800;
 				font-weight: bold;
 				position: relative;
-				z-index: 1 ;
+				z-index: 1;
 				height: 30px;
 				width: 30px;
 				top: 5px;
