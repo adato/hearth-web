@@ -27,9 +27,17 @@ $topBarImageSize: 1.8em;
 	box-shadow: -4px 0 4px rgba(0, 0, 0, 0.3), 4px 0 4px rgba(0, 0, 0, 0.5);
 }
 
-
 nav {
-    z-index: 99;
+	z-index: 99;
+}
+
+.header {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 99;
+	box-shadow: 0 2px 2px rgba(black, 0.3);
 }
 
 .orange-bar {
@@ -37,6 +45,12 @@ nav {
 	box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
 	padding-bottom: 15px;
 	transition: max-height .3s ease-in-out;
+	top: 77px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 99;
+
 	.logo {
 		display: inline-block;
 	}
@@ -56,7 +70,7 @@ nav {
 	}
 	.search {
 		text-align: center;
-		&>div>* {
+		& > div > * {
 			display: inline-block;
 		}
 		select {
@@ -94,6 +108,7 @@ nav {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	height: inherit !important;
+
 	&.tab-bar-closed {
 		.menu-icon {
 			display: inline-block;
@@ -129,7 +144,6 @@ nav {
 }
 
 @media #{$medium-down} {
-
 	#unreaded-messages-counter {
 		.alert {
 			font-weight: bold;
@@ -220,15 +234,10 @@ nav {
 
 @media #{$large-up} {
 	nav {
-		width: 100%;
-	    left: 0;
-	    position: fixed;
-	    top: 0;
-		box-shadow: 0 2px 2px rgba(black, 0.3);
 		background-color: color(1);
 		padding: $fontSize / 2;
 	}
-	nav>.navigation {
+	nav > .navigation {
 		margin: auto;
 		max-width: 960px;
 		.row {
@@ -249,13 +258,13 @@ nav {
 			&.icons {
 				text-align: right;
 			}
-			>.separator {
+			> .separator {
 				width: $topBarHeight;
 				height: $topBarHeight;
 				display: inline-block;
 			}
 			> a,
-			>span>a {
+			> span > a {
 				display: inline-block;
 				color: lighten(color(1), 25%);
 				text-align: center;
@@ -314,6 +323,25 @@ nav {
 			.fa {
 				width: $fontSize;
 			}
+
+			.social-menu {
+				margin-left: 4px;
+				list-style: none;
+
+				li {
+					width: 37px;
+					margin-top: -10px;
+					font-size: 2rem;
+					display: inline-block;
+					margin-right: 8px;
+
+					a {
+						&:hover {
+							color: #fa5800;
+						}
+					}
+				}
+			}
 		}
 		.avatar {
 			position: static;
@@ -367,8 +395,8 @@ nav {
 				z-index: -1;
 				transition: color 1s, text-shadow 2s;
 			}
-			&>a:hover .messages-icon::after,
-			&>a.active .messages-icon::after {
+			& > a:hover .messages-icon::after,
+			& > a.active .messages-icon::after {
 				color: lighten(color(1), 50%);
 			}
 			.messages-icon {

@@ -38,6 +38,7 @@
 #notify-top {
 	z-index: 99990;
 	.alert-box {
+		border: none;
 		border-radius: 0px;
 		margin-bottom: 0px;
 	}
@@ -49,6 +50,7 @@
 		color: white;
 		opacity: 1;
 	}
+
 }
 
 /** above filter bar */

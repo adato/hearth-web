@@ -35,15 +35,6 @@
 			}
 		}
 		// RESPONSIVE //
-		@media #{$small-only} {
-			h1 {
-				display: block !important;
-			}
-			.button-bar {
-				float: none !important;
-				margin-left: 0 !important;
-			}
-		}
 		@media #{$medium-only} {
 			.highlights {
 				zoom: .82;
@@ -149,6 +140,11 @@
 			@media #{$small-only} {
 				.bubble {
 					margin: 0 !important;
+
+					&.move-down {
+						top: 15px; 
+						left: 15px;
+					}
 				}
 				.shadow,
 				.shadow.large {
@@ -725,7 +721,7 @@
 	.person {
 		height: 115px;
 		word-wrap: break-word;
-		@extend .large-4, .columns;
+		//@extend .large-4, .columns;
 		padding: 0;
 		.info-avatar {
 			display: block;
