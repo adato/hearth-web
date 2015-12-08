@@ -35,15 +35,6 @@
 			}
 		}
 		// RESPONSIVE //
-		@media #{$small-only} {
-			h1 {
-				display: block !important;
-			}
-			.button-bar {
-				float: none !important;
-				margin-left: 0 !important;
-			}
-		}
 		@media #{$medium-only} {
 			.highlights {
 				zoom: .82;
@@ -76,6 +67,10 @@
 				box-shadow: inset 0px -1px 50px 30px rgba(50, 50, 50, 0.75);
 				text-shadow: 0px 0px 13px rgba(50, 50, 50, 1);
 				margin: 5px;
+				p {
+					margin:0;
+					line-height:100%;
+				}
 				& > span {
 					display: table-cell;
 					vertical-align: middle;
@@ -726,7 +721,7 @@
 	.person {
 		height: 115px;
 		word-wrap: break-word;
-		@extend .large-4, .columns;
+		//@extend .large-4, .columns;
 		padding: 0;
 		.info-avatar {
 			display: block;

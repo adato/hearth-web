@@ -5,19 +5,13 @@
 				<label class="first">Menu</label>
 			</li>
 			<li>
-				<a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
-					{{ 'HOMEPAGE_MARKET' | translate }}
-				</a>
+				<a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}"> {{ 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
-				<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}">
-					{{ 'COMMUNITIES' | translate }}
-				</a>
+				<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}"> {{ 'COMMUNITIES' | translate }} </a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
-					{{ 'TOP_BAR_MESSAGES' | translate }}
-				</a>
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}"> {{ 'TOP_BAR_MESSAGES' | translate }} </a>
 			</li>
 			<li ng-show="!loggedUser.name">
 				<a ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a>
@@ -55,9 +49,7 @@
 		</ul>
 		<ul class="off-canvas-list">
 			<li>
-				<label>
-					{{'TOP_BAR_ABOUT' | translate}}
-				</label>
+				<label> {{'TOP_BAR_ABOUT' | translate}} </label>
 			</li>
 			<li>
 				<a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a>
@@ -77,9 +69,7 @@
 		</ul>
 		<ul class="off-canvas-list socials">
 			<li>
-				<label>
-					{{ 'SOCIAL_NETWORKS' | translate}}
-				</label>
+				<label> {{ 'SOCIAL_NETWORKS' | translate}} </label>
 			</li>
 			<li>
 				<a href="https://twitter.com/hearth_net" target="_blank">
@@ -99,7 +89,6 @@
 			</li>
 		</ul>
 	</aside>
-
 	<div class="header">
 		<div id="notify-top"></div>
 		<nav class="tab-bar tab-bar-closed hide-for-large-up">
@@ -107,12 +96,12 @@
 				<i class="fa fa-bars"></i>
 			</a>
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150">
-			</a>
+				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
 			<span class="small-icons">
 				<i class="fa fa-plus-square" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				<i class="fa fa-search" ng-class="{active: !searchHidden}" ng-click="searchHidden = !searchHidden"></i>
 			</span>
+
 			<div class="clear"></div>
 		</nav>
 		<div class="orange-bar hide-for-large-up" ng-class="{'animated-hidden': searchHidden}">
@@ -120,8 +109,7 @@
 				<div class="row">
 					<div class="column large-3 show-for-large-up">
 						<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-							<img class="zurb-logo-mobile" src="/app/images/logo.png" width="200">
-						</a>
+							<img class="zurb-logo-mobile" src="/app/images/logo.png" width="200"> </a>
 					</div>
 					<!--
 					<div class="show-for-large-up search column large-6">
@@ -135,7 +123,7 @@
 							<button class="search-submit fa fa-search" ng-click="search(searchQuery)"></button>
 							<div class="middle">
 								<input type="text" id="search" ng-model="searchText" name="search" ng-attr-placeholder="{{::'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" />
-							</div>
+								</div>
 						</form>
 					</div>
 					-->
@@ -152,6 +140,7 @@
 								</div>
 								<a class="search-submit button" ng-click="search(searchQuery)">{{ 'SEARCH' | translate }}</a>
 							</span>
+
 							<div class="middle">
 								<!-- <span class="search-icons" ng-click="toggleSearchFilter()">
 									<i class="fa" ng-class="{'fa-rocket': searchQuery.type == 'post,community,user', 'fa-user': searchQuery.type == 'user', 'fa-users': searchQuery.type == 'community', 'fa-tree': searchQuery.type == 'post'}"></i>
@@ -162,9 +151,7 @@
 						</form>
 					</div>
 					<div class="column large-3 show-for-large-up text-right">
-						<a href="#" class="button-send" ng-click="editItem(null)">
-							{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}
-						</a>
+						<a href="#" class="button-send" ng-click="editItem(null)"> {{:: 'TOP_BAR.ADD_NEW_POST' | translate }} </a>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -174,8 +161,7 @@
 			<section class="navigation">
 				<section class="large-2 columns text-right">
 					<a ng-click="reloadToMarketplace()" class="logo" analytics-custom analytics-event="marketplace" analytics-category="menu" id="nav-title">
-						<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150">
-					</a>
+						<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
 				</section>
 				<section class="large-4 columns">
 					<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
@@ -190,6 +176,7 @@
 						<div class="fa icon-community"></div>
 						<label>{{ 'COMMUNITIES' | translate }}</label>
 					</a>
+
 					<div class="separator"></div>
 					<span class="top-bar-messages">
 						<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">

@@ -11,68 +11,6 @@
 			<p class="margin-0">{{ 'POST_WAS_DELETED' | translate }}</p>
 		</section>
 		<section ng-if="! itemDeleted && item && item.text" class="large-12 small-12 medium-12 content row" id="item_container_{{ item._id }}">
-			<div class="large-4 small-12 medium-12 ad-author-column text-center right">
-				<div class="box">
-					<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="getProfileLink(item.author._type, item.author._id)" /></avatar>
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
-						<h2>{{ item.author.name}}</h2>
-					</a>
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="v2">
-						<karma-bar for="item.author"></karma-bar>
-					</a>
-					<div class="text-left" ng-if="profile">
-						<div class="line">
-							<div class="descr" ng-if="profile.about">
-								<i class="fa fa-quote-right"></i> {{profile.about|ellipsis}}</div>
-							<div class="descr" ng-if="profile.work">
-								<i class="fa fa-briefcase"></i> {{profile.work|ellipsis}}</div>
-							<div class="descr" ng-if="profile.locations.length && profile.locations[0].short_address">
-								<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}}
-								<span ng-repeat="(locationId, location) in profile.locations">
-									<span ng-if="location.short_address">{{location.short_address}}
-										<span ng-if="!$last">;&nbsp;</span>
-									</span>
-								</span>
-							</div>
-							<div class="descr" ng-if="profile.interests && profile.interests[0] != ''">
-								<i class="fa fa-smile-o"></i> {{ profile.interests.join(", ") }}</div>
-							<div class="descr" ng-if="profile.user_languages">
-								<span ng-repeat="(languageCode, enabled) in profile.user_languages">
-									<i class="fa fa-comments" ng-if="$first"></i>
-									{{ 'MY_LANG.' + languageCode | translate }}
-									<span ng-if="!$last">,&nbsp;</span>
-								</span>
-							</div>
-							<div class="descr" ng-if="profile.webs.length && profile.webs[0]">
-								<i class="fa fa-link"></i>
-								<span ng-repeat="(code, web) in profile.webs">
-									<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a>
-									<span ng-if="!$last">,&nbsp;</span>
-								</span>
-							</div>
-						</div>
-						<div class="line">
-							<div class="social fleft">
-								<a target="_blank" ng-if="item.author.twitter" href="{{item.author.twitter}}">
-									<i class="fa fa-twitter-square"></i>
-								</a>
-								<a target="_blank" ng-if="item.author.facebook" href="{{item.author.facebook}}">
-									<i class="fa fa-facebook-square"></i>
-								</a>
-								<a target="_blank" ng-if="item.author.googleplus" href="{{item.author.googleplus}}">
-									<i class="fa fa-google-plus-square"></i>
-								</a>
-								<a target="_blank" ng-if="item.author.linkedin" href="{{item.author.linkedin}}">
-									<i class="fa fa-linkedin"></i>
-								</a>
-							</div>
-							<div class="right">
-								<a class="profile-link" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">{{ 'WHOLE_PROFILE' | translate }}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div ng-if="!isActive" class="large-8 medium-12 left columns item-status-bar">
 				<span ng-if="item.state == 'expired'">
 					<span ng-if="item.valid_until">{{ 'POST_HAS_EXPIRED' | translate }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
@@ -212,6 +150,68 @@
 							</div>
 						</section>
 					</article>
+				</div>
+			</div>
+			<div class="large-4 small-12 medium-12 ad-author-column text-center right small-push-12">
+				<div class="box">
+					<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="getProfileLink(item.author._type, item.author._id)" /></avatar>
+					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
+						<h2>{{ item.author.name}}</h2>
+					</a>
+					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="v2">
+						<karma-bar for="item.author"></karma-bar>
+					</a>
+					<div class="text-left" ng-if="profile">
+						<div class="line">
+							<div class="descr" ng-if="profile.about">
+								<i class="fa fa-quote-right"></i> {{profile.about|ellipsis}}</div>
+							<div class="descr" ng-if="profile.work">
+								<i class="fa fa-briefcase"></i> {{profile.work|ellipsis}}</div>
+							<div class="descr" ng-if="profile.locations.length && profile.locations[0].short_address">
+								<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}}
+								<span ng-repeat="(locationId, location) in profile.locations">
+									<span ng-if="location.short_address">{{location.short_address}}
+										<span ng-if="!$last">;&nbsp;</span>
+									</span>
+								</span>
+							</div>
+							<div class="descr" ng-if="profile.interests && profile.interests[0] != ''">
+								<i class="fa fa-smile-o"></i> {{ profile.interests.join(", ") }}</div>
+							<div class="descr" ng-if="profile.user_languages">
+								<span ng-repeat="(languageCode, enabled) in profile.user_languages">
+									<i class="fa fa-comments" ng-if="$first"></i>
+									{{ 'MY_LANG.' + languageCode | translate }}
+									<span ng-if="!$last">,&nbsp;</span>
+								</span>
+							</div>
+							<div class="descr" ng-if="profile.webs.length && profile.webs[0]">
+								<i class="fa fa-link"></i>
+								<span ng-repeat="(code, web) in profile.webs">
+									<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a>
+									<span ng-if="!$last">,&nbsp;</span>
+								</span>
+							</div>
+						</div>
+						<div class="line">
+							<div class="social fleft">
+								<a target="_blank" ng-if="item.author.twitter" href="{{item.author.twitter}}">
+									<i class="fa fa-twitter-square"></i>
+								</a>
+								<a target="_blank" ng-if="item.author.facebook" href="{{item.author.facebook}}">
+									<i class="fa fa-facebook-square"></i>
+								</a>
+								<a target="_blank" ng-if="item.author.googleplus" href="{{item.author.googleplus}}">
+									<i class="fa fa-google-plus-square"></i>
+								</a>
+								<a target="_blank" ng-if="item.author.linkedin" href="{{item.author.linkedin}}">
+									<i class="fa fa-linkedin"></i>
+								</a>
+							</div>
+							<div class="right">
+								<a class="profile-link" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">{{ 'WHOLE_PROFILE' | translate }}</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
