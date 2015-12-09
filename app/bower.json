@@ -38,7 +38,8 @@
     "jquery.tipsy": "*",
     "ng-tags-input": "~3.0.0",
     "jquery-autosize": "autosize#1.18.16",
-    "smartcrop": "*"
+    "smartcrop": "*",
+    "angular-mobile-detect": "*"
   },
   "devDependencies": {},
   "resolutions": {
@@ -47,6 +48,7 @@
     "jquery": "2.0.2",
     "font-awesome": "~4.3.0",
     "ngDialog": "~0.5.4",
-    "async": "~1.4.2"
+    "async": "~1.4.2",
+    "mobile-detect": "~0.4.3"
   }
 }

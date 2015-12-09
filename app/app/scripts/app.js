@@ -4,7 +4,7 @@ angular.module('hearth', [
 		'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
 		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer'
+		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
@@ -82,11 +82,28 @@ angular.module('hearth', [
 			$httpProvider.defaults.withCredentials = true;
 			delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
+			// get device info
+			function getDevice() {
+				var md = new MobileDetect(window.navigator.userAgent);
+				var deviceType;
+
+				if (md.phone()) {
+					deviceType = 'mobile';
+				} else if (md.tablet()) {
+					deviceType = 'tablet';
+				} else {
+					deviceType = 'desktop';
+				}
+
+				return deviceType;
+			}
+
 			// Add language header
 			$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
+			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 
 			// // ======== Watch for unauth responses
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
@@ -113,8 +130,8 @@ angular.module('hearth', [
 			$rootScope.config = $$config;
 
 			/*            $http.get('https://api.dev.hearth.net/', function(err, res) {
-			                console.log(err, res);
-			            });*/
+			 console.log(err, res);
+			 });*/
 
 			/**
 			 * This will cache some files at start
