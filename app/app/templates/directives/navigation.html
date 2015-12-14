@@ -11,7 +11,9 @@
 				<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}"> {{ 'COMMUNITIES' | translate }} </a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}"> {{ 'TOP_BAR_MESSAGES' | translate }} </a>
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}"> {{ 'TOP_BAR_MESSAGES' | translate }}
+					<span class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
+				</a>
 			</li>
 			<li ng-show="!loggedUser.name">
 				<a ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a>
