@@ -5,3 +5,10 @@ var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
 	($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
 	'libraries=places,geometry&language=';
 document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + preferredLanguage + '"><\/script>');
+
+
+$(document).on({
+	'DOMNodeInserted': function() {
+		$('.pac-item, .pac-item span', this).addClass('needsclick');
+	}
+}, '.pac-container');
