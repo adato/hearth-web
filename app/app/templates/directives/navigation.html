@@ -16,6 +16,9 @@
 			<li ng-show="!loggedUser.name">
 				<a ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a>
 			</li>
+			<li ng-show="!loggedUser.name">
+				<a ng-class="{active: pageName == 'reg'}" ng-href="{{ basePath }}register">{{ 'SIGNUP' | translate }}</a>
+			</li>
 		</ul>
 		<ul class="off-canvas-list" ng-show="loggedUser._id">
 			<li>
