@@ -12,7 +12,7 @@
 			</li>
 			<li>
 				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}"> {{ 'TOP_BAR_MESSAGES' | translate }}
-					<span class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
+					<span ng-if="messagesCounters.unread > 0" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
 			<li ng-show="!loggedUser.name">
