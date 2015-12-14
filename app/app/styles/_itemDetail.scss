@@ -136,7 +136,10 @@
 			}
 			.ad-flag-container>a {
 				color: color(3);
-				margin-left: $ui-grid-size;
+				margin-left: 20px;
+				padding:5px;
+				position:relative;
+				right:-5px;
 			}
 			.validity-warning {
 				margin-right: 3 * $ui-small-grid-size;
