@@ -124,7 +124,21 @@
 	margin-right: auto;
 }
 
-.off-canvas-wrap,
-.off-canvas-wrap > .inner-wrap {
-	min-height: 100vh;
+
+
+.off-canvas-fixed {
+	transition: transform 500ms ease;
+	z-index:29999;
 }
+
+.move-right > .off-canvas-fixed {
+	height: 100%;
+	transform: translate3d(15.625rem, 0, 0);
+}
+.left-off-canvas-menu {
+	-webkit-transform: none;
+	transform: none;
+	margin-left: -15.625rem;
+	height: 100vh;
+}
+.fixed { position:fixed; }
