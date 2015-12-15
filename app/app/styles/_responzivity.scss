@@ -26,9 +26,10 @@
 	}
 	.messages .conversation-detail-container {
 		width: 97%;
+		min-height:80vh;
 		position: absolute;
 		left: 2*$ui-small-grid-size;
-		top: $ui-navbar-height + $ui-grid-size;
+		top: $ui-navbar-height;
 		.conversation-detail .messages-container article.message {
 			width: unset;
 		}
@@ -98,9 +99,10 @@
 	}
 	.messages .conversation-detail-container {
 		width: 96%;
+		min-height:80vh;
 		position: absolute;
 		left: 2*$ui-small-grid-size;
-		top: $ui-navbar-height + $ui-grid-size;
+		top: $ui-navbar-height;
 		.conversation-detail .messages-container article.message {
 			width: unset;
 		}
@@ -127,4 +129,5 @@
 .off-canvas-wrap,
 .off-canvas-wrap > .inner-wrap {
 	min-height: 100vh;
+	overflow-y:hidden;
 }
