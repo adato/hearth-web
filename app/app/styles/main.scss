@@ -8,7 +8,6 @@ $colorGreen: color(2);
 $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 $webWidth: 960px;
-@import "foundation/components/global";
 @import "settings";
 $fontSize: rem-calc(14);
 @import "compass";
