@@ -51,6 +51,16 @@
 </head>
 
 <body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
+	<script type="text/javascript">
+		// scripts to be loaded sooner
+		preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
+
+		var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
+			($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+			'libraries=places,geometry&language=';
+		document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + preferredLanguage + '"><\/script>');
+	</script>
+	
 	<div id="fb-root"></div>
 	<script src="//connect.facebook.net/en_US/all.js"></script>
 	<!--[if lt IE 10]>
@@ -95,10 +105,10 @@
 	<script src="/app/vendor/flexslider/jquery.flexslider-min.js"></script>
 	<script src="/app/vendor/smartcrop/smartcrop.js"></script>
 	<script src="/app/vendor/ng-tags-input/ng-tags-input.min.js"></script>
+	<script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
 	<!-- build:js /app/scripts/scripts.min.js -->
 	<script src="scripts/bootstrap.js"></script>
-	<script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
-	<script src="scripts/oms.min.js"></script>
+	<script src="scripts/utils/oms.min.js"></script>
 	<script src="scripts/rollbar.js"></script>
 	<script src="scripts/app.js"></script>
 	<script src="scripts/routes.js"></script>
