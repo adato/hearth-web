@@ -142,10 +142,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			}, doneErr);
 
 			$scope.$watch('rating.current_community_id', function(val) {
-				if (val === selectedAuthor) return;
+				if (val === selectedAuthor && $scope.loadedRatingPosts) return;
 				selectedAuthor = val;
 
-				$scope.rating.post_id = 0;
+				$scope.rating.post_id = null;
 				CommunityRatings.possiblePosts({
 					_id: id,
 					current_community_id: val

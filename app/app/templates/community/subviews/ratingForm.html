@@ -15,7 +15,7 @@
 				{{:: 'COMMUNITY_RATING_JOIN_REALIZED_GIFT' | translate }}
 			</div>
 			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
-				<option value="0">{{:: 'COMMUNITY_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
+				<option value="" ng-selected="true">{{:: 'COMMUNITY_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
 					{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{:: post.title | ellipsis:40 }}
 				</option>
@@ -30,15 +30,15 @@
 		<br />
 		<label>
 			<h5>{{:: 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h5>
-			<textarea autosize-textarea rows="4" style="height: 120px;" name="text" ng-attr-placeholder="{{:: 'WRITE_COMMUNITY_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true"
-			class="text-input" ng-minlength="3"></textarea>
-			<max-len-counter class="fright" max-len="300" value="rating.text"></max-len-counter>
-			<div class="moveUp error" ng-show="showError.text">
-				<span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
-				<span ng-show="ratingForm.text.$error.minlength">{{::'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
-			</div>
-			<div class="clear"></div>
 		</label>
+		<textarea autosize-textarea rows="4" style="height: 120px;" name="text" ng-attr-placeholder="{{:: 'WRITE_COMMUNITY_SOME_RATING' | translate }}" ng-focus="showError.text = false" ng-blur="showError.text = true;" ng-model="rating.text" ng-required="true"
+		class="text-input" ng-minlength="3"></textarea>
+		<max-len-counter class="fright" max-len="300" value="rating.text"></max-len-counter>
+		<div class="moveUp error" ng-show="showError.text">
+			<span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
+			<span ng-show="ratingForm.text.$error.minlength">{{::'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
+		</div>
+		<div class="clear"></div>
 		<div class="clear"></div>
 		<br />
 		<strong>

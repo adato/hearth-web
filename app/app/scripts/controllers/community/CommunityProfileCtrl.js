@@ -90,7 +90,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.rating.current_community_id = null;
 			$scope.rating.score = score;
 			$scope.rating.text = '';
-			$scope.rating.post_id = 0;
+			$scope.rating.post_id = null;
 			// select first option in posts select - eg default value           
 			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 
@@ -127,7 +127,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.rating.current_community_id = null;
 			$scope.rating.score = score;
 			$scope.rating.text = '';
-			$scope.rating.post_id = 0;
+			$scope.rating.post_id = null;
 			// select first option in posts select - eg default value           
 			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 

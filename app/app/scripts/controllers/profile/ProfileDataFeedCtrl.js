@@ -85,11 +85,11 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			}, doneErr);
 
 			$scope.$watch('rating.current_community_id', function(val) {
-				if (val === selectedAuthor) return;
+				if (val === selectedAuthor && $scope.loadedRatingPosts) return;
 				selectedAuthor = val;
 
 				if (!$rootScope.isMine(params.user_id)) {
-					$scope.rating.post_id = 0;
+					$scope.rating.post_id = null;
 					UserRatings.possiblePosts({
 						userId: params.user_id,
 						current_community_id: val
