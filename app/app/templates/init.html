@@ -12,16 +12,6 @@
 		</button>
 	</div>
 </div>
-<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
-	<div>
-		<p>
-			<i class="fa fa-exclamation-circle"></i> {{ 'NEW_VERSION_NOTIFICATION' | translate }}
-		</p>
-		<span ng-click="refreshToPath()" class="left">{{ 'RELOAD' | translate }}</span>
-		<span ng-click="closeMaintenanceNotify();" class="right">{{ 'CLOSE' | translate }}</span>
-		<div class="clear"></div>
-	</div>
-</div>
 <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
 <div class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">

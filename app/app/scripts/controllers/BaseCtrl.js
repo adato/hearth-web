@@ -168,7 +168,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		/**
 		 * Close notification of maintenance message about new version
 		 */
-		$scope.closeMaintenanceNotify = function() {
+		$rootScope.closeMaintenanceNotify = function() {
 			ApiHealthChecker.closeNotify();
 		};
 
