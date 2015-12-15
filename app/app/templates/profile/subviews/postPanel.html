@@ -1,12 +1,12 @@
 <div class="bottom-tabs">
 	<ul ng-if="mine">
 		<li>
-			<a href="{{:: profileLink }}/posts" ng-class="{selected: pageSegment =='posts'}">
+			<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{selected: pageSegment =='posts'}">
 				<span class="mine">{{:: 'MY_POSTS' | translate}}</span>
 			</a>
 		</li>
 		<li>
-			<a href="{{:: profileLink }}/replies" ng-class="{selected: pageSegment =='replies'}">
+			<a dont-jump-top href="{{:: profileLink }}/replies" ng-class="{selected: pageSegment =='replies'}">
 				<span>{{:: 'MY_POST_REPLIES' | translate }}</span>
 			</a>
 		</li>

@@ -41,12 +41,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * This will set fixed height of document for current height
 		 */
 		$scope.resfreshWithResize = function() {
-			$(".main-container").css("min-height", $(".main-container").height() + "px");
-			$timeout($scope.removePageMinHeight, 5000);
+			$("#all").css("min-height", $("#all").height() + "px");
 		};
 
 		$scope.removePageMinHeight = function() {
-			$(".main-container").css("min-height", "unset");
+			$timeout(function() {
+				$("#all").css("min-height", "unset");
+			}, 500);
 		};
 
 		/**
@@ -91,7 +92,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$rootScope.pageChangeWithScroll = true;
 				return $scope.resfreshWithResize();
 			}
-
 
 			if (!$rootScope.addressNew)
 				return $rootScope.top(0, 1);;

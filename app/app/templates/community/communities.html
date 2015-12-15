@@ -29,10 +29,10 @@
 <div class="bottom-tabs" ng-if="loadedFirstBatch">
 	<ul>
 		<li>
-			<a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
+			<a dont-jump-top href="{{:: basePath }}communities" ng-class="{selected: pageSegment =='communities.suggested'}">{{:: 'SUGGESTED_COMMUNITIES' | translate}}</a>
 		</li>
 		<li>
-			<a ng-click="dontScrollTopAfterPageChange()" href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>
+			<a dont-jump-top href="{{:: basePath }}communities/all" ng-class="{selected: pageSegment =='communities.all'}">{{:: 'ALL_COMMUNITIES' | translate }}</a>
 		</li>
 	</ul>
 </div>

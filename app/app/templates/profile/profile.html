@@ -6,7 +6,7 @@
 	<header ng-show="info">
 		<div class="user-basic large-12 columns">
 			<h1>
-				<a href="{{:: profileLink }}">
+				<a dont-jump-top href="{{:: profileLink }}">
 					<span>{{:: info.name }}</span>
 				</a>
 			</h1>
@@ -35,9 +35,9 @@
 			</div>
 		</div>
 		<div class="highlights">
-			<avatar size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
+			<avatar dont-jump-top size="large" class="left" src="info.avatar.large" href="getProfileLink('User', info._id)" type="info._type"></avatar>
 			<span class="shadow large">
-				<a href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">
+				<a dont-jump-top href="{{:: profileLink }}/posts" ng-class="{'active': (activePage == 'posts' || activePage == 'replies')}" class="bubble large">
 					<span>
 						<b>{{info.post_count.offers}}</b>
 						<br> {{ 'PROFILE.GIVES_COUNT.'+pluralCat(info.post_count.offers) | translate }}
@@ -48,7 +48,7 @@
 				</a>
 			</span>
 			<span class="shadow small">
-				<a href="{{:: profileLink }}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble small">
+				<a dont-jump-top href="{{:: profileLink }}/received-ratings" ng-class="{'active': (activePage == 'received-ratings' || activePage == 'given-ratings')}" class="move-down bubble small">
 					<span>
 						<b>{{info.down_votes + info.up_votes}}</b>
 						<br> {{:: 'RATINGS_COUNT' | translate }}
@@ -56,7 +56,7 @@
 				</a>
 			</span>
 			<span class="shadow small">
-				<a href="{{:: profileLink }}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble medium">
+				<a dont-jump-top href="{{:: profileLink }}/followers" ng-class="{'active': (activePage == 'friends' || activePage == 'following' || activePage == 'followers')}" class="bubble medium">
 					<span>
 						<span ng-if="mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_ME.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
 						<span ng-if="!mine && info" ng-bind-html="'X_PEOPLE_INSPIRED_BY_HIM.'+pluralCat(info.followers_count) | translate: '{count: '+info.followers_count+'}'"></span>
@@ -67,14 +67,14 @@
 				</a>
 			</span>
 			<span class="shadow small">
-				<a href="{{:: profileLink }}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}">
+				<a dont-jump-top href="{{:: profileLink }}/communities" class="bubble small move-down" ng-class="{'active': activePage == 'communities'}">
 					<span>
 						<b>{{info.communities_count}}</b>
 						<br /> {{ 'COMMUNITIES_PL.'+pluralCat(info.communities_count) | translate }}
 					</span>
 				</a>
 			</span>
-			<a href="{{:: profileLink }}/received-ratings">
+			<a dont-jump-top href="{{:: profileLink }}/received-ratings">
 				<div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
 					<span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
 						<span>{{ info.karma }}%
