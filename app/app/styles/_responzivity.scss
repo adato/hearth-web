@@ -31,7 +31,7 @@
 		left: 2*$ui-small-grid-size;
 		top: $ui-navbar-height;
 		.conversation-detail .messages-container article.message {
-			width: unset;
+			max-width: unset;
 		}
 	}
 	.messages .messages-add .bottom {
@@ -104,7 +104,7 @@
 		left: 2*$ui-small-grid-size;
 		top: $ui-navbar-height;
 		.conversation-detail .messages-container article.message {
-			width: unset;
+			max-width: unset;
 		}
 	}
 	.messages .messages-add .bottom {
