@@ -162,50 +162,5 @@ $max-modal-window-width:32em;
 @media #{$large-up} {
 	.register-login-dialog {
 		max-width: $max-modal-window-width;
-		&.terms-opened {
-			/* margin-left:-1*($terms-width/2);*/
-			margin-left: 3em;
-		}
-		.terms {
-			position: absolute;
-			top: 0px;
-			bottom: 0px;
-			background: lighten(color(4), 10%);
-			border-top-right-radius: $global-radius;
-			border-bottom-right-radius: $global-radius;
-			border-left: 1px solid color(3);
-			left: 99%;
-			width: $terms-width;
-			.scroll {
-				overflow-y: scroll;
-				height: 31em;
-			}
-			.close-terms,
-			.close-terms-link {
-				display: none;
-			}
-		}
-	}
-}
-
-@media #{$medium-down} {
-	.terms-opened {
-		.register-form {
-			display: none;
-		}
-	}
-	.terms {
-		.close-terms {
-			position: absolute;
-			right: 6px;
-			font-size: 20px;
-			width: 20px;
-			opacity: 0.5;
-			cursor: pointer;
-		}
-		.close-terms-link {
-			font-size: 140%;
-			margin-top: 10px;
-		}
 	}
 }

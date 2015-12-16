@@ -400,3 +400,25 @@ body.ngdialog-open {
 		}
 	}
 }
+
+
+.ngdialog-fullwidth {
+	.ngdialog-content {
+		.close {
+			position: absolute;
+			right: 10px;
+			top: 5px;
+			cursor: pointer;
+			font-size: 30px;
+			color: #999;
+			&:hover {
+				color: #DDD;
+			}
+		}
+	}
+
+	footer {
+		text-align: right;
+	    font-weight: bold;
+	}
+}

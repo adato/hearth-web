@@ -506,6 +506,26 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
+		$rootScope.openModalContainer = function(path) {
+			var scope = $scope.$new();
+			scope.path = path;
+
+			var dialog = ngDialog.open({
+				template: $$config.modalTemplates + 'modalContainer.html',
+				controller: 'ModalContainer',
+				scope: scope,
+				className: 'ngdialog-fullwidth ngdialog-theme-default',
+				closeByDocument: false,
+				closeByEscape: true,
+				showClose: false
+			});
+			dialog.closePromise.then(function(data) {});
+		};
+
+		$rootScope.showTerms = function() {
+			$rootScope.openModalContainer('/app/locales/' + $rootScope.language + '/new-terms.html');
+		};
+
 		/**
 		 * Function will show modal window where community admin can remove post from his community
 		 */
