@@ -19,32 +19,6 @@ angular.module('hearth.directives').directive('filterbar', [
 				scope.searchParams = '';
 				scope.basePath = $$config.basePath;
 
-				/**
-				 * Set cookie info that we have closed filter
-				 * so we will not open him next time
-				 */
-				scope.setCookieFiltered = function() {
-					if (scope.isCookieFiltered())
-						return;
-
-					$analytics.eventTrack('filter closed', {
-						category: 'filter',
-						label: 'filter was closed for the first time'
-					});
-				};
-
-				scope.setUserFilterCookie = function() {
-					if (!scope.isCookieFiltered() && $rootScope.user && $rootScope.user.closed_filter)
-						$.cookie('closedFilter', +moment($rootScope.user.closed_filter), {
-							expires: 30 * 12 * 20,
-							path: '/'
-						});
-				};
-
-				scope.isCookieFiltered = function() {
-					return !!$.cookie('closedFilter');
-				};
-
 				scope.cancelFilter = function() {
 					Filter.reset();
 				};
@@ -86,11 +60,6 @@ angular.module('hearth.directives').directive('filterbar', [
 					filterSelected: false
 				});
 
-				$timeout(function() {
-					scope.setUserFilterCookie();
-					if (!scope.isCookieFiltered())
-						scope.filterSelected = true;
-				});
 				scope.testFilterActive();
 			}
 		};
