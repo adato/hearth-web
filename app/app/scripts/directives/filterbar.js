@@ -24,7 +24,6 @@ angular.module('hearth.directives').directive('filterbar', [
 				};
 
 				scope.toggleFilter = function() {
-					scope.setCookieFiltered();
 					scope.filterSelected = !scope.filterSelected;
 				};
 
@@ -35,7 +34,6 @@ angular.module('hearth.directives').directive('filterbar', [
 				};
 
 				scope.$on('filterClose', function() {
-					scope.setCookieFiltered();
 					scope.filterSelected = false;
 				});
 

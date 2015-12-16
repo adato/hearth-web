@@ -423,6 +423,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				return false;
 			itemEditOpened = true;
 
+			$timeout(function() {
+				itemEditOpened = false;
+			}, 1000);
+
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
@@ -449,10 +453,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					$rootScope.openEditForm(scope);
 				});
 			}
-
-			$timeout(function() {
-				itemEditOpened = false;
-			}, 1000);
 		};
 
 		$rootScope.removeItemFromList = function(id, list) {
