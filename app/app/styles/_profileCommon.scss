@@ -366,6 +366,13 @@
 			font-size: $ui-text-font-size;
 			margin-right: $ui-grid-size;
 		}
+
+		.need-offer-selector  {
+			label {
+				display: inline-block;
+			}
+		}
+		
 		textarea {
 			min-height: 120px;
 		}
