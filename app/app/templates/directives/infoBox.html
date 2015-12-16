@@ -4,7 +4,7 @@
 		<article class="row text-center" ng-if="error">
 			<span class="text-error">{{:: 'INFO_BOX_LOADING_ERROR' | translate }}</span>
 		</article>
-		<article class="row inner" ng-if="info">
+		<article class="inner" ng-if="info">
 			<section class="post-count">
 				<div class="count_accomplished" ng-bind-html="'count-of-wished-and-gifts' | translate: {value: info.post_count.needs + info.post_count.offers }"></div>
 			</section>
