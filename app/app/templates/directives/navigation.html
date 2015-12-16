@@ -5,16 +5,19 @@
 				<label class="first">Menu</label>
 			</li>
 			<li>
-				<a href="{{:: basePath }}" ng-class="{active: pageName == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}"> {{ 'HOMEPAGE_MARKET' | translate }} </a>
+				<a ng-click="reloadToMarketplace()" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
+					<i class="fa icon-marketplace"></i> {{ 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
-				<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{ 'COMMUNITIES' | translate }}"> {{ 'COMMUNITIES' | translate }} </a>
+				<a ng-if="loggedUser._id" ng-href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{:: 'COMMUNITIES' | translate }}">
+					<i class="fa icon-community"></i> {{ 'COMMUNITIES' | translate }} </a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}"> {{ 'TOP_BAR_MESSAGES' | translate }} </a>
+				<a ng-if="loggedUser._id" ng-href="{{:: basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
+					<i class="fa fa-comment"></i> {{ 'TOP_BAR_MESSAGES' | translate }} </a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ng-href="{{ basePath }}login">{{ 'LOG_IN' | translate}}</a>
+				<a ng-class="{active: pageName == 'login'}" ng-href="{{:: basePath }}login">{{:: 'LOG_IN' | translate}}</a>
 			</li>
 			<li ng-show="!loggedUser.name">
 				<a ng-class="{active: pageName == 'reg'}" ng-href="{{ basePath }}register">{{ 'SIGNUP' | translate }}</a>
@@ -22,8 +25,7 @@
 		</ul>
 		<ul class="off-canvas-list" ng-show="loggedUser._id">
 			<li>
-				<label class="first">
-					<i class="fa fa-user"></i>&nbsp;{{ loggedUser.name | ellipsis:15}}</label>
+				<label class="first">{{ loggedUser.name | ellipsis:15}}</label>
 			</li>
 			<li>
 				<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}">
@@ -47,7 +49,7 @@
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li>
 				<a href="" ng-click="logout()">
-					<i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a>
+					<i class="fa fa-sign-out"></i> {{ 'LOGOUT'| translate }}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list">
