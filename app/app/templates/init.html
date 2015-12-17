@@ -13,9 +13,12 @@
 	</div>
 </div>
 <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
+
 <div class="off-canvas-wrap" data-offcanvas>
-	<div class="inner-wrap">
+	<div class="fixed off-canvas-fixed">
 		<navigation ng-if="initFinished"></navigation>
+	</div>
+	<div class="inner-wrap">
 		<section id="homepage-hero">
 			<div class="all-visible max-width">
 				<div ui-view class="main-container"></div>
@@ -23,8 +26,9 @@
 					{{topArrowText.top}}
 					<span class="fa fa-caret-square-o-up"></span> {{topArrowText.bottom}}
 				</div>
+			</div>
 		</section>
 		<a class="exit-off-canvas"></a>
-		</div>
 	</div>
+</div>
 </div>
