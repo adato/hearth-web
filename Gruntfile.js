@@ -36,15 +36,19 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'web/dist/',
-					dest: 'public/',
+					dest: 'divshot/public/',
 					src: ['**/*']
+					// src: [
+					// 	'.tmp',
+					// 	'divshot'
+					// ]
 				}]
 			},
 			app: {
 				files: [{
 					expand: true,
 					cwd: 'app/dist/app/',
-					dest: 'public/app/',
+					dest: 'divshot/public/app/',
 					src: ['**/*']
 				}]
 			},
@@ -52,8 +56,18 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: './',
-					dest: 'public/',
-					src: ['_redirects', '.netlify']
+					dest: 'divshot/public/app/',
+					// dest: 'public/',
+					src: ['**/*']
+					// src: ['_redirects', '.netlify']
+				}]
+			},
+			divshotConf: {
+				files: [{
+					expand: true,
+					cwd: './',
+					dest: 'divshot/',
+					src: ['divshot.json']
 				}]
 			}
 		},
@@ -110,7 +124,8 @@ module.exports = function(grunt) {
 		'hub:app',
 		'copy:web',
 		'copy:app',
-		'copy:netlifyConf'
+		// 'copy:netlifyConf'
+		'copy:divshotConf'
 	]);
 
 };
