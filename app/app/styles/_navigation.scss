@@ -47,12 +47,11 @@ nav {
 }
 
 .orange-bar {
-	background-color: color(1);
+	background-color: $colorOrange;
 	box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
 	padding-bottom: 15px;
 	transition: max-height .3s ease-in-out;
 	top: 77px;
-	position: absolute;
 	left: 0;
 	right: 0;
 	z-index: 99;
