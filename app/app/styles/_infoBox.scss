@@ -10,11 +10,14 @@
 		width: 500px;
 		min-height: 3.2rem;
 		font-weight: normal;
-		padding: 1em;
+		padding: 18px;
 		text-align: left;
 		border-radius: $global-radius;
 		font-size: 130%;
 		box-shadow: $defaultShadow;
+		p {
+			margin-top: 0px !important;
+		}
 		&.on-profile {
 			left: 110px;
 			&.placement-left {

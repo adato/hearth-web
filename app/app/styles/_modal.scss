@@ -68,15 +68,14 @@
 		color: black;
 		font-size: $global-font-size;
 		margin: 0 auto;
-		max-width: 100%;
-		display: inline-block;
-		min-width: 300px;
+	    display: block;
+	    max-width: 650px;
 		position: relative;
 		text-align: left;
 		margin-top: 6%;
 		margin-bottom: 4%;
-		margin-left: $ui-small-grid-size;
-		margin-right: $ui-small-grid-size;
+	    margin-left: auto;
+	    margin-right: auto;
 	}
 	.ngdialog-close {
 		border-radius: 5px;
@@ -284,9 +283,6 @@ body.ngdialog-open {
 			}
 		}
 	}
-	/*     .keywords {
-        margin-bottom: 15px;
-    } */
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-content.errorBox {
