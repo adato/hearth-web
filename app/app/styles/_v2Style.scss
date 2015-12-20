@@ -30,6 +30,12 @@ $fontSize: $fontSize;
 		color: white;
 	}
 
+	hr {
+		border: 0;
+		border-bottom: $ui-border-style;
+		margin-bottom: $ui-small-grid-size * 2;
+	}
+
 	.karma-bar {
 		margin: 0px;
 		height: 8px;
