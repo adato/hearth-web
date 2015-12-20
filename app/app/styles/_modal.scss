@@ -377,11 +377,9 @@ body.ngdialog-open {
 				top: 5px;
 				bottom: 5px;
 			}
-			;
 			margin: {
 				bottom: 0;
 			}
-			;
 			transition: background-color 0.8s,
 			border-color 0.8s;
 			&:hover {
@@ -400,6 +398,12 @@ body.ngdialog-open {
 
 .ngdialog-fullwidth {
 	.ngdialog-content {
+
+		max-width: 950px !important;
+		
+		header h1 {
+			margin-top: 0px;
+		}
 		.close {
 			position: absolute;
 			right: 10px;
@@ -410,6 +414,13 @@ body.ngdialog-open {
 			&:hover {
 				color: #DDD;
 			}
+		}
+	}
+
+		
+	@media #{$medium-down} {
+		.ngdialog-content {
+			width: 97%
 		}
 	}
 

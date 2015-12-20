@@ -86,6 +86,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.$on("$stateChangeStart", function(event, next) {
 			// when changed route, load conversation counters
 			Auth.isLoggedIn() && Messenger.loadCounters();
+			ngDialog.close();
 
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
@@ -506,9 +507,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-		$rootScope.openModalContainer = function(path) {
+		$rootScope.openModalContainer = function(path, heading) {
 			var scope = $scope.$new();
 			scope.path = path;
+			scope.heading = heading;
 
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'modalContainer.html',
@@ -523,7 +525,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$rootScope.showTerms = function() {
-			$rootScope.openModalContainer('/app/locales/' + $rootScope.language + '/new-terms.html');
+			$rootScope.openModalContainer('/app/locales/' + $rootScope.language + '/new-terms.html', 'MENU.TERMS');
 		};
 
 		/**
