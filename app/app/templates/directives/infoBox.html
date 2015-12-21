@@ -26,17 +26,19 @@
 				</div>
 			</section>
 			<div class="cleaner"></div>
-			<section class="columns large-5 small-5 medium-5 links">
-				<div ng-if="info.facebook || info.googleplus || info.twitter || info.linkedin" class="social">
-					<a ng-if="info.facebook" class="fa fa-facebook-square" title="Facebook" href="{{:: info.facebook}}" target="_blank"></a>
-					<a ng-if="info.googleplus" class="fa fa-google-plus-square" title="Google+" href="{{:: info.googleplus}}" target="_blank"></a>
-					<a ng-if="info.twitter" class="fa fa-twitter-square " title="Twitter" href="{{:: info.twitter}}" target="_blank"></a>
-					<a ng-if="info.linkedin" class="fa fa-linkedin-square" title="LinkedIn" href="{{:: info.linkedin}}" target="_blank"></a>
-					<div>
-			</section>
-			<section class="columns large-5 small-5 medium-5 profil-link text-right">
-				<a ng-href="{{:: getProfileLink(info._type, info._id)}}">{{:: 'WHOLE_PROFILE' | translate}}</a>
-			</section>
+			<div class="row links">
+				<section class="columns large-6 small-6 medium-6 links">
+					<div ng-if="info.facebook || info.googleplus || info.twitter || info.linkedin" class="social">
+						<a ng-if="info.facebook" class="fa fa-facebook-square" title="Facebook" href="{{:: info.facebook}}" target="_blank"></a>
+						<a ng-if="info.googleplus" class="fa fa-google-plus-square" title="Google+" href="{{:: info.googleplus}}" target="_blank"></a>
+						<a ng-if="info.twitter" class="fa fa-twitter-square " title="Twitter" href="{{:: info.twitter}}" target="_blank"></a>
+						<a ng-if="info.linkedin" class="fa fa-linkedin-square" title="LinkedIn" href="{{:: info.linkedin}}" target="_blank"></a>
+						<div>
+				</section>
+				<section class="columns large-6 small-6 medium-6 profil-link text-right">
+					<a ng-href="{{:: getProfileLink(info._type, info._id)}}">{{:: 'WHOLE_PROFILE' | translate}}</a>
+				</section>
+				</div>
 		</article>
 		</div>
 		<ng-transclude></ng-transclude>
