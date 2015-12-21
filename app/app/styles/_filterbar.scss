@@ -40,19 +40,18 @@
 		padding: $ui-grid-size;
 		clear: both;
 		margin-top: 2 * $ui-small-grid-size;
-		transition: height .3s ease-in;
-		opacity: 1;
 		max-height: 800px;
+		transition: all .3s ease-in;
 	}
 	
 	.animated-hidden {
-		opacity: 0;
 		max-height: 0px;
 		margin-top: 0;
 		margin-bottom: 0;
 		padding-top: 0;
 		padding-bottom: 0;
 		overflow-y: hidden;
+		transition: all .3s ease-in;
 	}
 }
 
