@@ -378,10 +378,11 @@
 		}
 		.need-offer-selector {
 			display: inline-block;
-			margin-top: 12px;
+			margin-top: 18px;
 		}
 		.author-selector {
-			width: 50%;
+			margin-right: 0px;
+			width: 48%;
 			@media #{$small-only} {
 				width: initial;
 			}
