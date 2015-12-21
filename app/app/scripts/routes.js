@@ -116,8 +116,8 @@ angular.module('hearth').config([
 				templateUrl: 'templates/terms.html',
 				controller: 'TermsCtrl'
 			})
-			.state('new-terms', {
-				url: '/:isNew-terms',
+			.state('new-terms', { // duplicate of previous, redirected to classic terms, keep for some time, then remove pls
+				url: '/new-terms',
 				templateUrl: 'templates/terms.html',
 				controller: 'TermsCtrl'
 			})
