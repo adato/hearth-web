@@ -12,11 +12,6 @@ angular.module('hearth.controllers').controller('TermsCtrl', [
 		$scope.termsPath = false;
 		var termFile = '/terms.html';
 
-
-		if ($stateParams.isNew !== undefined) {
-			termFile = "/new-terms.html";
-		}
-
 		$scope.init = function() {
 			$scope.termsPath = '/app/locales/' + $rootScope.language + termFile;
 		};
