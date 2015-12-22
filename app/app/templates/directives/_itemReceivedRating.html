@@ -26,7 +26,9 @@
 			<div class="clear"></div>
 			<div class="text-container clearfix">
 				<p ng-if="!item.hidden" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
-				<p ng-if="item.hidden"><i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i></p>
+				<p ng-if="item.hidden">
+					<i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+				</p>
 			</div>
 			<div ng-if="!item.formOpened">
 				<a class="right reply-form-link" ng-if="!item.comment && mine" href="#" ng-click="openRatingReplyForm(item)">{{:: 'PROFILE.RATING.OPEN_REPLY_FORM' | translate }}</a>
@@ -42,8 +44,8 @@
 						{{:: item.entity_to.name | ellipsis:40}}
 						<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
-					<i ng-if="!item.hidden">„{{ item.comment.text }}”</i>
-					<i ng-if="item.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+					<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
+					<i ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
 				</div>
 				<div class="clear"></div>
 			</div>
