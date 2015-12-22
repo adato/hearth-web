@@ -20,7 +20,10 @@
 					<a href="{{:: getProfileLink('Post', item.post_id )}}" title="{{:: item.post_title }}">{{:: item.post_title | ellipsis:25}}</a>.
 				</small>
 			</div>
-			<div class="rating-text">{{:: item.text}}</div>
+			<div ng-if="!item.hidden" class="rating-text">{{:: item.text}}</div>
+			<div ng-if="item.hidden" class="rating-text">
+				<i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+			</div>
 			<div class="rating-reply" ng-if="item.comment">
 				<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
 					<avatar class="left" type="item.entity_to._type" src="item.entity_to.avatar.normal" size="small"></avatar>
@@ -30,7 +33,8 @@
 						{{:: item.entity_to.name | ellipsis:30}}
 						<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
-					<i>„{{ item.comment.text }}”</i>
+					<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
+					<i ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
 				</div>
 			</div>
 			<div class="clear"></div>
