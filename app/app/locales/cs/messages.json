@@ -1129,7 +1129,8 @@
 		},
 		"RATING": {
 			"OPEN_REPLY_FORM": "Přidat komentář",
-			"REPLY_TO_USER": "Reagovat na hodnocení od"
+			"REPLY_TO_USER": "Reagovat na hodnocení od",
+			"FILTERED": "-- Tento příspěvek byl odstraněn z důvodu porušení pravidel --"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {
