@@ -1129,7 +1129,8 @@
 		},
 		"RATING": {
 			"OPEN_REPLY_FORM": "Přidat komentář",
-			"REPLY_TO_USER": "Reagovat na hodnocení od"
+			"REPLY_TO_USER": "Reagovat na hodnocení od",
+			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {

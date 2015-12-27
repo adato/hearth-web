@@ -1027,7 +1027,8 @@
 		},
 		"PROFILE": {
 			"GIVEN_RATINGS": "Odoslaná hodnotenie",
-			"RECEIVED_RATINGS": "Prijatá hodnotenie"
+			"RECEIVED_RATINGS": "Prijatá hodnotenie",
+			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
 		},
 		"X_GIVES": {
 			"one": "dar",
@@ -1129,7 +1130,8 @@
 		},
 		"RATING": {
 			"OPEN_REPLY_FORM": "Pridať komentár",
-			"REPLY_TO_USER": "Reagovať na hodnotenia od"
+			"REPLY_TO_USER": "Reagovať na hodnotenia od",
+			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {

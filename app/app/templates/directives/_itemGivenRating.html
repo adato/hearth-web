@@ -25,7 +25,10 @@
 			</div>
 			<div class="clear"></div>
 			<div class="text-container clear clearfix">
-				<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+				<p ng-if="!item.hidden" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+				<p ng-if="item.hidden">
+					<i>{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+				</p>
 			</div>
 			<div class="rating-reply" ng-if="item.comment">
 				<a href="{{:: getProfileLink(item.entity_to._type, item.entity_to._id )}}" title="{{:: item.entity_to.name }}">
@@ -36,7 +39,8 @@
 						{{:: item.entity_to.name | ellipsis:40}}
 						<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
-					<i>„{{ item.comment.text }}”</i>
+					<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
+					<i ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
 				</div>
 				<div class="clear"></div>
 			</div>

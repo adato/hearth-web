@@ -714,7 +714,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				if ($location.search().reply) {
 					var id = $location.search().reply;
 					for (var i in data) {
-						if (data[i]._id == id) {
+						if (data[i]._id == id && !data[i].comment) {
 
 							scope.openRatingReplyForm(data[i]);
 							$timeout(function() {
