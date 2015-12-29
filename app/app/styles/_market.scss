@@ -1,6 +1,5 @@
 $itemBorderWidth: 5px;
 $itemBorder: 1px solid #D7D7D7;
-$sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 
 .not-found-box {
 	a {
@@ -27,72 +26,6 @@ body {
 	.ad-detail-column {
 		position: relative;
 
-		.sharing-container {
-			position: absolute;
-			z-index: 10;
-			top: 0px;
-			display: flex;
-			align-items: center;
-			bottom: 0px;
-			right: 0px;
-			left: 0px;
-			background-color: $sharingOverlayBackground;
-			border-radius: 6px;
-			text-align: center;
-			visibility: hidden;
-			opacity: 0;
-			transition: visibility 0s, opacity 0.5s linear;
-			&>div {
-				width: 100%;
-			}
-			&.active {
-				visibility: visible;
-				opacity: 1;
-			}
-			.fa {
-				cursor: pointer;
-			}
-			h3 {
-				color: white;
-				margin-bottom: 10px;
-			}
-			input {
-				margin: 0px auto;
-				margin-bottom: 10px;
-				width: 60%;
-				color: $colorOrange;
-				transition: none;
-			}
-			ul {
-				list-style: none;
-				li {
-					display: inline;
-					font-size: 18px;
-					.fa {
-						width: 36px;
-						height: 36px;
-						color: white;
-						border: 2px solid white;
-						border-radius: 50%;
-						text-align: center;
-						padding-top: 7px;
-						margin-left: 5px;
-						margin-right: 5px;
-						&:hover {
-							color: #DDD;
-							border-color: #DDD;
-						}
-					}
-				}
-			}
-			.close {
-				color: white;
-				font-size: 20px;
-				position: absolute;
-				top: 10px;
-				right: 10px;
-			}
-		}
 	}
 }
 ._market {
@@ -490,29 +423,6 @@ body {
 					top: -2px;
 					bottom: 31px;
 					z-index: 5;
-				}
-				.sharing-overlay {
-					left: 0px;
-					top: 0px;
-					right: 0px;
-					bottom: 0px;
-					position: absolute;
-					z-index: 5;
-					visibility: hidden;
-					opacity: 0;
-					transition: visibility 0s, opacity 0.5s linear;
-					background-color: $sharingOverlayBackground;
-					border-radius: $borderRadius;
-					&.active {
-						visibility: visible;
-						opacity: 1;
-					}
-				}
-
-				&.active-overlay {
-					.post-edit-buttons-container {
-						z-index: 4 !important;
-					}
 				}
 			}
 		}
