@@ -22,22 +22,11 @@ body {
 	}
 }
 
-._market {
-	._item {
-		min-width: 188px;
-		border-bottom: 1px solid white;
+
+.market {
+	.ad-detail-column {
 		position: relative;
 
-		&.paused {
-			opacity: 0.5;
-		}
-		&.row {
-			margin-left: 0;
-			margin-right: 0;
-			border: $itemBorder;
-			border-radius: 4px;
-			background-color: white;
-		}
 		.sharing-container {
 			position: absolute;
 			z-index: 10;
@@ -48,7 +37,7 @@ body {
 			right: 0px;
 			left: 0px;
 			background-color: $sharingOverlayBackground;
-			border-radius: 3px;
+			border-radius: 6px;
 			text-align: center;
 			visibility: hidden;
 			opacity: 0;
@@ -104,6 +93,25 @@ body {
 				right: 10px;
 			}
 		}
+	}
+}
+._market {
+	._item {
+		min-width: 188px;
+		border-bottom: 1px solid white;
+		position: relative;
+
+		&.paused {
+			opacity: 0.5;
+		}
+		&.row {
+			margin-left: 0;
+			margin-right: 0;
+			border: $itemBorder;
+			border-radius: 4px;
+			background-color: white;
+		}
+		
 		&.offer {
 			border-left: $itemBorderWidth solid color(2);
 			.label {
@@ -328,9 +336,6 @@ body {
 			}
 			&.row {
 				margin-bottom: 80px;
-			}
-			.sharing {
-				display: none;
 			}
 			.dropdown {
 				top: 35px !important;
