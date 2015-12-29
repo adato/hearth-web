@@ -77,3 +77,13 @@
 		/* color: #a7bd1d; */
 	}
 }
+
+
+@media #{$large-up} {
+	#notify-top .alert-inner {
+		width: 960px;
+		margin: auto;
+		position: relative;
+		right: 10px;
+	}
+}
