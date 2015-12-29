@@ -191,6 +191,22 @@
 				left: $ui-grid-size;
 				right: $ui-grid-size;
 			}
+			.sharing-trigger a {
+				width: $ui-grid-size;
+				height: $ui-grid-size;
+				margin-top: 12px;
+				color: color(3);
+
+				&:before {
+					width: $ui-grid-size;
+					height: $ui-grid-size;
+					line-height: 14px;
+					font-size: 20px;
+				}
+				&:hover {
+					color: lighten(color(3), 20%);
+				}
+			}
 			.sharing a {
 				color: color(4);
 				background: color(3);
