@@ -228,9 +228,7 @@ angular.module('hearth.directives').directive('filter', [
 				scope.init = function() {
 					scope.inited = true;
 					scope.loadKeywords();
-
-					if ($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length)
-						scope.filterSave = true;
+					scope.filterSave = Filter.isSaved();
 				};
 
 				scope.$watch('filter', scope.recountPosts, true);

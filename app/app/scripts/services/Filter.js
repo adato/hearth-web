@@ -121,6 +121,7 @@ angular.module('hearth.services').factory('Filter', [
 			},
 			reset: function() {
 				$rootScope.$broadcast("filterReseted");
+				this.deleteUserFilter();
 				//this.apply({}, true, true);
 				$state.go('market', {
 					query: null,
@@ -129,6 +130,12 @@ angular.module('hearth.services').factory('Filter', [
 					reload: true
 				});
 				//this.apply({}, true, true);
+			},
+			isSaved: function() {
+				return !!($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length);
+			},
+			applySaved: function() {
+				this.apply($rootScope.user.filter);
 			}
 		};
 	}
