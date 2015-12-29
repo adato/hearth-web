@@ -12,6 +12,7 @@ $$config = {
 		minWidth: 200,
 		minHeight: 200
 	},
+	defaultMapLocation: [50.075977, 14.426142],
 	imgMaxPixelSize: 1024,
 	defaultHearthImage: 'images/facebook-sharing-image.jpg',
 	defaultHearthImageSize: [1200, 630],
