@@ -14,7 +14,7 @@
 	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
-				<div class="large-3 large-push-9 small-12 medium-3 medium-push-9 columns">
+				<div class="large-3 large-push-9 small-12 medium-4 medium-push-8 columns">
 					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
 						<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 					</a>
@@ -30,7 +30,7 @@
 						{{item.updated_at | ago}}
 					</span>
 				</div>
-				<div class="large-9 large-pull-3 small-12 medium-9 medium-pull-3 columns">
+				<div class="large-9 large-pull-3 small-12 medium-8 medium-pull-4 columns">
 					<h1>
 						<a ng-href="{{:: getProfileLink('Post', item._id)}}">
 							<span data-item-type="{{ item.type }}">
