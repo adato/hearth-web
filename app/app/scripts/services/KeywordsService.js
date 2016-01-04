@@ -12,7 +12,9 @@ angular.module('hearth.services').service('KeywordsService', [
 		this.listKeywords = function() {
 			var deferred = $q.defer();
 
-			Keywords.get({}, function(data) {
+			Keywords.get({
+				'keyword': ''
+			}, function(data) {
 				return deferred.resolve(data);
 			}, function(err) {
 				return deferred.reject(err);
@@ -22,7 +24,9 @@ angular.module('hearth.services').service('KeywordsService', [
 		this.queryKeywords = function($query) {
 			var deferred;
 			deferred = $q.defer();
-			$query = ($query + "").toLowerCase();
+			if ($query !== undefined) {
+				$query = ($query + "").toLowerCase();
+			}
 			Keywords.get({
 				'keyword': $query
 			}, function(data) {
