@@ -4,9 +4,9 @@
 	margin: 0;
 	font-weight: 600;
 	height: $ui-button-height;
+	line-height: $ui-button-height;
 	text-align: center;
 	font-size: $ui-text-font-size;
-	line-height: $ui-button-height;
 	border: none;
 	border-radius: $global-radius;
 	background: color(5);
@@ -19,6 +19,11 @@
 	&:focus,
 	&:active {
 		background-color: darken(color(5), abs($button-function-factor));
+	}
+
+	@media #{$large-up} {
+		height: $ui-input-height;
+		line-height: $ui-input-height;
 	}
 }
 

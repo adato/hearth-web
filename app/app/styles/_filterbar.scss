@@ -32,6 +32,10 @@
 				    margin-left: 10px;
 		    	}
 		    }
+
+			@media #{$large-up} {
+				line-height: $ui-input-height;
+			}
 		}
 	}
 

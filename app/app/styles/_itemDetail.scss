@@ -289,6 +289,11 @@
 					}
 				}
 			}
+
+			@media #{$large-up} {
+				min-height: 60px;
+				padding-top: 8px;
+			}
 		}
 		.post-replies {
 			margin-top: $ui-grid-size;
