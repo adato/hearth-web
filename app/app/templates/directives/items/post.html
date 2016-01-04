@@ -15,7 +15,7 @@
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
 				<div class="large-3 large-push-9 small-12 medium-3 medium-push-9 columns">
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
+					<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
 						<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 					</a>
 					<span class="ad-flag-container fright" ng-if="!mine">
