@@ -19,7 +19,7 @@ angular.module('hearth.services').service('Notify', [
 			5: ''
 		};
 		var self = this;
-
+		var topPageOffsetContainer = '#notify-offset-container'; // for page padding when the notification appears
 		this.T_SUCCESS = 1;
 		this.T_INFO = 2;
 		this.T_WARNING = 3;
@@ -71,8 +71,10 @@ angular.module('hearth.services').service('Notify', [
 
 				// add notify
 				$(container).append(newNotify);
+				newNotify.clone().appendTo(topPageOffsetContainer).slideDown(300);
+
 				// and fade in
-				newNotify.fadeIn(300);
+				newNotify.slideDown(300);
 
 				// if timeout is set, trigger close event after given time
 				if (ttlCustom >= 0) setTimeout(function() {
@@ -160,6 +162,12 @@ angular.module('hearth.services').service('Notify', [
 			ev.slideUp('fast', function() {
 				ev.remove();
 			});
+
+			var evOffset = $(topPageOffsetContainer).children().first();
+			evOffset.slideUp('fast', function() {
+				evOffset.remove();
+			});
+
 			return false;
 		};
 
