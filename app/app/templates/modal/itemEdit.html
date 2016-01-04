@@ -173,8 +173,9 @@
 				<a href="" ng-click="closeEdit()" class="fleft close">
 					{{ 'CLOSE' | translate }}
 				</a>
-				<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE_AND_ACTIVATE</button>
-				<button class="primary button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
+				<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP"
+				translate>SAVE_AND_ACTIVATE</button>
+				<button class="primary button button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
 				<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     {{ 'DELETE' | translate }}
                 </a> -->
