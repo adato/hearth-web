@@ -175,7 +175,7 @@
 		}
 		footer {
 			background: color(4);
-			min-height: 60px;
+			min-height: 74px;
 			box-sizing: border-box;
 			position: relative;
 			top: $ui-grid-size;
@@ -187,14 +187,21 @@
 				top: -1 * $ui-grid-size;
 			}
 			padding: {
-				top: 14px;
+				top: 15px;
 				left: $ui-grid-size;
 				right: $ui-grid-size;
 			}
+
+			.sharing,
+			.sharing-trigger {
+				height: $ui-button-height;
+				line-height: $ui-button-height - 10px;
+			}
+
 			.sharing-trigger a {
 				width: $ui-grid-size;
 				height: $ui-grid-size;
-				margin-top: 12px;
+				margin-top: 16px;
 				color: color(3);
 
 				&:before {
@@ -266,24 +273,16 @@
 			}
 			.reply-button-container,
 			.reply-count-container {
-				line-height: $ui-grid-size;
+				height: $ui-button-height;
+				line-height: $ui-button-height;
 				margin-right: 3 * $ui-small-grid-size;
 				div {
-					line-height: $ui-grid-size;
-					margin: $ui-grid-size / 5;
-					margin-top: 2px;
+					margin-left: $ui-grid-size / 5;
 				}
 			}
 			.reply-button-container {
 				button {
-					border: none;
-					outline: none;
 					color: lighten(color(4), 10%);
-					margin: 0;
-					font-size: $ui-text-font-size;
-					font-weight: 600;
-					padding: $ui-small-grid-size $ui-small-grid-size*10;
-					min-width: $ui-small-grid-size * 30;
 					p {
 						margin: 0;
 						font-size: $ui-text-font-size;
