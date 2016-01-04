@@ -22,8 +22,9 @@ angular.module('hearth.services').service('KeywordsService', [
 		this.queryKeywords = function($query) {
 			var deferred;
 			deferred = $q.defer();
+			$query = ($query + "").toLowerCase();
 			Keywords.get({
-				'keyword': $query.toLowerCase()
+				'keyword': $query
 			}, function(data) {
 				var retData = [];
 				data.forEach(function(item) {
