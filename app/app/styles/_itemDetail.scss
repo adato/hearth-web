@@ -260,14 +260,7 @@
 			}
 			.reply-button-container {
 				button {
-					border: none;
-					outline: none;
 					color: lighten(color(4), 10%);
-					margin: 0;
-					font-size: $ui-text-font-size;
-					font-weight: 600;
-					padding: $ui-small-grid-size $ui-small-grid-size*10;
-					min-width: $ui-small-grid-size * 30;
 					p {
 						margin: 0;
 						font-size: $ui-text-font-size;
