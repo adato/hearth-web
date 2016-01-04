@@ -171,6 +171,10 @@ angular.module('hearth.services').service('Notify', [
 			return false;
 		};
 
+		this.addSingle('Ola', 1, null, 99999999999999999, 3000);
+		this.addSingle('Ola2', 2, null, 99999999999999999, 4000);
+		this.addSingle('Ola3', 3, null, 99999999999999999, 5000);
+
 		return this;
 	}
 ]);
