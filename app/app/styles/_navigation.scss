@@ -46,12 +46,11 @@ $topBarImageSize: 1.8em;
 	background-color: $colorOrange;
 	box-shadow: 0 4px 2px -2px rgba(100, 100, 100, 0.5);
 	padding-bottom: 15px;
-	transition: max-height .3s ease-in-out;
+	transition: all .3s ease-in-out;
 	padding-right: 1rem;
-	top: 77px;
-	left: 0;
-	right: 0;
 	z-index: 99;
+	max-height:120px;
+	overflow:hidden;
 
 	.logo {
 		display: inline-block;
