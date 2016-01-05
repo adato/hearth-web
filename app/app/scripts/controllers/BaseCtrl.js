@@ -22,6 +22,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.addressNew = '';
 		$rootScope.pageChangeWithScroll = true;
 		$scope.segment = false;
+		$rootScope.searchBarDisplayed = false;
 		$scope.addresses = $$config.itemAddresses;
 		$rootScope.socialLinks = {
 			facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
@@ -158,7 +159,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$("#search").focus();
 				return false;
 			}
-
+			$rootScope.toggleSearchBar(false); // turn off search input
 			$rootScope.top(0, 1);
 			$state.go('search', {
 				q: searchQuery.query,
@@ -755,6 +756,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return item.state === 'active';
 			// return item.is_active && !item.is_expired;
 		};
+
+		$rootScope.toggleSearchBar = function(value) {
+			if (value !== undefined) {
+				return $rootScope.searchBarDisplayed = value;
+			}
+			$rootScope.searchBarDisplayed = !$rootScope.searchBarDisplayed;
+		}
+
+		$rootScope.isSearchBarShown = function() {
+			return $rootScope.searchBarDisplayed;
+		}
 
 		$scope.$on('$destroy', function() {
 			angular.element(window).unbind('scroll');
