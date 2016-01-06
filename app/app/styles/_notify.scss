@@ -91,4 +91,10 @@
 		margin: auto;
 		position: relative;
 	}
+
+	#notify-offset-container {
+		& > div {
+			visibility: hidden;
+		}
+	}
 }
