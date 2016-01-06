@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.services').service('Notify', [
-	'$translate',
+	'$translate', '$timeout',
 
-	function($translate) {
+	function($translate, $timeout) {
 		var tmpl = '<div data-alert class="alert-box $$type radius"><div class="alert-inner">$$text<i class="close">&times;</i></div></div>';
 		var notifyTypes = {
 			1: 'success',
@@ -59,10 +59,11 @@ angular.module('hearth.services').service('Notify', [
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
 				// hide it at start
 				.css('display', 'none');
+			var notifyFill = (container === self.TOP) ? newNotify.clone() : null;
 
 			// also add trigger on click on cross icon
 			newNotify.find('.close').click(function(ev) {
-				self.closeNotify(newNotify);
+				self.closeNotify(newNotify, notifyFill);
 				ev.stopPropagation();
 			});
 
@@ -70,15 +71,14 @@ angular.module('hearth.services').service('Notify', [
 			setTimeout(function() {
 
 				// add notify
-				$(container).append(newNotify);
-				newNotify.clone().appendTo(topPageOffsetContainer).slideDown(300);
+				newNotify.appendTo(container).slideDown(300);
 
-				// and fade in
-				newNotify.slideDown(300);
+				if (notifyFill)
+					notifyFill.appendTo(topPageOffsetContainer).slideDown(300);
 
 				// if timeout is set, trigger close event after given time
 				if (ttlCustom >= 0) setTimeout(function() {
-					self.closeNotify(newNotify);
+					self.closeNotify(newNotify, notifyFill);
 				}, ttlCustom);
 
 			}, delay);
@@ -93,6 +93,12 @@ angular.module('hearth.services').service('Notify', [
 				$(this).remove();
 				cb && cb();
 			});
+
+			if (container == self.TOP) {
+				$(topPageOffsetContainer).children().slideUp(function() {
+					$(this).remove();
+				});
+			}
 		};
 
 		// this will close all messages in given container and show given message
@@ -158,19 +164,17 @@ angular.module('hearth.services').service('Notify', [
 		};
 
 		// close notify on some event
-		this.closeNotify = function(ev) {
+		this.closeNotify = function(ev, fill) {
 			ev.slideUp('fast', function() {
 				ev.remove();
 			});
 
-			var evOffset = $(topPageOffsetContainer).children().first();
-			evOffset.slideUp('fast', function() {
-				evOffset.remove();
+			if (fill) fill.slideUp('fast', function() {
+				fill.remove();
 			});
 
 			return false;
 		};
-
 
 		return this;
 	}
