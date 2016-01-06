@@ -25,7 +25,7 @@ angular.module('hearth.directives').directive('item', [
 				inactivateTags: '=',
 				foundationColumnsClassname: '=',
 			},
-			templateUrl: 'templates/directives/item.html', //must not use name ad.html - adBlocker!
+			templateUrl: 'templates/directives/items/post.html', //must not use name ad.html - adBlocker!
 			link: function(scope, element) {
 				scope.postTypes = $$config.postTypes;
 				scope.replyLabel = $$config.replyLabels;
