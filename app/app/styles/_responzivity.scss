@@ -49,7 +49,7 @@
 		margin-top: 99px !important;
 		min-width: unset !important;
 		width: 100%;
-		padding: 0 2*$ui-small-grid-size;
+		padding: 0 $ui-small-grid-size;
 	}
 }
 @media #{$small-only} {
