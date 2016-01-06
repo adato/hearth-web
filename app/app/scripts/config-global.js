@@ -59,7 +59,7 @@ $$config = {
 		},
 		Community: {
 			need: 'WE_NEED',
-			offer: 'WE_GIVE'
+			offer: 'WE_OFFER'
 		}
 	},
 	replyLabels: {

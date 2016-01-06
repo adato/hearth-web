@@ -152,7 +152,7 @@ angular.module('hearth.geo').directive('map', [
 						map.panTo(marker.position);
 
 						if (data.author._type == 'Community') {
-							data.adType = (data.type === 'need' ? 'WE_NEED' : 'WE_GIVE');
+							data.adType = (data.type === 'need' ? 'WE_NEED' : 'WE_OFFER');
 						} else {
 							data.adType = data.type;
 						}

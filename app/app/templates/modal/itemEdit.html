@@ -29,7 +29,7 @@
 				</div>
 				<div class="type-selector-container" title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy>
 					<needofferselector ng-if="!post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>
-					<needofferselector ng-if="post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'WE_GIVE' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
+					<needofferselector ng-if="post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'WE_OFFER' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
 				</div>
 				<div class="clear"></div>
 			</section>
@@ -37,7 +37,7 @@
 				<label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
 				<div class="name">
 					<div class="field-group">
-						<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius green bold" ng-if="post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
+						<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius green bold" ng-if="post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_OFFER' : 'OFFER' | translate }}</span>
 						<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius red bold" ng-if="!post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
 						<input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 					</div>
