@@ -101,6 +101,7 @@ a.link {
 	opacity: 1;
 	cursor: pointer;
 	background-color: color(5);
+	min-width: unset!important;
 	&:hover,
 	&:focus {
 		background-color: darken(color(5), abs($button-function-factor));
