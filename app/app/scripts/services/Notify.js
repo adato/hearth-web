@@ -7,9 +7,8 @@
  */
 
 angular.module('hearth.services').service('Notify', [
-	'$translate', '$timeout',
-
-	function($translate, $timeout) {
+	'$translate',
+	function($translate) {
 		var tmpl = '<div data-alert class="alert-box $$type radius"><div class="alert-inner">$$text<i class="close">&times;</i></div></div>';
 		var notifyTypes = {
 			1: 'success',
