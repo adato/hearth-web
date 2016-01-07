@@ -37,8 +37,8 @@
 			"SHARE_WITH": "Share via",
 			"PUBLISHED_AT": "Added",
 			"REMOVE_FROM_COMMUNITY": "Remove from Community",
-			"CLICK_TO_COLLAPSE": "Zobrazit zkrÃƒÂ¡cenÃƒÂ½ text",
-			"SHARE_LINK": "SdÃƒÂ­let odkaz"
+			"CLICK_TO_COLLAPSE": "Zobrazit zkrÃ¡cenÃ½ text",
+			"SHARE_LINK": "SdÃ­let odkaz"
 		},
 		"EDIT_FILTER": "Edit filter",
 		"FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br \/>Maybe remove some conditions?",
@@ -46,16 +46,16 @@
 		"NOTHING_FOUND": "Keep calm and meditate. Something has gone wrong, there are no posts.",
 		"SHOW_POSTS_IN_LIST": "Show posts in list",
 		"SHOW_POSTS_ON_MAP": "Show posts on map",
-		"HEAD_MESSAGE": "<p><a title=\"SvÃ„â€ºt&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
+		"HEAD_MESSAGE": "<p><a title=\"SvÄ›t&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
 		"CREATE_NEW_ADD": "Add a new gift or wish",
-		"REFRESH_AFTER_ERROR": "PÃ…â„¢ÃƒÂ­padnÃ„â€º zkuste naÃ„ÂÃƒÂ­st inzerÃƒÂ¡ty znovu.",
+		"REFRESH_AFTER_ERROR": "PÅ™Ã­padnÄ› zkuste naÄÃ­st inzerÃ¡ty znovu.",
 		"USER": {
-			"INFO_NOT_FILLED": "UÃ…Â¾ivatel o sobÃ„â€º zatÃƒÂ­m nevyplnil Ã…Â¾ÃƒÂ¡dnÃƒÂ© informace."
+			"INFO_NOT_FILLED": "UÅ¾ivatel o sobÄ› zatÃ­m nevyplnil Å¾Ã¡dnÃ© informace."
 		},
 		"COMMUNITY": {
-			"INFO_NOT_FILLED": "Komunita o sobe zatÃƒÂ­m nevyplnila Ã…Â¾ÃƒÂ¡dnÃƒÂ© infromace."
+			"INFO_NOT_FILLED": "Komunita o sobe zatÃ­m nevyplnila Å¾Ã¡dnÃ© infromace."
 		},
-		" SHOW_POSTS_ON_MAP": "Zobrazit inzerÃƒÂ¡ty na mapÃ„â€º"
+		" SHOW_POSTS_ON_MAP": "Zobrazit inzerÃ¡ty na mapÄ›"
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -924,11 +924,11 @@
 		"CONVERSATION_ARCHIVE_FAILED": "There was an error in the archive. Those archives! ",
 		"RATING_REPLY_SUCCESS": "That's it! Comment was added successfully.",
 		"RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
-		"REACTIVATING_EMAIL_WAS_SENT": "AktivaÃ„ÂnÃƒÂ­ email byl zaslÃƒÂ¡n na VaÃ…Â¡i emailovou adresu.",
-		"REACTIVATING_EMAIL_FAILED": "PÃ…â„¢i odesÃƒÂ­lÃƒÂ¡nÃƒÂ­ aktivaÃ„ÂnÃƒÂ­ho emailu doÃ…Â¡lo k chybÃ„â€º.",
-		"API_401": "<p>NÃ„â€ºco se bohuÃ…Â¾el nepovedlo. Zkuste to pros&iacute;m bÃ„â€ºhem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÃ„â€ºdÃ„â€ºt<\/a>. D&iacute;ky!<\/p>",
-		"API_422": "<p>NÃ„â€ºco se bohuÃ…Â¾el nepovedlo. Zkuste to pros&iacute;m bÃ„â€ºhem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÃ„â€ºdÃ„â€ºt<\/a>. D&iacute;ky!<\/p>",
-		"API_500": "<p>NÃ„â€ºco se bohuÃ…Â¾el nepovedlo. Zkuste to pros&iacute;m bÃ„â€ºhem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÃ„â€ºdÃ„â€ºt<\/a>. D&iacute;ky!<\/p>"
+		"REACTIVATING_EMAIL_WAS_SENT": "AktivaÄnÃ­ email byl zaslÃ¡n na VaÅ¡i emailovou adresu.",
+		"REACTIVATING_EMAIL_FAILED": "PÅ™i odesÃ­lÃ¡nÃ­ aktivaÄnÃ­ho emailu doÅ¡lo k chybÄ›.",
+		"API_401": "<p>NÄ›co se bohuÅ¾el nepovedlo. Zkuste to pros&iacute;m bÄ›hem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÄ›dÄ›t<\/a>. D&iacute;ky!<\/p>",
+		"API_422": "<p>NÄ›co se bohuÅ¾el nepovedlo. Zkuste to pros&iacute;m bÄ›hem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÄ›dÄ›t<\/a>. D&iacute;ky!<\/p>",
+		"API_500": "<p>NÄ›co se bohuÅ¾el nepovedlo. Zkuste to pros&iacute;m bÄ›hem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÄ›dÄ›t<\/a>. D&iacute;ky!<\/p>"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
@@ -1031,7 +1031,7 @@
 				"one": "User has <strong>{{count}}<\/strong> friend.",
 				"other": "User has <strong>{{count}}<\/strong> friends."
 			},
-			"NO_FRIENDS_ME": "You seem to be at little lonely here. Follow anyone following you and voilÃƒ , you'll have a friendship right there!",
+			"NO_FRIENDS_ME": "You seem to be at little lonely here. Follow anyone following you and voilÃ , you'll have a friendship right there!",
 			"NO_FRIENDS_OTHER": "User doesn't have any friends here. Now what? Follow each other and you become friends. Easy-peasy."
 		},
 		"FOLLOWEES": {
@@ -1103,7 +1103,7 @@
 		"RATING": {
 			"OPEN_REPLY_FORM": "Add comment",
 			"REPLY_TO_USER": "Reply to rating from",
-			"FILTERED": "Obsah tohoto hodnocenÃ­ byl odstranÄ›n kvÅ¯li poruÅ¡enÃ­ podmÃ­nek pouÅ¾Ã­vÃ¡nÃ­ Hearth.net (reklama, nevhodnÃ½ obsah atd.)"
+			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {
@@ -1273,18 +1273,18 @@
 	"TOP_BAR": {
 		"ADD_NEW_POST": "New Gift\/Wish",
 		"SEARCH": {
-			"EVERYWHERE": "VÃ…Â¡ude",
-			"MARKET": "Na trÃ…Â¾iÃ…Â¡ti",
-			"COMMUNITY": "V komunitÃƒÂ¡ch",
+			"EVERYWHERE": "VÅ¡ude",
+			"MARKET": "Na trÅ¾iÅ¡ti",
+			"COMMUNITY": "V komunitÃ¡ch",
 			"PEOPLE": "V lidech",
-			"MESSAGES": "Ve zprÃƒÂ¡vÃƒÂ¡ch"
+			"MESSAGES": "Ve zprÃ¡vÃ¡ch"
 		}
 	},
-	"ERROR_WHILE_UPLOADING": "PÃ…â„¢i nahrÃƒÂ¡vÃƒÂ¡nÃƒÂ­ doÃ…Â¡lo k chybÃ„â€º",
-	"LOGIN_INACTIVE_ACCOUNT": "PokouÃ…Â¡ÃƒÂ­te se pÃ…â„¢ihlÃƒÂ¡sit pomocÃƒÂ­ ÃƒÂºÃ„Âtu, kterÃƒÂ½ jeÃ…Â¡tÃ„â€º nebyl aktivovÃƒÂ¡n kliknutÃƒÂ­m na odkaz v e-mailu s potvrzenÃƒÂ­m registrace. E-mail s aktivaÃ„ÂnÃƒÂ­m odkazem si mÃ…Â¯Ã…Â¾ete",
+	"ERROR_WHILE_UPLOADING": "PÅ™i nahrÃ¡vÃ¡nÃ­ doÅ¡lo k chybÄ›",
+	"LOGIN_INACTIVE_ACCOUNT": "PokouÅ¡Ã­te se pÅ™ihlÃ¡sit pomocÃ­ ÃºÄtu, kterÃ½ jeÅ¡tÄ› nebyl aktivovÃ¡n kliknutÃ­m na odkaz v e-mailu s potvrzenÃ­m registrace. E-mail s aktivaÄnÃ­m odkazem si mÅ¯Å¾ete",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "PokouÃ…Â¡ÃƒÂ­te se zÃƒÂ­skat novÃƒÂ© heslo pro ÃƒÂºÃ„Âet, kterÃƒÂ½ jeÃ…Â¡tÃ„â€º nebyl aktivovÃƒÂ¡n kliknutÃƒÂ­m na odkaz v e-mailu s potvrzenÃƒÂ­m registrace. E-mail s aktivaÃ„ÂnÃƒÂ­m odkazem si mÃ…Â¯Ã…Â¾ete",
-	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tÃ„â€ºdr&aacute; soci&aacute;ln&iacute; s&iacute;Ã…Â¥ pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteÃ…â„¢&iacute; maj&iacute; odvahu darovat. M&aacute;te ji i vy? SvÃ…Â¯j profil vytvoÃ…â„¢&iacute;te bÃ„â€ºhem chvilky a svÃ„â€ºt darÃ…Â¯ je r&aacute;zem i v&aacute;&scaron;.<\/p>",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "PokouÅ¡Ã­te se zÃ­skat novÃ© heslo pro ÃºÄet, kterÃ½ jeÅ¡tÄ› nebyl aktivovÃ¡n kliknutÃ­m na odkaz v e-mailu s potvrzenÃ­m registrace. E-mail s aktivaÄnÃ­m odkazem si mÅ¯Å¾ete",
+	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tÄ›dr&aacute; soci&aacute;ln&iacute; s&iacute;Å¥ pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteÅ™&iacute; maj&iacute; odvahu darovat. M&aacute;te ji i vy? SvÅ¯j profil vytvoÅ™&iacute;te bÄ›hem chvilky a svÄ›t darÅ¯ je r&aacute;zem i v&aacute;&scaron;.<\/p>",
 	"SIGNUP_HEADING_FB": "Come in",
 	"SIGN_UP": {
 		"CONTINUE_TO_REGISTER": "Close and continue registration."
