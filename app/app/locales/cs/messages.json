@@ -48,7 +48,7 @@
 		"SHOW_POSTS_ON_MAP": "Zobrazit na mapě",
 		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Svět&yacute;lka radosti - origin&aacute;ln&iacute; poh&aacute;dka o darech a lidsk&eacute;m &scaron;těst&iacute;.<\/a><\/p>",
 		"CREATE_NEW_ADD": "Vložit nový dar nebo přání",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"REFRESH_AFTER_ERROR": "Případně zkus načíst inzeráty znovu.",
 		"USER": {
 			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
 		},
@@ -459,7 +459,7 @@
 	"VISIBLE_FOR_ALL": "Viditelné pro všechny",
 	"VISIBLE_FOR_FRIENDS": "Jen pro přátele",
 	"VISIBLE_FOR_MEMBERS": "Viditelné pouze pro členy",
-	"WE_GIVE": "Nabízíme",
+	"WE_OFFER": "Nabízíme",
 	"WE_NEED": "Přijmeme",
 	"WE_WILL_MISS_YOU__TELL_US_WHY_YOU_LEAVE": "Škoda, že odcházíte.  Budete nám chybět.  Napište nám, prosím, co vás k tomu vedlo i jak můžeme Hearth.net vylepšit a my se o to pokusíme. Uvidíte.",
 	"WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Zde povězte, co věnujete či přijmete:",
