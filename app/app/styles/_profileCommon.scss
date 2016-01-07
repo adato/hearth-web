@@ -777,10 +777,19 @@
 .profile-button {
 	background-color: color(5);
 	border-color: color(5);
+	top: 0;
+	vertical-align: bottom;
+	padding: 10px;
 	padding-left: 1rem;
 	padding-right: 1rem;
+	border-width: 0;
 	font-weight: bold;
+	font-size: $global-font-size;
+	margin: 0;
+	margin-left: .5rem;
+	margin-right: .5rem;
 	transition: .5s;
+	border-radius: $global-radius;
 	.fa {
 		display: inline-block;
 		margin-right: 10px;
