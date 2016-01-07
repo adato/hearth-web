@@ -41,7 +41,7 @@
 			<p class="mine" ng-if="! posts.data.length && info.post_total > 0">{{:: 'YOU_HAVE_ONLY_INACTIVE_POSTS' | translate }}</p>
 			<div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 &&  mine)">
 				<a href="{{ getProfileLink('User', info._id) }}/posts">
-					<button class="button profile-button big-margin">
+					<button class="button no-vertical-padding profile-button big-margin">
 						<i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}
 					</button>
 				</a>
