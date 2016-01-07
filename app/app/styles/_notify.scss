@@ -94,7 +94,7 @@
 
 	#notify-offset-container {
 		& > div {
-			visibility: hidden;
+			opacity: 0;
 		}
 	}
 }

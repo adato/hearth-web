@@ -175,6 +175,7 @@ angular.module('hearth.services').service('Notify', [
 			return false;
 		};
 
+		this.addSingle('Abcd', 1, null, 30000000, 3000);
 		return this;
 	}
 ]);
