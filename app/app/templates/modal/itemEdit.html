@@ -24,8 +24,8 @@
 			<div class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate }}</div>
 			<section class="author">
 				<div class="author-selector-container">
-					<author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
-					<div class="tipsy-overlay" ng-if="post.reply_count" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy></div>
+					<author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy></author-selector>
+					<div class="tipsy-overlay" ng-if="post.reply_count"></div>
 				</div>
 				<div class="type-selector-container" title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy>
 					<needofferselector ng-if="!post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>

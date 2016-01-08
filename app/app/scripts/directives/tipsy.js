@@ -14,9 +14,11 @@ angular.module('hearth.directives').directive('tipsy', [
 				var timeout = $timeout(function() {
 					el = $(element);
 
-					el.tipsy({
-						gravity: 's'
-					});
+					if (attrs.title != '') {
+						el.tipsy({
+							gravity: 's'
+						});
+					}
 
 					el.mouseleave(function() {
 						el.tipsy("hide");
