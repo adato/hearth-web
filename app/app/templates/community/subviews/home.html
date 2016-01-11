@@ -52,7 +52,7 @@
 			<div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
 			<div class="buttons">
 				<a href="{{:: getProfileLink('Community', info._id)}}/received-ratings">
-					<button class="button profile-button big-margin">
+					<button class="button profile-button big-margin no-vertical-padding">
 						<i class="fa fa-angle-double-right"></i> {{:: 'OLDER_RATINGS' | translate }}
 					</button>
 				</a>
@@ -78,7 +78,7 @@
 			<div ng-include="'templates/directives/itemSmall.html'" ng-repeat="(id, item) in posts.data track by item._id" ng-init="hidePost = !mine; showAuthorName = true"></div>
 			<div class="buttons" ng-if="posts.data.length > 0 || (info.post_total > 0 && mine)">
 				<a href="{{:: communityLink }}/posts">
-					<button class="button profile-button big-margin">
+					<button class="button profile-button big-margin no-vertical-padding">
 						<i class="fa fa-angle-double-right"></i> {{:: 'ADS_ALL' | translate }}
 					</button>
 				</a>

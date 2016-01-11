@@ -48,7 +48,7 @@
 		"SHOW_POSTS_ON_MAP": "Zobraziť inzeráty na mape",
 		"HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
 		"CREATE_NEW_ADD": "Vložiť nový dar alebo prianie",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"REFRESH_AFTER_ERROR": "Případně zkus načíst inzeráty znovu.",
 		"USER": {
 			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
 		},
@@ -459,7 +459,7 @@
 	"VISIBLE_FOR_ALL": "Viditeľné pre všetkých",
 	"VISIBLE_FOR_FRIENDS": "Len pre priateľov",
 	"VISIBLE_FOR_MEMBERS": "Viditeľné iba pre členov",
-	"WE_GIVE": "Ponúkame",
+	"WE_OFFER": "Ponúkame",
 	"WE_NEED": "Príjmeme",
 	"WE_WILL_MISS_YOU__TELL_US_WHY_YOU_LEAVE": "To je škoda, že odchádzate. Budete nám chýbať. Napíšte nám, prosím, čo vás k tomu viedlo a ako môžeme Hearth vylepšiť a my sa vynasnažíme. Uvidíte.",
 	"WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Povedzte svetu, čo venujete či prijmete",
@@ -1027,8 +1027,7 @@
 		},
 		"PROFILE": {
 			"GIVEN_RATINGS": "Odoslaná hodnotenie",
-			"RECEIVED_RATINGS": "Prijatá hodnotenie",
-			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+			"RECEIVED_RATINGS": "Prijatá hodnotenie"
 		},
 		"X_GIVES": {
 			"one": "dar",

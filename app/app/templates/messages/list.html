@@ -66,10 +66,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="collumn box right conversation-detail-container" ng-if="showNewMessageForm || detail">
+		<div class="collumn box right conversation-detail-container">
 			<conversation-add ng-if="showNewMessageForm" close="toggleAddForm"></conversation-add>
-			<div ng-if="!showNewMessageForm && ! detail">
-				<div ng-if="!conversations.length" class="text-center no-result">
+			<div ng-if="!showNewMessageForm">
+				<div ng-if="!conversations.length || !detail || !detail.is_member" class="text-center no-result">
 					<br />
 					<img src="images/fireplace.jpeg" title="{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
 					<br />
@@ -78,7 +78,7 @@
 					<span>{{:: 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
 				</div>
 			</div>
-			<conversation-detail ng-if="! showNewMessageForm && detail" info="detail"></conversation-detail>
+			<conversation-detail ng-if="!showNewMessageForm && detail && detail.is_member" info="detail"></conversation-detail>
 		</div>
 		<div class="clear"></div>
 	</div>

@@ -54,8 +54,7 @@
 		margin-top: 99px !important;
 		min-width: unset !important;
 		width: 100%;
-		padding: 0 2*$ui-small-grid-size;
-		transition:max-height .3s ease-in-out;
+		padding: 0 $ui-small-grid-size;
 	}
 }
 @media #{$small-only} {

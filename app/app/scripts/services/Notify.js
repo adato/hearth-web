@@ -58,7 +58,8 @@ angular.module('hearth.services').service('Notify', ['$translate',
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
 				// hide it at start
 				.css('display', 'none');
-			var notifyFill = (container === self.TOP) ? newNotify.clone() : null;
+			var notifyFill = null;
+			// var notifyFill = (container === self.TOP) ? newNotify.clone() : null;
 
 			// also add trigger on click on cross icon
 			newNotify.find('.close').click(function(ev) {
