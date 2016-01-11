@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -560,8 +560,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
-			console.log(post);
-			console.log('todo');
+			UserBookmarks.add({
+				'postId': post._id
+			}, function(res) {
+				if (res.ok === true) {
+					post.is_bookmarked = !post.is_bookmarked;
+				}
+			});
 		};
 
 
@@ -569,11 +574,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 * Function will remove item from users bookmarks
 		 */
 		$rootScope.removeItemFromBookmarks = function(post) {
+			if (!post.is_bookmarked)
+				return false;
+
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
 
-			console.log(post);
-			console.log('todo');
+			UserBookmarks.remove({
+				'postId': post._id
+			}, function(res) {
+				if (res.ok === true) {
+					post.is_bookmarked = !post.is_bookmarked;
+				}
+			});
 		};
 
 
