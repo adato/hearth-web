@@ -44,5 +44,9 @@ angular.module('hearth.services').service('Messenger', [
 		this.decrUnreaded = function() {
 			$rootScope.messagesCounters.unread--;
 		};
+
+		this.incrUnreaded = function() {
+			$rootScope.messagesCounters.unread++;
+		};
 	}
 ]);
