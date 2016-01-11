@@ -16,7 +16,7 @@
 					<i class="fa fa-heart"></i> {{:: info.interests.join(', ')}}</div>
 				<div ng-if="info.work">
 					<i class="fa fa-suitcase"></i> {{:: info.work}}</div>
-				<div ng-if="info.locations.length && locations[0].short_address">
+				<div ng-if="info.locations.length && info.locations[0].short_address">
 					<i class="fa fa-map-marker"></i> {{:: 'you-will-find-me' | translate}}
 					<span ng-repeat="location in info.locations">
 						<span ng-if="location.short_address">{{:: location.short_address}}
