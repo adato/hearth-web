@@ -57,6 +57,9 @@
 	div {
 		margin-bottom: 0px;
 	}
+
+	opacity: 0;
+	visibility: hidden;
 }
 
 /** above filter bar */
@@ -90,10 +93,5 @@
 		width: 960px;
 		margin: auto;
 		position: relative;
-	}
-
-	#notify-offset-container {
-		opacity: 0;
-		visibility: hidden;
 	}
 }
