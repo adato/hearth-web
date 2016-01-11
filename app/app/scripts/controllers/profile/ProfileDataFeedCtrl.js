@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices',
-	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices) {
+	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks',
+	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks) {
 		angular.extend($scope, ItemServices);
 		var loadServices = {
 				'home': loadUserHome,
@@ -20,6 +20,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				'following': loadFollowees,
 				'followers': loadFollowers,
 				'friends': loadFriends,
+				'bookmarks': loadBookmarks,
 				'activities': UsersActivityLog.get
 			},
 			params = {
@@ -90,26 +91,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 				if (!$rootScope.isMine(params.user_id)) {
 					$scope.rating.post_id = null;
-					UserRatings.possiblePosts({
-						userId: params.user_id,
-						current_community_id: val
-					}, function(res) {
-						var posts = [];
-
-						res.needed.forEach(function(item) {
-							item.post_type = "needed";
-							posts.push(item);
-						});
-						res.offered.forEach(function(item) {
-							item.post_type = "offered";
-							posts.push(item);
-						});
-
-						$scope.ratingPosts = posts;
-						$scope.loadedRatingPosts = true;
-					}, function(res) {
-						$scope.loadedRatingPosts = true;
-					});
+					processRelevantPosts(params, val);
 				}
 			});
 
@@ -118,6 +100,33 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				removeListener();
 			});
 		};
+
+		function processRelevantPosts(params, val) {
+			$scope.loadingRatingPosts = true;
+
+			UserRatings.possiblePosts({
+				userId: params.user_id,
+				current_community_id: val
+			}, function(res) {
+				var posts = [];
+
+				res.needed.forEach(function(item) {
+					item.post_type = "needed";
+					posts.push(item);
+				});
+				res.offered.forEach(function(item) {
+					item.post_type = "offered";
+					posts.push(item);
+				});
+
+				$scope.ratingPosts = posts;
+				$scope.loadedRatingPosts = true;
+				$scope.loadingRatingPosts = false;
+			}, function(res) {
+				$scope.loadedRatingPosts = true;
+				$scope.loadingRatingPosts = false;
+			});
+		}
 
 		function loadFollowees(params, done, doneErr) {
 			$scope.addPagination(params);
@@ -135,6 +144,20 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		function loadCommunities(params, done, doneErr) {
 			$scope.addPagination(params);
 			CommunityMemberships.query(params, done, doneErr);
+		}
+
+		function loadBookmarks(params, done, doneErr) {
+			$scope.addPagination(params);
+			params.user_id = undefined;
+			UserBookmarks.query(params, function (res) {
+				$scope.postsBookmarked = [];
+
+				res.forEach(function(item) {
+					$scope.postsBookmarked.push(item);
+				});
+
+				finishLoading();
+			}, doneErr);
 		}
 
 		function loadUserReplies(params, done, doneErr) {

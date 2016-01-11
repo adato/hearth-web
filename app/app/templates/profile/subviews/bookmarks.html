@@ -1,0 +1,12 @@
+<div ng-include="'templates/profile/subviews/postPanel.html'"></div>
+<div ng-if="subPageLoaded">
+	<div class="large-8 small-12 medium-12 no-result large-centered columns text-center" ng-if="subPageLoaded && mine && (! postsBookmarked.length || !filtered.length)">
+		<div class="item">
+			<p>{{:: 'PROFILE.POSTS.NO_POSTS_BOOKMARKED' | translate }}</p>
+		</div>
+	</div>
+	<div class="ads-listing active">
+		<item item='item' hide-avatar="false" ng-repeat="(id, item) in filtered = (postsBookmarked | filter: { 'is_bookmarked': true }) track by item._id " user="loggedUser" community="null" inactivate-tags='true'></item>
+	</div>
+</div>
+<div loading show="!subPageLoaded"></div>

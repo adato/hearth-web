@@ -138,10 +138,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (info.read)
 				return false;
 
-			Messenger.decrUnreaded();
-			info.read = true;
 			Conversations.setReaded({
 				id: info._id
+			}, function(res) {
+				Messenger.decrUnreaded();
+				info.read = true;
 			});
 		};
 

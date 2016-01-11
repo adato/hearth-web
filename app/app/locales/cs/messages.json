@@ -38,7 +38,9 @@
 			"PUBLISHED_AT": "Přidáno",
 			"REMOVE_FROM_COMMUNITY": "Odstranit z komunity",
 			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
-			"SHARE_LINK": "Sdílet odkaz"
+			"SHARE_LINK": "Sdílet odkaz",
+			"UNBOOKMARK_POST": "Odebrat z oblíbených",
+			"BOOKMARK_POST": "Přidat do oblíbených"
 		},
 		"EDIT_FILTER": "Upravit filtr",
 		"FILTER_NOT_FOUND": "<p>Ajta! Zadan&eacute; kombinaci neodpov&iacute;d&aacute; vůbec, ale vůbec ž&aacute;dn&yacute; inzer&aacute;t.<br \/>Co nějak&eacute; to krit&eacute;rium ubrat?<\/p>",
@@ -1104,7 +1106,8 @@
 			"NO_GIVEN_RATINGS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout, tak neměl zatím ani příležitost někomu napsat hodnocení.",
 			"NO_POSTS_ME": "Zatím jste nevytvořil(a) žádný inzerát. No toto! Pojďme s tím něco udělat. Můžete darovat či přijmout, co vás jen napadne.",
 			"NO_POSTS_OTHER": "Uživatel zatím nic nevěnoval ani nepotřeboval přijmout. Asi se zatím rozhlíží nebo jen reaguje na inzeráty ostatních.",
-			"NO_RECEIVED_RATINGS_ME": "Patrně za sebou ještě nemáte žádnou odvážnou odpověď na inzerát. Nikdo tak neměl příležitost napsat sem něco pěkného..."
+			"NO_RECEIVED_RATINGS_ME": "Patrně za sebou ještě nemáte žádnou odvážnou odpověď na inzerát. Nikdo tak neměl příležitost napsat sem něco pěkného...",
+			"NO_POSTS_BOOKMARKED": "Nemáte žádné oblíbené dary a přání"
 		},
 		"TOP": {
 			"KARMA_NO_RATING_ME": "S prvním hodnocením vám to zde obarvíme :)",
@@ -1324,5 +1327,6 @@
 	"SEARCH": "Hledat",
 	"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
 	"MEET_COMMUNITY": "Poznejte komunitu",
-	"community-operate-in": "Působíme v"
+	"community-operate-in": "Působíme v",
+	"MY_BOOKMARKS": "Moje oblíbené"
 }
