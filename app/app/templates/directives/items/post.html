@@ -103,33 +103,32 @@
 						{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 					</div>
 				</div>
-				<<<<<<< HEAD=======>>>>>>> fe/hearth-474
-					<div class="sharing-trigger fright">
-						<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="fa fa-share-alt" ng-click="showSharing = !showSharing" title="Share"></a>
+				<div class="sharing-trigger fright">
+					<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="fa fa-share-alt" ng-click="showSharing = !showSharing" title="Share"></a>
+				</div>
+				<div class="post-edit-buttons-container fleft" ng-if="mine">
+					<div class="controll-buttons">
+						<a title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
+							<i class="fa fa-pencil"></i>
+						</a>
+						<a title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+							<i class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
+						</a>
+						<a title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
+							<i class="fa fa-pause"></i>
+						</a>
+						<a title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
+							<i class="fa fa-times"></i>
+						</a>
 					</div>
-					<div class="post-edit-buttons-container fleft" ng-if="mine">
-						<div class="controll-buttons">
-							<a title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
-								<i class="fa fa-pencil"></i>
-							</a>
-							<a title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
-								<i class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
-							</a>
-							<a title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
-								<i class="fa fa-pause"></i>
-							</a>
-							<a title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
-								<i class="fa fa-times"></i>
-							</a>
-						</div>
+				</div>
+				<div class="reply-count-container fleft">
+					<div ng-if="item.reply_count && mine">
+						<a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
 					</div>
-					<div class="reply-count-container fleft">
-						<div ng-if="item.reply_count && mine">
-							<a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
-						</div>
-						<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
-						<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
-					</div>
+					<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+					<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
+				</div>
 			</footer>
 		</article>
 	</div>
