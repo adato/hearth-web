@@ -90,26 +90,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 
 				if (!$rootScope.isMine(params.user_id)) {
 					$scope.rating.post_id = null;
-					UserRatings.possiblePosts({
-						userId: params.user_id,
-						current_community_id: val
-					}, function(res) {
-						var posts = [];
-
-						res.needed.forEach(function(item) {
-							item.post_type = "needed";
-							posts.push(item);
-						});
-						res.offered.forEach(function(item) {
-							item.post_type = "offered";
-							posts.push(item);
-						});
-
-						$scope.ratingPosts = posts;
-						$scope.loadedRatingPosts = true;
-					}, function(res) {
-						$scope.loadedRatingPosts = true;
-					});
+					processRelevantPosts(params, val);
 				}
 			});
 
@@ -118,6 +99,33 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				removeListener();
 			});
 		};
+
+		function processRelevantPosts(params, val) {
+			$scope.loadingRatingPosts = true;
+
+			UserRatings.possiblePosts({
+				userId: params.user_id,
+				current_community_id: val
+			}, function(res) {
+				var posts = [];
+
+				res.needed.forEach(function(item) {
+					item.post_type = "needed";
+					posts.push(item);
+				});
+				res.offered.forEach(function(item) {
+					item.post_type = "offered";
+					posts.push(item);
+				});
+
+				$scope.ratingPosts = posts;
+				$scope.loadedRatingPosts = true;
+				$scope.loadingRatingPosts = false;
+			}, function(res) {
+				$scope.loadedRatingPosts = true;
+				$scope.loadingRatingPosts = false;
+			});
+		}
 
 		function loadFollowees(params, done, doneErr) {
 			$scope.addPagination(params);
