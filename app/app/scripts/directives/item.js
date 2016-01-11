@@ -55,6 +55,8 @@ angular.module('hearth.directives').directive('item', [
 				scope.openReportBox = $rootScope.openReportBox;
 				scope.openEmailSharingBox = $rootScope.openEmailSharingBox;
 				scope.removeItemFromCommunity = $rootScope.removeItemFromCommunity;
+				scope.removeItemFromBookmarks = $rootScope.removeItemFromBookmarks;
+				scope.addItemToBookmarks = $rootScope.addItemToBookmarks;
 
 				/**
 				 * Init basic structure
