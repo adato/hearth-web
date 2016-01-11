@@ -549,6 +549,34 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
+
+		/**
+		 * Function will add item to users bookmarks
+		 */
+		$rootScope.addItemToBookmarks = function(post) {
+			if (post.is_bookmarked)
+				return false;
+
+			if (!Auth.isLoggedIn())
+				return $rootScope.showLoginBox(true);
+
+			console.log(post);
+			console.log('todo');
+		};
+
+
+		/**
+		 * Function will remove item from users bookmarks
+		 */
+		$rootScope.removeItemFromBookmarks = function(post) {
+			if (!Auth.isLoggedIn())
+				return $rootScope.showLoginBox(true);
+
+			console.log(post);
+			console.log('todo');
+		};
+
+
 		$rootScope.openEmailSharingBox = function(item) {
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
