@@ -10,7 +10,11 @@
 		<needofferselector model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
 		<div class="clear"></div>
 		<h5>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
-		<span ng-if="ratingPosts.length && loadedRatingPosts">
+		<span ng-if="loadingRatingPosts">
+			<i class="fa fa-spin fa-spinner"></i> {{:: 'COMMON.LOADING' | translate }}
+			<br>
+		</span>
+		<span ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts">
 			<div class="padding-bottom-3">
 				{{:: 'COMMUNITY_RATING_JOIN_REALIZED_GIFT' | translate }}
 			</div>
@@ -21,11 +25,8 @@
 				</option>
 			</select>
 		</span>
-		<div ng-if="!ratingPosts.length && loadedRatingPosts" class="padding-bottom">
+		<div ng-if="!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" class="padding-bottom">
 			{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
-		</div>
-		<div ng-if="!loadedRatingPosts">
-			{{:: 'RATING_LOADING_COMMON_POSTS' | translate }}
 		</div>
 		<br />
 		<label>
