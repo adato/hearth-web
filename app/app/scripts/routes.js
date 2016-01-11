@@ -169,7 +169,7 @@ angular.module('hearth').config([
 				url: '/{page}',
 				controller: 'ProfileDataFeedCtrl',
 				templateUrl: function($stateParams) {
-					var pages = ['activities', 'given-ratings', 'received-ratings', 'communities', 'friends', 'followers', 'following', 'posts', 'replies'];
+					var pages = ['activities', 'given-ratings', 'received-ratings', 'communities', 'friends', 'followers', 'following', 'posts', 'replies', 'bookmarks'];
 					var tplPath = 'templates/profile/subviews/';
 					if (!~pages.indexOf($stateParams.page))
 						$stateParams.page = 'home';

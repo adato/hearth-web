@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices',
-	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices) {
+	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks',
+	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks) {
 		angular.extend($scope, ItemServices);
 		var loadServices = {
 				'home': loadUserHome,
@@ -20,6 +20,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				'following': loadFollowees,
 				'followers': loadFollowers,
 				'friends': loadFriends,
+				'bookmarks': loadBookmarks,
 				'activities': UsersActivityLog.get
 			},
 			params = {
@@ -135,6 +136,20 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		function loadCommunities(params, done, doneErr) {
 			$scope.addPagination(params);
 			CommunityMemberships.query(params, done, doneErr);
+		}
+
+		function loadBookmarks(params, done, doneErr) {
+			$scope.addPagination(params);
+			params.user_id = undefined;
+			UserBookmarks.query(params, function (res) {
+				$scope.postsBookmarked = [];
+
+				res.forEach(function(item) {
+					$scope.postsBookmarked.push(item);
+				});
+
+				finishLoading();
+			}, doneErr);
 		}
 
 		function loadUserReplies(params, done, doneErr) {
