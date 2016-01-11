@@ -25,8 +25,9 @@
 			<div class="all-visible max-width">
 				<div ui-view class="main-container" ng-class="{ 'with-search-bar': isSearchBarShown() }"></div>
 				<div ng-click="top()" class="move2top show-for-scrolled show-for-large-up" title="{{'move-to-top' | translate}}">
-					{{topArrowText.top}}
-					<span class="fa fa-caret-square-o-up"></span> {{topArrowText.bottom}}
+					<span ng-bind-html="topArrowText.top"></span>
+					<span class="fa fa-caret-square-o-up"></span>
+					<span ng-bind-html="topArrowText.bottom"></span>
 				</div>
 			</div>
 		</section>
