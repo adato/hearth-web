@@ -66,19 +66,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="collumn box right conversation-detail-container">
-			<conversation-add ng-if="showNewMessageForm" close="toggleAddForm"></conversation-add>
-			<div ng-if="!showNewMessageForm">
-				<div ng-if="!conversations.length || !detail || !detail.is_member" class="text-center no-result">
-					<br />
-					<img src="images/fireplace.jpeg" title="{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
-					<br />
-					<br />
-					<h4>{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
-					<span>{{:: 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
-				</div>
+
+		<div class="collumn box right conversation-not-found-container show-for-large-up" ng-if="(!conversations.length || !detail || !detail.is_member) && !showNewMessageForm">
+			<div class="text-center no-result">
+				<br />
+				<img src="images/fireplace.jpeg" title="{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
+				<br />
+				<br />
+				<h4>{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
+				<span>{{:: 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
 			</div>
-			<conversation-detail ng-if="!showNewMessageForm && detail && detail.is_member" info="detail"></conversation-detail>
+		</div>
+
+		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && detail && detail.is_member">
+			<conversation-detail info="detail"></conversation-detail>
+		</div>
+
+		<div class="collumn box right conversation-detail-container" ng-if="showNewMessageForm">
+			<conversation-add close="toggleAddForm"></conversation-add>
 		</div>
 		<div class="clear"></div>
 	</div>
