@@ -56,5 +56,10 @@ exports.HearthApp = {
 		expect(element(by.css('.alert-box.' + type )).isDisplayed()).toBe(true);
 		browser.driver.sleep(3600);
 		expect(element(by.css('.alert-box.' + type )).isPresent()).toBe(false);
+	},
+	hasClass: function (element, cls) {
+		return element.getAttribute('class').then(function (classes) {
+			return classes.split(' ').indexOf(cls) !== -1;
+		});
 	}
 };

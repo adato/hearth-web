@@ -1,4 +1,4 @@
-var testFolder = 'unauth/';
+var testFolder = 'test/';
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   capabilities: {
