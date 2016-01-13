@@ -75,6 +75,11 @@ angular.module('hearth.services').factory('Conversations', [
 					state: 'read',
 					output: 'count'
 				}
+			},
+			getPosts: {
+				url: $$config.apiPath + '/conversations/posts',
+				method: 'GET',
+				ignoreLoadingBar: true
 			}
 		});
 	}
