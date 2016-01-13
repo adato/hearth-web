@@ -1,15 +1,15 @@
-var testFolder = 'unauth/';
+var testFolder = './test/';
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   capabilities: {
     'browserName': 'chrome' // or 'firefox', 'safari'
   },
-  specs: [testFolder+'unauth/marketplace.js'],
+  specs: [testFolder+'auth/public-register.js'],
   suites: {
     'unauth': [testFolder+'unauth/marketplace.js'],
     // 'login': [testFolder+'public-login.js'],
     // 'various': [testFolder+'public-various.js'],
-    // 'register': [testFolder+'public-register.js'],
+    'register': [testFolder+'auth/public-register.js'],
 
     // 'various': [testFolder+'logged-various.js'],
     // 'logged': [testFolder+'logged-profile.js'],
