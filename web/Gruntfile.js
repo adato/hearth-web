@@ -327,7 +327,7 @@ module.exports = function(grunt) {
 				'compass'
 			],
 			dist: [
-				'imagemin'
+				// 'imagemin'
 			]
 		},
 		// By default, your `index.html`'s <!-- Usemin block --> will take care of
