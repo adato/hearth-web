@@ -149,7 +149,7 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 		function loadBookmarks(params, done, doneErr) {
 			$scope.addPagination(params);
 			params.user_id = undefined;
-			UserBookmarks.query(params, function (res) {
+			UserBookmarks.query(params, function(res) {
 				$scope.postsBookmarked = [];
 
 				res.forEach(function(item) {
