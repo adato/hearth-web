@@ -374,6 +374,15 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					$scope.sendActionRequest(id, 'LEAVE', Conversations.leave);
 				};
 
+				$scope.unreadConversation = function(info) {
+					Conversations.setUnreaded({
+						id: info._id
+					}, function(res) {
+						Messenger.incrUnreaded();
+						info.read = false;
+					});
+				};
+
 				/**
 				 * Show/hide participants list & load from API
 				 */

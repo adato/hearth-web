@@ -56,11 +56,15 @@ $$config = {
 	postTypes: {
 		User: {
 			need: 'DOES_WISH',
-			offer: 'DOES_GIVE'
+			offer: 'DOES_GIVE',
+			false: 'DOES_WISH',
+			true: 'DOES_GIVE'
 		},
 		Community: {
 			need: 'WE_NEED',
-			offer: 'WE_OFFER'
+			offer: 'WE_OFFER',
+			false: 'WE_NEED',
+			true: 'WE_OFFER'
 		}
 	},
 	replyLabels: {
