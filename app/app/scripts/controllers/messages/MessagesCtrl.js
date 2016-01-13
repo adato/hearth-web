@@ -25,8 +25,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		if (!Object.keys($scope.filter).length) {
 			$scope.filter = {
-				query: '',
-				type: ''
+				query: null,
+				type: null,
+				post_id: null
 			}
 		}
 
@@ -34,8 +35,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (conversation) {
 				$location.url("/messages/");
 				$scope.filter = {
-					query: '',
-					type: '',
+					query: null,
+					type: null,
+					post_id: null
 				}
 				$scope.loadConversations({}, function(list) {
 					$scope.loadConversationDetail(conversation._id);
@@ -48,20 +50,32 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.getFilter = function() {
 			var filter = angular.copy($location.search());
-			if (!!~['archived', 'as_replies', 'from_community', 'users_posts'].indexOf(filter.type))
+
+			if (!!~['archived', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'].indexOf(filter.type))
 				filter[filter.type] = true;
 
 			delete filter.type;
 			return filter;
 		};
 
-		$scope.applyFilter = function() {
+		$scope.applyFilter = function(data) {
+			$scope.filter.post_id = null;
+			var type = data.type;
+			var query = type.split(":");
+			var post_id = query[1];
+
+			if (post_id) {
+				$scope.filter.post_id = post_id;
+			}
+
 			var filter = angular.copy($scope.filter);
 
 			if (!filter.query)
 				delete filter.query;
 			if (!filter.type)
 				delete filter.type;
+			if (!filter.post_id)
+				delete filter.post_id;
 
 			$location.url("/messages?" + jQuery.param(filter));
 			$scope.$broadcast('filterApplied', filter);
@@ -225,11 +239,17 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				var conv = $scope.deserializeConversation(conversations[i]);
 
 				if (conversations[i]._id === $scope.detail._id) {
-					angular.copy(conv, $scope.detail);;
+					angular.copy(conv, $scope.detail);
 				}
 				newArray.push(conv);
 			}
 			return newArray;
+		};
+
+		$scope.loadPostConversations = function() {
+			Conversations.getPosts(function(res) {
+				$scope.postConversations = res;
+			});
 		};
 
 		$scope.loadConversations = function(conf, done) {
@@ -365,6 +385,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.showFulltext = false;
 			$scope.showNewMessageForm = false;
 			$scope.loadingBottom = false;
+
+			$scope.loadPostConversations();
 
 			// Messenger.loadCounters();
 			$scope.loadConversations({
