@@ -136,8 +136,7 @@ angular.module('hearth.services').service('Notify', [
 			var cookieValue = decodeURIComponent($.cookie(cookieNotifyCode));
 
 			// if not empty
-			if (cookieValue) {
-
+			if ($.cookie(cookieNotifyCode)) {
 				try {
 					var cookie = JSON.parse(cookieValue);
 
