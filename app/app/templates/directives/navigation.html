@@ -156,7 +156,7 @@
 										<li ng-class="{active: isFilterActive('user')}" ng-click="selectSearchFilter('user')">{{:: 'TOP_BAR.SEARCH.PEOPLE' | translate }}</li>
 									</ul>
 								</div>
-								<a class="search-submit button" ng-click="search(searchQuery)">{{ 'SEARCH' | translate }}</a>
+								<a class="search-submit button" ng-click="toggleSearchBar(); search(searchQuery)">{{ 'SEARCH' | translate }}</a>
 							</span>
 
 							<div class="middle">
