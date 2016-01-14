@@ -765,7 +765,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.searchBarDisplayed = !$rootScope.searchBarDisplayed;
 
 			if ($rootScope.searchBarDisplayed) {
-				angular.element('#search').focus();
+				$('#searchContainer').slideDown('slow', function() {
+					angular.element('#search').focus();
+				});
 
 				$(document).on('click.search', function(e) {
 					var element = $(e.target);
@@ -774,7 +776,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					}
 				});
 			} else {
-				angular.element('#search').blur();
+				$('#searchContainer').slideUp('slow', function() {
+					angular.element('#search').blur();
+				});
+
 				$(document).off('click.search');
 			}
 		}
