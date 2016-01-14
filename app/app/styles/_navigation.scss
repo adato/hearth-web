@@ -1,5 +1,5 @@
-$topBarHeight: rem-calc(40);
-$topBarLabelSize: rem-calc($ui-smaller-font-size);
+$topBarHeight: 40px;
+$topBarLabelSize: $ui-smaller-font-size;
 $topBarImageSize: 1.8em;
 
 .left-off-canvas-menu {
@@ -156,6 +156,7 @@ $topBarImageSize: 1.8em;
 		text-align: center;
 		a.button {
 			height: 2.3125rem;
+			line-height: 2.3125rem;
 			padding-left: 10px;
 			padding-right: 10px;
 			font-size: 14px;
@@ -165,7 +166,6 @@ $topBarImageSize: 1.8em;
 			border-bottom-left-radius: 0px;
 			color: white;
 			left: 0px;
-			padding-top: 4px;
 			min-width: unset;
 			&:hover {
 				background-color: darken(#4CCBDE, 20%);
@@ -236,7 +236,7 @@ $topBarImageSize: 1.8em;
 @media #{$large-up} {
 	nav {
 		background-color: color(1);
-		padding: $fontSize / 2;
+		padding: 6px;
 	}
 	nav > .navigation {
 		margin: auto;
@@ -275,14 +275,14 @@ $topBarImageSize: 1.8em;
 					color: lighten(color(1), 25%);
 					transition: color 1s, text-shadow 2s;
 					line-height: 1;
-					font-size: $topBarLabelSize;
+					font-size: 13px;
 				}
 				margin: {
-					left: $fontSize / 2;
-					right: $fontSize / 2;
+					left: 4px;
+					right: 4px;
 				}
 				.fa {
-					font-size: $topBarHeight - $topBarLabelSize;
+					font-size: 25px;
 				}
 				.img {
 					opacity: 0.8;

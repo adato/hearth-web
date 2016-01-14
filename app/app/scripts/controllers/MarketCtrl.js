@@ -290,6 +290,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				});
 
 			}, function(err, res) {
+				if (Filter.isSaved()) Filter.applySaved();
+
 				$scope.filterIsOn = Filter.isSet();
 				marketInited.resolve();
 				$scope.load();

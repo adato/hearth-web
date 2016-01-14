@@ -38,7 +38,9 @@
 			"PUBLISHED_AT": "Pridané",
 			"REMOVE_FROM_COMMUNITY": "Odstrániť z komunity",
 			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
-			"SHARE_LINK": "Sdílet odkaz"
+			"SHARE_LINK": "Sdílet odkaz",
+			"UNBOOKMARK_POST": "Odobrať z obľúbených",
+			"BOOKMARK_POST": "Pridať k obľúbeným"
 		},
 		"EDIT_FILTER": "Upraviť filter",
 		"FILTER_NOT_FOUND": "Hups, zadanej kombinácii nezodpovedá vôbec, ale vôbec žiadny inzerát.<br \/>Čo takto nejaké to kritérium ubrať?",
@@ -48,7 +50,7 @@
 		"SHOW_POSTS_ON_MAP": "Zobraziť inzeráty na mape",
 		"HEAD_MESSAGE": "<p><a title=\"Svetielka radosti\" \nhref=\"http:\/\/www.svetylkaradosti.cz\/\" \ntarget=\"_blank\">Svetielka radosti - \norigin&aacute;lna rozpr&aacute;vka o daroch a \nľudskom &scaron;ťast&iacute;.<\/a><\/p>",
 		"CREATE_NEW_ADD": "Vložiť nový dar alebo prianie",
-		"REFRESH_AFTER_ERROR": "Případně zkuste načíst inzeráty znovu.",
+		"REFRESH_AFTER_ERROR": "Případně zkus načíst inzeráty znovu.",
 		"USER": {
 			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
 		},
@@ -459,7 +461,7 @@
 	"VISIBLE_FOR_ALL": "Viditeľné pre všetkých",
 	"VISIBLE_FOR_FRIENDS": "Len pre priateľov",
 	"VISIBLE_FOR_MEMBERS": "Viditeľné iba pre členov",
-	"WE_GIVE": "Ponúkame",
+	"WE_OFFER": "Ponúkame",
 	"WE_NEED": "Príjmeme",
 	"WE_WILL_MISS_YOU__TELL_US_WHY_YOU_LEAVE": "To je škoda, že odchádzate. Budete nám chýbať. Napíšte nám, prosím, čo vás k tomu viedlo a ako môžeme Hearth vylepšiť a my sa vynasnažíme. Uvidíte.",
 	"WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER": "Povedzte svetu, čo venujete či prijmete",
@@ -1027,8 +1029,7 @@
 		},
 		"PROFILE": {
 			"GIVEN_RATINGS": "Odoslaná hodnotenie",
-			"RECEIVED_RATINGS": "Prijatá hodnotenie",
-			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+			"RECEIVED_RATINGS": "Prijatá hodnotenie"
 		},
 		"X_GIVES": {
 			"one": "dar",
@@ -1105,7 +1106,8 @@
 			"NO_GIVEN_RATINGS_OTHER": "Užívateľ zatiaľ nič nevenoval ani nepotreboval prijať, tak nemal zatiaľ ani príležitosť niekomu napísať hodnotenie.",
 			"NO_POSTS_ME": "Zatiaľ ste nevytvoril(a) žiadny inzerát, poďme s tým niečo urobiť - môžete darovať alebo prijať, čo vám len napadne.",
 			"NO_POSTS_OTHER": "Užívateľ zatiaľ nič nevenoval, ani nepotreboval prijať. Asi sa zatiaľ rozhliada alebo len reaguje na inzeráty ostatných.",
-			"NO_RECEIVED_RATINGS_ME": "Očividne za sebou ešte nemáte žiadnu odvážnu odpoveď na inzerát, tak nemal nikto príležitosť sem napísať niečo pekné :("
+			"NO_RECEIVED_RATINGS_ME": "Očividne za sebou ešte nemáte žiadnu odvážnu odpoveď na inzerát, tak nemal nikto príležitosť sem napísať niečo pekné :(",
+			"NO_POSTS_BOOKMARKED": "Nemáte žiadne obľúbené dary a priania"
 		},
 		"TOP": {
 			"KARMA_NO_RATING_ME": "S prvým hodnotením vám to tu vyfarbíme :)",
@@ -1325,5 +1327,6 @@
 	"SEARCH": "Hledat",
 	"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
 	"MEET_COMMUNITY": "Spoznajte komunitu",
-	"community-operate-in": "Pôsobíme v"
+	"community-operate-in": "Pôsobíme v",
+	"MY_BOOKMARKS": "Moje obľúbené"
 }

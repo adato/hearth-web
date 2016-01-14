@@ -122,7 +122,6 @@
 		padding: 0;
 		header {
 			margin-bottom: 1em;
-			margin-top: -3px;
 			div.columns {
 				line-height: 23px;
 			}
@@ -175,7 +174,7 @@
 		}
 		footer {
 			background: color(4);
-			min-height: 60px;
+			min-height: 74px;
 			box-sizing: border-box;
 			position: relative;
 			top: $ui-grid-size;
@@ -187,10 +186,34 @@
 				top: -1 * $ui-grid-size;
 			}
 			padding: {
-				top: 14px;
+				top: 15px;
 				left: $ui-grid-size;
 				right: $ui-grid-size;
 			}
+
+			.sharing,
+			.sharing-trigger {
+				height: $ui-button-height;
+				line-height: $ui-button-height - 10px;
+			}
+
+			.sharing-trigger a {
+				width: $ui-grid-size;
+				height: $ui-grid-size;
+				margin-top: 16px;
+				color: color(3);
+
+				&:before {
+					width: $ui-grid-size;
+					height: $ui-grid-size;
+					line-height: 14px;
+					font-size: 20px;
+				}
+				&:hover {
+					color: lighten(color(3), 20%);
+				}
+			}
+
 			.sharing a {
 				color: color(4);
 				background: color(3);
@@ -224,6 +247,7 @@
 					background: darken(color(5), 10%);
 				}
 			}
+			
 			.post-edit-buttons-container {
 				font-size: 22px; // @@TODO
 				padding: $ui-small-grid-size;
@@ -250,29 +274,26 @@
 			}
 			.reply-button-container,
 			.reply-count-container {
-				line-height: $ui-grid-size;
+				height: $ui-button-height;
+				line-height: $ui-button-height;
 				margin-right: 3 * $ui-small-grid-size;
 				div {
-					line-height: $ui-grid-size;
-					margin: $ui-grid-size / 5;
-					margin-top: 2px;
+					margin-left: $ui-grid-size / 5;
 				}
 			}
 			.reply-button-container {
 				button {
-					border: none;
-					outline: none;
 					color: lighten(color(4), 10%);
-					margin: 0;
-					font-size: $ui-text-font-size;
-					font-weight: 600;
-					padding: $ui-small-grid-size $ui-small-grid-size*10;
-					min-width: $ui-small-grid-size * 30;
 					p {
 						margin: 0;
 						font-size: $ui-text-font-size;
 					}
 				}
+			}
+
+			@media #{$large-up} {
+				min-height: 60px;
+				padding-top: 8px;
 			}
 		}
 		.post-replies {
@@ -349,13 +370,16 @@
 			margin-bottom: 3 * $ui-small-grid-size;
 		}
 	}
-	*[data-item-type="need"] {
+	*[data-item-type="need"],
+	*[data-item-type="false"] {
 		color: color(1);
 	}
-	*[data-item-type="offer"] {
+	*[data-item-type="offer"],
+	*[data-item-type="true"] {
 		color: color(2);
 	}
-	button[data-item-type="need"] {
+	button[data-item-type="need"],
+	button[data-item-type="false"] {
 		background: color(1);
 		&:hover {
 			background: lighten(color(1), 10%);
@@ -365,7 +389,8 @@
 			background: darken(color(1), 10%);
 		}
 	}
-	button[data-item-type="offer"] {
+	button[data-item-type="offer"],
+	button[data-item-type="true"] {
 		background: color(2);
 		&:hover {
 			background: lighten(color(2), 10%);

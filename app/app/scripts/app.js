@@ -82,22 +82,6 @@ angular.module('hearth', [
 			$httpProvider.defaults.withCredentials = true;
 			delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-			// get device info
-			function getDevice() {
-				var md = new MobileDetect(window.navigator.userAgent);
-				var deviceType;
-
-				if (md.phone()) {
-					deviceType = 'mobile';
-				} else if (md.tablet()) {
-					deviceType = 'tablet';
-				} else {
-					deviceType = 'desktop';
-				}
-
-				return deviceType;
-			}
-
 			// Add language header
 			$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
@@ -202,7 +186,12 @@ angular.module('hearth', [
 						mixpanel.identify($rootScope.loggedUser._id);
 						mixpanel.people.set({
 							"$name": $rootScope.loggedUser.name,
-							"$email": $rootScope.loggedUser.email
+							"$email": $rootScope.loggedUser.email,
+							"$device-type": getDevice()
+						});
+					} else {
+						mixpanel.people.set({
+							"$device-type": getDevice()
 						});
 					}
 

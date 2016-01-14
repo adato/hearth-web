@@ -33,6 +33,11 @@
 .action-link {
 	color: #20b1ea;
 	font-weight: bold;
+
+	&.divider {
+		border-top: 1px solid #ddd;
+		padding-top: 10px;
+	}
 }
 
 .moveUp {
@@ -101,6 +106,7 @@ a.link {
 	opacity: 1;
 	cursor: pointer;
 	background-color: color(5);
+	min-width: unset!important;
 	&:hover,
 	&:focus {
 		background-color: darken(color(5), abs($button-function-factor));
@@ -114,6 +120,11 @@ a.button-send {
 		color: white;
 		background-color: darken(color(5), abs($button-function-factor));
 	}
+}
+
+button.no-vertical-padding {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
 }
 
 .animate-show {

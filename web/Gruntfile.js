@@ -228,7 +228,17 @@ module.exports = function(grunt) {
 			}
 		},
 		// // The following *-min tasks produce minified files in the dist folder
-		imagemin: {
+		// imagemin: {
+		// 	dist: {
+		// 		files: [{
+		// 			expand: true,
+		// 			cwd: '<%= yeoman.app %>/img',
+		// 			src: '{,*/}*.{png,jpg,jpeg,gif}',
+		// 			dest: '<%= yeoman.dist %>/img'
+		// 		}]
+		// 	}
+		// },
+		image: {
 			dist: {
 				files: [{
 					expand: true,
@@ -327,7 +337,7 @@ module.exports = function(grunt) {
 				'compass'
 			],
 			dist: [
-				'imagemin'
+				'image'
 			]
 		},
 		// By default, your `index.html`'s <!-- Usemin block --> will take care of

@@ -70,14 +70,8 @@
 		color: $ui-input-error-color;
 	}
 	button.button-send {
-		min-width: 30 * $ui-small-grid-size;
-		padding: 0px $ui-grid-size;
-		margin: 0;
-		margin-left: $ui-small-grid-size * 2;
-		font-weight: 600;
-		height: $ui-input-height;
 		text-align: center;
-		font-size: $ui-text-font-size;
+		margin-left: $ui-small-grid-size * 2;
 		&.red {
 			background: red;
 			color: white;

@@ -53,6 +53,15 @@
 
 }
 
+#notify-offset-container {
+	div {
+		margin-bottom: 0px;
+	}
+
+	opacity: 0;
+	visibility: hidden;
+}
+
 /** above filter bar */
 
 #notify-container-market {
@@ -75,5 +84,14 @@
 	p {
 		color: #26AF34;
 		/* color: #a7bd1d; */
+	}
+}
+
+
+@media #{$large-up} {
+	#notify-top .alert-inner {
+		width: 960px;
+		margin: auto;
+		position: relative;
 	}
 }

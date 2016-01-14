@@ -12,6 +12,7 @@ $$config = {
 		minWidth: 200,
 		minHeight: 200
 	},
+	defaultMapLocation: [50.075977, 14.426142],
 	imgMaxPixelSize: 1024,
 	defaultHearthImage: 'images/facebook-sharing-image.jpg',
 	defaultHearthImageSize: [1200, 630],
@@ -55,11 +56,15 @@ $$config = {
 	postTypes: {
 		User: {
 			need: 'DOES_WISH',
-			offer: 'DOES_GIVE'
+			offer: 'DOES_GIVE',
+			false: 'DOES_WISH',
+			true: 'DOES_GIVE'
 		},
 		Community: {
 			need: 'WE_NEED',
-			offer: 'WE_GIVE'
+			offer: 'WE_OFFER',
+			false: 'WE_NEED',
+			true: 'WE_OFFER'
 		}
 	},
 	replyLabels: {

@@ -12,6 +12,27 @@
 		<karma-bar for="item.author"></karma-bar>
 	</section>
 	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">
+		<div class="sharing-container" ng-class="{active: showSharing}">
+			<div>
+				<i class="fa fa-times close" ng-click="showSharing = false"></i>
+				<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
+				<input type="text" select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" />
+				<ul>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" ng-click="openEmailSharingBox(item)"></a>
+					</li>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
+					</li>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+" ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
+					</li>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Twitter" analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
 				<div class="large-3 large-push-9 small-12 medium-3 medium-push-9 columns">
@@ -77,12 +98,15 @@
 			</div>
 			<footer class="clearfix">
 				<div class="reply-button-container fleft">
-					<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="reply-button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
+					<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
 					<div ng-if="item.is_replied">
 						{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 					</div>
 				</div>
-				<div class="sharing fright">
+				<div class="show-for-medium-down sharing-trigger fright">
+					<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="fa fa-share-alt" ng-click="showSharing = !showSharing" title="Share"></a>
+				</div>
+				<div class="show-for-large-up sharing fright">
 					<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
 					<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
 					<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+" ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>

@@ -12,10 +12,31 @@
 		<karma-bar for="item.author" style="margin-top:5px;"></karma-bar>
 	</section>
 	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">
+		<div class="sharing-container" ng-class="{active: showSharing}">
+			<div>
+				<i class="fa fa-times close" ng-click="showSharing = false"></i>
+				<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
+				<input type="text" select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" />
+				<ul>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" ng-click="openEmailSharingBox(item)"></a>
+					</li>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
+					</li>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+" ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
+					</li>
+					<li>
+						<a analytics-custom analytics-event="Share" analytics-category="Twitter" analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
-				<div class="large-3 large-push-9 small-12 medium-3 medium-push-9 columns">
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
+				<div class="large-3 large-push-9 small-12 medium-4 medium-push-8 columns">
+					<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
 						<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 					</a>
 					<span class="ad-flag-container fright" ng-if="!mine">
@@ -30,7 +51,7 @@
 						{{item.updated_at | ago}}
 					</span>
 				</div>
-				<div class="large-9 large-pull-3 small-12 medium-9 medium-pull-3 columns">
+				<div class="large-9 large-pull-3 small-12 medium-8 medium-pull-4 columns">
 					<h1>
 						<a ng-href="{{:: getProfileLink('Post', item._id)}}">
 							<span data-item-type="{{ item.type }}">
@@ -77,17 +98,16 @@
 			</div>
 			<footer class="clearfix">
 				<div class="reply-button-container fleft">
-					<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="reply-button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
+					<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
 					<div ng-if="item.is_replied">
 						{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 					</div>
 				</div>
-				<div class="sharing fright">
-					<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" tipsy href="" ng-click="openEmailSharingBox(item)"></a>
-					<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" tipsy ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
-					<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+" tipsy ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
-					<a analytics-custom analytics-event="Share" analytics-category="Twitter" analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter" tipsy ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
+
+				<div class="sharing-trigger fright">
+					<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="fa fa-share-alt" ng-click="showSharing = !showSharing" title="Share"></a>
 				</div>
+
 				<div class="post-edit-buttons-container fleft" ng-if="mine">
 					<div class="controll-buttons">
 						<a title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">

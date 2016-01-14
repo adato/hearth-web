@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('fileUpload', [
 			transclude: true,
 			replace: true,
 			scope: true,
-			template: '<div>' + '<span ng-transclude style="position:relative"></span>' + '<input class="file-upload-input" type="file"' + 'id="{{ uploadElementName }}" name="{{ uploadElementName }}"' + 'accept="image/*" capture style="">' + '</div>',
+			template: '<div>' + '<span ng-transclude style="position:relative"></span>' + '<input class="file-upload-input" type="file" id="{{ uploadElementName }}" name="{{ uploadElementName }}" accept="image/*">' + '</div>',
 			link: function(scope, el, attrs) {
 				var invoker;
 				scope.uploadName = attrs.uploadName;

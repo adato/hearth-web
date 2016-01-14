@@ -22,6 +22,12 @@ angular.module('hearth.services').factory('Auth', [
 						$rootScope.user = session;
 						$rootScope.user.loggedIn = true;
 						$rootScope.$broadcast('onUserLogin');
+
+						if (session.get_logged_in_user && session.get_logged_in_user.location) {
+							var loc = session.get_logged_in_user.location;
+							$$config.defaultMapLocation = [loc[1], loc[0]];
+						}
+
 					} else {
 						$rootScope.$broadcast('unathorizedUserLogin');
 					}

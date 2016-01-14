@@ -24,12 +24,12 @@
 			<div class="error" ng-if="showInvalidPostMessage">{{ 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate }}</div>
 			<section class="author">
 				<div class="author-selector-container">
-					<author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community"></author-selector>
-					<div class="tipsy-overlay" ng-if="post.reply_count" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy></div>
+					<author-selector ng-disabled="post.reply_count" class="fleft" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' )| translate }}" tipsy></author-selector>
+					<div class="tipsy-overlay" ng-if="post.reply_count"></div>
 				</div>
 				<div class="type-selector-container" title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy>
 					<needofferselector ng-if="!post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'OFFER' | translate }}" text-false="{{ 'NEED' | translate }}"></needofferselector>
-					<needofferselector ng-if="post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'WE_GIVE' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
+					<needofferselector ng-if="post.current_community_id" class="fleft" ng-disabled="post.reply_count" model="post.type" text-true="{{ 'WE_OFFER' | translate }}" text-false="{{ 'WE_NEED' | translate }}"></needofferselector>
 				</div>
 				<div class="clear"></div>
 			</section>
@@ -37,7 +37,7 @@
 				<label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
 				<div class="name">
 					<div class="field-group">
-						<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius green bold" ng-if="post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_GIVE' : 'OFFER' | translate }}</span>
+						<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius green bold" ng-if="post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_OFFER' : 'OFFER' | translate }}</span>
 						<span title="{{ ((post.reply_count) ? 'POST.TYPE_CHANGE_IS_DISABLED': '' )| translate }}" tipsy class="left-radius red bold" ng-if="!post.type" ng-click="togglePostType()">{{ (post.current_community_id) ? 'WE_NEED' : 'NEED' | translate }}</span>
 						<input type="text" name="title" class="no-left-radius form-control" ng-minlength="3" ng-maxlength="70" placeholder="{{'TELL_WHAT' | translate}}" ng-model="post.title" class="text-input top" required ng-blur="showError.title = true" ng-focus="showError.title = false">
 					</div>
@@ -173,8 +173,9 @@
 				<a href="" ng-click="closeEdit()" class="fleft close">
 					{{ 'CLOSE' | translate }}
 				</a>
-				<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE_AND_ACTIVATE</button>
-				<button class="primary button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
+				<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP"
+				translate>SAVE_AND_ACTIVATE</button>
+				<button class="primary button button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
 				<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     {{ 'DELETE' | translate }}
                 </a> -->
