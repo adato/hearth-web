@@ -117,14 +117,14 @@
 				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
 			<span class="small-icons">
 				<i class="fa fa-plus-square" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
-				<i class="fa fa-search" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
+				<i id="searchIcon" class="fa fa-search" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 			</span>
 
 			<div class="clear"></div>
 		</nav>
-		<div class="orange-bar hide-for-large-up" ng-class="{'animated-hidden': !isSearchBarShown()}">
+		<div id="searchContainer" class="orange-bar hide-for-large-up" ng-class="{'animated-hidden': !isSearchBarShown()}">
 			<div class="max-web-width center padding-1">
-				<div class="">
+				<div>
 					<div class="column large-3 show-for-large-up">
 						<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
 							<img class="zurb-logo-mobile" src="/app/images/logo.png" width="200"> </a>
