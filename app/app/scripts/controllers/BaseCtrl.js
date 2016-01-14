@@ -802,7 +802,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			if (value !== undefined) {
 				return $rootScope.searchBarDisplayed = value;
 			}
+
 			$rootScope.searchBarDisplayed = !$rootScope.searchBarDisplayed;
+
+			if ($rootScope.searchBarDisplayed) {
+				angular.element('#search').focus();
+
+				$(document).on('click.search', function(e) {
+					var element = $(e.target);
+					if (!element.parents('#searchContainer').length && !element.is('#searchContainer') && !element.is('#searchIcon')) {
+						$('#searchIcon').click();
+					}
+				});
+			} else {
+				angular.element('#search').blur();
+				$(document).off('click.search');
+			}
 		}
 
 		$rootScope.isSearchBarShown = function() {
