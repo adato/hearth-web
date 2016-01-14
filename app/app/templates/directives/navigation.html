@@ -51,7 +51,7 @@
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li>
-				<a href="" ng-click="logout()">
+				<a href="" class="logout-link" ng-click="logout()">
 					<i class="fa fa-sign-out"></i> {{ 'LOGOUT'| translate }}</a>
 			</li>
 		</ul>
@@ -203,7 +203,7 @@
 						</a>
 					</span>
 					<span class="dropdown-container">
-						<a ng-if="loggedUser._id" ng-show="loggedUser.name" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
+						<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
 							<avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 							<label>{{ loggedUser.name | ellipsis:9}}</label>
 						</a>
@@ -218,7 +218,7 @@
 									<i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a>
 							</li>
 							<li>
-								<a ng-href="{{:: basePath }}profile-settings">
+								<a ng-href="{{:: basePath }}profile-settings" class="user-settings-link">
 									<i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a>
 							</li>
 
@@ -231,7 +231,7 @@
 							</li>
 							<li class="divider" ng-if="myAdminCommunities.length"></li>
 							<li>
-								<a href="" ng-click="logout()">
+								<a href="" class="logout-link" ng-click="logout()">
 									<i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a>
 							</li>
 						</ul>
