@@ -4,12 +4,17 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome' // or 'firefox', 'safari'
   },
-  specs: [testFolder+'auth/public-register.js'],
+  // specs: [testFolder+'auth/register.js'],
+  specs: [
+  	testFolder+'auth/register.js', 
+  	testFolder+'auth/login.js', 
+  	testFolder+'auth/deleteUser.js'
+	],
   suites: {
     'unauth': [testFolder+'unauth/marketplace.js'],
     // 'login': [testFolder+'public-login.js'],
     // 'various': [testFolder+'public-various.js'],
-    'register': [testFolder+'auth/public-register.js'],
+    'register': [testFolder+'auth/register.js'],
 
     // 'various': [testFolder+'logged-various.js'],
     // 'logged': [testFolder+'logged-profile.js'],
