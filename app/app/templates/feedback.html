@@ -15,7 +15,12 @@
 				<div class="alert-box visible alert error round connect-bottom" ng-show="errors.base">{{ errors.base | translate }}</div>
 				<article class="row">
 					<section class="small-12 columns">
-						<textarea class="text-input top" name="text" rows="10" ng-attr-placeholder="{{ 'FEEDBACK_TEXT_PLACEHOLDER' | translate }}" ng-model="feedback.text" ng-required="true"></textarea>
+						<textarea class="text-input top" name="feedback[text]" rows="10" ng-attr-placeholder="{{ 'FEEDBACK_TEXT_PLACEHOLDER' | translate }}" ng-model="feedback.text" ng-required="true"></textarea>
+					</section>
+				</article>
+				<article class="row">
+					<section class="small-12 columns">
+						<input type="file" name="feedback[attachments_attributes][][multipart]" onchange="angular.element(this).scope().uploadedFile(this)" />
 					</section>
 				</article>
 				<article class="row">
