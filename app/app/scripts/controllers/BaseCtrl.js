@@ -165,6 +165,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				q: searchQuery.query,
 				// type: searchQuery.type
 			});
+			searchQuery.query = null;
 		};
 
 		/**
@@ -758,11 +759,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		$rootScope.toggleSearchBar = function(value) {
-			if (value !== undefined) {
-				return $rootScope.searchBarDisplayed = value;
-			}
-
-			$rootScope.searchBarDisplayed = !$rootScope.searchBarDisplayed;
+			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);
 
 			if ($rootScope.searchBarDisplayed) {
 				$('#searchContainer').slideDown('slow', function() {
@@ -776,9 +773,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					}
 				});
 			} else {
-				$('#searchContainer').slideUp('slow', function() {
-					angular.element('#search').blur();
-				});
+				angular.element('#search').blur();
+				$('#searchContainer').slideUp('slow');
 
 				$(document).off('click.search');
 			}
