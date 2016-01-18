@@ -1,4 +1,5 @@
 var MailListener = require("mail-listener2");
+var Promise = require("es6-promise").Promise;
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
