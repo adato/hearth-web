@@ -18,7 +18,6 @@ angular.module('hearth.directives').directive('datepicker', [
 					var now = new Date(),
 						limit = (new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0)).getTime();
 					var dateFormat = attrs.datepickerFormat || 'd. M. y';
-					// var dateFormat = 'd. M. y';
 
 					// datepicker has different format for dates - use m as Month number
 					// for more info: http://api.jqueryui.com/datepicker/
@@ -41,10 +40,6 @@ angular.module('hearth.directives').directive('datepicker', [
 						if (ev.date.getTime() < limit) {
 							datepick.fdatepicker('update', now);
 						}
-					}).on('show', function() {
-						$('.datepicker-dropdown:visible').css({
-							top: parseInt($('.datepicker-dropdown:visible').css('top'), 10) - parseInt($('.main-container').css('margin-top'), 10)
-						});
 					});
 				});
 			}
