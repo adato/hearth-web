@@ -1,10 +1,10 @@
-var testEmail = protractor.helpers.HearthApp.getTestEmail();
-var emailListener = protractor.helpers.HearthApp.getEmailListener();
+var testEmail = protractor.helpers.getTestEmail();
+var emailListener = protractor.helpers.getEmailListener();
 
 describe('hearth registration', function() {  
 
   beforeEach(function() {
-    protractor.helpers.HearthApp.navigateTo('register');
+    protractor.helpers.navigateTo('register');
   });
 
   it('should be able to go to register form throught login dialog', function () {
@@ -130,29 +130,29 @@ describe('hearth registration', function() {
     // some validation errors displayed
     usernameInput.sendKeys('Tester Testerovic');
     emailInput.sendKeys(testEmail);
-    passwordInput.sendKeys(protractor.helpers.HearthApp.options.testPassword);
+    passwordInput.sendKeys(protractor.helpers.options.testPassword);
 
     // none of validation errors displayed
     expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([ false, false, false, false, false, false, false, false ]);
     // send registration
 	registerButton.click();
 
-	console.log("> Using register credentials: ", testEmail, protractor.helpers.HearthApp.options.testPassword);
+	console.log("> Using register credentials: ", testEmail, protractor.helpers.options.testPassword);
     expect(element.all(by.css('.register-successful')).isDisplayed()).toBeTruthy();
 
     browser.getCurrentUrl().then(function(url) {
-    	origAddress = protractor.helpers.HearthApp.parseLocation(url);
+    	origAddress = protractor.helpers.parseLocation(url);
 
 	    browser.wait(function() {
 	    	return emailListener;
 	    }, 30000).then(function(email) {
-		    var urls = protractor.helpers.HearthApp.getRegConfirmUrlFromText(email.html);
-			var confirmUrlParsed = protractor.helpers.HearthApp.parseLocation(urls[0]);
+		    var urls = protractor.helpers.getRegConfirmUrlFromText(email.html);
+			var confirmUrlParsed = protractor.helpers.parseLocation(urls[0]);
   			var confirmUrl = origAddress.protocol+'//'+origAddress.host + confirmUrlParsed.pathname+confirmUrlParsed.search;
 
 			console.log('Parsed confirm url:', urls[0], 'decoded as:', confirmUrl);
 
-		    protractor.helpers.HearthApp.navigateToFull(confirmUrl);
+		    protractor.helpers.navigateToFull(confirmUrl);
 			expect(element.all(by.css('.confirm-register-dialog')).isDisplayed()).toBeTruthy();
 	    	browser.sleep(1500);
 			expect(element(by.css('.market')).isPresent()).toBeTruthy();

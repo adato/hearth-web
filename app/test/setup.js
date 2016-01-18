@@ -7,7 +7,7 @@ function getRandomInt (min, max) {
 
 var emalRandomId = getRandomInt(1, 99999999999999999);
 var testAccountPassword = ''
-exports.HearthApp = {
+module.exports = {
 	options: { 
 		testPassword: 'testovaci',
 		useConfig: 'local',

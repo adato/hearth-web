@@ -1,7 +1,7 @@
 describe('hearth login', function() {  
 
   beforeEach(function() {
-    protractor.helpers.HearthApp.navigateTo('login');
+    protractor.helpers.navigateTo('login');
   });
 
   it('should see login dialog', function () {

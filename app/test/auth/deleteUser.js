@@ -1,10 +1,10 @@
-var testEmail = protractor.helpers.HearthApp.getTestEmail();
-var testPassword = protractor.helpers.HearthApp.options.testPassword;
+var testEmail = protractor.helpers.getTestEmail();
+var testPassword = protractor.helpers.options.testPassword;
 
 describe('hearth remove user', function() {
 
 	beforeEach(function() {
-		protractor.helpers.HearthApp.navigateTo('');
+		protractor.helpers.navigateTo('');
 	});
 
 	it('should be able to remove user', function() {
