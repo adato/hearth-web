@@ -88,7 +88,7 @@ module.exports = function(grunt) {
 			}],
 			dist: {
 				options: {
-					base: 'divshot/public'
+					base: 'public'
 				}
 			}
 		}
