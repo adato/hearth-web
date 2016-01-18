@@ -9,6 +9,7 @@
 angular.module('hearth.controllers').controller('LoginCtrl', [
 	'$scope', '$location', 'Auth', '$rootScope', 'UnauthReload', 'LanguageSwitch', '$auth', 'Notify',
 	function($scope, $location, Auth, $rootScope, UnauthReload, LanguageSwitch, $auth, Notify) {
+		var resendingEmail = false;
 		var invalidEmail = null;
 		$scope.data = {
 			username: '',
@@ -43,13 +44,20 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		};
 
 		$scope.resendActivationEmail = function() {
+			if (resendingEmail) return;
+			resendingEmail = true;
+
 			Auth.resendActivationEmail(invalidEmail, function(res) {
+				resendingEmail = false;
+
 				if (res.data && res.data.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
 				} else {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_FAILED', Notify.T_ERROR);
 				}
+			}, function() {
+				resendingEmail = false;
 			});
 		};
 
