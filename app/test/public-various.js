@@ -1,7 +1,7 @@
 describe('hearth various', function() {  
 
   it('should see an 404 page on wrong request', function () {
-    protractor.helpers.HearthApp.navigateTo('befelemepeseveze');
+    protractor.helpers.navigateTo('befelemepeseveze');
 
     expect(element(by.css('h1>big')).getText()).toBe('404');
     expect(element(by.css('.page-not-found img')).isDisplayed()).toBe(true);
@@ -9,7 +9,7 @@ describe('hearth various', function() {
 
 
   it('should be able to fill in feedback text', function () {
-    protractor.helpers.HearthApp.navigateTo('feedback');
+    protractor.helpers.navigateTo('feedback');
     var textarea = element(by.model('feedback.text'));
     var emailInput = element(by.model('feedback.email'));
 

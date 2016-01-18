@@ -1,7 +1,7 @@
 describe('hearth unauth maretplace', function() {  
 
   beforeEach(function() {
-    protractor.helpers.HearthApp.navigateTo('', function () { 
+    protractor.helpers.navigateTo('', function () { 
       browser.waitForAngular(); 
     });
   });
@@ -151,7 +151,7 @@ describe('hearth unauth maretplace', function() {
     if (type === 'mobile' || type == 'tablet') {
       // topbar is visible, left sidebar is hidden, searchbar is hidden
       expect(topBar.isDisplayed()).toBeTruthy();
-      expect(protractor.helpers.HearthApp.hasClass(container, 'move-right')).toBe(false);
+      expect(protractor.helpers.hasClass(container, 'move-right')).toBe(false);
       expect(searchBar.isDisplayed()).toBeFalsy();
 
       // icons are visible
@@ -167,7 +167,7 @@ describe('hearth unauth maretplace', function() {
       // after click on hamburger button, left sidebar should appear
       toggleButton.click().then(function () {
         expect(leftSidebar.isDisplayed()).toBeTruthy();
-        expect(protractor.helpers.HearthApp.hasClass(container, 'move-right')).toBe(true);
+        expect(protractor.helpers.hasClass(container, 'move-right')).toBe(true);
       });
     }
 

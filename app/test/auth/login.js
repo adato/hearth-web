@@ -1,9 +1,9 @@
-var testEmail = protractor.helpers.HearthApp.getTestEmail();
+var testEmail = protractor.helpers.getTestEmail();
 
 describe('hearth login', function() {
 
 	beforeEach(function() {
-		protractor.helpers.HearthApp.navigateTo('');
+		protractor.helpers.navigateTo('');
 	});
 
 	it('should be able to log out previously logged user', function() {
@@ -40,10 +40,10 @@ describe('hearth login', function() {
 		var emailInput = element(by.css('input.login_name'));
 		var passwordInput = element(by.css('input.login_password'));
 
-		console.log("> Using login credentials: ", testEmail, protractor.helpers.HearthApp.options.testPassword);
+		console.log("> Using login credentials: ", testEmail, protractor.helpers.options.testPassword);
 		// some validation errors displayed
 		emailInput.sendKeys(testEmail);
-		passwordInput.sendKeys(protractor.helpers.HearthApp.options.testPassword);
+		passwordInput.sendKeys(protractor.helpers.options.testPassword);
 
 		// send registration
 		loginButton.click();

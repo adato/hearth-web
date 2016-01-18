@@ -1,4 +1,5 @@
 var MailListener = require("mail-listener2");
+var Promise = require("es6-promise").Promise;
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -6,7 +7,7 @@ function getRandomInt (min, max) {
 
 var emalRandomId = getRandomInt(1, 99999999999999999);
 var testAccountPassword = ''
-exports.HearthApp = {
+module.exports = {
 	options: { 
 		testPassword: 'testovaci',
 		useConfig: 'local',

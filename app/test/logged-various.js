@@ -1,7 +1,7 @@
 describe('logged user', function() {  
 
   it('should log in using default credentials', function () {
-    protractor.helpers.HearthApp.login();
+    protractor.helpers.login();
   });
 
   it('should see a tour modal and be able to dismiss it', function () {
@@ -11,7 +11,7 @@ describe('logged user', function() {
   });
 
   it('should see username on top right', function () {
-    expect(element(by.css('.dropdown-container a[dropdown="#profile-drop"]:nth-child(1)>label.ng-binding')).getText()).toBe(protractor.helpers.HearthApp.config().loginTrimmedName);
+    expect(element(by.css('.dropdown-container a[dropdown="#profile-drop"]:nth-child(1)>label.ng-binding')).getText()).toBe(protractor.helpers.config().loginTrimmedName);
   });
 
   it('should see list of 15 posts', function () {
@@ -44,7 +44,7 @@ describe('logged user', function() {
 
 
   it('should logout at the end of a session', function () {
-    protractor.helpers.HearthApp.logout();
+    protractor.helpers.logout();
     browser.driver.sleep(2000);
     expect(element(by.css('.dropdown-container a[dropdown="#profile-drop"]:nth-child(1)>label.ng-binding')).getText()).toBe('');
   });
