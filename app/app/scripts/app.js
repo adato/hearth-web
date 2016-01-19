@@ -187,11 +187,11 @@ angular.module('hearth', [
 						mixpanel.people.set({
 							"$name": $rootScope.loggedUser.name,
 							"$email": $rootScope.loggedUser.email,
-							"$device": getDevice()
+							"$device-type": getDevice()
 						});
 					} else {
 						mixpanel.people.set({
-							"$device": getDevice()
+							"$device-type": getDevice()
 						});
 					}
 

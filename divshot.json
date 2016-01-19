@@ -1,8 +1,0 @@
-{
-	"name":"hearth",
-	"root":"public",
-	"prerender":true,
-	"routes": {
-		"/app/**": "/app/index.html"
-	}
-}

@@ -18,6 +18,7 @@ angular.module('hearth.services').service('Notify', [
 			5: ''
 		};
 		var self = this;
+		var cookieNotifyCode = "notify.afterRefresh";
 		var topPageOffsetContainer = '#notify-offset-container'; // for page padding when the notification appears
 		this.T_SUCCESS = 1;
 		this.T_INFO = 2;
@@ -58,8 +59,7 @@ angular.module('hearth.services').service('Notify', [
 			var newNotify = $(tmpl.replace('$$type', notifyTypes[type]).replace('$$text', text))
 				// hide it at start
 				.css('display', 'none');
-			var notifyFill = null;
-			// var notifyFill = (container === self.TOP) ? newNotify.clone() : null;
+			var notifyFill = (container === self.TOP) ? newNotify.clone() : null;
 
 			// also add trigger on click on cross icon
 			newNotify.find('.close').click(function(ev) {
@@ -126,18 +126,19 @@ angular.module('hearth.services').service('Notify', [
 
 		// this will save message to cookies - will be retrieved after next refresh
 		this.addTranslateAfterRefresh = function(text, type, container, ttl, delay) {
-
-			$.cookie("notify.afterRefresh", JSON.stringify(arguments), {
+			$.cookie(cookieNotifyCode, JSON.stringify(arguments), {
 				path: '/'
 			});
 		};
 
 		// this will take cookie and if not empty - it will show containing notification 
 		this.checkRefreshMessage = function() {
+			var cookieValue = decodeURIComponent($.cookie(cookieNotifyCode));
+
 			// if not empty
-			if ($.cookie("notify.afterRefresh")) {
+			if ($.cookie(cookieNotifyCode)) {
 				try {
-					var cookie = JSON.parse($.cookie("notify.afterRefresh"));
+					var cookie = JSON.parse(cookieValue);
 
 					// take cookie and parse him to array
 					var args = $.map(cookie, function(value, index) {
@@ -147,14 +148,18 @@ angular.module('hearth.services').service('Notify', [
 					// apply given arguments on this function
 					self.addSingleTranslate.apply(self, args);
 				} catch (e) {
+					console.log('Error while parsing after-refresh-notify', e, cookieNotifyCode);
+
 					Rollbar.error("HEARTH: Error parsing JSON from cookie for afterRefresh notify", {
 						error: e,
-						source: $.cookie("notify.afterRefresh")
+						source: cookieNotifyCode
 					});
 				}
 
 				// and delete cookie
-				$.removeCookie("notify.afterRefresh");
+				$.removeCookie(cookieNotifyCode, {
+					path: '/'
+				});
 			}
 		};
 

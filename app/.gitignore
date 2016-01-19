@@ -5,3 +5,5 @@ dist/app
 vendor
 target/
 docs/
+npm-debug.log
+test-debug.log

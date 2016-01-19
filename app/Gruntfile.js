@@ -480,7 +480,17 @@ module.exports = function(grunt) {
 		},
 
 		// The following *-min tasks produce minified files in the dist folder
-		imagemin: {
+		// imagemin: {
+		// 	dist: {
+		// 		files: [{
+		// 			expand: true,
+		// 			cwd: '<%= yeoman.app %>/images',
+		// 			src: '{,*/}*.{png,jpg,jpeg,gif}',
+		// 			dest: '<%= yeoman.dist %>/images'
+		// 		}]
+		// 	}
+		// },
+		image: {
 			dist: {
 				files: [{
 					expand: true,
@@ -665,7 +675,7 @@ module.exports = function(grunt) {
 				'compass'
 			],
 			dist: [
-				'imagemin',
+				// 'image',
 				'svgmin'
 			]
 		},
