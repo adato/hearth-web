@@ -68,7 +68,6 @@ angular.module('hearth.geo').directive('locations', [
 
 				// init google places search box
 				function addPlacesAutocompleteListener(input) {
-
 					var sBox = new google.maps.places.SearchBox(input);
 					google.maps.event.addListener(sBox, 'places_changed', function() {
 						var places = sBox.getPlaces();
@@ -84,25 +83,14 @@ angular.module('hearth.geo').directive('locations', [
 							var location = places[0].geometry.location,
 								name = places[0].formatted_address,
 								info = $scope.translateLocation(places[0].address_components);
+							$scope.fillLocation(location, name, info);
 
-							$scope.fillLocation(location, name, info, true);
 						} else {
 							$scope.errorWrongPlace = true;
-							$scope.apply();
 						}
 					});
 
-					// $(input).focusin(function () {
-					//     $(document).keypress(function (e) {
-					//         if (e.which == 13) {
-					//             $(input).trigger('focus');
-					//             $(input).simulate('keydown', { keyCode: $.ui.keyCode.DOWN } ).simulate('keydown', { keyCode: $.ui.keyCode.ENTER });
-					//         }
-					//     });
-					// });
-
 					$(input).on('keyup keypress', function(e) {
-
 						if (e.keyCode == 13 && $(input).val() != '') {
 							e.preventDefault();
 							return false;
@@ -158,7 +146,6 @@ angular.module('hearth.geo').directive('locations', [
 
 					$(document).on('focusin', input, function(e) {
 						$scope.errorWrongPlace = false;
-						$scope.apply();
 					});
 
 					return sBox;
@@ -187,10 +174,6 @@ angular.module('hearth.geo').directive('locations', [
 					};
 				};
 
-				$scope.apply = function() {
-					if (!$scope.$$phase)
-						$scope.$digest();
-				};
 
 				// go throught all places and compare them with new location
 				// if there is duplicity - dont add it
@@ -209,7 +192,7 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 				// add location to list
-				$scope.fillLocation = function(pos, addr, info, apply) {
+				$scope.fillLocation = function(pos, addr, info) {
 					// but only when it is now added yet
 					if (!$scope.locationExists(pos.lng(), pos.lat())) {
 
@@ -219,7 +202,6 @@ angular.module('hearth.geo').directive('locations', [
 						$timeout(function() {
 							$scope.locations.push(info);
 							tagsInput.focus();
-							apply && $scope.apply();
 						});
 					}
 
