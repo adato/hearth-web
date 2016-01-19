@@ -1,0 +1,71 @@
+
+describe('hearth bookmarks', function() {
+
+	beforeEach(function() {
+		protractor.helpers.navigateTo('');
+	});
+
+	function navigateToMyFav() {
+		//var myUserLink = element(by.css('a.logged-user-dropdown')).click();
+		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
+		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(0).element(by.css('a.ng-binding'));
+		topMenuLink.click();
+		browser.waitForAngular();
+
+		var profileBubble = element(by.css('span.shadow.large>a'));
+		profileBubble.click();
+		browser.waitForAngular();
+
+		var myFavLink = element.all(by.css('div.bottom-tabs>ul>li')).get(1).element(by.css('a'));
+		myFavLink.click();
+		browser.waitForAngular();
+	}
+
+	it('should be able to make a bookmark on marketplace', function() {
+		
+		var elAll = element.all(by.className('post-on-market')).get(0);
+		var expectedDropdown = elAll.element(by.css('div.more-actions-dropdown'));
+		var dropdownBookmarkLink = elAll.all(by.css('div.more-actions-dropdown>a')).get(0);
+		var dropdownArrow = elAll.element(by.css('a.action-dropdown'));
+		var notify = element(by.css('#notify-top>.alert-box'));
+
+
+		expect(notify.isPresent()).toBeFalsy();
+		expect(expectedDropdown.isDisplayed()).toBeFalsy();
+		dropdownArrow.click();
+		expect(expectedDropdown.isDisplayed()).toBeTruthy();
+		dropdownBookmarkLink.click();
+		browser.sleep(500);
+		expect(notify.isPresent()).toBeTruthy();
+	});
+
+	it('should be able to go to profile and see bookmarked items', function() {
+		// navigate to profile through top menu
+		navigateToMyFav();
+
+		var marketItems = element.all(by.className('post-on-market'));
+		expect(marketItems.count()).toBe(1);
+
+	});
+
+	it('should be able to remove bookmarked items from profile', function() {
+		navigateToMyFav();
+
+		var elAll = element.all(by.className('post-on-market')).get(0);
+		var expectedDropdown = elAll.element(by.css('div.more-actions-dropdown'));
+		var dropdownBookmarkLink = elAll.all(by.css('div.more-actions-dropdown>a')).get(0);
+		var dropdownArrow = elAll.element(by.css('a.action-dropdown'))
+		var notify = element(by.css('#notify-top>.alert-box'))
+
+		expect(notify.isPresent()).toBeFalsy();
+		expect(expectedDropdown.isDisplayed()).toBeFalsy();
+		dropdownArrow.click();
+		expect(expectedDropdown.isDisplayed()).toBeTruthy();
+		dropdownBookmarkLink.click();
+		browser.sleep(500);
+		expect(notify.isPresent()).toBeTruthy();
+
+		var marketItems = element.all(by.className('post-on-market'));
+		expect(marketItems.count()).toBe(0);
+	});
+});
