@@ -6,9 +6,10 @@
 			</div>
 			<button class="button-icon fa fa-search"></button>
 		</form> -->
-		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter()">
+		<select class="messages-filter" ng-model="filter.type" ng-change="applyFilter(filter)">
 			<option value="" ng-selected="filter.type == ''">{{:: 'MESSAGES.FILTER.ALL' | translate }}</option>
-			<option value="as_replies" ng-selected="filter.type == 'as_replies'">&nbsp;&nbsp;&nbsp;&nbsp;{{:: 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{:: 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
+			<option value="as_replies_post:{{post._id}}" ng-repeat="post in postConversations.posts" ng-selected="filter.post_id === post._id">&ndash; {{ post.type | uppercase | translate }} {{post.title}}</option>
 			<!-- <option value="" disabled>———————————————————————</option> -->
 			<!-- <option value="users_posts" ng-selected="filter.type == 'users_posts'">{{ 'MESSAGES.FILTER.USERS_POSTS' | translate }}</option> -->
 			<!-- <option value="from_community" ng-selected="filter.type == 'from_community'">{{ 'MESSAGES.FILTER.COMMUNITIES_POSTS' | translate }}</option> -->
