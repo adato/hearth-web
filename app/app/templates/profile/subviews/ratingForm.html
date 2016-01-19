@@ -7,7 +7,11 @@
 	<div class="clear"></div>
 	<form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
 		<h6>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h6>
-		<span ng-if="ratingPosts.length && loadedRatingPosts">
+		<span ng-if="loadingRatingPosts">
+			<i class="fa fa-spin fa-spinner"></i> {{:: 'COMMON.LOADING' | translate }}
+			<br>
+		</span>
+		<span ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts">
 			<div class="padding-bottom-3">
 				{{:: 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
 			</div>
@@ -18,11 +22,8 @@
 				</option>
 			</select>
 		</span>
-		<div ng-if="!ratingPosts.length && loadedRatingPosts" class="padding-bottom">
+		<div ng-if="!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" class="padding-bottom">
 			{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
-		</div>
-		<div ng-if="!loadedRatingPosts">
-			{{:: 'RATING_LOADING_COMMON_POSTS' | translate }}
 		</div>
 		<br />
 		<label>

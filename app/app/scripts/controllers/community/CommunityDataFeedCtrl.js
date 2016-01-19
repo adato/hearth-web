@@ -146,33 +146,40 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				selectedAuthor = val;
 
 				$scope.rating.post_id = null;
-				CommunityRatings.possiblePosts({
-					_id: id,
-					current_community_id: val
-				}, function(res, headers) {
-					var posts = [];
-					if (!res.needed || !res.offered)
-						console.error('Undefined needed/offered posts: ', res, headers)
-
-					res.needed.forEach(function(item) {
-						item.post_type = "needed";
-						posts.push(item);
-					});
-					res.offered.forEach(function(item) {
-						item.post_type = "offered";
-						posts.push(item);
-					});
-
-					$scope.ratingPosts = posts;
-					$scope.loadedRatingPosts = true;
-				}, function(res) {
-					$scope.loadedRatingPosts = true;
-				});
+				processRelevantPosts(id, val);
 			});
 
 			var removeListener = $scope.$on('$routeChangeStart', function() {
 				$scope.closeUserRatingForm();
 				removeListener();
+			});
+		}
+
+		function processRelevantPosts(id, val) {
+			$scope.loadingRatingPosts = true;
+			CommunityRatings.possiblePosts({
+				_id: id,
+				current_community_id: val
+			}, function(res, headers) {
+				var posts = [];
+				if (!res.needed || !res.offered)
+					console.error('Undefined needed/offered posts: ', res, headers)
+
+				res.needed.forEach(function(item) {
+					item.post_type = "needed";
+					posts.push(item);
+				});
+				res.offered.forEach(function(item) {
+					item.post_type = "offered";
+					posts.push(item);
+				});
+
+				$scope.ratingPosts = posts;
+				$scope.loadedRatingPosts = true;
+				$scope.loadingRatingPosts = false;
+			}, function(res) {
+				$scope.loadedRatingPosts = true;
+				$scope.loadingRatingPosts = false;
 			});
 		}
 
