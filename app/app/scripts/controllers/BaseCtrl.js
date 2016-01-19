@@ -22,6 +22,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.addressNew = '';
 		$rootScope.pageChangeWithScroll = true;
 		$scope.segment = false;
+		$rootScope.searchBarDisplayed = false;
 		$scope.addresses = $$config.itemAddresses;
 		$rootScope.socialLinks = {
 			facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
@@ -158,12 +159,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$("#search").focus();
 				return false;
 			}
-
+			$rootScope.toggleSearchBar(false); // turn off search input
 			$rootScope.top(0, 1);
 			$state.go('search', {
 				q: searchQuery.query,
 				// type: searchQuery.type
 			});
+			searchQuery.query = null;
 		};
 
 		/**
@@ -798,6 +800,32 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			return item.state === 'active';
 			// return item.is_active && !item.is_expired;
 		};
+
+		$rootScope.toggleSearchBar = function(value) {
+			$rootScope.searchBarDisplayed = (value ? value : !$rootScope.searchBarDisplayed);
+
+			if ($rootScope.searchBarDisplayed) {
+				$('#searchContainer').slideDown('slow', function() {
+					angular.element('#search').focus();
+				});
+
+				$(document).on('click.search', function(e) {
+					var element = $(e.target);
+					if (!element.parents('#searchContainer').length && !element.is('#searchContainer') && !element.is('#searchIcon')) {
+						$('#searchIcon').click();
+					}
+				});
+			} else {
+				angular.element('#search').blur();
+				$('#searchContainer').slideUp('slow');
+
+				$(document).off('click.search');
+			}
+		}
+
+		$rootScope.isSearchBarShown = function() {
+			return $rootScope.searchBarDisplayed;
+		}
 
 		$scope.$on('$destroy', function() {
 			angular.element(window).unbind('scroll');
