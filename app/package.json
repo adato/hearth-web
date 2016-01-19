@@ -5,7 +5,7 @@
   "licence": "UNLICENSED",
   "private": true,
   "scripts": {
-    "pretest": "./node_modules/.bin/webdriver-manager start &",
+    "pretest": "echo 'Starting webdriver' && ./node_modules/.bin/webdriver-manager start > test-debug.log 2> test-debug.log & sleep 2",
     "test": "./node_modules/.bin/protractor protractor.js",
     "start": "grunt serve"
   },
