@@ -269,7 +269,8 @@
 			"REPLY_TO_POST": "Reply to:",
 			"EMPTY_HEADER": "You have no conversations here. Can you hear the... silence?",
 			"EMPTY_TEXT": "...",
-			"CONVERSATION_IS_EMPTY": "All users have left the conversation."
+			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
+			"EMPTY": "<p>Je n&aacute;m l&iacute;to, ale dostali jste se na konverzaci, kter&aacute; už neexistuje nebo k n&iacute; nem&aacute;te př&iacute;stup. Pokud si mysl&iacute;te, že se jedn&aacute; o chybu, <a title=\"feedback\" href=\"\/app\/feedback\">dejte n&aacute;m o tom pros&iacute;m vědět<\/a>.<\/p>"
 		},
 		"ARCHIVE_CONVERSATION": "Archive conversation",
 		"ARCHIVE_CONFIRM": {

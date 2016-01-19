@@ -271,7 +271,8 @@
 			"REPLY_TO_POST": "Odpoveď na",
 			"EMPTY_HEADER": "Nie sú tu žiadne konverzácie. Počujete to... ticho?",
 			"EMPTY_TEXT": "...",
-			"CONVERSATION_IS_EMPTY": "všetci používatelia opustili konverzáciu"
+			"CONVERSATION_IS_EMPTY": "všetci používatelia opustili konverzáciu",
+			"EMPTY": "<p>Je n&aacute;m l&iacute;to, ale dostali jste se na konverzaci, kter&aacute; už neexistuje nebo k n&iacute; nem&aacute;te př&iacute;stup. Pokud si mysl&iacute;te, že se jedn&aacute; o chybu, <a title=\"feedback\" href=\"\/app\/feedback\">dejte n&aacute;m o tom pros&iacute;m vědět<\/a>.<\/p>"
 		},
 		"ARCHIVE_CONVERSATION": "Archivovať konverzáciu",
 		"ARCHIVE_CONFIRM": {
