@@ -779,7 +779,7 @@
 	"USER_IS_MEMBER": "Užívateľ je členom",
 	"FROM_THAT": "z toho",
 	"ADMIN_7_CASE": "správca",
-	"INVITE_FRIENDS_TO_HEARTH": "Pozvať priateľov<br> do Hearth",
+	"INVITE_FRIENDS_TO_HEARTH": "Pozvať priateľov",
 	"SIGN_UP_WITH_TWITTER": "prihlásiť cez Twitter",
 	"DELETE": "zmazať",
 	"OF_FRIENDS": "priateľov",
@@ -937,11 +937,13 @@
 		"CONVERSATION_ARCHIVE_FAILED": "Pri archivácii došlo k chybe. Teda, tá archivácia!",
 		"RATING_REPLY_SUCCESS": "A je to! Komentár bol úspešne pridaný.",
 		"RATING_REPLY_FAILED": "Pri pridávaní komentáre k hodnotenie došlo k chybe",
-		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na Vaši emailovou adresu.",
+		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na tvou emailovou adresu.",
 		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
 		"API_401": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
 		"API_422": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_500": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>"
+		"API_500": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
+		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
+		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
@@ -1318,7 +1320,7 @@
 	"ERROR_WHILE_UPLOADING": "Pri nahrávaní došlo k chybe",
 	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíte se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.<\/p>",
 	"SIGNUP_HEADING_FB": "Pridajte sa",
 	"SIGN_UP": {

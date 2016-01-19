@@ -566,6 +566,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, function(res) {
 				if (res.ok === true) {
 					post.is_bookmarked = !post.is_bookmarked;
+					Notify.addSingleTranslate('NOTIFY.POST_BOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
 				}
 			});
 		};
@@ -586,6 +587,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, function(res) {
 				if (res.ok === true) {
 					post.is_bookmarked = !post.is_bookmarked;
+					Notify.addSingleTranslate('NOTIFY.POST_UNBOOKMARKED_SUCCESFULLY', Notify.T_SUCCESS);
 				}
 			});
 		};
