@@ -1,4 +1,5 @@
 .static-page-container {
+	padding: 25px;
 	a {
 		color: color(5);
 	}
@@ -26,6 +27,7 @@
 	font-size:14px;
 	h1 {
 		font-size: $ui-title-font-size;
+		margin-top: 15px;
 		margin-bottom: 5px;
 		font-weight: 700;
 	}
@@ -49,7 +51,6 @@
 	dt {
 		font-size: $ui-text-font-size;
 		margin-bottom: 5px;
-		line-height: $base-line-height;
 	}
 	dt {
 		margin-top: 15px;
