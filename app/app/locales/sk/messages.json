@@ -38,7 +38,9 @@
 			"PUBLISHED_AT": "Pridané",
 			"REMOVE_FROM_COMMUNITY": "Odstrániť z komunity",
 			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
-			"SHARE_LINK": "Sdílet odkaz"
+			"SHARE_LINK": "Sdílet odkaz",
+			"UNBOOKMARK_POST": "Odobrať z obľúbených",
+			"BOOKMARK_POST": "Pridať k obľúbeným"
 		},
 		"EDIT_FILTER": "Upraviť filter",
 		"FILTER_NOT_FOUND": "Hups, zadanej kombinácii nezodpovedá vôbec, ale vôbec žiadny inzerát.<br \/>Čo takto nejaké to kritérium ubrať?",
@@ -269,7 +271,8 @@
 			"REPLY_TO_POST": "Odpoveď na",
 			"EMPTY_HEADER": "Nie sú tu žiadne konverzácie. Počujete to... ticho?",
 			"EMPTY_TEXT": "...",
-			"CONVERSATION_IS_EMPTY": "všetci používatelia opustili konverzáciu"
+			"CONVERSATION_IS_EMPTY": "všetci používatelia opustili konverzáciu",
+			"EMPTY": "<p>Je n&aacute;m l&iacute;to, ale dostali jste se na konverzaci, kter&aacute; už neexistuje nebo k n&iacute; nem&aacute;te př&iacute;stup. Pokud si mysl&iacute;te, že se jedn&aacute; o chybu, <a title=\"feedback\" href=\"\/app\/feedback\">dejte n&aacute;m o tom pros&iacute;m vědět<\/a>.<\/p>"
 		},
 		"ARCHIVE_CONVERSATION": "Archivovať konverzáciu",
 		"ARCHIVE_CONFIRM": {
@@ -777,7 +780,7 @@
 	"USER_IS_MEMBER": "Užívateľ je členom",
 	"FROM_THAT": "z toho",
 	"ADMIN_7_CASE": "správca",
-	"INVITE_FRIENDS_TO_HEARTH": "Pozvať priateľov<br> do Hearth",
+	"INVITE_FRIENDS_TO_HEARTH": "Pozvať priateľov",
 	"SIGN_UP_WITH_TWITTER": "prihlásiť cez Twitter",
 	"DELETE": "zmazať",
 	"OF_FRIENDS": "priateľov",
@@ -935,11 +938,13 @@
 		"CONVERSATION_ARCHIVE_FAILED": "Pri archivácii došlo k chybe. Teda, tá archivácia!",
 		"RATING_REPLY_SUCCESS": "A je to! Komentár bol úspešne pridaný.",
 		"RATING_REPLY_FAILED": "Pri pridávaní komentáre k hodnotenie došlo k chybe",
-		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na Vaši emailovou adresu.",
+		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na tvou emailovou adresu.",
 		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
 		"API_401": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
 		"API_422": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_500": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>"
+		"API_500": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
+		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
+		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
@@ -1104,7 +1109,8 @@
 			"NO_GIVEN_RATINGS_OTHER": "Užívateľ zatiaľ nič nevenoval ani nepotreboval prijať, tak nemal zatiaľ ani príležitosť niekomu napísať hodnotenie.",
 			"NO_POSTS_ME": "Zatiaľ ste nevytvoril(a) žiadny inzerát, poďme s tým niečo urobiť - môžete darovať alebo prijať, čo vám len napadne.",
 			"NO_POSTS_OTHER": "Užívateľ zatiaľ nič nevenoval, ani nepotreboval prijať. Asi sa zatiaľ rozhliada alebo len reaguje na inzeráty ostatných.",
-			"NO_RECEIVED_RATINGS_ME": "Očividne za sebou ešte nemáte žiadnu odvážnu odpoveď na inzerát, tak nemal nikto príležitosť sem napísať niečo pekné :("
+			"NO_RECEIVED_RATINGS_ME": "Očividne za sebou ešte nemáte žiadnu odvážnu odpoveď na inzerát, tak nemal nikto príležitosť sem napísať niečo pekné :(",
+			"NO_POSTS_BOOKMARKED": "Nemáte žiadne obľúbené dary a priania"
 		},
 		"TOP": {
 			"KARMA_NO_RATING_ME": "S prvým hodnotením vám to tu vyfarbíme :)",
@@ -1315,7 +1321,7 @@
 	"ERROR_WHILE_UPLOADING": "Pri nahrávaní došlo k chybe",
 	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
 	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíte se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
 	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tedr&aacute; soci&aacute;lna sieť pln&aacute; zauj&iacute;mav&yacute;ch ľud&iacute;, ktor&iacute; maj&uacute; odvahu darovať. M&aacute;te ju aj vy? Svoj profil vytvor&iacute;te behom chv&iacute;ľky a svet darov je razom aj v&aacute;&scaron;.<\/p>",
 	"SIGNUP_HEADING_FB": "Pridajte sa",
 	"SIGN_UP": {
@@ -1324,5 +1330,6 @@
 	"SEARCH": "Hledat",
 	"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
 	"MEET_COMMUNITY": "Spoznajte komunitu",
-	"community-operate-in": "Pôsobíme v"
+	"community-operate-in": "Pôsobíme v",
+	"MY_BOOKMARKS": "Moje obľúbené"
 }
