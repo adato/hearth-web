@@ -8,6 +8,7 @@ exports.config = {
 		testFolder + 'unauth/marketplace.js',
 		testFolder + 'auth/register.js',
 		testFolder + 'auth/login.js',
+		testFolder + 'auth/bookmarks.js',
 		testFolder + 'auth/deleteUser.js'
 	],
 	suites: {
