@@ -131,6 +131,16 @@ body {
 	font-size:$global-font-size;
 	-webkit-text-size-adjust:100%; // for mobile
 }
+body.no-scroll{
+	overflow-y: hidden;
+}
+a.no-link,
+a.no-link:hover{
+	padding: 0 !important;
+	text-decoration: none !important;
+	background: transparent !important;
+	cursor: default !important;
+}
 
 @import "hearthIcons";
 meta.foundation-data-attribute-namespace {

@@ -12,6 +12,33 @@ $topBarImageSize: 1.8em;
 		}
 	}
 
+	.log-info{
+		padding: 1rem 0.6666666667rem;
+		font-weight: bold !important;
+		white-space: nowrap;
+		font-size: 1.2rem;
+		
+		.avatar{
+			margin-right: .5rem; 
+			vertical-align: bottom;
+		}
+
+		a{
+			width: calc(100% - 60px);
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			vertical-align: bottom;
+		}
+		a,
+		a:hover{
+			padding: 0 !important;
+			background: transparent !important;
+		}
+		a:hover{
+			color: #fff !important;
+		}
+	}
+
 	.socials span {
 		margin-right: 2px;
 	}

@@ -1,6 +1,16 @@
 <section id="navigation">
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
+			<li ng-if="loggedUser._id" class="tab-bar log-info">
+				<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
+				<a ng-href='{{ getProfileLink("User", loggedUser._id) }}' class='inline-block-i overflow-hidden' ng-bind="loggedUser.name"></a>
+			</li>
+			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
+				<a ng-class='{active: pageName == "login"}' ui-sref='login'>
+					<div class="inline-block fa fa-fw fa-sign-in"></div>
+					<div class='inline-block' translate='LOG_IN'></div>
+				</a>
+			</li>
 			<li>
 				<label class="first">Menu</label>
 			</li>
@@ -110,7 +120,7 @@
 		</div>
 		<div id="notify-top"></div>
 		<nav class="column tab-bar tab-bar-closed hide-for-large-up">
-			<a class="left-off-canvas-toggle menu-icon sidebar-button">
+			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click='toggleSidebar()'>
 				<i class="fa fa-bars"></i>
 			</a>
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
