@@ -37,8 +37,8 @@
 			"SHARE_WITH": "Share via",
 			"PUBLISHED_AT": "Added",
 			"REMOVE_FROM_COMMUNITY": "Remove from Community",
-			"CLICK_TO_COLLAPSE": "Zobrazit zkrÃ¡cenÃ½ text",
-			"SHARE_LINK": "SdÃ­let odkaz"
+			"CLICK_TO_COLLAPSE": "Show less",
+			"SHARE_LINK": "Share link"
 		},
 		"EDIT_FILTER": "Edit filter",
 		"FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br \/>Maybe remove some conditions?",
@@ -50,12 +50,12 @@
 		"CREATE_NEW_ADD": "Add a new gift or wish",
 		"REFRESH_AFTER_ERROR": "PÅ™Ã­padnÄ› zkuste naÄÃ­st inzerÃ¡ty znovu.",
 		"USER": {
-			"INFO_NOT_FILLED": "UÅ¾ivatel o sobÄ› zatÃ­m nevyplnil Å¾Ã¡dnÃ© informace."
+			"INFO_NOT_FILLED": "User have not filled any information here."
 		},
 		"COMMUNITY": {
-			"INFO_NOT_FILLED": "Komunita o sobe zatÃ­m nevyplnila Å¾Ã¡dnÃ© infromace."
+			"INFO_NOT_FILLED": "Community have not filled any information here."
 		},
-		" SHOW_POSTS_ON_MAP": "Zobrazit inzerÃ¡ty na mapÄ›"
+		" SHOW_POSTS_ON_MAP": "Show posts on map"
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -926,9 +926,9 @@
 		"RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
 		"REACTIVATING_EMAIL_WAS_SENT": "AktivaÄnÃ­ email byl zaslÃ¡n na VaÅ¡i emailovou adresu.",
 		"REACTIVATING_EMAIL_FAILED": "PÅ™i odesÃ­lÃ¡nÃ­ aktivaÄnÃ­ho emailu doÅ¡lo k chybÄ›.",
-		"API_401": "<p>NÄ›co se bohuÅ¾el nepovedlo. Zkuste to pros&iacute;m bÄ›hem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÄ›dÄ›t<\/a>. D&iacute;ky!<\/p>",
-		"API_422": "<p>NÄ›co se bohuÅ¾el nepovedlo. Zkuste to pros&iacute;m bÄ›hem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÄ›dÄ›t<\/a>. D&iacute;ky!<\/p>",
-		"API_500": "<p>NÄ›co se bohuÅ¾el nepovedlo. Zkuste to pros&iacute;m bÄ›hem chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vÄ›dÄ›t<\/a>. D&iacute;ky!<\/p>"
+		"API_401": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>",
+		"API_422": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>",
+		"API_500": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
@@ -1273,18 +1273,18 @@
 	"TOP_BAR": {
 		"ADD_NEW_POST": "New Gift\/Wish",
 		"SEARCH": {
-			"EVERYWHERE": "VÅ¡ude",
-			"MARKET": "Na trÅ¾iÅ¡ti",
+			"EVERYWHERE": "Everywhere",
+			"MARKET": "On marketplace",
 			"COMMUNITY": "V komunitÃ¡ch",
 			"PEOPLE": "V lidech",
-			"MESSAGES": "Ve zprÃ¡vÃ¡ch"
+			"MESSAGES": "In messages"
 		}
 	},
-	"ERROR_WHILE_UPLOADING": "PÅ™i nahrÃ¡vÃ¡nÃ­ doÅ¡lo k chybÄ›",
-	"LOGIN_INACTIVE_ACCOUNT": "PokouÅ¡Ã­te se pÅ™ihlÃ¡sit pomocÃ­ ÃºÄtu, kterÃ½ jeÅ¡tÄ› nebyl aktivovÃ¡n kliknutÃ­m na odkaz v e-mailu s potvrzenÃ­m registrace. E-mail s aktivaÄnÃ­m odkazem si mÅ¯Å¾ete",
-	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "PokouÅ¡Ã­te se zÃ­skat novÃ© heslo pro ÃºÄet, kterÃ½ jeÅ¡tÄ› nebyl aktivovÃ¡n kliknutÃ­m na odkaz v e-mailu s potvrzenÃ­m registrace. E-mail s aktivaÄnÃ­m odkazem si mÅ¯Å¾ete",
-	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tÄ›dr&aacute; soci&aacute;ln&iacute; s&iacute;Å¥ pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteÅ™&iacute; maj&iacute; odvahu darovat. M&aacute;te ji i vy? SvÅ¯j profil vytvoÅ™&iacute;te bÄ›hem chvilky a svÄ›t darÅ¯ je r&aacute;zem i v&aacute;&scaron;.<\/p>",
+	"ERROR_WHILE_UPLOADING": "There was an error while uploading file",
+	"LOGIN_INACTIVE_ACCOUNT": "You are trying to log in using account which was not activated yet. E-mail with activation code ",
+	"RESEND_ACTIVATING_EMAIL": "can be resent here",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to restore password for not activated. E-mail with activation code",
+	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net is social network.<\/p>",
 	"SIGNUP_HEADING_FB": "Come in",
 	"SIGN_UP": {
 		"CONTINUE_TO_REGISTER": "Close and continue registration."
