@@ -14,6 +14,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showNewMessageForm = false;
 		$scope.loaded = false;
 		$scope.conversations = false;
+		$scope.notFound = false;
 		$scope.showFulltext = false;
 		$scope.detail = false;
 		$scope.loadingBottom = false;
@@ -170,6 +171,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// 	$scope.markReadedAfterActivity(info, index);
 
 			$scope.showNewMessageForm = false;
+			$scope.notFound = false;
 			$scope.detail = info;
 
 			// dont load counter when we click on conversation detail
@@ -259,7 +261,10 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				no_read: !!dontMarkAsReaded,
 				id: id
 			}, function(res) {
+				$scope.notFound = false;
 				$scope.showConversation($scope.deserializeConversation(res), -1, true);
+			}, function() {
+				$scope.notFound = true;
 			});
 		};
 
@@ -362,6 +367,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		function init() {
 			$scope.conversations = false;
 			$scope.detail = false;
+			$scope.notFound = false;
 			$scope.showFulltext = false;
 			$scope.showNewMessageForm = false;
 			$scope.loadingBottom = false;

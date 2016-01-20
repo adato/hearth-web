@@ -80,7 +80,7 @@
 			</div>
 		</div>
 
-		<div class="collumn box right conversation-detail-container" ng-if="(!detail || !detail.is_member) && !showNewMessageForm" ng-bind-html="'MESSAGES.DETAIL.EMPTY' | translate"></div>
+		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && notFound || detail && !detail.is_member" ng-bind-html="'MESSAGES.DETAIL.EMPTY' | translate"></div>
 
 		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && detail && detail.is_member">
 			<conversation-detail info="detail"></conversation-detail>
