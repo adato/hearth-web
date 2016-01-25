@@ -475,8 +475,8 @@
 	"YOUR_NAME": "Your name here",
 	"YOU_HAVE_NOT_BEEN_RATED": "You have not been rated by others yet",
 	"YOU_HAVE_NO_WISHES": "You have no wishes so far.",
-	"ads-has-been-read": "<strong>{{value}}<\/strong> ad(s) has\/have been read.",
-	"and-next": "and <strong>{{value}}<\/strong> more.",
+	"ads-has-been-read": "{{value}} ad(s) has\/have been read",
+	"and-next": "and {{value}} more.",
 	"and-on-social-networks": "And on social networks",
 	"author": "Author",
 	"community": "communities",
@@ -495,7 +495,7 @@
 	"send_fb_invitation": "Invite your friends on Facebook",
 	"show-less": "Hide",
 	"time": "Time",
-	"title-maxlength": "Title is too long, Mr Shakespeare. Sorry about that, our maximum length is <strong>{{value}}<\/strong> characters.",
+	"title-maxlength": "Title is too long, Mr Shakespeare. Sorry about that, our maximum length is {{value}} characters.",
 	"title-required": "Title is too short. Add a few more words please...",
 	"user": "Users",
 	"you-will-find-me": "You can find me in",
@@ -725,8 +725,8 @@
 	"PASSWORD_NOT_FILLED": "Enter new password you want to set.",
 	"PASSWORD_CHECK_NOT_FILLED": "Fill in the new password again for verification.",
 	"RESET_PASSWORD_API_ERROR": "Change of password has failed... What now?",
-	"RESET_PASSWORD_SUCCESS": "<p>Yippee! Your password has been changed successfully.<br \/>You can now <strong><a href=\"\/app\/login\">sign in<\/a><\/strong>.<\/p>",
-	"RESET_PASSWORD_BROKEN_LINK": "<p>Ouch, something is broken, this link is invalid. Generate a new one by <strong><a href=\"\/app\/forgotten-password\">clicking here<\/a><\/strong>.<\/p>",
+	"RESET_PASSWORD_SUCCESS": "<p>Yippee! Your password has been changed successfully.<br \/>You can now <a href=\"\/app\/login\">sign in<\/a>.<\/p>",
+	"RESET_PASSWORD_BROKEN_LINK": "<p>Ouch, something is broken, this link is invalid.<br \/>Generate a new one by <a href=\"\/app\/forgotten-password\">clicking here<\/a>.<\/p>",
 	"RESET_PASSWORD_TEXT": "You can set up new password here.",
 	"EMAIL_PLACEHOLDER": "E-mail",
 	"UNKNOWN_EMAIL": "We do not recognize this email and have never seen it before. What about you?",
@@ -778,7 +778,7 @@
 	"COMMUNITIES": "Communities",
 	"ERROR_BAD_IMAGE_FORMAT": "Picture has the wrong format. You can only use these: {{ formats}}",
 	"ERROR_BAD_IMAGE_SIZE": "The picture is too big. Like waay too much. Maximum size is {{ maxSize }}MB",
-	"TOTAL_COUNT": "<strong>{{value}}<\/strong> in total",
+	"TOTAL_COUNT": "{{value}} in total",
 	"USING_HEARTH_IN_LANG": "You are currently using Hearth",
 	"HEARTH_IN_THIS_LANG": "in English",
 	"OG_DEFAULT_TITLE": "Hearth.net",
@@ -789,7 +789,7 @@
 	"FULLTEXT_FILTER_SEARCH_RESULTS": "Filter results",
 	"FULLTEXT_MARKET": "Marketplace",
 	"FULLTEXT_NOTHING_FOUND": "Dang! We haven't found anything.",
-	"FULLTEXT_NOTHING_FOUND_RELATED_TO": "<p>Dang! Nothing close to <strong>{{value}}<\/strong> found. It's either hiding very well somewhere, or simply doesn't exist here yet.<\/p>",
+	"FULLTEXT_NOTHING_FOUND_RELATED_TO": "<p>Dang! Nothing close to <strong>{{value}}<\/strong> found.<br \/>It's either hiding very well somewhere, or simply doesn't exist here yet.<\/p>",
 	"FULLTEXT_USERS": "Users",
 	"PEOPLE_SECOND_CASE": "people",
 	"PEOPLE_FIRST_CASE": "people",
@@ -1113,7 +1113,8 @@
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
 			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
-			"VISIBILITY_EVERYBODY": "Kdokoliv"
+			"VISIBILITY_EVERYBODY": "Kdokoliv",
+			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {

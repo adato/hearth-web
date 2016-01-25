@@ -76,20 +76,18 @@
 			<section class="contact">
 				<!-- main EMAIL -->
 				<div class="clearfix">
-					<label class="large-12 small-12 medium-12 columns">
-						{{:: 'MY_EMAIL' | translate }} *
-					</label>
-
 					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'MY_EMAIL' | translate }} *</label>
 						<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
 
-						<div class="error" ng-class="{absolute: showContactMail}" ng-show="showError.email">
+						<div class="error" ng-show="showError.email">
 							<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
 							<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
 						</div>
 					</div>
 
 					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
 						<privacy-selector ng-model="profile.visible_attributes.email"></privacy-selector>
 					</div>
 
@@ -102,10 +100,8 @@
 
 				<!-- contact email -->
 				<div ng-show="showContactMail" class="contact-email clearfix">
-					<label class="large-12 small-12 medium-12 columns">
-						{{:: 'MY_CONTACT_EMAIL' | translate }}
-					</label>
 					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'MY_CONTACT_EMAIL' | translate }}</label>
 						<input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email'>
 
 						<div class="error" ng-show="showError.contact_email">
@@ -114,6 +110,7 @@
 						</div>
 					</div>
 					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
 						<privacy-selector ng-model="profile.visible_attributes.contact_email"></privacy-selector>
 					</div>
 
@@ -130,11 +127,13 @@
 
 				<!-- phone -->
 				<div class="margin-top clearfix">
-					<label class="large-12 small-12 medium-12 columns">
+					<!-- 					<label class="large-12 small-12 medium-12 columns">
 						<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}
-					</label>
+					</label> -->
 
 					<div class="large-6 small-12 medium-6 columns">
+						<label>
+							<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}</label>
 						<input ng-model="profile.phone" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input" type="text" ng-pattern="/((\+420|00420) ?)?\d{3}( |-)?\d{3}( |-)?\d{3}/">
 
 						<div class="error" ng-show="showError.phone">
@@ -143,6 +142,7 @@
 					</div>
 
 					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
 						<privacy-selector ng-model="profile.visible_attributes.phone"></privacy-selector>
 					</div>
 				</div>

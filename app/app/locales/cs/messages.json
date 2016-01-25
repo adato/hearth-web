@@ -1140,7 +1140,8 @@
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
 			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
-			"VISIBILITY_EVERYBODY": "Kdokoliv"
+			"VISIBILITY_EVERYBODY": "Kdokoliv",
+			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {
