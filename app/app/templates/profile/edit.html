@@ -73,55 +73,81 @@
 					<span class="fa fa-phone"></span>{{:: 'CONTACTS' | translate }}
 				</span>
 			</h2>
-			<section>
-				<div class="contact large-6 small-12 medium-6 columns">
-					<div class="margin">
-						<label>
-							{{:: 'MY_EMAIL' | translate }} *
-							<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
+			<section class="contact">
+				<!-- main EMAIL -->
+				<div class="clearfix">
+					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'MY_EMAIL' | translate }} *</label>
+						<input ng-model="profile.email" ng-focus="showError.email = false" ng-blur="showError.email = true" class="text-input" type='email' name="email" ng-required="true">
 
-							<div class="error" ng-class="{absolute: showContactMail}" ng-show="showError.email">
-								<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
-								<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
-							</div>
-						</label>
+						<div class="error" ng-show="showError.email">
+							<span ng-show="profileEditForm.email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+							<span ng-show="profileEditForm.email.$error.required">{{:: 'ERR_NOT_FILLED_EMAIL' | translate }}</span>
+						</div>
+					</div>
 
-						<div class="clear"></div>
+					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
+						<privacy-selector ng-model="profile.visible_attributes.email"></privacy-selector>
+					</div>
+
+					<div class="large-12 small-12 medium-12 columns">
 						<a ng-click="showContactMail = true || profile.contact_email !=''" ng-hide="showContactMail" class="controll">
 							<span class="fa fa-plus-square"></span>{{:: 'ADD' | translate }}
 						</a>
 					</div>
-					<div ng-show="showContactMail">
-						<label>
-							{{:: 'MY_CONTACT_EMAIL' | translate }}
-							<input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email'>
+				</div>
 
-							<div class="error" ng-show="showError.contact_email">
-								<span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
-								<span ng-show="profileEditForm.contact_email.$error.required">{{:: 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
-							</div>
-							<em>{{:: 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
-						</label>
+				<!-- contact email -->
+				<div ng-show="showContactMail" class="contact-email clearfix">
+					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'MY_CONTACT_EMAIL' | translate }}</label>
+						<input ng-model="profile.contact_email" ng-focus="showError.contact_email = false" ng-blur="contactEmailBlur()" class="text-input" name="contact_email" type='email'>
 
-						<div>
-							<a ng-click="hideContactEmail()" class="controll">
-								<span class="fa fa-minus-square"></span>{{:: 'REMOVE' | translate }}
-							</a>
+						<div class="error" ng-show="showError.contact_email">
+							<span ng-show="profileEditForm.contact_email.$error.email">{{:: 'ERR_NOT_VALID_EMAIL' | translate }}</span>
+							<span ng-show="profileEditForm.contact_email.$error.required">{{:: 'ERR_NOT_FILLED_CONTACT_EMAIL' | translate }}</span>
 						</div>
 					</div>
+					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
+						<privacy-selector ng-model="profile.visible_attributes.contact_email"></privacy-selector>
+					</div>
+
+					<div class="large-12 small-12 medium-12 columns">
+						<em>{{:: 'MY_CONTACT_EMAIL_EXAMPLE' | translate }}</em>
+					</div>
+
+					<div class="large-12 small-12 medium-12 columns margin-top">
+						<a ng-click="hideContactEmail()" class="controll">
+							<span class="fa fa-minus-square"></span>{{:: 'REMOVE' | translate }}
+						</a>
+					</div>
 				</div>
-				<div class="large-6 small-12 medium-6 columns">
-					<label>
-						<div class="fa fa-phone"></div>
-						{{:: 'MY_PHONE' | translate }}
+
+				<!-- phone -->
+				<div class="margin-top clearfix">
+					<!-- 					<label class="large-12 small-12 medium-12 columns">
+						<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}
+					</label> -->
+
+					<div class="large-6 small-12 medium-6 columns">
+						<label>
+							<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}</label>
 						<input ng-model="profile.phone" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input" type="text" ng-pattern="/((\+420|00420) ?)?\d{3}( |-)?\d{3}( |-)?\d{3}/">
 
 						<div class="error" ng-show="showError.phone">
 							<span ng-show="profileEditForm.phone.$error.pattern">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
 						</div>
-					</label>
+					</div>
+
+					<div class="large-6 small-12 medium-6 columns">
+						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
+						<privacy-selector ng-model="profile.visible_attributes.phone"></privacy-selector>
+					</div>
 				</div>
 			</section>
+
 			<div class="clear"></div>
 			<h2>
 				<span class="content">
