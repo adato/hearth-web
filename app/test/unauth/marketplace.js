@@ -1,4 +1,4 @@
-describe('hearth unauth maretplace', function() {  
+describe('hearth unauth marketplace', function() {  
 
   beforeEach(function() {
     protractor.helpers.navigateTo('', function () { 
@@ -7,7 +7,7 @@ describe('hearth unauth maretplace', function() {
   });
 
   // should see marketplace with items
-  it('should see marketplace with items', function () {
+  it('should see items', function () {
     var filterBar = element(by.className('filterbar-wrap'));
     var marketContainer = element(by.className('marketplace-items-container'));
 
@@ -112,7 +112,7 @@ describe('hearth unauth maretplace', function() {
       }
       if (type === 'tablet') {
         expect(iconAdd.isDisplayed()).toBeTruthy(); 
-        expect(createButton.isDisplayed()).toBeTruthy(); 
+        expect(createButton.isDisplayed()).toBeFalsy(); 
       }
       iconAdd.click().then(function () {
         expect(loginModal.isDisplayed()).toBeTruthy();
@@ -139,7 +139,7 @@ describe('hearth unauth maretplace', function() {
   function navigationTest (type) {
     var container = element(by.css('div.off-canvas-wrap'));
     var topBar = element(by.css('nav.tab-bar'));
-    var searchBar = element(by.css('div.orange-bar'));
+    var searchBar = element(by.css('div.mobile-top-search-bar-container'));
     var iconAdd = element(by.css('nav.tab-bar>.small-icons>.fa-plus-square'));
     var iconSearch = element(by.css('nav.tab-bar>.small-icons>.fa-search'));
     var toggleButton = element(by.css('nav.tab-bar>a.left-off-canvas-toggle'));
