@@ -112,7 +112,7 @@ describe('hearth unauth maretplace', function() {
       }
       if (type === 'tablet') {
         expect(iconAdd.isDisplayed()).toBeTruthy(); 
-        expect(createButton.isDisplayed()).toBeTruthy(); 
+        expect(createButton.isDisplayed()).toBeFalsy(); 
       }
       iconAdd.click().then(function () {
         expect(loginModal.isDisplayed()).toBeTruthy();
