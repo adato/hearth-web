@@ -1,13 +1,8 @@
 <div class="avatar {{ class }}">
-	<!--<div class="avatar {{ class }}">
-			<a ng-if="href" ng-href="{{ href }}">
-				<img ng-src="{{ image }}" />
-			</a>
-			<span ng-if="! href">
-				<img ng-if="! href" ng-src="{{ image }}" />
-			</span>
-		</div>-->
-	<a class='no-link' ng-href="{{ href }}">
+	<a ng-if='href' ng-href="{{ href }}">
 		<img ng-src="{{ image }}" />
 	</a>
+	<div ng-if='! href'>
+		<img ng-src='{{ image }}' />
+	</div>
 </div>
