@@ -2,8 +2,10 @@
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
-				<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
-				<a ng-href='{{ getProfileLink("User", loggedUser._id) }}' class='inline-block-i overflow-hidden' ng-bind="loggedUser.name"></a>
+				<a ng-href='{{ getProfileLink("User", loggedUser._id) }}' class='inline-block-i overflow-hidden'>
+					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
+					<div class='inline-block' ng-bind='loggedUser.name'></div>
+				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
 				<a ng-class='{active: pageName == "login"}' ui-sref='login'>
