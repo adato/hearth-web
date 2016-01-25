@@ -428,7 +428,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			$timeout(function() {
 				itemEditOpened = false;
-			}, 1000);
+			}, 2000);
 
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
