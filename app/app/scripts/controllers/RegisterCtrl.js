@@ -97,8 +97,6 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				if ($scope.apiErrors.email)
 					$scope.showError.email = true;
 
-				Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_ERROR', Notify.T_ERROR, '.register-notify-area');
-
 				return $analytics.eventTrack('error during registration', {
 					category: 'registration',
 					label: 'error during registration'

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload',
-	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -42,16 +42,14 @@ angular.module('hearth.services').factory('Auth', [
 				});
 			},
 			login: function(credentials, cb) {
-				return $http.post($$config.apiPath + '/login', credentials, {
-					nointercept: true
-				}).then(cb, cb);
+				User.login(credentials, cb, cb);
 			},
 			resendActivationEmail: function(email, cb) {
-				return $http.post($$config.apiPath + '/users/resend_confirmation', {
+				return User.resendActivationEmail({
 					user: {
 						email: email
 					}
-				}).then(cb, cb);
+				}, cb, cb);
 			},
 			logout: function(cb) {
 				return $session.then(function(session) {
@@ -109,22 +107,22 @@ angular.module('hearth.services').factory('Auth', [
 					loggedEntity: this.getBaseCredentials(),
 				}
 			},
-			confirmRegistration: function(hash, success, err) {
-				return $http.post($$config.apiPath + '/users/confirm_registration', {
-					'hash': hash
-				}).success(function(data) {
-					return success(data);
-				}).error(function(data) {
-					return err(data);
-				});
+			confirmRegistration: function(hash, success, error) {
+				User.confirmRegistration({
+					hash: hash
+				}, success, error);
 			},
 			completeEmailForRegistration: function(data, success, err) {
-				return $http.put($$config.apiPath + '/users/email_for_token', data);
-				// .success(success).error(err);
+				User.completeEmailForRegistration(data, success, err);
 			},
 			requestPasswordReset: function(email) {
 				return $http.post($$config.apiPath + '/reset_password', {
-					email: email
+					email: email,
+				}, {
+					errorNotify: {
+						code: 'NOTIFY.RESET_PASSWORD_FAILED',
+						container: '.forgot-pass-notify-container'
+					}
 				});
 			},
 			checkResetPasswordToken: function(token, cb) {
@@ -134,16 +132,12 @@ angular.module('hearth.services').factory('Auth', [
 					return cb(res);
 				});
 			},
-			resetPassword: function(token, password, success, err) {
-				return $http.put($$config.apiPath + '/reset_password', {
+			resetPassword: function(token, password, success, error) {
+				User.resetPassword({
 					token: token,
 					password: password,
 					confirm: password
-				}).success(function(data) {
-					return success(data);
-				}).error(function(data) {
-					return err(data);
-				});
+				}, success, error);
 			},
 			processLoginResponse: function(data) {
 				if (data.email_token)

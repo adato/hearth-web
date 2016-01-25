@@ -53,8 +53,6 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				if (res.data && res.data.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
-				} else {
-					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_FAILED', Notify.T_ERROR);
 				}
 			}, function() {
 				resendingEmail = false;

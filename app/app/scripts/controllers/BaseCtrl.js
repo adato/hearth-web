@@ -485,7 +485,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				cb && cb(post); // if callback given, call it
 			}, function() {
 				$rootScope.globalLoading = false;
-				Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -747,9 +746,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					// somethings went wrong - post is not valid
 					// open edit box and show errors
 					$rootScope.editItem(item, true);
-				} else {
-
-					Notify.addSingleTranslate('NOTIFY.POST_UPDAT_FAILED', Notify.T_ERROR);
 				}
 			});
 		};

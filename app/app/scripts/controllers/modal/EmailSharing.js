@@ -92,7 +92,6 @@ angular.module('hearth.controllers').controller('EmailSharing', [
 
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
-				Notify.addSingleTranslate('NOTIFY.EMAIL_SHARING_FAILED', Notify.T_ERROR, '.notify-report-container');
 			});
 		};
 	}

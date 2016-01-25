@@ -102,8 +102,6 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
 						if ($scope.onError)
 							$scope.onError(err);
-						else
-							Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR);
 					});
 				};
 			}

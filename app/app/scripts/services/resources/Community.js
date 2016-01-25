@@ -31,13 +31,22 @@ angular.module('hearth.services').factory('Community', [
 				method: 'GET'
 			},
 			edit: {
-				method: 'PUT'
+				method: 'PUT',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_UPDATE_FAILED'
+				}
 			},
 			remove: {
-				method: 'DELETE'
+				method: 'DELETE',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_DELETE_FAILED'
+				}
 			},
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_CREATE_FAILED'
+				}
 			},
 			suggested: {
 				url: $$config.apiPath + '/related_communities',

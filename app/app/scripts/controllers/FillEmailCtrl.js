@@ -88,9 +88,6 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 
 						$scope.fillEmailForm.email.$error.used = true;
 						$scope.showError.email = true;
-					} else {
-
-						Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_FAILED', Notify.T_ERROR, '.fill-email-notify-container');
 					}
 				});
 			});

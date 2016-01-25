@@ -65,7 +65,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 						$scope.$emit("conversationMessageAdded", res);
 					}, function(err) {
 						$scope.sendingReply = false;
-						Notify.addSingleTranslate('NOTIFY.MESSAGE_REPLY_FAILED', Notify.T_ERROR);
 					});
 				};
 

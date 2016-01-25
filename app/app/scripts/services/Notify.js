@@ -184,8 +184,8 @@ angular.module('hearth.services').service('Notify', [
 		this.onResourceError = function(rejection) {
 			var errorCodes = [500, 401, 422];
 			var config = typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify;
-
-			// allow interceptor only for few 
+			var container
+				// allow interceptor only for few 
 			if (errorCodes.indexOf(rejection.status) < 0 || config === false) {
 				console.log('Rejecting interceptor - disabled or unallowed status code', rejection.status);
 				return $q.reject(rejection);
@@ -194,7 +194,11 @@ angular.module('hearth.services').service('Notify', [
 			console.log('Config: ', config);
 			console.log('Rejection: ', rejection);
 
-			Notify.addSingleTranslate(config.code || 'NOTIFY.API_ERROR', config.type || Notify.T_ERROR, config.container || null, 200000);
+			// if container does not exists, use default
+			if (config.container && !$(config.container).is(':visible'))
+				config.container = null;
+
+			self.addSingleTranslate(config.code || 'NOTIFY.API_ERROR', config.type || self.T_ERROR, config.container || null);
 		};
 
 		return this;

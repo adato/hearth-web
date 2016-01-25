@@ -14,6 +14,9 @@ angular.module('hearth.services').factory('ChangePassword', [
 		}, {
 			change: {
 				method: 'PATCH',
+				errorNotify: {
+					code: 'NOTIFY.PASS_CHANGE_FAILED'
+				}
 			},
 		});
 	}

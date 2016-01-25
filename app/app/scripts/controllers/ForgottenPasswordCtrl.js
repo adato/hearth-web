@@ -50,8 +50,6 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 				if (res.data && res.data.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
-				} else {
-					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_FAILED', Notify.T_ERROR);
 				}
 			});
 		};
@@ -92,7 +90,6 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 					}
 				}).error(function(data, status) {
 					$scope.sending = false;
-					Notify.addSingleTranslate('NOTIFY.RESET_PASSWORD_FAILED', Notify.T_ERROR, '.forgot-pass-notify-container');
 				});
 			});
 		};

@@ -73,7 +73,6 @@ angular.module('hearth.controllers').controller('ItemReply', [
 				// Notify.addSingleTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
 
 			}, function(res) {
-				Notify.addSingleTranslate('NOTIFY.REPLY_FAILED', Notify.T_ERROR, '.notify-reply-container');
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
 			});
