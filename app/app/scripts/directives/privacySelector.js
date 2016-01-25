@@ -15,12 +15,13 @@ angular.module('hearth.directives').directive('privacySelector', [
 			replace: true,
 			scope: {
 				ngDisabled: '=',
+				ngModel: '=',
 			},
 			templateUrl: 'templates/directives/privacySelector.html',
 			link: function($scope) {
 				$scope.selectValues = [{
 					title: $translate.instant('PROFILE.CONTACT.VISIBILITY_NOBODY'),
-					value: 'nobody'
+					value: undefined
 				}, {
 					title: $translate.instant('PROFILE.CONTACT.VISIBILITY_FOLLOWEES'),
 					value: 'followees'
