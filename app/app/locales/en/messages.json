@@ -37,8 +37,10 @@
 			"SHARE_WITH": "Share via",
 			"PUBLISHED_AT": "Added",
 			"REMOVE_FROM_COMMUNITY": "Remove from Community",
-			"CLICK_TO_COLLAPSE": "Show less",
-			"SHARE_LINK": "Share link"
+			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
+			"SHARE_LINK": "Sdílet odkaz",
+			"UNBOOKMARK_POST": "Remove from favourites",
+			"BOOKMARK_POST": "Add to favourites"
 		},
 		"EDIT_FILTER": "Edit filter",
 		"FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br \/>Maybe remove some conditions?",
@@ -46,16 +48,16 @@
 		"NOTHING_FOUND": "Keep calm and meditate. Something has gone wrong, there are no posts.",
 		"SHOW_POSTS_IN_LIST": "Show posts in list",
 		"SHOW_POSTS_ON_MAP": "Show posts on map",
-		"HEAD_MESSAGE": "<p><a title=\"SvÄ›t&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
+		"HEAD_MESSAGE": "<p><a title=\"Svět&yacute;lka radosti\" href=\"http:\/\/www.svetylkaradosti.cz\/\" target=\"_blank\">Lights of joy - an original fairytale about giving and happiness<\/a>.<\/p>",
 		"CREATE_NEW_ADD": "Add a new gift or wish",
-		"REFRESH_AFTER_ERROR": "PÅ™Ã­padnÄ› zkuste naÄÃ­st inzerÃ¡ty znovu.",
+		"REFRESH_AFTER_ERROR": "Případně zkus načíst inzeráty znovu.",
 		"USER": {
-			"INFO_NOT_FILLED": "User have not filled any information here."
+			"INFO_NOT_FILLED": "Uživatel o sobě zatím nevyplnil žádné informace."
 		},
 		"COMMUNITY": {
-			"INFO_NOT_FILLED": "Community have not filled any information here."
+			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
 		},
-		" SHOW_POSTS_ON_MAP": "Show posts on map"
+		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě"
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -267,7 +269,8 @@
 			"REPLY_TO_POST": "Reply to:",
 			"EMPTY_HEADER": "You have no conversations here. Can you hear the... silence?",
 			"EMPTY_TEXT": "...",
-			"CONVERSATION_IS_EMPTY": "All users have left the conversation."
+			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
+			"EMPTY": "<p>Je n&aacute;m l&iacute;to, ale dostali jste se na konverzaci, kter&aacute; už neexistuje nebo k n&iacute; nem&aacute;te př&iacute;stup. Pokud si mysl&iacute;te, že se jedn&aacute; o chybu, <a title=\"feedback\" href=\"\/app\/feedback\">dejte n&aacute;m o tom pros&iacute;m vědět<\/a>.<\/p>"
 		},
 		"ARCHIVE_CONVERSATION": "Archive conversation",
 		"ARCHIVE_CONFIRM": {
@@ -498,40 +501,40 @@
 	"you-will-find-me": "You can find me in",
 	"activities": {
 		"first_person": {
-			"new_post": "<p>You have created the new ad <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"new_reply": "<p>You have replied to the ad&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"wants_into_community": "<p>You've applied to the community&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"accepted_into_community": "<p>You've been accepted into the community&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"rejected_into_community": "<p>You have been rejected by the community&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"start_following": "<p>You have started following <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"start_being_followed": "<p>You are being followed by&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"resume_post": "<p>You have resumed the post&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"new_comm_rating_received": "<p>You have received a rating from the community <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"suspend_post": "<p>You have suspended the post&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"prolong_post": "<p>You have resumed the post&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"publish_post": "<p>You have renewed the ad <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>"
+			"new_post": "<p>You have created the new ad <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"new_reply": "<p>You have replied to the ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"wants_into_community": "<p>You've applied to the community&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"accepted_into_community": "<p>You've been accepted into the community&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"rejected_into_community": "<p>You have been rejected by the community&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"start_following": "<p>You have started following <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"start_being_followed": "<p>You are being followed by&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"resume_post": "<p>You have resumed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"new_comm_rating_received": "<p>You have received a rating from the community <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"suspend_post": "<p>You have suspended the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"prolong_post": "<p>You have resumed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"publish_post": "<p>You have renewed the ad <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
 		},
 		"third_person": {
 			"new_post": "<p>User created an ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
-			"new_reply": "<p><strong>{{user}}<\/strong> has answered the ad&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"wants_into_community": "<p><strong>{{user}}<\/strong> has applied to the community&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"accepted_into_community": "<p><strong>{{user}}<\/strong> has been accepted into the community&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"rejected_into_community": "<p><strong>{{user}}<\/strong> has been rejected by the community&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"start_following": "<p><strong>{{user}}<\/strong> has started following the user&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"start_being_followed": "<p><strong>{{user}}<\/strong> is being followed by&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"community_new_post": "<p>Community has a new post &nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"community_excluded_member": "<p>Community has expelled &nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"new_application": "<p>Community has a new application from &nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"community_rejected_user": "<p>Community has refused <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"community_accepted_user": "<p>Community has accepted <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
+			"new_reply": "<p>{{user}} has answered the ad&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"wants_into_community": "<p>{{user}} has applied to the community&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"accepted_into_community": "<p>{{user}} has been accepted into the community&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"rejected_into_community": "<p>{{user}} has been rejected by the community&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"start_following": "<p>{{user}} has started following the user&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"start_being_followed": "<p>{{user}} is being followed by&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"community_new_post": "<p>Community has a new post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"community_excluded_member": "<p>Community has expelled&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"new_application": "<p>Community has a new application from&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"community_rejected_user": "<p>Community has refused <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"community_accepted_user": "<p>Community has accepted <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
 			"member_left": "<p>The user <a href=\"{{url}}\">{{name}}<\/a> has left the community.<\/p>",
-			"new_admin": "<p>Community has a new admin - <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"resume_post": "<p>User has resumed the post&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"new_community_rating": "<p>Community has rated user <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"new_comm_rating_received": "<p>User has received a rating from the community <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"suspend_post": "<p>User has suspended the post&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"prolong_post": "<p>User has resumed the post&nbsp;<strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>",
-			"publish_post": "<p>User has renewed the ad <strong><a href=\"{{url}}\">{{name}}<\/a><\/strong>.<\/p>"
+			"new_admin": "<p>Community has a new admin - <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"resume_post": "<p>User has resumed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"new_community_rating": "<p>Community has rated user <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"new_comm_rating_received": "<p>User has received a rating from the community <a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"suspend_post": "<p>User has suspended the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"prolong_post": "<p>User has resumed the post&nbsp;<a href=\"{{url}}\">{{name}}<\/a>.<\/p>",
+			"publish_post": "<p>User has renewed the ad <a href=\"{{url}}\">{{name}}<\/a>.<\/p>"
 		},
 		"rating": {
 			"first": {
@@ -766,7 +769,7 @@
 	"USER_IS_MEMBER": "User is a member of",
 	"FROM_THAT": "from that",
 	"ADMIN_7_CASE": "Administrator",
-	"INVITE_FRIENDS_TO_HEARTH": "<p>Invite friends<br \/>to Hearth<\/p>",
+	"INVITE_FRIENDS_TO_HEARTH": "<p>Invite friends<\/p>",
 	"SIGN_UP_WITH_TWITTER": "Sign up with Twitter.",
 	"DELETE": "delete",
 	"OF_FRIENDS": "of friends",
@@ -924,11 +927,12 @@
 		"CONVERSATION_ARCHIVE_FAILED": "There was an error in the archive. Those archives! ",
 		"RATING_REPLY_SUCCESS": "That's it! Comment was added successfully.",
 		"RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
-		"REACTIVATING_EMAIL_WAS_SENT": "AktivaÄnÃ­ email byl zaslÃ¡n na VaÅ¡i emailovou adresu.",
-		"REACTIVATING_EMAIL_FAILED": "PÅ™i odesÃ­lÃ¡nÃ­ aktivaÄnÃ­ho emailu doÅ¡lo k chybÄ›.",
-		"API_401": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>",
-		"API_422": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>",
-		"API_500": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>"
+		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na tvou emailovou adresu.",
+		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
+		"API_ERROR": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
+		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
+		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
+		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
@@ -936,7 +940,7 @@
 	"USER_RATING_SCORE_SELECT_TEXT": "How did you get along?",
 	"ACTIVATE_ACCOUNT_BROKEN_LINK": "Ugh! The account activation link is not valid.",
 	"NEGATIVE": "Oops. Something has gone wrong...",
-	"POSITIVE": "Everything has clicked into place.",
+	"POSITIVE": "Everything has clicked into place",
 	"GO_BACK_TO_MARKET": "Go to Marketplace",
 	"NO_SIGNAL_ON_THIS_PAGE": "How did you get here in the first place? If you think that it's a mistake, please let us know.",
 	"ERROR_404_SUBHEADER": "Sorry. No such thing here :(",
@@ -1031,7 +1035,7 @@
 				"one": "User has <strong>{{count}}<\/strong> friend.",
 				"other": "User has <strong>{{count}}<\/strong> friends."
 			},
-			"NO_FRIENDS_ME": "You seem to be at little lonely here. Follow anyone following you and voilÃ , you'll have a friendship right there!",
+			"NO_FRIENDS_ME": "You seem to be at little lonely here. Follow anyone following you and voilà, you'll have a friendship right there!",
 			"NO_FRIENDS_OTHER": "User doesn't have any friends here. Now what? Follow each other and you become friends. Easy-peasy."
 		},
 		"FOLLOWEES": {
@@ -1079,7 +1083,8 @@
 			"NO_GIVEN_RATINGS_OTHER": "User hasn't given or accepted anything. That's why they couldn't give a rating to anyone.",
 			"NO_POSTS_ME": "Attention! You haven't created any ads so far. Let's set it right. You can give or accept anything that comes into your mind.",
 			"NO_POSTS_OTHER": "User hasn't given or accepted anything. Maybe they are looking around or simply answering others' ads.",
-			"NO_RECEIVED_RATINGS_ME": "You haven't been bold enough to reply to an ad yet. So nobody has had the chance to post a couple of nice words in exchange..."
+			"NO_RECEIVED_RATINGS_ME": "You haven't been bold enough to reply to an ad yet. So nobody has had the chance to post a couple of nice words in exchange...",
+			"NO_POSTS_BOOKMARKED": "You have no favourite posts yet."
 		},
 		"TOP": {
 			"KARMA_NO_RATING_ME": "With your first rating, we'll add a splash of color here.",
@@ -1104,6 +1109,11 @@
 			"OPEN_REPLY_FORM": "Add comment",
 			"REPLY_TO_USER": "Reply to rating from",
 			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+		},
+		"CONTACT": {
+			"VISIBILITY_NOBODY": "Nikdo",
+			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
+			"VISIBILITY_EVERYBODY": "Kdokoliv"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {
@@ -1273,18 +1283,18 @@
 	"TOP_BAR": {
 		"ADD_NEW_POST": "New Gift\/Wish",
 		"SEARCH": {
-			"EVERYWHERE": "Everywhere",
-			"MARKET": "On marketplace",
-			"COMMUNITY": "V komunitÃ¡ch",
+			"EVERYWHERE": "Všude",
+			"MARKET": "Na tržišti",
+			"COMMUNITY": "V komunitách",
 			"PEOPLE": "V lidech",
-			"MESSAGES": "In messages"
+			"MESSAGES": "Ve zprávách"
 		}
 	},
-	"ERROR_WHILE_UPLOADING": "There was an error while uploading file",
-	"LOGIN_INACTIVE_ACCOUNT": "You are trying to log in using account which was not activated yet. E-mail with activation code ",
-	"RESEND_ACTIVATING_EMAIL": "can be resent here",
-	"RESET_PASSWORD_INACTIVE_ACCOUNT": "You are trying to restore password for not activated. E-mail with activation code",
-	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net is social network.<\/p>",
+	"ERROR_WHILE_UPLOADING": "Při nahrávání došlo k chybě",
+	"LOGIN_INACTIVE_ACCOUNT": "Pokoušíte se přihlásit pomocí účtu, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžete",
+	"RESEND_ACTIVATING_EMAIL": "nechat poslat znovu",
+	"RESET_PASSWORD_INACTIVE_ACCOUNT": "Pokoušíš se získat nové heslo pro účet, který ještě nebyl aktivován kliknutím na odkaz v e-mailu s potvrzením registrace. E-mail s aktivačním odkazem si můžeš",
+	"SIGNUP_HEADING_TEXT_FB": "<p>Hearth.net je &scaron;tědr&aacute; soci&aacute;ln&iacute; s&iacute;ť pln&aacute; zaj&iacute;mav&yacute;ch lid&iacute;, kteř&iacute; maj&iacute; odvahu darovat. M&aacute;&scaron; ji i ty? Svůj profil vytvoř&iacute;&scaron; během chvilky a svět darů je r&aacute;zem i tvůj.<\/p>",
 	"SIGNUP_HEADING_FB": "Come in",
 	"SIGN_UP": {
 		"CONTINUE_TO_REGISTER": "Close and continue registration."
@@ -1292,5 +1302,6 @@
 	"SEARCH": "Hledat",
 	"COMMUNITY_HAS_REGISTERED": "Community registered",
 	"MEET_COMMUNITY": "Meet community",
-	"community-operate-in": "We operate in"
+	"community-operate-in": "We operate in",
+	"MY_BOOKMARKS": "My favourites"
 }

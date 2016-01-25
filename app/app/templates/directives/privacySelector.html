@@ -1,5 +1,3 @@
 <select class="privacy-selector" ng-disabled="ngDisabled">
-	<option>moje</option>
-	<option>tvoje</option>
-	<option>vsech</option>
+	<option ng-repeat="item in selectValues" title="{{item.title}}" value="{{item.value}}">{{item.title}}</option>
 </select>

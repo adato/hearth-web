@@ -8,17 +8,27 @@
  */
 
 angular.module('hearth.directives').directive('privacySelector', [
-	'$rootScope', '$timeout',
-	function($rootScope, $timeout) {
+	'$rootScope', '$translate',
+	function($rootScope, $translate) {
 		return {
 			restrict: 'AE',
 			replace: true,
 			scope: {
-				remove: '=remove',
 				ngDisabled: '=',
 			},
 			templateUrl: 'templates/directives/privacySelector.html',
-			link: function($scope) {}
+			link: function($scope) {
+				$scope.selectValues = [{
+					title: $translate.instant('PROFILE.CONTACT.VISIBILITY_NOBODY'),
+					value: 'nobody'
+				}, {
+					title: $translate.instant('PROFILE.CONTACT.VISIBILITY_FOLLOWEES'),
+					value: 'followees'
+				}, {
+					title: $translate.instant('PROFILE.CONTACT.VISIBILITY_EVERYBODY'),
+					value: 'everybody'
+				}]
+			}
 		};
 	}
 ]);
