@@ -91,6 +91,7 @@ angular.module('hearth', [
 
 			// // ======== Watch for unauth responses
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
+			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 
 			// // ======== ?? wtf is this?

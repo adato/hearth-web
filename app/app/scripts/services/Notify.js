@@ -181,6 +181,22 @@ angular.module('hearth.services').service('Notify', [
 			return false;
 		};
 
+		this.onResourceError = function(rejection) {
+			var errorCodes = [500, 401, 422];
+			var config = typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify;
+
+			// allow interceptor only for few 
+			if (errorCodes.indexOf(rejection.status) < 0 || config === false) {
+				console.log('Rejecting interceptor - disabled or unallowed status code', rejection.status);
+				return $q.reject(rejection);
+			}
+
+			console.log('Config: ', config);
+			console.log('Rejection: ', rejection);
+
+			Notify.addSingleTranslate(config.code || 'NOTIFY.API_ERROR', config.type || Notify.T_ERROR, config.container || null, 200000);
+		};
+
 		return this;
 	}
 ]);

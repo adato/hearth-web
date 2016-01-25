@@ -289,7 +289,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.processErrorResult = function() {
-			Notify.addSingleTranslate('NOTIFY.POST_EDIT_FAILED', Notify.T_ERROR, ".edit-post-notify-container");
 			$scope.sending = false;
 			$rootScope.globalLoading = false;
 		};
@@ -345,6 +344,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				return false;
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
+
+			console.log(postData);
+			delete postData.title;
 
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
 

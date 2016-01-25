@@ -57,10 +57,18 @@ angular.module('hearth.services').factory('Post', [
 			add: {
 				method: 'PUT',
 				url: $$config.apiPath + '/posts/:postId/finish',
+				errorNotify: {
+					code: 'NOTIFY.POST_EDIT_FAILED',
+					container: '.edit-post-notify-container'
+				}
 				// headers: {'Content-Type': 'multipart/form-data'}
 			},
 			update: {
 				method: 'PUT',
+				errorNotify: {
+					code: 'NOTIFY.POST_EDIT_FAILED',
+					container: '.edit-post-notify-container'
+				}
 				// headers: {'Content-Type': 'multipart/form-data'}
 			},
 			remove: {
