@@ -131,7 +131,7 @@ body {
 	font-size:$global-font-size;
 	-webkit-text-size-adjust:100%; // for mobile
 }
-body.no-scroll{
+.no-scroll{
 	overflow-y: hidden;
 }
 a.no-link,
