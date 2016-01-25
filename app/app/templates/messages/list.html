@@ -16,6 +16,7 @@
 			<option value="archived" ng-selected="filter.type == 'archived'">{{:: 'MESSAGES.FILTER.ARCHIVE' | translate }}</option>
 		</select>
 		<a class="button-send right" ng-click="toggleAddForm()">{{:: 'MESSAGES.ADD_NEW_MESSAGE' | translate }}</a>
+
 		<div class="clear"></div>
 		<div loading show="!conversations"></div>
 	</div>
@@ -38,22 +39,23 @@
 							<div class="conversation-info">
 								<h2 ng-if="item.title">
 									<div>
-										<span ng-if="item.post">{{ item.post.type_code | translate }}</span>
-										{{ item.title | ellipsis:45 }}
+										<span ng-if="item.post">{{ item.post.type_code | translate }}</span> {{ item.title | ellipsis:45 }}
 									</div>
-									<i ng-if="item.titlePersons" class="left" title="{{item.titlePersons}}">
-										{{ item.titlePersons | ellipsis:28 }}
+									<i ng-if="item.titlePersons" class="left" title="{{item.titlePersons}}"> {{ item.titlePersons | ellipsis:28 }}
 										<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 									</i>
+
 									<div class="clear"></div>
 								</h2>
 								<h2 ng-if="!item.title && item.titlePersons" title="{{item.titlePersons}}">{{ item.titlePersons }}
 									<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 								</h2>
+
 								<h2 ng-if="!item.title && !item.titlePersons">
 									{{:: 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
 								</h2>
 								<span class="unreaded-count" ng-if="!item.read"></span>
+
 								<div class="clear"></div>
 								<p ng-if="item.message.text">
 									<span ng-if="item.message.owner._id == loggedUser._id" ng-bind=":: 'MESSAGES.YOU' | translate"></span>
@@ -68,16 +70,18 @@
 			</div>
 		</div>
 
-		<div class="collumn box right conversation-not-found-container show-for-large-up" ng-if="(!conversations.length || !detail || !detail.is_member) && !showNewMessageForm">
+		<div class="collumn box right conversation-not-found-container show-for-large-up" ng-if="!conversations.length && !showNewMessageForm">
 			<div class="text-center no-result">
-				<br />
+				<br/>
 				<img src="images/fireplace.jpeg" title="{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}" class="responsive-height" />
-				<br />
-				<br />
+				<br/>
+				<br/>
 				<h4>{{:: 'MESSAGES.DETAIL.EMPTY_HEADER' | translate}}</h4>
 				<span>{{:: 'MESSAGES.DETAIL.EMPTY_TEXT' | translate}}</span>
 			</div>
 		</div>
+
+		<div class="collumn box right conversation-detail-container" ng-if="(!detail || !detail.is_member) && !showNewMessageForm" ng-bind-html="'MESSAGES.DETAIL.EMPTY' | translate"></div>
 
 		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && detail && detail.is_member">
 			<conversation-detail info="detail"></conversation-detail>

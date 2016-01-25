@@ -14,10 +14,10 @@
 </div>
 <div loading ng-if="initFinished" class="globalLoading" show="globalLoading" delayed="1000"></div>
 
-<div class="off-canvas-wrap" data-offcanvas>
+<div class="off-canvas-wrap" ng-class='{"move-right": leftSidebarShown}'>
 	<div class="fixed off-canvas-fixed">
 		<navigation ng-if="initFinished"></navigation>
-		<a class="exit-off-canvas"></a>
+		<a class="exit-off-canvas" ng-click='toggleSidebar(false)'></a>
 	</div>
 	<div class="inner-wrap">
 		<section id="homepage-hero">

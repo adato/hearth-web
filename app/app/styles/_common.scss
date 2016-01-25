@@ -48,6 +48,12 @@
 .inline-block {
 	display: inline-block;
 }
+.inline-block-i{
+	display: inline-block !important;
+}
+.overflow-hidden{
+	overflow: hidden
+}
 
 .box {
 	background-color: white;
