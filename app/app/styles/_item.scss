@@ -57,6 +57,7 @@ article.post-on-market {
 		height:40px;
 		position:absolute;
 		left:-21px;
+		margin-top:2px;
 	}
 	@media #{$small-only} {
 		.post-detail.offer:before, .post-detail.need:before {
