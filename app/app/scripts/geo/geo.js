@@ -14,6 +14,7 @@ angular.module('hearth.geo').factory('geo', [
 			mapConfig = {
 				zoom: 6,
 				zoomControl: true,
+				scrollwheel: false,
 				mapTypeControl: false,
 				streetViewControl: false,
 				center: new google.maps.LatLng($$config.defaultMapLocation[0], $$config.defaultMapLocation[1]),
