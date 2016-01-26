@@ -37,7 +37,9 @@
 				<span ng-show="addMessageForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
 			</div>
 		</div>
-		<br />
+		<div>
+			<input type="file" onchange="angular.element(this).scope().uploadedFile(this)" />
+		</div>
 		<div class="bottom">
 			<a ng-click="close()" class="action-link">
 				<span class="fa fa-chevron-left"></span> {{ 'CANCEL' | translate }}
