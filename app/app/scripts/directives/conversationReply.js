@@ -23,12 +23,23 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.actorsCount = 0;
 				$scope.reply = {
 					text: '',
-					current_community_id: false
+					current_community_id: '',
+					attachments_attributes: ''
 				};
 				$scope.showError = {
 					text: false
 				};
 
+				$scope.clearFileInput = function() {
+					$scope.reply.attachments_attributes = '';
+					angular.element("input[type='file']").val(null);
+				};
+
+				$scope.uploadedFile = function(element) {
+					$scope.$apply(function($scope) {
+						$scope.reply.attachments_attributes = element.files[0];
+					});
+				};
 
 				$scope.validateReply = function(reply) {
 					var invalid = false;
@@ -49,7 +60,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 					$scope.sendingReply = true;
 
 					Conversations.reply(reply, function(res) {
-
+						$scope.clearFileInput();
 						$scope.reply.text = '';
 
 						$timeout(function() {
@@ -77,7 +88,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 					$scope.actors = $scope.conversation.possible_actings;
 
 					if ($scope.actors.length == 1) {
-						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? undefined : $scope.actors[0]._id);
+						$scope.reply.current_community_id = ($scope.actors[0]._type == "User" ? '' : $scope.actors[0]._id);
 					}
 				};
 				$scope.init();

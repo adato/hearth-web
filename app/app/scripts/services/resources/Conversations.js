@@ -14,7 +14,28 @@ angular.module('hearth.services').factory('Conversations', [
 			id: '@id',
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				headers: {
+					'Content-Type': undefined
+				},
+				transformRequest: function(data) {
+					var fd = new FormData();
+
+					angular.forEach(data, function(key, value) {
+						if (value === 'attachments_attributes') {
+							fd.append('attachments_attributes[][multipart]', key);
+						} else if (value === 'participant_ids') {
+							angular.forEach(key, function(id, index) {
+								fd.append('participant_ids[]', id);
+							});
+
+
+						} else {
+							fd.append(value, key);
+						}
+					});
+					return fd;
+				}
 			},
 			get: {
 				method: 'GET',
@@ -44,7 +65,22 @@ angular.module('hearth.services').factory('Conversations', [
 			},
 			reply: {
 				url: $$config.apiPath + '/conversations',
-				method: 'POST'
+				method: 'POST',
+				headers: {
+					'Content-Type': undefined
+				},
+				transformRequest: function(data) {
+					var fd = new FormData();
+
+					angular.forEach(data, function(key, value) {
+						if (value === 'attachments_attributes') {
+							fd.append('attachments_attributes[][multipart]', key);
+						} else {
+							fd.append(value, key);
+						}
+					});
+					return fd;
+				}
 			},
 			unreaded: {
 				params: {
@@ -80,6 +116,10 @@ angular.module('hearth.services').factory('Conversations', [
 				url: $$config.apiPath + '/conversations/posts',
 				method: 'GET',
 				ignoreLoadingBar: true
+			},
+			downloadAttachment: {
+				method: 'GET',
+				url: $$config.apiPath + '/messages/:messageId/files/:fileId'
 			}
 		});
 	}
