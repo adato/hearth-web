@@ -50,6 +50,31 @@ article.post-on-market {
 	.ad-date {
 		color: color(3);
 	}
+
+	.post-detail.offer:before, .post-detail.need:before {
+		content:"";
+		display:block;
+		width:40px;
+		height:40px;
+		position:absolute;
+		left:-21px;
+	}
+	@media #{$small-only} {
+		.post-detail.offer:before, .post-detail.need:before {
+			width: 20px;
+			height: 20px;
+			left: 70px;
+			top: 34px;
+		}
+	}
+	.post-detail.offer:before {
+		background:url(/app/images/arrow-give.svg);
+		background-size:100%;
+	}
+	.post-detail.need:before {
+		background:url(/app/images/arrow-receive.svg);
+		background-size:100%;
+	}
 }
 
 .item-common {

@@ -772,6 +772,9 @@
 		text-align: center;
 		margin: 20px;
 	}
+	.post-detail.offer:before, .post-detail.need:before {
+		display:none !important;
+	}
 }
 
 .profile-button {
