@@ -4,7 +4,7 @@
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
 				<a ng-href='{{ getProfileLink("User", loggedUser._id) }}' class='overflow-hidden'>
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
-					<div class='inline-block' ng-bind='loggedUser.name'></div>
+					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
 				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
