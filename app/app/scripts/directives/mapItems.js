@@ -44,6 +44,7 @@ angular.module('hearth.directives').directive('mapitems', [
 						return false;
 
 					map = geo.createMap($(".map-container")[0], options);
+					$scope.debugMap = map;
 					window.SCOPE = $scope;
 					$(".map-container", baseElement).addClass("inited");
 				};
