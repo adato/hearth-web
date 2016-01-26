@@ -23,10 +23,15 @@ $topBarImageSize: 1.8em;
 			vertical-align: top;
 		}
 		a{
-			width: calc(100% - 60px);
+			display: block;
 			white-space: nowrap;
-			text-overflow: ellipsis;
-			vertical-align: bottom;
+			
+			.ellipsed-username{
+				width: calc(100% - 60px);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				vertical-align: bottom;
+			}
 		}
 		a,
 		a:hover{
