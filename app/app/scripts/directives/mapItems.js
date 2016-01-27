@@ -27,7 +27,7 @@ angular.module('hearth.directives').directive('mapitems', [
 					anchor: new google.maps.Point(14, 34)
 				};
 				var options = {};
-				options.scrollwheel = $scope.zoomOnScroll || false;
+				options.scrollwheel = ($scope.zoomOnScroll !== undefined ? $scope.zoomOnScroll : false);
 
 				/**
 				 * Is map inited - will return boolean

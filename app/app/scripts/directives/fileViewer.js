@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('fileViewer', [
-	'Conversations',
-	function(Conversations) {
+	'Conversations', '$window', 'Notify',
+	function(Conversations, $window, Notify) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -18,16 +18,14 @@ angular.module('hearth.directives').directive('fileViewer', [
 				message: "="
 			},
 			link: function(scope, element, attrs) {
-
 				scope.download = function(message) {
-					console.log(message);
 					Conversations.downloadAttachment({
 						messageId: message._id,
 						fileId: message.file_attachments[0]._id
 					}, function(res) {
-						console.log(res);
-					}, function(err) {
-						console.log(err);
+						$window.location.href = res.url;
+					}, function() {
+						Notify.addSingleTranslate('NOTIFY.ATTACHMENT_DOWNLOAD_FAILED', Notify.T_ERROR);
 					});
 				};
 			}
