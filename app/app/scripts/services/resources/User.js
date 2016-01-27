@@ -79,8 +79,7 @@ angular.module('hearth.services').factory('User', [
 			login: {
 				url: $$config.apiPath + '/login',
 				method: 'POST',
-				nointercept: true,
-				errorNotify: false
+				nointercept: true
 			},
 			completeEmailForRegistration: {
 				url: $$config.apiPath + '/users/email_for_token',

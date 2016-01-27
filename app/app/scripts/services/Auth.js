@@ -41,8 +41,8 @@ angular.module('hearth.services').factory('Auth', [
 						$rootScope.loggedUser = res.get_logged_in_user;
 				});
 			},
-			login: function(credentials, cb) {
-				User.login(credentials, cb, cb);
+			login: function(credentials, cb, errCb) {
+				User.login(credentials, cb, errCb);
 			},
 			resendActivationEmail: function(email, cb) {
 				return User.resendActivationEmail({

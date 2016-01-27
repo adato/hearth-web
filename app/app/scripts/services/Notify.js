@@ -182,13 +182,13 @@ angular.module('hearth.services').service('Notify', [
 		};
 
 		this.onResourceError = function(rejection) {
-			var errorCodes = [500, 401, 422];
+			var errorCodes = [500, 422];
 			var config = typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify;
-			var container
-				// allow interceptor only for few 
+
+			// allow interceptor only for few 
 			if (errorCodes.indexOf(rejection.status) < 0 || config === false) {
 				console.log('Rejecting interceptor - disabled or unallowed status code', rejection.status);
-				return $q.reject(rejection);
+				return;
 			}
 
 			console.log('Config: ', config);

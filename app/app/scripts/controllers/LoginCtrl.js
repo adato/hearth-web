@@ -12,8 +12,8 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		var resendingEmail = false;
 		var invalidEmail = null;
 		$scope.data = {
-			username: '',
-			password: ''
+			username: 'jojo@mailinator.com',
+			password: 'morem'
 		};
 
 		$scope.loginError = false;
@@ -25,11 +25,13 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
 
 		function processLoginResult(res) {
-			if (res.data && res.data.ok === true) {
-				Auth.processLoginResponse(res.data);
-			} else {
-				showErrorCredentials(res.data);
+			if (res.ok === true) {
+				Auth.processLoginResponse(res);
 			}
+		}
+
+		function processLoginErrorResult(err) {
+			showErrorCredentials(err.data);
 		}
 
 		$scope.oauth = function(provider) {
@@ -50,7 +52,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			Auth.resendActivationEmail(invalidEmail, function(res) {
 				resendingEmail = false;
 
-				if (res.data && res.data.ok === true) {
+				if (res.ok === true) {
 					Notify.addSingleTranslate('NOTIFY.REACTIVATING_EMAIL_WAS_SENT', Notify.T_SUCCESS);
 					$scope.showError.inactiveAccount = false;
 				}
@@ -71,6 +73,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 
 				// show top error message
 				$scope.showError.badCredentials = true;
+				$scope.showError.inactiveAccount = false;
 			}
 
 			// set blank password - try it again
@@ -79,7 +82,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		}
 
 		$scope.validateLogin = function(data) {
-			return data.username != '' && data.password != '';
+			return data.username != '' && data.password != '' && !$scope.loginForm.username.$error.email;
 		};
 
 		// if login is opened in modal window, close him
@@ -93,7 +96,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			if (!$scope.validateLogin(data))
 				return showErrorCredentials();
 
-			Auth.login(data, processLoginResult);
+			Auth.login(data, processLoginResult, processLoginErrorResult);
 		};
 
 		$scope.init = function() {
