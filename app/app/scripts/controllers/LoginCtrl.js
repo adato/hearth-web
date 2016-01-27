@@ -12,8 +12,8 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		var resendingEmail = false;
 		var invalidEmail = null;
 		$scope.data = {
-			username: 'jojo@mailinator.com',
-			password: 'morem'
+			username: '',
+			password: ''
 		};
 
 		$scope.loginError = false;
