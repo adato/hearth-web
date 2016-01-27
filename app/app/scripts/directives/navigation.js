@@ -6,8 +6,8 @@
  * @restrict A
  */
 angular.module('hearth.directives').directive('navigation', [
-	'$rootScope', 'Auth', '$state', '$location',
-	function($rootScope, Auth, $state, $location) {
+	'$rootScope', 'Auth', '$state', '$location', '$analytics',
+	function($rootScope, Auth, $state, $location, $analytics) {
 		return {
 			restrict: 'E',
 			scope: true,
@@ -18,7 +18,15 @@ angular.module('hearth.directives').directive('navigation', [
 				$scope.searchFilterDisplayed = false;
 				$scope.searchQuery = {
 					query: $location.search().query
-				}
+				};
+
+				$scope.mixpanelTrack = function(item) {
+					$analytics.eventTrack('Community clicked', {
+						Id: item._id,
+						name: item.name,
+						context: $state.current.name
+					});
+				};
 
 				$scope.closeFilter = function() {
 					$(document).off("click", $scope.closeFilter);
