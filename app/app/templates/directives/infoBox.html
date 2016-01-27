@@ -22,7 +22,7 @@
 					<i class="fa fa-fw fa-envelope"></i>
 					<a href='mailto:{{::info.email}}'>{{:: info.email}}</a>
 					<span ng-if=':: (info.email && info.contact_email)'>|</span>
-					<a href='mailto:{{:: info.contact_email}}'>{{:: info.contact_email}}</a>
+					<a ng-if='info.contact_email' href='mailto:{{:: info.contact_email}}'>{{:: info.contact_email}}</a>
 				</div>
 				<div ng-if="info.phone">
 					<i class="fa fa-fw fa-phone"></i>&nbsp;{{:: info.phone}}
