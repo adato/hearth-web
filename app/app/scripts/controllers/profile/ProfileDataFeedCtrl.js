@@ -109,13 +109,12 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				current_community_id: val
 			}, function(res) {
 				var posts = [];
-
 				res.needed.forEach(function(item) {
-					item.post_type = "needed";
+					item.post_type = ((item.author._id === $scope.loggedUser._id) ? "needed" : "offered");
 					posts.push(item);
 				});
 				res.offered.forEach(function(item) {
-					item.post_type = "offered";
+					item.post_type = ((item.author._id === $scope.loggedUser._id) ? "offered" : "needed");
 					posts.push(item);
 				});
 
