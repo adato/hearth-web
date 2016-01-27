@@ -345,9 +345,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
-			console.log(postData);
-			delete postData.title;
-
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
 
 				// if it is save&activate button
