@@ -83,11 +83,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				if (fetchSubpage)
 					$scope.$broadcast("profileTopPanelLoaded");
 			}, function(res) {
-<<<<<<< HEAD
-				console.log(res);
-=======
-
->>>>>>> fe/hearth-555
 				// when something went wrong..
 				$scope.loaded = true;
 				$scope.info = false;
