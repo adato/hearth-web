@@ -168,8 +168,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			}, function(res) {
 				$rootScope.globalLoading = false;
-
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
 		};

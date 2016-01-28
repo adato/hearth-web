@@ -35,6 +35,10 @@ angular.module('hearth.services').factory('Conversations', [
 						}
 					});
 					return fd;
+				},
+				errorNotify: {
+					code: 'NOTIFY.MESSAGE_SEND_FAILED',
+					container: '.notify-new-message-container',
 				}
 			},
 			get: {
@@ -44,10 +48,22 @@ angular.module('hearth.services').factory('Conversations', [
 			leave: {
 				url: $$config.apiPath + '/conversations/:id/leave',
 				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.CONVERSATION_LEAVE_FAILED'
+				}
 			},
 			archive: {
 				url: $$config.apiPath + '/conversations/:id/archive',
 				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.CONVERSATION_ARCHIVE_FAILED'
+				}
+			},
+			delete: {
+				method: 'DELETE',
+				errorNotify: {
+					code: 'NOTIFY.CONVERSATION_DELETE_FAILED'
+				}
 			},
 			getCounters: {
 				url: $$config.apiPath + '/conversations/counter',
@@ -80,6 +96,9 @@ angular.module('hearth.services').factory('Conversations', [
 						}
 					});
 					return fd;
+				},
+				errorNotify: {
+					code: 'NOTIFY.MESSAGE_REPLY_FAILED'
 				}
 			},
 			unreaded: {

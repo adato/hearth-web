@@ -146,9 +146,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				});
 
 				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_SUCCES', Notify.T_SUCCESS);
-			} else {
-
-				Notify.addSingleTranslate('NOTIFY.PASS_CHANGE_FAILED', Notify.T_ERROR);
 			}
 		};
 
@@ -202,11 +199,8 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				settings: settings,
 			};
 
-			User.edit(data, function(res) {
+			User.editSettings(data, function(res) {
 				$rootScope.user.settings = settings;
-				Notify.addSingleTranslate('NOTIFY.EMAIL_NOTIFY_CONFIG_SUCCESS', Notify.T_SUCCESS);
-			}, function(err) {
-				Notify.addSingleTranslate('NOTIFY.EMAIL_NOTIFY_CONFIG_FAILED', Notify.T_ERROR);
 			});
 
 		};

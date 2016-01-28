@@ -3,6 +3,9 @@
 	padding-bottom: 10px !important;
 	color: white !important;
 	font-size: 15px;
+	p {
+		display: inline;
+	}
 	i {
 		margin-right: 10px;
 	}
@@ -11,6 +14,11 @@
         font-size:1rem; */
 	.close {
 		cursor: pointer;
+	}
+
+	a {
+		text-decoration: underline;
+		color: inherit;
 	}
 	&.success {
 		background-color: #8DC321 !important;

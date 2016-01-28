@@ -15,13 +15,19 @@ angular.module('hearth.services').factory('CommunityMembers', [
 			memberId: '@memberId'
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED'
+				}
 			},
 			show: {
 				method: 'GET'
 			},
 			remove: {
-				method: 'DELETE'
+				method: 'DELETE',
+				errorNotify: {
+					code: 'NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED'
+				}
 			},
 			query: {
 				method: 'GET',

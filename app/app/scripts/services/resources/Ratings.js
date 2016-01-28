@@ -13,7 +13,10 @@ angular.module('hearth.services').factory('Ratings', [
 			_id: '@_id'
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.RATING_REPLY_FAILED'
+				}
 			}
 		});
 	}
