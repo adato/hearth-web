@@ -1,0 +1,22 @@
+.flag {
+	display:inline-block;
+	width:32px;
+	height:23px;
+	margin-right:-4px;
+	vertical-align:middle;
+	background-repeat:no-repeat;
+	vertical-align:middle;
+	margin-right:-4px;
+	&.flag-en {
+		background:url(../images/flags/flag-english.svg);
+		background-size: 32px 23px;
+	}
+	&.flag-cs {
+		background:url(../images/flags/flag-czech.svg);
+		background-size: 32px 23px;
+	}
+	&.flag-sk {
+		background:url(../images/flags/flag-slovak.svg);
+		background-size: 32px 23px;
+	}
+}

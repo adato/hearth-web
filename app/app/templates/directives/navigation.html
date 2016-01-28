@@ -115,10 +115,19 @@
 			</a>
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
 				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
+
+
 			<span class="small-icons">
 				<i class="fa fa-plus-square" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				<i id="searchIcon" class="fa fa-search" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 			</span>
+
+			<div id='header-language-selector' class='inline-block vertical-align-top fright' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+				<div class='flag-btn btn'>
+					<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")'></i>
+					<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")'></i>
+				</div>
+			</div>
 
 			<div class="clear"></div>
 		</nav>
@@ -182,24 +191,30 @@
 						<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
 				</section>
 				<section class="large-4 columns">
-					<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
+					<input type="text" id="searchBox" placeholder="{{:: 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
 					<span class="search-button fa fa-search" ng-click="search(searchQuery)"></span>
 				</section>
 				<section class="large-6 icons columns">
+					<div id='header-language-selector' class='inline-block vertical-align-top margin-top-10' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+						<div class='flag-btn btn'>
+							<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")'></i>
+							<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")'></i>
+						</div>
+					</div>
 					<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 						<div class="fa icon-marketplace"></div>
-						<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
+						<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
 					</a>
-					<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{ 'COMMUNITIES' | translate }}">
+					<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
 						<div class="fa icon-community"></div>
-						<label>{{ 'COMMUNITIES' | translate }}</label>
+						<label>{{:: 'COMMUNITIES' | translate }}</label>
 					</a>
 
 					<div class="separator"></div>
 					<span class="top-bar-messages">
-						<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+						<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
 							<span class="messages-icon">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
-							<label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
+							<label>{{:: 'TOP_BAR_MESSAGES' | translate }}</label>
 						</a>
 					</span>
 					<span class="dropdown-container">

@@ -30,10 +30,14 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 
 		// switch to given language code
-		this.swicthTo = function(lang) {
+		this.swicthTo = function(lang, unauthOnly) {
 
 				if (lang) {
 					self.setCookie(lang);
+					if (unauthOnly) {
+						location.reload();
+						return true;
+					};
 
 					Session.update({
 						language: lang
