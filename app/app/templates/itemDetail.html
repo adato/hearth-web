@@ -41,10 +41,16 @@
 							<span class="ad-flag-container fright" ng-if="!mine">
 								<a class="action-dropdown fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
 							</span>
-							<div class="more-actions-dropdown" id="more-actions-{{ item._id }}" style="display:none;">
-								<a ng-if="! mine && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-								<a ng-if="! mine && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-								<a ng-if="! mine && item.admin_communities.length" title="{{ 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+							<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;">
+								<!-- bookmark post -->
+								<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+								<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+								<!-- bookmark post -->
+								<!-- flag post -->
+								<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+								<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+								<!-- flag post -->
+								<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 							</div>
 							<span class="date fright" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">
 								{{item.updated_at | ago}}
