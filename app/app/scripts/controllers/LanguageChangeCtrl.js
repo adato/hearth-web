@@ -8,6 +8,7 @@
 
 angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['LanguageSwitch', function(LanguageSwitch) {
 	var ctrl = this;
+	ctrl.currentLanguage = $.cookie('language');
 	//ctrl.languages = LanguageSwitch.getLanguages();
 	ctrl.switchLang = function(lang) {
 		LanguageSwitch.swicthTo(lang, true);

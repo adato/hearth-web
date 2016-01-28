@@ -124,8 +124,9 @@
 
 			<div id='header-language-selector' class='inline-block vertical-align-top fright' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
 				<div class='flag-btn btn'>
-					<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")'></i>
-					<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")'></i>
+					<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")' ng-if='languageChange.currentLanguage != "cs"'></i>
+					<i class='flag flag-en pointer margin-left-10' ng-click='languageChange.switchLang("en")' ng-if='languageChange.currentLanguage != "en"'></i>
+					<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")' ng-if='languageChange.currentLanguage != "sk"'></i>
 				</div>
 			</div>
 
@@ -197,8 +198,9 @@
 				<section class="large-6 icons columns">
 					<div id='header-language-selector' class='inline-block vertical-align-top margin-top-10' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
 						<div class='flag-btn btn'>
-							<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")'></i>
-							<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")'></i>
+							<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")' ng-if='languageChange.currentLanguage != "cs"'></i>
+							<i class='flag flag-en pointer margin-left-10' ng-click='languageChange.switchLang("en")' ng-if='languageChange.currentLanguage != "en"'></i>
+							<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")' ng-if='languageChange.currentLanguage != "sk"'></i>
 						</div>
 					</div>
 					<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
