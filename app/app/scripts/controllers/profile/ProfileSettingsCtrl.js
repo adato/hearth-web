@@ -201,6 +201,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 			User.editSettings(data, function(res) {
 				$rootScope.user.settings = settings;
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
 			});
 
 		};
