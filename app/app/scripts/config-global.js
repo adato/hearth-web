@@ -6,7 +6,7 @@ $$config = {
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',
-	defaultLanguage: 'cs',
+	defaultLanguage: 'en',
 	maxImagesSize: 6, // max size of all attached images in MB
 	fbSharing: {
 		minWidth: 200,
