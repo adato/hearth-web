@@ -31,23 +31,25 @@ angular.module('hearth.services').service('LanguageSwitch', [
 
 		// switch to given language code
 		this.swicthTo = function(lang, unauthOnly) {
+			if (lang) {
+				self.setCookie(lang);
+				if (unauthOnly) {
+					location.reload();
+					return true;
+				};
 
-				if (lang) {
-					self.setCookie(lang);
-					if (unauthOnly) {
-						location.reload();
-						return true;
-					};
-
-					Session.update({
-						language: lang
-					}, function(res) {
-						location.reload();
-					});
-				}
-				return false;
+				Session.update({
+					language: lang
+				}, function(res) {
+					location.reload();
+				}, function() {
+					Notify.addSingleTranslate('NOTIFY.CHANGE_LANGUAGE_FAILED', Notify.T_ERROR);
+				});
 			}
-			// return current used language
+			return false;
+		};
+
+		// return current used language
 		this.uses = function() {
 			return $rootScope.language;
 		};
