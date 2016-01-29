@@ -57,7 +57,7 @@
 					<i class="fa fa-quote-right"></i> {{:: info.about}}</div>
 				<div class="descr" ng-if="info.work">
 					<i class="fa fa-briefcase"></i> {{:: info.work}}</div>
-				<div class='descr' ng-if="info.email">
+				<div class='descr' ng-if="(info.email || info.contact_email)">
 					<i class="fa fa-fw fa-envelope"></i>
 					<a href='mailto:{{::info.email}}' class='display-block'>{{:: info.email}}</a>
 					<a ng-if='info.contact_email' href='mailto:{{:: info.contact_email}}' class='display-block'>{{:: info.contact_email}}</a>
