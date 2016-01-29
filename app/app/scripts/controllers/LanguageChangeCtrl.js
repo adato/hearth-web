@@ -11,6 +11,6 @@ angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['Language
 	ctrl.currentLanguage = $rootScope.language;
 	//ctrl.languages = LanguageSwitch.getLanguages();
 	ctrl.switchLang = function(lang) {
-		LanguageSwitch.swicthTo(lang, true);
+		LanguageSwitch.switchTo(lang, true);
 	};
 }]);

@@ -30,7 +30,7 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 
 		// switch to given language code
-		this.swicthTo = function(lang, unauthOnly) {
+		this.switchTo = function(lang, unauthOnly) {
 			if (lang) {
 				self.setCookie(lang);
 				if (unauthOnly) {
