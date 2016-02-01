@@ -42,7 +42,7 @@ angular.module('hearth.directives').directive('mapitems', [
 				$scope.initMap = function() {
 					if ($scope.isInited())
 						return false;
-
+					console.log(options);
 					map = geo.createMap($(".map-container")[0], options);
 					$(".map-container", baseElement).addClass("inited");
 				};
