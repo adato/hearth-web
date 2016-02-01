@@ -3,12 +3,6 @@
 	padding-bottom: 10px !important;
 	color: white !important;
 	font-size: 15px;
-	i {
-		margin-right: 10px;
-	}
-	/*     padding-top: 1rem;
-        padding-bottom: 1rem;
-        font-size:1rem; */
 	.close {
 		cursor: pointer;
 	}
@@ -90,8 +84,16 @@
 
 @media #{$large-up} {
 	#notify-top .alert-inner {
-		width: 960px;
+		width: $webWidth - 20px;
 		margin: auto;
 		position: relative;
 	}
+}
+
+@media #{$medium-down} {
+	#notify-top i.close { margin-right:15px;}
+}
+
+@media only screen and (min-width:$webWidth) and (max-width:$webWidth + 10px) {
+	#notify-top i.close { margin-right:10px;} // sorry this is terrible hack but otherwise close button would be too close to edge of screen
 }

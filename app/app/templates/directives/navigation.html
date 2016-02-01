@@ -1,6 +1,18 @@
 <section id="navigation">
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
+			<li ng-if="loggedUser._id" class="tab-bar log-info">
+				<a ng-href='{{ getProfileLink("User", loggedUser._id) }}' class='overflow-hidden'>
+					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
+					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
+				</a>
+			</li>
+			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
+				<a ng-class='{active: pageName == "login"}' ui-sref='login'>
+					<div class="inline-block fa fa-fw fa-sign-in"></div>
+					<div class='inline-block' translate='LOG_IN'></div>
+				</a>
+			</li>
 			<li>
 				<label class="first">Menu</label>
 			</li>
@@ -44,7 +56,7 @@
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li ng-repeat="item in myAdminCommunities">
-				<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+				<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}" ng-click="mixpanelTrack(item)">
 					<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 					<span class="name">{{ item.name | ellipsis:12}}</span>
 				</a>
@@ -113,7 +125,7 @@
 		<div id="notify-top"></div>
 
 		<nav class="column tab-bar tab-bar-closed hide-for-large-up">
-			<a class="left-off-canvas-toggle menu-icon sidebar-button">
+			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click='toggleSidebar()'>
 				<i class="fa fa-bars"></i>
 			</a>
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
@@ -206,7 +218,7 @@
 
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
 						<li ng-repeat="item in myAdminCommunities">
-							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{item.name}}" ng-click="mixpanelTrack(item)">
 								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 								<span class="name">{{ item.name | ellipsis:12}}</span>
 							</a>
@@ -218,7 +230,6 @@
 						</li>
 					</ul>
 				</span>
-
 				<span class="dropdown-container">
 					<a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'terms', 'feedback'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
 						<div class="fa fa-question-circle"></div>
@@ -271,7 +282,6 @@
 						</li>
 					</ul>
 				</span>
-
 				<a ng-if="!loggedUser._id" href="{{:: basePath }}login" analytics-custom analytics-event="sign-in" analytics-category="menu" id="nav-login">
 					<div class="text">
 						<div class="fa fa-sign-in"></div>
