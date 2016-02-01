@@ -236,7 +236,7 @@
 
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
 						<li ng-repeat="item in myAdminCommunities">
-							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}">
+							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{item.name}}" ng-click="mixpanelTrack(item)">
 								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 								<span class="name">{{ item.name | ellipsis:12}}</span>
 							</a>
@@ -248,7 +248,6 @@
 						</li>
 					</ul>
 				</span>
-
 				<span class="dropdown-container">
 					<a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'terms', 'feedback'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
 						<div class="fa fa-question-circle"></div>
@@ -301,7 +300,6 @@
 						</li>
 					</ul>
 				</span>
-
 				<a ng-if="!loggedUser._id" href="{{:: basePath }}login" analytics-custom analytics-event="sign-in" analytics-category="menu" id="nav-login">
 					<div class="text">
 						<div class="fa fa-sign-in"></div>
