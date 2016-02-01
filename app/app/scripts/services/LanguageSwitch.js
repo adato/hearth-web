@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('LanguageSwitch', [
-	'$feature', '$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
-	function($feature, $translate, $http, $rootScope, tmhDynamicLocale, Session, Notify) {
+	'$feature', '$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify', 'ngDialog',
+	function($feature, $translate, $http, $rootScope, tmhDynamicLocale, Session, Notify, ngDialog) {
 		var self = this;
 		this.languages = Object.keys($$config.languages);
 
@@ -72,6 +72,15 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			$rootScope.language = language;
 			$rootScope.$broadcast("initLanguageSuccess", language);
 			return language;
+		};
+
+		this.openLanguageSelectionDialog = function() {
+			ngDialog.open({
+				template: $$config.templates + 'modal/languageSelection.html',
+				controller: 'LanguageChangeCtrl as languageChange',
+				closeByEscape: true,
+				showClose: true
+			});
 		};
 
 		// load used language from this
