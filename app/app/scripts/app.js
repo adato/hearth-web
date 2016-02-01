@@ -230,11 +230,11 @@ angular.module('hearth', [
 				$urlRouter.sync();
 				$urlRouter.listen();
 
-				$(document).foundation({
-					offcanvas: {
-						close_on_click: true
-					}
-				});
+				//				$(document).foundation({
+				//					offcanvas: {
+				//						close_on_click: true
+				//					}
+				//				});
 
 				$rootScope.debug = !!$.cookie("debug");
 				$rootScope.initFinished = true;

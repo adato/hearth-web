@@ -89,6 +89,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			Auth.isLoggedIn() && Messenger.loadCounters();
 			ngDialog.close();
 
+			//close small-resolution menu
+			$rootScope.leftSidebarShown = false;
+
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
 				$rootScope.pageChangeWithScroll = true;
@@ -428,7 +431,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			$timeout(function() {
 				itemEditOpened = false;
-			}, 1000);
+			}, 2000);
 
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
@@ -752,6 +755,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					Notify.addSingleTranslate('NOTIFY.POST_UPDAT_FAILED', Notify.T_ERROR);
 				}
 			});
+		};
+
+		// small-resolution menu toggle
+		$rootScope.toggleSidebar = function(param) {
+			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown);
 		};
 
 		$rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {

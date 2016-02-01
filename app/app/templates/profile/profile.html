@@ -75,7 +75,7 @@
 				</a>
 			</span>
 			<a dont-jump-top href="{{:: profileLink }}/received-ratings">
-				<div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
+				<!--				<div ng-if="info" class="karma-bar large-8 columns" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{ 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
 					<span class="positive bar" ng-style="{width: (info.karma)+'%'}" ng-class="{full: info.karma == 100}" ng-if="info.karma != null && info.karma > 0">
 						<span>{{ info.karma }}%
 							<i class="fa icon-rating-positive"></i>
@@ -92,6 +92,21 @@
 					<span class="empty" ng-if="info.karma == null && !mine">
 						{{:: 'PROFILE.TOP.KARMA_NO_RATING_OTHER' | translate }}
 					</span>
+				</div>-->
+
+				<div ng-if='info' class='columns large-8 karma-wrapper' title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{ info.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{ info.down_votes }}">
+					<div class='karma-alt'>
+						<div class='karma-block positive' ng-style='{width: (info.karma) + "%"}' ng-if='info.karma != null && info.karma > 0'>
+							<span ng-bind='info.karma + "%"'></span>
+							<i class='fa icon-rating-positive'></i>
+						</div>
+						<div class='karma-block negative' ng-style='{width: (100 - info.karma) + "%"}' ng-if='info.karma != null && info.karma < 100'>
+							<i class='fa icon-rating-negative'></i>
+							<span ng-bind='(100 - info.karma) + "%"'></span>
+						</div>
+						<div class='karma-block empty text-center' ng-if='info.karma == null && mine' translate='PROFILE.TOP.KARMA_NO_RATING_ME'></div>
+						<div class='karma-block empty text-center' ng-if='info.karma == null && !mine' translate='PROFILE.TOP.KARMA_NO_RATING_OTHER'></div>
+					</div>
 				</div>
 			</a>
 		</div>

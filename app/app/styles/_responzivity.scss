@@ -1,15 +1,12 @@
 // foundation breakpoint for large screens 
 @media #{$large-up} {
 	body .main-container {
-		min-width: 960px;
 		max-width: 960px;
-		padding: 0 3*$ui-small-grid-size;
+		padding: 0 2*$ui-small-grid-size;
+		margin-top: 80px !important;
 	}
 	#navigation {
 		margin: 0 auto;
-	}
-	.main-container {
-		margin-top: 80px !important;
 	}
 }
 
@@ -40,6 +37,7 @@
 
 	.market {
 		padding: 0 2*$ui-small-grid-size;
+		padding-left:0;
 	}
 }
 
@@ -69,10 +67,6 @@
 	.web-width {
 		width: unset !important;
 		width: 100%;
-	}
-
-	.market {
-		padding: 0 $ui-small-grid-size;
 	}
 	
 	.market .avatar {

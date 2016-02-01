@@ -51,7 +51,7 @@
 	<script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script>
 </head>
 
-<body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
+<body ng-controller="BaseCtrl" ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': '')), (leftSidebarShown ? 'no-scroll' : '')]" ng-keydown="escapeKey($event)">
 	<script type="text/javascript">
 		// scripts to be loaded sooner
 		preferredLanguage = $.cookie('language') || $$config.defaultLanguage;

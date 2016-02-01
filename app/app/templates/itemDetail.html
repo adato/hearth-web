@@ -132,27 +132,29 @@
 						<p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p>
 					</div>
 					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies track by item._id">
-						<section class="large-2 small-2 medium-2 columns user">
-							<div info-box="item.message.author" infobox-index="$index" infobox-class="'on-item-detail'">
-								<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
+						<section class='display-table'>
+							<div class='display-table-cell addon user'>
+								<div info-box="item.message.author" infobox-index="$index" infobox-class="'on-item-detail'">
+									<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
+								</div>
 							</div>
-						</section>
-						<section class="large-10 small-10 medium-10 columns">
-							<div class="content">
-								<div class="fright">
-									<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}">
-										<i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
+							<div class='display-table-cell'>
+								<div class="content">
+									<div class="fright">
+										<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}">
+											<i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
+									</div>
+									<div class="text-container clearfix">
+										<span class="reply-author">{{ item.message.author.name }}</span>
+										<p ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
+									</div>
+									<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="reply-contact fright">
+										<p>
+											{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
+											<i class="fa fa-comments-o"></i>
+										</p>
+									</a>
 								</div>
-								<div class="text-container clearfix">
-									<span class="reply-author">{{ item.message.author.name }}</span>
-									<p ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
-								</div>
-								<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="reply-contact fright">
-									<p>
-										{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
-										<i class="fa fa-comments-o"></i>
-									</p>
-								</a>
 							</div>
 						</section>
 					</article>
