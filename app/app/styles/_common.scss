@@ -443,3 +443,7 @@ button[disabled],
 		height: 100%;
 	}
 }
+
+#fb-root>.fb_dialog {
+	z-index:100000 !important; // set higher than 999999 (which is ngdialog)
+}
