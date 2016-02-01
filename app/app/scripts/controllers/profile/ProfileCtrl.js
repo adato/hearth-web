@@ -74,7 +74,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);
-				console.log($scope.info)
 				$scope.mine = $rootScope.isMine($stateParams.id);
 				$scope.profileLoaded = true;
 
