@@ -983,8 +983,8 @@
 			"other": "<strong>{{count}}<\/strong> posts"
 		},
 		"X_MEMBERS": {
-			"one": "<strong>{{count}}<\/strong> member",
-			"other": "<strong>{{count}}<\/strong> members"
+			"one": "<strong>{{count}}<\/strong><br \/>member",
+			"other": "<p><strong>{{count}}<br \/><\/strong>members<\/p>"
 		},
 		"COMMUNITY_HAS_X_MEMBERS": {
 			"one": "Community has one member",
