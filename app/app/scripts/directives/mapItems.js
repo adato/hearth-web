@@ -44,7 +44,9 @@ angular.module('hearth.directives').directive('mapitems', [
 						return false;
 					console.log(options);
 					map = geo.createMap($(".map-container")[0], options);
-					map.setOptions({ scrollwheel: false });
+					map.setOptions({
+						scrollwheel: false
+					});
 					$(".map-container", baseElement).addClass("inited");
 				};
 
