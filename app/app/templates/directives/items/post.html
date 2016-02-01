@@ -1,4 +1,4 @@
-<article class="item-common row post post-on-market" id="post_{{:: item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
+<article class="item-common row post post-on-market bubbled" id="post_{{:: item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<section ng-if="! hideAvatar" class="large-2 show-for-medium-up medium-2 columns user v2">
 		<div info-box="item.author">
 			<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
@@ -40,6 +40,7 @@
 						<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 					</a>
 					<span class="ad-flag-container fright" ng-if="!mine">
+						<bubble ng-if="loggedUser._id && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble hide" type="bookmark"></bubble>
 						<a class="action-dropdown fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}"></a>
 					</span>
 					<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;">

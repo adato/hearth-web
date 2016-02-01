@@ -1,4 +1,4 @@
-<article id="item-detail" class="item-common item-detail-page web-width">
+<article id="item-detail" class="item-common item-detail-page web-width bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if=" loaded">
 		<section ng-show="item && !isMine && item.state === 'suspended'" class="ad-not-found box large-6 small-6 medium-6 margin-auto text-center">
@@ -39,9 +39,14 @@
 								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !item.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)"></a>
 							</span> -->
 							<span class="ad-flag-container fright" ng-if="!mine">
+								<bubble ng-if="loggedUser._id && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble hide" type="bookmark"></bubble>
 								<a class="action-dropdown fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
 							</span>
 							<div class="more-actions-dropdown" id="more-actions-{{ item._id }}" style="display:none;">
+								<!-- bookmark post -->
+								<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+								<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+								<!-- bookmark post -->
 								<a ng-if="! mine && item.spam_reported" title="{{ 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 								<a ng-if="! mine && !item.spam_reported" title="{{ 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
 								<a ng-if="! mine && item.admin_communities.length" title="{{ 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
