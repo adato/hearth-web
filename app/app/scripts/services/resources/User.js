@@ -61,6 +61,12 @@ angular.module('hearth.services').factory('User', [
 				url: $$config.apiPath + '/close_filter',
 				method: 'POST'
 			},
+			removeReminder: {
+				method: 'PUT',
+				params: {
+					used_reminder: '@type'
+				}
+			},
 			resetPassword: {
 				url: $$config.apiPath + '/reset_password',
 				method: 'PUT',

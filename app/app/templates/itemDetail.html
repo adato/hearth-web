@@ -1,4 +1,4 @@
-<article id="item-detail" class="item-common item-detail-page web-width">
+<article id="item-detail" class="item-common item-detail-page web-width bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if=" loaded">
 		<section ng-show="item && !isMine && item.state === 'suspended'" class="ad-not-found box large-6 small-6 medium-6 margin-auto text-center">
@@ -25,9 +25,9 @@
 							<h1>
 								<span data-item-type="{{ item.type }}">
 									{{ postTypes[item.author._type][item.type] | translate }}
-								</span>
-								{{item.title}}
+								</span> {{item.title}}
 							</h1>
+
 							<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
 							<span class="validity-warning" ng-if="isExpiringSoon">{{ 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
 							<!-- TODO!!! add ngif and data -->
@@ -39,8 +39,10 @@
 								<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !item.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)"></a>
 							</span> -->
 							<span class="ad-flag-container fright" ng-if="!mine">
+								<bubble ng-if="loggedUser._id && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble hide" type="bookmark"></bubble>
 								<a class="action-dropdown fa fa-chevron-down" title="{{ 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"></a>
 							</span>
+
 							<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;">
 								<!-- bookmark post -->
 								<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
@@ -63,8 +65,7 @@
 					<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
 						<li ng-repeat="photo in item.attachments_attributes track by $index">
 							<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}">
-								<img ng-src="{{photo.normal}}">
-							</a>
+								<img ng-src="{{photo.normal}}"> </a>
 						</li>
 					</ul>
 					<div ng-if="!item.location_unlimited">
@@ -86,6 +87,7 @@
 						<mapitems ng-if="local.showMap" class="map" style="height:300px;" items="item.locations" zoom-on-scroll="false"></mapitems>
 					</div>
 					<h4 ng-if="item.location_unlimited" class="address-unlimited">{{ 'POSTS.DETAIL.LOCATION_ANYWHERE_HEADING' | translate }}</h4>
+
 					<div class="tags" ng-if="item.keywords.length">
 						<ul class="tagList">
 							<li ng-repeat="tag in item.keywords">{{tag}}</li>
@@ -128,6 +130,7 @@
 				</article>
 				<div class="box post-replies row" ng-if="isMine" scroll-to-view-on-hash="replies">
 					<h4 ng-if="replies.length">{{ 'POSTS.DETAIL.REPLIES' | translate }}</h4>
+
 					<div class="large-12 small-12 medium-12 large-centered columns text-center no-result" ng-if="!replies.length">
 						<p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p>
 					</div>
@@ -142,10 +145,12 @@
 								<div class="content">
 									<div class="fright">
 										<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}">
-											<i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}</div>
+											<i class="fa fa-clock-o"></i>&nbsp; {{ item.created_at | ago }}
+										</div>
 									</div>
 									<div class="text-container clearfix">
 										<span class="reply-author">{{ item.message.author.name }}</span>
+
 										<p ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
 									</div>
 									<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="reply-contact fright">
@@ -163,7 +168,8 @@
 			<div class="large-4 small-12 medium-12 ad-author-column text-center right small-push-12">
 				<div class="box">
 					<div class="detail-avatar">
-						<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="getProfileLink(item.author._type, item.author._id)" /></avatar>
+						<avatar type="item.author._type" src="item.author.avatar.large" size="large" href="getProfileLink(item.author._type, item.author._id)" />
+						</avatar>
 					</div>
 					<div class="detail-name">
 						<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
@@ -176,9 +182,11 @@
 					<div class="text-left" ng-if="profile">
 						<div class="line">
 							<div class="descr" ng-if="profile.about">
-								<i class="fa fa-quote-right"></i> {{profile.about|ellipsis}}</div>
+								<i class="fa fa-quote-right"></i> {{profile.about|ellipsis}}
+							</div>
 							<div class="descr" ng-if="profile.work">
-								<i class="fa fa-briefcase"></i> {{profile.work|ellipsis}}</div>
+								<i class="fa fa-briefcase"></i> {{profile.work|ellipsis}}
+							</div>
 							<div class="descr" ng-if="profile.locations.length && profile.locations[0].short_address">
 								<i class="fa fa-map-marker"></i> {{'you-will-find-me' | translate}}
 								<span ng-repeat="(locationId, location) in profile.locations">
@@ -188,7 +196,8 @@
 								</span>
 							</div>
 							<div class="descr" ng-if="profile.interests && profile.interests[0] != ''">
-								<i class="fa fa-smile-o"></i> {{ profile.interests.join(", ") }}</div>
+								<i class="fa fa-smile-o"></i> {{ profile.interests.join(", ") }}
+							</div>
 							<div class="descr" ng-if="profile.user_languages">
 								<span ng-repeat="(languageCode, enabled) in profile.user_languages">
 									<i class="fa fa-comments" ng-if="$first"></i>
