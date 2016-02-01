@@ -118,17 +118,21 @@
 
 
 			<span class="small-icons">
+				<div class='fa-stack language-small-wrapper' ng-if='!(loggedUser._id)'>
+					<i class='fa fa-square fa-stack-2x'></i>
+					<i class='fa fa-language fa-stack-1x fa-inverse'></i>
+				</div>
 				<i class="fa fa-plus-square" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				<i id="searchIcon" class="fa fa-search" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 			</span>
 
-			<div id='header-language-selector' class='inline-block vertical-align-top fright' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+			<!--			<div id='header-language-selector' class='inline-block vertical-align-top fright' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
 				<div class='flag-btn btn'>
 					<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")' ng-if='languageChange.currentLanguage != "cs"'></i>
 					<i class='flag flag-en pointer margin-left-10' ng-click='languageChange.switchLang("en")' ng-if='languageChange.currentLanguage != "en"'></i>
 					<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")' ng-if='languageChange.currentLanguage != "sk"'></i>
 				</div>
-			</div>
+			</div>-->
 
 			<div class="clear"></div>
 		</nav>
@@ -196,13 +200,13 @@
 					<span class="search-button fa fa-search" ng-click="search(searchQuery)"></span>
 				</section>
 				<section class="large-6 icons columns">
-					<div id='header-language-selector' class='inline-block vertical-align-top margin-top-10' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+					<!--					<div id='header-language-selector' class='inline-block vertical-align-top margin-top-10' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
 						<div class='flag-btn btn'>
 							<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")' ng-if='languageChange.currentLanguage != "cs"'></i>
 							<i class='flag flag-en pointer margin-left-10' ng-click='languageChange.switchLang("en")' ng-if='languageChange.currentLanguage != "en"'></i>
 							<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")' ng-if='languageChange.currentLanguage != "sk"'></i>
 						</div>
-					</div>
+					</div>-->
 					<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 						<div class="fa icon-marketplace"></div>
 						<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
@@ -213,6 +217,32 @@
 					</a>
 
 					<div class="separator"></div>
+					<span class='dropdown-container' ng-if='!(loggedUser._id)'>
+						<a hover="true" dropdown="#language-drop">
+							<i class='fa fa-language fa-inverse'></i>
+							<label translate='TOP_BAR_LANGUAGE'></label>
+						</a>
+						<ul class='dropdown' id='language-drop' ng-controller='LanguageChangeCtrl as languageChange'>
+							<li>
+								<a ng-click='languageChange.switchLang("cs")' ng-if='languageChange.currentLanguage != "cs"'>
+									<i class='flag flag-cs'></i>
+									<span translate='LANGUAGE.CZECH'></span>
+								</a>
+							</li>
+							<li>
+								<a ng-click='languageChange.switchLang("en")' ng-if='languageChange.currentLanguage != "en"'>
+									<i class='flag flag-en'></i>
+									<span translate='LANGUAGE.ENGLISH'></span>
+								</a>
+							</li>
+							<li>
+								<a ng-click='languageChange.switchLang("sk")' ng-if='languageChange.currentLanguage != "sk"'>
+									<i class='flag flag-sk'></i>
+									<span translate='LANGUAGE.SLOVAK'></span>
+								</a>
+							</li>
+						</ul>
+					</span>
 					<span class="top-bar-messages">
 						<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
 							<span class="messages-icon">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>

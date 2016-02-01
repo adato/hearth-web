@@ -1,22 +1,38 @@
 .flag {
 	display:inline-block;
-	width:32px;
-	height:23px;
-	margin-right:-4px;
-	vertical-align:middle;
-	background-repeat:no-repeat;
-	vertical-align:middle;
-	margin-right:-4px;
+/*	width:32px;
+	height:23px;*/
+	width: 25px;
+	height: 18px;
+	vertical-align: middle;
+	background-repeat: no-repeat;
+	vertical-align: middle;
 	&.flag-en {
 		background:url(../images/flags/flag-english.svg);
-		background-size: 32px 23px;
+		background-size: cover;
 	}
 	&.flag-cs {
 		background:url(../images/flags/flag-czech.svg);
-		background-size: 32px 23px;
+		background-size: cover;
 	}
 	&.flag-sk {
 		background:url(../images/flags/flag-slovak.svg);
-		background-size: 32px 23px;
+		background-size: cover;
+	}
+}
+.language-small-wrapper{
+	position: relative;
+	top: -2px;
+	font-size: 1rem !important;
+	.fa-inverse{
+		color: $colorOrange;
+	}
+	&:hover{
+		.fa-square{
+			color: #ddd;
+		}
+		.fa-inverse{
+			color: $colorOrange !important;
+		}
 	}
 }
