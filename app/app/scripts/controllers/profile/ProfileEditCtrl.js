@@ -30,9 +30,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			UnauthReload.check();
 
 			// $scope.initLocations();
-			User.get({
-				_id: $rootScope.loggedUser._id
-			}, function(res) {
+			User.getFullInfo(function(res) {
 				$scope.profile = $scope.transformDataIn(res);
 				$scope.loaded = true;
 
