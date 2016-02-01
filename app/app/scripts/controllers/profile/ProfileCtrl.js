@@ -13,7 +13,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		$scope.activePage = null;
 
 		$scope.initPage = function() {
-			$scope.loaded = false;
+			$scope.profileLoaded = false;
 			$scope.info = false;
 			$scope.paramId = false;
 			$scope.sendingRemoveFollower = false;
@@ -56,7 +56,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 		 */
 		$scope.fetchUser = function(fetchSubpage) {
 			// dont load user when there is no ID in params
-
 			if (!$stateParams.id) return false;
 
 			// if we are loading new user init
@@ -64,19 +63,20 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// if we load profile of another user (there are different IDs) scroll to top
 			if ($scope.info._id !== $stateParams.id) {
 				$rootScope.top(0, 1);
-				$scope.loaded = false;
+				$scope.profileLoaded = false;
 			}
 
 			// get user data
 			User.get({
 				_id: $stateParams.id
 			}, function(res) {
-				$scope.loaded = true;
 
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);
+				console.log($scope.info)
 				$scope.mine = $rootScope.isMine($stateParams.id);
+				$scope.profileLoaded = true;
 
 				PageTitle.setTranslate('TITLE.user-profile-page', res.name);
 				OpenGraph.set(res.name, "", null, res.avatar.large, res.avatar.size);
@@ -84,9 +84,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				if (fetchSubpage)
 					$scope.$broadcast("profileTopPanelLoaded");
 			}, function(res) {
-
 				// when something went wrong..
-				$scope.loaded = true;
+				$scope.profileLoaded = true;
 				$scope.info = false;
 				$scope.mine = false;
 			});

@@ -1,6 +1,6 @@
-<div loading show="!loaded"></div>
-<div class="profile-view profile-common" ng-show="loaded" ng-class="{'mine-profile': mine, 'others-profile': ! mine}">
-	<div class="user" ng-show="! info">
+<div loading show="!profileLoaded"></div>
+<div class="profile-view profile-common" ng-show="profileLoaded" ng-class="{'mine-profile': mine, 'others-profile': ! mine}">
+	<div class="user" ng-show="!info">
 		<p>{{:: 'ERR_USER_NOT_FOUND' | translate }}</p>
 	</div>
 	<header ng-show="info">
