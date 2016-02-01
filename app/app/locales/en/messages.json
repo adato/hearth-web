@@ -38,7 +38,7 @@
 			"PUBLISHED_AT": "Added",
 			"REMOVE_FROM_COMMUNITY": "Remove from Community",
 			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
-			"SHARE_LINK": "Sdílet odkaz",
+			"SHARE_LINK": "Share link",
 			"UNBOOKMARK_POST": "Remove from favourites",
 			"BOOKMARK_POST": "Add to favourites"
 		},
@@ -475,12 +475,12 @@
 	"YOUR_NAME": "Your name here",
 	"YOU_HAVE_NOT_BEEN_RATED": "You have not been rated by others yet",
 	"YOU_HAVE_NO_WISHES": "You have no wishes so far.",
-	"ads-has-been-read": "{{value}} ad(s) has\/have been read",
+	"ads-has-been-read": "{{value}} ads have been read",
 	"and-next": "and {{value}} more.",
 	"and-on-social-networks": "And on social networks",
 	"author": "Author",
 	"community": "communities",
-	"count-of-wished-and-gifts": "Currently <strong>{{value}}<\/strong> active posts.<\/p>",
+	"count-of-wished-and-gifts": "<p>Currently <strong>{{value}}<\/strong> active posts<\/p>",
 	"FILTER_ADS": "Filter posts",
 	"FILTER_IS_ON": "Filter (active)",
 	"in-area": "in the area",
@@ -840,7 +840,7 @@
 	"TUTORIAL_SHOW_OLD_FUNCTIONS": "Show me former goodies.",
 	"SAYING": "Says",
 	"ACTIVE_POSTS": "Active posts",
-	"LOCATION_DOES_NOT_MATTER": "Location does not matter.",
+	"LOCATION_DOES_NOT_MATTER": "Location does not matter",
 	"WRITTEN_FROM_ALLOWED": "{{len}} characters used from {{maxLen}} total",
 	"AD_REPORT_CONFIRM": "Report post",
 	"AD_PAUSE_LABEL": "Suspend post",
@@ -929,7 +929,7 @@
 		"RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
 		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na tvou emailovou adresu.",
 		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
-		"API_ERROR": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
+		"API_ERROR": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>",
 		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
@@ -1029,36 +1029,36 @@
 	"PROFILE": {
 		"FRIENDS": {
 			"YOU_HAVE_X_FRIENDS": {
-				"one": "You have <strong>{{count}}<\/strong> friend.",
-				"other": "You have <strong>{{count}}<\/strong> friends."
+				"one": "You have {{count}} friend",
+				"other": "You have {{count}} friends"
 			},
 			"HE_HAS_X_FRIENDS": {
-				"one": "User has <strong>{{count}}<\/strong> friend.",
-				"other": "User has <strong>{{count}}<\/strong> friends."
+				"one": "User has {{count}} friend",
+				"other": "User has {{count}} friends"
 			},
 			"NO_FRIENDS_ME": "You seem to be at little lonely here. Follow anyone following you and voilà, you'll have a friendship right there!",
 			"NO_FRIENDS_OTHER": "User doesn't have any friends here. Now what? Follow each other and you become friends. Easy-peasy."
 		},
 		"FOLLOWEES": {
 			"IM_INSPIRED_BY_X_PEOPLE": {
-				"one": "You are following <strong>{{count}}<\/strong> person.",
-				"other": "You are following <strong>{{count}}<\/strong>people."
+				"one": "You are following {{count}} person",
+				"other": "You are following {{count}} people"
 			},
 			"HE_IS_INSPIRED_BY_X_PEOPLE": {
-				"one": "User is following <strong>{{count}}<\/strong> person.",
-				"other": "User is following <strong>{{count}}<\/strong> people."
+				"one": "User is following {{count}} person",
+				"other": "User is following {{count}} people"
 			},
 			"NO_FOLLOWEES_ME": "You are not following anyone. How come? Quick, pick someone's profile and select Follow...",
 			"NO_FOLLOWEES_OTHER": "User is not following anyone here. You can follow them and maybe they'll reciprocate. You know, magnetism and all that..."
 		},
 		"FOLLOWERS": {
 			"IM_INSPIRING_X_PEOPLE": {
-				"one": "You have <strong>{{count}}<\/strong> follower.",
-				"other": "You have <strong>{{count}}<\/strong> followers."
+				"one": "You have {{count}} follower",
+				"other": "You have {{count}} followers"
 			},
 			"HE_IS_INSPIRING_X_PEOPLE": {
-				"one": "User has <strong>{{count}}<\/strong> follower.",
-				"other": "User has <strong>{{count}}<\/strong> followers."
+				"one": "User has {{count}} follower",
+				"other": "User has {{count}} followers"
 			},
 			"NO_FOLLOWERS_ME": "No one is following you yet. Their loss. But you can follow whoever you like, starting right now...",
 			"NO_FOLLOWERS_OTHER": "User doesn't have any followers here. You can be their first. OK!"
@@ -1114,7 +1114,7 @@
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
 			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
-			"VISIBILITY_EVERYBODY": "Kdokoliv",
+			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
 			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
 	},

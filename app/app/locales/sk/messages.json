@@ -38,7 +38,7 @@
 			"PUBLISHED_AT": "Pridané",
 			"REMOVE_FROM_COMMUNITY": "Odstrániť z komunity",
 			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
-			"SHARE_LINK": "Sdílet odkaz",
+			"SHARE_LINK": "Zdieľať odkaz",
 			"UNBOOKMARK_POST": "Odobrať z obľúbených",
 			"BOOKMARK_POST": "Pridať k obľúbeným"
 		},
@@ -1141,7 +1141,7 @@
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
 			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
-			"VISIBILITY_EVERYBODY": "Kdokoliv",
+			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
 			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
 	},

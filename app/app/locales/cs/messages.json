@@ -132,7 +132,7 @@
 	"EDIT_PROFILE": "Uprav se",
 	"EG": "Např.:",
 	"EMAIL_CONFIRMATION_FAILURE": "Potvrzovací kód je neplatný, nebo již byl v minulosti použit. Ach ty kódy!",
-	"EMAIL_CONFIRMATION_SUCCESS": "Tvůj email byl úspěšně potvrzen. Teď už se můžeš přihlásit.",
+	"EMAIL_CONFIRMATION_SUCCESS": "Tvůj email byl úspěšně potvrzen. Teď už se můžeš pustit do víru štědrosti.",
 	"EMAIL_CONFIRMATION_TEXT": "Vydrž chvíli... ověřujeme tvoji registraci..",
 	"EMAIL_INPUT_PLACEHOLDER": "Email",
 	"EMAIL_TEXT_PLACEHOLDER": "Text zprávy",
@@ -281,7 +281,7 @@
 		},
 		"NO_MESSAGE_YET": "No teda! Žádná zpráva od Vás ani pro Vás. Jde to hned změnit:",
 		"NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze uživatele, se kterými již máte nějakou vazbu. Chcete-li napsat jinému uživateli, udělejte to z jeho profilu.",
-		"YOU": "Vy",
+		"YOU": "Ty",
 		"REPLY_AS_COMMUNITY": "Odpovědět jako:",
 		"REPLY_AS_USER": "jako",
 		"SYSTEM_MESSAGE_YOU": {
@@ -1141,7 +1141,7 @@
 		"CONTACT": {
 			"VISIBILITY_NOBODY": "Nikdo",
 			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
-			"VISIBILITY_EVERYBODY": "Kdokoliv",
+			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
 			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
 	},
