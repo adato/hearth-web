@@ -135,13 +135,13 @@
 						<p>{{'POSTS.DETAIL.NO_REPLY' | translate}}</p>
 					</div>
 					<article class="row reply-item reply_{{ item._id }}" ng-repeat="(id, item) in replies track by item._id">
-						<section class="display-table">
-							<div class="display-table-cell addon user">
+						<section class='display-table'>
+							<div class='display-table-cell addon user'>
 								<div info-box="item.message.author" infobox-index="$index" infobox-class="'on-item-detail'">
 									<avatar src="item.message.author.avatar.normal" type="item.message.author._type" href="getProfileLink(item.message.author._type, item.message.author._id)"></avatar>
 								</div>
 							</div>
-							<div class="display-table-cell">
+							<div class='display-table-cell'>
 								<div class="content">
 									<div class="fright">
 										<div class="date" title="{{item.created_at | date:DATETIME_FORMATS.medium}}">
@@ -149,7 +149,7 @@
 										</div>
 									</div>
 									<div class="text-container clearfix">
-										<span class="reply-author">{{item.message.author.first_name}} {{item.message.author.last_name}}</span>
+										<span class="reply-author">{{ item.message.author.name }}</span>
 
 										<p ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
 									</div>
@@ -173,7 +173,7 @@
 					</div>
 					<div class="detail-name">
 						<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">
-							<h2>{{item.author.first_name}} {{item.author.last_name}}</h2>
+							<h2>{{ item.author.name}}</h2>
 						</a>
 						<a ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}" class="v2">
 							<karma-bar for="item.author"></karma-bar>
@@ -205,12 +205,12 @@
 									<span ng-if="!$last">,&nbsp;</span>
 								</span>
 							</div>
-							<div class="descr" ng-if="(profile.email || profile.contact_email)">
+							<div class='descr' ng-if="(profile.email || profile.contact_email)">
 								<i class="fa fa-fw fa-envelope"></i>
 								<a href='mailto:{{:: profile.email}}' class='display-block'>{{:: profile.email}}</a>
 								<a ng-if='profile.contact_email' href='mailto:{{:: profile.contact_email}}' class='display-block'>{{:: profile.contact_email}}</a>
 							</div>
-							<div class="descr" ng-if="profile.phone">
+							<div class='descr' ng-if="profile.phone">
 								<i class="fa fa-fw fa-phone"></i>&nbsp;{{:: profile.phone}}
 							</div>
 							<div class="descr" ng-if="profile.webs.length && profile.webs[0]">
