@@ -69,7 +69,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// get user data
 			User.get({
 				_id: $stateParams.id
-			}, function(res) {
+			}, function(res) { 
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);
@@ -81,8 +81,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				// broadcast event for load subpages
 				if (fetchSubpage)
 					$scope.$broadcast("profileTopPanelLoaded");
-			}, function(res) {
-				// when something went wrong..
+			}, function(res) { 
+					// when something went wrong..
 				$scope.profileLoaded = true;
 				$scope.info = false;
 				$scope.mine = false;

@@ -43,12 +43,6 @@ angular.module('hearth.services').factory('User', [
 			setClosedFilter: {
 				url: $$config.apiPath + '/close_filter',
 				method: 'POST'
-			},
-			removeReminder: {
-				method: 'PUT',
-				params: {
-					used_reminder: '@type'
-				}
 			}
 		});
 	}
