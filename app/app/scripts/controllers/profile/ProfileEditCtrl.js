@@ -15,7 +15,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.profile = false;
 		$scope.showError = {
 			locations: false,
-			name: false,
+			first_name: false,
 			email: false,
 			phone: false,
 			contact_email: false,
@@ -104,9 +104,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.validateData = function(data) {
 			var res = true;
 
-			if ($scope.profileEditForm.name.$invalid) {
+			if ($scope.profileEditForm.first_name.$invalid) {
 				res = false;
-				$scope.showError.name = true;
+				$scope.showError.first_name = true;
 			}
 
 			if (data.locations && data.locations.length) {

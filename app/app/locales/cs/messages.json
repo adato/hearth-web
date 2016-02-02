@@ -347,7 +347,7 @@
 	"MY_WEB": "Web",
 	"MY_WORK": "Zaměstnání\/Co dělám (když nemám volno)",
 	"MY_WORK_EXAMPLE": "Např.: učitelka, rozvoj občanské společnosti.",
-	"NAME": "Jméno a přijmení",
+	"FIRST_NAME": "Jméno",
 	"NEAREST": "Mapa",
 	"NEED": "Přijmu",
 	"NEGATIVE_FEEDBACK_PLACEHOLDER": "Tohle se... úplně nepovedlo. Ale příště už může! Stačí, když dáš uživateli vědět, co zlepšit.",
@@ -1339,5 +1339,6 @@
 	"community-operate-in": "Působíme v",
 	"MY_BOOKMARKS": "Moje oblíbené",
 	"LAST_NAME_PLACEHOLDER": "Příjmení",
-	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto jméno je moc krátké, musí mít minimálně 2 znaky."
+	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto jméno je moc krátké, musí mít minimálně 2 znaky.",
+	"LAST_NAME": "Příjmení"
 }
