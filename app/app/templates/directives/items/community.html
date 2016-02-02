@@ -6,7 +6,7 @@
 			<div info-box="item">
 				<avatar class="_avatar small-2 medium-12 column" href="getProfileLink(item._type, item._id)" src="item.avatar.normal" type="item._type"></avatar>
 				<div class="_name show-for-medium-up">
-					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">{{ item.name }}</a>
+					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">{{item.first_name}} {{item.last_name}}</a>
 				</div>
 			</div>
 			<div class="_karma small-3 medium-12 columns">
@@ -26,7 +26,7 @@
 					{{item.created_at | ago}}
 				</div>
 				<h2>
-					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">{{ item.name }}</a>
+					<a ng-href="{{:: getProfileLink(item._type, item._id) }}">{{item.first_name}} {{item.last_name}}</a>
 				</h2>
 			</div>
 			<div class="location row" ng-if="item.locations.length">
