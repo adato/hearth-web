@@ -12,7 +12,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 		$scope.user = {
 			email: '',
-			name: '',
+			first_name: '',
+			last_name: '',
 			password: ''
 		};
 		$scope.sent = false; // show result msg
@@ -22,7 +23,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.apiErrors = {};
 		$scope.showError = {
 			topError: false,
-			name: false,
+			first_name: false,
 			email: false,
 			password: false,
 		};
@@ -48,8 +49,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				invalid = $scope.showError.email = true;
 			}
 
-			if ($scope.registerForm.name.$invalid) {
-				invalid = $scope.showError.name = true;
+			if ($scope.registerForm.first_name.$invalid) {
+				invalid = $scope.showError.first_name = true;
 			}
 
 			if ($scope.registerForm.email.$invalid) {
