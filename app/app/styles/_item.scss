@@ -42,6 +42,7 @@ article.post-on-market {
 		margin-bottom:2 * $ui-small-grid-size;
 	}
 	.ad-flag-container {
+		position: relative;
 		.action-dropdown:hover {
 			color: color(5) !important;
 		}

@@ -59,7 +59,7 @@ $fontSize: rem-calc(14);
 "foundation/components/tables",
 //  "foundation/components/tabs",
 "foundation/components/thumbs",
-//  "foundation/components/tooltips",
+// "foundation/components/tooltips",
 // "foundation/components/top-bar",
 "foundation/components/type",
 "foundation/components/offcanvas",
@@ -113,6 +113,7 @@ $fontSize: rem-calc(14);
 @import "responzivity";
 @import "fancyBox";
 @import "v2Style";
+@import "bubble";
 body {
 	background-image: inline-image("bg.png");
 	background-color: #faf8eb;
