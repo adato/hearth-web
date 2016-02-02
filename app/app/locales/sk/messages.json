@@ -347,7 +347,7 @@
 	"MY_WEB": "Web",
 	"MY_WORK": "Zamestnanie\/Čo robím (keď nemám voľno)",
 	"MY_WORK_EXAMPLE": "Napr.: učiteľka, rozvoj občianskej spoločnosti.",
-	"NAME": "Meno a priezvisko",
+	"FIRST_NAME": "Meno",
 	"NEAREST": "Mapa",
 	"NEED": "Prijmem",
 	"NEGATIVE_FEEDBACK_PLACEHOLDER": "Toto sa... úplne nepodarilo. Ale nabudúce už môže! Stačí, keď dáte užívateľovi vedieť, čo zlepšiť.",
@@ -1339,5 +1339,6 @@
 	"community-operate-in": "Pôsobíme v",
 	"MY_BOOKMARKS": "Moje obľúbené",
 	"LAST_NAME_PLACEHOLDER": "Priezvisko",
-	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto meno je moc krátke, musí mať minimálne 2 znaky."
+	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto meno je moc krátke, musí mať minimálne 2 znaky.",
+	"LAST_NAME": "Priezvisko"
 }
