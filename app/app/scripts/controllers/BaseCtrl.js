@@ -30,6 +30,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			twitter: 'https://twitter.com/share?url='
 		};
 
+		// enable $state to be used in tempaltes
+		$rootScope.$state = $state;
+		//$rootScope.$on('$stateChangeNotFound')
+
 		$rootScope.missingPost = false;
 		$rootScope.cacheInfoBox = {};
 

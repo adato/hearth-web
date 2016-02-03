@@ -2,13 +2,13 @@
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
-				<a ng-href='{{ getProfileLink("User", loggedUser._id) }}' class='overflow-hidden'>
+				<a ui-sref='profile({id: loggedUser._id})' data-ui-sref-opts="{reload: true}" class='overflow-hidden'>
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
 					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
 				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
-				<a ng-class='{active: pageName == "login"}' ui-sref='login'>
+				<a ng-class='{active: $state.includes("login")}' ui-sref='login' data-ui-sref-opts="{reload: true}">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
 					<div class='inline-block' translate='LOG_IN'></div>
 				</a>
@@ -18,24 +18,24 @@
 			</li>
 			<li>
 				<a ng-click="reloadToMarketplace()" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
-					<i class="fa icon-marketplace"></i> {{ 'HOMEPAGE_MARKET' | translate }} </a>
+					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
-				<a ng-if="loggedUser._id" ng-href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{:: 'COMMUNITIES' | translate }}">
-					<i class="fa icon-community"></i> {{ 'COMMUNITIES' | translate }} </a>
+				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-class="{active: $state.includes('communities')}">
+					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}</a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" data-ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
-					{{ 'TOP_BAR_MESSAGES' | translate }}
+					{{:: 'TOP_BAR_MESSAGES' | translate }}
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ng-href="{{:: basePath }}login">{{:: 'LOG_IN' | translate}}</a>
+				<a ng-class="{active: pageName == 'login'}" ui-sref="login" data-ui-sref-opts="{reload: true}">{{:: 'LOG_IN' | translate}}</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ng-href="{{ basePath }}register">{{ 'SIGNUP' | translate }}</a>
+				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" data-ui-sref-opts="{reload: true}">{{:: 'SIGNUP' | translate }}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list" ng-show="loggedUser._id">
@@ -43,16 +43,16 @@
 				<label class="first">{{ loggedUser.name | ellipsis:15}}</label>
 			</li>
 			<li>
-				<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}">
-					<i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+				<a ui-sref="profile({id: loggedUser._id})" data-ui-sref-opts="{reload: true}">
+					<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
 			</li>
 			<li>
-				<a ng-href="{{:: basePath }}profile-edit">
-					<i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a>
+				<a ui-sref="profileEdit" data-ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('profileEdit')}">
+					<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
 			</li>
 			<li>
-				<a ng-href="{{:: basePath }}profile-settings">
-					<i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a>
+				<a ui-sref="profileSettings" data-ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('profileSettings')}">
+					<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li ng-repeat="item in myAdminCommunities">
@@ -64,32 +64,32 @@
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li>
 				<a href="" class="logout-link" ng-click="logout()">
-					<i class="fa fa-sign-out"></i> {{ 'LOGOUT'| translate }}</a>
+					<i class="fa fa-sign-out"></i> {{:: 'LOGOUT'| translate }}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list">
 			<li>
-				<label> {{'TOP_BAR_ABOUT' | translate}} </label>
+				<label>{{:: 'TOP_BAR_ABOUT' | translate}} </label>
 			</li>
 			<li>
-				<a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a>
+				<a ui-sref="terms" data-ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('terms')}">{{:: 'MENU.TERMS' | translate}}</a>
 			</li>
 			<li>
-				<a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a>
+				<a ui-sref="faq" data-ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('faq')}">{{:: 'MENU.FAQ' | translate}}</a>
 			</li>
 			<li>
-				<a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a>
+				<a ui-sref="feedback" data-ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('feedback')}">{{:: 'WRITE_US' | translate}}</a>
 			</li>
 			<li>
-				<a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a>
+				<a href="http://blog.hearth.net" target="_blank">{{:: 'BLOG' | translate}}</a>
 			</li>
 			<li ng-if="language == 'cs'">
-				<a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a>
+				<a ui-sref="taxes" data-ui-sref-opts="{reload: true}" ng-class="{active: $state.includes('taxes')}">{{:: 'MENU.TAXES' | translate}}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list socials">
 			<li>
-				<label> {{ 'SOCIAL_NETWORKS' | translate}} </label>
+				<label>{{:: 'SOCIAL_NETWORKS' | translate}} </label>
 			</li>
 			<li>
 				<a href="https://twitter.com/hearth_net" target="_blank">
@@ -114,10 +114,10 @@
 		<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
 			<div>
 				<p>
-					<i class="fa fa-exclamation-circle"></i> {{ 'NEW_VERSION_NOTIFICATION' | translate }}
+					<i class="fa fa-exclamation-circle"></i> {{:: 'NEW_VERSION_NOTIFICATION' | translate }}
 				</p>
-				<span ng-click="refreshToPath()" class="left">{{ 'RELOAD' | translate }}</span>
-				<span ng-click="closeMaintenanceNotify();" class="right">{{ 'CLOSE' | translate }}</span>
+				<span ng-click="refreshToPath()" class="left">{{:: 'RELOAD' | translate }}</span>
+				<span ng-click="closeMaintenanceNotify();" class="right">{{:: 'CLOSE' | translate }}</span>
 				<div class="clear"></div>
 			</div>
 		</div>
