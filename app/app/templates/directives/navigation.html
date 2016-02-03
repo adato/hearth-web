@@ -218,7 +218,7 @@
 
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
 						<li ng-repeat="item in myAdminCommunities">
-							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{item.name}}" ng-click="mixpanelTrack(item)">
+							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{item.name}}" ng-click="mixpanelTrack(item, 'Desktop')">
 								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 								<span class="name">{{ item.name | ellipsis:12}}</span>
 							</a>
