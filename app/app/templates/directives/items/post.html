@@ -86,7 +86,7 @@
 			<div class="text-container" ng-if="item.text.length >= 270 && !marketplace.expanded">
 				<p>
 					<span ng-bind-html="item.text_short | linky:'_blank'"></span>
-					<a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
+					<a class="text-expand-link {{item.type}}" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
 				</p>
 			</div>
 			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
