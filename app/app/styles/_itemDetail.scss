@@ -158,8 +158,17 @@
 				font-size: $ui-text-font-size;
 				word-wrap: break-word;
 			}
+
 			.text-expand-link {
 				display: inline-block;
+
+				&.offer {
+					color: $colorGreen;
+				}
+
+				&.need {
+					color: $colorOrange;
+				}
 			}
 		}
 		ul.address {
