@@ -161,7 +161,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
 				$scope.sendingApplication = false;
 			}, function() {
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_FAILED', Notify.T_ERROR);
 				$scope.sendingApplication = false;
 			});
 		};
@@ -181,7 +180,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
 			}, function() {
 				$scope.rejectApplicationLock = false;
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -201,7 +199,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(res) {
 
 				$scope.leaveCommunityLock = false;
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -221,7 +218,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.init();
 			}, function() {
 				$scope.approveApplicationLock = false;
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -340,9 +336,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(err) {
 				// remove lock
 				$scope.sendingRating = false;
-
-				// handle error
-				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 			});
 		};
 

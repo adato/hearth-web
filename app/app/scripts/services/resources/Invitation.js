@@ -12,7 +12,11 @@ angular.module('hearth.services').factory('Invitation', [
 	function($resource) {
 		return $resource($$config.apiPath + '/invitation', {}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.EMAIL_INVITATION_FAILED',
+					container: ".invite-box-notify"
+				}
 			}
 		});
 	}

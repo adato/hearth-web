@@ -245,7 +245,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						Notify.addSingleTranslate('NOTIFY.CONVERSATION_' + type + '_SUCCESS', Notify.T_SUCCESS);
 					}, function(err) {
 						$scope.sendingActionRequest = false;
-						Notify.addSingleTranslate('NOTIFY.CONVERSATION_' + type + '_FAILED', Notify.T_ERROR);
 					});
 				};
 

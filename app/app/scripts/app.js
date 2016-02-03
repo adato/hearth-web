@@ -89,8 +89,16 @@ angular.module('hearth', [
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 
+			var params = $.getUrlVars();
+			if (params['apiError'])
+				params['apiError'].split(',').forEach(function(type) {
+					console.log('Enabling api test errors for', type);
+					$httpProvider.defaults.headers[type]['x-error-test'] = 1;
+				});
+
 			// // ======== Watch for unauth responses
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
+			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 
 			// // ======== ?? wtf is this?

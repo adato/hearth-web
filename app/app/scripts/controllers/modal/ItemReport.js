@@ -59,7 +59,6 @@ angular.module('hearth.controllers').controller('ItemReport', [
 
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
-				Notify.addSingleTranslate('NOTIFY.POST_SPAM_REPORT_FAILED', Notify.T_ERROR, '.notify-report-container');
 			});
 		};
 	}

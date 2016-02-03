@@ -15,13 +15,19 @@ angular.module('hearth.services').factory('Followers', [
 			followerId: '@followerId'
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.ADD_FOLLOWER_FAILED'
+				}
 			},
 			show: {
 				method: 'GET'
 			},
 			remove: {
-				method: 'DELETE'
+				method: 'DELETE',
+				errorNotify: {
+					code: 'NOTIFY.REMOVE_FOLLOWER_FAILED'
+				}
 			},
 			query: {
 				method: 'GET',

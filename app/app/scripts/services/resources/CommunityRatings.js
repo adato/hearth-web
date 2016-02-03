@@ -14,7 +14,11 @@ angular.module('hearth.services').factory('CommunityRatings', [
 			communityId: '@id'
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_RATING_ADD_FAILED',
+					container: '.rating-notify-box'
+				}
 			},
 			received: {
 				method: 'GET',
