@@ -17,7 +17,7 @@
 			</div>
 			<div class="name">
 				<h4>
-					<a href="{{:: getProfileLink(item._type, item._id)}}">{{:: item.name | ellipsis:24 }}</a>
+					<a href="{{:: getProfileLink(item._type, item._id)}}">{{item.first_name|ellipsis:12}} {{item.last_name|ellipsis:12}}</a>
 				</h4>
 			</div>
 		</div>
