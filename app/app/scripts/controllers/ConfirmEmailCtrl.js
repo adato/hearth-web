@@ -19,31 +19,23 @@ angular.module('hearth.controllers').controller('ConfirmEmailCtrl', [
 				label: 'registration email failed'
 			});
 
-			if (res && res.name && res.name == 'ValidationError')
+			if (res && res.data && res.data.name == 'ValidationError')
 				return $scope.brokenLink = true;
-			else
-				Notify.addSingleTranslate('NOTIFY.ACCOUNT_ACTIVATE_FAILED', Notify.T_ERROR, '.activate-account-notify-container');
 		}
 
 		function onSuccess(res) {
 			if (res.language)
 				LanguageSwitch.setCookie(res.language);
 
-			if (res.api_token) {
+			$analytics.eventTrack('registration email confirmed', {
+				category: 'registration',
+				label: 'registration email confirmed'
+			});
 
-				$analytics.eventTrack('registration email confirmed', {
-					category: 'registration',
-					label: 'registration email confirmed'
-				});
-
-				Notify.addTranslateAfterRefresh('NOTIFY.ACCOUNT_ACTIVATE_SUCCESS', Notify.T_SUCCESS);
-				Auth.setToken(res.api_token);
-				window.location = $$config.appUrl;
-				return true;
-			}
-
-			Notify.addSingleTranslate('NOTIFY.ACCOUNT_ACTIVATE_FAILED', Notify.T_ERROR);
-			return $location.path('login');
+			Notify.addTranslateAfterRefresh('NOTIFY.ACCOUNT_ACTIVATE_SUCCESS', Notify.T_SUCCESS);
+			Auth.setToken(res.api_token);
+			window.location = $$config.appUrl;
+			return true;
 		}
 
 		if (!search.hash)

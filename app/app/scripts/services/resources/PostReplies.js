@@ -13,7 +13,11 @@ angular.module('hearth.services').factory('PostReplies', [
 			user_id: '@id'
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.REPLY_FAILED',
+					container: '.notify-reply-container'
+				}
 			}
 		});
 	}

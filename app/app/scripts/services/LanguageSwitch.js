@@ -39,8 +39,6 @@ angular.module('hearth.services').service('LanguageSwitch', [
 						language: lang
 					}, function(res) {
 						location.reload();
-					}, function() {
-						Notify.addSingleTranslate('NOTIFY.CHANGE_LANGUAGE_FAILED', Notify.T_ERROR);
 					});
 				}
 				return false;

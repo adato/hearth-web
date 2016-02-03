@@ -89,7 +89,6 @@ angular.module('hearth.controllers').controller('RemoveItemFromCommunity', [
 
 				$scope.sending = false;
 				$rootScope.globalLoading = false;
-				Notify.addSingleTranslate('NOTIFY.POST_REMOVE_FROM_COMMUNITY_FAILED', Notify.T_ERROR, '.notify-report-container');
 			});
 		};
 

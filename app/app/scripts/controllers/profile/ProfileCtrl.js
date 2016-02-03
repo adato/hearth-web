@@ -249,9 +249,6 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			}, function(err) {
 				// remove lock
 				$scope.sendingRating = false;
-
-				// handle error
-				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 			});
 		};
 

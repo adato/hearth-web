@@ -15,13 +15,19 @@ angular.module('hearth.services').factory('CommunityApplicants', [
 			applicantId: '@applicantId'
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_APPLY_FAILED'
+				}
 			},
 			show: {
 				method: 'GET'
 			},
 			remove: {
-				method: 'DELETE'
+				method: 'DELETE',
+				errorNotify: {
+					code: 'NOTIFY.COMMUNITY_REJECT_FAILED'
+				}
 			},
 			query: {
 				method: 'GET',

@@ -56,10 +56,7 @@ angular.module('hearth.controllers').controller('ResetPwdCtrl', [
 				$location.url("/login");
 			}
 
-			function onError() {
-				Notify.addSingleTranslate('NOTIFY.NEW_PASS_FAILED', Notify.T_ERROR, '.reset-pass-notify-container');
-			}
-			return Auth.resetPassword($scope.token, data.password, onSuccess, onError);
+			return Auth.resetPassword($scope.token, data.password, onSuccess);
 		};
 
 		/**

@@ -18,10 +18,7 @@ angular.module('hearth.directives').directive('emailValidator', ['Email', '$q',
 						email: value
 					}, function(ok) {
 						// email exists, ie is already registered
-						if (ok.ok === true)
-							def.reject();
-						else
-							def.resolve();
+						def.reject();
 					}, function(err) {
 						// can be registered
 						def.resolve();

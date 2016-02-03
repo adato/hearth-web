@@ -11,10 +11,6 @@ angular.module('hearth.controllers').controller('NewMessage', [
 	function($scope, $rootScope, Notify, $timeout) {
 		var timeout = null;
 
-		$scope.onError = function(err) {
-			Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_FAILED', Notify.T_ERROR, '.notify-new-message-container');
-		};
-
 		$scope.onSuccess = function() {};
 
 		$scope.close = function(res) {

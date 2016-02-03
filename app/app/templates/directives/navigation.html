@@ -28,7 +28,7 @@
 				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
 					<span class="messages-icon"></span>
 					{{ 'TOP_BAR_MESSAGES' | translate }}
-					<span ng-if="messagesCounters.unread > 0" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
+					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
 			<li ng-show="!loggedUser.name">
@@ -56,7 +56,7 @@
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li ng-repeat="item in myAdminCommunities">
-				<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}" ng-click="mixpanelTrack(item)">
+				<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}" ng-click="mixpanelTrack(item, 'Mobile')">
 					<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 					<span class="name">{{ item.name | ellipsis:12}}</span>
 				</a>
@@ -192,7 +192,11 @@
 
 				<span class="top-bar-messages">
 					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
-						<span class="messages-icon">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
+						<span class="messages-icon">
+							<span ng-if="messagesCounters.unread">
+								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
+							</span>
+						</span>
 						<label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
 					</a>
 				</span>
@@ -218,7 +222,7 @@
 
 						<li class="divider" ng-if="myAdminCommunities.length"></li>
 						<li ng-repeat="item in myAdminCommunities">
-							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{item.name}}" ng-click="mixpanelTrack(item)">
+							<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{item.name}}" ng-click="mixpanelTrack(item, 'Desktop')">
 								<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 								<span class="name">{{ item.name | ellipsis:12}}</span>
 							</a>
