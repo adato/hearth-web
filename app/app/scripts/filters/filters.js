@@ -153,12 +153,44 @@ angular.module('hearth.filters', [])
 	.filter('minMax', function() {
 		return function(input, min, max, postfix, blank) {
 			var val = parseInt(input);
+			var out = '';
+
 			if (!postfix && postfix != '') postfix = '+';
 			if (val < min)
-				return blank ? '' : min;
-			if (val > max)
-				return max + postfix;
-			return input;
+				out = blank ? '' : min;
+			else if (val > max)
+				out = max + postfix;
+			else
+				out = val;
+
+			// this will check if count is null, if yes we will return original value
+			// and track error to rollbar
+			if (isNaN(out)) {
+				var err = {
+					min: min,
+					max: max,
+					postfix: postfix,
+					blank: blank,
+					val: val,
+					out: out
+				};
+
+				console.log('Messages count is NaN | In:', input,
+					'Min:', min,
+					'Max:', max,
+					'Postfix:', postfix,
+					'Blank:', blank,
+					'Val:', val,
+					'Out:', out);
+
+				Rollbar.error("HEARTH: Error while displaying minmax count value (eg. messages count)", {
+					errorData: err,
+				});
+
+				out = input;
+			}
+
+			return out;
 		}
 	})
 	.filter('highlight', function($sce) {
