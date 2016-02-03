@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -29,6 +29,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			gplus: 'https://plus.google.com/share?url=',
 			twitter: 'https://twitter.com/share?url='
 		};
+
+		// enable $state to be used in tempaltes
+		$rootScope.$state = $state;
+		//$rootScope.$on('$stateChangeNotFound')
 
 		$rootScope.missingPost = false;
 		$rootScope.cacheInfoBox = {};
@@ -554,20 +558,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 
 		/**
-		 * Function will remove reminder from users reminders
-		 */
-		$rootScope.removeReminder = function(type) {
-			User.removeReminder({
-				_id: $rootScope.loggedUser._id,
-				type: type
-			}, function() {
-				Auth.refreshUserInfo();
-				$rootScope.loggedUser.reminders.splice(type, 1);
-			});
-		};
-
-
-		/**
 		 * Function will add item to users bookmarks
 		 */
 		$rootScope.addItemToBookmarks = function(post) {
@@ -576,10 +566,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
-
-			if ($rootScope.loggedUser.reminders.indexOf('bookmark') > -1) {
-				$rootScope.removeReminder('bookmark');
-			}
 
 			UserBookmarks.add({
 				'postId': post._id

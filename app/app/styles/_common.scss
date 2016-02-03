@@ -485,3 +485,10 @@ button[disabled],
 #fb-root>.fb_dialog {
 	z-index:100000 !important; // set higher than 999999 (which is ngdialog)
 }
+
+.exit-off-canvas{
+	transition: .5s all;
+}
+.no-scroll .exit-off-canvas{
+	background-color: rgba(0,0,0,.7) !important;
+}
