@@ -196,6 +196,14 @@
 									<span ng-if="!$last">,&nbsp;</span>
 								</span>
 							</div>
+							<div class='descr' ng-if="(profile.email || profile.contact_email)">
+								<i class="fa fa-fw fa-envelope"></i>
+								<a href='mailto:{{:: profile.email}}' class='display-block'>{{:: profile.email}}</a>
+								<a ng-if='profile.contact_email' href='mailto:{{:: profile.contact_email}}' class='display-block'>{{:: profile.contact_email}}</a>
+							</div>
+							<div class='descr' ng-if="profile.phone">
+								<i class="fa fa-fw fa-phone"></i>&nbsp;{{:: profile.phone}}
+							</div>
 							<div class="descr" ng-if="profile.webs.length && profile.webs[0]">
 								<i class="fa fa-link"></i>
 								<span ng-repeat="(code, web) in profile.webs">
