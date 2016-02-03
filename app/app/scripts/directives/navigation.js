@@ -29,6 +29,12 @@ angular.module('hearth.directives').directive('navigation', [
 					});
 				};
 
+				$scope.mixpanelTrackMenu = function() {
+					$analytics.eventTrack('Mobile menu clicked', {
+						'context': $state.current.name
+					});
+				};
+
 				$scope.closeFilter = function() {
 					$(document).off("click", $scope.closeFilter);
 					$(document).unbind("keyup", $scope.watchFilterKey);
