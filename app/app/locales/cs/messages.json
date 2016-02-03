@@ -1,6 +1,8 @@
 {
 	"DAYS_AGO": "před %d dny",
 	"HOURS_AGO": "před %d hodinami",
+	"ERR_NOT_FILLED_NAME": "Vyplňte své jméno",
+	"NAME_PLACEHOLDER": "Jméno",
 	"MINUTES_AGO": "před %d minutami",
 	"MONTHS_AGO": "před %d měsíci",
 	"YEARS_AGO": "před %d lety",
