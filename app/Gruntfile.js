@@ -671,6 +671,10 @@ module.exports = function(grunt) {
 				src: '.tmp/concat/scripts.js',
 				dest: '<%= yeoman.dist %>/scripts/scripts.min.js'
 			},
+			scriptsMinMap: {
+				src: '.tmp/concat/scripts.js.map',
+				dest: '<%= yeoman.dist %>/scripts/scripts.min.js.map'
+			},
 			configMin: {
 				src: '.tmp/concat/config.js',
 				dest: '<%= yeoman.dist %>/scripts/config.min.js'
@@ -726,7 +730,7 @@ module.exports = function(grunt) {
 					sourceMapIn: '.tmp/concat/scripts.js.map'
 				},
 				files: {
-					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
+					'.tmp/concat/scripts.js': ['.tmp/concat/scripts.js']
 				}
 			},
 			config: {
@@ -883,7 +887,7 @@ module.exports = function(grunt) {
 		'rename:analytics', // move analytics.js to ./tmp concat folder
 		'rename:newRelic', // move newrelic.js to ./tmp concat folder
 		'rename:rollbar', // move rollbar.js to ./tmp concat folder
-		// 'preprocess',  // ???
+		'preprocess',  // ???
 		// 'ngmin',
 		// 'cdnify',
 		// 'cssmin', // minify css files
@@ -892,14 +896,16 @@ module.exports = function(grunt) {
 		'html2js:main', // merge all templates to one js file
 		'concat:scripts',
 		'concat:config',
-		// 'replace:tmplMinify', // minify merged templates
+		'replace:tmplMinify', // minify merged templates
 		'concat:tmpl', // concat templates merged to JS into scripts
+		// 'uglify:scripts',
+		'uglify:config',
 		// 'rename:tmplMin',			// move templates to dist folder
 		'replace:dist', // inject angular module for merged templates
 		'rename:scriptsMin', // use instead of uglify for debug purpose
-		// 'rename:configMin', // use instead of uglify for debug purpose
-		'uglify:config',
-		// 'cacheBust'
+		'rename:scriptsMinMap', // use instead of uglify for debug purpose
+		'rename:configMin', // use instead of uglify for debug purpose
+		'cacheBust'
 	]);
 
 	grunt.registerTask('default', [
