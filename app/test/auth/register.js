@@ -58,12 +58,15 @@ describe('hearth registration', function () {
 		expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
 		emailInput.sendKeys(protractor.Key.TAB);
+		expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
 		expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeTruthy();
+		expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
+		expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
 		emailInput.sendKeys('tester', protractor.Key.TAB);
-		expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeFalsy();
-		expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
 		expect(element(by.css('[ng-show="registerForm.email.$error.email"]')).isDisplayed()).toBeTruthy();
+		expect(element(by.css('[ng-show="registerForm.email.$error.required"]')).isDisplayed()).toBeFalsy();
+		expect(element(by.css('[ng-show="registerForm.email.$error.used"]')).isDisplayed()).toBeFalsy();
 		expect(element(by.css('[ng-show="apiErrors.email"]')).isDisplayed()).toBeFalsy();
 
 		emailInput.clear();
