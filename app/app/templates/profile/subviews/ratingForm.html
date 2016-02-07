@@ -15,7 +15,7 @@
 			<div class="padding-bottom-3">
 				{{:: 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
 			</div>
-			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id" ng-change="log">
+			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 				<option value="" ng-selected="true">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
 					{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{:: post.title | ellipsis:40 }}
