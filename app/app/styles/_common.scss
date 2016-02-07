@@ -375,13 +375,15 @@ textarea::-ms-clear {
 	}
 }
 	
-.padding-small{padding: .625rem;}
-.padding-small-vertical{padding-top: .625rem; padding-bottom: .625rem;}
-.padding-small-horizontal{padding-right: .625rem; padding-left: .625rem;}
-.padding-medium{padding: 1rem;}
-.padding-medium-vertical{padding-top: 1rem; padding-bottom: 1rem;}
-.padding-medium-horizontal{padding-right: 1rem; padding-left: 1rem;}
-.padding-large{padding: 1.5625rem;}
+.padding-small{padding: $size-small;}
+.padding-small-vertical{padding-top: $size-small; padding-bottom: $size-small;}
+.padding-small-horizontal{padding-right: $size-small; padding-left: $size-small;}
+
+.padding-medium{padding: $size-medium;}
+.padding-medium-vertical{padding-top: $size-medium; padding-bottom: $size-medium;}
+.padding-medium-horizontal{padding-right: $size-medium; padding-left: $size-medium;}
+
+.padding-large{padding: 1$size-large;}
 
 .padding-top {
 	padding-top: 1rem;
