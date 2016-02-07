@@ -19,6 +19,30 @@
 		<navigation ng-if="initFinished"></navigation>
 		<a class="exit-off-canvas" ng-click='toggleSidebar(false)'></a>
 	</div>
+
+	<div id='language-panel' class='padding-small-horizontal padding-medium-vertical' style='display: none'>
+		<ul class='styled-list' ng-controller='LanguageChangeCtrl as languageChange'>
+			<li class='list-item' ng-if='languageChange.currentLanguage != "cs"'>
+				<a ng-click='languageChange.switchLang("cs")'>
+					<i class='flag flag-cs'></i>
+					<span translate='LANGUAGE.CZECH'></span>
+				</a>
+			</li>
+			<li class='list-item' ng-if='languageChange.currentLanguage != "en"'>
+				<a ng-click='languageChange.switchLang("en")'>
+					<i class='flag flag-en'></i>
+					<span translate='LANGUAGE.ENGLISH'></span>
+				</a>
+			</li>
+			<li class='list-item' ng-if='languageChange.currentLanguage != "sk"'>
+				<a ng-click='languageChange.switchLang("sk")'>
+					<i class='flag flag-sk'></i>
+					<span translate='LANGUAGE.SLOVAK'></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
 	<div class="inner-wrap">
 		<section id="homepage-hero">
 			<div id="notify-offset-container"></div>

@@ -109,6 +109,7 @@
 			</li>
 		</ul>
 	</aside>
+
 	<div class="header">
 
 		<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
@@ -131,17 +132,13 @@
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
 				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
 			<span class="small-icons">
+				<div class='fa-stack language-small-wrapper' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
+					<i class='fa fa-square fa-stack-2x'></i>
+					<i class='fa fa-globe fa-stack-1x fa-inverse'></i>
+				</div>
 				<i class="fa fa-plus-square" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				<i id="searchIcon" class="fa fa-search" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 			</span>
-
-			<div id='header-language-selector' class='inline-block vertical-align-top fright' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
-				<div class='flag-btn btn'>
-					<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")' ng-if='languageChange.currentLanguage != "cs"'></i>
-					<i class='flag flag-en pointer margin-left-10' ng-click='languageChange.switchLang("en")' ng-if='languageChange.currentLanguage != "en"'></i>
-					<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")' ng-if='languageChange.currentLanguage != "sk"'></i>
-				</div>
-			</div>
 			<div class="clear"></div>
 		</nav>
 
@@ -185,13 +182,6 @@
 			</section>
 
 			<section class="bar-columns icons-column">
-				<div id='header-language-selector' class='inline-block vertical-align-top margin-top-10' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
-					<div class='flag-btn btn'>
-						<i class='flag flag-cs pointer' ng-click='languageChange.switchLang("cs")' ng-if='languageChange.currentLanguage != "cs"'></i>
-						<i class='flag flag-en pointer margin-left-10' ng-click='languageChange.switchLang("en")' ng-if='languageChange.currentLanguage != "en"'></i>
-						<i class='flag flag-sk pointer margin-left-10' ng-click='languageChange.switchLang("sk")' ng-if='languageChange.currentLanguage != "sk"'></i>
-					</div>
-				</div>
 				<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
 					<div class="fa icon-marketplace"></div>
 					<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
@@ -203,6 +193,32 @@
 				</a>
 
 				<div class="top-bar-separator"></div>
+				<span class='dropdown-container' ng-if='!(loggedUser._id)'>
+					<a hover="true" dropdown="#language-drop">
+						<i class='fa fa-globe fa-inverse'></i>
+						<label translate='TOP_BAR_LANGUAGE'></label>
+					</a>
+					<ul class='dropdown' id='language-drop' ng-controller='LanguageChangeCtrl as languageChange'>
+						<li ng-if='languageChange.currentLanguage != "cs"'>
+							<a ng-click='languageChange.switchLang("cs")'>
+								<i class='flag flag-cs'></i>
+								<span translate='LANGUAGE.CZECH'></span>
+							</a>
+						</li>
+						<li ng-if='languageChange.currentLanguage != "en"'>
+							<a ng-click='languageChange.switchLang("en")'>
+								<i class='flag flag-en'></i>
+								<span translate='LANGUAGE.ENGLISH'></span>
+							</a>
+						</li>
+						<li ng-if='languageChange.currentLanguage != "sk"'>
+							<a ng-click='languageChange.switchLang("sk")'>
+								<i class='flag flag-sk'></i>
+								<span translate='LANGUAGE.SLOVAK'></span>
+							</a>
+						</li>
+					</ul>
+				</span>
 
 				<span class="top-bar-messages">
 					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
@@ -248,6 +264,7 @@
 						</li>
 					</ul>
 				</span>
+
 				<span class="dropdown-container">
 					<a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'terms', 'feedback'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
 						<div class="fa fa-question-circle"></div>
@@ -307,6 +324,7 @@
 					</div>
 				</a>
 			</section>
+
 			<div class="clear"></div>
 		</nav>
 	</div>

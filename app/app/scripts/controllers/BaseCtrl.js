@@ -820,7 +820,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$(document).on('click.search', function(e) {
 					var element = $(e.target);
 					if (!element.parents('#searchContainer').length && !element.is('#searchContainer') && !element.is('#searchIcon')) {
-						$('#searchIcon').click();
+						$timeout($rootScope.toggleSearchBar);
 					}
 				});
 			} else {

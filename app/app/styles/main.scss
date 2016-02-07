@@ -114,6 +114,11 @@ $fontSize: rem-calc(14);
 @import "fancyBox";
 @import "flags";
 @import "v2Style";
+
+/*temp until css refactor*/
+@import "languageSelection";
+/* /temp */
+
 //@import "fileViewer";
 //@import "bubble";
 body {

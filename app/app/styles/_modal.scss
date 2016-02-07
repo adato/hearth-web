@@ -76,6 +76,7 @@
 		margin-bottom: 4%;
 	    margin-left: auto;
 	    margin-right: auto;
+		padding: .5rem;
 	}
 	.ngdialog-close {
 		border-radius: 5px;
@@ -434,4 +435,10 @@ body.ngdialog-open {
 		text-align: right;
 	    font-weight: bold;
 	}
+}
+
+.styled-modal{
+	width: 400px;
+	max-width: 95%;
+	padding: .5rem 0;
 }

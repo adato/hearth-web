@@ -374,6 +374,16 @@ textarea::-ms-clear {
 		top: 50%;
 	}
 }
+	
+.padding-small{padding: $size-small;}
+.padding-small-vertical{padding-top: $size-small; padding-bottom: $size-small;}
+.padding-small-horizontal{padding-right: $size-small; padding-left: $size-small;}
+
+.padding-medium{padding: $size-medium;}
+.padding-medium-vertical{padding-top: $size-medium; padding-bottom: $size-medium;}
+.padding-medium-horizontal{padding-right: $size-medium; padding-left: $size-medium;}
+
+.padding-large{padding: 1$size-large;}
 
 .padding-top {
 	padding-top: 1rem;
@@ -482,6 +492,17 @@ button[disabled],
 	}
 }
 
+.styled-list{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	.list-item{
+		margin: 0;
+		padding: .3125rem;
+		list-style: none;
+	}
+}
 #fb-root>.fb_dialog {
 	z-index:100000 !important; // set higher than 999999 (which is ngdialog)
 }
