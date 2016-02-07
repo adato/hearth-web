@@ -48,6 +48,25 @@
 .inline-block {
 	display: inline-block;
 }
+.inline-block-i{
+	display: inline-block !important;
+}
+.overflow-hidden{
+	overflow: hidden
+}
+.display-table{
+	display: table;
+	width: 100%;
+}
+.display-table-row{
+	display: table-row;
+}
+.display-table-cell{
+	display: table-cell;
+	&.addon{
+		width: 1%;
+	}
+}
 
 .box {
 	background-color: white;
@@ -106,7 +125,7 @@ a.link {
 	opacity: 1;
 	cursor: pointer;
 	background-color: color(5);
-	min-width: unset!important;
+	min-width: initial !important;
 	&:hover,
 	&:focus {
 		background-color: darken(color(5), abs($button-function-factor));
@@ -355,6 +374,14 @@ textarea::-ms-clear {
 		top: 50%;
 	}
 }
+	
+.padding-small{padding: .625rem;}
+.padding-small-vertical{padding-top: .625rem; padding-bottom: .625rem;}
+.padding-small-horizontal{padding-right: .625rem; padding-left: .625rem;}
+.padding-medium{padding: 1rem;}
+.padding-medium-vertical{padding-top: 1rem; padding-bottom: 1rem;}
+.padding-medium-horizontal{padding-right: 1rem; padding-left: 1rem;}
+.padding-large{padding: 1.5625rem;}
 
 .padding-top {
 	padding-top: 1rem;
@@ -473,4 +500,14 @@ button[disabled],
 		padding: .3125rem;
 		list-style: none;
 	}
+}
+#fb-root>.fb_dialog {
+	z-index:100000 !important; // set higher than 999999 (which is ngdialog)
+}
+
+.exit-off-canvas{
+	transition: .5s all;
+}
+.no-scroll .exit-off-canvas{
+	background-color: rgba(0,0,0,.7) !important;
 }

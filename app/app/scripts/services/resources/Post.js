@@ -26,14 +26,20 @@ angular.module('hearth.services').factory('Post', [
 			emailShare: {
 				url: $$config.apiPath + '/posts/:postId/email_share',
 				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.EMAIL_SHARING_FAILED',
+					container: '.notify-report-container'
+				}
 			},
 			suspend: {
 				url: $$config.apiPath + '/posts/:postId/suspend',
-				method: 'PUT'
+				method: 'PUT',
+				errorNotify: false // special handler - will open modal window to edit before suspend
 			},
 			resume: {
 				url: $$config.apiPath + '/posts/:postId/resume',
-				method: 'PUT'
+				method: 'PUT',
+				errorNotify: false // special handler - will open modal window to edit before resume
 			},
 			publish: {
 				url: $$config.apiPath + '/posts/:postId/publish',
@@ -57,22 +63,41 @@ angular.module('hearth.services').factory('Post', [
 			add: {
 				method: 'PUT',
 				url: $$config.apiPath + '/posts/:postId/finish',
+				errorNotify: {
+					code: 'NOTIFY.POST_EDIT_FAILED',
+					container: '.edit-post-notify-container'
+				}
 				// headers: {'Content-Type': 'multipart/form-data'}
 			},
 			update: {
 				method: 'PUT',
+				errorNotify: {
+					code: 'NOTIFY.POST_EDIT_FAILED',
+					container: '.edit-post-notify-container'
+				}
 				// headers: {'Content-Type': 'multipart/form-data'}
 			},
 			remove: {
-				method: 'DELETE'
+				method: 'DELETE',
+				errorNotify: {
+					code: 'NOTIFY.POST_DELETED_FAILED',
+				}
 			},
 			communityRemove: {
 				url: $$config.apiPath + '/posts/:postId/communities/remove',
-				method: 'DELETE'
+				method: 'DELETE',
+				errorNotify: {
+					code: 'NOTIFY.POST_REMOVE_FROM_COMMUNITY_FAILED',
+					container: '.notify-report-container'
+				}
 			},
 			spam: {
 				url: $$config.apiPath + '/posts/:postId/spam',
-				method: 'PUT'
+				method: 'PUT',
+				errorNotify: {
+					code: 'NOTIFY.POST_SPAM_REPORT_FAILED',
+					container: '.notify-report-container'
+				}
 			}
 		});
 	}

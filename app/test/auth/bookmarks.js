@@ -39,12 +39,33 @@ describe('hearth bookmarks', function() {
 		expect(notify.isPresent()).toBeTruthy();
 	});
 
+
+	it('should be able to make a bookmark on post detail', function() {
+		
+		var elAll = element.all(by.className('post-on-market')).get(3);
+		var postDetailLink = elAll.element(by.css('h1>a'));
+
+		var elPostDetail = element(by.css('.item-detail-page .post-detail'));
+		var dropdownBookmarkLink = elPostDetail.all(by.css('div.more-actions-dropdown>a')).get(0);
+		var dropdownArrow = elPostDetail.element(by.css('a.action-dropdown'));
+		var notify = element(by.css('#notify-top>.alert-box'));
+
+		expect(notify.isPresent()).toBeFalsy();
+		postDetailLink.click().then(function () {
+			// on post detail
+			dropdownArrow.click();
+			dropdownBookmarkLink.click();
+			browser.sleep(500);
+			expect(notify.isPresent()).toBeTruthy();
+		});
+	});
+
 	it('should be able to go to profile and see bookmarked items', function() {
 		// navigate to profile through top menu
 		navigateToMyFav();
 
 		var marketItems = element.all(by.className('post-on-market'));
-		expect(marketItems.count()).toBe(1);
+		expect(marketItems.count()).toBe(2); // count items
 
 	});
 
@@ -56,6 +77,9 @@ describe('hearth bookmarks', function() {
 		var dropdownBookmarkLink = elAll.all(by.css('div.more-actions-dropdown>a')).get(0);
 		var dropdownArrow = elAll.element(by.css('a.action-dropdown'))
 		var notify = element(by.css('#notify-top>.alert-box'))
+		var marketItems = element.all(by.className('post-on-market'));
+
+		expect(marketItems.count()).toBe(2); // count items
 
 		expect(notify.isPresent()).toBeFalsy();
 		expect(expectedDropdown.isDisplayed()).toBeFalsy();
@@ -65,7 +89,6 @@ describe('hearth bookmarks', function() {
 		browser.sleep(500);
 		expect(notify.isPresent()).toBeTruthy();
 
-		var marketItems = element.all(by.className('post-on-market'));
-		expect(marketItems.count()).toBe(0);
+		expect(marketItems.count()).toBe(1); // count items
 	});
 });

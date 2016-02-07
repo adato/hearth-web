@@ -13,11 +13,22 @@
 					<div>{{:: info.about | ellipsis:80}}</div>
 				</div>
 				<div ng-if="info.interests.length && info.interests[0]">
-					<i class="fa fa-heart"></i> {{:: info.interests.join(', ')}}</div>
+					<i class="fa fa-fw fa-heart"></i>{{:: info.interests.join(', ')}}
+				</div>
 				<div ng-if="info.work">
-					<i class="fa fa-suitcase"></i> {{:: info.work}}</div>
+					<i class="fa fa-fw fa-suitcase"></i>{{:: info.work}}
+				</div>
+				<div ng-if=":: (info.email || info.contact_email)">
+					<i class="fa fa-fw fa-envelope"></i>
+					<a ng-if=':: info.email' href='mailto:{{::info.email}}'>{{:: info.email}}</a>
+					<span ng-if=':: (info.email && info.contact_email)'>|</span>
+					<a ng-if=':: info.contact_email' href='mailto:{{:: info.contact_email}}'>{{:: info.contact_email}}</a>
+				</div>
+				<div ng-if="info.phone">
+					<i class="fa fa-fw fa-phone"></i>{{:: info.phone}}
+				</div>
 				<div ng-if="info.locations.length && info.locations[0].short_address">
-					<i class="fa fa-map-marker"></i> {{:: 'you-will-find-me' | translate}}
+					<i class="fa fa-fw fa-map-marker"></i>{{:: 'you-will-find-me' | translate}}
 					<span ng-repeat="location in info.locations">
 						<span ng-if="location.short_address">{{:: location.short_address}}
 							<span ng-if="!$last">, </span>
@@ -29,17 +40,17 @@
 			<div class="links">
 				<section class="columns large-6 small-6 medium-6 links">
 					<div ng-if="info.facebook || info.googleplus || info.twitter || info.linkedin" class="social">
-						<a ng-if="info.facebook" class="fa fa-facebook-square" title="Facebook" href="{{:: info.facebook}}" target="_blank"></a>
-						<a ng-if="info.googleplus" class="fa fa-google-plus-square" title="Google+" href="{{:: info.googleplus}}" target="_blank"></a>
-						<a ng-if="info.twitter" class="fa fa-twitter-square " title="Twitter" href="{{:: info.twitter}}" target="_blank"></a>
-						<a ng-if="info.linkedin" class="fa fa-linkedin-square" title="LinkedIn" href="{{:: info.linkedin}}" target="_blank"></a>
-						<div>
+						<a ng-if="info.facebook" class="fa fa-fw fa-facebook-square" title="Facebook" href="{{:: info.facebook}}" target="_blank"></a>
+						<a ng-if="info.googleplus" class="fa fa-fw fa-google-plus-square" title="Google+" href="{{:: info.googleplus}}" target="_blank"></a>
+						<a ng-if="info.twitter" class="fa fa-fw fa-twitter-square " title="Twitter" href="{{:: info.twitter}}" target="_blank"></a>
+						<a ng-if="info.linkedin" class="fa fa-fw fa-linkedin-square" title="LinkedIn" href="{{:: info.linkedin}}" target="_blank"></a>
+					</div>
 				</section>
 				<section class="columns large-6 small-6 medium-6 profil-link text-right">
 					<a ng-href="{{:: getProfileLink(info._type, info._id)}}">{{:: 'WHOLE_PROFILE' | translate}}</a>
 				</section>
-				</div>
+			</div>
 		</article>
-		</div>
-		<ng-transclude></ng-transclude>
-		</div>
+	</div>
+	<ng-transclude></ng-transclude>
+</div>

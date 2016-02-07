@@ -14,7 +14,11 @@ angular.module('hearth.services').factory('UserRatings', [
 			user_id: '@id'
 		}, {
 			add: {
-				method: 'POST'
+				method: 'POST',
+				errorNotify: {
+					code: 'NOTIFY.USER_RATING_FAILED',
+					container: '.rating-notify-box'
+				}
 			},
 			get: {
 				method: 'GET',

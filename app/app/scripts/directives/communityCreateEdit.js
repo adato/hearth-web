@@ -135,12 +135,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					}, function(res) {
 						$scope.sending = false;
 						$rootScope.globalLoading = false;
-
-						// and show another based on what we wanted to do
-						if ($scope.community._id)
-							Notify.addSingleTranslate('NOTIFY.COMMUNITY_UPDATE_FAILED', Notify.T_ERROR);
-						else
-							Notify.addSingleTranslate('NOTIFY.COMMUNITY_CREATE_FAILED', Notify.T_ERROR);
 					});
 				};
 
@@ -173,7 +167,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						function(res) {
 							$scope.sendingDelegation = false;
 							$rootScope.globalLoading = false;
-							Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_FAILED', Notify.T_ERROR);
 						});
 				};
 
@@ -212,9 +205,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						$scope.reloadToPath('/communities', needReload);
 
 					}, function(res) {
-
 						$rootScope.globalLoading = false;
-						Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_FAILED', Notify.T_ERROR);
 						$scope.sendingDelete = false;
 					});
 				};

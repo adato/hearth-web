@@ -49,6 +49,40 @@ article.post-on-market {
 	.ad-date {
 		color: color(3);
 	}
+
+	.post-detail.offer:before, .post-detail.need:before {
+		content:"";
+		display:block;
+		width:40px;
+		height:40px;
+		position:absolute;
+		left:-21px;
+		margin-top:2px;
+	}
+	@media #{$medium-only} {
+		.post-detail.offer:before, .post-detail.need:before {
+			width: 20px;
+			height: 20px;
+			left: -9px;
+			top:36px;
+		}
+	}
+	@media #{$small-only} {
+		.post-detail.offer:before, .post-detail.need:before {
+			width: 20px;
+			height: 20px;
+			left: 70px;
+			top: 34px;
+		}
+	}
+	.post-detail.offer:before {
+		background:url(/app/images/arrow-give.svg);
+		background-size:100%;
+	}
+	.post-detail.need:before {
+		background:url(/app/images/arrow-receive.svg);
+		background-size:100%;
+	}
 }
 
 .item-common {
@@ -150,10 +184,10 @@ article.post-on-market {
 		}
 		.close {
 			color: white;
-			font-size: 20px;
+			font-size: 25px;
 			position: absolute;
-			top: 10px;
-			right: 10px;
+			top: 25px;
+			right: 23px;
 		}
 	}
 

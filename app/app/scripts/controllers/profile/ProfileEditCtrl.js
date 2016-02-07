@@ -30,9 +30,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			UnauthReload.check();
 
 			// $scope.initLocations();
-			User.get({
-				_id: $rootScope.loggedUser._id
-			}, function(res) {
+			User.getFullInfo(function(res) {
 				$scope.profile = $scope.transformDataIn(res);
 				$scope.loaded = true;
 
@@ -168,8 +166,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			}, function(res) {
 				$rootScope.globalLoading = false;
-
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_FAILED', Notify.T_ERROR);
 				$scope.sending = false;
 			});
 		};

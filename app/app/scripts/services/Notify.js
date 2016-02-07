@@ -6,8 +6,8 @@
  * @description Notification service
  */
 
-angular.module('hearth.services').service('Notify', [
-	'$translate',
+angular.module('hearth.services').service('Notify', ['$translate',
+
 	function($translate) {
 		var tmpl = '<div data-alert class="alert-box $$type radius"><div class="alert-inner">$$text<i class="close">&times;</i></div></div>';
 		var notifyTypes = {
@@ -179,6 +179,26 @@ angular.module('hearth.services').service('Notify', [
 			});
 
 			return false;
+		};
+
+		this.onResourceError = function(rejection) {
+			var errorCodes = [500, 422];
+			var config = typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify;
+
+			// allow interceptor only for few 
+			if (errorCodes.indexOf(rejection.status) < 0 || config === false) {
+				console.log('Rejecting interceptor - disabled or unallowed status code', rejection.status);
+				return;
+			}
+
+			console.log('Config: ', config);
+			console.log('Rejection: ', rejection);
+
+			// if container does not exists, use default
+			if (config.container && !$(config.container).is(':visible'))
+				config.container = null;
+
+			self.addSingleTranslate(config.code || 'NOTIFY.API_ERROR', config.type || self.T_ERROR, config.container || null);
 		};
 
 		return this;

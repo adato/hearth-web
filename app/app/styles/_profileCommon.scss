@@ -772,6 +772,9 @@
 		text-align: center;
 		margin: 20px;
 	}
+	.post-detail.offer:before, .post-detail.need:before {
+		display:none !important;
+	}
 }
 
 .profile-button {
@@ -881,4 +884,41 @@
 
 .no-result {
 	margin-bottom: $ui-grid-size;
+}
+
+.karma-wrapper{
+	margin-top: .5rem;
+	padding: 0;
+	max-width: 600px;
+	border-radius: 8px;
+	overflow: hidden;
+}
+.karma-alt{
+	display: table;
+	width: 100%;
+	height: 25px;
+	color: #f4f4f4;
+	background-color: #7c766a;
+	
+	.karma-block{
+		display: table-cell;
+		white-space: nowrap;
+		padding: 0 .625rem;
+		line-height: 25px;
+		box-shadow: 0 0 .8125rem 0 rgba(30, 30, 30, .3) inset;
+		&.empty{
+			width: 100%;
+		}
+		&.positive {
+			background: #58af08;
+			background: linear-gradient(210deg, #58af08, #b5f561);
+			text-align: right;
+			font-weight: bold;
+		}
+		&.negative {
+			background: #275f80;
+			background: linear-gradient(30deg, #275f80, #4ca5c7);
+			font-weight: bold;
+		}
+	}
 }

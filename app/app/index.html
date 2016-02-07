@@ -51,7 +51,7 @@
 	<script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script>
 </head>
 
-<body ng-controller="BaseCtrl" ng-init="init()" ng-class="'page-'+pageName+' '+(isOfflineMode ? 'offline': '')" ng-keydown="escapeKey($event)">
+<body ng-controller="BaseCtrl" ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': '')), (leftSidebarShown ? 'no-scroll' : '')]" ng-keydown="escapeKey($event)">
 	<script type="text/javascript">
 		// scripts to be loaded sooner
 		preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
@@ -111,6 +111,7 @@
 	<!-- build:js /app/scripts/scripts.min.js -->
 	<script src="scripts/bootstrap.js"></script>
 	<script src="scripts/utils/oms.min.js"></script>
+	<script src="scripts/utils/jqueryQueryParams.js"></script>
 	<script src="scripts/utils/device.js"></script>
 	<script src="scripts/rollbar.js"></script>
 	<script src="scripts/app.js"></script>
@@ -154,6 +155,7 @@
 	<script src="scripts/services/$feature.js"></script>
 	<script src="scripts/services/$session.js"></script>
 	<script src="scripts/services/ApiHealthChecker.js"></script>
+	<script src="scripts/services/ApiErrorInterceptor.js"></script>
 	<script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
 	<script src="scripts/services/Auth.js"></script>
 	<script src="scripts/services/Errors.js"></script>
@@ -249,6 +251,7 @@
 	<script src="scripts/directives/karmaBar.js"></script>
 	<script src="scripts/directives/selectOnFocus.js"></script>
 	<script src="scripts/directives/inputMaxLength.js"></script>
+	<script src="scripts/directives/privacySelector.js"></script>
 	<script src="scripts/utils/ExifRestorer.js"></script>
 	<script src="scripts/utils/timeAgo.js"></script>
 	<script src="scripts/utils/apiPrefix.js"></script>

@@ -89,6 +89,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			Auth.isLoggedIn() && Messenger.loadCounters();
 			ngDialog.close();
 
+			//close small-resolution menu
+			$rootScope.leftSidebarShown = false;
+
 			if (!$rootScope.pageChangeWithScroll) {
 				// dont scroll top after page change
 				$rootScope.pageChangeWithScroll = true;
@@ -428,7 +431,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			$timeout(function() {
 				itemEditOpened = false;
-			}, 1000);
+			}, 2000);
 
 			if (!Auth.isLoggedIn())
 				return $rootScope.showLoginBox(true);
@@ -485,7 +488,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				cb && cb(post); // if callback given, call it
 			}, function() {
 				$rootScope.globalLoading = false;
-				Notify.addSingleTranslate('NOTIFY.POST_DELETED_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -747,11 +749,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 					// somethings went wrong - post is not valid
 					// open edit box and show errors
 					$rootScope.editItem(item, true);
-				} else {
-
-					Notify.addSingleTranslate('NOTIFY.POST_UPDAT_FAILED', Notify.T_ERROR);
 				}
 			});
+		};
+
+		// small-resolution menu toggle
+		$rootScope.toggleSidebar = function(param) {
+			$rootScope.leftSidebarShown = (param !== void 0 ? param : !$rootScope.leftSidebarShown);
 		};
 
 		$rootScope.receivedRepliesAfterLoadHandler = function(data, scope) {
@@ -812,7 +816,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$(document).on('click.search', function(e) {
 					var element = $(e.target);
 					if (!element.parents('#searchContainer').length && !element.is('#searchContainer') && !element.is('#searchIcon')) {
-						$('#searchIcon').click();
+						$timeout($rootScope.toggleSearchBar);
 					}
 				});
 			} else {

@@ -48,8 +48,6 @@ angular.module('hearth.directives').directive('ratingReply', [
 						scope.rating.comment = res;
 						scope.closeReply();
 						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_SUCCESS', Notify.T_SUCCESS);
-					}, function(err) {
-						Notify.addSingleTranslate('NOTIFY.RATING_REPLY_FAILED', Notify.T_ERROR);
 					});
 				};
 			}

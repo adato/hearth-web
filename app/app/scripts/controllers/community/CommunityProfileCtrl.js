@@ -9,7 +9,7 @@
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle',
 	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle) {
-		$scope.loaded = false;
+		$scope.profileLoaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
 		$scope.loadingCounter = 0; // subpage will load only when there is no other request for top panel data
@@ -36,23 +36,22 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			// if we load profile of another user (there are different IDs) scroll to top
 			if ($scope.info._id !== $stateParams.id) {
 				$rootScope.top(0, 1);
-				$scope.loaded = false;
+				$scope.profileLoaded = false;
 			}
 
 			$scope.loadingCounter++;
 			Community.get({
 				_id: $stateParams.id
 			}, function(res) {
-				$scope.loaded = true;
-
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				res.karma = Karma.count(res.up_votes, res.down_votes);
 
 				$scope.communityLink = $rootScope.getProfileLink('Community', res._id);
 				$scope.loadingCounter--;
 				$scope.info = res;
+				$scope.profileLoaded = true;
 				$scope.topLoaded = true;
-				// $scope.loaded = true;
+
 				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
 				$scope.managing = $scope.amIAdmin(res); // is community mine?
 
@@ -60,7 +59,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			}, function(res) {
 				$scope.loadingCounter--;
-				$scope.loaded = true;
+				$scope.profileLoaded = true;
 				$scope.info = false;
 				$scope.mine = false;
 				$scope.managing = false;
@@ -162,7 +161,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_SUCCESS', Notify.T_SUCCESS);
 				$scope.sendingApplication = false;
 			}, function() {
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPLY_FAILED', Notify.T_ERROR);
 				$scope.sendingApplication = false;
 			});
 		};
@@ -182,7 +180,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_SUCCESS', Notify.T_SUCCESS);
 			}, function() {
 				$scope.rejectApplicationLock = false;
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_REJECT_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -202,7 +199,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(res) {
 
 				$scope.leaveCommunityLock = false;
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -222,7 +218,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.init();
 			}, function() {
 				$scope.approveApplicationLock = false;
-				Notify.addSingleTranslate('NOTIFY.COMMUNITY_APPROVE_APPLICATION_FAILED', Notify.T_ERROR);
 			});
 		};
 
@@ -341,9 +336,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			}, function(err) {
 				// remove lock
 				$scope.sendingRating = false;
-
-				// handle error
-				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 			});
 		};
 

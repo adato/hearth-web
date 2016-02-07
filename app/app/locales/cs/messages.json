@@ -132,7 +132,7 @@
 	"EDIT_PROFILE": "Uprav se",
 	"EG": "Např.:",
 	"EMAIL_CONFIRMATION_FAILURE": "Potvrzovací kód je neplatný, nebo již byl v minulosti použit. Ach ty kódy!",
-	"EMAIL_CONFIRMATION_SUCCESS": "Tvůj email byl úspěšně potvrzen. Teď už se můžeš přihlásit.",
+	"EMAIL_CONFIRMATION_SUCCESS": "Tvůj email byl úspěšně potvrzen. Teď už se můžeš pustit do víru štědrosti.",
 	"EMAIL_CONFIRMATION_TEXT": "Vydrž chvíli... ověřujeme tvoji registraci..",
 	"EMAIL_INPUT_PLACEHOLDER": "Email",
 	"EMAIL_TEXT_PLACEHOLDER": "Text zprávy",
@@ -281,7 +281,7 @@
 		},
 		"NO_MESSAGE_YET": "No teda! Žádná zpráva od Vás ani pro Vás. Jde to hned změnit:",
 		"NEW_MESSAGE_USER_RESTRICTION": "Zde můžete vybrat pouze uživatele, se kterými již máte nějakou vazbu. Chcete-li napsat jinému uživateli, udělejte to z jeho profilu.",
-		"YOU": "Vy",
+		"YOU": "Ty",
 		"REPLY_AS_COMMUNITY": "Odpovědět jako:",
 		"REPLY_AS_USER": "jako",
 		"SYSTEM_MESSAGE_YOU": {
@@ -347,7 +347,7 @@
 	"MY_WEB": "Web",
 	"MY_WORK": "Zaměstnání\/Co dělám (když nemám volno)",
 	"MY_WORK_EXAMPLE": "Např.: učitelka, rozvoj občanské společnosti.",
-	"NAME": "Jméno a přijmení",
+	"FIRST_NAME": "Jméno",
 	"NEAREST": "Mapa",
 	"NEED": "Přijmu",
 	"NEGATIVE_FEEDBACK_PLACEHOLDER": "Tohle se... úplně nepovedlo. Ale příště už může! Stačí, když dáš uživateli vědět, co zlepšit.",
@@ -690,7 +690,7 @@
 	"ERR_NOT_FILLED_EMAIL": "Vyplň prosím tvůj email",
 	"ERR_NOT_FILLED_CONTACT_EMAIL": "Vyplň prosím tvůj kontaktní email",
 	"ERR_NOT_VALID_PHONE": "Telefon zadávej ve formátu +420 XXX XXX XXX",
-	"ERR_NOT_FILLED_NAME": "Vyplň prosím tvoje jméno a příjmení",
+	"ERR_NOT_FILLED_FIRST_NAME": "Vyplň prosím tvoje jméno",
 	"ERR_NOT_FILLED_OLD_PASS": "Zadej tvoje staré heslo...",
 	"ERR_NOT_FILLED_NEW_PASS": "Zadej nové heslo, které chcete nastavit.",
 	"ERR_TOO_SHORT_NEW_PASS": "Nové heslo musí mít alespoň 5 znaků!",
@@ -717,7 +717,7 @@
 	"SIGNUP_PASSWORD_DOES_NOT_MATCH": "Zadaná hesla nesouhlasí.",
 	"SIGNUP_HEADING": "Registrace",
 	"SIGNUP_WAS_SUCCESSFUL": "Děkujeme za registraci, už jsi skoro u nás!<br \/><br \/>Na e-mail jsme ti odeslali zprávu s odkazem, kterým svůj účet aktivuješ. To je kvůli potvrzení tvého e-mailu, aby se tu za tebe někdo nemohl vydávat.<br \/><br \/>Chvíli počkej, než e-mail dorazí. Mezitím se můžeš mrknout na tržiště, jaké inzeráty na tebe u nás čekají.",
-	"SIGNUP_ERR_BAD_NAME": "Toto jméno nelze použít. Prostě nelze.",
+	"SIGNUP_ERR_BAD_FIRST_NAME": "Toto jméno nelze použít. Prostě nelze.",
 	"SIGNUP_ERR_BAD_EMAIL_FORMAT": "Email nemá platný formát",
 	"SIGNUP_ERR_EASY_PASSWORD": "Toto heslo je příliš jednoduché. Máš na víc!",
 	"SIGNUP_ERR_SHORT_PASSWORD": "Toto heslo je moc krátké, musí mít minimálně 5 znaků.",
@@ -940,11 +940,11 @@
 		"RATING_REPLY_FAILED": "Při přidávání komentáře k hodnocení došlo k chybě",
 		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na tvou emailovou adresu.",
 		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
-		"API_401": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_422": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_500": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
+		"API_ERROR": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
 		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
-		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?"
+		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
+		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
+		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáš žádné inzeráty, můžeš si je ale přidat ",
@@ -959,7 +959,7 @@
 	"YOUR_COMMUNITIES": "Moje komunity",
 	"ERR_COMMUNITY_NAME_MAX_LENGTH": "Jméno komunity je moc dlouhé. Nesmí mít více jak 75 znaků.",
 	"EMAIL_CONFIRMATION_HEADER": "Potvrzení emailu",
-	"NAME_PLACEHOLDER": "Jméno a příjmení",
+	"FIRST_NAME_PLACEHOLDER": "Jméno",
 	"WHOLE_PROFILE": "Celý profil",
 	"DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Komunikovali jste spolu? Dej světu vědět, že všechno klaplo nebo že se naopak něco nepovedlo...",
 	"OR_GIVE_NEGATIVE_RATING": " nebo upozornit na chybu ",
@@ -1137,6 +1137,12 @@
 			"OPEN_REPLY_FORM": "Přidat komentář",
 			"REPLY_TO_USER": "Reagovat na hodnocení od",
 			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+		},
+		"CONTACT": {
+			"VISIBILITY_NOBODY": "Nikdo",
+			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
+			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
+			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {
@@ -1331,5 +1337,8 @@
 	"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
 	"MEET_COMMUNITY": "Poznejte komunitu",
 	"community-operate-in": "Působíme v",
-	"MY_BOOKMARKS": "Moje oblíbené"
+	"MY_BOOKMARKS": "Moje oblíbené",
+	"LAST_NAME_PLACEHOLDER": "Příjmení",
+	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto jméno je moc krátké, musí mít minimálně 2 znaky.",
+	"LAST_NAME": "Příjmení"
 }

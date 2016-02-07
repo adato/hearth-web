@@ -20,11 +20,12 @@ angular.module('hearth.directives').directive('navigation', [
 					query: $location.search().query
 				};
 
-				$scope.mixpanelTrack = function(item) {
+				$scope.mixpanelTrack = function(item, type) {
 					$analytics.eventTrack('Community clicked', {
-						Id: item._id,
-						name: item.name,
-						context: $state.current.name
+						'Community ID': item._id,
+						'Community Name': item.name,
+						'Device': type,
+						'context': $state.current.name
 					});
 				};
 

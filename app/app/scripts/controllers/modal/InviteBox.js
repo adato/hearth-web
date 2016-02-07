@@ -88,11 +88,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		function handleEmailResult(res) {
 			$rootScope.globalLoading = false;
 			$scope.sending = false;
-			if (res.ok) {
-				$scope.showFinished();
-			} else {
-				Notify.addSingleTranslate('NOTIFY.EMAIL_INVITATION_FAILED', Notify.T_ERROR, ".invite-box-notify");
-			}
+			res.ok && $scope.showFinished();
 		}
 
 		$scope.sendEmailInvitation = function(data) {
@@ -107,7 +103,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			dataOut = $scope.transformInvitationOut(angular.copy(data));
 			Invitation.add({
 				invitation: dataOut
-			}, handleEmailResult, handleEmailResult);
+			}, handleEmailResult);
 		};
 
 		$scope.initForm = function() {

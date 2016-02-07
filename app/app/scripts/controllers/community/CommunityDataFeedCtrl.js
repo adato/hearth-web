@@ -84,9 +84,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			}, function(err) {
 				// remove lock
 				$scope.sendingRating = false;
-
-				// handle error
-				Notify.addSingleTranslate('NOTIFY.USER_RATING_FAILED', Notify.T_ERROR, '.rating-notify-box');
 			});
 		};
 
@@ -323,7 +320,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				$scope.init();
 			}, function(res) {
 				$scope.sendingRemoveMember = false;
-				Notify.addSingleTranslate('NOTIFY.USER_KICKED_FROM_COMMUNITY_FAILED', Notify.T_ERROR);
 			});
 		};
 

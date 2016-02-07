@@ -198,7 +198,7 @@
 			}
 
 			.sharing-trigger a {
-				width: $ui-grid-size;
+				/* width: $ui-grid-size; */
 				height: $ui-grid-size;
 				margin-top: 16px;
 				color: color(3);
@@ -314,9 +314,10 @@
 				h4 {
 					margin: 0px 0px 10px 0px;
 				}
-				section.user {
+				.user {
 					text-align: left;
 					.avatar {
+						margin-right: 1.25rem;
 						//margin-top: -2 * $ui-small-grid-size; 
 						a::before,
 						img {
@@ -326,9 +327,9 @@
 						}
 					}
 				}
-				.content {
+/*				.content {
 					margin-left: -3 * $ui-small-grid-size;
-				}
+				}*/
 				.reply-author {
 					font-weight: 600;
 				}

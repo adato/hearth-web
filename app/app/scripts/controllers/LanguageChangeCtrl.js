@@ -13,7 +13,7 @@ angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['Language
 	ctrl.switchLang = function(lang) {
 		LanguageSwitch.swicthTo(lang, true);
 	};
-	ctrl.openLanguageSelectionDialog = function() {
-		LanguageSwitch.openLanguageSelectionDialog();
+	ctrl.toggleLanguageSelectionDialog = function() {
+		LanguageSwitch.toggleLanguageSelectionDialog();
 	};
 }]);

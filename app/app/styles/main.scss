@@ -114,6 +114,11 @@ $fontSize: rem-calc(14);
 @import "fancyBox";
 @import "flags";
 @import "v2Style";
+
+/*temp until css refactor*/
+@import "languageSelection";
+/* /temp */
+
 body {
 	background-image: inline-image("bg.png");
 	background-color: #faf8eb;
@@ -131,6 +136,16 @@ body {
 	font-family: $body-font-family;
 	font-size:$global-font-size;
 	-webkit-text-size-adjust:100%; // for mobile
+}
+.no-scroll{
+	overflow-y: hidden;
+}
+a.no-link,
+a.no-link:hover{
+	padding: 0 !important;
+	text-decoration: none !important;
+	background: transparent !important;
+	cursor: default !important;
 }
 
 @import "hearthIcons";

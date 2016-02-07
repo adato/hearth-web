@@ -1,5 +1,5 @@
-<div loading show="!loaded"></div>
-<div class="community-view profile-common" ng-if="loaded" ng-class="{'mine': mine, 'others': !mine}">
+<div loading show="!profileLoaded"></div>
+<div class="community-view profile-common" ng-if="profileLoaded" ng-class="{'mine': mine, 'others': !mine}">
 	<div class="user" ng-if="! info">
 		<p>{{:: 'ERR_COMMUNITY_NOT_FOUND' | translate }}</p>
 	</div>

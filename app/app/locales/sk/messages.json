@@ -38,7 +38,7 @@
 			"PUBLISHED_AT": "Pridané",
 			"REMOVE_FROM_COMMUNITY": "Odstrániť z komunity",
 			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
-			"SHARE_LINK": "Sdílet odkaz",
+			"SHARE_LINK": "Zdieľať odkaz",
 			"UNBOOKMARK_POST": "Odobrať z obľúbených",
 			"BOOKMARK_POST": "Pridať k obľúbeným"
 		},
@@ -347,7 +347,7 @@
 	"MY_WEB": "Web",
 	"MY_WORK": "Zamestnanie\/Čo robím (keď nemám voľno)",
 	"MY_WORK_EXAMPLE": "Napr.: učiteľka, rozvoj občianskej spoločnosti.",
-	"NAME": "Meno a priezvisko",
+	"FIRST_NAME": "Meno",
 	"NEAREST": "Mapa",
 	"NEED": "Prijmem",
 	"NEGATIVE_FEEDBACK_PLACEHOLDER": "Toto sa... úplne nepodarilo. Ale nabudúce už môže! Stačí, keď dáte užívateľovi vedieť, čo zlepšiť.",
@@ -690,7 +690,7 @@
 	"ERR_NOT_FILLED_EMAIL": "Vyplňte prosím váš email",
 	"ERR_NOT_FILLED_CONTACT_EMAIL": "Vyplňte prosím váš kontaktný email",
 	"ERR_NOT_VALID_PHONE": "Telefón zadávajte vo formáte +421 XXX XXX XXX",
-	"ERR_NOT_FILLED_NAME": "Vyplňte prosím vaše meno a priezvisko",
+	"ERR_NOT_FILLED_FIRST_NAME": "Vyplňte prosím vaše meno",
 	"ERR_NOT_FILLED_OLD_PASS": "Zadajte vaše staré heslo...",
 	"ERR_NOT_FILLED_NEW_PASS": "Zadajte nové heslo, ktoré chcete nastaviť.",
 	"ERR_TOO_SHORT_NEW_PASS": "Nové heslo musí mať aspoň 5 znakov!",
@@ -717,7 +717,7 @@
 	"SIGNUP_PASSWORD_DOES_NOT_MATCH": "Zadané hesla sa nezhodujú.",
 	"SIGNUP_HEADING": "Registrácia",
 	"SIGNUP_WAS_SUCCESSFUL": "Ďakujeme za registráciu, už ste skoro u nás!<br \/><br \/>Na email sme vám odoslali správu s odkazom, ktorým svoj účet aktivujete. To je kvôli potvrdeniu Vášho emailu, aby sa tu za vás niekto nemohol označovať.<br \/><br \/>Chvíľu počkajte, kým email dorazí. Medzitým sa môžete mrknúť na tržnicu, aké inzeráty na vás u nás čakajú.",
-	"SIGNUP_ERR_BAD_NAME": "Toto meno nie je možné použiť. Jednoducho nedá sa.",
+	"SIGNUP_ERR_BAD_FIRST_NAME": "Toto meno nie je možné použiť. Jednoducho nedá sa.",
 	"SIGNUP_ERR_BAD_EMAIL_FORMAT": "Email nemá platný formát",
 	"SIGNUP_ERR_EASY_PASSWORD": "Toto heslo je príliš jednoduché.",
 	"SIGNUP_ERR_SHORT_PASSWORD": "Toto heslo je príliš krátke, musí mať minimálne 5 znakov.",
@@ -940,11 +940,11 @@
 		"RATING_REPLY_FAILED": "Pri pridávaní komentáre k hodnotenie došlo k chybe",
 		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na tvou emailovou adresu.",
 		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
-		"API_401": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_422": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
-		"API_500": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
+		"API_ERROR": "<p>Něco se bohužel nepovedlo. Zkuste to pros&iacute;m během chvilky znovu a pokud se to ani tak nepovede,&nbsp;<a href=\"\/app\/feedback\">dejte n&aacute;m o tom vědět<\/a>. D&iacute;ky!<\/p>",
 		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
-		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?"
+		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
+		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
+		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED"
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
@@ -959,7 +959,7 @@
 	"YOUR_COMMUNITIES": "Moje komunity",
 	"ERR_COMMUNITY_NAME_MAX_LENGTH": "Meno komunity je príliš dlhé. Nesmie mať viac ako 75 znakov.",
 	"EMAIL_CONFIRMATION_HEADER": "Potvrdenie emailu",
-	"NAME_PLACEHOLDER": "Meno a priezvisko",
+	"FIRST_NAME_PLACEHOLDER": "Meno",
 	"WHOLE_PROFILE": "Celý profil",
 	"DO_YOU_KNOW_USER_TO_GIVE_HIM_POSITIVE_RATING": "Komunikovali ste spolu? Dajte svetu vedieť, že všetko klaplo alebo že sa naopak niečo nepodarilo...",
 	"OR_GIVE_NEGATIVE_RATING": "alebo upozorniť na chybu",
@@ -1137,6 +1137,12 @@
 			"OPEN_REPLY_FORM": "Pridať komentár",
 			"REPLY_TO_USER": "Reagovať na hodnotenia od",
 			"FILTERED": "Obsah tohoto hodnocení byl odstraněn kvůli porušení podmínek používání Hearth.net (reklama, nevhodný obsah atd.)"
+		},
+		"CONTACT": {
+			"VISIBILITY_NOBODY": "Nikdo",
+			"VISIBILITY_FOLLOWEES": "Mnou sledovaní",
+			"VISIBILITY_EVERYBODY": "Přihlášení uživatelé",
+			"WHO_CAN_SEE_IT": "Kdo jej může vidět"
 		}
 	},
 	"X_PEOPLE_INSPIRED_BY_ME": {
@@ -1331,5 +1337,8 @@
 	"COMMUNITY_HAS_REGISTERED": "Komunita vznikla",
 	"MEET_COMMUNITY": "Spoznajte komunitu",
 	"community-operate-in": "Pôsobíme v",
-	"MY_BOOKMARKS": "Moje obľúbené"
+	"MY_BOOKMARKS": "Moje obľúbené",
+	"LAST_NAME_PLACEHOLDER": "Priezvisko",
+	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto meno je moc krátke, musí mať minimálne 2 znaky.",
+	"LAST_NAME": "Priezvisko"
 }

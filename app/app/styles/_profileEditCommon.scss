@@ -62,6 +62,10 @@
 				}
 			}
 		}
+		&.contact .error {
+			margin-bottom: 15px;
+			margin-top: 5px;
+		}
 		.margin {
 			margin-bottom: 30px;
 		}
@@ -78,13 +82,13 @@
 		.fa-minus-square {
 			margin-right: 3px;
 		}
-		.contact {
-			.controll {
-				position: relative;
-				top: 5px;
-			}
+		.contact-email {
+			background: #efefef;
+			border-radius: 8px;
+			margin: 5px 0;
+			padding: 5px 5px;
 		}
-	}
+ 		}
 	.revert-changes {
 		color: #3FACED;
 		font-weight: bold;
