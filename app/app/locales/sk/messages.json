@@ -1340,5 +1340,13 @@
 	"MY_BOOKMARKS": "Moje obľúbené",
 	"LAST_NAME_PLACEHOLDER": "Priezvisko",
 	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto meno je moc krátke, musí mať minimálne 2 znaky.",
-	"LAST_NAME": "Priezvisko"
+	"LAST_NAME": "Priezvisko",
+	"communities": {
+		"suggested": "Vybrané komunity"
+	},
+	"messages": {
+		"detail": "Detail konverzace",
+		"0": "Konverzace"
+	},
+	"profileSettings": "Nastavení profilu"
 }
