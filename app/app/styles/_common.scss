@@ -385,6 +385,9 @@ textarea::-ms-clear {
 
 .padding-large{padding: 1$size-large;}
 
+.margin-small-right{margin-right: $size-small;}
+
+/* todo remove */
 .padding-top {
 	padding-top: 1rem;
 }
@@ -400,6 +403,7 @@ textarea::-ms-clear {
 .padding-left-0 {
 	padding-left: 0px;
 }
+/* /todo remove */
 
 .hyphenate {
 	-ms-word-break: break-word;
