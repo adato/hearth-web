@@ -39,7 +39,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 				language: preferredLanguage
 			}).then(function(response) {
 				if (response.status == 200)
-					processLoginResult(response);
+					processLoginResult(response.data);
 				else
 					$scope.loginError = true;
 			});
