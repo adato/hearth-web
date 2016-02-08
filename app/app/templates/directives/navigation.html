@@ -139,17 +139,17 @@
 					<i class='fa fa-globe fa-stack-1x fa-inverse'></i>
 				</div>
 				<div class='inline-block margin-small-right'>
-					<i class="fa fa-plus-square" data-beacon='new-post-button' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
+					<i class="fa fa-plus-square" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				</div>
 				<div class='inline-block'>
-					<i id="searchIcon" class="fa fa-search" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
+					<i id="searchIcon" class="fa fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 				</div>
 			</div>
 			<div class="clear"></div>
 		</nav>
 
 		<div id="searchContainer" class="mobile-top-search-bar-container hidden-for-large-up hidden">
-			<!-- this is search bar for mobile, expanded after click on search buton on topbar -->
+			<!-- this is search bar for mobile, expanded after click on search button on topbar -->
 
 			<div class="center padding-1">
 				<div class="column large-3 show-for-large-up">
