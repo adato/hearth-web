@@ -1316,5 +1316,11 @@
 		"detail": "Detail konverzace",
 		"0": "Konverzace"
 	},
-	"profileSettings": "Nastavení profilu"
+	"profileSettings": "Nastavení profilu",
+	"TOP_BAR_LANGUAGE": "Language",
+	"LANGUAGE": {
+		"ENGLISH": "English",
+		"CZECH": "Čeština",
+		"SLOVAK": "Slovenčina"
+	}
 }
