@@ -1340,5 +1340,14 @@
 	"MY_BOOKMARKS": "Moje oblíbené",
 	"LAST_NAME_PLACEHOLDER": "Příjmení",
 	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto jméno je moc krátké, musí mít minimálně 2 znaky.",
-	"LAST_NAME": "Příjmení"
+	"LAST_NAME": "Příjmení",
+	"communities": {
+		"suggested": "Vybrané komunity"
+	},
+	"messages": {
+		"detail": "Detail konverzace",
+		"0": "Konverzace"
+	},
+	"profileSettings": "Nastavení profilu",
+	"TOP_BAR_LANGUAGE": "Jazyk"
 }

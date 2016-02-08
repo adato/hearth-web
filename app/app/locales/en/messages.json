@@ -1308,5 +1308,14 @@
 	"MY_BOOKMARKS": "My favourites",
 	"LAST_NAME_PLACEHOLDER": "Surname",
 	"SIGNUP_ERR_SHORT_FIRST_NAME": "This name is too short, it has to consist of at least 2 characters.",
-	"LAST_NAME": "Surname"
+	"LAST_NAME": "Surname",
+	"communities": {
+		"suggested": "Vybrané komunity"
+	},
+	"messages": {
+		"detail": "Detail konverzace",
+		"0": "Konverzace"
+	},
+	"profileSettings": "Nastavení profilu",
+	"TOP_BAR_LANGUAGE": "Language"
 }
