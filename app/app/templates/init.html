@@ -24,7 +24,7 @@
 			<div id="notify-offset-container"></div>
 			<div class="all-visible max-width">
 				<div ui-view class="main-container" ng-class="{ 'with-search-bar': isSearchBarShown() }"></div>
-				<div ng-click="top()" class="move2top show-for-scrolled show-for-large-up" title="{{'move-to-top' | translate}}">
+				<div ng-click="top(); mixpanelTrackMoveToTop()" class="move2top show-for-scrolled show-for-large-up" title="{{'move-to-top' | translate}}">
 					<span ng-bind-html="topArrowText.top"></span>
 					<span class="fa fa-caret-square-o-up"></span>
 					<span ng-bind-html="topArrowText.bottom"></span>
