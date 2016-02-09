@@ -23,7 +23,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			noOauthAccountFound: false,
 		};
 
-		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
+		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('login');
 
 		function processLoginResult(res) {
 			if (res.ok === true) {

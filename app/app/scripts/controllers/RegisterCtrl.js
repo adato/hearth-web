@@ -27,7 +27,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			password: false,
 		};
 
-		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
+		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('register');
 
 		$scope.oauthRegister = function(provider) {
 			$auth.authenticate(provider, {
