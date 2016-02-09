@@ -687,10 +687,6 @@ module.exports = function(grunt) {
 			newRelic: {
 				src: '.tmp/scripts/newRelic.js',
 				dest: '.tmp/concat/newRelic.js'
-			},
-			rollbar: {
-				src: '.tmp/scripts/rollbar.js',
-				dest: '.tmp/concat/rollbar.js'
 			}
 		},
 
@@ -887,7 +883,6 @@ module.exports = function(grunt) {
 		'rename:configDist', // move config-global to .tmp/concat folder
 		'rename:analytics', // move analytics.js to ./tmp concat folder
 		'rename:newRelic', // move newrelic.js to ./tmp concat folder
-		'rename:rollbar', // move rollbar.js to ./tmp concat folder
 		'preprocess',  // ???
 		// 'ngmin',
 		// 'cdnify',
