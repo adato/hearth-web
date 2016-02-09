@@ -1,18 +1,15 @@
-<article class="item-common row post post-on-market" id="post_{{:: item._id }}" ng-class="{mineItem: mine, inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
-	<section ng-if="! hideAvatar" class="large-2 show-for-medium-up medium-2 columns user v2">
+<article class="row" id="post_{{:: item._id }}" ng-class="{inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
+	<section ng-if="! hideAvatar" class="column medium-2 show-for-medium-up">
 		<div info-box="item.author">
 			<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
 				<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
-				<div class="name">{{ item.author.name }} ke!</div>
+				<div class="name">{{ item.author.name }}</div>
 			</a>
 		</div>
-		<!-- 		<div class="karma" ng-class="{empty: item.karma === null }" title="{{:: 'COUNT_OF_PLUS_POINTS' | translate }}: {{:: item.author.up_votes }} | {{:: 'COUNT_OF_MINUS_POINTS' | translate }}: {{:: item.author.down_votes }}">
-			<div ng-if="item.karma" class="positive" ng-attr-style="width:{{:: item.karma}}%;"></div>
-		</div> -->
-		<karma-bar for="item.author" style="margin-top:5px;"></karma-bar>
+		<karma-bar for="item.author"></karma-bar>
 	</section>
-	<div class="large-10 small-12 medium-10 fleft columns ad-detail-column">
-		<div class="sharing-container" ng-class="{active: showSharing}">
+	<div class="column small-12 medium-10">
+		<div class="sharing-container ng-hide" ng-show="showSharing">
 			<div>
 				<i class="fa fa-times close" ng-click="showSharing = false"></i>
 				<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
@@ -33,13 +30,25 @@
 				</ul>
 			</div>
 		</div>
-		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
-			<header class="clearfix">
-				<div class="large-3 large-push-9 small-12 medium-4 medium-push-8 columns">
-					<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
+		<article class="box" ng-class="item.type" ng-init="marketplace.expanded = false;">
+			<header class="row">
+				<div class="column small-12 medium-8 large-9">
+					<h1>
+						<a ng-href="{{:: getProfileLink('Post', item._id)}}">
+							<span data-item-type="{{ item.type }}">
+								{{ postTypes[item.author._type][item.type] | translate }}
+							</span>
+							<span ng-bind='item.title'></span>
+						</a>
+					</h1>
+					<span class="nowrap" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
+					<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
+				</div>
+				<div class="column small-12 medium-4 large-3">
+					<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="hide-for-medium-up">
 						<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 					</a>
-					<span class="ad-flag-container fright" ng-if="!mine">
+					<span class="" ng-if="!mine">
 						<a class="action-dropdown fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}"></a>
 					</span>
 					<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;">
@@ -53,28 +62,17 @@
 						<!-- flag post -->
 						<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 					</div>
-					<span class="ad-date fright" title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">
+					<span class="" title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">
 						{{item.updated_at | ago}}
 					</span>
 				</div>
-				<div class="large-9 large-pull-3 small-12 medium-8 medium-pull-4 columns">
-					<h1>
-						<a ng-href="{{:: getProfileLink('Post', item._id)}}">
-							<span data-item-type="{{ item.type }}">
-								{{ postTypes[item.author._type][item.type] | translate }}
-							</span>
-							{{item.title}}
-						</a>
-					</h1>
-					<span class="validity-warning" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
-					<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
-				</div>
-				<div ng-if="item.location_unlimited" class="large-12 small-12 medium-12 columns clearfix">
+
+				<div ng-if="item.location_unlimited" class="column small-12">
 					<i class="fa fa-map-marker"></i> {{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
 				</div>
-				<div ng-if="!item.location_unlimited" class="large-12 small-12 medium-12 columns clearfix">
+				<div ng-if="!item.location_unlimited" class="column small-12">
 					<span ng-repeat="(locationId, location) in item.locations" ng-if="location.short_address">
-						<i class="fa fa-map-marker" ng-if="$first"></i> {{ location.short_address }}
+						<i class="fa fa-map-marker" ng-if="$first"></i>{{ location.short_address }}
 						<span ng-if="!$last">;</span>
 					</span>
 				</div>
@@ -86,7 +84,7 @@
 			<div class="text-container" ng-if="item.text.length >= 270 && !marketplace.expanded">
 				<p>
 					<span ng-bind-html="item.text_short | linky:'_blank'"></span>
-					<a class="text-expand-link" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
+					<a class="inline-block" ng-click="marketplace.expanded = true">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</a>
 				</p>
 			</div>
 			<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
@@ -98,23 +96,21 @@
 			</ul>
 			<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
 				<ul class="tagList">
-					<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords">
-						{{tag}}
-					</li>
+					<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords" ng-bind='tag'></li>
 				</ul>
 			</div>
-			<footer class="clearfix">
-				<div class="reply-button-container fleft">
+			<footer>
+				<div class="">
 					<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" data-item-type="{{ item.type }}" ng-bind-html="replyLabel[item.type] | translate"></button>
 					<div ng-if="item.is_replied">
 						{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 					</div>
 				</div>
-				<div class="sharing-trigger fright">
+				<div class="">
 					<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="fa fa-share-alt" ng-click="showSharing = !showSharing" title="Share"></a>
 				</div>
-				<div class="post-edit-buttons-container fleft" ng-if="mine">
-					<div class="controll-buttons">
+				<div class="" ng-if="mine">
+					<div class="">
 						<a title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
 							<i class="fa fa-pencil"></i>
 						</a>
@@ -129,7 +125,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="reply-count-container fleft">
+				<div class="">
 					<div ng-if="item.reply_count && mine">
 						<a class="reply-info-link" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
 					</div>
