@@ -159,7 +159,7 @@ angular.module('hearth.services').factory('Auth', [
 			getTwitterAuthUrl: function(method) {
 				var fillEmailUrl = $$config.appUrl + 'fill-email/%{token}';
 				var twitterSuccessUrl = $$config.appUrl + 'token-login/%{token}';
-				var userAction = (method === 'register' ? '&user_action=register' : null);
+				var userAction = (method === 'register' ? '&user_action=register' : '');
 
 				return $$config.apiPath + '/users/auth/twitter?success_url=' + encodeURIComponent(twitterSuccessUrl) + '&email_url=' + encodeURIComponent(fillEmailUrl) + userAction;
 			},

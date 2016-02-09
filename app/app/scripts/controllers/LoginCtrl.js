@@ -23,6 +23,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			noOauthAccountFound: false,
 		};
 
+
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('login');
 
 		function processLoginResult(res) {
@@ -110,6 +111,9 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			if (params.error)
 				$scope.loginError = true;
 
+			if (params.showNoOauthAccountWarning)
+				$scope.showError.noOauthAccountFound = true;
+
 			if (Auth.isLoggedIn()) {
 				return $location.path($rootScope.referrerUrl || '/');
 			}
@@ -130,6 +134,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		}
 
 		$scope.$on('initFinished', $scope.init);
+
 		$rootScope.initFinished && $scope.init();
 	}
 ]);
