@@ -29,9 +29,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
 
-		$scope.oauth = function(provider) {
+		$scope.oauthRegister = function(provider) {
 			$auth.authenticate(provider, {
-				language: preferredLanguage
+				language: preferredLanguage,
+				user_action: 'register'
 			}).then(function(response) {
 				if (response.status == 200)
 					Auth.processLoginResponse(response.data);

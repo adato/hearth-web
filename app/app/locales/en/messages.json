@@ -1322,5 +1322,6 @@
 		"ENGLISH": "English",
 		"CZECH": "Čeština",
 		"SLOVAK": "Slovenčina"
-	}
+	},
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "Přihlašuješ se do Hearthu pomocí účtu třetí strany (Facebook, Google, twitter) a tento účet není napojený na žádného Hearth uživatele. Není možné, že na Hearthu ještě účet nemáš nebo jsi se registroval pomocí e-mailu? \n<br>\nBuď se můžeš přihlásit pomocí jiného způsobu nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>."
 }

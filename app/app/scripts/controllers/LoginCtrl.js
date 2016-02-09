@@ -19,7 +19,8 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 		$scope.loginError = false;
 		$scope.showError = {
 			badCredentials: false,
-			inactiveAccount: false
+			inactiveAccount: false,
+			noOauthAccountFound: false,
 		};
 
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
@@ -34,7 +35,7 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 			showErrorCredentials(err.data);
 		}
 
-		$scope.oauth = function(provider) {
+		$scope.oauthLogin = function(provider) {
 			$auth.authenticate(provider, {
 				language: preferredLanguage
 			}).then(function(response) {
@@ -42,6 +43,10 @@ angular.module('hearth.controllers').controller('LoginCtrl', [
 					processLoginResult(response);
 				else
 					$scope.loginError = true;
+			}).catch(function(response) {
+				if (response.status == 400) {
+					$scope.showError.noOauthAccountFound = true;
+				}
 			});
 		};
 

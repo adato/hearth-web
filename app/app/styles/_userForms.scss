@@ -100,6 +100,14 @@ $max-modal-window-width:32em;
 	.close {
 		display: none;
 	}
+
+	.oauth-error {
+		padding:2*$ui-small-grid-size;
+		border-radius:$global-radius;
+		border:1px solid color(2);
+		opacity:1;
+		line-height:100%;
+	}
 }
 
 .terms {
