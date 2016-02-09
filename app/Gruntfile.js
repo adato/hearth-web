@@ -33,6 +33,7 @@ module.exports = function(grunt) {
 			// configurable paths
 			app: require('./bower.json').appPath || 'app',
 			dist: 'dist/app',
+			tmp: '.tmp',
 			env: env,
 			envFolder: envFolder,
 			api: (env == 'staging') ? 'stage' : 'dev'
@@ -306,6 +307,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
+					open: true,
 					base: '<%= yeoman.dist %>',
 					middleware: function(connect, options) {
 						var middlewares = [];
@@ -327,6 +329,22 @@ module.exports = function(grunt) {
 
 						// Make directory browse-able.
 						middlewares.push(connect.directory(directory));
+
+
+						// if not found, just send index.html
+						middlewares.push(function(req, res) {
+							for (var file, i = 0; i < options.base.length; i++) {
+								// console.log(options.base);
+								file = options.base[i] + "/index.html";
+
+								if (grunt.file.exists(file)) {
+									require('fs').createReadStream(file).pipe(res);
+									return; // we're done
+								}
+							}
+							res.statusCode(404); // where's index.html?
+							res.end();
+						});
 
 						return middlewares;
 					}
@@ -433,7 +451,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
-					generatedImagesDir: '<%= yeoman.dist %>/images/generated',
+					generatedImagesDir: '<%= yeoman.tmp %>/images-generated',
 					outputStyle: 'compressed',
 					trace: true,
 					force: false
@@ -521,7 +539,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: '<%= yeoman.dist %>',
+					cwd: '<%= yeoman.tmp %>',
 					src: ['*.html', 'views/{,*/}*.html'],
 					dest: '<%= yeoman.dist %>'
 				}]
@@ -576,15 +594,21 @@ module.exports = function(grunt) {
 					cwd: '<%= yeoman.app %>',
 					dest: '<%= yeoman.dist %>',
 					src: [
-						'*.{ico,png,txt}',
+						'*.{ico,txt}',
 						'.htaccess',
 						'*.html',
 						'vendor/**/*',
-						'templates/**/*',
+						// 'templates/**/*',
 						'locales/**/*',
-						'images/{,*/}*.{webp}',
-						'fonts/*',
+						// 'images/{,*/}*.{webp}',
+						'fonts/*'
 					]
+				}, {
+					expand: true,
+					dot: true,
+					cwd: '<%= yeoman.app %>',
+					dest: '.tmp',
+					src: 'templates/**/*'
 				}, {
 					cwd: '<%= yeoman.app %>/../',
 					dest: '.tmp/concat/config-local.js',
@@ -606,9 +630,9 @@ module.exports = function(grunt) {
 					src: ['**/*']
 				}, {
 					expand: true,
-					cwd: '<%= yeoman.app %>',
+					cwd: '<%= yeoman.tmp %>',
 					dest: '<%= yeoman.dist %>/images',
-					src: ['generated/*']
+					src: ['*']
 				}, {
 					expand: true,
 					cwd: '.tmp/styles',
@@ -648,6 +672,10 @@ module.exports = function(grunt) {
 				src: '.tmp/concat/scripts.js',
 				dest: '<%= yeoman.dist %>/scripts/scripts.min.js'
 			},
+			scriptsMinMap: {
+				src: '.tmp/concat/scripts.js.map',
+				dest: '<%= yeoman.dist %>/scripts/scripts.min.js.map'
+			},
 			configMin: {
 				src: '.tmp/concat/config.js',
 				dest: '<%= yeoman.dist %>/scripts/config.min.js'
@@ -675,8 +703,8 @@ module.exports = function(grunt) {
 			test: [
 				'compass'
 			],
-			dist: [
-				// 'image',
+			images: [
+				'image',
 				'svgmin'
 			]
 		},
@@ -703,7 +731,7 @@ module.exports = function(grunt) {
 					sourceMapIn: '.tmp/concat/scripts.js.map'
 				},
 				files: {
-					'<%= yeoman.dist %>/scripts/scripts.min.js': ['.tmp/concat/scripts.js']
+					'.tmp/concat/scripts.js': ['.tmp/concat/scripts.js']
 				}
 			},
 			config: {
@@ -725,7 +753,7 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/rollbar.js', '.tmp/concat/newRelic.js', '.tmp/concat/analytics.js'],
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/analytics.js', '.tmp/concat/newRelic.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {
@@ -746,9 +774,9 @@ module.exports = function(grunt) {
 				base: '.tmp'
 			},
 			main: {
-				src: ['.tmp/templates/**/*.html'], // compiled source
-				dest: '.tmp/concat/templates.js'
-			},
+				src: ['.tmp/templates/**/*.html'],
+      			dest: '.tmp/concat/templates.js'
+			}
 		},
 
 		// Add angular module for merged templates
@@ -852,7 +880,7 @@ module.exports = function(grunt) {
 		'clean:dist', // remove .tmp and dist folder
 		'bower-install-simple', // install vendor scripts with bower
 		'useminPrepare', // scan index.html file for usemin marks
-		'concurrent:dist', // minify images to dist folder
+		'concurrent:images', // minify images to dist folder
 		'compass:dist', // process compass scss styles
 		'autoprefixer', // autoprefix css3 styles
 		'copy:dist', // copy app to .tmp for concatenation and assets to dist folder
@@ -860,23 +888,24 @@ module.exports = function(grunt) {
 		'rename:analytics', // move analytics.js to ./tmp concat folder
 		'rename:newRelic', // move newrelic.js to ./tmp concat folder
 		'rename:rollbar', // move rollbar.js to ./tmp concat folder
-		'preprocess',
-		'ngmin',
-		'cdnify',
-		'cssmin', // minify css files
+		'preprocess',  // ???
+		// 'ngmin',
+		// 'cdnify',
+		// 'cssmin', // minify css files
 		'usemin',
-		'htmlmin',
 		'htmlmin:distTemplates', // minify template files before concatenation
-		'html2js', // merge all templates to one js file
+		'html2js:main', // merge all templates to one js file
 		'concat:scripts',
 		'concat:config',
 		'replace:tmplMinify', // minify merged templates
 		'concat:tmpl', // concat templates merged to JS into scripts
+		// 'uglify:scripts',
+		'uglify:config',
 		// 'rename:tmplMin',			// move templates to dist folder
 		'replace:dist', // inject angular module for merged templates
 		'rename:scriptsMin', // use instead of uglify for debug purpose
+		'rename:scriptsMinMap', // use instead of uglify for debug purpose
 		'rename:configMin', // use instead of uglify for debug purpose
-		// 'uglify',
 		'cacheBust'
 	]);
 

@@ -81,3 +81,12 @@ $$config = {
 if ($$localConfig) {
 	for (var key in $$localConfig) $$config[key] = $$localConfig[key];
 }
+
+var _rollbarConfig = {
+	accessToken: $$config.rollbar,
+	captureUncaught: true,
+	payload: {
+		environment: $$config.env
+	},
+	enable: window.location.hostname !== "0.0.0.0"
+};
