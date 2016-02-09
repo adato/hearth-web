@@ -20,7 +20,8 @@ $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 }
 
 // .post-on-market is an envelope around every item 
-article.post-on-market {
+article.post-on-market,
+article.item-detail-page {
 	article header h1>a {
 		color: black;
 		&:hover {
@@ -76,12 +77,37 @@ article.post-on-market {
 		}
 	}
 	.post-detail.offer:before {
-		background:url(/app/images/arrow-give.svg);
+		background:url('/app/images/arrow-give.svg');
 		background-size:100%;
 	}
 	.post-detail.need:before {
-		background:url(/app/images/arrow-receive.svg);
+		background:url('/app/images/arrow-receive.svg');
 		background-size:100%;
+	}
+}
+
+article.item-detail-page {
+	@media #{$medium-only} {
+		.post-detail.offer:before, .post-detail.need:before {
+			width: 20px;
+			height: 20px;
+			left: 70px;
+			top: 34px;
+		}
+	}
+
+	@media #{$large-only} {
+		.post-detail.offer:before, .post-detail.need:before {
+			position:absolute;
+			left: 650px;
+			margin-top: 41px;
+			-moz-transform: scaleX(-1);
+			-o-transform: scaleX(-1);
+			-webkit-transform: scaleX(-1);
+			transform: scaleX(-1);
+			filter: FlipH;
+			-ms-filter: "FlipH";
+		}
 	}
 }
 
