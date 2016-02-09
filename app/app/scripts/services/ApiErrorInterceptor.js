@@ -16,7 +16,6 @@ angular.module('hearth.services').factory('ApiErrorInterceptor', [
 			},
 			responseError: function(rejection) {
 				Notify.onResourceError(rejection);
-
 				return $q.reject(rejection);
 			}
 		};
