@@ -1354,5 +1354,18 @@
 		"ENGLISH": "English",
 		"CZECH": "Čeština",
 		"SLOVAK": "Slovenčina"
+	},
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "Přihlašuješ se do Hearthu pomocí účtu třetí strany (Facebook, Google, twitter) a tento účet není napojený na žádného Hearth uživatele. Není možné, že na Hearthu ještě účet nemáš nebo jsi se registroval pomocí e-mailu? \n<br><br>\nBuď se můžeš přihlásit pomocí jiného způsobu nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.",
+	"h1": {
+		"marketplace": "Tržiště",
+		"communities": "Komunity",
+		"messages": "Zprávy",
+		"profile_edit": "Úprava profilu",
+		"terms": "Podmínky použítí",
+		"map": "Mapa darů a přání",
+		"profile_settings": "Nastavení profilu",
+		"faq": "Často kladené otázky",
+		"feedback": "Kontakt",
+		"taxes": "Darování a daně"
 	}
 }
