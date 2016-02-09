@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', '$analytics',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, $analytics) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -829,14 +829,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 				$(document).off('click.search');
 			}
-		}
+		};
 
 		$rootScope.isSearchBarShown = function() {
 			return $rootScope.searchBarDisplayed;
-		}
+		};
+
+		$rootScope.mixpanelTrackMoveToTop = function() {
+			$analytics.eventTrack('Move to Top clicked', {
+				'context': $state.current.name
+			});
+		};
 
 		$scope.$on('$destroy', function() {
 			angular.element(window).unbind('scroll');
-		})
+		});
 	}
 ]);
