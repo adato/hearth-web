@@ -113,7 +113,7 @@ angular.module('hearth.services').factory('Auth', [
 				}, success, error);
 			},
 			completeEmailForRegistration: function(data, success, err) {
-				User.completeEmailForRegistration(data, success, err);
+				return User.completeEmailForRegistration(data, success, err);
 			},
 			requestPasswordReset: function(email) {
 				return $http.post($$config.apiPath + '/reset_password', {
