@@ -2,7 +2,7 @@
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
-				<a ui-sref='profile({id: loggedUser._id})' data-ui-sref-opts="{reload: true}" class='overflow-hidden'>
+				<a ui-sref='profile.default({id: loggedUser._id})' data-ui-sref-opts="{reload: true}" class='overflow-hidden'>
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
 					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
 				</a>
@@ -43,7 +43,7 @@
 				<label class="first">{{ loggedUser.name | ellipsis:15}}</label>
 			</li>
 			<li>
-				<a ui-sref="profile({id: loggedUser._id})" data-ui-sref-opts="{reload: true}">
+				<a ui-sref="profile.default({id: loggedUser._id})" data-ui-sref-opts="{reload: true}">
 					<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
 			</li>
 			<li>
