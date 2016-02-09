@@ -752,7 +752,7 @@ module.exports = function(grunt) {
 				dest: '.tmp/concat/scripts.js',
 			},
 			config: {
-				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/rollbar.js', '.tmp/concat/newRelic.js', '.tmp/concat/analytics.js'],
+				src: ['.tmp/concat/config-local.js', '.tmp/concat/config-global.js', '.tmp/concat/analytics.js', '.tmp/concat/newRelic.js'],
 				dest: '.tmp/concat/config.js',
 			},
 			tmpl: {

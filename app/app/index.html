@@ -72,6 +72,7 @@
     </div>
   <![endif]-->
 	<div id="all" ng-include="'templates/init.html'"></div>
+	<script src="/app/vendor/rollbar/dist/rollbar.min.js"></script>
 	<script src="/app/vendor/angular/angular.min.js"></script>
 	<script src="/app/vendor/angular-resource/angular-resource.min.js"></script>
 	<script src="/app/vendor/angular-sanitize/angular-sanitize.min.js"></script>
@@ -109,10 +110,10 @@
 	<script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
 	<script src="/app/vendor/angular-mobile-detect/dist/angular-mobile-detect.js"></script>
 	<!-- build:js /app/scripts/scripts.min.js -->
+	<script src="scripts/rollbar.js"></script>
 	<script src="scripts/bootstrap.js"></script>
 	<script src="scripts/utils/oms.min.js"></script>
 	<script src="scripts/utils/device.js"></script>
-	<script src="scripts/rollbar.js"></script>
 	<script src="scripts/app.js"></script>
 	<script src="scripts/routes.js"></script>
 	<script src="scripts/services/resources/Ratings.js"></script>
