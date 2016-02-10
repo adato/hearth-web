@@ -112,6 +112,11 @@ a.link {
 	margin: 8px 8px 8px 0px;
 }
 
+p {
+	word-break: break-all;/*fallback for firefox*/
+	word-break: break-word;
+}
+
 .button-send {
 	border: none;
 	color: white;
