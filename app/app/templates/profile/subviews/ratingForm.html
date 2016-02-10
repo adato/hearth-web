@@ -11,7 +11,7 @@
 			<i class="fa fa-spin fa-spinner"></i> {{:: 'COMMON.LOADING' | translate }}
 			<br>
 		</span>
-		<span ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts">
+		<div ng-if="ratingPosts.length && loadedRatingPosts && !loadingRatingPosts">
 			<div class="padding-bottom-3">
 				{{:: 'USER_RATING_JOIN_REALIZED_GIFT' | translate }}
 			</div>
@@ -21,7 +21,7 @@
 					{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{:: post.title | ellipsis:40 }}
 				</option>
 			</select>
-		</span>
+		</div>
 		<div ng-if="!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" class="padding-bottom">
 			{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
 		</div>
