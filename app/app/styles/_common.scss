@@ -45,27 +45,8 @@
 	top: -15px;
 }
 
-.inline-block {
-	display: inline-block;
-}
-.inline-block-i{
-	display: inline-block !important;
-}
 .overflow-hidden{
 	overflow: hidden
-}
-.display-table{
-	display: table;
-	width: 100%;
-}
-.display-table-row{
-	display: table-row;
-}
-.display-table-cell{
-	display: table-cell;
-	&.addon{
-		width: 1%;
-	}
 }
 
 .box {
@@ -110,40 +91,6 @@ button {}
 
 a.link {
 	margin: 8px 8px 8px 0px;
-}
-
-.button-send {
-	border: none;
-	color: white;
-	border-radius: $global-radius;
-	font-weight: bold;
-	display: inline-block;
-	font-size: 1.2rem;
-	margin: 0 0 1.25rem;
-	padding: 0.5rem 2rem;
-	transition: background-color 300ms ease-out 0s;
-	opacity: 1;
-	cursor: pointer;
-	background-color: color(5);
-	min-width: initial !important;
-	&:hover,
-	&:focus {
-		background-color: darken(color(5), abs($button-function-factor));
-	}
-	@extend .button;
-}
-
-a.button-send {
-	&:hover,
-	&:focus {
-		color: white;
-		background-color: darken(color(5), abs($button-function-factor));
-	}
-}
-
-button.no-vertical-padding {
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
 }
 
 .animate-show {
@@ -440,10 +387,6 @@ button[disabled],
 
 .lowercase {
 	text-transform: lowercase;
-}
-
-.display-block {
-	display: block !important;
 }
 
 .animated-hidden {
