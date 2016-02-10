@@ -134,15 +134,14 @@
 
 
 			<div class="small-icons header-right">
-				<div class='fa-stack language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
-					<i class='fa fa-square fa-stack-2x'></i>
-					<i class='fa fa-globe fa-stack-1x fa-inverse'></i>
+				<div class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
+					<i class='fa fa-fw fa-inverse flag flag-rounded-corners' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
-				<div class='inline-block margin-small-right'>
-					<i class="fa fa-plus-square" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
+				<div class='display-inline-block inline-block margin-small-right'>
+					<i class="fa fa-fw fa-plus-square" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				</div>
-				<div class='inline-block'>
-					<i id="searchIcon" class="fa fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
+				<div class='display-inline-block inline-block'>
+					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -199,12 +198,12 @@
 				</a>
 
 				<div class="top-bar-separator"></div>
-				<div class='dropdown-container' ng-if='!(loggedUser._id)'>
+				<div class='dropdown-container' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
 					<a hover="true" class='header-item' dropdown="#language-drop">
-						<i class='fa fa-globe fa-inverse'></i>
+						<i class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 						<label translate='TOP_BAR_LANGUAGE'></label>
 					</a>
-					<ul class='dropdown' id='language-drop' ng-controller='LanguageChangeCtrl as languageChange'>
+					<ul class='dropdown' id='language-drop'>
 						<li ng-if='languageChange.currentLanguage != "cs"'>
 							<a ng-click='languageChange.switchLang("cs")'>
 								<i class='flag flag-cs'></i>

@@ -1,23 +1,33 @@
 .flag {
 	display:inline-block;
-/*	width:32px;
-	height:23px;*/
 	width: 25px;
 	height: 18px;
 	vertical-align: middle;
+	background-size: cover;
 	background-repeat: no-repeat;
-	vertical-align: middle;
 	&.flag-en {
 		background:url(../images/flags/flag-english.svg);
-		background-size: cover;
 	}
 	&.flag-cs {
 		background:url(../images/flags/flag-czech.svg);
-		background-size: cover;
 	}
 	&.flag-sk {
 		background:url(../images/flags/flag-slovak.svg);
-		background-size: cover;
+	}
+	&.flag-rounded-corners,
+	&.flag-circular{
+		border-radius: 50%;
+		width: $size-large;
+		height: $size-large;
+		background-position: center center;
+	}
+	&.flag-rounded-corners{
+		/* @kamil: TODO - change to $size-tiny once possible //also fix all px values */
+		border-radius: .3125rem;
+		
+		vertical-align: top;
+		margin-top: .5rem;
+		margin-right: .5rem;
 	}
 }
 .language-small-wrapper{
