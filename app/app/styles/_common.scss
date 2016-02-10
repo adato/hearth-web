@@ -112,11 +112,13 @@ a.link {
 	margin: 8px 8px 8px 0px;
 }
 
-a {
+/* @kamil: TODO - move to components.text when possible */
+.word-break {
 	display: inline-block;
 	word-break: break-all;/*fallback for firefox*/
 	word-break: break-word;
 }
+/* /@kamil */
 
 .button-send {
 	border: none;
