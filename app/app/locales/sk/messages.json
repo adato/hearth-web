@@ -1340,5 +1340,32 @@
 	"MY_BOOKMARKS": "Moje obľúbené",
 	"LAST_NAME_PLACEHOLDER": "Priezvisko",
 	"SIGNUP_ERR_SHORT_FIRST_NAME": "Toto meno je moc krátke, musí mať minimálne 2 znaky.",
-	"LAST_NAME": "Priezvisko"
+	"LAST_NAME": "Priezvisko",
+	"communities": {
+		"suggested": "Vybrané komunity"
+	},
+	"messages": {
+		"detail": "Detail konverzace",
+		"0": "Konverzace"
+	},
+	"profileSettings": "Nastavení profilu",
+	"TOP_BAR_LANGUAGE": "Jazyk",
+	"LANGUAGE": {
+		"ENGLISH": "English",
+		"CZECH": "Čeština",
+		"SLOVAK": "Slovenčina"
+	},
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "Přihlašuješ se do Hearthu pomocí účtu třetí strany (Facebook, Google, twitter) a tento účet není napojený na žádného Hearth uživatele. Není možné, že na Hearthu ještě účet nemáš nebo jsi se registroval pomocí e-mailu? \n<br><br>\nBuď se můžeš přihlásit pomocí jiného způsobu nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.",
+	"h1": {
+		"marketplace": "Trhovisko",
+		"communities": "Komunity",
+		"messages": "Správy",
+		"profile_edit": "Úprava profilu",
+		"terms": "Podmienky použitia",
+		"map": "Mapa darov a priania",
+		"profile_settings": "Nastavenie profilu",
+		"faq": "Často kladené otázky",
+		"feedback": "Kontakt",
+		"taxes": "Darovanie a dane"
+	}
 }
