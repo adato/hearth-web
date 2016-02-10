@@ -121,10 +121,6 @@ angular.module('hearth', [
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
-			/*            $http.get('https://api.dev.hearth.net/', function(err, res) {
-			 console.log(err, res);
-			 });*/
-
 			/**
 			 * This will cache some files at start
 			 */

@@ -22,15 +22,13 @@ angular.module('hearth.services').factory('ApiMaintenanceInterceptor', [
 
 		return {
 			request: function(config) {
-				// console.log(config);
 				return config;
 			},
 			responseError: function(rejection) {
 
 				// if (!rejection.config.nointercept) {}
-				if (rejection.status === 503 || rejection.status === 0) {
+				if ([503, 0, -1].indexOf(rejection.status) >= 0) {
 					var deferred = $q.defer();
-
 					ApiHealthChecker.sendFirstHealthCheck();
 					var evListener = $rootScope.$on('ev:online', function() {
 						evListener(); // turn off event
