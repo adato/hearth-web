@@ -1,0 +1,39 @@
+.bubble {
+	position: absolute;
+	width: 370px;
+	right: 30px;
+	top: -8px;
+	background: black;
+	z-index: 999;
+	border-radius: 8px;
+	opacity: .9;
+
+	@media #{$medium-down} {
+		width: 200px;
+	}
+
+	.tooltip {
+		padding: 25px;
+		font-size: 14px;
+		line-height: 1.5em;
+		color: white;
+
+		.confirm {
+			width: 50%;
+			margin: 15px 0 0 0;
+			float: right;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 12px;
+			left: 100%;
+			width: 0;
+			height: 0;
+			border-left: 8px solid #000000;
+			border-top: 8px solid transparent;
+			border-bottom: 8px solid transparent;
+		}
+	}
+}
