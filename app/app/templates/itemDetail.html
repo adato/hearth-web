@@ -146,7 +146,7 @@
 									</div>
 									<div class="text-container clearfix">
 										<span class="reply-author">{{ item.message.author.name }}</span>
-										<p ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
+										<p class='word-break' ng-bind-html="item.message.text | linky:'_blank' | nl2br"></p>
 									</div>
 									<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="reply-contact fright">
 										<p>
