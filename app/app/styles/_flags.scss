@@ -6,13 +6,13 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	&.flag-en {
-		background:url(../images/flags/flag-english.svg);
+		background-image: url(../images/flags/flag-english.svg);
 	}
 	&.flag-cs {
-		background:url(../images/flags/flag-czech.svg);
+		background-image: url(../images/flags/flag-czech.svg);
 	}
 	&.flag-sk {
-		background:url(../images/flags/flag-slovak.svg);
+		background-image: url(../images/flags/flag-slovak.svg);
 	}
 	&.flag-rounded-corners,
 	&.flag-circular{
