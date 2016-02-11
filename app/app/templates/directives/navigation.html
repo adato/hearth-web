@@ -187,12 +187,12 @@
 			</section>
 
 			<section class="bar-columns icons-column">
-				<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
+				<a ng-click="reloadToMarketplace()" class='header-item' ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<div class="fa icon-marketplace"></div>
 					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
 				</a>
 
-				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
+				<a ng-if="loggedUser._id" ui-sref="communities.suggested" class='header-item' ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
 					<div class="fa icon-community"></div>
 					<label>{{:: 'COMMUNITIES' | translate }}</label>
 				</a>
@@ -226,7 +226,7 @@
 				</div>
 
 				<span class="top-bar-messages">
-					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
+					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" class='header-item' ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
 						<span class="messages-icon">
 							<span ng-if="messagesCounters.unread">
 								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
@@ -237,7 +237,7 @@
 				</div>
 
 				<span class="dropdown-container">
-					<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name }}">
+					<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="header-item logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name }}">
 						<avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 						<label>{{ loggedUser.name | ellipsis:9}}</label>
 					</a>
