@@ -73,6 +73,27 @@
 	&.no-result p {
 		margin: 1.25rem 0.5rem;
 	}
+
+	&.sectioned-box{
+		padding: 0;
+
+		header{
+			padding: $size-medium $size-large;
+		}
+		article{
+			padding: $size-medium $size-large;
+			margin-bottom: $size-small;
+			background-color: $colorQuaternary;
+
+			&:last-of-type{
+				margin-bottom: $size-large;
+			}
+			.display-table-cell.user{
+				padding-top: $size-small;
+				padding-right: $size-medium;
+			}
+		}
+	}
 }
 
 .item {

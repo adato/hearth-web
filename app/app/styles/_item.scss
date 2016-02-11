@@ -194,6 +194,7 @@ $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 		}
 	}
 	footer{
+		padding: $size-medium $size-large;
 		background: $colorLightGray;
 
 		.touchable {
@@ -206,6 +207,9 @@ $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 		.touchable:active {
 			color: darken($colorDarkGray, 20%);
 		}
+		.fa-inverse{
+			color: $colorLightGray;
+		}
 
 		/*@kamil todo - uncomment text-decoration when all market ads are converted to component style markup*/
 		a {
@@ -215,6 +219,9 @@ $sharingOverlayBackground: rgba(0, 0, 0, 0.75);
 			&:hover {
 				color: $colorSecondary;
 			}
+		}
+		.display-table-cell{
+			vertical-align: middle;
 		}
 	}
 }

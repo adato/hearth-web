@@ -35,12 +35,13 @@
 
 /* BUTTONS */
 .touchable-wrapper{
-	margin-left: -$size-small;
-	margin-right: -$size-small;
+	margin-left: -$size-tiny;
+	margin-right: -$size-tiny;
 	.touchable{
-		margin-top: 0;
-		margin-bottom: 0;
-		margin-right: 0;
+		margin: 0;
+	}
+	&.touchable-inverted-round .touchable{
+		font-size: .875rem;
 	}
 }
 .touchable{
@@ -49,6 +50,7 @@
 	margin: $size-tiny;
 	font-size: 1.25rem;
 	color: $colorDarkGray;
+	text-align: center;
 	text-decoration: none !important;
 
 	&:hover{
@@ -64,11 +66,27 @@
 .text-decoration-underline{
 	text-decoration: underline;
 }
+.word-break{
+	word-break: break-all;/*fallback for firefox*/
+	word-break: break-word;
+}
+.word-break a,
+a.word-break{
+	display: inline-block;
+}
 /* /TEXT */
 
 .nowrap{
 	white-space: nowrap;
 }
+
+/* LIST */
+.no-list,
+.no-list > li{
+	list-style: none;
+	margin: 0;
+}
+/* /LIST */
 
 /* PADDING */
 .padding-none{padding: 0 !important;}
@@ -151,3 +169,13 @@
 .background-primary{background-color: $colorPrimary;}
 .background-secondary{background-color: $colorSecondary;}
 /* /COLOR */
+
+/* TABLE */
+.table-with-icons .display-table-cell{
+	padding-bottom: $size-small;
+}
+.table-with-icons .display-table-cell:first-child{
+	color: $colorPrimary;
+	padding-right: $size-small;
+}
+/* /TABLE */
