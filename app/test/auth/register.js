@@ -13,7 +13,7 @@ describe('hearth registration', function() {
     expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
   	
     // go to register page
-  	element(by.css('.login-form a[href*="register"]')).click();
+  	element.all(by.css('.login-form a[href*="register"]')).get(1).click();
 
     // test if register form is visible
     expect(element.all(by.css('.register-form')).isDisplayed()).toBeTruthy();
