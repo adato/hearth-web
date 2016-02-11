@@ -234,9 +234,9 @@
 						</span>
 						<label>{{:: 'TOP_BAR_MESSAGES' | translate }}</label>
 					</a>
-				</div>
+				</span>
 
-				<span class="dropdown-container">
+				<div class="dropdown-container">
 					<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="header-item logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name }}">
 						<avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
 						<label>{{ loggedUser.name | ellipsis:9}}</label>
