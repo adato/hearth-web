@@ -11,7 +11,7 @@
 				</a>
 			</h1>
 			<div class="button-bar">
-				<button ng-if="!mine" class="profile-button tall solid" ng-click="openRatingForm(true)">
+				<button ng-if="!mine" class="profile-button tall solid" ng-click="openRatingForm()">
 					{{:: 'THUMB_UP' | translate }}
 				</button>
 				<button class="profile-button tall outline" ng-if="!mine && info.is_member" ng-click="confirmBox('COMMUNITY.CONFIRM_LEAVE.TITLE', 'COMMUNITY.CONFIRM_LEAVE.TEXT', leaveCommunity, 0, this)">
