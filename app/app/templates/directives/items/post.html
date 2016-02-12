@@ -36,10 +36,11 @@
 		<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
 			<header class="clearfix">
 				<div class="large-3 large-push-9 small-12 medium-4 medium-push-8 columns">
-					<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
+					<a ng-if="!hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="left hide-for-medium-up">
 						<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 					</a>
 					<span class="ad-flag-container fright" ng-if="!mine">
+						<bubble ng-if="loggedUser._id && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble hide" type="bookmark"></bubble>
 						<a class="action-dropdown fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}"></a>
 					</span>
 					<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;">
