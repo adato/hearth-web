@@ -19,7 +19,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		$scope.showUserRatingForm = false;
 		$scope.rating = {
 			current_community_id: null,
-			score: true,
+			score: null,
 			text: ''
 		};
 		$scope.showError = {

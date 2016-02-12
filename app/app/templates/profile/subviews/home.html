@@ -6,7 +6,7 @@
 			<div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
 			<p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
 			<p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}}
-				<a href="" ng-click="openUserRatingForm(true)">
+				<a href="" ng-click="openUserRatingForm()">
 					<b>{{:: 'THUMB_UP' | translate }}</b>
 				</a>
 			</p>

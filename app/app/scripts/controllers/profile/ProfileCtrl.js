@@ -23,7 +23,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.sendingRating = false;
 			$scope.rating = {
 				current_community_id: null,
-				score: true,
+				score: null,
 				text: ''
 			};
 			$scope.showError = {
