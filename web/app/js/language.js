@@ -68,7 +68,7 @@ if(langsAvailable.indexOf(langUrl) == -1)
 
 console.log('Languages are: browser = ',langBrowser,' | url = ', langUrl, ' | cookie = ', $.cookie('language'));
 
-if (/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
+if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
     console.log('Don\'t change language for crawlers');
 } else {
     console.log('Regular visitor - checking language');
