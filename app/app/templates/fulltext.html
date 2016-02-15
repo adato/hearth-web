@@ -2,7 +2,7 @@
 	<section class="large-12 small-12 medium-12  columns box margin-bottom-20">
 		<section class="large-12 small-12 medium-12 columns">
 			<header>
-				<div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {value: queryText}"></div>
+				<div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {counter: getCountersTotal(), value: queryText}"></div>
 			</header>
 		</section>
 		<section class="large-12 small-12 medium-12  columns">
