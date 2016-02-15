@@ -17,14 +17,6 @@
 		padding: $ui-grid-size;
 		box-shadow: $ui-box-shadow;
 	}
-	.item-status-bar {
-		background: red;
-		color: white;
-		border-radius: $global-radius;
-		margin: 0 0 3*$ui-small-grid-size;
-		padding: $ui-small-grid-size $ui-grid-size;
-		font-weight: 600;
-	}
 	.ad-author-column {
 		&>div {
 			display: inline-block;

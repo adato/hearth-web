@@ -141,6 +141,14 @@ article.item-detail-page {
 .item-common {
 	margin-bottom: $size-medium;
 
+	.item-status-bar {
+		background: $colorDanger;
+		color: #fff;
+		border-radius: $global-radius;
+		margin-bottom: $size-medium;
+		padding: $ui-small-grid-size $ui-grid-size;
+		font-weight: 600;
+	}
 	p a,
 	p a:hover {
 		color: $colorSecondary;
@@ -261,7 +269,7 @@ article.item-detail-page {
 		}
 	}
 	footer{
-		padding: $size-medium $size-large;
+		padding: $size-small $size-large;
 		background: $colorLightGray;
 
 		.touchable {

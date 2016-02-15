@@ -1,19 +1,21 @@
-<article class="row item-common bubbled">
+<article class="item-common bubbled">
 	<div loading show="!loaded"></div>
-	<div class="row" ng-if=" loaded">
-		<section class="ad-not-found box small-6 margin-auto text-center" ng-if='(item && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted)'>
+	<div class="row" ng-if="loaded">
+		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted)'>
 			<p class="margin-none" ng-show="item && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
 			<p class="margin-none" ng-show="!itemDeleted && item === false">{{:: 'POST_NOT_FOUND' | translate }}</p>
 			<p class="margin-none" ng-show="itemDeleted">{{:: 'POST_WAS_DELETED' | translate }}</p>
 		</section>
 		<section ng-if="! itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
 			<div class='row'>
-				<div ng-if="!isActive" class="column small-12 large-8 item-status-bar">
-					<span ng-if="item.state == 'expired'">
-						<span ng-if="item.valid_until">{{:: 'POST_HAS_EXPIRED' | translate }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
-						<span ng-if="!item.valid_until">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</span>
-					</span>
-					<span ng-if="item.state == 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
+				<div ng-if="!isActive" class="column small-12 large-8">
+					<div class='item-status-bar'>
+						<span ng-if="item.state == 'expired'">
+							<span ng-if="item.valid_until">{{:: 'POST_HAS_EXPIRED' | translate }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
+							<span ng-if="!item.valid_until">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</span>
+						</span>
+						<span ng-if="item.state == 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
+					</div>
 				</div>
 				<div class="column small-12 large-8" ng-init="local.showMap = false">
 					<section class="box show-post-arrows padding-none margin-bottom-large">
@@ -21,6 +23,9 @@
 							<header class="row">
 								<div class="column small-12 medium-display-table">
 									<div class="medium-display-table-cell">
+										<a ng-if="!hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="hide-for-large-up">
+											<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
+										</a>
 										<h1>
 											<span ng-class='"color-" + item.type' translate='{{:: postTypes[item.author._type][item.type] }}'></span>
 											{{:: item.title}}
@@ -35,9 +40,6 @@
 											<a class="report-link spam fa fa-flag" ng-if="! isMine && loggedUser._id && item.spam_reported" tipsy title="{{'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" ng-click="openReportBox(item)"></a>
 											<a class="report-link spam fa fa-flag not-reported" ng-if="! isMine && loggedUser._id && !item.spam_reported" title="{{'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)"></a>
 										</span> -->
-										<a ng-if="!hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}" class="hide-for-large-up">
-											<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
-										</a>
 										<div class='display-table'>
 											<div class='display-table-cell'>
 												<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
@@ -117,7 +119,7 @@
 						</div>
 						<footer>
 							<div class='display-table nowrap'>
-								<div class='display-table-cell addon padding-right-large' ng-if="isMine">
+								<div class='display-table-cell addon padding-right-medium' ng-if="isMine">
 									<div class="touchable-wrapper">
 										<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate }}" ng-click="editItem(item)">
 											<i class="fa fa-fw fa-pencil"></i>
@@ -133,7 +135,7 @@
 										</a>
 									</div>
 								</div>
-								<div class='display-table-cell addon padding-right-large'>
+								<div class='display-table-cell addon'>
 									<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied">
 										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
@@ -264,10 +266,13 @@
 							</div>
 							<div class="display-table-row" ng-if="!(isEmpty(profile.user_languages))">
 								<div class="display-table-cell">
-									<span ng-repeat="(languageCode, enabled) in profile.user_languages">
-										<i class="fa fa-fw fa-comments" ng-if="$first"></i>&nbsp;{{:: 'MY_LANG.' + languageCode | translate }}
-										<span ng-if="!$last">,&nbsp;</span>
-									</span>
+									<i class="fa fa-fw fa-comments"></i>
+									<div class="display-table-cell">
+										{{:: 'MY_LANG.' + languageCode | translate }}
+										<span ng-repeat="(languageCode, enabled) in profile.user_languages">
+											<span ng-if="!$last">,&nbsp;</span>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="display-table-row" ng-if="(profile.email || profile.contact_email)">
@@ -314,12 +319,13 @@
 									<i class="fa fa-linkedin"></i>
 								</a>
 							</div>
-							<div class="right">
+							<div class="text-right">
 								<a class="profile-link" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">{{:: 'WHOLE_PROFILE' | translate }}</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!--/profile column-->
 			</div>
 		</section>
 	</div>

@@ -54,8 +54,8 @@
 
 /* BUTTONS */
 .touchable-wrapper{
-	margin-left: -$size-tiny;
-	margin-right: -$size-tiny;
+	margin-left: -$size-small;
+	margin-right: -$size-small;
 	.touchable{
 		margin: 0;
 	}
@@ -65,7 +65,7 @@
 }
 .touchable{
 	display: inline-block;
-	padding: $size-tiny;
+	padding: .57rem;
 	margin: $size-tiny;
 	font-size: 1.25rem;
 	color: $colorDarkGray;
