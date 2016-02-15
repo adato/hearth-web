@@ -865,7 +865,7 @@
 	"FILL_NEW_PASS": "Zadej nové heslo",
 	"FILL_CURRENT_PASS": "Zadej současné heslo",
 	"WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíš. Opravdu! Sděl nám proč a my se pokusíme polepšit a dostat tě zpátky:",
-	"FULLTEXT_WE_FOUND_RESULTS": "<p>Na&scaron;li jsme pro tebe obsah souvisej&iacute;c&iacute; s <strong>{{value}}<\/strong><\/p>",
+	"FULLTEXT_WE_FOUND_RESULTS": "<p>Na&scaron;li jsme <strong>{{counter}}<\/strong> z&aacute;znamů souvisej&iacute;c&iacute;ch s <strong>{{value}}<\/strong>.<\/p>",
 	"NOTIFY": {
 		"POST_CREATED_SUCCESFULLY": "Inzerát byl úspěšně uložen.",
 		"POST_UPDATED_SUCCESFULLY": "Inzerát byl úspěšně upraven.",

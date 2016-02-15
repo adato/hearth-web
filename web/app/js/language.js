@@ -68,16 +68,21 @@ if(langsAvailable.indexOf(langUrl) == -1)
 
 console.log('Languages are: browser = ',langBrowser,' | url = ', langUrl, ' | cookie = ', $.cookie('language'));
 
+if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
+    console.log('Don\'t change language for crawlers');
+} else {
+    console.log('Regular visitor - checking language');
 
-// if there is not set language in cookie yet
-// use language from browser
-if(!$.cookie('language')) {
-	console.log('There is no language in cookie yet');
-	changeLanguage(langBrowser, $);
-}
+	// if there is not set language in cookie yet
+	// use language from browser
+	if(!$.cookie('language')) {
+		console.log('There is no language in cookie yet');
+		changeLanguage(langBrowser, $);
+	}
 
-// if we are not on right url, redirect
-if(langUrl != $.cookie('language')) {
-	console.log('Language in URL is not the same as value in cookies, redirecting to ', $.cookie('language'));
-	redirectToLangVersion($.cookie('language'), langsAvailable);
+	// if we are not on right url, redirect
+	if(langUrl != $.cookie('language')) {
+		console.log('Language in URL is not the same as value in cookies, redirecting to ', $.cookie('language'));
+		redirectToLangVersion($.cookie('language'), langsAvailable);
+	}
 }

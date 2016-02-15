@@ -854,7 +854,7 @@
 	"FILL_NEW_PASS": "New password",
 	"FILL_CURRENT_PASS": "Current password",
 	"WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "So sad you are leaving us. But never say never, right? Please tell us why and we will work hard to get you back on board...",
-	"FULLTEXT_WE_FOUND_RESULTS": "<p>Yes! We've found results for you concerning <strong>{{value}}<\/strong>.<\/p>",
+	"FULLTEXT_WE_FOUND_RESULTS": "<p>Yes! We've found <strong>{{counter}}<\/strong> results for you concerning <strong>{{value}}<\/strong>.<\/p>",
 	"NOTIFY": {
 		"POST_CREATED_SUCCESFULLY": "Ad has been successfully saved.",
 		"POST_UPDATED_SUCCESFULLY": "Ad has been edited successfully.",
