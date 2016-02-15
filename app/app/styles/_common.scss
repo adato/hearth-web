@@ -54,7 +54,6 @@
 	border-radius: $global-radius;
 	padding: $ui-grid-size;
 	box-shadow: $ui-box-shadow;
-	overflow: hidden;
 
 	/* @kamil todo - delete if nothing breaks without it*/
 	.header {
@@ -82,7 +81,7 @@
 			color: $colorSecondary;
 		}
 	}
-	&.no-result p {
+	&.no-result p{
 		margin: 1.25rem 0.5rem;
 	}
 
@@ -91,6 +90,11 @@
 
 		header{
 			padding: $size-medium $size-large;
+			margin-bottom: 0;
+
+			h1{
+				font-size: $global-font-size;
+			}
 		}
 		.box-section{
 			padding: $size-large;
@@ -107,6 +111,10 @@
 				}
 			}
 		}
+	}
+	footer{
+		border-bottom-left-radius: $global-radius;
+		border-bottom-right-radius: $global-radius;
 	}
 }
 
