@@ -12,10 +12,10 @@
 		<div class="column small-12 medium-10 padding-none">
 			<div class="sharing-container ng-hide" ng-show="showSharing">
 				<div>
-					<i class="fa fa-times close" ng-click="showSharing = false"></i>
+					<i class="fa touchable fa-times close" ng-click="showSharing = false"></i>
 					<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
 					<input type="text" select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" />
-					<ul>
+					<ul class='no-list'>
 						<li>
 							<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" ng-click="openEmailSharingBox(item)"></a>
 						</li>
@@ -38,7 +38,7 @@
 							<span class='color-dark-gray' title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
 							<div class="display-inline-block margin-left-medium touchable-wrapper" ng-if="!mine">
-								<span class="action-dropdown touchable touchable-small padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
+								<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
 									<i class='fa fa-fw fa-chevron-down'></i>
 								</span>
 							</div>
@@ -113,36 +113,40 @@
 				</div>
 				<footer>
 					<div class='display-table nowrap'>
-						<div class='display-table-cell addon padding-right-large' ng-if="mine">
-							<div class='touchable-wrapper'>
-								<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
-									<i class="fa fa-fw fa-pencil"></i>
-								</a>
-								<a class='touchable' title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
-									<i class="fa fa-fw" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
-								</a>
-								<a class='touchable' title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
-									<i class="fa fa-fw fa-pause"></i>
-								</a>
-								<a class='touchable' title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
-									<i class="fa fa-fw fa-times"></i>
-								</a>
+						<div class=display-table-cell>
+							<div class='medium-display-table'>
+								<div class='medium-display-table-cell addon padding-right-large' ng-if="mine">
+									<div class='touchable-wrapper'>
+										<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
+											<i class="fa fa-fw fa-pencil"></i>
+										</a>
+										<a class='touchable' title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+											<i class="fa fa-fw" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
+										</a>
+										<a class='touchable' title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
+											<i class="fa fa-fw fa-pause"></i>
+										</a>
+										<a class='touchable' title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
+											<i class="fa fa-fw fa-times"></i>
+										</a>
+									</div>
+								</div>
+								<div class='medium-display-table-cell addon padding-top-small padding-right-large' ng-if='(!item.is_replied && !mine) || (item.is_replied)'>
+									<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html=":: replyLabel[item.type] | translate"></button>
+									<span ng-if="item.is_replied">
+										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+									</span>
+								</div>
+								<div class='medium-display-table-cell padding-top-small'>
+									<div ng-if="item.reply_count && mine">
+										<a class='text-decoration-underline' ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
+									</div>
+									<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+									<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
+								</div>
 							</div>
 						</div>
-						<div class='display-table-cell addon padding-right-large' ng-if='(!item.is_replied && !mine) || (item.is_replied)'>
-							<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html=":: replyLabel[item.type] | translate"></button>
-							<span ng-if="item.is_replied">
-								{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
-							</span>
-						</div>
-						<div class='display-table-cell'>
-							<div ng-if="item.reply_count && mine">
-								<a class='text-decoration-underline' ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
-							</div>
-							<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
-							<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
-						</div>
-						<div class='display-table-cell addon text-align-right vertical-align-middle'>
+						<div class='display-table-cell addon text-align-right'>
 							<div class='touchable-wrapper'>
 								<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="touchable" ng-click="showSharing = !showSharing" title="Share">
 									<i class='fa fa-fw fa-share-alt'></i>

@@ -102,8 +102,8 @@
 }
 .actions-dropdown {
 	position: absolute;
-	top: calc(100% + .5rem);
-	right: 0.3125rem;
+	top: calc(100%);
+	right: $size-tiny;
 	min-width: 12.5rem;
 	min-height: 2.5rem;
 	padding: $size-tiny 0;
@@ -136,8 +136,8 @@
 	&:before {
 		content: '';
 		position: absolute;
-		top: -.4375rem;
-		right: .75rem;
+		top: -7px;
+		right: 13px;
 		width: $size-medium;
 		height: $size-medium;
 		transform: rotate(45deg);

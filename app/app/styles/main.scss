@@ -138,6 +138,10 @@ $fontSize: rem-calc(14);
 @import "components";
 @import "fancyBox";
 @import "v2Style";
+
+html{
+	font-size: 14px;
+}
 body {
 	background-image: inline-image("bg.png");
 	background-color: #faf8eb;
@@ -146,15 +150,10 @@ body {
 	.main-container {
 		display: block;
 		margin: auto;
-		//margin-top: 3em;
 		margin-bottom: 2em;
-//		&>div:not(._market) {
-//			margin-top: 3*$ui-small-grid-size;
-//		}
 	}
 	font-family: $body-font-family;
-	font-size: 87.5%;
-	-webkit-text-size-adjust: 87.5%; // for mobile
+	-webkit-text-size-adjust: 100%; // for mobile
 }
 .no-scroll{
 	overflow-y: hidden;

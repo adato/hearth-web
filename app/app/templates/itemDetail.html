@@ -25,7 +25,7 @@
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
 									<div class="display-inline-block margin-left-medium touchable-wrapper" ng-if="!mine">
-										<span class="action-dropdown touchable touchable-small padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}">
+										<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}">
 											<i class='fa fa-fw fa-chevron-down'></i>
 										</span>
 									</div>
@@ -108,8 +108,8 @@
 							</div>
 						</div>
 						<footer>
-							<div class='display-table nowrap'>
-								<div class='display-table-cell addon padding-right-medium' ng-if="isMine">
+							<div class='medium-display-table nowrap small-text-left'>
+								<div class='medium-display-table-cell addon padding-right-small' ng-if="isMine">
 									<div class="touchable-wrapper">
 										<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate }}" ng-click="editItem(item)">
 											<i class="fa fa-fw fa-pencil"></i>
@@ -125,17 +125,17 @@
 										</a>
 									</div>
 								</div>
-								<div class='display-table-cell addon padding-right-large'>
+								<div class='medium-display-table-cell addon padding-right-large'>
 									<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied">
 										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 									</span>
 								</div>
-								<div class='display-table-cell'>
+								<div class='medium-display-table-cell padding-top-small'>
 									<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
 									<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate }}</div>
 								</div>
-								<div class='display-table-cell addon'>
+								<div class='medium-display-table-cell addon'>
 									<div class='touchable-wrapper touchable-inverted-round'>
 										<a analytics-custom analytics-event="Share" analytics-category="Email" class='touchable' analytics-label="Share post by email" title="Email" href="" ng-click="openEmailSharingBox(item)">
 											<span class="fa-stack">
