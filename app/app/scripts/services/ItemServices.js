@@ -37,7 +37,8 @@ angular.module('hearth.services').factory('ItemServices', [
 			openEmailSharingBox: $rootScope.openEmailSharingBox,
 			removeItemFromCommunity: $rootScope.removeItemFromCommunity,
 			removeItemFromBookmarks: $rootScope.removeItemFromBookmarks,
-			addItemToBookmarks: $rootScope.addItemToBookmarks
+			addItemToBookmarks: $rootScope.addItemToBookmarks,
+			scrollToElement: $rootScope.scrollToElement
 		};
 	}
 ]);
