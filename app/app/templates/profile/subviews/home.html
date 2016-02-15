@@ -50,7 +50,7 @@
 	</div>
 	<div class="right-pane">
 		<div class="box user-about">
-			<h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{ info.name }}</h3>
+			<h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{info.name}}</h3>
 			<h3 ng-if="mine">{{:: 'YOUR_PROFILE' | translate }}</h3>
 			<div class="line">
 				<div class="descr" ng-if="info.about">

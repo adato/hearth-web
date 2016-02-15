@@ -18,14 +18,22 @@
 				</span>
 			</h2>
 			<section class="who">
-				<div class="name margin">
-					<label>
-						{{:: 'NAME' | translate }} *
-						<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'NAME' | translate }}" model="profile.name" name="name"></input-max-length>
-						<div class="error" ng-show="profileEditForm.name.$error.required">
-							<span>{{:: 'ERR_NOT_FILLED_NAME' | translate }}</span>
-						</div>
-					</label>
+				<div class="name row">
+					<div class="large-6 small-12 medium-6 columns margin">
+						<label for="first_name">
+							{{:: 'FIRST_NAME' | translate }} *
+							<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'FIRST_NAME' | translate }}" model="profile.first_name" name="first_name" id="first_name"></input-max-length>
+							<div class="error" ng-show="profileEditForm.first_name.$error.required">
+								<span>{{:: 'ERR_NOT_FILLED_FIRST_NAME' | translate }}</span>
+							</div>
+						</label>
+					</div>
+					<div class="large-6 small-12 medium-6 columns margin">
+						<label for="last_name">
+							{{:: 'LAST_NAME' | translate }}
+							<input type="text" name="last_name" ng-model="profile.last_name" id="last_name" />
+						</label>
+					</div>
 				</div>
 				<div class="work margin">
 					<label>
