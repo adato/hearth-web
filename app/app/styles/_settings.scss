@@ -10,7 +10,7 @@ $base-line-height: 100%;
 $body-bg: color(4);
 $body-font-color: lighten(black, 22%);
 $body-font-family: "Open Sans", "Geneva", "Tahoma", sans-serif;
-$global-font-size: .875rem;
+$global-font-size: 1rem;
 
 $primary-color: color(1);
 $secondary-color: color(2);
@@ -55,11 +55,11 @@ $h4-font-size: rem-calc(21);
 $h5-font-size: rem-calc(16);
 
 // standard metrics
-$size-tiny: .3125rem;			// 5px
-$size-small: .625rem;			// 10px
-$size-medium: .9375rem;			// 15px
-$size-big: 1.25rem;				// 20px
-$size-large: 1.5625rem;			// 25px
+$size-tiny: 5px;
+$size-small: 10px;
+$size-medium: 15px;
+$size-big: 20px;
+$size-large: 25px;
 
 // 
 // @import "foundation/functions";

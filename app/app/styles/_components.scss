@@ -38,17 +38,23 @@
 	   &.addon{width: 1%;}
 	}
 }
+.display-flex{
+	display: flex;
+}
 /* /DISPLAY */
 
 /* VERTICAL-ALIGN */
 .vertical-align-top{
-	vertical-align: top;
+	vertical-align: top !important;
 }
 .vertical-align-bottom{
-	vertical-align: bottom;
+	vertical-align: bottom !important;
 }
 .vertical-align-middle{
-	vertical-align: middle;
+	vertical-align: middle !important;
+}
+.vertical-align-baseline{
+	vertical-align: baseline !important;
 }
 /* /VERTICAL-ALIGN */
 
@@ -56,18 +62,20 @@
 .touchable-wrapper{
 	margin-left: -$size-small;
 	margin-right: -$size-small;
+	line-height: 1;
+
 	.touchable{
 		margin: 0;
 	}
 	&.touchable-inverted-round .touchable{
-		font-size: .875rem;
+		font-size: $global-font-size;
 	}
 }
 .touchable{
 	display: inline-block;
-	padding: .57rem;
-	margin: $size-tiny;
-	font-size: 1.25rem;
+	width: 44px; height: 44px;
+	line-height: 44px;
+	font-size: $size-big;
 	color: $colorDarkGray;
 	text-align: center;
 	text-decoration: none !important;
@@ -77,7 +85,10 @@
 		color: $colorSecondary;
 	}
 	&.touchable-small{
-		font-size: .875rem;
+		font-size: $global-font-size;
+	}
+	&.touchable-match-line-height{
+		margin-top: -11px;
 	}
 }
 /* /BUTTONS */
