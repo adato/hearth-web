@@ -8,15 +8,34 @@
 .display-table{
 	display: table;
 	width: 100%;
+
+	word-break: break-all;/*fallback for firefox*/
+	word-break: break-word;
+	a{
+		display: inline-block;
+	}
 }
 .display-table-row{
 	display: table-row;
 }
-	
 .display-table-cell{
 	display: table-cell;
 	&.addon{
 		width: 1%;
+	}
+}
+@media #{$medium-up} {
+	.medium-display-table{display: table;}
+	.medium-display-table-row{display: table-row;}
+	.medium-display-table-cell{display: table-cell;
+	   &.addon{width: 1%;}
+	}
+}
+@media #{$large-up} {
+	.large-display-table{display: table;}
+	.large-display-table-row{display: table-row;}
+	.large-display-table-cell{display: table-cell;
+	   &.addon{width: 1%;}
 	}
 }
 /* /DISPLAY */
@@ -52,6 +71,7 @@
 	color: $colorDarkGray;
 	text-align: center;
 	text-decoration: none !important;
+	cursor: pointer;
 
 	&:hover{
 		color: $colorSecondary;
@@ -63,6 +83,9 @@
 /* /BUTTONS */
 
 /* TEXT */
+.text-emphasize{
+	font-weight: 600;
+}
 .text-decoration-underline{
 	text-decoration: underline;
 }

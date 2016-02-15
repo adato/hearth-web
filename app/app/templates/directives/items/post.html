@@ -32,15 +32,15 @@
 				</div>
 			</div>
 			<section class="box show-post-arrows padding-none" ng-class="item.type" ng-init="marketplace.expanded = false;">
-				<div class='padding-horizontal-large padding-top-large padding-bottom-medium'>
+				<div class='box-content'>
 					<header class="row">
 						<div class="column small-8 small-push-4 medium-4 medium-push-8 large-3 large-push-9 text-right nowrap">
 							<span class='color-dark-gray' title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
 							<div class="display-inline-block margin-left-medium touchable-wrapper" ng-if="!mine">
-								<a class="action-dropdown touchable touchable-small padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
+								<span class="action-dropdown touchable touchable-small padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
 									<i class='fa fa-fw fa-chevron-down'></i>
-								</a>
+								</span>
 							</div>
 							<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
 								<li>

@@ -54,43 +54,57 @@
 	border-radius: $global-radius;
 	padding: $ui-grid-size;
 	box-shadow: $ui-box-shadow;
-	//overflow: hidden;
+	overflow: hidden;
+
+	/* @kamil todo - delete if nothing breaks without it*/
 	.header {
 		background-color: color(1);
 		color: color(4);
 		border: {
 			bottom: 1px solid color(3);
 		}
-		;
-		margin-bottom: 1em;
 		padding: 1em;
+		margin-bottom: 1em;
 		margin: {
 			left: -20px;
 			right: -20px;
 		}
-		;
+	}
+	/* /todo */
+	header,
+	header.row{
+		margin-bottom: $size-medium;
+	}
+	.box-content{
+		padding: $size-large $size-large $size-medium;
+
+		a{
+			color: $colorSecondary;
+		}
 	}
 	&.no-result p {
 		margin: 1.25rem 0.5rem;
 	}
 
 	&.sectioned-box{
-		padding: 0;
+		padding: 0 0 $size-small 0;
 
 		header{
 			padding: $size-medium $size-large;
 		}
-		article{
-			padding: $size-medium $size-large;
+		.box-section{
+			padding: $size-large;
 			margin-bottom: $size-small;
 			background-color: $colorQuaternary;
 
-			&:last-of-type{
-				margin-bottom: $size-large;
-			}
 			.display-table-cell.user{
 				padding-top: $size-small;
-				padding-right: $size-medium;
+				padding-right: $size-big;
+				
+				.avatar img{
+					width: 3.75rem;
+					height: 3.75rem;
+				}
 			}
 		}
 	}
