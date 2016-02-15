@@ -865,7 +865,7 @@
 	"FILL_NEW_PASS": "Zadajte nové heslo",
 	"FILL_CURRENT_PASS": "Zadajte súčasné heslo",
 	"WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám ľúto, že nás opúšťate - budeme vďační, keď nám poviete dôvod:",
-	"FULLTEXT_WE_FOUND_RESULTS": "Našli sme <b>{{counter}}<\/b> záznamov súvisiacich s <b>{{value}}<\/b>.",
+	"FULLTEXT_WE_FOUND_RESULTS": "Našli sme pre vás obsah súvisiaci s <b>{{value}}<\/b>",
 	"NOTIFY": {
 		"POST_CREATED_SUCCESFULLY": "Inzerát bol úspešne uložený.",
 		"POST_UPDATED_SUCCESFULLY": "Inzerát bol úspešne upravený.",
@@ -1349,24 +1349,5 @@
 		"0": "Konverzace"
 	},
 	"profileSettings": "Nastavení profilu",
-	"TOP_BAR_LANGUAGE": "Jazyk",
-	"LANGUAGE": {
-		"ENGLISH": "English",
-		"CZECH": "Čeština",
-		"SLOVAK": "Slovenčina"
-	},
-	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "Přihlašuješ se do Hearthu pomocí účtu třetí strany (Facebook, Google, twitter) a tento účet není napojený na žádného Hearth uživatele. Není možné, že na Hearthu ještě účet nemáš nebo jsi se registroval pomocí e-mailu? \n<br><br>\nBuď se můžeš přihlásit pomocí jiného způsobu nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.",
-	"h1": {
-		"marketplace": "Trhovisko",
-		"communities": "Komunity",
-		"messages": "Správy",
-		"profile_edit": "Úprava profilu",
-		"terms": "Podmienky použitia",
-		"map": "Mapa darov a priania",
-		"profile_settings": "Nastavenie profilu",
-		"faq": "Často kladené otázky",
-		"feedback": "Kontakt",
-		"taxes": "Darovanie a dane",
-		"community_edit": "Úprava komunity"
-	}
+	"TOP_BAR_LANGUAGE": "Jazyk"
 }

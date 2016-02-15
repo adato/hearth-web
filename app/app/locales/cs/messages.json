@@ -865,7 +865,7 @@
 	"FILL_NEW_PASS": "Zadej nové heslo",
 	"FILL_CURRENT_PASS": "Zadej současné heslo",
 	"WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíš. Opravdu! Sděl nám proč a my se pokusíme polepšit a dostat tě zpátky:",
-	"FULLTEXT_WE_FOUND_RESULTS": "<p>Na&scaron;li jsme <strong>{{counter}}<\/strong> z&aacute;znamů souvisej&iacute;c&iacute;ch s <strong>{{value}}<\/strong>.<\/p>",
+	"FULLTEXT_WE_FOUND_RESULTS": "<p>Na&scaron;li jsme pro tebe obsah souvisej&iacute;c&iacute; s <strong>{{value}}<\/strong><\/p>",
 	"NOTIFY": {
 		"POST_CREATED_SUCCESFULLY": "Inzerát byl úspěšně uložen.",
 		"POST_UPDATED_SUCCESFULLY": "Inzerát byl úspěšně upraven.",
@@ -1349,24 +1349,5 @@
 		"0": "Konverzace"
 	},
 	"profileSettings": "Nastavení profilu",
-	"TOP_BAR_LANGUAGE": "Jazyk",
-	"LANGUAGE": {
-		"ENGLISH": "English",
-		"CZECH": "Čeština",
-		"SLOVAK": "Slovenčina"
-	},
-	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "Přihlašuješ se do Hearthu pomocí účtu třetí strany (Facebook, Google, twitter) a tento účet není napojený na žádného Hearth uživatele. Není možné, že na Hearthu ještě účet nemáš nebo jsi se registroval pomocí e-mailu? \n<br><br>\nBuď se můžeš přihlásit pomocí jiného způsobu nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.",
-	"h1": {
-		"marketplace": "Tržiště",
-		"communities": "Komunity",
-		"messages": "Zprávy",
-		"profile_edit": "Úprava profilu",
-		"terms": "Podmínky použítí",
-		"map": "Mapa darů a přání",
-		"profile_settings": "Nastavení profilu",
-		"faq": "Často kladené otázky",
-		"feedback": "Kontakt",
-		"taxes": "Darování a daně",
-		"community_edit": "Úprava komunity"
-	}
+	"TOP_BAR_LANGUAGE": "Jazyk"
 }
