@@ -7,14 +7,15 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter',
-	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter) {
+	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty',
+	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
 		$scope.isPrivate = false;
 		$scope.profile = false;
 		$scope.isMine = false;
+		$scope.isEmpty = IsEmpty;
 
 		// init language
 		$scope.postTypes = $$config.postTypes;

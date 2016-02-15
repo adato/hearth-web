@@ -6,32 +6,9 @@
  * @description
  */
 
-angular.module('hearth.services').factory('ProfileProgress',
-	function() {
-
-		function isEmpty(value) {
-			var property, propCounter = 0;
-
-			if (value instanceof Array) {
-				if (value.length === 1 && isEmpty(value[0])) {
-					//if there is only one item and item is empty
-					return true;
-				} else if (value.length === 0) {
-					return true;
-				}
-			} else
-
-			if (value instanceof Object) {
-				for (property in value) {
-					propCounter++;
-					return isEmpty(value[property]);
-				}
-				return propCounter === 0;
-			} else if (!value) {
-				return true;
-			}
-			return false;
-		}
+angular.module('hearth.services').factory('ProfileProgress', [
+	'IsEmpty',
+	function(IsEmpty) {
 
 		return {
 			get: function(data, patternList) {
@@ -49,7 +26,7 @@ angular.module('hearth.services').factory('ProfileProgress',
 						if (pattern.items && pattern.items.length > 0) {
 							errorCounter = 0;
 							for (j = 0; j < pattern.items.length; j++) {
-								if (!isEmpty(data[pattern.items[j].name])) {
+								if (!IsEmpty(data[pattern.items[j].name])) {
 									counter++;
 									break;
 								}
@@ -59,7 +36,7 @@ angular.module('hearth.services').factory('ProfileProgress',
 								missingItems.push(pattern.message);
 							}
 						} else {
-							if (!isEmpty(data[pattern.name])) {
+							if (!IsEmpty(data[pattern.name])) {
 								counter++;
 							} else {
 								missingItems.push(pattern.message);
@@ -76,4 +53,4 @@ angular.module('hearth.services').factory('ProfileProgress',
 			}
 		};
 	}
-);
+]);

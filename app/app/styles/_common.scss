@@ -45,27 +45,8 @@
 	top: -15px;
 }
 
-.inline-block {
-	display: inline-block;
-}
-.inline-block-i{
-	display: inline-block !important;
-}
 .overflow-hidden{
 	overflow: hidden
-}
-.display-table{
-	display: table;
-	width: 100%;
-}
-.display-table-row{
-	display: table-row;
-}
-.display-table-cell{
-	display: table-cell;
-	&.addon{
-		width: 1%;
-	}
 }
 
 .box {
@@ -73,24 +54,59 @@
 	border-radius: $global-radius;
 	padding: $ui-grid-size;
 	box-shadow: $ui-box-shadow;
-	//overflow: hidden;
+	overflow: hidden;
+
+	/* @kamil todo - delete if nothing breaks without it*/
 	.header {
 		background-color: color(1);
 		color: color(4);
 		border: {
 			bottom: 1px solid color(3);
 		}
-		;
-		margin-bottom: 1em;
 		padding: 1em;
+		margin-bottom: 1em;
 		margin: {
 			left: -20px;
 			right: -20px;
 		}
-		;
+	}
+	/* /todo */
+	header,
+	header.row{
+		margin-bottom: $size-medium;
+	}
+	.box-content{
+		padding: $size-large $size-large $size-medium;
+
+		a{
+			color: $colorSecondary;
+		}
 	}
 	&.no-result p {
 		margin: 1.25rem 0.5rem;
+	}
+
+	&.sectioned-box{
+		padding: 0 0 $size-small 0;
+
+		header{
+			padding: $size-medium $size-large;
+		}
+		.box-section{
+			padding: $size-large;
+			margin-bottom: $size-small;
+			background-color: $colorQuaternary;
+
+			.display-table-cell.user{
+				padding-top: $size-small;
+				padding-right: $size-big;
+				
+				.avatar img{
+					width: 3.75rem;
+					height: 3.75rem;
+				}
+			}
+		}
 	}
 }
 
@@ -110,51 +126,6 @@ button {}
 
 a.link {
 	margin: 8px 8px 8px 0px;
-}
-
-/* @kamil: TODO - delete once components.scss is available */
-.word-break{
-	word-break: break-all;/*fallback for firefox*/
-	word-break: break-word;
-}
-.word-break a,
-a.word-break{
-	display: inline-block;
-}
-/* /@kamil */
-
-.button-send {
-	border: none;
-	color: white;
-	border-radius: $global-radius;
-	font-weight: bold;
-	display: inline-block;
-	font-size: 1.2rem;
-	margin: 0 0 1.25rem;
-	padding: 0.5rem 2rem;
-	transition: background-color 300ms ease-out 0s;
-	opacity: 1;
-	cursor: pointer;
-	background-color: color(5);
-	min-width: initial !important;
-	&:hover,
-	&:focus {
-		background-color: darken(color(5), abs($button-function-factor));
-	}
-	@extend .button;
-}
-
-a.button-send {
-	&:hover,
-	&:focus {
-		color: white;
-		background-color: darken(color(5), abs($button-function-factor));
-	}
-}
-
-button.no-vertical-padding {
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
 }
 
 .animate-show {
@@ -474,20 +445,6 @@ button[disabled],
 
 .lowercase {
 	text-transform: lowercase;
-}
-
-.vertical-align-bottom{
-	vertical-align: bottom;
-}
-.vertical-align-middle{
-	vertical-align: middle;
-}
-.vertical-align-top{
-	vertical-align: top;
-}
-
-.display-block {
-	display: block !important;
 }
 
 .animated-hidden {

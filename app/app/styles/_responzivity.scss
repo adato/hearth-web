@@ -1,8 +1,7 @@
 // foundation breakpoint for large screens 
 @media #{$large-up} {
-	body .main-container {
+	.main-container {
 		max-width: 960px;
-		padding: 0 2*$ui-small-grid-size;
 		margin-top: 80px !important;
 	}
 	#navigation {
@@ -51,7 +50,7 @@
 
 	.main-container {
 		margin-top: 99px !important;
-		min-width: unset !important;
+		min-width: initial !important;
 		width: 100%;
 		padding: 0 $ui-small-grid-size;
 		transition:max-height,margin .4s  cubic-bezier(.58,.02,.53,1);

@@ -1,9 +1,4 @@
-#item-detail .row .row {
-	margin-left: 0;
-	margin-right: 0;
-}
-
-#item-detail .ad-detail-column.columns,
+/*#item-detail .ad-detail-column.columns,
 #item-detail .ad-detail-column .columns {
 	padding-left: 0;
 	padding-right: 0;
@@ -12,7 +7,7 @@
 .market article.post-on-market .ad-detail-column .columns {
 	padding-left: 0;
 	padding-right: 0;
-}
+}*/
 
 #item-detail,
 .market article.post-on-market,
@@ -119,7 +114,7 @@
 	}
 	.ad-detail-column {
 		margin-bottom: 3*$ui-small-grid-size;
-		padding: 0;
+/*		padding: 0;*/
 		header {
 			margin-bottom: 1em;
 			div.columns {
@@ -182,7 +177,7 @@
 			margin-bottom: 3*$ui-small-grid-size;
 		}
 		footer {
-			background: color(4);
+/*			background: color(4);
 			min-height: 74px;
 			box-sizing: border-box;
 			position: relative;
@@ -198,16 +193,16 @@
 				top: 15px;
 				left: $ui-grid-size;
 				right: $ui-grid-size;
-			}
+			}*/
 
-			.sharing,
+/*			.sharing,
 			.sharing-trigger {
 				height: $ui-button-height;
 				line-height: $ui-button-height - 10px;
-			}
+			}*/
 
-			.sharing-trigger a {
-				/* width: $ui-grid-size; */
+/*			.sharing-trigger a {
+				 width: $ui-grid-size; 
 				height: $ui-grid-size;
 				margin-top: 16px;
 				color: color(3);
@@ -221,9 +216,10 @@
 				&:hover {
 					color: lighten(color(3), 20%);
 				}
-			}
+			}*/
 
-			.sharing a {
+/*			.sharing a {
+				display: inline-block;
 				color: color(4);
 				background: color(3);
 				border-radius: 50%;
@@ -231,6 +227,7 @@
 				width: $ui-grid-size;
 				height: $ui-grid-size;
 				margin: $ui-small-grid-size / 2;
+				margin-right: $size-tiny;
 				line-height: 14px;
 				transition: all .2s ease-out;
 				&.fa-envelope {
@@ -255,9 +252,9 @@
 				&:focus {
 					background: darken(color(5), 10%);
 				}
-			}
+			}*/
 			
-			.post-edit-buttons-container {
+/*			.post-edit-buttons-container {
 				font-size: 22px; // @@TODO
 				padding: $ui-small-grid-size;
 				margin-top: -2px;
@@ -272,7 +269,7 @@
 						color: darken(color(3), 10%);
 					}
 				}
-			}
+			}*/
 			.reply-count-container .reply-info-link {
 				color: color(3);
 				text-decoration: underline;
@@ -300,10 +297,10 @@
 				}
 			}
 
-			@media #{$large-up} {
+/*			@media #{$large-up} {
 				min-height: 60px;
 				padding-top: 8px;
-			}
+			}*/
 		}
 		.post-replies {
 			margin-top: $ui-grid-size;
@@ -376,9 +373,9 @@
 				color: color(5);
 			}
 		}
-		.map-container {
+/*		.map-container {
 			margin-bottom: 3 * $ui-small-grid-size;
-		}
+		}*/
 	}
 	*[data-item-type="need"],
 	*[data-item-type="false"] {

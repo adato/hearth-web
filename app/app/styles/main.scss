@@ -1,9 +1,31 @@
 @import "mixins/pallette-color";
 //@import "variables";
+
+/* COLOR SETTINGS */
+/* declaration - these should only be used in the assignment below */
 $color: #fa5800, #a7bd1d, #7c766a, #f4f4f4, #1fb1e8, #26AF34;
 $colorOrange: color(1);
-$colorBlue: color(5);
 $colorGreen: color(2);
+$color_darkGray: color(3);
+$color_lightGray: color(4);
+$colorBlue: color(5);
+$color_greenAlt: color(6);
+$color_lightBlue: #ebf5f7;
+
+/* assignment */
+$colorOffer: $colorGreen;
+$colorNeed: $colorOrange;
+
+$colorPrimary: $colorOrange;
+$colorSecondary: $colorBlue;
+$colorTertiary: $colorGreen;
+$colorQuaternary: $color_lightBlue;
+
+$colorDarkGray: $color_darkGray;
+$colorLightGray: $color_lightGray;
+
+$colorSuccess: $color_greenAlt;
+/* /COLOR SETTINGS */
 
 $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
@@ -59,9 +81,9 @@ $fontSize: rem-calc(14);
 "foundation/components/tables",
 //  "foundation/components/tabs",
 "foundation/components/thumbs",
-//  "foundation/components/tooltips",
-// "foundation/components/top-bar",
-"foundation/components/type",
+//	"foundation/components/tooltips",
+//	"foundation/components/top-bar",
+//	"foundation/components/type",
 "foundation/components/offcanvas",
 "foundation/components/visibility";
 @import "mixins/social";
@@ -111,6 +133,7 @@ $fontSize: rem-calc(14);
 @import "market";
 @import "marketplaceBanner";
 @import "responzivity";
+@import "components";
 @import "fancyBox";
 @import "flags";
 @import "v2Style";
@@ -136,8 +159,8 @@ body {
 //		}
 	}
 	font-family: $body-font-family;
-	font-size:$global-font-size;
-	-webkit-text-size-adjust:100%; // for mobile
+	font-size: 87.5%;
+	-webkit-text-size-adjust: 87.5%; // for mobile
 }
 .no-scroll{
 	overflow-y: hidden;
@@ -203,6 +226,10 @@ img.blur {
 	&.error {
 		color: white;
 	}
+}
+
+.main-container{
+	line-height: 1.3;
 }
 
 .loading {

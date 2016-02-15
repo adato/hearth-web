@@ -1,0 +1,204 @@
+/* DISPLAY */
+.display-block {
+	display: block !important;
+}
+.display-inline-block{
+	display: inline-block !important;
+}
+.display-table{
+	display: table;
+	width: 100%;
+
+	word-break: break-all;/*fallback for firefox*/
+	word-break: break-word;
+	a{
+		display: inline-block;
+	}
+}
+.display-table-row{
+	display: table-row;
+}
+.display-table-cell{
+	display: table-cell;
+	&.addon{
+		width: 1%;
+	}
+}
+@media #{$medium-up} {
+	.medium-display-table{display: table;}
+	.medium-display-table-row{display: table-row;}
+	.medium-display-table-cell{display: table-cell;
+	   &.addon{width: 1%;}
+	}
+}
+@media #{$large-up} {
+	.large-display-table{display: table;}
+	.large-display-table-row{display: table-row;}
+	.large-display-table-cell{display: table-cell;
+	   &.addon{width: 1%;}
+	}
+}
+/* /DISPLAY */
+
+/* VERTICAL-ALIGN */
+.vertical-align-top{
+	vertical-align: top;
+}
+.vertical-align-bottom{
+	vertical-align: bottom;
+}
+.vertical-align-middle{
+	vertical-align: middle;
+}
+/* /VERTICAL-ALIGN */
+
+/* BUTTONS */
+.touchable-wrapper{
+	margin-left: -$size-tiny;
+	margin-right: -$size-tiny;
+	.touchable{
+		margin: 0;
+	}
+	&.touchable-inverted-round .touchable{
+		font-size: .875rem;
+	}
+}
+.touchable{
+	display: inline-block;
+	padding: $size-tiny;
+	margin: $size-tiny;
+	font-size: 1.25rem;
+	color: $colorDarkGray;
+	text-align: center;
+	text-decoration: none !important;
+	cursor: pointer;
+
+	&:hover{
+		color: $colorSecondary;
+	}
+	&.touchable-small{
+		font-size: .875rem;
+	}
+}
+/* /BUTTONS */
+
+/* TEXT */
+.text-emphasize{
+	font-weight: 600;
+}
+.text-decoration-underline{
+	text-decoration: underline;
+}
+.word-break{
+	word-break: break-all;/*fallback for firefox*/
+	word-break: break-word;
+}
+.word-break a,
+a.word-break{
+	display: inline-block;
+}
+/* /TEXT */
+
+.nowrap{
+	white-space: nowrap;
+}
+
+/* LIST */
+.no-list,
+.no-list > li{
+	list-style: none;
+	margin: 0;
+}
+/* /LIST */
+
+/* PADDING */
+.padding-none{padding: 0 !important;}
+.padding-vertical-none{padding-top: 0 !important; padding-bottom: 0 !important;}
+.padding-horizontal-none{padding-right: 0 !important; padding-left: 0 !important;}
+.padding-top-none{padding-top: 0 !important;}
+.padding-right-none{padding-right: 0 !important;}
+.padding-bottom-none{padding-bottom: 0 !important;}
+.padding-left-none{padding-left: 0 !important;}
+
+.padding-small{padding: $size-small !important;}
+.padding-vertical-small{padding-top: $size-small !important; padding-bottom: $size-small !important;}
+.padding-horizontal-small{padding-right: $size-small !important; padding-left: $size-small !important;}
+.padding-top-small{padding-top: $size-small !important;}
+.padding-right-small{padding-right: $size-small !important;}
+.padding-bottom-small{padding-bottom: $size-small !important;}
+.padding-left-small{padding-left: $size-small !important;}
+
+.padding-medium{padding: $size-medium !important;}
+.padding-vertical-medium{padding-top: $size-medium !important; padding-bottom: $size-medium !important;}
+.padding-horizontal-medium{padding-right: $size-medium !important; padding-left: $size-medium !important;}
+.padding-top-medium{padding-top: $size-medium !important;}
+.padding-right-medium{padding-right: $size-medium !important;}
+.padding-bottom-medium{padding-bottom: $size-medium !important;}
+.padding-left-medium{padding-left: $size-medium !important;}
+
+.padding-large{padding: $size-large !important;}
+.padding-vertical-large{padding-top: $size-large !important; padding-bottom: $size-large !important;}
+.padding-horizontal-large{padding-right: $size-large !important; padding-left: $size-large !important;}
+.padding-top-large{padding-top: $size-large !important;}
+.padding-right-large{padding-right: $size-large !important;}
+.padding-bottom-large{padding-bottom: $size-large !important;}
+.padding-left-large{padding-left: $size-large !important;}
+/* /PADDING */
+
+/* MARGIN */
+.margin-none{margin: 0 !important;}
+.margin-vertical-none{margin-top: 0 !important; margin-bottom: 0 !important;}
+.margin-horizontal-none{margin-right: 0 !important; margin-left: 0 !important;}
+.margin-top-none{margin-top: 0 !important;}
+.margin-right-none{margin-right: 0 !important;}
+.margin-bottom-none{margin-bottom: 0 !important;}
+.margin-left-none{margin-left: 0 !important;}
+
+.margin-small{margin: $size-small !important;}
+.margin-vertical-small{margin-top: $size-small !important; margin-bottom: $size-small !important;}
+.margin-horizontal-small{margin-right: $size-small !important; margin-left: $size-small !important;}
+.margin-top-small{margin-top: $size-small !important;}
+.margin-right-small{margin-right: $size-small !important;}
+.margin-bottom-small{margin-bottom: $size-small !important;}
+.margin-left-small{margin-left: $size-small !important;}
+
+.margin-medium{margin: $size-medium !important;}
+.margin-vertical-medium{margin-top: $size-medium !important; margin-bottom: $size-medium !important;}
+.margin-horizontal-medium{margin-right: $size-medium !important; margin-left: $size-medium !important;}
+.margin-top-medium{margin-top: $size-medium !important;}
+.margin-right-medium{margin-right: $size-medium !important;}
+.margin-bottom-medium{margin-bottom: $size-medium !important;}
+.margin-left-medium{margin-left: $size-medium !important;}
+
+.margin-large{margin: $size-large !important;}
+.margin-vertical-large{margin-top: $size-large !important; margin-bottom: $size-large !important;}
+.margin-horizontal-large{margin-right: $size-large !important; margin-left: $size-large !important;}
+.margin-top-large{margin-top: $size-large !important;}
+.margin-right-large{margin-right: $size-large !important;}
+.margin-bottom-large{margin-bottom: $size-large !important;}
+.margin-left-large{margin-left: $size-large !important;}
+/* /MARGIN */
+
+/* COLOR */
+.color-offer{color: $colorOffer;}
+.color-need{color: $colorNeed;}
+.color-primary{color: $colorPrimary;}
+.color-secondary{color: $colorSecondary;}
+.color-dark-gray{color: $colorDarkGray;}
+.color-light-gray{color: $colorLightGray;}
+
+.background-offer{background-color: $colorOffer;}
+.background-need{background-color: $colorNeed;}
+.background-primary{background-color: $colorPrimary;}
+.background-secondary{background-color: $colorSecondary;}
+/* /COLOR */
+
+/* TABLE */
+.table-with-icons .display-table-cell{
+	padding-bottom: $size-small;
+}
+.table-with-icons .display-table-cell:first-child{
+	color: $colorPrimary;
+	padding-right: $size-small;
+}
+/* /TABLE */

@@ -4,13 +4,13 @@
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
 				<a ui-sref='profile.default({id: loggedUser._id})' ng-click='toggleSidebar(false)' class='overflow-hidden'>
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
-					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
+					<div class='display-inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
 				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
 				<a ng-class='{active: $state.includes("login")}' ui-sref='login' ng-click='toggleSidebar(false)'>
-					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class='inline-block' translate='LOG_IN'></div>
+					<div class="display-inline-block fa fa-fw fa-sign-in"></div>
+					<div class='display-inline-block' translate='LOG_IN'></div>
 				</a>
 			</li>
 			<li>
