@@ -125,7 +125,7 @@
 										</a>
 									</div>
 								</div>
-								<div class='display-table-cell addon'>
+								<div class='display-table-cell addon padding-right-large'>
 									<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied">
 										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
