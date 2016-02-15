@@ -1,6 +1,8 @@
 {
 	"DAYS_AGO": "%d days ago",
 	"HOURS_AGO": "%d hours ago",
+	"ERR_NOT_FILLED_NAME": "Fill your name",
+	"NAME_PLACEHOLDER": "Name",
 	"MINUTES_AGO": "%d minutes ago",
 	"MONTHS_AGO": "%d months ago",
 	"YEARS_AGO": "%d years ago",
