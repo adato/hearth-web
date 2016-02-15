@@ -21,7 +21,6 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 		$scope.errors = new ResponseErrors();
 
 		$scope.testEmailExists = function(email, form, inputName, cb) {
-
 			$scope[form][inputName].$error.unknown = false;
 			// dont check when email is blank
 			if (!email) return false;
@@ -38,7 +37,6 @@ angular.module('hearth.controllers').controller('ForgottenPasswordCtrl', [
 				// call callbeck
 				cb && cb(res.ok);
 			}, function(res) {
-
 				$scope.showError.email = true;
 				$scope[form][inputName].$error.unknown = true;
 				cb && cb(false);
