@@ -260,10 +260,13 @@
 							</div>
 							<div class="display-table-row" ng-if="!(isEmpty(profile.user_languages))">
 								<div class="display-table-cell">
-									<span ng-repeat="(languageCode, enabled) in profile.user_languages">
-										<i class="fa fa-fw fa-comments" ng-if="$first"></i>&nbsp;{{:: 'MY_LANG.' + languageCode | translate }}
-										<span ng-if="!$last">,&nbsp;</span>
-									</span>
+									<i class="fa fa-fw fa-comments"></i>
+									<div class="display-table-cell">
+										{{:: 'MY_LANG.' + languageCode | translate }}
+										<span ng-repeat="(languageCode, enabled) in profile.user_languages">
+											<span ng-if="!$last">,&nbsp;</span>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="display-table-row" ng-if="(profile.email || profile.contact_email)">
@@ -310,12 +313,13 @@
 									<i class="fa fa-linkedin"></i>
 								</a>
 							</div>
-							<div class="right">
+							<div class="text-right">
 								<a class="profile-link" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">{{:: 'WHOLE_PROFILE' | translate }}</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!--/profile column-->
 			</div>
 		</section>
 	</div>
