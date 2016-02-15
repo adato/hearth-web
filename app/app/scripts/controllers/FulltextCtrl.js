@@ -87,6 +87,11 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			}, response.counters);
 		};
 
+		$scope.getCountersTotal = function() {
+			var counters = $scope.counters;
+			return counters.post + counters.community + counters.user;
+		};
+
 		$scope.load = function(addOffset) {
 			var params = {
 				limit: 15,
