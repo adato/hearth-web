@@ -14,7 +14,6 @@ angular.module('hearth.services').factory('Email', [
 			email: '@email'
 		}, {
 			exists: {
-				url: $$config.apiPath + '/users/check_email?email=:email',
 				method: 'GET'
 			},
 		});
