@@ -237,6 +237,9 @@ article.item-detail-page {
 			width: 60%;
 			color: $colorOrange;
 			transition: none;
+			@media #{$small-only} {
+				width:80%;
+			}
 		}
 		ul {
 			list-style: none;
