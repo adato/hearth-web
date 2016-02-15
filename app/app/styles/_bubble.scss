@@ -1,7 +1,8 @@
 .bubble {
 	position: absolute;
 	width: 370px;
-	right: 30px;
+	/*right: 30px;*/
+	right: 44px;
 	top: -8px;
 	background: black;
 	z-index: 999;
@@ -17,6 +18,7 @@
 		font-size: 14px;
 		line-height: 1.5em;
 		color: white;
+		white-space: normal;
 
 		.confirm {
 			width: 50%;
