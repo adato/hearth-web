@@ -72,12 +72,12 @@ angular.module('hearth.controllers').controller('FillEmailCtrl', [
 					return $scope.sending = false;
 				}
 
-				return Auth.completeEmailForRegistration($scope.data).success(function() {
+				return Auth.completeEmailForRegistration($scope.data, function() { // success
 					$scope.sending = false;
 					Notify.addSingleTranslate('NOTIFY.COMPLETE_TWITTER_REGISTRATION_SUCCESS', Notify.T_SUCCESS);
 					$scope.hideForm();
 
-				}).error(function(err, status) {
+				}, function(err, status) { // error
 					$scope.sending = false;
 					$scope.errors = new ResponseErrors({
 						status: status,

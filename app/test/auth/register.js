@@ -7,10 +7,23 @@ describe('hearth registration', function () {
 		protractor.helpers.navigateTo('register');
 	});
 
+<<<<<<< HEAD
 	it('should be able to go to register form throught login dialog', function () {
 		// go to login page
 		element(by.id('nav-login')).click();
 		expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
+=======
+  it('should be able to go to register form throught login dialog', function () {
+  	// go to login page
+    element(by.id('nav-login')).click();
+    expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
+  	
+    // go to register page
+  	element
+      .all(by.css('.login-form a[href*="register"]'))
+      .get(1)
+      .click();
+>>>>>>> fe/hearth-593-disable-registration-on-login-form
 
 		// go to register page
 		element(by.css('.login-form a[href*="register"]')).click();
