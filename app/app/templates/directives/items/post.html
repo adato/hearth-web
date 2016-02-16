@@ -11,8 +11,8 @@
 		</section>
 		<div class="column small-12 medium-10 padding-none">
 			<div class="sharing-container ng-hide" ng-show="showSharing" ng-click="showSharing = false">
-				<div>
-					<i class="fa touchable fa-times close" ng-click="showSharing = false"></i>
+				<div class="sharing-container-form">
+					<a class="fa touchable fa-times close" ng-click="showSharing = false"></a>
 					<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
 					<input type="text" select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" ng-click="$event.stopPropagation()" />
 					<ul class='no-list'>
