@@ -18,8 +18,8 @@ angular.module('hearth.directives').directive('bubble', [
 			},
 			templateUrl: 'templates/directives/bubble.html',
 			link: function(scope, element, attrs) {
-				var firstPost = $('article.bubbled').first();
-				$('.bubble', firstPost).show();
+				var bubble = $('.bubble-container').first();
+				bubble.show();
 
 				scope.removeReminder = $rootScope.removeReminder;
 			}

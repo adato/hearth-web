@@ -40,8 +40,8 @@
 						<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 					</a>
 					<span class="ad-flag-container fright" ng-if="!mine">
-						<bubble ng-if="loggedUser._id && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble hide" type="bookmark"></bubble>
-						<a class="action-dropdown fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}"></a>
+						<bubble ng-if="loggedUser._id && !item.is_bookmarked && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble-container hide" type="bookmark"></bubble>
+						<a ng-click="!item.is_bookmarked && removeReminder('bookmark')" class="action-dropdown fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}"></a>
 					</span>
 					<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;">
 						<!-- bookmark post -->
