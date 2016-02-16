@@ -209,7 +209,7 @@
 				</div>
 				<div class="column large-3 end has-delimiter show-for-large-up">
 					<div class='text-center'>
-						<a href="getProfileLink(item.author._type, item.author._id)" class='user v2'>
+						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2'>
 							<avatar class='margin-horizontal-large margin-top-medium' type="item.author._type" src="item.author.avatar.large" size="large"></avatar>
 							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
 							<karma-bar for="item.author"></karma-bar>
@@ -257,12 +257,11 @@
 							<div class="display-table-row" ng-if="!(isEmpty(profile.user_languages))">
 								<div class="display-table-cell">
 									<i class="fa fa-fw fa-comments"></i>
-									<div class="display-table-cell">
-										{{:: 'MY_LANG.' + languageCode | translate }}
-										<span ng-repeat="(languageCode, enabled) in profile.user_languages">
-											<span ng-if="!$last">,&nbsp;</span>
-										</span>
-									</div>
+								</div>
+								<div class="display-table-cell">
+									<span ng-repeat="(languageCode, enabled) in profile.user_languages">
+										{{:: ('MY_LANG.' + languageCode | translate) + ($last ? '' : ',\u00A0') }}
+									</span>
 								</div>
 							</div>
 							<div class="display-table-row" ng-if="(profile.email || profile.contact_email)">
