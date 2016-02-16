@@ -102,7 +102,7 @@
 }
 .actions-dropdown {
 	position: absolute;
-	top: calc(100%);
+	top: calc(100% + 5px);
 	right: $size-tiny;
 	min-width: 12.5rem;
 	min-height: 2.5rem;
