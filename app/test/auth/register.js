@@ -12,6 +12,11 @@ describe('hearth registration', function () {
 		element(by.id('nav-login')).click();
 		expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
 
+		element
+		  .all(by.css('.login-form a[href*="register"]'))
+		  .get(1)
+		  .click();
+
 		// go to register page
 		element(by.css('.login-form a[href*="register"]')).get(1).click();
 

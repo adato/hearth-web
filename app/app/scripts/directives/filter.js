@@ -232,7 +232,9 @@ angular.module('hearth.directives').directive('filter', [
 				};
 
 				scope.$watch('filter', scope.recountPosts, true);
-				scope.$watch('filterShown', scope.recountPosts);
+				scope.$watch('filterShown', function(isShown) {
+					if (isShown) scope.recountPosts();
+				});
 				// scope.$watch('filterSave', scope.toggleSaveFilter);
 
 				scope.$watch('filterSelected', function(newValue, oldValue) {
