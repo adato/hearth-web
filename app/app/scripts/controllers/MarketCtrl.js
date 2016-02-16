@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
-		var itemTypes = ['post', 'community', 'user', 'conversation'];
+		var itemTypes = ['post'] //, 'community', 'user', 'conversation']; no more types needed for now
 		var templateDir = 'templates/directives/items/';
 
 		if ($stateParams.query) {
@@ -277,12 +277,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 			$rootScope.cacheInfoBox = {};
+			$scope.debug && console.log('Destroy marketCtrl finished');
 		});
 
 		function init() {
+			$scope.debug && console.log('Initialisation of marketCtrl started');
 			async.each(itemTypes, function(type, done) {
 				var tplUrl = $sce.getTrustedResourceUrl(templateDir + type + '.html');
-				if ($scope.debug) console.log('Compiling template for ', type);
+				$scope.debug && console.log('Compiling template for ', type);
 
 				$templateRequest(tplUrl).then(function(template) {
 					templates[type] = $compile(template);
@@ -294,6 +296,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				$scope.filterIsOn = Filter.isSet();
 				marketInited.resolve();
+				$scope.debug && console.log('Initialisation of marketCtrl almost finished');
+				if (err) {
+					$scope.debug && console.log('There was an error during compilation process: ', err);
+				}
 				$scope.load();
 			});
 		};
