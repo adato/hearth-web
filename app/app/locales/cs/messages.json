@@ -865,7 +865,7 @@
 	"FILL_NEW_PASS": "Zadej nové heslo",
 	"FILL_CURRENT_PASS": "Zadej současné heslo",
 	"WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "Je nám líto, že nás opouštíš. Opravdu! Sděl nám proč a my se pokusíme polepšit a dostat tě zpátky:",
-	"FULLTEXT_WE_FOUND_RESULTS": "<p>Na&scaron;li jsme pro tebe obsah souvisej&iacute;c&iacute; s <strong>{{value}}<\/strong><\/p>",
+	"FULLTEXT_WE_FOUND_RESULTS": "<p>Na&scaron;li jsme <strong>{{counter}}<\/strong> z&aacute;znamů souvisej&iacute;c&iacute;ch s <strong>{{value}}<\/strong>.<\/p>",
 	"NOTIFY": {
 		"POST_CREATED_SUCCESFULLY": "Inzerát byl úspěšně uložen.",
 		"POST_UPDATED_SUCCESFULLY": "Inzerát byl úspěšně upraven.",
@@ -1349,13 +1349,12 @@
 		"0": "Konverzace"
 	},
 	"profileSettings": "Nastavení profilu",
-	"TOP_BAR_LANGUAGE": "Jazyk",
 	"LANGUAGE": {
 		"ENGLISH": "English",
 		"CZECH": "Čeština",
 		"SLOVAK": "Slovenčina"
 	},
-	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "Přihlašuješ se do Hearthu pomocí účtu třetí strany (Facebook, Google, twitter) a tento účet není napojený na žádného Hearth uživatele. Není možné, že na Hearthu ještě účet nemáš nebo jsi se registroval pomocí e-mailu? \n<br><br>\nBuď se můžeš přihlásit pomocí jiného způsobu nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.",
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "<p>Přihla&scaron;uje&scaron; se do Hearthu pomoc&iacute; &uacute;čtu třet&iacute; strany (Facebook, Google, twitter) a tento &uacute;čet nen&iacute; napojen&yacute; na ž&aacute;dn&eacute;ho Hearth uživatele. Nen&iacute; možn&eacute;, že na Hearthu je&scaron;tě &uacute;čet nem&aacute;&scaron; nebo jsi se registroval pomoc&iacute; e-mailu?<\/p>\n<p>Buď se může&scaron; přihl&aacute;sit pomoc&iacute; jin&eacute;ho &uacute;čtu&nbsp;nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.<\/p>",
 	"h1": {
 		"marketplace": "Tržiště",
 		"communities": "Komunity",
@@ -1365,8 +1364,25 @@
 		"map": "Mapa darů a přání",
 		"profile_settings": "Nastavení profilu",
 		"faq": "Často kladené otázky",
-		"feedback": "Kontakt",
+		"feedback": "Tvůj názor",
 		"taxes": "Darování a daně",
-		"community_edit": "Úprava komunity"
-	}
+		"community_edit": "Úprava komunity",
+		"fulltext": "Vyhledávání"
+	},
+	"FULLTEXT": {
+		"FILTER": {
+			"BY_TYPE": "Podle obsahu",
+			"TYPE": {
+				"ALL": "Vše",
+				"POSTS": "Dary a přání",
+				"PEOPLE": "Lidé",
+				"COMMUNITY": "Komunity"
+			},
+			"BY_LOCATION": "Podle umístění",
+			"BY_ACTIVITY": "Podle aktivity",
+			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
+		}
+	},
+	"ADD_ATTACHMENT": "Přiložit soubor",
+	"CHANGE_ATTACHMENT": "Změnit soubor"
 }
