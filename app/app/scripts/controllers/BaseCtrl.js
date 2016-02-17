@@ -169,7 +169,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.toggleSearchBar(false); // turn off search input
 			$rootScope.top(0, 1);
 			$state.go('search', {
-				q: searchQuery.query,
+				query: searchQuery.query,
 				// type: searchQuery.type
 			});
 			searchQuery.query = null;

@@ -19,7 +19,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		});
 
 		angular.extend($scope, {
-			queryText: $stateParams.q || '',
+			queryText: $stateParams.query || '',
 			items: [],
 			counters: {
 				post: 0,
@@ -28,21 +28,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			},
 			filterProperty: 'all'
 		});
-
-		$scope.setFilter = function(filter) {
-			var params = {
-				q: $stateParams.q,
-				type: filter
-			};
-
-			if (params.type === 'all') {
-				delete params.type;
-			}
-
-			deleteOffset = true;
-			$location.search(params);
-			$scope.$emit("fulltextSearch");
-		};
 
 		$scope.processData = function(params) {
 			return function(response) {
@@ -95,11 +80,11 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		$scope.load = function(addOffset) {
 			var params = {
 				limit: 15,
-				query: $stateParams.q || "",
+				query: $stateParams.query || "",
 				offset: (addOffset) ? $scope.items.length : 0
 			};
 
-			$rootScope.setFulltextSearch($stateParams.q);
+			$rootScope.setFulltextSearch($stateParams.query);
 
 			// if there is no more result data, dont load
 			if ($scope.readedAllData) {
@@ -132,15 +117,18 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			}, $scope.processStatsData);
 		};
 
+		$scope.reload = function(text) {
+			$scope.readedAllData = false;
+			$scope.offset = 0;
+			$scope.load();
+		};
+
 		$scope.init = function() {
 			$scope.languageCode = $rootScope.language;
 			$scope.load();
 
-			$scope.$on("fulltextSearch", function(text) {
-				$scope.readedAllData = false;
-				$scope.offset = 0;
-				$scope.load();
-			});
+			$scope.$on('filterReseted', $scope.reload);
+			$scope.$on('filterApplied', $scope.reload);
 		}
 
 		$scope.$on("$destroy", function() {

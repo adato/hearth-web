@@ -5,6 +5,7 @@
  * @description Filter rules for search
  * @restrict E
  */
+
 angular.module('hearth.directives').directive('filter', [
 	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
 	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
@@ -12,6 +13,7 @@ angular.module('hearth.directives').directive('filter', [
 			restrict: 'E',
 			replace: true,
 			scope: {
+				template: '@',
 				filterShown: '=',
 				filterSelected: '='
 			},
@@ -24,9 +26,12 @@ angular.module('hearth.directives').directive('filter', [
 						type: null,
 						post_type: null,
 						distance: 25,
+						inactive: null,
 						keywords: [],
 						days: null
 					};
+
+				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
 
 				var timeout = $timeout(function() {
 					$(".tags input", element).keypress(function(e) {
@@ -53,6 +58,7 @@ angular.module('hearth.directives').directive('filter', [
 				};
 
 				scope.applyFilter = function() {
+
 					if ($.isEmptyObject(scope.filter)) {
 						scope.reset();
 					} else {
@@ -74,30 +80,15 @@ angular.module('hearth.directives').directive('filter', [
 				};
 
 				scope.convertFilterToParams = function(filter) {
-					var related = [],
-						params = {};
+					var fields = ['query', 'type', 'inactive', 'post_type', 'days', 'lang', 'r_lang', 'my_section'],
+						related = [],
+						params = {},
+						currentParams = $location.search();
 
-					if (filter.query) {
-						params.query = filter.query;
-					}
-					if (filter.type) {
-						params.type = filter.type;
-					}
-					if (filter.post_type) {
-						params.post_type = filter.post_type;
-					}
-					if (filter.days) {
-						params.days = filter.days;
-					}
-					if (filter.lang) {
-						params.lang = filter.lang;
-					}
-					if (filter.r_lang) {
-						params.r_lang = filter.r_lang;
-					}
-					if (filter.my_section) {
-						params.my_section = filter.my_section;
-					}
+					fields.forEach(function(name) {
+						if (typeof filter[name] !== 'undefined' && filter[name] !== null) params[name] = filter[name];
+					});
+
 					if (filter.user) {
 						related.push('user');
 					}
@@ -129,6 +120,7 @@ angular.module('hearth.directives').directive('filter', [
 
 					var filter = {
 						query: params.query || filterDefault.query,
+						inactive: params.inactive || filterDefault.inactive,
 						type: params.type || filterDefault.type,
 						post_type: params.post_type || filterDefault.post_type,
 						days: params.days || filterDefault.days,
