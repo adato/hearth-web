@@ -140,6 +140,16 @@ angular.module('hearth.services').factory('Filter', [
 			},
 			applySaved: function() {
 				this.apply($rootScope.user.filter);
+			},
+			getOptionsShow: function(configName) {
+				var opts = $$config.filterOptions;
+				var conf = (typeof opts[configName] !== 'undefined') ? $$config.filterOptions[configName] : $$config.filterOptions.default;
+				var confObj = {};
+
+				conf.forEach(function(o) {
+					confObj[o] = true;
+				});
+				return confObj;
 			}
 		};
 	}

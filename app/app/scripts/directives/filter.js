@@ -5,6 +5,7 @@
  * @description Filter rules for search
  * @restrict E
  */
+
 angular.module('hearth.directives').directive('filter', [
 	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
 	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
@@ -14,13 +15,9 @@ angular.module('hearth.directives').directive('filter', [
 			scope: {
 				template: '@',
 				filterShown: '=',
-				filterSelected: '=',
-				hideCounters: '='
+				filterSelected: '='
 			},
-			templateUrl: function(elem, attrs) {
-				var base = 'templates/directives/';
-				return base + (attrs.template || 'filter') + '.html';
-			},
+			templateUrl: 'templates/directives/filter.html',
 			link: function(scope, element) {
 				var searchBoxElement = $('input#geolocation', element),
 					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
@@ -33,6 +30,8 @@ angular.module('hearth.directives').directive('filter', [
 						keywords: [],
 						days: null
 					};
+
+				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
 
 				var timeout = $timeout(function() {
 					$(".tags input", element).keypress(function(e) {

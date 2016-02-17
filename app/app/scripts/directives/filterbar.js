@@ -38,6 +38,17 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.$on('filterOpen', scope.toggleFilter);
 
+				scope.$on('showUI', function($event, ui) {
+					scope.filterSelected = ui === 'filter';
+
+					if (ui === 'map') {
+						scope.mapSelected = true;
+						scope.$broadcast(scope.mapSelected ? 'searchMap' : 'searchList');
+						scope.$emit(scope.mapSelected ? 'searchMap' : 'searchList');
+					}
+					$anchorScroll(ui);
+				});
+
 				scope.$on('filterReset', scope.cancelFilter);
 				scope.$on('filterReseted', scope.testFilterActive);
 				scope.$on('filterApplied', scope.testFilterActive);
