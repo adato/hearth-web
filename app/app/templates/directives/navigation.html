@@ -201,7 +201,7 @@
 				<div class='dropdown-container' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
 					<a hover="true" class='header-item' dropdown="#language-drop">
 						<i class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
-						<label translate='TOP_BAR_LANGUAGE'></label>
+						<label translate='LANGUAGE.{{:: languageChange.languageStrings[languageChange.currentLanguage] }}'></label>
 					</a>
 					<ul class='dropdown' id='language-drop'>
 						<li ng-if='languageChange.currentLanguage != "cs"'>
