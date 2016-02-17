@@ -133,7 +133,7 @@
 				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
 
 
-			<div class="small-icons header-right">
+			<div id='language-bar-mobile' class="small-icons header-right">
 				<div class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
 					<i class='fa fa-fw fa-inverse flag flag-rounded-corners' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
