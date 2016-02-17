@@ -1382,5 +1382,6 @@
 			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
 		}
 	},
-	"ADD_ATTACHMENT": "Přiložit soubor"
+	"ADD_ATTACHMENT": "Přiložit soubor",
+	"CHANGE_ATTACHMENT": "Změnit soubor"
 }
