@@ -3,7 +3,7 @@
 		<section ng-if="! hideAvatar" class="column medium-2 show-for-medium-up text-center v2 user padding-top-small">
 			<div info-box="item.author">
 				<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-					<avatar type="item.author._type" src="item.author.avatar.large"></avatar>
+					<avatar class='show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.large"></avatar>
 					<div class="name">{{ item.author.name }}</div>
 				</a>
 			</div>
@@ -31,40 +31,40 @@
 					</ul>
 				</div>
 			</div>
-
-			<section class="box show-post-arrows padding-none" ng-class="item.type" ng-init="marketplace.expanded = false;">
+			<section class="box padding-none" ng-init="marketplace.expanded = false;">
 				<div class='box-content'>
 					<header class="row">
 						<div class="column small-8 small-push-4 medium-5 large-4 medium-push-7 large-push-8 text-right nowrap">
 							<span class='color-dark-gray' title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
-
-							<div class="display-inline-block margin-left-medium touchable-wrapper" ng-if="!mine">
-								<bubble ng-if="loggedUser._id && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble hide" type="bookmark"></bubble>
-								<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
-									<i class='fa fa-fw fa-chevron-down'></i>
-								</span>
+							<div class='dropdown-wrapper'>
+								<div class="display-inline-block touchable-wrapper margin-left-none" ng-if="!mine">
+									<bubble ng-if="loggedUser._id && !item.is_bookmarked && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble-container hide" type="bookmark"></bubble>
+									<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
+										<i class='fa fa-fw fa-chevron-down'></i>
+									</span>
+								</div>
+								<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
+									<li>
+										<!-- bookmark post -->
+										<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+										<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+										<!-- /bookmark post -->
+									</li>
+									<li>
+										<!-- flag post -->
+										<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+										<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+										<!-- /flag post -->
+									</li>
+									<li>
+										<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+									</li>
+								</ul>
 							</div>
-							<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
-								<li>
-									<!-- bookmark post -->
-									<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
-									<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
-									<!-- /bookmark post -->
-								</li>
-								<li>
-									<!-- flag post -->
-									<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-									<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-									<!-- /flag post -->
-								</li>
-								<li>
-									<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
-								</li>
-							</ul>
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium-up">
 							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-								<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
+								<avatar class='show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 							</a>
 						</div>
 						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
