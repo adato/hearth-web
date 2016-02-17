@@ -149,3 +149,9 @@
 		background: white;
 	}
 }
+/* as touchables get smaller with desktop size view, the alignment has to be altered */
+@media #{$large-up}{
+	.actions-dropdown {
+		right: -15px;
+	}
+}
