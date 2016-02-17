@@ -18,7 +18,7 @@
 					</div>
 				</div>
 				<div class="column small-12 large-8" ng-init="local.showMap = false">
-					<section class="box show-post-arrows padding-none margin-bottom-large">
+					<section class="box padding-none margin-bottom-large">
 						<div class='box-content'>
 							<header class="row">
 								<div class="column small-8 small-push-4 medium-4 medium-push-8 text-right nowrap">
@@ -50,7 +50,7 @@
 								</div>
 								<div class="column small-4 medium-8 small-pull-8 medium-pull-4 hide-for-large-up margin-bottom-small">
 									<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-										<avatar type="item.author._type" src="item.author.avatar.normal" size="normal"></avatar>
+										<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.normal" size="normal"></avatar>
 									</a>
 								</div>
 								<div class="column small-12 medium-8 medium-pull-4">
@@ -108,34 +108,38 @@
 							</div>
 						</div>
 						<footer>
-							<div class='medium-display-table nowrap small-text-left'>
-								<div class='medium-display-table-cell addon padding-right-small' ng-if="isMine">
-									<div class="touchable-wrapper">
-										<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate }}" ng-click="editItem(item)">
-											<i class="fa fa-fw fa-pencil"></i>
-										</a>
-										<a class='touchable' title="{{:: 'AD_RESUME_LABEL' | translate }}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
-											<i class="fa fa-fw " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
-										</a>
-										<a class='touchable' title="{{:: 'AD_PAUSE_LABEL' | translate }}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
-											<i class="fa fa-fw fa-pause"></i>
-										</a>
-										<a class='touchable' title="{{:: 'AD_REMOVE_LABEL' | translate }}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
-											<i class="fa fa-fw fa-times"></i>
-										</a>
+							<div class='display-flex flex-wrap flex-space-between'>
+								<div class=''>
+									<div class='display-flex flex-wrap'>
+										<div class='padding-right-small' ng-if="isMine">
+											<div class="touchable-wrapper">
+												<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate }}" ng-click="editItem(item)">
+													<i class="fa fa-fw fa-pencil"></i>
+												</a>
+												<a class='touchable' title="{{:: 'AD_RESUME_LABEL' | translate }}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+													<i class="fa fa-fw " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
+												</a>
+												<a class='touchable' title="{{:: 'AD_PAUSE_LABEL' | translate }}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
+													<i class="fa fa-fw fa-pause"></i>
+												</a>
+												<a class='touchable' title="{{:: 'AD_REMOVE_LABEL' | translate }}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
+													<i class="fa fa-fw fa-times"></i>
+												</a>
+											</div>
+										</div>
+										<div class='padding-right-large'>
+											<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
+											<span ng-if="item.is_replied">
+												{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+											</span>
+										</div>
+										<div class=''>
+											<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+											<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate }}</div>
+										</div>
 									</div>
 								</div>
-								<div class='medium-display-table-cell addon padding-right-large'>
-									<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
-									<span ng-if="item.is_replied">
-										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
-									</span>
-								</div>
-								<div class='medium-display-table-cell padding-top-small'>
-									<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
-									<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate }}</div>
-								</div>
-								<div class='medium-display-table-cell addon'>
+								<div class=''>
 									<div class='touchable-wrapper touchable-inverted-round'>
 										<a analytics-custom analytics-event="Share" analytics-category="Email" class='touchable' analytics-label="Share post by email" title="Email" href="" ng-click="openEmailSharingBox(item)">
 											<span class="fa-stack">
@@ -210,7 +214,7 @@
 				<div class="column large-3 end has-delimiter show-for-large-up">
 					<div class='text-center'>
 						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2'>
-							<avatar class='margin-horizontal-large margin-top-medium' type="item.author._type" src="item.author.avatar.large" size="large"></avatar>
+							<avatar class='margin-top-medium show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.large" size="large"></avatar>
 							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
 							<karma-bar for="item.author"></karma-bar>
 						</a>

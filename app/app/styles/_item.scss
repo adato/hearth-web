@@ -72,6 +72,33 @@ a.user{
 .show-post-arrows:before {
 	top: $size-large;
 }
+/* show-post-arrows on avatar */
+.avatar.show-post-arrows{
+	position: relative;
+}
+.avatar.show-post-arrows:before{
+	width: 20px; height: 20px;
+	right: -30px; top: 10px; left: initial;
+	margin-top: 0;
+}
+@media #{$medium-up}{
+	.avatar.show-post-arrows:before{
+		width: 30px; height: 30px;
+		right: -40px; top: 25px;
+	}
+}
+@media #{$large-up}{
+	.avatar.show-post-arrows:before{
+		width: 40px; height: 40px;
+		right: -50px; top: 20px;
+	}
+	.has-delimiter .avatar.show-post-arrows:before{
+		width: 50px; height: 50px;
+		top: 40px; left: -60px; right: initial;
+		transform: scale(-1);
+	}
+}
+
 @media #{$medium-only} {
 	.show-post-arrows:before,
 	.post-detail.offer:before, .post-detail.need:before {
@@ -95,16 +122,19 @@ a.user{
 }
 .show-post-arrows.offer:before,
 .post-detail.offer:before {
-	background:url(/app/images/arrow-give.svg);
+	background:url('/app/images/arrow-give.svg');
 	background-size:100%;
 }
 .show-post-arrows.need:before,
 .post-detail.need:before {
-	background:url(/app/images/arrow-receive.svg);
+	background:url('/app/images/arrow-receive.svg');
 	background-size:100%;
 }
 
 .item-common {
+	/* @kamil TODO - remove after standardizing main ui-view's first-child className, i.e. padding */
+	padding: 0 8px;
+	/* /kamil */
 	margin-bottom: $size-medium;
 
 	.item-status-bar {
@@ -139,17 +169,32 @@ a.user{
 		}
 	}
 
+	.avatar,
+	.avatar img{
+		width: 40px; height: 40px;
+	}
+	@media #{$medium-up}{
+		.avatar,
+		.avatar img{
+			width: 80px; height: 80px;
+		}
+	}
+
 	/* shadow between ad and user intel */
-	@media #{$large-up} {
+	@media #{$large-up}{
 		.has-delimiter{
 			position: relative;
-			padding-left: 2.5rem;
+			padding-left: 40px;
 
 			.user{
-				max-width: 15rem;
+				max-width: 240px;
 			}
+			.avatar,
 			.avatar img{
-				max-width: 13.75rem;
+				width: 130px; height: 130px;
+				/* @kamil TODO - why does avatar image have max-width: 80px?? */
+				max-width: 130px; max-height: 130px;
+				/* /kamil */
 			}
 		}
 		.has-delimiter:before {
@@ -159,10 +204,10 @@ a.user{
 			left: 0;
 			background: image-url("delimiter.png");
 			opacity: .5;
-			width: 2.5rem;
-			height: 31.25rem;
-			background-size: 1.25rem 31.25rem;
-			background-position: .3125rem 0;
+			width: 40px;
+			height: 500px;
+			background-size: 20px 500px;
+			background-position: 5px 0;
 			background-repeat: no-repeat;
 		}
 	}
@@ -172,17 +217,17 @@ a.user{
 		position: absolute;
 		display: flex;
 		align-items: center;
-		top: 0px;
-		right: 0px;
-		bottom: 0px;
-		left: 0px;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
 		text-align: center;
 		background-color: $sharingOverlayBackground;
 		border-radius: $global-radius;
 		transition: visibility 0s, opacity 0.5s linear;
-		z-index: 10;
 		visibility: visible;
 		opacity: 1;
+		z-index: 10;
 
 		/* flex req */
 		&>div {
@@ -262,6 +307,7 @@ a.user{
 				color: $colorSecondary;
 			}
 		}
+		.medium-display-table-cell,
 		.display-table-cell{
 			vertical-align: baseline;
 		}

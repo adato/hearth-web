@@ -34,7 +34,7 @@
 			<section class="box show-post-arrows padding-none" ng-class="item.type" ng-init="marketplace.expanded = false;">
 				<div class='box-content'>
 					<header class="row">
-						<div class="column small-8 small-push-4 medium-4 medium-push-8 large-3 large-push-9 text-right nowrap">
+						<div class="column small-8 small-push-4 medium-5 large-4 medium-push-7 large-push-8 text-right nowrap">
 							<span class='color-dark-gray' title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
 							<div class="display-inline-block margin-left-medium touchable-wrapper" ng-if="!mine">
@@ -65,7 +65,7 @@
 								<avatar type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 							</a>
 						</div>
-						<div class="column small-12 medium-8 medium-pull-4 large-9 large-pull-3">
+						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
 							<h1 class='display-inline-block margin-right-medium'>
 								<a ng-href="{{:: getProfileLink('Post', item._id)}}">
 									<span ng-class='"color-" + item.type' translate='{{:: postTypes[item.author._type][item.type] }}'></span>
@@ -114,8 +114,8 @@
 				<footer>
 					<div class='display-table nowrap'>
 						<div class=display-table-cell>
-							<div class='medium-display-table'>
-								<div class='medium-display-table-cell addon padding-right-large' ng-if="mine">
+							<div class='display-flex flex-wrap'>
+								<div class='padding-right-large' ng-if="mine">
 									<div class='touchable-wrapper'>
 										<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
 											<i class="fa fa-fw fa-pencil"></i>
@@ -131,13 +131,13 @@
 										</a>
 									</div>
 								</div>
-								<div class='medium-display-table-cell addon padding-top-small padding-right-large' ng-if='(!item.is_replied && !mine) || (item.is_replied)'>
+								<div class='padding-right-large' ng-if='(!item.is_replied && !mine) || (item.is_replied)'>
 									<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html=":: replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied">
 										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 									</span>
 								</div>
-								<div class='medium-display-table-cell padding-top-small'>
+								<div class=''>
 									<div ng-if="item.reply_count && mine">
 										<a class='text-decoration-underline' ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
 									</div>
