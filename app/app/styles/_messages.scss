@@ -1,4 +1,50 @@
 .messages {
+	.files-upload {
+		a {
+			color: $colorBlue;
+		}
+
+		#file {
+			display: none;
+		}
+
+		.files {
+			min-height: 72px;
+			margin-bottom: 10px;
+
+			.file-preview {
+				border: 1px dashed #999;
+				border-radius: 8px;
+				text-align: center;
+				max-width: 96px;
+				min-width: 96px;
+				margin: 5px 0;
+				padding: 10px;
+
+				.file-name {
+					margin: 0;
+					font-size: 11px;
+					color: #999;
+				}
+
+				i {
+					font-size: 14px;
+					color: $colorBlue;
+					margin-bottom: 10px;
+				}
+
+				&.image {
+					border: none;
+					padding: 0;
+
+					#file-preview {
+						border-radius: 8px;
+					}
+				}
+			}
+		}
+	}
+
 	.first-message {
 		.bottom .action-link {
 			display: none;
@@ -23,8 +69,7 @@
 				max-width: 0px !important;
 				transition: max-width 1s;
 				&.width-auto {
-					max-width: 1000px !important;
-					;
+					max-width: 1000px !important;;
 				}
 			}
 			display: inline-block;
@@ -51,7 +96,7 @@
 		position: relative;
 		width: 355px;
 		.nano-content {
-			outline:none !important;
+			outline: none !important;
 			.no-result {
 				margin: 20px;
 				margin-left: 0px;
@@ -71,7 +116,7 @@
 			content: "";
 			height: 30px;
 		}
-		&>div {
+		& > div {
 			height: 100%;
 		}
 		.border-bottom,
@@ -140,7 +185,8 @@
 					color: black;
 				}
 				border-bottom-color: color(1);
-				.unreaded-count {}
+				.unreaded-count {
+				}
 			}
 		}
 		.avatars {
@@ -178,7 +224,7 @@
 		padding: 20px;
 		padding-right: 10px;
 		max-height: 100%;
-		&>div {
+		& > div {
 			position: relative;
 			height: 100%;
 		}
@@ -196,7 +242,7 @@
 					max-width: 540px;
 					line-height: 18px;
 					display: inline-block;
-					&>a {
+					& > a {
 						padding-bottom: 5px;
 					}
 				}
@@ -252,7 +298,7 @@
 						position: relative;
 						top: 15px;
 					}
-					h5>div {
+					h5 > div {
 						color: #999;
 						font-size: 12px;
 					}
@@ -266,7 +312,7 @@
 					position: relative;
 					top: 5px;
 				}
-				&>span {
+				& > span {
 					margin-right: 5px;
 					color: #999;
 					position: relative;
@@ -326,7 +372,7 @@
 						max-width: 600px;
 						margin-top: 10px;
 						margin-right: 10px;
-						
+
 						p {
 							font-size: 14px;
 						}
