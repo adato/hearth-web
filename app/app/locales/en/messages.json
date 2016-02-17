@@ -1332,9 +1332,10 @@
 		"map": "Map of gifts and wishes",
 		"profile_settings": "Profile settings",
 		"faq": "Frequently asked questions",
-		"feedback": "Contact",
+		"feedback": "Your feedback",
 		"taxes": "Donations and Taxes",
-		"community_edit": "Edit community"
+		"community_edit": "Edit community",
+		"fulltext": "Search"
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1350,5 +1351,6 @@
 			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
 		}
 	},
-	"ADD_ATTACHMENT": "Attach file"
+	"ADD_ATTACHMENT": "Attach file",
+	"CHANGE_ATTACHMENT": "Change file"
 }

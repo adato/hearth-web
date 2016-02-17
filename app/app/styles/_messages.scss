@@ -11,6 +11,26 @@
 		.files {
 			min-height: 72px;
 			margin-bottom: 10px;
+			position: relative;
+
+			.loading {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				text-align: center;
+				background: white;
+				opacity: .75;
+				width: 96px;
+				z-index: 100;
+
+				i {
+					position: absolute;
+					margin: -14px 0 0 -14px;
+					top: 50%;
+					left: 50%;
+				}
+			}
 
 			.file-preview {
 				border: 1px dashed #999;

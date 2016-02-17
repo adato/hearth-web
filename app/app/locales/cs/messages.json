@@ -1364,9 +1364,10 @@
 		"map": "Mapa darů a přání",
 		"profile_settings": "Nastavení profilu",
 		"faq": "Často kladené otázky",
-		"feedback": "Kontakt",
+		"feedback": "Tvůj názor",
 		"taxes": "Darování a daně",
-		"community_edit": "Úprava komunity"
+		"community_edit": "Úprava komunity",
+		"fulltext": "Vyhledávání"
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1382,5 +1383,6 @@
 			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
 		}
 	},
-	"ADD_ATTACHMENT": "Přiložit soubor"
+	"ADD_ATTACHMENT": "Přiložit soubor",
+	"CHANGE_ATTACHMENT": "Změnit soubor"
 }
