@@ -1317,7 +1317,6 @@
 		"0": "Konverzace"
 	},
 	"profileSettings": "Nastavení profilu",
-	"TOP_BAR_LANGUAGE": "Language",
 	"LANGUAGE": {
 		"ENGLISH": "English",
 		"CZECH": "Čeština",
@@ -1336,5 +1335,19 @@
 		"feedback": "Contact",
 		"taxes": "Donations and Taxes",
 		"community_edit": "Edit community"
+	},
+	"FULLTEXT": {
+		"FILTER": {
+			"BY_TYPE": "Podle obsahu",
+			"TYPE": {
+				"ALL": "Vše",
+				"POSTS": "Dary a přání",
+				"PEOPLE": "Lidé",
+				"COMMUNITY": "Komunity"
+			},
+			"BY_LOCATION": "Podle umístění",
+			"BY_ACTIVITY": "Podle aktivity",
+			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
+		}
 	}
 }

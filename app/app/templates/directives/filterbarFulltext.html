@@ -1,0 +1,25 @@
+<div class="filterbar-wrap">
+	<div class="filterbar-header">
+		<div class="insert-button-container large-3 hide-for-small small-12 hide-for-medium">
+			<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button">
+				{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
+			</a>
+		</div>
+		<div class="filter-left large-9 medium-10 small-12">
+			<div class="toggleFilter">
+				<a ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
+					<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
+					<i ng-show="!filterSelected" class="fa fa-chevron-down"></i>
+					<span>{{::'MARKETPLACE.FILTER.TITLE' | translate}}</span>
+					<a ng-show="filterOn" class="cancelFilter" ng-click="cancelFilter()">
+						{{::'MARKETPLACE.FILTER.CANCEL_FILTER_BAR' | translate | lowercase}}
+					</a>
+				</a>
+			</div>
+		</div>
+	</div>
+	<article class="filter-container large-12 medium-12 animated-hidden" ng-class="{ 'animated-hidden': !filterSelected }">
+		<filter hide-counters='true' template="filterFulltext" id="filter" class="filter" filter-shown="filterSelected" filter-selected="filterType"></filter>
+	</article>
+	<div class="clear"></div>
+</div>
