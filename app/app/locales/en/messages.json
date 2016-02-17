@@ -1350,5 +1350,6 @@
 			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
 		}
 	},
-	"ADD_ATTACHMENT": "Attach file"
+	"ADD_ATTACHMENT": "Attach file",
+	"CHANGE_ATTACHMENT": "Change file"
 }

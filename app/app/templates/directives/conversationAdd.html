@@ -40,9 +40,15 @@
 		<div class="files-upload">
 			<input id="file" type="file" onchange="angular.element(this).scope().uploadedFile(this)" />
 			<div>
-				<a ng-click="openUploadDialog()">{{'ADD_ATTACHMENT' | translate}}</a>
+				<a ng-click="openUploadDialog()">
+					<span ng-if="!reply.attachments_attributes">{{'ADD_ATTACHMENT' | translate}}</span>
+					<span ng-if="reply.attachments_attributes">{{'CHANGE_ATTACHMENT' | translate}}</span>
+				</a>
 			</div>
 			<div class="files">
+				<div class="loading">
+					<i class="fa fa-spinner fa-spin"></i>
+				</div>
 				<div ng-if="message.attachments_attributes && !fileIsImage" class="file-preview fleft">
 					<i class="fa fa-file"></i>
 					<p class="file-name">{{message.attachments_attributes.name}}</p>
