@@ -20,6 +20,12 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			$rootScope.$broadcast("languageInited");
 		};
 
+		self.languageStrings = {
+			cs: 'CZECH',
+			en: 'ENGLISH',
+			sk: 'SLOVAK'
+		};
+
 		// get all languages
 		this.getLanguages = function() {
 			return self.languages;
