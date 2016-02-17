@@ -91,8 +91,6 @@ angular.module('hearth.services').factory('Filter', [
 				return !$.isEmptyObject($location.search());
 			},
 			apply: function(filterData, save, applySave) {
-				console.log($state, filterData);
-				console.log($location);
 
 				$location.search(filterData);
 				if (applySave && $rootScope.loggedUser._id) {
