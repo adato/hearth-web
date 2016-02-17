@@ -469,6 +469,10 @@ $topBarImageSize: 1.8em;
 	transition: color 1s, text-shadow 2s;
 }
 
-#header-language-selector{
-	margin-right: 3rem;
+/* @kamil - temporary workaround against breaking of navigation on screens smaller than 370px */
+@media only screen and (max-width: 370px){
+	#language-bar-mobile{
+		display: none
+	}
 }
+/* /kamil */
