@@ -1,14 +1,23 @@
+<h1 class="text-center">
+	<span ng-if="!params.facebook">{{ 'SIGNUP_HEADING' | translate }}</span>
+	<span ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</span>
+</h1>
+
 <div class="register-login-dialog" ng-cloak>
 	<div class="register-form">
-		<div class="headMessage error">
-		</div>
-		<div class="head">
-			<h2 ng-if="!params.facebook">{{ 'SIGNUP_HEADING' | translate }}</h2>
+		<<<<<<< HEAD <div class="headMessage error">
+	</div>
+	<div class="head">
+		<h2 ng-if="!params.facebook">{{ 'SIGNUP_HEADING' | translate }}</h2>
 
-			<h2 ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</h2>
-		</div>
-		<hr/>
-		<form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form row" ng-show="! sent">
+		<h2 ng-if="params.facebook">{{ 'SIGNUP_HEADING_FB' | translate }}</h2>
+	</div>
+	<hr/>
+	<form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form row" ng-show="! sent">
+		=======
+		<div class="headMessage error"></div>
+		<form ng-cloak ng-submit="register(user)" name="registerForm" novalidate class="register-login-form" ng-show="! sent">
+			>>>>>>> fe/hearth-537
 			<div class="register-notify-area"></div>
 			<p ng-if="!params.facebook">{{ 'SIGNUP_HEADING_TEXT' | translate }}</p>
 
@@ -81,5 +90,5 @@
 		<div class="register-successful success">
 			<p ng-bind-html="'SIGNUP_WAS_SUCCESSFUL' | translate"></p>
 		</div>
-	</div>
+</div>
 </div>
