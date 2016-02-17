@@ -59,27 +59,25 @@ a.user{
 	}
 }
 
-.show-post-arrows:before,
-.post-detail.offer:before, .post-detail.need:before {
-	content:"";
-	display:block;
-	width:40px;
-	height:40px;
-	position:absolute;
-	left:-21px;
-	margin-top:2px;
-}
-.show-post-arrows:before {
-	top: $size-large;
-}
-/* show-post-arrows on avatar */
+
 .avatar.show-post-arrows{
 	position: relative;
 }
 .avatar.show-post-arrows:before{
+	content:'';
+	position: absolute;
+	display:block;
 	width: 20px; height: 20px;
 	right: -30px; top: 10px; left: initial;
 	margin-top: 0;
+	background-size: cover;
+	z-index: 5;
+}
+.avatar.show-post-arrows.need:before{
+	background-image: url('/app/images/arrow-receive.svg');
+}
+.avatar.show-post-arrows.offer:before{
+	background-image: url('/app/images/arrow-give.svg');
 }
 @media #{$medium-up}{
 	.avatar.show-post-arrows:before{
@@ -95,47 +93,26 @@ a.user{
 	.has-delimiter .avatar.show-post-arrows:before{
 		width: 50px; height: 50px;
 		top: 40px; left: -60px; right: initial;
-		transform: scale(-1);
+
+		-moz-transform: scaleX(-1);
+		-o-transform: scaleX(-1);
+		-webkit-transform: scaleX(-1);
+		transform: scaleX(-1);
+		filter: FlipH;
+		-ms-filter: "FlipH";
 	}
 }
 
-@media #{$medium-only} {
-	.show-post-arrows:before,
-	.post-detail.offer:before, .post-detail.need:before {
-		width: 20px;
-		height: 20px;
-		left: -9px;
-		top:36px;
-	}
-	.show-post-arrows:before {
-		top: 2.25rem;
+/* @kamil TODO - remove after standardizing main ui-view's first-child and padding */
+@media #{$medium-down}{
+	.item-common.temp-padding {
+		padding: 0 8px;
 	}
 }
-@media #{$small-only} {
-	.show-post-arrows:before,
-	.post-detail.offer:before, .post-detail.need:before {
-		width: 20px;
-		height: 20px;
-		left: 70px;
-		top: 34px;
-	}
-}
-.show-post-arrows.offer:before,
-.post-detail.offer:before {
-	background:url('/app/images/arrow-give.svg');
-	background-size:100%;
-}
-.show-post-arrows.need:before,
-.post-detail.need:before {
-	background:url('/app/images/arrow-receive.svg');
-	background-size:100%;
-}
-
+/* /kamil */
 .item-common {
-	/* @kamil TODO - remove after standardizing main ui-view's first-child className, i.e. padding */
-	padding: 0 8px;
-	/* /kamil */
 	margin-bottom: $size-medium;
+
 
 	.item-status-bar {
 		background: $colorDanger;

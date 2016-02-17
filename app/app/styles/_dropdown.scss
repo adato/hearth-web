@@ -97,13 +97,17 @@
 }
 
 
+.dropdown-wrapper{
+	position: relative;
+	display: inline-block;
+}
 .action-dropdown:hover {
 	color: $colorSecondary !important;
 }
 .actions-dropdown {
 	position: absolute;
 	top: calc(100% + 5px);
-	right: $size-tiny;
+	right: -8px;
 	min-width: 12.5rem;
 	min-height: 2.5rem;
 	padding: $size-tiny 0;

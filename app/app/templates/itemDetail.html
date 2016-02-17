@@ -1,4 +1,4 @@
-<article class="item-common">
+<article class="item-common temp-padding">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
 		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted)'>
@@ -24,29 +24,31 @@
 								<div class="column small-8 small-push-4 medium-4 medium-push-8 text-right nowrap">
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
-									<div class="display-inline-block margin-left-medium touchable-wrapper" ng-if="!mine">
-										<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}">
-											<i class='fa fa-fw fa-chevron-down'></i>
-										</span>
-									</div>
+									<div class='dropdown-wrapper'>
+										<div class="display-inline-block touchable-wrapper margin-left-none" ng-if="!mine">
+											<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}">
+												<i class='fa fa-fw fa-chevron-down'></i>
+											</span>
+										</div>
 
-									<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
-										<li>
-											<!-- bookmark post -->
-											<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
-											<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
-											<!-- bookmark post -->
-										</li>
-										<li>
-											<!-- flag post -->
-											<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-											<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
-											<!-- flag post -->
-										</li>
-										<li>
-											<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
-										</li>
-									</ul>
+										<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
+											<li>
+												<!-- bookmark post -->
+												<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+												<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+												<!-- bookmark post -->
+											</li>
+											<li>
+												<!-- flag post -->
+												<a ng-if="! mine && item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD_ONLY_ONCE' | translate}}" tipsy disabled>{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+												<a ng-if="! mine && !item.spam_reported" title="{{:: 'REPORT_HARMFUL_AD' | translate}}" ng-click="openReportBox(item)">{{:: 'MARKETPLACE.POST.FLAG_POST' | translate }}</a>
+												<!-- flag post -->
+											</li>
+											<li>
+												<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
+											</li>
+										</ul>
+									</div>
 								</div>
 								<div class="column small-4 medium-8 small-pull-8 medium-pull-4 hide-for-large-up margin-bottom-small">
 									<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
@@ -75,19 +77,17 @@
 								</li>
 							</ul>
 							<div ng-if="!item.location_unlimited">
-								<div class='display-table margin-bottom-small'>
-									<div class='display-table-cell'>
+								<div class='display-flex flex-space-between flex-wrap'>
+									<div>
 										<span class='text-emphasize'>{{:: 'POSTS.DETAIL.LOCATION_HEADING' | translate }}</span>
 									</div>
-									<div class='display-table-cell addon nowrap'>
-										<div class="map-expand-toggle" ng-if="item.locations.length && !item.location_unlimited" ng-init="local.showMap = !isMine && item.locations && item.locations.length && !item.location_unlimited">
-											<a ng-show="!local.showMap" ng-click="local.showMap = true">{{:: 'POSTS.DETAIL.SHOW_MAP' | translate }}
-												<i class="fa fa-chevron-down"></i>
-											</a>
-											<a ng-show="local.showMap" ng-click="local.showMap = false">{{:: 'POSTS.DETAIL.HIDE_MAP' | translate }}
-												<i class="fa fa-chevron-up"></i>
-											</a>
-										</div>
+									<div class="map-expand-toggle" ng-if="item.locations.length && !item.location_unlimited" ng-init="local.showMap = !isMine && item.locations && item.locations.length && !item.location_unlimited">
+										<a ng-show="!local.showMap" ng-click="local.showMap = true">{{:: 'POSTS.DETAIL.SHOW_MAP' | translate }}
+											<i class="fa fa-chevron-down"></i>
+										</a>
+										<a ng-show="local.showMap" ng-click="local.showMap = false">{{:: 'POSTS.DETAIL.HIDE_MAP' | translate }}
+											<i class="fa fa-chevron-up"></i>
+										</a>
 									</div>
 								</div>
 								<div class='margin-bottom-small'>
