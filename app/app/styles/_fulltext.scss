@@ -70,11 +70,17 @@
 		margin: {
 			bottom: 2* $fontSize;
 		}
+
+		em {
+			font-weight: 700;
+			font-style: normal;
+		}
+
 		.title {
 			color: color(5);
 			text-decoration: underline;
 			font-size: rem-calc(22);
-			font-weight: bold;
+			font-weight: 600;
 			cursor: pointer;
 			margin: 0;
 			&:hover {
