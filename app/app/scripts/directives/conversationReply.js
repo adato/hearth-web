@@ -30,6 +30,10 @@ angular.module('hearth.directives').directive('conversationReply', [
 					text: false
 				};
 
+				$scope.openUploadDialog = function() {
+					$('#file').click();
+				};
+
 				$scope.clearFileInput = function() {
 					$scope.reply.attachments_attributes = '';
 					angular.element("input[type='file']").val(null);
@@ -38,6 +42,20 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.uploadedFile = function(element) {
 					$scope.$apply(function($scope) {
 						$scope.reply.attachments_attributes = element.files[0];
+
+						var uploadedType = $scope.reply.attachments_attributes.type;
+						var allowedFileTypes = ['image/png', 'image/jpeg', 'image/gif'];
+
+						if (allowedFileTypes.indexOf(uploadedType) > -1) {
+							var reader = new FileReader();
+							reader.onload = function(e) {
+								$('#file-preview').attr('src', e.target.result);
+							};
+							reader.readAsDataURL(element.files[0]);
+							$scope.fileIsImage = true;
+						} else {
+							$scope.fileIsImage = false;
+						}
 					});
 				};
 

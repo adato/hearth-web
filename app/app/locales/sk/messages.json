@@ -1349,13 +1349,12 @@
 		"0": "Konverzace"
 	},
 	"profileSettings": "Nastavení profilu",
-	"TOP_BAR_LANGUAGE": "Jazyk",
 	"LANGUAGE": {
 		"ENGLISH": "English",
 		"CZECH": "Čeština",
 		"SLOVAK": "Slovenčina"
 	},
-	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "Přihlašuješ se do Hearthu pomocí účtu třetí strany (Facebook, Google, twitter) a tento účet není napojený na žádného Hearth uživatele. Není možné, že na Hearthu ještě účet nemáš nebo jsi se registroval pomocí e-mailu? \n<br><br>\nBuď se můžeš přihlásit pomocí jiného způsobu nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.",
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "<p>Přihla&scaron;uje&scaron; se do Hearthu pomoc&iacute; &uacute;čtu třet&iacute; strany (Facebook, Google, twitter) a tento &uacute;čet nen&iacute; napojen&yacute; na ž&aacute;dn&eacute;ho Hearth uživatele. Nen&iacute; možn&eacute;, že na Hearthu je&scaron;tě &uacute;čet nem&aacute;&scaron; nebo jsi se registroval pomoc&iacute; e-mailu?<\/p>\n<p>Buď se může&scaron; přihl&aacute;sit pomoc&iacute; jin&eacute;ho &uacute;čtu&nbsp;nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.<\/p>",
 	"h1": {
 		"marketplace": "Trhovisko",
 		"communities": "Komunity",
@@ -1368,5 +1367,20 @@
 		"feedback": "Kontakt",
 		"taxes": "Darovanie a dane",
 		"community_edit": "Úprava komunity"
-	}
+	},
+	"FULLTEXT": {
+		"FILTER": {
+			"BY_TYPE": "Podle obsahu",
+			"TYPE": {
+				"ALL": "Vše",
+				"POSTS": "Dary a přání",
+				"PEOPLE": "Lidé",
+				"COMMUNITY": "Komunity"
+			},
+			"BY_LOCATION": "Podle umístění",
+			"BY_ACTIVITY": "Podle aktivity",
+			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
+		}
+	},
+	"ADD_ATTACHMENT": "Priložiť súbor"
 }
