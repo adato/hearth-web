@@ -30,6 +30,11 @@
 		margin-right: .5rem;
 	}
 }
+.flag-list{
+	.flag{
+		margin-right: $size-small;
+	}
+}
 .language-small-wrapper{
 	position: relative;
 	vertical-align: top;
