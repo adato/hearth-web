@@ -30,7 +30,6 @@ angular.module('hearth.directives').directive('radio', function() {
 				if (!scope.checked) {
 					scope.checked = !scope.checked;
 				}
-
 				if (angular.isArray(scope.model)) {
 					var index = scope.model.indexOf(scope.value);
 					if (index > -1) {
