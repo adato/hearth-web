@@ -5,4 +5,5 @@
 	<radio model="model" value="false" ng-disabled="ngDisabled" value-off="true" checked="!model">
 		{{ textFalse }}
 	</radio>
+	<div class='error' ng-if='requiredShown'>{{:: 'ERR_RATING_SCORE_REQUIRED' | translate }}</div>
 </div>

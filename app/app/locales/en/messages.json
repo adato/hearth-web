@@ -1352,5 +1352,6 @@
 		}
 	},
 	"ADD_ATTACHMENT": "Attach file",
-	"CHANGE_ATTACHMENT": "Change file"
+	"CHANGE_ATTACHMENT": "Change file",
+	"ERR_RATING_SCORE_REQUIRED": "Je potřeba vybrat hodnocení"
 }
