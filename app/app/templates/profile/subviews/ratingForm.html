@@ -39,9 +39,9 @@
 			<a ng-click="closeUserRatingForm()" class="revert-changes">
 				<i class="fa fa-chevron-left"></i>&nbsp; {{:: 'CANCEL' | translate }}</a>
 		</strong>
-		<button type="submit" class="button right" ng-class="{ 'positive': rating.score == 1, 'negative': rating.score < 1}">
+		<button type="submit" class="button right" ng-class="{ 'positive': rating.score == true, 'negative': rating.score == false, 'neutral': isNull(rating.score)}">
 			{{:: 'SEND_USER_RATING' | translate }} &nbsp;
-			<i class="score-icon fa" ng-class="{'icon-rating-negative':!rating.score,'icon-rating-positive':rating.score}"></i>
+			<i class="score-icon fa" ng-class="{'icon-rating-negative': rating.score == false,'icon-rating-positive':	rating.score == true}"></i>
 		</button>
 	</form>
 </div>
