@@ -216,7 +216,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showError.text = false;
 
 			var errors = false;
-			if (!$scope.rating.score) {
+			if ($scope.isNull($scope.rating.score)) {
 				$scope.rating.requiredMessageShown = true;
 				errors = true;
 			}
