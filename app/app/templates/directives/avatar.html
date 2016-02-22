@@ -1,4 +1,4 @@
-<div class="avatar {{ class }} {{ defaultImageTypeClass }}">
+<div class="avatar" ng-class="[class, defaultImageTypeClass]">
 	<a ng-href="{{ href }}">
 		<img ng-if="image" ng-src="{{ image }}" />
 	</a>
