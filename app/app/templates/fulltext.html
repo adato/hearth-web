@@ -20,23 +20,23 @@
 				<section class="large-10 small-9 medium-10 columns">
 					<i class="fa" ng-class="{'icon-marketplace' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
 					<a class="title" ng-href="{{getProfileLink(item._type, item._id)}}">
-						<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title" />
-						<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted" />
-						<span ng-if="!item.title && !item.highlight.name[0]" ng-bind-html="item.name" />
-						<span ng-if="!item.title && item.highlight.name[0]" ng-bind-html="item.highlight.name[0] | to_trusted" />
+						<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
+						<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
+						<span ng-if="!item.title && !item.highlight.name[0]" ng-bind-html="item.name"></span>
+						<span ng-if="!item.title && item.highlight.name[0]" ng-bind-html="item.highlight.name[0] | to_trusted"></span>
 						<span ng-if="item.author.name">({{item.author.name}})</span>
 					</a>
 					<p ng-switch-when="Post">
 						<span ng-if="item.text && !item.highlight.text[0]">{{item.text | ellipsis: 150}}</span>
-						<span ng-if="item.text && item.highlight.text[0]" ng-bind-html="item.highlight.text[0] | to_trusted" />
+						<span ng-if="item.text && item.highlight.text[0]" ng-bind-html="item.highlight.text[0] | to_trusted"></span>
 					</p>
 					<p ng-switch-when="User">
 						<span ng-if="item.about && !item.highlight.about[0]">{{item.about | ellipsis: 150}}</span>
-						<span ng-if="item.about && item.highlight.about[0]" ng-bind-html="item.highlight.about[0] | to_trusted" />
+						<span ng-if="item.about && item.highlight.about[0]" ng-bind-html="item.highlight.about[0] | to_trusted"></span>
 					</p>
 					<p ng-switch-when="Community">
 						<span ng-if="item.description && !item.highlight.description[0]">{{item.description | ellipsis: 150}}</span>
-						<span ng-if="item.description && item.highlight.description[0]" ng-bind-html="item.highlight.description[0] | to_trusted" />
+						<span ng-if="item.description && item.highlight.description[0]" ng-bind-html="item.highlight.description[0] | to_trusted"></span>
 					</p>
 					<div class="breadcrumb" ng-switch-when="Post">
 						<a ng-href="{{:: basePath }}">{{:: 'HOMEPAGE_MARKET' | translate}}</a> &gt;
