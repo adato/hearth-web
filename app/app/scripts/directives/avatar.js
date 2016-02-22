@@ -20,15 +20,19 @@ angular.module('hearth.directives').directive('avatar', [
 			},
 			templateUrl: 'templates/directives/avatar.html',
 			link: function($scope, el, attrs) {
-				$scope.defaultImageType = $$config.defaultUserAvatar;
+				$scope.defaultImageTypeClass = 'avatar-user';
+				// $scope.defaultImageType = $$config.defaultUserAvatar;
 				$scope.class = "avatar-" + ($scope.size || 'normal');
 
+				console.log($scope);
 				$scope.$watch('type', function(val) {
-					$scope.defaultImageType = val === 'Community' ? $$config.defaultCommunityAvatar : $$config.defaultUserAvatar;
+					// $scope.defaultImageType = val === 'Community' ? $$config.defaultCommunityAvatar : $$config.defaultUserAvatar;
+					$scope.defaultImageTypeClass = (val === 'Community') ? 'avatar-community' : 'avatar-user';
+					console.log($scope.defaultImageTypeClass);
 				});
 
 				$scope.$watch('src', function(val) {
-					$scope.image = val || $scope.defaultImageType;
+					$scope.image = val || null;
 				});
 			}
 		};
