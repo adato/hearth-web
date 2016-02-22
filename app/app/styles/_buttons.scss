@@ -91,6 +91,7 @@ button.no-vertical-padding {
 	padding-bottom: 0px !important;
 }
 
+.button-need,
 .button.background-need {
 	&:hover {
 		background-color: lighten($colorNeed, abs($button-function-factor));
