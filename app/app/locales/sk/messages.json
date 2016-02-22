@@ -1385,5 +1385,6 @@
 	},
 	"ADD_ATTACHMENT": "Priložiť súbor",
 	"CHANGE_ATTACHMENT": "Zmeniť súbor",
-	"ERR_RATING_SCORE_REQUIRED": "Je potřeba vybrat hodnocení"
+	<< << << < HEAD "ERR_RATING_SCORE_REQUIRED": "Je potřeba vybrat hodnocení" === === =
+		"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu" >>> >>> > fe / hearth - 547
 }
