@@ -155,14 +155,10 @@ article.item-detail-page {
 		}
 	}
 
-	.avatar,
-	.avatar img{
-		width: 40px; height: 40px;
-	}
-	@media #{$medium-up}{
+	@media #{$small-down}{
 		.avatar,
-		.avatar img{
-			width: 80px; height: 80px;
+		.avatar a{
+			width: 40px; height: 40px;
 		}
 	}
 
@@ -174,13 +170,6 @@ article.item-detail-page {
 
 			.user{
 				max-width: 240px;
-			}
-			.avatar,
-			.avatar img{
-				width: 130px; height: 130px;
-				/* @kamil TODO - why does avatar image have max-width: 80px?? */
-				max-width: 130px; max-height: 130px;
-				/* /kamil */
 			}
 		}
 		.has-delimiter:before {
