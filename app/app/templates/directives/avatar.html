@@ -1,8 +1,5 @@
-<div class="avatar {{ class }}">
-	<a ng-if='href' ng-href="{{ href }}">
-		<img ng-src="{{ image }}" />
+<div class="avatar {{ class }} {{ defaultImageTypeClass }}">
+	<a ng-href="{{ href }}">
+		<img ng-if="image" ng-src="{{ image }}" />
 	</a>
-	<div ng-if='! href'>
-		<img ng-src='{{ image }}' />
-	</div>
 </div>
