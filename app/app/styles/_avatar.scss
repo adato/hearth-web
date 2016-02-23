@@ -41,22 +41,26 @@ $large-avatar-size: 295px;
 		background-image: url(../images/no-cm-avatar.jpg);
 	}
 
-	&.avatar-small > a {
+	&.avatar-small > a,
+	&.avatar-small > div {
 		width: $small-avatar-size;
 		height: $small-avatar-size;
 	}
 
-	&.avatar-normal > a {
+	&.avatar-normal > a,
+	&.avatar-normal > div {
 		width: $normal-avatar-size;
 		height: $normal-avatar-size;
 	}
 
-	&.avatar-medium > a {
+	&.avatar-medium > a,
+	&.avatar-medium > div {
 		width: $medium-avatar-size;
 		height: $medium-avatar-size;
 	}
 
-	&.avatar-large > a {
+	&.avatar-large > a,
+	&.avatar-large > div {
 		width: $large-avatar-size;
 		height: $large-avatar-size;
 	}
@@ -65,7 +69,9 @@ $large-avatar-size: 295px;
 		&.move-bot {
 			top: 6px;
 		}
-		a {
+		
+		a,
+		div {
 			width: $mini-avatar-size;
 			height: $mini-avatar-size;
 		}
