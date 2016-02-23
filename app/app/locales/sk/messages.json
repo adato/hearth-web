@@ -1191,7 +1191,9 @@
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Vyberte inzerát",
 	"RATING_POST_TYPES": {
 		"offered": "Venoval(a) som",
-		"needed": "Prijal(a) som"
+		"needed": "Prijal(a) som",
+		"we_needed": "Přijali jsme",
+		"we_offered": "Věnovali jsme"
 	},
 	"RATING_NO_COMMON_POST_IN_3_MONTHS": "Za posledné 3 mesiace ste si vzájomne nereagovali na žiadny inzerát. I tak ale môžete užívateľa ohodnotiť. :)",
 	"RATING_COMMON_POSTS_TOP": "O aký inzerát šlo?",

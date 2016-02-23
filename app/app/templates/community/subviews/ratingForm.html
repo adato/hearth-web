@@ -21,7 +21,7 @@
 			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 				<option value="" ng-selected="true">{{:: 'COMMUNITY_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
 				<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
-					{{:: 'RATING_POST_TYPES.'+post.post_type | translate }} {{:: post.title | ellipsis:40 }}
+					{{:: 'RATING_POST_TYPES.' + (rating.current_community._id != loggedUser._id ? "we_" : "") + post.post_type | translate }} {{:: post.title | ellipsis:40 }}
 				</option>
 			</select>
 		</span>
