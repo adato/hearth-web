@@ -1385,5 +1385,6 @@
 	},
 	"ADD_ATTACHMENT": "Přiložit soubor",
 	"CHANGE_ATTACHMENT": "Změnit soubor",
-	"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu"
+	"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu",
+	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný."
 }

@@ -165,6 +165,9 @@
 				</span>
 			</h2>
 			<section>
+				<div class="error padding-1 margin" ng-show="showError.social_networks_invalid">
+					<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+				</div>
 				<div class="margin large-6 small-12 medium-6 columns">
 					<label>
 						{{:: 'MY_FACEBOOK' | translate }}
