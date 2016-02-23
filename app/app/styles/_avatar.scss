@@ -11,16 +11,13 @@ $large-avatar-size: 295px;
 	position: relative;
 	background-size: cover;
 
-	&>a {
+	&>* {
 		display: block;
 		padding: 0px;
 	}
 
-	a:not([href]) {
-		cursor: inherit;
-	}
-
-	& > a::before {
+	/** == Shade == */
+	& > *::before {
 		position: absolute;
 	    content: '';
 	    width: 100%;
@@ -33,6 +30,7 @@ $large-avatar-size: 295px;
 		box-shadow: inset -3px 3px 6px rgba(black, 0.5);
 	}
 
+	/** == Default avatars == */
 	&.avatar-user {
 		background-image: url(../images/no-avatar.jpg);
 	}
@@ -40,26 +38,23 @@ $large-avatar-size: 295px;
 		background-image: url(../images/no-cm-avatar.jpg);
 	}
 
-	&.avatar-small > a,
-	&.avatar-small > div {
+	/** == Size definitions == */
+	&.avatar-small > * {
 		width: $small-avatar-size;
 		height: $small-avatar-size;
 	}
 
-	&.avatar-normal > a,
-	&.avatar-normal > div {
+	&.avatar-normal > * {
 		width: $normal-avatar-size;
 		height: $normal-avatar-size;
 	}
 
-	&.avatar-medium > a,
-	&.avatar-medium > div {
+	&.avatar-medium > * {
 		width: $medium-avatar-size;
 		height: $medium-avatar-size;
 	}
 
-	&.avatar-large > a,
-	&.avatar-large > div {
+	&.avatar-large > * {
 		width: $large-avatar-size;
 		height: $large-avatar-size;
 	}
@@ -69,8 +64,7 @@ $large-avatar-size: 295px;
 			top: 6px;
 		}
 		
-		a,
-		div {
+		&>* {
 			width: $mini-avatar-size;
 			height: $mini-avatar-size;
 		}
