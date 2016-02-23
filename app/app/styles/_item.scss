@@ -219,14 +219,6 @@ article.item-detail-page {
 		}
 		.input-container {
 			margin: 0px auto;
-<<<<<<< HEAD
-			margin-bottom: $size-small;
-			width: 60%;
-			color: $colorOrange;
-			transition: none;
-			@media #{$small-only} {
-				width:80%;
-=======
 			margin-bottom: 10px;
 			width: 70%;
 
@@ -244,7 +236,6 @@ article.item-detail-page {
 				display: inline-block;
 				color: $colorOrange;
 				transition: none;
->>>>>>> fe/hearth-541
 			}
 		}
 
