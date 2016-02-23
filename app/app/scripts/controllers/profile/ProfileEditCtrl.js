@@ -20,6 +20,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			phone: false,
 			contact_email: false,
 			message: false,
+			social_networks_invalid: false,
 		};
 
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
@@ -53,10 +54,38 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.updateUrl = function($event, model, key) {
 			var input = $($event.target),
-				url = input.val();
-			if (url && !url.match(/http[s]?:\/\/.*/))
-				url = 'http://' + url;
+				url = input.val(),
+				tmpKey = key;
+
+			if (url && !url.match(/http[s]?:\/\/.*/)) {
+				url = 'https://' + url;
+			}
+
+			if (key == "googleplus") {
+				tmpKey = "plus.google";
+			}
+
+			if (model !== $scope.profile.webs && url && !url.match(new RegExp(tmpKey + ".com\/.*\/?"))) { // match invalid input
+				$scope.showError.social_networks_invalid = true;
+				return;
+			}
+
 			model[key] = url;
+			$scope.showError.social_networks_invalid = false;
+		};
+
+		$scope.validateSocialNetworks = function() {
+			$scope.showError.social_networks_invalid = false;
+			var soc = ['twitter', 'facebook', 'linkedin', 'googleplus'];
+			soc.forEach(function(item) {
+				var url = item + ".com";
+				if (item == 'googleplus.com') {
+					url = "plus.google.com";
+				}
+				if ($scope.profile[item] && !$scope.profile[item].match(url + "\/.*\/?")) $scope.showError.social_networks_invalid = true;
+
+			});
+			return !$scope.showError.social_networks_invalid;
 		};
 
 		$scope.switchLanguage = function(lang) {
@@ -131,6 +160,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			if ($scope.showContactMail && $scope.profileEditForm.contact_email.$invalid) {
 				res = false;
 				$scope.showError.contact_email = true;
+			}
+
+			if (!$scope.validateSocialNetworks()) {
+				res = false;
+				$scope.showError.social_networks_invalid = true;
 			}
 
 			if ($scope.profileEditForm.about.$invalid || $scope.profileEditForm.interests.$invalid) {
