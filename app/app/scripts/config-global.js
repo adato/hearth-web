@@ -88,5 +88,5 @@ var _rollbarConfig = {
 	payload: {
 		environment: $$config.env
 	},
-	enable: window.location.hostname !== "0.0.0.0"
+	enable: 0 < ["0.0.0.0", '127.0.0.1', 'localhost'].indexOf(window.location.hostname)
 };
