@@ -217,16 +217,37 @@ article.item-detail-page {
 			color: white;
 			margin-bottom: $size-small;
 		}
-		input {
+		.input-container {
 			margin: 0px auto;
+<<<<<<< HEAD
 			margin-bottom: $size-small;
 			width: 60%;
 			color: $colorOrange;
 			transition: none;
 			@media #{$small-only} {
 				width:80%;
+=======
+			margin-bottom: 10px;
+			width: 70%;
+
+			.fa {
+				width: 36px;
+				height: 36px;
+				color: white;
+				text-align: center;
+				padding-top: 7px;
+				cursor: default;
+			}
+
+			input {
+				width: 80%;
+				display: inline-block;
+				color: $colorOrange;
+				transition: none;
+>>>>>>> fe/hearth-541
 			}
 		}
+
 		ul {
 			list-style: none;
 			li {
