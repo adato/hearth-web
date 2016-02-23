@@ -110,6 +110,25 @@
 			}
 		}
 	}
+	.input-container {
+		margin: 0px auto;
+		margin-bottom: 10px;
+		width: 80%;
+
+		.fa {
+			width: 36px;
+			height: 36px;
+			color: #7c766a;
+			text-align: center;
+			padding-top: 7px;
+			cursor: default;
+		}
+		input {
+			width: 80%;
+			display: inline-block;
+			transition: none;
+		}
+	}
 	.bottom {
 		margin-top: $ui-small-grid-size * 3;
 		.pauseLink {
