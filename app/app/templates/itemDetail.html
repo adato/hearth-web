@@ -24,7 +24,7 @@
 								<div class="column small-8 small-push-4 medium-4 medium-push-8 text-right nowrap">
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
-									<<<<<<< HEAD <div class='dropdown-wrapper'>
+									<div class='dropdown-wrapper'>
 										<div class="display-inline-block touchable-wrapper margin-left-none" ng-if="!mine">
 											<bubble ng-if="loggedUser._id && !item.is_bookmarked && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble-container hide" type="bookmark"></bubble>
 											<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}">
@@ -49,156 +49,133 @@
 												<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 											</li>
 										</ul>
+									</div>
 								</div>
-						</div>
-						<div class="column small-4 medium-8 small-pull-8 medium-pull-4 hide-for-large-up margin-bottom-small">
-							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-								<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.normal" size="normal"></avatar>
-							</a>
-						</div>
-						<div class="column small-12 medium-8 medium-pull-4">
-							<h1 class='display-inline-block margin-right-medium'>
-								<span ng-class='"color-" + item.type' translate='{{:: postTypes[item.author._type][item.type] }}'></span>
-								{{:: item.title}}
-							</h1>
-							<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
-							<span class="validity-warning" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
-							<!-- TODO!!! add ngif and data -->
-							<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
-						</div>
-						</header>
-						<div class="text-container">
-							<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
-							=======
+								<div class="column small-4 medium-8 small-pull-8 medium-pull-4 hide-for-large-up margin-bottom-small">
+									<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
+										<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.normal" size="normal"></avatar>
+									</a>
+								</div>
+								<div class="column small-12 medium-8 medium-pull-4">
+									<h1 class='display-inline-block margin-right-medium'>
+										<span ng-class='"color-" + item.type' translate='{{:: postTypes[item.author._type][item.type] }}'></span>
+										{{:: item.title}}
+									</h1>
+									<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
+									<span class="validity-warning" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
+									<!-- TODO!!! add ngif and data -->
+									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
+								</div>
+							</header>
+							<div class="text-container">
+								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+							</div>
+							<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
+								<li ng-repeat="photo in item.attachments_attributes track by $index">
+									<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}">
+										<img ng-src="{{photo.normal}}">
+									</a>
+								</li>
+							</ul>
+							<div ng-if="!item.location_unlimited">
+								<div class='display-flex flex-space-between flex-wrap'>
+									<div>
+										<span class='text-emphasize'>{{:: 'POSTS.DETAIL.LOCATION_HEADING' | translate }}</span>
+									</div>
+									<div class="map-expand-toggle" ng-if="item.locations.length && !item.location_unlimited" ng-init="local.showMap = !isMine && item.locations && item.locations.length && !item.location_unlimited">
+										<a ng-show="!local.showMap" ng-click="local.showMap = true">{{:: 'POSTS.DETAIL.SHOW_MAP' | translate }}
+											<i class="fa fa-chevron-down"></i>
+										</a>
+										<a ng-show="local.showMap" ng-click="local.showMap = false">{{:: 'POSTS.DETAIL.HIDE_MAP' | translate }}
+											<i class="fa fa-chevron-up"></i>
+										</a>
+									</div>
+								</div>
+								<div class='margin-bottom-small'>
+									<ul class="no-list">
+										<li ng-if="item.location_unlimited" class="location-anywhere">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE' | translate }}</li>
+										<li ng-repeat="(locationId, location) in item.locations">
+											{{ location.address }}
+										</li>
+									</ul>
+								</div>
+								<mapitems ng-if="local.showMap" class="map" style="height:300px;" items="item.locations" zoom-on-scroll="false"></mapitems>
+							</div>
+							<span class='text-emphasize' ng-if="item.location_unlimited">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE_HEADING' | translate }}</span>
 							<div class="tags" ng-if="item.keywords.length">
-								<ul class="tagList">
+								<ul class="tagList margin-bottom-none">
 									<li ng-repeat="tag in item.keywords">{{tag}}</li>
 								</ul>
 							</div>
-							<footer class="clearfix">
-								<div class="sharing fright">
-									<a analytics-custom analytics-event="Share" analytics-category="Link" analytics-label="Share post link" class="fa fa-link" title="Link" href="" ng-click="openLinkSharingBox(item)"></a>
-									<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" href="" ng-click="openEmailSharingBox(item)"></a>
-									<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank"></a>
-									<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank"></a>
-									<a analytics-custom analytics-event="Share" analytics-category="Twitter" analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank"></a>
-								</div>
-								<div class="post-edit-buttons-container fleft" ng-if="isMine">
-									<div class="controll-buttons">
-										<a title="{{'AD_EDIT_LABEL' | translate}}" ng-click="editItem(item)">
-											<i class="fa fa-pencil"></i>
-										</a>
-										<a title="{{'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
-											<i class="fa " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
-										</a>
-										<a title="{{'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
-											<i class="fa fa-pause"></i>
-										</a>
-										<a title="{{'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
-											<i class="fa fa-times"></i>
-										</a>
-										>>>>>>> fe/hearth-541
-									</div>
-									<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
-										<li ng-repeat="photo in item.attachments_attributes track by $index">
-											<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}">
-												<img ng-src="{{photo.normal}}">
-											</a>
-										</li>
-									</ul>
-									<div ng-if="!item.location_unlimited">
-										<div class='display-flex flex-space-between flex-wrap'>
-											<div>
-												<span class='text-emphasize'>{{:: 'POSTS.DETAIL.LOCATION_HEADING' | translate }}</span>
-											</div>
-											<div class="map-expand-toggle" ng-if="item.locations.length && !item.location_unlimited" ng-init="local.showMap = !isMine && item.locations && item.locations.length && !item.location_unlimited">
-												<a ng-show="!local.showMap" ng-click="local.showMap = true">{{:: 'POSTS.DETAIL.SHOW_MAP' | translate }}
-													<i class="fa fa-chevron-down"></i>
+						</div>
+						<footer>
+							<div class='display-flex flex-wrap flex-space-between'>
+								<div class=''>
+									<div class='display-flex flex-wrap'>
+										<div class='padding-right-small' ng-if="isMine">
+											<div class="touchable-wrapper">
+												<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate }}" ng-click="editItem(item)">
+													<i class="fa fa-fw fa-pencil"></i>
 												</a>
-												<a ng-show="local.showMap" ng-click="local.showMap = false">{{:: 'POSTS.DETAIL.HIDE_MAP' | translate }}
-													<i class="fa fa-chevron-up"></i>
+												<a class='touchable' title="{{:: 'AD_RESUME_LABEL' | translate }}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+													<i class="fa fa-fw " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
+												</a>
+												<a class='touchable' title="{{:: 'AD_PAUSE_LABEL' | translate }}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
+													<i class="fa fa-fw fa-pause"></i>
+												</a>
+												<a class='touchable' title="{{:: 'AD_REMOVE_LABEL' | translate }}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
+													<i class="fa fa-fw fa-times"></i>
 												</a>
 											</div>
 										</div>
-										<div class='margin-bottom-small'>
-											<ul class="no-list">
-												<li ng-if="item.location_unlimited" class="location-anywhere">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE' | translate }}</li>
-												<li ng-repeat="(locationId, location) in item.locations">
-													{{ location.address }}
-												</li>
-											</ul>
-										</div>
-										<mapitems ng-if="local.showMap" class="map" style="height:300px;" items="item.locations" zoom-on-scroll="false"></mapitems>
-									</div>
-									<span class='text-emphasize' ng-if="item.location_unlimited">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE_HEADING' | translate }}</span>
-									<div class="tags" ng-if="item.keywords.length">
-										<ul class="tagList margin-bottom-none">
-											<li ng-repeat="tag in item.keywords">{{tag}}</li>
-										</ul>
-									</div>
-								</div>
-								<footer>
-									<div class='display-flex flex-wrap flex-space-between'>
-										<div class=''>
-											<div class='display-flex flex-wrap'>
-												<div class='padding-right-small' ng-if="isMine">
-													<div class="touchable-wrapper">
-														<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate }}" ng-click="editItem(item)">
-															<i class="fa fa-fw fa-pencil"></i>
-														</a>
-														<a class='touchable' title="{{:: 'AD_RESUME_LABEL' | translate }}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
-															<i class="fa fa-fw " ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
-														</a>
-														<a class='touchable' title="{{:: 'AD_PAUSE_LABEL' | translate }}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
-															<i class="fa fa-fw fa-pause"></i>
-														</a>
-														<a class='touchable' title="{{:: 'AD_REMOVE_LABEL' | translate }}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
-															<i class="fa fa-fw fa-times"></i>
-														</a>
-													</div>
-												</div>
-												<div class='padding-right-large'>
-													<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
-													<span ng-if="item.is_replied">
-														{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
-													</span>
-												</div>
-												<div class=''>
-													<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
-													<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate }}</div>
-												</div>
-											</div>
+										<div class='padding-right-large'>
+											<button ng-if="!item.is_replied && !isMine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html="replyLabel[item.type] | translate"></button>
+											<span ng-if="item.is_replied">
+												{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
+											</span>
 										</div>
 										<div class=''>
-											<div class='touchable-wrapper touchable-inverted-round'>
-												<a analytics-custom analytics-event="Share" analytics-category="Email" class='touchable' analytics-label="Share post by email" title="Email" href="" ng-click="openEmailSharingBox(item)">
-													<span class="fa-stack">
-														<i class="fa fa-circle fa-stack-2x"></i>
-														<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-													</span>
-												</a>
-												<a analytics-custom analytics-event="Share" analytics-category="Facebook" class='touchable' analytics-label="Share post on facebook" sharing-window title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank">
-													<span class="fa-stack">
-														<i class="fa fa-circle fa-stack-2x"></i>
-														<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-													</span>
-												</a>
-												<a analytics-custom analytics-event="Share" analytics-category="Google+" class='touchable' analytics-label="Share post on google+" sharing-window title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank">
-													<span class="fa-stack">
-														<i class="fa fa-circle fa-stack-2x"></i>
-														<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-													</span>
-												</a>
-												<a analytics-custom analytics-event="Share" analytics-category="Twitter" class='touchable' analytics-label="Share post on twitter" sharing-window title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank">
-													<span class="fa-stack">
-														<i class="fa fa-circle fa-stack-2x"></i>
-														<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-													</span>
-												</a>
-											</div>
+											<div ng-if="item.reply_count" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+											<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate }}</div>
 										</div>
 									</div>
-								</footer>
+								</div>
+								<div class=''>
+									<div class='touchable-wrapper touchable-inverted-round'>
+										<a analytics-custom analytics-event="Share" analytics-category="Link" class='touchable' analytics-label="Share post link" title="Link" href="" ng-click="openLinkSharingBox(item)">
+											<span class="fa-stack">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-link fa-stack-1x fa-inverse"></i>
+											</span>
+										</a>
+										<a analytics-custom analytics-event="Share" analytics-category="Email" class='touchable' analytics-label="Share post by email" title="Email" href="" ng-click="openEmailSharingBox(item)">
+											<span class="fa-stack">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+											</span>
+										</a>
+										<a analytics-custom analytics-event="Share" analytics-category="Facebook" class='touchable' analytics-label="Share post on facebook" sharing-window title="Facebook" ng-href="{{socialLinks.facebook+postAddress}}" target="_blank">
+											<span class="fa-stack">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+											</span>
+										</a>
+										<a analytics-custom analytics-event="Share" analytics-category="Google+" class='touchable' analytics-label="Share post on google+" sharing-window title="Google+" ng-href="{{socialLinks.gplus+postAddress}}" target="_blank">
+											<span class="fa-stack">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+											</span>
+										</a>
+										<a analytics-custom analytics-event="Share" analytics-category="Twitter" class='touchable' analytics-label="Share post on twitter" sharing-window title="Twitter" ng-href="{{socialLinks.twitter+postAddress}}" target="_blank">
+											<span class="fa-stack">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+											</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</footer>
 					</section>
 					<section class="box sectioned-box" ng-if="isMine" scroll-to-view-on-hash="replies">
 						<header>
@@ -240,116 +217,116 @@
 							</section>
 						</article>
 					</section>
-					</div>
-					<div class="column large-3 end has-delimiter show-for-large-up">
-						<div class='text-center'>
-							<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2'>
-								<avatar class='margin-top-medium show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.large" size="medium"></avatar>
-								<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
-								<karma-bar for="item.author"></karma-bar>
-							</a>
-						</div>
-						<div ng-if="profile">
-							<div class="display-table table-with-icons margin-top-medium">
-								<div class="display-table-row" ng-if="profile.about">
-									<div class="display-table-cell">
-										<i class="fa fa-fw fa-quote-right"></i>
-									</div>
-									<div class='display-table-cell'>
-										{{profile.about | ellipsis}}
-									</div>
-								</div>
-								<div class="display-table-row" ng-if="profile.work">
-									<div class="display-table-cell">
-										<i class="fa fa-fw fa-briefcase"></i>
-									</div>
-									<div class='display-table-cell'>
-										{{profile.work | ellipsis}}
-									</div>
-								</div>
-								<div class="display-table-row" ng-if="profile.locations.length && profile.locations[0].short_address">
-									<div class="display-table-cell">
-										<i class="fa fa-fw fa-map-marker"></i>
-									</div>
-									<div class='display-table-cell'>
-										{{:: 'you-will-find-me' | translate}}
-										<span ng-repeat="location in profile.locations">
-											<span ng-if="location.short_address">
-												{{location.short_address + ($last ? '' : '; ')}}
-											</span>
-										</span>
-									</div>
-								</div>
-								<div class="display-table-row" ng-if="profile.interests && profile.interests[0] != ''">
-									<div class="display-table-cell">
-										<i class="fa fa-fw fa-smile-o"></i>
-									</div>
-									<div class='display-table-cell'>
-										{{ profile.interests.join(", ") }}
-									</div>
-								</div>
-								<div class="display-table-row" ng-if="!(isEmpty(profile.user_languages))">
-									<div class="display-table-cell">
-										<i class="fa fa-fw fa-comments"></i>
-									</div>
-									<div class="display-table-cell">
-										<span ng-repeat="(languageCode, enabled) in profile.user_languages">
-											{{:: ('MY_LANG.' + languageCode | translate) + ($last ? '' : ',\u00A0') }}
-										</span>
-									</div>
-								</div>
-								<div class="display-table-row" ng-if="(profile.email || profile.contact_email)">
-									<div class='display-table-cell'>
-										<i class="fa fa-fw fa-envelope"></i>
-									</div>
-									<div class='display-table-cell'>
-										<a href='mailto:{{:: profile.email }}' class='display-block'>{{:: profile.email }}</a>
-										<a ng-if='profile.contact_email' href='mailto:{{:: profile.contact_email }}' class='display-block'>{{:: profile.contact_email }}</a>
-									</div>
-								</div>
-								<div class="display-table-row" ng-if=":: profile.phone">
-									<div class='display-table-cell'>
-										<i class="fa fa-fw fa-phone"></i>
-									</div>
-									<div class='display-table-cell'>
-										{{:: profile.phone }}
-									</div>
-								</div>
-								<div class="display-table-row" ng-if="profile.webs.length && profile.webs[0]">
-									<div class="display-table-cell">
-										<i class="fa fa-fw fa-link"></i>
-									</div>
-									<div class='display-table-cell'>
-										<span ng-repeat="(code, web) in profile.webs">
-											<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a>
-											<span ng-if="!$last">,&nbsp;</span>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="line">
-								<div class="social fleft">
-									<a target="_blank" ng-if="item.author.twitter" href="{{item.author.twitter}}">
-										<i class="fa fa-twitter-square"></i>
-									</a>
-									<a target="_blank" ng-if="item.author.facebook" href="{{item.author.facebook}}">
-										<i class="fa fa-facebook-square"></i>
-									</a>
-									<a target="_blank" ng-if="item.author.googleplus" href="{{item.author.googleplus}}">
-										<i class="fa fa-google-plus-square"></i>
-									</a>
-									<a target="_blank" ng-if="item.author.linkedin" href="{{item.author.linkedin}}">
-										<i class="fa fa-linkedin"></i>
-									</a>
-								</div>
-								<div class="text-right">
-									<a class="profile-link" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">{{:: 'WHOLE_PROFILE' | translate }}</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--/profile column-->
 				</div>
+				<div class="column large-3 end has-delimiter show-for-large-up">
+					<div class='text-center'>
+						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2'>
+							<avatar class='margin-top-medium show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.large" size="medium"></avatar>
+							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
+							<karma-bar for="item.author"></karma-bar>
+						</a>
+					</div>
+					<div ng-if="profile">
+						<div class="display-table table-with-icons margin-top-medium">
+							<div class="display-table-row" ng-if="profile.about">
+								<div class="display-table-cell">
+									<i class="fa fa-fw fa-quote-right"></i>
+								</div>
+								<div class='display-table-cell'>
+									{{profile.about | ellipsis}}
+								</div>
+							</div>
+							<div class="display-table-row" ng-if="profile.work">
+								<div class="display-table-cell">
+									<i class="fa fa-fw fa-briefcase"></i>
+								</div>
+								<div class='display-table-cell'>
+									{{profile.work | ellipsis}}
+								</div>
+							</div>
+							<div class="display-table-row" ng-if="profile.locations.length && profile.locations[0].short_address">
+								<div class="display-table-cell">
+									<i class="fa fa-fw fa-map-marker"></i>
+								</div>
+								<div class='display-table-cell'>
+									{{:: 'you-will-find-me' | translate}}
+									<span ng-repeat="location in profile.locations">
+										<span ng-if="location.short_address">
+											{{location.short_address + ($last ? '' : '; ')}}
+										</span>
+									</span>
+								</div>
+							</div>
+							<div class="display-table-row" ng-if="profile.interests && profile.interests[0] != ''">
+								<div class="display-table-cell">
+									<i class="fa fa-fw fa-smile-o"></i>
+								</div>
+								<div class='display-table-cell'>
+									{{ profile.interests.join(", ") }}
+								</div>
+							</div>
+							<div class="display-table-row" ng-if="!(isEmpty(profile.user_languages))">
+								<div class="display-table-cell">
+									<i class="fa fa-fw fa-comments"></i>
+								</div>
+								<div class="display-table-cell">
+									<span ng-repeat="(languageCode, enabled) in profile.user_languages">
+										{{:: ('MY_LANG.' + languageCode | translate) + ($last ? '' : ',\u00A0') }}
+									</span>
+								</div>
+							</div>
+							<div class="display-table-row" ng-if="(profile.email || profile.contact_email)">
+								<div class='display-table-cell'>
+									<i class="fa fa-fw fa-envelope"></i>
+								</div>
+								<div class='display-table-cell'>
+									<a href='mailto:{{:: profile.email }}' class='display-block'>{{:: profile.email }}</a>
+									<a ng-if='profile.contact_email' href='mailto:{{:: profile.contact_email }}' class='display-block'>{{:: profile.contact_email }}</a>
+								</div>
+							</div>
+							<div class="display-table-row" ng-if=":: profile.phone">
+								<div class='display-table-cell'>
+									<i class="fa fa-fw fa-phone"></i>
+								</div>
+								<div class='display-table-cell'>
+									{{:: profile.phone }}
+								</div>
+							</div>
+							<div class="display-table-row" ng-if="profile.webs.length && profile.webs[0]">
+								<div class="display-table-cell">
+									<i class="fa fa-fw fa-link"></i>
+								</div>
+								<div class='display-table-cell'>
+									<span ng-repeat="(code, web) in profile.webs">
+										<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a>
+										<span ng-if="!$last">,&nbsp;</span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="line">
+							<div class="social fleft">
+								<a target="_blank" ng-if="item.author.twitter" href="{{item.author.twitter}}">
+									<i class="fa fa-twitter-square"></i>
+								</a>
+								<a target="_blank" ng-if="item.author.facebook" href="{{item.author.facebook}}">
+									<i class="fa fa-facebook-square"></i>
+								</a>
+								<a target="_blank" ng-if="item.author.googleplus" href="{{item.author.googleplus}}">
+									<i class="fa fa-google-plus-square"></i>
+								</a>
+								<a target="_blank" ng-if="item.author.linkedin" href="{{item.author.linkedin}}">
+									<i class="fa fa-linkedin"></i>
+								</a>
+							</div>
+							<div class="text-right">
+								<a class="profile-link" ng-href="{{:: getProfileLink(item.author._type, item.author._id)}}">{{:: 'WHOLE_PROFILE' | translate }}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/profile column-->
+			</div>
 		</section>
-		</div>
+	</div>
 </article>

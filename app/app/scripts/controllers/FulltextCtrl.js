@@ -73,8 +73,15 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		};
 
 		$scope.getCountersTotal = function() {
+			var type = $location.search().type;
 			var counters = $scope.counters;
-			return counters.post + counters.community + counters.user;
+			var count = counters[type];
+
+			if (!type) {
+				count = counters.post + counters.community + counters.user;
+			}
+
+			return count;
 		};
 
 		$scope.load = function(addOffset) {
