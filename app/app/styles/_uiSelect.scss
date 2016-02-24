@@ -122,7 +122,7 @@
 				margin-right: 10px;
 				float: left;
 			}
-			div {
+			&>div {
 				display: inline-block;
 				margin-bottom: 5px;
 				margin-top: 5px;
@@ -131,7 +131,7 @@
 				-moz-user-select: none;
 				cursor: pointer;
 				&.avatar-mini {
-					position: static;
+					margin-top: 0px;
 				}
 			}
 		}
