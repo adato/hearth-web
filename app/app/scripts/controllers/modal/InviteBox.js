@@ -44,7 +44,11 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		 * it will show error and return false
 		 */
 		$scope.testEmailsFormat = function(data) {
-			var emails = data;
+
+			var emails = $.map(data, function(value, index) {
+				return value.text;
+			});
+
 			$scope.inviteForm.to_email.$error.format = false;
 
 			if (!data) return false;
@@ -53,13 +57,14 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			if (!angular.isArray(emails)) {
 				emails = angular.copy(emails).split(",");
 			}
+
 			// validate emails 
 			if (!Validators.emails(emails)) {
-
 				$scope.showError.to_email = true;
 				$scope.inviteForm.to_email.$error.format = true;
 				return false;
 			}
+
 			return true;
 		};
 
@@ -134,6 +139,10 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.toggleEmailForm = function() {
 			$scope.initForm();
 			$scope.showEmailForm = !$scope.showEmailForm;
+		};
+
+		$scope.close = function() {
+			$scope.closeThisDialog();
 		};
 
 		$scope.$on('initFinished', $scope.init);
