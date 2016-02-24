@@ -12,7 +12,7 @@ $large-avatar-size: 295px;
 	background-size: cover;
 
 	&>* {
-		display: block;
+		display: block !important;
 		padding: 0px;
 	}
 
