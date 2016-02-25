@@ -85,7 +85,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.transformInvitationOut = function(data) {
 
 			if (data.to_email) {
-				data.to_email = data.to_email.split(",");
+				data.to_email = $.map(data.to_email, function(value, index) {
+					return value.text;
+				});
 			}
 			return data;
 		};
