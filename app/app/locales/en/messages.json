@@ -1159,7 +1159,9 @@
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
 	"RATING_POST_TYPES": {
 		"offered": "I offered",
-		"needed": "I accepted"
+		"needed": "I accepted",
+		"we_needed": "We accepted",
+		"we_offered": "We offered"
 	},
 	"RATING_NO_COMMON_POST_IN_3_MONTHS": "You haven't interacted with any ads in the last 3 months. But you can still rate the user. :)",
 	"RATING_COMMON_POSTS_TOP": "Which post was it?",
@@ -1332,9 +1334,10 @@
 		"map": "Map of gifts and wishes",
 		"profile_settings": "Profile settings",
 		"faq": "Frequently asked questions",
-		"feedback": "Contact",
+		"feedback": "Your feedback",
 		"taxes": "Donations and Taxes",
-		"community_edit": "Edit community"
+		"community_edit": "Edit community",
+		"fulltext": "Search"
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1350,5 +1353,8 @@
 			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
 		}
 	},
-	"ADD_ATTACHMENT": "Attach file"
+	"ADD_ATTACHMENT": "Attach file",
+	"CHANGE_ATTACHMENT": "Change file",
+	"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu",
+	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný."
 }

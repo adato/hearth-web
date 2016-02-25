@@ -1,9 +1,9 @@
+<h1 class="text-center">{{'LOGIN_HEADING' | translate}}</h1>
+
 <div class="register-login-dialog">
 	<div class="head">
-		<h2>{{ 'LOGIN_HEADING' | translate }}</h2>
 		<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 	</div>
-	<hr/>
 	<form ng-submit="login(data)" name="loginForm" novalidate class="register-login-form login-form">
 		<div ng-if="showMsgOnlyLogged">
 			<div class="alert-box alert radius">
@@ -23,12 +23,12 @@
 			</a>
 		</p>
 		<label for="email">{{'EMAIL_PLACEHOLDER' | translate}}</label>
-		<input id="email" type="email" validate-email admin-email name="username" class="login_name" ng-model="data.username" ng-model-options="{ updateOn: 'blur' }" placeholder="{{ 'EMAIL_PLACEHOLDER' | translate }}" class="form-control text-input top" required>
+		<input id="email" type="email" validate-email admin-email name="username" class="login_name" ng-model="data.username" ng-model-options="{ updateOn: 'blur' }" class="form-control text-input top" required />
 		<p ng-show="loginForm.username.$dirty && loginForm.username.$invalid" class="error">
 			<span ng-show="loginForm.username.$error.email">{{ 'SIGNUP_ERR_BAD_EMAIL_FORMAT' | translate }}</span>
 		</p>
 		<label for="password">{{'PASS_PLACEHOLDER' | translate}}</label>
-		<input id="password" type="password" class="login_password" name="password" ng-model="data.password" ng-model-options="{ updateOn: 'blur' }" ng-minlength="4" placeholder="{{ 'PASS_PLACEHOLDER' | translate }}" class="form-control text-input top" required>
+		<input id="password" type="password" class="login_password" name="password" ng-model="data.password" ng-model-options="{ updateOn: 'blur' }" ng-minlength="4" class="form-control text-input top" required />
 		<p ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="error">
 			<span ng-show="loginForm.password.$error.minlength">{{ 'SIGNUP_ERR_SHORT_PASSWORD' | translate }}</span>
 		</p>

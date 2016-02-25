@@ -174,7 +174,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			// set default values
 			$scope.showError.text = false;
 			$scope.rating.current_community_id = null;
-			$scope.rating.score = score;
+			$scope.rating.score = score || null;
 			$scope.rating.text = '';
 			$scope.rating.post_id = null;
 			// select first option in posts select - eg default value			
@@ -211,6 +211,9 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 			$scope.showError.text = false;
 
+			if (!$scope.rating.score) {
+				$scope.rating.requiredMessageShown = true;
+			};
 			if (!ratingOrig.text)
 				return $scope.showError.text = true;
 

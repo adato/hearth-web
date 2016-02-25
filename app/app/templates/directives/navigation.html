@@ -134,7 +134,7 @@
 
 
 			<div class="small-icons header-right">
-				<div class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
+				<div id='language-bar-mobile' class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
 					<i class='fa fa-fw fa-inverse flag flag-rounded-corners' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class='display-inline-block inline-block margin-small-right'>
@@ -203,7 +203,7 @@
 						<i class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 						<label translate='LANGUAGE.{{:: languageChange.languageStrings[languageChange.currentLanguage] }}'></label>
 					</a>
-					<ul class='dropdown' id='language-drop'>
+					<ul class='dropdown flag-list' id='language-drop'>
 						<li ng-if='languageChange.currentLanguage != "cs"'>
 							<a ng-click='languageChange.switchLang("cs")'>
 								<i class='flag flag-cs'></i>
