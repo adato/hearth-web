@@ -63,8 +63,8 @@
 	<section class="footer row">
 		<div class="large-6 column right">
 			<!--a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CLOSE_FILTER' | translate}}</a-->
-			<button ng-click="applyFilter()" class="button expand" ng-disabled="!filterPostCount">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}
-				<b ng-if="filterPostCount !== false">({{filterPostCount}})</b>
+			<button ng-click="applyFilter()" class="button expand" ng-disabled="!filterCount">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}
+				<b ng-if="filterCount !== false">({{filterCount}})</b>
 			</button>
 		</div>
 		<div ng-show="configOptionsShow.saveFilter" class="large-6 column">
