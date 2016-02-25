@@ -58,12 +58,12 @@
 						<article class="message" ng-repeat="item in messages track by $index">
 							<div ng-if="item.author">
 								<div class="message-head" ng-class="{'owner-name': item.author._type == 'Community'}">
-									<a class="left" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
+									<a class="left" ng-href="{{getProfileLink(item.author._type, item.author._id)}}">
 										<avatar class="left move-bot" src="item.author.avatar.normal" type="item.author._type" size="mini"></avatar>
 										<h5 class="fleft">
-											{{:: item.author.name | ellipsis:50 }}
+											{{item.author.name | ellipsis:50}}
 											<div ng-if="item.author._type == 'Community'">
-												({{:: item.owner.name }})
+												({{item.owner.name }})
 											</div>
 										</h5>
 									</a>
