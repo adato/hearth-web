@@ -80,7 +80,6 @@ $fontSize: rem-calc(14);
 @import "tutorial";
 @import "userForms";
 @import "messages";
-@import "maitenancePage";
 @import "angularLoadingBar";
 @import "filterbar";
 @import "filterStatus";
@@ -116,6 +115,7 @@ $fontSize: rem-calc(14);
 @import "v2Style";
 @import "bubble";
 @import "fileViewer";
+@import "notifyOverlay";
 
 /*temp until css refactor*/
 @import "languageSelection";
