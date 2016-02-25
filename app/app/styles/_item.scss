@@ -122,6 +122,16 @@ article.item-detail-page {
 .item-common {
 	margin-bottom: $size-medium;
 
+	&.hidden-init {
+		display: none;
+	}
+	&.inactive {
+		opacity: 0.55;
+
+		#open-sharing-options {
+			display: none !important;
+		}
+	}
 
 	.item-status-bar {
 		background: $colorDanger;
@@ -152,13 +162,6 @@ article.item-detail-page {
 					text-decoration: underline;
 				}
 			}
-		}
-	}
-
-	@media #{$small-down}{
-		.avatar,
-		.avatar a{
-			width: 40px; height: 40px;
 		}
 	}
 
@@ -365,7 +368,6 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 			bottom: 0px;
 			left: 0px;
 			top: 3*$ui-small-grid-size;
-			/*bottom: 3*$ui-small-grid-size;*/
 		}
 		li {
 			border: 1px solid #C2C2C2;
@@ -391,18 +393,6 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 			background-color: #7AD0F1;
 			border-color: #7AD0F1;
 			color: white;
-		}
-	}
-}
-
-.post {
-	&.hidden-init {
-		display: none;
-	}
-	&.inactive {
-		opacity: 0.55;
-		.share {
-			display: none;
 		}
 	}
 }
