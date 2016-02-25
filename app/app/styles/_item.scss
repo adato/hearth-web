@@ -113,6 +113,16 @@ a.user{
 .item-common {
 	margin-bottom: $size-medium;
 
+	&.hidden-init {
+		display: none;
+	}
+	&.inactive {
+		opacity: 0.55;
+
+		#open-sharing-options {
+			display: none !important;
+		}
+	}
 
 	.item-status-bar {
 		background: $colorDanger;
@@ -146,7 +156,7 @@ a.user{
 		}
 	}
 
-	.avatar,
+/*	.avatar,
 	.avatar img{
 		width: 40px; height: 40px;
 	}
@@ -155,7 +165,7 @@ a.user{
 		.avatar img{
 			width: 80px; height: 80px;
 		}
-	}
+	}*/
 
 	/* shadow between ad and user intel */
 	@media #{$large-up}{
@@ -166,13 +176,13 @@ a.user{
 			.user{
 				max-width: 240px;
 			}
-			.avatar,
+/*			.avatar,
 			.avatar img{
 				width: 130px; height: 130px;
-				/* @kamil TODO - why does avatar image have max-width: 80px?? */
+				 @kamil TODO - why does avatar image have max-width: 80px?? 
 				max-width: 130px; max-height: 130px;
-				/* /kamil */
-			}
+				 /kamil 
+			}*/
 		}
 		.has-delimiter:before {
 			content: '';
@@ -352,7 +362,6 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 			bottom: 0px;
 			left: 0px;
 			top: 3*$ui-small-grid-size;
-			/*bottom: 3*$ui-small-grid-size;*/
 		}
 		li {
 			border: 1px solid #C2C2C2;
@@ -378,18 +387,6 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 			background-color: #7AD0F1;
 			border-color: #7AD0F1;
 			color: white;
-		}
-	}
-}
-
-.post {
-	&.hidden-init {
-		display: none;
-	}
-	&.inactive {
-		opacity: 0.55;
-		.share {
-			display: none;
 		}
 	}
 }
