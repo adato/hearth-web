@@ -654,7 +654,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				className: 'ngdialog-invite-box',
 				closeByDocument: false,
 				closeByEscape: true,
-				// showClose: false
+				showClose: false
 			});
 
 			dialog.closePromise.then(function(data) {});
