@@ -21,37 +21,13 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		angular.extend($scope, {
 			queryText: $stateParams.query || '',
 			items: [],
-			filterProperty: 'all',
-			counters: {
-				post: 0,
-				community: 0,
-				user: 0
-			}
+			filterProperty: 'all'
 		});
 
-		$scope.processStatsData = function(response) {
-
-			$scope.counters = $.extend({
-				post: 0,
-				community: 0,
-				user: 0
-			}, response.counters);
-		};
-
-		$scope.getCountersTotal = function() {
-			var type = $location.search().type;
-			var counters = $scope.counters;
-			var count = counters[type];
-
-			if (!type) {
-				count = counters.post + counters.community + counters.user;
-			}
-
-			return count;
-		};
 		$scope.processData = function(params) {
 			return function(response) {
 				var i, item, data = response.data;
+				$scope.totalCounter = response.total;
 
 				// if there is no more results (no items or smaller items then limit), stop lazy loading for next events
 				if (data.length < params.limit)
@@ -118,9 +94,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
 			$("#fulltextSearchResults").addClass("searchInProgress");
 			Fulltext.query(params, $scope.processData(params));
-			Fulltext.stats({
-				query: params.query
-			}, $scope.processStatsData);
 		};
 
 		$scope.reload = function(text) {
