@@ -9,7 +9,7 @@
 			</div>
 			<karma-bar for="item.author"></karma-bar>
 		</section>
-		<div class="column small-12 medium-10 padding-none">
+		<div class="column small-12 medium-10 padding-none" ng-class="{'medium-push-1': hideAvatar}">
 			<div class="sharing-container ng-hide" ng-show="showSharing" ng-click="showSharing = false">
 				<div class="sharing-container-form">
 					<a class="fa touchable fa-times close" ng-click="showSharing = false"></a>
@@ -151,7 +151,7 @@
 								</div>
 							</div>
 						</div>
-						<div class='display-table-cell addon text-align-right'>
+						<div class='display-table-cell addon text-align-right' id='open-sharing-options'>
 							<div class='touchable-wrapper'>
 								<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + ' .sharing-container-form', null, 140)" title="Share">
 									<i class='fa fa-fw fa-share-alt'></i>
