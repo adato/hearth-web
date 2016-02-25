@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('filter', [
 			restrict: 'E',
 			replace: true,
 			scope: {
-				template: '@',
+				type: '@',
 				filterShown: '=',
 				filterSelected: '='
 			},
@@ -32,6 +32,7 @@ angular.module('hearth.directives').directive('filter', [
 					};
 
 				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
+				if (!scope.type) scope.type = 'post';
 
 				var timeout = $timeout(function() {
 					$(".tags input", element).keypress(function(e) {
@@ -48,7 +49,7 @@ angular.module('hearth.directives').directive('filter', [
 
 				scope.loggedUser = Auth.isLoggedIn();
 				scope.inited = false;
-				scope.filterPostCount = false;
+				scope.filterCount = false;
 
 				scope.queryKeywords = function($query) {
 					if ($query === '' || $query.length < 3) {
@@ -206,8 +207,11 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.recountPosts = function() {
-					Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function(count) {
-						scope.filterPostCount = count;
+					var f = scope.convertFilterToParams(scope.filter);
+					if (!f.type) f.type = scope.type;
+
+					Filter.getFilterCount(f, function(count) {
+						scope.filterCount = count;
 					});
 				};
 

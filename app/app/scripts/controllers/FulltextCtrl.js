@@ -21,11 +21,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		angular.extend($scope, {
 			queryText: $stateParams.query || '',
 			items: [],
-			counters: {
-				post: 0,
-				community: 0,
-				user: 0
-			},
 			filterProperty: 'all'
 		});
 
@@ -63,27 +58,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			}
 		};
 
-		$scope.processStatsData = function(response) {
-
-			$scope.counters = $.extend({
-				post: 0,
-				community: 0,
-				user: 0
-			}, response.counters);
-		};
-
-		$scope.getCountersTotal = function() {
-			var type = $location.search().type;
-			var counters = $scope.counters;
-			var count = counters[type];
-
-			if (!type) {
-				count = counters.post + counters.community + counters.user;
-			}
-
-			return count;
-		};
-
 		$scope.load = function(addOffset) {
 			var params = {
 				limit: 15,
@@ -119,9 +93,6 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
 			$("#fulltextSearchResults").addClass("searchInProgress");
 			Fulltext.query(params, $scope.processData(params));
-			Fulltext.stats({
-				query: params.query
-			}, $scope.processStatsData);
 		};
 
 		$scope.reload = function(text) {
