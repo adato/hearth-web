@@ -19,6 +19,7 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 				maxLength: '@',
 				minLength: '@',
 				required: '@',
+				isrequired: '@', //@kamil. duplicate attr created. 'required' just does not cooperate.
 				showCounter: '=',
 				model: '=',
 				resized: "&"
@@ -38,10 +39,10 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 				});
 				scope.isBlur = function() {
 					scope.showErrorMin = true;
-				}
+				};
 				scope.isFocus = function() {
 					scope.showErrorMin = false;
-				}
+				};
 
 				scope.$watch('model', function(val) {
 					scope.form = formCtrl[scope.name];
