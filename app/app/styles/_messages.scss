@@ -11,7 +11,6 @@
 		}
 
 		.files {
-			margin-bottom: 10px;
 			position: relative;
 
 			.loading {
@@ -64,6 +63,10 @@
 				}
 			}
 		}
+	}
+
+	.bottom {
+		margin-top: 10px;
 	}
 
 	.first-message {
@@ -243,7 +246,6 @@
 	.conversation-detail-container {
 		width: 570px;
 		padding: 20px;
-		padding-right: 10px;
 		//max-height: 100%;
 		& > div {
 			position: relative;
