@@ -8,7 +8,7 @@
 				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
-				<a ng-class="{active: $state.includes(" login ")}" ui-sref="login" ng-click="toggleSidebar(false)">
+				<a ng-class="{active: $state.includes(' login ')}" ui-sref="login" ng-click="toggleSidebar(false)">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
 					<div class="display-inline-block" translate="LOG_IN"></div>
 				</a>
@@ -32,10 +32,10 @@
 				</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click='toggleSidebar(false)'>{{:: 'LOG_IN' | translate}}</a>
+				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)">{{:: 'LOG_IN' | translate}}</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click='toggleSidebar(false)'>{{:: 'SIGNUP' | translate }}</a>
+				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">{{:: 'SIGNUP' | translate }}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list" ng-show="loggedUser._id">
