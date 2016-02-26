@@ -5,7 +5,7 @@
 	<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
 	<needofferselector required-shown='rating.requiredMessageShown' model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}"></needofferselector>
 	<div class="clear"></div>
-	<form ng-submit="sendRating(rating)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
+	<form ng-submit="sendRating(rating, ratingForm)" id="ratingForm" name="ratingForm" novalidate class="clearfix">
 		<h6>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h6>
 		<span ng-if="loadingRatingPosts">
 			<i class="fa fa-spin fa-spinner"></i> {{:: 'COMMON.LOADING' | translate }}

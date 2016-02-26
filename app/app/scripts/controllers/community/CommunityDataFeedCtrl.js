@@ -44,7 +44,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 		};
 
 		// send rating to API
-		$scope.sendRating = function(ratingOrig) {
+		$scope.sendRating = function(ratingOrig, theForm) {
 			var rating;
 			var ratings = {
 				false: -1,
@@ -53,7 +53,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 			$scope.showError.text = false;
 
-			var errors = false;
+			var errors = theForm.$invalid;
 			if ($scope.isNull($scope.rating.score)) {
 				$scope.rating.requiredMessageShown = true;
 				errors = true;
