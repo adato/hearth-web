@@ -39,6 +39,10 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			rating.formOpened = true;
 		};
 
+		$scope.isNull = function(e) {
+			return e === null;
+		};
+
 		// send rating to API
 		$scope.sendRating = function(ratingOrig) {
 			var rating;
@@ -49,8 +53,16 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 
 			$scope.showError.text = false;
 
-			if (!ratingOrig.text)
-				return $scope.showError.text = true;
+			var errors = false;
+			if ($scope.isNull($scope.rating.score)) {
+				$scope.rating.requiredMessageShown = true;
+				errors = true;
+			}
+			if (!ratingOrig.text) {
+				$scope.showError.text = true;
+				errors = true;
+			}
+			if (errors) return false;
 
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);

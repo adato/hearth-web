@@ -7,7 +7,7 @@
 		<div class="rating-notify-box"></div>
 		<h5>{{:: 'COMMUNITY_RATING_SCORE_SELECT_TEXT' | translate }}</h5>
 		<author-selector id="author" author-id="rating.current_community_id" author="rating.current_community" remove="info._id"></author-selector>
-		<needofferselector model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
+		<needofferselector required-shown='rating.requiredMessageShown' model="rating.score" text-true="{{:: 'POSITIVE' | translate}}" text-false="{{:: 'NEGATIVE' | translate}}" icon-true="icon-rating-positive" icon-false="icon-rating-negative"></needofferselector>
 		<div class="clear"></div>
 		<h5>{{:: 'RATING_COMMON_POSTS_TOP' | translate}}</h5>
 		<span ng-if="loadingRatingPosts">
@@ -46,7 +46,7 @@
 			<a ng-click="closeUserRatingForm()" class="revert-changes">
 				<i class="fa fa-chevron-left"></i>&nbsp; {{ 'CANCEL' | translate }}</a>
 		</strong>
-		<button type="submit" class="button-send right" ng-class="{negative: !rating.scope, positive: rating.score}">
+		<button type="submit" class="button right" ng-class="{ 'positive': rating.score == true, 'negative': rating.score == false, 'neutral': isNull(rating.score)}">
 			{{:: 'SEND_COMMUNITY_RATING' | translate }} &nbsp;
 			<i class="score-icon fa" ng-class="{'icon-rating-negative':!rating.score,'icon-rating-positive':rating.score}"></i>
 		</button>
