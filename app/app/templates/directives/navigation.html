@@ -2,15 +2,15 @@
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
-				<a ui-sref='profile.default({id: loggedUser._id})' ng-click='toggleSidebar(false)' class='overflow-hidden'>
+				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
-					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
+					<div class="display-inline-block ellipsed-username" ng-bind="loggedUser.name"></div>
 				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
-				<a ng-class='{active: $state.includes("login")}' ui-sref='login' ng-click='toggleSidebar(false)'>
+				<a ng-class="{active: $state.includes("login")}" ui-sref="login" ng-click="toggleSidebar(false)">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class='inline-block' translate='LOG_IN'></div>
+					<div class="display-inline-block" translate="LOG_IN"></div>
 				</a>
 			</li>
 			<li>
@@ -21,11 +21,11 @@
 					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
-				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('communities')}">
+				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
 					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}</a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('messages')}">
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
 					{{:: 'TOP_BAR_MESSAGES' | translate }}
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
