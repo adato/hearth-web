@@ -14,7 +14,10 @@
 				<div>
 					<i class="fa touchable fa-times close" ng-click="showSharing = false"></i>
 					<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
-					<input type="text" select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" />
+					<div class="input-container">
+						<i class="fa fa-link"></i>
+						<input type="text" readonly select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" ng-click="$event.stopPropagation()" />
+					</div>
 					<ul class='no-list'>
 						<li>
 							<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" ng-click="openEmailSharingBox(item)"></a>
@@ -38,6 +41,7 @@
 							<span class='color-dark-gray' title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 							<div class='dropdown-wrapper'>
 								<div class="display-inline-block touchable-wrapper margin-left-none" ng-if="!mine">
+									<bubble ng-if="loggedUser._id && !item.is_bookmarked && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble-container hide" type="bookmark"></bubble>
 									<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
 										<i class='fa fa-fw fa-chevron-down'></i>
 									</span>

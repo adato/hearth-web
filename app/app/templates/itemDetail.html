@@ -26,6 +26,7 @@
 
 									<div class='dropdown-wrapper'>
 										<div class="display-inline-block touchable-wrapper margin-left-none" ng-if="!mine">
+											<bubble ng-if="loggedUser._id && !item.is_bookmarked && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble-container hide" type="bookmark"></bubble>
 											<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}">
 												<i class='fa fa-fw fa-chevron-down'></i>
 											</span>
@@ -141,6 +142,12 @@
 								</div>
 								<div class=''>
 									<div class='touchable-wrapper touchable-inverted-round'>
+										<a analytics-custom analytics-event="Share" analytics-category="Link" class='touchable' analytics-label="Share post link" title="Link" href="" ng-click="openLinkSharingBox(item)">
+											<span class="fa-stack">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-link fa-stack-1x fa-inverse"></i>
+											</span>
+										</a>
 										<a analytics-custom analytics-event="Share" analytics-category="Email" class='touchable' analytics-label="Share post by email" title="Email" href="" ng-click="openEmailSharingBox(item)">
 											<span class="fa-stack">
 												<i class="fa fa-circle fa-stack-2x"></i>
