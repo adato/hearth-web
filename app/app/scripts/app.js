@@ -152,6 +152,12 @@ angular.module('hearth', [
 				});
 			}
 
+			function bindCriticalReloadEvent() {
+				$('#criticalError a').click(function() {
+					location.reload(true);
+				});
+			}
+
 			/**
 			 * This will init session of user
 			 */
@@ -212,10 +218,13 @@ angular.module('hearth', [
 					});
 
 					$('#criticalError').fadeIn();
-					$('#criticalError a').click(function() {
-						location.reload(true);
-					});
+					bindCriticalReloadEvent();
 					$rootScope.isCriticalError = true;
+
+					var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data) {
+						offEvent();
+						setTimeout(bindCriticalReloadEvent);
+					});
 				});
 			}
 
