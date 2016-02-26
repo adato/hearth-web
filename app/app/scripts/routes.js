@@ -100,16 +100,12 @@ angular.module('hearth').config([
 			.state('faq', {
 				url: '/faq',
 				templateUrl: 'templates/localizationPage.html',
-				controller: ['$location', '$scope', function($location, $scope) {
-					$scope.pageName = $location.path().replace("/", "");
-				}],
+				controller: 'StaticPageCtrl'
 			})
 			.state('taxes', {
 				url: '/taxes',
 				templateUrl: 'templates/localizationPage.html',
-				controller: ['$location', '$scope', function($location, $scope) {
-					$scope.pageName = $location.path().replace("/", "");
-				}],
+				controller: 'StaticPageCtrl'
 			})
 			.state('terms', {
 				url: '/terms',
