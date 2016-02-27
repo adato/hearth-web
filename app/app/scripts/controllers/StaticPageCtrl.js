@@ -7,14 +7,12 @@
  */
 
 angular.module('hearth.controllers').controller('StaticPageCtrl', [
-	'$location', '$scope', '$timeout',
-	function($location, $scope, $timeout) {
-		$scope.pageName = $location.path().replace("/", "");
+	'$state', '$scope',
+	function($state, $scope) {
 		$scope.loading = true;
-		$scope.$on('$viewContentLoaded', function(event) {
-			$timeout(function() {
-				$scope.loading = false;
-			}, 0);
-		});
+		$scope.pageName = $state.current.name;
+		$scope.finishLoading = function() {
+			$scope.loading = false;
+		};
 	}
 ]);
