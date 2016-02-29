@@ -5,7 +5,10 @@
 	.avatar {
 		vertical-align: middle;
 		margin: 3*$ui-small-grid-size;
+		margin-right: 2*$ui-small-grid-size;
 		margin-left: 0;
+		position: relative;
+		top: -2px;
 	}
 	select {
 		width: 80%;

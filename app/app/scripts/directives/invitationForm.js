@@ -21,7 +21,6 @@ angular.module('hearth.directives').directive('invitationForm', [
 			link: function(scope) {
 				var init;
 				init = function() {
-					console.log("======== INVITATION FORM directive =========");
 					var loggedUser = scope.loggedUser;
 					scope.status = {
 						visible: false,

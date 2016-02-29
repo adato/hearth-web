@@ -65,13 +65,13 @@
 		</section> -->
 	</section>
 	<section class="footer row">
-		<div class="large-6 column right">
+		<div class="column large-6">
 			<!--a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CLOSE_FILTER' | translate}}</a-->
 			<button ng-click="applyFilter()" class="button expand" ng-disabled="!filterCount">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}
 				<b ng-if="filterCount !== false">({{filterCount}})</b>
 			</button>
 		</div>
-		<div ng-show="configOptionsShow.saveFilter" class="large-6 column">
+		<div ng-show="configOptionsShow.saveFilter" class="column large-6">
 			<checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
 			</checkbox>
 		</div>
