@@ -12,7 +12,7 @@ angular.module('hearth.services').factory('Auth', [
 		var TOKEN_NAME = "authToken";
 
 		return {
-			init: function(callback) {
+			init: function(done, doneErr) {
 				$rootScope.user = {
 					name: '',
 					loggedIn: false
@@ -32,8 +32,8 @@ angular.module('hearth.services').factory('Auth', [
 						$rootScope.$broadcast('unathorizedUserLogin');
 					}
 					$rootScope.$broadcast('authorize');
-					return callback();
-				});
+					return done();
+				}, doneErr);
 			},
 			refreshUserInfo: function() {
 				Session.show(function(res) {
