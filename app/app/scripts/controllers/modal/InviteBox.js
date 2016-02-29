@@ -21,7 +21,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		};
 
 		$scope.showFinished = function() {
-
 			$(".invite-form").slideToggle();
 			timeoutClose = setTimeout(function() {
 				$scope.closeThisDialog();
@@ -35,7 +34,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
 			$scope.url = window.location.href.replace(window.location.hash, '');
 			$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;
-
 			$scope.endpoints = $$config.sharingEndpoints;
 		};
 
@@ -44,14 +42,15 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		 * it will show error and return false
 		 */
 		$scope.testEmailsFormat = function(data) {
+			if (!data) {
+				return false;
+			}
 
 			var emails = $.map(data, function(value, index) {
 				return value.text;
 			});
 
 			$scope.inviteForm.to_email.$error.format = false;
-
-			if (!data) return false;
 
 			// if emails are not array, split it by comma
 			if (!angular.isArray(emails)) {
@@ -71,19 +70,22 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.validateInvitationForm = function(data) {
 			var invalid = false;
 
+			if (!data.to_email) {
+				invalid = $scope.showError.to_email = true;
+			}
+
 			// is message filled?
 			if ($scope.inviteForm.message.$invalid) {
 				invalid = $scope.showError.message = true;
 			}
 
-			if (!data.to_email || !$scope.testEmailsFormat(data.to_email)) {
+			/*if (!$scope.testEmailsFormat(data.to_email)) {
 				invalid = true;
-			}
+			}*/
 			return !invalid;
 		};
 
 		$scope.transformInvitationOut = function(data) {
-
 			if (data.to_email) {
 				data.to_email = $.map(data.to_email, function(value, index) {
 					return value.text;
@@ -101,8 +103,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.sendEmailInvitation = function(data) {
 			var dataOut;
 
-			if (!$scope.validateInvitationForm(data) || $scope.sending)
+			if (!$scope.validateInvitationForm(data) || $scope.sending) {
 				return false;
+			}
 
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
