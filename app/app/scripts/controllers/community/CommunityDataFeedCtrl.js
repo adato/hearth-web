@@ -259,7 +259,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 								return activity;
 							});
 
-							// console.log("Loaded activity");
 							$scope.activityLog = res;
 							$scope.activityShow = true;
 						});

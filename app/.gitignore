@@ -8,3 +8,4 @@ docs/
 npm-debug.log
 test-debug.log
 .netbeans.xml
+../nbproject/

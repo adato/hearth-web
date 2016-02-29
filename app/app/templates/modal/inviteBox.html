@@ -37,13 +37,13 @@
 		</ul>
 	</div>
 	<div ng-show="showEmailForm">
-		<form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="emailForm" novalidate>
+		<form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="emailForm invite-form" novalidate>
 			<div>
 				<label>{{:: 'PROFILE.INVITATION.ADDRESSES' | translate }}</label>
 				<tags-input name="to_email" ng-model="inv.to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" type="email" min-tags="1" ng-focus="showError.to_email = false"
-				ng-blur="showError.to_email = true" required allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input>
+				ng-blur="showError.to_email = true" ng-required="required" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input>
 				<div class="error" ng-show="showError.to_email">
-					<span ng-show="inviteForm.to_email.$error.required">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
+					<span ng-show="inviteForm.to_email.$error.minTags">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
 					<span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
 				</div>
 			</div>
@@ -56,9 +56,7 @@
 			</div>
 
 			<div class="bottom clearfix">
-				<a href="" ng-click="toggleEmailForm()" class="fleft close">
-					{{ 'CLOSE' | translate }}
-				</a>
+				<a ng-click="toggleEmailForm()" class="fleft close"> {{ 'CLOSE' | translate }} </a>
 				<button class="primary button-send fright pointer" type="submit" analytics-custom analytics-event="send email invitation" analytics-category="General" analytics-value="1">{{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}</button>
 			</div>
 		</form>
