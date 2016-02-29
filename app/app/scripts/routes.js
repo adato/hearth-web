@@ -117,11 +117,6 @@ angular.module('hearth').config([
 				templateUrl: 'templates/terms.html',
 				controller: 'TermsCtrl'
 			})
-			.state('about', {
-				url: '/about',
-				templateUrl: 'templates/terms.html',
-				controller: 'TermsCtrl'
-			})
 			.state('components', {
 				url: '/components',
 				templateUrl: 'templates/components.html',
