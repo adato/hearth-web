@@ -2,6 +2,17 @@
 
 <div class="static-page-container row">
 	<div class="box large-12 small-12 medium-12 columns" ng-if="termsPath">
+		{{language}}
 		<ng-include src="termsPath"></ng-include>
 	</div>
+</div>
+
+<h1 class="text-center" ng-hide="loading">{{'h1.terms' | translate}}</h1>
+
+<div loading show="loading"></div>
+
+<div class="static-page-container row" ng-hide="loading">
+	<article class="box large-12 small-12 medium-12 columns" ng-cloak>
+		<div ng-include="'locales/'+language+'/'+pageName+'.html'" ng-class="pageName"></div>
+	</article>
 </div>
