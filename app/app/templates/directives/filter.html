@@ -18,7 +18,7 @@
 			</tags-input>
 		</section>
 		<section class="medium-display-table cells-padded-horizontal rows-separated cells-padded-vertical">
-			<div class="medium-display-table-row">
+			<div ng-show="configOptionsShow.postType" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
 					<span></span>
@@ -27,7 +27,17 @@
 					<radio class="display-inline-block" type="radio" model="filter.post_type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
 				</div>
 			</div>
-			<div class="medium-display-table-row">
+			<div ng-show="configOptionsShow.entityType" class="medium-display-table-row">
+				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'FULLTEXT.FILTER.BY_TYPE' | translate }}</h5>
+				<div class="radio-container medium-display-table-cell">
+					<span></span>
+					<radio class="display-inline-block" type="radio" model="filter.type" value="null">{{:: 'FULLTEXT.FILTER.TYPE.ALL' | translate}}</radio>
+					<radio class="display-inline-block" type="radio" model="filter.type" value="'post'">{{:: 'FULLTEXT.FILTER.TYPE.POSTS' | translate}}</radio>
+					<radio class="display-inline-block" type="radio" model="filter.type" value="'user'">{{:: 'FULLTEXT.FILTER.TYPE.PEOPLE' | translate}}</radio>
+					<radio class="display-inline-block" type="radio" model="filter.type" value="'community'">{{:: 'FULLTEXT.FILTER.TYPE.COMMUNITY' | translate}}</radio>
+				</div>
+			</div>
+			<div ng-show="configOptionsShow.postTime" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
 					<span></span>
@@ -37,7 +47,7 @@
 					<radio class="display-inline-block" type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
 				</div>
 			</div>
-			<div class="medium-display-table-row">
+			<div ng-show="configOptionsShow.author" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
 					<span></span>
@@ -65,15 +75,15 @@
 		</section> -->
 	</section>
 	<section class="footer row">
+		<div ng-show="configOptionsShow.saveFilter" ng-show="configOptionsShow.saveFilter" class="column large-6">
+			<checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
+			</checkbox>
+		</div>
 		<div class="column large-6">
 			<!--a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CLOSE_FILTER' | translate}}</a-->
 			<button ng-click="applyFilter()" class="button expand" ng-disabled="!filterCount">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}
 				<b ng-if="filterCount !== false">({{filterCount}})</b>
 			</button>
-		</div>
-		<div ng-show="configOptionsShow.saveFilter" class="column large-6">
-			<checkbox signed-in model="filterSave" on-update="toggleSaveFilter(value)" value="true">{{:: 'MARKETPLACE.FILTER.SAVE_FILTER' | translate}}
-			</checkbox>
 		</div>
 	</section>
 </div>
