@@ -28,9 +28,8 @@ a.user{
 }
 
 // .post-on-market is an envelope around every item 
-article.post-on-market,
-article.item-detail-page {
-	article header h1>a {
+.post-on-market {
+	header h1>a {
 		color: black;
 		&:hover {
 			text-decoration: underline;
@@ -119,6 +118,7 @@ article.item-detail-page {
 	}
 }
 /* /kamil */
+
 .item-common {
 	margin-bottom: $size-medium;
 

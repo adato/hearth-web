@@ -1,4 +1,4 @@
-<article class="item-common temp-padding">
+<article class="item-common temp-padding bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
 		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted)'>
@@ -185,7 +185,6 @@
 								<p>{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</p>
 							</div>
 						</header>
-
 						<article ng-repeat="(id, item) in replies track by item._id" class='box-section'>
 							<section class='display-table'>
 								<div class='display-table-cell addon user'>
@@ -325,7 +324,6 @@
 						</div>
 					</div>
 				</div>
-				<!--/profile column-->
 			</div>
 		</section>
 	</div>
