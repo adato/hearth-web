@@ -12,6 +12,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 			restrict: 'E',
 			replace: true,
 			scope: {
+				hideHeading: '=',
 				close: "&"
 			},
 			templateUrl: 'templates/directives/communityEditForm.html',
