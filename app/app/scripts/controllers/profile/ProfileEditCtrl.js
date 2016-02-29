@@ -20,9 +20,23 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			phone: false,
 			contact_email: false,
 			message: false,
-			social_networks_invalid: false,
+			social_networks: [],
 		};
 
+		$scope.socialNetworks = {
+			'twitter': {
+				'url': 'twitter.com\/.*'
+			},
+			'facebook': {
+				'url': 'facebook.com\/.*'
+			},
+			'linkedin': {
+				'url': 'linkedin.com\/.*'
+			},
+			'googleplus': {
+				'url': 'plus.google.com\/.*'
+			}
+		};
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'zh', 'he'];
 
@@ -54,38 +68,33 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.updateUrl = function($event, model, key) {
 			var input = $($event.target),
-				url = input.val(),
-				tmpKey = key;
+				url = input.val();
 
 			if (url && !url.match(/http[s]?:\/\/.*/)) {
 				url = 'https://' + url;
 			}
 
-			if (key == "googleplus") {
-				tmpKey = "plus.google";
-			}
-
-			if (model !== $scope.profile.webs && url && !url.match(new RegExp(tmpKey + ".com\/.*\/?"))) { // match invalid input
-				$scope.showError.social_networks_invalid = true;
-				return;
+			if (model !== $scope.profile.webs) {
+				// editing social network, not webs
+				if (url && ($scope.socialNetworks[key] === undefined || !url.match(new RegExp($scope.socialNetworks[key].url)))) {
+					$scope.showError.social_networks[key] = true;
+				} else {
+					$scope.showError.social_networks[key] = false;
+				}
 			}
 
 			model[key] = url;
-			$scope.showError.social_networks_invalid = false;
 		};
 
 		$scope.validateSocialNetworks = function() {
-			$scope.showError.social_networks_invalid = false;
-			var soc = ['twitter', 'facebook', 'linkedin', 'googleplus'];
-			soc.forEach(function(item) {
-				var url = item + ".com";
-				if (item == 'googleplus.com') {
-					url = "plus.google.com";
+			var isOk = true;
+			Object.keys($scope.socialNetworks).forEach(function(networkName) {
+				if ($scope.profile[networkName] && !$scope.profile[networkName].match($scope.socialNetworks[networkName].url)) {
+					$scope.showError.social_networks[networkName] = true;
+					isOk = false;
 				}
-				if ($scope.profile[item] && !$scope.profile[item].match(url + "\/.*\/?")) $scope.showError.social_networks_invalid = true;
-
 			});
-			return !$scope.showError.social_networks_invalid;
+			return isOk;
 		};
 
 		$scope.switchLanguage = function(lang) {
@@ -164,7 +173,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			if (!$scope.validateSocialNetworks()) {
 				res = false;
-				$scope.showError.social_networks_invalid = true;
 			}
 
 			if ($scope.profileEditForm.about.$invalid || $scope.profileEditForm.interests.$invalid) {
