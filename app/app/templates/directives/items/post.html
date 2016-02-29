@@ -1,9 +1,9 @@
 <article class="item-common bubbled" id="post_{{:: item._id }}" ng-class="{inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
-	<div class='row'>
+	<div class="row">
 		<section ng-if="! hideAvatar" class="column medium-2 show-for-medium-up text-center v2 user padding-top-small">
 			<div info-box="item.author">
 				<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-					<avatar class='show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.large"></avatar>
+					<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.large"></avatar>
 					<div class="name">{{ item.author.name }}</div>
 				</a>
 			</div>
@@ -35,11 +35,11 @@
 				</div>
 			</div>
 			<section class="box padding-none" ng-init="marketplace.expanded = false;">
-				<div class='box-content'>
-					<header class="row">
-						<div class="column small-8 small-push-4 medium-5 large-4 medium-push-7 large-push-8 text-right nowrap">
-							<span class='color-dark-gray' title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
-							<div class='dropdown-wrapper'>
+				<div class="box-content">
+					<header class="item-section row">
+						<div class="column small-8 small-push-4 medium-5 medium-push-7 large-4 large-push-8 text-right nowrap">
+							<span class="color-dark-gray" title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
+							<div class="dropdown-wrapper">
 								<div class="display-inline-block touchable-wrapper margin-left-none" ng-if="!mine">
 									<bubble ng-if="loggedUser._id && !item.is_bookmarked && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble-container hide" type="bookmark"></bubble>
 									<span class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}">
@@ -76,21 +76,21 @@
 						</div>
 						<div class="column small-4 small-pull-8 hide-for-medium-up">
 							<a ng-if="! hideAvatar" ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-								<avatar class='show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
+								<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.normal" size="small"></avatar>
 							</a>
 						</div>
 						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
 							<h1 class='display-inline-block margin-right-medium'>
 								<a ng-href="{{:: getProfileLink('Post', item._id)}}">
-									<span ng-class='"color-" + item.type' translate='{{:: postTypes[item.author._type][item.type] }}'></span>
-									<span ng-bind='item.title'></span>
+									<span ng-class="'color-' + item.type" translate="{{:: postTypes[item.author._type][item.type] }}"></span>
+									<span ng-bind="item.title"></span>
 								</a>
 							</h1>
 							<span class="nowrap" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
 							<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 						</div>
 
-						<div class='column small-12'>
+						<div class="column small-12">
 							<div ng-if="item.location_unlimited">
 								<i class="fa fa-map-marker"></i>&nbsp;{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
 							</div>
@@ -103,67 +103,67 @@
 						</div>
 					</header>
 
-					<div class="text-container margin-top-medium">
-						<p ng-if="item.text.length < 270 || marketplace.expanded == true" class='margin-bottom-none' ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
-						<p ng-if="item.text.length >= 270 && !marketplace.expanded" class='margin-bottom-none'>
+					<div class="item-section text-container">
+						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html="item.text_short | linky:'_blank'"></span>
 							<a ng-click="marketplace.expanded = true">
-								<b ng-class='"color-" + item.type'>{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</b>
+								<b ng-class="'color-' + item.type">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</b>
 							</a>
 						</p>
 					</div>
-					<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
+					<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
 						<li ng-repeat="photo in item.attachments_attributes track by $index">
 							<a class="fancy" ng-href="{{ photo.large }}" rel="{{:: item._id }}">
-								<img ng-src="{{photo.normal}}">
+								<img ng-src="{{photo.normal}}" />
 							</a>
 						</li>
 					</ul>
-					<div class="tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
+					<div class="item-section tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
 						<ul class="tagList">
-							<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords" ng-bind='tag'></li>
+							<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords" ng-bind="tag"></li>
 						</ul>
 					</div>
 				</div>
 				<footer>
-					<div class='display-table nowrap'>
-						<div class=display-table-cell>
-							<div class='display-flex flex-wrap'>
-								<div class='padding-right-large' ng-if="mine">
-									<div class='touchable-wrapper'>
-										<a class='touchable' title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
+					<div class="display-table nowrap">
+						<div class="display-table-cell">
+							<div class="display-flex flex-wrap">
+								<div class="padding-right-large" ng-if="mine">
+									<div class="touchable-wrapper">
+										<a class="touchable" title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
 											<i class="fa fa-fw fa-pencil"></i>
 										</a>
-										<a class='touchable' title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+										<a class="touchable" title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
 											<i class="fa fa-fw" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
 										</a>
-										<a class='touchable' title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
+										<a class="touchable" title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
 											<i class="fa fa-fw fa-pause"></i>
 										</a>
-										<a class='touchable' title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
+										<a class="touchable" title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
 											<i class="fa fa-fw fa-times"></i>
 										</a>
 									</div>
 								</div>
-								<div class='padding-right-large' ng-if='(!item.is_replied && !mine) || (item.is_replied)'>
-									<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=':: "background-" + item.type' ng-bind-html=":: replyLabel[item.type] | translate"></button>
+								<div class="padding-right-large" ng-if="(!item.is_replied && !mine) || (item.is_replied)">
+									<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=":: 'background-' + item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied">
 										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 									</span>
 								</div>
-								<div class=''>
+								<div>
 									<div ng-if="item.reply_count && mine">
-										<a class='text-decoration-underline' ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
+										<a class="text-decoration-underline" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
 									</div>
 									<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
 									<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
 								</div>
 							</div>
 						</div>
-						<div class='display-table-cell addon text-align-right' id='open-sharing-options'>
-							<div class='touchable-wrapper'>
+						<div class="display-table-cell addon text-align-right" id="open-sharing-options">
+							<div class="touchable-wrapper">
 								<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + ' .sharing-container-form', null, 140)" title="Share">
-									<i class='fa fa-fw fa-share-alt'></i>
+									<i class="fa fa-fw fa-share-alt"></i>
 								</a>
 							</div>
 						</div>

@@ -132,6 +132,9 @@ a.user{
 			display: none !important;
 		}
 	}
+	.item-section{
+		margin-bottom: $size-medium;
+	}
 
 	.item-status-bar {
 		background: $colorDanger;
@@ -364,11 +367,7 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 .tags {
 	.tagList {
 		list-style: none;
-		margin: {
-			bottom: 0px;
-			left: 0px;
-			top: 3*$ui-small-grid-size;
-		}
+		margin: 0;
 		li {
 			border: 1px solid #C2C2C2;
 			border-radius: 8px;
