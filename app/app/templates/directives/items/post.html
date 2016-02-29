@@ -43,7 +43,7 @@
 						<bubble ng-if="loggedUser._id && !item.is_bookmarked && (loggedUser.reminders.indexOf('bookmark') > -1)" class="bubble-container hide" type="bookmark"></bubble>
 						<a ng-click="!item.is_bookmarked && removeReminder('bookmark')" class="action-dropdown fa fa-chevron-down" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{:: item._id }}"></a>
 					</span>
-					<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;" ng-init=':: canEditPosts = userHasRight("posts.edit")'>
+					<div class="more-actions-dropdown" id="more-actions-{{:: item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
 						<!-- bookmark post -->
 						<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
 						<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
