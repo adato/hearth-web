@@ -42,14 +42,6 @@
 			text-align: center;
 			font-weight: bold;
 		}
-		.avatar {
-			a::before,
-			img {
-				width: 150px;
-				height: 150px;
-				box-shadow: none;
-			}
-		}
 		.box {
 			box-shadow: none;
 			background: none;
@@ -317,12 +309,6 @@
 					.avatar {
 						margin-right: 1.25rem;
 						//margin-top: -2 * $ui-small-grid-size; 
-						a::before,
-						img {
-							width: 60px;
-							height: 60px;
-							box-shadow: none;
-						}
 					}
 				}
 /*				.content {
