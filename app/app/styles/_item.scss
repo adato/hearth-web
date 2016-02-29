@@ -123,6 +123,9 @@ a.user{
 			display: none !important;
 		}
 	}
+	.item-section{
+		margin-bottom: $size-medium;
+	}
 
 	.item-status-bar {
 		background: $colorDanger;
@@ -156,17 +159,6 @@ a.user{
 		}
 	}
 
-/*	.avatar,
-	.avatar img{
-		width: 40px; height: 40px;
-	}
-	@media #{$medium-up}{
-		.avatar,
-		.avatar img{
-			width: 80px; height: 80px;
-		}
-	}*/
-
 	/* shadow between ad and user intel */
 	@media #{$large-up}{
 		.has-delimiter{
@@ -176,13 +168,6 @@ a.user{
 			.user{
 				max-width: 240px;
 			}
-/*			.avatar,
-			.avatar img{
-				width: 130px; height: 130px;
-				 @kamil TODO - why does avatar image have max-width: 80px?? 
-				max-width: 130px; max-height: 130px;
-				 /kamil 
-			}*/
 		}
 		.has-delimiter:before {
 			content: '';
@@ -358,11 +343,7 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 .tags {
 	.tagList {
 		list-style: none;
-		margin: {
-			bottom: 0px;
-			left: 0px;
-			top: 3*$ui-small-grid-size;
-		}
+		margin: 0;
 		li {
 			border: 1px solid #C2C2C2;
 			border-radius: 8px;

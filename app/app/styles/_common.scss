@@ -70,12 +70,9 @@
 		}
 	}
 	/* /todo */
-	header,
-	header.row{
-		margin-bottom: $size-medium;
-	}
+
 	.box-content{
-		padding: $size-large $size-large $size-medium;
+		padding: $size-large $size-large 0;
 
 		a{
 			color: $colorSecondary;
