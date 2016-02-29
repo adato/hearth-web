@@ -3,7 +3,7 @@
 // ====== Local Settings =======
 $radius: true;
 $global-radius: 8px;
-$base-font-size: 95%;
+$base-font-size: 100%;
 $borderRadius: 4px;
 $colorLink: $colorBlue;
 
@@ -11,21 +11,23 @@ $base-line-height: 100%;
 $body-bg: color(4);
 $body-font-color: lighten(black, 22%);
 $body-font-family: "Open Sans", "Geneva", "Tahoma", sans-serif;
-$global-font-size: 14px;
+$global-font-size: 1rem;
 
 $primary-color: color(1);
 $secondary-color: color(2);
 
+$row-width: 960px;
+
 $hr-margin: rem-calc(1);
 $f-dropdown-border-color: color(3);
 $f-dropdown-font-color: color(3);
-$f-dropdown-font-size: rem-calc(16);
-$form-label-font-size: rem-calc($global-font-size);
+$f-dropdown-font-size: $global-font-size;
+$form-label-font-size: $global-font-size;
 $input-font-color: nth($color,3);
-$input-font-size: rem-calc($global-font-size);
+$input-font-size: $global-font-size;
 $input-border-color: nth($color,3);
 
-$button-function-factor: -20%;
+$button-function-factor: -10%;
 $button-border-width: 2px;
 $button-border-style: solid;  $button-radius: $global-radius;
 
@@ -47,7 +49,7 @@ $ui-box-shadow: 0px 0px 5px rgba(100,100,100,.5);
 
 $ui-navbar-height: 100px;
 
-$paragraph-font-size: rem-calc($ui-text-font-size);
+$paragraph-font-size: $global-font-size;
 
 $h1-font-size: rem-calc(40);
 $h2-font-size: rem-calc(34);
@@ -56,9 +58,11 @@ $h4-font-size: rem-calc(21);
 $h5-font-size: rem-calc(16);
 
 // standard metrics
-$size-small: .625rem;	// 10px
-$size-medium: 1.25rem;		// 20px
-$size-large: 1.5625rem;	// 25px
+$size-tiny: 5px;
+$size-small: 10px;
+$size-medium: 15px;
+$size-big: 20px;
+$size-large: 25px;
 
 // 
 // @import "foundation/functions";
