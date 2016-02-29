@@ -5,7 +5,7 @@
 		<i class="fa fa-plus"></i>&nbsp; {{:: 'CREATE_COMMUNITY' | translate}}
 	</a>
 	<div class="community-list-add-form clearfix hide">
-		<community-create-edit close="toggleForm()"></community-create-edit>
+		<community-create-edit hide-heading="true" close="toggleForm()"></community-create-edit>
 	</div>
 	<div class="myCommunities small-12" ng-if="myCommunities !== false">
 		<h4 ng-bind=":: 'YOUR_COMMUNITIES' | translate "></h4>
