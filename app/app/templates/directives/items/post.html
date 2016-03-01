@@ -47,7 +47,7 @@
 										<i class='fa fa-fw fa-chevron-down'></i>
 									</span>
 								</div>
-								<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
+								<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
 									<li>
 										<!-- bookmark post -->
 										<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
@@ -63,6 +63,13 @@
 									<li>
 										<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 									</li>
+
+									<!-- admin only -->
+									<hr ng-if=':: canEditPosts' />
+									<li>
+										<a ng-if=':: canEditPosts' ng-click="(isActive ? confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("AD_PAUSE_LABEL" | translate) : ("AD_RESUME_LABEL" | translate))}}</a>
+									</li>
+									<!-- /admin only -->
 								</ul>
 							</div>
 						</div>
