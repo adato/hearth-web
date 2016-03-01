@@ -15,10 +15,10 @@
 					<a class="fa touchable fa-times close" ng-click="showSharing = false"></a>
 					<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
 					<div class="input-container">
-						<i class="fa fa-link"></i>
+						<!-- <i class="fa fa-link"></i> -->
 						<input type="text" readonly select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" ng-click="$event.stopPropagation()" />
 					</div>
-					<ul class='no-list'>
+					<ul class="no-list">
 						<li>
 							<a analytics-custom analytics-event="Share" analytics-category="Email" analytics-label="Share post by email" class="fa fa-envelope" title="Email" ng-click="openEmailSharingBox(item)"></a>
 						</li>

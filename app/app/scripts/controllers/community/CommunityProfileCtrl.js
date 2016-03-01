@@ -256,6 +256,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 
+
 		$scope.init = function() {
 			$scope.refreshDataFeed();
 			fetchCommunity();
