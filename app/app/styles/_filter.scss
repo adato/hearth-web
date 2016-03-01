@@ -80,19 +80,19 @@
 	}
 	.footer {
 		@extend .clearfix;
-		margin-top: 1.5em;
+		margin-top: $size-big;
 		line-height: $ui-grid-size;
 		.checkbox {
 			@extend .ui-checkbox;
 		}
 		.link-button {
 			font-weight: $ui-text-weight-bolder;
-			color: color(5);
+			color: $colorSecondary;
 			margin-top: 3px;
 		}
 		label {
 			@extend .reset-label;
-			padding-top: 10px;
+			padding-top: $size-tiny;
 		}
 	}
 }
