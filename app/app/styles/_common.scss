@@ -414,6 +414,18 @@ button[disabled],
 	}
 }
 
+/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability 
+to remove !important would be also nice .. someday */
+button.neutral,
+button.neutral:disabled{
+	background-color: darken(color(4), 20%) !important;
+}
+button.neutral:hover,
+button.neutral:focus{
+	background-color: color(3) !important;
+}
+/* /kamil */
+
 .margin-auto {
 	margin: auto;
 }

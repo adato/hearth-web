@@ -201,8 +201,12 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
+		$scope.isNull = function(e) {
+			return e === null;
+		};
+
 		// send rating to API
-		$scope.sendRating = function(ratingOrig) {
+		$scope.sendRating = function(ratingOrig, theForm) {
 			var rating;
 			var ratings = {
 				false: -1,
@@ -211,11 +215,16 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 
 			$scope.showError.text = false;
 
-			if (!$scope.rating.score) {
+			var errors = theForm.$invalid;
+			if ($scope.isNull($scope.rating.score)) {
 				$scope.rating.requiredMessageShown = true;
-			};
-			if (!ratingOrig.text)
-				return $scope.showError.text = true;
+				errors = true;
+			}
+			if (!ratingOrig.text) {
+				$scope.showError.text = true;
+				errors = true;
+			}
+			if (errors) return false;
 
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);

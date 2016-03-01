@@ -26,11 +26,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			text: false
 		};
 
-		$scope.amIAdmin = function(res) {
-			return $rootScope.loggedUser._id == res.admin;
-		};
-
-		$scope.fetchCommunity = function() {
+		function fetchCommunity() {
 			if (!$stateParams.id) return false;
 
 			// if we load profile of another user (there are different IDs) scroll to top
@@ -53,7 +49,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.topLoaded = true;
 
 				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
-				$scope.managing = $scope.amIAdmin(res); // is community mine?
+				$scope.managing = $rootScope.loggedUser._id === res.admin; // is community mine?
 
 				PageTitle.setTranslate('TITLE.community-profile-page', res.name);
 
@@ -87,7 +83,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			// set default values
 			$scope.showError.text = false;
 			$scope.rating.current_community_id = null;
-			$scope.rating.score = score;
+			$scope.rating.score = score || null;
 			$scope.rating.text = '';
 			$scope.rating.post_id = null;
 			// select first option in posts select - eg default value           
@@ -114,7 +110,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-		$scope.refreshDataFeed = function() {
+		function refreshDataFeed() {
 			$scope.$broadcast('refreshSubpage');
 		};
 
@@ -175,7 +171,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				return false;
 			$scope.approveApplicationLock = true;
 
-
 			CommunityMembers.add({
 				communityId: $scope.info._id,
 				user_id: id
@@ -189,21 +184,25 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 
-
 		$scope.addItem = function() {
 			var preset = {
 				current_community_id: ($scope.mine) ? $scope.info._id : null,
 				related_communities: (!$scope.mine) ? [{
 					_id: $scope.info._id,
 					name: $scope.info.name
-				}] : [],
-			}
+				}] : []
+			};
 
 			$rootScope.editItem(null, null, preset);
 		};
 
 		// send rating to API
-		$scope.sendRating = function(ratingOrig) {
+		$scope.isNull = function(e) {
+			return e === null;
+		};
+
+		// send rating to API
+		$scope.sendRating = function(ratingOrig, theForm) {
 			var rating;
 			var ratings = {
 				false: -1,
@@ -212,8 +211,16 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			$scope.showError.text = false;
 
-			if (!ratingOrig.text)
-				return $scope.showError.text = true;
+			var errors = theForm.$invalid;
+			if ($scope.isNull($scope.rating.score)) {
+				$scope.rating.requiredMessageShown = true;
+				errors = true;
+			}
+			if (!ratingOrig.text) {
+				$scope.showError.text = true;
+				errors = true;
+			}
+			if (errors) return false;
 
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);
@@ -250,12 +257,10 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 
-
 		$scope.init = function() {
-			$scope.refreshDataFeed();
-			$scope.fetchCommunity();
+			refreshDataFeed();
+			fetchCommunity();
 		};
-
 
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
 			$scope.activePage = params.page;
