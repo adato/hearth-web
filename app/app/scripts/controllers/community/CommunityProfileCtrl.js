@@ -74,7 +74,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		// will redirect user to user ratings and open rating form
-		$scope.openRatingForm = function(score) {
+		$scope.openUserRatingForm = function(score) {
 			var ratingUrl = '/community/' + $scope.info._id + '/received-ratings';
 			var removeListener;
 
@@ -110,7 +110,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-		function refreshDataFeed() {
+		$scope.refreshDataFeed = function() {
 			$scope.$broadcast('refreshSubpage');
 		};
 
@@ -196,64 +196,68 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$rootScope.editItem(null, null, preset);
 		};
 
-		//@kamil - this seems to be overriden by ProfileDataFeedCtrl.js
+		$scope.isNull = function(e) {
+			return e === null;
+		};
+
 		// send rating to API
-		//		$scope.sendRating = function(ratingOrig) {
-		//			var rating;
-		//			var ratings = {
-		//				false: -1,
-		//				true: 1
-		//			};
-		//
-		//			$scope.showError.text = false;
-		//
-		//			var errors = false;
-		//			if ($scope.isNull($scope.rating.score)) {
-		//				$scope.rating.requiredMessageShown = true;
-		//				errors = true;
-		//			}
-		//			if (!ratingOrig.text) {
-		//				$scope.showError.text = true;
-		//				errors = true;
-		//			}
-		//			if (errors) return false;
-		//
-		//			// transform rating.score value from true/false to -1 and +1
-		//			rating = angular.copy(ratingOrig);
-		//			rating.score = ratings[rating.score];
-		//			rating.post_id = rating.post_id || null;
-		//
-		//			var out = {
-		//				current_community_id: rating.current_community_id,
-		//				id: $scope.info._id,
-		//				rating: rating
-		//			};
-		//
-		//			// lock - dont send twice
-		//			if ($scope.sendingRating)
-		//				return false;
-		//			$scope.sendingRating = true;
-		//
-		//			// send rating to API
-		//			CommunityRatings.add(out, function(res) {
-		//
-		//				// remove lock
-		//				$scope.sendingRating = false;
-		//
-		//				// close form
-		//				$scope.closeUserRatingForm();
-		//
-		//				// broadcast new rating - this will add rating to list
-		//				$scope.$broadcast('communityRatingsAdded', res);
-		//
-		//			}, function(err) {
-		//				// remove lock
-		//				$scope.sendingRating = false;
-		//			});
-		//		};
+		$scope.sendRating = function(ratingOrig, theForm) {
+			var rating;
+			var ratings = {
+				false: -1,
+				true: 1
+			};
+
+			$scope.showError.text = false;
+
+			var errors = theForm.$invalid;
+			if ($scope.isNull($scope.rating.score)) {
+				$scope.rating.requiredMessageShown = true;
+				errors = true;
+			}
+			if (!ratingOrig.text) {
+				$scope.showError.text = true;
+				errors = true;
+			}
+			if (errors) return false;
+
+			// transform rating.score value from true/false to -1 and +1
+			rating = angular.copy(ratingOrig);
+			rating.score = ratings[rating.score];
+			rating.post_id = (rating.post_id && rating.post_id != '0') ? rating.post_id : null;
+
+			var out = {
+				current_community_id: rating.current_community_id,
+				id: $scope.info._id,
+				rating: rating
+			};
+
+			// lock - dont send twice
+			if ($scope.sendingRating)
+				return false;
+			$scope.sendingRating = true;
+
+			// send rating to API
+			CommunityRatings.add(out, function(res) {
+
+				// remove lock
+				$scope.sendingRating = false;
+
+				// close form
+				$scope.closeUserRatingForm();
+
+				// broadcast new rating - this will add rating to list
+				$scope.$broadcast('communityRatingsAdded', res);
+				// Notify.addSingleTranslate('NOTIFY.USER_RATING_SUCCESS', Notify.T_SUCCESS);
+
+			}, function(err) {
+				// remove lock
+				$scope.sendingRating = false;
+			});
+		};
 
 		$scope.init = function() {
-			refreshDataFeed();
+			$scope.refreshDataFeed();
 			fetchCommunity();
 		};
 
