@@ -320,6 +320,10 @@ $topBarImageSize: 1.8em;
 					color: lighten(color(1), 25%);
 					transition: color 1s, text-shadow 2s;
 				}
+				.avatar-image{
+					transition: opacity 1s;
+					box-shadow: 0 0 0px 2px lighten(color(1), 25%);
+				}
 				&>*{
 					display: inline-block;
 					text-align: center;
@@ -333,14 +337,6 @@ $topBarImageSize: 1.8em;
 						left: 4px;
 						right: 4px;
 					}
-					.img {
-						overflow: hidden;
-						transition: opacity 1s;
-						border: 2px solid lighten(color(1), 25%);
-						img {
-							border-radius: 50%;
-						}
-					}
 					&.active,
 					&:hover {
 						color: lighten(color(1), 50%) !important;
@@ -348,9 +344,9 @@ $topBarImageSize: 1.8em;
 						label {
 							color: lighten(color(1), 50%);
 						}
-						.img {
+						.avatar-image{
 							opacity: 1;
-							box-shadow: 0 0 5px white;
+							box-shadow: 0 0 0px 2px lighten(color(1), 25%), 0 0 5px white;
 						}
 					}
 				}
@@ -443,8 +439,8 @@ $topBarImageSize: 1.8em;
 			margin-right: 5px;
 		}
 		.user-switch-item {
-			padding-top: 6px;
-			padding-bottom: 3px;
+			padding-top: 7px;
+			padding-bottom: 6px;
 		}
 		
 		.user-switch-item {
