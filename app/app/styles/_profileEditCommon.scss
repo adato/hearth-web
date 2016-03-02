@@ -195,6 +195,9 @@
 			box-shadow: none;
 		}
 		resize: none;
+		-moz-appearance: none;
+		text-indent: 0.01px;
+		text-overflow: '';
 	}
 	textarea {
 		line-height: 1.33 !important;

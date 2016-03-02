@@ -218,9 +218,14 @@
 			margin-right: 10px;
 			margin-left: 10px;
 			min-width: 80px;
+			max-width: 80px;
+
 			avatar {
 				position: default;
 				margin-right: 5px;
+			}
+			.avatar {
+				float: left!important;
 			}
 			.avatar-no-participants {
 				background-color: #DDD;
@@ -233,11 +238,10 @@
 			.avatar-participants-count {
 				background-color: #dddddd;
 				border-radius: 50%;
-				display: inline-block;
-				float: right;
+				float: left;
 				font-weight: bold;
 				height: 40px;
-				padding-top: 13px;
+				padding-top: 12px;
 				text-align: center;
 				width: 40px;
 			}

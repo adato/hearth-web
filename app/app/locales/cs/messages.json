@@ -1356,7 +1356,7 @@
 		"CZECH": "Čeština",
 		"SLOVAK": "Slovenčina"
 	},
-	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "<p>Přihla&scaron;uje&scaron; se do Hearthu pomoc&iacute; &uacute;čtu třet&iacute; strany (Facebook, Google, twitter) a tento &uacute;čet nen&iacute; napojen&yacute; na ž&aacute;dn&eacute;ho Hearth uživatele. Nen&iacute; možn&eacute;, že na Hearthu je&scaron;tě &uacute;čet nem&aacute;&scaron; nebo jsi se registroval pomoc&iacute; e-mailu?<\/p>\n<p>Buď se může&scaron; přihl&aacute;sit pomoc&iacute; jin&eacute;ho &uacute;čtu&nbsp;nebo se <a href=\"{{ registerUrl }}\">registrovat<\/a>.<\/p>",
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "<p>Přihla&scaron;uje&scaron; se do Hearthu pomoc&iacute; &uacute;čtu třet&iacute; strany (Facebook, Google, Twitter). Syst&eacute;m ale tento &uacute;čet nepozn&aacute;v&aacute;. Je možn&eacute;, že na Hearthu je&scaron;tě &uacute;čet nem&aacute;&scaron;, nebo ses registroval(a) dř&iacute;v pomoc&iacute; e-mailu?<\/p>\n<p>Zkus si vzpomenout a přihl&aacute;sit se pomoc&iacute; jin&eacute;ho &uacute;čtu, nebo se může&scaron; <a href=\"{{ registerUrl }}\">registrovat<\/a>.<\/p>",
 	"h1": {
 		"marketplace": "Tržiště",
 		"communities": "Komunity",
@@ -1388,5 +1388,6 @@
 	"ADD_ATTACHMENT": "Přiložit soubor",
 	"CHANGE_ATTACHMENT": "Změnit soubor",
 	"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu",
-	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný."
+	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný.",
+	"APP_CRITICAL_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.<\/p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu<\/a>.<\/p>"
 }
