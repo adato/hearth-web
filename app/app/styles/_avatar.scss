@@ -7,11 +7,16 @@ $large-avatar-size: 295px;
 .avatar {
 	position: relative;
 	display: inline-block;
+	border-radius: 50%;
+	background-size: cover;
 
 	.avatar-image{
 		display: block;
 		border-radius: 50%;
 		background-size: cover;
+	}
+	&.purify-edges > .avatar-image{
+		box-shadow: 0 0 0 1px #fff;
 	}
 	/** == Shade & height == */
 	.avatar-image::before {
@@ -20,14 +25,13 @@ $large-avatar-size: 295px;
 	    padding-top: 100%;
 		border-radius: 50%;
 		box-shadow: -3px 3px 6px rgba(0,0,0,.5) inset;
-
 	}
 
 	/** == Default avatars == */
-	&.avatar-user .avatar-image{
+	&.avatar-user{
 		background-image: url('../images/no-avatar.jpg');
 	}
-	&.avatar-community .avatar-image{
+	&.avatar-community{
 		background-image: url('../images/no-cm-avatar.jpg');
 	}
 
