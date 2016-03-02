@@ -104,7 +104,6 @@ $fontSize: rem-calc(14);
 @import "tutorial";
 @import "userForms";
 @import "messages";
-@import "maitenancePage";
 @import "angularLoadingBar";
 @import "filterbar";
 @import "filterStatus";
@@ -141,6 +140,7 @@ $fontSize: rem-calc(14);
 @import "v2Style";
 @import "bubble";
 @import "fileViewer";
+@import "notifyOverlay";
 
 /*temp until css refactor*/
 @import "languageSelection";
@@ -167,6 +167,12 @@ body {
 }
 .no-scroll{
 	overflow-y: hidden;
+}
+html.no-scroll,
+html.no-scroll body{
+	overflow: hidden;
+    position: relative;
+    height: 100%;
 }
 a.no-link,
 a.no-link:hover{

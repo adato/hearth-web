@@ -62,18 +62,16 @@ angular.module('hearth.services').factory('Filter', [
 
 				$rootScope.$broadcast("filterApplied", filterData);
 			},
-			getFilterPostCount: function(filter, cb) {
+			getFilterCount: function(filter, cb) {
 				filter = filter || {};
 				filter.counters = true;
 
 				Post.query(filter, function(res) {
 					var count = 0;
 					var counter = res.counters;
-					for (var k in counter) {
-						if (counter.hasOwnProperty(k)) {
-							count += counter[k];
-						}
-					}
+					Object.keys(counter).forEach(function(key) {
+						count += counter[key];
+					});
 					cb(count);
 				});
 			},
@@ -122,20 +120,32 @@ angular.module('hearth.services').factory('Filter', [
 			reset: function() {
 				$rootScope.$broadcast("filterReseted");
 				this.deleteUserFilter();
-				//this.apply({}, true, true);
-				$state.go('market', {
-					query: null,
+
+				// on search page there is query param mandatory
+				var query = ($state.current.name == "search") ? $state.params.query : null;
+
+				$state.go($state.current.name, {
+					query: query,
 					type: null
 				}, {
 					reload: true
 				});
-				//this.apply({}, true, true);
 			},
 			isSaved: function() {
 				return !!($rootScope.user && $rootScope.user.filter && Object.keys($rootScope.user.filter).length);
 			},
 			applySaved: function() {
 				this.apply($rootScope.user.filter);
+			},
+			getOptionsShow: function(configName) {
+				var opts = $$config.filterOptions;
+				var conf = (typeof opts[configName] !== 'undefined') ? $$config.filterOptions[configName] : $$config.filterOptions.default;
+				var confObj = {};
+
+				conf.forEach(function(o) {
+					confObj[o] = true;
+				});
+				return confObj;
 			}
 		};
 	}

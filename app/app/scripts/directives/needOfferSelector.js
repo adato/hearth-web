@@ -21,8 +21,12 @@ angular.module('hearth.directives').directive('needofferselector',
 			},
 			templateUrl: 'templates/directives/needOfferSelector.html',
 			link: function(scope) {
+				scope.requiredMessageShown = scope.requiredShown !== void 0 ? scope.requiredShown : false;
+				scope.$watch('requiredShown', function(value) {
+					scope.requiredMessageShown = value;
+				});
 				scope.$watch('model', function(value) {
-					scope.requiredShown = false;
+					scope.requiredMessageShown = false;
 					scope.model = value;
 				});
 			}

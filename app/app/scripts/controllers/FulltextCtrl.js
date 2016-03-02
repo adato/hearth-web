@@ -19,34 +19,15 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		});
 
 		angular.extend($scope, {
-			queryText: $stateParams.q || '',
+			queryText: $stateParams.query || '',
 			items: [],
-			counters: {
-				post: 0,
-				community: 0,
-				user: 0
-			},
 			filterProperty: 'all'
 		});
-
-		$scope.setFilter = function(filter) {
-			var params = {
-				q: $stateParams.q,
-				type: filter
-			};
-
-			if (params.type === 'all') {
-				delete params.type;
-			}
-
-			deleteOffset = true;
-			$location.search(params);
-			$scope.$emit("fulltextSearch");
-		};
 
 		$scope.processData = function(params) {
 			return function(response) {
 				var i, item, data = response.data;
+				$scope.totalCounter = response.total;
 
 				// if there is no more results (no items or smaller items then limit), stop lazy loading for next events
 				if (data.length < params.limit)
@@ -78,23 +59,14 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 			}
 		};
 
-		$scope.processStatsData = function(response) {
-
-			$scope.counters = $.extend({
-				post: 0,
-				community: 0,
-				user: 0
-			}, response.counters);
-		};
-
 		$scope.load = function(addOffset) {
 			var params = {
 				limit: 15,
-				query: $stateParams.q || "",
+				query: $stateParams.query || "",
 				offset: (addOffset) ? $scope.items.length : 0
 			};
 
-			$rootScope.setFulltextSearch($stateParams.q);
+			$rootScope.setFulltextSearch($stateParams.query);
 
 			// if there is no more result data, dont load
 			if ($scope.readedAllData) {
@@ -122,20 +94,20 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 
 			$("#fulltextSearchResults").addClass("searchInProgress");
 			Fulltext.query(params, $scope.processData(params));
-			Fulltext.stats({
-				query: params.query
-			}, $scope.processStatsData);
+		};
+
+		$scope.reload = function(text) {
+			$scope.readedAllData = false;
+			$scope.offset = 0;
+			$scope.load();
 		};
 
 		$scope.init = function() {
 			$scope.languageCode = $rootScope.language;
 			$scope.load();
 
-			$scope.$on("fulltextSearch", function(text) {
-				$scope.readedAllData = false;
-				$scope.offset = 0;
-				$scope.load();
-			});
+			$scope.$on('filterReseted', $scope.reload);
+			$scope.$on('filterApplied', $scope.reload);
 		}
 
 		$scope.$on("$destroy", function() {

@@ -153,6 +153,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		$scope.retrievePosts = function(params) {
 			// params.type = "community,user,post";
 			// params.query = "*";
+			params.type = itemTypes.join(',');
 			Post.query(params, function(data) {
 				$scope.loaded = true;
 				$(".loading").hide();

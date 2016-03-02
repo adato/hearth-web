@@ -14,7 +14,7 @@ angular.module('hearth.services').factory('Email', [
 			email: '@email'
 		}, {
 			exists: {
-				method: 'GET',
+				method: 'GET'
 			},
 		});
 	}

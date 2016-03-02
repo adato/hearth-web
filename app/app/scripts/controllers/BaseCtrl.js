@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -169,7 +169,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.toggleSearchBar(false); // turn off search input
 			$rootScope.top(0, 1);
 			$state.go('search', {
-				q: searchQuery.query,
+				query: searchQuery.query,
 				// type: searchQuery.type
 			});
 			searchQuery.query = null;
@@ -612,6 +612,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
+		$rootScope.openLinkSharingBox = function(item) {
+			if (!Auth.isLoggedIn())
+				return $rootScope.showLoginBox(true);
+
+			var scope = $scope.$new();
+			scope.post = item;
+			ngDialog.open({
+				template: $$config.templates + 'modal/linkSharing.html',
+				controller: 'LinkSharing',
+				scope: scope,
+				closeByEscape: true,
+				showClose: false
+			});
+		};
 
 		$rootScope.openEmailSharingBox = function(item) {
 			if (!Auth.isLoggedIn())
@@ -854,6 +868,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				'context': $state.current.name
 			});
 		};
+
+		// expose rights check for use in templates
+		$rootScope.userHasRight = Rights.userHasRight;
 
 		$scope.$on('$destroy', function() {
 			angular.element(window).unbind('scroll');
