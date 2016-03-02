@@ -612,6 +612,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
+		$rootScope.openLinkSharingBox = function(item) {
+			if (!Auth.isLoggedIn())
+				return $rootScope.showLoginBox(true);
+
+			var scope = $scope.$new();
+			scope.post = item;
+			ngDialog.open({
+				template: $$config.templates + 'modal/linkSharing.html',
+				controller: 'LinkSharing',
+				scope: scope,
+				closeByEscape: true,
+				showClose: false
+			});
+		};
 
 		$rootScope.openEmailSharingBox = function(item) {
 			if (!Auth.isLoggedIn())
@@ -640,7 +654,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				className: 'ngdialog-invite-box',
 				closeByDocument: false,
 				closeByEscape: true,
-				// showClose: false
+				showClose: false
 			});
 
 			dialog.closePromise.then(function(data) {});
