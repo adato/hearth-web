@@ -101,14 +101,6 @@ a.user{
 		filter: FlipH;
 		-ms-filter: "FlipH";
 	}
-	.post-detail.offer:before {
-		background:url('/app/images/arrow-give.svg');
-		background-size:100%;
-	}
-	.post-detail.need:before {
-		background:url('/app/images/arrow-receive.svg');
-		background-size:100%;
-	}
 }
 
 /* @kamil TODO - remove after standardizing main ui-view's first-child and padding */

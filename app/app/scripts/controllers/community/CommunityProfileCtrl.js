@@ -110,7 +110,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-		$scope.refreshDataFeed = function() {
+		function refreshDataFeed() {
 			$scope.$broadcast('refreshSubpage');
 		};
 
@@ -256,9 +256,8 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 
-
 		$scope.init = function() {
-			$scope.refreshDataFeed();
+			refreshDataFeed();
 			fetchCommunity();
 		};
 

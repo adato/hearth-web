@@ -233,18 +233,6 @@ angular.module('hearth.directives').directive('filter', [
 				});
 				// scope.$watch('filterSave', scope.toggleSaveFilter);
 
-				scope.$watch('filterSelected', function(newValue, oldValue) {
-					if (newValue) {
-						var types = newValue.split(",");
-
-						angular.forEach(types, function(type, key) {
-							var className = 'type-' + type;
-							$('section', element).not('.' + className).slideUp('slow');
-							$('section.' + className, element).slideDown('slow');
-						});
-					}
-				});
-
 				scope.$on('initFinished', scope.init);
 				$rootScope.initFinished && scope.init();
 

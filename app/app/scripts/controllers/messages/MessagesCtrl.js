@@ -215,7 +215,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				if (post.author._type == 'User')
 					post.type_code = (post.type == 'offer' ? 'OFFER' : 'NEED');
 				else
-					post.type_code = (post.type == 'offer' ? 'WE_GIVE' : 'WE_NEED');
+					post.type_code = (post.type == 'offer' ? 'WE_OFFER' : 'WE_NEED');
 
 				post.type_translate = $translate.instant(post.type_code);
 			}

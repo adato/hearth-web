@@ -31,7 +31,6 @@
 												<i class='fa fa-fw fa-chevron-down'></i>
 											</span>
 										</div>
-
 										<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
 											<li>
 												<!-- bookmark post -->
@@ -111,7 +110,6 @@
 									</div>
 									<mapitems ng-if="local.showMap" class="map" style="height:300px;" items="item.locations" zoom-on-scroll="false"></mapitems>
 								</div>
-
 								<div class="text-emphasize" ng-if="item.location_unlimited">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE_HEADING' | translate }}</div>
 							</div>
 							<div class="item-section tags" ng-if="item.keywords.length">
