@@ -54,12 +54,18 @@
 <body ng-controller="BaseCtrl" ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': '')), (leftSidebarShown ? 'no-scroll' : '')]" ng-keydown="escapeKey($event)">
 	<script type="text/javascript">
 		// scripts to be loaded sooner
-		preferredLanguage = $.cookie('language') || $$config.defaultLanguage;
+		(function(){
+			'use strict';
 
-		var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
-			($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
-			'libraries=places,geometry&language=';
-		document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + preferredLanguage + '"><\/script>');
+			var availableLangs = {en: false, cs: true, sk: true};
+			var navigatorLanguage = (window.navigator.userLanguage || window.navigator.language).slice(0,2);
+			window.preferredLanguage = $.cookie('language') || (availableLangs[navigatorLanguage] ? navigatorLanguage : $$config.defaultLanguage);
+
+			var googleApiScriptUrl = '//maps.googleapis.com/maps/api/js?' +
+				($$config && $$config['map'] && $$config['map']['apiKey'] ? 'key=' + $$config['map']['apiKey'] + '&' : '') +
+				'libraries=places,geometry&language=';
+			document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + window.preferredLanguage + '"><\/script>');
+		})();
 	</script>
 	
 	<div id="fb-root"></div>
