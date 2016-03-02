@@ -13,8 +13,8 @@ angular.module('hearth.services').factory('$session', [
 		deferredSession = $q.defer();
 		session = Session.show(function() {
 			return deferredSession.resolve(session);
-		}, function() {
-			return deferredSession.reject();
+		}, function(err) {
+			return deferredSession.reject(err);
 		});
 		return deferredSession.promise;
 	}
