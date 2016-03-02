@@ -31,6 +31,11 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			};
 		};
 
+		$scope.rating_setup = {
+			RATING_TEXT_MIN_LENGTH: 3,
+			RATING_TEXT_MAX_LENGTH: 500
+		};
+
 		/**
 		 * Push cities to concatenated string.
 		 * Expects info.locations = [{city: ...}, ...]
@@ -220,7 +225,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				$scope.rating.requiredMessageShown = true;
 				errors = true;
 			}
-			if (!ratingOrig.text) {
+			if (ratingOrig.text.length < $scope.rating_setup.RATING_TEXT_MIN_LENGTH || ratingOrig.text.length > $scope.rating_setup.RATING_TEXT_MAX_LENGTH) {
 				$scope.showError.text = true;
 				errors = true;
 			}
