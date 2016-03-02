@@ -223,8 +223,6 @@ angular.module('hearth.directives').directive('filter', [
 
 				scope.init = function() {
 					scope.inited = true;
-					console.log("AAAA");
-
 					scope.loadKeywords();
 					scope.filterSave = Filter.isSaved();
 				};
