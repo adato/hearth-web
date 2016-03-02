@@ -7,39 +7,35 @@ $large-avatar-size: 295px;
 .avatar {
 	position: relative;
 	display: inline-block;
-	background-size: cover;
-	border-radius: 50%;
 
 	.avatar-image{
-		border-radius: 50%;
-		display: block !important;
-		padding: 0px;
+		display: block;
 		border-radius: 50%;
 		background-size: cover;
 	}
-
-	/** == Shade == */
+	/** == Shade & height == */
 	.avatar-image::before {
 	    content: '';
 	    display: block;
-	    top: 0;
-	    left:0;
 	    padding-top: 100%;
 		border-radius: 50%;
-		box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+		box-shadow: -3px 3px 6px rgba(0,0,0,.5) inset;
+
 	}
 
 	/** == Default avatars == */
-	&.avatar-user {
-		background-image: url(../images/no-avatar.jpg);
+	&.avatar-user .avatar-image{
+		background-image: url('../images/no-avatar.jpg');
 	}
-	&.avatar-community {
-		background-image: url(../images/no-cm-avatar.jpg);
+	&.avatar-community .avatar-image{
+		background-image: url('../images/no-cm-avatar.jpg');
 	}
+
 
 	/** == Size definitions == */
 	&.avatar-mini {
 		width: $mini-avatar-size;
+
 		&.move-bot {
 			top: 6px;
 		}
@@ -47,19 +43,15 @@ $large-avatar-size: 295px;
 	&.avatar-small{
 		width: $small-avatar-size;
 	}
-
 	&.avatar-normal{
 		width: $normal-avatar-size;
 	}
-
 	&.avatar-medium{
 		width: $medium-avatar-size;
 	}
-
 	&.avatar-large{
 		width: $large-avatar-size;
 	}
-
 	&.margin-right {
 		margin-right: 10px;
 	}
