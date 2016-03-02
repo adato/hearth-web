@@ -75,13 +75,10 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			}
 
 			// is message filled?
-			if ($scope.inviteForm.message.$invalid) {
+			if (!data.message) {
 				invalid = $scope.showError.message = true;
 			}
 
-			/*if (!$scope.testEmailsFormat(data.to_email)) {
-				invalid = true;
-			}*/
 			return !invalid;
 		};
 
