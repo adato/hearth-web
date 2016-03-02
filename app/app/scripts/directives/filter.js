@@ -5,6 +5,7 @@
  * @description Filter rules for search
  * @restrict E
  */
+
 angular.module('hearth.directives').directive('filter', [
 	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
 	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
@@ -12,6 +13,7 @@ angular.module('hearth.directives').directive('filter', [
 			restrict: 'E',
 			replace: true,
 			scope: {
+				type: '@',
 				filterShown: '=',
 				filterSelected: '='
 			},
@@ -24,9 +26,13 @@ angular.module('hearth.directives').directive('filter', [
 						type: null,
 						post_type: null,
 						distance: 25,
+						inactive: null,
 						keywords: [],
 						days: null
 					};
+
+				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
+				if (!scope.type) scope.type = 'post';
 
 				var timeout = $timeout(function() {
 					$(".tags input", element).keypress(function(e) {
@@ -43,7 +49,7 @@ angular.module('hearth.directives').directive('filter', [
 
 				scope.loggedUser = Auth.isLoggedIn();
 				scope.inited = false;
-				scope.filterPostCount = false;
+				scope.filterCount = false;
 
 				scope.queryKeywords = function($query) {
 					if ($query === '' || $query.length < 3) {
@@ -53,6 +59,7 @@ angular.module('hearth.directives').directive('filter', [
 				};
 
 				scope.applyFilter = function() {
+
 					if ($.isEmptyObject(scope.filter)) {
 						scope.reset();
 					} else {
@@ -74,30 +81,15 @@ angular.module('hearth.directives').directive('filter', [
 				};
 
 				scope.convertFilterToParams = function(filter) {
-					var related = [],
-						params = {};
+					var fields = ['query', 'type', 'inactive', 'post_type', 'days', 'lang', 'r_lang', 'my_section'],
+						related = [],
+						params = {},
+						currentParams = $location.search();
 
-					if (filter.query) {
-						params.query = filter.query;
-					}
-					if (filter.type) {
-						params.type = filter.type;
-					}
-					if (filter.post_type) {
-						params.post_type = filter.post_type;
-					}
-					if (filter.days) {
-						params.days = filter.days;
-					}
-					if (filter.lang) {
-						params.lang = filter.lang;
-					}
-					if (filter.r_lang) {
-						params.r_lang = filter.r_lang;
-					}
-					if (filter.my_section) {
-						params.my_section = filter.my_section;
-					}
+					fields.forEach(function(name) {
+						if (typeof filter[name] !== 'undefined' && filter[name] !== null) params[name] = filter[name];
+					});
+
 					if (filter.user) {
 						related.push('user');
 					}
@@ -129,6 +121,7 @@ angular.module('hearth.directives').directive('filter', [
 
 					var filter = {
 						query: params.query || filterDefault.query,
+						inactive: params.inactive || filterDefault.inactive,
 						type: params.type || filterDefault.type,
 						post_type: params.post_type || filterDefault.post_type,
 						days: params.days || filterDefault.days,
@@ -214,8 +207,11 @@ angular.module('hearth.directives').directive('filter', [
 				});
 
 				scope.recountPosts = function() {
-					Filter.getFilterPostCount(scope.convertFilterToParams(scope.filter), function(count) {
-						scope.filterPostCount = count;
+					var f = scope.convertFilterToParams(scope.filter);
+					if (!f.type) f.type = scope.type;
+
+					Filter.getFilterCount(f, function(count) {
+						scope.filterCount = count;
 					});
 				};
 
@@ -232,20 +228,10 @@ angular.module('hearth.directives').directive('filter', [
 				};
 
 				scope.$watch('filter', scope.recountPosts, true);
-				scope.$watch('filterShown', scope.recountPosts);
-				// scope.$watch('filterSave', scope.toggleSaveFilter);
-
-				scope.$watch('filterSelected', function(newValue, oldValue) {
-					if (newValue) {
-						var types = newValue.split(",");
-
-						angular.forEach(types, function(type, key) {
-							var className = 'type-' + type;
-							$('section', element).not('.' + className).slideUp('slow');
-							$('section.' + className, element).slideDown('slow');
-						});
-					}
+				scope.$watch('filterShown', function(isShown) {
+					if (isShown) scope.recountPosts();
 				});
+				// scope.$watch('filterSave', scope.toggleSaveFilter);
 
 				scope.$on('initFinished', scope.init);
 				$rootScope.initFinished && scope.init();

@@ -7,16 +7,23 @@
  */
 
 angular.module('hearth.services').service('LanguageSwitch', [
-	'$feature', '$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', 'Notify',
-	function($feature, $translate, $http, $rootScope, tmhDynamicLocale, Session, Notify) {
+	'$translate', '$http', '$rootScope', 'tmhDynamicLocale', 'Session', '$timeout',
+	function($translate, $http, $rootScope, tmhDynamicLocale, Session, $timeout) {
 		var self = this;
 		this.languages = Object.keys($$config.languages);
+		var ANIMATION_SPEED = 600 // = jQuery's slow
 
 		// init languages
 		this.init = function() {
 			// console.log("Language Inited");
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
+		};
+
+		self.languageStrings = {
+			cs: 'CZECH',
+			en: 'ENGLISH',
+			sk: 'SLOVAK'
 		};
 
 		// get all languages
@@ -30,20 +37,24 @@ angular.module('hearth.services').service('LanguageSwitch', [
 		};
 
 		// switch to given language code
-		this.swicthTo = function(lang) {
+		this.switchTo = function(lang, unauthOnly) {
+			if (lang) {
+				self.setCookie(lang);
+				if (unauthOnly) {
+					location.reload();
+					return true;
+				};
 
-				if (lang) {
-					self.setCookie(lang);
-
-					Session.update({
-						language: lang
-					}, function(res) {
-						location.reload();
-					});
-				}
-				return false;
+				Session.update({
+					language: lang
+				}, function(res) {
+					location.reload();
+				});
 			}
-			// return current used language
+			return false;
+		};
+
+		// return current used language
 		this.uses = function() {
 			return $rootScope.language;
 		};
@@ -66,6 +77,40 @@ angular.module('hearth.services').service('LanguageSwitch', [
 			$rootScope.language = language;
 			$rootScope.$broadcast("initLanguageSuccess", language);
 			return language;
+		};
+
+		var languageSelectionOpen = false;
+		var languageSelectionClickDisableActive = void 0;
+		self.toggleLanguageSelectionDialog = function() {
+
+			// disable clicking on the language panel toggler for the duration 
+			// of the animation to prevent accidental double-clicking
+			if (languageSelectionClickDisableActive === true) return false;
+			languageSelectionClickDisableActive = true;
+			setTimeout(function() {
+				languageSelectionClickDisableActive = false;
+			}, ANIMATION_SPEED);
+
+			$('#language-panel').slideToggle(ANIMATION_SPEED);
+
+			if (!languageSelectionOpen) {
+				// attach event handler to hide language panel when clicked 
+				// outside it's bounds but wait with it until the animation
+				// is over
+				$timeout(function() {
+					$(document).on('click.langSearch', function(e) {
+						var element = $(e.target);
+						if (!element.parents('#language-panel').length) {
+							self.toggleLanguageSelectionDialog();
+						};
+					});
+				}, ANIMATION_SPEED);
+			} else {
+				// detach event handler
+				$(document).off('click.langSearch');
+			};
+			languageSelectionOpen = !languageSelectionOpen;
+
 		};
 
 		// load used language from this

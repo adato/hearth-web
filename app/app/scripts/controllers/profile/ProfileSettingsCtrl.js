@@ -214,7 +214,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		// switch language to given lang code
 		$scope.switchLang = function(lang) {
-			LanguageSwitch.swicthTo(lang);
+			LanguageSwitch.switchTo(lang);
 		};
 
 		$rootScope.$watch("language", function(lang) {

@@ -12,7 +12,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 		$scope.user = {
 			email: '',
-			name: '',
+			first_name: '',
+			last_name: '',
 			password: ''
 		};
 		$scope.sent = false; // show result msg
@@ -22,16 +23,17 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.apiErrors = {};
 		$scope.showError = {
 			topError: false,
-			name: false,
+			first_name: false,
 			email: false,
 			password: false,
 		};
 
-		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl();
+		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('register');
 
-		$scope.oauth = function(provider) {
+		$scope.oauthRegister = function(provider) {
 			$auth.authenticate(provider, {
-				language: preferredLanguage
+				language: preferredLanguage,
+				user_action: 'register'
 			}).then(function(response) {
 				if (response.status == 200)
 					Auth.processLoginResponse(response.data);
@@ -48,8 +50,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				invalid = $scope.showError.email = true;
 			}
 
-			if ($scope.registerForm.name.$invalid) {
-				invalid = $scope.showError.name = true;
+			if ($scope.registerForm.first_name.$invalid) {
+				invalid = $scope.showError.first_name = true;
 			}
 
 			if ($scope.registerForm.email.$invalid) {

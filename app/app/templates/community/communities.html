@@ -1,9 +1,11 @@
+<h1 class="text-center">{{'h1.communities' | translate}}</h1>
+
 <div class="communities">
 	<a ng-if="loggedUser._id" ng-click="toggleForm()" class="button button-send community-list-add-button small-12 medium-3 large-3 pull-right">
 		<i class="fa fa-plus"></i>&nbsp; {{:: 'CREATE_COMMUNITY' | translate}}
 	</a>
 	<div class="community-list-add-form clearfix hide">
-		<community-create-edit close="toggleForm()"></community-create-edit>
+		<community-create-edit hide-heading="true" close="toggleForm()"></community-create-edit>
 	</div>
 	<div class="myCommunities small-12" ng-if="myCommunities !== false">
 		<h4 ng-bind=":: 'YOUR_COMMUNITIES' | translate "></h4>

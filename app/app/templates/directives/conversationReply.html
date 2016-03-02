@@ -11,16 +11,40 @@
 					<span>{{ actors[0].name | ellipsis:55 }}</span>
 				</div>
 			</div>
-			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
-			<textarea ng-disabled="!conversation.is_member" rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
 		</label>
+		<div>
+			<author-selector ng-if="actors.length > 1" id="author" author-id="reply.current_community_id" author-list="actors"></author-selector>
+			<textarea ng-disabled="!conversation.is_member || sendingReply" rows="1" id="reply-text" name="text" autosize-textarea resized="onResize()" ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.REPLY.TEXT_PLACEHOLDER' | translate }}" ng-model="reply.text"></textarea>
+		</div>
+		<div class="files-upload">
+			<input id="file" type="file" onchange="angular.element(this).scope().uploadedFile(this)" />
+			<div>
+				<a ng-click="openUploadDialog()">
+					<span ng-if="!reply.attachments_attributes">{{'ADD_ATTACHMENT' | translate}}</span>
+					<span ng-if="reply.attachments_attributes">{{'CHANGE_ATTACHMENT' | translate}}</span>
+				</a>
+			</div>
+			<div class="files">
+				<div ng-show="sendingReply" class="loading">
+					<i class="fa fa-spinner fa-spin"></i>
+				</div>
+				<div ng-if="reply.attachments_attributes && !fileIsImage" class="file-preview fleft">
+					<i class="fa fa-file"></i>
+					<p class="file-name">{{reply.attachments_attributes.name}}</p>
+				</div>
+				<div ng-if="reply.attachments_attributes && fileIsImage" class="file-preview image fleft">
+					<img id="file-preview" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
 		<div class="error fleft" ng-show="msgReplyForm.text.$invalid && showError.text">
 			<span ng-show="msgReplyForm.text.$error.required">{{ 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
 		</div>
 		<a href="#" class="left link hide-for-large-up" ng-click="closeConversation()">
 			{{ 'CLOSE' | translate }}
 		</a>
-		<button ng-disabled="!conversation.is_member" type="submit" class="margin-0 button-send right">
+		<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="margin-0 button-send right">
 			{{ 'SEND' | translate }}
 		</button>
 		<div class="clear"></div>

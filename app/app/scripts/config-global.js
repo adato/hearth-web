@@ -6,7 +6,7 @@ $$config = {
 	modalTemplates: 'templates/modal/',
 	templates: 'templates/',
 	lengthUnit: 'km',
-	defaultLanguage: 'cs',
+	defaultLanguage: 'en',
 	maxImagesSize: 6, // max size of all attached images in MB
 	fbSharing: {
 		minWidth: 200,
@@ -74,6 +74,10 @@ $$config = {
 	replyCountTexts: {
 		offer: 'PEOPLE_COUNT_WISH_PL',
 		need: 'PEOPLE_COUNT_OFFER_PL'
+	},
+	filterOptions: {
+		default: ['keywords', 'postType', 'postTime', 'author', 'location', 'saveFilter'],
+		search: ['location', 'entityType']
 	}
 };
 
@@ -81,3 +85,12 @@ $$config = {
 if ($$localConfig) {
 	for (var key in $$localConfig) $$config[key] = $$localConfig[key];
 }
+
+var _rollbarConfig = {
+	accessToken: $$config.rollbar,
+	captureUncaught: true,
+	payload: {
+		environment: $$config.env
+	},
+	enable: ["0.0.0.0", '127.0.0.1', 'localhost'].indexOf(window.location.hostname) < 0
+};

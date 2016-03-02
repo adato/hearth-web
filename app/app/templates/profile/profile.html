@@ -7,11 +7,11 @@
 		<div class="user-basic large-12 columns">
 			<h1>
 				<a dont-jump-top href="{{:: profileLink }}">
-					<span>{{:: info.name }}</span>
+					<span>{{info.name}}</span>
 				</a>
 			</h1>
 			<div class="button-bar">
-				<button class="others profile-button tall solid" ng-click="openUserRatingForm(true)">
+				<button class="others profile-button tall solid" ng-click="openUserRatingForm()">
 					{{:: 'THUMB_UP' | translate }}
 				</button>
 				<button ng-if="!info.is_followed" class="others profile-button tall outline" ng-click="toggleFollow(info._id)">

@@ -66,10 +66,8 @@ angular.module('hearth.filters', [])
 						str = element.textContent;
 						element.textContent = '';
 					}
-
 					return str;
 				}
-
 				return decodeHTMLEntities;
 			})();
 
@@ -83,7 +81,6 @@ angular.module('hearth.filters', [])
 				var whiteChars = ' \t,\n'.split('');
 				// take full words only
 				for (var i = limit; i < originalLength; i++) {
-
 					limit++;
 					if (whiteChars.indexOf(text[i]) != -1) {
 						break;
@@ -91,7 +88,10 @@ angular.module('hearth.filters', [])
 				}
 			}
 
-			text = text.substring(0, limit).trim();
+			if (originalLength > limit) {
+				if (!fullWordsOnly) limit = limit - 3; // 3 = visual length of "…" char
+				text = text.substring(0, limit).trim();
+			}
 
 			if (fullWordsOnly) {
 				var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?$/gi;

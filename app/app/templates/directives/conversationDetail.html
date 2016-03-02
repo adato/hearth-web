@@ -71,6 +71,7 @@
 									<div class="clear"></div>
 								</div>
 								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+								<file-viewer ng-if="item.file_attachments.length" message="item"></file-viewer>
 							</div>
 							<div ng-if="!item.author && item.system_data.target._id != loggedUser._id" class="system-message" ng-bind-html="'MESSAGES.SYSTEM_MESSAGE.'+item.system_data.target._type+'.'+item.verb | translate: item.system_data"></div>
 							<div ng-if="!item.author && item.system_data.target._id == loggedUser._id" class="system-message" ng-bind-html="'MESSAGES.SYSTEM_MESSAGE_YOU.'+item.verb | translate"></div>

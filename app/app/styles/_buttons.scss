@@ -57,24 +57,61 @@
 	}
 }
 
-.button-need {
-	background-color: color(1);
-	&:hover {
-		background-color: lighten(color(1), abs($button-function-factor));
+.button-send {
+	display: inline-block;
+	min-width: initial !important;
+	color: white;
+	border: none;
+	border-radius: $global-radius;
+	font-weight: bold;
+	/*font-size: 1.2rem;*/
+	/*margin: 0 0 1.25rem;*/
+	/*padding: 0.5rem 2rem;*/
+	background-color: $colorSecondary;
+	transition: background-color 300ms ease-out 0s;
+	cursor: pointer;
+	opacity: 1;
+	&:hover,
+	&:focus {
+		background-color: darken($colorSecondary, abs($button-function-factor));
 	}
-	&:focus,
-	&:active {
-		background-color: darken(color(1), abs($button-function-factor));
+	@extend .button;
+}
+
+a.button-send {
+	&:hover,
+	&:focus {
+		color: white;
+		background-color: darken($colorSecondary, abs($button-function-factor));
 	}
 }
 
-.button-offer {
-	background-color: color(2);
+button.no-vertical-padding {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}
+
+/* temp */
+.button-need{background-color: $colorNeed;}
+.button-need,
+/* /temp */
+.button.background-need {
 	&:hover {
-		background-color: lighten(color(2), abs($button-function-factor));
+		background-color: lighten($colorNeed, abs($button-function-factor));
 	}
 	&:focus,
 	&:active {
-		background-color: darken(color(2), abs($button-function-factor));
+		background-color: darken($colorNeed, abs($button-function-factor));
+	}
+}
+
+.button.background-offer {
+	background-color: color(2);
+	&:hover {
+		background-color: lighten($colorOffer, abs($button-function-factor));
+	}
+	&:focus,
+	&:active {
+		background-color: darken($colorOffer, abs($button-function-factor));
 	}
 }

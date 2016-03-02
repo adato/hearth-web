@@ -1,8 +1,6 @@
 {
 	"DAYS_AGO": "%d days ago",
 	"HOURS_AGO": "%d hours ago",
-	"ERR_NOT_FILLED_NAME": "Fill your name",
-	"NAME_PLACEHOLDER": "Name",
 	"MINUTES_AGO": "%d minutes ago",
 	"MONTHS_AGO": "%d months ago",
 	"YEARS_AGO": "%d years ago",
@@ -856,7 +854,7 @@
 	"FILL_NEW_PASS": "New password",
 	"FILL_CURRENT_PASS": "Current password",
 	"WE_ARE_SORRY_THAT_YOU_WANT_TO_LEAVE": "So sad you are leaving us. But never say never, right? Please tell us why and we will work hard to get you back on board...",
-	"FULLTEXT_WE_FOUND_RESULTS": "<p>Yes! We've found results for you concerning <strong>{{value}}<\/strong>.<\/p>",
+	"FULLTEXT_WE_FOUND_RESULTS": "<p>Yes! We've found <strong>{{counter}}<\/strong> results for you concerning <strong>{{value}}<\/strong>.<\/p>",
 	"NOTIFY": {
 		"POST_CREATED_SUCCESFULLY": "Ad has been successfully saved.",
 		"POST_UPDATED_SUCCESFULLY": "Ad has been edited successfully.",
@@ -1161,7 +1159,9 @@
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
 	"RATING_POST_TYPES": {
 		"offered": "I offered",
-		"needed": "I accepted"
+		"needed": "I accepted",
+		"we_needed": "We accepted",
+		"we_offered": "We offered"
 	},
 	"RATING_NO_COMMON_POST_IN_3_MONTHS": "You haven't interacted with any ads in the last 3 months. But you can still rate the user. :)",
 	"RATING_COMMON_POSTS_TOP": "Which post was it?",
@@ -1319,10 +1319,43 @@
 		"0": "Konverzace"
 	},
 	"profileSettings": "Nastavení profilu",
-	"TOP_BAR_LANGUAGE": "Language",
 	"LANGUAGE": {
 		"ENGLISH": "English",
 		"CZECH": "Čeština",
 		"SLOVAK": "Slovenčina"
-	}
+	},
+	"LOGIN_NO_OAUTH_ACCOUNT_FOUND": "<p>You are logging into Hearth.net with a third-party account (Facebook, Google, Twitter). However the system does not recognize this account. Perhaps you don't have a Hearth account yet, or have you registered before via email?<br \/><br \/>Try to recall and sign in with a different account, or <a href=\"{{ registerUrl }}\">register<\/a>.<\/p>",
+	"h1": {
+		"marketplace": "Marketplace",
+		"communities": "Communities",
+		"messages": "Messages",
+		"profile_edit": "Edit profile",
+		"terms": "Terms and conditions",
+		"map": "Map of gifts and wishes",
+		"profile_settings": "Profile settings",
+		"faq": "Frequently asked questions",
+		"feedback": "Your feedback",
+		"taxes": "Donations and Taxes",
+		"community_edit": "Edit community",
+		"fulltext": "Search"
+	},
+	"FULLTEXT": {
+		"FILTER": {
+			"BY_TYPE": "Podle obsahu",
+			"TYPE": {
+				"ALL": "Vše",
+				"POSTS": "Dary a přání",
+				"PEOPLE": "Lidé",
+				"COMMUNITY": "Komunity"
+			},
+			"BY_LOCATION": "Podle umístění",
+			"BY_ACTIVITY": "Podle aktivity",
+			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
+		}
+	},
+	"ADD_ATTACHMENT": "Attach file",
+	"CHANGE_ATTACHMENT": "Change file",
+	"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu",
+	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný.",
+	"APP_CRITICAL_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.<\/p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu<\/a>.<\/p>"
 }

@@ -8,27 +8,27 @@
 	<article ng-repeat="(id, item) in data track by $index" class="reply row" id="reply_{{ item._id }}">
 		<section class="large-2 hide-for-small medium-2 columns user">
 			<div info-box="item.post.author">
-				<a ng-href="{{:: getProfileLink(info._type, info._id) }}">
-					<avatar type="info._type" src="info.avatar.large"></avatar>
-					<div class="name">{{:: info.name }}</div>
+				<a ng-href="{{getProfileLink(item.post.author._type, item.post.author._id)}}">
+					<avatar type="item.post.author._type" src="item.post.author.avatar.normal"></avatar>
+					<div class="name">{{item.post.author.name}}</div>
 				</a>
 			</div>
 		</section>
 		<div class="large-10 small-12 medium-10 fleft columns">
 			<article class="box post-detail" ng-class="item.type" ng-init="marketplace.expanded = false;">
-				<a ng-href="{{:: getProfileLink(item.post.author._type, item.post.author._id) }}" class="hide-for-medium-up left">
-					<avatar src="item.post.author._type" type="item.post.author.avatar.small" size="small"></avatar>
+				<a ng-href="{{getProfileLink(item.post.author._type, item.post.author._id)}}" class="hide-for-medium-up left">
+					<avatar type="item.post.author._type" src="item.post.author.avatar.normal" size="small"></avatar>
 				</a>
 				<p class="text-container">
 					{{:: item.message.text | ellipsis}}
 				</p>
 				<span class="ad-date">
 					{{item.created_at | ago}} {{:: 'REPLY_TO_POST' | translate }}
-					<a ng-href="{{:: getProfileLink('Post', item.post._id) }}">
+					<a ng-href="{{getProfileLink('Post', item.post._id)}}">
 						{{:: postTypes[item.post.author._type][item.post.type] | translate }} {{:: item.post.title | ellipsis:60 }}
 					</a>
 				</span>
-				<a ng-href="{{:: getProfileLink(item._type, item._id) }}" class="right">
+				<a ng-href="{{getProfileLink(item._type, item._id)}}" class="right">
 					{{:: 'PROFILE.REPLIES.GO_TO_CONVERSATION' | translate }}
 					<i class="fa fa-comments-o"></i>
 				</a>

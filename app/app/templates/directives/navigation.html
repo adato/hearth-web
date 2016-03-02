@@ -2,15 +2,15 @@
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
-				<a ng-href='{{ getProfileLink("User", loggedUser._id) }}' class='overflow-hidden'>
+				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
-					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
+					<div class="display-inline-block ellipsed-username" ng-bind="loggedUser.name"></div>
 				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
-				<a ng-class='{active: pageName == "login"}' ui-sref='login'>
+				<a ng-class="{active: $state.includes(' login ')}" ui-sref="login" ng-click="toggleSidebar(false)">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class='inline-block' translate='LOG_IN'></div>
+					<div class="display-inline-block" translate="LOG_IN"></div>
 				</a>
 			</li>
 			<li>
@@ -18,24 +18,24 @@
 			</li>
 			<li>
 				<a ng-click="reloadToMarketplace()" ng-class="{active: pageName == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
-					<i class="fa icon-marketplace"></i> {{ 'HOMEPAGE_MARKET' | translate }} </a>
+					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
-				<a ng-if="loggedUser._id" ng-href="{{:: basePath }}communities" ng-class="{active: pageName.slice(0,11) == 'communities'}" title="{{:: 'COMMUNITIES' | translate }}">
-					<i class="fa icon-community"></i> {{ 'COMMUNITIES' | translate }} </a>
+				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
+					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}</a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: pageName.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
-					{{ 'TOP_BAR_MESSAGES' | translate }}
+					{{:: 'TOP_BAR_MESSAGES' | translate }}
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ng-href="{{:: basePath }}login">{{:: 'LOG_IN' | translate}}</a>
+				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)">{{:: 'LOG_IN' | translate}}</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ng-href="{{ basePath }}register">{{ 'SIGNUP' | translate }}</a>
+				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">{{:: 'SIGNUP' | translate }}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list" ng-show="loggedUser._id">
@@ -43,20 +43,20 @@
 				<label class="first">{{ loggedUser.name | ellipsis:15}}</label>
 			</li>
 			<li>
-				<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}">
-					<i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
+				<a ui-sref="profile.default({id: loggedUser._id})" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profile.default', {id: loggedUser._id})}">
+					<i class="fa fa-user"></i> {{:: 'MY_PROFILE'| translate }}</a>
 			</li>
 			<li>
-				<a ng-href="{{:: basePath }}profile-edit">
-					<i class="fa fa-edit"></i> {{ 'PROFILE_EDIT.HEADER'| translate }}</a>
+				<a ui-sref="profileEdit" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileEdit')}">
+					<i class="fa fa-edit"></i> {{:: 'PROFILE_EDIT.HEADER'| translate }}</a>
 			</li>
 			<li>
-				<a ng-href="{{:: basePath }}profile-settings">
-					<i class="fa fa-cog"></i> {{ 'SETTINGS'| translate }}</a>
+				<a ui-sref="profileSettings" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('profileSettings')}">
+					<i class="fa fa-cog"></i> {{:: 'SETTINGS'| translate }}</a>
 			</li>
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li ng-repeat="item in myAdminCommunities">
-				<a class="user-switch-item" ng-href="{{:: getProfileLink('Community', item._id) }}" title="{{ item.name}}" ng-click="mixpanelTrack(item, 'Mobile')">
+				<a class="user-switch-item" ui-sref="community.default({id: item._id})" ng-class='{active: $state.includes("community", {page: item._id})}' title="{{ item.name}}" ng-click="mixpanelTrack(item, 'Mobile'); toggleSidebar(false)">
 					<avatar size="mini" class="img community" src="item.avatar.normal" type="'Community'"></avatar>
 					<span class="name">{{ item.name | ellipsis:12}}</span>
 				</a>
@@ -64,32 +64,32 @@
 			<li class="divider" ng-if="myAdminCommunities.length"></li>
 			<li>
 				<a href="" class="logout-link" ng-click="logout()">
-					<i class="fa fa-sign-out"></i> {{ 'LOGOUT'| translate }}</a>
+					<i class="fa fa-sign-out"></i> {{:: 'LOGOUT'| translate }}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list">
 			<li>
-				<label> {{'TOP_BAR_ABOUT' | translate}} </label>
+				<label>{{:: 'TOP_BAR_ABOUT' | translate}} </label>
 			</li>
 			<li>
-				<a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a>
+				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}">{{:: 'MENU.TERMS' | translate}}</a>
 			</li>
 			<li>
-				<a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a>
+				<a ui-sref="faq" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('faq')}">{{:: 'MENU.FAQ' | translate}}</a>
 			</li>
 			<li>
-				<a ng-href="{{ basePath }}feedback">{{ 'WRITE_US' | translate}}</a>
+				<a ui-sref="feedback" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('feedback')}">{{:: 'WRITE_US' | translate}}</a>
 			</li>
 			<li>
-				<a href="http://blog.hearth.net" target="_blank">{{ 'BLOG' | translate}}</a>
+				<a href="http://blog.hearth.net" target="_blank">{{:: 'BLOG' | translate}}</a>
 			</li>
 			<li ng-if="language == 'cs'">
-				<a ng-href="{{ basePath }}taxes">{{ 'MENU.TAXES' | translate}}</a>
+				<a ui-sref="taxes" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('taxes')}">{{:: 'MENU.TAXES' | translate}}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list socials">
 			<li>
-				<label> {{ 'SOCIAL_NETWORKS' | translate}} </label>
+				<label>{{:: 'SOCIAL_NETWORKS' | translate}} </label>
 			</li>
 			<li>
 				<a href="https://twitter.com/hearth_net" target="_blank">
@@ -109,15 +109,16 @@
 			</li>
 		</ul>
 	</aside>
+
 	<div class="header">
 
 		<div id="new-version-notify" ng-class="{'active': showNewVersionNotify}">
 			<div>
 				<p>
-					<i class="fa fa-exclamation-circle"></i> {{ 'NEW_VERSION_NOTIFICATION' | translate }}
+					<i class="fa fa-exclamation-circle"></i> {{:: 'NEW_VERSION_NOTIFICATION' | translate }}
 				</p>
-				<span ng-click="refreshToPath()" class="left">{{ 'RELOAD' | translate }}</span>
-				<span ng-click="closeMaintenanceNotify();" class="right">{{ 'CLOSE' | translate }}</span>
+				<span ng-click="refreshToPath()" class="left">{{:: 'RELOAD' | translate }}</span>
+				<span ng-click="closeMaintenanceNotify();" class="right">{{:: 'CLOSE' | translate }}</span>
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -125,21 +126,29 @@
 		<div id="notify-top"></div>
 
 		<nav class="column tab-bar tab-bar-closed hide-for-large-up">
-			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click='toggleSidebar()'>
+			<a class="left-off-canvas-toggle menu-icon sidebar-button" ng-click="toggleSidebar(); mixpanelTrackMenu()">
 				<i class="fa fa-bars"></i>
 			</a>
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
 				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
-			<span class="small-icons">
-				<i class="fa fa-plus-square" ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
-				<i id="searchIcon" class="fa fa-search" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
-			</span>
 
+
+			<div class="small-icons header-right">
+				<div id='language-bar-mobile' class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
+					<i class='fa fa-fw fa-inverse flag flag-rounded-corners' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
+				</div>
+				<div class='display-inline-block inline-block margin-small-right'>
+					<i class="fa fa-fw fa-plus-square" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
+				</div>
+				<div class='display-inline-block inline-block'>
+					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
+				</div>
+			</div>
 			<div class="clear"></div>
 		</nav>
 
 		<div id="searchContainer" class="mobile-top-search-bar-container hidden-for-large-up hidden">
-			<!-- this is search bar for mobile, expanded after click on search buton on topbar -->
+			<!-- this is search bar for mobile, expanded after click on search button on topbar -->
 
 			<div class="center padding-1">
 				<div class="column large-3 show-for-large-up">
@@ -173,40 +182,66 @@
 			</section>
 
 			<section class="bar-columns searchbox-column">
-				<input type="text" id="searchBox" placeholder="{{ 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
+				<input type="text" id="searchBox" placeholder="{{:: 'TELL_ME_WHAT_ARE_YOU_LOOKING_FOR' | translate }}" ng-model="searchQuery.query" ng-enter="search(searchQuery)">
 				<span class="search-input-submit-icon fa fa-search" ng-click="search(searchQuery)"></span>
 			</section>
 
 			<section class="bar-columns icons-column">
-				<a ng-click="reloadToMarketplace()" ng-class="{active: segment == 'market'}" title="{{ 'HOMEPAGE_MARKET' | translate }}">
+				<a ng-click="reloadToMarketplace()" class='header-item' ng-class="{active: segment == 'market'}" title="{{:: 'HOMEPAGE_MARKET' | translate }}">
 					<div class="fa icon-marketplace"></div>
-					<label>{{ 'HOMEPAGE_MARKET' | translate }}</label>
+					<label>{{:: 'HOMEPAGE_MARKET' | translate }}</label>
 				</a>
 
-				<a ng-if="loggedUser._id" href="{{:: basePath }}communities" ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{ 'COMMUNITIES' | translate }}">
+				<a ng-if="loggedUser._id" ui-sref="communities.suggested" class='header-item' ng-class="{active: ['communities', 'community'].indexOf(segment.split('.')[0]) > -1}" title="{{:: 'COMMUNITIES' | translate }}">
 					<div class="fa icon-community"></div>
-					<label>{{ 'COMMUNITIES' | translate }}</label>
+					<label>{{:: 'COMMUNITIES' | translate }}</label>
 				</a>
 
 				<div class="top-bar-separator"></div>
+				<div class='dropdown-container' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
+					<a hover="true" class='header-item' dropdown="#language-drop">
+						<i class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
+						<label translate='LANGUAGE.{{:: languageChange.languageStrings[languageChange.currentLanguage] }}'></label>
+					</a>
+					<ul class='dropdown flag-list' id='language-drop'>
+						<li ng-if='languageChange.currentLanguage != "cs"'>
+							<a ng-click='languageChange.switchLang("cs")'>
+								<i class='flag flag-cs'></i>
+								<span translate='LANGUAGE.CZECH'></span>
+							</a>
+						</li>
+						<li ng-if='languageChange.currentLanguage != "en"'>
+							<a ng-click='languageChange.switchLang("en")'>
+								<i class='flag flag-en'></i>
+								<span translate='LANGUAGE.ENGLISH'></span>
+							</a>
+						</li>
+						<li ng-if='languageChange.currentLanguage != "sk"'>
+							<a ng-click='languageChange.switchLang("sk")'>
+								<i class='flag flag-sk'></i>
+								<span translate='LANGUAGE.SLOVAK'></span>
+							</a>
+						</li>
+					</ul>
+				</div>
 
 				<span class="top-bar-messages">
-					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ng-href="{{ basePath }}messages" ng-class="{active: segment.slice(0,8) == 'messages'}" title="{{ 'TOP_BAR_MESSAGES' | translate }}">
+					<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" class='header-item' ng-class="{active: $state.includes('messages')}" title="{{:: 'TOP_BAR_MESSAGES' | translate }}">
 						<span class="messages-icon">
 							<span ng-if="messagesCounters.unread">
 								{{ messagesCounters.unread | minMax:1:99:'+':1 }}
 							</span>
 						</span>
-						<label>{{ 'TOP_BAR_MESSAGES' | translate }}</label>
+						<label>{{:: 'TOP_BAR_MESSAGES' | translate }}</label>
 					</a>
 				</span>
 
-				<span class="dropdown-container">
-					<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name}}">
+				<div class="dropdown-container">
+					<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="header-item logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name }}">
 						<avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
-						<label>{{ loggedUser.name | ellipsis:9}}</label>
+						<label>{{ loggedUser.name | ellipsis:12 }}</label>
 					</a>
-					<ul class="dropdown user-dropdown" id="profile-drop" title="{{ loggedUser.name }} ">
+					<ul class="dropdown user-dropdown" id="profile-drop" title="{{ loggedUser.name }}">
 						<li>
 							<a ng-href="{{:: getProfileLink('User', loggedUser._id) }}">
 								<i class="fa fa-user"></i> {{ 'MY_PROFILE'| translate }}</a>
@@ -233,10 +268,12 @@
 								<i class="fa fa-sign-out"></i>{{ 'LOGOUT'| translate }}</a>
 						</li>
 					</ul>
-				</span>
-				<span class="dropdown-container">
-					<a title="{{'TOP_BAR_ABOUT' | translate }}" ng-class="{active: ['faq', 'taxes', 'terms', 'feedback'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About" id="nav-about">
-						<div class="fa fa-question-circle"></div>
+				</div>
+
+				<div class="dropdown-container">
+					<a title="{{'TOP_BAR_ABOUT' | translate }}" class='header-item' ng-class="{active: ['faq', 'taxes', 'terms', 'feedback'].indexOf(segment) > -1}" analytics-custom analytics-event="about page open" dropdown="#about-drop" hover="true" analytics-category="About"
+					id="nav-about">
+						<i class="fa fa-question-circle"></i>
 						<label>{{'TOP_BAR_ABOUT' | translate}}</label>
 					</a>
 					<ul class="dropdown" id="about-drop">
@@ -285,14 +322,13 @@
 							</ul>
 						</li>
 					</ul>
-				</span>
-				<a ng-if="!loggedUser._id" href="{{:: basePath }}login" analytics-custom analytics-event="sign-in" analytics-category="menu" id="nav-login">
-					<div class="text">
-						<div class="fa fa-sign-in"></div>
-						<label>{{'TOP_BAR_SIGN_IN' | translate }}</label>
-					</div>
+				</div>
+				<a ng-if="!loggedUser._id" class='header-item' ui-sref='login' ng-class='{active: $state.includes("login")}' analytics-custom analytics-event="sign-in" analytics-category="menu" id="nav-login">
+					<i class="fa fa-sign-in"></i>
+					<label>{{'TOP_BAR_SIGN_IN' | translate }}</label>
 				</a>
 			</section>
+
 			<div class="clear"></div>
 		</nav>
 	</div>

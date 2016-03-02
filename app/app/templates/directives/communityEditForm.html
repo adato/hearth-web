@@ -1,4 +1,6 @@
 <div>
+	<h1 ng-show="loaded && !hideHeading" class="text-center">{{'h1.community_edit' | translate}}</h1>
+
 	<section ng-if="errorLoading == 404" class="box padding-top large-6 small-6 medium-6 margin-auto text-center">
 		<p class="margin-0">{{:: 'COMMUNITY_WAS_NOT_FOUND' | translate }}</p>
 	</section>

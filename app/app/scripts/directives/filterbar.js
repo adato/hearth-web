@@ -17,7 +17,6 @@ angular.module('hearth.directives').directive('filterbar', [
 			link: function(scope) {
 				scope.filterType = $state.params.type;
 				scope.searchParams = '';
-				scope.basePath = $$config.basePath;
 
 				scope.cancelFilter = function() {
 					Filter.reset();

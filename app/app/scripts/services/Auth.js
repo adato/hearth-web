@@ -12,7 +12,7 @@ angular.module('hearth.services').factory('Auth', [
 		var TOKEN_NAME = "authToken";
 
 		return {
-			init: function(callback) {
+			init: function(done, doneErr) {
 				$rootScope.user = {
 					name: '',
 					loggedIn: false
@@ -32,8 +32,8 @@ angular.module('hearth.services').factory('Auth', [
 						$rootScope.$broadcast('unathorizedUserLogin');
 					}
 					$rootScope.$broadcast('authorize');
-					return callback();
-				});
+					return done();
+				}, doneErr);
 			},
 			refreshUserInfo: function() {
 				Session.show(function(res) {
@@ -113,7 +113,7 @@ angular.module('hearth.services').factory('Auth', [
 				}, success, error);
 			},
 			completeEmailForRegistration: function(data, success, err) {
-				User.completeEmailForRegistration(data, success, err);
+				return User.completeEmailForRegistration(data, success, err);
 			},
 			requestPasswordReset: function(email) {
 				return $http.post($$config.apiPath + '/reset_password', {
@@ -156,10 +156,12 @@ angular.module('hearth.services').factory('Auth', [
 
 				$rootScope.refreshToPath(reloadLoc ? $$config.basePath + reloadLoc : $$config.basePath);
 			},
-			getTwitterAuthUrl: function() {
+			getTwitterAuthUrl: function(method) {
 				var fillEmailUrl = $$config.appUrl + 'fill-email/%{token}';
 				var twitterSuccessUrl = $$config.appUrl + 'token-login/%{token}';
-				return $$config.apiPath + '/users/auth/twitter?success_url=' + encodeURIComponent(twitterSuccessUrl) + '&email_url=' + encodeURIComponent(fillEmailUrl);
+				var userAction = (method === 'register' ? '&user_action=register' : '');
+
+				return $$config.apiPath + '/users/auth/twitter?success_url=' + encodeURIComponent(twitterSuccessUrl) + '&email_url=' + encodeURIComponent(fillEmailUrl) + userAction;
 			},
 		};
 	}

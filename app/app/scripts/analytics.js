@@ -20,6 +20,7 @@ ga('adato.require', 'displayfeatures');
 ga('adato.send', 'pageview');
 
 
+// =================== ADATO MIXPANEL =======================
 (function(f, b) {
 	if (!b.__SV) {
 		var a, e, i, g;

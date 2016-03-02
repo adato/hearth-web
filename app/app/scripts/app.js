@@ -104,26 +104,24 @@ angular.module('hearth', [
 			// // ======== ?? wtf is this?
 			// $httpProvider.responseInterceptors.push('TermsAgreement');
 		}
-	]).config(function($provide) {
-		$provide.decorator("$exceptionHandler", function($delegate, $window) {
-			return function(exception, cause) {
-				if ($window.Rollbar) {
-					$window.Rollbar.error(exception, {
-						cause: cause
-					});
-				}
-				$delegate(exception, cause);
-			};
-		});
-	}).run([
+	]).config(['$provide',
+		function($provide) {
+			$provide.decorator("$exceptionHandler", function($delegate, $window) {
+				return function(exception, cause) {
+					if ($window.Rollbar) {
+						$window.Rollbar.error(exception, {
+							cause: cause
+						});
+					}
+					$delegate(exception, cause);
+				};
+			});
+		}
+	]).run([
 		'$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter',
 		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
-
-			/*            $http.get('https://api.dev.hearth.net/', function(err, res) {
-			 console.log(err, res);
-			 });*/
 
 			/**
 			 * This will cache some files at start
@@ -151,6 +149,12 @@ angular.module('hearth', [
 					$rootScope.languageInited = true;
 					$rootScope.$broadcast("initLanguageSuccess", preferredLanguage);
 					done(null, data);
+				});
+			}
+
+			function bindCriticalReloadEvent() {
+				$('#criticalError a').click(function() {
+					location.reload(true);
 				});
 			}
 
@@ -205,6 +209,22 @@ angular.module('hearth', [
 
 					$rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
 					done(null, $rootScope.loggedUser);
+				}, function(err) {
+					console.log(err.status, err.statusText, err.data);
+					Rollbar.error("HEARTH: session critical error occured", {
+						status: err.status,
+						statusText: err.statusText,
+						data: err.data
+					});
+
+					$('#criticalError').fadeIn();
+					bindCriticalReloadEvent();
+					$rootScope.isCriticalError = true;
+
+					var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data) {
+						offEvent();
+						setTimeout(bindCriticalReloadEvent);
+					});
 				});
 			}
 

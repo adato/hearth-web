@@ -33,18 +33,20 @@ angular.module('hearth.utils').directive('whenScrolled', [
 
 					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
 					if (childHeight - el.height() - el.scrollTop() - offset <= 0) {
+						scope.$root.debug && console.log('whenScrolled is calling load() function');
 						scope.whenScrolled();
 					}
 				}
 
 				function processWithResite() {
+					scope.$root.debug && console.log('whenScrolled resize handler called');
 					innerHeight = el[0].innerHeight;
-					process();
+					process({
+						event: 'processWithResite'
+					});
 				}
 
-				scope.$watch('loadingInProgress', function(val) {
-					!val && process();
-				});
+				// scope.$watch('loadingInProgress', function(val, oldval) // removed, it caused infinite loadings
 
 				el.bind('scroll', process)
 				angular.element(window).bind('resize', processWithResite);

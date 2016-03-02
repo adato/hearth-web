@@ -6,7 +6,7 @@
 			<div ng-include="'templates/directives/_itemReceivedHomeRatings.html'"></div>
 			<p class="mine" ng-if="! receivedRatings.length">{{:: 'YOU_HAVE_NO_RATINGS_YET' | translate}}</p>
 			<p class="others" ng-if="loaded && ! receivedRatings.length">{{:: 'USER_HAS_NO_RATINGS_YET' | translate}}
-				<a href="" ng-click="openUserRatingForm(true)">
+				<a href="" ng-click="openUserRatingForm()">
 					<b>{{:: 'THUMB_UP' | translate }}</b>
 				</a>
 			</p>
@@ -50,7 +50,7 @@
 	</div>
 	<div class="right-pane">
 		<div class="box user-about">
-			<h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{ info.name }}</h3>
+			<h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{info.name}}</h3>
 			<h3 ng-if="mine">{{:: 'YOUR_PROFILE' | translate }}</h3>
 			<div class="line">
 				<div class="descr" ng-if="info.about">

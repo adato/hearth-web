@@ -37,12 +37,33 @@
 				<span ng-show="addMessageForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
 			</div>
 		</div>
-		<br />
+		<div class="files-upload">
+			<input id="file" type="file" onchange="angular.element(this).scope().uploadedFile(this)" />
+			<div>
+				<a ng-click="openUploadDialog()">
+					<span ng-if="!message.attachments_attributes">{{'ADD_ATTACHMENT' | translate}}</span>
+					<span ng-if="message.attachments_attributes">{{'CHANGE_ATTACHMENT' | translate}}</span>
+				</a>
+			</div>
+			<div class="files">
+				<div ng-show="sendingMessage" class="loading">
+					<i class="fa fa-spinner fa-spin"></i>
+				</div>
+				<div ng-if="message.attachments_attributes && !fileIsImage" class="file-preview fleft">
+					<i class="fa fa-file"></i>
+					<p class="file-name">{{message.attachments_attributes.name}}</p>
+				</div>
+				<div ng-if="message.attachments_attributes && fileIsImage" class="file-preview image fleft">
+					<img id="file-preview" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
 		<div class="bottom">
 			<a ng-click="close()" class="action-link">
 				<span class="fa fa-chevron-left"></span> {{ 'CANCEL' | translate }}
 			</a>
-			<button type="submit" class="button button-send right">
+			<button ng-disabled="sendingMessage" type="submit" class="button button-send right">
 				{{ 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
 			</button>
 		</div>

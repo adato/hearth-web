@@ -1,36 +1,14 @@
+<h1 class="text-center">{{'h1.fulltext' | translate}}</h1>
+
 <article class="row fulltext" when-scrolled="load(1)" offset="300" loading-in-progress="!loaded">
+	<filterbar-fulltext></filterbar-fulltext>
+
 	<section class="large-12 small-12 medium-12  columns box margin-bottom-20">
 		<section class="large-12 small-12 medium-12 columns">
 			<header>
-				<div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {value: queryText}"></div>
+				<div ng-if="items.length" ng-bind-html="'FULLTEXT_WE_FOUND_RESULTS' | translate: {counter: totalCounter, value: queryText}"></div>
 			</header>
 		</section>
-		<section class="large-12 small-12 medium-12  columns">
-			<dl class="sub-nav filter">
-				<dt>{{:: 'FULLTEXT_FILTER_SEARCH_RESULTS' | translate }}:</dt>
-				<dd ng-click="setFilter('all')" ng-class="{active: selectedFilter == 'all'}">
-					<a>{{:: 'FULLTEXT_ALL' | translate }}
-						<b>{{counters.post + counters.community + counters.user}}</b>
-					</a>
-				</dd>
-				<dd ng-click="setFilter('post')" ng-class="{active: selectedFilter == 'post'}">
-					<a>{{:: 'FULLTEXT_MARKET' | translate }}
-						<b>{{counters.post}}</b>
-					</a>
-				</dd>
-				<dd ng-click="setFilter('community')" ng-class="{active: selectedFilter == 'community'}">
-					<a>{{:: 'FULLTEXT_COMMUNITY' | translate }}
-						<b>{{counters.community}}</b>
-					</a>
-				</dd>
-				<dd ng-click="setFilter('user')" ng-class="{active: selectedFilter == 'user'}">
-					<a>{{:: 'FULLTEXT_USERS' | translate }}
-						<b>{{counters.user}}</b>
-					</a>
-				</dd>
-			</dl>
-		</section>
-
 
 		<div ng-if="!items.length && loaded" class="large-12 small-12 medium-12 large-centered columns text-center" ng-bind-html="'FULLTEXT_NOTHING_FOUND_RELATED_TO' | translate: {value: queryText}"></div>
 

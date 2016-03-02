@@ -39,7 +39,8 @@
     "ng-tags-input": "~3.0.0",
     "jquery-autosize": "autosize#1.18.16",
     "smartcrop": "*",
-    "angular-mobile-detect": "*"
+    "angular-mobile-detect": "*",
+    "rollbar": "~1.8.3"
   },
   "devDependencies": {},
   "resolutions": {

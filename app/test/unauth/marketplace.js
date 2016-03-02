@@ -17,7 +17,7 @@ describe('hearth unauth marketplace', function() {
 
   // should see 15 items
   it('should see 15 items on market', function () {
-    var marketItems = element.all(by.className('post-on-market'));
+    var marketItems = element.all(by.className('item-common'));
     expect(marketItems.count()).toBe(15);
   });
 
@@ -25,7 +25,7 @@ describe('hearth unauth marketplace', function() {
   it('should see 15 more items when scrolled down', function () {
 
     // 15 items before we start
-    var marketItems = element.all(by.className('post-on-market'));
+    var marketItems = element.all(by.className('item-common'));
     expect(marketItems.count()).toBe(15);
 
     browser.executeScript('window.scrollTo(0,20000);').then(function () {
@@ -104,7 +104,7 @@ describe('hearth unauth marketplace', function() {
     var createButton = element(by.css('.insert-button-container>a.button'));
     var loginModal = element(by.css('.register-login-dialog .alert-box.alert'));
     var loginModalCloseButton = element(by.css('.register-login-dialog span.close'));
-    var iconAdd = element(by.css('nav.tab-bar>.small-icons>.fa-plus-square'));
+    var iconAdd = element(by.css('nav [test-beacon="open-new-post-dialog-toggle-mobile"]'));
 
     if (type === 'mobile' || type === 'tablet') {
       if (type === 'mobile') {
@@ -140,8 +140,8 @@ describe('hearth unauth marketplace', function() {
     var container = element(by.css('div.off-canvas-wrap'));
     var topBar = element(by.css('nav.tab-bar'));
     var searchBar = element(by.css('div.mobile-top-search-bar-container'));
-    var iconAdd = element(by.css('nav.tab-bar>.small-icons>.fa-plus-square'));
-    var iconSearch = element(by.css('nav.tab-bar>.small-icons>.fa-search'));
+    var iconAdd = element(by.css('nav [test-beacon="open-new-post-dialog-toggle-mobile"]'));
+    var iconSearch = element(by.css('nav [test-beacon="search-bar-toggle-mobile"]'));
     var toggleButton = element(by.css('nav.tab-bar>a.left-off-canvas-toggle'));
     var leftSidebar = element(by.css('aside.left-off-canvas-menu'));
 

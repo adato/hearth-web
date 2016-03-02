@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', '$analytics',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, $analytics) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -29,6 +29,10 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			gplus: 'https://plus.google.com/share?url=',
 			twitter: 'https://twitter.com/share?url='
 		};
+
+		// enable $state to be used in tempaltes
+		$rootScope.$state = $state;
+		//$rootScope.$on('$stateChangeNotFound')
 
 		$rootScope.missingPost = false;
 		$rootScope.cacheInfoBox = {};
@@ -165,7 +169,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.toggleSearchBar(false); // turn off search input
 			$rootScope.top(0, 1);
 			$state.go('search', {
-				q: searchQuery.query,
+				query: searchQuery.query,
 				// type: searchQuery.type
 			});
 			searchQuery.query = null;
@@ -554,6 +558,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 
 		/**
+		 * Function will remove reminder from users reminders
+		 */
+		$rootScope.removeReminder = function(type) {
+			User.removeReminder({
+				_id: $rootScope.loggedUser._id,
+				type: type
+			}, function() {
+				Auth.refreshUserInfo();
+				$rootScope.loggedUser.reminders.splice(type, 1);
+			});
+		};
+
+
+		/**
 		 * Function will add item to users bookmarks
 		 */
 		$rootScope.addItemToBookmarks = function(post) {
@@ -816,7 +834,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$(document).on('click.search', function(e) {
 					var element = $(e.target);
 					if (!element.parents('#searchContainer').length && !element.is('#searchContainer') && !element.is('#searchIcon')) {
-						$('#searchIcon').click();
+						$timeout($rootScope.toggleSearchBar);
 					}
 				});
 			} else {
@@ -836,6 +854,9 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				'context': $state.current.name
 			});
 		};
+
+		// expose rights check for use in templates
+		$rootScope.userHasRight = Rights.userHasRight;
 
 		$scope.$on('$destroy', function() {
 			angular.element(window).unbind('scroll');

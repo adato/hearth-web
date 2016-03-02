@@ -6,7 +6,7 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 			};
 			t[n][0].call(o.exports, function(e) {
 				var o = t[n][1][e];
-				return r(o ? o : e)
+				return r(o || e)
 			}, o, o.exports)
 		}
 		return e[n].exports
@@ -16,40 +16,47 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 	return r
 }({
 	QJf3ax: [function(t, e) {
-		function n(t) {
-			function e(e, n, a) {
-				t && t(e, n, a), a || (a = {});
-				for (var c = s(e), f = c.length, u = i(a, o, r), d = 0; f > d; d++) c[d].apply(u, n);
-				return u
+		function n() {}
+
+		function r(t) {
+			function e(t) {
+				return t && t instanceof n ? t : t ? a(t, i, o) : o()
 			}
 
-			function a(t, e) {
-				f[t] = s(t).concat(e)
+			function s(n, r, o) {
+				t && t(n, r, o);
+				for (var i = e(o), a = f(n), s = a.length, c = 0; s > c; c++) a[c].apply(i, r);
+				return i
 			}
 
-			function s(t) {
-				return f[t] || []
+			function c(t, e) {
+				d[t] = f(t).concat(e)
 			}
 
-			function c() {
-				return n(e)
+			function f(t) {
+				return d[t] || []
 			}
-			var f = {};
+
+			function u() {
+				return r(s)
+			}
+			var d = {};
 			return {
-				on: a,
-				emit: e,
-				create: c,
-				listeners: s,
-				_events: f
+				on: c,
+				emit: s,
+				create: u,
+				listeners: f,
+				context: e,
+				_events: d
 			}
 		}
 
-		function r() {
-			return {}
+		function o() {
+			return new n
 		}
-		var o = "nr@context",
-			i = t("gos");
-		e.exports = n()
+		var i = "nr@context",
+			a = t("gos");
+		e.exports = r()
 	}, {
 		gos: "7eSDFh"
 	}],
@@ -57,15 +64,38 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 		e.exports = t("QJf3ax")
 	}, {}],
 	3: [function(t) {
-		function e(t, e, n, i, s) {
+		function e(t) {
 			try {
-				c ? c -= 1 : r("err", [s || new UncaughtException(t, e, n)])
-			} catch (f) {
+				i.console && console.log(t)
+			} catch (e) {}
+		}
+		var n, r = t("ee"),
+			o = t(1),
+			i = {};
+		try {
+			n = localStorage.getItem("__nr_flags").split(","), console && "function" == typeof console.log && (i.console = !0, -1 !== n.indexOf("dev") && (i.dev = !0), -1 !== n.indexOf("nr_dev") && (i.nrDev = !0))
+		} catch (a) {}
+		i.nrDev && r.on("internal-error", function(t) {
+			e(t.stack)
+		}), i.dev && r.on("fn-err", function(t, n, r) {
+			e(r.stack)
+		}), i.dev && (e("NR AGENT IN DEVELOPMENT MODE"), e("flags: " + o(i, function(t) {
+			return t
+		}).join(", ")))
+	}, {
+		1: 23,
+		ee: "QJf3ax"
+	}],
+	4: [function(t) {
+		function e(t, e, n, i, a) {
+			try {
+				f ? f -= 1 : r("err", [a || new UncaughtException(t, e, n)])
+			} catch (c) {
 				try {
-					r("ierr", [f, (new Date).getTime(), !0])
+					r("ierr", [c, (new Date).getTime(), !0])
 				} catch (u) {}
 			}
-			return "function" == typeof a ? a.apply(this, o(arguments)) : !1
+			return "function" == typeof s ? s.apply(this, o(arguments)) : !1
 		}
 
 		function UncaughtException(t, e, n) {
@@ -76,175 +106,215 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 			r("err", [t, (new Date).getTime()])
 		}
 		var r = t("handle"),
-			o = t(5),
+			o = t(6),
 			i = t("ee"),
-			a = window.onerror,
-			s = !1,
-			c = 0;
-		t("loader").features.err = !0, window.onerror = e, NREUM.noticeError = n;
+			a = t("loader"),
+			s = window.onerror,
+			c = !1,
+			f = 0;
+		a.features.err = !0, t(5), window.onerror = e;
 		try {
 			throw new Error
-		} catch (f) {
-			"stack" in f && (t(1), t(4), "addEventListener" in window && t(2), window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && t(3), s = !0)
+		} catch (u) {
+			"stack" in u && (t(1), t(2), "addEventListener" in window && t(3), a.xhrWrappable && t(4), c = !0)
 		}
 		i.on("fn-start", function() {
-			s && (c += 1)
+			c && (f += 1)
 		}), i.on("fn-err", function(t, e, r) {
-			s && (this.thrown = !0, n(r))
+			c && (this.thrown = !0, n(r))
 		}), i.on("fn-end", function() {
-			s && !this.thrown && c > 0 && (c -= 1)
+			c && !this.thrown && f > 0 && (f -= 1)
 		}), i.on("internal-error", function(t) {
 			r("ierr", [t, (new Date).getTime(), !0])
 		})
 	}, {
-		1: 8,
-		2: 5,
-		3: 9,
-		4: 7,
-		5: 21,
+		1: 9,
+		2: 8,
+		3: 6,
+		4: 10,
+		5: 3,
+		6: 24,
 		ee: "QJf3ax",
 		handle: "D5DuLP",
 		loader: "G9z0Bl"
 	}],
-	4: [function(t) {
+	5: [function(t) {
 		function e() {}
 		if (window.performance && window.performance.timing && window.performance.getEntriesByType) {
 			var n = t("ee"),
 				r = t("handle"),
-				o = t(2);
-			t("loader").features.stn = !0, t(1), n.on("fn-start", function(t) {
+				o = t(1),
+				i = t(2);
+			t("loader").features.stn = !0, t(3);
+			var a = Event;
+			n.on("fn-start", function(t) {
 				var e = t[0];
-				e instanceof Event && (this.bstStart = Date.now())
+				e instanceof a && (this.bstStart = Date.now())
 			}), n.on("fn-end", function(t, e) {
 				var n = t[0];
-				n instanceof Event && r("bst", [n, e, this.bstStart, Date.now()])
+				n instanceof a && r("bst", [n, e, this.bstStart, Date.now()])
 			}), o.on("fn-start", function(t, e, n) {
 				this.bstStart = Date.now(), this.bstType = n
 			}), o.on("fn-end", function(t, e) {
 				r("bstTimer", [e, this.bstStart, Date.now(), this.bstType])
+			}), i.on("fn-start", function() {
+				this.bstStart = Date.now()
+			}), i.on("fn-end", function(t, e) {
+				r("bstTimer", [e, this.bstStart, Date.now(), "requestAnimationFrame"])
 			}), n.on("pushState-start", function() {
 				this.time = Date.now(), this.startPath = location.pathname + location.hash
 			}), n.on("pushState-end", function() {
 				r("bstHist", [location.pathname + location.hash, this.startPath, this.time])
-			}), "addEventListener" in window.performance && (window.performance.addEventListener("webkitresourcetimingbufferfull", function() {
-				r("bstResource", [window.performance.getEntriesByType("resource")]), window.performance.webkitClearResourceTimings()
-			}, !1), window.performance.addEventListener("resourcetimingbufferfull", function() {
+			}), "addEventListener" in window.performance && (window.performance.clearResourceTimings ? window.performance.addEventListener("resourcetimingbufferfull", function() {
 				r("bstResource", [window.performance.getEntriesByType("resource")]), window.performance.clearResourceTimings()
+			}, !1) : window.performance.addEventListener("webkitresourcetimingbufferfull", function() {
+				r("bstResource", [window.performance.getEntriesByType("resource")]), window.performance.webkitClearResourceTimings()
 			}, !1)), document.addEventListener("scroll", e, !1), document.addEventListener("keypress", e, !1), document.addEventListener("click", e, !1)
 		}
 	}, {
-		1: 6,
+		1: 9,
 		2: 8,
+		3: 7,
 		ee: "QJf3ax",
 		handle: "D5DuLP",
 		loader: "G9z0Bl"
 	}],
-	5: [function(t, e) {
+	6: [function(t, e) {
 		function n(t) {
-			i.inPlace(t, ["addEventListener", "removeEventListener"], "-", r)
+			for (var e = t; e && !e.hasOwnProperty("addEventListener");) e = Object.getPrototypeOf(e);
+			e && r(e)
 		}
 
 		function r(t) {
+			a.inPlace(t, ["addEventListener", "removeEventListener"], "-", o)
+		}
+
+		function o(t) {
 			return t[1]
 		}
-		var o = (t(1), t("ee").create()),
-			i = t(2)(o),
-			a = t("gos");
-		if (e.exports = o, n(window), "getPrototypeOf" in Object) {
-			for (var s = document; s && !s.hasOwnProperty("addEventListener");) s = Object.getPrototypeOf(s);
-			s && n(s);
-			for (var c = XMLHttpRequest.prototype; c && !c.hasOwnProperty("addEventListener");) c = Object.getPrototypeOf(c);
-			c && n(c)
-		} else XMLHttpRequest.prototype.hasOwnProperty("addEventListener") && n(XMLHttpRequest.prototype);
-		o.on("addEventListener-start", function(t) {
+		var i = t("ee").create(),
+			a = t(1)(i),
+			s = t("gos");
+		e.exports = i, r(window), "getPrototypeOf" in Object ? (n(document), n(XMLHttpRequest.prototype)) : XMLHttpRequest.prototype.hasOwnProperty("addEventListener") && r(XMLHttpRequest.prototype), i.on("addEventListener-start", function(t) {
 			if (t[1]) {
 				var e = t[1];
-				"function" == typeof e ? this.wrapped = t[1] = a(e, "nr@wrapped", function() {
-					return i(e, "fn-", null, e.name || "anonymous")
-				}) : "function" == typeof e.handleEvent && i.inPlace(e, ["handleEvent"], "fn-")
+				if ("function" == typeof e) {
+					var n = s(e, "nr@wrapped", function() {
+						return a(e, "fn-", null, e.name || "anonymous")
+					});
+					this.wrapped = t[1] = n
+				} else "function" == typeof e.handleEvent && a.inPlace(e, ["handleEvent"], "fn-")
 			}
-		}), o.on("removeEventListener-start", function(t) {
+		}), i.on("removeEventListener-start", function(t) {
 			var e = this.wrapped;
 			e && (t[1] = e)
 		})
 	}, {
-		1: 21,
-		2: 22,
+		1: 25,
 		ee: "QJf3ax",
 		gos: "7eSDFh"
 	}],
-	6: [function(t, e) {
-		var n = (t(2), t("ee").create()),
+	7: [function(t, e) {
+		var n = t("ee").create(),
 			r = t(1)(n);
-		e.exports = n, r.inPlace(window.history, ["pushState"], "-")
+		e.exports = n, r.inPlace(window.history, ["pushState", "replaceState"], "-")
 	}, {
-		1: 22,
-		2: 21,
+		1: 25,
 		ee: "QJf3ax"
 	}],
-	7: [function(t, e) {
-		var n = (t(2), t("ee").create()),
+	8: [function(t, e) {
+		var n = t("ee").create(),
 			r = t(1)(n);
 		e.exports = n, r.inPlace(window, ["requestAnimationFrame", "mozRequestAnimationFrame", "webkitRequestAnimationFrame", "msRequestAnimationFrame"], "raf-"), n.on("raf-start", function(t) {
 			t[0] = r(t[0], "fn-")
 		})
 	}, {
-		1: 22,
-		2: 21,
-		ee: "QJf3ax"
-	}],
-	8: [function(t, e) {
-		function n(t, e, n) {
-			var r = t[0];
-			"string" == typeof r && (r = new Function(r)), t[0] = o(r, "fn-", null, n)
-		}
-		var r = (t(2), t("ee").create()),
-			o = t(1)(r);
-		e.exports = r, o.inPlace(window, ["setTimeout", "setInterval", "setImmediate"], "setTimer-"), r.on("setTimer-start", n)
-	}, {
-		1: 22,
-		2: 21,
+		1: 25,
 		ee: "QJf3ax"
 	}],
 	9: [function(t, e) {
+		function n(t, e, n) {
+			t[0] = i(t[0], "fn-", null, n)
+		}
+
+		function r(t, e, n) {
+			this.method = n, this.timerDuration = "number" == typeof t[1] ? t[1] : 0, t[0] = i(t[0], "fn-", this, n)
+		}
+		var o = t("ee").create(),
+			i = t(1)(o);
+		e.exports = o, i.inPlace(window, ["setTimeout", "setImmediate"], "setTimer-"), i.inPlace(window, ["setInterval"], "setInterval-"), i.inPlace(window, ["clearTimeout", "clearImmediate"], "clearTimeout-"), o.on("setInterval-start", n), o.on("setTimer-start", r)
+	}, {
+		1: 25,
+		ee: "QJf3ax"
+	}],
+	10: [function(t, e) {
 		function n() {
-			c.inPlace(this, d, "fn-")
+			f.inPlace(this, p, "fn-", o)
 		}
 
 		function r(t, e) {
-			c.inPlace(e, ["onreadystatechange"], "fn-")
+			f.inPlace(e, ["onreadystatechange"], "fn-", o)
 		}
 
 		function o(t, e) {
 			return e
 		}
-		var i = t("ee").create(),
-			a = t(1),
-			s = t(2),
-			c = s(i),
-			f = s(a),
-			u = window.XMLHttpRequest,
-			d = ["onload", "onerror", "onabort", "onloadstart", "onloadend", "onprogress", "ontimeout"];
-		e.exports = i, window.XMLHttpRequest = function(t) {
-			var e = new u(t);
+
+		function i(t, e) {
+			for (var n in t) e[n] = t[n];
+			return e
+		}
+		var a = t("ee").create(),
+			s = t(1),
+			c = t(2),
+			f = c(a),
+			u = c(s),
+			d = window.XMLHttpRequest,
+			p = ["onload", "onerror", "onabort", "onloadstart", "onloadend", "onprogress", "ontimeout"];
+		e.exports = a, window.XMLHttpRequest = function(t) {
+			var e = new d(t);
 			try {
-				i.emit("new-xhr", [], e), f.inPlace(e, ["addEventListener", "removeEventListener"], "-", function(t, e) {
-					return e
-				}), e.addEventListener("readystatechange", n, !1)
+				a.emit("new-xhr", [e], e), e.hasOwnProperty("addEventListener") && u.inPlace(e, ["addEventListener", "removeEventListener"], "-", o), e.addEventListener("readystatechange", n, !1)
 			} catch (r) {
 				try {
-					i.emit("internal-error", [r])
-				} catch (o) {}
+					a.emit("internal-error", [r])
+				} catch (i) {}
 			}
 			return e
-		}, window.XMLHttpRequest.prototype = u.prototype, c.inPlace(XMLHttpRequest.prototype, ["open", "send"], "-xhr-", o), i.on("send-xhr-start", r), i.on("open-xhr-start", r)
+		}, i(d, XMLHttpRequest), XMLHttpRequest.prototype = d.prototype, f.inPlace(XMLHttpRequest.prototype, ["open", "send"], "-xhr-", o), a.on("send-xhr-start", r), a.on("open-xhr-start", r)
 	}, {
-		1: 5,
-		2: 22,
+		1: 6,
+		2: 25,
 		ee: "QJf3ax"
 	}],
-	10: [function(t) {
+	11: [function(t) {
 		function e(t) {
+			var e = this.params,
+				r = this.metrics;
+			if (!this.ended) {
+				this.ended = !0;
+				for (var o = 0; u > o; o++) t.removeEventListener(f[o], this.listener, !1);
+				if (!e.aborted) {
+					if (r.duration = (new Date).getTime() - this.startTime, 4 === t.readyState) {
+						e.status = t.status;
+						var i = this.lastSize || n(t);
+						if (i && (r.rxSize = i), this.sameOrigin) {
+							var s = t.getResponseHeader("X-NewRelic-App-Data");
+							s && (e.cat = s.split(", ").pop())
+						}
+					} else e.status = 0;
+					r.cbTime = this.cbTime, c.emit("xhr-done", [t], t), a("xhr", [e, r, this.startTime])
+				}
+			}
+		}
+
+		function n(t) {
+			var e = t.responseType,
+				n = "arraybuffer" === e || "blob" === e || "json" === e ? t.response : t.responseText;
+			return r(n)
+		}
+
+		function r(t) {
 			if ("string" == typeof t && t.length) return t.length;
 			if ("object" != typeof t) return void 0;
 			if ("undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer && t.byteLength) return t.byteLength;
@@ -257,103 +327,114 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 			}
 		}
 
-		function n(t) {
-			var n = this.params,
-				r = this.metrics;
-			if (!this.ended) {
-				this.ended = !0;
-				for (var i = 0; c > i; i++) t.removeEventListener(s[i], this.listener, !1);
-				if (!n.aborted) {
-					if (r.duration = (new Date).getTime() - this.startTime, 4 === t.readyState) {
-						n.status = t.status;
-						var a = t.responseType,
-							f = "arraybuffer" === a || "blob" === a || "json" === a ? t.response : t.responseText,
-							u = e(f);
-						if (u && (r.rxSize = u), this.sameOrigin) {
-							var d = t.getResponseHeader("X-NewRelic-App-Data");
-							d && (n.cat = d.split(", ").pop())
-						}
-					} else n.status = 0;
-					r.cbTime = this.cbTime, o("xhr", [n, r, this.startTime])
-				}
-			}
-		}
-
-		function r(t, e) {
-			var n = i(e),
+		function o(t, e) {
+			var n = s(e),
 				r = t.params;
 			r.host = n.hostname + ":" + n.port, r.pathname = n.pathname, t.sameOrigin = n.sameOrigin
 		}
-		if (window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && !/CriOS/.test(navigator.userAgent)) {
-			t("loader").features.xhr = !0;
-			var o = t("handle"),
-				i = t(2),
-				a = t("ee"),
-				s = ["load", "error", "abort", "timeout"],
-				c = s.length,
-				f = t(1);
-			t(4), t(3), a.on("new-xhr", function() {
-				this.totalCbs = 0, this.called = 0, this.cbTime = 0, this.end = n, this.ended = !1, this.xhrGuids = {}
-			}), a.on("open-xhr-start", function(t) {
+		var i = t("loader");
+		if (i.xhrWrappable) {
+			var a = t("handle"),
+				s = t(2),
+				c = t("ee"),
+				f = ["load", "error", "abort", "timeout"],
+				u = f.length,
+				d = t(1),
+				p = t(3),
+				l = window.XMLHttpRequest;
+			i.features.xhr = !0, t(5), t(4), c.on("new-xhr", function(t) {
+				var n = this;
+				n.totalCbs = 0, n.called = 0, n.cbTime = 0, n.end = e, n.ended = !1, n.xhrGuids = {}, n.lastSize = 0, p && (p > 34 || 10 > p) || window.opera || t.addEventListener("progress", function(t) {
+					n.lastSize = t.loaded
+				}, !1)
+			}), c.on("open-xhr-start", function(t) {
 				this.params = {
 					method: t[0]
-				}, r(this, t[1]), this.metrics = {}
-			}), a.on("open-xhr-end", function(t, e) {
+				}, o(this, t[1]), this.metrics = {}
+			}), c.on("open-xhr-end", function(t, e) {
 				"loader_config" in NREUM && "xpid" in NREUM.loader_config && this.sameOrigin && e.setRequestHeader("X-NewRelic-ID", NREUM.loader_config.xpid)
-			}), a.on("send-xhr-start", function(t, n) {
-				var r = this.metrics,
+			}), c.on("send-xhr-start", function(t, e) {
+				var n = this.metrics,
 					o = t[0],
 					i = this;
-				if (r && o) {
-					var f = e(o);
-					f && (r.txSize = f)
+				if (n && o) {
+					var a = r(o);
+					a && (n.txSize = a)
 				}
 				this.startTime = (new Date).getTime(), this.listener = function(t) {
 					try {
-						"abort" === t.type && (i.params.aborted = !0), ("load" !== t.type || i.called === i.totalCbs && (i.onloadCalled || "function" != typeof n.onload)) && i.end(n)
-					} catch (e) {
+						"abort" === t.type && (i.params.aborted = !0), ("load" !== t.type || i.called === i.totalCbs && (i.onloadCalled || "function" != typeof e.onload)) && i.end(e)
+					} catch (n) {
 						try {
-							a.emit("internal-error", [e])
+							c.emit("internal-error", [n])
 						} catch (r) {}
 					}
 				};
-				for (var u = 0; c > u; u++) n.addEventListener(s[u], this.listener, !1)
-			}), a.on("xhr-cb-time", function(t, e, n) {
+				for (var s = 0; u > s; s++) e.addEventListener(f[s], this.listener, !1)
+			}), c.on("xhr-cb-time", function(t, e, n) {
 				this.cbTime += t, e ? this.onloadCalled = !0 : this.called += 1, this.called !== this.totalCbs || !this.onloadCalled && "function" == typeof n.onload || this.end(n)
-			}), a.on("xhr-load-added", function(t, e) {
-				var n = "" + f(t) + !!e;
+			}), c.on("xhr-load-added", function(t, e) {
+				var n = "" + d(t) + !!e;
 				this.xhrGuids && !this.xhrGuids[n] && (this.xhrGuids[n] = !0, this.totalCbs += 1)
-			}), a.on("xhr-load-removed", function(t, e) {
-				var n = "" + f(t) + !!e;
+			}), c.on("xhr-load-removed", function(t, e) {
+				var n = "" + d(t) + !!e;
 				this.xhrGuids && this.xhrGuids[n] && (delete this.xhrGuids[n], this.totalCbs -= 1)
-			}), a.on("addEventListener-end", function(t, e) {
-				e instanceof XMLHttpRequest && "load" === t[0] && a.emit("xhr-load-added", [t[1], t[2]], e)
-			}), a.on("removeEventListener-end", function(t, e) {
-				e instanceof XMLHttpRequest && "load" === t[0] && a.emit("xhr-load-removed", [t[1], t[2]], e)
-			}), a.on("fn-start", function(t, e, n) {
-				e instanceof XMLHttpRequest && ("onload" === n && (this.onload = !0), ("load" === (t[0] && t[0].type) || this.onload) && (this.xhrCbStart = (new Date).getTime()))
-			}), a.on("fn-end", function(t, e) {
-				this.xhrCbStart && a.emit("xhr-cb-time", [(new Date).getTime() - this.xhrCbStart, this.onload, e], e)
+			}), c.on("addEventListener-end", function(t, e) {
+				e instanceof l && "load" === t[0] && c.emit("xhr-load-added", [t[1], t[2]], e)
+			}), c.on("removeEventListener-end", function(t, e) {
+				e instanceof l && "load" === t[0] && c.emit("xhr-load-removed", [t[1], t[2]], e)
+			}), c.on("fn-start", function(t, e, n) {
+				e instanceof l && ("onload" === n && (this.onload = !0), ("load" === (t[0] && t[0].type) || this.onload) && (this.xhrCbStart = (new Date).getTime()))
+			}), c.on("fn-end", function(t, e) {
+				this.xhrCbStart && c.emit("xhr-cb-time", [(new Date).getTime() - this.xhrCbStart, this.onload, e], e)
 			})
 		}
 	}, {
 		1: "XL7HBI",
-		2: 11,
-		3: 9,
-		4: 5,
+		2: 12,
+		3: 14,
+		4: 10,
+		5: 6,
 		ee: "QJf3ax",
 		handle: "D5DuLP",
 		loader: "G9z0Bl"
 	}],
-	11: [function(t, e) {
+	12: [function(t, e) {
 		e.exports = function(t) {
 			var e = document.createElement("a"),
 				n = window.location,
 				r = {};
 			e.href = t, r.port = e.port;
 			var o = e.href.split("://");
-			return !r.port && o[1] && (r.port = o[1].split("/")[0].split("@").pop().split(":")[1]), r.port && "0" !== r.port || (r.port = "https" === o[0] ? "443" : "80"), r.hostname = e.hostname || n.hostname, r.pathname = e.pathname, r.protocol = o[0], "/" !== r.pathname.charAt(0) && (r.pathname = "/" + r.pathname), r.sameOrigin = !e.hostname || e.hostname === document.domain && e.port === n.port && e.protocol === n.protocol, r
+			!r.port && o[1] && (r.port = o[1].split("/")[0].split("@").pop().split(":")[1]), r.port && "0" !== r.port || (r.port = "https" === o[0] ? "443" : "80"), r.hostname = e.hostname || n.hostname, r.pathname = e.pathname, r.protocol = o[0], "/" !== r.pathname.charAt(0) && (r.pathname = "/" + r.pathname);
+			var i = !e.protocol || ":" === e.protocol || e.protocol === n.protocol,
+				a = e.hostname === document.domain && e.port === n.port;
+			return r.sameOrigin = i && (!e.hostname || a), r
 		}
+	}, {}],
+	13: [function(t, e) {
+		function n(t) {
+			return function() {
+				r(t, [(new Date).getTime()].concat(i(arguments)))
+			}
+		}
+		var r = t("handle"),
+			o = t(1),
+			i = t(2);
+		"undefined" == typeof window.newrelic && (newrelic = window.NREUM);
+		var a = ["setPageViewName", "addPageAction", "setCustomAttribute", "finished", "addToTrace", "inlineHit", "noticeError"];
+		o(a, function(t, e) {
+			window.NREUM[e] = n("api-" + e)
+		}), e.exports = window.NREUM
+	}, {
+		1: 23,
+		2: 24,
+		handle: "D5DuLP"
+	}],
+	14: [function(t, e) {
+		var n = 0,
+			r = navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);
+		r && (n = +r[1]), e.exports = n
 	}, {}],
 	gos: [function(t, e) {
 		e.exports = t("7eSDFh")
@@ -376,11 +457,10 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 	}, {}],
 	D5DuLP: [function(t, e) {
 		function n(t, e, n) {
-			return r.listeners(t).length ? r.emit(t, e, n) : (o[t] || (o[t] = []), void o[t].push(e))
+			return r.listeners(t).length ? r.emit(t, e, n) : void(r.q && (r.q[t] || (r.q[t] = []), r.q[t].push(e)))
 		}
-		var r = t("ee").create(),
-			o = {};
-		e.exports = n, n.ee = r, r.q = o
+		var r = t("ee").create();
+		e.exports = n, n.ee = r, r.q = {}
 	}, {
 		ee: "QJf3ax"
 	}],
@@ -404,18 +484,20 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 	id: [function(t, e) {
 		e.exports = t("XL7HBI")
 	}, {}],
-	loader: [function(t, e) {
-		e.exports = t("G9z0Bl")
-	}, {}],
 	G9z0Bl: [function(t, e) {
 		function n() {
-			var t = l.info = NREUM.info;
-			if (t && t.licenseKey && t.applicationID && f && f.body) {
-				s(h, function(e, n) {
-					e in t || (t[e] = n)
-				}), l.proto = "https" === p.split(":")[0] || t.sslForHttp ? "https://" : "http://", a("mark", ["onload", i()]);
-				var e = f.createElement("script");
-				e.src = l.proto + t.agent, f.body.appendChild(e)
+			if (!h++) {
+				var t = l.info = NREUM.info,
+					e = f.getElementsByTagName("script")[0];
+				if (t && t.licenseKey && t.applicationID && e) {
+					s(d, function(e, n) {
+						t[e] || (t[e] = n)
+					});
+					var n = "https" === u.split(":")[0] || t.sslForHttp;
+					l.proto = n ? "https://" : "http://", a("mark", ["onload", i()]);
+					var r = f.createElement("script");
+					r.src = l.proto + t.agent, e.parentNode.insertBefore(r, e)
+				}
 			}
 		}
 
@@ -433,26 +515,32 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 		var a = t("handle"),
 			s = t(1),
 			c = window,
-			f = c.document,
-			u = "addEventListener",
-			d = "attachEvent",
-			p = ("" + location).split("?")[0],
-			h = {
+			f = c.document;
+		t(2);
+		var u = ("" + location).split("?")[0],
+			d = {
 				beacon: "bam.nr-data.net",
 				errorBeacon: "bam.nr-data.net",
-				agent: "js-agent.newrelic.com/nr-515.min.js"
+				agent: "js-agent.newrelic.com/nr-852.min.js"
 			},
+			p = window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && !/CriOS/.test(navigator.userAgent),
 			l = e.exports = {
 				offset: i(),
-				origin: p,
-				features: {}
+				origin: u,
+				features: {},
+				xhrWrappable: p
 			};
-		f[u] ? (f[u]("DOMContentLoaded", o, !1), c[u]("load", n, !1)) : (f[d]("onreadystatechange", r), c[d]("onload", n)), a("mark", ["firstbyte", i()])
+		f.addEventListener ? (f.addEventListener("DOMContentLoaded", o, !1), c.addEventListener("load", n, !1)) : (f.attachEvent("onreadystatechange", r), c.attachEvent("onload", n)), a("mark", ["firstbyte", i()]);
+		var h = 0
 	}, {
-		1: 20,
+		1: 23,
+		2: 13,
 		handle: "D5DuLP"
 	}],
-	20: [function(t, e) {
+	loader: [function(t, e) {
+		e.exports = t("G9z0Bl")
+	}, {}],
+	23: [function(t, e) {
 		function n(t, e) {
 			var n = [],
 				o = "",
@@ -463,7 +551,7 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 		var r = Object.prototype.hasOwnProperty;
 		e.exports = n
 	}, {}],
-	21: [function(t, e) {
+	24: [function(t, e) {
 		function n(t, e, n) {
 			e || (e = 0), "undefined" == typeof n && (n = t ? t.length : 0);
 			for (var r = -1, o = n - e || 0, i = Array(0 > o ? 0 : o); ++r < o;) i[r] = t[e + r];
@@ -471,50 +559,55 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 		}
 		e.exports = n
 	}, {}],
-	22: [function(t, e) {
+	25: [function(t, e) {
 		function n(t) {
 			return !(t && "function" == typeof t && t.apply && !t[i])
 		}
 		var r = t("ee"),
 			o = t(1),
-			i = "nr@wrapper",
-			a = Object.prototype.hasOwnProperty;
+			i = "nr@original",
+			a = Object.prototype.hasOwnProperty,
+			s = !1;
 		e.exports = function(t) {
 			function e(t, e, r, a) {
 				function nrWrapper() {
-					var n, i, s, f;
+					var n, i, s, c;
 					try {
-						i = this, n = o(arguments), s = r && r(n, i) || {}
-					} catch (d) {
-						u([d, "", [n, i, a], s])
+						i = this, n = o(arguments), s = "function" == typeof r ? r(n, i) : r || {}
+					} catch (u) {
+						d([u, "", [n, i, a], s])
 					}
-					c(e + "start", [n, i, a], s);
+					f(e + "start", [n, i, a], s);
 					try {
-						return f = t.apply(i, n)
+						return c = t.apply(i, n)
 					} catch (p) {
-						throw c(e + "err", [n, i, p], s), p
+						throw f(e + "err", [n, i, p], s), p
 					} finally {
-						c(e + "end", [n, i, f], s)
+						f(e + "end", [n, i, c], s)
 					}
 				}
-				return n(t) ? t : (e || (e = ""), nrWrapper[i] = !0, f(t, nrWrapper), nrWrapper)
+				return n(t) ? t : (e || (e = ""), nrWrapper[i] = t, u(t, nrWrapper), nrWrapper)
 			}
 
-			function s(t, r, o, i) {
+			function c(t, r, o, i) {
 				o || (o = "");
 				var a, s, c, f = "-" === o.charAt(0);
-				for (c = 0; c < r.length; c++) s = r[c], a = t[s], n(a) || (t[s] = e(a, f ? s + o : o, i, s, t))
+				for (c = 0; c < r.length; c++) s = r[c], a = t[s], n(a) || (t[s] = e(a, f ? s + o : o, i, s))
 			}
 
-			function c(e, n, r) {
-				try {
-					t.emit(e, n, r)
-				} catch (o) {
-					u([o, e, n, r])
+			function f(e, n, r) {
+				if (!s) {
+					s = !0;
+					try {
+						t.emit(e, n, r)
+					} catch (o) {
+						d([o, e, n, r])
+					}
+					s = !1
 				}
 			}
 
-			function f(t, e) {
+			function u(t, e) {
 				if (Object.defineProperty && Object.keys) try {
 					var n = Object.keys(t);
 					return n.forEach(function(n) {
@@ -528,24 +621,24 @@ window.NREUM || (NREUM = {}), __nr_require = function(t, e, n) {
 						})
 					}), e
 				} catch (r) {
-					u([r])
+					d([r])
 				}
 				for (var o in t) a.call(t, o) && (e[o] = t[o]);
 				return e
 			}
 
-			function u(e) {
+			function d(e) {
 				try {
 					t.emit("internal-error", e)
 				} catch (n) {}
 			}
-			return t || (t = r), e.inPlace = s, e.flag = i, e
+			return t || (t = r), e.inPlace = c, e.flag = i, e
 		}
 	}, {
-		1: 21,
+		1: 24,
 		ee: "QJf3ax"
 	}]
-}, {}, ["G9z0Bl", 3, 10, 4]);;
+}, {}, ["G9z0Bl", 4, 11, 5]);;
 NREUM.info = {
 	beacon: "bam.nr-data.net",
 	errorBeacon: "bam.nr-data.net",
@@ -553,4 +646,4 @@ NREUM.info = {
 	applicationID: $$config.newRelic.applicationID,
 	sa: 1,
 	agent: $$config.newRelic.agent
-}
+};

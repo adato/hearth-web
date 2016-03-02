@@ -1,3 +1,5 @@
+<h1 ng-show="loaded" class="text-center">{{'h1.profile_edit' | translate}}</h1>
+
 <div class="row profile-edit profile-edit-common" ng-show="loaded">
 	<form id="profileEditForm" name="profileEditForm" ng-submit="update()" novalidate>
 		<div class="right small-12 large-5 medium-12 columns" ng-cloak>
@@ -18,14 +20,22 @@
 				</span>
 			</h2>
 			<section class="who">
-				<div class="name margin">
-					<label>
-						{{:: 'NAME' | translate }} *
-						<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'NAME' | translate }}" model="profile.name" name="name"></input-max-length>
-						<div class="error" ng-show="profileEditForm.name.$error.required">
-							<span>{{:: 'ERR_NOT_FILLED_NAME' | translate }}</span>
-						</div>
-					</label>
+				<div class="name row">
+					<div class="large-6 small-12 medium-6 columns margin">
+						<label for="first_name">
+							{{:: 'FIRST_NAME' | translate }} *
+							<input-max-length input-type="input" show-counter="false" min-length="2" max-length="200" required="true" placeholder="{{:: 'FIRST_NAME' | translate }}" model="profile.first_name" name="first_name" id="first_name"></input-max-length>
+							<div class="error" ng-show="profileEditForm.first_name.$error.required">
+								<span>{{:: 'ERR_NOT_FILLED_FIRST_NAME' | translate }}</span>
+							</div>
+						</label>
+					</div>
+					<div class="large-6 small-12 medium-6 columns margin">
+						<label for="last_name">
+							{{:: 'LAST_NAME' | translate }}
+							<input type="text" name="last_name" ng-model="profile.last_name" id="last_name" />
+						</label>
+					</div>
 				</div>
 				<div class="work margin">
 					<label>
@@ -154,30 +164,42 @@
 					<span class="fa fa-envelope"></span>{{:: 'MY_NETWORKS' | translate }}
 				</span>
 			</h2>
-			<section>
-				<div class="margin large-6 small-12 medium-6 columns">
+			<section class="social">
+				<div class="large-6 small-12 medium-6 columns">
 					<label>
 						{{:: 'MY_FACEBOOK' | translate }}
 						<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="profile.facebook" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'facebook')">
 					</label>
+					<div class="error" ng-show="showError.social_networks['facebook']">
+						<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+					</div>
 				</div>
-				<div class="margin large-6 small-12 medium-6 columns">
+				<div class="large-6 small-12 medium-6 columns">
 					<label>
 						{{:: 'MY_TWITTER' | translate }}
 						<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="profile.twitter" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'twitter')">
 					</label>
+					<div class="error" ng-show="showError.social_networks['twitter']">
+						<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+					</div>
 				</div>
-				<div class="margin large-6 small-12 medium-6 columns">
+				<div class="large-6 small-12 medium-6 columns">
 					<label>
 						{{:: 'MY_LINKEDIN' | translate }}
 						<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="profile.linkedin" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'linkedin')">
 					</label>
+					<div class="error" ng-show="showError.social_networks['linkedin']">
+						<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+					</div>
 				</div>
-				<div class="margin large-6 small-12 medium-6 columns">
+				<div class="large-6 small-12 medium-6 columns">
 					<label>
 						{{:: 'MY_GOOGLEPLUS' | translate }}
 						<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="profile.googleplus" class="text-input" type="url" ng-blur="updateUrl($event, profile, 'googleplus')">
 					</label>
+					<div class="error" ng-show="showError.social_networks['googleplus']">
+						<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+					</div>
 				</div>
 			</section>
 			<div class="clear"></div>

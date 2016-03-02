@@ -1,0 +1,59 @@
+.flag {
+	display:inline-block;
+	width: 25px;
+	height: 18px;
+	vertical-align: middle;
+	background-size: cover;
+	background-repeat: no-repeat;
+	&.flag-en {
+		background-image: url(../images/flags/flag-english.svg);
+	}
+	&.flag-cs {
+		background-image: url(../images/flags/flag-czech.svg);
+	}
+	&.flag-sk {
+		background-image: url(../images/flags/flag-slovak.svg);
+	}
+	&.flag-rounded-corners,
+	&.flag-circular{
+		border-radius: 50%;
+		width: $size-large;
+		height: $size-large;
+		background-position: center center;
+	}
+	&.flag-rounded-corners{
+		/* @kamil: TODO - change to $size-tiny once possible //also fix all px values */
+		border-radius: .3125rem;
+		
+		vertical-align: top;
+		margin-top: .5rem;
+		margin-right: .5rem;
+	}
+}
+.flag-list{
+	.flag{
+		margin-right: $size-small;
+	}
+	.flag,
+	.flag + span{
+		vertical-align: middle;
+	}
+}
+.language-small-wrapper{
+	position: relative;
+	vertical-align: top;
+	top: 3px;
+	font-size: 1rem !important;
+
+	.fa-inverse{
+		color: $colorOrange;
+	}
+	&:hover{
+		.fa-square{
+			color: #ddd;
+		}
+		.fa-inverse{
+			color: $colorOrange !important;
+		}
+	}
+}

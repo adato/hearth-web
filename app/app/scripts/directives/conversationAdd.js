@@ -29,6 +29,36 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					recipients_ids: [],
 					title: '',
 					text: '',
+					attachments_attributes: ''
+				};
+
+				$scope.openUploadDialog = function() {
+					$('#file').click();
+				};
+
+				$scope.clearFileInput = function() {
+					$scope.message.attachments_attributes = '';
+					angular.element("input[type='file']").val(null);
+				};
+
+				$scope.uploadedFile = function(element) {
+					$scope.$apply(function($scope) {
+						$scope.message.attachments_attributes = element.files[0];
+
+						var uploadedType = $scope.message.attachments_attributes.type;
+						var allowedFileTypes = ['image/png', 'image/jpeg', 'image/gif'];
+
+						if (allowedFileTypes.indexOf(uploadedType) > -1) {
+							var reader = new FileReader();
+							reader.onload = function(e) {
+								$('#file-preview').attr('src', e.target.result);
+							};
+							reader.readAsDataURL(element.files[0]);
+							$scope.fileIsImage = true;
+						} else {
+							$scope.fileIsImage = false;
+						}
+					});
 				};
 
 				$scope.hideRecipientsError = function() {
@@ -83,12 +113,14 @@ angular.module('hearth.directives').directive('conversationAdd', [
 						return false;
 
 					var data = $scope.serialize(angular.copy(msg));
+					data.attachments_attributes = $scope.message.attachments_attributes;
 
 					if ($scope.sendingMessage) return false;
 					$scope.sendingMessage = true;
 
 					Conversations.add(data, function(res) {
-						// $scope.sendingMessage = false;
+						$scope.clearFileInput();
+						$scope.sendingMessage = false;
 
 						if ($scope.onSuccess)
 							$scope.onSuccess(res);
@@ -98,7 +130,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 						$scope.$emit("conversationCreated", res);
 						$scope.close(res);
 					}, function(err) {
-						// $scope.sendingMessage = false;
+						$scope.sendingMessage = false;
 
 						if ($scope.onError)
 							$scope.onError(err);

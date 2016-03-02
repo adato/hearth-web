@@ -14,7 +14,7 @@ angular.module('hearth.directives').directive('navigation', [
 			replace: true,
 			templateUrl: 'templates/directives/navigation.html',
 			link: function($scope, element) {
-				$scope.searchHidden = !$location.search().q;
+				$scope.searchHidden = !$location.search().query;
 				$scope.searchFilterDisplayed = false;
 				$scope.searchQuery = {
 					query: $location.search().query
@@ -25,6 +25,12 @@ angular.module('hearth.directives').directive('navigation', [
 						'Community ID': item._id,
 						'Community Name': item.name,
 						'Device': type,
+						'context': $state.current.name
+					});
+				};
+
+				$scope.mixpanelTrackMenu = function() {
+					$analytics.eventTrack('Mobile menu clicked', {
 						'context': $state.current.name
 					});
 				};

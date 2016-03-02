@@ -1,9 +1,4 @@
-#item-detail .row .row {
-	margin-left: 0;
-	margin-right: 0;
-}
-
-#item-detail .ad-detail-column.columns,
+/*#item-detail .ad-detail-column.columns,
 #item-detail .ad-detail-column .columns {
 	padding-left: 0;
 	padding-right: 0;
@@ -12,7 +7,7 @@
 .market article.post-on-market .ad-detail-column .columns {
 	padding-left: 0;
 	padding-right: 0;
-}
+}*/
 
 #item-detail,
 .market article.post-on-market,
@@ -21,14 +16,6 @@
 	.box {
 		padding: $ui-grid-size;
 		box-shadow: $ui-box-shadow;
-	}
-	.item-status-bar {
-		background: red;
-		color: white;
-		border-radius: $global-radius;
-		margin: 0 0 3*$ui-small-grid-size;
-		padding: $ui-small-grid-size $ui-grid-size;
-		font-weight: 600;
 	}
 	.ad-author-column {
 		&>div {
@@ -54,14 +41,6 @@
 			font-size: $ui-text-font-size;
 			text-align: center;
 			font-weight: bold;
-		}
-		.avatar {
-			a::before,
-			img {
-				width: 150px;
-				height: 150px;
-				box-shadow: none;
-			}
 		}
 		.box {
 			box-shadow: none;
@@ -119,7 +98,7 @@
 	}
 	.ad-detail-column {
 		margin-bottom: 3*$ui-small-grid-size;
-		padding: 0;
+/*		padding: 0;*/
 		header {
 			margin-bottom: 1em;
 			div.columns {
@@ -158,8 +137,17 @@
 				font-size: $ui-text-font-size;
 				word-wrap: break-word;
 			}
+
 			.text-expand-link {
 				display: inline-block;
+
+				&.offer {
+					color: $colorGreen;
+				}
+
+				&.need {
+					color: $colorOrange;
+				}
 			}
 		}
 		ul.address {
@@ -173,97 +161,6 @@
 			margin-bottom: 3*$ui-small-grid-size;
 		}
 		footer {
-			background: color(4);
-			min-height: 74px;
-			box-sizing: border-box;
-			position: relative;
-			top: $ui-grid-size;
-			border-bottom-right-radius: $global-radius;
-			border-bottom-left-radius: $global-radius;
-			margin: {
-				left: -1 * $ui-grid-size;
-				right: -1 * $ui-grid-size;
-				top: -1 * $ui-grid-size;
-			}
-			padding: {
-				top: 15px;
-				left: $ui-grid-size;
-				right: $ui-grid-size;
-			}
-
-			.sharing,
-			.sharing-trigger {
-				height: $ui-button-height;
-				line-height: $ui-button-height - 10px;
-			}
-
-			.sharing-trigger a {
-				/* width: $ui-grid-size; */
-				height: $ui-grid-size;
-				margin-top: 16px;
-				color: color(3);
-
-				&:before {
-					width: $ui-grid-size;
-					height: $ui-grid-size;
-					line-height: 14px;
-					font-size: 20px;
-				}
-				&:hover {
-					color: lighten(color(3), 20%);
-				}
-			}
-
-			.sharing a {
-				color: color(4);
-				background: color(3);
-				border-radius: 50%;
-				font-size: 15px;
-				width: $ui-grid-size;
-				height: $ui-grid-size;
-				margin: $ui-small-grid-size / 2;
-				line-height: 14px;
-				transition: all .2s ease-out;
-				&.fa-envelope {
-					font-size: 13px;
-					line-height: 16px;
-					&:before {
-						top: 5px;
-					}
-				}
-				&.fa-facebook:before {
-					left: 7px;
-				}
-				&:before {
-					position: relative;
-					top: 6px;
-					left: 6px;
-				}
-				&:hover {
-					background: color(5);
-				}
-				&:active,
-				&:focus {
-					background: darken(color(5), 10%);
-				}
-			}
-			
-			.post-edit-buttons-container {
-				font-size: 22px; // @@TODO
-				padding: $ui-small-grid-size;
-				margin-top: -2px;
-				a {
-					color: color(3);
-					margin-right: $ui-small-grid-size;
-					&:hover {
-						color: lighten(color(3), 10%);
-					}
-					&:active,
-					&:focus {
-						color: darken(color(3), 10%);
-					}
-				}
-			}
 			.reply-count-container .reply-info-link {
 				color: color(3);
 				text-decoration: underline;
@@ -290,11 +187,6 @@
 					}
 				}
 			}
-
-			@media #{$large-up} {
-				min-height: 60px;
-				padding-top: 8px;
-			}
 		}
 		.post-replies {
 			margin-top: $ui-grid-size;
@@ -319,12 +211,6 @@
 					.avatar {
 						margin-right: 1.25rem;
 						//margin-top: -2 * $ui-small-grid-size; 
-						a::before,
-						img {
-							width: 60px;
-							height: 60px;
-							box-shadow: none;
-						}
 					}
 				}
 /*				.content {
@@ -367,9 +253,9 @@
 				color: color(5);
 			}
 		}
-		.map-container {
+/*		.map-container {
 			margin-bottom: 3 * $ui-small-grid-size;
-		}
+		}*/
 	}
 	*[data-item-type="need"],
 	*[data-item-type="false"] {
@@ -409,7 +295,6 @@
 		overflow: hidden;
 		width: 100%;
 		height: 120px;
-		margin-bottom: 25px;
 		ul {
 			height: 120px;
 			margin: 0;
