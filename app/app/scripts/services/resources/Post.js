@@ -18,9 +18,6 @@ angular.module('hearth.services').factory('Post', [
 			query: {
 				method: 'GET',
 				url: $$config.apiPath + '/search/',
-				params: {
-					type: 'post'
-				},
 				nointercept: true,
 			},
 			emailShare: {

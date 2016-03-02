@@ -88,7 +88,7 @@ angular.module('hearth').config([
 				controller: 'RegisterCtrl'
 			})
 			.state('search', {
-				url: '/search?q',
+				url: '/search?query',
 				templateUrl: 'templates/fulltext.html',
 				controller: 'FulltextCtrl'
 			})

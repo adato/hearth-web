@@ -74,6 +74,10 @@ $$config = {
 	replyCountTexts: {
 		offer: 'PEOPLE_COUNT_WISH_PL',
 		need: 'PEOPLE_COUNT_OFFER_PL'
+	},
+	filterOptions: {
+		default: ['keywords', 'postType', 'postTime', 'author', 'location', 'saveFilter'],
+		search: ['location', 'entityType']
 	}
 };
 
