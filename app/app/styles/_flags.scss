@@ -30,10 +30,21 @@
 		margin-right: .5rem;
 	}
 }
+.flag-list{
+	.flag{
+		margin-right: $size-small;
+	}
+	.flag,
+	.flag + span{
+		vertical-align: middle;
+	}
+}
 .language-small-wrapper{
 	position: relative;
-	top: -2px;
+	vertical-align: top;
+	top: 3px;
 	font-size: 1rem !important;
+
 	.fa-inverse{
 		color: $colorOrange;
 	}

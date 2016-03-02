@@ -2,15 +2,15 @@
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li ng-if="loggedUser._id" class="tab-bar log-info">
-				<a ui-sref='profile.default({id: loggedUser._id})' ng-click='toggleSidebar(false)' class='overflow-hidden'>
+				<a ui-sref="profile.default({id: loggedUser._id})" ng-click="toggleSidebar(false)" class="overflow-hidden">
 					<avatar type="loggedUser._type" src="loggedUser.avatar.normal" size="small"></avatar>
-					<div class='inline-block ellipsed-username' ng-bind='loggedUser.name'></div>
+					<div class="display-inline-block ellipsed-username" ng-bind="loggedUser.name"></div>
 				</a>
 			</li>
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
-				<a ng-class='{active: $state.includes("login")}' ui-sref='login' ng-click='toggleSidebar(false)'>
+				<a ng-class="{active: $state.includes(' login ')}" ui-sref="login" ng-click="toggleSidebar(false)">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class='inline-block' translate='LOG_IN'></div>
+					<div class="display-inline-block" translate="LOG_IN"></div>
 				</a>
 			</li>
 			<li>
@@ -21,21 +21,21 @@
 					<i class="fa icon-marketplace"></i> {{:: 'HOMEPAGE_MARKET' | translate }} </a>
 			</li>
 			<li>
-				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('communities')}">
+				<a ng-if="loggedUser._id" ui-sref="communities.suggested" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('communities')}">
 					<i class="fa icon-community"></i> {{:: 'COMMUNITIES' | translate }}</a>
 			</li>
 			<li>
-				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('messages')}">
+				<a id="unreaded-messages-counter" ng-if="loggedUser._id" ui-sref="messages" ng-click="toggleSidebar(false)" ng-class="{active: $state.includes('messages')}">
 					<span class="messages-icon"></span>
 					{{:: 'TOP_BAR_MESSAGES' | translate }}
 					<span ng-if="messagesCounters.unread" class="right round label">{{ messagesCounters.unread | minMax:1:99:'+':1 }}</span>
 				</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click='toggleSidebar(false)'>{{:: 'LOG_IN' | translate}}</a>
+				<a ng-class="{active: pageName == 'login'}" ui-sref="login" ng-click="toggleSidebar(false)">{{:: 'LOG_IN' | translate}}</a>
 			</li>
 			<li ng-show="!loggedUser.name">
-				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click='toggleSidebar(false)'>{{:: 'SIGNUP' | translate }}</a>
+				<a ng-class="{active: pageName == 'reg'}" ui-sref="reg" ng-click="toggleSidebar(false)">{{:: 'SIGNUP' | translate }}</a>
 			</li>
 		</ul>
 		<ul class="off-canvas-list" ng-show="loggedUser._id">
@@ -134,7 +134,7 @@
 
 
 			<div class="small-icons header-right">
-				<div class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
+				<div id='language-bar-mobile' class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
 					<i class='fa fa-fw fa-inverse flag flag-rounded-corners' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
 				<div class='display-inline-block inline-block margin-small-right'>
@@ -203,7 +203,7 @@
 						<i class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 						<label translate='LANGUAGE.{{:: languageChange.languageStrings[languageChange.currentLanguage] }}'></label>
 					</a>
-					<ul class='dropdown' id='language-drop'>
+					<ul class='dropdown flag-list' id='language-drop'>
 						<li ng-if='languageChange.currentLanguage != "cs"'>
 							<a ng-click='languageChange.switchLang("cs")'>
 								<i class='flag flag-cs'></i>
@@ -239,7 +239,7 @@
 				<div class="dropdown-container">
 					<a ng-if="loggedUser._id" ng-show="loggedUser.name" class="header-item logged-user-dropdown" ng-class="{active: segment.slice(0,7) == 'profile'}" hover="true" dropdown="#profile-drop" title="{{ loggedUser.name }}">
 						<avatar class="img" size="mini" src="loggedUser.avatar.normal" type="'User'"></avatar>
-						<label>{{ loggedUser.name | ellipsis:9}}</label>
+						<label>{{ loggedUser.name | ellipsis:12 }}</label>
 					</a>
 					<ul class="dropdown user-dropdown" id="profile-drop" title="{{ loggedUser.name }}">
 						<li>

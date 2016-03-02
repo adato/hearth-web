@@ -74,6 +74,10 @@ $$config = {
 	replyCountTexts: {
 		offer: 'PEOPLE_COUNT_WISH_PL',
 		need: 'PEOPLE_COUNT_OFFER_PL'
+	},
+	filterOptions: {
+		default: ['keywords', 'postType', 'postTime', 'author', 'location', 'saveFilter'],
+		search: ['location', 'entityType']
 	}
 };
 
@@ -88,5 +92,5 @@ var _rollbarConfig = {
 	payload: {
 		environment: $$config.env
 	},
-	enable: window.location.hostname !== "0.0.0.0"
+	enable: ["0.0.0.0", '127.0.0.1', 'localhost'].indexOf(window.location.hostname) < 0
 };

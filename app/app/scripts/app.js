@@ -152,6 +152,12 @@ angular.module('hearth', [
 				});
 			}
 
+			function bindCriticalReloadEvent() {
+				$('#criticalError a').click(function() {
+					location.reload(true);
+				});
+			}
+
 			/**
 			 * This will init session of user
 			 */
@@ -203,6 +209,22 @@ angular.module('hearth', [
 
 					$rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
 					done(null, $rootScope.loggedUser);
+				}, function(err) {
+					console.log(err.status, err.statusText, err.data);
+					Rollbar.error("HEARTH: session critical error occured", {
+						status: err.status,
+						statusText: err.statusText,
+						data: err.data
+					});
+
+					$('#criticalError').fadeIn();
+					bindCriticalReloadEvent();
+					$rootScope.isCriticalError = true;
+
+					var offEvent = $rootScope.$on('$translateLoadingSuccess', function($event, data) {
+						offEvent();
+						setTimeout(bindCriticalReloadEvent);
+					});
 				});
 			}
 

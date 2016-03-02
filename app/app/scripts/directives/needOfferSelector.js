@@ -17,10 +17,16 @@ angular.module('hearth.directives').directive('needofferselector',
 				textFalse: '@',
 				iconFalse: '@',
 				ngDisabled: '=',
+				requiredShown: '='
 			},
 			templateUrl: 'templates/directives/needOfferSelector.html',
 			link: function(scope) {
+				scope.requiredMessageShown = scope.requiredShown !== void 0 ? scope.requiredShown : false;
+				scope.$watch('requiredShown', function(value) {
+					scope.requiredMessageShown = value;
+				});
 				scope.$watch('model', function(value) {
+					scope.requiredMessageShown = false;
 					scope.model = value;
 				});
 			}
