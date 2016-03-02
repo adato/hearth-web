@@ -320,9 +320,8 @@ $topBarImageSize: 1.8em;
 					color: lighten(color(1), 25%);
 					transition: color 1s, text-shadow 2s;
 				}
-				& a{
+				&>*{
 					display: inline-block;
-					/*color: lighten(color(1), 25%);*/
 					text-align: center;
 					label {
 						color: lighten(color(1), 25%);
@@ -345,10 +344,7 @@ $topBarImageSize: 1.8em;
 					&.active,
 					&:hover {
 						color: lighten(color(1), 50%) !important;
-						.fa {
-							color: lighten(color(1), 50%) !important;
-							text-shadow: 0 0 5px white;
-						}
+						
 						label {
 							color: lighten(color(1), 50%);
 						}
@@ -450,11 +446,16 @@ $topBarImageSize: 1.8em;
 			padding-top: 6px;
 			padding-bottom: 3px;
 		}
-		.avatar {
-			margin-right: 5px;
-		}
+		
 		.user-switch-item {
 			margin-left: 10px;
+		}
+	}
+
+	.user-switch-item {
+		.avatar {
+			margin-right: 5px;
+			vertical-align: middle;
 		}
 	}
 }

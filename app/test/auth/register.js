@@ -13,12 +13,11 @@ describe('hearth registration', function () {
 		expect(element.all(by.css('.login-form')).isDisplayed()).toBeTruthy();
 
 		element
-		  .all(by.css('.login-form a[href*="register"]'))
-		  .get(1)
+		  .all(by.css('.login-form .bottom a[href*="register"]'))
 		  .click();
 
 		// go to register page
-		element(by.css('.login-form a[href*="register"]')).get(1).click();
+		//element(by.css('.login-form a[href*="register"]')).get(1).click();
 
 		// test if register form is visible
 		expect(element.all(by.css('.register-form')).isDisplayed()).toBeTruthy();
@@ -37,20 +36,20 @@ describe('hearth registration', function () {
 		var passwordInput = element(by.model('user.password'));
 
 		// none of validation errors displayed
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
 
 		registerButton.click();
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, true, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, true, false]);
 
 		firstNameInput.sendKeys('Testerovo');
 		lastNameInput.sendKeys('Jmeno');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, true, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([true, false, false, false, true, false]);
 
 		emailInput.sendKeys('testovaci@hearth.net');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false, true, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, true, false]);
 
 		passwordInput.sendKeys('testerovoHeslo');
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
 	});
 
 
@@ -134,7 +133,7 @@ describe('hearth registration', function () {
 		passwordInput.sendKeys(protractor.helpers.options.testPassword);
 
 		// none of validation errors displayed
-		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false, false, false, false]);
+		expect(element.all(by.css('.register-login-form>div.error>span')).isDisplayed()).toEqual([false, false, false, false, false, false]);
 		// send registration
 		registerButton.click();
 

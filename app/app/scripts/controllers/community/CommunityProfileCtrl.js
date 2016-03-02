@@ -26,11 +26,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			text: false
 		};
 
-		$scope.amIAdmin = function(res) {
-			return $rootScope.loggedUser._id == res.admin;
-		};
-
-		$scope.fetchCommunity = function() {
+		function fetchCommunity() {
 			if (!$stateParams.id) return false;
 
 			// if we load profile of another user (there are different IDs) scroll to top
@@ -53,7 +49,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.topLoaded = true;
 
 				$scope.mine = $rootScope.isMine(res.admin); // is community mine?
-				$scope.managing = $scope.amIAdmin(res); // is community mine?
+				$scope.managing = $rootScope.loggedUser._id === res.admin; // is community mine?
 
 				PageTitle.setTranslate('TITLE.community-profile-page', res.name);
 
@@ -78,7 +74,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		// will redirect user to user ratings and open rating form
-		$scope.openRatingForm = function(score) {
+		$scope.openUserRatingForm = function(score) {
 			var ratingUrl = '/community/' + $scope.info._id + '/received-ratings';
 			var removeListener;
 
@@ -87,7 +83,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			// set default values
 			$scope.showError.text = false;
 			$scope.rating.current_community_id = null;
-			$scope.rating.score = score;
+			$scope.rating.score = score || null;
 			$scope.rating.text = '';
 			$scope.rating.post_id = null;
 			// select first option in posts select - eg default value           
@@ -114,39 +110,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.showUserRatingForm = false;
 		};
 
-		// will redirect user to user ratings and open rating form
-		$scope.openUserRatingForm = function(score) {
-			var ratingUrl = '/community/' + $scope.info._id + '/received-ratings';
-			var removeListener;
-
-			$scope.ratingPosts = [];
-			$scope.loadedRatingPosts = false;
-			// set default values
-			$scope.showError.text = false;
-			$scope.rating.current_community_id = null;
-			$scope.rating.score = score;
-			$scope.rating.text = '';
-			$scope.rating.post_id = null;
-			// select first option in posts select - eg default value           
-			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
-
-			// show form
-			$scope.showUserRatingForm = true;
-
-			// if we are on rating URL just jump down
-			if ($location.url() == ratingUrl) {
-				$scope.scrollToRatingForm();
-			} else {
-				// else jump to the righ address and there jump down
-				removeListener = $scope.$on('$routeChangeSuccess', function() {
-					removeListener();
-					$scope.scrollToRatingForm();
-				});
-				$location.url(ratingUrl);
-			}
-		};
-
-		$scope.refreshDataFeed = function() {
+		function refreshDataFeed() {
 			$scope.$broadcast('refreshSubpage');
 		};
 
@@ -207,7 +171,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				return false;
 			$scope.approveApplicationLock = true;
 
-
 			CommunityMembers.add({
 				communityId: $scope.info._id,
 				user_id: id
@@ -221,78 +184,25 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			});
 		};
 
-
-		// scroll to user Rating form when opened
-		$scope.scrollToRatingForm = function() {
-			// scroll to form
-			setTimeout(function() {
-				$('html,body').animate({
-					scrollTop: $("#received-rating-form").offset().top - 200
-				}, 500);
-			}, 300);
-		};
-
 		$scope.addItem = function() {
 			var preset = {
 				current_community_id: ($scope.mine) ? $scope.info._id : null,
 				related_communities: (!$scope.mine) ? [{
 					_id: $scope.info._id,
 					name: $scope.info.name
-				}] : [],
-			}
+				}] : []
+			};
 
 			$rootScope.editItem(null, null, preset);
 		};
 
-		// scroll to user Rating form when opened
-		$scope.scrollToUserRatingForm = function() {
-			// scroll to form
-			setTimeout(function() {
-				$('html,body').animate({
-					scrollTop: $("#received-rating-form").offset().top - 200
-				}, 500);
-			}, 300);
-		};
-
-		// will redirect user to user ratings and open rating form
-		$scope.openUserRatingForm = function(score) {
-			var ratingUrl = '/community/' + $scope.info._id + '/received-ratings';
-			var removeListener;
-
-			$scope.ratingPosts = [];
-			$scope.loadedRatingPosts = false;
-			// set default values
-			$scope.showError.text = false;
-			$scope.rating.current_community_id = null;
-			$scope.rating.score = score;
-			$scope.rating.text = '';
-			$scope.rating.post_id = null;
-			// select first option in posts select - eg default value			
-			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
-
-			// show form
-			$scope.showUserRatingForm = true;
-
-			// if we are on rating URL just jump down
-			if ($location.url() == ratingUrl) {
-				$scope.scrollToUserRatingForm();
-			} else {
-				// else jump to the righ address and there jump down
-				removeListener = $scope.$on('$routeChangeSuccess', function() {
-					removeListener();
-					$scope.scrollToUserRatingForm();
-				});
-				$location.url(ratingUrl);
-			}
-		};
-
-		// will close form and set to default state
-		$scope.closeUserRatingForm = function() {
-			$scope.showUserRatingForm = false;
+		// send rating to API
+		$scope.isNull = function(e) {
+			return e === null;
 		};
 
 		// send rating to API
-		$scope.sendRating = function(ratingOrig) {
+		$scope.sendRating = function(ratingOrig, theForm) {
 			var rating;
 			var ratings = {
 				false: -1,
@@ -301,13 +211,21 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 			$scope.showError.text = false;
 
-			if (!ratingOrig.text)
-				return $scope.showError.text = true;
+			var errors = theForm.$invalid;
+			if ($scope.isNull($scope.rating.score)) {
+				$scope.rating.requiredMessageShown = true;
+				errors = true;
+			}
+			if (!ratingOrig.text) {
+				$scope.showError.text = true;
+				errors = true;
+			}
+			if (errors) return false;
 
 			// transform rating.score value from true/false to -1 and +1
 			rating = angular.copy(ratingOrig);
 			rating.score = ratings[rating.score];
-			rating.post_id = rating.post_id || null;
+			rating.post_id = (rating.post_id && rating.post_id != '0') ? rating.post_id : null;
 
 			var out = {
 				current_community_id: rating.current_community_id,
@@ -340,10 +258,9 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 		};
 
 		$scope.init = function() {
-			$scope.refreshDataFeed();
-			$scope.fetchCommunity();
+			refreshDataFeed();
+			fetchCommunity();
 		};
-
 
 		$scope.$on('$stateChangeSuccess', function(ev, route, params) {
 			$scope.activePage = params.page;
