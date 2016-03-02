@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html xmlns:ng="//angularjs.org" id="ng-app" ng-app="hearth" class="no-js lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html ng-app="hearth" class="no-js lt-ie10"> <![endif]-->
 <!--[if gt IE 9]><!-->
-<html ng-app="hearth" class="no-js">
+<html ng-app="hearth" class="no-js" ng-controller="BaseCtrl" ng-class="{'no-scroll': leftSidebarShown}">
 <!--<![endif]-->
 
 <head>
@@ -51,7 +51,7 @@
 	<script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script>
 </head>
 
-<body ng-controller="BaseCtrl" ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': '')), (leftSidebarShown ? 'no-scroll' : '')]" ng-keydown="escapeKey($event)">
+<body ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': ''))]" ng-keydown="escapeKey($event)">
 	<script type="text/javascript">
 		// scripts to be loaded sooner
 		(function(){
@@ -305,10 +305,12 @@
 	<script src="scripts/controllers/messages/MessagesCtrl.js"></script>
 	<script src="scripts/controllers/LocalizationPage.js"></script>
 	<script src="scripts/controllers/LanguageChangeCtrl.js"></script>
+	<script src="scripts/controllers/StaticPageCtrl.js"></script>
 	<script src="scripts/controllers/modal/RemoveItemFromCommunity.js"></script>
 	<script src="scripts/controllers/modal/ModalContainer.js"></script>
 	<script src="scripts/controllers/modal/NewMessage.js"></script>
 	<script src="scripts/controllers/modal/ItemReport.js"></script>
+	<script src="scripts/controllers/modal/LinkSharing.js"></script>
 	<script src="scripts/controllers/modal/EmailSharing.js"></script>
 	<script src="scripts/controllers/modal/ItemEdit.js"></script>
 	<script src="scripts/controllers/modal/ItemReply.js"></script>

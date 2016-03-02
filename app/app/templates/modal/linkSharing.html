@@ -1,0 +1,20 @@
+<div class="itemShare formStyle itemEdit modal">
+	<div class="head">
+		<h2>
+			{{'MARKETPLACE.POST.SHARE_LINK' | translate}}
+		</h2>
+		<span ng-click="close()" class="close fa fa-times"></span>
+		<hr />
+	</div>
+
+	<div class="input-container">
+		<i class="fa fa-link"></i>
+		<input type="text" readonly select-on-focus value="{{getProfileLink('Post', post._id, true)}}" />
+	</div>
+
+	<div class="bottom clearfix">
+		<a href="" ng-click="close()" class="fleft close">
+			{{ 'CLOSE' | translate }}
+		</a>
+	</div>
+</div>

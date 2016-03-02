@@ -168,6 +168,12 @@ body {
 .no-scroll{
 	overflow-y: hidden;
 }
+html.no-scroll,
+html.no-scroll body{
+	overflow: hidden;
+    position: relative;
+    height: 100%;
+}
 a.no-link,
 a.no-link:hover{
 	padding: 0 !important;

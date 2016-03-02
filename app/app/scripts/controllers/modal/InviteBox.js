@@ -21,7 +21,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		};
 
 		$scope.showFinished = function() {
-
 			$(".invite-form").slideToggle();
 			timeoutClose = setTimeout(function() {
 				$scope.closeThisDialog();
@@ -35,7 +34,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
 			$scope.url = window.location.href.replace(window.location.hash, '');
 			$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;
-
 			$scope.endpoints = $$config.sharingEndpoints;
 		};
 
@@ -44,43 +42,51 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		 * it will show error and return false
 		 */
 		$scope.testEmailsFormat = function(data) {
-			var emails = data;
-			$scope.inviteForm.to_email.$error.format = false;
+			if (!data) {
+				return false;
+			}
 
-			if (!data) return false;
+			var emails = $.map(data, function(value, index) {
+				return value.text;
+			});
+
+			$scope.inviteForm.to_email.$error.format = false;
 
 			// if emails are not array, split it by comma
 			if (!angular.isArray(emails)) {
 				emails = angular.copy(emails).split(",");
 			}
+
 			// validate emails 
 			if (!Validators.emails(emails)) {
-
 				$scope.showError.to_email = true;
 				$scope.inviteForm.to_email.$error.format = true;
 				return false;
 			}
+
 			return true;
 		};
 
 		$scope.validateInvitationForm = function(data) {
 			var invalid = false;
 
+			if (!data.to_email) {
+				invalid = $scope.showError.to_email = true;
+			}
+
 			// is message filled?
-			if ($scope.inviteForm.message.$invalid) {
+			if (!data.message) {
 				invalid = $scope.showError.message = true;
 			}
 
-			if (!data.to_email || !$scope.testEmailsFormat(data.to_email)) {
-				invalid = true;
-			}
 			return !invalid;
 		};
 
 		$scope.transformInvitationOut = function(data) {
-
 			if (data.to_email) {
-				data.to_email = data.to_email.split(",");
+				data.to_email = $.map(data.to_email, function(value, index) {
+					return value.text;
+				});
 			}
 			return data;
 		};
@@ -94,8 +100,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.sendEmailInvitation = function(data) {
 			var dataOut;
 
-			if (!$scope.validateInvitationForm(data) || $scope.sending)
+			if (!$scope.validateInvitationForm(data) || $scope.sending) {
 				return false;
+			}
 
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
@@ -134,6 +141,10 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.toggleEmailForm = function() {
 			$scope.initForm();
 			$scope.showEmailForm = !$scope.showEmailForm;
+		};
+
+		$scope.close = function() {
+			$scope.closeThisDialog();
 		};
 
 		$scope.$on('initFinished', $scope.init);

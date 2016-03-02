@@ -6,16 +6,23 @@ $large-avatar-size: 295px;
 
 .avatar {
 	display: inline-block;
-	overflow: hidden;
 	border-radius: 50%;
 	position: relative;
 	background-size: cover;
+	border-radius: 50%;
 
 	&>* {
+		border-radius: 50%;
 		display: block !important;
 		padding: 0px;
+		overflow: hidden;
+		border-radius: 50%;
 	}
 
+	&>* > img {
+		border-radius: 50%;
+	}
+	
 	/** == Shade == */
 	& > *::before {
 		position: absolute;

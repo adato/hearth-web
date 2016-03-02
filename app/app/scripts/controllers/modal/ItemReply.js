@@ -65,13 +65,9 @@ angular.module('hearth.controllers').controller('ItemReply', [
 			PostReplies.add($scope.reply, function(res) {
 
 				$rootScope.globalLoading = false;
-				$scope.sending = false;
 				$scope.showFinished();
 				$scope.post.reply_count += 1;
 				$scope.post.is_replied = true;
-
-				// Notify.addSingleTranslate('NOTIFY.REPLY_SENT', Notify.T_SUCCESS);
-
 			}, function(res) {
 				$scope.sending = false;
 				$rootScope.globalLoading = false;

@@ -1,6 +1,13 @@
-<section class="invite-box">
+<div class="invite-box formStyle itemEdit modal">
+	<div class="head">
+		<h2>{{:: 'INVITE_YOUR_FRIENDS_TO_HEARTH' | translate }}
+			<span ng-if="showEmailForm">- {{:: 'INVITE_EMAIL' | translate }}</span>
+		</h2>
+		<span ng-click="close()" class="close fa fa-times"></span>
+		<hr />
+	</div>
+
 	<div class="social" ng-if="!showEmailForm">
-		<h2>{{:: 'INVITE_YOUR_FRIENDS_TO_HEARTH' | translate }}</h2>
 		<ul>
 			<li>
 				<a ng-click="fbInvite()">
@@ -29,60 +36,29 @@
 			</li>
 		</ul>
 	</div>
-	<div class="emailForm" ng-show="showEmailForm">
-		<i class="fa fa-chevron-left toggle-form" ng-click="toggleEmailForm()"></i>
-		<form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="register-login-form invite-form" novalidate>
-			<table>
-				<tr>
-					<td valign="center">
-						<label>
-							{{:: 'PROFILE.INVITATION.ADDRESSES' | translate }}
-						</label>
-					</td>
-					<td>
-						<input name="to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" ng-focus="showError.to_email = false" ng-blur="showError.to_email = true; testEmailsFormat(inv.to_email)" ng-model="inv.to_email" class="text-input" type='text' ng-required="true">
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<div class="error" ng-show="showError.to_email">
-							<span ng-show="inviteForm.to_email.$error.required">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
-							<span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td valign="top">
-						<label>
-							{{:: 'PROFILE.INVITATION.MESSAGE' | translate }}
-						</label>
-					</td>
-					<td>
-						<textarea name="message" autosize-textarea max-len="300" ng-attr-placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" ng-model="inv.message" ng-focus="showError.message = false" ng-blur="showError.message = true" required></textarea>
-						<max-len-counter max-len="300" value="inv.message"></max-len-counter>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<div class="error" ng-show="showError.message">
-							<span ng-show="inviteForm.message.$error.required">{{:: 'ERR_NOT_FILLED_INVITE_TEXT' | translate }}</span>
-							<span ng-show="inviteForm.message.$error.maxlength">{{:: 'ERR_FILLED_INVITE_TEXT_TOO_LONG' | translate }}</span>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td valign="top">
-						<button type="submit" class="button-send button-send-by-email right" analytics-custom analytics-event="send email invitation" analytics-category="General" analytics-value="1">
-							{{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}
-						</button>
-					</td>
-				</tr>
-			</table>
+	<div ng-show="showEmailForm">
+		<form ng-submit="sendEmailInvitation(inv)" id="inviteForm" name="inviteForm" class="emailForm invite-form" novalidate>
+			<div>
+				<label>{{:: 'PROFILE.INVITATION.ADDRESSES' | translate }}</label>
+				<tags-input name="to_email" ng-model="inv.to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" type="email" min-tags="1" ng-focus="showError.to_email = false"
+				ng-blur="showError.to_email = true" ng-required="required" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input>
+				<div class="error" ng-show="showError.to_email">
+					<span ng-show="inviteForm.to_email.$error.minTags">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
+					<span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
+				</div>
+			</div>
+			<div>
+				<label>{{:: 'PROFILE.INVITATION.MESSAGE' | translate }}</label>
+				<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="300" required="true" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" model="inv.message" name="message"></input-max-length>
+				<div class="error" ng-show="showError.message">
+					<span ng-show="inviteForm.message.$error.required">{{:: 'ERR_NOT_FILLED_INVITE_TEXT' | translate }}</span>
+				</div>
+			</div>
+
+			<div class="bottom clearfix">
+				<a ng-click="toggleEmailForm()" class="fleft close"> {{ 'CLOSE' | translate }} </a>
+				<button class="primary button-send fright pointer" type="submit" analytics-custom analytics-event="send email invitation" analytics-category="General" analytics-value="1">{{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}</button>
+			</div>
 		</form>
 		<div class="invite-form success hidden">
 			<h3>{{:: 'FRIEND_INVITATION' | translate }}</h3>
@@ -94,4 +70,4 @@
 	</div>
 	<div class="clear"></div>
 	<div class="invite-box-notify"></div>
-</section>
+</div>
