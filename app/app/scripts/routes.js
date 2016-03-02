@@ -88,7 +88,7 @@ angular.module('hearth').config([
 				controller: 'RegisterCtrl'
 			})
 			.state('search', {
-				url: '/search?q',
+				url: '/search?query',
 				templateUrl: 'templates/fulltext.html',
 				controller: 'FulltextCtrl'
 			})
@@ -100,29 +100,20 @@ angular.module('hearth').config([
 			.state('faq', {
 				url: '/faq',
 				templateUrl: 'templates/localizationPage.html',
-				controller: ['$location', '$scope', function($location, $scope) {
-					$scope.pageName = $location.path().replace("/", "");
-				}],
+				controller: 'StaticPageCtrl'
 			})
 			.state('taxes', {
 				url: '/taxes',
 				templateUrl: 'templates/localizationPage.html',
-				controller: ['$location', '$scope', function($location, $scope) {
-					$scope.pageName = $location.path().replace("/", "");
-				}],
+				controller: 'StaticPageCtrl'
 			})
 			.state('terms', {
 				url: '/terms',
-				templateUrl: 'templates/terms.html',
-				controller: 'TermsCtrl'
+				templateUrl: 'templates/localizationPage.html',
+				controller: 'StaticPageCtrl'
 			})
 			.state('new-terms', { // duplicate of previous, redirected to classic terms, keep for some time, then remove pls
 				url: '/new-terms',
-				templateUrl: 'templates/terms.html',
-				controller: 'TermsCtrl'
-			})
-			.state('about', {
-				url: '/about',
 				templateUrl: 'templates/terms.html',
 				controller: 'TermsCtrl'
 			})

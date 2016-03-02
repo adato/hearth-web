@@ -1,8 +1,8 @@
 // foundation breakpoint for large screens 
 @media #{$large-up} {
-	body .main-container {
+	.main-container {
 		max-width: 960px;
-		padding: 0 2*$ui-small-grid-size;
+		padding: 0 10px;
 		margin-top: 80px !important;
 	}
 	#navigation {
@@ -43,18 +43,17 @@
 
 // small screens only
 @media #{$medium-down} {
-
 	.main-container.with-search-bar {
 		margin-top: 149px !important;
-		transition:margin .4s  cubic-bezier(.58,.02,.53,1); // cubic bezier because of jQuery-like swing animation
+		transition: margin .4s  cubic-bezier(.58,.02,.53,1); // cubic bezier because of jQuery-like swing animation
 	}
 
 	.main-container {
 		margin-top: 99px !important;
-		min-width: unset !important;
+		min-width: initial !important;
 		width: 100%;
-		padding: 0 $ui-small-grid-size;
-		transition:max-height,margin .4s  cubic-bezier(.58,.02,.53,1);
+		padding: 0 10px;
+		transition: max-height,margin .4s  cubic-bezier(.58,.02,.53,1);
 	}
 }
 @media #{$small-only} {
@@ -149,3 +148,19 @@
 	overflow-y:hidden;
 }
 .fixed { position:fixed; }
+
+
+@media (min-width: 50.063em){
+	.medium-display-table{display: table; width: 100%; word-break: break-all; word-break: break-word;}
+	.medium-display-table-row{display: table-row;}
+	.medium-display-table-row.cells-padded > .medium-display-table-cell:first-child:last-child,
+	.medium-display-table-row.cells-padded > .medium-display-table-cell:last-child{padding-right: 0;}
+	.medium-display-table-row.cells-padded > .medium-display-table-cell{padding-right: 1.25rem;}
+	.medium-display-table-cell{display: table-cell; vertical-align: top;}
+	.medium-display-table-cell.addon{width: 1%;}
+	.medium-display-table-cell.cell-text-right{text-align: right;}
+	.medium-display-table-cell.nowrap-addon{width: 1%; white-space: nowrap;}
+
+	.form-table .medium-display-table-cell{padding-bottom: .625rem;}
+	.form-table .medium-display-table-cell:first-child{text-align: right;}
+}
