@@ -62,18 +62,16 @@ angular.module('hearth.services').factory('Filter', [
 
 				$rootScope.$broadcast("filterApplied", filterData);
 			},
-			getFilterPostCount: function(filter, cb) {
+			getFilterCount: function(filter, cb) {
 				filter = filter || {};
 				filter.counters = true;
 
 				Post.query(filter, function(res) {
 					var count = 0;
 					var counter = res.counters;
-					for (var k in counter) {
-						if (counter.hasOwnProperty(k)) {
-							count += counter[k];
-						}
-					}
+					Object.keys(counter).forEach(function(key) {
+						count += counter[key];
+					});
 					cb(count);
 				});
 			},

@@ -1,4 +1,4 @@
-<article class="item-common temp-padding">
+<article class="item-common temp-padding bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
 		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted)'>
@@ -20,7 +20,7 @@
 				<div class="column small-12 large-8" ng-init="local.showMap = false">
 					<section class="box padding-none margin-bottom-large">
 						<div class='box-content'>
-							<header class="row">
+							<header class="item-section row">
 								<div class="column small-8 small-push-4 medium-4 medium-push-8 text-right nowrap">
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
@@ -31,8 +31,7 @@
 												<i class='fa fa-fw fa-chevron-down'></i>
 											</span>
 										</div>
-
-										<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;">
+										<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
 											<li>
 												<!-- bookmark post -->
 												<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
@@ -48,6 +47,13 @@
 											<li>
 												<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 											</li>
+
+											<!-- admin only -->
+											<hr ng-if=':: canEditPosts' />
+											<li>
+												<a ng-if=':: canEditPosts' ng-click="(isActive ? confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("AD_PAUSE_LABEL" | translate) : ("AD_RESUME_LABEL" | translate))}}</a>
+											</li>
+											<!-- /admin only -->
 										</ul>
 									</div>
 								</div>
@@ -67,43 +73,45 @@
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 								</div>
 							</header>
-							<div class="text-container">
-								<p ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
+							<div class="item-section text-container">
+								<p class="margin-none" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 							</div>
-							<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length">
+							<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
 								<li ng-repeat="photo in item.attachments_attributes track by $index">
 									<a class="fancy" ng-href="{{ photo.large }}" rel="{{ item._id }}">
-										<img ng-src="{{photo.normal}}">
+										<img ng-src="{{photo.normal}}" />
 									</a>
 								</li>
 							</ul>
-							<div ng-if="!item.location_unlimited">
-								<div class='display-flex flex-space-between flex-wrap'>
-									<div>
-										<span class='text-emphasize'>{{:: 'POSTS.DETAIL.LOCATION_HEADING' | translate }}</span>
+							<div class="item-section">
+								<div ng-if="!item.location_unlimited">
+									<div class='display-flex flex-space-between flex-wrap'>
+										<div>
+											<span class='text-emphasize'>{{:: 'POSTS.DETAIL.LOCATION_HEADING' | translate }}</span>
+										</div>
+										<div class="map-expand-toggle" ng-if="item.locations.length && !item.location_unlimited" ng-init="local.showMap = !isMine && item.locations && item.locations.length && !item.location_unlimited">
+											<a ng-show="!local.showMap" ng-click="local.showMap = true">{{:: 'POSTS.DETAIL.SHOW_MAP' | translate }}
+												<i class="fa fa-chevron-down"></i>
+											</a>
+											<a ng-show="local.showMap" ng-click="local.showMap = false">{{:: 'POSTS.DETAIL.HIDE_MAP' | translate }}
+												<i class="fa fa-chevron-up"></i>
+											</a>
+										</div>
 									</div>
-									<div class="map-expand-toggle" ng-if="item.locations.length && !item.location_unlimited" ng-init="local.showMap = !isMine && item.locations && item.locations.length && !item.location_unlimited">
-										<a ng-show="!local.showMap" ng-click="local.showMap = true">{{:: 'POSTS.DETAIL.SHOW_MAP' | translate }}
-											<i class="fa fa-chevron-down"></i>
-										</a>
-										<a ng-show="local.showMap" ng-click="local.showMap = false">{{:: 'POSTS.DETAIL.HIDE_MAP' | translate }}
-											<i class="fa fa-chevron-up"></i>
-										</a>
+									<div class='margin-bottom-small'>
+										<ul class="no-list">
+											<li ng-if="item.location_unlimited">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE' | translate }}</li>
+											<li ng-repeat="(locationId, location) in item.locations">
+												{{ location.address }}
+											</li>
+										</ul>
 									</div>
+									<mapitems ng-if="local.showMap" class="map" style="height:300px;" items="item.locations" zoom-on-scroll="false"></mapitems>
 								</div>
-								<div class='margin-bottom-small'>
-									<ul class="no-list">
-										<li ng-if="item.location_unlimited" class="location-anywhere">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE' | translate }}</li>
-										<li ng-repeat="(locationId, location) in item.locations">
-											{{ location.address }}
-										</li>
-									</ul>
-								</div>
-								<mapitems ng-if="local.showMap" class="map" style="height:300px;" items="item.locations" zoom-on-scroll="false"></mapitems>
+								<div class="text-emphasize" ng-if="item.location_unlimited">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE_HEADING' | translate }}</div>
 							</div>
-							<span class='text-emphasize' ng-if="item.location_unlimited">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE_HEADING' | translate }}</span>
-							<div class="tags" ng-if="item.keywords.length">
-								<ul class="tagList margin-bottom-none">
+							<div class="item-section tags" ng-if="item.keywords.length">
+								<ul class="tagList">
 									<li ng-repeat="tag in item.keywords">{{tag}}</li>
 								</ul>
 							</div>
@@ -185,7 +193,6 @@
 								<p>{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</p>
 							</div>
 						</header>
-
 						<article ng-repeat="(id, item) in replies track by item._id" class='box-section'>
 							<section class='display-table'>
 								<div class='display-table-cell addon user'>
@@ -325,7 +332,6 @@
 						</div>
 					</div>
 				</div>
-				<!--/profile column-->
 			</div>
 		</section>
 	</div>

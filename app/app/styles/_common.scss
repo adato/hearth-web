@@ -70,12 +70,9 @@
 		}
 	}
 	/* /todo */
-	header,
-	header.row{
-		margin-bottom: $size-medium;
-	}
+
 	.box-content{
-		padding: $size-large $size-large $size-medium;
+		padding: $size-large $size-large 0;
 
 		a{
 			color: $colorSecondary;
@@ -105,10 +102,10 @@
 				padding-top: $size-small;
 				padding-right: $size-big;
 				
-				.avatar img{
+/*				.avatar img{
 					width: 3.75rem;
 					height: 3.75rem;
-				}
+				}*/
 			}
 		}
 	}
