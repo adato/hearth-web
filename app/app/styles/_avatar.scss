@@ -5,79 +5,67 @@ $medium-avatar-size: 150px;
 $large-avatar-size: 295px;
 
 .avatar {
+	position: relative;
 	display: inline-block;
 	border-radius: 50%;
-	position: relative;
 	background-size: cover;
-	border-radius: 50%;
 
-	&>* {
+	.avatar-image{
+		display: block;
 		border-radius: 50%;
-		display: block !important;
-		padding: 0px;
-		overflow: hidden;
-		border-radius: 50%;
+		background-size: cover;
 	}
+	/* needs better placement */
+/*	&.purify-edges > .avatar-image{
+		box-shadow: 0 0 0 1px #fff;
+	}*/
+	/* / */
 
-	&>* > img {
-		border-radius: 50%;
-	}
-	
-	/** == Shade == */
-	& > *::before {
-		position: absolute;
+	/** == Shade & height == */
+	.avatar-image::before {
 	    content: '';
-	    width: 100%;
-	    top: 0;
-	    left:0;
-	    padding-top: 100%;
-	    height: 100%;
 	    display: block;
+	    padding-top: 100%;
 		border-radius: 50%;
-		box-shadow: inset -3px 3px 6px rgba(black, 0.5);
+		box-shadow: -3px 3px 6px rgba(0,0,0,.5) inset;
 	}
 
 	/** == Default avatars == */
-	&.avatar-user {
-		background-image: url(../images/no-avatar.jpg);
+	&.avatar-user{
+		background-image: url('../images/no-avatar.jpg');
 	}
-	&.avatar-community {
-		background-image: url(../images/no-cm-avatar.jpg);
+	&.avatar-community{
+		background-image: url('../images/no-cm-avatar.jpg');
 	}
+
 
 	/** == Size definitions == */
-	&.avatar-small > * {
-		width: $small-avatar-size;
-		height: $small-avatar-size;
-	}
-
-	&.avatar-normal > * {
-		width: $normal-avatar-size;
-		height: $normal-avatar-size;
-	}
-
-	&.avatar-medium > * {
-		width: $medium-avatar-size;
-		height: $medium-avatar-size;
-	}
-
-	&.avatar-large > * {
-		width: $large-avatar-size;
-		height: $large-avatar-size;
-	}
-
 	&.avatar-mini {
+		width: $mini-avatar-size;
+
 		&.move-bot {
 			top: 6px;
 		}
-		
-		&>* {
-			width: $mini-avatar-size;
-			height: $mini-avatar-size;
-		}
 	}
-
+	&.avatar-small{
+		width: $small-avatar-size;
+	}
+	&.avatar-normal{
+		width: $normal-avatar-size;
+	}
+	&.avatar-medium{
+		width: $medium-avatar-size;
+	}
+	&.avatar-large{
+		width: $large-avatar-size;
+	}
 	&.margin-right {
 		margin-right: 10px;
+	}
+
+	@media #{$small-down}{
+		&.small-avatar-small{
+			width: $small-avatar-size !important;
+		}
 	}
 }
