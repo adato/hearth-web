@@ -1,4 +1,4 @@
-<div class="avatar" ng-class="[class, (src ? 'purify-edges' : '')]">
+<div class="avatar" ng-class="class">
 	<a class="avatar-image" ng-if="href" ng-href="{{ href }}" ng-style="{ true : {'background-image': 'url(' + src + ')'}, false:  {} }[!!src]"></a>
 	<div class="avatar-image" ng-if="!href" ng-style="{ true : {'background-image': 'url(' + src + ')'}, false:  {} }[!!src]"></div>
 </div>

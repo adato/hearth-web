@@ -15,9 +15,12 @@ $large-avatar-size: 295px;
 		border-radius: 50%;
 		background-size: cover;
 	}
-	&.purify-edges > .avatar-image{
+	/* needs better placement */
+/*	&.purify-edges > .avatar-image{
 		box-shadow: 0 0 0 1px #fff;
-	}
+	}*/
+	/* / */
+
 	/** == Shade & height == */
 	.avatar-image::before {
 	    content: '';

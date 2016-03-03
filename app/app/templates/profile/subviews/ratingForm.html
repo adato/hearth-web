@@ -42,7 +42,7 @@
 		</strong>
 		<button type="submit" class="button right" ng-class="{ 'positive': rating.score == true, 'negative': rating.score == false, 'neutral': isNull(rating.score)}">
 			{{:: 'SEND_USER_RATING' | translate }} &nbsp;
-			<i class="score-icon fa" ng-class="{'icon-rating-negative': !rating.score,'icon-rating-positive': rating.score}"></i>
+			<i class="score-icon fa" ng-hide="isNull(rating.score)" ng-class="{'icon-rating-negative': rating.score == false,'icon-rating-positive': rating.score}"></i>
 		</button>
 	</form>
 </div>
