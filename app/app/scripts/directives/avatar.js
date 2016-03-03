@@ -19,21 +19,8 @@ angular.module('hearth.directives').directive('avatar', [
 				'href': '='
 			},
 			templateUrl: 'templates/directives/avatar.html',
-			link: function($scope, el, attrs) {
-				$scope.defaultImageTypeClass = 'avatar-user';
-				// $scope.defaultImageType = $$config.defaultUserAvatar;
-				$scope.class = "avatar-" + ($scope.size || 'normal');
-
-				console.log($scope);
-				$scope.$watch('type', function(val) {
-					// $scope.defaultImageType = val === 'Community' ? $$config.defaultCommunityAvatar : $$config.defaultUserAvatar;
-					$scope.defaultImageTypeClass = (val === 'Community') ? 'avatar-community' : 'avatar-user';
-					console.log($scope.defaultImageTypeClass);
-				});
-
-				$scope.$watch('src', function(val) {
-					$scope.image = val || null;
-				});
+			link: function($scope) {
+				$scope.class = "avatar-" + ($scope.size || 'normal') + ' ' + (($scope.type === 'Community') ? 'avatar-community' : 'avatar-user');
 			}
 		};
 	}
