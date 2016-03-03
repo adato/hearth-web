@@ -60,11 +60,15 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 		};
 
 		$scope.load = function(addOffset) {
-			var params = {
+			var params = $.extend({
 				limit: 15,
-				query: $stateParams.query || "",
 				offset: (addOffset) ? $scope.items.length : 0
-			};
+			}, $location.search() || {});
+
+			if (!params.query || params.query === '') {
+				// dont search empty query and redirect to marketplace
+				$location.path('/');
+			}
 
 			$rootScope.setFulltextSearch($stateParams.query);
 
@@ -73,23 +77,14 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 				return false;
 			}
 
-			if (params.query === '') {
-				// dont search empty query and redirect to marketplace
-				$location.path('/');
-			}
-
 			if (deleteOffset) {
 
 				delete params.offset;
 				deleteOffset = false;
 			}
 
-			$scope.queryText = params.query;
 			$scope.loaded = false;
-
-			if ($location.search().type) {
-				params = $.extend(params, $location.search() || {});
-			}
+			$scope.queryText = params.query;
 			$scope.selectedFilter = $location.search().type || 'all';
 
 			$("#fulltextSearchResults").addClass("searchInProgress");
