@@ -67,22 +67,14 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			return true;
 		};
 
-		$scope.validateInvitationForm = function(data) {
+		function validateInvitationForm(data) {
 			var invalid = false;
-
-			if (!data.to_email) {
-				invalid = $scope.showError.to_email = true;
-			}
-
-			// is message filled?
-			if (!data.message) {
-				invalid = $scope.showError.message = true;
-			}
-
+			if (!data.to_email) invalid = $scope.showError.to_email = true;
+			if (!data.message) invalid = $scope.showError.message = true;
 			return !invalid;
 		};
 
-		$scope.transformInvitationOut = function(data) {
+		function transformInvitationOut(data) {
 			if (data.to_email) {
 				data.to_email = $.map(data.to_email, function(value, index) {
 					return value.text;
@@ -91,7 +83,27 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			return data;
 		};
 
+		$scope.invitationsStatus = [];
+		$scope.validateEmailAddress = function(tag) {
+			//console.log(tag);
+			Invitation.check({
+				email: tag.text
+			}, function(res) {
+				console.log(tag.text, res);
+				if (res.invited || res.existing) {
+					//vypsat to nekde
+					// var intel = {email: tag.text};
+					// intel[(res.existing ? 'existing' : 'invited')] = true;
+					// $scope.invitationsStatus.push(intel);
+				}
+			});
+		};
+		$scope.removeFromInvitationsStatus = function(tag){
+			
+		};
+
 		function handleEmailResult(res) {
+			console.log(res);
 			$rootScope.globalLoading = false;
 			$scope.sending = false;
 			res.ok && $scope.showFinished();
@@ -100,20 +112,18 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.sendEmailInvitation = function(data) {
 			var dataOut;
 
-			if (!$scope.validateInvitationForm(data) || $scope.sending) {
-				return false;
-			}
+			if (!validateInvitationForm(data) || $scope.sending) return false;
 
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 			// split emails to array and copy it to new object
-			dataOut = $scope.transformInvitationOut(angular.copy(data));
+			dataOut = transformInvitationOut(angular.copy(data));
 			Invitation.add({
 				invitation: dataOut
 			}, handleEmailResult);
 		};
 
-		$scope.initForm = function() {
+		function initForm() {
 			angular.forEach($scope.showError, function(value, key) {
 				$scope.showError[key] = false;
 			});
@@ -126,12 +136,12 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
 			$scope.inv = {
 				message: '',
-				to_email: '',
+				to_email: ''
 			};
 
 			$scope.showError = {
 				message: false,
-				to_email: false,
+				to_email: false
 			};
 
 			$scope.sent = false;
@@ -139,7 +149,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
 		// function will show or hide email form
 		$scope.toggleEmailForm = function() {
-			$scope.initForm();
+			initForm();
 			$scope.showEmailForm = !$scope.showEmailForm;
 		};
 

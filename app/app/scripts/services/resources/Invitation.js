@@ -17,6 +17,12 @@ angular.module('hearth.services').factory('Invitation', [
 					code: 'NOTIFY.EMAIL_INVITATION_FAILED',
 					container: ".invite-box-notify"
 				}
+			},
+			check: {
+				method: 'GET',
+				params: {
+					email: '@email'
+				}
 			}
 		});
 	}
