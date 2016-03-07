@@ -33,7 +33,24 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					name: false,
 					locations: false,
 					description: false,
+					social_networks: [],
 				};
+
+				$scope.socialNetworks = {
+					'twitter': {
+						'url': 'twitter.com\/.*'
+					},
+					'facebook': {
+						'url': 'facebook.com\/.*'
+					},
+					'linkedin': {
+						'url': 'linkedin.com\/.*'
+					},
+					'googleplus': {
+						'url': 'plus.google.com\/.*'
+					}
+				};
+
 				$scope.community = {};
 
 				$scope.confirmBox = $rootScope.confirmBox;
@@ -65,14 +82,15 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 					return $scope.community.admin === $rootScope.loggedUser._id;
 				};
-				$scope.loadCommunity = function(id) {
+
+				$scope.loadCommunity = function(id, callback) {
 					Community.get({
 						_id: id
 					}, function(res) {
 						$scope.community = res;
 						if ($scope.checkOwnership($scope.community)) {
-
 							$scope.loaded = true;
+							if (callback !== undefined) callback();
 						} else {
 							$location.path('/community/' + $scope.community._id);
 						}
@@ -95,6 +113,53 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					return $stateParams.id;
 				};
 
+				$scope.prepareDataIn = function() {
+					if (!$scope.community.webs || !$scope.community.webs.length) {
+						$scope.community.webs = [''];
+					}
+				}
+
+				$scope.prepareDataOut = function(data) {
+					var webs = [];
+					data.webs.forEach(function(web) {
+						if (web) webs.push(web);
+					});
+					data.webs = webs;
+					return data;
+				}
+
+				$scope.updateUrl = function($event, model, key) {
+					var input = $($event.target),
+						url = input.val();
+
+					if (url && !url.match(/http[s]?:\/\/.*/)) {
+						url = 'https://' + url;
+					}
+
+					if (model !== $scope.community.webs) {
+						// editing social network, not webs
+						if (url && ($scope.socialNetworks[key] === undefined || !url.match(new RegExp($scope.socialNetworks[key].url)))) {
+							$scope.showError.social_networks[key] = true;
+						} else {
+							$scope.showError.social_networks[key] = false;
+						}
+					}
+
+					model[key] = url;
+				};
+
+
+				$scope.validateSocialNetworks = function() {
+					var isOk = true;
+					Object.keys($scope.socialNetworks).forEach(function(networkName) {
+						if ($scope.community[networkName] && !$scope.community[networkName].match($scope.socialNetworks[networkName].url)) {
+							$scope.showError.social_networks[networkName] = true;
+							isOk = false;
+						}
+					});
+					return isOk;
+				};
+
 				$scope.validate = function(data) {
 					var err = false;
 
@@ -104,6 +169,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 					if ($scope.communityForm.description.$invalid) {
 						$scope.showError.description = err = true;
+					}
+
+					if (!$scope.validateSocialNetworks()) {
+						err = true;
 					}
 
 					return !err; // return true if valid
@@ -123,7 +192,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.sending = true;
 					$rootScope.globalLoading = true;
 
-					service($scope.community, function(res) {
+					service($scope.prepareDataOut($scope.community), function(res) {
 						$rootScope.globalLoading = false;
 						$rootScope.$broadcast("reloadCommunities");
 						$location.path('/community/' + res._id);
@@ -219,7 +288,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.pluralCat = $rootScope.pluralCat;
 
 					if ($scope.getCommunityId()) {
-						$scope.loadCommunity($scope.getCommunityId());
+						$scope.loadCommunity($scope.getCommunityId(), $scope.prepareDataIn);
 					} else {
 						$scope.fillDefaultCommunity();
 					}

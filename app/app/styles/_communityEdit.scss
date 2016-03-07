@@ -13,3 +13,10 @@
 .community-settings {
 	@extend .common-profile-settings;
 }
+
+
+#communityForm section.who textarea, 
+#communityForm section .interests-input textarea {
+	min-height:70px;
+	height:70px;
+}
