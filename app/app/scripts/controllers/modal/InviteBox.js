@@ -22,9 +22,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
 		$scope.showFinished = function() {
 			$(".invite-form").slideToggle();
-			timeoutClose = setTimeout(function() {
-				$scope.closeThisDialog();
-			}, 5000);
+			// timeoutClose = setTimeout(function() {
+			// 	$scope.closeThisDialog();
+			// }, 5000);
 		};
 
 		$scope.init = function() {
@@ -98,15 +98,14 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		itemStatusTemperVocabulary[STATUS_ALREADY_EXISTING] = 'error';
 
 		$scope.itemStatusIconVocabulary = {}
-		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS]] = 'fa fa-check';
-		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_INVITED]] = 'fa fa-exclamation-triangle text-danger';
-		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_EXISTING]] = 'fa fa-exclamation-circle text-error';
+		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS]] = 'fa fa-fw fa-check text-success';
+		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_INVITED]] = 'fa fa-fw fa-exclamation-triangle text-warning';
+		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_EXISTING]] = 'fa fa-fw fa-exclamation-circle text-danger';
 
 		$scope.invitationsStatus = [];
 
 		//expects an object with property text (containing an email address) to be bound to 'this'.
 		function processInvitationCheckResponse(res) {
-			console.log(res);
 			// on reject(422), whole response object is returned, but we are only interested in data
 			if (res.config && res.status) res = res.data;
 			// only notify on already invited or already existing emails
@@ -126,7 +125,12 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			}, processInvitationCheckResponse.bind(tag), processInvitationCheckResponse.bind(tag));
 		};
 		$scope.removeFromInvitationsStatus = function(tag) {
-
+			for (var i = $scope.invitationsStatus.length; i--;) {
+				if ($scope.invitationsStatus[i].email === tag.text) {
+					$scope.invitationsStatus.splice(i, 1);
+					break;
+				}
+			}
 		};
 
 		function handleEmailResult(res) {

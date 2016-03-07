@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div ng-show='invitationsStatus.length'>
-				<ul class='default-list with-icons margin-bottom-none margin-top-small'>
+				<ul class='list margin-bottom-none margin-top-small'>
 					<li ng-repeat="item in invitationsStatus">
 						<i ng-class='itemStatusIconVocabulary[item.status]'></i>
 						<span translate='{{item.text}}' translate-values="{email: item.email}"></span>
@@ -73,8 +73,9 @@
 			<span>{{:: 'SEND_INVITE_SUCCESS' | translate }}</span>
 			<br />
 			<br />
-			<button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>
-			<span>&lt;-TRANSLATION MISSING</span>
+			<div class='flex flex-reverse margin-top-medium'>
+				<button class="primary button-send pointer" ng-click="closeThisDialog()" translate='CLOSE'></button>
+			</div>
 		</div>
 	</div>
 	<div class="clear"></div>
