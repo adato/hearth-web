@@ -88,28 +88,28 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			return data;
 		};
 
-		var STATUS_INVITE_SUCCESS = 'invite_success',
-			STATUS_ALREADY_INVITED = 'invited', //API delivers this, only change if API changes
-			STATUS_ALREADY_EXISTING = 'existing', //API delivers this, only change if API changes
-			STATUS_NOT_SENT = 'not_sent'; //assigned if API did not succeed to send email to that email
+		var STATUS_INVITE_SUCCESS = 'invite_success';
+		var STATUS_ALREADY_INVITED = 'invited'; //API delivers this, only change if API changes
+		var STATUS_ALREADY_EXISTING = 'existing'; //API delivers this, only change if API changes
+		//var STATUS_NOT_SENT = 'not_sent'; //assigned if API did not succeed to send email to that email | currently not used
 
 		var itemStatusTextVocabulary = {};
 		itemStatusTextVocabulary[STATUS_INVITE_SUCCESS] = 'INVITATION_STATUS.INVITATION_SENT';
 		itemStatusTextVocabulary[STATUS_ALREADY_INVITED] = 'INVITATION_STATUS.USER_ALREADY_INVITED';
 		itemStatusTextVocabulary[STATUS_ALREADY_EXISTING] = 'INVITATION_STATUS.USER_ALREADY_EXIST';
-		itemStatusTextVocabulary[STATUS_NOT_SENT] = 'INVITATION_STATUS.INVITATION_NOT_SENT';
+		//itemStatusTextVocabulary[STATUS_NOT_SENT] = 'INVITATION_STATUS.INVITATION_NOT_SENT'; // currently not used
 
 		var itemStatusTemperVocabulary = {};
 		itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS] = 'success';
 		itemStatusTemperVocabulary[STATUS_ALREADY_INVITED] = 'warning';
 		itemStatusTemperVocabulary[STATUS_ALREADY_EXISTING] = 'error';
-		itemStatusTemperVocabulary[STATUS_NOT_SENT] = 'error';
+		// itemStatusTemperVocabulary[STATUS_NOT_SENT] = 'error'; // currently not used
 
 		$scope.itemStatusIconVocabulary = {}
-		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS]] = 'fa fa-fw fa-check color-success';
+		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS]] = 'fa fa-fw fa-check text-success';
 		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_INVITED]] = 'fa fa-fw fa-exclamation-triangle text-warning';
 		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_EXISTING]] = 'fa fa-fw fa-exclamation-circle text-danger';
-		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_NOT_SENT]] = 'fa fa-fw fa-exclamation-circle text-danger';
+		// $scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_NOT_SENT]] = 'fa fa-fw fa-exclamation-circle text-danger'; // currently not used
 
 		$scope.invitationsStatus = [];
 
@@ -138,32 +138,32 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			for (var i = 0, l = invitationStatusTemp.length; i < l; i++) {
 				assigned = false;
 				var item = {
-					status: null,
-					text: null,
-					email: invitationStatusTemp[i].email
-				}
-				for (var j = responseObj.invited_emails.length; j--;) {
-					if (invitationStatusTemp[i].email === responseObj.invited_emails[j]) {
-						item.status = itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS];
-						item.text = itemStatusTextVocabulary[STATUS_INVITE_SUCCESS];
+						status: null,
+						text: null,
+						email: invitationStatusTemp[i].email
+					}
+					// for (var j = responseObj.invited_emails.length; j--;) {
+					// 	if (invitationStatusTemp[i].email === responseObj.invited_emails[j]) {
+					// 		item.status = itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS];
+					// 		item.text = itemStatusTextVocabulary[STATUS_INVITE_SUCCESS];
+					// 		assigned = true;
+					// 		break;
+					// 	}
+					// }
+					// if (!assigned) {
+				for (var j = responseObj.existing_emails.length; j--;) {
+					if (invitationStatusTemp[i].email === responseObj.existing_emails[j]) {
+						item.status = itemStatusTemperVocabulary[STATUS_ALREADY_INVITED];
+						item.text = itemStatusTextVocabulary[STATUS_ALREADY_EXISTING];
 						assigned = true;
+						errsOrWarns = true;
 						break;
 					}
 				}
+				// }
 				if (!assigned) {
-					for (var j = responseObj.existing_emails.length; j--;) {
-						if (invitationStatusTemp[i].email === responseObj.existing_emails[j]) {
-							item.status = itemStatusTemperVocabulary[STATUS_ALREADY_INVITED];
-							item.text = itemStatusTextVocabulary[STATUS_ALREADY_EXISTING];
-							assigned = true;
-							errsOrWarns = true;
-							break;
-						}
-					}
-				}
-				if (!assigned) {
-					item.status = itemStatusTemperVocabulary[STATUS_NOT_SENT];
-					item.text = itemStatusTextVocabulary[STATUS_NOT_SENT];
+					item.status = itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS];
+					item.text = itemStatusTextVocabulary[STATUS_INVITE_SUCCESS];
 					errsOrWarns = true;
 				}
 				arr.push(item);
@@ -198,7 +198,15 @@ angular.module('hearth.controllers').controller('InviteBox', [
 
 			//clear invitation summary items but keep them for when reponse
 			//arrives and difference analysis can be done
-			invitationStatusTemp = (function(data){var arr = [];for(var i = 0, l = data.to_email.length;i<l;i++){arr.push({email: data.to_email[i].text})}return arr;})(data);
+			invitationStatusTemp = (function(data) {
+				var arr = [];
+				for (var i = 0, l = data.to_email.length; i < l; i++) {
+					arr.push({
+						email: data.to_email[i].text
+					})
+				}
+				return arr;
+			})(data);
 			$scope.invitationsStatus = [];
 
 			$scope.sending = true;

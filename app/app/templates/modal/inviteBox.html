@@ -72,7 +72,6 @@
 			<h3>{{:: 'FRIEND_INVITATION' | translate }}</h3>
 			<span>{{:: 'SEND_INVITE_SUCCESS' | translate }}</span>
 
-			<!-- DUPLICATE CODE -->
 			<div ng-show='invitationsStatus.length'>
 				<ul class='list margin-bottom-none margin-top-small'>
 					<li ng-repeat="item in invitationsStatus">
@@ -85,7 +84,6 @@
 					</li>
 				</ul>
 			</div>
-			<!-- /DUPLICATE CODE -->
 
 			<div class='display-flex flex-reverse margin-top-medium'>
 				<button class="button-send" ng-click="closeThisDialog()" translate='CLOSE'></button>
