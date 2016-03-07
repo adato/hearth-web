@@ -1363,5 +1363,15 @@
 		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
 		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je!",
 		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný email?"
-	}
+	},
+	"COMMUNITY_MOTTO": "Motto komunity",
+	"COMMUNITY_MOTTO_EXAMPLE": "Zadej motto komunity",
+	"ERR_COMMUNITY_MOTTO_MAX_LENGTH": "Motto je příliš dlouhé",
+	"OUR_FACEBOOK": "Facebook",
+	"OUR_TWITTER": "Twitter",
+	"OUR_GOOGLEPLUS": "Google+",
+	"OUR_WEB": "Web",
+	"COMMUNITY_INTERESTS": "Zájmy",
+	"COMMUNITY_INTERESTS_EXAMPLE": "Zadejte klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
+	"OUR_NETWORKS": "Sociální sítě a weby"
 }

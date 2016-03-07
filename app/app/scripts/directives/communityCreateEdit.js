@@ -124,7 +124,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						data.webs = webs;
 					}
 					if (data.webs !== undefined) prepareWebs(data);
-					data.interests = (data.interests.split ? data.interests.split(",") : []);
+					if (data.interests !== undefined) data.interests = data.interests.split(",");
 					return data;
 				};
 
