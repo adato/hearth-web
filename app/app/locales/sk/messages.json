@@ -1389,5 +1389,11 @@
 	"CHANGE_ATTACHMENT": "Zmeniť súbor",
 	"ERR_RATING_SCORE_REQUIRED": "Než hodnocení odešleš, je potřeba zvolit jeho hodnotu",
 	"ERR_SOCIAL_NETWORK_NAME": "Odkaz na sociální sítě není platný.",
-	"APP_CRITICAL_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.<\/p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu<\/a>.<\/p>"
+	"APP_CRITICAL_ERROR": "<p>Při nač&iacute;t&aacute;n&iacute; Hearth.net&nbsp;do&scaron;lo k chybě.<\/p>\n<p>Zkus&nbsp;pros&iacute;m chv&iacute;li počkat a pak nač&iacute;st str&aacute;nku&nbsp;<a href=\".\">znovu<\/a>.<\/p>",
+	"INVITATION_STATUS": {
+		"INVITATION_SENT": "{{email}}: Pozvánka úspěšně odeslána",
+		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
+		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je!",
+		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný email?"
+	}
 }

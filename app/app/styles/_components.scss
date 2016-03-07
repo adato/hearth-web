@@ -86,8 +86,18 @@
 	display: flex;
 	align-items: center;
 }
+.flex-reverse{
+	flex-direction: row-reverse;
+}
+.flex-column{
+	flex-direction: column;
+}
 .flex-space-between{
 	justify-content: space-between;
+}
+.flex-stretch-content{
+	align-content: stretch;
+	align-items: stretch;
 }
 .flex-wrap{
 	flex-wrap: wrap;
@@ -183,6 +193,15 @@ a.word-break{
 	list-style: none;
 	margin: 0;
 }
+.list{
+	list-style: none;
+	margin: 0;
+
+	& > li{
+		display: block !important;
+		padding: 0 !important;
+	}
+}
 /* /LIST */
 
 /* PADDING */
@@ -260,6 +279,11 @@ a.word-break{
 .color-secondary{color: $colorSecondary;}
 .color-dark-gray{color: $colorDarkGray;}
 .color-light-gray{color: $colorLightGray;}
+
+.text-danger{color: $colorDanger;}
+.text-warning{color: $colorWarning;}
+.text-muted{color: $colorLightGray;}
+.text-success{color: $colorSuccess;}
 
 .background-offer{background-color: $colorOffer;}
 .background-need{background-color: $colorNeed;}
