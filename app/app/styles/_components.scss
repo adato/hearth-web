@@ -183,6 +183,15 @@ a.word-break{
 	list-style: none;
 	margin: 0;
 }
+.list{
+	list-style: none;
+	margin: 0;
+
+	& > li{
+		display: block;
+		padding: $size-tiny $size-small;
+	}
+}
 /* /LIST */
 
 /* PADDING */
@@ -260,6 +269,10 @@ a.word-break{
 .color-secondary{color: $colorSecondary;}
 .color-dark-gray{color: $colorDarkGray;}
 .color-light-gray{color: $colorLightGray;}
+
+.text-danger{color: $colorDanger;}
+.text-warning{color: $colorWarning;}
+.text-muted{color: $colorLightGray;}
 
 .background-offer{background-color: $colorOffer;}
 .background-need{background-color: $colorNeed;}
