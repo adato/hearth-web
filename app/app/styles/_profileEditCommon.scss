@@ -88,7 +88,11 @@
 			margin: 5px 0;
 			padding: 5px 5px;
 		}
- 		}
+		&.social {
+			&>div { min-height: 80px; display: block; margin-bottom:10px; }
+			.error {margin-top:5px;}
+		}
+	}
 	.revert-changes {
 		color: #3FACED;
 		font-weight: bold;
