@@ -22,7 +22,8 @@ angular.module('hearth.services').factory('Invitation', [
 				method: 'GET',
 				params: {
 					email: '@email'
-				}
+				},
+				errorNotify: false
 			}
 		});
 	}

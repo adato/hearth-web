@@ -47,6 +47,14 @@
 					<span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
 				</div>
 			</div>
+			<div ng-show='invitationsStatus.length'>
+				<ul class='default-list with-icons margin-bottom-none margin-top-small'>
+					<li ng-repeat="item in invitationsStatus">
+						<i ng-class='itemStatusIconVocabulary[item.status]'></i>
+						<span translate='{{item.text}}' translate-values="{email: item.email}"></span>
+					</li>
+				</ul>
+			</div>
 			<div>
 				<label>{{:: 'PROFILE.INVITATION.MESSAGE' | translate }}</label>
 				<input-max-length input-type="textarea" show-counter="true" min-length="3" max-length="300" required="true" placeholder="{{'WRITE_INVITATION_BY_EMAIL_TO_YOUR_FRIENDS' | translate }}" model="inv.message" name="message"></input-max-length>
@@ -67,12 +75,6 @@
 			<br />
 			<button class="primary button-send fright pointer" ng-click="closeThisDialog()" translate>CLOSE</button>
 			<span>&lt;-TRANSLATION MISSING</span>
-			<div class="">
-				<div>invitation overview</div>
-				<ul>
-					<li ng-repeat=""></li>
-				</ul>
-			</div>
 		</div>
 	</div>
 	<div class="clear"></div>

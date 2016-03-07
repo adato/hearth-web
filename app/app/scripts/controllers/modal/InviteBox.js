@@ -57,7 +57,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				emails = angular.copy(emails).split(",");
 			}
 
-			// validate emails 
+			// validate emails
 			if (!Validators.emails(emails)) {
 				$scope.showError.to_email = true;
 				$scope.inviteForm.to_email.$error.format = true;
@@ -83,23 +83,50 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			return data;
 		};
 
+		var STATUS_INVITE_SUCCESS = 'invite_success',
+			STATUS_ALREADY_INVITED = 'invited', //API delivers this, only change if API changes
+			STATUS_ALREADY_EXISTING = 'existing'; //API delivers this, only change if API changes
+
+		var itemStatusTextVocabulary = {};
+		itemStatusTextVocabulary[STATUS_INVITE_SUCCESS] = 'INVITATION_STATUS.INVITATION_SENT';
+		itemStatusTextVocabulary[STATUS_ALREADY_INVITED] = 'INVITATION_STATUS.USER_ALREADY_INVITED';
+		itemStatusTextVocabulary[STATUS_ALREADY_EXISTING] = 'INVITATION_STATUS.USER_ALREADY_EXIST';
+
+		var itemStatusTemperVocabulary = {};
+		itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS] = 'success';
+		itemStatusTemperVocabulary[STATUS_ALREADY_INVITED] = 'warning';
+		itemStatusTemperVocabulary[STATUS_ALREADY_EXISTING] = 'error';
+
+		$scope.itemStatusIconVocabulary = {}
+		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_INVITE_SUCCESS]] = 'fa fa-check';
+		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_INVITED]] = 'fa fa-exclamation-triangle text-danger';
+		$scope.itemStatusIconVocabulary[itemStatusTemperVocabulary[STATUS_ALREADY_EXISTING]] = 'fa fa-exclamation-circle text-error';
+
 		$scope.invitationsStatus = [];
+
+		//expects an object with property text (containing an email address) to be bound to 'this'.
+		function processInvitationCheckResponse(res) {
+			console.log(res);
+			// on reject(422), whole response object is returned, but we are only interested in data
+			if (res.config && res.status) res = res.data;
+			// only notify on already invited or already existing emails
+			if (res.invited || res.existing) {
+				var status = (res.existing ? STATUS_ALREADY_EXISTING : STATUS_ALREADY_INVITED);
+				var intel = {
+					status: itemStatusTemperVocabulary[status],
+					text: itemStatusTextVocabulary[status],
+					email: this.text
+				};
+				$scope.invitationsStatus.push(intel);
+			}
+		}
 		$scope.validateEmailAddress = function(tag) {
-			//console.log(tag);
 			Invitation.check({
 				email: tag.text
-			}, function(res) {
-				console.log(tag.text, res);
-				if (res.invited || res.existing) {
-					//vypsat to nekde
-					// var intel = {email: tag.text};
-					// intel[(res.existing ? 'existing' : 'invited')] = true;
-					// $scope.invitationsStatus.push(intel);
-				}
-			});
+			}, processInvitationCheckResponse.bind(tag), processInvitationCheckResponse.bind(tag));
 		};
-		$scope.removeFromInvitationsStatus = function(tag){
-			
+		$scope.removeFromInvitationsStatus = function(tag) {
+
 		};
 
 		function handleEmailResult(res) {
