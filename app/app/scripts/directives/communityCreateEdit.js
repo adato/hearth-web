@@ -68,7 +68,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 				 * @return {array}     User list without me
 				 */
 				$scope.removeMemberFromList = function(arr, uId) {
-
 					for (var i = 0; i < arr.length; i++) {
 						if (arr[i]._id == uId) {
 							arr.splice(i, 1);
@@ -79,18 +78,17 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 				};
 
 				$scope.checkOwnership = function(community) {
-
 					return $scope.community.admin === $rootScope.loggedUser._id;
 				};
 
-				$scope.loadCommunity = function(id, callback) {
+				$scope.loadCommunity = function(id) {
 					Community.get({
 						_id: id
 					}, function(res) {
-						$scope.community = res;
+						$scope.community = prepareDataIn(res);
+
 						if ($scope.checkOwnership($scope.community)) {
 							$scope.loaded = true;
-							if (callback !== undefined) callback();
 						} else {
 							$location.path('/community/' + $scope.community._id);
 						}
@@ -109,24 +107,26 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					});
 				};
 
-				$scope.getCommunityId = function() {
-					return $stateParams.id;
+				var prepareDataIn = function(data) {
+					if (!data.webs || !data.webs.length) {
+						data.webs = [''];
+					}
+					data.interests = (data.interests) ? data.interests.join(",") : '';
+					return data;
 				};
 
-				$scope.prepareDataIn = function() {
-					if (!$scope.community.webs || !$scope.community.webs.length) {
-						$scope.community.webs = [''];
+				var prepareDataOut = function(data) {
+					var prepareWebs = function(data) {
+						var webs = [];
+						data.webs.forEach(function(web) {
+							if (web) webs.push(web);
+						});
+						data.webs = webs;
 					}
-				}
-
-				$scope.prepareDataOut = function(data) {
-					var webs = [];
-					data.webs.forEach(function(web) {
-						if (web) webs.push(web);
-					});
-					data.webs = webs;
+					if (data.webs !== undefined) prepareWebs(data);
+					data.interests = (data.interests.split ? data.interests.split(",") : []);
 					return data;
-				}
+				};
 
 				$scope.updateUrl = function($event, model, key) {
 					var input = $($event.target),
@@ -192,7 +192,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.sending = true;
 					$rootScope.globalLoading = true;
 
-					service($scope.prepareDataOut($scope.community), function(res) {
+					service(prepareDataOut($scope.community), function(res) {
 						$rootScope.globalLoading = false;
 						$rootScope.$broadcast("reloadCommunities");
 						$location.path('/community/' + res._id);
@@ -280,6 +280,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					});
 				};
 
+				$scope.getCommunityId = function() {
+					return $stateParams.id;
+				};
+
 				$scope.close2 = function() {
 					$scope.close();
 				};
@@ -288,7 +292,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.pluralCat = $rootScope.pluralCat;
 
 					if ($scope.getCommunityId()) {
-						$scope.loadCommunity($scope.getCommunityId(), $scope.prepareDataIn);
+						$scope.loadCommunity($scope.getCommunityId(), prepareDataIn);
 					} else {
 						$scope.fillDefaultCommunity();
 					}
