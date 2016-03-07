@@ -199,7 +199,7 @@ a.word-break{
 
 	& > li{
 		display: block !important;
-		padding: $size-tiny $size-small;
+		padding: 0 !important;
 	}
 }
 /* /LIST */
@@ -283,6 +283,7 @@ a.word-break{
 .text-danger{color: $colorDanger;}
 .text-warning{color: $colorWarning;}
 .text-muted{color: $colorLightGray;}
+.text-success{color: $colorSuccess;}
 
 .background-offer{background-color: $colorOffer;}
 .background-need{background-color: $colorNeed;}
