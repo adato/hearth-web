@@ -37,6 +37,17 @@
 						</label>
 					</div>
 				</section>
+				<section class="who">
+					<div class="name margin">
+						<label>
+							{{:: 'COMMUNITY_MOTTO' | translate }}
+							<input type="text" name="motto" ng-model="community.motto" class="text-input" ng-maxlength="70" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY_MOTTO_EXAMPLE' | translate }}" />
+							<div class="absolute error" ng-show="showError.motto">
+								<span ng-show="communityForm.motto.$error.maxlength">{{:: 'ERR_COMMUNITY_MOTTO_MAX_LENGTH' | translate }}</span>
+							</div>
+						</label>
+					</div>
+				</section>
 			</div>
 			<div class="clear"></div>
 			<div class="large-12 small-12 medium-12">
@@ -48,6 +59,73 @@
 				<section class="location">
 					<locations locations="community.locations" is-required="true" error-code="COMMUNITY_LOCATIONS_IS_EMPTY_STRICT" show-error="showError.locations"></locations>
 				</section>
+
+				<div ng-if="community._id">
+					<h2>
+						<span class="content">
+							<span class="fa fa-envelope"></span>{{:: 'OUR_NETWORKS' | translate }}
+						</span>
+					</h2>
+					<section class="social">
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_FACEBOOK' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://www.facebook.com/profile" ng-model="community.facebook" class="text-input" type="url" ng-blur="updateUrl($event, community, 'facebook')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['facebook']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_TWITTER' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://twitter.com/profile" ng-model="community.twitter" class="text-input" type="url" ng-blur="updateUrl($event, community, 'twitter')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['twitter']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_LINKEDIN' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://www.linkedin.com/profile" ng-model="community.linkedin" class="text-input" type="url" ng-blur="updateUrl($event, community, 'linkedin')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['linkedin']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								{{:: 'OUR_GOOGLEPLUS' | translate }}
+								<input placeholder="{{ 'EG' | translate }} https://plus.google.com/profile" ng-model="community.googleplus" class="text-input" type="url" ng-blur="updateUrl($event, community, 'googleplus')">
+							</label>
+							<div class="error" ng-show="showError.social_networks['googleplus']">
+								<span>{{:: 'ERR_SOCIAL_NETWORK_NAME' | translate }}</span>
+							</div>
+						</div>
+					</section>
+					<div class="clear"></div>
+					<section class="webs">
+						<div class="large-6 small-12 medium-6 columns">
+							<label>
+								<span class="fa fa-globe"></span> {{:: 'OUR_WEB' | translate }}
+							</label>
+
+							<div ng-repeat="web in community.webs track by $index" class="web-item">
+								<input placeholder="{{ 'EG' | translate }} https://www.myweb.com" ng-model="community.webs[$index]" class="text-input" type="url" ng-required="!$first" ng-blur="updateUrl($event, community.webs, $index)">
+
+								<div class="remove" ng-hide="$first">
+									<span class="fa fa-times-circle" ng-click="community.webs.splice($index,1)"></span>
+								</div>
+							</div>
+							<a ng-click="community.webs.push('')">
+								<span class="fa fa-plus-square"></span>{{:: 'ADD_NEXT_WEB' | translate }}
+							</a>
+						</div>
+						<div class="clear"></div>
+					</section>
+				</div>
+
 				<h2>
 					<span class="content">
 						<span class="fa fa-info"></span>{{:: 'COMMUNITY_ABOUT' | translate }}
@@ -69,8 +147,13 @@
 						<label>
 							{{:: 'COMMUNITY_RESTRICTIONS' | translate }}
 						</label>
-						<textarea autosize-textarea class="text-input" type="text" ng-model="community.terms" ng-attr-placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" name="terms"></textarea>
-						<max-len-counter max-len="300" value="community.terms"></max-len-counter>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.terms" name="terms"></input-max-length>
+					</div>
+					<div class="large-12 small-12 medium-12 columns" ng-if="community._id">
+						<label>
+							{{:: 'COMMUNITY_INTERESTS' | translate }}
+						</label>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" model="community.interests" name="interests" class="interests-input"></input-max-length>
 					</div>
 				</section>
 				<div class="clear"></div>
