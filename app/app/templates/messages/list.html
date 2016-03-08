@@ -85,7 +85,13 @@
 			</div>
 		</div>
 
-		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && notFound || detail && !detail.is_member" ng-bind-html="'MESSAGES.DETAIL.EMPTY' | translate"></div>
+		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && notFound || detail && !detail.is_member"><p ng-bind-html="'MESSAGES.DETAIL.EMPTY' | translate"></p>
+			<div class="bottom">
+				<a class="left link hide-for-large-up" ng-href="messages">
+					{{ 'CLOSE' | translate }}
+				</a>
+			</div>
+		</div>
 
 		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && detail && detail.is_member">
 			<conversation-detail info="detail"></conversation-detail>
