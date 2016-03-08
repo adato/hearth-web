@@ -209,7 +209,7 @@
 		min-height: 200px;
 	}
 	// RESPONSIVE //
-	@media #{$small-only} {
+	@media #{$small-down} {
 		h2 {
 			display: inline-block;
 		}
