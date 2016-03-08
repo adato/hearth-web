@@ -20,7 +20,7 @@
 		<a class="exit-off-canvas" ng-click='toggleSidebar(false)'></a>
 	</div>
 
-	<div id='language-panel' class='padding-medium' style='display: none'>
+	<div id='language-panel' style='display: none'>
 		<ul class='styled-list flag-list' ng-controller='LanguageChangeCtrl as languageChange'>
 			<li class='list-item' ng-if='languageChange.currentLanguage != "cs"'>
 				<a ng-click='languageChange.switchLang("cs")'>
