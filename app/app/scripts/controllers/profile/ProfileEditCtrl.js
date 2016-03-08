@@ -16,6 +16,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.showError = {
 			locations: false,
 			first_name: false,
+			motto: false,
 			email: false,
 			phone: false,
 			contact_email: false,

@@ -1405,5 +1405,8 @@
 	"OUR_WEB": "Web",
 	"COMMUNITY_INTERESTS": "Zájmy",
 	"COMMUNITY_INTERESTS_EXAMPLE": "Zadejte klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
-	"OUR_NETWORKS": "Sociální sítě a weby"
+	"OUR_NETWORKS": "Sociální sítě a weby",
+	"USER_MOTTO": "Motto",
+	"USER_MOTTO_EXAMPLE": "",
+	"ERR_USER_MOTTO_MAX_LENGTH": "Motto je příliš dlouhé"
 }
