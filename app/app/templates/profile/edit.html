@@ -37,10 +37,13 @@
 						</label>
 					</div>
 				</div>
-				<div class="work margin">
+				<div class="name margin">
 					<label>
-						{{:: 'MY_WORK' | translate }}
-						<input class="text-input" type='text' placeholder="{{'MY_WORK_EXAMPLE' | translate}}" ng-model="profile.work" name="my_work">
+						{{:: 'USER_MOTTO' | translate }}
+						<input type="text" name="motto" ng-model="profile.motto" class="text-input" ng-maxlength="70" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'USER_MOTTO_EXAMPLE' | translate }}" />
+						<div class="absolute error" ng-show="showError.motto">
+							<span ng-show="profileEditForm.motto.$error.maxlength">{{:: 'ERR_USER_MOTTO_MAX_LENGTH' | translate }}</span>
+						</div>
 					</label>
 				</div>
 			</section>
@@ -137,10 +140,6 @@
 
 				<!-- phone -->
 				<div class="margin-top clearfix">
-					<!-- 					<label class="large-12 small-12 medium-12 columns">
-						<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}
-					</label> -->
-
 					<div class="large-6 small-12 medium-6 columns">
 						<label>
 							<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}</label>
@@ -240,6 +239,12 @@
 						{{:: 'MY_INTERESTS' | translate }}
 					</label>
 					<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" model="profile.interests" name="interests"></input-max-length>
+				</div>
+				<div class="large-12 small-12 columns margin-top-20">
+					<label>
+						{{:: 'MY_WORK' | translate }}
+						<input class="text-input" type='text' placeholder="{{'MY_WORK_EXAMPLE' | translate}}" ng-model="profile.work" name="my_work">
+					</label>
 				</div>
 			</section>
 			<div class="clear"></div>
