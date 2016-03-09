@@ -56,7 +56,7 @@
 		transition: max-height,margin .4s  cubic-bezier(.58,.02,.53,1);
 	}
 }
-@media #{$small-only} {
+@media #{$small-down} {
 	.off-canvas-wrap {
 		overflow-y: auto;
 	}
