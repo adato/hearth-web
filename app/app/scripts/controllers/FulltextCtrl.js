@@ -12,6 +12,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 	function($scope, $timeout, $stateParams, Fulltext, $location, LanguageSwitch, $translate, $rootScope) {
 		var deleteOffset = false;
 		$scope.readedAllData = false;
+		$scope.postTypes = $$config.postTypes;
 
 		$scope.$on('$destroy', function() {
 			$scope.topArrowText.top = '';

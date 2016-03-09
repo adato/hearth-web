@@ -74,14 +74,16 @@
 		}
 
 		.title {
-			color: color(5);
-			text-decoration: underline;
 			font-size: rem-calc(22);
-			font-weight: 600;
-			cursor: pointer;
 			margin: 0;
-			&:hover {
-				color: darken( color(5), 20%);
+
+			a {
+				color: color(5);
+				text-decoration: underline;
+				font-weight: 600;
+				&:hover {
+					color: darken( color(5), 20%);
+				}
 			}
 		}
 		p {

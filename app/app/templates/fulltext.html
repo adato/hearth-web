@@ -15,22 +15,46 @@
 		<section id="fulltextSearchResults">
 			<article ng-repeat="item in items" class="row search-item" ng-switch="item._type">
 				<section class="large-2 small-3 medium-2 columns text-center">
-					<avatar src="item.avatar.normal" href="getProfileLink(item.author._type || item._type, item.author._id || item._id)" type="item.item_type"></avatar>
+					<div info-box="item.author || item">
+						<avatar src="item.avatar.normal" href="getProfileLink(item.author._type || item._type, item.author._id || item._id)" type="item.item_type"></avatar>
+					</div>
 				</section>
 				<section class="large-10 small-9 medium-10 columns">
-					<i class="fa" ng-class="{'icon-marketplace' : item._type=='Post', 'fa-user': item._type=='User', 'fa-group': item._type=='Community'}"></i>
-					<a class="title" ng-href="{{getProfileLink(item._type, item._id)}}">
-						<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
-						<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
-						<span ng-if="!item.title && !item.highlight.name[0]" ng-bind-html="item.name"></span>
-						<span ng-if="!item.title && item.highlight.name[0]" ng-bind-html="item.highlight.name[0] | to_trusted"></span>
-						<span ng-if="item.author.name">({{item.author.name}})</span>
-					</a>
+					<div>
+						<p class="title">
+							<i ng-switch-when="Post">
+								<img ng-if="item.type === 'offer'" ng-src="/app/images/arrow-give.svg" width="20" />
+								<img ng-if="item.type === 'need'" ng-src="/app/images/arrow-receive.svg" width="20" />
+							</i>
+							<i class="fa" ng-class="{'fa-user': item._type === 'User', 'fa-group': item._type === 'Community'}" ng-if="item._type != 'Post'"></i>
+							<a ng-href="{{getProfileLink(item._type, item._id)}}">
+								<span ng-switch-when="Post" ng-bind-html=":: postTypes['User'][item.type] | translate"></span>
+								<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
+								<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
+								<span ng-if="!item.title && !item.highlight.name[0]" ng-bind-html="item.name"></span>
+								<span ng-if="!item.title && item.highlight.name[0]" ng-bind-html="item.highlight.name[0] | to_trusted"></span>
+							</a>
+							<span ng-if="item.author.name">({{item.author.name}})</span>
+						</p>
+						<p ng-if="item.location || item.locations.length">
+							<span ng-if="item.location_unlimited">
+								<i class="fa fa-map-marker"></i>&nbsp;{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
+							</span>
+							<span ng-if="!item.location_unlimited || item.locations.length">
+								<span ng-repeat="(locationId, location) in item.locations" ng-if="location.short_address">
+									<i class="fa fa-map-marker" ng-if="$first"></i>&nbsp;{{ location.short_address }}
+									<span ng-if="!$last">;</span>
+								</span>
+							</span>
+						</p>
+					</div>
+
 					<p ng-switch-when="Post">
 						<span ng-if="item.text && !item.highlight.text[0]">{{item.text | ellipsis: 150}}</span>
 						<span ng-if="item.text && item.highlight.text[0]" ng-bind-html="item.highlight.text[0] | to_trusted"></span>
 					</p>
 					<p ng-switch-when="User">
+
 						<span ng-if="item.about && !item.highlight.about[0]">{{item.about | ellipsis: 150}}</span>
 						<span ng-if="item.about && item.highlight.about[0]" ng-bind-html="item.highlight.about[0] | to_trusted"></span>
 					</p>
@@ -38,7 +62,7 @@
 						<span ng-if="item.description && !item.highlight.description[0]">{{item.description | ellipsis: 150}}</span>
 						<span ng-if="item.description && item.highlight.description[0]" ng-bind-html="item.highlight.description[0] | to_trusted"></span>
 					</p>
-					<div class="breadcrumb" ng-switch-when="Post">
+					<!--div class="breadcrumb" ng-switch-when="Post">
 						<a ng-href="{{:: basePath }}">{{:: 'HOMEPAGE_MARKET' | translate}}</a> &gt;
 						<a ng-href="{{getProfileLink('Post', item._id) }}">{{item.title || item.name | ellipsis: 50}}</a>
 						<span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : DATETIME_FORMATS.mediumDate}}
@@ -50,7 +74,7 @@
 					<div class="breadcrumb" ng-switch-when="Community">
 						<a ng-href="{{:: basePath }}communities">{{:: 'COMMUNITIES' | translate}}</a> &gt;
 						<a ng-href="{{getProfileLink('User', item._id)}}">{{item.title || item.name | ellipsis: 50}}</a>
-					</div>
+					</div-->
 				</section>
 			</article>
 		</section>
