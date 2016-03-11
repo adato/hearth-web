@@ -324,8 +324,11 @@ body.ngdialog-open {
 		top: 20%;
 		max-width: 420px !important;
 		margin: 0 auto;
-		padding: 15px;
-		padding-top: 10px;
+
+		.confirm-box {
+			padding: 15px;
+		}
+		
 		header {
 			position: relative;
 			h2 {
