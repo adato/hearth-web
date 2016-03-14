@@ -133,7 +133,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						url = input.val();
 
 					if (url && !url.match(/http[s]?:\/\/.*/)) {
-						url = 'https://' + url;
+						url = 'http://' + url;
 					}
 
 					if (model !== $scope.community.webs) {
