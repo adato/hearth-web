@@ -30,7 +30,7 @@
 			<h6>{{:: 'RATINGS_LABEL_WRITE_SOME_WORD' | translate}}</h6>
 		</label>
 		<input-max-length input-type="textarea" show-counter="true" min-length="{{:: rating_setup.RATING_TEXT_MIN_LENGTH }}" max-length="{{:: rating_setup.RATING_TEXT_MAX_LENGTH }}" isrequired="yes" placeholder="{{'WRITE_USER_SOME_RATING' | translate }}" model="rating.text"
-		name="text" id="reply-text"></input-max-length>
+						name="text" id="reply-text"></input-max-length>
 		<div class="fleft error clearfix" ng-show="showError.text">
 			<span ng-show="ratingForm.text.$error.required">{{:: 'ERR_NOT_FILLED_RATING' | translate }}</span>
 			<span ng-show="ratingForm.text.$error.minlength">{{:: 'ERR_RATING_IS_TOO_SHORT' | translate }}</span>
