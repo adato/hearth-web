@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth',
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', '$q',
 
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth) {
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, $q) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -38,8 +38,22 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				'url': 'plus.google.com\/.*'
 			}
 		};
-		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
+
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'zh', 'he'];
+		$scope.filteredLangs = [];
+
+		angular.forEach($scope.languageList, function(lang) {
+			var newLang = {};
+			newLang['lang'] = lang;
+			newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+			$scope.filteredLangs.push(newLang);
+		});
+
+		$scope.loadLangs = function(query) {
+			var deferred = $q.defer();
+			deferred.resolve($scope.filteredLangs);
+			return deferred.promise;
+		};
 
 		$scope.init = function() {
 
@@ -114,10 +128,13 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			data.interests = (data.interests) ? data.interests.join(",") : '';
 
-			$scope.languageList.forEach(function(item) {
-
-				if (!data.user_languages[item]) {
-					data.user_languages[item] = false;
+			$scope.filteredLangsUser = [];
+			angular.forEach($scope.languageList, function(lang) {
+				if (data.user_languages[lang]) {
+					var newLang = {};
+					newLang['lang'] = lang;
+					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+					$scope.filteredLangsUser.push(newLang);
 				}
 			});
 
@@ -131,6 +148,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			// remove empty webs
 			data.webs.forEach(function(web) {
 				if (web) webs.push(web);
+			});
+
+			data.user_languages = {};
+			angular.forEach($scope.filteredLangsUser, function(item) {
+				data.user_languages[item.lang] = true;
 			});
 
 			data.webs = webs;

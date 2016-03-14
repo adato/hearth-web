@@ -63,22 +63,11 @@
 					<span class="fa fa-comments"></span>{{:: 'MY_LANGUAGES' | translate }}
 				</span>
 			</h2>
+
 			<section class="languages">
-				<label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
-					<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG.' + lang | translate }}
-					</checkbox>
-				</label>
-				<span class="dropdown-container" dropdown="#language-drop">
-					<label class="trigger">
-						{{:: 'ADD_OTHER_LANG' | translate }}
-					</label>
-					<ul id="language-drop" class="dropdown">
-						<label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) >-1 || profile.user_languages[lang]">
-							<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{:: 'MY_LANG.' + lang | translate }}
-							</checkbox>
-						</label>
-					</ul>
-				</span>
+				<tags-input ng-model="filteredLangsUser" display-property="translate" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
+					<auto-complete source="loadLangs($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
+				</tags-input>
 			</section>
 			<div class="clear"></div>
 			<h2>
