@@ -72,7 +72,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				url = input.val();
 
 			if (url && !url.match(/http[s]?:\/\/.*/)) {
-				url = 'https://' + url;
+				url = 'http://' + url;
 			}
 
 			if (model !== $scope.profile.webs) {
