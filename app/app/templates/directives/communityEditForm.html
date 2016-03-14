@@ -118,6 +118,11 @@
 									<span class="fa fa-times-circle" ng-click="community.webs.splice($index,1)"></span>
 								</div>
 							</div>
+
+							<div class="error margin" ng-show="showError.social_networks['webs']">
+								<span>{{:: 'ERR_INVALID_URL' | translate }}</span>
+							</div>
+
 							<a ng-click="community.webs.push('')">
 								<span class="fa fa-plus-square"></span>{{:: 'ADD_NEXT_WEB' | translate }}
 							</a>
