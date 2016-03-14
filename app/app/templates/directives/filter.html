@@ -10,14 +10,17 @@
 	<section class="filter-inner">
 		<input type="hidden" ng-model="filter.query" value="searchQuery.query" />
 		<input type="hidden" ng-model="filter.type" value="searchQuery.type" />
-		<section ng-show="configOptionsShow.keywords" class="keywords-container" ng-if="inited">
-			<h5>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
-			<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
-							max-length="20">
-				<auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
-			</tags-input>
-		</section>
-		<section class="medium-display-table cells-padded-horizontal rows-separated cells-padded-vertical">
+
+		<div class="medium-display-table cells-padded-horizontal rows-separated cells-padded-vertical">
+			<div ng-show="configOptionsShow.keywords" class="medium-display-table-row keywords-container" ng-if="inited">
+				<h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
+				<div class="medium-display-table-cell padding-bottom-small">
+					<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
+									max-length="20">
+						<auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
+					</tags-input>
+				</div>
+			</div>
 			<div ng-show="configOptionsShow.postType" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
@@ -57,17 +60,19 @@
 					</checkbox>
 				</div>
 			</div>
-		</section>
-		<section ng-show="configOptionsShow.location" class="location-container type-post type-user type-community">
-			<h5>{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
-			<div class="range-select-container small-6" ng-show="filter.lat && filter.lon && filter.name">
-				<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
-				<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+			<div ng-show="configOptionsShow.location" class="medium-display-table-row location-container">
+				<h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
+				<div class="medium-display-table-cell padding-bottom-small">
+					<div class="range-select-container small-6" ng-show="filter.lat && filter.lon && filter.name">
+						<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
+						<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+					</div>
+					<div ng-class="{'small-6': filter.lat && filter.lon && filter.name}">
+						<input type="text" id="geolocation" ng-model="filter.name" />
+					</div>
+				</div>
 			</div>
-			<div ng-class="{'small-6': filter.lat && filter.lon && filter.name}">
-				<input type="text" id="geolocation" ng-model="filter.name" />
-			</div>
-		</section>
+		</div>
 		<!-- <section ng-show="configOptionsShow.inactivity" class="location-container type-post type-user type-community">
 			<h5>{{:: 'FULLTEXT.FILTER.BY_ACTIVITY' | translate }}</h5>
 			<checkbox model="filter.inactive" value="'1'">{{:: 'FULLTEXT.FILTER.ACTIVITY' | translate}}
