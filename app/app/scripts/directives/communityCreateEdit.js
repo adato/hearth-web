@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth',
-	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth) {
+	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators',
+	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -34,21 +34,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					locations: false,
 					description: false,
 					social_networks: [],
-				};
-
-				$scope.socialNetworks = {
-					'twitter': {
-						'url': 'twitter.com\/.*'
-					},
-					'facebook': {
-						'url': 'facebook.com\/.*'
-					},
-					'linkedin': {
-						'url': 'linkedin.com\/.*'
-					},
-					'googleplus': {
-						'url': 'plus.google.com\/.*'
-					}
 				};
 
 				$scope.community = {};
@@ -138,26 +123,30 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 					if (model !== $scope.community.webs) {
 						// editing social network, not webs
-						if (url && ($scope.socialNetworks[key] === undefined || !url.match(new RegExp($scope.socialNetworks[key].url)))) {
-							$scope.showError.social_networks[key] = true;
-						} else {
-							$scope.showError.social_networks[key] = false;
-						}
+						$scope.showError.social_networks[key] = !Validators.social(url, key);
+					} else {
+						// editing webs
+						$scope.showError.social_networks['webs'] = !Validators.url(url);
 					}
 
 					model[key] = url;
 				};
 
-
 				$scope.validateSocialNetworks = function() {
 					var isOk = true;
-					Object.keys($scope.socialNetworks).forEach(function(networkName) {
-						if ($scope.community[networkName] && !$scope.community[networkName].match($scope.socialNetworks[networkName].url)) {
-							$scope.showError.social_networks[networkName] = true;
-							isOk = false;
+					var isWebsOk = true;
+					var isLinkOk = true;
+					['facebook', 'twitter', 'linkedin', 'googleplus'].forEach(function(networkName) {
+						if ($scope.community[networkName]) {
+							isLinkOk = Validators.social($scope.community[networkName], networkName);
+							$scope.showError.social_networks[networkName] = !isLinkOk;
+							isOk = isOk && isLinkOk;
 						}
 					});
-					return isOk;
+					isWebsOk = Validators.urls($scope.community.webs);
+					$scope.showError.social_networks['webs'] = !isWebsOk;
+
+					return isOk && isWebsOk;
 				};
 
 				$scope.validate = function(data) {
