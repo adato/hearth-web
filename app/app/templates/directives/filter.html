@@ -63,12 +63,14 @@
 			<div ng-show="configOptionsShow.location" class="medium-display-table-row location-container">
 				<h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
 				<div class="medium-display-table-cell padding-bottom-small">
-					<div class="range-select-container small-6" ng-show="filter.lat && filter.lon && filter.name">
-						<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
-						<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
-					</div>
-					<div ng-class="{'small-6': filter.lat && filter.lon && filter.name}">
-						<input type="text" id="geolocation" ng-model="filter.name" />
+					<div class='row'>
+						<div class="column" ng-class="{'small-7 medium-8': filter.lat && filter.lon && filter.name}">
+							<input type="text" id="geolocation" ng-model="filter.name" />
+						</div>
+						<div class="column small-5 medium-4 range-select-container" ng-show="filter.lat && filter.lon && filter.name">
+							<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
+							<span class="distance">{{filter.distance}}&nbsp;{{:: 'MARKETPLACE.FILTER.KM' | translate }}</span>
+						</div>
 					</div>
 				</div>
 			</div>
