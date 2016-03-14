@@ -59,7 +59,7 @@
 							{{:: 'COMMUNITY_DESCRIPTION' | translate }}
 						</label>
 						<textarea autosize-textarea max-len="300" ng-focus="showError.description = false" ng-blur="showError.description = true" name="description" ng-attr-placeholder="{{::'COMMUNITY_DESCRIPTIONS_PLACEHOLDER' | translate }}" ng-model="community.description"
-						required></textarea>
+										required></textarea>
 						<max-len-counter max-len="300" value="community.description"></max-len-counter>
 						<div class="error margin-top" ng-show="showError.description">
 							<span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
@@ -103,7 +103,7 @@
 					<select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
 				</span>
 				<button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-custom analytics-event="delegate admin community" analytics-category="My community"
-				analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+								analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
 			</section>
 			<section class="change-admin" ng-if="community.member_count == 1">
 				<br /> {{:: 'COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS' | translate }}
