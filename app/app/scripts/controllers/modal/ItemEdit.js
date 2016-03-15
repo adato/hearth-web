@@ -19,6 +19,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
 		$scope.imageSizes = [];
+		$scope.postCategories = $$config.postCategories;
 
 		$scope.slide = {
 			files: false,
@@ -31,6 +32,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			files: {},
 			title: false,
 			text: false,
+			category: false,
 			locations: false,
 			valid_until: false
 		};
@@ -185,6 +187,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			if ($scope.createAdForm.text.$invalid) {
 				res = $scope.showError.text = true;
+			}
+
+			if ($scope.createAdForm.category.$invalid) {
+				res = $scope.showError.category = true;
 			}
 
 			if (!post.valid_until_unlimited) {
