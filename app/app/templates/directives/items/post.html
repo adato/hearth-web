@@ -14,9 +14,13 @@
 				<div class="sharing-container-form">
 					<a class="fa touchable fa-times close" ng-click="showSharing = false"></a>
 					<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
-					<div class="input-container">
-						<i class="fa fa-link"></i>
-						<input type="text" readonly select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" ng-click="$event.stopPropagation()" />
+					<div class="input-container medium-display-table">
+						<div class="medium-display-table-cell addon">
+							<i class="fa fa-link"></i>
+						</div>
+						<div class="medium-display-table-cell">
+							<input type="text" readonly select-on-focus value="{{:: getProfileLink('Post', item._id, true)}}" ng-click="$event.stopPropagation()" />
+						</div>
 					</div>
 					<ul class="no-list">
 						<li>
