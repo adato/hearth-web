@@ -41,7 +41,7 @@
 			<div>
 				<label>{{:: 'PROFILE.INVITATION.ADDRESSES' | translate }}</label>
 				<tags-input name="to_email" ng-model="inv.to_email" placeholder="{{'INVITATION_EMAILS_PLACEHOLDER' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" type="email" min-tags="1" ng-focus="showError.to_email = false"
-				ng-blur="showError.to_email = true" ng-required="required" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input>
+								ng-blur="showError.to_email = true" ng-required="required" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input>
 				<div class="error" ng-show="showError.to_email">
 					<span ng-show="inviteForm.to_email.$error.minTags">{{:: 'ERR_NOT_FILLED_INVITE_ADDRS' | translate }}</span>
 					<span ng-show="inviteForm.to_email.$error.format">{{:: 'ERR_INVITE_EMAIL_INVALID' | translate }}</span>
