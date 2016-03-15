@@ -101,7 +101,7 @@
 			.display-table-cell.user{
 				padding-top: $size-small;
 				padding-right: $size-big;
-				
+
 /*				.avatar img{
 					width: 3.75rem;
 					height: 3.75rem;
@@ -118,8 +118,6 @@
 .item {
 	@extend .box;
 }
-
-button {}
 
 .link-button {
 	display: block;
@@ -361,7 +359,7 @@ textarea::-ms-clear {
 		top: 50%;
 	}
 }
-	
+
 .padding-small{padding: $size-small;}
 .padding-small-vertical{padding-top: $size-small; padding-bottom: $size-small;}
 .padding-small-horizontal{padding-right: $size-small; padding-left: $size-small;}
@@ -414,7 +412,22 @@ button[disabled],
 	}
 }
 
-/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability 
+.elevated-authority-function,
+a.elevated-authority-function{
+	color: $state-danger-text !important;
+}
+.elevated-authority-function:hover,
+.elevated-authority-function:focus,
+a.elevated-authority-function:hover,
+a.elevated-authority-function:focus{
+	background-color: $state-danger-bg !important;
+}
+.elevated-authority-function:active,
+a.elevated-authority-function:active{
+	background-color: darken($state-danger-bg, 10%) !important;
+}
+
+/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability
 to remove !important would be also nice .. someday */
 button.neutral,
 button.neutral:disabled{

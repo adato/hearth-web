@@ -68,7 +68,7 @@
 										<hr />
 									</li>
 									<li ng-if=':: canEditPosts'>
-										<a ng-click="(isActive ? confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("AD_PAUSE_LABEL" | translate) : ("AD_RESUME_LABEL" | translate))}}</a>
+										<a class='elevated-authority-function' ng-click="(isActive ? confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("AD_PAUSE_LABEL" | translate) : ("AD_RESUME_LABEL" | translate))}}</a>
 									</li>
 									<!-- /admin only -->
 								</ul>
