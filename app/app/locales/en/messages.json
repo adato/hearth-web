@@ -1377,5 +1377,11 @@
 	"USER_MOTTO": "Motto",
 	"USER_MOTTO_EXAMPLE": "",
 	"ERR_USER_MOTTO_MAX_LENGTH": "Motto je příliš dlouhé",
-	"ERR_INVALID_URL": "Tato adresa není platná"
+	"ERR_INVALID_URL": "Tato adresa není platná",
+	"CATEGORY_SERVICES": "Služby",
+	"CATEGORY_THINGS": "Věci",
+	"CATEGORY_ENERGY": "Energie",
+	"POST_CATEGORY_LABEL": "Kategorie inzerátu",
+	"SELECT_CATEGORY_LABEL": "Vyberte kategorii",
+	"ERR_AD_CATEGORY": "Kategorie příspěvku musí být vyplněna."
 }
