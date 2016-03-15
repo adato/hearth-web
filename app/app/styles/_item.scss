@@ -27,7 +27,7 @@ a.user{
 	text-shadow: 0px 0px 1px gray;
 }
 
-// .post-on-market is an envelope around every item 
+// .post-on-market is an envelope around every item
 .post-on-market {
 	header h1>a {
 		color: black;
@@ -202,10 +202,16 @@ a.user{
 		opacity: 1;
 		z-index: 10;
 
+		@media #{$small-only} {
+			position: fixed;
+			top: 70px /* height of header */
+		}
+
 		/* flex req */
 		&>div {
 			width: 100%;
 		}
+		/* /flex req */
 		&.ng-hide{
 			display: flex !important;
 			visibility: hidden;
@@ -223,15 +229,16 @@ a.user{
 			.fa {
 				width: 36px;
 				height: 36px;
+				line-height: 36px;
 				color: white;
-				text-align: center;
-				padding-top: 7px;
-				cursor: default;
+				// text-align: center;
+				// padding-top: 7px;
+				// cursor: default;
 			}
 
 			input {
-				width: 80%;
-				display: inline-block;
+				// width: 80%;
+				// display: inline-block;
 				color: $colorOrange;
 				transition: none;
 			}
@@ -300,7 +307,7 @@ a.user{
 			vertical-align: baseline;
 		}
 	}
-	
+
 	.tooltip{
 		text-align: left !important;
 	}
@@ -421,7 +428,7 @@ button p {
 		}
 	}
 
-	// .post-on-market is an envelope around every item 
+	// .post-on-market is an envelope around every item
 	&.post-on-market {
 		article header h1>a {
 			color: black;
@@ -694,7 +701,7 @@ button p {
 			}
 		}
 	}
-	
+
 	&.post-on-market .ad-detail-column .columns {
 		padding-left: 0;
 		padding-right: 0;
@@ -942,7 +949,7 @@ button p {
 					background: darken(color(5), 10%);
 				}
 			}
-			
+
 			.post-edit-buttons-container {
 				font-size: 22px; // @@TODO
 				padding: $ui-small-grid-size;
@@ -1013,7 +1020,7 @@ button p {
 					text-align: left;
 					.avatar {
 						margin-right: 1.25rem;
-						//margin-top: -2 * $ui-small-grid-size; 
+						//margin-top: -2 * $ui-small-grid-size;
 						a::before,
 						img {
 							width: 60px;
