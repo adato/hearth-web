@@ -67,6 +67,16 @@ $$config = {
 			true: 'WE_OFFER'
 		}
 	},
+	postCategories: [{
+		name: 'services',
+		translate: 'CATEGORY_SERVICES'
+	}, {
+		name: 'things',
+		translate: 'CATEGORY_THINGS'
+	}, {
+		name: 'energy',
+		translate: 'CATEGORY_ENERGY'
+	}],
 	replyLabels: {
 		offer: 'WISH_GIFT',
 		need: 'OFFER_GIFT'

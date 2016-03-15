@@ -927,8 +927,8 @@
 		"CONVERSATION_ARCHIVE_FAILED": "There was an error in the archive. Those archives! ",
 		"RATING_REPLY_SUCCESS": "That's it! Comment was added successfully.",
 		"RATING_REPLY_FAILED": "There was an error when adding your comment to rating.",
-		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační email byl zaslán na tvou emailovou adresu.",
-		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního emailu došlo k chybě.",
+		"REACTIVATING_EMAIL_WAS_SENT": "Aktivační e-mail byl zaslán na tvou e-mailovou adresu.",
+		"REACTIVATING_EMAIL_FAILED": "Při odesílání aktivačního e-mailu došlo k chybě.",
 		"API_ERROR": "<p>Something went wrong, please try it again and if it won't work,&nbsp;<a href=\"\/app\/feedback\">let us know about that<\/a>. Thanks!<\/p>",
 		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
@@ -1362,7 +1362,7 @@
 		"INVITATION_SENT": "{{email}}: Pozvánka úspěšně odeslána",
 		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
 		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je!",
-		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný email?"
+		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný e-mail?"
 	},
 	"COMMUNITY_MOTTO": "Motto komunity",
 	"COMMUNITY_MOTTO_EXAMPLE": "Zadej motto komunity",
@@ -1373,5 +1373,15 @@
 	"OUR_WEB": "Web",
 	"COMMUNITY_INTERESTS": "Zájmy",
 	"COMMUNITY_INTERESTS_EXAMPLE": "Zadejte klíčová slova, oddělená čárkou, např.: školství, občanská společnost,..",
-	"OUR_NETWORKS": "Sociální sítě a weby"
+	"OUR_NETWORKS": "Sociální sítě a weby",
+	"USER_MOTTO": "Motto",
+	"USER_MOTTO_EXAMPLE": "",
+	"ERR_USER_MOTTO_MAX_LENGTH": "Motto je příliš dlouhé",
+	"ERR_INVALID_URL": "Tato adresa není platná",
+	"CATEGORY_SERVICES": "Služby",
+	"CATEGORY_THINGS": "Věci",
+	"CATEGORY_ENERGY": "Energie",
+	"POST_CATEGORY_LABEL": "Kategorie inzerátu",
+	"SELECT_CATEGORY_LABEL": "Vyberte kategorii",
+	"ERR_AD_CATEGORY": "Kategorie příspěvku musí být vyplněna."
 }
