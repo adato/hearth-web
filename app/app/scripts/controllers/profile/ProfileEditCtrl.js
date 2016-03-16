@@ -34,10 +34,12 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$scope.filteredLangs.push(newLang);
 		});
 
-		$scope.loadLangs = function(query) {
-			var deferred = $q.defer();
-			deferred.resolve($scope.filteredLangs);
-			return deferred.promise;
+		$scope.loadLanguages = function(query) {
+			var languages = $scope.filteredLangs;
+
+			return languages.filter(function(lang) {
+				return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
+			});
 		};
 
 		$scope.init = function() {
