@@ -36,6 +36,9 @@
 							</a>
 							<span ng-if="item.author.name">({{item.author.name}})</span>
 						</p>
+						<span class="label round">
+							{{item._score}}
+						</span>
 						<p ng-if="item.location || item.locations.length">
 							<span ng-if="item.location_unlimited">
 								<i class="fa fa-map-marker"></i>&nbsp;{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
