@@ -59,12 +59,12 @@
 				</div>
 			</section>
 			<section class="category">
-				<label>
+				<label class="headline">
 					{{'POST_CATEGORY_LABEL' | translate}}:
 				</label>
-				<select ng-options="category.name as category.translate | translate for category in postCategories" ng-model="post.category" name="category" required>
-					<option value="">-- {{'SELECT_CATEGORY_LABEL' | translate}} --</option>
-				</select>
+				<label ng-repeat="category in postCategories" class="radio">
+					<input type="radio" ng-model="post.category" name="category" value="{{category.name}}" required /> {{category.translate | translate}}
+				</label>
 				<div class="moveUp error" ng-show="createAdForm.category.$invalid && showError.category">
 					<span ng-show="createAdForm.category.$error.required">{{ 'ERR_AD_CATEGORY' | translate }}</span>
 				</div>
