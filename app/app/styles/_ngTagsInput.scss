@@ -80,15 +80,20 @@ tags-input {
 			box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.6);
 		}
 	}
+	auto-complete {
+		display: block;
+		position: relative;
+	}
 	.autocomplete {
-		margin-top: 5px;
 		position: absolute;
-		padding: 5px 0;
-		z-index: 999;
+		display: block;
 		width: 100%;
-		background-color: white;
+		margin-top: 5px;
+		padding: 5px 0;
 		border: 1px solid rgba(0, 0, 0, 0.2);
+		background-color: white;
 		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		z-index: 999;
 		.suggestion-list {
 			margin: 0;
 			padding: 0;
