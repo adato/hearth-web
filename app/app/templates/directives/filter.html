@@ -1,72 +1,58 @@
 <div ng-show="inited">
-	<!--
-	<section class="keywords-container" ng-if="inited">
-	    <h5>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
-	    <tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3" max-length="20">
-	      <auto-complete source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
-	    </tags-input>
-  	</section>
-  	-->
 	<section class="filter-inner">
 		<input type="hidden" ng-model="filter.query" value="searchQuery.query" />
 		<input type="hidden" ng-model="filter.type" value="searchQuery.type" />
 		<div class="medium-display-table cells-padded-horizontal rows-separated cells-padded-vertical">
-			<!-- <section ng-show="configOptionsShow.keywords" class="keywords-container" ng-if="inited"> -->
 			<div ng-show="configOptionsShow.keywords" class="medium-display-table-row keywords-container">
 				<h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
 				<div class="medium-display-table-cell padding-bottom-small">
 					<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
 									max-length="20">
-						<auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
+						<auto-complete source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
 					</tags-input>
 				</div>
 			</div>
-			<!-- </section> -->
 			<div ng-show="configOptionsShow.postType" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TYPE' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<span></span>
-					<radio class="display-inline-block" type="radio" model="filter.post_type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.post_type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.post_type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
+					<radio type="radio" model="filter.post_type" value="'offer'">{{:: 'MARKETPLACE.FILTER.ADS_OFFER' | translate}}</radio>
+					<radio type="radio" model="filter.post_type" value="'need'">{{:: 'MARKETPLACE.FILTER.ADS_NEED' | translate}}</radio>
+					<radio type="radio" model="filter.post_type" value="null">{{:: 'MARKETPLACE.FILTER.ADS_ALL' | translate}}</radio>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.entityType" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'FULLTEXT.FILTER.BY_TYPE' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<span></span>
-					<radio class="display-inline-block" type="radio" model="filter.type" value="null">{{:: 'FULLTEXT.FILTER.TYPE.ALL' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.type" value="'post'">{{:: 'FULLTEXT.FILTER.TYPE.POSTS' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.type" value="'user'">{{:: 'FULLTEXT.FILTER.TYPE.PEOPLE' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.type" value="'community'">{{:: 'FULLTEXT.FILTER.TYPE.COMMUNITY' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="null">{{:: 'FULLTEXT.FILTER.TYPE.ALL' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="'post'">{{:: 'FULLTEXT.FILTER.TYPE.POSTS' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="'user'">{{:: 'FULLTEXT.FILTER.TYPE.PEOPLE' | translate}}</radio>
+					<radio type="radio" model="filter.type" value="'community'">{{:: 'FULLTEXT.FILTER.TYPE.COMMUNITY' | translate}}</radio>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.postTime" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_TIME' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<span></span>
-					<radio class="display-inline-block" type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
-					<radio class="display-inline-block" type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="'1'">{{:: 'MARKETPLACE.FILTER.TODAY' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="'3'">{{:: 'MARKETPLACE.FILTER.3_DAYS' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="'7'">{{:: 'MARKETPLACE.FILTER.WEEK' | translate}}</radio>
+					<radio type="radio" model="filter.days" value="null">{{:: 'MARKETPLACE.FILTER.WITHOUT_LIMIT' | translate}}</radio>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.author" class="medium-display-table-row">
 				<h5 class="medium-display-table-cell nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_AUTHOR' | translate }}</h5>
 				<div class="radio-container medium-display-table-cell">
-					<span></span>
-					<checkbox class="display-inline-block" model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
-					<checkbox class="display-inline-block" model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
-					<checkbox class="display-inline-block" ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}
+					<checkbox model="filter.user" value="true">{{:: 'MARKETPLACE.FILTER.INDIVIDUALS' | translate}}</checkbox>
+					<checkbox model="filter.community" value="true">{{:: 'MARKETPLACE.FILTER.COMMUNITIES' | translate}}</checkbox>
+					<checkbox ng-show="loggedUser" model="filter.my_section" value="true">{{:: 'MARKETPLACE.FILTER.MY_CONNECTIONS' | translate}}
 					</checkbox>
 				</div>
 			</div>
 			<div ng-show="configOptionsShow.location" class="medium-display-table-row location-container">
 				<h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_LOCATION' | translate }}</h5>
 				<div class="medium-display-table-cell padding-bottom-small">
-					<div class='row'>
+					<div class="row">
 						<div class="column" ng-class="{'small-7 medium-8': filter.lat && filter.lon && filter.name}">
-							<input type="text" id="geolocation" ng-model="filter.name" />
+							<input class="bottom-line-input" type="text" id="geolocation" ng-model="filter.name" />
 						</div>
 						<div class="column small-5 medium-4 range-select-container" ng-show="filter.lat && filter.lon && filter.name">
 							<input type="range" ng-model="filter.distance" step="25" min="25" max="100">
@@ -76,15 +62,9 @@
 				</div>
 			</div>
 		</div>
-		<!-- <section ng-show="configOptionsShow.inactivity" class="location-container type-post type-user type-community">
-			<h5>{{:: 'FULLTEXT.FILTER.BY_ACTIVITY' | translate }}</h5>
-			<checkbox model="filter.inactive" value="'1'">{{:: 'FULLTEXT.FILTER.ACTIVITY' | translate}}
-			</checkbox>
-		</section> -->
 	</section>
 	<section class="footer row">
 		<div class="column large-6">
-			<!--a ng-click="reset()" class="link-button">{{:: 'MARKETPLACE.FILTER.CLOSE_FILTER' | translate}}</a-->
 			<button ng-click="applyFilter()" class="button expand" ng-disabled="!filterCount">{{:: 'MARKETPLACE.FILTER.RUN_FILTER' | translate}}
 				<b ng-if="filterCount !== false">({{filterCount}})</b>
 			</button>

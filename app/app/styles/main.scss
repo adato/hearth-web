@@ -142,13 +142,6 @@ $fontSize: rem-calc(14);
 @import "fileViewer";
 @import "notifyOverlay";
 
-/*temp until css refactor*/
-@import "languageSelection";
-/* /temp */
-
-//@import "fileViewer";
-//@import "bubble";
-
 html{
 	font-size: 14px;
 }

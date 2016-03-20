@@ -218,7 +218,7 @@ angular.module('hearth.geo').directive('locations', [
 					$timeout($scope.initMap, 100);
 				};
 
-				// slide up 
+				// slide up
 				$scope.closeMap = function() {
 					if (marker) {
 						marker.setMap(null);
