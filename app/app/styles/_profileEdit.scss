@@ -1,10 +1,12 @@
 .profile-edit {
 	section {
 		&.languages {
+			position: relative;
 			margin-left: 70px;
 
 			.autocomplete {
-				width: auto;
+				max-height: 240px;
+				overflow-y: scroll;
 			}
 		}
 	}
