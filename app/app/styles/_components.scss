@@ -1,3 +1,9 @@
+/* POSITION */
+.position-relative{
+	position: relative !important;
+}
+/* /POSITION */
+
 /* DISPLAY */
 .display-block {
 	display: block !important;
@@ -86,8 +92,18 @@
 	display: flex;
 	align-items: center;
 }
+.flex-reverse{
+	flex-direction: row-reverse;
+}
+.flex-column{
+	flex-direction: column;
+}
 .flex-space-between{
 	justify-content: space-between;
+}
+.flex-stretch-content{
+	align-content: stretch;
+	align-items: stretch;
 }
 .flex-wrap{
 	flex-wrap: wrap;
