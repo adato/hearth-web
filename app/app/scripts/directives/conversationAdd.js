@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationAdd', [
-	'$rootScope', 'Conversations', 'Notify',
-	function($rootScope, Conversations, Notify) {
+	'$rootScope', 'Conversations', 'Notify', 'ConversationService',
+	function($rootScope, Conversations, Notify, ConversationService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -21,6 +21,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 			templateUrl: 'templates/directives/conversationAdd.html',
 			link: function($scope, element) {
 				$scope.sendingMessage = false;
+				$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
 				$scope.showError = {
 					text: false,
 					participant_ids: false,
@@ -32,34 +33,16 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					attachments_attributes: ''
 				};
 
-				$scope.openUploadDialog = function() {
-					$('#file').click();
-				};
-
-				$scope.clearFileInput = function() {
-					$scope.message.attachments_attributes = '';
-					angular.element("input[type='file']").val(null);
-				};
-
 				$scope.uploadedFile = function(element) {
-					$scope.$apply(function($scope) {
-						$scope.message.attachments_attributes = element.files[0];
-
-						var uploadedType = $scope.message.attachments_attributes.type;
-						var allowedFileTypes = ['image/png', 'image/jpeg', 'image/gif'];
-
-						if (allowedFileTypes.indexOf(uploadedType) > -1) {
-							var reader = new FileReader();
-							reader.onload = function(e) {
-								$('#file-preview').attr('src', e.target.result);
-							};
-							reader.readAsDataURL(element.files[0]);
-							$scope.fileIsImage = true;
-						} else {
-							$scope.fileIsImage = false;
-						}
+					$scope.$apply(function() {
+						ConversationService.onFileUpload($scope, element, 'message');
 					});
 				};
+
+				$scope.removeAttachments = function() {
+					$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
+					$scope.message.attachments_attributes = null;
+				}
 
 				$scope.hideRecipientsError = function() {
 					$scope.showError.participant_ids = false;
@@ -119,7 +102,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					$scope.sendingMessage = true;
 
 					Conversations.add(data, function(res) {
-						$scope.clearFileInput();
+						$scope.removeAttachments();
 						$scope.sendingMessage = false;
 
 						if ($scope.onSuccess)

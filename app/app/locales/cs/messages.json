@@ -1415,5 +1415,8 @@
 	"CATEGORY_ENERGY": "Energie",
 	"POST_CATEGORY_LABEL": "Kategorie inzerátu",
 	"SELECT_CATEGORY_LABEL": "Vyberte kategorii",
-	"ERR_AD_CATEGORY": "Kategorie příspěvku musí být vyplněna."
+	"ERR_AD_CATEGORY": "Kategorie příspěvku musí být vyplněna.",
+	"FILE_TYPE": {
+		"INVALID_TYPE": "Promiň, ale soubory typu .{{type}} jako přílohu nepodporujeme."
+	}
 }

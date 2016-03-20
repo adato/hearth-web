@@ -1383,5 +1383,8 @@
 	"CATEGORY_ENERGY": "Energy",
 	"POST_CATEGORY_LABEL": "Category",
 	"SELECT_CATEGORY_LABEL": "Select a category",
-	"ERR_AD_CATEGORY": "Category must be filled."
+	"ERR_AD_CATEGORY": "Category must be filled.",
+	"FILE_TYPE": {
+		"INVALID_TYPE": "Promiň, ale soubory typu .{{type}} jako přílohu nepodporujeme."
+	}
 }

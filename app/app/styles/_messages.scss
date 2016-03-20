@@ -6,8 +6,13 @@
 			color: $colorBlue;
 		}
 
-		#file {
+		.file-input {
 			display: none;
+		}
+
+		.file-label {
+			display: inline-block;
+			color: $colorSecondary;
 		}
 
 		.files {
@@ -33,13 +38,14 @@
 			}
 
 			.file-preview {
-				border: 1px dashed #999;
-				border-radius: 8px;
-				text-align: center;
-				max-width: 96px;
+				position: relative;
 				min-width: 96px;
+				max-width: 196px;
 				margin: 5px 0;
 				padding: 10px;
+				text-align: center;
+				border: 1px dashed #999;
+				border-radius: 8px;
 
 				.file-name {
 					margin: 0;
@@ -54,12 +60,28 @@
 				}
 
 				&.image {
-					border: none;
 					padding: 0;
+					border: none;
 
 					#file-preview {
 						border-radius: 8px;
 					}
+				}
+
+				.remove-from-file-preview {
+					position: absolute;
+					top: $size-tiny; right: $size-tiny;
+					opacity: .2;
+					cursor: pointer;
+
+					&:hover,
+					&:focus,
+					&:active {
+						opacity: 1 !important;
+					}
+				}
+				&:hover .remove-from-file-preview {
+					opacity: .4;
 				}
 			}
 		}
