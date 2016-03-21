@@ -21,6 +21,7 @@
 		position: absolute;
 		left: 2*$ui-small-grid-size;
 		top: $ui-navbar-height;
+		z-index:123;
 		.conversation-detail .messages-container article.message {
 			max-width: unset;
 		}
@@ -91,6 +92,7 @@
 		position: absolute;
 		left: 2*$ui-small-grid-size;
 		top: $ui-navbar-height;
+		z-index:123;
 		.conversation-detail .messages-container article.message {
 			max-width: unset;
 		}
