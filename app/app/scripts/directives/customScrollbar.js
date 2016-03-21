@@ -15,7 +15,9 @@ angular.module('hearth.directives').directive('customScrollbar', [
 			template: false,
 			link: function(scope, element, attrs) {
 				function addScrollbar() {
-					$(element).nanoScroller();
+					$(element).nanoScroller({
+						iOSNativeScrolling: true
+					});
 				}
 
 				$timeout(addScrollbar);
