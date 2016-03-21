@@ -14,12 +14,6 @@
 @media #{$medium-only} {
 	.messages .conversations {
 		width: 100%;
-		.nano-content {
-			right: 0 !important;
-		}
-		.nano-content-inner {
-			width: 100% !important;
-		}
 	}
 	.messages .conversation-detail-container {
 		width: 97%;
@@ -90,12 +84,6 @@
 	}
 	.messages .conversations {
 		width: 100%;
-		.nano-content {
-			right: 0 !important;
-		}
-		.nano-content-inner {
-			width: 100% !important;
-		}
 	}
 	.messages .conversation-detail-container {
 		width: 96%;
