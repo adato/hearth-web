@@ -6,7 +6,8 @@
 			<div ng-show="configOptionsShow.keywords" class="medium-display-table-row keywords-container" ng-if="inited">
 				<h5 class="medium-display-table-cell padding-bottom-small vertical-align-middle nowrap-addon">{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
 				<div class="medium-display-table-cell padding-bottom-small">
-					<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3" max-length="20">
+					<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
+					max-length="20">
 						<auto-complete source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
 					</tags-input>
 				</div>
