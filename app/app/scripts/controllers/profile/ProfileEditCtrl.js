@@ -24,7 +24,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		};
 
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
-		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'zh', 'he'];
+		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
 		$scope.filteredLangs = [];
 
 		angular.forEach($scope.languageList, function(lang) {
@@ -47,6 +47,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
 			});
 		};
+
 
 		$scope.init = function() {
 
