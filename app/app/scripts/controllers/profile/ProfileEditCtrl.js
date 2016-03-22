@@ -34,7 +34,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$scope.filteredLangs.push(newLang);
 		});
 
-		function sortTranslations(a,b) {
+		function sortTranslations(a, b) {
 			return a.translate.localeCompare(b.translate);
 		}
 
