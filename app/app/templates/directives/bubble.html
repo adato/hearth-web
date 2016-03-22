@@ -1,8 +1,8 @@
 <div>
-	<div class="tooltip">
+	<div class="tooltip" ng-click="removeReminder($event, type, 'bubble-click')">
 		Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?
 		<div class="clearfix"></div>
-		<button class="button button-need confirm" ng-click="removeReminder(type)">OK</button>
+		<button class="button button-need confirm" ng-click="removeReminder($event, type, 'bubble-button-click')">OK</button>
 		<div class="clearfix"></div>
 	</div>
 </div>
