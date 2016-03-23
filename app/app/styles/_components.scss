@@ -25,6 +25,7 @@
 	display: table-row;
 }
 .display-table-cell{
+	vertical-align: top;
 	display: table-cell;
 	&.addon{
 		width: 1%;
@@ -87,6 +88,15 @@
 		&.nowrap-addon{width: 1%; white-space: nowrap;}
 	}
 }
+/* table addons */
+.table-with-icons .display-table-cell{
+	padding-bottom: $size-small;
+}
+.table-with-icons .display-table-cell:first-child{
+	color: $colorPrimary;
+	padding-right: $size-small;
+}
+/* /table addons */
 
 .display-flex{
 	display: flex;
@@ -283,12 +293,20 @@ a.word-break{
 .background-secondary{background-color: $colorSecondary;}
 /* /COLOR */
 
-/* TABLE */
-.table-with-icons .display-table-cell{
-	padding-bottom: $size-small;
+/* LINKS */
+.link-primary,
+a.link-primary,
+.link-secondary,
+a.link-secondary{
+	font-weight: $ui-text-weight-bolder;
 }
-.table-with-icons .display-table-cell:first-child{
+.link-primary,
+a.link-primary{
 	color: $colorPrimary;
 	padding-right: $size-small;
 }
-/* /TABLE */
+.link-secondary,
+a.link-secondary{
+	color: $colorSecondary;
+}
+/* /LINKS */
