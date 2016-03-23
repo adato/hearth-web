@@ -190,10 +190,7 @@
 					<section class="box sectioned-box" ng-if="isMine" scroll-to-view-on-hash="replies">
 						<header>
 							<h1 ng-if="replies.length">{{:: 'POSTS.DETAIL.REPLIES' | translate }}</h1>
-
-							<div class="column small-12 text-center" ng-if="!replies.length">
-								<p>{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</p>
-							</div>
+							<div class="text-center margin-top-small" ng-if="!replies.length">{{:: 'POSTS.DETAIL.NO_REPLY' | translate }}</div>
 						</header>
 						<article ng-repeat="(id, item) in replies track by item._id" class='box-section'>
 							<section class='display-table'>
@@ -228,7 +225,7 @@
 					</section>
 				</div>
 				<div class="column large-3 end has-delimiter show-for-large-up">
-					<div class='text-center'>
+					<div class='text-center margin-bottom-medium'>
 						<a ng-href="{{ getProfileLink(item.author._type, item.author._id) }}" class='user v2'>
 							<avatar class='margin-top-medium show-post-arrows {{:: item.type }}' type="item.author._type" src="item.author.avatar.large" size="medium"></avatar>
 							<div class='text-emphasize margin-vertical-small'>{{ item.author.name }}</div>
@@ -236,83 +233,7 @@
 						</a>
 					</div>
 					<div ng-if="profile">
-						<div class="display-table table-with-icons margin-top-medium">
-							<div class="display-table-row" ng-if="profile.about">
-								<div class="display-table-cell">
-									<i class="fa fa-fw fa-quote-right"></i>
-								</div>
-								<div class='display-table-cell'>
-									{{profile.about | ellipsis}}
-								</div>
-							</div>
-							<div class="display-table-row" ng-if="profile.work">
-								<div class="display-table-cell">
-									<i class="fa fa-fw fa-briefcase"></i>
-								</div>
-								<div class='display-table-cell'>
-									{{profile.work | ellipsis}}
-								</div>
-							</div>
-							<div class="display-table-row" ng-if="profile.locations.length && profile.locations[0].short_address">
-								<div class="display-table-cell">
-									<i class="fa fa-fw fa-map-marker"></i>
-								</div>
-								<div class='display-table-cell'>
-									{{:: 'you-will-find-me' | translate}}
-									<span ng-repeat="location in profile.locations">
-										<span ng-if="location.short_address">
-											{{location.short_address + ($last ? '' : '; ')}}
-										</span>
-									</span>
-								</div>
-							</div>
-							<div class="display-table-row" ng-if="profile.interests && profile.interests[0] != ''">
-								<div class="display-table-cell">
-									<i class="fa fa-fw fa-smile-o"></i>
-								</div>
-								<div class='display-table-cell'>
-									{{ profile.interests.join(", ") }}
-								</div>
-							</div>
-							<div class="display-table-row" ng-if="!(isEmpty(profile.user_languages))">
-								<div class="display-table-cell">
-									<i class="fa fa-fw fa-comments"></i>
-								</div>
-								<div class="display-table-cell">
-									<span ng-repeat="(languageCode, enabled) in profile.user_languages">
-										{{:: ('MY_LANG.' + languageCode | translate) + ($last ? '' : ',\u00A0') }}
-									</span>
-								</div>
-							</div>
-							<div class="display-table-row" ng-if="(profile.email || profile.contact_email)">
-								<div class='display-table-cell'>
-									<i class="fa fa-fw fa-envelope"></i>
-								</div>
-								<div class='display-table-cell'>
-									<a href='mailto:{{:: profile.email }}' class='display-block'>{{:: profile.email }}</a>
-									<a ng-if='profile.contact_email' href='mailto:{{:: profile.contact_email }}' class='display-block'>{{:: profile.contact_email }}</a>
-								</div>
-							</div>
-							<div class="display-table-row" ng-if=":: profile.phone">
-								<div class='display-table-cell'>
-									<i class="fa fa-fw fa-phone"></i>
-								</div>
-								<div class='display-table-cell'>
-									{{:: profile.phone }}
-								</div>
-							</div>
-							<div class="display-table-row" ng-if="profile.webs.length && profile.webs[0]">
-								<div class="display-table-cell">
-									<i class="fa fa-fw fa-link"></i>
-								</div>
-								<div class='display-table-cell'>
-									<span ng-repeat="(code, web) in profile.webs">
-										<a target="_blank" class="link" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a>
-										<span ng-if="!$last">,&nbsp;</span>
-									</span>
-								</div>
-							</div>
-						</div>
+						<user-intel-readout entity="profile" type="'informative'"></user-intel-readout>
 						<div class="line">
 							<div class="social fleft">
 								<a target="_blank" ng-if="item.author.twitter" href="{{item.author.twitter}}">

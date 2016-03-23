@@ -88,20 +88,6 @@
 			margin: 5px 0;
 			padding: 5px 5px;
 		}
-		&.social {
-			&>div { min-height: 80px; display: block; margin-bottom:10px; }
-			.error {margin-top:5px;}
-		}
-	}
-	.revert-changes {
-		// color: #3FACED;
-		color: $colorSecondary;
-		font-weight: bold;
-		// position: relative;
-		// top: 20px;
-		.fa {
-			margin-right: 5px;
-		}
 	}
 	.down-error {
 		display: inline-block;

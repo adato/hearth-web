@@ -396,9 +396,10 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 }
 
 /* @Kamil TODO - remove important after ditching v2 class */
-.info-box + .karma-bar {
+.info-box + .v2.user > .karma-bar {
 	margin-top: .3125rem !important;
 }
+/* /kamil */
 
 // an exception for ignored <p> in <span> (as a by-product of a translation method)
 button p {

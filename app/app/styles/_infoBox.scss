@@ -1,113 +1,65 @@
 .info-box {
+	position: relative;
+
 	.user-info {
-		background-color: white;
-		border: 2px solid color(1);
 		position: absolute;
-		color: #9F9F9F;
-		margin-top: 8px;
-		left: 140px;
+		left: 100%;
+		color: $colorDarkGray;
 		z-index: 1000;
-		width: 500px;
-		min-height: 3.2rem;
-		font-weight: normal;
-		padding: 18px;
-		text-align: left;
-		border-radius: $global-radius;
-		font-size: 130%;
-		box-shadow: $defaultShadow;
-		p {
-			margin-top: 0px !important;
+
+		.user-info-inner-wrapper {
+			position: relative;
+			left: 0px;
+
+			width: 500px;
+			min-height: 2.8rem;
+			padding: $size-medium;
+			border: 2px solid $colorPrimary;
+			border-radius: $global-radius;
+			box-shadow: $defaultShadow;
+			background-color: white;
 		}
+		/* additional positioning */
 		&.on-profile {
-			left: 110px;
+			.user-info-inner-wrapper {
+				left: 20px;
+			}
 			&.placement-left {
 				left: -500px;
 			}
 		}
 		&.on-item-detail {
-			left: 80px;
-			margin-top: 0;
+			.user-info-inner-wrapper {
+				left: inherit;
+			}
 		}
+		/* /additional positioning */
+
 		.loading-bar {
 			margin-bottom: 1.8rem;
 		}
-		.text-error {
-			color: color(1);
-		}
-		div {
-			margin: {
-				bottom: 0.8em;
-			}
-			;
-		}
-		.user-info-text {
-			font-size: 15px;
-			padding-left: 2px;
-			margin-bottom: 15px;
-			div {
-				word-wrap: break-word;
-				margin-left: 28px;
-				.fa {
-					margin-left: -28px;
-					float: left;
-				}
-			}
-		}
-		.links {
-			section {
-				padding: 0px;
-			}
-		}
 		.inner {
-			.fa {
-				color: color(1);
-				margin-right: 10px;
-				text-align: center;
-				width: 18px;
-			}
-			.summary {
-				margin-left: 2em;
+			.social a.fa {
+				color: $colorSecondary;
+				font-size: 20px;
+				line-height: 20px;
 			}
 			.count_accomplished {
-				color: color(1);
+				color: $colorPrimary;
 				text-align: center;
-				margin-left: 30px;
-			}
-			.social {
-				a {
-					line-height: 20px;
-					font-size: 20px;
-					color: color(5);
+
+				// TODO kamil - too broad a usage to refactor atm. Remove when possible though.
+				// conflicting CSS - .profile-listings-v1 .box p
+				p {
+					margin: 0 0 $size-small 0 !important;
 				}
-			}
-			.profil-link {
-				font-weight: 600;
-				font-size: 14px;
-				a {
-					line-height: 20px;
-					color: color(5);
-				}
-			}
-			.links {
-				height: 18px;
-				.fa {
-					//font-size: 20px;
-					margin-right: 3px;
-				}
+				// /kamil
 			}
 			.author-about {
 				color: black;
 				font-weight: bold;
-				position: relative;
 				text-align: center;
-				margin-left: 0;
-				div {
-					background-color: white;
-					padding-left: 8px;
-					padding-right: 8px;
-					position: relative;
-					top: -12px;
-				}
+				margin-bottom: $size-big;
 			}
 		}
 	}

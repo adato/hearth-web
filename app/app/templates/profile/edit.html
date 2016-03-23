@@ -238,15 +238,12 @@
 			<div class="clear"></div>
 			<br/>
 			<br/>
-			<section class="display-flex flex-reverse flex-space-between">
-				<button type="submit" class="button-send" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
-				<a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
-					<i class="fa fa-chevron-left"></i>{{:: 'CANCEL_CHANGES' | translate }}
-				</a>
+			<section>
+				<div class="display-flex flex-reverse flex-space-between">
+					<button type="submit" class="button-send" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+					<a ui-sref="profile.default({id: loggedUser._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
+				</div>
 			</section>
-			<!-- <div class="fright error down-error" ng-show="messageBottom">
-				<span>{{ messageBottom | translate}}</span>
-			</div> -->
 		</div>
 	</form>
 </div>

@@ -1,9 +1,3 @@
-/* POSITION */
-.position-relative{
-	position: relative !important;
-}
-/* /POSITION */
-
 /* DISPLAY */
 .display-block {
 	display: block !important;
@@ -26,6 +20,7 @@
 }
 .display-table-cell{
 	display: table-cell;
+	vertical-align: top;
 	&.addon{
 		width: 1%;
 	}
@@ -87,23 +82,23 @@
 		&.nowrap-addon{width: 1%; white-space: nowrap;}
 	}
 }
+/* table addons */
+.table-with-icons .display-table-cell{
+	padding-bottom: $size-small;
+}
+.table-with-icons .display-table-cell:first-child{
+	color: $colorPrimary;
+	padding-right: $size-small;
+	vertical-align: top;
+}
+/* /table addons */
 
 .display-flex{
 	display: flex;
 	align-items: center;
 }
-.flex-reverse{
-	flex-direction: row-reverse;
-}
-.flex-column{
-	flex-direction: column;
-}
 .flex-space-between{
 	justify-content: space-between;
-}
-.flex-stretch-content{
-	align-content: stretch;
-	align-items: stretch;
 }
 .flex-wrap{
 	flex-wrap: wrap;
@@ -297,12 +292,19 @@ a.word-break{
 .background-secondary{background-color: $colorSecondary;}
 /* /COLOR */
 
-/* TABLE */
-.table-with-icons .display-table-cell{
-	padding-bottom: $size-small;
+/* LINKS */
+.link-primary,
+a.link-primary,
+.link-secondary,
+a.link-secondary{
+	font-weight: $ui-text-weight-bolder;
 }
-.table-with-icons .display-table-cell:first-child{
+.link-primary,
+a.link-primary{
 	color: $colorPrimary;
-	padding-right: $size-small;
 }
-/* /TABLE */
+.link-secondary,
+a.link-secondary{
+	color: $colorSecondary;
+}
+/* /LINKS */
