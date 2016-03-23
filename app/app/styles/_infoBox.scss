@@ -39,6 +39,9 @@
 			margin-bottom: 1.8rem;
 		}
 		.inner {
+			a {
+				color: $colorSecondary;
+			}
 			.social a.fa {
 				color: $colorSecondary;
 				font-size: 20px;
