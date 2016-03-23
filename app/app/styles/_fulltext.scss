@@ -86,6 +86,16 @@
 				}
 			}
 		}
+		.info {
+			.location {
+
+			}
+			.date {
+				@media #{$medium-up} {
+					text-align: right;
+				}
+			}
+		}
 		p {
 			margin: {
 				top: $fontSize/2;
@@ -96,11 +106,6 @@
 			color: lighten(color(3), 30%);
 			margin: {
 				right: 0.25em;
-			}
-			font-size: rem-calc(22);
-			&:before {
-				position: relative;
-				top: 3px;
 			}
 		}
 		.breadcrumb {

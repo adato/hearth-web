@@ -14,12 +14,6 @@
 @media #{$medium-only} {
 	.messages .conversations {
 		width: 100%;
-		.nano-content {
-			right: 0 !important;
-		}
-		.nano-content-inner {
-			width: 100% !important;
-		}
 	}
 	.messages .conversation-detail-container {
 		width: 97%;
@@ -27,6 +21,7 @@
 		position: absolute;
 		left: 2*$ui-small-grid-size;
 		top: $ui-navbar-height;
+		z-index:123;
 		.conversation-detail .messages-container article.message {
 			max-width: unset;
 		}
@@ -90,12 +85,6 @@
 	}
 	.messages .conversations {
 		width: 100%;
-		.nano-content {
-			right: 0 !important;
-		}
-		.nano-content-inner {
-			width: 100% !important;
-		}
 	}
 	.messages .conversation-detail-container {
 		width: 96%;
@@ -103,6 +92,7 @@
 		position: absolute;
 		left: 2*$ui-small-grid-size;
 		top: $ui-navbar-height;
+		z-index:123;
 		.conversation-detail .messages-container article.message {
 			max-width: unset;
 		}

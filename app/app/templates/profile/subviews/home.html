@@ -55,12 +55,6 @@
 			<div class="line">
 				<user-intel-readout entity="info" type="'all'"></user-intel-readout>
 
-				<div class="descr reg-date margin-top-none">
-					<i class="fa fa-asterisk"></i>
-					<span ng-if="!mine">{{:: 'USER_HAS_REGISTERED' | translate }}</span>
-					<span ng-if="mine">{{:: 'YOU_HAVE_REGISTERED' | translate }}</span> {{ info.created_at | ago}}
-				</div>
-
 				<div ng-if="mine && ! info.about && ! info.work && ! info.interests && ! info.webs.length && ! info.locations.length && ! info.user_languages.length">
 					<p>{{:: 'PROFILE.YOUR_PROFILE_IS_EMPTY' | translate }}</p>
 					<p>
@@ -89,7 +83,6 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="clear">&nbsp;</div>
 		</div>
 		<div class="box activities">
 			<h3 ng-if="mine">{{:: 'YOUR_ACTIVITY' | translate }}</h3>
