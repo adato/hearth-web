@@ -58,6 +58,17 @@
 					<span ng-show="createAdForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
 				</div>
 			</section>
+			<section class="category">
+				<label class="headline">
+					{{'POST_CATEGORY_LABEL' | translate}}:
+				</label>
+				<label ng-repeat="category in postCategories" class="radio">
+					<input type="radio" ng-model="post.category" name="category" value="{{category.name}}" required /> {{category.translate | translate}}
+				</label>
+				<div class="moveUp error" ng-show="createAdForm.category.$invalid && showError.category">
+					<span ng-show="createAdForm.category.$error.required">{{ 'ERR_AD_CATEGORY' | translate }}</span>
+				</div>
+			</section>
 			<section class="text-input keywords">
 				<label>
 					{{ 'POST_KEYWORDS_LABEL' | translate }}

@@ -162,6 +162,18 @@
 			margin-right: 10px;
 		}
 	}
+	.category {
+		.headline,
+		.radio {
+			margin-right: 10px;
+		}
+
+		@media #{$small-down} {
+			.headline {
+				display: block;
+			}
+		}
+	}
 	.keywords {
 		margin-bottom: 1rem;
 	}
