@@ -9,8 +9,8 @@
 				<div class="post-count">
 					<div class="count_accomplished" ng-bind-html=":: ('count-of-wished-and-gifts' | translate: {value: info.post_count.needs + info.post_count.offers })"></div>
 				</div>
-				<div class="author-about" ng-if=":: info.about">
-					{{:: info.about | ellipsis:80 }}
+				<div class="author-about" ng-if=":: info.motto">
+					{{:: info.motto | ellipsis: 70 }}
 				</div>
 				<user-intel-readout entity="info" type="'informative'"></user-intel-readout>
 				<div class="display-flex flex-space-between">
