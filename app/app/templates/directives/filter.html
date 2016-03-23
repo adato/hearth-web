@@ -13,7 +13,7 @@
 		<section ng-show="configOptionsShow.keywords" class="keywords-container" ng-if="inited">
 			<h5>{{:: 'MARKETPLACE.FILTER.BY_KEYWORDS' | translate }}</h5>
 			<tags-input ng-model="filter.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$" min-length="3"
-							max-length="20">
+			max-length="20">
 				<auto-complete class="autocomplete-dropdown" source="queryKeywords($query)" load-on-empty="true" load-on-focus="true" load-on-down-arrow="true" debounce-delay="200" max-results-to-show="8" min-length="1"></auto-complete>
 			</tags-input>
 		</section>

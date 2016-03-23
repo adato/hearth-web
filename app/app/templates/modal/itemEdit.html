@@ -51,7 +51,7 @@
 			<section class="text">
 				<label for="text">{{ 'POST_TEXT_LABEL' | translate }}</label>
 				<textarea autosize-textarea ng-focus="showError.text = false" ng-blur="showError.text = true" required ng-attr-placeholder="{{ 'WHAT_YOU_NEED_OR_OFFER_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="post.text" name="text" ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}"
-								ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
+				ng-keydown="escapeKey($event)" ng-focus="startCreatingAd()" ng-cloak class="create-ad-textarea text-input middle"></textarea>
 				<div class="moveUp error" ng-show="createAdForm.text.$invalid && showError.text">
 					<span ng-show="createAdForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
 					<span ng-show="createAdForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
@@ -63,7 +63,7 @@
 					{{ 'POST_KEYWORDS_LABEL' | translate }}
 				</label>
 				<tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$"
-								min-length="2" max-length="20">
+				min-length="2" max-length="20">
 					<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 				</tags-input>
 			</section>
@@ -85,7 +85,7 @@
 				</label>
 				<div ng-slide-down="slide.date" lazy-render duration="0.3" ng-class="{disabled: post.valid_until_unlimited == true}">
 					<input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until"
-									required>
+					required>
 					<checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
 					<div class="clear error" ng-show="!post.valid_until_unlimited && showError.valid_until">
 						<span ng-show="!post.valid_until.trim()">{{ 'DATE_IS_EMPTY' | translate }}</span>
@@ -153,7 +153,7 @@
 						</li>
 						<li class="file-upload">
 							<div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource'
-											limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
+							limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
 								<i class="fa fa-plus"></i>
 								<i class="fa fa-spinner fa-spin"></i>
 							</div>
@@ -174,7 +174,7 @@
 					{{ 'CLOSE' | translate }}
 				</a>
 				<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP"
-								translate>SAVE_AND_ACTIVATE</button>
+				translate>SAVE_AND_ACTIVATE</button>
 				<button class="primary button button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
 				<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     {{ 'DELETE' | translate }}

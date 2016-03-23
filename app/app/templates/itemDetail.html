@@ -235,12 +235,12 @@
 					</div>
 					<div ng-if="profile">
 						<div class="display-table table-with-icons margin-top-medium">
-							<div class="display-table-row" ng-if="profile.about">
+							<div class="display-table-row" ng-if="profile.motto">
 								<div class="display-table-cell">
 									<i class="fa fa-fw fa-quote-right"></i>
 								</div>
 								<div class='display-table-cell'>
-									{{profile.about | ellipsis}}
+									{{profile.motto | ellipsis: 70}}
 								</div>
 							</div>
 							<div class="display-table-row" ng-if="profile.work">

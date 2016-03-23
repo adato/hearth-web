@@ -1,8 +1,8 @@
 <div>
 	<textarea ng-if="inputType === 'textarea'" ng-model="$parent.model" ng-attr-placeholder="{{placeholder}}" name="{{name}}" ng-required="{{ !!(required || isrequired) }}" ng-minlength="minLength" ng-maxlength="maxLength" ng-model-options="{allowInvalid: true}"
-					ng-blur="isBlur()" ng-focus="isFocus()"></textarea>
+	ng-blur="isBlur()" ng-focus="isFocus()"></textarea>
 	<input ng-if="inputType === 'input'" type="text" ng-model="$parent.model" ng-attr-placeholder="{{placeholder}}" name="{{name}}" ng-required="{{ !!(required || isrequired) }}" ng-minlength="minLength" ng-maxlength="maxLength" ng-model-options="{ allowInvalid: true }"
-					ng-blur="isBlur()" ng-focus="isFocus()" />
+	ng-blur="isBlur()" ng-focus="isFocus()" />
 
 	<div class="tright" ng-if="showCounter" translate="WRITTEN_FROM_ALLOWED" translate-values="{maxLen: maxLength, len: typed}" ng-class="{'error': showError}"></div>
 	<p class="error" ng-show="!showCounter && (form.$error.minlength || form.$error.maxlength)">
