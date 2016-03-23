@@ -1,13 +1,17 @@
 <article class="item-common bubbled" id="post_{{:: item._id }}" ng-class="{inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<div class="row">
-		<section ng-if="! hideAvatar" class="column medium-2 show-for-medium-up text-center v2 user padding-top-small">
+		<section ng-if="! hideAvatar" class="column medium-2 show-for-medium-up padding-top-small">
 			<div info-box="item.author">
-				<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-					<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.large"></avatar>
-					<div class="name">{{ item.author.name }}</div>
-				</a>
+				<div class="v2 user text-center">
+					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
+						<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.large"></avatar>
+						<div class="name">{{ item.author.name }}</div>
+					</a>
+				</div>
 			</div>
-			<karma-bar for="item.author"></karma-bar>
+			<div class="v2 user text-center">
+				<karma-bar for="item.author"></karma-bar>
+			</div>
 		</section>
 
 		<div class="column small-12 medium-10 padding-none" ng-class="{'medium-push-1': hideAvatar}">

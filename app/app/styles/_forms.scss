@@ -194,3 +194,15 @@ textarea, input {
 		}
 	}
 }
+
+.revert-changes,
+.revert-changes:focus {
+	color: $colorSecondary;
+	font-weight: bold;
+	&::before{
+		content: '\f053';
+		display: inline-block;
+		padding-right: $size-tiny;
+		font: normal normal normal 14px/1 FontAwesome;
+	}
+}

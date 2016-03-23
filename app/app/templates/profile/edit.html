@@ -246,15 +246,9 @@
 			<br/>
 			<br/>
 			<section>
-				<div class="large-12 small-12 medium-12 columns">
-					<a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
-						<span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
-					</a>
-					<button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}
-					</button>
-					<div class="fright error down-error" ng-show="messageBottom">
-						<span>{{ messageBottom | translate}}</span>
-					</div>
+				<div class="display-flex flex-reverse flex-space-between">
+					<button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+					<a ui-sref="profile.default({id: loggedUser._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
 				</div>
 			</section>
 		</div>

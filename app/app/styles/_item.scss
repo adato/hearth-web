@@ -27,7 +27,7 @@ a.user{
 	text-shadow: 0px 0px 1px gray;
 }
 
-// .post-on-market is an envelope around every item 
+// .post-on-market is an envelope around every item
 .post-on-market {
 	header h1>a {
 		color: black;
@@ -300,7 +300,7 @@ a.user{
 			vertical-align: baseline;
 		}
 	}
-	
+
 	.tooltip{
 		text-align: left !important;
 	}
@@ -389,9 +389,10 @@ article.post-on-market .ad-detail-column:hover footer>.sharing {
 }
 
 /* @Kamil TODO - remove important after ditching v2 class */
-.info-box + .karma-bar {
+.info-box + .v2.user > .karma-bar {
 	margin-top: .3125rem !important;
 }
+/* /kamil */
 
 // an exception for ignored <p> in <span> (as a by-product of a translation method)
 button p {
@@ -421,7 +422,7 @@ button p {
 		}
 	}
 
-	// .post-on-market is an envelope around every item 
+	// .post-on-market is an envelope around every item
 	&.post-on-market {
 		article header h1>a {
 			color: black;
@@ -694,7 +695,7 @@ button p {
 			}
 		}
 	}
-	
+
 	&.post-on-market .ad-detail-column .columns {
 		padding-left: 0;
 		padding-right: 0;
@@ -942,7 +943,7 @@ button p {
 					background: darken(color(5), 10%);
 				}
 			}
-			
+
 			.post-edit-buttons-container {
 				font-size: 22px; // @@TODO
 				padding: $ui-small-grid-size;
@@ -1013,7 +1014,7 @@ button p {
 					text-align: left;
 					.avatar {
 						margin-right: 1.25rem;
-						//margin-top: -2 * $ui-small-grid-size; 
+						//margin-top: -2 * $ui-small-grid-size;
 						a::before,
 						img {
 							width: 60px;

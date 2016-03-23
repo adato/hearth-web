@@ -1,0 +1,79 @@
+<div class="display-table table-with-icons">
+	<div class="display-table-row" ng-if="entity.about && (readoutTypeIndex > 0)">
+		<div class="display-table-cell">
+			<i class="fa fa-fw fa-quote-right"></i>
+		</div>
+		<div class='display-table-cell'>
+			{{entity.about | ellipsis }}
+		</div>
+	</div>
+	<div class="display-table-row" ng-if="entity.interests && entity.interests[0] != '' && (readoutTypeIndex > 0)">
+		<div class="display-table-cell">
+			<i class="fa fa-fw fa-smile-o"></i>
+		</div>
+		<div class='display-table-cell'>
+			{{entity.interests.join(",\u00A0") }}
+		</div>
+	</div>
+	<div class="display-table-row" ng-if="entity.work && (readoutTypeIndex > 0)">
+		<div class="display-table-cell">
+			<i class="fa fa-fw fa-briefcase"></i>
+		</div>
+		<div class='display-table-cell'>
+			{{entity.work | ellipsis }}
+		</div>
+	</div>
+	<div class="display-table-row" ng-if="entity.locations.length && entity.locations[0].short_address && (readoutTypeIndex > -1)">
+		<div class="display-table-cell addon">
+			<i class="fa fa-fw fa-map-marker"></i>
+		</div>
+		<div class="display-table-cell">
+			{{:: 'you-will-find-me' | translate }}
+			<span ng-repeat="location in entity.locations" ng-if="location.short_address">
+				{{location.short_address + ($last ? '.' : ',\u00A0') }}
+			</span>
+		</div>
+	</div>
+	<div class="display-table-row" ng-if="!(isEmpty(entity.user_languages)) && (readoutTypeIndex > -1)">
+		<div class="display-table-cell addon">
+			<i class="fa fa-fw fa-comments"></i>
+		</div>
+		<div class="display-table-cell">
+			<span ng-repeat="(languageCode, enabled) in entity.user_languages">
+				{{('MY_LANG.' + languageCode | translate) + ($last ? '.' : ',\u00A0') }}
+			</span>
+		</div>
+	</div>
+	<div class="display-table-row" ng-if="(entity.email || entity.contact_email) && (readoutTypeIndex > -1)">
+		<div class="display-table-cell addon">
+			<i class="fa fa-fw fa-envelope"></i>
+		</div>
+		<div class="display-table-cell">
+			<div ng-if="entity.email">
+				<a href="mailto:{{entity.email }}">{{entity.email }}</a>
+			</div>
+			<div ng-if="entity.contact_email">
+				<a href="mailto:{{entity.contact_email }}">{{entity.contact_email }}</a>
+			</div>
+		</div>
+	</div>
+	<div class="display-table-row" ng-if="entity.phone && (readoutTypeIndex > -1)">
+		<div class="display-table-cell addon">
+			<i class="fa fa-fw fa-phone"></i>
+		</div>
+		<div class="display-table-cell">
+			{{ entity.phone }}
+		</div>
+	</div>
+	<div class="display-table-row" ng-if="entity.webs.length && entity.webs[0] && (readoutTypeIndex > -0)">
+		<div class="display-table-cell addon">
+			<i class="fa fa-fw fa-link"></i>
+		</div>
+		<div class='display-table-cell'>
+			<span ng-repeat="web in entity.webs">
+				<a target="_blank" ng-href="{{ web }}">{{ web | protocolfree | ellipsis:20 }}</a>
+				<span ng-bind="($last ? '' : ',\u00A0')"></span>
+			</span>
+		</div>
+	</div>
+</div>
