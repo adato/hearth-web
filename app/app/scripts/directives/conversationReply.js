@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'ConversationService',
-	function(Conversations, Notify, $timeout, ConversationService) {
+	'Conversations', 'Notify', '$timeout', 'ConversationService', 'FileService',
+	function(Conversations, Notify, $timeout, ConversationService, FileService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -17,35 +17,27 @@ angular.module('hearth.directives').directive('conversationReply', [
 				conversation: '='
 			},
 			templateUrl: 'templates/directives/conversationReply.html',
-			controller: [function() {
-
-			}],
-			controllerAs: 'conversationReply',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
-				$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
 				$scope.showError = {
 					text: false
 				};
 				$scope.actors = [];
 				$scope.actorsCount = 0;
-				$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
+				$scope.invalidFileType = FileService.getCleanInvalidFileType();
 				$scope.reply = {
 					text: '',
 					current_community_id: '',
 					attachments_attributes: ''
 				};
 
-				$scope.uploadedFile = function(element) { << << << < HEAD
+				$scope.uploadedFile = function(element) {
 					ConversationService.onFileUpload($scope, element, 'reply');
-					if (!$scope.$$phase) $scope.$apply(); === === =
-					$scope.$apply(function($scope) {
-						ConversationService.onFileUpload($scope, element, 'reply');
-					}); >>> >>> > 667 - forbidden - filetypes
+					if (!$scope.$$phase) $scope.$apply();
 				};
 
 				$scope.removeAttachments = function() {
-					$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
+					$scope.invalidFileType = FileService.getCleanInvalidFileType();
 					$scope.reply.attachments_attributes = '';
 				}
 
@@ -66,7 +58,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 					if ($scope.sendingReply || !$scope.validateReply(reply))
 						return false;
 					$scope.sendingReply = true;
-					console.log(reply);
 					Conversations.reply(reply, function(res) {
 						$scope.removeAttachments();
 						$scope.reply.text = '';

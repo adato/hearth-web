@@ -6,12 +6,11 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationAdd', [
-	'$rootScope', 'Conversations', 'Notify', 'ConversationService',
-	function($rootScope, Conversations, Notify, ConversationService) {
+	'$rootScope', 'Conversations', 'Notify', 'ConversationService', 'FileService',
+	function($rootScope, Conversations, Notify, ConversationService, FileService) {
 		return {
 			restrict: 'E',
 			replace: true,
-			$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
 			scope: {
 				recipient: '=?',
 				onError: '=',
@@ -22,7 +21,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 			templateUrl: 'templates/directives/conversationAdd.html',
 			link: function($scope, element) {
 				$scope.sendingMessage = false;
-				$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
+				$scope.invalidFileType = FileService.getCleanInvalidFileType();
 				$scope.showError = {
 					text: false,
 					participant_ids: false,
@@ -34,16 +33,13 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					attachments_attributes: ''
 				};
 
-				$scope.uploadedFile = function(element) { << << << < HEAD
+				$scope.uploadedFile = function(element) {
 					ConversationService.onFileUpload($scope, element, 'message');
-					if (!$scope.$$phase) $scope.$apply(); === === =
-					$scope.$apply(function() {
-						ConversationService.onFileUpload($scope, element, 'message');
-					}); >>> >>> > 667 - forbidden - filetypes
+					if (!$scope.$$phase) $scope.$apply();
 				};
 
 				$scope.removeAttachments = function() {
-					$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
+					$scope.invalidFileType = FileService.getCleanInvalidFileType();
 					$scope.message.attachments_attributes = '';
 				}
 
