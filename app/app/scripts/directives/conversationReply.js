@@ -3,13 +3,13 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.conversationReply
- * @description 
+ * @description
  * @restrict E
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout',
-	function(Conversations, Notify, $timeout) {
+	'Conversations', 'Notify', '$timeout', 'FileService',
+	function(Conversations, Notify, $timeout, FileService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -17,6 +17,10 @@ angular.module('hearth.directives').directive('conversationReply', [
 				conversation: '='
 			},
 			templateUrl: 'templates/directives/conversationReply.html',
+			controller: [function() {
+
+			}],
+			controllerAs: 'conversationReply',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
 				$scope.actors = [];
@@ -44,9 +48,8 @@ angular.module('hearth.directives').directive('conversationReply', [
 						$scope.reply.attachments_attributes = element.files[0];
 
 						var uploadedType = $scope.reply.attachments_attributes.type;
-						var allowedFileTypes = ['image/png', 'image/jpeg', 'image/gif'];
 
-						if (allowedFileTypes.indexOf(uploadedType) > -1) {
+						if (FileService.fileTypes.image.indexOf(uploadedType) > -1) {
 							var reader = new FileReader();
 							reader.onload = function(e) {
 								$('#file-preview').attr('src', e.target.result);
