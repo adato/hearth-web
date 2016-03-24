@@ -1411,13 +1411,17 @@
 	"USER_MOTTO_EXAMPLE": "",
 	"ERR_USER_MOTTO_MAX_LENGTH": "Motto je příliš dlouhé",
 	"ERR_INVALID_URL": "Tato adresa není platná",
-	"CATEGORY_SERVICES": "Služby",
-	"CATEGORY_THINGS": "Veci",
+	"CATEGORY_INFORMATION": "Informácie",
+	"CATEGORY_MASS": "Hmota",
 	"CATEGORY_ENERGY": "Energie",
 	"POST_CATEGORY_LABEL": "Kategória inzerátu",
 	"SELECT_CATEGORY_LABEL": "Vyberte kategóriu",
 	"ERR_AD_CATEGORY": "Kategórie príspevku musí byť vyplnené.",
 	"FILE_TYPE": {
 		"INVALID_TYPE": "Promiň, ale soubory typu .{{type}} jako přílohu nepodporujeme."
-	}
+	},
+	"CATEGORY_INFORMATION_TEXT": "(vedomosti, tipy...)",
+	"CATEGORY_MASS_TEXT": "(veci...)",
+	"CATEGORY_ENERGY_TEXT": "(aktivita, priania...)",
+	"ERR_AD_CATEGORY_MAX": "Môžete vybrať maximálne 2 kategórie."
 }
