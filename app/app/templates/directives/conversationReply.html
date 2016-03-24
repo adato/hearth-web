@@ -20,18 +20,20 @@
 			</div>
 		</div>
 		<div class="files-upload">
-			<input id="file" type="file" onchange="angular.element(this).scope().uploadedFile(this)" />
+			<input type="file" id="file" class="file-input" onchange="angular.element(this).scope().uploadedFile(this)" />
 			<div>
-				<a ng-click="openUploadDialog()">
+				<label class="file-label" for="file" tabindex="0">
 					<span ng-if="!reply.attachments_attributes">{{'ADD_ATTACHMENT' | translate}}</span>
 					<span ng-if="reply.attachments_attributes">{{'CHANGE_ATTACHMENT' | translate}}</span>
-				</a>
+				</label>
+				<span class="display-inline-block margin-left-medium text-danger" ng-if="invalidFileType.shown" translate="FILE_TYPE.INVALID_TYPE" translate-values="{type: invalidFileType.type}"></span>
 			</div>
 			<div class="files" ng-if="reply.attachments_attributes">
 				<div ng-show="sendingReply" class="loading">
 					<i class="fa fa-spinner fa-spin"></i>
 				</div>
 				<div ng-if="!fileIsImage" class="file-preview fleft">
+					<i class="fa fa-times remove-from-file-preview" tabindex="0" ng-click="removeAttachments()"></i>
 					<i class="fa fa-file"></i>
 					<p class="file-name">{{reply.attachments_attributes.name}}</p>
 				</div>
