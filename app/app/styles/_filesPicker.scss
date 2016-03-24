@@ -1,0 +1,35 @@
+.image-upload-preview-wrapper{
+	position: relative;
+	display: inline-block;
+	min-width: 22px; /* width of the remover + 2*2px padding (.fa-stack-2x) */
+	max-width: 200px;
+	overflow: hidden;
+	margin-right: $size-small;
+	margin-bottom: $size-small;
+}
+.image-upload-preview{
+	display: inline-block;
+	height: 100px;
+	background-color: $colorLightGray;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+img.image-upload-preview{
+	object-fit: cover;
+}
+div.image-upload-preview{
+	width: 100px;
+}
+.file-remover-wrapper{
+	position: absolute;
+	top: 0; right: 0; left: 0;
+	padding: 2px;
+	text-align: right;
+	background-color: rgba(255,255,255,.8);
+	z-index: 1;
+}
+.file-remover:hover .file-remove-background,
+.file-remover:focus .file-remove-background{
+	color: darken($colorDanger, 20%);
+}

@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'FileService',
-	function(Conversations, Notify, $timeout, FileService) {
+	'Conversations', 'Notify', '$timeout', 'ConversationService',
+	function(Conversations, Notify, $timeout, ConversationService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -25,6 +25,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.sendingReply = false;
 				$scope.actors = [];
 				$scope.actorsCount = 0;
+				$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
 				$scope.reply = {
 					text: '',
 					current_community_id: '',
@@ -44,22 +45,8 @@ angular.module('hearth.directives').directive('conversationReply', [
 				};
 
 				$scope.uploadedFile = function(element) {
-					$scope.$apply(function($scope) {
-						$scope.reply.attachments_attributes = element.files[0];
-
-						var uploadedType = $scope.reply.attachments_attributes.type;
-
-						if (FileService.fileTypes.image.indexOf(uploadedType) > -1) {
-							var reader = new FileReader();
-							reader.onload = function(e) {
-								$('#file-preview').attr('src', e.target.result);
-							};
-							reader.readAsDataURL(element.files[0]);
-							$scope.fileIsImage = true;
-						} else {
-							$scope.fileIsImage = false;
-						}
-					});
+					ConversationService.onFileUpload($scope, element, 'reply');
+					if (!$scope.$$phase) $scope.$apply();
 				};
 
 				$scope.validateReply = function(reply) {

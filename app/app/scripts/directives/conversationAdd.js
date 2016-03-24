@@ -6,11 +6,12 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('conversationAdd', [
-	'$rootScope', 'Conversations', 'Notify',
-	function($rootScope, Conversations, Notify) {
+	'$rootScope', 'Conversations', 'Notify', 'ConversationService',
+	function($rootScope, Conversations, Notify, ConversationService) {
 		return {
 			restrict: 'E',
 			replace: true,
+			$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
 			scope: {
 				recipient: '=?',
 				onError: '=',
@@ -42,23 +43,8 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				};
 
 				$scope.uploadedFile = function(element) {
-					$scope.$apply(function($scope) {
-						$scope.message.attachments_attributes = element.files[0];
-
-						var uploadedType = $scope.message.attachments_attributes.type;
-						var allowedFileTypes = ['image/png', 'image/jpeg', 'image/gif'];
-
-						if (allowedFileTypes.indexOf(uploadedType) > -1) {
-							var reader = new FileReader();
-							reader.onload = function(e) {
-								$('#file-preview').attr('src', e.target.result);
-							};
-							reader.readAsDataURL(element.files[0]);
-							$scope.fileIsImage = true;
-						} else {
-							$scope.fileIsImage = false;
-						}
-					});
+					ConversationService.onFileUpload($scope, element, 'message');
+					if (!$scope.$$phase) $scope.$apply();
 				};
 
 				$scope.hideRecipientsError = function() {
