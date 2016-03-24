@@ -90,7 +90,6 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					$scope.sendingMessage = true;
 
 					Conversations.add(data, function(res) {
-						$scope.removeAttachments();
 						$scope.sendingMessage = false;
 
 						if ($scope.onSuccess)
