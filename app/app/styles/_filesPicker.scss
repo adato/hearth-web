@@ -1,0 +1,68 @@
+.files-upload-preview-wrapper{
+	position: relative;
+	display: inline-block;
+	min-width: 22px; /* width of the remover + 2*2px padding (.fa-stack-2x) */
+	max-width: 200px;
+	vertical-align: top;
+	margin-right: $size-small;
+	margin-bottom: $size-small;
+}
+.image-upload-preview{
+	display: inline-block;
+	background-color: $colorLightGray;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+img.image-upload-preview{
+	object-fit: cover;
+}
+.image-upload-preview,
+.file-upload-preview{
+	height: 80px;
+	box-shadow: $ui-box-shadow;
+}
+.file-upload-preview{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	padding: 0 $size-small;
+	text-align: center;
+	color: $colorDarkGray;
+
+	& > .fa {
+		margin-bottom: $size-tiny;
+		color: $colorSecondary;
+	}
+}
+.file-upload-preview-filename{
+	font-size: $ui-smaller-font-size;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.file-remover-wrapper{
+	position: absolute;
+	top: 0; right: 0; left: 0;
+	padding: 2px;
+	text-align: right;
+	font-size: $size-small;
+	background-color: rgba(255,255,255,.8);
+	z-index: 1;
+}
+.file-remover{
+	color: $colorDarkGray;
+}
+.file-remover:hover .file-remove-background,
+.file-remover:focus .file-remove-background{
+	color: darken($colorDanger, 20%);
+}
+.files-upload-label{
+	display: inline-block;
+	margin-bottom: $size-small;
+	font-weight: $ui-text-weight-bolder;
+	color: $colorSecondary;
+}
+.files-upload-label > input{
+	display: none;
+}

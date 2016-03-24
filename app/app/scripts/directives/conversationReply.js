@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'ConversationService',
-	function(Conversations, Notify, $timeout, ConversationService) {
+	'Conversations', 'Notify', '$timeout', 'ConversationService', 'FileService',
+	function(Conversations, Notify, $timeout, ConversationService, FileService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -19,12 +19,12 @@ angular.module('hearth.directives').directive('conversationReply', [
 			templateUrl: 'templates/directives/conversationReply.html',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
-				$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
 				$scope.showError = {
 					text: false
 				};
 				$scope.actors = [];
 				$scope.actorsCount = 0;
+				$scope.invalidFileType = FileService.getCleanInvalidFileType();
 				$scope.reply = {
 					text: '',
 					current_community_id: '',
@@ -32,13 +32,12 @@ angular.module('hearth.directives').directive('conversationReply', [
 				};
 
 				$scope.uploadedFile = function(element) {
-					$scope.$apply(function($scope) {
-						ConversationService.onFileUpload($scope, element, 'reply');
-					});
+					ConversationService.onFileUpload($scope, element, 'reply');
+					if (!$scope.$$phase) $scope.$apply();
 				};
 
 				$scope.removeAttachments = function() {
-					$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
+					$scope.invalidFileType = FileService.getCleanInvalidFileType();
 					$scope.reply.attachments_attributes = '';
 				}
 
@@ -59,7 +58,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 					if ($scope.sendingReply || !$scope.validateReply(reply))
 						return false;
 					$scope.sendingReply = true;
-					console.log(reply);
 					Conversations.reply(reply, function(res) {
 						$scope.removeAttachments();
 						$scope.reply.text = '';

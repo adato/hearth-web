@@ -10,28 +10,29 @@ angular.module('hearth.services').factory('ConversationService', ['FileService',
 
 	var factory = {};
 
-	factory.getCleanInvalidFileType = function() {
-		return {
-			shown: false,
-			type: null
-		};
-	};
-
+	/**
+	 *	Attaches an image from input[type='file'] to a scopeProperty of choosing
+	 *	and if the file is an image, specifies this in {Bool} scope.fileIsImage
+	 *
+	 *	Only works for non-multiple file inputs
+	 */
 	factory.onFileUpload = function($scope, element, scopeProperty) {
 		var fileExtension = element.files[0].name.split('.');
 		fileExtension = fileExtension[fileExtension.length - 1];
 
-		if (FileService.fileTypes.forbidden.indexOf(fileExtension) > -1) {
+		if (FileService.fileTypes.forbidden.indexOf('.' + fileExtension) > -1) {
+			// let user know that the file type is invalid
 			$scope.invalidFileType.shown = true;
 			$scope.invalidFileType.type = fileExtension;
+			// clear the input
 			element.value = '';
 			return false;
 		}
+		// clear invalid message
 		$scope.invalidFileType.shown = false;
 		$scope.invalidFileType.type = null;
 
 		$scope[scopeProperty].attachments_attributes = element.files[0];
-		element.value = '';
 		if (FileService.fileTypes.image.indexOf($scope[scopeProperty].attachments_attributes.type) > -1) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -42,6 +43,8 @@ angular.module('hearth.services').factory('ConversationService', ['FileService',
 		} else {
 			$scope.fileIsImage = false;
 		}
+		// clear the input
+		element.value = '';
 	};
 
 	return factory;

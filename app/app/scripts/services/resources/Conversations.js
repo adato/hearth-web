@@ -3,7 +3,7 @@
 /**
  * @ngdoc service
  * @name hearth.services.Messages
- * @description 
+ * @description
  */
 
 angular.module('hearth.services').factory('Conversations', [
@@ -20,16 +20,16 @@ angular.module('hearth.services').factory('Conversations', [
 				},
 				transformRequest: function(data) {
 					var fd = new FormData();
-
 					angular.forEach(data, function(key, value) {
 						if (value === 'attachments_attributes') {
-							fd.append('attachments_attributes[][multipart]', key);
+							if (!(key instanceof Array)) key = [key];
+							for (var i = 0, l = key.length; i < l; i++) {
+								fd.append('attachments_attributes[][multipart]', key[i]);
+							}
 						} else if (value === 'participant_ids') {
 							angular.forEach(key, function(id, index) {
 								fd.append('participant_ids[]', id);
 							});
-
-
 						} else {
 							fd.append(value, key);
 						}
@@ -87,10 +87,12 @@ angular.module('hearth.services').factory('Conversations', [
 				},
 				transformRequest: function(data) {
 					var fd = new FormData();
-
 					angular.forEach(data, function(key, value) {
 						if (value === 'attachments_attributes') {
-							fd.append('attachments_attributes[][multipart]', key);
+							if (!(key instanceof Array)) key = [key];
+							for (var i = 0, l = key.length; i < l; i++) {
+								fd.append('attachments_attributes[][multipart]', key[i]);
+							}
 						} else {
 							fd.append(value, key);
 						}
