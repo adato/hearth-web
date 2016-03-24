@@ -163,14 +163,13 @@
 		}
 	}
 	.category {
-		.headline,
-		.radio {
-			margin-right: 10px;
-		}
+		.category-label {
+			margin-bottom: 0;
+			display: block;
 
-		@media #{$small-down} {
-			.headline {
-				display: block;
+			span {
+				color: $ui-color-lighter;
+				font-weight: normal;
 			}
 		}
 	}
