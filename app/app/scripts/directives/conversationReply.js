@@ -24,22 +24,11 @@ angular.module('hearth.directives').directive('conversationReply', [
 				};
 				$scope.actors = [];
 				$scope.actorsCount = 0;
-				$scope.invalidFileType = FileService.getCleanInvalidFileType();
 				$scope.reply = {
 					text: '',
 					current_community_id: '',
 					attachments_attributes: ''
 				};
-
-				$scope.uploadedFile = function(element) {
-					ConversationService.onFileUpload($scope, element, 'reply');
-					if (!$scope.$$phase) $scope.$apply();
-				};
-
-				$scope.removeAttachments = function() {
-					$scope.invalidFileType = FileService.getCleanInvalidFileType();
-					$scope.reply.attachments_attributes = '';
-				}
 
 				$scope.validateReply = function(reply) {
 					var invalid = false;
