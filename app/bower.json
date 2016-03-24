@@ -40,7 +40,8 @@
     "jquery-autosize": "autosize#1.18.16",
     "smartcrop": "*",
     "angular-mobile-detect": "*",
-    "rollbar": "~1.8.3"
+    "rollbar": "~1.8.3",
+	"checklist-model": "0.9.0"
   },
   "devDependencies": {},
   "resolutions": {

@@ -114,6 +114,27 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
+		$scope.checkCategories = function() {
+			var categories = $scope.post.categories || [];
+			var count = categories.length;
+
+			if (!count) {
+				$scope.createAdForm.category.$invalid = true;
+				$scope.createAdForm.category.$setValidity('required', false);
+				$scope.createAdForm.category.$setValidity('max', true);
+			} else if (count > 2) {
+				$scope.createAdForm.category.$invalid = true;
+				$scope.createAdForm.category.$setValidity('required', true);
+				$scope.createAdForm.category.$setValidity('max', false);
+			} else {
+				$scope.createAdForm.category.$invalid = false;
+				$scope.createAdForm.category.$setValidity('required', true);
+				$scope.createAdForm.category.$setValidity('max', true);
+			}
+
+			return $scope.createAdForm.category.$invalid;
+		};
+
 		/**
 		 * Transform - deserialize post to object which can be used in application
 		 */
@@ -181,6 +202,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.testForm = function(post) {
 			var res = false;
 			$scope.createAdForm.$setDirty();
+
 			if ($scope.createAdForm.title.$invalid) {
 				res = $scope.showError.title = true;
 			}
@@ -189,18 +211,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				res = $scope.showError.text = true;
 			}
 
+			$scope.checkCategories();
+
 			if ($scope.createAdForm.category.$invalid) {
 				res = $scope.showError.category = true;
 			}
 
 			if (!post.valid_until_unlimited) {
-
 				if (post.valid_until == '') {
 					res = $scope.slide.date = true;
 					$timeout(function() {
 						$scope.showError.valid_until = true;
 					});
-
 				} else if (getDateDiffFromNow(post.valid_until, $scope.dateFormat) < 0) {
 					res = $scope.slide.date = true;
 					// test for old date in past
@@ -214,7 +236,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			// locations are not unlimited
 			if (!post.location_unlimited) {
-
 				// and are empty
 				if (!post.locations || !post.locations.length) {
 					res = $scope.showError.locations = true;

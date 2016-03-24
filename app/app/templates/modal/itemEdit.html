@@ -62,11 +62,13 @@
 				<label class="headline">
 					{{'POST_CATEGORY_LABEL' | translate}}:
 				</label>
-				<label ng-repeat="category in postCategories" class="radio">
-					<input type="radio" ng-model="post.category" name="category" value="{{category.name}}" required /> {{category.translate | translate}}
+				<label ng-repeat="category in postCategories" class="category-label">
+					<input type="checkbox" checklist-model="post.categories" checklist-value="category.name" ng-click="checkCategories()" name="category" /> {{category.translate | translate}}
+					<span>{{category.translateText | translate}}</span>
 				</label>
-				<div class="moveUp error" ng-show="createAdForm.category.$invalid && showError.category">
+				<div class="moveUp error" ng-show="createAdForm.category.$invalid">
 					<span ng-show="createAdForm.category.$error.required">{{ 'ERR_AD_CATEGORY' | translate }}</span>
+					<span ng-show="createAdForm.category.$error.max">{{ 'ERR_AD_CATEGORY_MAX' | translate }}</span>
 				</div>
 			</section>
 			<section class="text-input keywords">
