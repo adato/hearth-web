@@ -41,7 +41,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
 				$scope.removeAttachments = function() {
 					$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
-					$scope.message.attachments_attributes = null;
+					$scope.message.attachments_attributes = '';
 				}
 
 				$scope.hideRecipientsError = function() {

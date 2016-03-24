@@ -28,7 +28,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 				$scope.reply = {
 					text: '',
 					current_community_id: '',
-					attachments_attributes: null
+					attachments_attributes: ''
 				};
 
 				$scope.uploadedFile = function(element) {
@@ -39,7 +39,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 				$scope.removeAttachments = function() {
 					$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
-					$scope.reply.attachments_attributes = null;
+					$scope.reply.attachments_attributes = '';
 				}
 
 				$scope.validateReply = function(reply) {
@@ -59,7 +59,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 					if ($scope.sendingReply || !$scope.validateReply(reply))
 						return false;
 					$scope.sendingReply = true;
-
+					console.log(reply);
 					Conversations.reply(reply, function(res) {
 						$scope.removeAttachments();
 						$scope.reply.text = '';
