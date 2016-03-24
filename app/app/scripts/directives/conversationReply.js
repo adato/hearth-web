@@ -48,7 +48,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 						return false;
 					$scope.sendingReply = true;
 					Conversations.reply(reply, function(res) {
-						$scope.removeAttachments();
 						$scope.reply.text = '';
 
 						$timeout(function() {
