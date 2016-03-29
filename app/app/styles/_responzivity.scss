@@ -1,4 +1,4 @@
-// foundation breakpoint for large screens 
+// foundation breakpoint for large screens
 @media #{$large-up} {
 	.main-container {
 		max-width: 960px;
@@ -25,9 +25,6 @@
 		.conversation-detail .messages-container article.message {
 			max-width: unset;
 		}
-	}
-	.messages .messages-add .bottom {
-		margin-bottom: $ui-grid-size;
 	}
 
 	.market {
@@ -62,7 +59,7 @@
 		width: unset !important;
 		width: 100%;
 	}
-	
+
 	.market .avatar {
 		& > div,
 		span,
@@ -96,9 +93,6 @@
 		.conversation-detail .messages-container article.message {
 			max-width: unset;
 		}
-	}
-	.messages .messages-add .bottom {
-		margin-bottom: $ui-grid-size;
 	}
 }
 

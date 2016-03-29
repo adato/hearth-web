@@ -22,37 +22,9 @@
 
 		<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
 
-		<!-- <div class="files-upload">
-			<input type="file" id="file" class="file-input" onchange="angular.element(this).scope().uploadedFile(this)" />
-			<div>
-				<label class="file-label" for="file" tabindex="0">
-					<span ng-if="!reply.attachments_attributes">{{'ADD_ATTACHMENT' | translate}}</span>
-					<span ng-if="reply.attachments_attributes">{{'CHANGE_ATTACHMENT' | translate}}</span>
-				</label>
-				<span class="display-inline-block margin-left-medium text-danger" ng-if="invalidFileType.shown" translate="FILE_TYPE.INVALID_TYPE" translate-values="{type: invalidFileType.type}"></span>
-			</div>
-			<div class="files" ng-if="reply.attachments_attributes">
-				<div ng-show="sendingReply" class="loading">
-					<i class="fa fa-spinner fa-spin"></i>
-				</div>
-				<div ng-if="!fileIsImage" class="file-preview fleft">
-					<i class="fa fa-times remove-from-file-preview" tabindex="0" ng-click="removeAttachments()"></i>
-					<i class="fa fa-file"></i>
-					<p class="file-name">{{reply.attachments_attributes.name}}</p>
-				</div>
-				<div ng-if="fileIsImage" class="file-preview image fleft">
-					<img id="file-preview" />
-				</div>
-				<div class="clear"></div>
-			</div>
-		</div> -->
-		<div class="bottom">
-			<a class="left link hide-for-large-up" ng-click="closeConversation()">
-				{{ 'CLOSE' | translate }}
-			</a>
-			<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="margin-0 button-send right">
-				{{ 'SEND' | translate }}
-			</button>
+		<div class="display-flex flex-reverse flex-space-between">
+			<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">{{:: 'SEND' | translate }}</button>
+			<a class="hide-for-large-up" ng-click="closeConversation()">{{:: 'CLOSE' | translate }}</a>
 		</div>
 	</form>
 </div>
