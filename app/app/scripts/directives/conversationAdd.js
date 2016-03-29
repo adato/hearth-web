@@ -33,12 +33,11 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				};
 
 				$scope.hideRecipientsError = function() {
-					$scope.showError.participant_ids = false;
+					$scope.showError.recipients_ids = false;
 				};
 
 				$scope.showRecipientsError = function() {
-					if (!$scope.message.participant_ids.length)
-						$scope.showError.participant_ids = true;
+					if (!($scope.message.recipients_ids && $scope.message.recipients_ids.length)) $scope.showError.recipients_ids = true;
 				};
 
 				$scope.isValid = function(msg) {
@@ -84,12 +83,13 @@ angular.module('hearth.directives').directive('conversationAdd', [
 						return false;
 
 					var data = $scope.serialize(angular.copy(msg));
-					data.attachments_attributes = $scope.message.attachments_attributes;
 
 					if ($scope.sendingMessage) return false;
 					$scope.sendingMessage = true;
 
+					console.log(data);
 					Conversations.add(data, function(res) {
+						$scope.message.attachments_attributes = '';
 						$scope.sendingMessage = false;
 
 						if ($scope.onSuccess)

@@ -1,5 +1,5 @@
 <div>
-	<label class="files-upload-label">
+	<label class="files-upload-label" tabindex="0">
 		{{'ADD_ATTACHMENT' | translate}}
 		<input change-event-attacher type="file" ng-attr-accept="{{ filesPicker.pattern }}" ng-if="filesPicker.multiple" multiple />
 		<input change-event-attacher type="file" ng-attr-accept="{{:: filesPicker.pattern }}" ng-if="!(filesPicker.multiple)" />

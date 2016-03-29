@@ -6,6 +6,10 @@ button,
 	resize: none;
 }
 
+textarea{
+	max-height: 200px;
+}
+
 input,
 textarea {
 	border: 1px solid #d7d7d7 !important;
@@ -36,6 +40,24 @@ textarea, input {
 	&.ng-invalid-minlength, &.ng-invalid-maxlength {
 		border: 1px solid $ui-input-error-color !important;
 		box-shadow: inset 0 0 5px $ui-input-error-color !important;
+	}
+}
+
+.form-section {
+	margin-bottom: $size-medium;
+
+	.error {
+		// 'block' makes sure we apply the margin all-right
+		display: block;
+		margin-top: $size-tiny;
+	}
+
+	// all possible form elements margin-bottom removal
+	input,
+	select,
+	textarea,
+	.select2-container {
+		margin-bottom: 0;
 	}
 }
 

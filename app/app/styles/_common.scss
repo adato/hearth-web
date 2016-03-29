@@ -101,11 +101,6 @@
 			.display-table-cell.user{
 				padding-top: $size-small;
 				padding-right: $size-big;
-				
-/*				.avatar img{
-					width: 3.75rem;
-					height: 3.75rem;
-				}*/
 			}
 		}
 	}
@@ -361,7 +356,7 @@ textarea::-ms-clear {
 		top: 50%;
 	}
 }
-	
+
 .padding-small{padding: $size-small;}
 .padding-small-vertical{padding-top: $size-small; padding-bottom: $size-small;}
 .padding-small-horizontal{padding-right: $size-small; padding-left: $size-small;}
@@ -414,7 +409,7 @@ button[disabled],
 	}
 }
 
-/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability 
+/* @kamil TODO - change for $colorLightGray (.. something darker required though ..) and $colorDarkGray when available .. ability
 to remove !important would be also nice .. someday */
 button.neutral,
 button.neutral:disabled{

@@ -1,9 +1,9 @@
 <div class="messages messages-add">
-	<form ng-submit="addMessage(message)" novalidate name="addMessageForm" class="formStyle">
-		<div class="recipient" ng-if="recipient">
+	<form ng-submit="addMessage(message)" novalidate name="addMessageForm">
+		<div ng-if="recipient">
 			<br />
 			<label>
-				{{ 'MESSAGES.ADD.RECIPIENT' | translate }}
+				{{:: 'MESSAGES.ADD.RECIPIENT' | translate }}
 			</label>
 			<avatar src="recipient.avatar.normal" type="recipient._type" size="mini" class="move-bot"></avatar>
 			<span title="{{ recipient.name }}">{{ recipient.name | ellipsis:55 }}</span>
@@ -11,66 +11,39 @@
 			<br />
 			<br />
 		</div>
-		<div class="recipient" ng-if="!recipient">
+		<div class="form-section" ng-if="!recipient">
 			<label>
-				{{ 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
+				{{:: 'MESSAGES.ADD.RECIPIENTS_LABEL' | translate }} *
 				<user-selector ng-focus="hideRecipientsError()" ng-blur="showRecipientsError()" users="message.recipients_ids"></user-selector>
 			</label>
-			<div class="error moveUp" ng-show="showError.participant_ids">
-				<span>{{ 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</span>
-			</div>
+			<div class="error" ng-show="showError.recipients_ids">{{:: 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</div>
 		</div>
-		<div class="subject">
+		<div class="form-section">
 			<label>
-				{{ 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
-				<input name="title" ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
+				{{:: 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}
+				<input name="title" ng-required="true" ng-attr-placeholder="{{:: 'MESSAGES.ADD.SUBJECT_PLACEHOLDER' | translate }}" ng-model="message.title" class="text-input" type='text' />
 			</label>
 		</div>
-		<div class="text">
+		<div class="form-section">
 			<label>
-				{{ 'MESSAGES.ADD.TEXT_LABEL' | translate }} *
-				<textarea rows="5" name="text" ng-attr-placeholder="{{ 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea>
+				{{:: 'MESSAGES.ADD.TEXT_LABEL' | translate }} *
+				<!-- <textarea rows="5" name="text" ng-attr-placeholder="{{:: 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-required="true" ng-minlength="1" ng-focus="showError.text = false" ng-blur="showError.text = true" ng-model="message.text"></textarea> -->
+				<textarea class="margin-bottom-none" ng-focus="showError.text = false" ng-blur="showError.text = true" rows="5" id="reply-text" name="text" autosize-textarea ng-required="true" ng-attr-placeholder="{{ 'MESSAGES.ADD.TEXT_PLACEHOLDER' | translate }}" ng-model="message.text"></textarea>
 			</label>
 			<div class="error" ng-show="addMessageForm.text.$invalid && showError.text">
-				<span ng-show="addMessageForm.text.$error.required">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-				<span ng-show="addMessageForm.text.$error.minlength">{{ 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
-				<span ng-show="addMessageForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
+				<span ng-show="addMessageForm.text.$error.required">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+				<span ng-show="addMessageForm.text.$error.minlength">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>
+				<span ng-show="addMessageForm.text.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
 			</div>
 		</div>
 
-		<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
+		<div class="form-section">
+			<files-picker ng-model="message.attachments_attributes" files-multiple="true"></files-picker>
+		</div>
 
-		<!--<div class="files-upload">
-			<input type="file" id="file" class="file-input" onchange="angular.element(this).scope().uploadedFile(this)" />
-			<div>
-				<label class="file-label" for="file" tabindex="0">
-					<span ng-if="!message.attachments_attributes">{{'ADD_ATTACHMENT' | translate}}</span>
-					<span ng-if="message.attachments_attributes">{{'CHANGE_ATTACHMENT' | translate}}</span>
-				</label>
-				<span class="display-inline-block margin-left-medium text-danger" ng-if="invalidFileType.shown" translate="FILE_TYPE.INVALID_TYPE" translate-values="{type: invalidFileType.type}"></span>
-			</div>
-			<div class="files" ng-if="message.attachments_attributes">
-				<div ng-show="sendingMessage" class="loading">
-					<i class="fa fa-spinner fa-spin"></i>
-				</div>
-				<div ng-if="!fileIsImage" class="file-preview fleft">
-					<i class="fa fa-times remove-from-file-preview" tabindex="0" ng-click="removeAttachments()"></i>
-					<i class="fa fa-file"></i>
-					<p class="file-name">{{message.attachments_attributes.name}}</p>
-				</div>
-				<div ng-if="fileIsImage" class="file-preview image fleft">
-					<img id="file-preview" />
-				</div>
-				<div class="clear"></div>
-			</div>
-		</div>-->
-		<div class="bottom">
-			<a ng-click="close()" class="action-link">
-				<span class="fa fa-chevron-left"></span> {{ 'CANCEL' | translate }}
-			</a>
-			<button ng-disabled="sendingMessage" type="submit" class="button button-send right">
-				{{ 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
-			</button>
+		<div class="display-flex flex-reverse flex-space-between">
+			<button ng-disabled="sendingMessage" type="submit" class="button button-send">{{:: 'MESSAGES.ADD.SEND_MESSAGE' | translate }}</button>
+			<a ng-click="close()" class="revert-changes">{{:: 'CANCEL' | translate }}</a>
 		</div>
 	</form>
 </div>

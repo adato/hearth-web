@@ -44,11 +44,11 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 				$scope.sendReply = function(reply) {
 					reply.id = $scope.conversation._id;
-					if ($scope.sendingReply || !$scope.validateReply(reply))
-						return false;
+					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
 					$scope.sendingReply = true;
 					Conversations.reply(reply, function(res) {
 						$scope.reply.text = '';
+						$scope.reply.attachments_attributes = '';
 
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
