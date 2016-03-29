@@ -83,6 +83,8 @@ angular.module('hearth.directives').directive('conversationAdd', [
 						return false;
 
 					var data = $scope.serialize(angular.copy(msg));
+					// this is required, because angular.copy cant copy files
+					data.attachments_attributes = $scope.message.attachments_attributes;
 
 					if ($scope.sendingMessage) return false;
 					$scope.sendingMessage = true;
