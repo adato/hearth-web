@@ -228,7 +228,7 @@
 					<span class="fa fa-heart"></span>{{:: 'ABOUT_ME' | translate }}
 				</span>
 			</h2>
-			<section>
+			<section class="interests">
 				<div class="large-6 small-12 medium-6 columns small-margin-bottom">
 					<label>
 						{{:: 'MY_TELL_ABOUT' | translate }}
@@ -236,10 +236,12 @@
 					<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" model="profile.about" name="about"></input-max-length>
 				</div>
 				<div class="large-6 small-12 medium-6 columns">
-					<label>
+					<label for="interests">
 						{{:: 'MY_INTERESTS' | translate }}
 					</label>
-					<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" model="profile.interests" name="interests"></input-max-length>
+					<tags-input id="interests" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
+						<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true"></auto-complete>
+					</tags-input>
 				</div>
 			</section>
 			<div class="clear"></div>

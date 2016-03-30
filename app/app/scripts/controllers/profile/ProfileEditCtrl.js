@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth',
+	'$scope', '$http', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth',
 
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth) {
+	function($scope, $http, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -105,13 +105,27 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$scope.showError[key] = false;
 		};
 
+		$scope.loadInterests = function(query) {
+			var result = [];
+			if (query) {
+				result = $http.get($$config.apiPath + '/interests?name=' + query);
+			} else {
+				result = $http.get($$config.apiPath + '/interests');
+			}
+
+			return result.then(function(response) {
+				var interests = response.data;
+				return interests.filter(function(interest) {
+					return interest.term.toLowerCase().indexOf(query.toLowerCase()) != -1;
+				});
+			});
+		};
+
 		$scope.transformDataIn = function(data) {
 
 			if (!data.webs || !data.webs.length) {
 				data.webs = [''];
 			}
-
-			data.interests = (data.interests) ? data.interests.join(",") : '';
 
 			$scope.languageList.forEach(function(item) {
 
@@ -126,16 +140,21 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.transferDataOut = function(data) {
 			var webs = [];
+			var interests = [];
 
 			// remove empty webs
 			data.webs.forEach(function(web) {
 				if (web) webs.push(web);
 			});
-
 			data.webs = webs;
-			data.interests = data.interests.split(",");
+
+			data.interests.forEach(function(interest) {
+				if (interest) interests.push(interest.term);
+			});
+			data.interests = interests;
+
 			return data;
-		}
+		};
 
 		$scope.validateData = function(data) {
 			var res = true;
@@ -180,7 +199,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}
 
 			return res;
-		}
+		};
 
 		$scope.update = function() {
 			var transformedData;

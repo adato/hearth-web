@@ -46,6 +46,14 @@
 			&>div { min-height: 80px; display: block; margin-bottom:10px; }
 			.error {margin-top:5px;}
 		}
+		&.interests {
+			position: relative;
+
+			.autocomplete {
+				max-height: 240px;
+				overflow-y: scroll;
+			}
+		}
 	}
 	.webs {
 		.web-item {
