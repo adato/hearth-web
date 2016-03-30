@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationAdd', [
-	'$rootScope', 'Conversations', 'Notify', 'ConversationService', 'FileService',
-	function($rootScope, Conversations, Notify, ConversationService, FileService) {
+	'$rootScope', 'Conversations', 'Notify', 'ConversationService', 'FileService', '$timeout',
+	function($rootScope, Conversations, Notify, ConversationService, FileService, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -39,7 +39,13 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				};
 
 				$scope.showRecipientsError = function() {
-					if (!($scope.message.recipients_ids && $scope.message.recipients_ids.length)) $scope.showError.recipients_ids = true;
+					// Timeout is required for IE as it fails to reset focus
+					// on input after picking a recipient and resolves 
+					// prematurely to an erroneous state.
+					$timeout(function() {
+						console.log($scope.message.recipients_ids);
+						if (!($scope.message.recipients_ids && $scope.message.recipients_ids.length)) $scope.showError.recipients_ids = true;
+					}, 200);
 				};
 
 				$scope.isValid = function(msg) {
