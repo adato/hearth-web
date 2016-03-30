@@ -682,7 +682,7 @@
 	"LOGOUT": "Odhlásit se",
 	"ERR_ACTION_FAILED_DUE_TO_ERRORS": "Inzerát obsahuje chyby, akci tak nebylo možné dokončit. Oprav ho prosím a zkus to znova.",
 	"ERR_AD_TITLE_LEN": "Titulek příspěvku je příliš dlooouhý.",
-	"ERR_AD_TITLE_MIN_LEN": "Titulek příspěvku je příliš krátký. Fktcky.",
+	"ERR_AD_TITLE_MIN_LEN": "Titulek příspěvku je příliš krátký. Faktcky.",
 	"ERR_AD_TEXT_LEN": "Tvůj příspěvek je příliš dlouhý, pane Aloisi Jirásku. To nás mrzí, naše maximální délka je 2500 znaků.",
 	"ERR_AD_TEXT_MIN_LEN": "Tvůj příspěvek je příliš krátký. Přidej ještě aspoň pár slov... Co slovo, to perla, říká se přece.",
 	"ERR_FORM_NOT_VALID": "Ve formuláři je chyba. Oprav ji prosím a poté formulář ulož znovu.",
