@@ -1,10 +1,12 @@
 'use strict';
+
 /**
  * @ngdoc directive
  * @name hearth.directives.conversationAdd
  * @description Form for new conversation
  * @restrict E
  */
+
 angular.module('hearth.directives').directive('conversationAdd', [
 	'$rootScope', 'Conversations', 'Notify', 'ConversationService', 'FileService',
 	function($rootScope, Conversations, Notify, ConversationService, FileService) {
@@ -75,6 +77,28 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					return msg;
 				};
 
+				function serializeMessage(source) {
+					var target = {}
+					for (var prop in source) {
+						if (source.hasOwnProperty(prop)) {
+							if (prop === 'recipients_ids') {
+								source[prop].map(function(item) {
+									if (item._type === 'Community') {
+										if (!target.community_ids) target.community_ids = [];
+										target.community_ids.push(item._id);
+									} else {
+										if (!target.participant_ids) target.participant_ids = [];
+										target.participant_ids.push(item._id);
+									}
+								});
+							} else {
+								target[prop] = source[prop];
+							}
+						}
+					}
+					return target;
+				}
+
 				/**
 				 * Validate message and send to API
 				 */
@@ -82,15 +106,13 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					if (!$scope.isValid(msg))
 						return false;
 
-					var data = $scope.serialize(angular.copy(msg));
-					// this is required, because angular.copy cant copy files
-					data.attachments_attributes = $scope.message.attachments_attributes;
+					var message = serializeMessage(msg);
 
 					if ($scope.sendingMessage) return false;
 					$scope.sendingMessage = true;
 
-					console.log(data);
-					Conversations.add(data, function(res) {
+					console.log(message);
+					Conversations.add(message, function(res) {
 						$scope.message.attachments_attributes = '';
 						$scope.sendingMessage = false;
 

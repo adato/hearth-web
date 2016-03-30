@@ -7,7 +7,7 @@
  * @restrict E
  */
 
-angular.module('hearth.directives').directive('filesPicker', ['FileService', function(FileService) {
+angular.module('hearth.directives').directive('filesPicker', ['FileService', '$timeout', function(FileService, $timeout) {
 
 	return {
 		restrict: 'E',
@@ -50,7 +50,7 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', fun
 				reader.onload = function(e) {
 					if (!(scope.ngModel instanceof Array)) scope.ngModel = [];
 
-					// check that i'm not uploading forbidden files
+					// check that i'm not uploading files with forbidden extensions
 					var fileExtension = file.name.split('.');
 					fileExtension = fileExtension[fileExtension.length - 1];
 					if (FileService.fileTypes.forbidden.indexOf('.' + fileExtension) > -1) {
@@ -77,7 +77,7 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', fun
 					if (!scope.$$phase) scope.$apply();
 				};
 			}
-			scope.$evalAsync(function() {
+			$timeout(function() {
 				var input = element[0].querySelectorAll('[change-event-attacher]');
 				if (input) {
 					input[0].addEventListener('change', function(event) {
