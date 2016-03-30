@@ -1,6 +1,6 @@
 <div class="display-table table-with-icons">
 	<div class="display-table-row" ng-if="entity.about && (readoutTypeIndex > 0)">
-		<div class="display-table-cell">
+		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
 		<div class='display-table-cell'>
@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<div class="display-table-row" ng-if="entity.interests && entity.interests[0] != '' && (readoutTypeIndex > 0)">
-		<div class="display-table-cell">
+		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-smile-o"></i>
 		</div>
 		<div class='display-table-cell'>
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<div class="display-table-row" ng-if="entity.work && (readoutTypeIndex > 0)">
-		<div class="display-table-cell">
+		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-briefcase"></i>
 		</div>
 		<div class='display-table-cell'>
