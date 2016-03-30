@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationAdd', [
-	'$rootScope', 'Conversations', 'Notify', 'ConversationService', 'FileService', '$timeout',
-	function($rootScope, Conversations, Notify, ConversationService, FileService, $timeout) {
+	'$rootScope', 'Conversations', 'Notify', 'FileService', '$timeout',
+	function($rootScope, Conversations, Notify, FileService, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -40,7 +40,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 
 				$scope.showRecipientsError = function() {
 					// Timeout is required for IE as it fails to reset focus
-					// on input after picking a recipient and resolves 
+					// on input after picking a recipient and resolves
 					// prematurely to an erroneous state.
 					$timeout(function() {
 						console.log($scope.message.recipients_ids);

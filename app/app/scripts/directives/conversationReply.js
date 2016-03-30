@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'ConversationService', 'FileService',
-	function(Conversations, Notify, $timeout, ConversationService, FileService) {
+	'Conversations', 'Notify', '$timeout', 'FileService',
+	function(Conversations, Notify, $timeout, FileService) {
 		return {
 			restrict: 'E',
 			replace: true,
