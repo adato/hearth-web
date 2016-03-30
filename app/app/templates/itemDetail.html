@@ -73,7 +73,7 @@
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 								</div>
 							</header>
-							<div class="item-section text-container">
+							<div class="item-section text-container word-break">
 								<p class="margin-none" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 							</div>
 							<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
