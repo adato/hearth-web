@@ -53,6 +53,7 @@ textarea, input {
 	}
 
 	// all possible form elements margin-bottom removal
+	label{margin-bottom: 0 !important;}
 	input,
 	select,
 	textarea,
