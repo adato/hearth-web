@@ -3,57 +3,174 @@
 /**
  * @ngdoc service
  * @name hearth.services.Bubble
- * @description auxiliary bubble functions
+ * @description Bubble functions
+ *	Bubble placeholders should look like <div bubble-placeholder="feature"></div>
  */
 
-angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth', '$analytics',
-	function(User, $rootScope, Auth, $analytics) {
+angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth', '$analytics', '$state', '$compile', '$document',
+	function(User, $rootScope, Auth, $analytics, $state, $compile, $document) {
 
-	var factory = {};
+		var factory = {};
+		factory.CLOSE_REASONS = {
+			'DOCUMENT_CLICK': 'document-click',
+			'BUBBLE_CLICK': 'bubble-click',
+			'BUTTON_CLICK': 'bubble-button-click'
+		};
 
-	/**
-	 * Function will remove reminder from users reminders
-	 */
-	factory.removeReminder = function($event, type, reason) {
-		User.removeReminder({
-			_id: $rootScope.loggedUser._id,
-			type: type
-		}, function() {
-			Auth.refreshUserInfo();
+		/**
+		 *	Bubble definitions
+		 *	each bubble must have an 'applicable' function, which checks whether that bubble should be shown
+		 *	and an 'apply' function which applies (sync-ly or async-ly) the bubble to the DOM by finally calling
+		 *	the 'showBubble' function and supplying it with a DOM [bubble-placeholder] node replace and a template string.
+		 *	The node shall be replaced by a bubble with a template from the bubble.template definition
+		 */
+		var bubbleDefinitions = {
+			'bookmark-reminder': {
+				applicable: function() {
+					//return ($rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('bookmark') > -1));
+					return true;
+				},
+				apply: function() {
+					var template = 'templates/directives/bubble/bookmark-reminder.html';
+					var placeholder = bubblePlaceholderSearch({
+						identificator: 'bookmark-reminder'
+					});
+					if (placeholder) showBubble({
+						placeholder: placeholder,
+						templateUrl: template,
+						type: 'bookmark'
+					});
+				}
+			},
+			'marketplace-item-mood': {
+				applicable: function() {
+					return true;
+				},
+				apply: function() {
+					var template = 'templates/directives/bubble/marketplace-item-mood.html';
+					var placeholder = bubblePlaceholderSearch({
+						identificator: 'marketplace-item-mood'
+					});
+					if (placeholder) showBubble({
+						placeholder: placeholder,
+						templateUrl: template,
+						type: 'marketplace-item-mood' // < FIX
+					});
+				}
+			}
+		};
 
-			$analytics.eventTrack('User closed reminder', {
-				'context': $state.current.name,
-				'Reason': reason,
-				'Bubble Type': type
+		/**
+		 *	the list of active bubble types
+		 *	once a certain bubble type is active it can not be activated again
+		 */
+		var activeBubbles = [];
+		/**
+		 *	This function is called by bubble-placeholder directives to
+		 *	try to activate the bubbles
+		 */
+		factory.try = function(definition) {
+			if (bubbleDefinitions.hasOwnProperty(definition) && (activeBubbles.indexOf(definition) === -1) && bubbleDefinitions[definition].applicable()) {
+				activeBubbles.push(definition);
+				// if this is the first active bubble, bind event listener to document
+				// to possibly remove the bubble
+				if (activeBubbles.length === 1) $document.on('click', closeOnDocumentClick);
+				bubbleDefinitions[definition].apply();
+			}
+		};
+
+		/**
+		 *	Only a helping function for searching for bubble placeholders
+		 *	params = {
+		 *			selector: String [optional, default = querySelector],
+		 *			pre: String [optional], // css identificator to be applied before [bubble-placeholder]
+		 *			identificator: String, // the type of the bubble
+		 *			post: String [optional] // css identificator with additional attribute selectors
+		 *	};
+		 */
+		function bubblePlaceholderSearch(params) {
+			if (!params.identificator) throw new Error('Bubble identificator is required!');
+			return document[(params.selector ? params.selector : 'querySelector')]((params.pre ? params.pre : '') + '[bubble-placeholder="' + params.identificator + '"]' + (params.post ? params.post : ''));
+		}
+
+		/**
+		 *	paramObj = {
+		 *			placeholder: DOM Node, // the node that we wish to insert our bubble into
+		 *			templateUrl: String, // url of the html template
+		 *			type: String // the type of the bubble
+		 *	};
+		 */
+		function showBubble(paramObj) {
+			if (!(paramObj.placeholder && paramObj.templateUrl && paramObj.type)) throw new Error('Insufficient parameters to show bubble');
+			var scope = $rootScope.$new(true);
+			scope.templateUrl = paramObj.templateUrl;
+			scope.type = paramObj.type;
+			var template = $compile('<bubble></bubble>')(scope);
+			angular.element(paramObj.placeholder).append(template);
+		}
+
+		function closest(el, fn) {
+			return el && (
+				fn(el) ? el : closest(el.parentNode, fn)
+			);
+		}
+
+		function closeOnDocumentClick(event) {
+			var clickedOnBubble = closest(event.target, function(el) {
+				return el.tagName && el.tagName.toLowerCase() === 'bubble';
+			});
+			if (!clickedOnBubble) {
+				$rootScope.$emit('closeBubble', {
+					type: 'all',
+					event: event,
+					reason: factory.CLOSE_REASONS.DOCUMENT_CLICK
+				});
+			}
+		}
+
+		/**
+		 * Function will remove reminder from users reminders
+		 */
+		factory.removeReminder = function(paramObj) {
+			if (!(paramObj.event && paramObj.type && paramObj.reason)) throw new Error('to succesfully remove a reminder, you need to supply an \'event\', a \'type\' and a \'reason\'');
+			User.removeReminder({
+				_id: $rootScope.loggedUser._id,
+				type: paramObj.type
+			}, function() {
+				activeBubbles.splice(activeBubbles.indexOf(paramObj.type, 1));
+				if (!activeBubbles.length) $document.off('click', closeOnDocumentClick);
+
+				Auth.refreshUserInfo();
+
+				$analytics.eventTrack('User closed reminder', {
+					'context': $state.current.name,
+					'Reason': paramObj.reason,
+					'Bubble Type': paramObj.type
+				});
+
+				$rootScope.loggedUser.reminders.splice(paramObj.type, 1);
 			});
 
-			$rootScope.loggedUser.reminders.splice(type, 1);
-		});
+			// why?
+			// if (paramObj.event.stopPropagation) paramObj.event.stopPropagation();
+		};
 
-		if ($event.stopPropagation) $event.stopPropagation();
-	};
+		/**
+		 *	Function that checks whether an element is currently in the viewport
+		 *	@return Boolean
+		 */
+		factory.isInViewport = function(el) {
+			if (!el) return false;
+			var rect = el.getBoundingClientRect();
+			return (
+				rect.top >= 0 &&
+				rect.left >= 0 &&
+				rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+				rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+			);
+		}
 
-	factory.isInViewport = function(el) {
-		var rect = el.getBoundingClientRect();
-	    return (
-	        rect.top >= 0 &&
-	        rect.left >= 0 &&
-	        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-	        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-	    );
-		// if (!$elem) return false;
-		// var $window = $(window);
-		//
-		// var docViewTop = $window.scrollTop();
-		// var docViewBottom = docViewTop + $window.height();
-		//
-		// var elemTop = $elem.offset().top;
-		// var elemBottom = elemTop + $elem.height();
-		//
-		// return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-	}
-
-	return factory;
+		return factory;
 
 	}
 ]);
