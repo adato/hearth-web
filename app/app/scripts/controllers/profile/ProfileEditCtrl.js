@@ -7,15 +7,16 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth',
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', 'Validators',
 
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth) {
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, Validators) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
 		$scope.showError = {
 			locations: false,
 			first_name: false,
+			motto: false,
 			email: false,
 			phone: false,
 			contact_email: false,
@@ -23,20 +24,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			social_networks: [],
 		};
 
-		$scope.socialNetworks = {
-			'twitter': {
-				'url': 'twitter.com\/.*'
-			},
-			'facebook': {
-				'url': 'facebook.com\/.*'
-			},
-			'linkedin': {
-				'url': 'linkedin.com\/.*'
-			},
-			'googleplus': {
-				'url': 'plus.google.com\/.*'
-			}
-		};
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'zh', 'he'];
 
@@ -71,16 +58,15 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				url = input.val();
 
 			if (url && !url.match(/http[s]?:\/\/.*/)) {
-				url = 'https://' + url;
+				url = 'http://' + url;
 			}
 
 			if (model !== $scope.profile.webs) {
 				// editing social network, not webs
-				if (url && ($scope.socialNetworks[key] === undefined || !url.match(new RegExp($scope.socialNetworks[key].url)))) {
-					$scope.showError.social_networks[key] = true;
-				} else {
-					$scope.showError.social_networks[key] = false;
-				}
+				$scope.showError.social_networks[key] = !Validators.social(url, key);
+			} else {
+				// editing webs
+				$scope.showError.social_networks['webs'] = !Validators.url(url);
 			}
 
 			model[key] = url;
@@ -88,13 +74,19 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.validateSocialNetworks = function() {
 			var isOk = true;
-			Object.keys($scope.socialNetworks).forEach(function(networkName) {
-				if ($scope.profile[networkName] && !$scope.profile[networkName].match($scope.socialNetworks[networkName].url)) {
-					$scope.showError.social_networks[networkName] = true;
-					isOk = false;
+			var isWebsOk = true;
+			var isLinkOk = true;
+			['facebook', 'twitter', 'linkedin', 'googleplus'].forEach(function(networkName) {
+				if ($scope.profile[networkName]) {
+					isLinkOk = Validators.social($scope.profile[networkName], networkName);
+					$scope.showError.social_networks[networkName] = !isLinkOk;
+					isOk = isOk && isLinkOk;
 				}
 			});
-			return isOk;
+			isWebsOk = !!Validators.urls($scope.profile.webs);
+			$scope.showError.social_networks['webs'] = !isWebsOk;
+
+			return isOk && isWebsOk;
 		};
 
 		$scope.switchLanguage = function(lang) {
