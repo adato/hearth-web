@@ -144,7 +144,7 @@
 					margin: 0 !important;
 
 					&.move-down {
-						top: 15px; 
+						top: 15px;
 						left: 15px;
 					}
 				}
@@ -278,12 +278,9 @@
 			position: relative;
 			left: -4px;
 		}
-		.infobox-avatar-wrapper {
-			position: relative;
-			.user-info {
-				left: 100px;
-			}
-		}
+		// .infobox-avatar-wrapper {
+		// 	position: relative;
+		// }
 		.rating-reply > div {
 			margin-left: 30px;
 		}
@@ -291,7 +288,6 @@
 			text-align: center;
 			color: #383838;
 			margin-top: 10px;
-			/*       text-shadow: 0px 0px 1px gray; */
 			width: 80px;
 			word-wrap: break-word;
 		}
@@ -303,10 +299,6 @@
 		}
 	}
 	.ratings-received {
-		.revert-changes {
-			position: relative;
-			top: 20px;
-		}
 		.author-selector {
 			float: left;
 		}
@@ -374,7 +366,7 @@
 				display: inline-block;
 			}
 		}
-		
+
 		textarea {
 			min-height: 120px;
 		}
@@ -412,27 +404,17 @@
 			font-size: 120%;
 			color: color(3);
 			margin: 0;
-			padding: {
-				left: 20px;
-				top: 10px;
-				bottom: 10px;
-				right: 20px;
-			}
+			padding: $size-small $size-big;
 		}
 		.buttons {
 			text-align: center;
 		}
 		p {
-			margin: {
-				left: 20px;
-				right: 20px;
-				top: 10px;
-			}
-			;
+			margin: $size-small $size-big 0;
 		}
 	}
 	.left-pane {
-		width: 59%;
+		width: 60%;
 		padding-right: 3*$ui-small-grid-size;
 		.messages {
 			text-align: center;
@@ -444,7 +426,6 @@
 				right: 30px;
 				bottom: 20px;
 			}
-			;
 			.fa {
 				color: color(5);
 				border-radius: 50%;
@@ -485,7 +466,8 @@
 					margin: {
 						top: 5px;
 						bottom: 10px;
-						left: 100px;
+						// left: 100px;
+						left: 20px;
 					}
 					.rating-from {
 						display: inline-block;
@@ -539,7 +521,6 @@
 	.right-pane {
 		width: 40%;
 		padding: 0;
-		float: right;
 		.user-about {
 			.line {
 				margin-left: 20px;
@@ -901,7 +882,7 @@
 	height: 25px;
 	color: #f4f4f4;
 	background-color: #7c766a;
-	
+
 	.karma-block{
 		display: table-cell;
 		white-space: nowrap;

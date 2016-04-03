@@ -3,7 +3,9 @@
 /**
  * @ngdoc service
  * @name hearth.services.IsEmpty
- * @description checks whether an Object or an Array is empty or not
+ * @description Checks whether an Object or an Array is empty or not.
+ *				If value is neither Array or Object, and it evaluates
+ *				to false, isEmpty evaluates to true.
  */
 
 angular.module('hearth.services').factory('IsEmpty', [function() {
@@ -18,9 +20,7 @@ angular.module('hearth.services').factory('IsEmpty', [function() {
 			} else if (value.length === 0) {
 				return true;
 			}
-		} else
-
-		if (value instanceof Object) {
+		} else if (value instanceof Object) {
 			for (property in value) {
 				propCounter++;
 				return isEmpty(value[property]);

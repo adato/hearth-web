@@ -27,6 +27,7 @@
 .display-table-cell{
 	vertical-align: top;
 	display: table-cell;
+	vertical-align: top;
 	&.addon{
 		width: 1%;
 	}
@@ -303,7 +304,6 @@ a.link-secondary{
 .link-primary,
 a.link-primary{
 	color: $colorPrimary;
-	padding-right: $size-small;
 }
 .link-secondary,
 a.link-secondary{
