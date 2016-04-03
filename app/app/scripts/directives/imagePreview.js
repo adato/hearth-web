@@ -129,7 +129,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 				scope.showErrors = true;
 				scope.error = scope.error || {};
 				scope.uploading = false;
-				console.log(scope.singleFile);
 
 				// preview jen jednoho souboru? Nebo to budeme davat do pole
 				if (scope.singleFile) {

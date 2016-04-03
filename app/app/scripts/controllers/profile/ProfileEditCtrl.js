@@ -61,7 +61,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			User.getFullInfo(function(res) {
 				$scope.profile = transformDataIn(res);
 				$scope.loaded = true;
-
 			}, function(res) {});
 		};
 

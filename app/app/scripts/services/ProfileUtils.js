@@ -29,7 +29,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', function(Kar
 		// common for all types
 		// copyMottoIfNecessary(paramObject.profile);
 		fillWebs(paramObject.profile);
-		splitInterests(paramObject.profile);
+		//splitInterests(paramObject.profile);
 
 		// type-specific
 		switch (paramObject.type) {

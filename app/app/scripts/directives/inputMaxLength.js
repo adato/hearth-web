@@ -26,7 +26,6 @@ angular.module('hearth.directives').directive('inputMaxLength', ['$timeout',
 			},
 			templateUrl: 'templates/directives/inputMaxLength.html',
 			link: function(scope, element, attrs, formCtrl) {
-				console.log(scope.required);
 				scope.required = scope.required ? true : false;
 
 				setTimeout(function() {
