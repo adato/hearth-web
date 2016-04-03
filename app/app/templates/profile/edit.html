@@ -40,8 +40,8 @@
 				<div class="name margin">
 					<label>
 						{{:: 'USER_MOTTO' | translate }}
-						<input type="text" name="motto" ng-model="profile.motto" class="text-input" ng-maxlength="70" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'USER_MOTTO_EXAMPLE' | translate }}" />
-						<div class="absolute error" ng-show="showError.motto">
+						<input type="text" name="motto" ng-model="profile.motto" class="text-input" maxlength="{{parameters.MAX_MOTTO_LENGTH}}" ng-maxlength="parameters.MAX_MOTTO_LENGTH" placeholder="{{:: 'USER_MOTTO_EXAMPLE' | translate }}" />
+						<div class="absolute error">
 							<span ng-show="profileEditForm.motto.$error.maxlength">{{:: 'ERR_USER_MOTTO_MAX_LENGTH' | translate }}</span>
 						</div>
 					</label>

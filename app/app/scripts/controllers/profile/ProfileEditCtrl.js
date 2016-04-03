@@ -7,8 +7,10 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', '$http', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', '$q', 'Validators',
-	function($scope, $http, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, $q, Validators) {
+	'$scope', '$http', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', '$q', 'Validators', 'ProfileUtils',
+
+	function($scope, $http, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, $q, Validators, ProfileUtils) {
+
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -22,6 +24,8 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			message: false,
 			social_networks: [],
 		};
+
+		$scope.parameters = ProfileUtils.params;
 
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
@@ -55,14 +59,34 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			// $scope.initLocations();
 			User.getFullInfo(function(res) {
-				$scope.profile = $scope.transformDataIn(res);
+				$scope.profile = transformDataIn(res);
 				$scope.loaded = true;
 
 			}, function(res) {});
 		};
 
-		$scope.avatarUploadFailed = function(err) {
+		function transformDataIn(data) {
 
+			data = ProfileUtils.transformDataForUsage({
+				type: ProfileUtils.params.PROFILE_TYPES.USER,
+				profile: data
+			});
+
+			$scope.filteredLangsUser = [];
+			angular.forEach($scope.languageList, function(lang) {
+				if (data.user_languages[lang]) {
+					var newLang = {};
+					newLang['lang'] = lang;
+					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+					$scope.filteredLangsUser.push(newLang);
+				}
+			});
+
+			$scope.showContactMail = data.contact_email && data.contact_email != '';
+			return data;
+		};
+
+		$scope.avatarUploadFailed = function(err) {
 			$scope.uploadingInProgress = false;
 		};
 
@@ -133,26 +157,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 					return interest.term.toLowerCase().indexOf(query.toLowerCase()) != -1;
 				});
 			});
-		};
-
-		$scope.transformDataIn = function(data) {
-
-			if (!data.webs || !data.webs.length) {
-				data.webs = [''];
-			}
-
-			$scope.filteredLangsUser = [];
-			angular.forEach($scope.languageList, function(lang) {
-				if (data.user_languages[lang]) {
-					var newLang = {};
-					newLang['lang'] = lang;
-					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-					$scope.filteredLangsUser.push(newLang);
-				}
-			});
-
-			$scope.showContactMail = data.contact_email && data.contact_email != '';
-			return data;
 		};
 
 		$scope.transferDataOut = function(data) {
