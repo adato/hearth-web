@@ -167,6 +167,10 @@
 			margin-bottom: 0;
 			display: block;
 
+			input {
+				margin-right: 6px;
+			}
+
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
