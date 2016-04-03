@@ -10,7 +10,7 @@
 			</section>
 			<section class="columns user-info-text">
 				<div class="author-about" ng-if="info.about">
-					<div>{{:: info.about | ellipsis:80}}</div>
+					<div>{{:: info.motto | ellipsis: 70}}</div>
 				</div>
 				<div ng-if="info.interests.length && info.interests[0]">
 					<i class="fa fa-fw fa-heart"></i>{{:: info.interests.join(', ')}}
