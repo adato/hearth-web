@@ -3,13 +3,13 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.fileUpload
- * @description 
+ * @description
  * @restrict A
  */
 
 angular.module('hearth.directives').directive('infoBox', [
-	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics',
-	function($rootScope, UsersCommunitiesService, $state, $analytics) {
+	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'ProfileUtils',
+	function($rootScope, UsersCommunitiesService, $state, $analytics, ProfileUtils) {
 		return {
 			transclude: true,
 			replace: true,
@@ -31,7 +31,7 @@ angular.module('hearth.directives').directive('infoBox', [
 				 * Show user info into the box
 				 */
 				function fillUserInfo(info) {
-					scope.info = info;
+					scope.info = ProfileUtils.single.copyMottoIfNecessary(info);
 
 					$analytics.eventTrack('InfoBox shown', {
 						Id: info._id,

@@ -2,12 +2,12 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.communityCreateEdit
- * @description 
+ * @description
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators',
-	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators) {
+	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils',
+	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -29,6 +29,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					description: '',
 					terms: '',
 				};
+				$scope.parameters = ProfileUtils.params;
 				$scope.showError = {
 					name: false,
 					locations: false,
@@ -93,11 +94,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 				};
 
 				var prepareDataIn = function(data) {
-					if (!data.webs || !data.webs.length) {
-						data.webs = [''];
-					}
-					data.interests = (data.interests) ? data.interests.join(",") : '';
-					return data;
+					return ProfileUtils.transformDataForUsage({
+						type: ProfileUtils.params.PROFILE_TYPES.COMMUNITY,
+						profile: data
+					});
 				};
 
 				var prepareDataOut = function(data) {
@@ -109,7 +109,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						data.webs = webs;
 					}
 					if (data.webs !== undefined) prepareWebs(data);
-					if (data.interests !== undefined) data.interests = data.interests.split(",");
+					if (data.interests !== undefined) data.interests = data.interests.split(',');
 					return data;
 				};
 

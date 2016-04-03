@@ -240,7 +240,7 @@
 									<i class="fa fa-fw fa-quote-right"></i>
 								</div>
 								<div class='display-table-cell'>
-									{{profile.motto | ellipsis: 70}}
+									{{profile.motto}}
 								</div>
 							</div>
 							<div class="display-table-row" ng-if="profile.work">
@@ -291,7 +291,7 @@
 									<a ng-if='profile.contact_email' href='mailto:{{:: profile.contact_email }}' class='display-block'>{{:: profile.contact_email }}</a>
 								</div>
 							</div>
-							<div class="display-table-row" ng-if=":: profile.phone">
+							<div class="display-table-row" ng-if="profile.phone">
 								<div class='display-table-cell'>
 									<i class="fa fa-fw fa-phone"></i>
 								</div>

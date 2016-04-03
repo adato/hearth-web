@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', 'Validators',
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', 'Validators', 'ProfileUtils',
 
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, Validators) {
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, Validators, ProfileUtils) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -24,6 +24,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			social_networks: [],
 		};
 
+		$scope.parameters = ProfileUtils.params;
+		console.log($scope.parameters.MAX_MOTTO_LENGTH, ProfileUtils.params)
+
 		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'zh', 'he'];
 
@@ -33,14 +36,30 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			// $scope.initLocations();
 			User.getFullInfo(function(res) {
-				$scope.profile = $scope.transformDataIn(res);
+				$scope.profile = transformDataIn(res);
 				$scope.loaded = true;
 
 			}, function(res) {});
 		};
 
-		$scope.avatarUploadFailed = function(err) {
+		function transformDataIn(data) {
 
+			data = ProfileUtils.transformDataForUsage({
+				type: ProfileUtils.params.PROFILE_TYPES.USER,
+				profile: data
+			});
+
+			$scope.languageList.forEach(function(item) {
+				if (!data.user_languages[item]) {
+					data.user_languages[item] = false;
+				}
+			});
+
+			$scope.showContactMail = data.contact_email && data.contact_email != '';
+			return data;
+		};
+
+		$scope.avatarUploadFailed = function(err) {
 			$scope.uploadingInProgress = false;
 		};
 
@@ -95,25 +114,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.disableErrorMsg = function(key) {
 			$scope.showError[key] = false;
-		};
-
-		$scope.transformDataIn = function(data) {
-
-			if (!data.webs || !data.webs.length) {
-				data.webs = [''];
-			}
-
-			data.interests = (data.interests) ? data.interests.join(",") : '';
-
-			$scope.languageList.forEach(function(item) {
-
-				if (!data.user_languages[item]) {
-					data.user_languages[item] = false;
-				}
-			});
-
-			$scope.showContactMail = data.contact_email && data.contact_email != '';
-			return data;
 		};
 
 		$scope.transferDataOut = function(data) {
