@@ -1,18 +1,44 @@
+// bubble parent should ALWAYS have a position: relative/absolute/fixed set,
+// so that the bubble is displayed correctly
+//
+//	best results should be achieved by placing the markup in a following way:
+//
+//	tag.position-relative // wrapper around an el for which we want to show the bubble
+//		div(bubble-placeholder='xyz')
+//		tag // the element for which the bubble is designated
+//
+// default position is bottom-left
 bubble{
-	display: block;
-}
-.bubble-container {
 	position: absolute;
-	width: 370px;
-	right: 30px;
-	top: -8px;
-	background: black;
+	display: block;
+	min-width: 200px;
+	max-width: 370px;
+	top: 100%; right: -$size-small;
+	padding: $size-medium;
+	line-height: 1.4;
+	background: #fff;
+	border-radius: $global-radius;
+	box-shadow: $ui-box-shadow;
 	z-index: 999;
-	border-radius: 8px;
-	opacity: .9;
+
+	&:after {
+		content: '';
+		position: absolute;
+		right: $size-medium;
+		bottom: 100%;
+		width: 0;
+		height: 0;
+		border: 8px solid transparent;
+		border-bottom: 8px solid #fff;
+	}
+
+	// not-finished
+	// &.position-right {
+	// 	right: inherit; left: -$size-small;
+	// }
 
 	@media #{$medium-down} {
-		width: 200px;
+		max-width: 200px;
 	}
 
 	.tooltip {
@@ -22,22 +48,5 @@ bubble{
 		color: white;
 		white-space: normal;
 
-		.confirm {
-			width: 50%;
-			margin: 15px 0 0 0;
-			float: right;
-		}
-
-		&:after {
-			content: '';
-			position: absolute;
-			top: 12px;
-			left: 100%;
-			width: 0;
-			height: 0;
-			border-left: 8px solid #000000;
-			border-top: 8px solid transparent;
-			border-bottom: 8px solid transparent;
-		}
 	}
 }
