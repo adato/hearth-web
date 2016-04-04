@@ -39,6 +39,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			Community.get({
 				_id: $stateParams.id
 			}, function(res) {
+				res = ProfileUtils.single.copyMottoIfNecessary(res);
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				res.karma = Karma.count(res.up_votes, res.down_votes);
 
