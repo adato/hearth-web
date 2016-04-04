@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty',
-	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty) {
+	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils',
+	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -39,6 +39,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		};
 
 		$scope.fillUserInfo = function(info) {
+			info = ProfileUtils.single.copyMottoIfNecessary(info);
 			$scope.profile = info;
 			$scope.loaded = true;
 		};

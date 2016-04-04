@@ -70,7 +70,9 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', function(Kar
 	// FUNCTION EXPOSITION
 	factory.transformDataForUsage = transformDataForUsage;
 	factory.single = {
-		copyMottoIfNecessary: copyMottoIfNecessary
+		copyMottoIfNecessary: copyMottoIfNecessary,
+		fillWebs: fillWebs,
+		splitInterests: splitInterests
 	};
 	factory.params = {
 		PROFILE_TYPES: PROFILE_TYPES,

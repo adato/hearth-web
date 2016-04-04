@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph', 'PageTitle',
+	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph', 'PageTitle', 'ProfileUtils',
 
-	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph, PageTitle) {
+	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph, PageTitle, ProfileUtils) {
 		$scope.activePage = null;
 
 		$scope.initPage = function() {
@@ -75,6 +75,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			User.get({
 				_id: $stateParams.id
 			}, function(res) {
+				res = ProfileUtils.single.copyMottoIfNecessary(res);
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);
@@ -125,7 +126,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
-		// add follower 
+		// add follower
 		$scope.addFollower = function(user_id) {
 
 			if ($scope.sendingAddFollower) return false;
@@ -182,7 +183,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.rating.score = score || null;
 			$scope.rating.text = '';
 			$scope.rating.post_id = null;
-			// select first option in posts select - eg default value			
+			// select first option in posts select - eg default value
 			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 
 			// show form
