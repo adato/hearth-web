@@ -13,9 +13,10 @@
 	display: block;
 	min-width: 200px;
 	max-width: 370px;
-	top: 100%; right: -$size-small;
+	top: calc(100% + 6px); right: -$size-tiny;
 	padding: $size-small;
 	font-size: 95%;
+	text-align: left;
 	line-height: 1.4;
 	background: #fff;
 
@@ -27,6 +28,7 @@
 	// using custom shadow because with default the tiny arrow is next to invisible
 	box-shadow: 0 0 10px 4px rgba(0,0,0,.3);
 
+	white-space: normal;
 	cursor: pointer;
 	z-index: 999;
 
