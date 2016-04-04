@@ -7,8 +7,8 @@
  *	Bubble placeholders should look like <div bubble-placeholder="feature"></div>
  */
 
-angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth', '$analytics', '$state', '$compile', '$document',
-	function(User, $rootScope, Auth, $analytics, $state, $compile, $document) {
+angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth', '$analytics', '$state', '$compile', '$document', '$timeout',
+	function(User, $rootScope, Auth, $analytics, $state, $compile, $document, $timeout) {
 
 		var factory = {};
 		factory.CLOSE_REASONS = {
@@ -48,14 +48,19 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 				},
 				apply: function() {
 					var template = 'templates/directives/bubble/marketplace-item-mood.html';
-					var placeholder = bubblePlaceholderSearch({
-						identificator: 'marketplace-item-mood'
-					});
-					if (placeholder) showBubble({
-						placeholder: placeholder,
-						templateUrl: template,
-						type: 'marketplace-item-mood' // < FIX
-					});
+					// the target is in modal, so before attempting to search for it,
+					// let's give it some time to render
+					$timeout(function() {
+						var placeholder = bubblePlaceholderSearch({
+							identificator: 'marketplace-item-mood'
+						});
+						if (placeholder) showBubble({
+							placeholder: placeholder,
+							templateUrl: template,
+							class: 'position-bottom-right',
+							type: 'marketplace-item-mood' // < FIX
+						});
+					}, 500);
 				}
 			}
 		};
@@ -70,6 +75,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	try to activate the bubbles
 		 */
 		factory.try = function(definition) {
+			console.log(definition);
 			if (bubbleDefinitions.hasOwnProperty(definition) && (activeBubbles.indexOf(definition) === -1) && bubbleDefinitions[definition].applicable()) {
 				activeBubbles.push(definition);
 				// if this is the first active bubble, bind event listener to document
@@ -98,6 +104,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *			placeholder: DOM Node, // the node that we wish to insert our bubble into
 		 *			templateUrl: String, // url of the html template
 		 *			type: String // the type of the bubble
+		 *			class: String [optional] // for positioning etc.
 		 *	};
 		 */
 		function showBubble(paramObj) {
@@ -105,6 +112,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 			var scope = $rootScope.$new(true);
 			scope.templateUrl = paramObj.templateUrl;
 			scope.type = paramObj.type;
+			scope.class = paramObj.class;
 			var template = $compile('<bubble></bubble>')(scope);
 			angular.element(paramObj.placeholder).append(template);
 		}
@@ -160,6 +168,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	@return Boolean
 		 */
 		factory.isInViewport = function(el) {
+			console.log(el)
 			if (!el) return false;
 			var rect = el.getBoundingClientRect();
 			return (

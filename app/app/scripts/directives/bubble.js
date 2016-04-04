@@ -13,25 +13,26 @@ angular.module('hearth.directives').directive('bubble', [
 		return {
 			restrict: 'E',
 			scope: {},
-			template: '<div ng-include="template" ng-cloak ng-show="shown"></div>',
+			template: '<div class="bubble" ng-include="template" ng-cloak ng-show="shown" ng-class="class"></div>',
 			link: function(scope, element, attrs) {
 				scope.shown = true;
 				scope.type = scope.$parent.type;
 				scope.template = scope.$parent.templateUrl;
+				scope.class = scope.$parent.class || '';
 
 				var bubbleClick = function(event) {
 					scope.shown = false;
 					Bubble.removeReminder({
 						event: event,
 						type: scope.type,
-						reason: (event.target.tagName.toLowerCase() === 'button' ? Bubble.CLOSE_REASONS.BUTTON_CLICK : Bubble.CLOSE_REASONS.BUBBLE_CLICK)
+						reason: (event.target.dataset.bubble === 'close' ? Bubble.CLOSE_REASONS.BUTTON_CLICK : Bubble.CLOSE_REASONS.BUBBLE_CLICK)
 					});
 					element.off('click', bubbleClick);
 				}
 				element.on('click', bubbleClick);
 
 				var deregister = $rootScope.$on('closeBubble', function(event, paramObj) {
-					if ((paramObj.type === 'all' && Bubble.isInViewport(element.context)) || paramObj.type === scope.type || paramObj.force) {
+					if ((paramObj.type === 'all' && Bubble.isInViewport(element[0])) || paramObj.type === scope.type || paramObj.force) {
 						scope.shown = false;
 						Bubble.removeReminder({
 							event: paramObj.event,

@@ -1426,8 +1426,10 @@
 	"ERR_AD_CATEGORY_MAX": "Můžete vybrat maximálně 2 kategorie.",
 	"BUBBLE": {
 		"MARKETPLACE_ITEM_MOOD": {
-			"TEXT": "Hurá! Do Hearthu přidáváme možnost zvolit u jednotlivých darů\/přání jejich povahu. Už brzy budeme tuto informaci u jednotlivých darů\/přání zobrazovat a půjde pomocí ní filtrovat.",
-			"BUTTON": "Ok"
+			"TEXT": "Hurá! Do Hearthu přidáváme možnost zvolit u jednotlivých darů\/přání jejich povahu. Už brzy budeme tuto informaci u jednotlivých darů\/přání zobrazovat a půjde pomocí ní filtrovat."
+		},
+		"MARKETPLACE_ITEM_BOOKMARK": {
+			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		}
 	}
 }
