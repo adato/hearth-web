@@ -415,12 +415,13 @@ button[disabled],
 .elevated-authority-function,
 a.elevated-authority-function{
 	color: $state-danger-text !important;
+	background-color: $state-danger-bg !important;
 }
 .elevated-authority-function:hover,
 .elevated-authority-function:focus,
 a.elevated-authority-function:hover,
 a.elevated-authority-function:focus{
-	background-color: $state-danger-bg !important;
+	background-color: darken($state-danger-bg, 5%) !important;
 }
 .elevated-authority-function:active,
 a.elevated-authority-function:active{
