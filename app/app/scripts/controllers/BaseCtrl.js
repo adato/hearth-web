@@ -556,30 +556,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-
-		/**
-		 * Function will remove reminder from users reminders
-		 */
-		$rootScope.removeReminder = function($event, type, reason) {
-			User.removeReminder({
-				_id: $rootScope.loggedUser._id,
-				type: type
-			}, function() {
-				Auth.refreshUserInfo();
-
-				$analytics.eventTrack('User closed reminder', {
-					'context': $state.current.name,
-					'Reason': reason,
-					'Bubble Type': type
-				});
-
-				$rootScope.loggedUser.reminders.splice(type, 1);
-			});
-
-			if ($event.stopPropagation) $event.stopPropagation();
-		};
-
-
 		/**
 		 * Function will add item to users bookmarks
 		 */

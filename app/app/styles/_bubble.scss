@@ -1,40 +1,79 @@
-.bubble-container {
+// bubble parent should ALWAYS have a position: relative/absolute/fixed set,
+// so that the bubble is displayed correctly
+//
+//	best results should be achieved by placing the markup in a following way:
+//
+//	tag.position-relative // wrapper around an el for which we want to show the bubble
+//		div(bubble-placeholder='xyz')
+//		tag // the element for which the bubble is designated
+//
+// default position is bottom-left
+.bubble{
 	position: absolute;
-	width: 370px;
-	right: 30px;
-	top: -8px;
-	background: black;
-	z-index: 999;
-	border-radius: 8px;
-	opacity: .9;
+	display: block;
+	min-width: 200px;
+	max-width: 370px;
+	top: calc(100% + 6px); right: -$size-tiny;
+	padding: $size-small;
+	font-size: 95%;
+	text-align: left;
+	line-height: 1.4;
+	background: #fff;
 
-	@media #{$medium-down} {
-		width: 200px;
+	// border-radius: $global-radius;
+	// global radius (currently 8px) looks too large
+	border-radius: 4px;
+
+	// box-shadow: $ui-box-shadow;
+	// using custom shadow because with default the tiny arrow is next to invisible
+	box-shadow: 0 0 10px 4px rgba(0,0,0,.3);
+
+	white-space: normal;
+	cursor: pointer;
+	z-index: 999;
+
+	&:after {
+		content: '';
+		position: absolute;
+		right: $size-medium;
+		bottom: 100%;
+		width: 0;
+		height: 0;
+		border: 6px solid transparent;
+		border-bottom: 6px solid #fff;
 	}
 
-	.tooltip {
-		padding: 25px;
-		font-size: 14px;
-		line-height: 1.5em;
-		color: white;
-		white-space: normal;
+	[data-bubble="close"] {
+		font-size: 16px;
+		line-height: 1.2;
+		// moved to the bubble itself as i can close it by clicking it
+		// cursor: pointer;
+		opacity: .6;
+	}
+	[data-bubble="close"]:hover,
+	[data-bubble="close"]:focus {
+		opacity: 1;
+	}
 
-		.confirm {
-			width: 50%;
-			margin: 15px 0 0 0;
-			float: right;
-		}
+	&.position-bottom-right {
+		right: inherit; left: -$size-small;
 
 		&:after {
-			content: '';
-			position: absolute;
-			top: 12px;
-			left: 100%;
-			width: 0;
-			height: 0;
-			border-left: 8px solid #000000;
-			border-top: 8px solid transparent;
-			border-bottom: 8px solid transparent;
+			right: inherit;
+			left: $size-medium;
 		}
 	}
+
+	@media #{$medium-down} {
+		max-width: 200px;
+	}
+
+	// .tooltip {
+	// 	padding: 25px;
+	// 	font-size: 14px;
+	// 	line-height: 1.5em;
+	// 	color: white;
+	// 	white-space: normal;
+	//
+	// }
 }

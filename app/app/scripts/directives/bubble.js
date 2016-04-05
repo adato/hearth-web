@@ -8,43 +8,40 @@
  */
 
 angular.module('hearth.directives').directive('bubble', [
-	'$rootScope', 'User',
-	function($rootScope, User) {
+	'Bubble', '$rootScope',
+	function(Bubble, $rootScope) {
 		return {
 			restrict: 'E',
-			replace: true,
-			scope: {
-				type: '@'
-			},
-			templateUrl: 'templates/directives/bubble.html',
+			scope: {},
+			template: '<div class="bubble" ng-include="template" ng-cloak ng-show="shown" ng-class="class"></div>',
 			link: function(scope, element, attrs) {
-				var bubble = $('.bubble-container').first();
-				bubble.show();
+				scope.shown = true;
+				scope.type = scope.$parent.type;
+				scope.template = scope.$parent.templateUrl;
+				scope.class = scope.$parent.class || '';
 
-
-				var isScrolledIntoView = function($elem) {
-					if (!$elem) return false;
-					var $window = $(window);
-
-					var docViewTop = $window.scrollTop();
-					var docViewBottom = docViewTop + $window.height();
-
-					var elemTop = $elem.offset().top;
-					var elemBottom = elemTop + $elem.height();
-
-					return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+				var bubbleClick = function(event) {
+					scope.shown = false;
+					Bubble.removeReminder({
+						event: event,
+						type: scope.type,
+						reason: (event.target.dataset.bubble === 'close' ? Bubble.CLOSE_REASONS.BUTTON_CLICK : Bubble.CLOSE_REASONS.BUBBLE_CLICK)
+					});
+					element.off('click', bubbleClick);
 				}
+				element.on('click', bubbleClick);
 
-				var closeOnDocumentClick = function(event) {
-					if (isScrolledIntoView(bubble)) {
-						$('body').unbind('click', closeOnDocumentClick);
-						scope.removeReminder(event, scope.type, 'document-click');
+				var deregister = $rootScope.$on('closeBubble', function(event, paramObj) {
+					if ((paramObj.type === 'all' && Bubble.isInViewport(element[0])) || paramObj.type === scope.type || paramObj.force) {
+						scope.shown = false;
+						Bubble.removeReminder({
+							event: paramObj.event,
+							type: scope.type,
+							reason: paramObj.reason
+						});
+						deregister();
 					}
-				}
-
-				$('body').unbind().on('click', closeOnDocumentClick);
-
-				scope.removeReminder = $rootScope.removeReminder;
+				});
 			}
 		};
 	}
