@@ -163,17 +163,29 @@
 		}
 	}
 	.category {
-		.category-label {
-			margin-bottom: 0;
+		.headline {
 			display: block;
+		}
+		.category-label {
+			margin-right: 10px;
+			margin-bottom: 0;
+			display: inline-block;
 
 			input {
-				margin-right: 6px;
+				margin-right: 4px;
 			}
 
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
+			}
+
+			@media #{$small-down} {
+				display: block;
+
+				input {
+					margin-right: 6px;
+				}
 			}
 		}
 	}
