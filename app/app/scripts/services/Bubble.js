@@ -28,7 +28,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 			'bookmark-reminder': {
 				applicable: function() {
 					return ($rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('bookmark') > -1));
-					// return true;
 				},
 				apply: function() {
 					var template = 'templates/directives/bubble/bookmark-reminder.html';
@@ -44,7 +43,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 			},
 			'marketplace-item-mood': {
 				applicable: function() {
-					return true;
+					return ($rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('categories') > -1));
 				},
 				apply: function() {
 					var template = 'templates/directives/bubble/marketplace-item-mood.html';
@@ -58,7 +57,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 							placeholder: placeholder,
 							templateUrl: template,
 							class: 'position-bottom-right',
-							type: 'marketplace-item-mood' // < FIX
+							type: 'categories'
 						});
 					}, 500);
 				}
@@ -75,7 +74,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	try to activate the bubbles
 		 */
 		factory.try = function(definition) {
-			console.log(definition);
 			if (bubbleDefinitions.hasOwnProperty(definition) && (activeBubbles.indexOf(definition) === -1) && bubbleDefinitions[definition].applicable()) {
 				activeBubbles.push(definition);
 				// if this is the first active bubble, bind event listener to document
@@ -168,7 +166,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	@return Boolean
 		 */
 		factory.isInViewport = function(el) {
-			console.log(el)
 			if (!el) return false;
 			var rect = el.getBoundingClientRect();
 			return (
