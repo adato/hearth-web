@@ -90,14 +90,16 @@
 			<h3>{{:: 'MEET_COMMUNITY' | translate }} {{ info.name }}</h3>
 
 			<div class="line">
-				<div class="descr" ng-if="info.locations.length">
+				<user-intel-readout entity="info" type="'all'"></user-intel-readout>
+
+				<!--<div class="descr" ng-if="info.locations.length">
 					<i class="fa fa-map-marker"></i> {{:: 'community-operate-in' | translate}}
 					<span ng-repeat="(locationId, location) in info.locations">
 						<span ng-if="location.short_address">{{:: location.short_address}}
 							<span ng-if="!$last">;&nbsp;</span>
 						</span>
 					</span>
-				</div>
+				</div>-->
 				<div class="descr reg-date fleft">
 					<i class="fa fa-asterisk"></i>
 					<span>{{:: 'COMMUNITY_HAS_REGISTERED' | translate }}</span> {{ info.created_at | ago}}
