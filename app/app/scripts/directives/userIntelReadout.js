@@ -18,9 +18,27 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 			},
 			templateUrl: 'templates/directives/userIntelReadout.html',
 			link: function(scope) {
-				var validTypes = ['informative', 'all'];
-				var index = validTypes.indexOf(scope.type);
-				scope.readoutTypeIndex = ((index > -1) ? index : validTypes.length);
+				// var validTypes = ['informative', 'all'];
+				// var index = validTypes.indexOf(scope.type);
+				// scope.readoutTypeIndex = ((index > -1) ? index : validTypes.length);
+
+				var motto = 'motto',
+					about = 'about',
+					interests = 'interests',
+					work = 'work',
+					locations = 'locations',
+					languages = 'languages',
+					email = 'email',
+					phone = 'phone',
+					webs = 'webs';
+
+				var setup = {};
+				setup.informative = [motto, locations, languages, email, phone];
+				setup.infobox = setup.informative.slice(1);
+				setup.all = [motto, about, interests, work, locations, languages, email, phone, webs];
+
+				scope.typeMatch = setup[scope.type] || setup.all;
+
 				scope.isEmpty = IsEmpty;
 			}
 		}

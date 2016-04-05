@@ -1,5 +1,5 @@
 <div class="display-table table-with-icons">
-	<div class="display-table-row" ng-if="(entity.motto && (readoutTypeIndex == 0))">
+	<div class="display-table-row" ng-if="entity.about && (typeMatch.indexOf('motto') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
@@ -7,7 +7,7 @@
 			{{ entity.motto }}
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.about && (readoutTypeIndex > 0)">
+	<div class="display-table-row" ng-if="entity.about && (typeMatch.indexOf('about') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
@@ -15,7 +15,7 @@
 			{{ entity.about }}
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.interests && entity.interests[0] != '' && (readoutTypeIndex > 0)">
+	<div class="display-table-row" ng-if="entity.interests && entity.interests[0] != '' && (typeMatch.indexOf('interests') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-smile-o"></i>
 		</div>
@@ -23,7 +23,7 @@
 			{{ entity.interests.join(',\u00A0') }}
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.work && (readoutTypeIndex > 0)">
+	<div class="display-table-row" ng-if="entity.work && (typeMatch.indexOf('work') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-briefcase"></i>
 		</div>
@@ -31,7 +31,7 @@
 			{{ entity.work | ellipsis }}
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.locations.length && entity.locations[0].short_address && (readoutTypeIndex > -1)">
+	<div class="display-table-row" ng-if="entity.locations.length && entity.locations[0].short_address && (typeMatch.indexOf('locations') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-map-marker"></i>
 		</div>
@@ -42,7 +42,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="!(isEmpty(entity.user_languages)) && (readoutTypeIndex > -1)">
+	<div class="display-table-row" ng-if="!(isEmpty(entity.user_languages)) && (typeMatch.indexOf('languages') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-comments"></i>
 		</div>
@@ -52,20 +52,20 @@
 			</span>
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="(entity.email || entity.contact_email) && (readoutTypeIndex > -1)">
+	<div class="display-table-row" ng-if="(entity.email || entity.contact_email) && (typeMatch.indexOf('email') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-envelope"></i>
 		</div>
 		<div class="display-table-cell">
 			<div ng-if="entity.email">
-				<a href="mailto:{{entity.email }}">{{ entity.email }}</a>
+				<a href="mailto:{{ entity.email }}">{{ entity.email }}</a>
 			</div>
 			<div ng-if="entity.contact_email">
-				<a href="mailto:{{entity.contact_email }}">{{ entity.contact_email }}</a>
+				<a href="mailto:{{ entity.contact_email }}">{{ entity.contact_email }}</a>
 			</div>
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.phone && (readoutTypeIndex > -1)">
+	<div class="display-table-row" ng-if="entity.phone && (typeMatch.indexOf('phone') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-phone"></i>
 		</div>
@@ -73,7 +73,7 @@
 			{{ entity.phone }}
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.webs.length && entity.webs[0] && (readoutTypeIndex > -0)">
+	<div class="display-table-row" ng-if="entity.webs.length && entity.webs[0] && (typeMatch.indexOf('webs') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-link"></i>
 		</div>
