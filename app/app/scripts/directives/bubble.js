@@ -13,7 +13,7 @@ angular.module('hearth.directives').directive('bubble', [
 		return {
 			restrict: 'E',
 			scope: {},
-			template: '<div class="bubble" ng-include="template" ng-cloak ng-show="shown" ng-class="class"></div>',
+			template: '<div class="bubble-notification" ng-include="template" ng-cloak ng-show="shown" ng-class="class"></div>',
 			link: function(scope, element, attrs) {
 				scope.shown = true;
 				scope.type = scope.$parent.type;
