@@ -324,3 +324,30 @@ a.link-secondary{
 	color: $colorSecondary;
 }
 /* /LINKS */
+
+/* LOADING */
+.loading-in-progress{
+	font-family: FontAwesome;
+	-webkit-animation: fa-spin 2s infinite linear;
+	animation: fa-spin 2s infinite linear;
+}
+.has-overlay-loading{
+	position: relative;
+}
+.has-overlay-loading.loading-in-progress::after{
+	content: $fa-loading-icon;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font: normal normal normal 24px/1 FontAwesome;
+	color: $colorSecondary;
+	background-color: rgba(255,255,255,.4);
+	z-index: 1000;
+}
+.has-loading-icon.loading-in-progress::before{
+	content: $fa-loading-icon;
+	display: inline-block;
+}
+/* /LOADING */

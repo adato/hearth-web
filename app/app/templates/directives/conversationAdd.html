@@ -39,7 +39,10 @@
 		</div>
 
 		<div class="display-flex flex-reverse flex-space-between">
-			<button ng-disabled="sendingMessage" type="submit" class="button button-send">{{:: 'MESSAGES.ADD.SEND_MESSAGE' | translate }}</button>
+			<button ng-disabled="sendingMessage" type="submit" class="button-send">
+				<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
+				{{:: 'MESSAGES.ADD.SEND_MESSAGE' | translate }}
+			</button>
 			<a ng-click="close()" class="revert-changes">{{:: 'CANCEL' | translate }}</a>
 		</div>
 	</form>
