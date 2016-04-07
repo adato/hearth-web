@@ -15,7 +15,7 @@
 			{{ entity.about }}
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.interests && entity.interests[0] != '' && (typeMatch.indexOf('interests') > -1)">
+	<div class="display-table-row" ng-if="entity.interests.length && entity.interests[0] != '' && (typeMatch.indexOf('interests') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-smile-o"></i>
 		</div>
