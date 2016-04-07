@@ -24,7 +24,10 @@
 		</div>
 
 		<div class="display-flex flex-reverse flex-space-between">
-			<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">{{:: 'SEND' | translate }}</button>
+			<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">
+				<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
+				{{:: 'SEND' | translate }}
+			</button>
 			<a class="hide-for-large-up" ng-click="closeConversation()">{{:: 'CLOSE' | translate }}</a>
 		</div>
 	</form>
