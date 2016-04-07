@@ -34,7 +34,7 @@
 			</div>
 		</div>
 
-		<div class="form-section">
+		<div class="form-section has-overlay-loading" ng-class='{"loading-in-progress": sendingMessage}'>
 			<files-picker ng-model="message.attachments_attributes" files-multiple="true"></files-picker>
 		</div>
 
