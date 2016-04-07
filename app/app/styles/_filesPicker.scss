@@ -63,6 +63,9 @@ img.image-upload-preview{
 	font-weight: $ui-text-weight-bolder;
 	color: $colorSecondary;
 }
+.form-section label.files-upload-label{
+	margin-bottom: $size-small !important;
+}
 .files-upload-label > input{
 	display: none;
 }

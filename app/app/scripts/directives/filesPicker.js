@@ -84,7 +84,7 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 					input[0].addEventListener('change', function(event) {
 						for (var i = event.target.files.length; i--;) {
 							// if I don't want multiple upload I want to remove the first file when uploading another one
-							if (!scope.multiple && scope.ngModel.length) scope.removeFirst();
+							if (!scope.filesMultiple && scope.ngModel.length) scope.removeFirst();
 							pushAttachment(event.target.files[i]);
 						}
 						// clear the input
