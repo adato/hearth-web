@@ -10,8 +10,8 @@
  * @requires geo
  */
 angular.module('hearth.geo').directive('locations', [
-	'geo', '$timeout', '$rootScope', 'Viewport',
-	function(geo, $timeout, $rootScope, Viewport) {
+	'geo', '$timeout', '$rootScope', 'Viewport', '$analytics', '$state',
+	function(geo, $timeout, $rootScope, Viewport, $analytics, $state) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -209,8 +209,23 @@ angular.module('hearth.geo').directive('locations', [
 					tagsInput.val('');
 				};
 
+				var MAP_TOGGLE_CLICK = 'Ad map toggled';
+				var MAP_LOCATION_SELECTED = 'Ad map location selected';
+
+				function trackMapEvents(paramObj) {
+					$analytics.eventTrack(paramObj.eventName, {
+						'action': paramObj.action,
+						'state': $scope.$parent.post.state,
+						'context': $state.current.name
+					});
+				}
+
 				// slide down
 				$scope.showMap = function() {
+					trackMapEvents({
+						eventName: MAP_TOGGLE_CLICK,
+						action: 'show'
+					});
 
 					$(".mapIcon .fa-times", baseElement).show();
 					$(".location-map", baseElement).slideDown();
@@ -218,8 +233,13 @@ angular.module('hearth.geo').directive('locations', [
 					$timeout($scope.initMap, 100);
 				};
 
-				// slide up 
-				$scope.closeMap = function() {
+				// slide up
+				$scope.closeMap = function(locationChosen) {
+					trackMapEvents({
+						eventName: (locationChosen ? MAP_LOCATION_SELECTED : MAP_TOGGLE_CLICK),
+						action: 'hide'
+					});
+
 					if (marker) {
 						marker.setMap(null);
 						marker = false;
@@ -235,8 +255,9 @@ angular.module('hearth.geo').directive('locations', [
 				$scope.chooseMapLocation = function() {
 					if (!$scope.mapPoint)
 						return false;
+
 					$scope.fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, false);
-					$scope.closeMap();
+					$scope.closeMap(true);
 				};
 
 				$scope.refreshMapPoint = function() {
