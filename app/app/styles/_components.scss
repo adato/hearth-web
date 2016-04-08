@@ -350,7 +350,7 @@ a.link-secondary{
 	position: absolute;
 	left: 6px; top: 15px;
 }
-@mediua #{$large-up} {
+@media #{$large-up} {
 	.has-loading-icon{
 		top: 8px;
 	}
