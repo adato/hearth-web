@@ -67,6 +67,19 @@ $$config = {
 			true: 'WE_OFFER'
 		}
 	},
+	postCategories: [{
+		name: 'energy',
+		translate: 'CATEGORY_ENERGY',
+		translateText: 'CATEGORY_ENERGY_TEXT'
+	}, {
+		name: 'mass',
+		translate: 'CATEGORY_MASS',
+		translateText: 'CATEGORY_MASS_TEXT'
+	}, {
+		name: 'information',
+		translate: 'CATEGORY_INFORMATION',
+		translateText: 'CATEGORY_INFORMATION_TEXT'
+	}],
 	replyLabels: {
 		offer: 'WISH_GIFT',
 		need: 'OFFER_GIFT'
