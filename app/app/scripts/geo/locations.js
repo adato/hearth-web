@@ -234,11 +234,18 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 				// slide up
-				$scope.closeMap = function(locationChosen) {
-					trackMapEvents({
-						eventName: (locationChosen ? MAP_LOCATION_SELECTED : MAP_TOGGLE_CLICK),
-						action: 'hide'
-					});
+				/**
+				 *	@param {Object} paramObj -	locationChosen {Bool}
+				 *								suppressTracking {Bool}
+				 */
+				$scope.closeMap = function(paramObj) {
+					paramObj = paramObj || {};
+					if (!paramObj.suppressTracking) {
+						trackMapEvents({
+							eventName: (paramObj.locationChosen ? MAP_LOCATION_SELECTED : MAP_TOGGLE_CLICK),
+							action: 'hide'
+						});
+					}
 
 					if (marker) {
 						marker.setMap(null);
@@ -257,7 +264,9 @@ angular.module('hearth.geo').directive('locations', [
 						return false;
 
 					$scope.fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, false);
-					$scope.closeMap(true);
+					$scope.closeMap({
+						locationChosen: true
+					});
 				};
 
 				$scope.refreshMapPoint = function() {
@@ -317,15 +326,20 @@ angular.module('hearth.geo').directive('locations', [
 				$scope.toggleMap = function() {
 					if ($scope.disabled) return false;
 
-					if ($(".location-map", baseElement).is(":visible"))
-						$scope.closeMap();
-					else
+					if ($(".location-map", baseElement).is(":visible")) {
+						$scope.closeMap({
+							suppressTracking: true
+						});
+					} else {
 						$scope.showMap();
+					}
 				};
 
-				$scope.locationDoesNotMatter = function(val) {
+				$scope.locationDoesNotMatter = function(val, suppressTracking) {
 					$scope.errorWrongPlace = false;
-					$scope.closeMap();
+					$scope.closeMap({
+						suppressTracking: suppressTracking
+					});
 					$scope.showError = false;
 
 					if ($scope.disabled) {
@@ -340,7 +354,9 @@ angular.module('hearth.geo').directive('locations', [
 
 					tagsInput = $(".tags input", baseElement);
 					sBox = addPlacesAutocompleteListener($('.tags input', baseElement)[0]);
-					$scope.$watch('disabled', $scope.locationDoesNotMatter);
+					$scope.$watch('disabled', function(val) {
+						$scope.locationDoesNotMatter(val, true);
+					})
 				};
 
 				$scope.$watch("showError", function(val) {
