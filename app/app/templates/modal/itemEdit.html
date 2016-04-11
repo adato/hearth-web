@@ -62,8 +62,9 @@
 				<label class="headline">
 					{{'POST_CATEGORY_LABEL' | translate}}:
 				</label>
-				<label ng-repeat="category in postCategories" class="category-label">
-					<input type="checkbox" checklist-model="post.categories" checklist-value="category.name" ng-click="checkCategories()" name="category" /> {{category.translate | translate}}
+				<label ng-repeat="category in postCategories" class="category-label ui-checkbox">
+					<input type="checkbox" checklist-model="post.categories" checklist-value="category.name" ng-click="checkCategories()" name="category" />
+					<i class="fa" ng-class="post.categories.indexOf(category.name) > -1 ? 'fa-check-square' : 'fa-square-o'"></i> {{category.translate | translate}}
 					<span>{{category.translateText | translate}}</span>
 				</label>
 				<div class="moveUp error" ng-show="createAdForm.category.$invalid">
