@@ -270,7 +270,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadConversationDetail = function(id, dontMarkAsReaded) {
 			// but first try to find it in list
 			if ($scope.conversations && $scope.conversations.length) {
-				for (var i = $scope.conversations.length;i--;) {
+				for (var i = $scope.conversations.length; i--;) {
 					if ($scope.conversations[i]._id == id) {
 						return $scope.showConversation($scope.conversations[i], i, true);
 					}
