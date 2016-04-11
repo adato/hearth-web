@@ -85,7 +85,7 @@
 			</div>
 		</div>
 
-		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && notFound || detail && !detail.is_member">
+		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && notFound">
 			<p ng-bind-html="'MESSAGES.DETAIL.EMPTY' | translate"></p>
 			<div class="bottom">
 				<a class="left link hide-for-large-up" ng-href="messages">
@@ -94,7 +94,7 @@
 			</div>
 		</div>
 
-		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && detail && detail.is_member">
+		<div class="collumn box right conversation-detail-container" ng-if="!showNewMessageForm && detail">
 			<conversation-detail info="detail"></conversation-detail>
 		</div>
 

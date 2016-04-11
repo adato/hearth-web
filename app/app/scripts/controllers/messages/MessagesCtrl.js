@@ -269,12 +269,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		// if we have detail ID in url load it and display in detail box
 		$scope.loadConversationDetail = function(id, dontMarkAsReaded) {
 			// but first try to find it in list
-			if ($scope.conversations)
-				for (var i in $scope.conversations) {
+			if ($scope.conversations && $scope.conversations.length) {
+				for (var i = $scope.conversations.length;i--;) {
 					if ($scope.conversations[i]._id == id) {
 						return $scope.showConversation($scope.conversations[i], i, true);
 					}
 				}
+			}
 
 			// if requested conversation is not in list, load it from API
 			Conversations.get({
