@@ -33,10 +33,6 @@
 				</div>
 				<div class="clear"></div>
 			</section>
-			<div class="position-relative">
-				<i class="fa touchable fa-wheelchair"></i>
-				<div bubble-placeholder="marketplace-item-mood"></div>
-			</div>
 			<section class="title">
 				<label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
 				<div class="name">
@@ -62,7 +58,8 @@
 					<span ng-show="createAdForm.text.$error.maxlength">{{ 'ERR_AD_TEXT_LEN' | translate }}</span>
 				</div>
 			</section>
-			<section class="category">
+			<section class="category position-relative">
+				<div bubble-placeholder="marketplace-item-mood"></div>
 				<label class="headline">
 					{{'POST_CATEGORY_LABEL' | translate}}:
 				</label>
