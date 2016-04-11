@@ -167,12 +167,14 @@
 			display: block;
 		}
 		.category-label {
+			margin-left: 0;
 			margin-right: 10px;
-			margin-bottom: 0;
+			margin-bottom: 1rem;
 			display: inline-block;
 
 			input {
 				margin-right: 4px;
+				display: none;
 			}
 
 			span {
