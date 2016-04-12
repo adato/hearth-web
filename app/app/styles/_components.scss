@@ -1,3 +1,9 @@
+/* POSITION */
+.position-relative{
+	position: relative !important;
+}
+/* /POSITION */
+
 /* DISPLAY */
 .display-block {
 	display: block !important;
@@ -19,6 +25,7 @@
 	display: table-row;
 }
 .display-table-cell{
+	vertical-align: top;
 	display: table-cell;
 	&.addon{
 		width: 1%;
@@ -81,13 +88,32 @@
 		&.nowrap-addon{width: 1%; white-space: nowrap;}
 	}
 }
+/* table addons */
+.table-with-icons .display-table-cell{
+	padding-bottom: $size-small;
+}
+.table-with-icons .display-table-cell:first-child{
+	color: $colorPrimary;
+	padding-right: $size-small;
+}
+/* /table addons */
 
 .display-flex{
 	display: flex;
 	align-items: center;
 }
+.flex-reverse{
+	flex-direction: row-reverse;
+}
+.flex-column{
+	flex-direction: column;
+}
 .flex-space-between{
 	justify-content: space-between;
+}
+.flex-stretch-content{
+	align-content: stretch;
+	align-items: stretch;
 }
 .flex-wrap{
 	flex-wrap: wrap;
@@ -267,12 +293,47 @@ a.word-break{
 .background-secondary{background-color: $colorSecondary;}
 /* /COLOR */
 
-/* TABLE */
-.table-with-icons .display-table-cell{
-	padding-bottom: $size-small;
+/* LINKS */
+.link-primary,
+a.link-primary,
+.link-secondary,
+a.link-secondary{
+	font-weight: $ui-text-weight-bolder;
 }
-.table-with-icons .display-table-cell:first-child{
+.link-primary,
+a.link-primary{
 	color: $colorPrimary;
 	padding-right: $size-small;
 }
-/* /TABLE */
+.link-secondary,
+a.link-secondary{
+	color: $colorSecondary;
+}
+/* /LINKS */
+
+/* LOADING */
+.loading-in-progress{
+	font-family: FontAwesome;
+	-webkit-animation: fa-spin 2s infinite linear;
+	animation: fa-spin 2s infinite linear;
+}
+.has-overlay-loading{
+	position: relative;
+}
+.has-overlay-loading.loading-in-progress::after{
+	content: $fa-loading-icon;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font: normal normal normal 24px/1 FontAwesome;
+	color: $colorSecondary;
+	background-color: rgba(255,255,255,.4);
+	z-index: 1000;
+}
+.has-loading-icon.loading-in-progress::before{
+	content: $fa-loading-icon;
+	display: inline-block;
+}
+/* /LOADING */

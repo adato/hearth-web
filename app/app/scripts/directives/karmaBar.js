@@ -15,13 +15,11 @@ angular.module('hearth.directives').directive('karmaBar', [
 			replace: true,
 			scope: {
 				for: "=",
-				up: "=",
-				down: "="
 			},
 			templateUrl: 'templates/directives/karmaBar.html',
 			link: function(scope, el, attrs) {
-				scope.up = scope.up ? scope.up : scope.for.up_votes;
-				scope.down = scope.down ? scope.down : scope.for.down_votes;
+				scope.up = scope.for.up_votes;
+				scope.down = scope.for.down_votes;
 				scope.karma = Karma.count(scope.up, scope.down);
 			}
 		};

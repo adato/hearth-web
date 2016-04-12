@@ -8,20 +8,40 @@
  */
 
 angular.module('hearth.directives').directive('bubble', [
-	'$rootScope', 'User',
-	function($rootScope, User) {
+	'Bubble', '$rootScope',
+	function(Bubble, $rootScope) {
 		return {
 			restrict: 'E',
-			replace: true,
-			scope: {
-				type: '@'
-			},
-			templateUrl: 'templates/directives/bubble.html',
+			scope: {},
+			template: '<div class="bubble-notification" ng-include="template" ng-cloak ng-show="shown" ng-class="class"></div>',
 			link: function(scope, element, attrs) {
-				var bubble = $('.bubble-container').first();
-				bubble.show();
+				scope.shown = true;
+				scope.type = scope.$parent.type;
+				scope.template = scope.$parent.templateUrl;
+				scope.class = scope.$parent.class || '';
 
-				scope.removeReminder = $rootScope.removeReminder;
+				var bubbleClick = function(event) {
+					scope.shown = false;
+					Bubble.removeReminder({
+						event: event,
+						type: scope.type,
+						reason: (event.target.dataset.bubble === 'close' ? Bubble.CLOSE_REASONS.BUTTON_CLICK : Bubble.CLOSE_REASONS.BUBBLE_CLICK)
+					});
+					element.off('click', bubbleClick);
+				}
+				element.on('click', bubbleClick);
+
+				var deregister = $rootScope.$on('closeBubble', function(event, paramObj) {
+					if ((paramObj.type === 'all' && Bubble.isInViewport(element[0])) || paramObj.type === scope.type || paramObj.force) {
+						scope.shown = false;
+						Bubble.removeReminder({
+							event: paramObj.event,
+							type: scope.type,
+							reason: paramObj.reason
+						});
+						deregister();
+					}
+				});
 			}
 		};
 	}

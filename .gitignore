@@ -5,3 +5,4 @@ dist
 app/app/vendor
 target/
 public
+.idea

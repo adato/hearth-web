@@ -6,7 +6,7 @@
  * @description Language controller
  */
 
-angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['LanguageSwitch', function(LanguageSwitch) {
+angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['LanguageSwitch', '$rootScope', function(LanguageSwitch, $rootScope) {
 	var ctrl = this;
 	ctrl.currentLanguage = preferredLanguage;
 	ctrl.switchLang = function(lang) {
@@ -14,6 +14,7 @@ angular.module('hearth.controllers').controller('LanguageChangeCtrl', ['Language
 	};
 	ctrl.languageStrings = LanguageSwitch.languageStrings;
 	ctrl.toggleLanguageSelectionDialog = function() {
+		$rootScope.top();
 		LanguageSwitch.toggleLanguageSelectionDialog();
 	};
 }]);
