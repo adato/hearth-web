@@ -95,7 +95,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 			$("#item_container_" + item._id).fadeOut("slow", function() {
 				$scope.itemDeleted = true;
-				$scope.$apply();
+				if (!$scope.$$phase) $scope.$apply();
 			});
 		};
 
