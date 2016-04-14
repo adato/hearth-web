@@ -21,23 +21,28 @@
 				</section>
 				<section class="large-10 small-9 medium-10 columns">
 					<div>
-						<p class="title">
-							<i ng-switch-when="Post">
-								<img ng-if="item.type === 'offer'" ng-src="/app/images/arrow-give.svg" width="20" />
-								<img ng-if="item.type === 'need'" ng-src="/app/images/arrow-receive.svg" width="20" />
-							</i>
-							<i class="fa" ng-class="{'fa-user': item._type === 'User', 'fa-group': item._type === 'Community'}" ng-if="item._type != 'Post'"></i>
-							<a ng-href="{{getProfileLink(item._type, item._id)}}">
-								<span ng-switch-when="Post" ng-bind-html=":: postTypes['User'][item.type] | translate"></span>
-								<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
-								<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
-								<span ng-if="!item.title && !item.highlight.name[0]" ng-bind-html="item.name"></span>
-								<span ng-if="!item.title && item.highlight.name[0]" ng-bind-html="item.highlight.name[0] | to_trusted"></span>
-							</a>
-							<span ng-if="item.author.name">({{item.author.name}})</span>
-						</p>
-						<div class="row info">
-							<div class="location small-12 medium-8 large-8 columns">
+						<div class="row headline">
+							<div class="title columns" ng-class="{'small-12 medium-8 large-8': item._type === 'Post'}">
+								<i ng-switch-when="Post">
+									<img ng-if="item.type === 'offer'" ng-src="/app/images/arrow-give.svg" width="20" />
+									<img ng-if="item.type === 'need'" ng-src="/app/images/arrow-receive.svg" width="20" />
+								</i>
+								<i class="fa" ng-class="{'fa-user': item._type === 'User', 'fa-group': item._type === 'Community'}" ng-if="item._type != 'Post'"></i>
+								<a ng-href="{{getProfileLink(item._type, item._id)}}">
+									<span ng-switch-when="Post" ng-bind-html=":: postTypes['User'][item.type] | translate"></span>
+									<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
+									<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
+									<span ng-if="!item.title && !item.highlight.name[0]" ng-bind-html="item.name"></span>
+									<span ng-if="!item.title && item.highlight.name[0]" ng-bind-html="item.highlight.name[0] | to_trusted"></span>
+								</a>
+								<span ng-if="item.author.name" class="author">({{item.author.name}})</span>
+							</div>
+							<div ng-switch-when="Post" class="date small-12 medium-4 large-4 columns" title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">
+								<i class="fa fa-clock-o"></i>
+								{{item.updated_at | ago }}</div>
+						</div>
+						<div class="info">
+							<div class="location">
 								<span ng-if="item.location_unlimited">
 									<i class="fa fa-map-marker"></i>&nbsp;{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
 								</span>
@@ -48,9 +53,6 @@
 									</span>
 								</span>
 							</div>
-							<div ng-switch-when="Post" class="date small-12 medium-4 large-4 columns" title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">
-								<i class="fa fa-clock-o"></i>
-								{{item.updated_at | ago }}</div>
 						</div>
 					</div>
 
