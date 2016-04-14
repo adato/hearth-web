@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout', 'ConversationService',
-	function(Conversations, Notify, $timeout, ConversationService) {
+	'Conversations', 'Notify', '$timeout', 'FileService',
+	function(Conversations, Notify, $timeout, FileService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -19,7 +19,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 			templateUrl: 'templates/directives/conversationReply.html',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
-				$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
 				$scope.showError = {
 					text: false
 				};
@@ -30,17 +29,6 @@ angular.module('hearth.directives').directive('conversationReply', [
 					current_community_id: '',
 					attachments_attributes: ''
 				};
-
-				$scope.uploadedFile = function(element) {
-					$scope.$apply(function($scope) {
-						ConversationService.onFileUpload($scope, element, 'reply');
-					});
-				};
-
-				$scope.removeAttachments = function() {
-					$scope.invalidFileType = ConversationService.getCleanInvalidFileType();
-					$scope.reply.attachments_attributes = '';
-				}
 
 				$scope.validateReply = function(reply) {
 					var invalid = false;
@@ -56,13 +44,11 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 				$scope.sendReply = function(reply) {
 					reply.id = $scope.conversation._id;
-					if ($scope.sendingReply || !$scope.validateReply(reply))
-						return false;
+					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
 					$scope.sendingReply = true;
-					console.log(reply);
 					Conversations.reply(reply, function(res) {
-						$scope.removeAttachments();
 						$scope.reply.text = '';
+						$scope.reply.attachments_attributes = '';
 
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
