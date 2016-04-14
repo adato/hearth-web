@@ -84,14 +84,22 @@
 
 				a {
 					color: color(5);
-					text-decoration: underline;
 					font-weight: 600;
+					text-decoration: underline;
+					padding-right: .5rem;
+
 					&:hover {
 						color: darken( color(5), 20%);
 					}
+
+					span {
+						&:last-of-type {
+							margin-right: -1em;
+						}
+					}
 				}
 				.author {
-					display: inline-block;
+					margin-left: 1em;
 				}
 			}
 			.date {
