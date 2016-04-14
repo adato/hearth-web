@@ -1,11 +1,11 @@
 <div class="filterbar-wrap">
 	<div class="filterbar-header">
-		<div class="insert-button-container large-3 hide-for-small small-12 hide-for-medium">
+		<div class="insert-button-container small-12 large-3 hide-for-small hide-for-medium">
 			<a ng-click="editItem(null)" ng-class="{pressed: newItemSelected}" class="button">
 				{{::'MARKETPLACE.CREATE_NEW_ADD' | translate}}
 			</a>
 		</div>
-		<div class="filter-left large-7 medium-10 push-2 small-12">
+		<div class="small-12 medium-10 large-7 push-2 filter-left">
 			<div class="toggleFilter">
 				<a ng-disabled="newItemSelected" ng-class="{pressed: filterSelected}" ng-click="toggleFilter()">
 					<i ng-show="filterSelected" class="fa fa-chevron-up"></i>
