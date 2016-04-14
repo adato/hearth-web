@@ -96,7 +96,6 @@ angular.module('hearth.geo').directive('searchMap', [
 						scope.center = true;
 
 					Post.mapQuery(params, function(data) {
-						console.log(data)
 						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};
