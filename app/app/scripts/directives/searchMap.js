@@ -1,10 +1,10 @@
 'use strict';
 /**
- 
+
  * @ngdoc directive
  * @name hearth.geo.searchMap
  * @description UI for search box with map
- * 
+ *
  * @restrict E
  * @requires $timeout
  * @requires geo
@@ -50,7 +50,8 @@ angular.module('hearth.geo').directive('searchMap', [
 						geo.getAddress(location).then(function(info) {
 							searchBoxElement.val(info.formatted_address);
 						});
-						scope.search(location);
+						// search is ran separately and for the whole map so no need to run it here again
+						// scope.search(location);
 					});
 				};
 
@@ -95,6 +96,7 @@ angular.module('hearth.geo').directive('searchMap', [
 						scope.center = true;
 
 					Post.mapQuery(params, function(data) {
+						console.log(data)
 						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};
