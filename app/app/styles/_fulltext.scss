@@ -73,22 +73,26 @@
 			font-style: normal;
 		}
 
-		.title {
-			font-size: rem-calc(22);
-			margin: 0;
-
-			a {
-				color: color(5);
-				text-decoration: underline;
-				font-weight: 600;
-				&:hover {
-					color: darken( color(5), 20%);
-				}
+		.headline {
+			margin: {
+				top: $fontSize/2;
+				bottom: $fontSize/2;
 			}
-		}
-		.info {
-			.location {
 
+			.title {
+				font-size: rem-calc(22);
+
+				a {
+					color: color(5);
+					text-decoration: underline;
+					font-weight: 600;
+					&:hover {
+						color: darken( color(5), 20%);
+					}
+				}
+				.author {
+					display: inline-block;
+				}
 			}
 			.date {
 				@media #{$medium-up} {
