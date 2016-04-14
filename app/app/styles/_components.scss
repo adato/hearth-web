@@ -27,6 +27,7 @@
 .display-table-cell{
 	vertical-align: top;
 	display: table-cell;
+	vertical-align: top;
 	&.addon{
 		width: 1%;
 	}
@@ -209,6 +210,15 @@ a.word-break{
 	list-style: none;
 	margin: 0;
 }
+.list{
+	list-style: none;
+	margin: 0;
+
+	& > li{
+		display: block !important;
+		padding: 0 !important;
+	}
+}
 /* /LIST */
 
 /* PADDING */
@@ -287,6 +297,11 @@ a.word-break{
 .color-dark-gray{color: $colorDarkGray;}
 .color-light-gray{color: $colorLightGray;}
 
+.text-danger{color: $colorDanger;}
+.text-warning{color: $colorWarning;}
+.text-muted{color: $colorLightGray;}
+.text-success{color: $colorSuccess;}
+
 .background-offer{background-color: $colorOffer;}
 .background-need{background-color: $colorNeed;}
 .background-primary{background-color: $colorPrimary;}
@@ -303,7 +318,6 @@ a.link-secondary{
 .link-primary,
 a.link-primary{
 	color: $colorPrimary;
-	padding-right: $size-small;
 }
 .link-secondary,
 a.link-secondary{
@@ -331,6 +345,15 @@ a.link-secondary{
 	color: $colorSecondary;
 	background-color: rgba(255,255,255,.4);
 	z-index: 1000;
+}
+.has-loading-icon{
+	position: absolute;
+	left: 6px; top: 15px;
+}
+@media #{$large-up} {
+	.has-loading-icon{
+		top: 8px;
+	}
 }
 .has-loading-icon.loading-in-progress::before{
 	content: $fa-loading-icon;

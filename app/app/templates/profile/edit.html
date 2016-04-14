@@ -46,6 +46,32 @@
 			</section>
 		</div>
 		<div class="clear"></div>
+		<h2>
+			<span class="content">
+				<span class="fa fa-heart"></span>{{:: 'ABOUT_ME' | translate }}
+			</span>
+		</h2>
+		<section>
+			<div class="large-6 small-12 medium-6 columns small-margin-bottom">
+				<label>
+					{{:: 'MY_TELL_ABOUT' | translate }}
+				</label>
+				<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" model="profile.about" name="about"></input-max-length>
+			</div>
+			<div class="large-6 small-12 medium-6 columns">
+				<label>
+					{{:: 'MY_INTERESTS' | translate }}
+				</label>
+				<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" model="profile.interests" name="interests"></input-max-length>
+			</div>
+			<div class="large-12 small-12 columns margin-top-medium">
+				<label>
+					{{:: 'MY_WORK' | translate }}
+					<input class="text-input" type='text' placeholder="{{'MY_WORK_EXAMPLE' | translate}}" ng-model="profile.work" name="my_work">
+				</label>
+			</div>
+		</section>
+		<div class="clear"></div>
 		<div class="large-12 small-12 medium-12">
 			<h2>
 				<span class="content">
@@ -62,9 +88,25 @@
 			</h2>
 
 			<section class="languages">
-				<tags-input ng-model="filteredLangsUser" display-property="translate" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
+				<<<<<<< HEAD <tags-input ng-model="filteredLangsUser" display-property="translate" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
 					<auto-complete source="loadLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
-				</tags-input>
+					</tags-input>
+					=======
+					<label ng-repeat="lang in languageList" ng-show="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
+						<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{ 'MY_LANG.' + lang | translate }}
+						</checkbox>
+					</label>
+					<span class="dropdown-container" dropdown="#language-drop">
+						<label class="trigger">
+							{{:: 'ADD_OTHER_LANG' | translate }}
+						</label>
+						<ul id="language-drop" class="dropdown">
+							<label ng-repeat="lang in languageList" ng-hide="languageListDefault.indexOf(lang) > -1 || profile.user_languages[lang]">
+								<checkbox model="profile.user_languages[lang]" type="checkbox" value="true" value-off="false">{{:: 'MY_LANG.' + lang | translate }}</checkbox>
+							</label>
+						</ul>
+					</span>
+					>>>>>>> 64466bd8d82de7827ad9a19ee08563d654212df0
 			</section>
 			<div class="clear"></div>
 			<h2>
@@ -212,40 +254,17 @@
 				<div class="clear"></div>
 			</section>
 			<div class="clear"></div>
-			<h2>
-				<span class="content">
-					<span class="fa fa-heart"></span>{{:: 'ABOUT_ME' | translate }}
-				</span>
-			</h2>
-			<section>
-				<div class="large-6 small-12 medium-6 columns small-margin-bottom">
-					<label>
-						{{:: 'MY_TELL_ABOUT' | translate }}
-					</label>
-					<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_TELL_ABOUT_EXAMPLE' | translate }}" model="profile.about" name="about"></input-max-length>
-				</div>
-				<div class="large-6 small-12 medium-6 columns">
-					<label>
-						{{:: 'MY_INTERESTS' | translate }}
-					</label>
-					<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" model="profile.interests" name="interests"></input-max-length>
-				</div>
-			</section>
-			<div class="clear"></div>
 			<br/>
 			<br/>
-			<section>
-				<div class="large-12 small-12 medium-12 columns">
-					<a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
-						<span class="fa fa-chevron-left"></span>{{:: 'CANCEL_CHANGES' | translate }}
-					</a>
-					<button type="submit" class="button-send right" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}
-					</button>
-					<div class="fright error down-error" ng-show="messageBottom">
-						<span>{{ messageBottom | translate}}</span>
-					</div>
-				</div>
+			<section class="display-flex flex-reverse flex-space-between">
+				<button type="submit" class="button-send" analytics-custom analytics-event="edit my profile" analytics-category="My profile" analytics-value="5">{{:: 'SAVE' | translate }}</button>
+				<a ng-href="{{ getProfileLink('User', profile._id) }}" class="revert-changes">
+					<i class="fa fa-chevron-left"></i>{{:: 'CANCEL_CHANGES' | translate }}
+				</a>
 			</section>
+			<!-- <div class="fright error down-error" ng-show="messageBottom">
+				<span>{{ messageBottom | translate}}</span>
+			</div> -->
 		</div>
 	</form>
 </div>
