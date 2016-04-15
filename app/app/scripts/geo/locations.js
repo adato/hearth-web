@@ -246,7 +246,6 @@ angular.module('hearth.geo').directive('locations', [
 							action: 'hide'
 						});
 					}
-
 					if (marker) {
 						marker.setMap(null);
 						marker = false;

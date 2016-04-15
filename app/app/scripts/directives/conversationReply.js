@@ -3,13 +3,13 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.conversationReply
- * @description 
+ * @description
  * @restrict E
  */
 
 angular.module('hearth.directives').directive('conversationReply', [
-	'Conversations', 'Notify', '$timeout',
-	function(Conversations, Notify, $timeout) {
+	'Conversations', 'Notify', '$timeout', 'FileService',
+	function(Conversations, Notify, $timeout, FileService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -19,44 +19,15 @@ angular.module('hearth.directives').directive('conversationReply', [
 			templateUrl: 'templates/directives/conversationReply.html',
 			link: function($scope, el, attrs) {
 				$scope.sendingReply = false;
+				$scope.showError = {
+					text: false
+				};
 				$scope.actors = [];
 				$scope.actorsCount = 0;
 				$scope.reply = {
 					text: '',
 					current_community_id: '',
 					attachments_attributes: ''
-				};
-				$scope.showError = {
-					text: false
-				};
-
-				$scope.openUploadDialog = function() {
-					$('#file').click();
-				};
-
-				$scope.clearFileInput = function() {
-					$scope.reply.attachments_attributes = '';
-					angular.element("input[type='file']").val(null);
-				};
-
-				$scope.uploadedFile = function(element) {
-					$scope.$apply(function($scope) {
-						$scope.reply.attachments_attributes = element.files[0];
-
-						var uploadedType = $scope.reply.attachments_attributes.type;
-						var allowedFileTypes = ['image/png', 'image/jpeg', 'image/gif'];
-
-						if (allowedFileTypes.indexOf(uploadedType) > -1) {
-							var reader = new FileReader();
-							reader.onload = function(e) {
-								$('#file-preview').attr('src', e.target.result);
-							};
-							reader.readAsDataURL(element.files[0]);
-							$scope.fileIsImage = true;
-						} else {
-							$scope.fileIsImage = false;
-						}
-					});
 				};
 
 				$scope.validateReply = function(reply) {
@@ -73,13 +44,11 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 				$scope.sendReply = function(reply) {
 					reply.id = $scope.conversation._id;
-					if ($scope.sendingReply || !$scope.validateReply(reply))
-						return false;
+					if ($scope.sendingReply || !$scope.validateReply(reply)) return false;
 					$scope.sendingReply = true;
-
 					Conversations.reply(reply, function(res) {
-						$scope.clearFileInput();
 						$scope.reply.text = '';
+						$scope.reply.attachments_attributes = '';
 
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');

@@ -1,13 +1,15 @@
 'use strict';
+
 /**
  * @ngdoc directive
  * @name hearth.directives.conversationAdd
  * @description Form for new conversation
  * @restrict E
  */
+
 angular.module('hearth.directives').directive('conversationAdd', [
-	'$rootScope', 'Conversations', 'Notify',
-	function($rootScope, Conversations, Notify) {
+	'$rootScope', 'Conversations', 'Notify', 'FileService', '$timeout',
+	function($rootScope, Conversations, Notify, FileService, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -32,42 +34,18 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					attachments_attributes: ''
 				};
 
-				$scope.openUploadDialog = function() {
-					$('#file').click();
-				};
-
-				$scope.clearFileInput = function() {
-					$scope.message.attachments_attributes = '';
-					angular.element("input[type='file']").val(null);
-				};
-
-				$scope.uploadedFile = function(element) {
-					$scope.$apply(function($scope) {
-						$scope.message.attachments_attributes = element.files[0];
-
-						var uploadedType = $scope.message.attachments_attributes.type;
-						var allowedFileTypes = ['image/png', 'image/jpeg', 'image/gif'];
-
-						if (allowedFileTypes.indexOf(uploadedType) > -1) {
-							var reader = new FileReader();
-							reader.onload = function(e) {
-								$('#file-preview').attr('src', e.target.result);
-							};
-							reader.readAsDataURL(element.files[0]);
-							$scope.fileIsImage = true;
-						} else {
-							$scope.fileIsImage = false;
-						}
-					});
-				};
-
 				$scope.hideRecipientsError = function() {
-					$scope.showError.participant_ids = false;
+					$scope.showError.recipients_ids = false;
 				};
 
 				$scope.showRecipientsError = function() {
-					if (!$scope.message.participant_ids.length)
-						$scope.showError.participant_ids = true;
+					// Timeout is required for IE as it fails to reset focus
+					// on input after picking a recipient and resolves
+					// prematurely to an erroneous state.
+					$timeout(function() {
+						console.log($scope.message.recipients_ids);
+						if (!($scope.message.recipients_ids && $scope.message.recipients_ids.length)) $scope.showError.recipients_ids = true;
+					}, 200);
 				};
 
 				$scope.isValid = function(msg) {
@@ -105,6 +83,28 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					return msg;
 				};
 
+				function serializeMessage(source) {
+					var target = {}
+					for (var prop in source) {
+						if (source.hasOwnProperty(prop)) {
+							if (prop === 'recipients_ids') {
+								source[prop].map(function(item) {
+									if (item._type === 'Community') {
+										if (!target.community_ids) target.community_ids = [];
+										target.community_ids.push(item._id);
+									} else {
+										if (!target.participant_ids) target.participant_ids = [];
+										target.participant_ids.push(item._id);
+									}
+								});
+							} else {
+								target[prop] = source[prop];
+							}
+						}
+					}
+					return target;
+				}
+
 				/**
 				 * Validate message and send to API
 				 */
@@ -112,14 +112,14 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					if (!$scope.isValid(msg))
 						return false;
 
-					var data = $scope.serialize(angular.copy(msg));
-					data.attachments_attributes = $scope.message.attachments_attributes;
+					var message = serializeMessage(msg);
 
 					if ($scope.sendingMessage) return false;
 					$scope.sendingMessage = true;
 
-					Conversations.add(data, function(res) {
-						$scope.clearFileInput();
+					console.log(message);
+					Conversations.add(message, function(res) {
+						$scope.message.attachments_attributes = '';
 						$scope.sendingMessage = false;
 
 						if ($scope.onSuccess)
