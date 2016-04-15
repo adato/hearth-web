@@ -43,6 +43,6 @@ exports.config = {
     });
   },
 	params: {
-		env: 'local'
+		env: 'jenkins'
 	}
 };
