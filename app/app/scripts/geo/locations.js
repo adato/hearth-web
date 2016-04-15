@@ -35,8 +35,10 @@ angular.module('hearth.geo').directive('locations', [
 				if (!$scope.errorCode)
 					$scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
+				// @kamil - NOT FUNCTIONAL
 				$scope.$watch("locations", function(val) {
-					$scope.locations = (val) ? filterUniqueLocations(val) : [];
+					console.log(val);
+					// 	$scope.locations = (val) ? filterUniqueLocations(val) : [];
 				});
 
 				var markerImage = {
@@ -46,25 +48,26 @@ angular.module('hearth.geo').directive('locations', [
 					anchor: new google.maps.Point(14, 34)
 				};
 
-				function filterUniqueLocations(locations) {
-					var arr = [];
-					var item;
-
-					// remove duplicit locations
-					for (var i = 0; i < locations.length; i++) {
-						if (!locations[i].origin_address)
-							locations[i].origin_address = locations[i].address;
-
-						for (var j = 0; j < i; j++) {
-							if (locations[j].address == locations[i].address) {
-								locations.splice(i--, 1);
-								break;
-							}
-						}
-					}
-
-					return locations;
-				}
+				// @kamil - NOT FUNCTIONAL
+				// function filterUniqueLocations(locations) {
+				// 	var arr = [];
+				// 	var item;
+				//
+				// 	// remove duplicit locations
+				// 	for (var i = 0; i < locations.length; i++) {
+				// 		if (!locations[i].origin_address)
+				// 			locations[i].origin_address = locations[i].address;
+				//
+				// 		for (var j = 0; j < i; j++) {
+				// 			if (locations[j].address == locations[i].address) {
+				// 				locations.splice(i--, 1);
+				// 				break;
+				// 			}
+				// 		}
+				// 	}
+				//
+				// 	return locations;
+				// }
 
 				// init google places search box
 				function addPlacesAutocompleteListener(input) {
@@ -82,9 +85,8 @@ angular.module('hearth.geo').directive('locations', [
 							$scope.errorWrongPlace = false;
 							var location = places[0].geometry.location,
 								name = places[0].formatted_address,
-								info = $scope.translateLocation(places[0].address_components);
-							$scope.fillLocation(location, name, info);
-
+								info = translateLocation(places[0].address_components);
+							fillLocation(location, name, info, JSON.parse(JSON.stringify(places)));
 						} else {
 							$scope.errorWrongPlace = true;
 						}
@@ -96,7 +98,6 @@ angular.module('hearth.geo').directive('locations', [
 							return false;
 						}
 					});
-
 
 					/**
 					 * When user fills some location and clicks enter (does not select option in autocomplete)
@@ -152,7 +153,7 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 				// this will translate info from location to used format
-				$scope.translateLocation = function(loc) {
+				function translateLocation(loc) {
 					var short = {},
 						long = {};
 
@@ -163,12 +164,12 @@ angular.module('hearth.geo').directive('locations', [
 						});
 					}
 					return {
-						street_number: long.street_number, // cislo baraku
-						street_premise: long.premise, // cislo popisne
-						street: long.route, // ulice
-						country: long.country, // zeme
-						country_code: short.country, // kod zeme - CZ
-						zipcode: long.postal_code, // PSC
+						street_number: long.street_number, // house number
+						street_premise: long.premise, // descriptive number
+						street: long.route, // street
+						country: long.country, // country
+						country_code: short.country, // country code - CZ
+						zipcode: long.postal_code, // postal code
 						city: long.postal_town || long.locality || long.administrative_area_level_1, // mestska cast nebo jen mesto nebo kraj
 						area: long.administrative_area_level_1, // kraj
 					};
@@ -192,13 +193,20 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 				// add location to list
-				$scope.fillLocation = function(pos, addr, info) {
+				/**
+				 *	@param {Object} pos -	latitude & longitude
+				 *	@param {String} addr -	formatted address
+				 *	@param {Object} info -	object with standardized format (by translateLocation fn)
+				 *	@param {Object} all -	the whole object returned by MAPS API
+				 */
+				function fillLocation(pos, addr, info, all) {
 					// but only when it is now added yet
 					if (!$scope.locationExists(pos.lng(), pos.lat())) {
 
 						info.origin_address = addr;
 						info.address = addr;
 						info.coordinates = [pos.lng(), pos.lat()];
+						info.all = all;
 						$timeout(function() {
 							$scope.locations.push(info);
 							tagsInput.focus();
@@ -262,7 +270,7 @@ angular.module('hearth.geo').directive('locations', [
 					if (!$scope.mapPoint)
 						return false;
 
-					$scope.fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, false);
+					fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info);
 					$scope.closeMap({
 						locationChosen: true
 					});
@@ -275,7 +283,7 @@ angular.module('hearth.geo').directive('locations', [
 						$scope.mapPoint = {
 							latLng: marker.getPosition(),
 							name: info.formatted_address,
-							info: $scope.translateLocation(info.address_components)
+							info: translateLocation(info.address_components),
 						};
 
 						// chrome has problem with rerendering point
@@ -334,7 +342,7 @@ angular.module('hearth.geo').directive('locations', [
 					}
 				};
 
-				$scope.locationDoesNotMatter = function(val, suppressTracking) {
+				function locationDoesNotMatter(val, suppressTracking) {
 					$scope.errorWrongPlace = false;
 					$scope.closeMap({
 						suppressTracking: suppressTracking
@@ -347,16 +355,15 @@ angular.module('hearth.geo').directive('locations', [
 					} else {
 						tagsInput.removeAttr("disabled");
 					}
-				};
+				}
 
-				$scope.init = function() {
-
+				function init() {
 					tagsInput = $(".tags input", baseElement);
 					sBox = addPlacesAutocompleteListener($('.tags input', baseElement)[0]);
 					$scope.$watch('disabled', function(val) {
-						$scope.locationDoesNotMatter(val, true);
-					})
-				};
+						locationDoesNotMatter(val, true);
+					});
+				}
 
 				$scope.$watch("showError", function(val) {
 					if (!val)
@@ -364,7 +371,7 @@ angular.module('hearth.geo').directive('locations', [
 					if (val)
 						$scope.errorWrongPlace = false;
 				});
-				$timeout($scope.init);
+				$timeout(init);
 
 
 
