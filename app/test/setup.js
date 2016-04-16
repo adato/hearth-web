@@ -20,7 +20,7 @@ module.exports = {
 			loginTrimmedName: 'E2E teste…'
 		},
     jenkins: {
-      baseUrl: 'http://jenkins:9000/app',
+      baseUrl: 'https://jenkins:9000/app',
       appPath: '/',
       loginName: 'hearth@mailinator.com', // test user email
       loginPassword: 'tester', 			// test user password
