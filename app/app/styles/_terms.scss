@@ -1,5 +1,5 @@
 .static-page-container {
-	a {
+	a:not(.button) {
 		color: color(5);
 	}
 
@@ -130,5 +130,39 @@
 	p {
 		margin-left:10px;
 
+	}
+}
+
+.static-page-container {
+	&>article {
+		@media #{$medium-down} {
+			padding-left:10px;
+			padding-right:10px;
+		}
+	}
+	.support-us {
+		p {
+			margin-bottom:15px;
+		}
+		.i-want {
+			padding-left:0;
+			padding-right:0;
+			.pad {
+				background:color(4);
+				margin:$ui-small-grid-size;
+				padding:$ui-small-grid-size;
+				border-radius:$global-radius;
+				a.button {
+					margin:10px !important;
+					height: unset;
+					width:90%;
+					margin-left:auto;
+					margin-right:auto;
+				}
+				@media #{$medium-down} {
+					text-align:center;
+				}
+			}
+		}
 	}
 }

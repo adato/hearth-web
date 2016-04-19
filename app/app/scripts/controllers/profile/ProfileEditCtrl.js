@@ -51,7 +51,10 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
 			});
 		};
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe/hearth-720-page-support-us
 
 		$scope.init = function() {
 
@@ -271,5 +274,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
+<<<<<<< HEAD
+=======
+		$scope.$watch('showError', function() {
+			$scope.messageBottom = false;
+		}, true);
+>>>>>>> fe/hearth-720-page-support-us
 	}
 ]);
