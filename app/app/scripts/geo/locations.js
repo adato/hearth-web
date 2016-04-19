@@ -36,10 +36,10 @@ angular.module('hearth.geo').directive('locations', [
 					$scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
 				// @kamil - NOT FUNCTIONAL
-				$scope.$watch("locations", function(val) {
-					console.log(val);
-					// 	$scope.locations = (val) ? filterUniqueLocations(val) : [];
-				});
+				// $scope.$watch("locations", function(val) {
+				// 	console.log(val);
+				// 	// 	$scope.locations = (val) ? filterUniqueLocations(val) : [];
+				// });
 
 				var markerImage = {
 					url: 'images/pin.png',
@@ -206,7 +206,7 @@ angular.module('hearth.geo').directive('locations', [
 						info.origin_address = addr;
 						info.address = addr;
 						info.coordinates = [pos.lng(), pos.lat()];
-						info.all = all;
+						info.all = (Array.isArray(all) ? all[0] : all);
 						$timeout(function() {
 							$scope.locations.push(info);
 							tagsInput.focus();
@@ -270,7 +270,7 @@ angular.module('hearth.geo').directive('locations', [
 					if (!$scope.mapPoint)
 						return false;
 
-					fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info);
+					fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, $scope.mapPoint.all);
 					$scope.closeMap({
 						locationChosen: true
 					});
@@ -284,6 +284,7 @@ angular.module('hearth.geo').directive('locations', [
 							latLng: marker.getPosition(),
 							name: info.formatted_address,
 							info: translateLocation(info.address_components),
+							all: info
 						};
 
 						// chrome has problem with rerendering point
