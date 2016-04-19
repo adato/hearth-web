@@ -117,6 +117,11 @@ angular.module('hearth').config([
 				templateUrl: 'templates/terms.html',
 				controller: 'TermsCtrl'
 			})
+			.state('support-us', {
+				url: '/support-us',
+				templateUrl: 'templates/localizationPage.html',
+				controller: 'StaticPageCtrl'
+			})
 			.state('components', {
 				url: '/components',
 				templateUrl: 'templates/components.html',
