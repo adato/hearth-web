@@ -167,13 +167,12 @@
 			display: block;
 		}
 		.category-label {
+			display: inline-block;
 			margin-left: 0;
 			margin-right: 10px;
 			margin-bottom: 1rem;
-			display: inline-block;
 
 			input {
-				margin-right: 4px;
 				display: none;
 			}
 
@@ -264,12 +263,15 @@
 			display: inline-block;
 		}
 	}
-	.checkbox {
-		@extend .ui-checkbox;
-	}
-	label.checkbox.radio {
-		margin-right: $ui-grid-size;
-	}
+
+	// @kamil - NOT USED ANYMORE
+	// .checkbox {
+	// 	@extend .ui-checkbox;
+	// }
+	// label.checkbox.radio {
+	// 	margin-right: $ui-grid-size;
+	// }
+
 	.tags {
 		min-height: 30px;
 		input {
@@ -287,10 +289,13 @@
 			margin-right: 10px;
 			display: inline-block;
 		}
-		.checkbox {
-			position: relative;
-			top: 2px;
-		}
+
+		// @kamil - NOT USED ANYMORE
+		// .checkbox {
+		// 	position: relative;
+		// 	top: 2px;
+		// }
+
 	}
 	.files {
 		& > div {
