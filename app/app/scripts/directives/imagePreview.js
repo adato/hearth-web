@@ -113,17 +113,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 				limitPixelSize: "=",
 				singleFile: "=",
 			},
-			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">\
-					<input ng-if="singleFile" class="file-upload-input" file-model="picFile" type="file" name="file" accept="image/*" />\
-					<input ng-if="!(singleFile)" class="file-upload-input" file-model="picFile" type="file" name="file" accept="image/*" multiple />\
-					<div class="file-upload-overlay"></div>\
-						<span ng-transclude class="image-preview-content"></span>\
-					</div>\
-					<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>\
-					<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>\
-					<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>\
-					<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>\
-				</div>',
+			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
 				scope.showErrors = true;
@@ -228,7 +218,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
 						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, function(res) {
 							scope.uploading = false;
-
 							pushResult(res, {
 								total: 0
 							});
@@ -243,30 +232,29 @@ angular.module('hearth.directives').directive('imagePreview', [
 				}
 
 				function previewImage(el, limitSize) {
-					var files = $(".file-upload-input", el)[0].files;
+					var file = $(".file-upload-input", el)[0].files[0];
 					scope.error = {};
-					for (var i = files.length; i--;) {
-						if (isInvalidFile(files[i]))
-							return false;
 
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							var imgFile = e.target.result;
+					if (isInvalidFile(file))
+						return false;
 
-							if (!isInvalidFormat(files[i], imgFile)) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var imgFile = e.target.result;
 
-								// this will check image size
-								var image = new Image();
-								image.src = imgFile;
-								return image.onload = function() {
-									handleImageLoad(this, e, limitSize);
-									scope.$apply();
-								};
-							}
-							scope.$apply();
-						};
-						reader.readAsDataURL(files[i]);
-					}
+						if (!isInvalidFormat(file, imgFile)) {
+
+							// this will check image size
+							var image = new Image();
+							image.src = imgFile;
+							return image.onload = function() {
+								handleImageLoad(this, e, limitSize);
+								scope.$apply();
+							};
+						}
+						scope.$apply();
+					};
+					reader.readAsDataURL(file);
 				}
 
 				// Detect client's device
