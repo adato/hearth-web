@@ -19,7 +19,7 @@ angular.module('hearth.directives').directive('checkbox', function() {
 			onUpdate: '&'
 		},
 		templateUrl: 'templates/directives/checkbox.html',
-		link: function(scope) {
+		link: function(scope, el) {
 			scope.checked = false;
 
 			scope.toggle = function() {
@@ -43,6 +43,14 @@ angular.module('hearth.directives').directive('checkbox', function() {
 						value: scope.model
 					});
 			};
+
+			var SPACE = 32;
+			el[0].querySelector('.qs-keypress-event-handle').addEventListener('keypress', function(event) {
+				if (event.keyCode === SPACE) {
+					scope.toggle();
+					if (!scope.$$phase) scope.$apply();
+				}
+			});
 
 			scope.$watch('model', function(value) {
 				if (angular.isArray(scope.model)) {
