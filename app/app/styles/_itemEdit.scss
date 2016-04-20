@@ -137,13 +137,14 @@
 			font-size: 20px;
 			width: 130px;
 		}
-		a {
-			position: relative;
-			top: 12px;
-			&.close {
-				/* margin-left: 20px; */
-			}
-		}
+		// @kamil - this is wrong - delete this
+		// a {
+		// 	position: relative;
+		// 	top: 12px;
+		// 	&.close {
+		// 		/* margin-left: 20px; */
+		// 	}
+		// }
 	}
 	.need-offer-selector {
 		display: inline-block;
