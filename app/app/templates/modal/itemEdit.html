@@ -58,17 +58,19 @@
 					<span ng-show="createAdForm.text.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
 				</div>
 			</section>
-			<section class="category position-relative">
+			<section class="category position-relative form-section">
 				<div bubble-placeholder="marketplace-item-mood"></div>
 				<label class="headline">
 					{{:: 'POST_CATEGORY_LABEL' | translate }}:
 				</label>
-				<label ng-repeat="category in postCategories" class="category-label ui-checkbox">
-					<input type="checkbox" checklist-model="post.categories" checklist-value="category.name" ng-click="checkCategories()" name="category" />
-					<i class="fa" ng-class="post.categories.indexOf(category.name) > -1 ? 'fa-check-square' : 'fa-square-o'"></i> {{:: category.translate | translate }}
-					<span>{{:: category.translateText | translate }}</span>
-				</label>
-				<div class="moveUp error" ng-show="createAdForm.category.$invalid">
+				<div class="margin-top-small">
+					<label ng-repeat="category in postCategories" class="category-label ui-checkbox">
+						<input type="checkbox" checklist-model="post.categories" checklist-value="category.name" ng-click="checkCategories()" name="category" />
+						<i class="fa" ng-class="post.categories.indexOf(category.name) > -1 ? 'fa-check-square' : 'fa-square-o'"></i> {{:: category.translate | translate }}
+						<span>{{:: category.translateText | translate }}</span>
+					</label>
+				</div>
+				<div class="error" ng-show="createAdForm.category.$invalid">
 					<span ng-show="createAdForm.category.$error.required">{{:: 'ERR_AD_CATEGORY' | translate }}</span>
 					<span ng-show="createAdForm.category.$error.max">{{:: 'ERR_AD_CATEGORY_MAX' | translate }}</span>
 				</div>

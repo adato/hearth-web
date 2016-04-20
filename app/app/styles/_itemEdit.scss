@@ -169,13 +169,14 @@
 		.category-label {
 			display: inline-block;
 			margin-left: 0;
-			margin-right: 10px;
-			margin-bottom: 1rem;
+			margin-right: $size-big;
 
+			&:last-of-type {
+				margin-right: none;
+			}
 			input {
 				display: none;
 			}
-
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;

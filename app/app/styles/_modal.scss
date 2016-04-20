@@ -226,9 +226,9 @@ body.ngdialog-open {
 	label {
 		font-size: $global-font-size;
 		display: inline-block;
-		.fa {
-			margin-right: 4px;
-		}
+		// .fa {
+		// 	margin-right: 4px;
+		// }
 	}
 	a {
 		color: color(5);
@@ -328,7 +328,7 @@ body.ngdialog-open {
 		.confirm-box {
 			padding: 15px;
 		}
-		
+
 		header {
 			position: relative;
 			h2 {
@@ -404,7 +404,7 @@ body.ngdialog-open {
 	.ngdialog-content {
 
 		max-width: 950px !important;
-		
+
 		header {
 			h1 {
 				margin-top: 0px;
@@ -427,7 +427,7 @@ body.ngdialog-open {
 		}
 	}
 
-		
+
 	@media #{$medium-down} {
 		.ngdialog-content {
 			width: 97%
