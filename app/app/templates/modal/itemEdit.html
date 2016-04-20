@@ -186,17 +186,12 @@
 					</div>
 				</div>
 			</section>
-			<section class="bottom">
-				<a href="" ng-click="closeEdit()" class="fleft close">
-					{{:: 'CLOSE' | translate }}
-				</a>
-				<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP"
-				translate>SAVE_AND_ACTIVATE</button>
-				<button class="primary button button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
-				<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
-                    {{ 'DELETE' | translate }}
-                </a> -->
-				<div class="clear"></div>
+			<section class="bottom display-flex flex-reverse flex-space-between">
+				<div>
+					<button type="button" ng-if="post.state == 'suspended' || post.state == 'expired'" class="button-send margin-left-10" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE_AND_ACTIVATE' | translate }}</button>
+					<button type="submit" class="button-sendmargin-left-10" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE' | translate }}</button>
+				</div>
+				<a ng-click="closeEdit()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
 			</section>
 		</div>
 	</form>
