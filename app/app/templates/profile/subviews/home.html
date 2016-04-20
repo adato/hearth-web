@@ -49,7 +49,7 @@
 		</div>
 	</div>
 	<div class="right-pane">
-		<div class="box user-about">
+		<div class="box user-about padding-bottom-medium">
 			<h3 ng-if="!mine">{{:: 'MEET_USER' | translate }} {{info.name}}</h3>
 			<h3 ng-if="mine">{{:: 'YOUR_PROFILE' | translate }}</h3>
 			<div class="line">
@@ -86,8 +86,7 @@
 				<div class="descr" ng-if="info.webs.length && info.webs[0]">
 					<i class="fa fa-link"></i>
 					<span ng-repeat="(code, web) in info.webs">
-						<a target="_blank" class="link" ng-href="{{ web }}">{{:: web | protocolfree | ellipsis }}
-						</a>
+						<a target="_blank" class="link" ng-href="{{ web }}">{{:: web | protocolfree | ellipsis }}</a>
 						<span ng-if="!$last">, </span>
 					</span>
 				</div>
@@ -104,11 +103,11 @@
 				</div>
 			</div>
 			<div class="clear"></div>
-			<div class="line">
-				<div ng-if="!mine" class="margin-top fleft">
+			<div class="line display-flex flex-space-between">
+				<div ng-if="!mine" class="">
 					<a class="bold" ng-if="!info.only_replies" ng-click="sendMessage(info)">{{:: 'SEND_MESSAGE' | translate }}</a>
 				</div>
-				<div class="social fright">
+				<div class="social">
 					<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
 						<i class="fa fa-twitter-square"></i>
 					</a>
@@ -122,9 +121,7 @@
 						<i class="fa fa-linkedin"></i>
 					</a>
 				</div>
-				<div class="clear"></div>
 			</div>
-			<div class="clear">&nbsp;</div>
 		</div>
 		<div class="box activities">
 			<h3 ng-if="mine">{{:: 'YOUR_ACTIVITY' | translate }}</h3>

@@ -144,7 +144,7 @@
 					margin: 0 !important;
 
 					&.move-down {
-						top: 15px; 
+						top: 15px;
 						left: 15px;
 					}
 				}
@@ -374,7 +374,7 @@
 				display: inline-block;
 			}
 		}
-		
+
 		textarea {
 			min-height: 120px;
 		}
@@ -568,8 +568,8 @@
 			.social {
 				font-size: 1.5rem;
 				text-align: right;
-				margin-top: 4px;
-				margin-bottom: 5px;
+				// margin-top: 4px;
+				// margin-bottom: 5px;
 				padding-right: 5px;
 				.fa {
 					color: color(5);
@@ -901,7 +901,7 @@
 	height: 25px;
 	color: #f4f4f4;
 	background-color: #7c766a;
-	
+
 	.karma-block{
 		display: table-cell;
 		white-space: nowrap;
