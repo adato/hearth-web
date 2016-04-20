@@ -28,7 +28,8 @@
 			"TITLE_ENABLED": "Filtr je aktivní",
 			"CANCEL_FILTER_BAR": "Zrušit filtr",
 			"KM": "Km",
-			"CLOSE_FILTER": "Zavřít filtr"
+			"CLOSE_FILTER": "Zavřít filtr",
+			"BY_CHARACTER": "Podle povahy"
 		},
 		"POST": {
 			"FLAG_POST": "Označit jako nevhodný",
