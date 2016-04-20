@@ -28,7 +28,8 @@
 			"TITLE_ENABLED": "Filtr je aktivní",
 			"CANCEL_FILTER_BAR": "Zrušit filtr",
 			"KM": "Km",
-			"CLOSE_FILTER": "Zavřít filtr"
+			"CLOSE_FILTER": "Zavřít filtr",
+			"BY_CHARACTER": "Podle povahy"
 		},
 		"POST": {
 			"FLAG_POST": "Označit jako nevhodný",
@@ -405,7 +406,8 @@
 	"MENU": {
 		"TERMS": "Podmínky použití",
 		"FAQ": "Časté dotazy",
-		"TAXES": "Darování a daně"
+		"TAXES": "Darování a daně",
+		"SUPPORT_US": "Podpoř Hearth"
 	},
 	"THANKS_FOR_REPORT": "Děkujeme za upozornění, tento příspěvek prověříme.",
 	"THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvi i svoje přátele do Hearth.net, do štědré sociální sítě!",
@@ -833,7 +835,7 @@
 	},
 	"POSTS_INACTIVE": "Neaktivní inzeráty",
 	"MY_POSTS": "Moje inzeráty",
-	"YOUR_ACTIVITY": "tvoje aktivita",
+	"YOUR_ACTIVITY": "Tvoje aktivita",
 	"USER_ACTIVITY": "Aktivity uživatele",
 	"USER_POSTS": "Inzeráty uživatele",
 	"USER_HAS_NO_POSTS_YET": "Uživatel zatím nemá žádné inzeráty",
@@ -1370,7 +1372,8 @@
 		"feedback": "Tvůj názor",
 		"taxes": "Darování a daně",
 		"community_edit": "Úprava komunity",
-		"fulltext": "Vyhledávání"
+		"fulltext": "Vyhledávání",
+		"support-us": "Pomoz Hearthu rozdávat radost"
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1422,11 +1425,11 @@
 	},
 	"CATEGORY_INFORMATION_TEXT": "(znalosti, tipy...)",
 	"CATEGORY_MASS_TEXT": "(věci...)",
-	"CATEGORY_ENERGY_TEXT": "(aktivita, přání...)",
+	"CATEGORY_ENERGY_TEXT": "(aktivita, myšlenka...)",
 	"ERR_AD_CATEGORY_MAX": "Můžete vybrat maximálně 2 povahy inzerátu.",
 	"BUBBLE": {
 		"MARKETPLACE_ITEM_MOOD": {
-			"TEXT": "Hurá! Do Hearthu přidáváme možnost zvolit u jednotlivých darů\/přání jejich povahu. Už brzy budeme tuto informaci u jednotlivých darů\/přání zobrazovat a půjde pomocí ní filtrovat."
+			"TEXT": "Skvělé! Do Hearthu přidáváme možnost zvolit u jednotlivých darů\/přání jejich povahu. Už brzy budeme tuto informaci u jednotlivých darů\/přání zobrazovat a půjde pomocí ní filtrovat."
 		},
 		"MARKETPLACE_ITEM_BOOKMARK": {
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
