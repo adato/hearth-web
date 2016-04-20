@@ -393,9 +393,18 @@
 	.grey {
 		color: darken(color(4), 30%);
 	}
+
+	// @kamil - this needs to be cleared to use one global box style
 	.box {
 		background: lighten(color(4), 10%);
-		padding: 0 0 1px 0;
+
+		// @kamil - only disable top and horizontal paddings to not destroy the design, yet let the bottom padding to be applied from global styles
+		// padding: 0 0 1px 0;
+		padding-top: 0;
+		padding-right: 0;
+		padding-left: 0;
+		// /@kamil
+
 		border-radius: $global-radius;
 		box-shadow: -1px 3px 8px 0px rgba(150, 150, 150, 0.44);
 		margin: 3*$ui-small-grid-size 0;
@@ -483,9 +492,6 @@
 			a.create-ad-sign {
 				float: right;
 				display: block;
-				width: 20px;
-				height: 20px;
-				margin-top: 5px;
 				transition: all 0.5s ease 0s;
 				&:hover {
 					color: darken(color(5), 20%);
@@ -548,13 +554,9 @@
 			}
 			.social {
 				font-size: 1.5rem;
-				text-align: right;
-				margin-top: 4px;
-				margin-bottom: 5px;
-				padding-right: 5px;
 				.fa {
 					color: color(5);
-					margin: 1px;
+					margin: 0 1px;
 				}
 				.fa:hover {
 					opacity: 0.7;
@@ -583,7 +585,6 @@
 			.activity {
 				margin-left: 30px;
 				margin-top: 10px;
-				margin-bottom: 10px;
 				position: relative;
 				background-color: white;
 				.avatar {
@@ -608,7 +609,6 @@
 				overflow: hidden;
 				position: relative;
 				padding-right: 20px;
-				margin-bottom: 10px;
 				padding-bottom: 1px;
 				h4 {
 					margin-top: 0;
@@ -765,9 +765,8 @@
 	border-color: color(5);
 	top: 0;
 	vertical-align: bottom;
-	padding: 10px;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	padding-left: $size-small;
+	padding-right: $size-small;
 	border-width: 0;
 	font-weight: bold;
 	font-size: $global-font-size;
