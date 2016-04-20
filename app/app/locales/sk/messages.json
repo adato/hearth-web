@@ -28,7 +28,8 @@
 			"TITLE_ENABLED": "Filter je aktívny",
 			"CANCEL_FILTER_BAR": "Zrušiť filter",
 			"KM": "Km",
-			"CLOSE_FILTER": "Zavrieť filter"
+			"CLOSE_FILTER": "Zavrieť filter",
+			"BY_CHARACTER": "Podľa povahy"
 		},
 		"POST": {
 			"FLAG_POST": "Nahlásiť škodlivý inzerát",
