@@ -49,7 +49,8 @@ angular.module('hearth.directives').directive('radio', function() {
 
 			var SPACE = 32;
 			el[0].querySelector('.qs-keypress-event-handle').addEventListener('keypress', function(event) {
-				if (event.keyCode === SPACE) {
+				var key = event.keyCode || event.charCode;
+				if (key === SPACE) {
 					scope.toggle();
 					if (!scope.$$phase) scope.$apply();
 					// space simulates a page-down by default - prevent this

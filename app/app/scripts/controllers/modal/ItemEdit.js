@@ -424,7 +424,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		var SPACE = 32;
 		$scope.toggleCategoryCheckbox = function(event, category) {
-			if (event.keyCode === SPACE) {
+			var key = event.keyCode || event.charCode;
+			if (key === SPACE) {
 				var index = $scope.post.categories.indexOf(category.name);
 				if (index > -1) {
 					$scope.post.categories.splice(index, 1);
