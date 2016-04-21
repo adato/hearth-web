@@ -10,7 +10,7 @@
 			<li ng-if="post.state == 'expired' && post.dateOrig">
 				{{:: 'POST_HAS_EXPIRED' | translate }} {{ post.valid_until | date:DATETIME_FORMATS.mediumDate }}
 			</li>
-			<li ng-if="post.state == 'expired' && !post.dateOrig ">
+			<li ng-if="post.state == 'expired' && !post.dateOrig">
 				{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}
 			</li>
 			<li ng-if="post.state == 'suspended'">
@@ -101,14 +101,19 @@
 					</span>
 				</label>
 				<div ng-slide-down="slide.date" lazy-render duration="0.3" ng-class="{disabled: post.valid_until_unlimited == true}">
-					<input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited == true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until"
-									required>
-					<checkbox model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{ 'UNLIMITED' | translate }}</checkbox>
-					<div class="clear error" ng-show="!post.valid_until_unlimited && showError.valid_until">
-						<span ng-show="!post.valid_until.trim()">{{:: 'DATE_IS_EMPTY' | translate }}</span>
-						<span ng-show="post.valid_until.trim()">{{:: 'ERR_DATE_IS_OLD' | translate }}</span>
+					<div class="form-section">
+						<div class="display-flex">
+							<label>
+								<input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited==true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until"
+												required>
+							</label>
+							<checkbox class="margin-left-large" model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{:: 'UNLIMITED' | translate }}</checkbox>
+						</div>
+						<div class="error" ng-show="!post.valid_until_unlimited && showError.valid_until">
+							<span ng-show="!post.valid_until.trim()">{{:: 'DATE_IS_EMPTY' | translate }}</span>
+							<span ng-show="post.valid_until.trim()">{{:: 'ERR_DATE_IS_OLD' | translate }}</span>
+						</div>
 					</div>
-				</div>
 			</section>
 			<section class="collapse community-selector" ng-if="myCommunities.length" ng-slide-down="!post.current_community_id" lazy-render duration="0.5">
 				<label class="collapse-trigger" slide-trigger="slide.communities">
@@ -178,10 +183,10 @@
 					</ul>
 					<div class="clear"></div>
 					<div class="clear error" ng-show="showError.files">
-						<span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'JPG, JPEG, PNG, GIF\'}" }}</span>
-						<span ng-if="showError.files.badSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+maxImageSizeLimit+"}" }}</span>
-						<span ng-if="showError.files.badSizeAll">{{:: "ERROR_BAD_IMAGE_SIZE_ALL" | translate:"{maxSize: "+maxImageSizeLimit+"}" }}</span>
-						<span ng-if="showError.files.badSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</span>
+						<span ng-if="showError.files.badFormat">{{:: "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \ 'JPG, JPEG, PNG, GIF\'} " }}</span>
+						<span ng-if="showError.files.badSize">{{:: "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
+						<span ng-if="showError.files.badSizeAll">{{:: "ERROR_BAD_IMAGE_SIZE_ALL" | translate:"{maxSize:"+maxImageSizeLimit+"}" }}</span>
+						<span ng-if="showError.files.badSizePx">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize:"+limitPixelSize+"}" }}</span>
 						<span ng-if="showError.files.uploadError">{{ "ERROR_WHILE_UPLOADING" | translate }}</span>
 					</div>
 				</div>
@@ -190,14 +195,14 @@
 				<a href="" ng-click="closeEdit()" class="fleft close">
 					{{:: 'CLOSE' | translate }}
 				</a>
-				<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP"
-								translate>SAVE_AND_ACTIVATE</button>
+				<button ng-if="post.state=='suspended' || post.state=='expired'" class="primary button button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add
+											" analytics-label="NP" translate>SAVE_AND_ACTIVATE</button>
 				<button class="primary button button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
-				<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
+				<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox( 'AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
                     {{ 'DELETE' | translate }}
                 </a> -->
 				<div class="clear"></div>
 			</section>
-		</div>
+			</div>
 	</form>
-</div>
+	</div>

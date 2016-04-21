@@ -49,6 +49,8 @@ angular.module('hearth.directives').directive('checkbox', function() {
 				if (event.keyCode === SPACE) {
 					scope.toggle();
 					if (!scope.$$phase) scope.$apply();
+					// space simulates a page-down by default - prevent this
+					event.preventDefault();
 				}
 			});
 

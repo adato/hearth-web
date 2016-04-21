@@ -144,7 +144,7 @@
 					margin: 0 !important;
 
 					&.move-down {
-						top: 15px; 
+						top: 15px;
 						left: 15px;
 					}
 				}
@@ -310,9 +310,6 @@
 		.author-selector {
 			float: left;
 		}
-		.checkbox {
-			@extend .ui-checkbox;
-		}
 		button {
 			&.positive {
 				background-color: #58af08;
@@ -374,7 +371,7 @@
 				display: inline-block;
 			}
 		}
-		
+
 		textarea {
 			min-height: 120px;
 		}
@@ -901,7 +898,7 @@
 	height: 25px;
 	color: #f4f4f4;
 	background-color: #7c766a;
-	
+
 	.karma-block{
 		display: table-cell;
 		white-space: nowrap;
