@@ -45,8 +45,11 @@ angular.module('hearth.directives').directive('checkbox', function() {
 			};
 
 			var SPACE = 32;
+			console.log(el[0], el[0].querySelector('.qs-keypress-event-handle'))
 			el[0].querySelector('.qs-keypress-event-handle').addEventListener('keypress', function(event) {
-				if (event.keyCode === SPACE) {
+				console.log(event);
+				var key = event.keyCode || event.charCode;
+				if (key === SPACE) {
 					scope.toggle();
 					if (!scope.$$phase) scope.$apply();
 					// space simulates a page-down by default - prevent this
