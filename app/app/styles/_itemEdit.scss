@@ -181,6 +181,8 @@
 
 			@media #{$small-down} {
 				display: block;
+				margin-bottom: $size-small !important;
+				margin-right: 0;
 
 				input {
 					margin-right: 6px;
@@ -397,19 +399,6 @@
 			span {
 				margin-right: 5px;
 			}
-		}
-	}
-	.charsleft {
-		text-align: right;
-		margin: {
-			bottom: 0;
-			right: $global-radius;
-		}
-		font-size: 0.8em;
-	}
-	.row {
-		margin: {
-			bottom: $fontSize / 2;
 		}
 	}
 	.messageBox {
