@@ -22,7 +22,7 @@
 		<div>
 			<div class="edit-post-notify-container"></div>
 			<div class="error" ng-if="showInvalidPostMessage">{{:: 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate }}</div>
-			<section class="author display-flex flex-wrap">
+			<section class="author display-flex flex-wrap form-section">
 				<div class="position-relative small-12 medium-6">
 					<author-selector ng-disabled="post.reply_count" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' ) | translate }}" tipsy></author-selector>
 					<div class="tipsy-overlay" ng-if="post.reply_count"></div>
@@ -31,7 +31,6 @@
 					<needofferselector ng-if="!post.current_community_id" ng-disabled="post.reply_count" model="post.type" text-true="{{:: 'OFFER' | translate }}" text-false="{{:: 'NEED' | translate }}"></needofferselector>
 					<needofferselector ng-if="post.current_community_id" ng-disabled="post.reply_count" model="post.type" text-true="{{:: 'WE_OFFER' | translate }}" text-false="{{:: 'WE_NEED' | translate }}"></needofferselector>
 				</div>
-				<div class="clear"></div>
 			</section>
 			<section class="title">
 				<label for="title">{{ 'POST_TITLE_LABEL' | translate }}</label>
