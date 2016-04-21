@@ -101,7 +101,7 @@ angular.module('hearth.directives').directive('filter', [
 						character.push('information');
 					}
 					if (character.length) {
-						params.character = character.join(',');
+						params['character[]'] = character;
 					}
 
 					if (filter.user) {
@@ -141,9 +141,9 @@ angular.module('hearth.directives').directive('filter', [
 						lang: params.lang,
 						r_lang: params.r_lang,
 						my_section: params.my_section,
-						energy: (params.character || '').indexOf('energy') > -1 ? true : undefined,
-						mass: (params.character || '').indexOf('mass') > -1 ? true : undefined,
-						information: (params.character || '').indexOf('information') > -1 ? true : undefined,
+						energy: (params['character[]'] || '').indexOf('energy') > -1 ? true : undefined,
+						mass: (params['character[]'] || '').indexOf('mass') > -1 ? true : undefined,
+						information: (params['character[]'] || '').indexOf('information') > -1 ? true : undefined,
 						user: (params.related || '').indexOf('user') > -1 ? true : undefined,
 						community: (params.related || '').indexOf('community') > -1 ? true : undefined,
 						keywords: $.map(params.keywords || {}, function(keyword) {
