@@ -302,9 +302,6 @@
 		.author-selector {
 			float: left;
 		}
-		.checkbox {
-			@extend .ui-checkbox;
-		}
 		button {
 			&.positive {
 				background-color: #58af08;

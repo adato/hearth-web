@@ -266,14 +266,6 @@
 		}
 	}
 
-	// @kamil - NOT USED ANYMORE
-	// .checkbox {
-	// 	@extend .ui-checkbox;
-	// }
-	// label.checkbox.radio {
-	// 	margin-right: $ui-grid-size;
-	// }
-
 	.tags {
 		min-height: 30px;
 		input {
@@ -288,16 +280,8 @@
 			padding-right: 20px;
 			width: 140px;
 			margin-bottom: 0px !important;
-			margin-right: 10px;
 			display: inline-block;
 		}
-
-		// @kamil - NOT USED ANYMORE
-		// .checkbox {
-		// 	position: relative;
-		// 	top: 2px;
-		// }
-
 	}
 	.files {
 		& > div {

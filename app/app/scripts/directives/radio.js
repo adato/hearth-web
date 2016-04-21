@@ -20,7 +20,7 @@ angular.module('hearth.directives').directive('radio', function() {
 			ngDisabled: '='
 		},
 		templateUrl: 'templates/directives/radio.html',
-		link: function(scope) {
+		link: function(scope, el) {
 			scope.checked = false;
 
 			scope.toggle = function() {
@@ -46,6 +46,16 @@ angular.module('hearth.directives').directive('radio', function() {
 				if (scope.onUpdate)
 					scope.onUpdate(scope.model);
 			};
+
+			var SPACE = 32;
+			el[0].querySelector('.qs-keypress-event-handle').addEventListener('keypress', function(event) {
+				if (event.keyCode === SPACE) {
+					scope.toggle();
+					if (!scope.$$phase) scope.$apply();
+					// space simulates a page-down by default - prevent this
+					event.preventDefault();
+				}
+			});
 
 			scope.$watch('model', function(value) {
 				if (angular.isArray(scope.model)) {
