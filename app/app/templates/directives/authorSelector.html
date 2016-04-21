@@ -1,4 +1,4 @@
-<div class="author-selector" ng-show="list.length > 1">
+<div class="author-selector display-flex" ng-show="list.length > 1">
 	<avatar type="selectedEntity._type" src="selectedEntity.avatar.normal" size="mini"></avatar>
 	<select ng-disabled="ngDisabled" ng-model="selected._id" ng-change="onChange(selected._id)" class="margin-bottom-none margin-left-medium">
 		<option ng-repeat="item in list" title="{{item.name }}" ng-if="item._id !== remove" value="{{item._id}}" ng-selected="item._id==selected._id">
