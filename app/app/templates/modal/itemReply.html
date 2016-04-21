@@ -12,7 +12,9 @@
 	<form ng-submit="sendReply()" name="replyForm" novalidate class="reply-ad">
 		<div class="notify-reply-container"></div>
 		<div>
-			<author-selector id="author" author-id="reply.current_community_id" remove="post.author._id"></author-selector>
+			<div class="form-section">
+				<author-selector id="author" author-id="reply.current_community_id" remove="post.author._id"></author-selector>
+			</div>
 			<div class="form-section">
 				<label class="display-block">
 					<textarea autosize-textarea required autofocus ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message"
