@@ -67,7 +67,7 @@ $$config = {
 			true: 'WE_OFFER'
 		}
 	},
-	postCategories: [{
+	postCharacters: [{
 		name: 'energy',
 		translate: 'CATEGORY_ENERGY',
 		translateText: 'CATEGORY_ENERGY_TEXT'

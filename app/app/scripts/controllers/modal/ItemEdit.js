@@ -19,7 +19,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
 		$scope.imageSizes = [];
-		$scope.postCategories = $$config.postCategories;
+		$scope.characters = $$config.postCharacters;
 
 		$scope.slide = {
 			files: false,
@@ -32,7 +32,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			files: {},
 			title: false,
 			text: false,
-			category: false,
+			character: false,
 			locations: false,
 			valid_until: false
 		};
@@ -114,25 +114,25 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
-		$scope.checkCategories = function() {
-			var categories = $scope.post.categories || [];
-			var count = categories.length;
+		$scope.checkCharacter = function() {
+			var characters = $scope.post.characters || [];
+			var count = characters.length;
 
 			if (!count) {
-				$scope.createAdForm.category.$invalid = true;
-				$scope.createAdForm.category.$setValidity('required', false);
-				$scope.createAdForm.category.$setValidity('max', true);
+				$scope.createAdForm.character.$invalid = true;
+				$scope.createAdForm.character.$setValidity('required', false);
+				$scope.createAdForm.character.$setValidity('max', true);
 			} else if (count > 2) {
-				$scope.createAdForm.category.$invalid = true;
-				$scope.createAdForm.category.$setValidity('required', true);
-				$scope.createAdForm.category.$setValidity('max', false);
+				$scope.createAdForm.character.$invalid = true;
+				$scope.createAdForm.character.$setValidity('required', true);
+				$scope.createAdForm.character.$setValidity('max', false);
 			} else {
-				$scope.createAdForm.category.$invalid = false;
-				$scope.createAdForm.category.$setValidity('required', true);
-				$scope.createAdForm.category.$setValidity('max', true);
+				$scope.createAdForm.character.$invalid = false;
+				$scope.createAdForm.character.$setValidity('required', true);
+				$scope.createAdForm.character.$setValidity('max', true);
 			}
 
-			return $scope.createAdForm.category.$invalid;
+			return $scope.createAdForm.character.$invalid;
 		};
 
 		/**
@@ -211,10 +211,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				res = $scope.showError.text = true;
 			}
 
-			$scope.checkCategories();
+			$scope.checkCharacter();
 
-			if ($scope.createAdForm.category.$invalid) {
-				res = $scope.showError.category = true;
+			if ($scope.createAdForm.character.$invalid) {
+				res = $scope.showError.character = true;
 			}
 
 			if (!post.valid_until_unlimited) {
