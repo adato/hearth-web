@@ -67,7 +67,7 @@ $$config = {
 			true: 'WE_OFFER'
 		}
 	},
-	postCharacters: [{
+	postCharacter: [{
 		name: 'energy',
 		translate: 'CATEGORY_ENERGY',
 		translateText: 'CATEGORY_ENERGY_TEXT'
@@ -89,7 +89,7 @@ $$config = {
 		need: 'PEOPLE_COUNT_OFFER_PL'
 	},
 	filterOptions: {
-		default: ['keywords', 'postType', 'postTime', 'author', 'location', 'saveFilter'],
+		default: ['keywords', 'character', 'postType', 'postTime', 'author', 'location', 'saveFilter'],
 		search: ['location', 'entityType']
 	}
 };

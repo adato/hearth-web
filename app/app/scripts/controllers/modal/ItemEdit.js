@@ -19,7 +19,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
 		$scope.imageSizes = [];
-		$scope.characters = $$config.postCharacters;
+		$scope.character = $$config.postCharacter;
 
 		$scope.slide = {
 			files: false,
@@ -115,8 +115,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.checkCharacter = function() {
-			var characters = $scope.post.characters || [];
-			var count = characters.length;
+			var character = $scope.post.character || [];
+			var count = character.length;
 
 			if (!count) {
 				$scope.createAdForm.character.$invalid = true;
