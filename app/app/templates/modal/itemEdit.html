@@ -66,9 +66,9 @@
 				<label class="headline">
 					{{'POST_CATEGORY_LABEL' | translate}}:
 				</label>
-				<label ng-repeat="character in characters" class="character-label ui-checkbox">
-					<input type="checkbox" checklist-model="post.characters" checklist-value="character.name" ng-click="checkCharacter()" name="character" />
-					<i class="fa" ng-class="post.characters.indexOf(character.name) > -1 ? 'fa-check-square' : 'fa-square-o'"></i> {{character.translate | translate}}
+				<label ng-repeat="character in character" class="character-label ui-checkbox">
+					<input type="checkbox" checklist-model="post.character" checklist-value="character.name" ng-click="checkCharacter()" name="character" />
+					<i class="fa" ng-class="post.character.indexOf(character.name) > -1 ? 'fa-check-square' : 'fa-square-o'"></i> {{character.translate | translate}}
 					<span>{{character.translateText | translate}}</span>
 				</label>
 				<div class="moveUp error" ng-show="createAdForm.character.$invalid">
