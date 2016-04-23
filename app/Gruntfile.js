@@ -182,8 +182,14 @@ module.exports = function(grunt) {
 				cert: grunt.file.read('./cert/server.crt').toString(),
 				// ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
-				//hostname: '0.0.0.0',
-				hostname: 'localhost',
+        // NEKOMITUJTE ZMENY NA LOCALHOST, ROZBIJETE TESTY NA JENKINSOVI!!!!
+        // NEKOMITUJTE ZMENY NA LOCALHOST, ROZBIJETE TESTY NA JENKINSOVI!!!!
+        // NEKOMITUJTE ZMENY NA LOCALHOST, ROZBIJETE TESTY NA JENKINSOVI!!!!
+        hostname: '0.0.0.0',
+        // NEKOMITUJTE ZMENY NA LOCALHOST, ROZBIJETE TESTY NA JENKINSOVI!!!!
+        // NEKOMITUJTE ZMENY NA LOCALHOST, ROZBIJETE TESTY NA JENKINSOVI!!!!
+        // NEKOMITUJTE ZMENY NA LOCALHOST, ROZBIJETE TESTY NA JENKINSOVI!!!!
+				// NE NE NE - commit - blame! :-D bububu !!! Fuj to je. hostname: 'localhost',
 				livereload: 3333,
 				open: true,
 				middleware: function(connect, options) {
