@@ -7,7 +7,7 @@ var reporter = new HtmlScreenshotReporter({
 });
 
 exports.config = {
-
+  directConnect: true,
 	specs: [
 		testFolder + 'unauth/marketplace.js',
 		testFolder + 'auth/register.js',
