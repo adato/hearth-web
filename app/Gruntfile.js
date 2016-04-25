@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 	require('time-grunt')(grunt); // Time how long tasks take. Can help when optimizing build times
 
 	var rewriteRulesSnippet = require('grunt-connect-rewrite/lib/utils').rewriteRequest;
-	var env = grunt.option("target") || 'development';
+	var env = grunt.option("target") || 'localhost';
 
 	// test if the environment file exists
 	if (!fs.existsSync(envFolder + '/' + env + '.js')) {

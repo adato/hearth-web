@@ -15,7 +15,7 @@ $$localConfig = {
 		google: '1090116646962-720t5edifghd7fqua7pn6hc5cpgbdiis.apps.googleusercontent.com'
 	},
 	map: {
-		apiKey: 'AIzaSyAfPKy3jpc9faZLD4vc_SSK_ONh9Fy9XPI'
+		apiKey: 'AIzaSyA7kTFu54onqOdKx0qWHNFhJovAOQiNFkM'
 	},
 	apiPath: 'https://api.dev.hearth.net',
 	rollbar: '6b7753ee76e044a7a9d41c62cde53f17',
