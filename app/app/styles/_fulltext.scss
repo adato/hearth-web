@@ -73,6 +73,12 @@
 			font-style: normal;
 		}
 
+		.avatar {
+			@media #{$small-down} {
+				width: 100%;
+			}
+		}
+
 		.headline {
 			margin: {
 				top: $fontSize/2;
@@ -86,7 +92,6 @@
 					color: color(5);
 					font-weight: 600;
 					text-decoration: underline;
-					padding-right: .5rem;
 
 					&:hover {
 						color: darken( color(5), 20%);
