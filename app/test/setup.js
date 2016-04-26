@@ -84,7 +84,7 @@ module.exports = {
 		});
 	},
 	getRegConfirmUrlFromText: function(text) {
-	    return text.match(/(https:\/\/.[^"^>]*confirm-email\?hash=[^"^>]*)/ig);
+	    return text.match(/(https:\/\/.[^"^>^<]*confirm-email\?hash=[^"^>^<]*)/ig);
 	},
 	parseLocation: function (href) {
 	    var match = href.match(/^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)(\/[^?#]*)(\?[^#]*|)(#.*|)$/);
