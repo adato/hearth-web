@@ -133,17 +133,17 @@
 				<i class="fa fa-bars"></i>
 			</a>
 			<a ng-click="reloadToMarketplace()" class="menuItem logo" analytics-on analytics-event="marketplace" analytics-category="menu" id="nav-title">
-				<img class="zurb-logo-mobile" src="/app/images/logo.png" width="150"> </a>
-
+				<img class="hearth-logo" src="/app/images/logo.png">
+			</a>
 
 			<div class="small-icons header-right">
-				<div id='language-bar-mobile' class='display-inline-block inline-block language-small-wrapper margin-small-right' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange' ng-click='languageChange.toggleLanguageSelectionDialog()'>
-					<i class='fa fa-fw fa-inverse flag flag-rounded-corners' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
+				<div id="language-bar-mobile" class="display-inline-block language-small-wrapper" ng-if="!(loggedUser._id)" ng-controller="LanguageChangeCtrl as languageChange" ng-click="languageChange.toggleLanguageSelectionDialog()">
+					<i class="fa fa-fw fa-inverse flag flag-rounded-corners" ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
 				</div>
-				<div class='display-inline-block inline-block margin-small-right'>
+				<div class="display-inline-block">
 					<i class="fa fa-fw fa-plus-square" test-beacon='open-new-post-dialog-toggle-mobile' ng-click="editItem(null)" title="{{:: 'TOP_BAR.ADD_NEW_POST' | translate }}"></i>
 				</div>
-				<div class='display-inline-block inline-block'>
+				<div class="display-inline-block">
 					<i id="searchIcon" class="fa fa-fw fa-search" test-beacon="search-bar-toggle-mobile" ng-class="{active: isSearchBarShown()}" ng-click="toggleSearchBar()"></i>
 				</div>
 			</div>
