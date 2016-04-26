@@ -10,7 +10,7 @@
 	<div class="indent">
 		<h3>1) Přispěj finančně</h3>
 		<p>Pošli nám jednorázový příspěvek nebo si nastav pravidelnou platbu. V jaké výši? To je na tobě. Jakákoliv podpora se počítá a jediné měřítko může být třeba dobrý pocit v břiše.</p>
-		<a class="button give-money" href="#">Chci přispět na Hearth.net</a>
+		<a class="button give-money"  ng-click="openModal('support-us-modal-pay');">Chci přispět na Hearth.net</a>
 	</div>
 </div>
 
@@ -19,7 +19,7 @@
 	<div class="indent">
 		<h3>2) Přidej ruku k dílu</h3>
 		<p>Teda spíš hlavu. Vývoj webu je běh na dlouhou trať. Ze všeho nejvíc proto potřebujeme dobrovolníky, co se vyznají v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Redis a Heroku. </p>
-		<a class="button write-email" href="mailto:info@hearth.net">Napiš na info@hearth.net</a>
+		<a class="button write-email"  ng-click="openModal('support-us-modal-write-us');">Napiš na info@hearth.net</a>
 	</div>
 </div>
 
@@ -155,9 +155,65 @@
 				<p>Napiš nám svoji adresu a my ti pošleme placky a samolepky, abys mohl šířit radost Hearthu dál.</p>
 				
 				<label for="fullname">{{'Jméno' | translate}}</label>
-				<input id="fullname" type="text" name="fullname" class="" class="form-control text-input top" required />
+				<input id="fullname" type="text" name="fullname" class="" class="form-control text-input top" required placeholder="Jméno"/>
+				<label for="street">{{'Ulice a číslo' | translate}}</label>
+				<input id="street" type="text" name="street" class="" class="form-control text-input top" required placeholder="Ulice"/>
+				<label for="city">{{'Město' | translate}}</label>
+				<input id="city" type="text" name="city" class="" class="form-control text-input top" required placeholder="Město"/>
+				<label for="psc">{{'PSČ' | translate}}</label>
+				<input id="psc" type="text" name="psc" class="" class="form-control text-input top" required placeholder="PSČ"/>
+				<label for="type">{{'Co chci:' | translate}}</label>
+				<span style="display:inline-block; width:25px;"></span>
+				<checkbox model="type" on-update="void()" value="placky">Placky</checkbox>
+				<span style="display:inline-block; width:25px;"></span>
+				<checkbox model="type" on-update="void()" value="samolepky">Samolepky</checkbox>
 				<br>
 
+				<br style="clear:both;">
+				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="support-us-modal-write-us">
+	<div class="support-us-modal-write-us formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Napiš nám' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+				<p>Napiš nám...</p>
+				<br style="clear:both;">
+				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="support-us-modal-pay">
+	<div class="support-us-modal-pay formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Přispěj finančně' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+				<p>Pošli love :)</p>
 				<br style="clear:both;">
 				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
