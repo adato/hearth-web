@@ -35,21 +35,21 @@
 		<div class="panel get-badge">
 			<h3>Napiš si o placky a samolepky</h3>
 			<img src="./images/icons/hearth.svg"/>
-			<a href="" class="button">Chci samolepky</a>
+			<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chci samolepky</a>
 		</div>
 	</div>
 	<div class="large-4 columns">
 		<div class="panel print-flyer">
 			<h3>Vytiskni si leták</h3>
 			<img src="./images/icons/print.svg"/>
-			<a href="" class="button">Chci leták</a>
+			<a href="" ng-click="openModal('support-us-modal-print');" class="button">Chci leták</a>
 		</div>
 	</div>
 	<div class="large-4 columns">
 		<div class="panel get-widget">
 			<h3>Přidej widget do své stránky</h3>
 			<img src="./images/icons/window.svg"/>
-			<a href="" class="button">Chci widget</a>
+			<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Chci widget</a>
 		</div>
 	</div>
 </div>
@@ -60,3 +60,110 @@
 	<strong>Děkuji, že spolu s námi děláš svět zase o kousek lepší a laskavější. </strong></p>
 	<p>Tvůj Hearth.net</p>
 </div>
+
+
+
+
+<script type="text/ng-template" id="support-us-modal-widget">
+	<div class="support-us-modal-widget formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Přidej widget do své stránky' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate>
+			<p>Pro vložení loga Hearth.net na tvé stránky, zkopíruj HTML kód a vlož jej do souboru index.html. Pro více informací nás kontaktuj.</p>
+				<div class="small-5 columns">
+					<img src="images/logo-dark.png">
+				</div>
+				<div class="small-7 columns">
+					<textarea><img src="https://hearth.net/app/images/logo-dark.png" width="150"></textarea>
+				</div>
+
+				<div class="small-5 columns">
+					<img src="images/logo.png" style="background:#7c766a; padding:5px;">
+				</div>
+				<div class="small-7 columns">
+					<textarea><img src="https://hearth.net/app/images/logo.png" width="150"></textarea>
+				</div>
+
+				<br style="clear:both;">
+				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="support-us-modal-print">
+	<div class="support-us-modal-print formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Vytiskni si leták' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+				<p>Vytiskni si leták a pochlub se jím svým přátelům. Určitě také rádi přijdou do Hearth.net.</p>
+				<div class="small-6 columns text-center">
+					<a href="" target="_blank">
+						<b>A4</b>
+						<br><br>
+						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
+						<br><br>
+						PDF, 930 kB
+					</a>
+				</div>
+				<div class="small-6 columns text-center">
+					<a href="" target="_blank">
+						<b>A6</b>
+						<br><br>
+						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
+						<br><br>
+						PDF, 650 kB
+					</a>
+				</div>
+				<br style="clear:both;">
+				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="support-us-modal-badge">
+	<div class="support-us-modal-badge formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Napiš si o placky a samolepky' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+				<p>Napiš nám svoji adresu a my ti pošleme placky a samolepky, abys mohl šířit radost Hearthu dál.</p>
+				
+				<label for="fullname">{{'Jméno' | translate}}</label>
+				<input id="fullname" type="text" name="fullname" class="" class="form-control text-input top" required />
+				<br>
+
+				<br style="clear:both;">
+				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
