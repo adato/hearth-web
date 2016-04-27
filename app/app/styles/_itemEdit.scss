@@ -180,6 +180,11 @@
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
+				margin-left: 0;
+			}
+
+			.tooltip {
+				color: $ui-color-lighter;
 			}
 
 			@media #{$small-down} {
