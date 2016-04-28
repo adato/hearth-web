@@ -166,20 +166,18 @@
 		.headline {
 			display: block;
 		}
+		
 		.character-label {
 			margin-left: 0;
 			margin-right: 10px;
 			margin-bottom: 1rem;
 			display: inline-block;
-			margin-left: 0;
-			margin-right: $size-big;
 
-			&:last-of-type {
-				margin-right: none;
-			}
 			input {
+				margin-right: 4px;
 				display: none;
 			}
+
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
