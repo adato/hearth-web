@@ -171,12 +171,15 @@
 			margin-right: 10px;
 			margin-bottom: 1rem;
 			display: inline-block;
+			margin-left: 0;
+			margin-right: $size-big;
 
+			&:last-of-type {
+				margin-right: none;
+			}
 			input {
-				margin-right: 4px;
 				display: none;
 			}
-
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
@@ -264,12 +267,7 @@
 			display: inline-block;
 		}
 	}
-	.checkbox {
-		@extend .ui-checkbox;
-	}
-	label.checkbox.radio {
-		margin-right: $ui-grid-size;
-	}
+
 	.tags {
 		min-height: 30px;
 		input {
@@ -284,12 +282,7 @@
 			padding-right: 20px;
 			width: 140px;
 			margin-bottom: 0px !important;
-			margin-right: 10px;
 			display: inline-block;
-		}
-		.checkbox {
-			position: relative;
-			top: 2px;
 		}
 	}
 	.files {

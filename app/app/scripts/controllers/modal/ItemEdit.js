@@ -9,7 +9,7 @@
 angular.module('hearth.controllers').controller('ItemEdit', [
 	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
 	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
-		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
+		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.limitPixelSize = 200; // Pixels
@@ -174,7 +174,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			// clear locations from null values
 			data.locations = $scope.cleanNullLocations(data.locations);
-			// transform keywords 
+			// transform keywords
 			data.keywords = data.keywords.map(function(obj) {
 				return obj.text;
 			});
@@ -295,7 +295,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			// $(document.body).scrollTop(0);
 			if ($rootScope.isPostActive(data) && $location.path() != '/') {
-				// wait for refresh to 
+				// wait for refresh to
 				var deleteEventListener = $rootScope.$on('postsLoaded', function() {
 					deleteEventListener();
 
@@ -404,7 +404,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.closeEdit = function() {
-			// == close all modal windows 
+			// == close all modal windows
 			$scope.closeThisDialog();
 		};
 
@@ -419,6 +419,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// if renewed item is this item, refresh him!
 			if (item._id === $scope.post._id) {
 				$scope.post = $scope.transformDataIn(item);
+			}
+		};
+
+		var SPACE = 32;
+		$scope.toggleCategoryCheckbox = function(event, category) {
+			var key = event.keyCode || event.charCode;
+			if (key === SPACE) {
+				var index = $scope.post.categories.indexOf(category.name);
+				if (index > -1) {
+					$scope.post.categories.splice(index, 1);
+				} else {
+					$scope.post.categories.push(category.name);
+				}
 			}
 		};
 
