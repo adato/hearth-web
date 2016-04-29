@@ -13,6 +13,9 @@ $$localConfig = {
 		facebook: "277542219089599",
 		google: '498929272646-pn752gcu0r0d783pn4i8k6iuatmvf6cm.apps.googleusercontent.com'
 	},
+	map: {
+		apiKey: 'AIzaSyDzCAYNej1CbceM6FC8cehufhI82HkYOis'
+	},
 	apiPath: 'https://api.hearth.net',
 	rollbar: '37749b1156e24ca986bf5a77dd74eefc',
 	hotjar: '56494',
