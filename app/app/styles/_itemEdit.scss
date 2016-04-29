@@ -169,18 +169,22 @@
 			margin-right: 10px;
 			margin-bottom: 1rem;
 			display: inline-block;
-			margin-left: 0;
-			margin-right: $size-big;
 
 			&:last-of-type {
-				margin-right: none;
+				margin-right: 0;
 			}
 			input {
+				margin-right: 4px;
 				display: none;
 			}
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
+				margin-left: 0;
+			}
+
+			.tooltip {
+				color: $ui-color-lighter;
 			}
 
 			@media #{$small-down} {
