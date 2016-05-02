@@ -1341,7 +1341,7 @@
 		"taxes": "Donations and Taxes",
 		"community_edit": "Edit community",
 		"fulltext": "Search",
-		"support-us": "Pomoz Hearthu rozdávat radost"
+		"support-us": "Podpoř Hearth"
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1402,5 +1402,8 @@
 		"MARKETPLACE_ITEM_BOOKMARK": {
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		}
-	}
+	},
+	"energy_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim.",
+	"mass_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim.",
+	"information_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim."
 }
