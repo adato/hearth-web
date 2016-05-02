@@ -1,31 +1,39 @@
 
-<p><strong>Hearth je krb, který tě zahřál u srdce.</strong> Jak to víme? Jednak to má v popisu práce a taky by jinak tvoje oči nečetly tyto řádky.</p>
+<div class="large-8 columns">
+<p><strong>Dělá ti Hearth radost?</strong> Poznáváš tu fajn lidi? Máš dobrý pocit z každé vydařené „štědroviny“? Tak ho podpoř a pošli radost dál!</p>
 
-<p>Hearth nabízí prostor, kde jsou hodnoty jako laskavost a štědrost přirozenou součástí života a <strong>pocit štěstí z vlastní užitečnosti</strong> není jen prázdnou bublinou, ale <strong>skutečně prožívanou emocí.</strong></p>
-
-<p>Je pro <strong>všechny zdarma</strong> a na rozdíl od jiných sociálních sítí také úplně <strong>bez reklam</strong>. Jak je to možné? Díky dobré vůli Libora Malého, který Hearth podporuje už od roku 2012. Postupně se k němu připojují sami uživatelé. Proč? Protože jim to dává smysl. <strong>Přidáš se k nim i ty?</strong></p>
+<p>Hearth je pro všechny <strong>zdarma a bez reklam</strong>. Je to možné jen díky finanční podpoře Libora Malého. Postupně se k němu přidávají uživatelé. A teď můžeš i Ty.</p>
+</div>
+<div class="large-4 columns">
+LOGO
+</div>
 
 <div class="large-12 columns i-want">
-	<img src="./images/icons/money.svg"/>
-	<div class="indent">
-		<h3>1) Přispěj finančně</h3>
+	<img src="./images/icons/money.svg" width="60" style="float: right;" />
+	<div class="indent" style="margin-right: 0; margin-left: 0;">
+		<h3 style="margin-bottom: 0.5em; font-size: 125%;">Přispěj finančně</h3>
 		<p>Pošli nám jednorázový příspěvek nebo si nastav pravidelnou platbu. V jaké výši? To je na tobě. Jakákoliv podpora se počítá a jediné měřítko může být třeba dobrý pocit v břiše.</p>
-		<a class="button give-money"  ng-click="openModal('support-us-modal-pay');">Chci přispět na Hearth.net</a>
+		<a class="button give-money" style="text-align: center; float: none; width: 150px;" ng-click="openModal('support-us-modal-pay');">Chci přispět</a>
+	</div>
+	
+</div>
+
+<hr />
+
+<div class="large-12 columns i-want">
+	<img src="./images/icons/handshake.svg" width="60" style="float: right;" />
+	<div class="indent" style="margin-right: 160px; margin-left: 0;">
+		<h3 style="margin-bottom: 0.5em; font-size: 125%;">Přidej ruku k dílu</h3>
+		<p>Teda spíš hlavu. Vývoj webu je běh na dlouhou trať. Ze všeho nejvíc proto potřebujeme dobrovolníky, co se vyznají v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Redis a Heroku. </p>
+		<a class="button write-email" style="float: left; width: 150px;" ng-click="openModal('support-us-modal-write-us');">Jdu do toho</a>
 	</div>
 </div>
 
-<div class="large-12 columns i-want">
-	<img src="./images/icons/handshake.svg"/>
-	<div class="indent">
-		<h3>2) Přidej ruku k dílu</h3>
-		<p>Teda spíš hlavu. Vývoj webu je běh na dlouhou trať. Ze všeho nejvíc proto potřebujeme dobrovolníky, co se vyznají v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Redis a Heroku. </p>
-		<a class="button write-email"  ng-click="openModal('support-us-modal-write-us');">Napiš na info@hearth.net</a>
-	</div>
-</div>
+<hr />
 
 <div class="large-12 columns i-want">
 	<div class="no-indent">
-		<h3>3) Dej o nás vědět</h3>
+		<h3 style="margin-bottom: 0.5em; font-size: 125%;">Dej o nás vědět</h3>
 		<p>Že máš k IT daleko? Nevadí. Určitě máš kolem sebe lidi, kteří o Hearthu ještě nevědí. Představ jim myšlenku sdílení, pozvi je do Hearthu a pošli radost dál.</p>
 	</div>
 </div>
@@ -47,15 +55,15 @@
 	</div>
 	<div class="large-4 columns">
 		<div class="panel get-widget">
-			<h3>Přidej widget do své stránky</h3>
+			<h3>Přidej logo do své stránky</h3>
 			<img src="./images/icons/window.svg"/>
-			<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Chci widget</a>
+			<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Chci odkaz</a>
 		</div>
 	</div>
 </div>
 
 
-<div class="right">
+<div style="clear: both;">
 	<br><br>
 	<strong>Děkuji, že spolu s námi děláš svět zase o kousek lepší a laskavější. </strong></p>
 	<p>Tvůj Hearth.net</p>
@@ -67,7 +75,7 @@
 <script type="text/ng-template" id="support-us-modal-widget">
 	<div class="support-us-modal-widget formStyle itemEdit modal">
 		<div class="head">
-			<h2>{{:: 'Přidej widget do své stránky' | translate }}
+			<h2>{{:: 'Přidej logo do své stránky' | translate }}
 			</h2>
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
@@ -75,14 +83,15 @@
 
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate>
-			<p>Pro vložení loga Hearth.net na tvé stránky, zkopíruj HTML kód a vlož jej do souboru index.html. Pro více informací nás kontaktuj.</p>
+			<p>Zkopíruj uvedený HTML kód a vlož jej do svého webu. <a href="feedback">Pro více informací nás kontaktuj.</a></p>
+
 				<div class="small-5 columns">
 					<img src="images/logo-dark.png">
 				</div>
 				<div class="small-7 columns">
 					<textarea><img src="https://hearth.net/app/images/logo-dark.png" width="150"></textarea>
 				</div>
-
+				<p>Přidat ještě oranžové logo.</p>
 				<div class="small-5 columns">
 					<img src="images/logo.png" style="background:#7c766a; padding:5px;">
 				</div>
@@ -152,7 +161,8 @@
 
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
-				<p>Napiš nám svoji adresu a my ti pošleme placky a samolepky, abys mohl šířit radost Hearthu dál.</p>
+				<p>Díky, že Hearthu pomáháš šířit radost dál.</p>
+				<p>Doplnit počet kusů u placek a samolepek, doplnit e-mail. Srazit na jeden řádek.</p>
 				
 				<label for="fullname">{{'Jméno' | translate}}</label>
 				<input id="fullname" type="text" name="fullname" class="" class="form-control text-input top" required placeholder="Jméno"/>
@@ -183,7 +193,7 @@
 <script type="text/ng-template" id="support-us-modal-write-us">
 	<div class="support-us-modal-write-us formStyle itemEdit modal">
 		<div class="head">
-			<h2>{{:: 'Napiš nám' | translate }}
+			<h2>{{:: 'Přidej ruku k dílu' | translate }}
 			</h2>
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
@@ -191,7 +201,9 @@
 
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
-				<p>Napiš nám...</p>
+				<p>Moc děkujem, že chceš Hearthu pomoct. Nech nám svůj kontakt a my se ti ozveme.</p>
+				<textarea placeholder="Tvůj tajný vzkaz..."></textarea>
+				<input placeholder="Tvůj e-mail" />
 				<br style="clear:both;">
 				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
@@ -213,7 +225,7 @@
 
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
-				<p>Pošli love :)</p>
+				<p>Pošli love. S láskou a díky. Tvůj Hearth. :)</p>
 				<br style="clear:both;">
 				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
