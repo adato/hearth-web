@@ -138,14 +138,14 @@
 
 	}
 	.support-us {
-		.i-want {
+		.i-want, .ng {
 			margin-top: 4 * $ui-small-grid-size;
 			margin-bottom: 4 * $ui-small-grid-size;
 			clear:both;
 			&>img {
-				float:left;
-				margin-top: 5 * $ui-small-grid-size;
-				margin-left: 4 * $ui-small-grid-size;
+				float:right;
+				margin-left: 10 * $ui-small-grid-size;
+				margin-right: 2 * $ui-small-grid-size;
 				max-width:90px;
 			}
 			&>.indent {
@@ -153,17 +153,14 @@
 			}
 
 			h3 {
-				margin-bottom:6 * $ui-small-grid-size;
+				margin-top: 0;
+				margin-bottom: 0.5em;
+				font-size: 125%;
 				text-align:left;
 			}
 
 			p {
 				margin-bottom: 3 * $ui-small-grid-size;
-			}
-
-			.button { 
-				float:right; 
-				width: 250px;
 			}
 
 			@media #{$small-down} {
@@ -209,5 +206,29 @@
 				text-align:center;
 			}
 		}
+	}
+}
+
+.support-us-modal {
+	label {
+		margin-top: 2 * $ui-small-grid-size;
+	}
+	.columns>label:not(.ui-checkbox) {
+		float:right;
+	}
+	@media #{$medium-down} {
+		label { 
+			margin-top:0;
+		}
+		.columns>label:not(.ui-checkbox) {
+			float:none;
+		}
+	}
+	input[type="number"] {
+		width:10 * $ui-small-grid-size;
+		margin-left:$ui-small-grid-size;
+	}
+	p.success {
+		color: color(6);
 	}
 }

@@ -2,18 +2,19 @@
 <div class="large-8 columns">
 <p><strong>Dělá ti Hearth radost?</strong> Poznáváš tu fajn lidi? Máš dobrý pocit z každé vydařené „štědroviny“? Tak ho podpoř a pošli radost dál!</p>
 
-<p>Hearth je pro všechny <strong>zdarma a bez reklam</strong>. Je to možné jen díky finanční podpoře Libora Malého. Postupně se k němu přidávají uživatelé. A teď můžeš i Ty.</p>
+<p>Hearth je pro všechny <strong>zdarma a bez reklam</strong>. Je to možné jen díky finanční podpoře Libora Malého. Postupně se k němu přidávají uživatelé. A teď můžeš i Ty.</p><br>
 </div>
 <div class="large-4 columns">
 LOGO
 </div>
 
 <div class="large-12 columns i-want">
-	<img src="./images/icons/money.svg" width="60" style="float: right;" />
-	<div class="indent" style="margin-right: 0; margin-left: 0;">
-		<h3 style="margin-bottom: 0.5em; font-size: 125%;">Přispěj finančně</h3>
-		<p>Pošli nám jednorázový příspěvek nebo si nastav pravidelnou platbu. V jaké výši? To je na tobě. Jakákoliv podpora se počítá a jediné měřítko může být třeba dobrý pocit v břiše.</p>
-		<a class="button give-money" style="text-align: center; float: none; width: 150px;" ng-click="openModal('support-us-modal-pay');">Chci přispět</a>
+	<h3>Přispěj finančně</h3>
+	<img src="./images/icons/money.svg" width="60"/>
+	<div class="indent margin-none">
+
+		<p>Pošli nám jednorázový příspěvek nebo si nastav pravidelnou platbu. V jaké výši? To je na tobě.<br>Jakákoliv podpora se počítá a jediné měřítko může být třeba dobrý pocit v břiše.</p>
+		<a class="button give-money text-center" style="float: none; width: 150px;" ng-click="openModal('support-us-modal-pay');">Chci přispět</a>
 	</div>
 	
 </div>
@@ -21,11 +22,11 @@ LOGO
 <hr />
 
 <div class="large-12 columns i-want">
-	<img src="./images/icons/handshake.svg" width="60" style="float: right;" />
-	<div class="indent" style="margin-right: 160px; margin-left: 0;">
-		<h3 style="margin-bottom: 0.5em; font-size: 125%;">Přidej ruku k dílu</h3>
+	<h3>Přidej ruku k dílu</h3>
+	<img src="./images/icons/handshake.svg" width="60"/>
+	<div class="indent margin-none">
 		<p>Teda spíš hlavu. Vývoj webu je běh na dlouhou trať. Ze všeho nejvíc proto potřebujeme dobrovolníky, co se vyznají v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Redis a Heroku. </p>
-		<a class="button write-email" style="float: left; width: 150px;" ng-click="openModal('support-us-modal-write-us');">Jdu do toho</a>
+		<a class="button write-email" style="float: none; width: 150px;" ng-click="openModal('support-us-modal-write-us');">Jdu do toho</a>
 	</div>
 </div>
 
@@ -33,7 +34,7 @@ LOGO
 
 <div class="large-12 columns i-want">
 	<div class="no-indent">
-		<h3 style="margin-bottom: 0.5em; font-size: 125%;">Dej o nás vědět</h3>
+		<h3>Dej o nás vědět</h3>
 		<p>Že máš k IT daleko? Nevadí. Určitě máš kolem sebe lidi, kteří o Hearthu ještě nevědí. Představ jim myšlenku sdílení, pozvi je do Hearthu a pošli radost dál.</p>
 	</div>
 </div>
@@ -73,7 +74,7 @@ LOGO
 
 
 <script type="text/ng-template" id="support-us-modal-widget">
-	<div class="support-us-modal-widget formStyle itemEdit modal">
+	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Přidej logo do své stránky' | translate }}
 			</h2>
@@ -85,22 +86,29 @@ LOGO
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate>
 			<p>Zkopíruj uvedený HTML kód a vlož jej do svého webu. <a href="feedback">Pro více informací nás kontaktuj.</a></p>
 
-				<div class="small-5 columns">
-					<img src="images/logo-dark.png">
+				<div class="small-12 large-5 columns">
+					<img src="images/logo-dark.png" width="200" style="padding:10px;">
 				</div>
-				<div class="small-7 columns">
-					<textarea><img src="https://hearth.net/app/images/logo-dark.png" width="150"></textarea>
+				<div class="small-12 large-7 columns">
+					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
 				</div>
-				<p>Přidat ještě oranžové logo.</p>
-				<div class="small-5 columns">
-					<img src="images/logo.png" style="background:#7c766a; padding:5px;">
+
+				<div class="small-12 large-5 columns">
+					<img src="images/logo-orange.png" width="200">
 				</div>
-				<div class="small-7 columns">
-					<textarea><img src="https://hearth.net/app/images/logo.png" width="150"></textarea>
+				<div class="small-12 large-7 columns">
+					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
+				</div>
+
+				<div class="small-12 large-5 columns">
+					<img src="images/logo.png" style="background:#7c766a; padding:10px;" width="200">
+				</div>
+				<div class="small-12 large-7 columns">
+					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
 				</div>
 
 				<br style="clear:both;">
-				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
 				</div>
 			</form>
@@ -111,7 +119,7 @@ LOGO
 
 
 <script type="text/ng-template" id="support-us-modal-print">
-	<div class="support-us-modal-print formStyle itemEdit modal">
+	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Vytiskni si leták' | translate }}
 			</h2>
@@ -122,26 +130,39 @@ LOGO
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
 				<p>Vytiskni si leták a pochlub se jím svým přátelům. Určitě také rádi přijdou do Hearth.net.</p>
-				<div class="small-6 columns text-center">
+				<div class="small-12 large-4 columns text-center">
 					<a href="" target="_blank">
 						<b>A4</b>
 						<br><br>
 						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
 						<br><br>
 						PDF, 930 kB
+						<br><br>
 					</a>
 				</div>
-				<div class="small-6 columns text-center">
+				<div class="small-12 large-4 columns text-center">
+					<a href="" target="_blank">
+						<b>A5</b>
+						<br><br>
+						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
+						<br><br>
+						PDF, 750 kB
+						<br><br>
+					</a>
+				</div>
+				<div class="small-12 large-4 columns text-center">
 					<a href="" target="_blank">
 						<b>A6</b>
 						<br><br>
 						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
 						<br><br>
 						PDF, 650 kB
+						<br><br>
 					</a>
 				</div>
+				<div class="small-12 columns">&nbsp;</div>
 				<br style="clear:both;">
-				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
 				</div>
 			</form>
@@ -151,7 +172,7 @@ LOGO
 </script>
 
 <script type="text/ng-template" id="support-us-modal-badge">
-	<div class="support-us-modal-badge formStyle itemEdit modal">
+	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Napiš si o placky a samolepky' | translate }}
 			</h2>
@@ -159,31 +180,69 @@ LOGO
 			<hr />
 		</div>
 
-		<div>
-			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+		<div ng-show="!addressDataEmailSent">
+			<form ng-submit="submitEmailWithPostalData()" id="" name="sendEmailWithPostalData" class="invite-form row" novalidate autofocus>
 				<p>Díky, že Hearthu pomáháš šířit radost dál.</p>
-				<p>Doplnit počet kusů u placek a samolepek, doplnit e-mail. Srazit na jeden řádek.</p>
-				
-				<label for="fullname">{{'Jméno' | translate}}</label>
-				<input id="fullname" type="text" name="fullname" class="" class="form-control text-input top" required placeholder="Jméno"/>
-				<label for="street">{{'Ulice a číslo' | translate}}</label>
-				<input id="street" type="text" name="street" class="" class="form-control text-input top" required placeholder="Ulice"/>
-				<label for="city">{{'Město' | translate}}</label>
-				<input id="city" type="text" name="city" class="" class="form-control text-input top" required placeholder="Město"/>
-				<label for="psc">{{'PSČ' | translate}}</label>
-				<input id="psc" type="text" name="psc" class="" class="form-control text-input top" required placeholder="PSČ"/>
-				<label for="type">{{'Co chci:' | translate}}</label>
-				<span style="display:inline-block; width:25px;"></span>
-				<checkbox model="type" on-update="void()" value="placky">Placky</checkbox>
-				<span style="display:inline-block; width:25px;"></span>
-				<checkbox model="type" on-update="void()" value="samolepky">Samolepky</checkbox>
-				<br>
+
+				<div class="small-12 large-3 columns">
+					<label for="type">{{'Co chci:' | translate}}</label><br>
+				</div>
+				<div class="small-12 large-9 columns">
+					<checkbox model="postalAddressData.badges" on-update="void()" value="true" value-off="false">Placky</checkbox>
+					<input type="number" ng-model="postalAddressData.numBadges" name="num-badges" class="display-inline-block" />
+					<span class="display-inline-block" style="width:25px;"></span>
+					<checkbox model="postalAddressData.stickers" on-update="void()" value="true" value-off="false">Samolepky</checkbox>
+					<input type="number" ng-model="postalAddressData.numStickers" name="num-stickers" class="display-inline-block" />
+				</div>
+				<div class="small-12 large-3 columns">
+					<label for="email">{{'Email:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="email" type="email"  ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="Email"/>
+				</div>
+
+				<div class="small-12 large-12 columns">&nbsp;</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="fullname">{{'Jméno a příjmení:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="fullname" type="text" name="fullname" ng-model="postalAddressData.fullName" class="form-control text-input top" placeholder="Jméno"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="street">{{'Ulice a číslo:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="street" type="text" name="street" ng-model="postalAddressData.street" class="form-control text-input top" placeholder="Ulice"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="city">{{'Město:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="city" type="text" name="city" ng-model="postalAddressData.city" class="form-control text-input top" placeholder="Město"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="psc">{{'PSČ:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="psc" type="text" name="psc" ng-model="postalAddressData.psc" class="form-control text-input top" placeholder="PSČ"/>
+				</div>
 
 				<br style="clear:both;">
-				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+					<button type="submit" class="button button-send" ng-disabled="sendEmailWithPostalData.$invalid"> {{ 'SEND' | translate }} </button>
 				</div>
 			</form>
+		</div>
+		<div ng-show="addressDataEmailSent">
+			<p class="success">Díky za zájem. Během několika dní se můžeš těšit na balíček.</p>
+			<div class="display-flex flex-space-between margin-top-medium">
+				<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+			</div>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -191,7 +250,7 @@ LOGO
 
 
 <script type="text/ng-template" id="support-us-modal-write-us">
-	<div class="support-us-modal-write-us formStyle itemEdit modal">
+	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Přidej ruku k dílu' | translate }}
 			</h2>
@@ -199,23 +258,41 @@ LOGO
 			<hr />
 		</div>
 
-		<div>
-			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+		<div ng-show="!contactDataEmailSent">
+			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form row" novalidate autofocus>
 				<p>Moc děkujem, že chceš Hearthu pomoct. Nech nám svůj kontakt a my se ti ozveme.</p>
-				<textarea placeholder="Tvůj tajný vzkaz..."></textarea>
-				<input placeholder="Tvůj e-mail" />
+				<div class="small-12 large-3 columns">
+					<label for="message-text">{{'Tvůj tajný vzkaz:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="contactData.text"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="email">{{'Tvůj e-mail:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email"/>
+				</div>	
 				<br style="clear:both;">
-				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+					<button type="submit" class="button button-send" ng-disabled="sendEmailWithContactData.$invalid"> {{ 'SEND' | translate }} </button>
 				</div>
 			</form>
+		</div>
+		<div ng-show="contactDataEmailSent">
+			<p class="success">Díky za zájem, brzy se Ti ozveme na uvedený e-mail.</p>
+			<div class="display-flex flex-space-between margin-top-medium">
+				<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+			</div>
 		</div>
 		<div class="clear"></div>
 	</div>
 </script>
 
 <script type="text/ng-template" id="support-us-modal-pay">
-	<div class="support-us-modal-pay formStyle itemEdit modal">
+	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Přispěj finančně' | translate }}
 			</h2>
@@ -227,7 +304,7 @@ LOGO
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
 				<p>Pošli love. S láskou a díky. Tvůj Hearth. :)</p>
 				<br style="clear:both;">
-				<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<div class="display-flex flex-space-between margin-top-medium">
 					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
 				</div>
 			</form>
