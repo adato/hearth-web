@@ -134,27 +134,39 @@
 }
 
 .static-page-container {
-	&>article {
-
-	}
 	.support-us {
+		&>div.columns {
+			padding:0;
+		}
+		.i-want-more {
+			margin-left: -.9375rem;
+			margin-right: -.9375rem;
+		}
 		.i-want, .ng {
 			margin-top: 4 * $ui-small-grid-size;
 			margin-bottom: 4 * $ui-small-grid-size;
 			clear:both;
+			a.button {
+				float: right;
+				width: 150px;
+			}
 			&>img {
-				float:right;
-				margin-left: 10 * $ui-small-grid-size;
-				margin-right: 2 * $ui-small-grid-size;
+				float:left;
+				margin-left: 40px;
+				margin-right: 40px;
 				max-width:90px;
 			}
 			&>.indent {
 				margin-left:160px;
 			}
+			&>.no-indent {
+				margin-left:25px;
+			}
 
 			h3 {
 				margin-top: 0;
 				margin-bottom: 0.5em;
+				margin-left:170px;
 				font-size: 125%;
 				text-align:left;
 			}
@@ -169,7 +181,7 @@
 					float:none; 
 					width: 50%;
 				}
-				&>.indent {
+				&>.indent, &>.no-indent {
 					margin-left:0;
 				}
 				.button { 
@@ -178,12 +190,12 @@
 				}
 				h3 {
 					text-align:center;
+					margin-left:0;
 				}
 			}
 		}
 
 		.i-want-more {
-			
 			.panel {
 				margin-bottom:2 * $ui-small-grid-size;
 				margin-top:2 * $ui-small-grid-size;
@@ -215,6 +227,7 @@
 	}
 	.columns>label:not(.ui-checkbox) {
 		float:right;
+		text-align:right;
 	}
 	@media #{$medium-down} {
 		label { 
