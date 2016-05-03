@@ -138,10 +138,21 @@
 
 	}
 	.support-us {
+		&>div.columns {
+			padding:0;
+		}
+		.i-want-more {
+			margin-left: -.9375rem;
+			margin-right: -.9375rem;
+		}
 		.i-want, .ng {
 			margin-top: 4 * $ui-small-grid-size;
 			margin-bottom: 4 * $ui-small-grid-size;
 			clear:both;
+			a.button {
+				float: none;
+				width: 150px;
+			}
 			&>img {
 				float:right;
 				margin-left: 10 * $ui-small-grid-size;
