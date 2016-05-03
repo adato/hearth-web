@@ -68,7 +68,7 @@
 				</label>
 				<label ng-repeat="character in character" class="character-label ui-checkbox" tipsy title="{{character.name + '_TOOLTIP' | translate}}">
 					<input type="checkbox" checklist-model="post.character" checklist-value="character.name" ng-click="checkCharacter()" name="character" />
-					<i class="fa" ng-class="post.character.indexOf(character.name) > -1 ? 'fa-check-square' : 'fa-square-o'" tabindex="0" ng-keypress="toggleCategoryCheckbox($event, category)"></i> {{character.translate | translate}}
+					<i class="fa" ng-class="post.character.indexOf(character.name) > -1 ? 'fa-check-square' : 'fa-square-o'" tabindex="0" ng-keypress="toggleCategoryCheckbox($event, character)"></i> {{character.translate | translate}}
 					<span>{{character.translateText | translate}}</span>
 					<i class="fa fa-question-circle tooltip" aria-hidden="true"></i>
 				</label>
