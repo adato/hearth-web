@@ -422,6 +422,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 		};
 
+		var SPACE = 32;
+		$scope.toggleCharacterCheckbox = function(event, character) {
+			var key = event.keyCode || event.charCode;
+			if (key === SPACE) {
+				var index = $scope.post.character.indexOf(character.name);
+				if (index > -1) {
+					$scope.post.character.splice(index, 1);
+				} else {
+					$scope.post.character.push(character.name);
+				}
+			}
+		};
+
 		$scope.init = function() {
 			$scope.newPost = !$scope.post;
 			$scope.post = $scope.transformDataIn($scope.post);
