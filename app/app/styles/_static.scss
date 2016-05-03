@@ -227,6 +227,7 @@
 	}
 	.columns>label:not(.ui-checkbox) {
 		float:right;
+		text-align:right;
 	}
 	@media #{$medium-down} {
 		label { 

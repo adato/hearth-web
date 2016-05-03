@@ -1,0 +1,313 @@
+<div class="large-7 columns">
+<p><strong>Is Hearth making you happy?</strong> Are you meeting nice people here? Does every successful “generosithing“ bring you good feelings? Support us and spread the joy!</p>
+<p>Hearth is free for everyone and <strong>with no ads</strong>. This is made possible only by the financial support of Libor Malý. More users are joining him every day.</p>
+<p>Now you can too.</p><br>
+</div>
+<div class="large-5 columns">
+	<img src="./images/banner/corner-crowdsource.png" class="right"/>
+</div>
+
+<div class="large-12 columns i-want">
+	<h3>Contribute financially</h3>
+	<img src="./images/icons/money.svg" width="130" style="margin-top:-35px;"/>
+	<div class="indent margin-none">
+
+		<p>Send us a one-off contribution or setup a recurring payment. How much? It’s up to you. Any support counts, and the only yardstick here may simply be feeling good.</p>
+		<a class="button give-money text-center" ng-click="openModal('support-us-modal-pay');">Contribute</a>
+	</div>
+	
+</div>
+
+<hr />
+
+<div class="large-12 columns i-want">
+	<h3>Lend us a hand</h3>
+	<img src="./images/icons/handshake.svg" width="130" style="margin-top: -16px;"/>
+	<div class="indent margin-none">
+		<p>Or rather, your head. Web development is a long journey. What we need most are volunteers with knowledge of these codewords: Ruby, AngularJS, NoSQL MongoDB, Redis a Heroku. </p>
+		<a class="button write-email" ng-click="openModal('support-us-modal-write-us');">I`m in</a>
+	</div>
+</div>
+
+<hr />
+
+<div class="large-12 columns i-want">
+	<div class="no-indent">
+		<h3 style="margin-left:0;">Spread the word</h3>
+		<p>You’re not an IT expert? It’s OK. You almost certainly have people around you who still don’t know about Hearth. Introduce them to our idea of sharing, invite them to Hearth and pass the joy on.</p>
+	</div>
+</div>
+
+<div class="i-want-more">
+	<div class="large-4 columns">
+		<div class="panel get-badge">
+			<h3>Badges and stickers</h3>
+			<img src="./images/icons/hearth.svg"/>
+			<a href="" ng-click="openModal('support-us-modal-badge');" class="button">I want them</a>
+		</div>
+	</div>
+	<div class="large-4 columns">
+		<div class="panel print-flyer">
+			<h3>Print out a leaflet</h3>
+			<img src="./images/icons/print.svg"/>
+			<a href="" ng-click="openModal('support-us-modal-print');" class="button">I want a leaflet</a>
+		</div>
+	</div>
+	<div class="large-4 columns">
+		<div class="panel get-widget">
+			<h3>Add a logo to your website</h3>
+			<img src="./images/icons/window.svg"/>
+			<a href="" ng-click="openModal('support-us-modal-widget');" class="button">I want a logo</a>
+		</div>
+	</div>
+</div>
+
+
+<div style="clear: both;">
+	<br><br>
+	<strong>Thank you for making our world a little better and kinder with us.</strong></p>
+	<p>Your Hearth.net</p>
+</div>
+
+
+
+
+<script type="text/ng-template" id="support-us-modal-widget">
+	<div class="support-us-modal formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Add a logo to your website' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate>
+			<p>Copy the HTML code and insert it into your web. <a href="feedback">Contact us for more info.</a></p>
+
+				<div class="small-12 large-5 columns">
+					<img src="images/logo-dark.png" width="200" style="padding:10px;">
+				</div>
+				<div class="small-12 large-7 columns">
+					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
+				</div>
+
+				<div class="small-12 large-5 columns">
+					<img src="images/logo-orange.png" width="200">
+				</div>
+				<div class="small-12 large-7 columns">
+					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
+				</div>
+
+				<div class="small-12 large-5 columns">
+					<img src="images/logo.png" style="background:#7c766a; padding:10px;" width="200">
+				</div>
+				<div class="small-12 large-7 columns">
+					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
+				</div>
+
+				<br style="clear:both;">
+				<div class="display-flex flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="support-us-modal-print">
+	<div class="support-us-modal formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Print out a leaflet' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+				<!--<p>Vytiskni si leták a pochlub se jím svým přátelům. Určitě také rádi přijdou do Hearth.net.</p>-->
+				<div class="small-12 large-4 columns text-center">
+					<a href="https://s3-eu-west-1.amazonaws.com/hearth-net-topmonks-production-ugc/static/cs/O_Hearth.net_A4.pdf" target="_blank">
+						<b>A4</b>
+						<br><br>
+						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
+						<br><br>
+						PDF, 550 kB
+						<br><br>
+					</a>
+				</div>
+				<div class="small-12 large-4 columns text-center">
+					<a href="https://s3-eu-west-1.amazonaws.com/hearth-net-topmonks-production-ugc/static/cs/O_Hearth.net_A5.pdf" target="_blank">
+						<b>A5</b>
+						<br><br>
+						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
+						<br><br>
+						PDF, 500 kB
+						<br><br>
+					</a>
+				</div>
+				<div class="small-12 large-4 columns text-center">
+					<a href="https://s3-eu-west-1.amazonaws.com/hearth-net-topmonks-production-ugc/static/cs/O_Hearth.net_A6.pdf" target="_blank">
+						<b>A6</b>
+						<br><br>
+						<i class="fa fa-file-pdf-o" style="font-size:50px;"></i>
+						<br><br>
+						PDF, 160 kB
+						<br><br>
+					</a>
+				</div>
+				<div class="small-12 columns">&nbsp;</div>
+				<br style="clear:both;">
+				<div class="display-flex flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="support-us-modal-badge">
+	<div class="support-us-modal formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Badges and stickers' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div ng-show="!addressDataEmailSent">
+			<form ng-submit="submitEmailWithPostalData()" id="" name="sendEmailWithPostalData" class="invite-form row" novalidate autofocus>
+				<p>Thanks for helping to spread joy for Hearth. </p>
+
+				<div class="small-12 large-3 columns">
+					<label for="type">{{'I want:' | translate}}</label><br>
+				</div>
+				<div class="small-12 large-9 columns">
+					<checkbox model="postalAddressData.badges" on-update="void()" value="true" value-off="false">Badges</checkbox>
+					<input type="number" ng-model="postalAddressData.numBadges" name="num-badges" class="display-inline-block" />
+					<span class="display-inline-block" style="width:25px;"></span>
+					<checkbox model="postalAddressData.stickers" on-update="void()" value="true" value-off="false">Stickers</checkbox>
+					<input type="number" ng-model="postalAddressData.numStickers" name="num-stickers" class="display-inline-block" />
+				</div>
+				<div class="small-12 large-3 columns">
+					<label for="email">{{'Email:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="email" type="email"  ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="Email"/>
+				</div>
+
+				<div class="small-12 large-12 columns">&nbsp;</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="fullname">{{'Name and surname:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="fullname" type="text" name="fullname" ng-model="postalAddressData.fullName" class="form-control text-input top" placeholder="Name"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="street">{{'Street and number:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="street" type="text" name="street" ng-model="postalAddressData.street" class="form-control text-input top" placeholder="Street"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="city">{{'City, country:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="city" type="text" name="city" ng-model="postalAddressData.city" class="form-control text-input top" placeholder="City and country"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="psc">{{'Postcode:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="psc" type="text" name="psc" ng-model="postalAddressData.psc" class="form-control text-input top" placeholder="Postcode"/>
+				</div>
+
+				<br style="clear:both;">
+				<div class="display-flex flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+					<button type="submit" class="button button-send" ng-disabled="sendEmailWithPostalData.$invalid"> {{ 'SEND' | translate }} </button>
+				</div>
+			</form>
+		</div>
+		<div ng-show="addressDataEmailSent">
+			<p class="success">Thanks for your interest. You can look forward to a package within a couple of days.</p>
+			<div class="display-flex flex-space-between margin-top-medium">
+				<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="support-us-modal-write-us">
+	<div class="support-us-modal formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Lend us a hand' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div ng-show="!contactDataEmailSent">
+			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form row" novalidate autofocus>
+				<p>Thanks a lot for helping Hearth. Leave us your contact details and we’ll get in touch. </p>
+				<div class="small-12 large-3 columns">
+					<label for="message-text">{{'Your secret message:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="contactData.text"/>
+				</div>
+
+				<div class="small-12 large-3 columns">
+					<label for="email">{{'Your e-mail:' | translate}}</label>
+				</div>
+				<div class="small-12 large-9 columns">
+					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email"/>
+				</div>	
+				<br style="clear:both;">
+				<div class="display-flex flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+					<button type="submit" class="button button-send" ng-disabled="sendEmailWithContactData.$invalid"> {{ 'SEND' | translate }} </button>
+				</div>
+			</form>
+		</div>
+		<div ng-show="contactDataEmailSent">
+			<p class="success">Thanks for your interest, we'll respond to your e-mail soon.</p>
+			<div class="display-flex flex-space-between margin-top-medium">
+				<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="support-us-modal-pay">
+	<div class="support-us-modal formStyle itemEdit modal">
+		<div class="head">
+			<h2>{{:: 'Contribute financially' | translate }}
+			</h2>
+			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
+			<hr />
+		</div>
+
+		<div>
+			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
+				<p>Send us some readies. With loving thanks. Your Hearth. :)</p>
+				<br style="clear:both;">
+				<div class="display-flex flex-space-between margin-top-medium">
+					<a ng-click="closeThisDialog()"> {{ 'CLOSE' | translate }} </a>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
