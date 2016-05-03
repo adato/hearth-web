@@ -423,14 +423,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		var SPACE = 32;
-		$scope.toggleCategoryCheckbox = function(event, category) {
+		$scope.toggleCharacterCheckbox = function(event, character) {
 			var key = event.keyCode || event.charCode;
 			if (key === SPACE) {
-				var index = $scope.post.categories.indexOf(category.name);
+				var index = $scope.post.character.indexOf(character.name);
 				if (index > -1) {
-					$scope.post.categories.splice(index, 1);
+					$scope.post.character.splice(index, 1);
 				} else {
-					$scope.post.categories.push(category.name);
+					$scope.post.character.push(character.name);
 				}
 			}
 		};
