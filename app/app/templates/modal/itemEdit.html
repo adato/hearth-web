@@ -64,7 +64,7 @@
 			<section class="character position-relative">
 				<div bubble-placeholder="marketplace-item-mood"></div>
 				<label class="headline">
-					{{'POST_CATEGORY_LABEL' | translate}}:
+					{{:: 'POST_CATEGORY_LABEL' | translate }}:
 				</label>
 				<label ng-repeat="character in character" class="character-label ui-checkbox" tipsy title="{{character.name + '_TOOLTIP' | translate}}">
 					<input type="checkbox" checklist-model="post.character" checklist-value="character.name" ng-click="checkCharacter()" name="character" />
@@ -81,10 +81,10 @@
 				<label>
 					{{:: 'POST_KEYWORDS_LABEL' | translate }}
 				</label>
-				<tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$"
-				min-length="2" max-length="20">
+				<<<<<<< HEAD <tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{:: 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$"=======<
+				tags-input refocus-input-on-tab class="tags" ng-model="post.keywords" placeholder="{{ 'ADD_KEYWORDS' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$">>>>>>> 734-message-file-attachment-page-height min-length="2" max-length="20">
 					<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
-				</tags-input>
+					</tags-input>
 			</section>
 			<section class="place text-input">
 				<locations locations="post.locations" base="#ngdialog1" limit="post.location_unlimited" show-error="showError.locations" error-code="LOCATIONS_ARE_EMPTY"></locations>
@@ -136,27 +136,29 @@
 				<div class='clear'></div>
 			</section>
 			<section class="collapse lock" ng-show="enableLockField">
-				<label slide-trigger="slide.lock">
-					{{ 'POST_LOCK_LABEL' | translate }}
-					<span ng-if="!slide.lock">
-						<span ng-if="!post.is_private">({{:: 'SHOW_TO_ALL' | translate }})</span>
-						<span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">({{:: 'SHOW_TO_FRIENDS' | translate }})</span>
-						<span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">({{:: 'SHOW_TO_COMMUNITY' | translate }})</span>
-					</span>
-				</label>
-				<ul ng-slide-down="slide.lock" lazy-render duration="0.5">
-					<li>
-						<radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
-							{{:: 'VISIBLE_FOR_ALL' | translate }}
-						</radio>
-					</li>
-					<li>
-						<radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
-							<span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
-							<span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
-						</radio>
-					</li>
-				</ul>
+				<<<<<<< HEAD <label slide-trigger="slide.lock">
+					{{ 'POST_LOCK_LABEL' | translate }} =======
+					<label slide-trigger="slide.lock" for="lock">
+						{{:: 'POST_LOCK_LABEL' | translate }} >>>>>>> 734-message-file-attachment-page-height
+						<span ng-if="!slide.lock">
+							<span ng-if="!post.is_private">({{:: 'SHOW_TO_ALL' | translate }})</span>
+							<span ng-if="post.is_private && !post.current_community_id && !post.related_communities.length">({{:: 'SHOW_TO_FRIENDS' | translate }})</span>
+							<span ng-if="post.is_private && (post.current_community_id || post.related_communities.length)">({{:: 'SHOW_TO_COMMUNITY' | translate }})</span>
+						</span>
+					</label>
+					<ul ng-slide-down="slide.lock" lazy-render duration="0.5">
+						<li>
+							<radio model="post.is_private" type="checkbox" value="false" value-off="true" checked="!post.is_private">
+								{{:: 'VISIBLE_FOR_ALL' | translate }}
+							</radio>
+						</li>
+						<li>
+							<radio model="post.is_private" type="checkbox" value="true" value-off="false" checked="post.is_private">
+								<span ng-if="!post.current_community_id && !post.related_communities.length">{{ 'VISIBLE_FOR_FRIENDS' | translate }}</span>
+								<span ng-if="(post.current_community_id || post.related_communities.length)">{{ 'VISIBLE_FOR_MEMBERS' | translate }}</span>
+							</radio>
+						</li>
+					</ul>
 			</section>
 			<section class="collapse files" ng-class="{ 'collapse-expanded': slide.files }">
 				<label slide-trigger="slide.files" class="create-post-link">
@@ -194,13 +196,26 @@
 					</div>
 				</div>
 			</section>
-			<section class="bottom display-flex flex-reverse flex-space-between">
+			<<<<<<< HEAD <section class="bottom display-flex flex-reverse flex-space-between">
 				<div>
 					<button type="button" ng-if="post.state == 'suspended' || post.state == 'expired'" class="button-send margin-left-10" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE_AND_ACTIVATE' | translate }}</button>
 					<button type="submit" class="button-send margin-left-10" analytics-event="click on send" analytics-category="Add" analytics-label="NP">{{:: 'SAVE' | translate }}</button>
 				</div>
 				<a ng-click="closeEdit()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
-			</section>
+				=======
+				<section class="bottom">
+					<a href="" ng-click="closeEdit()" class="fleft close">
+						{{:: 'CLOSE' | translate }}
+					</a>
+					<button ng-if="post.state == 'suspended' || post.state == 'expired'" class="primary button button-send fright pointer margin-left-10" type="button" ng-click="save(post, true)" analytics-event="click on send" analytics-category="Add" analytics-label="NP"
+					translate>SAVE_AND_ACTIVATE</button>
+					<button class="primary button button-send fright pointer margin-left-10" type="submit" analytics-event="click on send" analytics-category="Add" analytics-label="NP" translate>SAVE</button>
+					<!--                 <a class="red fright margin-left-10" ng-if="post._id" ng-click="confirmBox( 'AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, post)">
+                    {{ 'DELETE' | translate }}
+                </a> -->
+					<div class="clear"></div>
+					>>>>>>> 734-message-file-attachment-page-height
+				</section>
 		</div>
 	</form>
 </div>

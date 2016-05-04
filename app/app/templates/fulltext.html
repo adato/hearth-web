@@ -33,8 +33,7 @@
 								<!-- only for testing on DEV -->
 
 								<i class="fa" ng-class="{'fa-user': item._type === 'User', 'fa-group': item._type === 'Community'}" ng-if="item._type != 'Post'"></i>
-								<a ng-href="{{getProfileLink(item._type, item._id)}}">
-									<span ng-switch-when="Post" ng-bind-html=":: postTypes['User'][item.type] | translate"></span>
+								<a class="title" ng-href="{{getProfileLink(item._type, item._id)}}">
 									<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
 									<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
 									<span ng-if="!item.title && !item.highlight.first_name[0]" ng-bind-html="item.first_name"></span>
@@ -75,19 +74,6 @@
 						<span ng-if="item.description && !item.highlight.description[0]">{{item.description | ellipsis: 150}}</span>
 						<span ng-if="item.description && item.highlight.description[0]" ng-bind-html="item.highlight.description[0] | to_trusted"></span>
 					</p>
-					<!--div class="breadcrumb" ng-switch-when="Post">
-						<a ng-href="{{:: basePath }}">{{:: 'HOMEPAGE_MARKET' | translate}}</a> &gt;
-						<a ng-href="{{getProfileLink('Post', item._id) }}">{{item.title || item.name | ellipsis: 50}}</a>
-						<span ng-if="item.locations.length && item.locations[0].name">/ {{item.locations[0].name}}</span>/ {{item.updated_at | date : DATETIME_FORMATS.mediumDate}}
-					</div>
-					<div class="breadcrumb" ng-switch-when="User">
-						{{'people' | translate}} &gt;
-						<a ng-href="{{getProfileLink('User', item._id)}}">{{item.title || item.name | ellipsis: 50}}</a>
-					</div>
-					<div class="breadcrumb" ng-switch-when="Community">
-						<a ng-href="{{:: basePath }}communities">{{:: 'COMMUNITIES' | translate}}</a> &gt;
-						<a ng-href="{{getProfileLink('User', item._id)}}">{{item.title || item.name | ellipsis: 50}}</a>
-					</div-->
 				</section>
 			</article>
 		</section>
