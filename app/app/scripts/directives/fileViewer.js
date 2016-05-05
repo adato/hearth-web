@@ -18,10 +18,10 @@ angular.module('hearth.directives').directive('fileViewer', [
 				message: "="
 			},
 			link: function(scope, element, attrs) {
-				scope.download = function(message) {
+				scope.download = function(message, index) {
 					Conversations.downloadAttachment({
 						messageId: message._id,
-						fileId: message.file_attachments[0]._id
+						fileId: message.file_attachments[index]._id
 					}, function(res) {
 						$window.location.href = res.url;
 					}, function() {
