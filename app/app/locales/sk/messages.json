@@ -28,7 +28,8 @@
 			"TITLE_ENABLED": "Filter je aktívny",
 			"CANCEL_FILTER_BAR": "Zrušiť filter",
 			"KM": "Km",
-			"CLOSE_FILTER": "Zavrieť filter"
+			"CLOSE_FILTER": "Zavrieť filter",
+			"BY_CHARACTER": "Podľa povahy"
 		},
 		"POST": {
 			"FLAG_POST": "Nahlásiť škodlivý inzerát",
@@ -405,7 +406,8 @@
 	"MENU": {
 		"TERMS": "Podmienky použitia",
 		"FAQ": "Časté otázky",
-		"TAXES": "Darovanie a dane"
+		"TAXES": "Darovanie a dane",
+		"SUPPORT_US": "Podpoř Hearth"
 	},
 	"THANKS_FOR_REPORT": "Ďakujeme za podnet, tento príspevok preveríme.",
 	"THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvite i svojich priateľov do Hearth.net, do štedrej sociálnej siete!",
@@ -1370,7 +1372,8 @@
 		"feedback": "Tvoj názor",
 		"taxes": "Darovanie a dane",
 		"community_edit": "Úprava komunity",
-		"fulltext": "Vyhľadávanie"
+		"fulltext": "Vyhľadávanie",
+		"support-us": "Pomoz Hearthu rozdávat radost"
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1426,10 +1429,13 @@
 	"ERR_AD_CATEGORY_MAX": "Môžete vybrať maximálne 2 kategórie.",
 	"BUBBLE": {
 		"MARKETPLACE_ITEM_MOOD": {
-			"TEXT": "Hurá! Do Hearthu přidáváme možnost zvolit u jednotlivých darů\/přání jejich povahu. Už brzy budeme tuto informaci u jednotlivých darů\/přání zobrazovat a půjde pomocí ní filtrovat."
+			"TEXT": "Skvělé! Do Hearthu přidáváme možnost zvolit u jednotlivých darů\/přání jejich povahu. Už brzy budeme tuto informaci u jednotlivých darů\/přání zobrazovat a půjde pomocí ní filtrovat."
 		},
 		"MARKETPLACE_ITEM_BOOKMARK": {
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		}
-	}
+	},
+	"energy_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim.",
+	"mass_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim.",
+	"information_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim."
 }

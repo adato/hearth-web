@@ -83,12 +83,26 @@ angular.module('hearth.directives').directive('filter', [
 				scope.convertFilterToParams = function(filter) {
 					var fields = ['query', 'type', 'inactive', 'post_type', 'days', 'lang', 'r_lang', 'my_section'],
 						related = [],
+						character = [],
 						params = {},
 						currentParams = $location.search();
 
 					fields.forEach(function(name) {
 						if (typeof filter[name] !== 'undefined' && filter[name] !== null) params[name] = filter[name];
 					});
+
+					if (filter.energy) {
+						character.push('energy');
+					}
+					if (filter.mass) {
+						character.push('mass');
+					}
+					if (filter.information) {
+						character.push('information');
+					}
+					if (character.length) {
+						params['character[]'] = character;
+					}
 
 					if (filter.user) {
 						related.push('user');
@@ -104,7 +118,6 @@ angular.module('hearth.directives').directive('filter', [
 							return item.text;
 						}).join(',');
 					}
-
 					if (filter.lon && filter.lat && filter.name) {
 						params.lon = filter.lon;
 						params.lat = filter.lat;
@@ -128,6 +141,9 @@ angular.module('hearth.directives').directive('filter', [
 						lang: params.lang,
 						r_lang: params.r_lang,
 						my_section: params.my_section,
+						energy: (params['character[]'] || '').indexOf('energy') > -1 ? true : undefined,
+						mass: (params['character[]'] || '').indexOf('mass') > -1 ? true : undefined,
+						information: (params['character[]'] || '').indexOf('information') > -1 ? true : undefined,
 						user: (params.related || '').indexOf('user') > -1 ? true : undefined,
 						community: (params.related || '').indexOf('community') > -1 ? true : undefined,
 						keywords: $.map(params.keywords || {}, function(keyword) {
