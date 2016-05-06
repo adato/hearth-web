@@ -52,6 +52,9 @@ tags-input {
 					color: red;
 				}
 			}
+			&.selected {
+				background-color: $colorLightGray;
+			}
 		}
 		.input {
 			border: 0 !important;
