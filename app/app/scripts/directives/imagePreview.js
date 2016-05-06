@@ -129,7 +129,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 				scope.showErrors = true;
 				scope.error = scope.error || {};
 				scope.uploading = false;
-				console.log(scope.singleFile);
 
 				// preview jen jednoho souboru? Nebo to budeme davat do pole
 				if (scope.singleFile) {
@@ -246,16 +245,17 @@ angular.module('hearth.directives').directive('imagePreview', [
 				function previewImage(el, limitSize) {
 					var files = $(".file-upload-input", el)[0].files;
 					scope.error = {};
-					for (var i = files.length; i--;) {
-						if (isInvalidFile(files[i]))
+
+					angular.forEach(files, function(file) {
+						if (isInvalidFile(file)) {
 							return false;
+						}
 
 						var reader = new FileReader();
 						reader.onload = function(e) {
 							var imgFile = e.target.result;
 
-							if (!isInvalidFormat(files[i], imgFile)) {
-
+							if (!isInvalidFormat(file, imgFile)) {
 								// this will check image size
 								var image = new Image();
 								image.src = imgFile;
@@ -266,8 +266,8 @@ angular.module('hearth.directives').directive('imagePreview', [
 							}
 							scope.$apply();
 						};
-						reader.readAsDataURL(files[i]);
-					}
+						reader.readAsDataURL(file);
+					});
 				}
 
 				// Detect client's device
