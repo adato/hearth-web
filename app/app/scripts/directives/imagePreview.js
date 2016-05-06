@@ -232,29 +232,31 @@ angular.module('hearth.directives').directive('imagePreview', [
 				}
 
 				function previewImage(el, limitSize) {
-					var file = $(".file-upload-input", el)[0].files[0];
+					var file = $(".file-upload-input", el)[0].files;
 					scope.error = {};
 
-					if (isInvalidFile(file))
-						return false;
-
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						var imgFile = e.target.result;
-
-						if (!isInvalidFormat(file, imgFile)) {
-
-							// this will check image size
-							var image = new Image();
-							image.src = imgFile;
-							return image.onload = function() {
-								handleImageLoad(this, e, limitSize);
-								scope.$apply();
-							};
+					angular.forEach(files, function(file) {
+						if (isInvalidFile(file)) {
+							return false;
 						}
-						scope.$apply();
-					};
-					reader.readAsDataURL(file);
+
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							var imgFile = e.target.result;
+
+							if (!isInvalidFormat(file, imgFile)) {
+								// this will check image size
+								var image = new Image();
+								image.src = imgFile;
+								return image.onload = function() {
+									handleImageLoad(this, e, limitSize);
+									scope.$apply();
+								};
+							}
+							scope.$apply();
+						};
+						reader.readAsDataURL(file);
+					});
 				}
 
 				// Detect client's device
