@@ -1341,7 +1341,7 @@
 		"taxes": "Donations and Taxes",
 		"community_edit": "Edit community",
 		"fulltext": "Search",
-		"support-us": "Podpoř Hearth"
+		"support-us": "Support Hearth "
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1365,7 +1365,7 @@
 	"INVITATION_STATUS": {
 		"INVITATION_SENT": "{{email}}: Pozvánka úspěšně odeslána",
 		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
-		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je!",
+		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je jako",
 		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný e-mail?"
 	},
 	"COMMUNITY_MOTTO": "Stručně o komunitě",
