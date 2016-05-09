@@ -11,9 +11,9 @@
  */
 
 angular.module('hearth.geo').directive('searchMap', [
-	'$timeout', 'geo', '$location', 'Post',
+	'$timeout', 'geo', '$location', 'Post', '$rootScope',
 
-	function($timeout, geo, $location, Post) {
+	function($timeout, geo, $location, Post, $rootScope) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -86,7 +86,7 @@ angular.module('hearth.geo').directive('searchMap', [
 				};
 
 				scope.search = function(loc) {
-					// if we should set new location, set it also to search
+					// if we should set new location, set it also to (url) search
 					loc && loc.lon && scope.setSearchParams(loc);
 
 					// search only when map is shown
@@ -96,9 +96,16 @@ angular.module('hearth.geo').directive('searchMap', [
 						scope.center = true;
 
 					Post.mapQuery(params, function(data) {
+						// console.log(data);
 						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};
+
+				/**
+				 *	Event handler for map searches.
+				 *	scope.search takes one param - loc {Object}
+				 */
+				$rootScope.$on('searchRequest', scope.search);
 
 				scope.search();
 				scope.autodetectMyLocation();

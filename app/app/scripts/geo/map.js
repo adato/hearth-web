@@ -11,9 +11,9 @@
  * @requires $templateCache
  */
 angular.module('hearth.geo').directive('map', [
-	'geo', '$interpolate', '$templateCache', 'Post', '$location', '$timeout',
+	'geo', '$interpolate', '$templateCache', 'Post', '$location', '$timeout', '$rootScope',
 
-	function(geo, $interpolate, $templateCache, Post, $location, $timeout) {
+	function(geo, $interpolate, $templateCache, Post, $location, $timeout, $rootScope) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -94,6 +94,22 @@ angular.module('hearth.geo').directive('map', [
 
 							//                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
 							oms.addListener('click', scope.onMarkerClick);
+
+							/**
+							 *	Attach listener to idle state to refresh data.
+							 *	I am not using bounds_changed event, as it is buggy and fires multiple times per map drag.
+							 */
+							google.maps.event.addListener(map, 'idle', function() {
+								var bounds = map.getBounds();
+								$rootScope.$emit('searchRequest', [{
+									lat: bounds.H.H,
+									lon: bounds.H.j
+								}, {
+									lat: bounds.j.H,
+									lon: bounds.j.j
+								}]);
+							});
+
 						}, 100);
 					}
 				};
