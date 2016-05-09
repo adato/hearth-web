@@ -110,6 +110,12 @@
 }
 
 .rating-listing {
+	.ratings-small-avatar-container {
+		.name {
+			margin-left:50px;
+			margin-top:-34px;
+		}
+	}
 	.rating-received-bar {
 		min-height: 50px;
 		text-align: center;
