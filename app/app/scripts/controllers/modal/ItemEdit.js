@@ -179,12 +179,15 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				return obj.text;
 			});
 
-			if (data.location_unlimited) {
+			if (data.location_unlimited || !data.locations.length) {
 				data.locations = [];
-			}
-
-			if (!data.locations.length) {
-				data.locations = [];
+			} else {
+				// we only want to send json_data, other information is superfluous
+				for (var i = data.locations.length; i--;) {
+					data.locations[i] = {
+						json_data: data.locations[i].json_data
+					};
+				}
 			}
 
 			if (data.valid_until_unlimited) {
