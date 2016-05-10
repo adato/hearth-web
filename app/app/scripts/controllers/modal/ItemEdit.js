@@ -182,10 +182,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if (data.location_unlimited || !data.locations.length) {
 				data.locations = [];
 			} else {
-				// we only want to send json_data, other information is superfluous
+				// We only want to send json_data, other information is superfluous.
+				// If the place already has a place_id assigned, we only send this
 				for (var i = data.locations.length; i--;) {
 					data.locations[i] = {
-						json_data: data.locations[i].json_data
+						json_data: (data.locations[i].place_id ? {place_id: data.locations[i].place_id} : data.locations[i].json_data)
 					};
 				}
 			}
