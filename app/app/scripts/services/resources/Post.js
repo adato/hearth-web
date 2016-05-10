@@ -50,7 +50,7 @@ angular.module('hearth.services').factory('Post', [
 				method: 'GET',
 				url: $$config.apiPath + '/search/',
 				params: {
-					type: 'post'
+					type: 'post',
 				},
 				isArray: true
 			},
