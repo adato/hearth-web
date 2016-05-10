@@ -183,8 +183,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.locations = [];
 			} else {
 				// we only want to send json_data, other information is superfluous
-				for (var i = data.locations.length;i--;) {
-					data.locations[i] = {json_data: data.locations[i].json_data};
+				for (var i = data.locations.length; i--;) {
+					data.locations[i] = {
+						json_data: data.locations[i].json_data
+					};
 				}
 			}
 
