@@ -101,13 +101,16 @@ angular.module('hearth.geo').directive('map', [
 							 */
 							google.maps.event.addListener(map, 'idle', function() {
 								var bounds = map.getBounds();
-								$rootScope.$emit('searchRequest', [{
-									lat: bounds.H.H,
-									lon: bounds.H.j
-								}, {
-									lat: bounds.j.H,
-									lon: bounds.j.j
-								}]);
+								$rootScope.$emit('searchRequest', {
+									nw: {
+										lat: bounds.H.H,
+										lon: bounds.H.j
+									},
+									se: {
+										lat: bounds.j.H,
+										lon: bounds.j.j
+									}
+								});
 							});
 
 						}, 100);

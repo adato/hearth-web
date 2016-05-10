@@ -59,12 +59,16 @@ angular.module('hearth.geo').directive('searchMap', [
 					return angular.copy($location.search());
 				};
 
-				scope.getMapBoundingBoxParams = function() {
+				scope.getMapBoundingBoxParams = function(boundingBox) {
+					boundingBox = boundingBox || {
+						nw: {},
+						se: {}
+					};
 					return {
-						'bounding_box[top_left][lat]': 85,
-						'bounding_box[top_left][lon]': -170,
-						'bounding_box[bottom_right][lat]': -85,
-						'bounding_box[bottom_right][lon]': 175,
+						'bounding_box[top_left][lat]': boundingBox.nw.lat || 85,
+						'bounding_box[top_left][lon]': boundingBox.nw.lon || -170,
+						'bounding_box[bottom_right][lat]': boundingBox.se.lat || -85,
+						'bounding_box[bottom_right][lon]': boundingBox.se.lon || 175,
 						offset: 0
 					};
 				};
@@ -74,29 +78,28 @@ angular.module('hearth.geo').directive('searchMap', [
 					$location.search(params);
 				};
 
-				scope.getSearchParams = function() {
+				scope.getSearchParams = function(boundingBox) {
 					var searchParams = scope.getFilterParams();
 
 					if (typeof searchParams.distance === 'undefined') {
-						searchParams = angular.extend(searchParams, scope.getMapBoundingBoxParams());
+						searchParams = angular.extend(searchParams, scope.getMapBoundingBoxParams(boundingBox));
 					}
 
 					searchParams.map_output = 1;
 					return searchParams;
 				};
 
-				scope.search = function(loc) {
+				scope.search = function(loc, boundingBox) {
 					// if we should set new location, set it also to (url) search
 					loc && loc.lon && scope.setSearchParams(loc);
 
 					// search only when map is shown
-					var params = scope.getSearchParams();
+					var params = scope.getSearchParams(boundingBox);
 
-					if (params.lon)
-						scope.center = true;
+					if (params.lon) scope.center = true;
 
 					Post.mapQuery(params, function(data) {
-						// console.log(data);
+						console.log(data);
 						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};
@@ -105,7 +108,9 @@ angular.module('hearth.geo').directive('searchMap', [
 				 *	Event handler for map searches.
 				 *	scope.search takes one param - loc {Object}
 				 */
-				$rootScope.$on('searchRequest', scope.search);
+				$rootScope.$on('searchRequest', function(event, boundingBox) {
+					scope.search(false, boundingBox);
+				});
 
 				scope.search();
 				scope.autodetectMyLocation();
