@@ -232,7 +232,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 				}
 
 				function previewImage(el, limitSize) {
-					var file = $(".file-upload-input", el)[0].files;
+					var files = $(".file-upload-input", el)[0].files;
 					scope.error = {};
 
 					angular.forEach(files, function(file) {
