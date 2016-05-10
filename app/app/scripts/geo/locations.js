@@ -197,16 +197,16 @@ angular.module('hearth.geo').directive('locations', [
 				 *	@param {Object} pos -	latitude & longitude
 				 *	@param {String} addr -	formatted address
 				 *	@param {Object} info -	object with standardized format (by translateLocation fn)
-				 *	@param {Object} all -	the whole object returned by MAPS API
+				 *	@param {Object} json_data -	the whole object returned by MAPS API
 				 */
-				function fillLocation(pos, addr, info, all) {
+				function fillLocation(pos, addr, info, json_data) {
 					// but only when it is now added yet
 					if (!$scope.locationExists(pos.lng(), pos.lat())) {
 
 						info.origin_address = addr;
 						info.address = addr;
 						info.coordinates = [pos.lng(), pos.lat()];
-						info.all = (Array.isArray(all) ? all[0] : all);
+						info.json_data = (Array.isArray(json_data) ? json_data[0] : json_data);
 						$timeout(function() {
 							$scope.locations.push(info);
 							tagsInput.focus();
@@ -270,7 +270,7 @@ angular.module('hearth.geo').directive('locations', [
 					if (!$scope.mapPoint)
 						return false;
 
-					fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, $scope.mapPoint.all);
+					fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, $scope.mapPoint.json_data);
 					$scope.closeMap({
 						locationChosen: true
 					});
@@ -284,7 +284,7 @@ angular.module('hearth.geo').directive('locations', [
 							latLng: marker.getPosition(),
 							name: info.formatted_address,
 							info: translateLocation(info.address_components),
-							all: info
+							json_data: info
 						};
 
 						// chrome has problem with rerendering point

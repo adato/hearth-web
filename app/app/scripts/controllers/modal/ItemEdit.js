@@ -9,7 +9,7 @@
 angular.module('hearth.controllers').controller('ItemEdit', [
 	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
 	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
-		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days 
+		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
 		$scope.limitPixelSize = 200; // Pixels
@@ -174,17 +174,18 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			// clear locations from null values
 			data.locations = $scope.cleanNullLocations(data.locations);
-			// transform keywords 
+			// transform keywords
 			data.keywords = data.keywords.map(function(obj) {
 				return obj.text;
 			});
 
-			if (data.location_unlimited) {
+			if (data.location_unlimited || !data.locations.length) {
 				data.locations = [];
-			}
-
-			if (!data.locations.length) {
-				data.locations = [];
+			} else {
+				// we only want to send json_data, other information is superfluous
+				for (var i = data.locations.length;i--;) {
+					data.locations[i] = {json_data: data.locations[i].json_data};
+				}
 			}
 
 			if (data.valid_until_unlimited) {
@@ -295,7 +296,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			// $(document.body).scrollTop(0);
 			if ($rootScope.isPostActive(data) && $location.path() != '/') {
-				// wait for refresh to 
+				// wait for refresh to
 				var deleteEventListener = $rootScope.$on('postsLoaded', function() {
 					deleteEventListener();
 
@@ -404,7 +405,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.closeEdit = function() {
-			// == close all modal windows 
+			// == close all modal windows
 			$scope.closeThisDialog();
 		};
 
