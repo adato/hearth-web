@@ -143,8 +143,8 @@
 			margin-right: -.9375rem;
 		}
 		.i-want, .ng {
-			margin-top: 4 * $ui-small-grid-size;
-			margin-bottom: 4 * $ui-small-grid-size;
+			margin-top: 6 * $ui-small-grid-size;
+			margin-bottom: 6 * $ui-small-grid-size;
 			clear:both;
 			a.button {
 				float: right;
@@ -154,7 +154,11 @@
 				float:left;
 				margin-left: 40px;
 				margin-right: 40px;
-				max-width:90px;
+			}
+			img.round {
+				border-radius:50%;
+				width:130px;
+				height:130px;
 			}
 			&>.indent {
 				margin-left:160px;
@@ -166,7 +170,7 @@
 			h3 {
 				margin-top: 0;
 				margin-bottom: 0.5em;
-				margin-left:170px;
+				margin-left:210px;
 				font-size: 125%;
 				text-align:left;
 			}
@@ -179,7 +183,7 @@
 				text-align:center;
 				&>img { 
 					float:none; 
-					width: 50%;
+					
 					margin-top:0 !important;
 				}
 				&>.indent, &>.no-indent {
@@ -203,6 +207,9 @@
 				h3 {
 					margin-bottom:4 * $ui-small-grid-size;
 					text-align:center;
+					&.inverse {
+						color:color(4);
+					}
 				}
 				.button {
 					margin-top:4 * $ui-small-grid-size;
@@ -214,9 +221,19 @@
 					margin-right:auto;
 				}
 				background:color(4);
+				background-size:100% !important;
 				border-radius:$global-radius;
 				padding:4 * $ui-small-grid-size;
 				text-align:center;
+			}
+			.panel.get-badge {
+				background:url(http://colorlisa.com/pictures/4_1.jpg) no-repeat;
+			}
+			.panel.print-flyer {
+				background:url(http://colorlisa.com/pictures/14_1.jpg) no-repeat;
+			}
+			.panel.get-widget {
+				background:url(http://colorlisa.com/pictures/6_1.jpg) no-repeat;
 			}
 		}
 	}
