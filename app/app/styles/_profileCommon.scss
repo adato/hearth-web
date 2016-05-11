@@ -369,7 +369,9 @@
 		}
 		.need-offer-selector {
 			display: inline-block;
-			margin-top: 18px;
+			// margin-top: 18px;
+			margin-top: $size-tiny;
+			margin-left: $size-small;
 		}
 		.author-selector {
 			margin-right: 0px;
