@@ -17,6 +17,7 @@ angular.module('hearth.directives').directive('authorSelector', [
 				selectedEntity: '=?author',
 				authorId: '=',
 				authorList: '=',
+				authorCount: '=',
 				remove: '=remove',
 				ngDisabled: '=',
 			},
@@ -61,6 +62,8 @@ angular.module('hearth.directives').directive('authorSelector', [
 					var index = $scope.getIndexById($scope.authorId);
 					$scope.selected._id = $scope.list[index]._id;
 					$scope.selectedEntity = $scope.list[index];
+
+					$scope.authorList = $scope.list;
 				};
 
 				$scope.onChange = function(id) {
