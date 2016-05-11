@@ -64,7 +64,6 @@ angular.module('hearth.directives').directive('authorSelector', [
 					$scope.selectedEntity = $scope.list[index];
 
 					$scope.authorCount = $scope.list.length;
-					console.log($scope.authorCount);
 				};
 
 				$scope.onChange = function(id) {
