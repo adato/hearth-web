@@ -168,11 +168,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.transformDataOut = function(data) {
-			var values = {
-				true: 'offer',
-				false: 'need'
-			};
-
 			// clear locations from null values
 			data.locations = $scope.cleanNullLocations(data.locations);
 			// transform keywords
@@ -192,7 +187,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.valid_until = 'unlimited';
 			}
 
-			data.type = values[data.type];
 			delete data.valid_until_unlimited;
 			return data;
 		};
@@ -362,7 +356,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			postData = angular.extend(
 				angular.copy(post), {
 					valid_until: (post.valid_until) ? convertDateToIso(post.valid_until, $scope.dateFormat) : post.valid_until,
-					id: $scope.post._id
+					id: $scope.post._id,
+					type: post.type ? 'offer' : 'need'
 				}
 			);
 
@@ -420,6 +415,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// if renewed item is this item, refresh him!
 			if (item._id === $scope.post._id) {
 				$scope.post = $scope.transformDataIn(item);
+				$scope.post.type = item.type ? 'offer' : 'need';
 			}
 		};
 
