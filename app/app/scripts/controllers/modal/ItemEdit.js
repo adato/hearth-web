@@ -186,7 +186,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				// If the place already has a place_id assigned, we only send this
 				for (var i = data.locations.length; i--;) {
 					data.locations[i] = {
-						json_data: (data.locations[i].place_id ? {place_id: data.locations[i].place_id} : data.locations[i].json_data)
+						json_data: (data.locations[i].place_id ? {
+							place_id: data.locations[i].place_id
+						} : data.locations[i].json_data)
 					};
 				}
 			}
