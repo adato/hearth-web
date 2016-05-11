@@ -34,6 +34,7 @@
 
 								<i class="fa" ng-class="{'fa-user': item._type === 'User', 'fa-group': item._type === 'Community'}" ng-if="item._type != 'Post'"></i>
 								<a class="title" ng-href="{{getProfileLink(item._type, item._id)}}">
+									<span ng-switch-when="Post" ng-bind-html=":: postTypes['User'][item.type] | translate"></span>
 									<span ng-if="item.title && !item.highlight.title[0]" ng-bind-html="item.title"></span>
 									<span ng-if="item.title && item.highlight.title[0]" ng-bind-html="item.highlight.title[0] | to_trusted"></span>
 									<span ng-if="!item.title && !item.highlight.first_name[0]" ng-bind-html="item.first_name"></span>
