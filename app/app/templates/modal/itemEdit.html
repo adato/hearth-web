@@ -23,9 +23,9 @@
 			<div class="edit-post-notify-container"></div>
 			<div class="error" ng-if="showInvalidPostMessage">{{:: 'ERR_ACTION_FAILED_DUE_TO_ERRORS' | translate }}</div>
 			<section class="author display-flex flex-wrap row">
-				<div class="form-section column small-12 medium-6">
+				<div class="form-section column small-12 medium-6" ng-show="authorCount > 1">
+					<author-selector ng-disabled="post.reply_count" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' ) | translate }}" tipsy author-count='authorCount'></author-selector>
 					<div class="position-relative">
-						<author-selector ng-disabled="post.reply_count" id="author" author-id="post.current_community_id" author="post.current_community" title="{{ ((post.reply_count) ? 'POST.AUTHOR_SELECT_IS_DISABLED': '' ) | translate }}" tipsy></author-selector>
 						<div class="tipsy-overlay" ng-if="post.reply_count"></div>
 					</div>
 				</div>
