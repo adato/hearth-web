@@ -16,6 +16,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.maxImageSizeLimit = 5; // MB
 		$scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
 		$scope.imagesCount = 0;
+		$scope.authorCount;
 		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
 		$scope.imageSizes = [];
