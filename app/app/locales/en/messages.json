@@ -1341,7 +1341,7 @@
 		"taxes": "Donations and Taxes",
 		"community_edit": "Edit community",
 		"fulltext": "Search",
-		"support-us": "Pomoz Hearthu rozdávat radost"
+		"support-us": "Support Hearth "
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1365,7 +1365,7 @@
 	"INVITATION_STATUS": {
 		"INVITATION_SENT": "{{email}}: Pozvánka úspěšně odeslána",
 		"USER_ALREADY_INVITED": "{{email}}: Tohoto člověka jsi už v minulosti do Hearthu zval.",
-		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je!",
+		"USER_ALREADY_EXIST": "{{email}}: Tento člověk už v Hearthu je jako",
 		"INVITATION_NOT_SENT": "{{email}}: Pozvánku nebylo možné odeslat. Možná neplatný e-mail?"
 	},
 	"COMMUNITY_MOTTO": "Stručně o komunitě",
@@ -1403,7 +1403,7 @@
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		}
 	},
-	"energy_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim.",
-	"mass_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim.",
-	"information_TOOLTIP": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut erat pretium, sodales diam ac, porta enim."
+	"energy_TOOLTIP": "Aktivita, myšlenka...",
+	"mass_TOOLTIP": "Věci...",
+	"information_TOOLTIP": "Znalosti, tipy..."
 }
