@@ -137,53 +137,60 @@
 			font-size: 20px;
 			width: 130px;
 		}
-		a {
-			position: relative;
-			top: 12px;
-			&.close {
-				/* margin-left: 20px; */
-			}
-		}
+		// @kamil - this is wrong - delete this
+		// a {
+		// 	position: relative;
+		// 	top: 12px;
+		// 	&.close {
+		// 		/* margin-left: 20px; */
+		// 	}
+		// }
 	}
-	.need-offer-selector {
-		display: inline-block;
-		margin-top: 12px;
-		margin-bottom: $ui-grid-size;
-		line-height: $ui-grid-size;
-		label {
-			margin: 0;
-		}
-		label:first-child {
-			margin-right: 20px;
-			margin-bottom: 0;
-		}
-		input {
-			margin: 0;
-			margin-right: 10px;
-		}
-	}
-	.category {
+
+	// .need-offer-selector {
+		// label {
+		// 	margin: 0;
+		// }
+		// label:first-child {
+		// 	margin-right: 20px;
+		// 	margin-bottom: 0;
+		// }
+		// input {
+		// 	margin: 0;
+		// 	margin-right: 10px;
+		// }
+	// }
+	.character {
 		.headline {
 			display: block;
 		}
-		.category-label {
+		.character-label {
 			margin-left: 0;
 			margin-right: 10px;
 			margin-bottom: 1rem;
 			display: inline-block;
 
+			&:last-of-type {
+				margin-right: 0;
+			}
 			input {
 				margin-right: 4px;
 				display: none;
 			}
-
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
+				margin-left: 0;
+			}
+
+			.tooltip {
+				color: $ui-color-lighter;
 			}
 
 			@media #{$small-down} {
 				display: block;
+				margin-bottom: $size-small !important;
+				margin-right: 0;
 
 				input {
 					margin-right: 6px;
@@ -247,29 +254,15 @@
 		}
 	}
 	section.author {
-		&>div {
-			position: relative;
-			.tipsy-overlay {
-				position: absolute;
-				top: 0px;
-				bottom: 0px;
-				left: 0px;
-				right: 0px;
-			}
-		}
-		.author-selector-container {
-			max-width: 320px;
-		}
-		.type-selector-container {
-			display: inline-block;
+		.tipsy-overlay {
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
 		}
 	}
-	.checkbox {
-		@extend .ui-checkbox;
-	}
-	label.checkbox.radio {
-		margin-right: $ui-grid-size;
-	}
+
 	.tags {
 		min-height: 30px;
 		input {
@@ -284,12 +277,7 @@
 			padding-right: 20px;
 			width: 140px;
 			margin-bottom: 0px !important;
-			margin-right: 10px;
 			display: inline-block;
-		}
-		.checkbox {
-			position: relative;
-			top: 2px;
 		}
 	}
 	.files {

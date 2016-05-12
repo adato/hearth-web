@@ -1,45 +1,12 @@
 .profile-edit {
 	section {
 		&.languages {
+			position: relative;
 			margin-left: 70px;
-			.checkbox {
-				padding-left: 0px;
-				padding-right: 1em;
-				span {
-					margin: 0;
-				}
-			}
-			.dropdown-container {
-				.trigger {
-					border: 3px solid #f3a17c;
-					border-radius: 13px;
-					color: #f3a17c;
-					font-size: 14px;
-					padding: 3px 6px;
-					position: relative;
-					top: -10px;
-					margin-top: 20px;
-				}
-				.dropdown {
-					li {
-						margin: {
-							bottom: 1em;
-						}
-					}
-					padding: {
-						bottom: 1em;
-					}
-				}
-			}
-			label {
-				white-space: nowrap;
-				display: inline-block;
-			}
-			ul {
-				padding: 1em;
-				padding: {
-					bottom: 0;
-				}
+
+			.autocomplete {
+				max-height: 240px;
+				overflow-y: scroll;
 			}
 		}
 		&.social {
@@ -80,9 +47,6 @@
 		min-width: 200px;
 	}
 	.configure-notifications {
-		.checkbox {
-			padding-left: 0px;
-		}
 		.button-send {
 			margin-bottom: 0px;
 		}

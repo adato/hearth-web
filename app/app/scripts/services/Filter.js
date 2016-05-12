@@ -91,6 +91,7 @@ angular.module('hearth.services').factory('Filter', [
 			apply: function(filterData, save, applySave) {
 
 				$location.search(filterData);
+
 				if (applySave && $rootScope.loggedUser._id) {
 					if (save) {
 						this.setUserFilter(filterData);

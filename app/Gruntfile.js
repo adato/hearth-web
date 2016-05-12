@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 	require('time-grunt')(grunt); // Time how long tasks take. Can help when optimizing build times
 
 	var rewriteRulesSnippet = require('grunt-connect-rewrite/lib/utils').rewriteRequest;
-	var env = grunt.option("target") || 'development';
+	var env = grunt.option("target") || 'localhost';
 
 	// test if the environment file exists
 	if (!fs.existsSync(envFolder + '/' + env + '.js')) {
@@ -182,8 +182,10 @@ module.exports = function(grunt) {
 				cert: grunt.file.read('./cert/server.crt').toString(),
 				// ca: grunt.file.read('./cert/ca.crt').toString(),
 				// Change this to '0.0.0.0' to access the server from outside.
-				//hostname: '0.0.0.0',
-				hostname: 'localhost',
+				// DO NOT CHANGE THIS - JENKINS NEEDS 0.0.0.0!!!
+        hostname: '0.0.0.0',
+        // DO NOT CHANGE THIS - JENKINS NEEDS 0.0.0.0!!!
+				// DO NOT USE THIS --- hostname: 'localhost',
 				livereload: 3333,
 				open: true,
 				middleware: function(connect, options) {

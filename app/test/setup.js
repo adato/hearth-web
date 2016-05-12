@@ -8,7 +8,7 @@ function getRandomInt (min, max) {
 var emalRandomId = getRandomInt(1, 99999999999999999);
 var testAccountPassword = ''
 module.exports = {
-	options: { 
+	options: {
 		testPassword: 'testovaci',
 		useConfig: 'local',
 		local: {
@@ -19,6 +19,14 @@ module.exports = {
 			loginFullName: 'E2E tester',
 			loginTrimmedName: 'E2E teste…'
 		},
+    jenkins: {
+      baseUrl: 'https://jenkins:9000/app',
+      appPath: '/',
+      loginName: 'hearth@mailinator.com', // test user email
+      loginPassword: 'tester', 			// test user password
+      loginFullName: 'E2E tester',
+      loginTrimmedName: 'E2E teste…'
+    },
 		dev: {
 			baseUrl: 'http://dev.hearth.net/app',
 			appPath: '/',
@@ -36,7 +44,7 @@ module.exports = {
 			loginTrimmedName: 'E2E teste…'
 		}
 	},
-	config: function () { 
+	config: function () {
 		return this.options[browser.params.env];
 	},
 	login: function () {
@@ -91,22 +99,22 @@ module.exports = {
 	    }
 	},
 	getEmailListener: function() {
-		
+
 		// here goes your email connection configuration
 		var mailListener = new MailListener({
 		    username: "testovaci@hearth.net",
 		    password: "7urucHebra",
 		    host: "imap.gmail.com",
-		    port: 993, // imap port 
+		    port: 993, // imap port
 		    tls: true,
 		    tlsOptions: { rejectUnauthorized: false },
-		    mailbox: "Tests", // mailbox to monitor 
-		    // searchFilter: ["UNSEEN", "FLAGGED"], // the search filter being used after an IDLE notification has been retrieved 
-		    markSeen: true, // all fetched email willbe marked as seen and not fetched next time 
-		    // fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`, 
-		    // mailParserOptions: {streamAttachments: true}, // options to be passed to mailParser lib. 
-		    // attachments: true, // download attachments as they are encountered to the project directory 
-		    // attachmentOptions: { directory: "attachments/" } // specify a download directory for attachments 
+		    mailbox: "Tests", // mailbox to monitor
+		    // searchFilter: ["UNSEEN", "FLAGGED"], // the search filter being used after an IDLE notification has been retrieved
+		    markSeen: true, // all fetched email willbe marked as seen and not fetched next time
+		    // fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
+		    // mailParserOptions: {streamAttachments: true}, // options to be passed to mailParser lib.
+		    // attachments: true, // download attachments as they are encountered to the project directory
+		    // attachmentOptions: { directory: "attachments/" } // specify a download directory for attachments
 		});
 
 		mailListener.start();

@@ -16,10 +16,11 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.maxImageSizeLimit = 5; // MB
 		$scope.uploadResource = $$config.apiPath + '/posts/' + $scope.post._id + '/attachments';
 		$scope.imagesCount = 0;
+		$scope.authorList;
 		$scope.imageSizesSum = 0;
 		$scope.imageUploading = false;
 		$scope.imageSizes = [];
-		$scope.postCategories = $$config.postCategories;
+		$scope.character = $$config.postCharacter;
 
 		$scope.slide = {
 			files: false,
@@ -32,7 +33,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			files: {},
 			title: false,
 			text: false,
-			category: false,
+			character: false,
 			locations: false,
 			valid_until: false
 		};
@@ -114,25 +115,25 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			return loc;
 		};
 
-		$scope.checkCategories = function() {
-			var categories = $scope.post.categories || [];
-			var count = categories.length;
+		$scope.checkCharacter = function() {
+			var character = $scope.post.character || [];
+			var count = character.length;
 
 			if (!count) {
-				$scope.createAdForm.category.$invalid = true;
-				$scope.createAdForm.category.$setValidity('required', false);
-				$scope.createAdForm.category.$setValidity('max', true);
+				$scope.createAdForm.character.$invalid = true;
+				$scope.createAdForm.character.$setValidity('required', false);
+				$scope.createAdForm.character.$setValidity('max', true);
 			} else if (count > 2) {
-				$scope.createAdForm.category.$invalid = true;
-				$scope.createAdForm.category.$setValidity('required', true);
-				$scope.createAdForm.category.$setValidity('max', false);
+				$scope.createAdForm.character.$invalid = true;
+				$scope.createAdForm.character.$setValidity('required', true);
+				$scope.createAdForm.character.$setValidity('max', false);
 			} else {
-				$scope.createAdForm.category.$invalid = false;
-				$scope.createAdForm.category.$setValidity('required', true);
-				$scope.createAdForm.category.$setValidity('max', true);
+				$scope.createAdForm.character.$invalid = false;
+				$scope.createAdForm.character.$setValidity('required', true);
+				$scope.createAdForm.character.$setValidity('max', true);
 			}
 
-			return $scope.createAdForm.category.$invalid;
+			return $scope.createAdForm.character.$invalid;
 		};
 
 		/**
@@ -186,7 +187,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				// If the place already has a place_id assigned, we only send this
 				for (var i = data.locations.length; i--;) {
 					data.locations[i] = {
-						json_data: (data.locations[i].place_id ? {place_id: data.locations[i].place_id} : data.locations[i].json_data)
+						json_data: (data.locations[i].place_id ? {
+							place_id: data.locations[i].place_id
+						} : data.locations[i].json_data)
 					};
 				}
 			}
@@ -215,10 +218,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				res = $scope.showError.text = true;
 			}
 
-			$scope.checkCategories();
+			$scope.checkCharacter();
 
-			if ($scope.createAdForm.category.$invalid) {
-				res = $scope.showError.category = true;
+			if ($scope.createAdForm.character.$invalid) {
+				res = $scope.showError.character = true;
 			}
 
 			if (!post.valid_until_unlimited) {
@@ -376,6 +379,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
+			console.log(postData);
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
 
 				// if it is save&activate button
@@ -423,6 +427,19 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			// if renewed item is this item, refresh him!
 			if (item._id === $scope.post._id) {
 				$scope.post = $scope.transformDataIn(item);
+			}
+		};
+
+		var SPACE = 32;
+		$scope.toggleCategoryCheckbox = function(event, category) {
+			var key = event.keyCode || event.charCode;
+			if (key === SPACE) {
+				var index = $scope.post.categories.indexOf(category.name);
+				if (index > -1) {
+					$scope.post.categories.splice(index, 1);
+				} else {
+					$scope.post.categories.push(category.name);
+				}
 			}
 		};
 
