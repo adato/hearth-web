@@ -24,6 +24,7 @@ angular.module('hearth.geo').directive('map', [
 			// transclude: true,
 			link: function(scope, element) {
 				var markerCluster, oms, map,
+					retainCurrentCollectionFlag,
 					I_ID = 0,
 					I_TYPE = 1,
 					I_LOCATION = 2,
@@ -100,17 +101,7 @@ angular.module('hearth.geo').directive('map', [
 							 *	I am not using bounds_changed event, as it is buggy and fires multiple times per map drag.
 							 */
 							google.maps.event.addListener(map, 'idle', function() {
-								var bounds = map.getBounds();
-								$rootScope.$emit('searchRequest', {
-									nw: {
-										lat: bounds.H.H,
-										lon: bounds.H.j
-									},
-									se: {
-										lat: bounds.j.H,
-										lon: bounds.j.j
-									}
-								});
+								$rootScope.$emit('searchRequest', map.getBounds().toJSON());
 							});
 
 						}, 100);
@@ -169,6 +160,7 @@ angular.module('hearth.geo').directive('map', [
 
 						data.author.avatar.normal = data.author.avatar.normal || $$config.defaultUserAvatar;
 						map.panTo(marker.position);
+						retainCurrentCollectionFlag = true;
 
 						if (data.author._type == 'Community') {
 							data.adType = (data.type === 'need' ? 'WE_NEED' : 'WE_OFFER');
@@ -194,8 +186,13 @@ angular.module('hearth.geo').directive('map', [
 					markers = [];
 					markerLimitValues = [];
 
-					markerCluster.clearMarkers();
-					oms.clearMarkers();
+					if (!retainCurrentCollectionFlag) {
+						markerCluster.clearMarkers();
+						oms.clearMarkers();
+					} else {
+						console.log('setting to false');
+						retainCurrentCollectionFlag = false;
+					}
 
 					if (typeof $location.search().distance != 'undefined') {
 						distance = parseInt($location.search().distance, 10);
