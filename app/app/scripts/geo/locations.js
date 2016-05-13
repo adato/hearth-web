@@ -82,11 +82,12 @@ angular.module('hearth.geo').directive('locations', [
 						}
 
 						if (places && places.length) {
+							var place = places[0];
 							$scope.errorWrongPlace = false;
-							var location = places[0].geometry.location,
-								name = places[0].formatted_address,
-								info = translateLocation(places[0].address_components);
-							fillLocation(location, name, info, JSON.parse(JSON.stringify(places)));
+							var location = place.geometry.location,
+								name = place.formatted_address,
+								info = translateLocation(place.address_components);
+							fillLocation(location, name, info, JSON.parse(JSON.stringify(place)));
 						} else {
 							$scope.errorWrongPlace = true;
 						}
@@ -176,18 +177,16 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 
-				// go throught all places and compare them with new location
-				// if there is duplicity - dont add it
-				$scope.locationExists = function(lng, lat) {
-					var precision = 7;
-
-					for (var loc in $scope.locations) {
-						var latlng = $scope.locations[loc].coordinates;
-						if (
-							latlng[0].toFixed(precision) == lng.toFixed(precision) &&
-							latlng[1].toFixed(precision) == lat.toFixed(precision)
-						)
-							return true;
+				/**
+				 *	Function checking if an array of locations contains a given location
+				 *
+				 *	@param locations {Array} - set of locations against which to check
+				 *	@param loc {Object} - location to check
+				 *	@return Boolean - true if the loc is already contained in the locations array, false otherwise
+				 */
+				$scope.locationExists = function(locations, loc) {
+					for (var i = locations.length; i--;) {
+						if (locations[i].place_id === loc.place_id) return true;
 					}
 					return false;
 				};
@@ -200,8 +199,9 @@ angular.module('hearth.geo').directive('locations', [
 				 *	@param {Object} json_data -	the whole object returned by MAPS API
 				 */
 				function fillLocation(pos, addr, info, json_data) {
-					// but only when it is now added yet
-					if (!$scope.locationExists(pos.lng(), pos.lat())) {
+					// only add if it is not in the list yet
+					// if (!$scope.locationExists(pos.lng(), pos.lat())) {
+					if (!$scope.locationExists($scope.locations, json_data)) {
 
 						info.origin_address = addr;
 						info.address = addr;
