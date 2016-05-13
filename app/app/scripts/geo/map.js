@@ -220,8 +220,7 @@ angular.module('hearth.geo').directive('map', [
 						}
 					}
 
-					if (scope.center)
-						scope.centerZoomToAll(markers);
+					if (scope.center) scope.centerZoomToAll(markers);
 					markerCluster.addMarkers(markers);
 					markerCluster.repaint();
 				};
