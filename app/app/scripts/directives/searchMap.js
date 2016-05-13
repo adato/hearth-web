@@ -59,16 +59,17 @@ angular.module('hearth.geo').directive('searchMap', [
 					return angular.copy($location.search());
 				};
 
+				/**
+				 *	@param boundingBox {LatLngBoundsLiteral} [optional]
+				 *	https://developers.google.com/maps/documentation/javascript/reference#LatLngBoundsLiteral
+				 */
 				scope.getMapBoundingBoxParams = function(boundingBox) {
-					boundingBox = boundingBox || {
-						nw: {},
-						se: {}
-					};
+					boundingBox = boundingBox || {};
 					return {
-						'bounding_box[top_left][lat]': boundingBox.nw.lat || 85,
-						'bounding_box[top_left][lon]': boundingBox.nw.lon || -170,
-						'bounding_box[bottom_right][lat]': boundingBox.se.lat || -85,
-						'bounding_box[bottom_right][lon]': boundingBox.se.lon || 175,
+						'bounding_box[top_left][lat]': boundingBox.north || 85,
+						'bounding_box[top_left][lon]': boundingBox.west || -170,
+						'bounding_box[bottom_right][lat]': boundingBox.south || -85,
+						'bounding_box[bottom_right][lon]': boundingBox.east || 175,
 						offset: 0
 					};
 				};
@@ -94,6 +95,7 @@ angular.module('hearth.geo').directive('searchMap', [
 					loc && loc.lon && scope.setSearchParams(loc);
 
 					// search only when map is shown
+					console.log(boundingBox);
 					var params = scope.getSearchParams(boundingBox);
 
 					if (params.lon) scope.center = true;
@@ -112,7 +114,7 @@ angular.module('hearth.geo').directive('searchMap', [
 					scope.search(false, boundingBox);
 				});
 
-				scope.search();
+				// scope.search();
 				scope.autodetectMyLocation();
 				scope.$on('filterReseted', scope.search);
 				scope.$on('filterApplied', scope.search);
