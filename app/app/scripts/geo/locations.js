@@ -177,21 +177,16 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 
-				// go throught all places and compare them with new location
-				// if there is duplicity - dont add it
+				/**
+				 *	Function checking if an array of locations contains a given location
+				 *
+				 *	@param locations {Array} - set of locations against which to check
+				 *	@param loc {Object} - location to check
+				 *	@return Boolean - true if the loc is already contained in the locations array, false otherwise
+				 */
 				$scope.locationExists = function(locations, loc) {
-					var precision = 7;
-
-					console.log(locations, loc);
-					return true;
-
-					for (var loc in $scope.locations) {
-						var latlng = $scope.locations[loc].coordinates;
-						if (
-							latlng[0].toFixed(precision) == lng.toFixed(precision) &&
-							latlng[1].toFixed(precision) == lat.toFixed(precision)
-						)
-							return true;
+					for (var i = locations.length; i--;) {
+						if (locations[i].place_id === loc.place_id) return true;
 					}
 					return false;
 				};
