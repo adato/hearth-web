@@ -138,7 +138,7 @@
 		&>div.columns {
 			padding:0;
 		}
-		.i-want-more {
+		.xi-want-more {
 			margin-left: -.9375rem;
 			margin-right: -.9375rem;
 		}
@@ -170,7 +170,6 @@
 			h3 {
 				margin-top: 0;
 				margin-bottom: 0.5em;
-				margin-left:210px;
 				font-size: 125%;
 				text-align:left;
 			}
@@ -201,18 +200,20 @@
 		}
 
 		.i-want-more {
+			margin-left: -0.9375rem;
+			margin-right: -0.9375rem;
 			.panel {
 				margin-bottom:2 * $ui-small-grid-size;
 				margin-top:2 * $ui-small-grid-size;
 				h3 {
 					margin-bottom:4 * $ui-small-grid-size;
 					text-align:center;
-					&.inverse {
-						color:color(4);
-					}
+					height:60px;
 				}
 				.button {
 					margin-top:4 * $ui-small-grid-size;
+					float:unset;
+					padding:0 20px;
 				}
 				img {
 					max-height:50px;
@@ -226,13 +227,13 @@
 				padding:4 * $ui-small-grid-size;
 				text-align:center;
 			}
-			.panel.get-badge {
+			.xpanel.get-badge {
 				background:url(http://colorlisa.com/pictures/4_1.jpg) no-repeat;
 			}
-			.panel.print-flyer {
+			.xpanel.print-flyer {
 				background:url(http://colorlisa.com/pictures/14_1.jpg) no-repeat;
 			}
-			.panel.get-widget {
+			.xpanel.get-widget {
 				background:url(http://colorlisa.com/pictures/6_1.jpg) no-repeat;
 			}
 		}
