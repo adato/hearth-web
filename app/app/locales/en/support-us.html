@@ -1,17 +1,19 @@
 <div class="large-7 columns">
 <p><strong>Is Hearth making you happy?</strong> Are you meeting nice people here? Does every successful “generosithing“ bring you good feelings? Support us and spread the joy!</p>
+
 <p>Hearth is free for everyone and <strong>with no ads</strong>. This is made possible only by the financial support of Libor Malý. More users are joining him every day.</p>
 <p>Now you can too.</p><br>
 </div>
-<div class="large-5 columns">
+<div class="large-5 columns hide-for-small">
 	<img src="./images/banner/corner-crowdsource.png" class="right"/>
 </div>
 
 <div class="large-12 columns i-want">
-	<h3>Contribute financially</h3>
-	<img src="./images/icons/money.svg" width="130" style="margin-top:-35px;"/>
-	<div class="indent margin-none">
-
+	<div class="large-3 columns center text-center">
+		<img src="./images/banner/crowdsource1.jpg" width="130" height="130" class="round"/>
+	</div>
+	<div class="large-9 columns">
+		<h3>Contribute financially</h3>
 		<p>Send us a one-off contribution or setup a recurring payment. How much? It’s up to you. Any support counts, and the only yardstick here may simply be feeling good.</p>
 		<a class="button give-money text-center" ng-click="openModal('support-us-modal-pay');">Contribute</a>
 	</div>
@@ -21,9 +23,11 @@
 <hr />
 
 <div class="large-12 columns i-want">
-	<h3>Lend us a hand</h3>
-	<img src="./images/icons/handshake.svg" width="130" style="margin-top: -16px;"/>
-	<div class="indent margin-none">
+	<div class="large-3 columns center text-center">
+		<img src="./images/banner/crowdsource2.jpg" width="130" height="130" class="round"/>
+	</div>
+	<div class="large-9 columns">
+		<h3>Lend us a hand</h3>
 		<p>Or rather, your head. Web development is a long journey. What we need most are volunteers with knowledge of these codewords: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku. </p>
 		<a class="button write-email" ng-click="openModal('support-us-modal-write-us');">I`m in</a>
 	</div>
@@ -32,38 +36,39 @@
 <hr />
 
 <div class="large-12 columns i-want">
-	<div class="no-indent">
-		<h3 style="margin-left:0;">Spread the word</h3>
+	<div class="large-3 columns center text-center">
+		<img src="./images/banner/crowdsource3.jpg" width="130" height="130" class="round"/>
+	</div>
+	<div class="large-9 columns">
+		<h3>Spread the word</h3>
 		<p>You’re not an IT expert? It’s OK. You almost certainly have people around you who still don’t know about Hearth. Introduce them to our idea of sharing, invite them to Hearth and pass the joy on.</p>
+		<div class="i-want-more">
+			<div class="large-4 columns">
+				<div class="panel get-badge">
+					<h3>Badges and stickers</h3>
+					<img src="./images/icons/hearth.svg"/>
+					<a href="" ng-click="openModal('support-us-modal-badge');" class="button">I want them</a>
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="panel print-flyer">
+					<h3>Print out a leaflet</h3>
+					<img src="./images/icons/print.svg"/>
+					<a href="" ng-click="openModal('support-us-modal-print');" class="button">I want a leaflet</a>
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="panel get-widget">
+					<h3>Add a logo to your website</h3>
+					<img src="./images/icons/window.svg"/>
+					<a href="" ng-click="openModal('support-us-modal-widget');" class="button">I want a logo</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class="i-want-more">
-	<div class="large-4 columns">
-		<div class="panel get-badge">
-			<h3>Badges and stickers</h3>
-			<img src="./images/icons/hearth.svg"/>
-			<a href="" ng-click="openModal('support-us-modal-badge');" class="button">I want them</a>
-		</div>
-	</div>
-	<div class="large-4 columns">
-		<div class="panel print-flyer">
-			<h3>Print out a leaflet</h3>
-			<img src="./images/icons/print.svg"/>
-			<a href="" ng-click="openModal('support-us-modal-print');" class="button">I want a leaflet</a>
-		</div>
-	</div>
-	<div class="large-4 columns">
-		<div class="panel get-widget">
-			<h3>Add a logo to your website</h3>
-			<img src="./images/icons/window.svg"/>
-			<a href="" ng-click="openModal('support-us-modal-widget');" class="button">I want a logo</a>
-		</div>
-	</div>
-</div>
-
-
-<div style="clear: both;">
+<div class="clearfix large-12 columns text-center">
 	<br><br>
 	<strong>Thank you for making our world a little better and kinder with us.</strong></p>
 	<p>Your Hearth.net</p>
@@ -89,21 +94,21 @@
 					<img src="images/logo-dark.png" width="200" style="padding:10px;">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="images/logo-orange.png" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="images/logo.png" style="background:#7c766a; padding:10px;" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
 				</div>
 
 				<br style="clear:both;">
@@ -298,12 +303,11 @@
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
 		</div>
-
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
 				<p>Send us some readies. With loving thanks. Your Hearth. :)</p>
 				<div>
-					<iframe style="width: 50%; height: 250px; display:block; margin:0 auto; overflow: hidden; border-style: none;" src="https://www.darujme.cz/dar/widgets/widget.php?widget=909" height="250"></iframe>
+					<iframe style="width: 300px; height: 250px; display:block; margin:0 auto; overflow: hidden; border-style: none;" src="https://www.darujme.cz/dar/widgets/widget.php?widget=928" height="250"></iframe>
 				</div>
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
