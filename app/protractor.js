@@ -1,6 +1,8 @@
 var testFolder = './test/';
 exports.config = {
 	seleniumAddress: 'http://localhost:4444/wd/hub',
+	allScriptsTimeout: 30000,
+	getPageTimeout: 30000,
 	capabilities: {
 		'browserName': 'chrome' // or 'firefox', 'safari'
 	},
