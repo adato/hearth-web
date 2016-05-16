@@ -4,15 +4,16 @@
 <p>Hearth je pro všechny <strong>zdarma a bez reklam</strong>. Je to možné jen díky finanční podpoře Libora Malého. Postupně se k němu přidávají uživatelé.</p>
 <p>A teď můžeš i Ty.</p><br>
 </div>
-<div class="large-5 columns">
+<div class="large-5 columns hide-for-small">
 	<img src="./images/banner/corner-crowdsource.png" class="right"/>
 </div>
 
 <div class="large-12 columns i-want">
-	<h3>Přispěj finančně</h3>
-	<img src="./images/icons/money.svg" width="130" style="margin-top:-35px;"/>
-	<div class="indent margin-none">
-
+	<div class="large-3 columns center text-center">
+		<img src="./images/banner/crowdsource1.jpg" width="130" height="130" class="round"/>
+	</div>
+	<div class="large-9 columns">
+		<h3>Přispěj finančně</h3>
 		<p>Pošli nám jednorázový příspěvek nebo si nastav pravidelnou platbu. V jaké výši? To je na tobě.<br>Jakákoliv podpora se počítá a jediné měřítko může být třeba dobrý pocit v břiše.</p>
 		<a class="button give-money text-center" ng-click="openModal('support-us-modal-pay');">Chci přispět</a>
 	</div>
@@ -22,9 +23,11 @@
 <hr />
 
 <div class="large-12 columns i-want">
-	<h3>Přidej ruku k dílu</h3>
-	<img src="./images/icons/handshake.svg" width="130" style="margin-top: -16px;"/>
-	<div class="indent margin-none">
+	<div class="large-3 columns center text-center">
+		<img src="./images/banner/crowdsource2.jpg" width="130" height="130" class="round"/>
+	</div>
+	<div class="large-9 columns">
+		<h3>Přidej ruku k dílu</h3>
 		<p>Teda spíš hlavu. Vývoj webu je běh na dlouhou trať. Ze všeho nejvíc proto potřebujeme dobrovolníky, co se vyznají v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku. </p>
 		<a class="button write-email" ng-click="openModal('support-us-modal-write-us');">Jdu do toho</a>
 	</div>
@@ -33,40 +36,44 @@
 <hr />
 
 <div class="large-12 columns i-want">
-	<div class="no-indent">
-		<h3 style="margin-left:0;">Dej o nás vědět</h3>
+	
+	<div class="large-3 columns center text-center">
+		<img src="./images/banner/crowdsource3.jpg" width="130" height="130" class="round"/>
+	</div>
+	<div class="large-9 columns">
+		<h3>Dej o nás vědět</h3>
 		<p>Že máš k IT daleko? Nevadí. Určitě máš kolem sebe lidi, kteří o Hearthu ještě nevědí. Představ jim myšlenku sdílení, pozvi je do Hearthu a pošli radost dál.</p>
+		<div class="i-want-more">
+			<div class="large-4 columns">
+				<div class="panel get-badge">
+					<h3 class="xinverse">Napiš si o placky a samolepky</h3>
+					<img src="./images/icons/hearth.svg"/>
+					<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chci samolepky</a>
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="panel print-flyer">
+					<h3 class="xinverse">Vytiskni si leták</h3>
+					<img src="./images/icons/print.svg"/>
+					<a href="" ng-click="openModal('support-us-modal-print');" class="button">Chci leták</a>
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="panel get-widget">
+					<h3>Přidej logo do své stránky</h3>
+					<img src="./images/icons/window.svg"/>
+					<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Chci odkaz</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class="i-want-more">
-	<div class="large-4 columns">
-		<div class="panel get-badge">
-			<h3>Napiš si o placky a samolepky</h3>
-			<img src="./images/icons/hearth.svg"/>
-			<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chci samolepky</a>
-		</div>
-	</div>
-	<div class="large-4 columns">
-		<div class="panel print-flyer">
-			<h3>Vytiskni si leták</h3>
-			<img src="./images/icons/print.svg"/>
-			<a href="" ng-click="openModal('support-us-modal-print');" class="button">Chci leták</a>
-		</div>
-	</div>
-	<div class="large-4 columns">
-		<div class="panel get-widget">
-			<h3>Přidej logo do své stránky</h3>
-			<img src="./images/icons/window.svg"/>
-			<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Chci odkaz</a>
-		</div>
-	</div>
-</div>
 
 
-<div style="clear: both;">
+<div style="clear: both;" class="large-12 columns text-center">
 	<br><br>
-	<strong>Děkuji, že spolu s námi děláš svět zase o kousek lepší a laskavější. </strong></p>
+	<strong>Děkuji, že spolu s námi děláš svět zase o kousek lepší a laskavější.</strong></p>
 	<p>Tvůj Hearth.net</p>
 </div>
 
@@ -90,21 +97,21 @@
 					<img src="images/logo-dark.png" width="200" style="padding:10px;">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="images/logo-orange.png" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="images/logo.png" style="background:#7c766a; padding:10px;" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
 				</div>
 
 				<br style="clear:both;">
@@ -299,12 +306,11 @@
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
 		</div>
-
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
 				<p>Pošli love. S láskou a díky. Tvůj Hearth. :)</p>
 				<div>
-					<iframe style="width: 50%; height: 250px; display:block; margin:0 auto; overflow: hidden; border-style: none;" src="https://www.darujme.cz/dar/widgets/widget.php?widget=909" height="250"></iframe>
+					<iframe style="width: 400px; height: 300px; display:block; margin:0 auto; overflow: hidden; border-style: none;" src="https://www.darujme.cz/dar/widgets/widget.php?widget=927" height="250"></iframe>
 				</div>
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">
