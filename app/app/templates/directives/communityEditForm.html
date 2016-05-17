@@ -142,24 +142,22 @@
 						<label>
 							{{:: 'COMMUNITY_DESCRIPTION' | translate }}
 						</label>
-						<textarea autosize-textarea max-len="300" ng-focus="showError.description = false" ng-blur="showError.description = true" name="description" ng-attr-placeholder="{{::'COMMUNITY_DESCRIPTIONS_PLACEHOLDER' | translate }}" ng-model="community.description"
-						required></textarea>
-						<max-len-counter max-len="300" value="community.description"></max-len-counter>
-						<div class="error margin-top" ng-show="showError.description">
-							<span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
-						</div>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.description" name="description" required></input-max-length>
+
+						<span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
+
 					</div>
 					<div class="large-6 small-12 medium-12 columns">
 						<label>
 							{{:: 'COMMUNITY_RESTRICTIONS' | translate }}
 						</label>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.terms" name="terms"></input-max-length>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.terms" name="terms"></input-max-length>
 					</div>
 					<div class="large-12 small-12 medium-12 columns" ng-if="community._id">
 						<label>
 							{{:: 'COMMUNITY_INTERESTS' | translate }}
 						</label>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="300" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" model="community.interests" name="interests" class="interests-input"></input-max-length>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" model="community.interests" name="interests" class="interests-input"></input-max-length>
 					</div>
 				</section>
 				<div class="clear"></div>

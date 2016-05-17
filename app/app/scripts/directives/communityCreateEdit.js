@@ -109,7 +109,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						data.webs = webs;
 					}
 					if (data.webs !== undefined) prepareWebs(data);
-					if (data.interests !== undefined) data.interests = data.interests.split(',');
+
+					if (typeof data.interests !== 'object') {
+						if (data.interests !== undefined) data.interests = data.interests.split(',');
+					}
 					return data;
 				};
 
@@ -118,7 +121,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						url = input.val();
 
 					if (url && !url.match(/http[s]?:\/\/.*/)) {
-						url = 'https://' + url;
+						url = 'http://' + url;
 					}
 
 					if (model !== $scope.community.webs) {
@@ -158,6 +161,14 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 					if ($scope.communityForm.description.$invalid) {
 						$scope.showError.description = err = true;
+					}
+
+					if ($scope.communityForm.terms.$invalid) {
+						$scope.showError.terms = err = true;
+					}
+
+					if ($scope.communityForm.interests.$invalid) {
+						$scope.showError.interests = err = true;
 					}
 
 					if (!$scope.validateSocialNetworks()) {
