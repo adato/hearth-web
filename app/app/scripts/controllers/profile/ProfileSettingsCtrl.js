@@ -54,7 +54,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		 */
 		$scope.processDeleteUserResult = function(res) {
 			$rootScope.globalLoading = false;
-
 			// if ok, reload browser and show notify
 			if (res.ok) {
 
@@ -62,9 +61,9 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 				window.location.replace("/app/");
 			} else if (res.reason == 'community admin') {
 				// when user has community, show notify - hack for problem with view handling
-				setTimeout(function() {
+				$timeout(function() {
 					return Notify.addTranslate('NOTIFY.ACCOUNT_DELETE_FAILED_COMMUNITY', Notify.T_ERROR, '.notify-container-delete-user');
-				}, 1000);
+				}, 500);
 			} else {
 				// when there is general error
 				Notify.addSingleTranslate('NOTIFY.ACCOUNT_DELETE_FAILED', Notify.T_ERROR);
