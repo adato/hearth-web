@@ -1,0 +1,61 @@
+<article class="item-common" id="post_banner">
+	<div class="row">
+		<section class="column medium-2 show-for-medium-up text-center v2 user padding-top-small">
+			<a ng-href="support-us">
+				<avatar class="show-post-arrows need" type="'User'" src="'/app/images/logo-round.png'"></avatar>
+				<div class="name">Hearth.net</div>
+			</a>
+		</section>
+
+		<div class="column small-12 medium-10 padding-none">
+			<section class="box padding-none" ng-init="marketplace.expanded = false;">
+				<div class="box-content">
+					<header class="item-section row">
+						<div class="column small-12 hide-for-medium-up">
+							<!-- small avatar TODO -->
+							<a ng-href="support-us">
+								<avatar class="show-post-arrows need" type="'User'" src="'/app/images/logo-round.png'" size="small"></avatar>
+							</a>
+						</div>
+						<div class="column large-12">
+							<h1 class='display-inline-block margin-right-medium'>
+								<a ng-href="support-us">
+									<span ng-class="'color-need'" translate="{{::'Přijmeme' | translate }}"></span>
+									<span>{{::'Podporu Hearth.net' | translate }}</span>
+								</a>
+							</h1>
+						</div>
+
+						<div class="column small-12">
+							<i class="fa fa-map-marker"></i>&nbsp;{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
+						</div>
+					</header>
+
+					<div class="item-section text-container word-break">
+						<p class="margin-none"></p>
+					</div>
+
+					<a class="fancy" ng-href="support-us">
+						<img ng-src="/app/images/banner/crowdsource-large-cs.png" />
+					</a>
+					<br>
+					<br>
+				</div>
+				<footer>
+					<div class="display-table nowrap">
+						<div class="display-table-cell">
+							<div class="display-flex flex-wrap">
+
+								<div class="padding-right-large">
+									<a ng-href="support-us">
+										<button class="button" ng-class=":: 'background-need'" ng-bind-html="::'Podpoř Hearth' | translate " ng-href="support-us"></button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</section>
+		</div>
+	</div>
+</article>
