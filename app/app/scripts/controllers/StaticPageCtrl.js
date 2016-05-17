@@ -28,10 +28,10 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 		$scope.postalAddressData = {
 			what: 'Tohle je test / neodpovidat',
 			email: '',
-			badges: true,
-			numBadges: 2,
+			badges: false,
+			numBadges: 10,
 			stickers: false,
-			numStickers: 2,
+			numStickers: 20,
 			fullName: '',
 			street: '',
 			city: '',
