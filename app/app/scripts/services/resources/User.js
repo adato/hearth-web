@@ -59,7 +59,7 @@ angular.module('hearth.services').factory('User', [
 			},
 			remove: {
 				method: 'DELETE',
-				errorNotify: false
+				nointercept: true,
 			},
 			setClosedFilter: {
 				url: $$config.apiPath + '/close_filter',
