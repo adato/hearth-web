@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators',
-	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators) {
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window',
+	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
 		$scope.sending = false;
@@ -32,9 +32,14 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			var title = encodeURIComponent(inviteInfo.title);
 			var description = encodeURIComponent(inviteInfo.description);
 
-			$scope.url = window.location.href.replace(window.location.hash, '');
-			$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;
+			// link to the landing page
+			$scope.url = $window.location.origin;
+			$scope.urlLinkedin = $scope.url + '?title=' + title + '&summary=' + description;
 			$scope.endpoints = $$config.sharingEndpoints;
+			Invitation.getReferralCode(function(res) {
+				$scope.url += '?' + $$config.referrerCookieName + '=' + res.token;
+				$scope.urlLinkedin += '&' + $$config.referrerCookieName + '=' + res.token;
+			});
 		};
 
 		/**
@@ -57,7 +62,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				emails = angular.copy(emails).split(",");
 			}
 
-			// validate emails 
+			// validate emails
 			if (!Validators.emails(emails)) {
 				$scope.showError.to_email = true;
 				$scope.inviteForm.to_email.$error.format = true;

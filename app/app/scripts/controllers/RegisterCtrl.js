@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
-	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
+	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth', 'Cookie',
+	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth, Cookie) {
 
 		$scope.user = {
 			email: '',
@@ -35,10 +35,11 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				language: preferredLanguage,
 				user_action: 'register'
 			}).then(function(response) {
-				if (response.status == 200)
+				if (response.status == 200) {
 					Auth.processLoginResponse(response.data);
-				else
+				} else {
 					$scope.loginError = true;
+				}
 			});
 		};
 

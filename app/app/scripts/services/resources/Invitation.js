@@ -17,6 +17,10 @@ angular.module('hearth.services').factory('Invitation', [
 					code: 'NOTIFY.EMAIL_INVITATION_FAILED',
 					container: ".invite-box-notify"
 				}
+			},
+			getReferralCode: {
+				method: 'POST',
+				url: $$config.apiPath + '/invitation/referral'
 			}
 		});
 	}
