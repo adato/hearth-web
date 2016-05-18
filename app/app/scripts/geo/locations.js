@@ -25,7 +25,7 @@ angular.module('hearth.geo').directive('locations', [
 			},
 			templateUrl: 'templates/geo/locations.html',
 			link: function($scope, baseElement) {
-				var map, sBox, tagsInput, marker = false;
+				var map, autocomplete, tagsInput, marker = false;
 				$scope.mapPoint = false;
 				$scope.mapPointShowName = true; // due to chrome bug with rerendering
 				$scope.errorWrongPlace = false;
@@ -36,10 +36,9 @@ angular.module('hearth.geo').directive('locations', [
 					$scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
 				// @kamil - NOT FUNCTIONAL
-				// $scope.$watch("locations", function(val) {
-				// 	console.log(val);
-				// 	// 	$scope.locations = (val) ? filterUniqueLocations(val) : [];
-				// });
+				/*$scope.$watch("locations", function(val) {
+					$scope.locations = (val) ? filterUniqueLocations(val) : [];
+				});*/
 
 				var markerImage = {
 					url: 'images/pin.png',
@@ -49,45 +48,48 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 				// @kamil - NOT FUNCTIONAL
-				// function filterUniqueLocations(locations) {
-				// 	var arr = [];
-				// 	var item;
-				//
-				// 	// remove duplicit locations
-				// 	for (var i = 0; i < locations.length; i++) {
-				// 		if (!locations[i].origin_address)
-				// 			locations[i].origin_address = locations[i].address;
-				//
-				// 		for (var j = 0; j < i; j++) {
-				// 			if (locations[j].address == locations[i].address) {
-				// 				locations.splice(i--, 1);
-				// 				break;
-				// 			}
-				// 		}
-				// 	}
-				//
-				// 	return locations;
-				// }
+				/*function filterUniqueLocations(locations) {
+					var arr = [];
+					var item;
 
-				// init google places search box
+					// remove duplicit locations
+					for (var i = 0; i < locations.length; i++) {
+						if (!locations[i].origin_address)
+							locations[i].origin_address = locations[i].address;
+
+						for (var j = 0; j < i; j++) {
+							if (locations[j].address == locations[i].address) {
+								locations.splice(i--, 1);
+								break;
+							}
+						}
+					}
+
+					return locations;
+				}*/
+
+				// init Google Places Autocomplete
 				function addPlacesAutocompleteListener(input) {
-					var sBox = new google.maps.places.SearchBox(input);
-					google.maps.event.addListener(sBox, 'places_changed', function() {
-						var places = sBox.getPlaces();
+					var options = {
+						types: ['geocode']
+					};
+					var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+					google.maps.event.addListener(autocomplete, 'place_changed', function() {
+						var place = autocomplete.getPlace();
 						$scope.showError = false;
 
-						if (!places.length || !places[0].address_components) {
+						if (typeof place === "undefined" || !place.address_components) {
 							$(input).val('');
 							return false;
 						}
 
-						if (places && places.length) {
-							var place = places[0];
+						if (place && place.address_components) {
 							$scope.errorWrongPlace = false;
-							var location = place.geometry.location,
-								name = place.formatted_address,
-								info = translateLocation(place.address_components);
-							fillLocation(location, name, info, JSON.parse(JSON.stringify(place)));
+							var location = place.geometry.location;
+							var name = place.formatted_address;
+							var info = translateLocation(place.address_components);
+							fillLocation(location, name, info, place);
 						} else {
 							$scope.errorWrongPlace = true;
 						}
@@ -150,7 +152,7 @@ angular.module('hearth.geo').directive('locations', [
 						$scope.errorWrongPlace = false;
 					});
 
-					return sBox;
+					return autocomplete;
 				};
 
 				// this will translate info from location to used format
@@ -185,10 +187,15 @@ angular.module('hearth.geo').directive('locations', [
 				 *	@return Boolean - true if the loc is already contained in the locations array, false otherwise
 				 */
 				$scope.locationExists = function(locations, loc) {
-					for (var i = locations.length; i--;) {
-						if (locations[i].place_id === loc.place_id) return true;
-					}
-					return false;
+					var exists = false;
+
+					angular.forEach(locations, function(location) {
+						if (angular.equals(location.json_data, loc)) {
+							exists = true;
+						}
+					});
+
+					return exists;
 				};
 
 				// add location to list
@@ -202,11 +209,10 @@ angular.module('hearth.geo').directive('locations', [
 					// only add if it is not in the list yet
 					// if (!$scope.locationExists(pos.lng(), pos.lat())) {
 					if (!$scope.locationExists($scope.locations, json_data)) {
-
 						info.origin_address = addr;
 						info.address = addr;
 						info.coordinates = [pos.lng(), pos.lat()];
-						info.json_data = (Array.isArray(json_data) ? json_data[0] : json_data);
+						info.json_data = json_data;
 						$timeout(function() {
 							$scope.locations.push(info);
 							tagsInput.focus();
@@ -361,7 +367,7 @@ angular.module('hearth.geo').directive('locations', [
 
 				function init() {
 					tagsInput = $(".tags input", baseElement);
-					sBox = addPlacesAutocompleteListener($('.tags input', baseElement)[0]);
+					autocomplete = addPlacesAutocompleteListener($('.tags input', baseElement)[0]);
 					$scope.$watch('disabled', function(val) {
 						locationDoesNotMatter(val, true);
 					});
