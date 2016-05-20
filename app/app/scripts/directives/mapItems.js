@@ -53,7 +53,6 @@ angular.module('hearth.directives').directive('mapitems', [
 				 * This will clear all map markers
 				 */
 				$scope.clearMap = function() {
-
 					markers.forEach(function(item) {
 						item.setMap(null);
 					});
@@ -72,7 +71,9 @@ angular.module('hearth.directives').directive('mapitems', [
 					});
 
 					// fit marker to bound
-					map.fitBounds(bounds);
+					google.maps.event.addListenerOnce(map, 'idle', function() {
+						map.fitBounds(bounds);
+					});
 
 					// dont zoom so close when in map is only one marker
 					var listener = google.maps.event.addListener(map, "idle", function() {
@@ -82,7 +83,7 @@ angular.module('hearth.directives').directive('mapitems', [
 				};
 
 				/**
-				 * Refresh locations - show them in map 
+				 * Refresh locations - show them in map
 				 */
 				$scope.refreshMarkers = function() {
 					$scope.initMap();
@@ -94,7 +95,10 @@ angular.module('hearth.directives').directive('mapitems', [
 
 					// add locations to map
 					$scope.items.forEach(function(item) {
-						var myLatlng = new google.maps.LatLng(item.coordinates[1], item.coordinates[0]);
+						// @TODO change location.coordinates attribute returned from API response to lat and lng
+						var lat = item.coordinates[0].constructor === Array ? item.coordinates[1][1] : item.coordinates[1];
+						var lng = item.coordinates[0].constructor === Array ? item.coordinates[1][0] : item.coordinates[0];
+						var myLatlng = new google.maps.LatLng(lat, lng);
 						var marker = new google.maps.Marker({
 							map: map,
 							draggable: false,
@@ -110,7 +114,7 @@ angular.module('hearth.directives').directive('mapitems', [
 					$scope.fitZoom();
 				};
 
-				// when changed locations array, 
+				// when changed locations array,
 				$scope.$watch("items", function(val) {
 					$timeout($scope.refreshMarkers, 200);
 				});

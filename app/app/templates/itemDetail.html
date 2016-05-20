@@ -101,7 +101,7 @@
 									<div class='margin-bottom-small'>
 										<ul class="no-list">
 											<li ng-if="item.location_unlimited">{{:: 'POSTS.DETAIL.LOCATION_ANYWHERE' | translate }}</li>
-											<li ng-repeat="(locationId, location) in item.locations">
+											<li ng-repeat="location in item.locations track by $index">
 												{{ location.address }}
 											</li>
 										</ul>

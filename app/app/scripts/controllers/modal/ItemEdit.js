@@ -471,12 +471,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init();
+
 		$scope.$watch('post.related_communities', function(val, old) {
 			if (val.length !== old.length && !$scope.post.related_communities.length)
 				$scope.post.is_private = false;
 
 			$scope.toggleLockField();
 		});
+
 		$scope.$watch('post.current_community_id', function(val, old) {
 			if (!!val !== !!old) {
 				$scope.post.related_communities = [];
@@ -485,6 +487,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 			$scope.toggleLockField();
 		});
+
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
 		$scope.$on('postUpdated', $scope.refreshItemInfo);
 		$scope.$on("itemDeleted", $scope.itemDeleted);
