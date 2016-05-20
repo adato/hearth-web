@@ -46,11 +46,14 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 		// load post data
 		$scope.load = function() {
-
 			Post.get({
 				postId: $stateParams.id
 			}, function(data) {
 				$scope.item = data;
+
+				angular.forEach(data.locations, function(location, index) {
+					$scope.item.locations[index] = location.json_data;
+				});
 
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
