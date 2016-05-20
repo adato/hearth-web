@@ -35,38 +35,12 @@ angular.module('hearth.geo').directive('locations', [
 				if (!$scope.errorCode)
 					$scope.errorCode = 'LOCATIONS_ARE_EMPTY';
 
-				// @kamil - NOT FUNCTIONAL
-				/*$scope.$watch("locations", function(val) {
-					$scope.locations = (val) ? filterUniqueLocations(val) : [];
-				});*/
-
 				var markerImage = {
 					url: 'images/pin.png',
 					size: new google.maps.Size(49, 49),
 					origin: new google.maps.Point(0, 0),
 					anchor: new google.maps.Point(14, 34)
 				};
-
-				// @kamil - NOT FUNCTIONAL
-				/*function filterUniqueLocations(locations) {
-					var arr = [];
-					var item;
-
-					// remove duplicit locations
-					for (var i = 0; i < locations.length; i++) {
-						if (!locations[i].origin_address)
-							locations[i].origin_address = locations[i].address;
-
-						for (var j = 0; j < i; j++) {
-							if (locations[j].address == locations[i].address) {
-								locations.splice(i--, 1);
-								break;
-							}
-						}
-					}
-
-					return locations;
-				}*/
 
 				// init Google Places Autocomplete
 				function addPlacesAutocompleteListener(input) {
@@ -86,10 +60,7 @@ angular.module('hearth.geo').directive('locations', [
 
 						if (place && place.address_components) {
 							$scope.errorWrongPlace = false;
-							var location = place.geometry.location;
-							var name = place.formatted_address;
-							var info = translateLocation(place.address_components);
-							fillLocation(location, name, info, place);
+							fillLocations(place);
 						} else {
 							$scope.errorWrongPlace = true;
 						}
@@ -180,17 +151,16 @@ angular.module('hearth.geo').directive('locations', [
 
 
 				/**
-				 *	Function checking if an array of locations contains a given location
+				 *	Function checking if an array of locations contains a given place
 				 *
-				 *	@param locations {Array} - set of locations against which to check
-				 *	@param loc {Object} - location to check
-				 *	@return Boolean - true if the loc is already contained in the locations array, false otherwise
+				 *	@param place {Object} - place to check
+				 *	@return Boolean - true if the place is already contained in the locations array, false otherwise
 				 */
-				$scope.locationExists = function(locations, loc) {
+				$scope.placeExists = function(place) {
 					var exists = false;
 
-					angular.forEach(locations, function(location) {
-						if (angular.equals(location.json_data, loc)) {
+					angular.forEach($scope.locations, function(location) {
+						if (location.place_id === place.place_id) {
 							exists = true;
 						}
 					});
@@ -198,23 +168,15 @@ angular.module('hearth.geo').directive('locations', [
 					return exists;
 				};
 
-				// add location to list
+				// add place to list
 				/**
-				 *	@param {Object} pos -	latitude & longitude
-				 *	@param {String} addr -	formatted address
-				 *	@param {Object} info -	object with standardized format (by translateLocation fn)
-				 *	@param {Object} json_data -	the whole object returned by MAPS API
+				 *	@param {Object} place -	the whole object returned by MAPS API
 				 */
-				function fillLocation(pos, addr, info, json_data) {
+				function fillLocations(place) {
 					// only add if it is not in the list yet
-					// if (!$scope.locationExists(pos.lng(), pos.lat())) {
-					if (!$scope.locationExists($scope.locations, json_data)) {
-						info.origin_address = addr;
-						info.address = addr;
-						info.coordinates = [pos.lng(), pos.lat()];
-						info.json_data = json_data;
+					if (!$scope.placeExists(place)) {
 						$timeout(function() {
-							$scope.locations.push(info);
+							$scope.locations.push(place);
 							tagsInput.focus();
 						});
 					}
@@ -277,22 +239,17 @@ angular.module('hearth.geo').directive('locations', [
 					if (!$scope.mapPoint)
 						return false;
 
-					fillLocation($scope.mapPoint.latLng, $scope.mapPoint.name, $scope.mapPoint.info, $scope.mapPoint.json_data);
+					fillLocations($scope.mapPoint);
 					$scope.closeMap({
 						locationChosen: true
 					});
 				};
 
 				$scope.refreshMapPoint = function() {
-					geo.getAddress(marker.getPosition()).then(function(info) {
+					geo.getAddress(marker.getPosition()).then(function(place) {
+						console.log(place);
 						$scope.mapPointShowName = false;
-
-						$scope.mapPoint = {
-							latLng: marker.getPosition(),
-							name: info.formatted_address,
-							info: translateLocation(info.address_components),
-							json_data: info
-						};
+						$scope.mapPoint = place;
 
 						// chrome has problem with rerendering point
 						// after location change - hide location and show again after.
@@ -308,7 +265,6 @@ angular.module('hearth.geo').directive('locations', [
 				};
 
 				$scope.initMap = function() {
-
 					if ($(".location-map", baseElement).hasClass("inited"))
 						return false;
 
@@ -316,6 +272,7 @@ angular.module('hearth.geo').directive('locations', [
 						draggableCursor: 'url(images/pin.png) 14 34, default',
 						scrollwheel: false
 					});
+
 					google.maps.event.addListener(map, 'click', function(e) {
 						map.panTo(e.latLng);
 
