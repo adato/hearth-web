@@ -158,6 +158,12 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					post.locations = [];
 				}
 
+				if (post.locations.length && !post.location_unlimited) {
+					angular.forEach(post.locations, function(location, index) {
+						post.locations[index] = location.json_data;
+					});
+				}
+
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
 				$scope.slide.communities = !!post.related_communities.length
@@ -169,7 +175,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 		$scope.transformDataOut = function(data) {
 			// clear locations from null values
-			data.locations = $scope.cleanNullLocations(data.locations);
+			//data.locations = $scope.cleanNullLocations(data.locations);
 			// transform keywords
 			data.keywords = data.keywords.map(function(obj) {
 				return obj.text;
@@ -178,15 +184,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if (data.location_unlimited || !data.locations.length) {
 				data.locations = [];
 			} else {
-				// We only want to send json_data, other information is superfluous.
-				// If the place already has a place_id assigned, we only send this
-				for (var i = data.locations.length; i--;) {
-					data.locations[i] = {
-						json_data: (data.locations[i].place_id ? {
-							place_id: data.locations[i].place_id
-						} : data.locations[i].json_data)
+				angular.forEach(data.locations, function(location, index) {
+					data.locations[index] = {
+						json_data: location.address_components ? location : {
+							place_id: location.place_id
+						}
 					};
-				}
+				});
 			}
 
 			if (data.valid_until_unlimited) {
@@ -374,7 +378,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
-			console.log(postData);
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
 
 				// if it is save&activate button
