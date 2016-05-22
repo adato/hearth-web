@@ -60,22 +60,22 @@ angular.module('hearth.directives').directive('mapitems', [
 				};
 
 				/**
-				 * Zoom out on all markers in map
+				 * Zoom out at all markers in the map
 				 */
 				$scope.fitZoom = function() {
 					var bounds = new google.maps.LatLngBounds();
 
-					// add marker to bound
+					// add markers to bound
 					markers.forEach(function(item) {
 						bounds.extend(item.getPosition());
 					});
 
-					// fit marker to bound
+					// fit markers to bound
 					google.maps.event.addListenerOnce(map, 'idle', function() {
 						map.fitBounds(bounds);
 					});
 
-					// dont zoom so close when in map is only one marker
+					// don't zoom so close when in map is only one marker
 					var listener = google.maps.event.addListener(map, "idle", function() {
 						if (map.getZoom() > 16) map.setZoom(16);
 						google.maps.event.removeListener(listener);
@@ -90,31 +90,31 @@ angular.module('hearth.directives').directive('mapitems', [
 					$scope.clearMap();
 
 					// if there are no locations, dont continue
-					if (!$scope.items.length)
+					if (!$scope.items.length) {
 						return false;
+					}
 
-					// add locations to map
+					// add location markers into the map
 					$scope.items.forEach(function(item) {
-						// @TODO change location.coordinates attribute returned from API response to lat and lng
-						var lat = item.coordinates[0].constructor === Array ? item.coordinates[1][1] : item.coordinates[1];
-						var lng = item.coordinates[0].constructor === Array ? item.coordinates[1][0] : item.coordinates[0];
-						var myLatlng = new google.maps.LatLng(lat, lng);
+						var lat = item.coordinates[1];
+						var lng = item.coordinates[0];
+						var latLng = new google.maps.LatLng(lat, lng);
 						var marker = new google.maps.Marker({
 							map: map,
 							draggable: false,
 							animation: google.maps.Animation.DROP,
-							position: myLatlng,
+							position: latLng,
 							icon: markerImage
 						});
 
 						markers.push(marker);
 					});
 
-					// center map viewport on all markers
+					// center map viewport at all markers
 					$scope.fitZoom();
 				};
 
-				// when changed locations array,
+				// when locations array is changed,
 				$scope.$watch("items", function(val) {
 					$timeout($scope.refreshMarkers, 200);
 				});
