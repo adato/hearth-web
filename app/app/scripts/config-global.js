@@ -80,6 +80,11 @@ $$config = {
 		translate: 'CATEGORY_INFORMATION',
 		translateText: 'CATEGORY_INFORMATION_TEXT'
 	}],
+	//
+	// referrerCookieName:
+	// name of a cookie used for invitation referrals and
+	// url search attr used for sending referral tokens to API
+	referrerCookieName: 'referrals',
 	replyLabels: {
 		offer: 'WISH_GIFT',
 		need: 'OFFER_GIFT'

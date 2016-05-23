@@ -64,9 +64,9 @@
 				</div>
 			</div>
 
-			<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+			<div class="display-flex flex-space-between flex-reverse margin-top-large">
 				<button class="button-send" type="submit" analytics-custom analytics-event="send email invitation" analytics-category="General" analytics-value="1">{{:: 'PROFILE.INVITATION.SEND_EMAIL_INVITATION' | translate }}</button>
-				<a ng-click="toggleEmailForm()"> {{ 'CLOSE' | translate }} </a>
+				<a tabindex="0" ng-click="toggleEmailForm()" class="close">{{:: 'CLOSE' | translate }}</a>
 			</div>
 		</form>
 		<div class="invite-form success hidden">
