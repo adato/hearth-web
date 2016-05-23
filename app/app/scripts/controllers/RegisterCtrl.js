@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth', 'Cookie',
-	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth, Cookie) {
+	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
+	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
 
 		$scope.user = {
 			email: '',
@@ -80,7 +80,9 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			if ($scope.sending) return false;
 			$scope.sending = true;
 
-			User.add($scope.user, function() {
+			User.add({
+				refs: $window.refsArray
+			}, $scope.user, function() {
 				$scope.sending = false;
 
 				//     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);

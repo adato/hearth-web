@@ -84,7 +84,7 @@ $$config = {
 	// referrerCookieName:
 	// name of a cookie used for invitation referrals and
 	// url search attr used for sending referral tokens to API
-	referrerCookieName: 'referrer',
+	referrerCookieName: 'referrals',
 	replyLabels: {
 		offer: 'WISH_GIFT',
 		need: 'OFFER_GIFT'

@@ -59,13 +59,13 @@ $(function () {
 	//
 	// REFERRALS
 	//
-	var referrer = 'referrer';
+	var referrer = 'referrals';
 	/**
 	*	Function that gets a referrer cookie if possible and returns all tokens as an array
 	*/
 	function getReferrerArray() {
 		var c = window.cookieFactory.get(referrer);
-		c = (c ? JSON.parse(c) : []);
+		c = (c ? c.split('-') : []);
 		// if referrer cookie exists but is not an array, return empty array
 		if (Object.prototype.toString.call(c) !== '[object Array]') return [];
 		return c;
@@ -76,7 +76,7 @@ $(function () {
 	*/
 	function saveReferrerArray(arr) {
 		if (!arr || (Object.prototype.toString.call(arr) !== '[object Array]')) return;
-		window.cookieFactory.set(referrer, JSON.stringify(arr));
+		window.cookieFactory.set(referrer, arr.join('-'));
 	}
 	var search = window.location.search;
 

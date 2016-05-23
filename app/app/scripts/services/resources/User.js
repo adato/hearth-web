@@ -9,6 +9,10 @@
 angular.module('hearth.services').factory('User', [
 	'$resource',
 	function($resource) {
+
+		var addParams = {};
+		addParams[$$config.referrerCookieName] = '@refs';
+
 		return $resource($$config.apiPath + '/users/:_id', {
 			_id: '@_id'
 		}, {
@@ -17,7 +21,8 @@ angular.module('hearth.services').factory('User', [
 				errorNotify: {
 					code: 'NOTIFY.SIGNUP_PROCESS_ERROR',
 					container: '.register-notify-area'
-				}
+				},
+				params: addParams
 			},
 			get: {
 				method: 'GET'

@@ -53,20 +53,54 @@ angular.module('hearth', [
 			});
 		}
 	]).config([
-		'$httpProvider', '$translateProvider', '$authProvider',
-		function($httpProvider, $translateProvider, $authProvider) {
+		'$httpProvider', '$translateProvider', '$authProvider', '$windowProvider',
+		function($httpProvider, $translateProvider, $authProvider, $windowProvider) {
+
+			var $window = $windowProvider.$get();
+
+			function getRefsArray() {
+				function getCookie(cname) {
+					var name = cname + '=';
+					var cookies = document.cookie.split(';');
+					for (var i = 0; i < cookies.length; i++) {
+						var c = cookies[i];
+						while (c.charAt(0) === ' ') c = c.substring(1);
+						if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+					}
+					return '';
+				}
+				var refs = getCookie($$config.referrerCookieName);
+				if (refs) {
+					refs = refs.split('-');
+					if (refs.length) return refs;
+				}
+				return '';
+			}
+
+			function getRefsString(refsArray) {
+				if (refsArray && refsArray.length) {
+					var refsString = '?';
+					for (var i = refsArray.length; i--;) {
+						refsString += $$config.referrerCookieName + '[]=' + refsArray[i] + '&';
+					}
+					return refsString.slice(0, -1);
+				}
+				return '';
+			}
+			$window.refsArray = getRefsArray();
+			$window.refsString = getRefsString($window.refsArray);
 
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
 			$authProvider.tokenName = 'api_token';
 			$authProvider.facebook({
 				clientId: $$config.oauth.facebook,
-				url: $$config.apiPath + '/auth/facebook'
+				url: $$config.apiPath + '/auth/facebook' + $window.refsString
 			});
 
 			$authProvider.google({
 				clientId: $$config.oauth.google,
-				url: $$config.apiPath + '/auth/google',
+				url: $$config.apiPath + '/auth/google' + $window.refsString,
 				popupOptions: {
 					width: 660,
 					height: 500
