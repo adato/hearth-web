@@ -159,5 +159,5 @@ describe('hearth registration', function () {
 			});
 
 		});
-	});
+	}, 60000); // 'should register new user' has longer timeout specified here
 });
