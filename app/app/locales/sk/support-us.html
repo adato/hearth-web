@@ -1,8 +1,8 @@
 <div class="large-7 columns">
-<p><strong>Robí ti Hearth radosť?</strong> Spoznáváš tu fajn ľudí? Máš dobrý pocit z každej vydarenej „štedroviny“? Tak ho podpor a pošli radosť ďalej!</p>
+<p><strong>Prináša ti Hearth radosť?</strong> Spoznávaš tu fajn ľudí? Budeme štastní, ak sa k nám pridáš a pomôžeš ďaľším ľuďom otvoriť svoje srdce.</p>
 
-<p>Hearth je pre všetkých <strong>zdarma a bez reklám</strong>. Je to možné len vďaka finančnej podpore Libora Malého. Postupne sa k nemu pridávajú užívatelia.</p>
-<p>A teraz môžeš aj Ty.</p><br>
+<p>Hearth je pre všetkých <strong>zdarma a bez reklám</strong>. Je to možné vďaka finančnej podpore Libora Malého a bude to možné, keď sa k nám pridáš aj Ty!</p>
+
 </div>
 <div class="large-5 columns hide-for-small">
 	<img src="./images/banner/corner-crowdsource.png" class="right"/>
@@ -14,8 +14,8 @@
 	</div>
 	<div class="large-9 columns">
 		<h3>Prispej finančne</h3>
-		<p>Pošli nám jednorázový príspevok alebo si nastav pravidelnú platbu. V akej výške? To je na tebe.<br> Akákoľvek podpora sa počíta a jediným meradlom môže býť napríklad dobrý pocit v bruchu. </p>
-		<a class="button give-money text-center" ng-click="openModal('support-us-modal-pay');">Chcem&nbsp;prispieť</a>
+		<p>Jednorázovo, opakovane, alebo pravideľne v akejkoľvek výške, ktorú si určíš. Dobro nie je možné prepočítavať na eurá, no aj napriek tomu vieme, že každý dar pre Hearth má veľkú hodnotu.</p>
+		<a class="button give-money text-center" ng-click="openModal('support-us-modal-pay');">Darujem pre Hearth</a>
 	</div>
 </div>
 
@@ -26,8 +26,8 @@
 		<img src="./images/banner/crowdsource2.jpg" width="130" height="130" class="round"/>
 	</div>
 	<div class="large-9 columns">
-		<h3>Pridaj ruku k dielu</h3>
-		<p>Teda skôr hlavu. Vývoj webu je beh na dlhú trať. Zo všetkého  najviac preto potrebujeme dobrovoľníkov, čo sa vyznajú v týchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku. </p>
+		<h3>Vytváraj s nami</h3>
+		<p>Pokiaľ sa vyznáš v týchto šifrách:  Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku a chceš nám dať hoc aj pár hodín svojho času a skúseností, radi ťa privítame v našom tíme.</p>
 		<a class="button write-email" ng-click="openModal('support-us-modal-write-us');">Idem na to</a>
 	</div>
 </div>
@@ -41,22 +41,14 @@
 	</div>
 	<div class="large-9 columns">
 		<h3>Daj o nás vedieť</h3>
-		<p>Že máš k IT ďaleko a práve teraz ešte naviac hlboko do vrecka? Nevadí. Určite máš vo svojom okolí ľudí, ktorí o Hearthe ešte nevedia. Predstav im myšlienku zdieľania, pozvi ich do Hearthu a pošli radosť ďalej.</p>
+		<p>Ak máš možnosť predstaviť štedrú sociálnu sieť ľuďom okolo seba a pozvať ich do Hearth.net, radi ti s tým pomôžeme. Na začiatok máme tri možnosti. Vyber si, ktorou začneš.</p>
 		<div class="i-want-more">
-			<div class="large-4 columns">
-				<div class="panel get-badge">
-					<h3 class="xinverse">Napíš si o placky a samolepky</h3>
-					<img src="./images/icons/hearth.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chcem&nbsp;placky</a>
-					<br style="clear:both">
-				</div>
-			</div>
 			<div class="large-4 columns">
 				<div class="panel print-flyer">
 					<h3 class="xinverse">Vytlač si leták</h3>
 					<p style="position:relative;top:-55px;margin-bottom:-22px;">(len po česky)</p>
 					<img src="./images/icons/print.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-print');" class="button">Chcem leták</a>
+					<a href="" ng-click="openModal('support-us-modal-print');" class="button">Vyvesím leták</a>
 					<br style="clear:both">
 				</div>
 			</div>
@@ -64,7 +56,15 @@
 				<div class="panel get-widget">
 					<h3>Pridaj logo na svoju stránku</h3>
 					<img src="./images/icons/window2.svg"/>
-					<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Chcem logo</a>
+					<a href="" ng-click="openModal('support-us-modal-widget');" class="button">Stiahnem logo</a>
+					<br style="clear:both">
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="panel get-badge">
+					<h3 class="xinverse">Napíš si o placky a samolepky</h3>
+					<img src="./images/icons/hearth.svg"/>
+					<a href="" ng-click="openModal('support-us-modal-badge');" class="button">Chcem&nbsp;placky</a>
 					<br style="clear:both">
 				</div>
 			</div>
@@ -261,7 +261,7 @@
 <script type="text/ng-template" id="support-us-modal-write-us">
 	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
-			<h2>{{:: 'Přidej ruku k dílu' | translate }}
+			<h2>{{:: 'Vytváraj s nami' | translate }}
 			</h2>
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
@@ -269,16 +269,16 @@
 
 		<div ng-show="!contactDataEmailSent">
 			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form row" novalidate autofocus>
-				<p>Veľmi pekne ďakujeme, že chceš Hearthu pomôcť. Nechaj nám svoj kontakt a my sa ti ozveme.</p>
+				<p>Skvelé, vyzerá to tak, že sa čoskoro uvidíme. Napíš nám, prosím, pár riadkov o tom, čo dokážeš. Frontend, backend, UX…? Pridaj aj zopár projektov, na ktorých pracuješ, alebo máš za sebou. A taktiež kontakt a my sa ti obratom ozveme.</p>
 				<div class="small-12 large-3 columns">
-					<label for="message-text">{{'Tvoja tajná správa:' | translate}}</label>
+					<label for="message-text">{{'Môžem darovať:' | translate}}</label>
 				</div>
 				<div class="small-12 large-9 columns">
 					<textarea id="message-text" name="text" class="form-control text-input top" required placeholder="" ng-model="contactData.text"/>
 				</div>
 
 				<div class="small-12 large-3 columns">
-					<label for="email">{{'Tvoj e-mail:' | translate}}</label>
+					<label for="email">{{'E-mail na mňa:' | translate}}</label>
 				</div>
 				<div class="small-12 large-9 columns">
 					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email"/>
@@ -310,7 +310,7 @@
 		</div>
 		<div>
 			<form ng-submit="" id="" name="" class="invite-form row" novalidate autofocus>
-				<p>Pošli love. S láskou a vďakou. Tvoj Hearth. :)</p>
+				<p>Ďakujeme za tvoje rozhodnutie a vítame ťa u nášho krbu.</p>
 				<div>
 					<iframe style="width: 400px; height: 300px; display:block; margin:0 auto; overflow: hidden; border-style: none;" src="https://www.darujme.cz/dar/widgets/widget.php?widget=930" height="250"></iframe>
 				</div>
