@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
-	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
+	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth', '$window',
+	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth, $window) {
 
 		$scope.user = {
 			email: '',
