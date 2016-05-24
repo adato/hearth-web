@@ -26,7 +26,6 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 				};
 
 				scope.close = function() {
-
 					scope.closed = !scope.closed;
 					$.cookie(scope.code, scope.closed, {
 						path: '/',
