@@ -80,6 +80,11 @@
 
 
 
+
+
+
+
+<!--- modals ------>
 <script type="text/ng-template" id="support-us-modal-widget">
 	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
@@ -260,14 +265,13 @@
 	<div class="support-us-modal formStyle itemEdit modal">
 		<div class="head">
 			<h2>{{:: 'Vytvářej s námi' | translate }}</h2>
-			<p>Páni, vypadá to, že se brzy potkáme. Napiš, prosím, pár řádek o tom, co umíš. Frontend, backend, UX…? Přidej i pár projektů, na kterých pracuješ nebo máš za sebou. A taky kontakt a my se ti obratem ozveme.</p>
 			<span ng-click="closeThisDialog()" class="close fa fa-times"></span>
 			<hr />
 		</div>
 
 		<div ng-show="!contactDataEmailSent">
 			<form ng-submit="submitEmailWithContactData()" id="" name="sendEmailWithContactData" class="invite-form row" novalidate autofocus>
-				<p>Moc děkujeme, že chceš Hearthu pomoct. Nech nám svůj kontakt a my se ti ozveme.</p>
+				<p>Páni, vypadá to, že se brzy potkáme. Napiš, prosím, pár řádek o tom, co umíš. Frontend, backend, UX…? Přidej i pár projektů, na kterých pracuješ nebo máš za sebou. A taky kontakt a my se ti obratem ozveme.</p>
 				<div class="small-12 large-3 columns">
 					<label for="message-text">{{'Mohu darovat:' | translate}}</label>
 				</div>
