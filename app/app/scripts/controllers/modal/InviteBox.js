@@ -13,10 +13,11 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.url = '';
 		$scope.sending = false;
 
+		var token;
 		var timeoutClose = false;
 
 		$scope.fbInvite = function() {
-			Facebook.inviteFriends();
+			Facebook.inviteFriends($scope.url);
 			return false;
 		};
 
@@ -37,8 +38,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			$scope.urlLinkedin = $scope.url + '?title=' + title + '&summary=' + description;
 			$scope.endpoints = $$config.sharingEndpoints;
 			Invitation.getReferralCode(function(res) {
-				$scope.url += '?' + $$config.referrerCookieName + '=' + res.token;
-				$scope.urlLinkedin += '&' + $$config.referrerCookieName + '=' + res.token;
+				token = res.token;
+				$scope.url += '?' + $$config.referrerCookieName + '=' + token;
+				$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;;
 			});
 		};
 

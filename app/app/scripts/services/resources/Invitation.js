@@ -10,13 +10,19 @@ angular.module('hearth.services').factory('Invitation', [
 	'$resource',
 
 	function($resource) {
+
+		var addParams = {};
+		addParams[$$config.referrerCookieName] = '@refs';
+
 		return $resource($$config.apiPath + '/invitation', {}, {
 			add: {
 				method: 'POST',
 				errorNotify: {
 					code: 'NOTIFY.EMAIL_INVITATION_FAILED',
 					container: ".invite-box-notify"
-				}
+				},
+				params: addParams
+
 			},
 			getReferralCode: {
 				method: 'POST',

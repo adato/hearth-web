@@ -89,8 +89,11 @@ $(function () {
 			var item = searchItems[i].split('=');
 			if (item[0] === referrer) {
 				var referrerArray = getReferrerArray();
-				referrerArray.push(item[1]);
-				return saveReferrerArray(referrerArray);
+				//only add unique referrals
+				if (referrerArray.indexOf(item[1]) === -1) {
+					referrerArray.push(item[1]);
+					return saveReferrerArray(referrerArray);
+				}
 			}
 		}
 	}
