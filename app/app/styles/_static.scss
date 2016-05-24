@@ -138,17 +138,13 @@
 		&>div.columns {
 			padding:0;
 		}
-		.xi-want-more {
-			margin-left: -.9375rem;
-			margin-right: -.9375rem;
-		}
 		.i-want, .ng {
 			margin-top: 6 * $ui-small-grid-size;
 			margin-bottom: 6 * $ui-small-grid-size;
 			clear:both;
 			a.button {
 				float: right;
-				width: 150px;
+				width: 190px;
 			}
 			&>img {
 				float:left;
@@ -214,6 +210,7 @@
 					margin-top:4 * $ui-small-grid-size;
 					float:unset;
 					padding:0 20px;
+					width: 150px;
 				}
 				img {
 					max-height:50px;
