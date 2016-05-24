@@ -3,7 +3,7 @@
 		<section class="column medium-2 show-for-medium-up text-center v2 user padding-top-small">
 			<a ng-href="support-us">
 				<avatar class="show-post-arrows need" type="'User'" src="'/app/images/logo-round.png'"></avatar>
-				<div class="name">Hearth.net</div>
+				<div class="name">{{:: 'Hearth.net' | translate }}</div>
 			</a>
 		</section>
 
@@ -13,7 +13,7 @@
 					<header class="item-section row">
 						<div class="column small-12 hide-for-medium-up">
 							<!-- small avatar TODO -->
-							<a ng-href="support-us">
+							<a ng-href="support-us" title="{{::'Hearth.net' | translate }}">
 								<avatar class="show-post-arrows need" type="'User'" src="'/app/images/logo-round.png'" size="small"></avatar>
 							</a>
 						</div>
@@ -35,8 +35,8 @@
 						<p class="margin-none"></p>
 					</div>
 
-					<a class="fancy" ng-href="support-us">
-						<img ng-src="/app/images/banner/crowdsource-large-cs.png" />
+					<a class="fancy" ng-href="support-us" title="{{:: 'Dělá ti Hearth radost? Podpoř ho!' | translate }}">
+						<img ng-src="/app/images/banner/crowdsource-large-cs.png" alt="{{:: 'Dělá ti Hearth radost? Podpoř ho!' | translate }}" />
 					</a>
 					<br>
 					<br>
