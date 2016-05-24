@@ -93,14 +93,15 @@ angular.module('hearth', [
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
 			$authProvider.tokenName = 'api_token';
+
 			$authProvider.facebook({
 				clientId: $$config.oauth.facebook,
-				url: $$config.apiPath + '/auth/facebook' + $window.refsString
+				url: $window.encodeURI($$config.apiPath + '/auth/facebook' + $window.refsString),
 			});
 
 			$authProvider.google({
 				clientId: $$config.oauth.google,
-				url: $$config.apiPath + '/auth/google' + $window.refsString,
+				url: $window.encodeURI($$config.apiPath + '/auth/google' + $window.refsString),
 				popupOptions: {
 					width: 660,
 					height: 500
