@@ -82,7 +82,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 
 			var params = {};
 			console.log($window.refsArray);
-			params[$$config.referrerCookieName] = $window.refsArray;
+			params[$$config.referrerCookieName + '[]'] = $window.refsArray;
 
 			User.add(params, $scope.user, function() {
 				$scope.sending = false;
