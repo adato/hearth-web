@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window',
-	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window', '$http', 'RubySerializer',
+	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window, $http, RubySerializer) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
 		$scope.sending = false;
@@ -104,6 +104,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			res.ok && $scope.showFinished();
 		}
 
+		$scope.HTTP = $http;
+
 		$scope.sendEmailInvitation = function(data) {
 			var dataOut;
 
@@ -115,9 +117,16 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			$rootScope.globalLoading = true;
 			// split emails to array and copy it to new object
 			dataOut = $scope.transformInvitationOut(angular.copy(data));
+
+			// switch serializer for this specific call to allow unencoded brackets
+			var serializer = $http.defaults.paramSerializer;
+			$http.defaults.paramSerializer = RubySerializer;
 			Invitation.add({
+				'referrals[]': $window.refsArray
+			}, {
 				invitation: dataOut
 			}, handleEmailResult);
+			$http.defaults.paramSerializer = serializer;
 		};
 
 		$scope.initForm = function() {
