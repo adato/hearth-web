@@ -1,6 +1,4 @@
-var $$config;
-
-$$config = {
+window['$$config'] = {
 	basePath: '/app/',
 	appUrl: window.location.origin + '/app/',
 	modalTemplates: 'templates/modal/',
