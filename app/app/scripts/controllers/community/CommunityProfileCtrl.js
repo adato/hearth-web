@@ -39,6 +39,10 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			Community.get({
 				_id: $stateParams.id
 			}, function(res) {
+				angular.forEach(res.locations, function(location, index) {
+					res.locations[index] = location.json_data;
+				});
+
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				res.karma = Karma.count(res.up_votes, res.down_votes);
 
@@ -86,7 +90,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 			$scope.rating.score = score || null;
 			$scope.rating.text = '';
 			$scope.rating.post_id = null;
-			// select first option in posts select - eg default value           
+			// select first option in posts select - eg default value
 			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 
 			// show form

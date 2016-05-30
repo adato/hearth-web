@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.fileUpload
- * @description 
+ * @description
  * @restrict A
  */
 
@@ -54,6 +54,7 @@ angular.module('hearth.directives').directive('infoBox', [
 					if ($rootScope.loggedUser._id) {
 						scope.show = true;
 						scope.error = false;
+
 						UsersCommunitiesService.loadProfileInfo(scope.infoBox, fillUserInfo, displayError);
 					}
 				};

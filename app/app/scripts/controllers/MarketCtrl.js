@@ -152,7 +152,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			// params.query = "*";
 			params.type = itemTypes.join(',');
 			Post.query(params, function(data) {
-				console.log(data);
 				$scope.loaded = true;
 				$(".loading").hide();
 

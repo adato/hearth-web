@@ -50,8 +50,9 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				$rootScope.$emit("subPageLoaded");
 			});
 
-			if (res && res.length)
+			if (res && res.length) {
 				$scope.loadingData = false;
+			}
 		}
 
 		function processData(res) {

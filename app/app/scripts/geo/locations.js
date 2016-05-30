@@ -189,9 +189,11 @@ angular.module('hearth.geo').directive('locations', [
 				var MAP_LOCATION_SELECTED = 'Ad map location selected';
 
 				function trackMapEvents(paramObj) {
+					var parent = $scope.$parent;
+					var state = parent.post ? parent.post.state : '';
 					$analytics.eventTrack(paramObj.eventName, {
 						'action': paramObj.action,
-						'state': $scope.$parent.post.state,
+						'state': state,
 						'context': $state.current.name
 					});
 				}
