@@ -37,7 +37,7 @@
 		// RESPONSIVE //
 		@media #{$medium-only} {
 			.highlights {
-				zoom: .82;
+				zoom: .75;
 			}
 		}
 		.button-bar {
@@ -542,7 +542,7 @@
 		}
 	}
 	.right-pane {
-		width: 40%;
+		width: 39%;
 		padding: 0;
 		float: right;
 		.user-about {
