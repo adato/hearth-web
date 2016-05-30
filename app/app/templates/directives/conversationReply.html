@@ -19,9 +19,9 @@
 				<span ng-show="msgReplyForm.text.$error.required">{{:: 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
 			</div>
 		</div>
-		<div class="form-section">
+		<!--div class="form-section files-picker">
 			<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
-		</div>
+		</div-->
 
 		<div class="display-flex flex-reverse flex-space-between">
 			<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">
@@ -29,6 +29,7 @@
 				{{:: 'SEND' | translate }}
 			</button>
 			<a class="hide-for-large-up" ng-click="closeConversation()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
+			<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
 		</div>
 	</form>
 </div>
