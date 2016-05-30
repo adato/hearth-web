@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth', '$window',
-	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth, $window) {
+	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth', '$window', 'RubySerializer',
+	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth, $window, RubySerializer) {
 
 		$scope.user = {
 			email: '',
@@ -31,6 +31,10 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('register');
 
 		$scope.oauthRegister = function(provider) {
+			// switch serializer for this call to allow unencoded brackets
+			var serializer = $http.defaults.paramSerializer;
+			$http.defaults.paramSerializer = RubySerializer;
+
 			$auth.authenticate(provider, {
 				language: preferredLanguage,
 				user_action: 'register'
@@ -40,6 +44,8 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				} else {
 					$scope.loginError = true;
 				}
+				// switch serializer back only after the EP call has responded
+				$http.defaults.paramSerializer = serializer;
 			});
 		};
 
@@ -81,8 +87,11 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			$scope.sending = true;
 
 			var params = {};
-			console.log($window.refsArray);
 			params[$$config.referrerCookieName + '[]'] = $window.refsArray;
+
+			// switch serializer for this call to allow unencoded brackets
+			var serializer = $http.defaults.paramSerializer;
+			$http.defaults.paramSerializer = RubySerializer;
 
 			User.add(params, $scope.user, function() {
 				$scope.sending = false;
@@ -109,6 +118,9 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 					label: 'error during registration'
 				});
 			});
+
+			// switch serializer back immediately after the EP call
+			$http.defaults.paramSerializer = serializer;
 		};
 
 		$scope.register = function(user) {

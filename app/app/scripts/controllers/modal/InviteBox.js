@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window',
-	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window', '$http', 'RubySerializer',
+	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window, $http, RubySerializer) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
 		$scope.sending = false;
@@ -198,6 +198,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			$scope.sending = false;
 			res.ok && $scope.showFinished(res);
 		}
+
+		$scope.HTTP = $http;
 
 		$scope.sendEmailInvitation = function(data) {
 			var dataOut;
