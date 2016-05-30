@@ -421,13 +421,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.save(postCopy);
 		};
 
-		$scope.refreshItemInfo = function($event, item) {
-			// if renewed item is this item, refresh him!
-			if (item._id === $scope.post._id) {
-				$scope.post = $scope.transformDataIn(item);
-				$scope.post.type = item.type ? 'offer' : 'need';
-			}
-		};
+		/*		$scope.refreshItemInfo = function($event, item) {
+					// if renewed item is this item, refresh him!
+					if (item._id === $scope.post._id) {
+						$scope.post = $scope.transformDataIn(item);
+						$scope.post.type = item.type ? 'offer' : 'need';
+					}
+				};*/
 
 		var SPACE = 32;
 		$scope.toggleCharacterCheckbox = function(event, character) {
@@ -485,7 +485,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		});
 
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
-		$scope.$on('postUpdated', $scope.refreshItemInfo);
+		//$scope.$on('postUpdated', $scope.refreshItemInfo); -- do not update post on save, it is handles automatically (by Ploski, 30.5.2016)
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}
 ]);
