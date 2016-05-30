@@ -445,7 +445,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			scope.isInvalid = isInvalid;
 			scope.preset = preset;
 			if (post) {
-
 				Post.get({
 					postId: post._id
 				}, function(detail) {
