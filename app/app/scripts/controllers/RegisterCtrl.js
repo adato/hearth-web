@@ -44,6 +44,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				} else {
 					$scope.loginError = true;
 				}
+				// switch serializer back only after the EP call has responded
 				$http.defaults.paramSerializer = serializer;
 			});
 		};
@@ -118,6 +119,7 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 				});
 			});
 
+			// switch serializer back immediately after the EP call
 			$http.defaults.paramSerializer = serializer;
 		};
 

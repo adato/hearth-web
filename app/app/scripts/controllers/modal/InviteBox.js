@@ -118,15 +118,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			// split emails to array and copy it to new object
 			dataOut = $scope.transformInvitationOut(angular.copy(data));
 
-			// switch serializer for this specific call to allow unencoded brackets
-			var serializer = $http.defaults.paramSerializer;
-			$http.defaults.paramSerializer = RubySerializer;
 			Invitation.add({
-				'referrals[]': $window.refsArray
-			}, {
 				invitation: dataOut
 			}, handleEmailResult);
-			$http.defaults.paramSerializer = serializer;
 		};
 
 		$scope.initForm = function() {
