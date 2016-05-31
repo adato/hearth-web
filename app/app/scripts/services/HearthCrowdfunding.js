@@ -21,7 +21,7 @@ angular.module('hearth.services').service('HearthCrowdfundingBanner', [
 			// apply only on full result set, when top banner has been closed by user.
 			// then display this once on a first result set, then on no more
 			if (this.titleBannerIsClosed && !this.isDisplayed && data.length >= 15) {
-				var position = Math.floor(Math.random() * (14 - 5 + 1)) + 5;
+				var position = Math.floor(Math.random() * 10) + 5;
 				data.splice(position, 0, this.bannerData);
 				this.isDisplayed = true;
 			}
