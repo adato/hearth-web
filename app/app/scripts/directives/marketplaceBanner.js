@@ -25,12 +25,14 @@ angular.module('hearth.directives').directive('marketplaceBanner', ['$rootScope'
 					'background-image': scope.image
 				};
 
-				scope.close = function() {
+				scope.close = function($event) {
 					scope.closed = !scope.closed;
 					$.cookie(scope.code, scope.closed, {
 						path: '/',
 						expires: 99999
 					});
+					$event.stopPropagation();
+					$event.preventDefault();
 				}
 			}
 		};
