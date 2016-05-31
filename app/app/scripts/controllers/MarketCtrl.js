@@ -64,6 +64,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			scope.foundationColumnsClass = 'large-10';
 			scope.showSharing = false;
 			scope.delayedView = true;
+			scope.language = $rootScope.language;
 			angular.extend(scope, ItemServices);
 
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
