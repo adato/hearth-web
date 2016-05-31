@@ -7,7 +7,7 @@
  * @restrict E
  */
 
-angular.module('hearth.directives').directive('filesPicker', ['FileService', '$timeout', function(FileService, $timeout) {
+angular.module('hearth.directives').directive('filesPicker', ['FileService', '$timeout', '$rootScope', function(FileService, $timeout, $rootScope) {
 
 	return {
 		restrict: 'E',
@@ -22,7 +22,6 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 		},
 		templateUrl: 'templates/directives/filesPicker.html',
 		controller: ['$scope', function($scope) {
-
 			var ctrl = this;
 
 			ctrl.scope = $scope;
@@ -39,7 +38,9 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 			ctrl.removeFile = function(index) {
 				ctrl.scope.ngModel.splice(index, 1);
 				ctrl.scope.previews.splice(index, 1);
+				$rootScope.$broadcast("dynamicHeightRedraw");
 			};
+
 			$scope.removeFirst = ctrl.removeFile.bind(void 0, 0);
 
 		}],
@@ -76,6 +77,9 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 					scope.ngModel.push(file);
 					scope.previews.push(e.target.result);
 					if (!scope.$$phase) scope.$apply();
+				};
+				reader.onloadend = function() {
+					$rootScope.$broadcast("dynamicHeightRedraw");
 				};
 			}
 			$timeout(function() {
