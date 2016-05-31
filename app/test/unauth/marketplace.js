@@ -17,7 +17,7 @@ describe('hearth unauth marketplace', function() {
 
   // should see 15 items
   it('should see 15 items on market', function () {
-    var marketItems = element.all(by.className('item-common'));
+    var marketItems = element.all(by.css('.item-common.item-post'));
     expect(marketItems.count()).toBe(15);
   });
 
@@ -25,7 +25,7 @@ describe('hearth unauth marketplace', function() {
   it('should see 15 more items when scrolled down', function () {
 
     // 15 items before we start
-    var marketItems = element.all(by.className('item-common'));
+    var marketItems = element.all(by.css('.item-common.item-post'));
     expect(marketItems.count()).toBe(15);
 
     browser.executeScript('window.scrollTo(0,20000);').then(function () {

@@ -4,7 +4,7 @@
 	.filterbar-header {
 
 		.insert-button-container {
-			float: right;
+			//float: right;
 			a {
 				padding: 0px;
 				overflow: hidden;
@@ -14,24 +14,23 @@
 
 		.filter-left {
 			line-height: $ui-button-height;
-		    background-color: white;
-		    border-radius: 8px;
-		    padding: 0 25px;
-		    display: block;
-		    overflow: hidden;
-		    margin-right: 8px;
-		    box-shadow: 0 0 5px rgba(100,100,100,.5);
-		    
-		    a {
-		    	color: #1fb1e8;
-		    	font-weight: 600;
+			background-color: white;
+			border-radius: 8px;
+			padding: 0 25px;
+			display: block;
+			overflow: hidden;
+			margin-right: 8px;
+			box-shadow: 0 0 5px rgba(100,100,100,.5);
 
-		    	&.cancelFilter {
+			a {
+				color: #1fb1e8;
+				font-weight: 600;
 
-				    font-size: 12px;
-				    margin-left: 10px;
-		    	}
-		    }
+				&.cancelFilter {
+					font-size: 12px;
+					margin-left: 10px;
+				}
+			}
 
 			@media #{$large-up} {
 				line-height: $ui-input-height;

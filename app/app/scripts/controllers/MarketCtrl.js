@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams',
-	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams) {
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner',
+	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -22,7 +22,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		var marketInited = $q.defer();
 		var ItemFilter = new UniqueFilter();
 		var templates = {};
-		var itemTypes = ['post'] //, 'community', 'user', 'conversation']; no more types needed for now
+		var itemTypes = ['post', 'banner'] //, 'community', 'user', 'conversation']; no more types needed for now
 		var templateDir = 'templates/directives/items/';
 
 		if ($stateParams.query) {
@@ -64,6 +64,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			scope.foundationColumnsClass = 'large-10';
 			scope.showSharing = false;
 			scope.delayedView = true;
+			scope.language = $rootScope.language;
 			angular.extend(scope, ItemServices);
 
 			scope.item.text_short = $filter('ellipsis')(scope.item.text, 270, true);
@@ -161,6 +162,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				if (data.data) {
 					data.data = insertLastPostIfMissing(data.data);
 					data.data = ItemFilter.filter(data.data);
+					data.data = HearthCrowdfundingBanner.decorateMarketplace(data.data);
 				}
 				$scope.debug && console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
