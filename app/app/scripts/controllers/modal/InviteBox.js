@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window', '$http', 'RubySerializer',
-	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window, $http, RubySerializer) {
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window'
+	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
 		$scope.sending = false;
@@ -17,8 +17,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		var timeoutClose = false;
 
 		$scope.fbInvite = function() {
+
 			Facebook.inviteFriends($scope.url);
-			return false;
 		};
 
 		$scope.showFinished = function(res) {
@@ -44,6 +44,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			$scope.endpoints = $$config.sharingEndpoints;
 			Invitation.getReferralCode(function(res) {
 				token = res.token;
+				if ($rootScope.debug) console.log('token: ', token);
 				$scope.url += '?' + $$config.referrerCookieName + '=' + token;
 				$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;;
 			});
@@ -199,8 +200,6 @@ angular.module('hearth.controllers').controller('InviteBox', [
 			res.ok && $scope.showFinished(res);
 		}
 
-		$scope.HTTP = $http;
-
 		$scope.sendEmailInvitation = function(data) {
 			var dataOut;
 
@@ -265,4 +264,4 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
 	}
-]);
+	]);
