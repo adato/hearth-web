@@ -73,7 +73,7 @@ angular.module('hearth.directives').service('ImageLib', ['$http', function($http
 	};
 }]);
 
-angular.module('hearth.directives').directive('fileModel', ['$parse', function($parse) {
+angular.module('hearth.directives').directive('fileModel', ['$parse', '$rootScope', function($parse, $rootScope) {
 	return {
 		restrict: 'A',
 		link: function(scope, element, attrs) {
@@ -81,9 +81,8 @@ angular.module('hearth.directives').directive('fileModel', ['$parse', function($
 			var modelSetter = model.assign;
 
 			element.bind('change', function() {
-				scope.$apply(function() {
-					modelSetter(scope, element[0].files[0]);
-				});
+				modelSetter(scope, element[0].files[0]);
+				if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
 			});
 		}
 	};
@@ -280,9 +279,8 @@ angular.module('hearth.directives').directive('imagePreview', [
 				});
 
 				return el.bind('change', function(event) {
-					return scope.$apply(function() {
-						previewImage(el, scope.limit); // 5 mb limit
-					});
+					previewImage(el, scope.limit); // 5 mb limit
+					if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
 				});
 			}
 		};
