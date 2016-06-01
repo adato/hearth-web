@@ -1,4 +1,4 @@
-// foundation breakpoint for large screens 
+// foundation breakpoint for large screens
 @media #{$large-up} {
 	.main-container {
 		max-width: 960px;
@@ -67,7 +67,7 @@
 		width: unset !important;
 		width: 100%;
 	}
-	
+
 	.market .avatar {
 		& > div,
 		span,
