@@ -249,7 +249,6 @@ angular.module('hearth.geo').directive('locations', [
 
 				$scope.refreshMapPoint = function() {
 					geo.getAddress(marker.getPosition()).then(function(place) {
-						console.log(place);
 						$scope.mapPointShowName = false;
 						$scope.mapPoint = place;
 
