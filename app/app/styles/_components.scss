@@ -102,6 +102,15 @@
 	display: flex;
 	align-items: center;
 }
+.flex-center{
+	justify-content: center;
+}
+.flex-align-start{
+	align-items: flex-start;
+}
+.flex-align-center{
+	align-items: center !important;
+}
 .flex-reverse{
 	flex-direction: row-reverse;
 }
