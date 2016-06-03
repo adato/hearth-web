@@ -146,7 +146,6 @@ angular.module('hearth.directives').directive('item', [
 				if (scope.delayedView)
 					scope.showListener = scope.$on('showHiddenPosts', scope.displayDelayed);
 
-
 			}
 		};
 	}

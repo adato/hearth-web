@@ -163,9 +163,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 						if (location.json_data) post.locations[index] = location.json_data;
 					});
 				}
-				$timeout(function(){
-					console.log(post.locations);
-				}, 200);
 
 
 				$scope.slide.files = !!post.attachments_attributes.length;
