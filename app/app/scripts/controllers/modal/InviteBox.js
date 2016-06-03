@@ -264,4 +264,4 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
 	}
-	]);
+]);

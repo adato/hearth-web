@@ -94,8 +94,8 @@
 
 				<!--<div class="descr" ng-if="info.locations.length">
 					<i class="fa fa-map-marker"></i> {{:: 'community-operate-in' | translate}}
-					<span ng-repeat="(locationId, location) in info.locations">
-						<span ng-if="location.short_address">{{:: location.short_address}}
+					<span ng-repeat="location in info.locations track by $index">
+						<span ng-if="location.address">{{:: location.address}}
 							<span ng-if="!$last">;&nbsp;</span>
 						</span>
 					</span>

@@ -8,6 +8,9 @@
 	#navigation {
 		margin: 0 auto;
 	}
+	.messages .conversation-detail-container {
+		margin-left: $size-medium;
+	}
 }
 
 // medium screens only
@@ -16,15 +19,15 @@
 		width: 100%;
 	}
 	.messages .conversation-detail-container {
-		width: 97%;
-		min-height:80vh;
-		position: absolute;
-		left: 2*$ui-small-grid-size;
-		top: $ui-navbar-height;
-		z-index:123;
-		.conversation-detail .messages-container article.message {
-			max-width: unset;
-		}
+	// 	width: 97%;
+	// 	min-height:80vh;
+	// 	position: absolute;
+	// 	left: 2*$ui-small-grid-size;
+	// 	top: $ui-navbar-height;
+	// 	z-index:123;
+	// 	.conversation-detail .messages-container article.message {
+	// 		max-width: unset;
+	// 	}
 	}
 
 	.market {
@@ -83,17 +86,17 @@
 	.messages .conversations {
 		width: 100%;
 	}
-	.messages .conversation-detail-container {
-		width: 96%;
-		min-height:80vh;
-		position: absolute;
-		left: 2*$ui-small-grid-size;
-		top: $ui-navbar-height;
-		z-index:123;
-		.conversation-detail .messages-container article.message {
-			max-width: unset;
-		}
-	}
+	// .messages .conversation-detail-container {
+	// 	width: 96%;
+	// 	min-height:80vh;
+	// 	position: absolute;
+	// 	left: 2*$ui-small-grid-size;
+	// 	top: $ui-navbar-height;
+	// 	z-index:123;
+	// 	.conversation-detail .messages-container article.message {
+	// 		max-width: unset;
+	// 	}
+	// }
 	.tab-bar .hearth-logo {
 		max-width: 150px !important;
 		margin-top: -6px;

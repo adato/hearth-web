@@ -172,6 +172,18 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			});
 			data.interests = interests;
 
+			if (!data.locations.length) {
+				data.locations = [];
+			} else {
+				angular.forEach(data.locations, function(location, index) {
+					data.locations[index] = {
+						json_data: location.address_components ? location : {
+							place_id: location.place_id
+						}
+					};
+				});
+			}
+
 			return data;
 		};
 
@@ -181,17 +193,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			if ($scope.profileEditForm.first_name.$invalid) {
 				res = false;
 				$scope.showError.first_name = true;
-			}
-
-			if (data.locations && data.locations.length) {
-				data.locations.forEach(function(item) {
-					if (item.address == '') {
-						res = false;
-						$scope.showError.locations = true;
-					}
-				});
-			} else {
-				data.locations = [];
 			}
 
 			if ($scope.profileEditForm.email.$invalid) {
