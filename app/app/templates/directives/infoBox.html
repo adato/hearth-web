@@ -30,7 +30,7 @@
 				<div ng-if="info.locations.length">
 					<i class="fa fa-fw fa-map-marker"></i>{{:: 'you-will-find-me' | translate}}
 					<span ng-repeat="location in info.locations track by $index">
-						<span ng-if="location.address">{{:: location.address}}
+						<span ng-if="location.short_address">{{:: location.short_address}}
 							<span ng-if="!$last">, </span>
 						</span>
 					</span>.
