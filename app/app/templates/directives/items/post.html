@@ -102,6 +102,7 @@
 								<i class="fa fa-map-marker"></i>&nbsp;{{:: 'MARKETPLACE.POST.LOCATION_ANYWHERE_HEADING' | translate }}
 							</div>
 							<div ng-if="!item.location_unlimited">
+								<div ng-bind='item.locations | json'></div>
 								<span ng-repeat="(locationId, location) in item.locations" ng-if="location.short_address">
 									<i class="fa fa-map-marker" ng-if="$first"></i>&nbsp;{{ location.short_address }}
 									<span ng-if="!$last">;</span>
