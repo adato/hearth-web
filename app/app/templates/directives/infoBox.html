@@ -9,14 +9,14 @@
 				<div class="post-count">
 					<div class="count_accomplished" ng-bind-html=":: ('count-of-wished-and-gifts' | translate: {value: info.post_count.needs + info.post_count.offers })"></div>
 				</div>
-				<div ng-if="info.locations.length">
+				<!--<div ng-if="info.locations.length">
 					<i class="fa fa-fw fa-map-marker"></i>{{:: 'you-will-find-me' | translate}}
 					<span ng-repeat="location in info.locations track by $index">
 						<span ng-if="location.address">{{:: location.address}}
 							<span ng-if="!$last">, </span>
 						</span>
 					</span>.
-				</div>
+				</div>-->
 				<div class="author-about" ng-if=":: info.about">
 					{{:: info.about | ellipsis:80 }}
 				</div>
