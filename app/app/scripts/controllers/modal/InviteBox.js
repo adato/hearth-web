@@ -123,7 +123,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				var intel = {
 					status: itemStatusTemperVocabulary[status],
 					text: itemStatusTextVocabulary[status],
-					email: this.text
+					email: this.text,
+					existing: res.existing ? res.existing : null
 				};
 				$scope.invitationsStatus.push(intel);
 			}
