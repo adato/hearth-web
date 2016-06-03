@@ -28,7 +28,7 @@
 			</div>
 			<label>{{ 'POST_COMMUNITY_REMOVE.REASON_LABEL' | translate }}</label>
 			<textarea autosize-textarea required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'POST_COMMUNITY_REMOVE.REASON_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="message" name="message"
-			ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
+							ng-keydown="escapeKey($event)" class="report-reason-textarea text-input middle"></textarea>
 			<div class="moveUp error" ng-show="showErrors.message">
 				<span ng-show="reportForm.message.$error.required">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
 				<span ng-show="reportForm.message.$error.minlength">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
