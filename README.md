@@ -17,7 +17,7 @@ bundle
 
 How to run server
 ```shell
-cd project/web/app
+cd project/app
 npm install
 grunt serve
 ```
