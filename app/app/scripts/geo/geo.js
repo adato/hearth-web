@@ -59,14 +59,15 @@ angular.module('hearth.geo').factory('geo', [
 			 * @return {promise} Promise will be resolved with location google.maps.LatLng
 			 */
 			getCurrentLocation: function() {
-				var me = this,
-					deferred = $q.defer();
+				var me = this;
+				var deferred = $q.defer();
 
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(function(position) {
 						deferred.resolve(me.getLocationFromCoords([position.coords.longitude, position.coords.latitude]));
 					});
 				}
+
 				return deferred.promise;
 			},
 
