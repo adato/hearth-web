@@ -27,7 +27,10 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		var bubbleDefinitions = {
 			'bookmark-reminder': {
 				applicable: function() {
-					return ($rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('bookmark') > -1));
+					var confirmedForMoreThanAWeek = ($rootScope.loggedUser.confirmed_at && typeof $rootScope.loggedUser.confirmed_at.getTime === 'function' && $rootScope.loggedUser.confirmed_at.getTime() > 604800000);
+					return (
+						$rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('bookmark') > -1) && confirmedForMoreThanAWeek
+					);
 				},
 				apply: function() {
 					var template = 'templates/directives/bubble/bookmark-reminder.html';
