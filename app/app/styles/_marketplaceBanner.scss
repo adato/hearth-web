@@ -3,24 +3,27 @@ marketplace-banner {
 }
 
 section.banner {
-	position:relative;
+	display: block;
 	.close {
+		cursor:pointer;
+		z-index:100;
 		display: block;
 		font-size: 34px;
 		color: #666;
+		left:95%;
 		position: absolute;
-		top: 5px;
-		right: 15px;
 	}
 }
 
 @media #{$large-up} {
 	section.banner .marketplace-banner {
-		width: 776px;
+		width: 783px;
 		height: 130px;
 		padding:0;
 		margin-top:-5px;
 		margin-bottom:15px;
+		overflow:hidden;
+		padding-left:15px;
 	}
 }
 
@@ -31,6 +34,14 @@ section.banner {
 		padding:0;
 		margin-top:-5px;
 		margin-bottom:15px;
+		overflow:hidden;
+		text-align: right;
+	}
+	section.banner .close {
+		right: 40px;
+		position: absolute;
+		left:95%;
+		top:0;
 	}
 }
 
@@ -42,5 +53,11 @@ section.banner {
 		margin-top:-10px;
 		margin-bottom:10px;
 		img { width:100%; }
+		overflow:hidden;
+	}
+	section.banner .close {
+		//position: relative;
+		left: 90%;
+		//top: 50px;
 	}
 }
