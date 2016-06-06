@@ -69,14 +69,14 @@ angular.module('hearth.geo').directive('map', [
 				template = $interpolate(templateSource);
 
 				scope.initMap = function() {
-					if (!map) {
-						$timeout(function() {
+					$timeout(function() {
+						if (!map) {
 							map = geo.createMap(element[0], {
 								zoom: 11
 							});
 
 							google.maps.event.trigger(map, "resize");
-							geo.focusCurrentLocation(map);
+							geo.focusCurrentLocation();
 
 							oms = new OverlappingMarkerSpiderfier(map, {
 								markersWontMove: true,
@@ -95,8 +95,8 @@ angular.module('hearth.geo').directive('map', [
 
 							//                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
 							oms.addListener('click', scope.onMarkerClick);
-						}, 100);
-					}
+						}
+					});
 				};
 
 				scope.testPositionLimit = function(loc) {
@@ -141,7 +141,6 @@ angular.module('hearth.geo').directive('map', [
 				};
 
 				scope.onMarkerClick = function(marker) {
-
 					Post.get({
 						postId: marker.info[I_ID]
 					}, function(data) {
@@ -163,47 +162,49 @@ angular.module('hearth.geo').directive('map', [
 					);
 
 					return maxDist > dist / 1000; // transfer to km
-				}
+				};
 
 				scope.createPins = function(e, ads) {
-					var i, j, ad, location, distanceBase, distance = false;
-					ads = ads || [];
-					markers = [];
-					markerLimitValues = [];
+					$timeout(function() {
+						var i, j, ad, location, distanceBase, distance = false;
+						ads = ads || [];
+						markers = [];
+						markerLimitValues = [];
 
-					markerCluster.clearMarkers();
-					oms.clearMarkers();
+						markerCluster.clearMarkers();
+						oms.clearMarkers();
 
-					if (typeof $location.search().distance != 'undefined') {
-						distance = parseInt($location.search().distance, 10);
-						distanceBase = {
-							lat: $location.search().lat,
-							lng: $location.search().lon
-						};
-					}
+						if (typeof $location.search().distance != 'undefined') {
+							distance = parseInt($location.search().distance, 10);
+							distanceBase = {
+								lat: $location.search().lat,
+								lng: $location.search().lon
+							};
+						}
 
-					for (i = 0; i < ads.length; i++) {
-						ad = ads[i];
+						for (i = 0; i < ads.length; i++) {
+							ad = ads[i];
 
-						for (j = 0; j < ad[I_LOCATION].length; j++) {
-							if (ad[I_LOCATION][j]) {
-								if (
-									(distance && !scope.isInDistance(distance, distanceBase, ad[I_LOCATION][j])) ||
-									markerLimit && scope.testPositionLimit(ad[I_LOCATION][j])
-								) {
-									continue;
+							for (j = 0; j < ad[I_LOCATION].length; j++) {
+								if (ad[I_LOCATION][j]) {
+									if (
+										(distance && !scope.isInDistance(distance, distanceBase, ad[I_LOCATION][j])) ||
+										markerLimit && scope.testPositionLimit(ad[I_LOCATION][j])
+									) {
+										continue;
+									}
+									scope.placeMarker(ad[I_LOCATION][j], ad);
 								}
-								scope.placeMarker(ad[I_LOCATION][j], ad);
 							}
 						}
-					}
 
-					if (scope.center) {
-						scope.centerZoomToAll(markers);
-					}
+						if (scope.center) {
+							scope.centerZoomToAll(markers);
+						}
 
-					markerCluster.addMarkers(markers);
-					markerCluster.repaint();
+						markerCluster.addMarkers(markers);
+						markerCluster.repaint();
+					});
 				};
 
 				/*                scope.zoomMarkerClusterer = function(cluster) {
@@ -212,7 +213,7 @@ angular.module('hearth.geo').directive('map', [
 				                };*/
 
 				scope.initMap();
-				scope.$on('showMarkersOnMap', scope.createPins());
+				scope.$on('showMarkersOnMap', scope.createPins);
 			}
 		};
 	}
