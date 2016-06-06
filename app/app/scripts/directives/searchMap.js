@@ -41,10 +41,12 @@ angular.module('hearth.geo').directive('searchMap', [
 
 					if (place && place.address_components) {
 						var location = place.geometry.location;
+						var distance = $location.search().distance;
 
 						scope.search({
 							lat: location.lat(),
 							lon: location.lng(),
+							distance: distance ? distance : '50km',
 							name: place.formatted_address
 						});
 
@@ -101,8 +103,6 @@ angular.module('hearth.geo').directive('searchMap', [
 					// search only when map is shown
 					var params = scope.getSearchParams();
 
-					params.distance ? params.distance : '50km'
-
 					if (params.lon && params.lat) {
 						scope.center = true;
 					}
@@ -114,8 +114,6 @@ angular.module('hearth.geo').directive('searchMap', [
 					Post.mapQuery(params, function(data) {
 						scope.$broadcast('showMarkersOnMap', data);
 					});
-
-					$location.search();
 				};
 
 				scope.search();
@@ -124,8 +122,8 @@ angular.module('hearth.geo').directive('searchMap', [
 				scope.$on('filterApplied', scope.search);
 
 				scope.$on('$destroy', function() {
-					scope.searchBoxElement = null;
-					scope.searchBox = null;
+					input = null;
+					autocomplete = null;
 				});
 			}
 		};
