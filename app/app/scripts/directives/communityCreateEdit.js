@@ -69,9 +69,8 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 				$scope.loadCommunity = function(id) {
 					Community.get({
 						_id: id
-					}, function(res) {
+					}, function(data) {
 						$scope.community = prepareDataIn(data);
-
 
 						if (!data.locations || !data.locations.length) {
 							data.locations = [];
@@ -121,7 +120,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						data.webs = webs;
 					}
 					if (data.webs !== undefined) prepareWebs(data);
-
 					if (typeof data.interests !== 'object') {
 						if (data.interests !== undefined) data.interests = data.interests.split(',');
 					}

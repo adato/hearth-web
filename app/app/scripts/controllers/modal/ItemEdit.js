@@ -160,9 +160,10 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 				if (post.locations.length && !post.location_unlimited) {
 					angular.forEach(post.locations, function(location, index) {
-						post.locations[index] = location.json_data;
+						if (location.json_data) post.locations[index] = location.json_data;
 					});
 				}
+
 
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
@@ -346,14 +347,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.save = function(post, activate) {
-			var postData, postDataCopy;
+			var postData;
 
-			if ($scope.imageUploading)
-				return false;
+			if ($scope.imageUploading) return false;
 
-			// return $rootScope.globalLoading = true;
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
+
 			if (!$scope.testForm(post)) {
 				$timeout(function() {
 					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
@@ -373,8 +373,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			postData = $scope.transformDataOut(postData);
 
-			if ($scope.sending)
-				return false;
+			if ($scope.sending) return false;
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 

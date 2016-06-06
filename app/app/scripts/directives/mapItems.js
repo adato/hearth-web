@@ -7,7 +7,7 @@
  * @restrict E
  */
 
-angular.module('hearth.directives').directive('mapitems', [
+angular.module('hearth.directives').directive('mapItems', [
 	'geo', '$timeout',
 	function(geo, $timeout) {
 		return {
@@ -71,9 +71,7 @@ angular.module('hearth.directives').directive('mapitems', [
 					});
 
 					// fit markers to bound
-					google.maps.event.addListenerOnce(map, 'idle', function() {
-						map.fitBounds(bounds);
-					});
+					map.fitBounds(bounds);
 
 					// don't zoom so close when in map is only one marker
 					var listener = google.maps.event.addListener(map, "idle", function() {

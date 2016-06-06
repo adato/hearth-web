@@ -52,6 +52,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		function getPostScope(post) {
+			// console.log(JSON.parse(JSON.stringify(post)));
 			var author = post;
 
 			if (post._type == 'Post')

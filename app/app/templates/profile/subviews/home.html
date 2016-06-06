@@ -57,7 +57,7 @@
 				<!-- <div class="descr" ng-if="info.locations.length">
 					<i class="fa fa-map-marker"></i> {{:: 'you-will-find-me' | translate}}
 					<span ng-repeat="location in info.locations track by $index">
-						<span ng-if="location.address">{{:: location.address}}
+						<span ng-if="location.short_address">{{:: location.short_address}}
 							<span ng-if="!$last">;&nbsp;</span>
 						</span>
 					</span>
@@ -76,7 +76,6 @@
 					<a href='mailto:{{::info.email}}' class='display-block'>{{:: info.email}}</a>
 					<a ng-if='info.contact_email' href='mailto:{{:: info.contact_email}}' class='display-block'>{{:: info.contact_email}}</a>
 				</div> -->
-
 				<div class="descr reg-date margin-top-none">
 					<i class="fa fa-asterisk"></i>
 					<span ng-if="!mine">{{:: 'USER_HAS_REGISTERED' | translate }}</span>
@@ -92,8 +91,8 @@
 			</div>
 			<div class="clear"></div>
 			<div class="line display-flex flex-space-between margin-top-small">
-				<div ng-if="!mine">
-					<a class="bold" ng-if="!info.only_replies" ng-click="sendMessage(info)">{{:: 'SEND_MESSAGE' | translate }}</a>
+				<div ng-if="!mine" class="margin-top fleft">
+					<a href="" class="bold" ng-if="!info.only_replies" ng-click="sendMessage(info)">{{:: 'SEND_MESSAGE' | translate }}</a>
 				</div>
 				<div class="social">
 					<a target="_blank" ng-if="info.twitter" href="{{:: info.twitter}}">
