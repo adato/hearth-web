@@ -117,11 +117,11 @@
 					</header>
 
 					<div class="item-section text-container word-break">
-						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html="item.text | linky:' _blank ' | nl2br"></p>
+						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
-							<span ng-bind-html="item.text_short | linky:'_blank '"></span>
+							<span ng-bind-html="item.text_short | linky:'_blank'"></span>
 							<a ng-click="marketplace.expanded = true">
-								<b ng-class="'color- ' + item.type">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND ' | translate }}</b>
+								<b ng-class="'color-' + item.type">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</b>
 							</a>
 						</p>
 					</div>
@@ -132,7 +132,7 @@
 							</a>
 						</li>
 					</ul>
-					<div class="item-section tags" ng-class="{'tagsActive ': !inactivateTags}" ng-if="item.keywords.length">
+					<div class="item-section tags" ng-class="{'tagsActive': !inactivateTags}" ng-if="item.keywords.length">
 						<ul class="tagList">
 							<li ng-click="toggleTag(tag)" ng-class="{active: keywords.indexOf(tag) !== -1}" ng-repeat="tag in item.keywords" ng-bind="tag"></li>
 						</ul>
@@ -144,38 +144,38 @@
 							<div class="display-flex flex-wrap">
 								<div class="padding-right-large" ng-if="mine">
 									<div class="touchable-wrapper">
-										<a class="touchable" title="{{:: 'AD_EDIT_LABEL ' | translate}}" ng-click="edit(item)">
+										<a class="touchable" title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
 											<i class="fa fa-fw fa-pencil"></i>
 										</a>
-										<a class="touchable" title="{{:: 'AD_RESUME_LABEL ' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause- '+item._id)">
-											<i class="fa fa-fw" ng-class="{'fa-refresh ': item.state == 'expired ', 'fa-play ': item.state == 'suspended '}"></i>
+										<a class="touchable" title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+											<i class="fa fa-fw" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
 										</a>
-										<a class="touchable" title="{{:: 'AD_PAUSE_LABEL ' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL ', 'AD_PAUSE_ARE_YOU_SURE ', pauseToggle, item, this)">
+										<a class="touchable" title="{{:: 'AD_PAUSE_LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('AD_PAUSE_LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
 											<i class="fa fa-fw fa-pause"></i>
 										</a>
-										<a class="touchable" title="{{:: 'AD_REMOVE_LABEL ' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL ', 'AD_REMOVE_ARE_YOU_SURE ', deleteItem, item, this)">
+										<a class="touchable" title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
 											<i class="fa fa-fw fa-times"></i>
 										</a>
 									</div>
 								</div>
 								<div class="padding-right-large" ng-if="(!item.is_replied && !mine) || (item.is_replied)">
-									<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=":: 'background- ' + item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
+									<button ng-if="!item.is_replied && !mine" ng-click="replyItem(item)" class="button" ng-class=":: 'background-' + item.type" ng-bind-html=":: replyLabel[item.type] | translate"></button>
 									<span ng-if="item.is_replied">
-										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST ' | translate }}
+										{{:: 'YOU_HAVE_ALREADY_REPLIED_TO_THIS_POST' | translate }}
 									</span>
 								</div>
 								<div>
 									<div ng-if="item.reply_count && mine">
-										<a class="text-decoration-underline" ng-href="{{:: getProfileLink('Post ', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'. '+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
+										<a class="text-decoration-underline" ng-href="{{:: getProfileLink('Post', item._id) }}#replies" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></a>
 									</div>
-									<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'. '+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
-									<div ng-if="!item.reply_count">{{:: 'NO_REPLY ' | translate}}</div>
+									<div ng-if="item.reply_count && !mine" ng-bind-html="replyCountTexts[item.type]+'.'+pluralCat(item.reply_count) | translate:{value: item.reply_count}"></div>
+									<div ng-if="!item.reply_count">{{:: 'NO_REPLY' | translate}}</div>
 								</div>
 							</div>
 						</div>
 						<div class="display-table-cell addon text-align-right" id="open-sharing-options">
 							<div class="touchable-wrapper">
-								<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_ ' + item._id + ' .sharing-container-form ', null, 140)" title="Share">
+								<a analytics-custom analytics-event="Share" analytics-category="Open" analytics-label="Open sharing overlay" class="touchable" ng-click="showSharing = !showSharing; scrollToElement('#post_' + item._id + '.sharing-container-form', null, 140)" title="Share">
 									<i class="fa fa-fw fa-share-alt"></i>
 								</a>
 							</div>

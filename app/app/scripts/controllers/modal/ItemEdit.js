@@ -378,8 +378,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			postData = $scope.transformDataOut(postData);
 
-			if ($scope.sending)
-				return false;
+			if ($scope.sending) return false;
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
