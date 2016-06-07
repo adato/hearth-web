@@ -41,12 +41,12 @@ angular.module('hearth.geo').directive('searchMap', [
 
 					if (place && place.address_components) {
 						var location = place.geometry.location;
-						var distance = $location.search().distance;
+						var dist = $location.search().distance;
 
 						scope.search({
 							lat: location.lat(),
 							lon: location.lng(),
-							distance: distance ? distance : '50km',
+							distance: dist ? dist : '50km',
 							name: place.formatted_address
 						});
 
