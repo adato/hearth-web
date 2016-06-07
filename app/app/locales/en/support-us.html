@@ -202,7 +202,7 @@
 					<label for="email">{{'Email:' | translate}}</label>
 				</div>
 				<div class="small-12 large-9 columns">
-					<input id="email" type="email"  ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="Email"/>
+					<input id="email" type="email" ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="Email" ng-pattern="{{ emailPattern }}"/>
 				</div>
 
 				<div class="small-12 large-12 columns">&nbsp;</div>
@@ -276,7 +276,7 @@
 					<label for="email">{{'My e-mail:' | translate}}</label>
 				</div>
 				<div class="small-12 large-9 columns">
-					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email"/>
+					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="{{ emailPattern }}"/>
 				</div>	
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">

@@ -102,21 +102,21 @@
 					<img src="images/logo-dark.png" width="200" style="padding:10px;">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(0) }}</textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="images/logo-orange.png" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo-orange.png" width="150"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(1) }}</textarea>
 				</div>
 
 				<div class="small-12 large-5 columns">
 					<img src="images/logo.png" style="background:#7c766a; padding:10px;" width="200">
 				</div>
 				<div class="small-12 large-7 columns">
-					<textarea onclick="this.focus();this.select()" readonly="readonly"><a href="https://www.hearth.net/" target="_blank"><img src="https://hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a></textarea>
+					<textarea onclick="this.focus();this.select()" readonly="readonly">{{ getLogo(2) }}</textarea>
 				</div>
 
 				<br style="clear:both;">
@@ -210,7 +210,7 @@
 					<label for="email">{{'E-mail:' | translate}}</label>
 				</div>
 				<div class="small-12 large-9 columns">
-					<input id="email" type="email"  ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="Email"/>
+					<input id="email" type="email" ng-model="postalAddressData.email" name="email" class="form-control text-input top" required ng-required="true" placeholder="E-mail" ng-pattern="{{ emailPattern }}"/>
 				</div>
 
 				<div class="small-12 large-12 columns">&nbsp;</div>
@@ -283,7 +283,7 @@
 					<label for="email">{{'Můj e-mail:' | translate}}</label>
 				</div>
 				<div class="small-12 large-9 columns">
-					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email"/>
+					<input id="email" type="email" name="email" class="form-control text-input top" required ng-required="true" placeholder="" ng-model="contactData.email" ng-pattern="{{ emailPattern }}"/>
 				</div>	
 				<br style="clear:both;">
 				<div class="display-flex flex-space-between margin-top-medium">

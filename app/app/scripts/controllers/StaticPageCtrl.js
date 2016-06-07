@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('StaticPageCtrl', [
-	'$state', '$scope', 'ngDialog', 'Auth', 'User', 'Feedback',
-	function($state, $scope, ngDialog, Auth, User, Feedback) {
+	'$state', '$scope', 'ngDialog', 'Auth', 'User', 'Feedback', '$rootScope', '$sce',
+	function($state, $scope, ngDialog, Auth, User, Feedback, $rootScope, $sce) {
 		$scope.loading = true;
 		$scope.pageName = $state.current.name;
 		$scope.finishLoading = function() {
@@ -26,7 +26,6 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 		}
 
 		$scope.postalAddressData = {
-			what: 'Tohle je test / neodpovidat',
 			email: '',
 			badges: false,
 			numBadges: 10,
@@ -36,6 +35,18 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			street: '',
 			city: '',
 			psc: ''
+		}
+
+		$scope.logos = [
+			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/images/logo-dark.png" width="150" style="background:#fff; padding:10px;"></a>',
+			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/images/logo-orange.png" width="150"></a>',
+			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a>'
+		];
+
+		$scope.emailPattern = '/^[_a-z0-9A-Z]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/';
+
+		$scope.getLogo = function(index) {
+			return $sce.trustAsHtml($scope.logos[index]);
 		}
 
 		$scope.openModal = function(templateId, controller) {
@@ -91,19 +102,15 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 		}
 
 		var prefillEmail = function() {
-			Auth.init(function() {
-				User.get({
-					_id: $scope.loggedUser._id
-				}, function(data) {
-					$scope.contactData.email = data.email;
-					$scope.postalAddressData.email = data.email;
-					$scope.postalAddressData.fullName = data.name;
-				});
-			});
+			Auth.refreshUserInfo();
+			var email = $rootScope.loggedUser.email;
+			$scope.contactData.email = email;
+			$scope.postalAddressData.email = email;
+			$scope.postalAddressData.fullName = name;
 		}
 
 		$scope.init = function() {
-			if ($scope.loggedUser._id) {
+			if ($rootScope.loggedUser._id) {
 				prefillEmail();
 			}
 		}
