@@ -11,9 +11,8 @@
  */
 
 angular.module('hearth.geo').directive('searchMap', [
-	'$timeout', 'geo', '$location', 'Post',
-
-	function($timeout, geo, $location, Post) {
+	'$rootScope', '$timeout', 'geo', '$location', 'Post',
+	function($rootScope, $timeout, geo, $location, Post) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -26,21 +25,32 @@ angular.module('hearth.geo').directive('searchMap', [
 			templateUrl: 'templates/directives/searchMap.html',
 			link: function(scope, element) {
 				scope.center = false;
-				var searchBoxElement = $('input', element),
-					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]);
+				var input = $('input', element)[0];
+				var options = {
+					types: ['geocode']
+				};
+				var autocomplete = new google.maps.places.Autocomplete(input, options);
 
-				google.maps.event.addListener(searchBox, 'places_changed', function() {
-					var places = searchBox.getPlaces();
-					if (places && places.length > 0) {
-						geo.focusLocation(places[0].geometry.location);
+				google.maps.event.addListener(autocomplete, 'place_changed', function() {
+					var place = autocomplete.getPlace();
 
-						var loc = places[0].geometry.location;
+					if (typeof place === "undefined" || !place.address_components) {
+						$(input).val('');
+						return false;
+					}
+
+					if (place && place.address_components) {
+						var location = place.geometry.location;
+						var dist = $location.search().distance;
+
 						scope.search({
-							lat: loc.lat(),
-							lon: loc.lng(),
-							distance: '50km',
-							name: places[0].formatted_address
+							lat: location.lat(),
+							lon: location.lng(),
+							distance: dist ? dist : '50km',
+							name: place.formatted_address
 						});
+
+						geo.focusLocation(location);
 					}
 				});
 
@@ -48,7 +58,7 @@ angular.module('hearth.geo').directive('searchMap', [
 					geo.getCurrentLocation().then(function(location) {
 						geo.focusLocation(location);
 						geo.getAddress(location).then(function(info) {
-							searchBoxElement.val(info.formatted_address);
+							$(input).val(info.formatted_address);
 						});
 						// search is ran separately and for the whole map so no need to run it here again
 						// scope.search(location);
@@ -72,6 +82,7 @@ angular.module('hearth.geo').directive('searchMap', [
 				scope.setSearchParams = function(params) {
 					params = angular.extend(scope.getFilterParams(), params);
 					$location.search(params);
+					$rootScope.$broadcast("filterApplied", params);
 				};
 
 				scope.getSearchParams = function() {
@@ -85,15 +96,20 @@ angular.module('hearth.geo').directive('searchMap', [
 					return searchParams;
 				};
 
-				scope.search = function(loc) {
+				scope.search = function(location) {
 					// if we should set new location, set it also to search
-					loc && loc.lon && scope.setSearchParams(loc);
+					location && location.lon && scope.setSearchParams(location);
 
 					// search only when map is shown
 					var params = scope.getSearchParams();
 
-					if (params.lon)
+					if (params.lon && params.lat) {
 						scope.center = true;
+					}
+
+					if (params.name) {
+						$(input).val(params.name);
+					}
 
 					Post.mapQuery(params, function(data) {
 						scope.$broadcast('showMarkersOnMap', data);
@@ -106,8 +122,8 @@ angular.module('hearth.geo').directive('searchMap', [
 				scope.$on('filterApplied', scope.search);
 
 				scope.$on('$destroy', function() {
-					scope.searchBoxElement = null;
-					scope.searchBox = null;
+					input = null;
+					autocomplete = null;
 				});
 			}
 		};

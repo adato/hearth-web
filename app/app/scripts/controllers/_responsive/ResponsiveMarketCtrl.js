@@ -223,7 +223,6 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 
 		$scope.$on('postUpdated', function($event, data) {
 			var item, i;
-
 			for (i = 0; i < $scope.items.length; i++) {
 				if (data._id === $scope.items[i]._id) {
 					$scope.items[i] = data;

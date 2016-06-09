@@ -158,6 +158,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					post.locations = [];
 				}
 
+				if (post.locations.length && !post.location_unlimited) {
+					angular.forEach(post.locations, function(location, index) {
+						if (location.json_data) post.locations[index] = location.json_data;
+					});
+				}
+
+
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
 				$scope.slide.communities = !!post.related_communities.length
@@ -174,18 +181,22 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			};
 
 			// clear locations from null values
-			data.locations = $scope.cleanNullLocations(data.locations);
+			//data.locations = $scope.cleanNullLocations(data.locations);
 			// transform keywords
 			data.keywords = data.keywords.map(function(obj) {
 				return obj.text;
 			});
 
-			if (data.location_unlimited) {
+			if (data.location_unlimited || !data.locations.length) {
 				data.locations = [];
-			}
-
-			if (!data.locations.length) {
-				data.locations = [];
+			} else {
+				angular.forEach(data.locations, function(location, index) {
+					data.locations[index] = {
+						json_data: location.address_components ? location : {
+							place_id: location.place_id
+						}
+					};
+				});
 			}
 
 			if (data.valid_until_unlimited) {
@@ -342,14 +353,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.save = function(post, activate) {
-			var postData, postDataCopy;
+			var postData;
 
-			if ($scope.imageUploading)
-				return false;
+			if ($scope.imageUploading) return false;
 
-			// return $rootScope.globalLoading = true;
 			// hide top "action failed" message
 			$scope.showInvalidPostMessage = false;
+
 			if (!$scope.testForm(post)) {
 				$timeout(function() {
 					$rootScope.scrollToError('.create-ad .error', '.ngdialog');
@@ -368,8 +378,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 
 			postData = $scope.transformDataOut(postData);
 
-			if ($scope.sending)
-				return false;
+			if ($scope.sending) return false;
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
 
@@ -461,12 +470,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		};
 
 		$scope.init();
+
 		$scope.$watch('post.related_communities', function(val, old) {
 			if (val.length !== old.length && !$scope.post.related_communities.length)
 				$scope.post.is_private = false;
 
 			$scope.toggleLockField();
 		});
+
 		$scope.$watch('post.current_community_id', function(val, old) {
 			if (!!val !== !!old) {
 				$scope.post.related_communities = [];
@@ -475,6 +486,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			}
 			$scope.toggleLockField();
 		});
+
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
 		$scope.$on('postUpdated', $scope.refreshItemInfo);
 		$scope.$on("itemDeleted", $scope.itemDeleted);

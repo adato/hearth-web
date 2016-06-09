@@ -52,6 +52,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		function getPostScope(post) {
+			// console.log(JSON.parse(JSON.stringify(post)));
 			var author = post;
 
 			if (post._type == 'Post')
@@ -121,8 +122,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 			$timeout(function() {
 				$scope.disableLazyLoad = false;
-				if (!isLast)
-					$scope.loading = false;
+				if (!isLast) $scope.loading = false;
 			});
 		};
 
@@ -132,14 +132,12 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			var newPost = $rootScope.getPostIfMissing();
 
 			// if there is not new post, dont do anything
-			if (!newPost)
-				return data;
+			if (!newPost) return data;
 
 			// go throught post array and if there is new post already
 			// dont add him again
 			for (var i = 0; i < data.length; i++) {
-				if (data[i]._id == newPost._id)
-					return data;
+				if (data[i]._id == newPost._id) return data;
 			}
 
 			// if there is not, add him to the top
@@ -159,13 +157,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.loaded = true;
 				$(".loading").hide();
 
-				if (!data.data.length) {
-					return finishLoading(data.data, true);
-				}
+				if (!data.data.length) return finishLoading(data.data, true);
 
 				$scope.debug && console.timeEnd("Market posts loaded from API");
 				if (data.data) {
-
 					data.data = insertLastPostIfMissing(data.data);
 					data.data = ItemFilter.filter(data.data);
 					data.data = HearthCrowdfundingBanner.decorateMarketplace(data.data);
@@ -176,7 +171,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$rootScope.$broadcast('postsLoaded');
 			}, function(err) {
 				// error handler
-
 				$scope.loaded = true;
 				$(".loading").hide();
 			});
