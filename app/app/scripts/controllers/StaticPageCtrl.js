@@ -43,7 +43,7 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			'<a href="https://www.hearth.net/" target="_blank"><img src="https://www.hearth.net/app/images/logo.png" width="150" style="padding:10px;"></a>'
 		];
 
-		$scope.emailPattern = '/^[_a-z0-9A-Z]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/';
+		$scope.emailPattern = '^[_a-z0-9A-Z]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$';
 
 		$scope.getLogo = function(index) {
 			return $sce.trustAsHtml($scope.logos[index]);
@@ -106,7 +106,6 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			var email = $rootScope.loggedUser.email;
 			$scope.contactData.email = email;
 			$scope.postalAddressData.email = email;
-			$scope.postalAddressData.fullName = name;
 		}
 
 		$scope.init = function() {
