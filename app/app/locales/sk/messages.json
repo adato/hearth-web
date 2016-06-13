@@ -407,7 +407,7 @@
 		"TERMS": "Podmienky použitia",
 		"FAQ": "Časté otázky",
 		"TAXES": "Darovanie a dane",
-		"SUPPORT_US": "Podpoř Hearth"
+		"SUPPORT_US": "Podpor Hearth"
 	},
 	"THANKS_FOR_REPORT": "Ďakujeme za podnet, tento príspevok preveríme.",
 	"THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvite i svojich priateľov do Hearth.net, do štedrej sociálnej siete!",
@@ -1373,7 +1373,7 @@
 		"taxes": "Darovanie a dane",
 		"community_edit": "Úprava komunity",
 		"fulltext": "Vyhľadávanie",
-		"support-us": "Podpoř Hearth"
+		"support-us": "Podpor Hearth"
 	},
 	"FULLTEXT": {
 		"FILTER": {
@@ -1405,6 +1405,7 @@
 	"ERR_COMMUNITY_MOTTO_MAX_LENGTH": "Stručné info o komunitě by mělo být stručnější :)",
 	"OUR_FACEBOOK": "Facebook",
 	"OUR_TWITTER": "Twitter",
+	"OUR_LINKEDIN": "LinkedIn",
 	"OUR_GOOGLEPLUS": "Google+",
 	"OUR_WEB": "Web",
 	"COMMUNITY_INTERESTS": "Zájmy",

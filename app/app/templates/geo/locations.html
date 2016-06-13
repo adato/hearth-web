@@ -19,10 +19,10 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="location-map hidden">
-			<div class="map-controll map-point" ng-show="mapPoint && mapPoint.name">
+			<div class="map-controll map-point" ng-show="mapPoint && mapPoint.formatted_address">
 				<a class="right" ng-click="chooseMapLocation()">{{ 'INSERT_LOCATION' | translate }}</a>
 				<div class="map-point-name" ng-if="mapPointShowName">
-					{{ mapPoint.name }}
+					{{ mapPoint.formatted_address }}
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -31,9 +31,9 @@
 			</div>
 			<div class="map-container"></div>
 		</div>
-		<tags-input ng-if="initFinished" allow-duplicate-tags="true" refocus-input-on-tab display-property="origin_address" class="tags tags-input" ng-class="{'ng-invalid': showError && !locations.length && !disabled }" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}"
-		replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30" add-from-autocomplete-only="true"
-		allow-leftover-text="true">
+		<tags-input ng-if="initFinished" allow-duplicate-tags="true" refocus-input-on-tab display-property="formatted_address" class="tags tags-input" ng-class="{'ng-invalid': showError && !locations.length && !disabled }" ng-model="locations" placeholder="{{ 'ADD_LOCATION' | translate }}"
+						replace-spaces-with-dashes="false" add-on-enter="false" add-on-blur="false" add-on-comma="false" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó]+$" min-length="2" max-length="30" add-from-autocomplete-only="true"
+						allow-leftover-text="true">
 		</tags-input>
 	</div>
 	<div class="error" ng-if="errorWrongPlace || showError">

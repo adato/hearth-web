@@ -73,7 +73,7 @@ angular.module('hearth.directives').service('ImageLib', ['$http', function($http
 	};
 }]);
 
-angular.module('hearth.directives').directive('fileModel', ['$parse', function($parse) {
+angular.module('hearth.directives').directive('fileModel', ['$parse', '$rootScope', function($parse, $rootScope) {
 	return {
 		restrict: 'A',
 		link: function(scope, element, attrs) {
@@ -81,9 +81,8 @@ angular.module('hearth.directives').directive('fileModel', ['$parse', function($
 			var modelSetter = model.assign;
 
 			element.bind('change', function() {
-				scope.$apply(function() {
-					modelSetter(scope, element[0].files[0]);
-				});
+				modelSetter(scope, element[0].files[0]);
+				if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
 			});
 		}
 	};
@@ -113,17 +112,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 				limitPixelSize: "=",
 				singleFile: "=",
 			},
-			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">\
-					<input ng-if="singleFile" class="file-upload-input" file-model="picFile" type="file" name="file" accept="image/*" />\
-					<input ng-if="!(singleFile)" class="file-upload-input" file-model="picFile" type="file" name="file" accept="image/*" multiple />\
-					<div class="file-upload-overlay"></div>\
-						<span ng-transclude class="image-preview-content"></span>\
-					</div>\
-					<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>\
-					<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>\
-					<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>\
-					<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>\
-				</div>',
+			template: '<div class="image-preview-container"><div class="image-preview image-upload" ng-class="{uploading: uploading}">' + '<input class="file-upload-input" file-model="picFile" type="file"' + ' name="file" ' + 'accept="image/*">' + '<div class="file-upload-overlay"></div>' + '<span ng-transclude class="image-preview-content"></span>' + '</div>' + '<div ng-if="showErrors && error.badFormat" class="error animate-show">{{ "ERROR_BAD_IMAGE_FORMAT" | translate:"{formats: \'"+allowedTypes.join(", ")+"\'}" }}</div>' + '<div ng-if="showErrors && error.badSize" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE" | translate:"{maxSize: "+limit+"}" }}</div>' + '<div ng-if="showErrors && error.badSizePx" class="error animate-show">{{ "ERROR_BAD_IMAGE_SIZE_PX" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '<div ng-if="showErrors && error.uploadError" class="error animate-show">{{ "ERROR_WHILE_UPLOADING" | translate:"{minSize: "+limitPixelSize+"}" }}</div>' + '</div>',
 			link: function(scope, el, attrs) {
 				scope.allowedTypes = ['JPG', 'JPEG', 'PNG', 'GIF'];
 				scope.showErrors = true;
@@ -228,7 +217,6 @@ angular.module('hearth.directives').directive('imagePreview', [
 						resized = ExifRestorer.restore(imgFile.target.result, resized);
 						ImageLib.upload(resized.split(',').pop(), scope.uploadResource, function(res) {
 							scope.uploading = false;
-
 							pushResult(res, {
 								total: 0
 							});
@@ -291,9 +279,8 @@ angular.module('hearth.directives').directive('imagePreview', [
 				});
 
 				return el.bind('change', function(event) {
-					return scope.$apply(function() {
-						previewImage(el, scope.limit); // 5 mb limit
-					});
+					previewImage(el, scope.limit); // 5 mb limit
+					if (!scope.$$phase && !$rootScope.$$phase) scope.$apply();
 				});
 			}
 		};

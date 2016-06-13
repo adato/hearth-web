@@ -45,11 +45,14 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 		// load post data
 		$scope.load = function() {
-
 			Post.get({
 				postId: $stateParams.id
 			}, function(data) {
 				$scope.item = data;
+
+				angular.forEach(data.locations, function(location, index) {
+					$scope.item.locations[index] = location.json_data;
+				});
 
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
@@ -95,7 +98,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 
 			$("#item_container_" + item._id).fadeOut("slow", function() {
 				$scope.itemDeleted = true;
-				$scope.$apply();
+				if (!$scope.$$phase) $scope.$apply();
 			});
 		};
 

@@ -30,11 +30,11 @@ $colorSuccess: $color_greenAlt;
 $colorDanger: $color_red;
 $colorWarning: $color_yellow;
 
-	/* from bootstrap */
-	$state-danger-text: #a94442;
-	$state-danger-bg: #f2dede;
-/* /COLOR SETTINGS */
+/* from bootstrap */
+$state-danger-text: #a94442;
+$state-danger-bg: #f2dede;
 
+/* /COLOR SETTINGS */
 $FontAwesomePath: "../../fonts" !default;
 $defaultShadow: 1px 1px 6px gray;
 $webWidth: 960px;
@@ -133,7 +133,7 @@ $fontSize: rem-calc(14);
 @import "communities";
 @import "communityProfile";
 @import "404";
-@import "terms";
+@import "static";
 @import "notify";
 @import "dropdown";
 @import "market";

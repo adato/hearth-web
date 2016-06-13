@@ -75,6 +75,10 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			User.get({
 				_id: $stateParams.id
 			}, function(res) {
+				angular.forEach(res.locations, function(location, index) {
+					res.locations[index] = location.json_data;
+				});
+
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);
@@ -125,7 +129,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			});
 		};
 
-		// add follower 
+		// add follower
 		$scope.addFollower = function(user_id) {
 
 			if ($scope.sendingAddFollower) return false;
@@ -182,7 +186,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			$scope.rating.score = score || null;
 			$scope.rating.text = '';
 			$scope.rating.post_id = null;
-			// select first option in posts select - eg default value			
+			// select first option in posts select - eg default value
 			$("#ratingsPostsSelect").val($("#ratingsPostsSelect option:first").val());
 
 			// show form

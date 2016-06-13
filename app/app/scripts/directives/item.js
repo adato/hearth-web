@@ -71,8 +71,7 @@ angular.module('hearth.directives').directive('item', [
 				 * When updated item, refresh its info
 				 */
 				scope.$watch('item', function(item) {
-					if (!item)
-						return false;
+					if (!item) return false;
 
 					// post address for social links
 					scope.postAddress = $rootScope.appUrl + 'post/' + item._id;
@@ -105,11 +104,6 @@ angular.module('hearth.directives').directive('item', [
 					var item = $(element);
 					// show first 3 items with fadeIn effect, then use slideDown
 					var showMethod = (scope.item.index < 3) ? item.fadeIn : item.slideDown;
-
-					// $("#post_"+scope.item._id).show();
-					// $timeout(scope.recountHeight);
-					// scope.delayedView = false;
-
 
 					setTimeout(function() {
 						showMethod.call(item, 200, function() {
@@ -151,7 +145,6 @@ angular.module('hearth.directives').directive('item', [
 				// we need to recount his height after displayed
 				if (scope.delayedView)
 					scope.showListener = scope.$on('showHiddenPosts', scope.displayDelayed);
-
 
 			}
 		};
