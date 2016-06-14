@@ -301,7 +301,7 @@ module.exports = function(grunt) {
 						'pics/{,*/}*',
 						'vendor/{,*/}*',
 
-						'new-landing-page/{,*/}*'
+						'new-landing-page/**/*'
 					]
 				},{
 					cwd: '<%= yeoman.app %>/../',

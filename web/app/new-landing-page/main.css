@@ -158,6 +158,11 @@ a{color: #4a4a4a}
 	transform: rotate(-6deg);
 	background-color: #fff;
 }
+@media (min-width: 992px){
+	.slash:before{
+		transform: rotate(-3deg);
+	}
+}
 .slash.background-alternate{background-color: transparent !important}
 .slash.background-alternate:before{background-color: #fcfbf4 !important}
 .divider-main{
