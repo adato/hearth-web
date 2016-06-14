@@ -1,3 +1,8 @@
+.files-upload-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
 .files-upload-preview-wrapper{
 	position: relative;
 	display: inline-block;
@@ -59,9 +64,16 @@ img.image-upload-preview{
 }
 .files-upload-label{
 	display: inline-block;
-	margin-bottom: $size-small;
 	font-weight: $ui-text-weight-bolder;
-	color: $colorSecondary;
+
+	&.button-files {
+		background: $colorDarkGray;
+		margin-right: 20px;
+
+		&:hover {
+			background: darken($colorDarkGray, 20%);
+		}
+	}
 }
 .form-section label.files-upload-label{
 	margin-bottom: $size-small !important;

@@ -32,12 +32,18 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 			ctrl.pattern = (FileService.fileTypes[$scope.filesPattern] !== void 0 ? FileService.fileTypes[$scope.filesPattern].join(',') : '');
 
 			ctrl.isImage = function(file) {
-				if (file) return (FileService.fileTypes.image.indexOf(file.type) > -1);
+				if (file) {
+					return (FileService.fileTypes.image.indexOf(file.type) > -1);
+				}
 			};
 
 			ctrl.removeFile = function(index) {
+				var previews = ctrl.scope.previews;
 				ctrl.scope.ngModel.splice(index, 1);
-				ctrl.scope.previews.splice(index, 1);
+				previews.splice(index, 1);
+				if (!previews.length) {
+					$('#message-footer').removeClass('message-actions');
+				}
 				$rootScope.$broadcast("dynamicHeightRedraw");
 			};
 
@@ -48,6 +54,8 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 		link: function(scope, element) {
 			function pushAttachment(file) {
 				var reader = new FileReader();
+				var footer = $('#message-footer');
+
 				reader.readAsDataURL(file);
 				reader.onload = function(e) {
 					if (!(scope.ngModel instanceof Array)) scope.ngModel = [];
@@ -79,6 +87,7 @@ angular.module('hearth.directives').directive('filesPicker', ['FileService', '$t
 					if (!scope.$$phase) scope.$apply();
 				};
 				reader.onloadend = function() {
+					footer.addClass('message-actions');
 					$rootScope.$broadcast("dynamicHeightRedraw");
 				};
 			}
