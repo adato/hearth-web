@@ -37,9 +37,10 @@ angular.module('hearth.services').service('Validators', [
 		};
 
 		// validate email
-		this.email = function(e) {
-			return this.match(e, EMAIL_VALIDATOR_REGEXP);
-		};
+		this.email = function(e, regex) {
+			var expression = (typeof regex !== 'undefined' ? regex : EMAIL_VALIDATOR_REGEXP);
+			return this.match(e, expression);
+		}
 
 		// validate emails in array
 		this.emails = function(arr) {
