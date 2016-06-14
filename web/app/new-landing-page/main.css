@@ -1,0 +1,290 @@
+html{
+	font: 16px/1.5 tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;
+	/*font-size: 16px;*/
+}
+h1,h2,h3{
+	text-align: center;
+}
+h1{
+	font-size: 40px;
+	margin-top: 0;
+}
+/*******************
+	COLOR
+*******************/
+h1,h2,h3,
+.color-primary{color: #fa5800}
+.color-secondary{color: #a7bd1d}
+.color-tertiary{color: #1fb1e8}
+.background-primary{background-color: #fa5800}
+.background-secondary{background-color: #a7bd1d}
+.background-tertiary{background-color: #1fb1e8}
+.background-alternate{background-color: #fcfbf4 !important}
+a{color: #4a4a4a}
+/*******************
+	BUTTON
+*******************/
+.button{
+	display: inline-block;
+	padding: 16px 32px;
+	color: #fff;
+	background-color: #fa5800;
+	border: 0px solid;
+	border-radius: 30px;
+	font-size: 18px;
+	font-weight: bold;
+	white-space: nowrap;
+	text-decoration: none;
+	box-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+.button.small{
+	padding: 8px 16px;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+.button.color-secondary{
+	background-color: #a7bd1d;
+}
+.button.alt{
+	color: #fa5800;
+	background-color: transparent;
+	border: 3px solid #fa5800;
+}
+.button.alt.color-secondary{
+	color: #a7bd1d;
+	border: 3px solid #a7bd1d;
+}
+.button-flame{
+	position: relative;
+	top: 3px;
+	display: inline-block;
+	width: 20px; height: 20px;
+	margin-right: 10px;
+	background-image: url('./img/hearth-flame.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+
+}
+.alt > .button-flame{
+	background-image: url('./img/hearth-flame-alt.png');
+}
+/*******************
+	SECTION
+*******************/
+.section > section{
+	max-width: 940px;
+	margin: 0 auto;
+}
+.section + .section,
+.section > section + section{
+	/*margin-top: 40px;*/
+	padding-top: 40px;
+}
+/*******************
+	NAV
+*******************/
+.header-wrapper{
+	position: fixed;
+	top: 0;
+	width: 100%; height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 16px;
+	background-color: #fff;
+	z-index: 100;
+}
+.header-wrapper .logo{
+	width: 270px; height: 56px;
+	background-image: url('./img/logo-dark.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.nav-item{
+	padding: 8px 16px;
+	font-weight: bold;
+	white-space: nowrap;
+	text-decoration: none;
+}
+.main-navigation{
+	display: flex;
+}
+/*******************
+	JUMBO
+*******************/
+.jumbo-wrapper{
+	height: 90vh;
+	background-image: url('./img/jumbo-1.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center 0;
+}
+.jumbo{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 100px 0;
+}
+.jumbo h1,
+.jumbo h2{
+	margin: 0 0 20px;
+	color: #fff;
+}
+.jumbo h1{font-size: 60px;}
+.jumbo h2{font-size: 24px; font-weight: normal;}
+/*******************
+	DIVIDERS
+*******************/
+.contains-slash{
+	position: relative;
+	padding-bottom: 110px;
+}
+.slash{
+	position: absolute;
+	bottom: -1px; left: 0;
+	width: 100%;
+	overflow: hidden;
+	padding-bottom: 110px;
+}
+.slash:before{
+	content: '';
+	position: absolute;
+	top: 50%; left: -15%;
+	width: 130%; height: 100%;
+	display: block;
+	transform: rotate(-6deg);
+	background-color: #fff;
+}
+.slash.background-alternate{background-color: transparent !important}
+.slash.background-alternate:before{background-color: #fcfbf4 !important}
+.divider-main{
+	width: 100%; height: 51px;
+	margin: 30px 0;
+	background-image: url('./img/sketchy-lines-grey.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.decorated-circle-flame{
+	position: absolute;
+	bottom: 25px; left: 50%;
+	width: 68px; height: 68px;
+	margin-left: -34px;
+	border-radius: 50%;
+	background-image: url('./img/logo-shape.png');
+	background-size: 28px 36px;
+	background-position: 20px 16px;
+	background-repeat: no-repeat;
+	z-index: 10;
+}
+/*******************
+	BALL
+*******************/
+.ball{
+	position: relative;
+	width: 30%;
+	margin: 0 20px;
+	border-radius: 50%;
+	color: #fff;
+}
+.balls-5 > .ball{
+	padding-bottom: 20%;
+}
+.balls-3 > .ball{
+	padding-bottom: 30%;
+}
+.ball > svg{
+	position: absolute;
+	display: block;
+	width: 100%;
+}
+.ball-background-primary > svg > circle{fill: #fa5800;}
+.ball-background-secondary > svg > circle{fill: #a7bd1d;}
+.ball-background-tertiary > svg > circle{fill: #1fb1e8;}
+.ball p{
+	flex: 1;
+	margin: 20px;
+	font-size: 10px;
+}
+/*******************
+	MASONRY
+*******************/
+@media (min-width: 992px){
+	.masonry-wrapper:first-child{
+		margin-left: -10px;
+	}
+	.masonry-wrapper:last-child{
+		margin-right: -10px;
+	}
+}
+.masonry-item{
+	position: relative;
+	height: 300px;
+	margin: 10px;
+	background-color: rgba(100,100,255,.4);
+	background-size: cover;
+	background-position: center center;
+}
+.masonry-item:after{
+	content: '';
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 1;
+	background-color: rgba(0,0,0,.2);
+}
+.masonry-item > div{
+	position: relative;
+	z-index: 2;
+}
+.masonry-item h2{
+	color: #fff;
+	margin: 10px 0;
+}
+/*******************
+	QUOTE
+*******************/
+.large-quote{
+	margin-bottom: -40px;
+	color: #9b9b9b;
+	font-size: 144px;
+	font-family:Montserrat-Regular;
+	line-height: 100px;
+	letter-spacing:0px;
+}
+/*******************
+	BLOG ADS
+*******************/
+.blog-ad h3{
+	margin: 0;
+	font-size: 17px;
+	text-align: left;
+	color: #444;
+}
+.blog-ad p{margin: 0}
+.blog-ad > .blog-img-wrapper{
+	position: relative;
+	padding: 20%;
+}
+.blog-img-wrapper > .blog-img{
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	padding-bottom: 100%;
+}
+
+/*******************
+	AD HOC IMAGES
+*******************/
+#image-mp-1{background-image: url('./img/temp/mp-1.png')}
+#image-mp-2{background-image: url('./img/temp/mp-2.png')}
+#image-mp-3{background-image: url('./img/temp/mp-3.png')}
+#image-mp-4{background-image: url('./img/temp/mp-4.png')}
+#image-mp-5{background-image: url('./img/temp/mp-5.png')}
+
+#image-blog-1{background-image: url('./img/temp/blog-1.png')}
+#image-blog-2{background-image: url('./img/temp/blog-2.png')}
+#image-blog-3{background-image: url('./img/temp/blog-3.png')}
