@@ -1,5 +1,12 @@
 .messages {
 
+	#message-footer {
+		&.message-actions {
+			padding-top: 90px;
+			position: relative;
+		}
+	}
+
 	.bottom {
 		margin-top: 10px;
 	}
@@ -186,7 +193,7 @@
 		width: 570px;
 		margin-bottom: $size-large;
 		padding: 20px;
-		//max-height: 100%;
+		//height: 100%;
 		& > div {
 			position: relative;
 			height: 100%;

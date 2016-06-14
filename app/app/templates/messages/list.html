@@ -1,7 +1,7 @@
 <div loading show="!loaded"></div>
 
 <div class="messages" ng-if="loaded" dynamic-height offset="140" min-height="400" ng-class="{ 'message-detail-displayed': detail || showNewMessageForm}">
-	<h1 class="text-center">{{'h1.messages' | translate}}</h1>
+	<!--h1 class="text-center">{{'h1.messages' | translate}}</h1-->
 
 	<div class="messages-top formStyle">
 		<!-- <form class="search" method="POST" ng-submit="searchConversation()">
@@ -24,7 +24,7 @@
 		<div class="clear"></div>
 		<div loading show="!conversations"></div>
 	</div>
-	<div class="messages-container" ng-if="conversations" dynamic-height offset="70" container=".messages" min-height="340">
+	<div class="messages-container" ng-if="conversations" dynamic-height offset="0" container=".messages" min-height="340">
 		<div id="about" class="collumn left conversations" ng-if="conversations" class-if-overflow="shadow-bottom" outer=".nano" inner=".nano-content-inner">
 			<div class="nano" custom-scrollbar>
 				<div class="nano-content" when-scrolled="loadBottom()" loading-in-progress="loadingBottom" inner-scrolling="true">
