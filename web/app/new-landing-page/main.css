@@ -263,14 +263,14 @@ a{color: #4a4a4a}
 /*******************
 	BLOG ADS
 *******************/
-.blog-ad h3{
+.blog-block h3{
 	margin: 0;
 	font-size: 17px;
 	text-align: left;
 	color: #444;
 }
-.blog-ad p{margin: 0}
-.blog-ad > .blog-img-wrapper{
+.blog-block p{margin: 0}
+.blog-block > .blog-img-wrapper{
 	position: relative;
 	padding: 20%;
 }
