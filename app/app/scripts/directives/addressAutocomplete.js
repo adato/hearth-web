@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  * @name hearth.directives.addressAutocomplete
- * @description 
+ * @description
  * @restrict E
  */
 
@@ -62,10 +62,13 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 					});
 				});
 				init = function() {
-					var autocomplete;
+					var input = inputElement;
+					var options = {
+						types: ['address']
+					};
 					scope.initted = true;
-					autocomplete = new google.maps.places.Autocomplete(inputElement);
-					google.maps.event.addDomListener(inputElement, 'keydown', function(e) {
+					var autocomplete = new google.maps.places.Autocomplete(input, options);
+					google.maps.event.addDomListener(input, 'keydown', function(e) {
 						if (e.keyCode === 13) {
 							e.preventDefault();
 						}
