@@ -32,6 +32,24 @@ ul,li{list-style: none}
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
+/************************
+	RESPONSIVE UTILS
+************************/
+.small-only,
+.medium-down{display: inherit !important}
+.medium-only,
+.medium-up,
+.large-only{display: none !important}
+@media (min-width: 992px){
+	.small-only{display: none !important}
+	.medium-only,
+	.medium-up{display: inherit !important}
+}
+@media (min-width: 1200px){
+	.large-only{display: inherit !important}
+	.medium-down,
+	.medium-only{display: none !important}
+}
 
 /*******************
 	STANDARD

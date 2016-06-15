@@ -1,6 +1,6 @@
 html{
 	font: 16px/1.5 tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;
-	/*font-size: 16px;*/
+	scroll-behavior: smooth;
 }
 h1,h2,h3{
 	text-align: center;
@@ -60,13 +60,30 @@ a{color: #4a4a4a}
 	display: inline-block;
 	width: 20px; height: 20px;
 	margin-right: 10px;
-	background-image: url('./img/hearth-flame.png');
+	background-image: url('../img/hearth-flame.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 
 }
 .alt > .button-flame{
-	background-image: url('./img/hearth-flame-alt.png');
+	background-image: url('../img/hearth-flame-alt.png');
+}
+/*******************
+	TRIBAR
+*******************/
+.tribar{
+  position: relative;
+  padding-left: 1.25em;
+}
+.tribar:before{
+  content: '';
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 1em;
+  height: 0.125em;
+  border-top: 0.375em double #000;
+  border-bottom: 0.125em solid #000;
 }
 /*******************
 	SECTION
@@ -96,12 +113,13 @@ a{color: #4a4a4a}
 }
 .header-wrapper .logo{
 	width: 270px; height: 56px;
-	background-image: url('./img/logo-dark.png');
+	background-image: url('../img/logo-dark.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 .nav-item{
-	padding: 8px 16px;
+	padding: 8px;
+	margin: 0 4px;
 	font-weight: bold;
 	white-space: nowrap;
 	text-decoration: none;
@@ -109,12 +127,106 @@ a{color: #4a4a4a}
 .main-navigation{
 	display: flex;
 }
+.hamburger{
+	margin: 0 10px 0 0;
+}
+/*******************
+	FLAG
+*******************/
+.language-wrapper{
+	position: relative;
+}
+#language-panel{
+	display: none;
+}
+@media (max-width: 1199px){
+	.hover-window.is-active{
+		position: absolute;
+		display: flex !important;
+		flex-direction: column;
+		align-items: flex-start;
+		/*top: 60px; left: -16px;*/
+		top: calc(100% + 10px); left: -16px;
+		padding: 16px;
+		background: #fff;
+		border-radius: 30px;
+		box-shadow: 0 1px 2px rgba(0,0,0,.4);
+	}
+	#language-panel .language-option{
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+	#language-panel .language-option .flag{
+		margin-right: 10px;
+	}
+	#language-panel .language-option:last-child{
+		margin-bottom: 0px;
+	}
+	#main-navigation.is-active{
+		left: -5px;
+	}
+	#main-navigation li{
+		border-bottom: 1px solid #ddd;
+	}
+	#main-navigation li:last-child{
+		border-bottom: none;
+	}
+	#main-navigation li a{
+		display: block;
+		min-width: 200px;
+		margin: 0;
+	}
+	#main-navigation li:first-child a{
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
+	}
+	#main-navigation li:last-child a{
+		border-bottom-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
+	#main-navigation li a:hover{
+		background: #f4f4f4;
+	}
+}
+@media (min-width: 1200px){
+	#language-panel{
+		flex-order: 4;
+		display: inherit;
+	}
+}
+.flag{
+	display:inline-block;
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+	border-radius: 50%;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+html[lang='en'] #language-toggle .flag,
+.flag.flag-en{
+	background-image: url(../img/flags/flag-english.svg);
+}
+html[lang='cs'] #language-toggle .flag,
+.flag.flag-cs{
+	background-image: url(../img/flags/flag-czech.svg);
+}
+html[lang='sk'] #language-toggle .flag,
+.flag.flag-sk{
+	background-image: url(../img/flags/flag-slovak.svg);
+}
+html[lang='cs'] #large-language-panel #language-large-cs,
+html[lang='sk'] #large-language-panel #language-large-sk,
+html[lang='en'] #large-language-panel #language-large-en{
+	display: none;
+}
 /*******************
 	JUMBO
 *******************/
 .jumbo-wrapper{
 	height: 90vh;
-	background-image: url('./img/jumbo-1.png');
+	background-image: url('../img/jumbo-1.png');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center 0;
@@ -168,7 +280,7 @@ a{color: #4a4a4a}
 .divider-main{
 	width: 100%; height: 51px;
 	margin: 30px 0;
-	background-image: url('./img/sketchy-lines-grey.png');
+	background-image: url('../img/sketchy-lines-grey.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -180,7 +292,7 @@ a{color: #4a4a4a}
 	width: 68px; height: 68px;
 	margin-left: -34px;
 	border-radius: 50%;
-	background-image: url('./img/logo-shape.png');
+	background-image: url('../img/logo-shape.png');
 	background-size: 28px 36px;
 	background-position: 20px 16px;
 	background-repeat: no-repeat;
@@ -284,12 +396,12 @@ a{color: #4a4a4a}
 /*******************
 	AD HOC IMAGES
 *******************/
-#image-mp-1{background-image: url('./img/temp/mp-1.png')}
-#image-mp-2{background-image: url('./img/temp/mp-2.png')}
-#image-mp-3{background-image: url('./img/temp/mp-3.png')}
-#image-mp-4{background-image: url('./img/temp/mp-4.png')}
-#image-mp-5{background-image: url('./img/temp/mp-5.png')}
+#image-mp-1{background-image: url('../img/temp/mp-1.png')}
+#image-mp-2{background-image: url('../img/temp/mp-2.png')}
+#image-mp-3{background-image: url('../img/temp/mp-3.png')}
+#image-mp-4{background-image: url('../img/temp/mp-4.png')}
+#image-mp-5{background-image: url('../img/temp/mp-5.png')}
 
-#image-blog-1{background-image: url('./img/temp/blog-1.png')}
-#image-blog-2{background-image: url('./img/temp/blog-2.png')}
-#image-blog-3{background-image: url('./img/temp/blog-3.png')}
+#image-blog-1{background-image: url('../img/temp/blog-1.png')}
+#image-blog-2{background-image: url('../img/temp/blog-2.png')}
+#image-blog-3{background-image: url('../img/temp/blog-3.png')}
