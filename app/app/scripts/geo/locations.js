@@ -45,7 +45,7 @@ angular.module('hearth.geo').directive('locations', [
 				// init Google Places Autocomplete
 				function addPlacesAutocompleteListener(input) {
 					var options = {
-						types: ['geocode']
+						types: ['address']
 					};
 					var autocomplete = new google.maps.places.Autocomplete(input, options);
 
