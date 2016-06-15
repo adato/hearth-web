@@ -7,34 +7,99 @@
 	<title>Hearth.net</title>
 	<link rel='shortcut icon' type='image/x-icon' href='data:image/x-icon;base64,iconiconicon' />
 	<!--<link rel='stylesheet' type='text/css' href='./fonts/stylesheet.css' />-->
-	<link rel='stylesheet' type='text/css' href='components.css' />
-	<link rel='stylesheet' type='text/css' href='main.css' />
+	<link rel='stylesheet' type='text/css' href='./css/components.css' />
+	<link rel='stylesheet' type='text/css' href='./css/hamburger.css' />
+	<link rel='stylesheet' type='text/css' href='./css/main.css' />
 </head>
 <body class='border-box-sized'>
+
+	<div id='fb-root'></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&appId=133986903478472&version=v2.0';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 	<div class='header-wrapper'>
-		<div>
-			<div class='logo'></div>
-			<div class='tribar'></div>
+		<div class='flex'>
+			<div class='logo medium-up'></div>
+			<div class='position-relative flex'>
+				<button class='hamburger hamburger--spring medium-down' type='button' id='hamburger'>
+					<span class='hamburger-box'>
+						<span class='hamburger-inner'></span>
+					</span>
+				</button>
+				<div class='flex hover-window large-only hover-window' id='main-navigation'>
+					<ul class='margin-none padding-none'>
+						<li>
+							<a href='#target-o-co-jde' class='nav-item'>O co jde</a>
+						</li>
+						<li>
+							<a href='#target-jak-na-to' class='nav-item'>Jak na to</a>
+						</li>
+						<li>
+							<a href='#target-deje-se' class='nav-item'>Děje se</a>
+						</li>
+						<li>
+							<a href='' class='nav-item'>O Hearth</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class='language-wrapper medium-down'>
+				<div id='language-toggle'>
+					<div class='flag'></div>
+				</div>
+				<div class='flex hover-window' id='language-panel'>
+					<div class='language-option flex' id='language-cs'>
+						<div class='flag flag-cs'></div>
+						<div class='medium-down'>Česky</div>
+					</div>
+					<div class='language-option flex' id='language-sk'>
+						<div class='flag flag-sk'></div>
+						<div class='medium-down'>Slovensky</div>
+					</div>
+					<div class='language-option flex' id='language-en'>
+						<div class='flag flag-en'></div>
+						<div class='medium-down'>English</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<nav class='flex medium-up'>
-			<ul class='main-navigation'>
+		<nav class='flex'>
+			<ul class='main-navigation large-only hover-window'>
 				<li>
-					<a href='' class='nav-item'>O co jde</a>
+					<a href='#target-o-co-jde' class='nav-item'>O co jde</a>
 				</li>
 				<li>
-					<a href='' class='nav-item'>Jak na to</a>
+					<a href='#target-jak-na-to' class='nav-item'>Jak na to</a>
 				</li>
 				<li>
-					<a href='' class='nav-item'>Děje se</a>
+					<a href='#target-deje-se' class='nav-item'>Děje se</a>
 				</li>
 				<li>
 					<a href='' class='nav-item'>O Hearth</a>
 				</li>
 			</ul>
-			<a href='' class='color-primary nav-item'>Registrace</a>
-			<a href='' class='button nav-item alt'>
+			<a href='/app/register' class='color-primary nav-item'>
+				Registrace
+			</a>
+			<a href='/app/login' class='button nav-item alt'>
 				Přihlášení
 			</a>
+			<div class='flex large-only' id='large-language-panel'>
+				<div class='language-option flex nav-item' id='language-large-cs'>
+					<div class='flag flag-cs'></div>
+				</div>
+				<div class='language-option flex nav-item' id='language-large-sk'>
+					<div class='flag flag-sk'></div>
+				</div>
+				<div class='language-option flex nav-item' id='language-large-en'>
+					<div class='flag flag-en'></div>
+				</div>
+			</div>
 		</nav>
 	</div>
 	<div class='jumbo-wrapper overflow-hidden'>
@@ -64,9 +129,9 @@
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<switch>
-							<foreignObject x="0" y="0" width="100" height="100">
+							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
-									<p xmlns="http://www.w3.org/1999/xhtml">
+									<p xmlns='http://www.w3.org/1999/xhtml'>
 										<strong>Darujte</strong>, co máte a umíte
 									</p>
 								</div>
@@ -81,9 +146,9 @@
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<switch>
-							<foreignObject x="0" y="0" width="100" height="100">
+							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
-									<p xmlns="http://www.w3.org/1999/xhtml">
+									<p xmlns='http://www.w3.org/1999/xhtml'>
 										<strong>Získejte</strong>, co vám chybí
 									</p>
 								</div>
@@ -98,9 +163,9 @@
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<switch>
-							<foreignObject x="0" y="0" width="100" height="100">
+							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
-									<p xmlns="http://www.w3.org/1999/xhtml">
+									<p xmlns='http://www.w3.org/1999/xhtml'>
 										<strong>Poznejte</strong> nové přátele
 									</p>
 								</div>
@@ -114,12 +179,14 @@
 			</div>
 		</section>
 		<div class='divider'></div>
-		<section>
+		<section id='target-o-co-jde'>
 			<h1>O co jde</h1>
-			<p>Jsme štědrá sociální síť, kde dáváte dary a vzájemně si plníte svá přání.
-			Od legračních maličkostí až po velké věci, zkušenosti i životní moudrost.
-			Co vás baví a naplňuje, posíláte dál. A co sami potřebujete, se vám vrací
-			od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.</p>
+			<p>
+				Jsme štědrá sociální síť, kde dáváte dary a vzájemně si plníte svá přání.
+				Od legračních maličkostí až po velké věci, zkušenosti i životní moudrost.
+				Co vás baví a naplňuje, posíláte dál. A co sami potřebujete, se vám vrací
+				od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.
+			</p>
 		</section>
 		<section>
 			<h1>Velké množství darů a přání na tržišti</h1>
@@ -177,7 +244,7 @@
 			</div>
 		</section>
 		<div class='divider-main'></div>
-		<section>
+		<section id='target-jak-na-to'>
 			<h1>Jak na to</h1>
 			<p>
 				Je to hračka. Během pár minut si založíte profil a už jste mezi námi! Doplňte si celý profil,
@@ -192,31 +259,31 @@
 				<div class='ball ball-background-primary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
-						<image xlink:href="./img/jnt/jnt-1.png" x="20" y="20" height="60" width="60"/>
+						<image xlink:href='./img/jnt/jnt-1.png' x='20' y='20' height='60' width='60'/>
 					</svg>
 				</div>
 				<div class='ball ball-background-secondary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
-						<image xlink:href="./img/jnt/jnt-2.png" x="20" y="20" height="60" width="60"/>
+						<image xlink:href='./img/jnt/jnt-2.png' x='20' y='20' height='60' width='60'/>
 					</svg>
 				</div>
 				<div class='ball ball-background-tertiary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
-						<image xlink:href="./img/jnt/jnt-3.png" x="20" y="20" height="60" width="60"/>
+						<image xlink:href='./img/jnt/jnt-3.png' x='20' y='20' height='60' width='60'/>
 					</svg>
 				</div>
 				<div class='ball ball-background-primary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
-						<image xlink:href="./img/jnt/jnt-4.png" x="20" y="20" height="60" width="60"/>
+						<image xlink:href='./img/jnt/jnt-4.png' x='20' y='20' height='60' width='60'/>
 					</svg>
 				</div>
 				<div class='ball ball-background-secondary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
-						<image xlink:href="./img/jnt/jnt-5.png" x="20" y="20" height="60" width="60"/>
+						<image xlink:href='./img/jnt/jnt-5.png' x='20' y='20' height='60' width='60'/>
 					</svg>
 				</div>
 			</div>
@@ -241,9 +308,9 @@
 		<div class='slash background-alternate'></div>
 	</div>
 	<div class='section contains-slash background-alternate'>
-		<section>
+		<section id='target-deje-se'>
 			<h1>Právě se děje</h1>
-			<div class='medium-flex'>
+			<div class='medium-flex flex-align-start'>
 				<div class='flex-1 blog-block'>
 					<div class='blog-img-wrapper'>
 						<div class='blog-img' id='image-blog-1'></div>
@@ -293,9 +360,18 @@
 		<div class='slash'></div>
 	</div>
 	<div class='section'>
-		<section>
-			Contact
+		<section class='flex'>
+			<div class='flex-1'>
+				<div class='social-pane'>
+	              <div class='fb-like-box' data-href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko' data-width='500' data-height='600' data-colorscheme='light' data-show-faces='false' data-header='false' data-stream='true' data-show-border='false'></div>
+	            </div>
+	        </div>
+			<div class='flex-1'>
+				Contact
+			</div>
 		</section>
 	</div>
+	<script src='./js/smooth-scroll.js'></script>
+	<script src='./js/script.js'></script>
 </body>
 </html>
