@@ -123,8 +123,8 @@
 		</header>
 	</div>
 	<div class='section background-alternate contains-slash'>
-		<section>
-			<div class='flex flex-space-between balls-3'>
+		<section class='overflow-hidden'>
+			<div class='flex flex-space-between balls-3 small-constrict-ball'>
 				<div class='ball ball-background-primary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
@@ -138,9 +138,6 @@
 							</foreignObject>
 						</switch>
 					</svg>
-					<!--<div>
-						<strong>Darujte</strong>, co máte a umíte
-					</div>-->
 				</div>
 				<div class='ball ball-background-secondary'>
 					<svg viewBox='0 0 100 100'>
@@ -155,9 +152,6 @@
 							</foreignObject>
 						</switch>
 					</svg>
-					<!--<div>
-						<strong>Získejte</strong>, co vám chybí
-					</div>-->
 				</div>
 				<div class='ball ball-background-tertiary'>
 					<svg viewBox='0 0 100 100'>
@@ -172,13 +166,9 @@
 							</foreignObject>
 						</switch>
 					</svg>
-					<!--<div>
-						<strong>Poznejte</strong> nové přátele
-					</div>-->
 				</div>
 			</div>
 		</section>
-		<div class='divider'></div>
 		<section id='target-o-co-jde'>
 			<h1>O co jde</h1>
 			<p>
@@ -237,7 +227,7 @@
 		</section>
 		<section>
 			<div class='text-align-center'>
-				<a href='' class='button alt'>
+				<a href='/app/' class='button alt'>
 					<i class='button-flame'></i>
 					Podívat se na tržiště
 				</a>
@@ -255,42 +245,57 @@
 			</p>
 		</section>
 		<section>
-			<div class='flex flex-space-between balls-5'>
+			<div class='flex flex-space-between balls-5 small-drop-into-lines'>
 				<div class='ball ball-background-primary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<image xlink:href='./img/jnt/jnt-1.png' x='20' y='20' height='60' width='60'/>
 					</svg>
+					<div class='ball-label'>
+						Zaregistruj se
+					</div>
 				</div>
 				<div class='ball ball-background-secondary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<image xlink:href='./img/jnt/jnt-2.png' x='20' y='20' height='60' width='60'/>
 					</svg>
+					<div class='ball-label'>
+						Sdílej dary
+					</div>
 				</div>
 				<div class='ball ball-background-tertiary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<image xlink:href='./img/jnt/jnt-3.png' x='20' y='20' height='60' width='60'/>
 					</svg>
+					<div class='ball-label'>
+						Najdi dary
+					</div>
 				</div>
 				<div class='ball ball-background-primary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<image xlink:href='./img/jnt/jnt-4.png' x='20' y='20' height='60' width='60'/>
 					</svg>
+					<div class='ball-label'>
+						Vytvoř si přátele
+					</div>
 				</div>
 				<div class='ball ball-background-secondary'>
 					<svg viewBox='0 0 100 100'>
 						<circle cx='50' cy='50' r='50' />
 						<image xlink:href='./img/jnt/jnt-5.png' x='20' y='20' height='60' width='60'/>
 					</svg>
+					<div class='ball-label'>
+						Buď šťastný
+					</div>
 				</div>
 			</div>
 		</section>
 		<section>
 			<div class='text-align-center'>
-				<a href='' class='button alt'>
+				<a href='/app/register' class='button alt'>
 					Zaregistrovat se
 				</a>
 			</div>
@@ -367,7 +372,16 @@
 	            </div>
 	        </div>
 			<div class='flex-1'>
-				Contact
+				<div class='margin-vertical-medium'>
+					Adato
+				</div>
+				<div class='social-bar flex'>
+					<a href=''><i class='fa fa-fw fa-facebook'></i></a>
+					<a href=''><i class='fa fa-fw fa-twitter'></i></a>
+					<a href=''><i class='fa fa-fw fa-youtube'></i></a>
+					<a href=''><i class='fa fa-fw fa-instagram'></i></a>
+					<a href=''><i class='fa fa-fw fa-envelope'></i></a>
+				</div>
 			</div>
 		</section>
 	</div>
