@@ -165,7 +165,7 @@
 					<div class="display-flex flex-reverse flex-space-between">
 						<button type="submit" class="button-send right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>
 						<a ng-if="!community._id" tabindex="0" ng-click="close()" class="revert-changes">{{:: 'CANCEL_ADD_COMMUNITY' | translate }}</a>
-						<a ng-if="community._id" ui-sref="community.default({id: loggedUser._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
+						<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
 					</div>
 				</section>
 			</div>
