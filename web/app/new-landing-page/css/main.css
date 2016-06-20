@@ -152,7 +152,6 @@ a{color: #4a4a4a}
 		display: flex !important;
 		flex-direction: column;
 		align-items: flex-start;
-		/*top: 60px; left: -16px;*/
 		top: calc(100% + 10px); left: -16px;
 		padding: 16px;
 		background: #fff;
@@ -254,6 +253,50 @@ html[lang='en'] #large-language-panel #language-large-en{
 }
 .jumbo h1{font-size: 60px;}
 .jumbo h2{font-size: 24px; font-weight: normal;}
+
+/* animated slash */
+.jumbo .special-underline-wrapper{
+	position: relative;
+}
+.jumbo .special-underline,
+.jumbo .special-underline::before,
+.jumbo .special-underline::after{
+	position: absolute;
+	width: 0; height: 6px;
+	bottom: -10%;
+	border-radius: 3px;
+	background: #fa5800;
+
+	-webkit-animation: slide 0.1s forwards;
+	-webkit-animation-timing-function: ease-out;
+	animation: slide 0.1s forwards;
+	animation-timing-function: ease-out;
+}
+.jumbo .special-underline{
+	left: 0;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+}
+.jumbo .special-underline::before,
+.jumbo .special-underline::after{
+	content: '';
+	width: 0;
+}
+.jumbo .special-underline::before{
+	bottom: -100%; right: 0;
+	transform: rotate(-5deg);
+	-webkit-animation-delay: 1.3s;
+	animation-delay: 1.3s;
+}
+.jumbo .special-underline::after{
+	bottom: -200%; left: 0;
+	-webkit-animation-delay: 1.6s;
+	animation-delay: 1.6s;
+}
+
+@-webkit-keyframes slide {100% { width: 100%; }}
+@keyframes slide {100% { width: 100%; }}
+
 /*******************
 	DIVIDERS
 *******************/
@@ -285,12 +328,17 @@ html[lang='en'] #large-language-panel #language-large-en{
 .slash.background-alternate{background-color: transparent !important}
 .slash.background-alternate:before{background-color: #fcfbf4 !important}
 .divider-main{
-	width: 100%; height: 51px;
+	width: 100%; height: 20px;
 	margin: 30px 0;
-	background-image: url('../img/sketchy-lines-grey.png');
+	background-image: url('../img/sketchy-lines-grey-small.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
+}
+@media (min-width: 992px){
+	.divider-main{
+		background-image: url('../img/sketchy-lines-grey.png');
+	}
 }
 
 .decorated-circle-flame{
