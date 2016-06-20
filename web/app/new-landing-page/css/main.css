@@ -98,6 +98,9 @@ a{color: #4a4a4a}
 	/*margin-top: 40px;*/
 	padding-top: 40px;
 }
+.section:last-of-type{
+	margin-bottom: 40px;
+}
 /*******************
 	NAV
 *******************/
@@ -138,6 +141,9 @@ a{color: #4a4a4a}
 	position: relative;
 }
 #language-panel{
+	display: none;
+}
+.hover-window{
 	display: none;
 }
 @media (max-width: 1199px){
