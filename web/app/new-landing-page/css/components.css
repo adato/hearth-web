@@ -174,11 +174,17 @@ ul,li{list-style: none}
 	.flex-medium-divide > .flex-div:last-child{
 		margin-right: 0;
 	}
+	.flex-medium-column{
+		flex-direction: column;
+	}
 }
 @media (min-width: 1200px){
 	.large-flex{
 		display: flex;
 		align-items: center;
+	}
+	.flex-large-column{
+		flex-direction: column;
 	}
 }
 .flex-center{
