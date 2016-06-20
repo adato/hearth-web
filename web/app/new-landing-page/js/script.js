@@ -1,4 +1,4 @@
-(function(){
+(function(window){
 	function $(q){
 		return document['querySelector' + (q.slice(0,1) === '#' ? '' : 'All')](q);
 	}
@@ -58,11 +58,12 @@
 	};
 
 	function toggleHandler(event) {
-		console.log('cau');
 		if (!(findParentBySelector(event.target, '.hover-window'))) {
 			toggleMenu();
 			window.removeEventListener('click', toggleHandler);
+		} else if (event.target.tagName === 'A') {
+			window.setTimeout(toggleMenu, 400);
 		};
 	};
 
-})();
+})(window);

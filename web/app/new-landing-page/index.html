@@ -10,17 +10,25 @@
 	<link rel='stylesheet' type='text/css' href='./css/components.css' />
 	<link rel='stylesheet' type='text/css' href='./css/hamburger.css' />
 	<link rel='stylesheet' type='text/css' href='./css/main.css' />
+	<link rel='stylesheet' type='text/css' href='./css/font-awesome.min.css' />
 </head>
 <body class='border-box-sized'>
 
 	<div id='fb-root'></div>
-    <script>(function(d, s, id) {
+    <!--<script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
       js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&appId=133986903478472&version=v2.0';
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+	}(document, 'script', 'facebook-jssdk'));</script>-->
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=133986903478472";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 
 	<div class='header-wrapper'>
 		<div class='flex'>
@@ -31,21 +39,23 @@
 						<span class='hamburger-inner'></span>
 					</span>
 				</button>
-				<div class='flex hover-window large-only hover-window' id='main-navigation'>
-					<ul class='margin-none padding-none'>
-						<li>
-							<a href='#target-o-co-jde' class='nav-item'>O co jde</a>
-						</li>
-						<li>
-							<a href='#target-jak-na-to' class='nav-item'>Jak na to</a>
-						</li>
-						<li>
-							<a href='#target-deje-se' class='nav-item'>Děje se</a>
-						</li>
-						<li>
-							<a href='' class='nav-item'>O Hearth</a>
-						</li>
-					</ul>
+				<div class='medium-down'>
+					<div class='flex hover-window' id='main-navigation'>
+						<ul class='margin-none padding-none'>
+							<li>
+								<a href='#target-o-co-jde' class='nav-item'>O co jde</a>
+							</li>
+							<li>
+								<a href='#target-jak-na-to' class='nav-item'>Jak na to</a>
+							</li>
+							<li>
+								<a href='#target-deje-se' class='nav-item'>Děje se</a>
+							</li>
+							<li>
+								<a href='' class='nav-item'>O Hearth</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<div class='language-wrapper medium-down'>
@@ -315,8 +325,8 @@
 	<div class='section contains-slash background-alternate'>
 		<section id='target-deje-se'>
 			<h1>Právě se děje</h1>
-			<div class='medium-flex flex-align-start'>
-				<div class='flex-1 blog-block'>
+			<div class='medium-flex flex-align-start flex-medium-divide'>
+				<div class='flex-div flex-1 blog-block'>
 					<div class='blog-img-wrapper'>
 						<div class='blog-img' id='image-blog-1'></div>
 					</div>
@@ -332,7 +342,7 @@
 						Přečíst na blogu
 					</a>
 				</div>
-				<div class='flex-1 blog-block'>
+				<div class='flex-div flex-1 blog-block'>
 					<div class='blog-img-wrapper'>
 						<div class='blog-img' id='image-blog-2'></div>
 					</div>
@@ -345,7 +355,7 @@
 						Přečíst na blogu
 					</a>
 				</div>
-				<div class='flex-1 blog-block'>
+				<div class='flex-div flex-1 blog-block'>
 					<div class='blog-img-wrapper'>
 						<div class='blog-img' id='image-blog-3'></div>
 					</div>
@@ -368,19 +378,29 @@
 		<section class='flex'>
 			<div class='flex-1'>
 				<div class='social-pane'>
-	              <div class='fb-like-box' data-href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko' data-width='500' data-height='600' data-colorscheme='light' data-show-faces='false' data-header='false' data-stream='true' data-show-border='false'></div>
+	            	<!--<div class='fb-like-box' data-href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko'
+					 data-width='500' data-height='600' data-colorscheme='light' data-show-faces='false' data-header='false' data-stream='true' data-show-border='false'></div>-->
+					<div class='fb-page'
+						data-href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko'
+						data-tabs='timeline,events,messages'
+						data-width='500'
+						data-height='600'
+						data-hide-cover='false'
+						data-show-facepile='false'
+						data-show-posts='false'></div>
 	            </div>
 	        </div>
 			<div class='flex-1'>
-				<div class='margin-vertical-medium'>
-					Adato
+				<div class='margin-vertical-medium text-align-center'>
+					<h4>Adato</h4>
 				</div>
-				<div class='social-bar flex'>
-					<a href=''><i class='fa fa-fw fa-facebook'></i></a>
-					<a href=''><i class='fa fa-fw fa-twitter'></i></a>
-					<a href=''><i class='fa fa-fw fa-youtube'></i></a>
-					<a href=''><i class='fa fa-fw fa-instagram'></i></a>
-					<a href=''><i class='fa fa-fw fa-envelope'></i></a>
+				<div class='social-bar flex flex-center'>
+					<a target='_blank' href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko' title='Hearthí Facebook fanpage'><i class='fa fa-fw fa-2x fa-facebook'></i></a>
+					<a target='_blank' href='https://plus.google.com/105519310550753411853/posts' title='Hearthí Google Plus účet'><i class='fa fa-fw fa-2x fa-google-plus'></i></a>
+					<a target='_blank' href='https://twitter.com/hearth_net' title='Hearthí Twitter účet'><i class='fa fa-fw fa-2x fa-twitter'></i></a>
+					<a target='_blank' href='https://www.youtube.com/user/hearthnetcrsr' title='Náš YouTube kanál'><i class='fa fa-fw fa-2x fa-youtube'></i></a>
+					<a target='_blank' href='//instagram.com/artofhearth' title='Účet na Instagramu'><i class='fa fa-fw fa-2x fa-instagram'></i></a>
+					<a target='_blank' href='mailto:info@hearth.net' title='Napište nám e-mail'><i class='fa fa-fw fa-2x fa-envelope'></i></a>
 				</div>
 			</div>
 		</section>
