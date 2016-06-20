@@ -22,6 +22,7 @@
 	var lp = $('#language-panel');
 	var menu = $('#main-navigation');
 	var windowShown;
+	var action = true;
 	if (!(hamburger && lp && menu)) throw new Error('all elements are required - hamburger, language-panel, main-navigation');
 	ltoggle.addEventListener('click', toggleMenu.bind(false, 'lang'));
 	hamburger.addEventListener('click', toggleMenu.bind(false, 'menu'));
@@ -30,16 +31,23 @@
 		menu.classList.remove('is-active');
 		hamburger.classList.remove('is-active');
 
+		if (!action) return action = true;
 		lp.classList.toggle('is-active');
 	}
 	function menuHandler() {
 		lp.classList.remove('is-active');
 
+		if (!action) return action = true;
 		hamburger.classList.toggle('is-active');
 		menu.classList.toggle('is-active');
 	}
 
 	function toggleMenu(w) {
+		if(!windowShown){
+			window.addEventListener('mousedown', toggleHandler);
+		} else {
+			window.removeEventListener('mousedown', toggleHandler);
+		}
 		if (w === 'menu') {
 			menuHandler();
 		} else if (w === 'lang') {
@@ -49,17 +57,17 @@
 			menu.classList.remove('is-active');
 			hamburger.classList.remove('is-active');
 		}
-		if(!windowShown){
-			window.addEventListener('mousedown', toggleHandler);
-		} else {
-			window.removeEventListener('mousedown', toggleHandler);
-		};
 		windowShown = w;
 	}
 
 	function toggleHandler(event) {
 		if (!(findParentBySelector(event.target, '.hover-window'))) {
-			toggleMenu();
+			var burgerAction = findParentBySelector(event.target, '#hamburger');
+			var ltoggleAction = findParentBySelector(event.target, '#language-toggle');
+			if ((burgerAction && menu.classList.contains('is-active')) || (ltoggleAction && lp.classList.contains('is-active'))) {
+				action = false;
+			}
+			toggleMenu(false);
 			window.removeEventListener('click', toggleHandler);
 		} else if (event.target.tagName === 'A') {
 			window.setTimeout(toggleMenu, 400);

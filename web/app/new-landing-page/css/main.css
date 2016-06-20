@@ -35,6 +35,7 @@ a{color: #4a4a4a}
 	font-weight: bold;
 	white-space: nowrap;
 	text-decoration: none;
+	transition: .3s all;
 	box-shadow: 0 1px 1px rgba(0,0,0,.2);
 }
 .button.small{
@@ -67,6 +68,9 @@ a{color: #4a4a4a}
 }
 .alt > .button-flame{
 	background-image: url('../img/hearth-flame-alt.png');
+}
+.button:hover{
+	box-shadow: 0 2px 3px rgba(0,0,0,.4);
 }
 /*******************
 	TRIBAR
@@ -127,6 +131,9 @@ a{color: #4a4a4a}
 	font-weight: bold;
 	white-space: nowrap;
 	text-decoration: none;
+}
+.nav-item:hover.has-hover-effect{
+	text-decoration: underline;
 }
 .main-navigation{
 	display: flex;
@@ -256,7 +263,28 @@ html[lang='en'] #large-language-panel #language-large-en{
 	margin: 0 0 20px;
 	color: #fff;
 }
-.jumbo h1{font-size: 60px;}
+.jumbo h1{
+	font-size: 60px;
+}
+.shine-only{
+	text-shadow: 0 2px 4px rgba(0,0,0,.4);
+}
+.shine{
+	text-shadow: 0 2px 4px rgba(0,0,0,.4);
+	-webkit-animation: shine 2.6s forwards;
+	-webkit-animation-timing-function: ease-out;
+	-webkit-animation-delay: 1.3s;
+}
+@-webkit-keyframes shine {
+	0% { text-shadow: 0 2px 4px rgba(0,0,0,.4); }
+	60% { text-shadow: 0 2px 4px rgba(0,0,0,.4), 0 0 30px #fff; }
+	100% { text-shadow: 0 2px 4px rgba(0,0,0,.4); }
+}
+@keyframes shine {
+	0% { text-shadow: 0 2px 4px rgba(0,0,0,.4) }
+	60% { text-shadow: 0 2px 4px rgba(0,0,0,.4), 0 0px 30px #fff; }
+	100% { text-shadow: 0 2px 4px rgba(0,0,0,.4) }
+}
 .jumbo h2{font-size: 24px; font-weight: normal;}
 
 /* animated slash */
@@ -271,32 +299,36 @@ html[lang='en'] #large-language-panel #language-large-en{
 	bottom: -10%;
 	border-radius: 3px;
 	background: #fa5800;
+	box-shadow: 0 2px 4px rgba(0,0,0,.4);
 
 	-webkit-animation: slide 0.1s forwards;
 	-webkit-animation-timing-function: ease-out;
 	animation: slide 0.1s forwards;
 	animation-timing-function: ease-out;
 }
-.jumbo .special-underline{
-	left: 0;
-	-webkit-animation-delay: 1s;
-	animation-delay: 1s;
-}
 .jumbo .special-underline::before,
 .jumbo .special-underline::after{
 	content: '';
 	width: 0;
 }
+.jumbo .special-underline{
+	left: 0;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+}
+
 .jumbo .special-underline::before{
 	bottom: -100%; right: 0;
 	transform: rotate(-5deg);
-	-webkit-animation-delay: 1.3s;
-	animation-delay: 1.3s;
+
+	-webkit-animation-delay: 1.15s;
+	animation-delay: 1.15s;
 }
 .jumbo .special-underline::after{
 	bottom: -200%; left: 0;
-	-webkit-animation-delay: 1.6s;
-	animation-delay: 1.6s;
+
+	-webkit-animation-delay: 1.2s;
+	animation-delay: 1.2s;
 }
 
 @-webkit-keyframes slide {100% { width: 100%; }}
@@ -488,8 +520,11 @@ html[lang='en'] #large-language-panel #language-large-en{
 	GESICHTE
 *******************/
 .max-500{ max-width: 500px; margin: 0 auto; }
-@media (min-width: 1208px){
+@media (min-width: 1200px){
 	.max-500{ max-width: 900px; }
+	#gesichte .tab-pane{
+		text-align: center;
+	}
 }
 .img-circle{ border-radius: 50%; }
 @media (min-width: 768px){
@@ -563,11 +598,14 @@ html[lang='en'] #large-language-panel #language-large-en{
 .nav.nav-justified > li > a .quote {
 	left: auto;
 	top: auto;
-	right: 40px;
-	bottom: 20px;
+	right: 5px;
+	bottom: 5px;
 }
 @media (min-width: 768px) {
-    .nav.nav-justified > li > a .quote { right: 20px; bottom: 0px; }
+    .nav.nav-justified > li > a .quote { right: 0px; bottom: 0px; }
+}
+@media (min-width: 1200px) {
+    .nav.nav-justified > li > a .quote { right: 20px; bottom: 20px; }
 }
 
 /*******************
