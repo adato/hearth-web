@@ -6,3 +6,4 @@ app/app/vendor
 target/
 public
 .idea
+Thumbs.db
