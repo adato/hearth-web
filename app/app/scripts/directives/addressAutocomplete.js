@@ -64,7 +64,7 @@ angular.module('hearth.directives').directive('addressAutocomplete', [
 				init = function() {
 					var input = inputElement;
 					var options = {
-						types: ['address']
+						types: ['geocode']
 					};
 					scope.initted = true;
 					var autocomplete = new google.maps.places.Autocomplete(input, options);
