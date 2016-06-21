@@ -49,12 +49,23 @@
 		// 	font-size: 20px;
 		// 	outline: none;
 		// }
-		// @media #{$small-only} {
-		// 	.button-send,
+		// @media #{$medium-up} {
+		//  .button-send,
 		// 	select.messages-filter {
-		// 		width: 100%
+		// 		max-width: 100%
 		// 	}
 		// }
+	}
+	@media #{$medium-down} {
+		.messages-filter{
+			height: 44px;
+		}
+	}
+	@media #{$large-up} {
+		.conversation-list-width{
+			width: 300px;
+			max-width: 300px;
+		}
 	}
 	.conversations {
 		overflow: hidden;
@@ -64,6 +75,7 @@
 		flex: 1;
 		// min-width: 355px;
 		min-width: 300px;
+
 		.nano-content {
 			outline: none !important;
 			.no-result {
