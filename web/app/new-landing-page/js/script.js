@@ -1,4 +1,7 @@
 (function(window){
+	//
+	//	COMMON
+	//
 	function $(q){
 		return document['querySelector' + (q.slice(0,1) === '#' ? '' : 'All')](q);
 	}
@@ -16,7 +19,23 @@
 		}
 		return cur; //will return null if not found
 	}
+	function throttle(callback, limit) {
+	    var wait = false;
+		limit = limit || 50;
+	    return function() {
+	        if (!wait) {
+	            callback.call();
+	            wait = true;
+	            setTimeout(function() {
+	                wait = false;
+	            }, limit);
+	        }
+	    }
+	}
 
+	//
+	//	MENU AND LANGUAGE PANEL
+	//
 	var hamburger = $('#hamburger');
 	var ltoggle = $('#language-toggle');
 	var lp = $('#language-panel');
@@ -74,6 +93,9 @@
 		};
 	}
 
+	//
+	//	GESICHTE
+	//
 	var tabs = $('#nav-tabs').getElementsByTagName('li');
 	var tabContents = $('#tabs-collapse').getElementsByClassName('tab-pane');
 	function removeActive(elems, fromParent) {
@@ -99,6 +121,28 @@
 				}
 			});
 		}
+	}
+
+	//
+	//	MENU CLASSES ON SCROLL
+	//
+	var header = $('.header-wrapper');
+	const CONTRACTED_CLASS = 'contracted';
+	const HEADER_SCROLL_TOP = 50;
+	if (header && header.length) {
+		header = header[0];
+		var headerLarge = true;
+		window.addEventListener('scroll', throttle(function(event){
+			var top = window.pageYOffset || document.documentElement.scrollTop
+			console.log(top, headerLarge);
+			if (headerLarge && top > HEADER_SCROLL_TOP) {
+				headerLarge = false;
+				header.classList.add(CONTRACTED_CLASS);
+			} else if ((!headerLarge) && top < HEADER_SCROLL_TOP) {
+				headerLarge = true;
+				header.classList.remove(CONTRACTED_CLASS);
+			}
+		}, 100));
 	}
 
 })(window);
