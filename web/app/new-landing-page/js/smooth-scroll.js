@@ -78,6 +78,7 @@ function initSmoothScrolling() {
 
             jump(e.target.hash, {
                 duration: duration,
+				offset: -60,
                 callback: function() {
                     setFocus(e.target.hash);
                 }

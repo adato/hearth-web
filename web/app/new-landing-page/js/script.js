@@ -21,7 +21,7 @@
 	}
 	function throttle(callback, limit) {
 	    var wait = false;
-		limit = limit || 50;
+		limit = limit || 10;
 	    return function() {
 	        if (!wait) {
 	            callback.call();
@@ -134,7 +134,6 @@
 		var headerLarge = true;
 		window.addEventListener('scroll', throttle(function(event){
 			var top = window.pageYOffset || document.documentElement.scrollTop
-			console.log(top, headerLarge);
 			if (headerLarge && top > HEADER_SCROLL_TOP) {
 				headerLarge = false;
 				header.classList.add(CONTRACTED_CLASS);
@@ -142,7 +141,7 @@
 				headerLarge = true;
 				header.classList.remove(CONTRACTED_CLASS);
 			}
-		}, 100));
+		}));
 	}
 
 })(window);
