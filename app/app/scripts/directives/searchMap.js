@@ -27,7 +27,7 @@ angular.module('hearth.geo').directive('searchMap', [
 				scope.center = false;
 				var input = $('input', element)[0];
 				var options = {
-					types: ['address']
+					types: ['geocode']
 				};
 				var autocomplete = new google.maps.places.Autocomplete(input, options);
 
