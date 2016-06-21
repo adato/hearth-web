@@ -25,12 +25,13 @@ angular.module('hearth.services').service('Facebook', [
 			inited = true;
 		};
 
-		this.inviteFriends = function(uri) {
+		this.inviteFriends = function(token) {
+			console.log('passing token: ', token);
 			FB.ui({
 				method: 'apprequests',
 				message: $translate.instant('FACEBOOK_INVITATION_MESSAGE'),
 				// redirectUri: window.encodeURIComponent(uri)
-				data: uri // actually token
+				state: token
 			});
 		};
 
