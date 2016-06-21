@@ -29,7 +29,8 @@ angular.module('hearth.services').service('Facebook', [
 			FB.ui({
 				method: 'apprequests',
 				message: $translate.instant('FACEBOOK_INVITATION_MESSAGE'),
-				redirectUri: window.encodeURIComponent(uri)
+				// redirectUri: window.encodeURIComponent(uri)
+				data: uri // actually token
 			});
 		};
 

@@ -17,8 +17,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		var timeoutClose = false;
 
 		$scope.fbInvite = function() {
-
-			Facebook.inviteFriends($scope.url);
+			Facebook.inviteFriends(token);
 		};
 
 		$scope.showFinished = function() {
@@ -159,4 +158,4 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
 	}
-	]);
+]);
