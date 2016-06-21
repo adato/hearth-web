@@ -6,7 +6,7 @@
  * @link https://github.com/jonsuh/hamburgers
  */
 .hamburger {
-  padding: 15px 15px;
+  padding: 0;
   display: inline-block;
   cursor: pointer;
   transition-property: opacity, -webkit-filter;
@@ -25,8 +25,8 @@
     opacity: 0.7; }
 
 .hamburger-box {
-  width: 40px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
   display: inline-block;
   position: relative; }
 
@@ -35,7 +35,7 @@
   top: 50%;
   margin-top: -2px; }
   .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    width: 40px;
+    width: 25px;
     height: 4px;
     background-color: #000;
     border-radius: 4px;
@@ -46,7 +46,7 @@
     transition-duration: 0.05s;
     transition-timing-function: ease; }
   .hamburger-inner::before, .hamburger-inner::after {
-    content: "";
+    content: '';
     display: block; }
   .hamburger-inner::before {
     top: -10px; }
@@ -73,16 +73,29 @@
   transition-delay: 0.06s;
   background-color: transparent; }
   .hamburger--spring.is-active .hamburger-inner::before {
-    top: 0;
+    top: 0px;
     transition: top 0.06s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition: top 0.06s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition: top 0.06s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
     -webkit-transform: translate3d(0, 10px, 0) rotate(45deg);
             transform: translate3d(0, 10px, 0) rotate(45deg); }
   .hamburger--spring.is-active .hamburger-inner::after {
-    top: 0;
+    top: 0px;
     transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
     -webkit-transform: translate3d(0, 10px, 0) rotate(-45deg);
             transform: translate3d(0, 10px, 0) rotate(-45deg); }
+
+@media (min-width: 768px){
+	.hamburger-box {
+		width: 40px;
+		height: 40px;
+	}
+	.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+		width: 40px;
+	}
+	.hamburger--spring .hamburger-inner {
+		top: 10px;
+	}
+}
