@@ -1,10 +1,10 @@
 <div class="display-table table-with-icons">
-	<div class="display-table-row" ng-if="entity.about && (typeMatch.indexOf('motto') > -1)">
+	<div class="display-table-row" ng-if="entity.motto && (typeMatch.indexOf('motto') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
 		<div class='display-table-cell'>
-			{{ entity.motto }}
+			{{ entity.motto | ellipsis }}
 		</div>
 	</div>
 	<div class="display-table-row" ng-if="entity.about && (typeMatch.indexOf('about') > -1)">
@@ -12,7 +12,7 @@
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
 		<div class='display-table-cell'>
-			{{ entity.about }}
+			{{ entity.about | ellipsis }}
 		</div>
 	</div>
 	<div class="display-table-row" ng-if="entity.interests.length && entity.interests[0] != '' && (typeMatch.indexOf('interests') > -1)">
