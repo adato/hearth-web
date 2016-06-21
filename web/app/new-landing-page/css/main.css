@@ -111,13 +111,18 @@ a{color: #4a4a4a}
 .header-wrapper{
 	position: fixed;
 	top: 0;
-	width: 100%; height: 100px;
+	width: 100%; height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 16px;
 	background-color: #fff;
 	z-index: 100;
+}
+@media (min-width: 325px){
+	.header-wrapper{
+		height: 100px;
+		padding: 0 16px;
+	}
 }
 .header-wrapper .logo{
 	width: 270px; height: 56px;
@@ -486,14 +491,18 @@ html[lang='en'] #large-language-panel #language-large-en{
 /*******************
 	SOCIAL
 *******************/
+.social-bar{
+	line-height: 48px;
+}
 .social-bar > a{
 	margin: 0 10px;
 }
 .social-bar .fa{
 	color: #bbb;
 }
-.social-bar .fa:hover{
-	color: #f4f4f4;
+.social-bar .fa:hover,
+.social-bar .fa:focus{
+	color: #a7bd1d;
 }
 /*******************
 	BLOG ADS
@@ -509,6 +518,12 @@ html[lang='en'] #large-language-panel #language-large-en{
 	max-width: 200px;
 	position: relative;
 	padding: 20px;
+	margin: 0 auto;
+}
+@media (min-width: 768px){
+	.blog-block > .blog-img-wrapper{
+		margin: 0;
+	}
 }
 .blog-img-wrapper > .blog-img{
 	background-size: cover;
