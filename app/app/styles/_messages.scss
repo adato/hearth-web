@@ -424,6 +424,7 @@
 }
 
 @media #{$medium-down} {
+	.messages-options.detail-shown,
 	.messages-container.detail-shown .conversations{
 		display: none;
 	}
