@@ -53,7 +53,7 @@ angular.module('hearth.services').service('Facebook', [
 					if (item[0] === 'request_ids') {
 						// request_ids contains a comma separated list of ids that each may (and should) carry an invitation token
 						var request_ids = item[1].split(',');
-						return fetch_ids(request_ids);
+						return fetchIds(request_ids);
 					}
 				}
 			}
