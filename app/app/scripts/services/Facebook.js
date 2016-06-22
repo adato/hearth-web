@@ -37,13 +37,19 @@ angular.module('hearth.services').service('Facebook', [
 
 		function fetchIds(request_ids) {
 			for (var i = request_ids.length; i--;) {
-				$http({
-					method: 'GET',
-					url: 'https://graph.facebook.com/' + request_ids[i] + '?access_token=' + $$config.fbAppToken,
-					withCredentials: false
-				}).then(function(res) {
-					console.log(res);
+				// $http({
+				// 	method: 'GET',
+				// 	url: 'https://graph.facebook.com/' + request_ids[i] + '?access_token=' + $$config.fbAppToken,
+				// 	withCredentials: false
+				// }).then(function(res) {
+				// 	console.log(res);
+				// });
+				FB.api(request_ids[i], {
+					access_token: $$config.fbAppToken
+				}, function(response) {
+					console.log(response);
 				});
+				break; // << TODO remove this break after development. Now it's only here to not mess the whole console log up with several failed reqs.
 			}
 			return true;
 		}
