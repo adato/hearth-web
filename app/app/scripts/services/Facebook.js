@@ -7,9 +7,9 @@
  */
 
 angular.module('hearth.services').service('Facebook', [
-	'$translate',
+	'$translate', '$http',
 
-	function($translate) {
+	function($translate, $http) {
 		var inited = false;
 
 		this.init = function() {
@@ -37,7 +37,11 @@ angular.module('hearth.services').service('Facebook', [
 
 		function fetchIds(request_ids) {
 			for (var i = request_ids.length; i--;) {
-				$http('https://graph.facebook.com/' + request_ids[i] + '?access_token=' + $$config.fbAppToken, function(res) {
+				$http({
+					method: 'GET',
+					url: 'https://graph.facebook.com/' + request_ids[i] + '?access_token=' + $$config.fbAppToken,
+					withCredentials: false
+				}).then(function(res) {
 					console.log(res);
 				});
 			}
