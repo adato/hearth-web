@@ -3,6 +3,7 @@ var $$localConfig; // development
 $$localConfig = {
 	env: 'development',
 	fbAppId: '1495788017321716', // dev
+	fbAppToken: '9c980c27c6c2cf19f29ade6c45559feb', // dev
 	disableDebugInfo: true,
 	languages: {
 		"cs": "cs_CZ",
