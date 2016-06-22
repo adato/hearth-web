@@ -31,8 +31,32 @@ angular.module('hearth.services').service('Facebook', [
 				method: 'apprequests',
 				message: $translate.instant('FACEBOOK_INVITATION_MESSAGE'),
 				// redirectUri: window.encodeURIComponent(uri)
-				state: token
+				data: token
 			});
+		};
+
+		function fetchIds(request_ids) {
+			for (var i = request_ids.length; i--;) {
+				$http('https://graph.facebook.com/' + request_ids[i] + '?access_token=' + $$config.fbAppToken, function(res) {
+					console.log(res);
+				});
+			}
+			return true;
+		}
+
+		this.checkRequestIds = function() {
+			var search = window.location.search;
+			if (search) {
+				var searchItems = search.slice(1).split('&');
+				for (var i = searchItems.length; i--;) {
+					if (item[0] === 'request_ids') {
+						// request_ids contains a comma separated list of ids that each may (and should) carry an invitation token
+						var request_ids = item[1].split(',');
+						return fetch_ids(request_ids);
+					}
+				}
+			}
+			return false;
 		};
 
 		this.init();
