@@ -9,9 +9,6 @@ h1{
 	font-size: 27px;
 	margin-top: 0;
 }
-p{
-	text-align: justify;
-}
 @media (min-width: 768px){
 	html{
 		font: 16px/1.5 tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;
@@ -80,7 +77,10 @@ a{color: #4a4a4a}
 	background-image: url('../img/hearth-flame.png');
 	background-size: contain;
 	background-repeat: no-repeat;
-
+}
+.button-flame.large{
+	width: 40px; height: 40px;
+	margin-bottom: 5px;
 }
 .alt > .button-flame{
 	background-image: url('../img/hearth-flame-alt.png');
@@ -147,8 +147,10 @@ a{color: #4a4a4a}
 	}
 }
 .header-wrapper .logo{
-	width: 270px; height: 56px;
+	width: 250px; height: 56px;
+	margin-left: 10px;
 	background-image: url('../img/logo-dark.png');
+	background-position: center center;
 	background-size: contain;
 	background-repeat: no-repeat;
 }
@@ -290,8 +292,11 @@ html[lang='sk'] #language-toggle .flag,
 	background-image: url(../img/flags/flag-slovak.svg);
 }
 html[lang='cs'] #large-language-panel #language-large-cs,
+html[lang='cs'] #language-panel .lang-cs,
 html[lang='sk'] #large-language-panel #language-large-sk,
-html[lang='en'] #large-language-panel #language-large-en{
+html[lang='sk'] #language-panel .lang-sk,
+html[lang='en'] #large-language-panel #language-large-en,
+html[lang='en'] #language-panel .lang-en{
 	display: none;
 }
 /*******************
@@ -580,11 +585,11 @@ html[lang='en'] #large-language-panel #language-large-en{
 	padding: 20px;
 	margin: 0 auto;
 }
-@media (min-width: 768px){
+/*@media (min-width: 768px){
 	.blog-block > .blog-img-wrapper{
-		margin: 0;
+		margin: 0 auto;
 	}
-}
+}*/
 .blog-img-wrapper > .blog-img{
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -639,9 +644,9 @@ html[lang='en'] #large-language-panel #language-large-en{
     left: 0px;
     top: 0;
     opacity: 0;
-    width: 30px;
-    height: 30px;
-    padding: 5px 0 5px 7px;
+    width: 20px;
+    height: 20px;
+    padding: 2px 0 5px 5px;
     background-color: #f05f40;
     border-radius: 15px;
     color: #fff;
@@ -673,8 +678,14 @@ html[lang='en'] #large-language-panel #language-large-en{
 .nav.nav-justified > li > a .quote {
 	left: auto;
 	top: auto;
-	right: 5px;
-	bottom: 5px;
+	right: 2px;
+	bottom: 2px;
+}
+.nav.nav-justified > li > a .quote > .fa { font-size: 10px; line-height: 10px;}
+@media (min-width: 400px) {
+	.nav.nav-justified > li > a .quote { width: 30px; height: 30px; right: 5px; bottom: 5px; padding: 5px 0 5px 7px; }
+	.nav.nav-justified > li > a .quote > .fa { font-size: 16px; line-height: inherit;}
+
 }
 @media (min-width: 768px) {
     .nav.nav-justified > li > a .quote { right: 0px; bottom: 0px; }
