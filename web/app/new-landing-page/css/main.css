@@ -304,14 +304,15 @@ html[lang='en'] #language-panel .lang-en{
 *******************/
 .jumbo-wrapper{
 	height: 90vh;
-	background-image: url('../img/jumbo-1-small.png');
+	background-image: url('../img/jumbo-1-small.jpg');
+	background-color: #aaa;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center 0;
 }
 @media (min-width: 768px){
 	.jumbo-wrapper{
-		background-image: url('../img/jumbo-1.png');
+		background-image: url('../img/jumbo-1.jpg');
 	}
 }
 .jumbo{
