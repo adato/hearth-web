@@ -37,7 +37,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 				setup.infobox = setup.informative.slice(1);
 				// note that there is a motto missing which is on purpose as it is shown differently usually
 				setup.all = [about, interests, work, locations, languages, email, phone, webs];
-				setup.profile = setup.all.slice(1);
+				setup.profile = setup.all;
 
 				scope.typeMatch = setup[scope.type] || setup.all;
 
