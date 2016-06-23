@@ -19,7 +19,8 @@ angular.module('hearth.services').service('Facebook', [
 					appId: $$config.fbAppId,
 					cookie: true,
 					status: true,
-					xfbml: true
+					xfbml: true,
+					version: 'v2.6'
 				});
 			}
 			inited = true;

@@ -67,9 +67,7 @@
 			document.write('<script id="google-maps-script" src="' + googleApiScriptUrl + window.preferredLanguage + '"><\/script>');
 		})();
 	</script>
-
-	<div id="fb-root"></div>
-	<script src="//connect.facebook.net/en_US/all.js"></script>
+	<script src="//connect.facebook.net/en_US/sdk.js"></script>
 	<!--[if lt IE 10]>
     <div class="chromeframe">
       <div class="reason">
@@ -116,9 +114,9 @@
 	<script src="/app/vendor/markerclustererplus/dist/markerclusterer.min.js"></script>
 	<script src="/app/vendor/angular-mobile-detect/dist/angular-mobile-detect.js"></script>
 	<script src="/app/vendor/checklist-model/checklist-model.js"></script>
+	<script src="/app/vendor/overlapping-marker-spiderfier/oms.js"></script>
 	<!-- build:js /app/scripts/scripts.min.js -->
 	<script src="scripts/bootstrap.js"></script>
-	<script src="scripts/utils/oms.min.js"></script>
 	<script src="scripts/utils/jqueryQueryParams.js"></script>
 	<script src="scripts/utils/device.js"></script>
 	<script src="scripts/app.js"></script>
@@ -182,6 +180,7 @@
 	<script src="scripts/services/OpenGraph.js"></script>
 	<script src="scripts/services/PostsService.js"></script>
 	<script src="scripts/services/ProfileProgress.js"></script>
+	<script src="scripts/services/ProfileUtils.js"></script>
 	<script src="scripts/services/IsEmpty.js"></script>
 	<script src="scripts/services/ResponseErrors.js"></script>
 	<script src="scripts/services/Rights.js"></script>
@@ -198,6 +197,7 @@
 	<script src="scripts/services/Messenger.js"></script>
 	<script src="scripts/services/Activities.js"></script>
 	<script src="scripts/services/MultipartForm.js"></script>
+	<script src="scripts/services/HearthCrowdfunding.js"></script>
 	<script src="scripts/filters/filters.js"></script>
 	<script src="scripts/directives/navigation.js"></script>
 	<script src="scripts/directives/ratingReply.js"></script>
@@ -263,6 +263,7 @@
 	<script src="scripts/directives/selectOnFocus.js"></script>
 	<script src="scripts/directives/inputMaxLength.js"></script>
 	<script src="scripts/directives/privacySelector.js"></script>
+	<script src="scripts/directives/userIntelReadout.js"></script>
 	<script src="scripts/directives/fileViewer.js"></script>
 	<script src="scripts/directives/bubble.js"></script>
 	<script src="scripts/directives/bubblePlaceholder.js"></script>
