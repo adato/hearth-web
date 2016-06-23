@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'MottoLength',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, MottoLength) {
 		$scope.profileLoaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -49,6 +49,11 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.communityLink = $rootScope.getProfileLink('Community', res._id);
 				$scope.loadingCounter--;
 				$scope.info = res;
+
+				// community should show description (MottoLength chars max though) if no motto is provided
+				$scope.info.motto = $scope.info.motto || $scope.info.description;
+				if ($scope.info.motto.length > (MottoLength + 3)) $scope.info.motto = $scope.info.motto.substring(0, MottoLength) + '...';
+
 				$scope.profileLoaded = true;
 				$scope.topLoaded = true;
 
@@ -63,7 +68,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.info = false;
 				$scope.mine = false;
 				$scope.managing = false;
-
 			});
 		};
 

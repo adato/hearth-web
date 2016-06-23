@@ -33,6 +33,9 @@
 					</button>
 				</a>
 			</div>
+			<div class="short-about" ng-if="info.motto">
+				<i class="fa fa-quote-right"></i> {{:: info.motto }}
+			</div>
 		</div>
 		<div class="highlights">
 			<avatar dont-jump-top size="large" class="left" src="info.avatar.large" href="basePath+'community/'+info._id" type="info._type"></avatar>

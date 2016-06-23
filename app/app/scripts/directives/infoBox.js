@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('infoBox', [
-	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'IsEmpty',
-	function($rootScope, UsersCommunitiesService, $state, $analytics, IsEmpty) {
+	'$rootScope', 'UsersCommunitiesService', '$state', '$analytics', 'IsEmpty', 'MottoLength',
+	function($rootScope, UsersCommunitiesService, $state, $analytics, IsEmpty, MottoLength) {
 		return {
 			transclude: true,
 			replace: true,
@@ -20,15 +20,13 @@ angular.module('hearth.directives').directive('infoBox', [
 			},
 			templateUrl: 'templates/directives/infoBox.html',
 			link: function(scope, el, attrs) {
+				scope.mottoLength = MottoLength;
+
 				scope.show = false; // infobox shown
 				scope.error = false; // an error occured when loading info
 				scope.info = false; // we will cache infobox content
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.isEmpty = IsEmpty;
-
-				// totaly useless code - delete
-				// scope.infoboxIndex = 0 || scope.infoboxIndex;
-				// scope.infoboxClass = '' || scope.infoboxClass;
 
 				/**
 				 * Show user info into the box
