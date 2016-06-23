@@ -107,7 +107,7 @@
 						<div class="display-flex">
 							<label>
 								<input type="text" ng-focus="focusDate(post.valid_until)" ng-blur="blurDate(post.valid_until)" name="valid_until" ng-disabled="post.valid_until_unlimited==true" class="date" datepicker="{{language}}" datepicker-format="{{dateFormat}}" ng-model="post.valid_until"
-								required>
+												required>
 							</label>
 							<checkbox class="margin-left-large" model="post.valid_until_unlimited" on-update="dateUnlimitedToggle()" value="true">{{:: 'UNLIMITED' | translate }}</checkbox>
 						</div>
@@ -178,7 +178,7 @@
 						</li>
 						<li class="file-upload">
 							<div image-preview uploading-notifier="uploadingNotifierFunc(val)" get-image-sizes="getImageSizes()" no-encoding="true" error="showError.files" limit-pixel-size="limitPixelSize" files="post.attachments_attributes" file-sizes="imageSizes" upload-resource='uploadResource'
-							limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
+											limit="maxImageSizeLimit" limit-mb="maxImageSizeMb">
 								<i class="fa fa-plus"></i>
 								<i class="fa fa-spinner fa-spin"></i>
 							</div>
