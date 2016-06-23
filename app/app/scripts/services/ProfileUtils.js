@@ -6,9 +6,11 @@
  * @description Helper class for all Hearth profiles (user himself, other users, community profiles...)
  */
 
-angular.module('hearth.services').factory('ProfileUtils', ['Karma', function(Karma) {
+angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', function(Karma, MottoLength) {
 
 	var factory = {};
+
+	const MAX_MOTTO_LENGTH = MottoLength;
 
 	var PROFILE_TYPES = {
 		USER: 'user',
@@ -45,14 +47,11 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', function(Kar
 		return paramObject.profile;
 	};
 
-	// SETUP
-	var MAX_MOTTO_LENGTH = 70;
-
 	// FUNCTIONS
 	function copyMottoIfNecessary(profile) {
 		if (!profile.motto) {
-			profile.motto = profile.about || '';
-			if (profile.motto.length > (MAX_MOTTO_LENGTH)) profile.motto = profile.motto.slice(0, MAX_MOTTO_LENGTH - 3) + '...';
+			profile.motto = profile.about || profile.description || '';
+			if (profile.motto.length > (MottoLength)) profile.motto = profile.motto.slice(0, MottoLength - 3) + '...';
 		}
 		return profile;
 	}

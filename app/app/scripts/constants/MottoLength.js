@@ -1,0 +1,1 @@
+angular.module('hearth.constants').constant('MottoLength', 70);

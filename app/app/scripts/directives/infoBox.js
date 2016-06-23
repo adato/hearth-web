@@ -26,10 +26,6 @@ angular.module('hearth.directives').directive('infoBox', [
 				scope.getProfileLink = $rootScope.getProfileLink;
 				scope.isEmpty = IsEmpty;
 
-				// totaly useless code - delete
-				// scope.infoboxIndex = 0 || scope.infoboxIndex;
-				// scope.infoboxClass = '' || scope.infoboxClass;
-
 				/**
 				 * Show user info into the box
 				 */

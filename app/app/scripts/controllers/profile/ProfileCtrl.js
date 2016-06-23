@@ -8,7 +8,6 @@
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
 	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph', 'PageTitle', 'ProfileUtils',
-
 	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph, PageTitle, ProfileUtils) {
 		$scope.activePage = null;
 
