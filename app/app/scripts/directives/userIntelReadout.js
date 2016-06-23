@@ -32,10 +32,11 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 					webs = 'webs';
 
 				var setup = {};
-				setup.informative = [about, motto, locations, languages, email, phone];
+				setup.informative = [motto, locations, languages, email, phone];
 				setup.infobox = setup.informative.slice(1);
 				// note that there is a motto missing which is on purpose as it is shown differently usually
 				setup.all = [motto, about, interests, work, locations, languages, email, phone, webs];
+				setup.profile = setup.all.slice(1);
 
 				scope.typeMatch = setup[scope.type] || setup.all;
 
