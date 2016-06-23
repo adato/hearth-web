@@ -51,6 +51,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.communityLink = $rootScope.getProfileLink('Community', res._id);
 				$scope.loadingCounter--;
 				$scope.info = res;
+
 				$scope.profileLoaded = true;
 				$scope.topLoaded = true;
 
@@ -65,7 +66,6 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				$scope.info = false;
 				$scope.mine = false;
 				$scope.managing = false;
-
 			});
 		};
 

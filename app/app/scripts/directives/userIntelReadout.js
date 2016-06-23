@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('userIntelReadout', [
-	'IsEmpty',
-	function(IsEmpty) {
+	'IsEmpty', 'MottoLength',
+	function(IsEmpty, MottoLength) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -18,12 +18,12 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 			},
 			templateUrl: 'templates/directives/userIntelReadout.html',
 			link: function(scope) {
-				// var validTypes = ['informative', 'all'];
-				// var index = validTypes.indexOf(scope.type);
-				// scope.readoutTypeIndex = ((index > -1) ? index : validTypes.length);
+
+				scope.isEmpty = IsEmpty;
 
 				var motto = 'motto',
 					about = 'about',
+					about_shortened = 'about_shortened',
 					interests = 'interests',
 					work = 'work',
 					locations = 'locations',
@@ -33,14 +33,28 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 					webs = 'webs';
 
 				var setup = {};
-				setup.informative = [motto, locations, languages, email, phone];
+				setup.informative = [about_shortened, locations, languages, email, phone];
 				setup.infobox = setup.informative.slice(1);
 				// note that there is a motto missing which is on purpose as it is shown differently usually
 				setup.all = [about, interests, work, locations, languages, email, phone, webs];
+				setup.profile = setup.all;
 
 				scope.typeMatch = setup[scope.type] || setup.all;
 
-				scope.isEmpty = IsEmpty;
+
+				// this is for marketplace post detail where the description should not be too long;
+				scope.getShorterDescription = function() {
+					if (scope.entity && (scope.entity.motto || scope.entity.about)) {
+						scope.entity.about_shortened = scope.entity.motto || (scope.entity.about ? (scope.entity.about.length > (MottoLength + 3) ? (scope.entity.about.substring(0, MottoLength) + '...') : scope.entity.about) : '');
+						return true;
+					} else {
+						return false;
+					}
+				};
+				// community has a 'description' property instead of 'about'
+				if (scope.entity._type && scope.entity._type.toLowerCase() === 'community') {
+					scope.entity.about = scope.entity.description;
+				}
 			}
 		}
 	}
