@@ -30,7 +30,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		// copyMottoIfNecessary(paramObject.profile);
 		fillWebs(paramObject.profile);
 		splitInterests(paramObject.profile);
-		getLocationJson(paramObject.locations);
+		getLocationJson(paramObject.profile);
 
 		// type-specific
 		switch (paramObject.type) {
@@ -60,7 +60,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 
 	function getLocationJson(profile) {
 		if (profile.locations.length) {
-			for (var i = profile.locations;i--;) {
+			for (var i = profile.locations.length; i--;) {
 				profile.locations[i] = profile.locations[i].json_data;
 			}
 		}

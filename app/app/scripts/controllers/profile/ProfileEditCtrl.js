@@ -42,16 +42,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.filteredLangs = [];
 		$scope.filteredLangsUser = [];
 
-
-		angular.forEach($scope.languageList, function(lang) {
-			if (data.user_languages[lang]) {
-				var newLang = {};
-				newLang['lang'] = lang;
-				newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-				$scope.filteredLangsUser.push(newLang);
-			}
-		});
-
 		function sortTranslations(a, b) {
 			return a.translate.localeCompare(b.translate);
 		}
@@ -85,9 +75,12 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				profile: data
 			});
 
-			$scope.languageList.forEach(function(item) {
-				if (!data.user_languages[item]) {
-					data.user_languages[item] = false;
+			angular.forEach($scope.languageList, function(lang) {
+				if (data.user_languages[lang]) {
+					var newLang = {};
+					newLang['lang'] = lang;
+					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+					$scope.filteredLangsUser.push(newLang);
 				}
 			});
 
