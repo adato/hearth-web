@@ -37,7 +37,13 @@
 						</label>
 					</div>
 				</div>
-				<div class="name margin">
+				<div class="work margin">
+					<label>
+						{{:: 'MY_WORK' | translate }}
+						<input class="text-input" type='text' placeholder="{{'MY_WORK_EXAMPLE' | translate}}" ng-model="profile.work" name="my_work">
+					</label>
+				</div>
+				<!--<div class="name margin">
 					<label>
 						{{:: 'USER_MOTTO' | translate }}
 						<input type="text" name="motto" ng-model="profile.motto" class="text-input" maxlength="{{parameters.MAX_MOTTO_LENGTH}}" ng-maxlength="parameters.MAX_MOTTO_LENGTH" placeholder="{{:: 'USER_MOTTO_EXAMPLE' | translate }}" />
@@ -45,7 +51,7 @@
 							<span ng-show="profileEditForm.motto.$error.maxlength">{{:: 'ERR_USER_MOTTO_MAX_LENGTH' | translate }}</span>
 						</div>
 					</label>
-				</div>
+				</div>-->
 			</section>
 		</div>
 		<div class="clear"></div>
