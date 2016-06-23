@@ -51,7 +51,36 @@
 				</section>
 			</div>
 			<div class="clear"></div>
-			<div class="large-12 small-12 medium-12">
+			<div>
+				<h2>
+					<span class="content">
+						<span class="fa fa-info"></span>{{:: 'COMMUNITY_ABOUT' | translate }}
+					</span>
+				</h2>
+				<section>
+					<div class="column small-12 large-6">
+						<label>
+							{{:: 'COMMUNITY_DESCRIPTION' | translate }}
+						</label>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.description" name="description" required>
+						</input-max-length>
+						<span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
+					</div>
+					<div class="column small-12 large-6">
+						<label>
+							{{:: 'COMMUNITY_RESTRICTIONS' | translate }}
+						</label>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.terms" name="terms"></input-max-length>
+					</div>
+					<div class="column small-12" ng-if="community._id">
+						<label>
+							{{:: 'COMMUNITY_INTERESTS' | translate }}
+						</label>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" model="community.interests" name="interests" class="interests-input"></input-max-length>
+					</div>
+				</section>
+				<div class="clear"></div>
+
 				<h2>
 					<span class="content">
 						<span class="fa fa-globe"></span>{{:: 'COMMUNITY_PLACE' | translate }}
@@ -131,33 +160,6 @@
 						<div class="clear"></div>
 					</section>
 				</div>
-
-				<h2>
-					<span class="content">
-						<span class="fa fa-info"></span>{{:: 'COMMUNITY_ABOUT' | translate }}
-					</span>
-				</h2>
-				<section>
-					<div class="large-6 small-12 medium-12 columns">
-						<label>
-							{{:: 'COMMUNITY_DESCRIPTION' | translate }}
-						</label>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.description" name="description" required></input-max-length>
-						<span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
-					</div>
-					<div class="large-6 small-12 medium-12 columns">
-						<label>
-							{{:: 'COMMUNITY_RESTRICTIONS' | translate }}
-						</label>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.terms" name="terms"></input-max-length>
-					</div>
-					<div class="large-12 small-12 medium-12 columns" ng-if="community._id">
-						<label>
-							{{:: 'COMMUNITY_INTERESTS' | translate }}
-						</label>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" model="community.interests" name="interests" class="interests-input"></input-max-length>
-					</div>
-				</section>
 				<div class="clear"></div>
 				<br />
 				<br />
@@ -184,7 +186,7 @@
 					<select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
 				</span>
 				<button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-custom analytics-event="delegate admin community" analytics-category="My community"
-								analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+				analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
 			</section>
 			<section class="change-admin" ng-if="community.member_count == 1">
 				<br /> {{:: 'COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS' | translate }}
