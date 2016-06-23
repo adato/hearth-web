@@ -19,8 +19,8 @@
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-smile-o"></i>
 		</div>
-		<div class='display-table-cell'>
-			{{ entity.interests.join(",\u00A0") }}
+		<div class="display-table-cell">
+			{{ entity.interests.join(',\u00A0') }}
 		</div>
 	</div>
 	<div class="display-table-row" ng-if="entity.work && (typeMatch.indexOf('work') > -1)">

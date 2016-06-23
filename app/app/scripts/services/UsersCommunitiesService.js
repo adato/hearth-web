@@ -8,6 +8,7 @@
 
 angular.module('hearth.services').service('UsersCommunitiesService', [
 	'$q', 'CommunityMemberships', '$rootScope', 'User', 'Community',
+
 	function($q, CommunityMemberships, $rootScope, User, Community) {
 		this.query = function(params) {
 			var deferred;

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
-	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle',
-	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle) {
+	'$scope', '$stateParams', '$rootScope', '$location', 'Community', 'CommunityApplicants', 'CommunityMembers', 'CommunityLeave', '$window', 'Notify', 'UnauthReload', 'CommunityRatings', 'Karma', 'PageTitle', 'ProfileUtils',
+	function($scope, $stateParams, $rootScope, $location, Community, CommunityApplicants, CommunityMembers, CommunityLeave, $window, Notify, UnauthReload, CommunityRatings, Karma, PageTitle, ProfileUtils) {
 		$scope.profileLoaded = false;
 		$scope.info = false;
 		$scope.topLoaded = false;
@@ -42,6 +42,8 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 				angular.forEach(res.locations, function(location, index) {
 					res.locations[index] = location.json_data;
 				});
+
+				res = ProfileUtils.single.copyMottoIfNecessary(res);
 
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				res.karma = Karma.count(res.up_votes, res.down_votes);

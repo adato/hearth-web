@@ -54,30 +54,6 @@
 
 			<div class="line">
 				<user-intel-readout entity="info" type="'all'"></user-intel-readout>
-				<!-- TODO DELETE
-				<div class="descr" ng-if="info.locations.length">
-					<i class="fa fa-map-marker"></i> {{:: 'you-will-find-me' | translate}}
-					<span ng-repeat="location in info.locations track by $index">
-						<span ng-if="location.short_address">{{:: location.short_address}}
-							<span ng-if="!$last">;&nbsp;</span>
-						</span>
-					</span>
-				</div>
-
-				<div class="descr" ng-if="info.user_languages">
-					<span ng-repeat="(languageCode, enabled) in info.user_languages">
-						<i class="fa fa-comments" ng-if="$first"></i>
-						{{:: 'MY_LANG.' + languageCode | translate }}
-						<span ng-if="!$last">,</span>
-					</span>
-				</div>
-
-				<div class='descr' ng-if="(info.email || info.contact_email)">
-					<i class="fa fa-fw fa-envelope"></i>
-					<a href='mailto:{{::info.email}}' class='display-block'>{{:: info.email}}</a>
-					<a ng-if='info.contact_email' href='mailto:{{:: info.contact_email}}' class='display-block'>{{:: info.contact_email}}</a>
-				</div>-->
-
 				<div class="descr reg-date margin-top-none">
 					<i class="fa fa-asterisk"></i>
 					<span ng-if="!mine">{{:: 'USER_HAS_REGISTERED' | translate }}</span>
