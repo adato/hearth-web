@@ -11,13 +11,20 @@ angular.module('hearth.controllers').controller('InviteBox', [
 	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
+		$scope.urlTitle = '';
 		$scope.sending = false;
 
 		var token;
 		var timeoutClose = false;
+		var inviteInfo, title, description;
 
 		$scope.fbInvite = function() {
-			Facebook.inviteFriends(token);
+			// Facebook.inviteFriends(token);
+			FB.ui({
+				method: 'share',
+				href: $scope.url + $scope.title,
+				quote: description
+			})
 		};
 
 		$scope.showFinished = function(res) {
@@ -33,9 +40,9 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		};
 
 		$scope.init = function() {
-			var inviteInfo = OpenGraph.getDefaultInfo();
-			var title = encodeURIComponent(inviteInfo.title);
-			var description = encodeURIComponent(inviteInfo.description);
+			inviteInfo = OpenGraph.getDefaultInfo();
+			title = encodeURIComponent(inviteInfo.title);
+			description = encodeURIComponent(inviteInfo.description);
 
 			// link to the landing page
 			$scope.url = $window.location.origin;
@@ -45,7 +52,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				token = res.token;
 				if ($rootScope.debug) console.log('token: ', token);
 				$scope.url += '?' + $$config.referrerCookieName + '=' + token;
-				$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;;
+				$scope.urlTitle = '&title=' + title;
+				$scope.urlLinkedin = $scope.url + $scope.urlTitle + '&summary=' + description;;
 			});
 		};
 

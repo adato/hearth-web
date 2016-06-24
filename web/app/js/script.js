@@ -119,19 +119,6 @@ $(function () {
 					return saveReferrerArray(referrerArray);
 				}
 			}
-
-			// MOMENTARY DISABLE
-			if (0) { if(1) {}
-			// Facebook requires a separate routine as it can't pass a frecking single parameter into a damned uri
-			else if (item[0] === 'request_ids') {
-				// request_ids contains a comma separated list of ids that each may (and should) carry an invitation token
-				var request_ids = item[1].split(',');
-				for (var i = request_ids.length;i--;) {
-					xhr('https://graph.facebook.com/' + request_ids[i] + '?access_token=APP_ACCESS_TOKEN')
-				}
-			}
-			// https://graph.facebook.com/<REQUEST_OBJECT_ID>_<USER_ID>?access_token=APP_ACCESS_TOKEN
-			}
 		}
 	}
 	// /REFERRALS
