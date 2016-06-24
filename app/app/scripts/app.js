@@ -88,7 +88,6 @@ angular.module('hearth', [
 			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
-			$httpProvider.defaults.headers.common['X-API-VERSION'] = '1'; // hard use version of API
 
 			var params = $.getUrlVars();
 			if (params['apiError'])
