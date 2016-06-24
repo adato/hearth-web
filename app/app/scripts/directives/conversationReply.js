@@ -52,6 +52,7 @@ angular.module('hearth.directives').directive('conversationReply', [
 
 						$timeout(function() {
 							$('textarea', el).trigger('autosize.resize');
+							$('#message-footer').removeClass('message-actions');
 							$scope.onResize();
 						});
 
