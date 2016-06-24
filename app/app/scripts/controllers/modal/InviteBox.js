@@ -11,6 +11,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
+		$scope.urlTitle = '';
 		$scope.sending = false;
 
 		var token;
@@ -40,7 +41,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				token = res.token;
 				if ($rootScope.debug) console.log('token: ', token);
 				$scope.url += '?' + $$config.referrerCookieName + '=' + token;
-				$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;;
+				$scope.urlTitle = '&title=' + title;
+				$scope.urlLinkedin = $scope.url + $scope.urlTitle + '&summary=' + description;;
 			});
 		};
 

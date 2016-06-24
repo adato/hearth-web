@@ -22,6 +22,7 @@ $$config = {
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
 	sharingEndpoints: {
 		facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+		facebook_invite: 'https://www.facebook.com/share.php?u=',
 		gplus: 'https://plus.google.com/share?url=',
 		twitter: 'https://twitter.com/share?url=',
 		linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='

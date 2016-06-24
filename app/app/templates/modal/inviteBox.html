@@ -10,7 +10,8 @@
 	<div class="social" ng-if="!showEmailForm">
 		<ul>
 			<li>
-				<a ng-click="fbInvite()">
+				<!-- <a ng-click="fbInvite()"> -->
+				<a target="_blank" ng-href="{{endpoints.facebook_invite + url + urlTitle}}">
 					<i class="fa fa-facebook"></i> {{:: 'INVITE_FACEBOOK' | translate }}
 				</a>
 			</li>
