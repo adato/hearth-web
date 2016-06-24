@@ -210,7 +210,7 @@
 		"0": "Zprávy",
 		"REPLY": {
 			"TEXT_LABEL": "Odpovědět:",
-			"TEXT_PLACEHOLDER": "Nezapomenutelný text Vaší zprávy..."
+			"TEXT_PLACEHOLDER": "Nezapomenutelný text tvojí zprávy..."
 		},
 		"ADD_NEW_MESSAGE": "Nová zpráva",
 		"ADD": {
