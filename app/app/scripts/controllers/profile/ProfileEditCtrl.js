@@ -6,274 +6,266 @@
  * @description
  */
 
-angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', '$http', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', '$q', 'Validators', 'ProfileUtils',
+angular.module('hearth.controllers').controller('ProfileEditCtrl', [ '$scope', '$http', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', '$q', 'Validators', 'ProfileUtils',
 
-	function($scope, $http, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, $q, Validators, ProfileUtils) {
+			function($scope, $http, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, $q, Validators, ProfileUtils) {
 
-		$scope.loaded = false;
-		$scope.sending = false;
-		$scope.profile = false;
-		$scope.showError = {
-			locations: false,
-			first_name: false,
-			motto: false,
-			email: false,
-			phone: false,
-			contact_email: false,
-			message: false,
-			social_networks: [],
-		};
-
-		$scope.parameters = ProfileUtils.params;
-
-		$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
-		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
-		$scope.filteredLangs = [];
-
-		angular.forEach($scope.languageList, function(lang) {
-			var newLang = {};
-			newLang['lang'] = lang;
-			newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-			$scope.filteredLangs.push(newLang);
-		});
-
-		function sortTranslations(a, b) {
-			return a.translate.localeCompare(b.translate);
-		}
-
-		$scope.filteredLangs.sort(sortTranslations);
-
-		$scope.loadLanguages = function(query) {
-			var languages = $scope.filteredLangs;
-
-			return languages.filter(function(lang) {
-				return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
-			});
-		};
-
-		$scope.init = function() {
-
-			UnauthReload.check();
-
-			// $scope.initLocations();
-			User.getFullInfo(function(res) {
-				$scope.profile = transformDataIn(res);
-				$scope.loaded = true;
-			}, function(res) {});
-		};
-
-		function transformDataIn(data) {
-
-			data = ProfileUtils.transformDataForUsage({
-				type: ProfileUtils.params.PROFILE_TYPES.USER,
-				profile: data
-			});
-
-			$scope.filteredLangsUser = [];
-			angular.forEach($scope.languageList, function(lang) {
-				if (data.user_languages[lang]) {
-					var newLang = {};
-					newLang['lang'] = lang;
-					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-					$scope.filteredLangsUser.push(newLang);
-				}
-			});
-
-			$scope.showContactMail = data.contact_email && data.contact_email != '';
-			return data;
-		};
-
-		$scope.avatarUploadFailed = function(err) {
-			$scope.uploadingInProgress = false;
-		};
-
-		$scope.avatarUploadStarted = function(argument) {
-			$scope.uploadingInProgress = true;
-		};
-
-		$scope.avatarUploadSucceeded = function(event) {
-			$scope.profile.avatar = angular.fromJson(event.target.responseText);
-			$scope.uploadingInProgress = false;
-		};
-
-		$scope.updateUrl = function($event, model, key) {
-			var input = $($event.target),
-				url = input.val();
-
-			if (url && !url.match(/http[s]?:\/\/.*/)) {
-				url = 'http://' + url;
-			}
-
-			if (model !== $scope.profile.webs) {
-				// editing social network, not webs
-				$scope.showError.social_networks[key] = !Validators.social(url, key);
-			} else {
-				// editing webs
-				$scope.showError.social_networks['webs'] = !Validators.url(url);
-			}
-
-			model[key] = url;
-		};
-
-		$scope.validateSocialNetworks = function() {
-			var isOk = true;
-			var isWebsOk = true;
-			var isLinkOk = true;
-			['facebook', 'twitter', 'linkedin', 'googleplus'].forEach(function(networkName) {
-				if ($scope.profile[networkName]) {
-					isLinkOk = Validators.social($scope.profile[networkName], networkName);
-					$scope.showError.social_networks[networkName] = !isLinkOk;
-					isOk = isOk && isLinkOk;
-				}
-			});
-			isWebsOk = !!Validators.urls($scope.profile.webs);
-			$scope.showError.social_networks['webs'] = !isWebsOk;
-
-			return isOk && isWebsOk;
-		};
-
-		$scope.switchLanguage = function(lang) {
-			$scope.profile.user_languages[lang] = !$scope.profile.user_languages[lang];
-		};
-
-		$scope.disableErrorMsg = function(key) {
-			$scope.showError[key] = false;
-		};
-
-		$scope.loadInterests = function(query) {
-			var result = [];
-			if (query) {
-				result = $http.get($$config.apiPath + '/interests?name=' + query);
-			} else {
-				result = $http.get($$config.apiPath + '/interests');
-			}
-
-			return result.then(function(response) {
-				var interests = response.data;
-				return interests.filter(function(interest) {
-					return interest.term.toLowerCase().indexOf(query.toLowerCase()) != -1;
-				});
-			});
-		};
-
-		$scope.transferDataOut = function(data) {
-			var webs = [];
-			var interests = [];
-
-			// remove empty webs
-			data.webs.forEach(function(web) {
-				if (web) webs.push(web);
-			});
-			data.webs = webs;
-
-			data.interests.forEach(function(interest) {
-				if (interest) interests.push(interest.term);
-			});
-			data.interests = interests;
-
-			if (!data.locations.length) {
-				data.locations = [];
-			} else {
-				angular.forEach(data.locations, function(location, index) {
-					data.locations[index] = {
-						json_data: location.address_components ? location : {
-							place_id: location.place_id
-						}
+					$scope.loaded = false;
+					$scope.sending = false;
+					$scope.profile = false;
+					$scope.showError = {
+						locations: false,
+						first_name: false,
+						motto: false,
+						email: false,
+						phone: false,
+						contact_email: false,
+						message: false,
+						social_networks: [],
 					};
-				});
-			}
 
-			return data;
-		};
+					$scope.parameters = ProfileUtils.params;
 
-		$scope.validateData = function(data) {
-			var res = true;
+					$scope.languageListDefault = ['cs', 'en', 'de', 'fr', 'es', 'ru'];
+					$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
+					$scope.filteredLangs = [];
+					$scope.filteredLangsUser = [];
 
-			if ($scope.profileEditForm.first_name.$invalid) {
-				res = false;
-				$scope.showError.first_name = true;
-			}
+					function sortTranslations(a, b) {
+						return a.translate.localeCompare(b.translate);
+					}
 
-			if ($scope.profileEditForm.email.$invalid) {
-				res = false;
-				$scope.showError.email = true;
-			}
+					$scope.filteredLangs.sort(sortTranslations);
 
-			if ($scope.profileEditForm.phone.$invalid) {
-				res = false;
-				$scope.showError.phone = true;
-			}
+					$scope.loadLanguages = function(query) {
+						var languages = $scope.filteredLangs;
 
-			if ($scope.showContactMail && $scope.profileEditForm.contact_email.$invalid) {
-				res = false;
-				$scope.showError.contact_email = true;
-			}
+						return languages.filter(function(lang) {
+							return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
+						});
+					};
 
-			if (!$scope.validateSocialNetworks()) {
-				res = false;
-			}
+					$scope.init = function() {
 
-			if ($scope.profileEditForm.about.$invalid || $scope.profileEditForm.interests.$invalid) {
-				res = false;
-			}
+						UnauthReload.check();
 
-			return res;
-		};
+						User.getFullInfo(function(res) {
+							$scope.profile = transformDataIn(res);
+							$scope.loaded = true;
+						}, function(res) {});
+					};
 
-		$scope.update = function() {
-			var transformedData;
+					function transformDataIn(data) {
 
-			if (!$scope.validateData($scope.profile)) {
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
-				$rootScope.scrollToError();
-				return false;
-			}
+						data = ProfileUtils.transformDataForUsage({
+							type: ProfileUtils.params.PROFILE_TYPES.USER,
+							profile: data
+						});
 
-			if ($scope.sending) return false;
-			$scope.sending = true;
-			$rootScope.globalLoading = true;
+						$scope.filteredLangsUser = [];
+						angular.forEach($scope.languageList, function(lang) {
+							if (data.user_languages[lang]) {
+								var newLang = {};
+								newLang['lang'] = lang;
+								newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+								$scope.filteredLangsUser.push(newLang);
+							}
+						});
 
-			transformedData = $scope.transferDataOut(angular.copy($scope.profile));
+						$scope.showContactMail = data.contact_email && data.contact_email != '';
+						return data;
+					};
 
-			User.edit(transformedData, function(res) {
-				$scope.sending = false;
-				$rootScope.globalLoading = false;
+					$scope.avatarUploadFailed = function(err) {
+						$scope.uploadingInProgress = false;
+					};
 
-				// refresh user info - for example avatar in navbar
-				Auth.refreshUserInfo();
-				$location.path('/profile/' + $scope.profile._id);
-				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+					$scope.avatarUploadStarted = function(argument) {
+						$scope.uploadingInProgress = true;
+					};
 
-			}, function(res) {
-				$rootScope.globalLoading = false;
-				$scope.sending = false;
-			});
-		};
+					$scope.avatarUploadSucceeded = function(event) {
+						$scope.profile.avatar = angular.fromJson(event.target.responseText);
+						$scope.uploadingInProgress = false;
+					};
 
-		// when blur event on input - wait with displaying errors - if we clicked also on remove contcat email
-		// remove him instead
-		$scope.contactEmailBlur = function() {
-			$timeout(function() {
-				$scope.showError.contact_email = true;
-			});
-		};
+					$scope.updateUrl = function($event, model, key) {
+						var input = $($event.target),
+							url = input.val();
 
-		$scope.hideContactEmail = function() {
-			// hide input & set him empty and dont show any errors
-			$scope.showContactMail = false;
-			$scope.profile.contact_email = '';
+						if (url && !url.match(/http[s]?:\/\/.*/)) {
+							url = 'http://' + url;
+						}
 
-			$timeout(function() {
-				$scope.showError.contact_email = false;
-			}, 100);
-		};
+						if (model !== $scope.profile.webs) {
+							// editing social network, not webs
+							$scope.showError.social_networks[key] = !Validators.social(url, key);
+						} else {
+							// editing webs
+							$scope.showError.social_networks['webs'] = !Validators.url(url);
+						}
 
-		$scope.$on('initFinished', $scope.init);
-		$rootScope.initFinished && $scope.init();
-		$scope.$watch('showError', function() {
-			$scope.messageBottom = false;
-		}, true);
+						model[key] = url;
+					};
 
-	}
-]);
+					$scope.validateSocialNetworks = function() {
+						var isOk = true;
+						var isWebsOk = true;
+						var isLinkOk = true;
+						['facebook', 'twitter', 'linkedin', 'googleplus'].forEach(function(networkName) {
+							if ($scope.profile[networkName]) {
+								isLinkOk = Validators.social($scope.profile[networkName], networkName);
+								$scope.showError.social_networks[networkName] = !isLinkOk;
+								isOk = isOk && isLinkOk;
+							}
+						});
+						isWebsOk = !!Validators.urls($scope.profile.webs);
+						$scope.showError.social_networks['webs'] = !isWebsOk;
+
+						return isOk && isWebsOk;
+					};
+
+					$scope.switchLanguage = function(lang) {
+						$scope.profile.user_languages[lang] = !$scope.profile.user_languages[lang];
+					};
+
+					$scope.disableErrorMsg = function(key) {
+						$scope.showError[key] = false;
+					};
+
+					$scope.loadInterests = function(query) {
+						var result = [];
+						if (query) {
+							result = $http.get($$config.apiPath + '/interests?name=' + query);
+						} else {
+							result = $http.get($$config.apiPath + '/interests');
+						}
+
+						return result.then(function(response) {
+							var interests = response.data;
+							return interests.filter(function(interest) {
+								return interest.term.toLowerCase().indexOf(query.toLowerCase()) != -1;
+							});
+						});
+					};
+
+					$scope.transferDataOut = function(data) {
+						var webs = [];
+						var interests = [];
+
+						// remove empty webs
+						data.webs.forEach(function(web) {
+							if (web) webs.push(web);
+						});
+						data.webs = webs;
+
+						data.interests.forEach(function(interest) {
+							if (interest) interests.push(interest.term);
+						});
+						data.interests = interests;
+
+						if (!data.locations.length) {
+							data.locations = [];
+						} else {
+							angular.forEach(data.locations, function(location, index) {
+								data.locations[index] = {
+									json_data: location.address_components ? location : {
+										place_id: location.place_id
+									}
+								};
+							});
+						}
+
+						return data;
+					};
+
+					$scope.validateData = function(data) {
+						var res = true;
+
+						if ($scope.profileEditForm.first_name.$invalid) {
+							res = false;
+							$scope.showError.first_name = true;
+						}
+
+						if ($scope.profileEditForm.email.$invalid) {
+							res = false;
+							$scope.showError.email = true;
+						}
+
+						if ($scope.profileEditForm.phone.$invalid) {
+							res = false;
+							$scope.showError.phone = true;
+						}
+
+						if ($scope.showContactMail && $scope.profileEditForm.contact_email.$invalid) {
+							res = false;
+							$scope.showError.contact_email = true;
+						}
+
+						if (!$scope.validateSocialNetworks()) {
+							res = false;
+						}
+
+						if ($scope.profileEditForm.about.$invalid || $scope.profileEditForm.interests.$invalid) {
+							res = false;
+						}
+
+						return res;
+					};
+
+					$scope.update = function() {
+						var transformedData;
+
+						if (!$scope.validateData($scope.profile)) {
+							Notify.addSingleTranslate('NOTIFY.USER_PROFILE_FORM_HAS_ERRORS', Notify.T_ERROR);
+							$rootScope.scrollToError();
+							return false;
+						}
+
+						if ($scope.sending) return false;
+						$scope.sending = true;
+						$rootScope.globalLoading = true;
+
+						transformedData = $scope.transferDataOut(angular.copy($scope.profile));
+
+						User.edit(transformedData, function(res) {
+							$scope.sending = false;
+							$rootScope.globalLoading = false;
+
+							// refresh user info - for example avatar in navbar
+							Auth.refreshUserInfo();
+							$location.path('/profile/' + $scope.profile._id);
+							Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+
+						}, function(res) {
+							$rootScope.globalLoading = false;
+							$scope.sending = false;
+						});
+					};
+
+					// when blur event on input - wait with displaying errors - if we clicked also on remove contcat email
+					// remove him instead
+					$scope.contactEmailBlur = function() {
+						$timeout(function() {
+							$scope.showError.contact_email = true;
+						});
+					};
+
+					$scope.hideContactEmail = function() {
+						// hide input & set him empty and dont show any errors
+						$scope.showContactMail = false;
+						$scope.profile.contact_email = '';
+
+						$timeout(function() {
+							$scope.showError.contact_email = false;
+						}, 100);
+					};
+
+					$scope.$on('initFinished', $scope.init);
+					$rootScope.initFinished && $scope.init();
+					$scope.$watch('showError', function() {
+						$scope.messageBottom = false;
+					}, true);
+
+				}
+			]);
