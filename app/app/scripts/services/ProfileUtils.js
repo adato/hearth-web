@@ -50,7 +50,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	// FUNCTIONS
 	function copyMottoIfNecessary(profile) {
 		if (!profile.motto) {
-			profile.motto = profile.about || profile.description || ''; << << << < HEAD
+			profile.motto = profile.about || profile.description || '';
 			if (profile.motto.length > (MottoLength)) profile.motto = profile.motto.slice(0, MottoLength - 3) + '...';
 		}
 		return profile;
