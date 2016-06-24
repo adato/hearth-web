@@ -50,8 +50,17 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	// FUNCTIONS
 	function copyMottoIfNecessary(profile) {
 		if (!profile.motto) {
-			profile.motto = profile.about || profile.description || '';
+			profile.motto = profile.about || profile.description || ''; << << << < HEAD
 			if (profile.motto.length > (MottoLength)) profile.motto = profile.motto.slice(0, MottoLength - 3) + '...';
+		}
+		return profile;
+	}
+
+	function getLocationJson(profile) {
+		if (profile.locations.length) {
+			for (var i = profile.locations.length; i--;) {
+				profile.locations[i] = profile.locations[i].json_data;
+			}
 		}
 		return profile;
 	}
