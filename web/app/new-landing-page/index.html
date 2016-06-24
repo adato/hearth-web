@@ -5,6 +5,15 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name='author' content='Hearth.net' />
+
+	<meta property="og:type" content="website">
+    <meta property="og:title" content="Hearth.net">
+    <meta property="og:description" content="Prostor, kde dávat, znamená dostat mnohem víc">
+    <meta property="og:url" content="https://www.hearth.net/">
+    <meta property="og:image" content="https://www.hearth.net/app/images/facebook-sharing-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
 	<title>Hearth.net</title>
 	<link rel='shortcut icon' type='image/x-icon' href='data:image/x-icon;base64,iconiconicon' />
 	<!--<link rel='stylesheet' type='text/css' href='./fonts/stylesheet.css' />-->
@@ -12,6 +21,11 @@
 	<link rel='stylesheet' type='text/css' href='./css/hamburger.css' />
 	<link rel='stylesheet' type='text/css' href='./css/main.css' />
 	<link rel='stylesheet' type='text/css' href='./css/font-awesome.min.css' />
+
+	<!-- TODO - CLEAN-UP -->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Montserrat|Open+Sans|Raleway|Roboto" rel="stylesheet">
+	<!-- /TODO - CLEAN-UP -->
+
 </head>
 <body class='border-box-sized'>
 
@@ -23,6 +37,30 @@
 	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=133986903478472";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+
+	<div id='q' style='background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4);padding:1.25rem;position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 90000000000'>
+		<style>
+			#q > a{display: block; width: 150px; padding: .3rem; border-bottom: 1px solid #ddd; cursor: pointer}
+			#q > a:last-of-type{border-bottom: none;}
+			#q > a:hover{background-color: #eee;}
+			#q > a.active, #q > a.active:hover{background-color: pink; cursor: default;}
+		</style>
+		<a tabindex='0' onclick='setFont("Merriweather Sans", 1)' id='f1'>Merriweather</a>
+		<a tabindex='0' onclick='setFont("Montserrat", 2)' id='f2'>Montserrat</a>
+		<a tabindex='0' onclick='setFont("Open Sans", 3)' id='f3'>Open Sans</a>
+		<a tabindex='0' onclick='setFont("Raleway", 4)' id='f4'>Raleway</a>
+		<a tabindex='0' onclick='setFont("Roboto", 5)' id='f5'>Roboto</a>
+		<script>
+			function setFont(name, id){
+				document.body.style.fontFamily = name + ', sans-serif';
+				var anchs = document.getElementById('q').getElementsByTagName('a')
+				for (var i = anchs.length;i--;){
+					anchs[i].classList.remove('active');
+				}
+				document.getElementById('f' + id).classList.add('active');
+			}
+		</script>
+	</div>
 
 	<div class='header-wrapper'>
 		<div class='flex'>
