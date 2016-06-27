@@ -165,7 +165,7 @@ angular.module('hearth.controllers').controller('CommunityProfileCtrl', [
 
 				Notify.addSingleTranslate('NOTIFY.COMMUNITY_LEAVE_SUCCESS', Notify.T_SUCCESS);
 				$scope.init();
-				$rootScope.$broadcast("reloadCommunities");
+				$rootScope.$emit('reloadCommunities');
 			}, function(res) {
 
 				$scope.leaveCommunityLock = false;
