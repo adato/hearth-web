@@ -62,29 +62,6 @@ $(function () {
 	var referrer = 'referrals';
 
 	/**
-	 *	Standard & simple XHR
-	 */
-	function xhr(url, method, cb) {
-		method = method || 'GET';
-    	var xmlhttp = new XMLHttpRequest();
-    	xmlhttp.onreadystatechange = function() {
-        	if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-	            if (xmlhttp.status == 200) {
-	                // document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
-					console.log(xmlhttp.responseText, xmlhttp.response);
-					if (cb && typeof cb === 'function') cb(xmlhttp.response)
-	            } else if (xmlhttp.status == 400) {
-					console.error('There was an error 400 getting Graph API data.');
-	            } else {
-	            	console.error('something else other than 200 was returned: ', xmlhttp.response);
-	            }
-	        }
-		};
-    	xmlhttp.open(method, url, true);
-    	xmlhttp.send();
-	}
-
-	/**
 	*	Function that gets a referrer cookie if possible and returns all tokens as an array
 	*/
 	function getReferrerArray() {

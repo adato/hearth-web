@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		$scope.fbInvite = function() {
 			FB.ui({
 				method: 'share',
-				href: $scope.url + $scope.title,
+				href: $scope.url,
 				quote: plainDescription
 			})
 		};

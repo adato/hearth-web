@@ -11,11 +11,11 @@ window.jCookie = $.cookie;
 var langBrowser = window.navigator.userLanguage || window.navigator.language;
 
 // language based on url path
-var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split("/").slice(0, 1).toString();
+var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split('/').slice(0, 1).toString();
 
 function redirectToLangVersion(lang, langsAvailable) {
 	var loc = document.location.pathname.replace(/^\/|\/$/g, '');
-	var langLoc = loc.split("/").slice(0, 1).toString();
+	var langLoc = loc.split('/').slice(0, 1).toString();
 
 	if (langsAvailable.indexOf(langLoc) == -1) {
 		loc = langPathMap[lang]+loc;
@@ -32,8 +32,8 @@ function redirectToLangVersion(lang, langsAvailable) {
 		window.jCookie('language', defaultLanguage, {path: '/', expires: 20 * 365});
 	}
 
-	console.log("New url is: ", loc);
-	window.location = loc;
+	console.log('New url is: ', loc);
+	window.location = loc + window.location.search;
 }
 
 function changeLanguage(lang) {
