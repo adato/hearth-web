@@ -33,6 +33,7 @@ describe('hearth bookmarks', function() {
 		expect(notify.isPresent()).toBeFalsy();
 		expect(expectedDropdown.isDisplayed()).toBeFalsy();
 		dropdownArrow.click();
+		browser.sleep(100);
 		expect(expectedDropdown.isDisplayed()).toBeTruthy();
 		dropdownBookmarkLink.click();
 		browser.sleep(500);

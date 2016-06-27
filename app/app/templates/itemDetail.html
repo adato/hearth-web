@@ -32,7 +32,7 @@
 												<i class='fa fa-fw fa-chevron-down'></i>
 											</span>
 										</div>
-										<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
+										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
 											<li>
 												<!-- bookmark post -->
 												<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
