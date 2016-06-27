@@ -22,11 +22,11 @@ describe('hearth bookmarks', function() {
 	}
 
 	it('should be able to make a bookmark on marketplace', function() {
-		
+
 		var elAll = element.all(by.className('item-common')).get(0);
 		var expectedDropdown = elAll.element(by.css('ul.actions-dropdown'));
-		var dropdownBookmarkLink = elAll.all(by.css('ul.actions-dropdown a')).get(0);
-		var dropdownArrow = elAll.element(by.css('span.action-dropdown'));
+		var dropdownBookmarkLink = elAll.element(by.css('[test-beacon="marketplace-item-add-bookmark"]'));
+		var dropdownArrow = elAll.element(by.css('[test-beacon="marketplace-item-dropdown-toggle"]'));
 		var notify = element(by.css('#notify-top>.alert-box'));
 
 
@@ -41,13 +41,13 @@ describe('hearth bookmarks', function() {
 
 
 	it('should be able to make a bookmark on post detail', function() {
-		
+
 		var elAll = element.all(by.className('item-common')).get(3);
 		var postDetailLink = elAll.element(by.css('h1>a'));
 
 		var elPostDetail = element(by.css('.main-container>.item-common'));
-		var dropdownBookmarkLink = elPostDetail.all(by.css('ul.actions-dropdown a')).get(0);
-		var dropdownArrow = elPostDetail.element(by.css('span.action-dropdown'));
+		var dropdownBookmarkLink = elPostDetail.element(by.css('[test-beacon="marketplace-item-add-bookmark"]'));
+		var dropdownArrow = elPostDetail.element(by.css('[test-beacon="marketplace-item-dropdown-toggle"]'));
 		var notify = element(by.css('#notify-top>.alert-box'));
 
 		expect(notify.isPresent()).toBeFalsy();
@@ -66,7 +66,6 @@ describe('hearth bookmarks', function() {
 
 		var marketItems = element.all(by.className('item-common'));
 		expect(marketItems.count()).toBe(2); // count items
-
 	});
 
 	it('should be able to remove bookmarked items from profile', function() {
@@ -74,8 +73,8 @@ describe('hearth bookmarks', function() {
 
 		var elAll = element.all(by.className('item-common')).get(0);
 		var expectedDropdown = elAll.element(by.css('ul.actions-dropdown'));
-		var dropdownBookmarkLink = elAll.all(by.css('ul.actions-dropdown a')).get(0);
-		var dropdownArrow = elAll.element(by.css('span.action-dropdown'))
+		var dropdownBookmarkLink = elAll.element(by.css('[test-beacon="marketplace-item-remove-bookmark"]'));
+		var dropdownArrow = elAll.element(by.css('[test-beacon="marketplace-item-dropdown-toggle"]'));
 		var notify = element(by.css('#notify-top>.alert-box'))
 		var marketItems = element.all(by.className('item-common'));
 
