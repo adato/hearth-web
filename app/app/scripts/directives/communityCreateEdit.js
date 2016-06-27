@@ -6,8 +6,8 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('communityCreateEdit', [
-	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils',
-	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils) {
+	'$rootScope', '$location', '$stateParams', 'Community', 'CommunityMembers', 'CommunityDelegateAdmin', 'Notify', 'Auth', 'Validators', 'ProfileUtils', 'KeywordsService',
+	function($rootScope, $location, $stateParams, Community, CommunityMembers, CommunityDelegateAdmin, Notify, Auth, Validators, ProfileUtils, KeywordsService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -46,6 +46,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.loaded = true;
 				};
 
+				$scope.queryKeywords = function($query) {
+					return KeywordsService.queryKeywords($query);
+				};
+
 				/**
 				 * Function will remove user from list
 				 * @param  {string} id UserId to remove
@@ -70,16 +74,11 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					Community.get({
 						_id: id
 					}, function(data) {
+						console.log(data.interests);
 						$scope.community = prepareDataIn(data);
 
-						if (!data.locations || !data.locations.length) {
+						if (!data.locations || !data.locations.length || data.locations[0] === void 0) {
 							data.locations = [];
-						}
-
-						if (data.locations.length) {
-							angular.forEach(data.locations, function(location, index) {
-								data.locations[index] = location.json_data;
-							});
 						}
 
 						$scope.community = data;
@@ -112,6 +111,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 				};
 
 				var prepareDataOut = function(data) {
+					var data = angular.copy(data);
 					var prepareWebs = function(data) {
 						var webs = [];
 						data.webs.forEach(function(web) {
@@ -120,9 +120,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						data.webs = webs;
 					}
 					if (data.webs !== undefined) prepareWebs(data);
-					if (typeof data.interests !== 'object') {
-						if (data.interests !== undefined) data.interests = data.interests.split(',');
-					}
+					ProfileUtils.single.joinInterests(data);
 					return data;
 				};
 
@@ -177,9 +175,10 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						$scope.showError.terms = err = true;
 					}
 
-					if ($scope.communityForm.interests.$invalid) {
-						$scope.showError.interests = err = true;
-					}
+					// interest as tags are no longer available to form
+					// if ($scope.communityForm.interests.$invalid) {
+					// 	$scope.showError.interests = err = true;
+					// }
 
 					if (!$scope.validateSocialNetworks()) {
 						err = true;
@@ -189,21 +188,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 				};
 
 				$scope.save = function() {
-					// if we have community ID - then edit
 					var data = $scope.community;
-					var service = (data._id) ? Community.edit : Community.add;
-
-					if (!data.locations.length) {
-						data.locations = [];
-					} else {
-						angular.forEach(data.locations, function(location, index) {
-							data.locations[index] = {
-								json_data: location.address_components ? location : {
-									place_id: location.place_id
-								}
-							};
-						});
-					}
 
 					// validate data
 					if (!$scope.validate(data)) {
@@ -219,15 +204,26 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.sending = true;
 					$rootScope.globalLoading = true;
 
-					service(prepareDataOut($scope.community), function(res) {
+					if (!data.locations.length) {
+						data.locations = [];
+					} else {
+						angular.forEach(data.locations, function(location, index) {
+							data.locations[index] = {
+								json_data: location.address_components ? location : {
+									place_id: location.place_id
+								}
+							};
+						});
+					}
+
+					// return console.log($scope.community);
+
+					Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community), function(res) {
 						$rootScope.globalLoading = false;
-						$rootScope.$broadcast("reloadCommunities");
+						$rootScope.$emit('reloadCommunities');
 						$location.path('/community/' + res._id);
 
-						if ($scope.community._id)
-							Notify.addSingleTranslate('NOTIFY.COMMUNITY_UPDATE_SUCCESS', Notify.T_SUCCESS);
-						else
-							Notify.addSingleTranslate('NOTIFY.COMMUNITY_CREATE_SUCCESS', Notify.T_SUCCESS);
+						Notify.addSingleTranslate('NOTIFY.COMMUNITY_' + ($scope.community._id ? 'UPDATE' : 'CREATE') + '_SUCCESS', Notify.T_SUCCESS);
 
 					}, function(res) {
 						$scope.sending = false;
@@ -253,7 +249,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 							if (needReload) {
 								Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
 							} else {
-								$rootScope.$broadcast("reloadCommunities");
+								$rootScope.$emit('reloadCommunities');
 								Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELEGATE_ADMIN_SUCCESS', Notify.T_SUCCESS);
 							}
 
@@ -269,7 +265,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					if (hard) {
 						$rootScope.refreshToPath(path);
 					} else {
-						$rootScope.$broadcast("reloadCommunities");
+						$rootScope.$emit('reloadCommunities');
 						$location.path(path);
 					}
 				};
@@ -290,7 +286,7 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 						if (!needReload) {
 							Notify.addSingleTranslate('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
-							$rootScope.$broadcast("reloadCommunities");
+							$rootScope.$emit('reloadCommunities');
 						} else {
 							Notify.addTranslateAfterRefresh('NOTIFY.COMMUNITY_DELETE_SUCCESS', Notify.T_SUCCESS);
 						}

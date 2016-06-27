@@ -120,11 +120,10 @@ angular.module('hearth', [
 			// Add language header
 			$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
+			$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-			$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth.v1+json';
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
-			$httpProvider.defaults.headers.common['X-API-VERSION'] = '1'; // hard use version of API
 
 			var params = $.getUrlVars();
 			if (params['apiError'])
