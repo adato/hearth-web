@@ -9,51 +9,66 @@
 			display: none;
 		}
 	}
+
 	.messages-top {
-		input,
+		// input,
+		// select {
+		// 	width: 240px;
+		// 	display: inline-block;
+		// 	background-color: white;
+		// }
 		select {
-			width: 240px;
-			display: inline-block;
-			display: inline-block;
-			background-color: white;
+			// width: 340px;
+			width: 300px;
+			// float: left;
 		}
-		select {
-			width: 340px;
-			float: left;
+		// .search {
+		// 	.slide-show {
+		// 		float: left;
+		// 		overflow: hidden;
+		// 		max-width: 0px !important;
+		// 		transition: max-width 1s;
+		// 		&.width-auto {
+		// 			max-width: 1000px !important;;
+		// 		}
+		// 	}
+		// 	display: inline-block;
+		// 	margin-left: 30px;
+		// 	height: 30px;
+		// }
+		// button {
+		// 	width: 30px;
+		// 	height: 30px;
+		// 	font-size: 20px;
+		// 	outline: none;
+		// }
+		// @media #{$medium-up} {
+		//  .button-send,
+		// 	select.messages-filter {
+		// 		max-width: 100%
+		// 	}
+		// }
+	}
+	@media #{$medium-down} {
+		.messages-filter{
+			height: 44px;
 		}
-		.search {
-			.slide-show {
-				float: left;
-				overflow: hidden;
-				max-width: 0px !important;
-				transition: max-width 1s;
-				&.width-auto {
-					max-width: 1000px !important;;
-				}
-			}
-			display: inline-block;
-			margin-left: 30px;
-			height: 30px;
-		}
-		button {
-			width: 30px;
-			height: 30px;
-			font-size: 20px;
-			outline: none;
-		}
-		@media #{$small-only} {
-			.button-send,
-			select.messages-filter {
-				width: 100%
-			}
+	}
+	@media #{$large-up} {
+		.conversation-list-width{
+			width: 300px;
+			max-width: 300px;
 		}
 	}
 	.conversations {
 		overflow: hidden;
 		height: 100%;
-		padding-right: 5px;
+		// padding-right: 5px;
 		position: relative;
-		width: 355px;
+		flex: 1;
+		// min-width: 355px;
+		min-width: 300px;
+
 		.nano-content {
 			outline: none !important;
 			.no-result {
@@ -183,7 +198,8 @@
 		}
 	}
 	.conversation-detail-container {
-		width: 570px;
+		flex: 4;
+		// width: 570px;
 		margin-bottom: $size-large;
 		padding: 20px;
 		//max-height: 100%;
@@ -404,5 +420,12 @@
 	}
 	.recipient label {
 		margin-bottom: 0px;
+	}
+}
+
+@media #{$medium-down} {
+	.messages-options.detail-shown,
+	.messages-container.detail-shown .conversations{
+		display: none;
 	}
 }
