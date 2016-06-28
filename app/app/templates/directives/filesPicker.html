@@ -1,13 +1,13 @@
 <div>
-	<label class="files-upload-label" tabindex="0">
-		{{'ADD_ATTACHMENT' | translate}}
+	<label class="files-upload-label button-send button-files" tabindex="0">
+		<i class="fa fa-paperclip"></i>
 		<input change-event-attacher type="file" ng-attr-accept="{{ filesPicker.pattern }}" ng-if="filesPicker.multiple" multiple />
 		<input change-event-attacher type="file" ng-attr-accept="{{:: filesPicker.pattern }}" ng-if="!(filesPicker.multiple)" />
 	</label>
 
 	<span class="display-inline-block margin-left-medium text-danger" ng-if="filesPicker.scope.invalidFileType.shown" translate="FILE_TYPE.INVALID_TYPE" translate-values="{type: invalidFileType.type}"></span>
 
-	<div>
+	<div class="files-upload-container">
 		<div class="files-upload-preview-wrapper" ng-repeat="file in filesPicker.scope.ngModel">
 			<img ng-if=":: filesPicker.isImage(file)" class="image-upload-preview" ng-src="{{:: filesPicker.scope.previews[$index] }}" />
 			<div ng-if=":: !(filesPicker.isImage(file))" class="file-upload-preview">

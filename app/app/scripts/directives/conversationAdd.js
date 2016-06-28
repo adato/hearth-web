@@ -109,31 +109,40 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				 * Validate message and send to API
 				 */
 				$scope.addMessage = function(msg) {
-					if (!$scope.isValid(msg))
+					if (!$scope.isValid(msg)) {
 						return false;
+					}
 
 					var message = serializeMessage(msg);
 
-					if ($scope.sendingMessage) return false;
+					if ($scope.sendingMessage) {
+						return false;
+					}
+
 					$scope.sendingMessage = true;
 
-					console.log(message);
 					Conversations.add(message, function(res) {
 						$scope.message.attachments_attributes = '';
 						$scope.sendingMessage = false;
 
-						if ($scope.onSuccess)
+						$timeout(function() {
+							$('#message-footer').removeClass('message-actions');
+						});
+
+						if ($scope.onSuccess) {
 							$scope.onSuccess(res);
-						else
+						} else {
 							Notify.addSingleTranslate('NOTIFY.MESSAGE_SEND_SUCCESS', Notify.T_SUCCESS);
+						}
 
 						$scope.$emit("conversationCreated", res);
 						$scope.close(res);
 					}, function(err) {
 						$scope.sendingMessage = false;
 
-						if ($scope.onError)
+						if ($scope.onError) {
 							$scope.onError(err);
+						}
 					});
 				};
 			}
