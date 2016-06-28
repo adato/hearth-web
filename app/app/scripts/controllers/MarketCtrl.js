@@ -52,11 +52,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		}
 
 		function getPostScope(post) {
-			// console.log(JSON.parse(JSON.stringify(post)));
 			var author = post;
+			if (post._type == 'Post') author = post.author;
 
-			if (post._type == 'Post')
-				author = post.author;
+			// make sure that the locations are always just locations
+			for (var i = post.locations.length; i--;) {
+				if (post.locations[i].json_data) post.locations[i] = post.locations[i].json_data;
+			}
 
 			var scope = $scope.$new(true);
 			scope.keywords = $scope.keywordsActive;

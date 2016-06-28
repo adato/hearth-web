@@ -27,15 +27,16 @@
 									<div class='dropdown-wrapper'>
 										<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if="!mine">
 											<div bubble-placeholder="bookmark-reminder"></div>
-											<span ng-click="removeReminder($event, 'bookmark', 'dropdown-arrow-click')" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}">
+											<span ng-click="removeReminder($event, 'bookmark', 'dropdown-arrow-click')" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none" title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}"
+															test-beacon="marketplace-item-dropdown-toggle">
 												<i class='fa fa-fw fa-chevron-down'></i>
 											</span>
 										</div>
-										<ul class="actions-dropdown text-left" id="more-actions-{{:: item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
+										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
 											<li>
 												<!-- bookmark post -->
-												<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
-												<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
+												<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
+												<a ng-if="! mine && !item.is_bookmarked" ng-click="addItemToBookmarks(item)" test-beacon="marketplace-item-add-bookmark">{{:: 'MARKETPLACE.POST.BOOKMARK_POST' | translate }}</a>
 												<!-- bookmark post -->
 											</li>
 											<li>
