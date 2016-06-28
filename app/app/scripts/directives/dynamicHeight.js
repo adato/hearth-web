@@ -36,7 +36,7 @@ angular.module('hearth.directives').directive('dynamicHeight', ['$timeout', '$wi
 
 				scope.$on('$destroy', function() {
 					$timeout.cancel(timeout);
-					angular.element($window).unbind('resize', resizeElement);
+					angular.element($window).unbind('resize', scope.onResize);
 				});
 			}
 		};
