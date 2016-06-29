@@ -56,12 +56,14 @@ angular.module('hearth.directives').directive('conversationReply', [
 							$scope.onResize();
 						});
 
-						$scope.msgReplyForm.$setUntouched();
-						$scope.msgReplyForm.$setPristine();
+						if ($scope.msgReplyForm) {
+							$scope.msgReplyForm.$setUntouched();
+							$scope.msgReplyForm.$setPristine();
+						}
 
 						$scope.sendingReply = false;
 						$scope.showError.text = false;
-						$scope.$emit("conversationMessageAdded", res);
+						$scope.$emit('conversationMessageAdded', res);
 					}, function(err) {
 						$scope.sendingReply = false;
 					});
