@@ -40,24 +40,62 @@
 
 	<div id='q' style='background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4);padding:1.25rem;position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 90000000000'>
 		<style>
-			#q > a{display: block; width: 150px; padding: .3rem; border-bottom: 1px solid #ddd; cursor: pointer}
-			#q > a:last-of-type{border-bottom: none;}
-			#q > a:hover{background-color: #eee;}
-			#q > a.active, #q > a.active:hover{background-color: pink; cursor: default;}
+			#q .w a{display: block; width: 150px; padding: .3rem; border-bottom: 1px solid #ddd; cursor: pointer}
+			#q .w a:last-of-type{border-bottom: none;}
+			#q .w a:hover{background-color: #eee;}
+			#q .w a.active, #q .w a.active:hover{background-color: pink; cursor: default;}
+			#q h5{margin: .3rem 0;}
+			.q-toggle {display: inline-block; width: 20px; height: 20px; line-height: 20px; text-align: center; border: 1px solid transparent; cursor: pointer;}
+			.q-toggle:hover, .q-toggle:focus{border: 1px dotted #aaa;}
+			#q.pale{opacity: .3}
+			#q.pale:hover{opacity: 1}
 		</style>
-		<a tabindex='0' onclick='setFont("Merriweather Sans", 1)' id='f1'>Merriweather</a>
-		<a tabindex='0' onclick='setFont("Montserrat", 2)' id='f2'>Montserrat</a>
-		<a tabindex='0' onclick='setFont("Open Sans", 3)' id='f3'>Open Sans</a>
-		<a tabindex='0' onclick='setFont("Raleway", 4)' id='f4'>Raleway</a>
-		<a tabindex='0' onclick='setFont("Roboto", 5)' id='f5'>Roboto</a>
+		<style id='bodyStyles'></style>
+		<style id='headerStyles'></style>
+		<div id='s'>
+			<h5>Text</h5>
+			<div class='f w'>
+				<a tabindex='0' onclick='setFont("tahoma", 0, 0)' id='f0'>Tahoma</a>
+				<a tabindex='0' onclick='setFont("Merriweather Sans", 1, 0)' id='f1'>Merriweather</a>
+				<a tabindex='0' onclick='setFont("Montserrat", 2, 0)' id='f2'>Montserrat</a>
+				<a tabindex='0' onclick='setFont("Open Sans", 3, 0)' id='f3'>Open Sans</a>
+				<a tabindex='0' onclick='setFont("Raleway", 4, 0)' id='f4'>Raleway</a>
+				<a tabindex='0' onclick='setFont("Roboto", 5, 0)' id='f5'>Roboto</a>
+			</div>
+			<h5>Headers</h5>
+			<div class='t w'>
+				<a tabindex='0' onclick='setFont("tahoma", 0, 1)' id='t0'>Tahoma</a>
+				<a tabindex='0' onclick='setFont("Merriweather Sans", 1, 1)' id='t1'>Merriweather</a>
+				<a tabindex='0' onclick='setFont("Montserrat", 2, 1)' id='t2'>Montserrat</a>
+				<a tabindex='0' onclick='setFont("Open Sans", 3, 1)' id='t3'>Open Sans</a>
+				<a tabindex='0' onclick='setFont("Raleway", 4, 1)' id='t4'>Raleway</a>
+				<a tabindex='0' onclick='setFont("Roboto", 5, 1)' id='t5'>Roboto</a>
+			</div>
+		</div>
+		<i class='q-toggle fa fa-minus-square-o' onclick='toggleFontPanel()'></i>
 		<script>
-			function setFont(name, id){
-				document.body.style.fontFamily = name + ', sans-serif';
-				var anchs = document.getElementById('q').getElementsByTagName('a')
-				for (var i = anchs.length;i--;){
+			/**
+			 *	@param name - font name to set
+			 *	@param id - id of the element to which to add active class
+			 *	@param type - case 0 - headings
+			 * 				case 1 - all other fonts
+			 */
+			function setFont(name, id, type){
+				var typeId = (type === 0 ? 'f' : 't');
+				document.getElementById((typeId === 'f' ? 'bodyStyles' : 'headerStyles')).innerHTML = (typeId === 'f' ? 'body{font-family: ' + name + '}' : (name ? 'h1,h2,h3,h4,h5,h6{font-family: ' + name + ', sans-serif}' : ''));
+				var anchs = document.getElementById('q').querySelectorAll('.' + typeId + ' a');
+				for (var i = anchs.length;i--;) {
 					anchs[i].classList.remove('active');
 				}
-				document.getElementById('f' + id).classList.add('active');
+				document.getElementById(typeId + id).classList.add('active');
+			}
+			setFont('tahoma', 0, 0);
+			setFont('tahoma', 0, 1);
+			function toggleFontPanel() {
+				var s = document.getElementById('s');
+				var ss = s.style.display;
+				s.style.display = (ss === 'none' ? '' : 'none');
+				q.classList.toggle('pale');
 			}
 		</script>
 	</div>
