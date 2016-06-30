@@ -218,6 +218,18 @@ textarea, input {
 	}
 }
 
+.cancel-changes,
+.cancel-changes:focus {
+	color: $colorSecondary;
+	font-weight: bold;
+	&::before{
+		content: '\f00d';
+		display: inline-block;
+		padding-right: $size-tiny;
+		font: normal normal normal 14px/1 FontAwesome;
+	}
+}
+
 .revert-changes,
 .revert-changes:focus {
 	color: $colorSecondary;
