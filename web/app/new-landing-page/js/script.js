@@ -144,4 +144,33 @@
 		}));
 	}
 
+	//
+	//	SLIDESHOW
+	//
+	/**
+	 *	id of an element that is to become a slideshow
+	 */
+	function activateSlideshow(opts) {
+		'use strict';
+
+		const SLIDESHOW = 'aeg-slideshow';
+		var opts = opts || {};
+		var slideshows = document.querySelectorAll('[' + SLIDESHOW + ']');
+		if (slideshows.length) {
+			for (var i = slideshows.length;i--;) {
+				var sss = slideshows[i];
+				var current = 0,
+    				slides = sss.getElementsByClassName('jumbo-show');
+					interval = setInterval(function() {
+						for (var q = 0, w = slides.length;q < w;q++) {
+						  slides[q].style.opacity = 0;
+						}
+						current = (current != slides.length - 1) ? current + 1 : 0;
+						slides[current].style.opacity = 1;
+					}, 7000);
+			}
+		}
+	}
+	activateSlideshow();
+
 })(window);

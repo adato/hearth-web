@@ -304,16 +304,25 @@ html[lang='en'] #language-panel .lang-en{
 *******************/
 .jumbo-wrapper{
 	height: 90vh;
-	background-image: url('../img/jumbo-1-small.jpg');
 	background-color: #aaa;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center 0;
 }
+.jumbo-show{
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center 0;
+	transition: opacity 1s ease-in;
+}
+.jumbo-show + .jumbo-show{opacity: 0;}
+.jumbo-wrapper .show-1{background-image: url('../img/jumbo-1-small.jpg');}
+.jumbo-wrapper .show-2{background-image: url('../img/jumbo-2.jpg');}
 @media (min-width: 768px){
-	.jumbo-wrapper{
-		background-image: url('../img/jumbo-1.jpg');
-	}
+	.jumbo-wrapper .show-1{background-image: url('../img/jumbo-1.jpg');}
+	.jumbo-wrapper .show-2{background-image: url('../img/jumbo-2.jpg');}
 }
 .jumbo{
 	flex: 1;
@@ -519,11 +528,13 @@ html[lang='en'] #language-panel .lang-en{
 	.masonry-wrapper:last-child{
 		margin-right: -10px;
 	}
+	.masonry-alt .masonry-wrapper{margin:0 !important;}
 }
 .masonry-item{
 	position: relative;
 	height: 300px;
 	margin: 10px;
+	padding: 20px;
 	background-color: rgba(100,100,255,.4);
 	background-size: cover;
 	background-position: center center;
@@ -542,6 +553,20 @@ html[lang='en'] #language-panel .lang-en{
 .masonry-item h2{
 	color: #fff;
 	margin: 10px 0;
+}
+.masonry-alt{
+	width: inherit !important;
+	max-width: inherit !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+/*.masonry-alt .masonry-item{
+	margin: 0 !important;
+}*/
+@media (min-width: 992px){
+	.masonry-alt .masonry-item{
+		margin: 0 !important;
+	}
 }
 /*******************
 	QUOTE

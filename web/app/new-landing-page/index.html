@@ -80,7 +80,7 @@
 			 *	@param type - case 0 - headings
 			 * 				case 1 - all other fonts
 			 */
-			function setFont(name, id, type){
+			function setFont(name, id, type) {
 				var typeId = (type === 0 ? 'f' : 't');
 				document.getElementById((typeId === 'f' ? 'bodyStyles' : 'headerStyles')).innerHTML = (typeId === 'f' ? 'body{font-family: ' + name + '}' : (name ? 'h1,h2,h3,h4,h5,h6{font-family: ' + name + ', sans-serif}' : ''));
 				var anchs = document.getElementById('q').querySelectorAll('.' + typeId + ' a');
@@ -182,7 +182,9 @@
 			</div>
 		</nav>
 	</div>
-	<div class='jumbo-wrapper overflow-hidden'>
+	<div class='jumbo-wrapper overflow-hidden' aeg-slideshow>
+		<div class='jumbo-show show-1'></div>
+		<div class='jumbo-show show-2'></div>
 		<header class='flex flex-space-between full-height position-relative'>
 			<div class='jumbo'>
 				<div class='small-only text-align-center'>
@@ -260,7 +262,7 @@
 				od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.
 			</p>
 		</section>
-		<section>
+		<section class='masonry-alt'>
 			<h1>Velké množství darů a přání na tržišti</h1>
 			<div class='medium-flex'>
 				<div class='flex-1 masonry-wrapper'>
