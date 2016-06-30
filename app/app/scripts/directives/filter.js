@@ -217,7 +217,6 @@ angular.module('hearth.directives').directive('filter', [
 					}
 
 					if (place && place.address_components) {
-						console.log(place);
 						var location = place.geometry.location;
 						var name = place.formatted_address;
 
