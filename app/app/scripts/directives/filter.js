@@ -19,17 +19,21 @@ angular.module('hearth.directives').directive('filter', [
 			},
 			templateUrl: 'templates/directives/filter.html',
 			link: function(scope, element) {
-				var searchBoxElement = $('input#geolocation', element),
-					searchBox = new google.maps.places.SearchBox(searchBoxElement[0]),
-					filterDefault = {
-						query: null,
-						type: null,
-						post_type: null,
-						distance: 25,
-						inactive: null,
-						keywords: [],
-						days: null
-					};
+				var options = {
+					types: ['geocode']
+				};
+				var input = $('input#geolocation', element);
+				var autocomplete = new google.maps.places.Autocomplete(input[0], options);
+
+				var filterDefault = {
+					query: null,
+					type: null,
+					post_type: null,
+					distance: 25,
+					inactive: null,
+					keywords: [],
+					days: null
+				};
 
 				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
 				if (!scope.type) scope.type = 'post';
@@ -204,12 +208,18 @@ angular.module('hearth.directives').directive('filter', [
 					scope.close();
 				});
 
-				google.maps.event.addListener(searchBox, 'places_changed', function() {
-					var places = searchBox.getPlaces();
+				google.maps.event.addListener(autocomplete, 'place_changed', function() {
+					var place = autocomplete.getPlace();
 
-					if (places && places.length > 0) {
-						var location = places[0].geometry.location,
-							name = places[0].formatted_address;
+					if (typeof place === "undefined" || !place.address_components) {
+						$(input).val('');
+						return false;
+					}
+
+					if (place && place.address_components) {
+						console.log(place);
+						var location = place.geometry.location;
+						var name = place.formatted_address;
 
 						scope.$apply(function() {
 							scope.filter.name = name;
@@ -218,6 +228,7 @@ angular.module('hearth.directives').directive('filter', [
 						});
 					}
 				});
+
 				scope.$on('filterApplied', function() {
 					scope.updateFilterByRoute();
 				});
@@ -253,8 +264,8 @@ angular.module('hearth.directives').directive('filter', [
 				$rootScope.initFinished && scope.init();
 
 				scope.$on('$destroy', function() {
-					scope.searchBoxElement = null;
-					scope.searchBox = null;
+					scope.input = null;
+					scope.autocomplete = null;
 					$timeout.cancel(timeout);
 					$(".tags input", element).unbind('keypress');
 				})
