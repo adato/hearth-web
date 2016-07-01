@@ -50,7 +50,7 @@
 		resize: vertical;
 		transition: height 0.2s;
 	}
-	label {
+	label:not(.files-upload-label) {
 		cursor: pointer;
 		margin-bottom: 10px;
 		line-height: 1;
@@ -61,9 +61,9 @@
 	a {
 		font-weight: 600;
 	}
-	* {
+	/** { 
 		text-align: left;
-	}
+	}*/
 	div.error {
 		font-size: $ui-text-font-size;
 		top: -2 * $ui-small-grid-size;
@@ -72,7 +72,7 @@
 	}
 	button.button-send {
 		text-align: center;
-		margin-left: $ui-small-grid-size * 2;
+
 		&.red {
 			background: red;
 			color: white;
