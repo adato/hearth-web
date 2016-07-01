@@ -1,9 +1,11 @@
 .files-upload-container {
 	position: absolute;
 	left: 0;
+	right: 0;
 	top: 0;
-	overflow-y: scroll;
+	width: 100%;
 	max-height: 90px;
+	overflow-y: auto;
 }
 .files-upload-preview-wrapper{
 	position: relative;
@@ -53,7 +55,6 @@ img.image-upload-preview{
 .file-remover-wrapper{
 	position: absolute;
 	top: 0; right: 0; left: 0;
-	padding: 2px;
 	text-align: right;
 	font-size: $size-small;
 	background-color: rgba(255,255,255,.8);
@@ -61,12 +62,13 @@ img.image-upload-preview{
 }
 .file-remover{
 	color: $colorDarkGray;
+	margin: 2px;
 }
 .file-remover:hover .file-remove-background,
 .file-remover:focus .file-remove-background{
 	color: darken($colorDanger, 20%);
 }
-.files-upload-label{
+.files-upload-label {
 	display: inline-block;
 	font-weight: $ui-text-weight-bolder;
 
