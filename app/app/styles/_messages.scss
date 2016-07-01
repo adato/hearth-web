@@ -424,7 +424,7 @@
 }
 
 .modal.new-message {
-	label {
+	label:not(.files-upload-label) {
 		width: 100%;
 	}
 	.bottom {
