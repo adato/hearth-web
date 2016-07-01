@@ -3,13 +3,13 @@
 /**
  * @ngdoc service
  * @name hearth.services.Community
- * @description 
+ * @description
  */
 
 angular.module('hearth.services').factory('Community', [
-	'$resource',
+	'$resource', '$window', 'ProfileUtils',
 
-	function($resource) {
+	function($resource, $window, ProfileUtils) {
 		return $resource($$config.apiPath + '/communities/:_id', {
 			_id: "@_id"
 		}, {
@@ -17,7 +17,8 @@ angular.module('hearth.services').factory('Community', [
 				method: 'GET',
 				params: {
 					r: Math.random()
-				}
+				},
+				transformResponse: [ProfileUtils.single.getLocationJson]
 			},
 			query: {
 				method: 'GET',
@@ -28,13 +29,17 @@ angular.module('hearth.services').factory('Community', [
 			},
 			getPosts: {
 				url: $$config.apiPath + '/communities/:communityId/posts',
-				method: 'GET'
+				method: 'GET',
+				transformResponse: [ProfileUtils.single.getLocationJson.bind({
+					prop: 'data'
+				})]
 			},
 			edit: {
 				method: 'PUT',
 				errorNotify: {
 					code: 'NOTIFY.COMMUNITY_UPDATE_FAILED'
-				}
+				},
+				transformRequest: [ProfileUtils.single.insertLocationJson]
 			},
 			remove: {
 				method: 'DELETE',
@@ -46,7 +51,8 @@ angular.module('hearth.services').factory('Community', [
 				method: 'POST',
 				errorNotify: {
 					code: 'NOTIFY.COMMUNITY_CREATE_FAILED'
-				}
+				},
+				transformRequest: [ProfileUtils.single.insertLocationJson]
 			},
 			suggested: {
 				url: $$config.apiPath + '/related_communities',

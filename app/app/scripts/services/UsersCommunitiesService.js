@@ -31,10 +31,6 @@ angular.module('hearth.services').service('UsersCommunitiesService', [
 			Resource.get({
 				_id: author._id
 			}, function(info) {
-				angular.forEach(info.locations, function(location, index) {
-					info.locations[index] = location.json_data;
-				});
-
 				$rootScope.cacheInfoBox[author._id] = info;
 				done(info);
 			}, doneErr);
