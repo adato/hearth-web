@@ -36,6 +36,8 @@
 									<span ng-if="!item.title && item.highlight.first_name[0]" ng-bind-html="item.highlight.first_name[0] | to_trusted"></span>
 									<span ng-if="!item.title && !item.highlight.last_name[0]" ng-bind-html="item.last_name"></span>
 									<span ng-if="!item.title && item.highlight.last_name[0]" ng-bind-html="item.highlight.last_name[0] | to_trusted"></span>
+									<span ng-if="item._type == 'Community' && item.name && !item.highlight.name[0]" ng-bind-html="item.name"></span>
+									<span ng-if="item._type == 'Community' && item.name && item.highlight.name[0]" ng-bind-html="item.highlight.name[0] | to_trusted"></span>
 								</a>
 								<span ng-if="item.author.name" class="author">({{item.author.name}})</span>
 							</div>

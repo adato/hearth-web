@@ -1,18 +1,27 @@
+.files-upload-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	overflow-y: scroll;
+	max-height: 90px;
+}
 .files-upload-preview-wrapper{
 	position: relative;
 	display: inline-block;
 	min-width: 22px; /* width of the remover + 2*2px padding (.fa-stack-2x) */
-	max-width: 200px;
+	//max-width: 200px;
 	vertical-align: top;
-	margin-right: $size-small;
+	width: 32.3%;
+	margin-right: 1%;
 	margin-bottom: $size-small;
 }
 .image-upload-preview{
 	display: inline-block;
 	background-color: $colorLightGray;
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: cover;
 	background-position: center center;
+	width: 100%;
 }
 img.image-upload-preview{
 	object-fit: cover;
@@ -59,9 +68,16 @@ img.image-upload-preview{
 }
 .files-upload-label{
 	display: inline-block;
-	margin-bottom: $size-small;
 	font-weight: $ui-text-weight-bolder;
-	color: $colorSecondary;
+
+	&.button-files {
+		background: $colorDarkGray;
+		margin-right: 20px;
+
+		&:hover {
+			background: darken($colorDarkGray, 20%);
+		}
+	}
 }
 .form-section label.files-upload-label{
 	margin-bottom: $size-small !important;

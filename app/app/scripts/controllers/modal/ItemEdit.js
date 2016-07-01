@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils) {
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
@@ -175,11 +175,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		}
 
 		$scope.transformDataOut = function(data) {
-			var values = {
-				true: 'offer',
-				false: 'need'
-			};
-
 			// clear locations from null values
 			//data.locations = $scope.cleanNullLocations(data.locations);
 			// transform keywords
@@ -203,7 +198,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				data.valid_until = 'unlimited';
 			}
 
-			data.type = values[data.type];
 			delete data.valid_until_unlimited;
 			return data;
 		};
@@ -302,6 +296,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.closeThisDialog();
 			});
 
+			ProfileUtils.single.getLocationJson(data);
+
 			// emit event into whole app
 			$rootScope.$broadcast($scope.isDraft ? 'postCreated' : 'postUpdated', data);
 
@@ -372,7 +368,8 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			postData = angular.extend(
 				angular.copy(post), {
 					valid_until: (post.valid_until) ? convertDateToIso(post.valid_until, $scope.dateFormat) : post.valid_until,
-					id: $scope.post._id
+					id: $scope.post._id,
+					type: post.type ? 'offer' : 'need'
 				}
 			);
 
@@ -425,12 +422,13 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			$scope.save(postCopy);
 		};
 
-		$scope.refreshItemInfo = function($event, item) {
-			// if renewed item is this item, refresh him!
-			if (item._id === $scope.post._id) {
-				$scope.post = $scope.transformDataIn(item);
-			}
-		};
+		/*		$scope.refreshItemInfo = function($event, item) {
+					// if renewed item is this item, refresh him!
+					if (item._id === $scope.post._id) {
+						$scope.post = $scope.transformDataIn(item);
+						$scope.post.type = item.type ? 'offer' : 'need';
+					}
+				};*/
 
 		var SPACE = 32;
 		$scope.toggleCategoryCheckbox = function(event, category) {
@@ -488,7 +486,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		});
 
 		$scope.$watch('post.attachments_attributes', $scope.updateImages, true);
-		$scope.$on('postUpdated', $scope.refreshItemInfo);
+		//$scope.$on('postUpdated', $scope.refreshItemInfo); -- do not update post on save, it is handles automatically (by Ploski, 30.5.2016)
 		$scope.$on("itemDeleted", $scope.itemDeleted);
 	}
 ]);

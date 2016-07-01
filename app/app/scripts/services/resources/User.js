@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('User', [
-	'$resource',
-	function($resource) {
+	'$resource', '$filter',
+	function($resource, $filter) {
 		return $resource($$config.apiPath + '/users/:_id', {
 			_id: '@_id'
 		}, {
@@ -24,7 +24,16 @@ angular.module('hearth.services').factory('User', [
 			},
 			getFullInfo: {
 				url: $$config.apiPath + '/profile',
-				method: 'GET'
+				method: 'GET',
+				transformResponse: function(data, headers) {
+					var obj = JSON.parse(data);
+					var motto = obj.motto;
+					if (motto) {
+						obj.motto = $filter('limitTo')(motto, 70);
+					}
+
+					return obj;
+				}
 			},
 			getReplies: {
 				url: $$config.apiPath + '/replies',

@@ -56,7 +56,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				/**
-				 * Load messages 
+				 * Load messages
 				 * @param  {[type]}   from [description]
 				 * @param  {Function} done [description]
 				 * @return {[type]}        [description]
@@ -69,17 +69,20 @@ angular.module('hearth.directives').directive('conversationDetail', [
 						no_read: !!dontMarkAsReaded
 					});
 					Conversations.getMessages(
-						config,
-						function(res) {
-							// test if we loaded data for actual conversation detail
-							// if(config.id !== $scope.info._id) return false;
-							if (lockCounter !== $scope.lockCounter) return false;
+							config,
+							function(res) {
+								// test if we loaded data for actual conversation detail
+								// if(config.id !== $scope.info._id) return false;
+								if (lockCounter !== $scope.lockCounter) return false;
+								// TODO - figure why API is sending empty array on conversations I have no right to read
+								if (!res.messages.length) done();
 
-							// append/prepend messages
-							res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
+								// append/prepend messages
+								res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
 
-							done && done(res.messages);
-						}, done);
+								done && done(res.messages);
+							}, done)
+						//} done);
 				};
 
 				/**

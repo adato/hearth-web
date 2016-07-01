@@ -19,16 +19,17 @@
 				<span ng-show="msgReplyForm.text.$error.required">{{:: 'ERR_MESSAGE_TEXT_MIN_LEN' | translate }}</span>
 			</div>
 		</div>
-		<div class="form-section">
-			<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
-		</div>
-
-		<div class="display-flex flex-reverse flex-space-between">
-			<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">
-				<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
-				{{:: 'SEND' | translate }}
-			</button>
-			<a class="hide-for-large-up" ng-click="closeConversation()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
+		<div id="message-footer" class="display-flex flex-space-between">
+			<div>
+				<a class="hide-for-large-up cancel-changes" ng-click="closeConversation()" tabindex="0">{{:: 'CLOSE' | translate }}</a>
+			</div>
+			<div class="display-flex">
+				<files-picker ng-model="reply.attachments_attributes" files-multiple="true"></files-picker>
+				<button ng-disabled="!conversation.is_member || sendingReply" type="submit" class="button-send">
+					<i class="fa has-loading-icon" ng-class="{'loading-in-progress': sendingReply}"></i>
+					{{:: 'SEND' | translate }}
+				</button>
+			</div>
 		</div>
 	</form>
 </div>

@@ -7,9 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileCtrl', [
-	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph', 'PageTitle',
-
-	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph, PageTitle) {
+	'$scope', 'User', '$stateParams', 'UsersService', '$rootScope', '$timeout', 'Karma', '$location', 'UserRatings', 'Notify', 'UnauthReload', 'Time', 'OpenGraph', 'PageTitle', 'ProfileUtils',
+	function($scope, User, $stateParams, UsersService, $rootScope, $timeout, Karma, $location, UserRatings, Notify, UnauthReload, Time, OpenGraph, PageTitle, ProfileUtils) {
 		$scope.activePage = null;
 
 		$scope.initPage = function() {
@@ -78,6 +77,8 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 				angular.forEach(res.locations, function(location, index) {
 					res.locations[index] = location.json_data;
 				});
+
+				res = ProfileUtils.single.copyMottoIfNecessary(res);
 
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);

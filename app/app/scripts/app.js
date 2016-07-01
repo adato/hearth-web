@@ -3,7 +3,7 @@
 angular.module('hearth', [
 		'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
-		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
+		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
 		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model'
 	])
 	.config(['$sceProvider', '$locationProvider',
@@ -86,6 +86,7 @@ angular.module('hearth', [
 			$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
+			$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 
@@ -279,6 +280,7 @@ angular.module('hearth', [
 		}
 	]);
 
+angular.module('hearth.constants', []);
 angular.module('hearth.controllers', []);
 angular.module('hearth.directives', []);
 angular.module('hearth.services', []);

@@ -109,6 +109,12 @@
 		display: flex;
 		align-items: center;
 	}
+	.flex-medium-divide > .flex-div{
+		margin-right: $size-medium;
+	}
+	.flex-medium-divide > .flex-div:last-child{
+		margin-right: 0;
+	}
 }
 @media #{$large-up}{
 	.display-large-flex{

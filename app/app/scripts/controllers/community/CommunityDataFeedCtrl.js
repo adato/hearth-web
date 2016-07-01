@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter, Activities, ItemServices) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils) {
 		angular.extend($scope, ItemServices);
 		$scope.activityShow = false;
 		$scope.loadingData = false;
@@ -166,10 +166,12 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				$scope.postsInactive = [];
 
 				res.data.forEach(function(item) {
-					if ($rootScope.isPostActive(item))
+					ProfileUtils.single.getLocationJson(item);
+					if ($rootScope.isPostActive(item)) {
 						$scope.postsActive.push(item);
-					else
+					} else {
 						$scope.postsInactive.push(item);
+					}
 				});
 
 				finishLoading();

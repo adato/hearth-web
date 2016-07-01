@@ -41,7 +41,8 @@
 					<div class="name margin">
 						<label>
 							{{:: 'COMMUNITY_MOTTO' | translate }}
-							<input type="text" name="motto" ng-model="community.motto" class="text-input" ng-maxlength="70" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY_MOTTO_EXAMPLE' | translate }}" />
+							<input type="text" name="motto" ng-model="community.motto" class="text-input" maxlength="{{parameters.MAX_MOTTO_LENGTH}}" ng-maxlength="parameters.MAX_MOTTO_LENGTH" ng-focus="showError.motto = false" ng-blur="showError.motto = true" placeholder="{{:: 'COMMUNITY_MOTTO_EXAMPLE' | translate }}"
+							/>
 							<div class="absolute error" ng-show="showError.motto">
 								<span ng-show="communityForm.motto.$error.maxlength">{{:: 'ERR_COMMUNITY_MOTTO_MAX_LENGTH' | translate }}</span>
 							</div>
@@ -118,6 +119,11 @@
 									<span class="fa fa-times-circle" ng-click="community.webs.splice($index,1)"></span>
 								</div>
 							</div>
+
+							<div class="error margin" ng-show="showError.social_networks['webs']">
+								<span>{{:: 'ERR_INVALID_URL' | translate }}</span>
+							</div>
+
 							<a ng-click="community.webs.push('')">
 								<span class="fa fa-plus-square"></span>{{:: 'ADD_NEXT_WEB' | translate }}
 							</a>
@@ -160,7 +166,7 @@
 					<div class="display-flex flex-reverse flex-space-between">
 						<button type="submit" class="button-send right" analytics-custom analytics-event="save profile" analytics-category="My community" analytics-value="5">{{:: 'SAVE' | translate }}</button>
 						<a ng-if="!community._id" tabindex="0" ng-click="close()" class="revert-changes">{{:: 'CANCEL_ADD_COMMUNITY' | translate }}</a>
-						<a ng-if="community._id" ui-sref="community.default({id: loggedUser._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
+						<a ng-if="community._id" ui-sref="community.default({id: community._id})" class="revert-changes">{{:: 'CANCEL_CHANGES' | translate }}</a>
 					</div>
 				</section>
 			</div>

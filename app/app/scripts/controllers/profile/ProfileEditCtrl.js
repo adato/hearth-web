@@ -7,15 +7,15 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', '$q',
-
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, $q) {
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils',
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
 		$scope.showError = {
 			locations: false,
 			first_name: false,
+			motto: false,
 			email: false,
 			phone: false,
 			contact_email: false,
@@ -40,13 +40,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
 		$scope.filteredLangs = [];
-
-		angular.forEach($scope.languageList, function(lang) {
-			var newLang = {};
-			newLang['lang'] = lang;
-			newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-			$scope.filteredLangs.push(newLang);
-		});
+		$scope.filteredLangsUser = [];
 
 		function sortTranslations(a, b) {
 			return a.translate.localeCompare(b.translate);
@@ -61,21 +55,40 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
 			});
 		};
+		$scope.parameters = ProfileUtils.params;
 
 		$scope.init = function() {
 
 			UnauthReload.check();
 
-			// $scope.initLocations();
 			User.getFullInfo(function(res) {
-				$scope.profile = $scope.transformDataIn(res);
+				$scope.profile = transformDataIn(res);
 				$scope.loaded = true;
 
 			}, function(res) {});
 		};
 
-		$scope.avatarUploadFailed = function(err) {
+		function transformDataIn(data) {
 
+			data = ProfileUtils.transformDataForUsage({
+				type: ProfileUtils.params.PROFILE_TYPES.USER,
+				profile: data
+			});
+
+			angular.forEach($scope.languageList, function(lang) {
+				if (data.user_languages[lang]) {
+					var newLang = {};
+					newLang['lang'] = lang;
+					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+					$scope.filteredLangsUser.push(newLang);
+				}
+			});
+
+			$scope.showContactMail = data.contact_email && data.contact_email != '';
+			return data;
+		};
+
+		$scope.avatarUploadFailed = function(err) {
 			$scope.uploadingInProgress = false;
 		};
 
@@ -93,16 +106,15 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				url = input.val();
 
 			if (url && !url.match(/http[s]?:\/\/.*/)) {
-				url = 'https://' + url;
+				url = 'http://' + url;
 			}
 
 			if (model !== $scope.profile.webs) {
 				// editing social network, not webs
-				if (url && ($scope.socialNetworks[key] === undefined || !url.match(new RegExp($scope.socialNetworks[key].url)))) {
-					$scope.showError.social_networks[key] = true;
-				} else {
-					$scope.showError.social_networks[key] = false;
-				}
+				$scope.showError.social_networks[key] = !Validators.social(url, key);
+			} else {
+				// editing webs
+				$scope.showError.social_networks['webs'] = !Validators.url(url);
 			}
 
 			model[key] = url;
@@ -110,13 +122,19 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.validateSocialNetworks = function() {
 			var isOk = true;
-			Object.keys($scope.socialNetworks).forEach(function(networkName) {
-				if ($scope.profile[networkName] && !$scope.profile[networkName].match($scope.socialNetworks[networkName].url)) {
-					$scope.showError.social_networks[networkName] = true;
-					isOk = false;
+			var isWebsOk = true;
+			var isLinkOk = true;
+			['facebook', 'twitter', 'linkedin', 'googleplus'].forEach(function(networkName) {
+				if ($scope.profile[networkName]) {
+					isLinkOk = Validators.social($scope.profile[networkName], networkName);
+					$scope.showError.social_networks[networkName] = !isLinkOk;
+					isOk = isOk && isLinkOk;
 				}
 			});
-			return isOk;
+			isWebsOk = !!Validators.urls($scope.profile.webs);
+			$scope.showError.social_networks['webs'] = !isWebsOk;
+
+			return isOk && isWebsOk;
 		};
 
 		$scope.switchLanguage = function(lang) {
@@ -125,37 +143,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.disableErrorMsg = function(key) {
 			$scope.showError[key] = false;
-		};
-
-		$scope.transformDataIn = function(data) {
-			if (!data.webs || !data.webs.length) {
-				data.webs = [''];
-			}
-
-			data.interests = (data.interests) ? data.interests.join(",") : '';
-
-			$scope.filteredLangsUser = [];
-			angular.forEach($scope.languageList, function(lang) {
-				if (data.user_languages[lang]) {
-					var newLang = {};
-					newLang['lang'] = lang;
-					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-					$scope.filteredLangsUser.push(newLang);
-				}
-			});
-
-			if (!data.locations || !data.locations.length) {
-				data.locations = [];
-			}
-
-			if (data.locations.length) {
-				angular.forEach(data.locations, function(location, index) {
-					data.locations[index] = location.json_data;
-				});
-			}
-
-			$scope.showContactMail = data.contact_email && data.contact_email != '';
-			return data;
 		};
 
 		$scope.transferDataOut = function(data) {
