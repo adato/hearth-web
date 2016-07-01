@@ -533,7 +533,7 @@ html[lang='en'] #language-panel .lang-en{
 .masonry-item{
 	position: relative;
 	height: 300px;
-	margin: 10px;
+	margin: 20px 0;
 	padding: 20px;
 	background-color: rgba(100,100,255,.4);
 	background-size: cover;
