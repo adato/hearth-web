@@ -24,12 +24,31 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	the 'showBubble' function and supplying it with a DOM [bubble-placeholder] node replace and a template string.
 		 *	The node shall be replaced by a bubble with a template from the bubble.template definition
 		 */
+		var hidePostDefinition = {
+			applicable: function() {
+				if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
+				var confirmedForMoreThanADay = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 86400000);
+				return (($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
+			},
+			apply: function() {
+				var template = 'templates/directives/bubble/hide-post-options.html';
+				var placeholder = bubblePlaceholderSearch({
+					identificator: 'hide-post'
+				});
+				if (placeholder) showBubble({
+					placeholder: placeholder,
+					templateUrl: template,
+					type: 'hide_post'
+				});
+			}
+		};
 		var bubbleDefinitions = {
+			'hide-post': hidePostDefinition,
 			'bookmark-reminder': {
 				applicable: function() {
 					if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
 					// reminder is not shown if hide post is shown!
-					if (bubbleDefinitions['hide-post'].applicable()) return false;
+					if (hidePostDefinition.applicable()) return false;
 
 					var confirmedForMoreThanAWeek = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 604800000);
 					return (
@@ -45,24 +64,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 						placeholder: placeholder,
 						templateUrl: template,
 						type: 'bookmark'
-					});
-				}
-			},
-			'hide-post': {
-				applicable: function() {
-					if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
-					var confirmedForMoreThanADay = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 86400000);
-					return (($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
-				},
-				apply: function() {
-					var template = 'templates/directives/bubble/hide-post-options.html';
-					var placeholder = bubblePlaceholderSearch({
-						identificator: 'hide-post'
-					});
-					if (placeholder) showBubble({
-						placeholder: placeholder,
-						templateUrl: template,
-						type: 'hide_post'
 					});
 				}
 			},
