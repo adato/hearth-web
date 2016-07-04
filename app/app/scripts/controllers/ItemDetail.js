@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils',
-	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -103,6 +103,16 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 			});
 		};
 
+		// fade out post and go to marketplace
+		$scope.hideAd = function($event, item) {
+			if (item._id != $scope.item._id)
+				return false;
+
+			$("#item_container_" + item._id).fadeOut("slow", function() {
+				$state.go('market');
+			});
+		};
+
 		$scope.initMap = function() {
 			$timeout(function() {
 				$scope.$broadcast('initMap');
@@ -117,6 +127,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.$on('postCreated', $scope.load);
 		$scope.$on('postUpdated', $scope.load);
 		$scope.$on('itemDeleted', $scope.removeAd);
+		$scope.$on('itemHid', $scope.hideAd);
 		$scope.$on('initFinished', $scope.load);
 
 

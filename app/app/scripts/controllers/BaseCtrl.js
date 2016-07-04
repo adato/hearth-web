@@ -503,9 +503,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			$rootScope.globalLoading = true;
 			Post.hide({
-				postId: post._id
+				id: post._id
 			}, function(res) {
-				$rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
+				if ($state.is('post')) {
+					$rootScope.$broadcast("itemHid", post);
+				} else {
+					$rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
+				}
 
 				Notify.addSingleTranslate('NOTIFY.POST_HID_SUCCESFULLY', Notify.T_SUCCESS);
 				$rootScope.globalLoading = false;
