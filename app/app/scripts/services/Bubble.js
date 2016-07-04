@@ -31,7 +31,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 				return (($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
 			},
 			apply: function() {
-				var template = 'templates/directives/bubble/hide-post-options.html';
+				var template = 'templates/directives/bubble/hide-post-option.html';
 				var placeholder = bubblePlaceholderSearch({
 					identificator: 'hide-post'
 				});
