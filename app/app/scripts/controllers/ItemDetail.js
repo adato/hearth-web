@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils',
-	function($scope, $stateParams, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;

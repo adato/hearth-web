@@ -47,6 +47,11 @@
 												<!-- flag post -->
 											</li>
 											<li>
+												<!-- hide post -->
+												<a ng-if="!mine && !item.is_hidden" title="{{:: 'HIDE_AD' | translate}}" ng-click="confirmBox('AD_HIDE_LABEL', 'AD_HIDE_ARE_YOU_SURE', hideItem, item, this)">{{:: 'MARKETPLACE.POST.HIDE_POST' | translate }}</a>
+												<!-- /hide post -->
+											</li>
+											<li>
 												<a ng-if="! mine && item.admin_communities.length" title="{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate}}" ng-click="removeItemFromCommunity(item)">{{:: 'MARKETPLACE.POST.REMOVE_FROM_COMMUNITY' | translate }}</a>
 											</li>
 
