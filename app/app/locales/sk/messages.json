@@ -1434,6 +1434,9 @@
 		},
 		"MARKETPLACE_ITEM_BOOKMARK": {
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
+		},
+		"HIDE_POST": {
+			"TEXT": "Kterýkoli inzerát, který vás obtěžuje a nechcete ho již vidět, můžete označit jako skrytý."
 		}
 	},
 	"energy_TOOLTIP": "Aktivita, myšlenka...",
