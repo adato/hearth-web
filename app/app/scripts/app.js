@@ -1,17 +1,12 @@
 'use strict';
 
-angular.module('hearth', [
-		'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
+angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
 		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model'
+		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'ngCable'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
-
-			// ============================
-			// === Location Configuration
-			// ============================
 			$locationProvider.html5Mode(true);
 		}
 	]).config([
@@ -21,19 +16,14 @@ angular.module('hearth', [
 			$compileProvider.debugInfoEnabled($$config.disableDebugInfo);
 			$httpProvider.useApplyAsync(true);
 
-			// ===============================
-			// === Loading Bar Configuration
-			// ===============================
+			// Loading Bar Configuration
 			cfpLoadingBarProvider.includeSpinner = false;
 			return cfpLoadingBarProvider.includeSpinner;
 		}
 	]).config([
 		'tmhDynamicLocaleProvider', '$translateProvider',
 		function(tmhDynamicLocaleProvider, $translateProvider) {
-
-			// ===============================
-			// === Localization
-			// ===============================
+			// Localization
 
 			// get preferred language from cookies or config
 			// console.log("Setting preffered language", preferredLanguage);
@@ -45,7 +35,6 @@ angular.module('hearth', [
 			$translateProvider.preferredLanguage(preferredLanguage);
 			$translateProvider.useSanitizeValueStrategy(null);
 
-			//  ====================== REVIEW ================
 			// $translateProvider.useStorage('SessionLanguageStorage');
 			$translateProvider.useStaticFilesLoader({
 				prefix: 'locales/',
@@ -108,9 +97,7 @@ angular.module('hearth', [
 				}
 			});
 
-			// ===============================
-			// === Configure ajax calls
-			// ===============================
+			// Configure ajax calls
 
 			// Allow CORS
 			$httpProvider.defaults.useXDomain = true;
@@ -133,12 +120,12 @@ angular.module('hearth', [
 					$httpProvider.defaults.headers[type]['x-error-test'] = 1;
 				});
 
-			// // ======== Watch for unauth responses
+			// Watch for unauth responses
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 
-			// // ======== ?? wtf is this?
+			// ?? wtf is this?
 			// $httpProvider.responseInterceptors.push('TermsAgreement');
 		}
 	]).config(['$provide',
@@ -286,7 +273,7 @@ angular.module('hearth', [
 				done(null);
 			}
 
-			// === Init hearth core parts
+			// Init hearth core parts
 			async.parallel({
 				language: initLanguage, // download language files
 				session: initSession, // get user session from api
