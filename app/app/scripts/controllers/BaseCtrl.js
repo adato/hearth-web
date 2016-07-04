@@ -505,9 +505,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			Post.hide({
 				id: post._id
 			}, function(res) {
-				if ($state.is('post')) {
-					$rootScope.$broadcast("itemHid", post);
-				} else if ($state.is('market')) {
+				if ($state.is('market')) {
 					$rootScope.$broadcast("itemDeleted", post);
 				}
 
