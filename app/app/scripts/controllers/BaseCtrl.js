@@ -507,8 +507,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}, function(res) {
 				if ($state.is('post')) {
 					$rootScope.$broadcast("itemHid", post);
-				} else {
-					$rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
+				} else if ($state.is('market')) {
+					$rootScope.$broadcast("itemDeleted", post);
 				}
 
 				Notify.addSingleTranslate('NOTIFY.POST_HID_SUCCESFULLY', Notify.T_SUCCESS);

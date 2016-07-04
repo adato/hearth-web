@@ -107,10 +107,6 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.hideAd = function($event, item) {
 			if (item._id != $scope.item._id)
 				return false;
-
-			$("#item_container_" + item._id).fadeOut("slow", function() {
-				$state.go('market');
-			});
 		};
 
 		$scope.initMap = function() {
