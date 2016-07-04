@@ -27,6 +27,9 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		var bubbleDefinitions = {
 			'bookmark-reminder': {
 				applicable: function() {
+					// reminder is not shown if hide post is shown!
+					if (bubbleDefinitions['hide-post'].applicable()) return false;
+
 					var confirmedForMoreThanAWeek = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 604800000);
 					return (
 						$rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('bookmark') > -1) && confirmedForMoreThanAWeek
@@ -41,6 +44,23 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 						placeholder: placeholder,
 						templateUrl: template,
 						type: 'bookmark'
+					});
+				}
+			},
+			'hide-post': {
+				applicable: function() {
+					var confirmedForMoreThanADay = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 86400000);
+					return ($rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
+				},
+				apply: function() {
+					var template = 'templates/directives/bubble/hide-post-options.html';
+					var placeholder = bubblePlaceholderSearch({
+						identificator: 'hide-post'
+					});
+					if (placeholder) showBubble({
+						placeholder: placeholder,
+						templateUrl: template,
+						type: 'hide_post'
 					});
 				}
 			},
@@ -77,6 +97,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	try to activate the bubbles
 		 */
 		factory.try = function(definition) {
+			// console.log(bubbleDefinitions[definition].applicable());
 			if (bubbleDefinitions.hasOwnProperty(definition) && (activeBubbles.indexOf(definition) === -1) && bubbleDefinitions[definition].applicable()) {
 				activeBubbles.push(definition);
 				// if this is the first active bubble, bind event listener to document
