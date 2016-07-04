@@ -44,12 +44,9 @@
 		isActive = 'is-active';
 	var hamburger = $('#hamburger');
 	var ltoggle = $('.' + langToggle);
-	console.log(ltoggle);
-	// var lp = $('.language-panel');
 	var menu = $('#main-navigation');
 	var windowShown;
 	var action = true;
-	// if (!(hamburger && lp && menu)) throw new Error('all elements are required - hamburger, language-panel, main-navigation');
 	if (!(hamburger && menu)) throw new Error('all elements are required - hamburger, language-panel, main-navigation');
 	fe(ltoggle, function(el) {el.addEventListener('click', toggleMenu.bind(false, 'lang'));});
 	hamburger.addEventListener('click', toggleMenu.bind(false, 'menu'));
@@ -73,8 +70,11 @@
 	function toggleMenu(w) {
 		var toggle = findParentBySelector(event.target, '.' + langToggle);
 		var lp;
-		if (toggle) lp = toggle.parentNode.getElementsByClassName(langPanel);
-		if (!(lp && lp.length)) throw new Error('".language-panel" element required as a sibling to language-toggle.');
+		if (toggle) {
+			lp = toggle.parentNode.getElementsByClassName(langPanel);
+			if (!(lp && lp.length)) throw new Error('".language-panel" element required as a sibling to language-toggle.');
+			lp = lp[0];
+		}
 		if(!windowShown){
 			window.addEventListener('mousedown', toggleHandler);
 		} else {
@@ -85,7 +85,7 @@
 		} else if (w === 'lang') {
 			langHandler((lp ? lp : false));
 		} else {
-			lp.classList.remove(isActive);
+			fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
 			menu.classList.remove(isActive);
 			hamburger.classList.remove(isActive);
 		}

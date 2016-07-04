@@ -181,21 +181,21 @@ a{color: #4a4a4a}
 .nav-clickable{
 	margin-right: 15px;
 }
-.nav-clickable:last-of-type{
+/*.nav-clickable:last-of-type{
 	margin-right: 0;
-}
+}*/
 @media (min-width: 400px){
 	.nav-clickable{
 		margin-left: 15px;
 	}
 }
-#language-panel{
+.language-panel{
 	display: none;
 }
 .hover-window{
 	display: none;
 }
-@media (max-width: 1199px){
+/*@media (max-width: 1199px){*/
 	.hover-window.is-active{
 		position: absolute;
 		display: flex !important;
@@ -225,16 +225,16 @@ a{color: #4a4a4a}
 		left: inherit; right: -15px;
 	}
 	.hover-window.window-align-right::before{
-		left: inherit; right: 35px;
+		left: inherit; right: 27px;
 	}
-	#language-panel .language-option{
+	.language-panel .language-option{
 		margin-bottom: 10px;
 		font-weight: bold;
 	}
-	#language-panel .language-option .flag{
+	.language-panel .language-option .flag{
 		margin-right: 10px;
 	}
-	#language-panel .language-option:last-child{
+	.language-panel .language-option:last-child{
 		margin-bottom: 0px;
 	}
 	/*#main-navigation.is-active{
@@ -262,13 +262,13 @@ a{color: #4a4a4a}
 	#main-navigation li a:hover{
 		background: #f4f4f4;
 	}
-}
-@media (min-width: 1200px){
+/*}*/
+/*@media (min-width: 1200px){
 	#language-panel{
 		flex-order: 4;
 		display: inherit;
 	}
-}
+}*/
 .flag{
 	display:inline-block;
 	width: 30px;
@@ -285,15 +285,15 @@ a{color: #4a4a4a}
 		height: 40px;
 	}
 }
-html[lang='en'] #language-toggle .flag,
+html[lang='en'] .language-toggle .flag,
 .flag.flag-en{
 	background-image: url('../img/flags/flag-english.svg');
 }
-html[lang='cs'] #language-toggle .flag,
+html[lang='cs'] .language-toggle .flag,
 .flag.flag-cs{
 	background-image: url('../img/flags/flag-czech.svg');
 }
-html[lang='sk'] #language-toggle .flag,
+html[lang='sk'] .language-toggle .flag,
 .flag.flag-sk{
 	background-image: url('../img/flags/flag-slovak.svg');
 }
