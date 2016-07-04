@@ -26,6 +26,7 @@ angular.module('hearth.services').factory('ItemServices', [
 			pauseToggle: $rootScope.pauseToggle,
 			pluralCat: $rootScope.pluralCat,
 			deleteItem: $rootScope.deleteItem,
+			hideItem: $rootScope.hideItem,
 			confirmBox: $rootScope.confirmBox,
 			DATETIME_FORMATS: $rootScope.DATETIME_FORMATS,
 			toggleReportNotLoggedIn: $rootScope.showLoginBox,
