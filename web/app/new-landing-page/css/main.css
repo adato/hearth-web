@@ -221,6 +221,12 @@ a{color: #4a4a4a}
 		border-width: 8px;
 		margin-left: -8px;
 	}
+	.hover-window.is-active.window-align-right{
+		left: inherit; right: -15px;
+	}
+	.hover-window.window-align-right::before{
+		left: inherit; right: 35px;
+	}
 	#language-panel .language-option{
 		margin-bottom: 10px;
 		font-weight: bold;
@@ -281,22 +287,22 @@ a{color: #4a4a4a}
 }
 html[lang='en'] #language-toggle .flag,
 .flag.flag-en{
-	background-image: url(../img/flags/flag-english.svg);
+	background-image: url('../img/flags/flag-english.svg');
 }
 html[lang='cs'] #language-toggle .flag,
 .flag.flag-cs{
-	background-image: url(../img/flags/flag-czech.svg);
+	background-image: url('../img/flags/flag-czech.svg');
 }
 html[lang='sk'] #language-toggle .flag,
 .flag.flag-sk{
-	background-image: url(../img/flags/flag-slovak.svg);
+	background-image: url('../img/flags/flag-slovak.svg');
 }
 html[lang='cs'] #large-language-panel #language-large-cs,
-html[lang='cs'] #language-panel .lang-cs,
+html[lang='cs'] .language-panel .lang-cs,
 html[lang='sk'] #large-language-panel #language-large-sk,
-html[lang='sk'] #language-panel .lang-sk,
+html[lang='sk'] .language-panel .lang-sk,
 html[lang='en'] #large-language-panel #language-large-en,
-html[lang='en'] #language-panel .lang-en{
+html[lang='en'] .language-panel .lang-en{
 	display: none;
 }
 /*******************
