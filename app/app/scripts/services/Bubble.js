@@ -26,12 +26,14 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 */
 		var hidePostDefinition = {
 			applicable: function() {
+				return true
+					// console.log($rootScope.loggedUser);
 				if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
 				var confirmedForMoreThanADay = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 86400000);
 				return (($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
 			},
 			apply: function() {
-				var template = 'templates/directives/bubble/hide-post-options.html';
+				var template = 'templates/directives/bubble/hide-post-option.html';
 				var placeholder = bubblePlaceholderSearch({
 					identificator: 'hide-post'
 				});
