@@ -166,7 +166,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		factory.removeReminder = function(paramObj) {
 			if (!(paramObj.event && paramObj.type && paramObj.reason)) throw new Error('to succesfully remove a reminder, you need to supply an \'event\', a \'type\' and a \'reason\'');
 
-			// special case scenario
+			// special case scenario (should only exist when testing)
 			if (!$rootScope.loggedUser.reminders || $rootScope.loggedUser.reminders.indexOf(paramObj.type) === -1) {
 				$rootScope.$emit('closeBubble', {
 					type: paramObj.type,
@@ -175,6 +175,11 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 					justHide: true
 				});
 				return;
+			} else if (paramObj.reason === 'dropdown-arrow-click') {
+				$rootScope.$emit('closeBubble', {
+					type: paramObj.type,
+					justHide: true
+				});
 			}
 
 			User.removeReminder({
