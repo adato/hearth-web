@@ -45,6 +45,8 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 			},
 			'bookmark-reminder': {
 				applicable: function() {
+					return false; // << current logical setup does not allow for this bubble to be shown in any situation
+
 					if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
 					// reminder is not shown if hide post is shown!
 					if (bubbleDefinitions['hide-post'].applicable()) return false;
