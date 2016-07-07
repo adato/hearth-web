@@ -18,8 +18,9 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 			},
 			templateUrl: 'templates/directives/userIntelReadout.html',
 			link: function(scope) {
-
 				scope.isEmpty = IsEmpty;
+				// community has a 'description' property instead of 'about'
+				if (scope.entity._type.toLowerCase() === 'community') scope.entity.about = scope.entity.description;
 
 				var motto = 'motto',
 					about = 'about',
