@@ -41,7 +41,8 @@
 			"CLICK_TO_COLLAPSE": "Zobrazit zkrácený text",
 			"SHARE_LINK": "Sdílet odkaz",
 			"UNBOOKMARK_POST": "Odebrat z oblíbených",
-			"BOOKMARK_POST": "Přidat do oblíbených"
+			"BOOKMARK_POST": "Přidat do oblíbených",
+			"HIDE_POST": "Skrýt tento inzerát"
 		},
 		"EDIT_FILTER": "Upravit filtr",
 		"FILTER_NOT_FOUND": "<p>Ajta! Zadan&eacute; kombinaci neodpov&iacute;d&aacute; vůbec, ale vůbec ž&aacute;dn&yacute; inzer&aacute;t.<br \/>Co nějak&eacute; to krit&eacute;rium ubrat?<\/p>",
@@ -947,7 +948,8 @@
 		"POST_BOOKMARKED_SUCCESFULLY": "Bezva! Přidání inzerátu mezi oblíbené se povedlo.",
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
-		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED"
+		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
+		"POST_HID_SUCCESFULLY": "Bezva. Skrytí inzerátu se povedlo, už se ti nebude na tržišti a ve vyhledávání zobrazovat."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáš žádné inzeráty, můžeš si je ale přidat ",
@@ -1436,10 +1438,13 @@
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		},
 		"HIDE_POST": {
-			"TEXT": "Kterýkoli inzerát, který vás obtěžuje a nechcete ho již vidět, můžete označit jako skrytý."
+			"TEXT": "<p><em>Tip:<\/em> Kter&yacute;koli inzer&aacute;t, kter&yacute; v&aacute;s obtěžuje a nechcete ho již vidět, můžete označit jako skryt&yacute;.<\/p>"
 		}
 	},
 	"energy_TOOLTIP": "Aktivita, myšlenka...",
 	"mass_TOOLTIP": "Věci...",
-	"information_TOOLTIP": "Znalosti, tipy..."
+	"information_TOOLTIP": "Znalosti, tipy...",
+	"AD_HIDE_LABEL": "Skrýt inzerát",
+	"AD_HIDE_ARE_YOU_SURE": "Po skrytí se ti tento inzerát nebude zobrazovat na tržišti ani ve vyhledávání. Na profilu daného uživatele ho i nadále uvidíš, stejně tak se budeš moct dostat na detail tohoto inzerátu.",
+	"HIDE_AD": "Skrýt inzerát"
 }

@@ -11,7 +11,7 @@
 .bubble-notification{
 	position: absolute;
 	display: block;
-	min-width: 200px;
+	min-width: 270px;
 	max-width: 370px;
 	top: calc(100% + 6px); right: -$size-tiny;
 	padding: $size-small;
@@ -24,6 +24,10 @@
 	white-space: normal;
 	cursor: pointer;
 	z-index: 999;
+
+	@media #{$small-down} {
+		max-width: 200px;
+	}
 
 	&:after {
 		content: '';
@@ -53,10 +57,6 @@
 			right: inherit;
 			left: $size-medium;
 		}
-	}
-
-	@media #{$small-down} {
-		max-width: 200px;
 	}
 
 }

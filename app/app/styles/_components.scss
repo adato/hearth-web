@@ -402,5 +402,9 @@ a.link-secondary{
 /* /LOADING */
 
 /* WATERFALL CLASSES */
-.paragraph-all-margin-none p{margin: 0 !important}
+.paragraph-all-unstyle p{
+	margin: 0 !important;
+	line-height: inherit;
+	font-size: inherit;
+}
 /* /WATERFALL CLASSES */
