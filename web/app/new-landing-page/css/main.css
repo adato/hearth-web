@@ -324,11 +324,14 @@ html[lang='en'] .language-panel .lang-en{
 	transition: opacity 1s ease-in;
 }
 .jumbo-show + .jumbo-show{opacity: 0;}
-.jumbo-wrapper .show-1{background-image: url('../img/jumbo-1-small.jpg');}
-.jumbo-wrapper .show-2{background-image: url('../img/jumbo-2.jpg');}
+.jumbo-wrapper .show-1{background-image: url('../img/jumbo/jumbo-1-small.jpg');}
+.jumbo-wrapper .show-2{background-image: url('../img/jumbo/jumbo-2.jpg');}
+.jumbo-wrapper .show-3{background-image: url('../img/jumbo/jumbo-3.jpg');}
+.jumbo-wrapper .show-4{background-image: url('../img/jumbo/jumbo-4.jpg');}
+.jumbo-wrapper .show-5{background-image: url('../img/jumbo/jumbo-5.jpg');}
 @media (min-width: 768px){
-	.jumbo-wrapper .show-1{background-image: url('../img/jumbo-1.jpg');}
-	.jumbo-wrapper .show-2{background-image: url('../img/jumbo-2.jpg');}
+	.jumbo-wrapper .show-1{background-image: url('../img/jumbo/jumbo-1.jpg');}
+	.jumbo-wrapper .show-2{background-image: url('../img/jumbo/jumbo-2.jpg');}
 }
 .jumbo{
 	flex: 1;
