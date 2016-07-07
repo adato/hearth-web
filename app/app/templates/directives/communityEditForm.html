@@ -76,7 +76,10 @@
 						<label>
 							{{:: 'COMMUNITY_INTERESTS' | translate }}
 						</label>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" model="community.interests" name="interests" class="interests-input"></input-max-length>
+						<tags-input refocus-input-on-tab class="tags" ng-model="community.interests" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$"
+										min-length="0" max-length="500">
+							<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
+						</tags-input>
 					</div>
 				</section>
 				<div class="clear"></div>
@@ -160,7 +163,6 @@
 						<div class="clear"></div>
 					</section>
 				</div>
-
 				<div class="clear"></div>
 				<br />
 				<br />

@@ -159,7 +159,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			});
 
 			data.webs = webs;
-			data.interests = data.interests.split(",");
+			// data.interests = data.interests.split(",");
 
 			if (!data.locations.length) {
 				data.locations = [];

@@ -293,7 +293,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		};
 
-		$scope.$on('reloadCommunities', $scope.loadMyCommunities);
+		$rootScope.$on('reloadCommunities', $scope.loadMyCommunities);
 		$scope.$on('initFinished', $scope.initHearthbeat);
 		$rootScope.initFinished && $scope.initHearthbeat();
 
