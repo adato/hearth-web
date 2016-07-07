@@ -20,7 +20,14 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 			link: function(scope) {
 				scope.isEmpty = IsEmpty;
 				// community has a 'description' property instead of 'about'
-				if (scope.entity._type.toLowerCase() === 'community') scope.entity.about = scope.entity.description;
+				var unreg = scope.$watch('entity', function(newVal, oldVal) {
+					if (newVal && newVal._type) {
+						if (scope.entity._type.toLowerCase() === 'community') {
+							scope.entity.about = scope.entity.description;
+						}
+						unreg();
+					}
+				});
 
 				var motto = 'motto',
 					about = 'about',
