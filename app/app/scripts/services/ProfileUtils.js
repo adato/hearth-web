@@ -82,8 +82,9 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	factory.single = {
 		copyMottoIfNecessary: copyMottoIfNecessary,
 		fillWebs: fillWebs,
-		splitInterests: splitInterests,
-		getLocationJson: getLocationJson
+		getLocationJson: getLocationJson,
+		// joinInterests: joinInterests,
+		splitInterests: splitInterests
 	};
 	factory.params = {
 		PROFILE_TYPES: PROFILE_TYPES,
