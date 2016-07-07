@@ -27,6 +27,7 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		var bubbleDefinitions = {
 			'hide-post': {
 				applicable: function() {
+					return true;
 					if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
 					var confirmedForMoreThanADay = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 86400000);
 					return (($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
@@ -101,7 +102,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	try to activate the bubbles
 		 */
 		factory.try = function(definition) {
-			// console.log(bubbleDefinitions[definition].applicable());
 			if (bubbleDefinitions.hasOwnProperty(definition) && (activeBubbles.indexOf(definition) === -1) && bubbleDefinitions[definition].applicable()) {
 				activeBubbles.push(definition);
 				// if this is the first active bubble, bind event listener to document
@@ -153,13 +153,12 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 			var clickedOnBubble = closest(event.target, function(el) {
 				return el.tagName && el.tagName.toLowerCase() === 'bubble';
 			});
-			if (!clickedOnBubble) {
-				$rootScope.$emit('closeBubble', {
-					type: 'all',
-					event: event,
-					reason: factory.CLOSE_REASONS.DOCUMENT_CLICK
-				});
-			}
+			var reason = (clickedOnBubble ? factory.CLOSE_REASONS.BUBBLE_CLICK : factory.CLOSE_REASONS.DOCUMENT_CLICK);
+			$rootScope.$emit('closeBubble', {
+				type: 'all',
+				event: event,
+				reason: reason
+			});
 		}
 
 		/**
@@ -167,6 +166,18 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 */
 		factory.removeReminder = function(paramObj) {
 			if (!(paramObj.event && paramObj.type && paramObj.reason)) throw new Error('to succesfully remove a reminder, you need to supply an \'event\', a \'type\' and a \'reason\'');
+
+			// special case scenario
+			if (!$rootScope.loggedUser.reminders || $rootScope.loggedUser.reminders.indexOf(paramObj.type) === -1) {
+				$rootScope.$emit('closeBubble', {
+					type: paramObj.type,
+					event: paramObj.event,
+					reason: paramObj.reason,
+					justHide: true
+				});
+				return;
+			}
+
 			User.removeReminder({
 				_id: $rootScope.loggedUser._id,
 				type: paramObj.type
@@ -184,9 +195,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 
 				$rootScope.loggedUser.reminders.splice(paramObj.type, 1);
 			});
-
-			// why?
-			// if (paramObj.event.stopPropagation) paramObj.event.stopPropagation();
 		};
 
 		/**
