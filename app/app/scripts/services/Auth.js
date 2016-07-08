@@ -21,7 +21,8 @@ angular.module('hearth.services').factory('Auth', [
 					if (session._id) {
 						$rootScope.user = session;
 						$rootScope.user.loggedIn = true;
-						$rootScope.$broadcast('onUserLogin');
+						$.cookie('user_id', session._id);
+						$rootScope.$emit('onUserLogin', session);
 
 						if (session.get_logged_in_user && session.get_logged_in_user.location) {
 							var loc = session.get_logged_in_user.location;
@@ -29,9 +30,9 @@ angular.module('hearth.services').factory('Auth', [
 						}
 
 					} else {
-						$rootScope.$broadcast('unathorizedUserLogin');
+						$rootScope.$emit('unathorizedUserLogin');
 					}
-					$rootScope.$broadcast('authorize');
+					$rootScope.$emit('authorize');
 					return done();
 				}, doneErr);
 			},
