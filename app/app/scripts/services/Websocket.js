@@ -6,31 +6,44 @@
  * @description Websocket service
  */
 
-angular.module('hearth.services').factory('Websocket', ['$rootScope', 'Session', '$cable', '$window',
-	function($rootScope, Session, $cable, $window) {
+angular.module('hearth.services').factory('Websocket', ['$rootScope', 'Session', '$cable', '$window', '$q',
+	function($rootScope, Session, $cable, $window, $q) {
 
 		var factory = {};
 
-		// console.log($$config);
+		var cable,
+			inited;
 
-		var cable = $cable($window.$$config.websocket);
+		$rootScope.$on('onUserLogin', function(event, data) {
+			init();
+		});
 
-		factory.subscribe = function(channel, cb) {
-			Session.show(function(res) {
-				console.log(res);
-				cable.subscribe({
-					channel: channel,
-					user_id: res._id
-				}, {
-					received: cb
-				});
+		factory.subscribe = function(channel) {
+			return $q(function(resolve, reject) {
+				if (inited) {
+					cable.subscribe({
+						channel: channel,
+						user_id: $rootScope.user._id
+					}, {
+						received: resolve
+					});
+				} else {
+					reject({
+						error: 'Cannot subscribe not logged users.'
+					});
+				}
 			});
 		};
 
-		// TeMP
-		// factory.cable = cable;
-
 		return factory;
+
+		///////////////
+
+		function init() {
+			if (inited) return;
+			cable = $cable($window.$$config.websocket);
+			inited = true;
+		}
 
 	}
 ]);

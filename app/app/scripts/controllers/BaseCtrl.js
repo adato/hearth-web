@@ -854,9 +854,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		// start message websocket
-		// Websocket.subscribe('MessagesChannel', function(message) {
-		// 	console.log('websocket says:', message);
-		// });
+		$rootScope.$on('onUserLogin', function(event, data) {
+			Websocket.subscribe('MessagesChannel').then(function(message) {
+				console.log('websocket says:', message);
+			}, function(err) {
+				console.log(err.error);
+			});
+		});
 
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;
