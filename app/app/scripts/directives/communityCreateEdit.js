@@ -220,8 +220,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 						});
 					}
 
-					// return console.log($scope.community);
-
 					Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community), function(res) {
 						$rootScope.globalLoading = false;
 						$rootScope.$emit('reloadCommunities');

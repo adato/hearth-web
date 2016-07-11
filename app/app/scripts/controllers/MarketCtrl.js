@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner',
-	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner) {
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner', '$log',
+	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner, $log) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -208,7 +208,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.debug && console.time("Market posts loaded and displayed");
 			$scope.debug && console.time("Market posts loaded from API");
 
-			if ($scope.debug) console.log('Loading content');
+			if ($scope.debug) $log.debug('Loading content');
 			marketInited.promise.then($scope.retrievePosts.bind($scope, params));
 			// load based on given params
 		};
@@ -280,14 +280,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.topArrowText.top = '';
 			$scope.topArrowText.bottom = '';
 			$rootScope.cacheInfoBox = {};
-			$scope.debug && console.log('Destroy marketCtrl finished');
+			$scope.debug && $log.debug('Destroy marketCtrl finished');
 		});
 
 		function init() {
-			$scope.debug && console.log('Initialisation of marketCtrl started');
+			$scope.debug && $log.debug('Initialisation of marketCtrl started');
 			async.each(itemTypes, function(type, done) {
 				var tplUrl = $sce.getTrustedResourceUrl(templateDir + type + '.html');
-				$scope.debug && console.log('Compiling template for ', type);
+				$scope.debug && $log.debug('Compiling template for ', type);
 
 				$templateRequest(tplUrl).then(function(template) {
 					templates[type] = $compile(template);
@@ -299,9 +299,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 				$scope.filterIsOn = Filter.isSet();
 				marketInited.resolve();
-				$scope.debug && console.log('Initialisation of marketCtrl almost finished');
+				$scope.debug && $log.debug('Initialisation of marketCtrl almost finished');
 				if (err) {
-					$scope.debug && console.log('There was an error during compilation process: ', err);
+					$scope.debug && $log.error('There was an error during compilation process: ', err);
 				}
 				$scope.load();
 			});
