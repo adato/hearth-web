@@ -1,6 +1,10 @@
 <div id="notify-container-market"></div>
 <div class="market row">
 
+	<span ng-show="status.connected">✓ Connected</span>
+	<span ng-show="status.disconnected">✘ Disconnected</span>
+	<span ng-show="status.connecting">✘ Connecting......</span>
+
 	<marketplace-banner image="crowdsource" code="crowdsourcing-banner" language="{{language}}" title="{{:: 'Dělá ti Hearth radost? Podpoř ho!' | translate}}" href="support-us"></marketplace-banner>
 
 	<filterbar></filterbar>
