@@ -25,11 +25,35 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 *	The node shall be replaced by a bubble with a template from the bubble.template definition
 		 */
 		var bubbleDefinitions = {
+			'hide-post': {
+				applicable: function() {
+					if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
+					var confirmedForMoreThanADay = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 86400000);
+					return (($rootScope.loggedUser.reminders.indexOf('hide_post') > -1) && confirmedForMoreThanADay);
+				},
+				apply: function() {
+					var template = 'templates/directives/bubble/hide-post-option.html';
+					var placeholder = bubblePlaceholderSearch({
+						identificator: 'hide-post'
+					});
+					if (placeholder) showBubble({
+						placeholder: placeholder,
+						templateUrl: template,
+						type: 'hide_post'
+					});
+				}
+			},
 			'bookmark-reminder': {
 				applicable: function() {
+					return false; // << current logical setup does not allow for this bubble to be shown in any situation
+
+					if (!($rootScope.loggedUser && $rootScope.loggedUser._id)) return false;
+					// reminder is not shown if hide post is shown!
+					if (bubbleDefinitions['hide-post'].applicable()) return false;
+
 					var confirmedForMoreThanAWeek = (((new Date()).getTime() - new Date($rootScope.loggedUser.confirmed_at).getTime()) > 604800000);
 					return (
-						$rootScope.loggedUser._id && ($rootScope.loggedUser.reminders.indexOf('bookmark') > -1) && confirmedForMoreThanAWeek
+						($rootScope.loggedUser.reminders.indexOf('bookmark') > -1) && confirmedForMoreThanAWeek
 					);
 				},
 				apply: function() {
@@ -128,13 +152,12 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 			var clickedOnBubble = closest(event.target, function(el) {
 				return el.tagName && el.tagName.toLowerCase() === 'bubble';
 			});
-			if (!clickedOnBubble) {
-				$rootScope.$emit('closeBubble', {
-					type: 'all',
-					event: event,
-					reason: factory.CLOSE_REASONS.DOCUMENT_CLICK
-				});
-			}
+			var reason = (clickedOnBubble ? factory.CLOSE_REASONS.BUBBLE_CLICK : factory.CLOSE_REASONS.DOCUMENT_CLICK);
+			$rootScope.$emit('closeBubble', {
+				type: 'all',
+				event: event,
+				reason: reason
+			});
 		}
 
 		/**
@@ -142,6 +165,23 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 		 */
 		factory.removeReminder = function(paramObj) {
 			if (!(paramObj.event && paramObj.type && paramObj.reason)) throw new Error('to succesfully remove a reminder, you need to supply an \'event\', a \'type\' and a \'reason\'');
+
+			// special case scenario (should only exist when testing)
+			if (!$rootScope.loggedUser.reminders || $rootScope.loggedUser.reminders.indexOf(paramObj.type) === -1) {
+				$rootScope.$emit('closeBubble', {
+					type: paramObj.type,
+					event: paramObj.event,
+					reason: paramObj.reason,
+					justHide: true
+				});
+				return;
+			} else if (paramObj.reason === 'dropdown-arrow-click') {
+				$rootScope.$emit('closeBubble', {
+					type: paramObj.type,
+					justHide: true
+				});
+			}
+
 			User.removeReminder({
 				_id: $rootScope.loggedUser._id,
 				type: paramObj.type
@@ -159,9 +199,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 
 				$rootScope.loggedUser.reminders.splice(paramObj.type, 1);
 			});
-
-			// why?
-			// if (paramObj.event.stopPropagation) paramObj.event.stopPropagation();
 		};
 
 		/**

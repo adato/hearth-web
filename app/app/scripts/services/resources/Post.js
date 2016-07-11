@@ -95,6 +95,14 @@ angular.module('hearth.services').factory('Post', [
 					code: 'NOTIFY.POST_SPAM_REPORT_FAILED',
 					container: '.notify-report-container'
 				}
+			},
+			hide: {
+				url: $$config.apiPath + '/posts/:postId/hide',
+				method: 'PUT',
+				errorNotify: {
+					code: 'NOTIFY.POST_HIDE_REPORT_FAILED',
+					container: '.notify-report-container'
+				}
 			}
 		});
 	}

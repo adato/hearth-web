@@ -45,6 +45,7 @@ angular.module('hearth.directives').directive('item', [
 				scope.pauseToggle = $rootScope.pauseToggle;
 				scope.pluralCat = $rootScope.pluralCat;
 				scope.deleteItem = $rootScope.deleteItem;
+				scope.hideItem = $rootScope.hideItem;
 				scope.confirmBox = $rootScope.confirmBox;
 				scope.DATETIME_FORMATS = $rootScope.DATETIME_FORMATS;
 				scope.toggleReportNotLoggedIn = $rootScope.showLoginBox;

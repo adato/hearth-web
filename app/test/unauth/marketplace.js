@@ -1,8 +1,8 @@
-describe('hearth unauth marketplace', function() {  
+describe('hearth unauth marketplace', function() {
 
   beforeEach(function() {
-    protractor.helpers.navigateTo('', function () { 
-      browser.waitForAngular(); 
+    protractor.helpers.navigateTo('', function () {
+      browser.waitForAngular();
     });
   });
 
@@ -32,7 +32,7 @@ describe('hearth unauth marketplace', function() {
       browser.sleep(2000);
       // 30 items afterwards
       expect(marketItems.count()).toBe(30);
-    })  
+    })
   });
 
   // should be able to switch to map
@@ -40,7 +40,7 @@ describe('hearth unauth marketplace', function() {
     var marketContainer = element(by.className('marketplace-items-container'));
     var switchToMapLink = element(by.css('.filterbar-wrap span.right>a.ng-binding'));
     var mapContainer = element(by.className('marketplace-map-container'));
-    
+
     // market is visible
     expect(marketContainer.isDisplayed()).toBeTruthy();
     expect(switchToMapLink.isDisplayed()).toBeTruthy();
@@ -108,13 +108,14 @@ describe('hearth unauth marketplace', function() {
 
     if (type === 'mobile' || type === 'tablet') {
       if (type === 'mobile') {
-        expect(createButton.isDisplayed()).toBeFalsy(); 
+        expect(createButton.isDisplayed()).toBeFalsy();
       }
       if (type === 'tablet') {
-        expect(iconAdd.isDisplayed()).toBeTruthy(); 
-        expect(createButton.isDisplayed()).toBeFalsy(); 
+        expect(iconAdd.isDisplayed()).toBeTruthy();
+        expect(createButton.isDisplayed()).toBeFalsy();
       }
       iconAdd.click().then(function () {
+		browser.sleep(100);
         expect(loginModal.isDisplayed()).toBeTruthy();
         loginModalCloseButton.click();
       }).then(function () {
