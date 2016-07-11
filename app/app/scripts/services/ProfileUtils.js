@@ -89,7 +89,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	}
 
 	function splitInterests(profile) {
-		console.log(profile);
 		profile.interests = (profile.interests ? profile.interests.split(',') : []);
 		return profile;
 	}

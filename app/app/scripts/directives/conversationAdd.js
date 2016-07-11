@@ -43,7 +43,6 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					// on input after picking a recipient and resolves
 					// prematurely to an erroneous state.
 					$timeout(function() {
-						console.log($scope.message.recipients_ids);
 						if (!($scope.message.recipients_ids && $scope.message.recipients_ids.length)) $scope.showError.recipients_ids = true;
 					}, 200);
 				};

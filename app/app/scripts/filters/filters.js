@@ -150,7 +150,7 @@ angular.module('hearth.filters', [])
 			return input.replace("http://", "").replace("https://", "");
 		}
 	})
-	.filter('minMax', function() {
+	.filter('minMax', ['$log', function($log) {
 		return function(input, min, max, postfix, blank) {
 			var val = parseInt(input);
 			var out = '';
@@ -175,7 +175,7 @@ angular.module('hearth.filters', [])
 					out: out
 				};
 
-				console.log('Messages count is NaN | In:', input,
+				$log.error('Messages count is NaN | In:', input,
 					'Min:', min,
 					'Max:', max,
 					'Postfix:', postfix,
@@ -192,7 +192,7 @@ angular.module('hearth.filters', [])
 
 			return out;
 		}
-	})
+	}])
 	.filter('highlight', function($sce) {
 		return function(text, phrase) {
 			if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'),

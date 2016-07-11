@@ -18,7 +18,7 @@
 			<div class="form-section">
 				<label class="display-block">
 					<textarea autosize-textarea required autofocus ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{:: 'AD_REPLY_PLACEHOLDER' | translate }}" ng-minlength="3" ng-maxlength="2500" ng-model="reply.message" name="message"
-									ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-cloak class="reply-ad-textarea text-input middle"></textarea>
+					ng-class="{ 'offset-text focused top': isCreatingAd() || isEditingAd()}" ng-keydown="escapeKey($event)" ng-cloak class="reply-ad-textarea text-input middle"></textarea>
 				</label>
 				<div class="error" ng-show="showErrors.message && replyForm.$dirty">
 					<span ng-show="replyForm.message.$error.required">{{:: 'ERR_AD_TEXT_MIN_LEN' | translate }}</span>

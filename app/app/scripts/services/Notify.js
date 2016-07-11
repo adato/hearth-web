@@ -6,9 +6,8 @@
  * @description Notification service
  */
 
-angular.module('hearth.services').service('Notify', ['$translate',
-
-	function($translate) {
+angular.module('hearth.services').service('Notify', ['$translate', '$log',
+	function($translate, $log) {
 		var tmpl = '<div data-alert class="alert-box $$type radius"><div class="alert-inner">$$text<i class="close">&times;</i></div></div>';
 		var notifyTypes = {
 			1: 'success',
@@ -148,7 +147,7 @@ angular.module('hearth.services').service('Notify', ['$translate',
 					// apply given arguments on this function
 					self.addSingleTranslate.apply(self, args);
 				} catch (e) {
-					console.log('Error while parsing after-refresh-notify', e, cookieNotifyCode);
+					$log.error('Error while parsing after-refresh-notify', e, cookieNotifyCode);
 
 					Rollbar.error("HEARTH: Error parsing JSON from cookie for afterRefresh notify", {
 						error: e,
@@ -187,12 +186,12 @@ angular.module('hearth.services').service('Notify', ['$translate',
 
 			// allow interceptor only for few 
 			if (errorCodes.indexOf(rejection.status) < 0 || config === false) {
-				console.log('Rejecting interceptor - disabled or unallowed status code', rejection.status);
+				$log.error('Rejecting interceptor - disabled or unallowed status code', rejection.status);
 				return;
 			}
 
-			console.log('Config: ', config);
-			console.log('Rejection: ', rejection);
+			$log.warn('Config: ', config);
+			$log.warn('Rejection: ', rejection);
 
 			// if container does not exists, use default
 			if (config.container && !$(config.container).is(':visible'))

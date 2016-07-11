@@ -26,8 +26,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			// Localization
 
 			// get preferred language from cookies or config
-			// console.log("Setting preffered language", preferredLanguage);
-
 			// configure dynamic locale - dates && pluralization && etc
 			// tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
 			tmhDynamicLocaleProvider.localeLocationPattern('//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_{{locale}}.js');
@@ -79,6 +77,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$window.refsArray = getRefsArray();
 			$window.refsString = getRefsString($window.refsArray);
 
+			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class 
+
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
 			$authProvider.tokenName = 'api_token';
@@ -116,7 +116,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			var params = $.getUrlVars();
 			if (params['apiError'])
 				params['apiError'].split(',').forEach(function(type) {
-					console.log('Enabling api test errors for', type);
+					$log.info('Enabling api test errors for', type);
 					$httpProvider.defaults.headers[type]['x-error-test'] = 1;
 				});
 
@@ -124,9 +124,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
-
-			// ?? wtf is this?
-			// $httpProvider.responseInterceptors.push('TermsAgreement');
 		}
 	]).config(['$provide',
 		function($provide) {
@@ -141,9 +138,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 				};
 			});
 		}
-	]).run([
-		'$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', 'ActionCableConfig',
-		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, ActionCableConfig) {
+	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
+		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
@@ -220,7 +216,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 							path: '/'
 						});
 					}
-
 					if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
 						if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
 							mixpanel.identify($rootScope.loggedUser._id);
@@ -239,7 +234,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 					$rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
 					done(null, $rootScope.loggedUser);
 				}, function(err) {
-					console.log(err.status, err.statusText, err.data);
+					$log.error(err.status, err.statusText, err.data);
 					Rollbar.error("HEARTH: session critical error occured", {
 						status: err.status,
 						statusText: err.statusText,
@@ -286,12 +281,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 
 				$urlRouter.sync();
 				$urlRouter.listen();
-
-				//				$(document).foundation({
-				//					offcanvas: {
-				//						close_on_click: true
-				//					}
-				//				});
 
 				$rootScope.debug = !!$.cookie("debug");
 				$rootScope.initFinished = true;

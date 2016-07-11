@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.utils').directive('whenScrolled', [
-	"$timeout",
-	function($timeout) {
+	"$timeout", "$log",
+	function($timeout, $log) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -33,13 +33,13 @@ angular.module('hearth.utils').directive('whenScrolled', [
 
 					var childHeight = scope.innerScrolling ? el.children().height() : angular.element(document).height();
 					if (childHeight - el.height() - el.scrollTop() - offset <= 0) {
-						scope.$root.debug && console.log('whenScrolled is calling load() function');
+						scope.$root.debug && $log.log('whenScrolled is calling load() function');
 						scope.whenScrolled();
 					}
 				}
 
 				function processWithResite() {
-					scope.$root.debug && console.log('whenScrolled resize handler called');
+					scope.$root.debug && $log.log('whenScrolled resize handler called');
 					innerHeight = el[0].innerHeight;
 					process({
 						event: 'processWithResite'
@@ -55,6 +55,7 @@ angular.module('hearth.utils').directive('whenScrolled', [
 					el.unbind('scroll', process);
 					angular.element(window).unbind('resize', processWithResite);
 					el = null;
+					scope.$root.debug && $log.log('whenScrolled destroyed');
 				});
 			}
 		};
