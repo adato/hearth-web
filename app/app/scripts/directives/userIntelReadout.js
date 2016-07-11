@@ -19,6 +19,15 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 			templateUrl: 'templates/directives/userIntelReadout.html',
 			link: function(scope) {
 				scope.isEmpty = IsEmpty;
+				// community has a 'description' property instead of 'about'
+				var unreg = scope.$watch('entity', function(newVal, oldVal) {
+					if (newVal && newVal._type) {
+						if (scope.entity._type.toLowerCase() === 'community') {
+							scope.entity.about = scope.entity.description;
+						}
+						unreg();
+					}
+				});
 
 				var motto = 'motto',
 					about = 'about',
@@ -39,6 +48,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 				setup.profile = setup.all;
 
 				scope.typeMatch = setup[scope.type] || setup.all;
+
 
 				// this is for marketplace post detail where the description should not be too long;
 				scope.getShorterDescription = function() {

@@ -10,8 +10,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 
 	var factory = {};
 
-	const MAX_MOTTO_LENGTH = MottoLength;
-
 	var PROFILE_TYPES = {
 		USER: 'user',
 		COMMUNITY: 'community'
@@ -27,11 +25,12 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	 */
 	function transformDataForUsage(paramObject) {
 		if (!(paramObject && paramObject.profile && paramObject.type && !!(PROFILE_TYPES[paramObject.type.toUpperCase()]))) throw new Error('Insufficient paramObject to transform input data correctly.');
-		paramObject.type = paramObject.type.toLowerCase();
+		paramObject.type = paramObject.type.toUpperCase();
 
 		// common for all types
 		// copyMottoIfNecessary(paramObject.profile);
 		fillWebs(paramObject.profile);
+		// joinInterests(paramObject.profile);
 		getLocationJson(paramObject.profile);
 
 		// type-specific
@@ -41,7 +40,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 				break;
 
 			case PROFILE_TYPES.COMMUNITY:
-				// joinInterests(paramObject.profile);
+				// nothing yet ..
 				break;
 		}
 
@@ -63,11 +62,14 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		return paramObject.profile;
 	}
 
+	// SETUP
+	var MAX_MOTTO_LENGTH = MottoLength;
+
 	// FUNCTIONS
 	function copyMottoIfNecessary(profile) {
 		if (!profile.motto) {
 			profile.motto = profile.about || profile.description || '';
-			if (profile.motto.length > (MottoLength)) profile.motto = profile.motto.slice(0, MottoLength - 3) + '...';
+			if (profile.motto.length > (MAX_MOTTO_LENGTH)) profile.motto = profile.motto.slice(0, MAX_MOTTO_LENGTH - 3) + '...';
 		}
 		return profile;
 	}
@@ -108,9 +110,9 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	factory.single = {
 		copyMottoIfNecessary: copyMottoIfNecessary,
 		fillWebs: fillWebs,
+		getLocationJson: getLocationJson,
 		joinInterests: joinInterests,
-		splitInterests: splitInterests,
-		getLocationJson: getLocationJson
+		splitInterests: splitInterests
 	};
 	factory.params = {
 		PROFILE_TYPES: PROFILE_TYPES,

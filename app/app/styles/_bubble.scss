@@ -11,7 +11,7 @@
 .bubble-notification{
 	position: absolute;
 	display: block;
-	min-width: 200px;
+	min-width: 270px;
 	max-width: 370px;
 	top: calc(100% + 6px); right: -$size-tiny;
 	padding: $size-small;
@@ -19,18 +19,15 @@
 	text-align: left;
 	line-height: 1.4;
 	background: #fff;
-
-	// border-radius: $global-radius;
-	// global radius (currently 8px) looks too large
 	border-radius: 4px;
-
-	// box-shadow: $ui-box-shadow;
-	// using custom shadow because with default the tiny arrow is next to invisible
 	box-shadow: 0 0 10px 4px rgba(0,0,0,.3);
-
 	white-space: normal;
 	cursor: pointer;
 	z-index: 999;
+
+	@media #{$small-down} {
+		max-width: 200px;
+	}
 
 	&:after {
 		content: '';
@@ -46,8 +43,6 @@
 	[data-bubble="close"] {
 		font-size: 16px;
 		line-height: 1.2;
-		// moved to the bubble itself as i can close it by clicking it
-		// cursor: pointer;
 		opacity: .6;
 	}
 	[data-bubble="close"]:hover,
@@ -64,16 +59,4 @@
 		}
 	}
 
-	@media #{$medium-down} {
-		max-width: 200px;
-	}
-
-	// .tooltip {
-	// 	padding: 25px;
-	// 	font-size: 14px;
-	// 	line-height: 1.5em;
-	// 	color: white;
-	// 	white-space: normal;
-	//
-	// }
 }

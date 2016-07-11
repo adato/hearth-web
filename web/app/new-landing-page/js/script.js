@@ -5,6 +5,9 @@
 	function $(q){
 		return document['querySelector' + (q.slice(0,1) === '#' ? '' : 'All')](q);
 	}
+	function fe(q, fn) {
+		for (var i = 0, l = q.length; i < l; fn(q[i]), i++);
+	}
 	function collectionHas(a, b) {
 		for(var i = 0, len = a.length;i < len;i++) {
 			if(a[i] === b) return true;
@@ -36,32 +39,42 @@
 	//
 	//	MENU AND LANGUAGE PANEL
 	//
+	var langToggle = 'language-toggle',
+		langPanel = 'language-panel',
+		isActive = 'is-active';
 	var hamburger = $('#hamburger');
-	var ltoggle = $('#language-toggle');
-	var lp = $('#language-panel');
+	var ltoggle = $('.' + langToggle);
 	var menu = $('#main-navigation');
 	var windowShown;
 	var action = true;
-	if (!(hamburger && lp && menu)) throw new Error('all elements are required - hamburger, language-panel, main-navigation');
-	ltoggle.addEventListener('click', toggleMenu.bind(false, 'lang'));
+	if (!(hamburger && menu)) throw new Error('all elements are required - hamburger, language-panel, main-navigation');
+	fe(ltoggle, function(el) {el.addEventListener('click', toggleMenu.bind(false, 'lang'));});
 	hamburger.addEventListener('click', toggleMenu.bind(false, 'menu'));
 
-	function langHandler() {
-		menu.classList.remove('is-active');
-		hamburger.classList.remove('is-active');
+	function langHandler(lp) {
+		menu.classList.remove(isActive);
+		hamburger.classList.remove(isActive);
+		fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
 
 		if (!action) return action = true;
-		lp.classList.toggle('is-active');
+		if (lp) lp.classList.toggle(isActive);
 	}
 	function menuHandler() {
-		lp.classList.remove('is-active');
+		fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
 
 		if (!action) return action = true;
-		hamburger.classList.toggle('is-active');
-		menu.classList.toggle('is-active');
+		hamburger.classList.toggle(isActive);
+		menu.classList.toggle(isActive);
 	}
 
 	function toggleMenu(w) {
+		var toggle = findParentBySelector(event.target, '.' + langToggle);
+		var lp;
+		if (toggle) {
+			lp = toggle.parentNode.getElementsByClassName(langPanel);
+			if (!(lp && lp.length)) throw new Error('".language-panel" element required as a sibling to language-toggle.');
+			lp = lp[0];
+		}
 		if(!windowShown){
 			window.addEventListener('mousedown', toggleHandler);
 		} else {
@@ -70,11 +83,11 @@
 		if (w === 'menu') {
 			menuHandler();
 		} else if (w === 'lang') {
-			langHandler();
+			langHandler((lp ? lp : false));
 		} else {
-			lp.classList.remove('is-active');
-			menu.classList.remove('is-active');
-			hamburger.classList.remove('is-active');
+			fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
+			menu.classList.remove(isActive);
+			hamburger.classList.remove(isActive);
 		}
 		windowShown = w;
 	}
@@ -143,5 +156,34 @@
 			}
 		}));
 	}
+
+	//
+	//	SLIDESHOW
+	//
+	/**
+	 *	id of an element that is to become a slideshow
+	 */
+	function activateSlideshow(opts) {
+		'use strict';
+
+		const SLIDESHOW = 'aeg-slideshow';
+		var opts = opts || {};
+		var slideshows = document.querySelectorAll('[' + SLIDESHOW + ']');
+		if (slideshows.length) {
+			for (var i = slideshows.length;i--;) {
+				var sss = slideshows[i];
+				var current = 0,
+    				slides = sss.getElementsByClassName('jumbo-show');
+					var interval = setInterval(function() {
+						for (var q = 0, w = slides.length;q < w;q++) {
+						  slides[q].style.opacity = 0;
+						}
+						current = (current != slides.length - 1) ? current + 1 : 0;
+						slides[current].style.opacity = 1;
+					}, 7000);
+			}
+		}
+	}
+	activateSlideshow();
 
 })(window);

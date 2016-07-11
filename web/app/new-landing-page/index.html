@@ -80,7 +80,7 @@
 			 *	@param type - case 0 - headings
 			 * 				case 1 - all other fonts
 			 */
-			function setFont(name, id, type){
+			function setFont(name, id, type) {
 				var typeId = (type === 0 ? 'f' : 't');
 				document.getElementById((typeId === 'f' ? 'bodyStyles' : 'headerStyles')).innerHTML = (typeId === 'f' ? 'body{font-family: ' + name + '}' : (name ? 'h1,h2,h3,h4,h5,h6{font-family: ' + name + ', sans-serif}' : ''));
 				var anchs = document.getElementById('q').querySelectorAll('.' + typeId + ' a');
@@ -128,21 +128,21 @@
 				</div>
 			</div>
 			<div class='nav-clickable language-wrapper medium-down'>
-				<div id='language-toggle'>
+				<div class='language-toggle'>
 					<div class='flag'></div>
 				</div>
-				<div class='flex hover-window' id='language-panel'>
+				<div class='flex hover-window language-panel'>
 					<div class='language-option flex lang-cs' id='language-cs'>
 						<div class='flag flag-cs'></div>
-						<div class='medium-down'>Česky</div>
+						<div class=''>Česky</div>
 					</div>
 					<div class='language-option flex lang-sk' id='language-sk'>
 						<div class='flag flag-sk'></div>
-						<div class='medium-down'>Slovensky</div>
+						<div class=''>Slovensky</div>
 					</div>
 					<div class='language-option flex lang-en' id='language-en'>
 						<div class='flag flag-en'></div>
-						<div class='medium-down'>English</div>
+						<div class=''>English</div>
 					</div>
 				</div>
 			</div>
@@ -169,7 +169,7 @@
 			<a href='/app/login' class='button nav-item alt'>
 				Přihlášení
 			</a>
-			<div class='flex large-only' id='large-language-panel'>
+			<!--<div class='flex large-only' id='large-language-panel'>
 				<div class='language-option flex nav-item' id='language-large-cs'>
 					<div class='flag flag-cs'></div>
 				</div>
@@ -179,10 +179,34 @@
 				<div class='language-option flex nav-item' id='language-large-en'>
 					<div class='flag flag-en'></div>
 				</div>
+			</div>-->
+			<div class='nav-clickable language-wrapper large-only'>
+				<div class='language-toggle'>
+					<div class='flag'></div>
+				</div>
+				<div class='flex hover-window language-panel window-align-right'>
+					<div class='language-option flex lang-cs' id='language-cs'>
+						<div class='flag flag-cs'></div>
+						<div class=''>Česky</div>
+					</div>
+					<div class='language-option flex lang-sk' id='language-sk'>
+						<div class='flag flag-sk'></div>
+						<div class=''>Slovensky</div>
+					</div>
+					<div class='language-option flex lang-en' id='language-en'>
+						<div class='flag flag-en'></div>
+						<div class=''>English</div>
+					</div>
+				</div>
 			</div>
 		</nav>
 	</div>
-	<div class='jumbo-wrapper overflow-hidden'>
+	<div class='jumbo-wrapper overflow-hidden' aeg-slideshow>
+		<div class='jumbo-show show-1'></div>
+		<div class='jumbo-show show-2'></div>
+		<div class='jumbo-show show-3'></div>
+		<div class='jumbo-show show-4'></div>
+		<div class='jumbo-show show-5'></div>
 		<header class='flex flex-space-between full-height position-relative'>
 			<div class='jumbo'>
 				<div class='small-only text-align-center'>
@@ -260,7 +284,7 @@
 				od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.
 			</p>
 		</section>
-		<section>
+		<section class='masonry-alt'>
 			<h1>Velké množství darů a přání na tržišti</h1>
 			<div class='medium-flex'>
 				<div class='flex-1 masonry-wrapper'>

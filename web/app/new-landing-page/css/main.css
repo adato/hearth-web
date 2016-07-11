@@ -181,21 +181,21 @@ a{color: #4a4a4a}
 .nav-clickable{
 	margin-right: 15px;
 }
-.nav-clickable:last-of-type{
+/*.nav-clickable:last-of-type{
 	margin-right: 0;
-}
+}*/
 @media (min-width: 400px){
 	.nav-clickable{
 		margin-left: 15px;
 	}
 }
-#language-panel{
+.language-panel{
 	display: none;
 }
 .hover-window{
 	display: none;
 }
-@media (max-width: 1199px){
+/*@media (max-width: 1199px){*/
 	.hover-window.is-active{
 		position: absolute;
 		display: flex !important;
@@ -221,14 +221,20 @@ a{color: #4a4a4a}
 		border-width: 8px;
 		margin-left: -8px;
 	}
-	#language-panel .language-option{
+	.hover-window.is-active.window-align-right{
+		left: inherit; right: -15px;
+	}
+	.hover-window.window-align-right::before{
+		left: inherit; right: 27px;
+	}
+	.language-panel .language-option{
 		margin-bottom: 10px;
 		font-weight: bold;
 	}
-	#language-panel .language-option .flag{
+	.language-panel .language-option .flag{
 		margin-right: 10px;
 	}
-	#language-panel .language-option:last-child{
+	.language-panel .language-option:last-child{
 		margin-bottom: 0px;
 	}
 	/*#main-navigation.is-active{
@@ -256,13 +262,13 @@ a{color: #4a4a4a}
 	#main-navigation li a:hover{
 		background: #f4f4f4;
 	}
-}
-@media (min-width: 1200px){
+/*}*/
+/*@media (min-width: 1200px){
 	#language-panel{
 		flex-order: 4;
 		display: inherit;
 	}
-}
+}*/
 .flag{
 	display:inline-block;
 	width: 30px;
@@ -279,24 +285,24 @@ a{color: #4a4a4a}
 		height: 40px;
 	}
 }
-html[lang='en'] #language-toggle .flag,
+html[lang='en'] .language-toggle .flag,
 .flag.flag-en{
-	background-image: url(../img/flags/flag-english.svg);
+	background-image: url('../img/flags/flag-english.svg');
 }
-html[lang='cs'] #language-toggle .flag,
+html[lang='cs'] .language-toggle .flag,
 .flag.flag-cs{
-	background-image: url(../img/flags/flag-czech.svg);
+	background-image: url('../img/flags/flag-czech.svg');
 }
-html[lang='sk'] #language-toggle .flag,
+html[lang='sk'] .language-toggle .flag,
 .flag.flag-sk{
-	background-image: url(../img/flags/flag-slovak.svg);
+	background-image: url('../img/flags/flag-slovak.svg');
 }
 html[lang='cs'] #large-language-panel #language-large-cs,
-html[lang='cs'] #language-panel .lang-cs,
+html[lang='cs'] .language-panel .lang-cs,
 html[lang='sk'] #large-language-panel #language-large-sk,
-html[lang='sk'] #language-panel .lang-sk,
+html[lang='sk'] .language-panel .lang-sk,
 html[lang='en'] #large-language-panel #language-large-en,
-html[lang='en'] #language-panel .lang-en{
+html[lang='en'] .language-panel .lang-en{
 	display: none;
 }
 /*******************
@@ -304,16 +310,28 @@ html[lang='en'] #language-panel .lang-en{
 *******************/
 .jumbo-wrapper{
 	height: 90vh;
-	background-image: url('../img/jumbo-1-small.jpg');
 	background-color: #aaa;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center 0;
 }
+.jumbo-show{
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center 0;
+	transition: opacity 1s ease-in;
+}
+.jumbo-show + .jumbo-show{opacity: 0;}
+.jumbo-wrapper .show-1{background-image: url('../img/jumbo/jumbo-1-small.jpg');}
+.jumbo-wrapper .show-2{background-image: url('../img/jumbo/jumbo-2.jpg');}
+.jumbo-wrapper .show-3{background-image: url('../img/jumbo/jumbo-3.jpg');}
+.jumbo-wrapper .show-4{background-image: url('../img/jumbo/jumbo-4.jpg');}
+.jumbo-wrapper .show-5{background-image: url('../img/jumbo/jumbo-5.jpg');}
 @media (min-width: 768px){
-	.jumbo-wrapper{
-		background-image: url('../img/jumbo-1.jpg');
-	}
+	.jumbo-wrapper .show-1{background-image: url('../img/jumbo/jumbo-1.jpg');}
+	.jumbo-wrapper .show-2{background-image: url('../img/jumbo/jumbo-2.jpg');}
 }
 .jumbo{
 	flex: 1;
@@ -519,11 +537,13 @@ html[lang='en'] #language-panel .lang-en{
 	.masonry-wrapper:last-child{
 		margin-right: -10px;
 	}
+	.masonry-alt .masonry-wrapper{margin:0 !important;}
 }
 .masonry-item{
 	position: relative;
 	height: 300px;
-	margin: 10px;
+	margin: 20px 0;
+	padding: 20px;
 	background-color: rgba(100,100,255,.4);
 	background-size: cover;
 	background-position: center center;
@@ -542,6 +562,20 @@ html[lang='en'] #language-panel .lang-en{
 .masonry-item h2{
 	color: #fff;
 	margin: 10px 0;
+}
+.masonry-alt{
+	width: inherit !important;
+	max-width: inherit !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+/*.masonry-alt .masonry-item{
+	margin: 0 !important;
+}*/
+@media (min-width: 992px){
+	.masonry-alt .masonry-item{
+		margin: 0 !important;
+	}
 }
 /*******************
 	QUOTE
