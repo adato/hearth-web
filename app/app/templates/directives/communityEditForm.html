@@ -77,7 +77,7 @@
 							{{:: 'COMMUNITY_INTERESTS' | translate }}
 						</label>
 						<tags-input refocus-input-on-tab class="tags" ng-model="community.interests" placeholder="{{:: 'COMMUNITY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false" add-on-comma="true" add-on-space="false" allowed-tags-pattern="^[a-zA-Z0-9\sĚŠČŘŽÝÁÍÉÚŮĎŤŇÓěščřžýáíéúůďťňó\.]+$"
-										min-length="0" max-length="500">
+						min-length="0" max-length="500">
 							<auto-complete source="queryKeywords($query)" min-length="2" debounce-delay="400" max-results-to-show="8"></auto-complete>
 						</tags-input>
 					</div>
@@ -189,7 +189,7 @@
 					<select ng-change="changeSelectValue(adminChangeId)" class="pass-admin-select select-style" ng-model="adminChangeId" ng-options="c._id as c.name for c in communityMembers"></select>
 				</span>
 				<button ng-click="confirmBox('COMMUNITY.DELEGATE_ADMIN_LABEL', 'COMMUNITY.DELEGATE_ADMIN_ARE_YOU_SURE', change, adminChangeId, this)" class="button-send right" analytics-custom analytics-event="delegate admin community" analytics-category="My community"
-								analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
+				analytics-value="5">{{:: 'COMMUNITY_CHANGE_ADMIN_BUTTON' | translate }}</button>
 			</section>
 			<section class="change-admin" ng-if="community.member_count == 1">
 				<br /> {{:: 'COMMUNITY_PASS_ADMIN_ONLY_WHEN_MORE_MEMBERS' | translate }}

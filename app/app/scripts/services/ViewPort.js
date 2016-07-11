@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('Viewport', [
-	'$translate', '$window',
-	function($translate, $window) {
+	'$translate', '$window', '$log',
+	function($translate, $window, $log) {
 
 		var viewportHeight;
 		var self = this;
@@ -94,7 +94,7 @@ angular.module('hearth.services').service('Viewport', [
 					self.scroll(distance, offset, base);
 				}
 			} catch (e) {
-				if (e === "NoElementErr") console.log("element not found");
+				if (e === "NoElementErr") $log.error("ViewPort.js: scrollIfHidden element not found");
 			}
 		};
 

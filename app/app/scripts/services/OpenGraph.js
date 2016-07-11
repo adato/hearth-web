@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').service('OpenGraph', [
-	'$rootScope',
-	function($rootScope) {
+	'$rootScope', '$log',
+	function($rootScope, $log) {
 		var self = this,
 			defaults = {
 				title: '',
@@ -71,7 +71,7 @@ angular.module('hearth.services').service('OpenGraph', [
 			}
 			self.setImageData(image, imageWidth, imageHeight);
 
-			// console.log($rootScope.og_title + ' -- ' + $rootScope.og_description);
+			$rootScope.debug && $log.log("Opengraph debug: ", $rootScope.og_title + ' -- ' + $rootScope.og_description);
 		};
 
 		/**
