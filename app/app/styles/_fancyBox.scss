@@ -5,3 +5,36 @@
 .fancybox-overlay {
 	z-index: 99999 !important;
 }
+
+// overriden image paths from "jquery.fancybox.css"
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+	background-image: url('../vendor/fancybox/source/fancybox_sprite.png');
+}
+
+#fancybox-loading div {
+	background: url('../vendor/fancybox/source/fancybox_loading.gif') center center no-repeat;
+}
+
+.fancybox-nav {
+	background: transparent url('../vendor/fancybox/source/blank.gif'); /* helps IE */
+}
+
+.fancybox-overlay {
+	background: url('../vendor/fancybox/source/.png');
+}
+
+
+/*Retina graphics!*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	   only screen and (min--moz-device-pixel-ratio: 1.5),
+	   only screen and (min-device-pixel-ratio: 1.5){
+
+	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+		background-image: url('../vendor/fancybox/source/fancybox_sprite@2x.png');
+	}
+
+	#fancybox-loading div {
+		background-image: url('../vendor/fancybox/source/fancybox_loading@2x.gif');
+	}
+}
