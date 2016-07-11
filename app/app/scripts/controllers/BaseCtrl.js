@@ -878,22 +878,17 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		};
 
 		// start message websocket
-		/*$rootScope.$on('onUserLogin', function(event, data) {
-			Websocket.subscribe('MessagesChannel').then(function(message) {
-				console.log('websocket says:', message);
-			}, function(err) {
-				console.log(err.error);
+		$rootScope.$on('onUserLogin', function(event, data) {
+			var consumer = new ActionCableChannel("MessagesChannel", {
+				user_id: $.cookie('user_id')
 			});
-		});*/
 
-		var consumer = new ActionCableChannel("MessagesChannel", {
-			user_id: $.cookie('user_id')
-		});
+			var callback = function(message) {
+				$window.alert(message);
+			};
 
-		consumer.subscribe(function(message) {
-			console.log(message);
+			consumer.subscribe(callback).then(function() {});
 		});
-		consumer.send('message');
 
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;
