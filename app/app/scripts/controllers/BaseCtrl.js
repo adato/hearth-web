@@ -856,11 +856,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// start message websocket
 		$rootScope.$on('onUserLogin', function(event, data) {
 			var consumer = new ActionCableChannel("MessagesChannel", {
-				user_id: $.cookie('user_id')
+				token: $.cookie("authToken");
 			});
 
 			var callback = function(message) {
-				$window.alert(message);
+				$window.alert(message.text);
 			};
 
 			consumer.subscribe(callback).then(function() {});
