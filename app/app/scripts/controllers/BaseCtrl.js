@@ -884,7 +884,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 
 			var callback = function(message) {
-				$window.alert(message.text);
+				console.log(message);
+				//$window.alert(message.text);
 			};
 
 			consumer.subscribe(callback).then(function() {});
