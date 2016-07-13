@@ -856,7 +856,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		// start message websocket
 		$rootScope.$on('onUserLogin', function(event, data) {
 			var consumer = new ActionCableChannel("MessagesChannel", {
-				token: $.cookie("authToken");
+				token: $.cookie("authToken")
 			});
 
 			var callback = function(message) {
