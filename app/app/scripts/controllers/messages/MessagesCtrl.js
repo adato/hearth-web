@@ -103,19 +103,20 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (_loadLock) return false;
 			_loadLock = true;
 
-			$timeout.cancel(_loadTimeoutPromise);
+			//$timeout.cancel(_loadTimeoutPromise);
 
 			var conf = {
 				newer: $scope.conversations[0].last_message_time,
 				exclude_self: true
 			};
+
 			angular.extend(conf, $scope.getFilter());
 
-			Messenger.loadCounters();
+			//Messenger.loadCounters();
 			Conversations.get(conf, function(res) {
 				// if we didnt end loading..
-				if (_loadTimeoutPromise !== -1)
-					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				/*if (_loadTimeoutPromise !== -1)
+					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);*/
 				_loadLock = false;
 
 				if (res.conversations.length) {
@@ -123,9 +124,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				}
 			}, function() {
 				_loadLock = false;
-				if (_loadTimeoutPromise !== -1)
-					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				/*if (_loadTimeoutPromise !== -1)
+					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);*/
 			});
+		};
+
+		$scope.loadNewConversationsSocket = function(ev, args) {
+			console.log(args);
+			$scope.loadNewConversations;
 		};
 
 		$scope.removeDuplicitConversations = function(list) {
@@ -191,13 +197,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// dont load counter when we click on conversation detail
 			// (and change URL)
-			Messenger.disableLoading();
+			//Messenger.disableLoading();
 			$location.url("/messages/" + info._id + "?" + jQuery.param($location.search()));
 
 
 			// enable counters loading after URL is changed
 			$timeout(function() {
-				Messenger.enableLoading();
+				//Messenger.enableLoading();
 				$scope.$broadcast('updateTitle');
 			});
 		};
@@ -343,7 +349,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				else if (list.length)
 					$scope.showConversation(list[0], 0);
 
-				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				//_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 			});
 		};
 
@@ -415,7 +421,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					$scope.showConversation(list[0], 0, true);
 				}
 
-				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				//_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 
 			});
 		};
@@ -431,6 +437,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('$stateChangeSuccess', changeDetail);
 
 		UnauthReload.check();
+		$scope.$on('WS_NewMessage', $scope.loadNewConversationsSocket);
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('conversationCreated', $scope.loadCounters);
@@ -442,8 +449,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.$on('$destroy', function() {
 			// stop pulling new conversations on directive destroy
-			$timeout.cancel(_loadTimeoutPromise);
-			_loadTimeoutPromise = -1;
+			/*$timeout.cancel(_loadTimeoutPromise);
+			_loadTimeoutPromise = -1;*/
 		});
 	}
 ]);

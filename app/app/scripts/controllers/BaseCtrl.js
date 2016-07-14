@@ -90,7 +90,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, next) {
 			// when changed route, load conversation counters
-			Auth.isLoggedIn() && Messenger.loadCounters();
+			//Auth.isLoggedIn() && Messenger.loadCounters();
 			ngDialog.close();
 
 			//close small-resolution menu
@@ -884,8 +884,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 
 			var callback = function(message) {
-				console.log(message);
-				//$window.alert(message.text);
+				Messenger.incrUnreaded();
+				$rootScope.$broadcast('WS_NewMessage', message);
 			};
 
 			consumer.subscribe(callback).then(function() {});

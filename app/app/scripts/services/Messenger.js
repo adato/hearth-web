@@ -27,6 +27,7 @@ angular.module('hearth.services').service('Messenger', [
 				_loadingCounters = false;
 				self.counters = res;
 				$rootScope.messagesCounters = res;
+				console.log('counters');
 				done && done(res);
 			}, function() {
 				_loadingCounters = false;
