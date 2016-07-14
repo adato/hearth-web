@@ -861,6 +861,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			var callback = function(message) {
 				console.log(message);
+				$rootScope.$broadcast('WS_NewMessage');
 				//$window.alert(message.text);
 			};
 

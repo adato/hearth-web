@@ -432,6 +432,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('$stateChangeSuccess', changeDetail);
 
 		UnauthReload.check();
+		$scope.$on('WS_NewMessage', $scope.loadNewConversations);
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('conversationCreated', $scope.loadCounters);
