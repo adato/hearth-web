@@ -129,6 +129,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
+		$scope.loadNewConversationsSocket = function(ev, args) {
+			console.log(args);
+			$scope.loadNewConversations;
+		};
+
 		$scope.removeDuplicitConversations = function(list) {
 			list.forEach(function(item) {
 				$scope.removeConversationFromList(null, item._id, true);
@@ -432,7 +437,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('$stateChangeSuccess', changeDetail);
 
 		UnauthReload.check();
-		$scope.$on('WS_NewMessage', $scope.loadNewConversations);
+		$scope.$on('WS_NewMessage', $scope.loadNewConversationsSocket);
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('conversationCreated', $scope.loadCounters);
