@@ -14,6 +14,11 @@
 			</label>
 			<div class="error" ng-show="showError.recipients_ids">{{:: 'MESSAGES.ADD.ERR.RECIPIENTS_NOT_FILLED' | translate }}</div>
 		</div>
+		<div class="form-section" ng-if="userHasRight('post.suspend')">
+			<checkbox class="display-inline-block" model="message.from_admin" value="true" value-off="false" on-update="void()">
+				{{:: 'MESSAGES.ADD.AS_ADMIN' | translate }}
+			</checkbox>
+		</div>
 		<div class="form-section">
 			<label>
 				{{:: 'MESSAGES.ADD.SUBJECT_LABEL' | translate }}

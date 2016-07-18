@@ -225,7 +225,8 @@
 			"ERR": {
 				"RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy. Jako na poště."
 			},
-			"RECIPIENT": "Příjemce:"
+			"RECIPIENT": "Příjemce:",
+			"AS_ADMIN": "Odeslat jako správce"
 		},
 		"LIST": {
 			"CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",

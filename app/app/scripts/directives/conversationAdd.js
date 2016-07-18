@@ -22,6 +22,8 @@ angular.module('hearth.directives').directive('conversationAdd', [
 			},
 			templateUrl: 'templates/directives/conversationAdd.html',
 			link: function($scope, element) {
+				$scope.userHasRight = $rootScope.userHasRight;
+
 				$scope.sendingMessage = false;
 				$scope.showError = {
 					text: false,
@@ -31,7 +33,8 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					recipients_ids: [],
 					title: '',
 					text: '',
-					attachments_attributes: ''
+					attachments_attributes: '',
+					from_admin: false
 				};
 
 				$scope.hideRecipientsError = function() {
@@ -108,6 +111,9 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				 * Validate message and send to API
 				 */
 				$scope.addMessage = function(msg) {
+
+					return console.log(msg);
+
 					if (!$scope.isValid(msg)) {
 						return false;
 					}
