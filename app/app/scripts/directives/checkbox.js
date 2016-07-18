@@ -16,13 +16,18 @@ angular.module('hearth.directives').directive('checkbox', function() {
 			model: '=',
 			value: '=',
 			valueOff: '=',
-			onUpdate: '&'
+			onUpdate: '&',
+			disable: '=?'
 		},
 		templateUrl: 'templates/directives/checkbox.html',
 		link: function(scope, el) {
 			scope.checked = false;
+			// if (scope.disable) {
+			// 	el.attr('disabled', 'true');
+			// }
 
 			scope.toggle = function() {
+				if (scope.disable) return;
 				scope.checked = !scope.checked;
 
 				if (angular.isArray(scope.model)) {
