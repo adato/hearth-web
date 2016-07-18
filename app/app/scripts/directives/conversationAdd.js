@@ -34,7 +34,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					title: '',
 					text: '',
 					attachments_attributes: '',
-					from_admin: false
+					from_admin: $scope.recipient.only_replies
 				};
 
 				$scope.hideRecipientsError = function() {
