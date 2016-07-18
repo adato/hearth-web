@@ -9,10 +9,12 @@
         "indent_level": 0,
         "indent_char": "\t",
         "indent_size": 1,
-        "max_preserve_newlines": 0,
+        "max_preserve_newlines": 5,
         "preserve_newlines": true,
         "unformatted": ["a", "span", "img", "code", "pre", "sub", "sup", "em", "strong", "b", "i", "u", "strike", "big", "small", "pre", "h1", "h2", "h3", "h2", "h5", "h6"],
-        "wrap_line_length": 0
+        "wrap-line-length": 120,
+        "wrap-attributes": "force",
+        "wrap-attributes-indent-size": "2"
     },
     "css": {
         "allowed_file_extensions": ["css", "scss", "sass", "less"],
