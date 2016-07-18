@@ -44,6 +44,7 @@ angular.module('hearth.directives').directive('checkbox', function() {
 					});
 			};
 
+			// keyboard support - toggle checkbox on spacebar press
 			var SPACE = 32;
 			el[0].querySelector('.qs-keypress-event-handle').addEventListener('keypress', function(event) {
 				var key = event.keyCode || event.charCode;
