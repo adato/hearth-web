@@ -884,8 +884,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 
 			var callback = function(message) {
-				Messenger.incrUnreaded();
-				$rootScope.$broadcast('WS_NewMessage', message);
+				$rootScope.$broadcast('WSNewMessage', message);
 			};
 
 			consumer.subscribe(callback).then(function() {});

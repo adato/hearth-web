@@ -97,8 +97,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadNewConversations = function() {
 			$scope.$broadcast('loadNewMessages');
 
-			if (!$scope.conversations.length)
+			if (!$scope.conversations.length) {
 				return $scope.loadFirstConversations();
+			}
 
 			/*if (_loadLock) return false;
 			_loadLock = true;*/
@@ -129,9 +130,9 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			});
 		};
 
-		$scope.loadNewConversationsSocket = function(ev, args) {
-			console.log(args);
-			$scope.loadNewConversations;
+		$scope.loadNewConversationsBySocket = function(message) {
+			//Messenger.incrUnreaded();
+			$scope.$broadcast('loadNewMessages');
 		};
 
 		$scope.removeDuplicitConversations = function(list) {
@@ -437,7 +438,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('$stateChangeSuccess', changeDetail);
 
 		UnauthReload.check();
-		$scope.$on('WS_NewMessage', $scope.loadNewConversationsSocket);
+		$scope.$on('WSNewMessage', $scope.loadNewConversationsBySocket);
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('conversationCreated', $scope.loadCounters);
