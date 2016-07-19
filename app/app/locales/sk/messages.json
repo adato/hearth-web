@@ -69,10 +69,27 @@
 	"ACTIVE_KEYWORDS_FILTER": "Filter kľúčových slov",
 	"ADD": "Pridať",
 	"ADD_KEYWORDS": "Kľúčové slová, oddelené čiarkou",
-	"AD_REMOVE_ARE_YOU_SURE": "Ste si istý, že chcete zmazať túto položku? Potom ju už nikto nikdy neuvidí!",
+	"POST": {
+		"REMOVE": {
+			"ARE_YOU_SURE": "Ste si istý, že chcete zmazať túto položku? Potom ju už nikto nikdy neuvidí!",
+			"LABEL": "Odstrániť inzerát"
+		},
+		"SUSPEND": {
+			"LABEL": "Pozastaviť inzerát",
+			"ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
+			"CONNECTED_MESSAGE_PLACEHOLDER": "A pokud chceš, můžeš pro uživatele připojit nějakou zprávu."
+		},
+		"RESUME": {
+			"LABEL": "Obnoviť inzerát"
+		},
+		"EDIT": {
+			"LABEL": "Editovať inzerát"
+		},
+		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť autora inzerátu.",
+		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť typ."
+	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Položka sa nedá vymazať. Radšej sa s tým zmierte.",
 	"AD_REMOVE_DONE": "A je to! Položka bola úspešne vymazaná.",
-	"AD_REMOVE_LABEL": "Odstrániť inzerát",
 	"AD_REPLY_PLACEHOLDER": "Máte záujem? Tak odpovedzte!",
 	"AGREE_WITH_TERMS_BUTTON_LABEL": "Súhlasím s podmienkami použitia",
 	"AGREE_WITH_TERMS_POPUP": "Súhlasím s <a href=\"\">podmienkami použitia<\/a>",
@@ -859,11 +876,7 @@
 	"LOCATION_DOES_NOT_MATTER": "Na mieste nezáleží",
 	"WRITTEN_FROM_ALLOWED": "Napísané {{len}} z {{maxLen}} povolených znakov",
 	"AD_REPORT_CONFIRM": "Nahlásiť inzerát",
-	"AD_PAUSE_LABEL": "Pozastaviť inzerát",
 	"AD_ADD_LABEL": "Vytvoriť inzerát",
-	"AD_RESUME_LABEL": "Obnoviť inzerát",
-	"AD_EDIT_LABEL": "Editovať inzerát",
-	"AD_PAUSE_ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
 	"AD_REPORT_ARE_YOU_SURE": "Naozaj chcete nahlásiť tento inzerát ako škodlivý?",
 	"TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadajte, čo vás zaujíma...",
 	"NOTICE_EMPTY_DATA": "Zatiaľ tu nie sú žiadne záznamy.",
@@ -1265,10 +1278,6 @@
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Vyberte inzerát",
 	"SEND_COMMUNITY_RATING": "Odoslať hodnotenie",
 	"TOP_BAR_MESSAGES": "Správy",
-	"POST": {
-		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť autora inzerátu.",
-		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť typ."
-	},
 	"ADD_CONTENT_AS_USER": "ako",
 	"REPLY": "Odpovedať",
 	"SELECT_USERS": "Vyberte jedného alebo viac príjemcov",

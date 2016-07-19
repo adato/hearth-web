@@ -69,10 +69,27 @@
 	"ACTIVE_KEYWORDS_FILTER": "Only with keywords",
 	"ADD": "Add",
 	"ADD_KEYWORDS": "Add keywords, separated by commas.",
-	"AD_REMOVE_ARE_YOU_SURE": "Are you sure you want to delete this item? No one will see it again. Never ever!",
+	"POST": {
+		"REMOVE": {
+			"ARE_YOU_SURE": "Are you sure you want to delete this item? No one will see it again. Never ever!",
+			"LABEL": "Delete"
+		},
+		"SUSPEND": {
+			"LABEL": "Suspend post",
+			"ARE_YOU_SURE": "Do you want to suspend this post?",
+			"CONNECTED_MESSAGE_PLACEHOLDER": "A pokud chceš, můžeš pro uživatele připojit nějakou zprávu."
+		},
+		"RESUME": {
+			"LABEL": "Resume"
+		},
+		"EDIT": {
+			"LABEL": "Edit"
+		},
+		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
+		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed."
+	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Item cannot be deleted. You'd better accept that and move on.",
 	"AD_REMOVE_DONE": "Done! Item has been successfully deleted.",
-	"AD_REMOVE_LABEL": "Delete",
 	"AD_REPLY_PLACEHOLDER": "Are you interested? Wonderful... Reply here...",
 	"AGREE_WITH_TERMS_BUTTON_LABEL": "I agree with the terms of use.",
 	"AGREE_WITH_TERMS_POPUP": "<p>I agree with the <a>terms of use<\/a>.<\/p>",
@@ -848,11 +865,7 @@
 	"LOCATION_DOES_NOT_MATTER": "Location does not matter",
 	"WRITTEN_FROM_ALLOWED": "{{len}} characters used from {{maxLen}} total",
 	"AD_REPORT_CONFIRM": "Report post",
-	"AD_PAUSE_LABEL": "Suspend post",
 	"AD_ADD_LABEL": "Create post",
-	"AD_RESUME_LABEL": "Resume",
-	"AD_EDIT_LABEL": "Edit",
-	"AD_PAUSE_ARE_YOU_SURE": "Do you want to suspend this post?",
 	"AD_REPORT_ARE_YOU_SURE": "Do you want to report this post as abuse?",
 	"TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Tell us what are you looking for...",
 	"NOTICE_EMPTY_DATA": "There are no entries here.",
@@ -1233,10 +1246,6 @@
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
 	"SEND_COMMUNITY_RATING": "Send rating",
 	"TOP_BAR_MESSAGES": "Messages",
-	"POST": {
-		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
-		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed."
-	},
 	"ADD_CONTENT_AS_USER": "as",
 	"REPLY": "Reply",
 	"SELECT_USERS": "Select one or more recipients",
