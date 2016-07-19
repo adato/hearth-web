@@ -21,7 +21,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		var _loadLimit = 20; // pull requests interval in ms
 		var _loadTimeout = 30000; // pull requests interval in ms
-		var _loadLock = false; // pull requests interval in ms
+		//var _loadLock = false; // pull requests interval in ms
 		var _loadTimeoutPromise = false;
 
 		if (!Object.keys($scope.filter).length) {
@@ -100,8 +100,8 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (!$scope.conversations.length)
 				return $scope.loadFirstConversations();
 
-			if (_loadLock) return false;
-			_loadLock = true;
+			/*if (_loadLock) return false;
+			_loadLock = true;*/
 
 			//$timeout.cancel(_loadTimeoutPromise);
 
@@ -116,15 +116,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			Conversations.get(conf, function(res) {
 				// if we didnt end loading..
 				/*if (_loadTimeoutPromise !== -1)
-					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);*/
-				_loadLock = false;
+					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				_loadLock = false;*/
 
 				if (res.conversations.length) {
 					$scope.prependConversations($scope.deserialize(res.conversations));
 				}
 			}, function() {
-				_loadLock = false;
-				/*if (_loadTimeoutPromise !== -1)
+				/*_loadLock = false;
+				if (_loadTimeoutPromise !== -1)
 					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);*/
 			});
 		};
