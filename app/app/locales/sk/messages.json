@@ -42,7 +42,7 @@
 			"SHARE_LINK": "Zdieľať odkaz",
 			"UNBOOKMARK_POST": "Odobrať z obľúbených",
 			"BOOKMARK_POST": "Pridať k obľúbeným",
-			"HIDE_POST": "Skrýt tento inzerát"
+			"HIDE_POST": "Skryť tento inzerát"
 		},
 		"EDIT_FILTER": "Upraviť filter",
 		"FILTER_NOT_FOUND": "Hups, zadanej kombinácii nezodpovedá vôbec, ale vôbec žiadny inzerát.<br \/>Čo takto nejaké to kritérium ubrať?",
@@ -69,10 +69,27 @@
 	"ACTIVE_KEYWORDS_FILTER": "Filter kľúčových slov",
 	"ADD": "Pridať",
 	"ADD_KEYWORDS": "Kľúčové slová, oddelené čiarkou",
-	"AD_REMOVE_ARE_YOU_SURE": "Ste si istý, že chcete zmazať túto položku? Potom ju už nikto nikdy neuvidí!",
+	"POST": {
+		"REMOVE": {
+			"ARE_YOU_SURE": "Ste si istý, že chcete zmazať túto položku? Potom ju už nikto nikdy neuvidí!",
+			"LABEL": "Odstrániť inzerát"
+		},
+		"SUSPEND": {
+			"LABEL": "Pozastaviť inzerát",
+			"ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
+			"CONNECTED_MESSAGE_PLACEHOLDER": "A pokud chceš, můžeš pro uživatele připojit nějakou zprávu."
+		},
+		"RESUME": {
+			"LABEL": "Obnoviť inzerát"
+		},
+		"EDIT": {
+			"LABEL": "Editovať inzerát"
+		},
+		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť autora inzerátu.",
+		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť typ."
+	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Položka sa nedá vymazať. Radšej sa s tým zmierte.",
 	"AD_REMOVE_DONE": "A je to! Položka bola úspešne vymazaná.",
-	"AD_REMOVE_LABEL": "Odstrániť inzerát",
 	"AD_REPLY_PLACEHOLDER": "Máte záujem? Tak odpovedzte!",
 	"AGREE_WITH_TERMS_BUTTON_LABEL": "Súhlasím s podmienkami použitia",
 	"AGREE_WITH_TERMS_POPUP": "Súhlasím s <a href=\"\">podmienkami použitia<\/a>",
@@ -225,7 +242,8 @@
 			"ERR": {
 				"RECIPIENTS_NOT_FILLED": "Nezabudnite vyplniť príjemcu správy. Presne ako na pošte."
 			},
-			"RECIPIENT": "Príjemca:"
+			"RECIPIENT": "Príjemca:",
+			"AS_ADMIN": "Odeslat jako správce"
 		},
 		"LIST": {
 			"CONVERSATION_IS_EMPTY": "Všetci používatelia opustili konverzáciu.",
@@ -858,11 +876,7 @@
 	"LOCATION_DOES_NOT_MATTER": "Na mieste nezáleží",
 	"WRITTEN_FROM_ALLOWED": "Napísané {{len}} z {{maxLen}} povolených znakov",
 	"AD_REPORT_CONFIRM": "Nahlásiť inzerát",
-	"AD_PAUSE_LABEL": "Pozastaviť inzerát",
 	"AD_ADD_LABEL": "Vytvoriť inzerát",
-	"AD_RESUME_LABEL": "Obnoviť inzerát",
-	"AD_EDIT_LABEL": "Editovať inzerát",
-	"AD_PAUSE_ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
 	"AD_REPORT_ARE_YOU_SURE": "Naozaj chcete nahlásiť tento inzerát ako škodlivý?",
 	"TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadajte, čo vás zaujíma...",
 	"NOTICE_EMPTY_DATA": "Zatiaľ tu nie sú žiadne záznamy.",
@@ -949,7 +963,7 @@
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
-		"POST_HID_SUCCESFULLY": "Bezva. Skrytí inzerátu se povedlo, už se ti nebude na tržišti a ve vyhledávání zobrazovat."
+		"POST_HID_SUCCESFULLY": "Skvelé. Skrytie inzerátu sa podarilo, už sa ti nebude na tržnici a vo vyhľadávání zobrazovať."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázok má malé rozlíšenie. Mimimum je 400x400 pixelov.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatiaľ tu nemáte žiadne inzeráty, môžete si ich ale pridať.",
@@ -1264,10 +1278,6 @@
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Vyberte inzerát",
 	"SEND_COMMUNITY_RATING": "Odoslať hodnotenie",
 	"TOP_BAR_MESSAGES": "Správy",
-	"POST": {
-		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť autora inzerátu.",
-		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už niekto odpovedal, a preto už nie je možné zmeniť typ."
-	},
 	"ADD_CONTENT_AS_USER": "ako",
 	"REPLY": "Odpovedať",
 	"SELECT_USERS": "Vyberte jedného alebo viac príjemcov",
@@ -1438,13 +1448,13 @@
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		},
 		"HIDE_POST": {
-			"TEXT": "<p><em>Tip:<\/em> Kter&yacute;koli inzer&aacute;t, kter&yacute; v&aacute;s obtěžuje a nechcete ho již vidět, můžete označit jako skryt&yacute;.<\/p>"
+			"TEXT": "<p><em>Tip:<\/em> Ktor&yacute;koľvek inzer&aacute;t, ktor&yacute; v&aacute;s obťažuje a nechcete ho už vidieť, m&ocirc;žete označiť ako skryt&yacute;.<\/p>"
 		}
 	},
 	"energy_TOOLTIP": "Aktivita, myšlenka...",
 	"mass_TOOLTIP": "Věci...",
 	"information_TOOLTIP": "Znalosti, tipy...",
-	"AD_HIDE_LABEL": "Skrýt inzerát",
-	"AD_HIDE_ARE_YOU_SURE": "Po skrytí se ti tento inzerát nebude zobrazovat na tržišti ani ve vyhledávání. Na profilu daného uživatele ho i nadále uvidíš, stejně tak se budeš moct dostat na detail tohoto inzerátu.",
-	"HIDE_AD": "Skrýt inzerát"
+	"AD_HIDE_LABEL": "Skryť inzerát",
+	"AD_HIDE_ARE_YOU_SURE": "Po skrytí sa ti tento inzerát nebude zobrazovať na tržnici ani vo vyhľadávání. V profile daného užívateľa ho aj naďalej uvidíš, rovnako sa budeš môcť dostať na detail tohto inzerátu.",
+	"HIDE_AD": "Skryť inzerát"
 }

@@ -712,8 +712,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			// open dialog window and inject new scope
 			var dialog = ngDialog.open({
-				template: $$config.modalTemplates + 'confirmBox.html',
-				controller: 'ConfirmBox',
+				template: $$config.modalTemplates + 'suspendItem.html',
+				controller: 'ItemSuspend',
 				scope: scope,
 				className: 'ngdialog-tutorial ngdialog-theme-default ngdialog-confirm-box',
 				closeByDocument: false,
@@ -753,29 +753,31 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		// == deactivate / prolong / activate post item
 		// and close modal or call given callback
-		$rootScope.pauseToggle = function(item, cb) {
+		/**
+		 *	@param paramObject {Object} [optional] - message - the admin message to send to the server along with suspend
+		 */
+		$rootScope.pauseToggle = function(item, paramObject, cb) {
 			var Action, actionType;
+			paramObject = paramObject || {};
 
 			// suspend or play based on post active state
 			if ($rootScope.isPostActive(item)) {
-
 				Action = Post.suspend;
 				actionType = 'suspend';
 			} else {
-
 				// if item is expired, then prolong him, or just resume
 				Action = (item.state == "expired") ? Post.prolong : Post.resume;
 				actionType = 'activate';
 			}
 
 			$rootScope.globalLoading = true;
-			// call service
-			Action({
+			var parameters = {
 				id: item._id
-			}, function(res) {
-
-				if (angular.isFunction(cb))
-					cb(item);
+			};
+			if (paramObject.message) parameters.message = paramObject.message;
+			// call service
+			Action(parameters, function(res) {
+				if (angular.isFunction(cb)) cb(item);
 
 				$rootScope.$broadcast('postUpdated', res);
 				Notify.addSingleTranslate('NOTIFY.POST_UPDATED_SUCCESFULLY', Notify.T_SUCCESS);
@@ -783,9 +785,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			}, function(err) {
 				$rootScope.globalLoading = false;
-
 				if (err.status == 422) {
-
 					// somethings went wrong - post is not valid
 					// open edit box and show errors
 					$rootScope.editItem(item, true);

@@ -69,10 +69,27 @@
 	"ACTIVE_KEYWORDS_FILTER": "Filtr klíčových slov",
 	"ADD": "Přidat",
 	"ADD_KEYWORDS": "Klíčová slova, oddělená čárkou",
-	"AD_REMOVE_ARE_YOU_SURE": "Jsi si jist(á), že chceš smazat tuto položku? Pak už ji nikdo nikdy neuvidí!",
+	"POST": {
+		"REMOVE": {
+			"ARE_YOU_SURE": "Jsi si jist(á), že chceš smazat tuto položku? Pak už ji nikdo nikdy neuvidí!",
+			"LABEL": "Odstranit inzerát"
+		},
+		"SUSPEND": {
+			"LABEL": "Pozastavit inzerát",
+			"ARE_YOU_SURE": "Doopravdy chceš pozastavit tento inzerát?",
+			"CONNECTED_MESSAGE_PLACEHOLDER": "A pokud chceš, můžeš pro uživatele připojit nějakou zprávu."
+		},
+		"RESUME": {
+			"LABEL": "Obnovit inzerát"
+		},
+		"EDIT": {
+			"LABEL": "Editovat inzerát"
+		},
+		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit autora.",
+		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit typ."
+	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Nejde vymazat položku. Radši se s tím smiř.",
 	"AD_REMOVE_DONE": "A je to! Položka byla úspěšně vymazána.",
-	"AD_REMOVE_LABEL": "Odstranit inzerát",
 	"AD_REPLY_PLACEHOLDER": "Máš zájem? Můžeš odpovídat...",
 	"AGREE_WITH_TERMS_BUTTON_LABEL": "Souhlasím s podmínkami použití",
 	"AGREE_WITH_TERMS_POPUP": "Souhlasím s <a href=\"\">podmínkami použití<\/a>",
@@ -225,7 +242,8 @@
 			"ERR": {
 				"RECIPIENTS_NOT_FILLED": "Nezapomeňte vyplnit příjemce zprávy. Jako na poště."
 			},
-			"RECIPIENT": "Příjemce:"
+			"RECIPIENT": "Příjemce:",
+			"AS_ADMIN": "Odeslat jako správce"
 		},
 		"LIST": {
 			"CONVERSATION_IS_EMPTY": "Všichni uživatelé opustili konverzaci.",
@@ -858,11 +876,7 @@
 	"LOCATION_DOES_NOT_MATTER": "Na místě nezáleží",
 	"WRITTEN_FROM_ALLOWED": "Napsáno {{len}} z {{maxLen}} povolených znaků",
 	"AD_REPORT_CONFIRM": "Nahlásit inzerát",
-	"AD_PAUSE_LABEL": "Pozastavit inzerát",
 	"AD_ADD_LABEL": "Vytvořit inzerát",
-	"AD_RESUME_LABEL": "Obnovit inzerát",
-	"AD_EDIT_LABEL": "Editovat inzerát",
-	"AD_PAUSE_ARE_YOU_SURE": "Doopravdy chceš pozastavit tento inzerát?",
 	"AD_REPORT_ARE_YOU_SURE": "Opravdu chceš nahlásit tento inzerát jako nevhodný?",
 	"TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Zadej, co tě zajímá...",
 	"NOTICE_EMPTY_DATA": "Zatím zde nejsou žádné záznamy.",
@@ -1264,10 +1278,6 @@
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"SEND_COMMUNITY_RATING": "Odeslat hodnocení",
 	"TOP_BAR_MESSAGES": "Zprávy",
-	"POST": {
-		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit autora.",
-		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit typ."
-	},
 	"ADD_CONTENT_AS_USER": "jako",
 	"REPLY": "Odpovědět",
 	"SELECT_USERS": "Vyberte jednoho nebo více příjemců",
