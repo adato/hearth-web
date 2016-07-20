@@ -34,7 +34,7 @@ angular.module('hearth.directives').directive('conversationAdd', [
 					title: '',
 					text: '',
 					attachments_attributes: '',
-					from_admin: $scope.recipient.only_replies
+					from_admin: (($scope.recipient && $scope.recipient.only_replies) || false)
 				};
 
 				$scope.hideRecipientsError = function() {
@@ -111,8 +111,6 @@ angular.module('hearth.directives').directive('conversationAdd', [
 				 * Validate message and send to API
 				 */
 				$scope.addMessage = function(msg) {
-
-					return console.log(msg);
 
 					if (!$scope.isValid(msg)) {
 						return false;
