@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('User', [
-	'$resource', '$filter',
-	function($resource, $filter) {
+	'$resource', '$filter', 'ProfileUtils',
+	function($resource, $filter, ProfileUtils) {
 		return $resource($$config.apiPath + '/users/:_id', {
 			_id: '@_id'
 		}, {
@@ -20,7 +20,8 @@ angular.module('hearth.services').factory('User', [
 				}
 			},
 			get: {
-				method: 'GET'
+				method: 'GET',
+				transformResponse: [ProfileUtils.single.getLocationJson]
 			},
 			getFullInfo: {
 				url: $$config.apiPath + '/profile',
@@ -41,7 +42,10 @@ angular.module('hearth.services').factory('User', [
 			},
 			getPosts: {
 				url: $$config.apiPath + '/users/:user_id/posts',
-				method: 'GET'
+				method: 'GET',
+				// transformResponse: [ProfileUtils.single.getLocationJson.bind({
+				// 	prop: 'data'
+				// })]
 			},
 			getConnections: {
 				url: $$config.apiPath + '/users/connections',
@@ -58,7 +62,8 @@ angular.module('hearth.services').factory('User', [
 				method: 'PUT',
 				errorNotify: {
 					code: 'NOTIFY.USER_PROFILE_CHANGE_FAILED'
-				}
+				},
+				transformRequest: [ProfileUtils.single.insertLocationJson]
 			},
 			editSettings: {
 				method: 'PUT',

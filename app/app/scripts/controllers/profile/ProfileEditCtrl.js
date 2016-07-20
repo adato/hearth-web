@@ -161,18 +161,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', '$
 			});
 			data.interests = interests;
 
-			if (!data.locations.length) {
-				data.locations = [];
-			} else {
-				angular.forEach(data.locations, function(location, index) {
-					data.locations[index] = {
-						json_data: location.address_components ? location : {
-							place_id: location.place_id
-						}
-					};
-				});
-			}
-
 			return data;
 		};
 

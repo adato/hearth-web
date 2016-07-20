@@ -7,13 +7,14 @@
  */
 
 angular.module('hearth.services').factory('Post', [
-	'$resource',
-	function($resource) {
+	'$resource', 'ProfileUtils',
+	function($resource, ProfileUtils) {
 		return $resource($$config.apiPath + '/posts/:postId', {
 			postId: '@id'
 		}, {
 			get: {
 				nointercept: true,
+				transformResponse: [ProfileUtils.single.getLocationJson]
 			},
 			query: {
 				method: 'GET',
@@ -63,16 +64,18 @@ angular.module('hearth.services').factory('Post', [
 				errorNotify: {
 					code: 'NOTIFY.POST_EDIT_FAILED',
 					container: '.edit-post-notify-container'
-				}
-				// headers: {'Content-Type': 'multipart/form-data'}
+				},
+				transformRequest: [ProfileUtils.single.insertLocationJson],
+				transformResponse: [ProfileUtils.single.getLocationJson]
 			},
 			update: {
 				method: 'PUT',
 				errorNotify: {
 					code: 'NOTIFY.POST_EDIT_FAILED',
 					container: '.edit-post-notify-container'
-				}
-				// headers: {'Content-Type': 'multipart/form-data'}
+				},
+				transformRequest: [ProfileUtils.single.insertLocationJson],
+				transformResponse: [ProfileUtils.single.getLocationJson]
 			},
 			remove: {
 				method: 'DELETE',

@@ -204,18 +204,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					$scope.sending = true;
 					$rootScope.globalLoading = true;
 
-					if (!data.locations.length) {
-						data.locations = [];
-					} else {
-						angular.forEach(data.locations, function(location, index) {
-							data.locations[index] = {
-								json_data: location.address_components ? location : {
-									place_id: location.place_id
-								}
-							};
-						});
-					}
-
 					Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community), function(res) {
 						$rootScope.globalLoading = false;
 						$rootScope.$emit('reloadCommunities');
