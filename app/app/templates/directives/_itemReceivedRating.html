@@ -50,8 +50,8 @@
 						{{:: item.entity_to.name | ellipsis:40}}
 						<small class="date" title="{{:: item.comment.created_at | date:DATETIME_FORMATS.medium}}">&nbsp; {{:: item.comment.created_at | ago }}</small>
 					</div>
-					<i ng-if="!item.comment.hidden">„{{ item.comment.text }}”</i>
-					<i ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</i>
+					<em ng-if="!item.comment.hidden">„{{ item.comment.text }}”</em>
+					<em ng-if="item.comment.hidden">{{:: 'PROFILE.RATING.FILTERED' | translate }}</em>
 				</div>
 				<div class="clear"></div>
 			</div>
