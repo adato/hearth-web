@@ -18,7 +18,7 @@ angular.module('hearth.services').service('Validators', [
 				'url': 'twitter.com\/.*'
 			},
 			'facebook': {
-				'url': 'facebook.com\/.*'
+				'url': 'fb.me|facebook.com\/.*'
 			},
 			'linkedin': {
 				'url': 'linkedin.com\/.*'
