@@ -80,6 +80,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		};
 
 		function transformInvitationOut(data) {
+			// console.log(JSON.parse(JSON.stringify(data)));
 			if (data.to_email) {
 				data.to_email = $.map(data.to_email, function(value, index) {
 					return value.text;
@@ -141,7 +142,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				var item = {
 						status: null,
 						text: null,
-						email: invitationStatusTemp[i].email
+						email: invitationStatusTemp[i].email,
+						existing: invitationStatusTemp[i].existing
 					}
 					// for (var j = responseObj.invited_emails.length; j--;) {
 					// 	if (invitationStatusTemp[i].email === responseObj.invited_emails[j]) {
@@ -203,6 +205,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				var arr = [];
 				for (var i = 0, l = data.to_email.length; i < l; i++) {
 					arr.push({
+						existing: getInviteeObject(data.to_email[i].text),
 						email: data.to_email[i].text
 					})
 				}
@@ -218,6 +221,22 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				invitation: dataOut
 			}, handleEmailResult);
 		};
+
+		/**
+		 *	Function that finds a person detail object in the data stored in previously fetched people details
+		 *	@param email {String} - an email to which to find a name
+		 *	@return {Object} - a person object
+		 */
+		function getInviteeObject(email) {
+			var existing = {};
+			for (var i = $scope.invitationsStatus.length; i--;) {
+				if ($scope.invitationsStatus[i].email === email) {
+					existing = $scope.invitationsStatus[i].existing;
+					break;
+				}
+			}
+			return existing;
+		}
 
 		function initForm() {
 			angular.forEach($scope.showError, function(value, key) {
