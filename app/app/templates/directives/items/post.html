@@ -44,6 +44,7 @@
 			</div>
 			<section class="box padding-none" ng-init="marketplace.expanded = false;">
 				<div class="box-content">
+					<div ng-if="item.edited_by_admin" class="error margin-bottom-medium">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
 					<header class="item-section row">
 						<div class="column small-8 small-push-4 medium-5 medium-push-7 large-4 large-push-8 text-right nowrap">
 							<span class="color-dark-gray" title="{{ item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
@@ -151,7 +152,7 @@
 										<a class="touchable" title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
 											<i class="fa fa-fw fa-pencil"></i>
 										</a>
-										<a class="touchable" title="{{:: 'AD_RESUME_LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
+										<a class="touchable" title="{{:: 'POST.RESUME.LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
 											<i class="fa fa-fw" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
 										</a>
 										<a class="touchable" title="{{:: 'POST.SUSPEND.LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('POST.SUSPEND.LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
