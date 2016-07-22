@@ -86,9 +86,8 @@
 			"LABEL": "Editovat inzerát"
 		},
 		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit autora.",
-		<< << << < HEAD "TYPE_CHANGE_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit typ." === === =
-			"TYPE_CHANGE_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit typ.",
-		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem" >>> >>> > 805 - suspended - posts - display
+		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit typ.",
+		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem"
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Nejde vymazat položku. Radši se s tím smiř.",
 	"AD_REMOVE_DONE": "A je to! Položka byla úspěšně vymazána.",
