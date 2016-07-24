@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('ItemServices', [
-	'$rootScope', 'Filter',
-	function($rootScope, Filter) {
+	'$rootScope', 'Filter', 'Bubble',
+	function($rootScope, Filter, Bubble) {
 		return {
 			showMore: false,
 			expanded: false,
@@ -26,6 +26,7 @@ angular.module('hearth.services').factory('ItemServices', [
 			pauseToggle: $rootScope.pauseToggle,
 			pluralCat: $rootScope.pluralCat,
 			deleteItem: $rootScope.deleteItem,
+			hideItem: $rootScope.hideItem,
 			confirmBox: $rootScope.confirmBox,
 			DATETIME_FORMATS: $rootScope.DATETIME_FORMATS,
 			toggleReportNotLoggedIn: $rootScope.showLoginBox,
@@ -39,7 +40,7 @@ angular.module('hearth.services').factory('ItemServices', [
 			removeItemFromCommunity: $rootScope.removeItemFromCommunity,
 			removeItemFromBookmarks: $rootScope.removeItemFromBookmarks,
 			addItemToBookmarks: $rootScope.addItemToBookmarks,
-			removeReminder: $rootScope.removeReminder,
+			removeReminder: Bubble.removeReminder,
 			scrollToElement: $rootScope.scrollToElement,
 			userHasRight: $rootScope.userHasRight
 		};

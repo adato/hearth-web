@@ -293,7 +293,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		};
 
-		$scope.$on('reloadCommunities', $scope.loadMyCommunities);
+		$rootScope.$on('reloadCommunities', $scope.loadMyCommunities);
 		$scope.$on('initFinished', $scope.initHearthbeat);
 		$rootScope.initFinished && $scope.initHearthbeat();
 
@@ -486,6 +486,30 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				$rootScope.$broadcast("itemDeleted", post); // broadcast event to hearth
 
 				Notify.addSingleTranslate('NOTIFY.POST_DELETED_SUCCESFULLY', Notify.T_SUCCESS);
+				$rootScope.globalLoading = false;
+
+				cb && cb(post); // if callback given, call it
+			}, function() {
+				$rootScope.globalLoading = false;
+			});
+		};
+
+		/**
+		 * Function will hide item from marketplace
+		 */
+		$rootScope.hideItem = function(post, cb) {
+			if (!Auth.isLoggedIn())
+				return $rootScope.showLoginBox(true);
+
+			$rootScope.globalLoading = true;
+			Post.hide({
+				id: post._id
+			}, function(res) {
+				if ($state.is('market')) {
+					$rootScope.$broadcast("itemDeleted", post);
+				}
+
+				Notify.addSingleTranslate('NOTIFY.POST_HID_SUCCESFULLY', Notify.T_SUCCESS);
 				$rootScope.globalLoading = false;
 
 				cb && cb(post); // if callback given, call it

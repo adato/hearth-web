@@ -32,13 +32,20 @@ angular.module('hearth.directives').directive('bubble', [
 				element.on('click', bubbleClick);
 
 				var deregister = $rootScope.$on('closeBubble', function(event, paramObj) {
+					if (scope.type === paramObj.type && paramObj.justHide) {
+						scope.shown = false;
+						return true;
+					}
 					if ((paramObj.type === 'all' && Bubble.isInViewport(element[0])) || paramObj.type === scope.type || paramObj.force) {
 						scope.shown = false;
-						Bubble.removeReminder({
-							event: paramObj.event,
-							type: scope.type,
-							reason: paramObj.reason
-						});
+						if (!$rootScope.$$phase) $rootScope.$apply();
+						if (!paramObj.justHide) {
+							Bubble.removeReminder({
+								event: paramObj.event,
+								type: scope.type,
+								reason: paramObj.reason
+							});
+						}
 						deregister();
 					}
 				});
