@@ -884,6 +884,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 
 			var callback = function(message) {
+				Messenger.loadCounters();
 				$rootScope.$broadcast('WSNewMessage', message);
 			};
 
