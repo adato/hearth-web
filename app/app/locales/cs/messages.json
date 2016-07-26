@@ -712,7 +712,7 @@
 	"ERR_NOT_VALID_EMAIL": "E-mail nemá platný formát",
 	"ERR_NOT_FILLED_EMAIL": "Vyplň prosím tvůj e-mail",
 	"ERR_NOT_FILLED_CONTACT_EMAIL": "Vyplň prosím tvůj kontaktní e-mail",
-	"ERR_NOT_VALID_PHONE": "Telefon zadávej ve formátu +420 XXX XXX XXX",
+	"ERR_NOT_VALID_PHONE": "Zadal(a) jsi špatný formát telefonního čísla.",
 	"ERR_NOT_FILLED_FIRST_NAME": "Vyplň prosím tvoje jméno",
 	"ERR_NOT_FILLED_OLD_PASS": "Zadej tvoje staré heslo...",
 	"ERR_NOT_FILLED_NEW_PASS": "Zadej nové heslo, které chcete nastavit.",

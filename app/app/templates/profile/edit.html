@@ -154,14 +154,14 @@
 				</div>
 
 				<!-- phone -->
-				<div class="margin-top clearfix">
+				<div class="margin-top clearfix contact-phone">
 					<div class="large-6 small-12 medium-6 columns">
 						<label>
 							<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}
 						</label>
-						<input type="text" name="phone" class="text-input" international-phone-number default-country="cz" national-mode="false" ng-model="profile.phone">
+						<input type="tel" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input phone" international-phone-number default-country="cz" national-mode="false" ng-model="profile.phone">
 						<div class="error" ng-show="showError.phone">
-							<span ng-show="profileEditForm.phone.$error.pattern">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
+							<span ng-show="profileEditForm.phone.$error.internationalPhoneNumber">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
 						</div>
 					</div>
 

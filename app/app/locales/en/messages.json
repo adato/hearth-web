@@ -707,7 +707,7 @@
 	"ERR_NOT_VALID_EMAIL": "Email format is not valid.",
 	"ERR_NOT_FILLED_EMAIL": "Please fill in your email.",
 	"ERR_NOT_FILLED_CONTACT_EMAIL": "Please fill in your contact email.",
-	"ERR_NOT_VALID_PHONE": "Please use the telephone format +420 XXX XXX XXX.",
+	"ERR_NOT_VALID_PHONE": "You have entered wrong format of the phone number.",
 	"ERR_NOT_FILLED_FIRST_NAME": "Please fill in your name",
 	"ERR_NOT_FILLED_OLD_PASS": "Enter your previous password...",
 	"ERR_NOT_FILLED_NEW_PASS": "Please fill the new password that you want to set.",
