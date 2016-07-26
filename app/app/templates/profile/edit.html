@@ -155,9 +155,9 @@
 				<div class="margin-top clearfix">
 					<div class="large-6 small-12 medium-6 columns">
 						<label>
-							<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}</label>
-						<input ng-model="profile.phone" ng-focus="showError.phone = false" ng-blur="showError.phone = true" name="phone" class="text-input" type="text" ng-pattern="/((\+420|00420) ?)?\d{3}( |-)?\d{3}( |-)?\d{3}/">
-
+							<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}
+						</label>
+						<input type="text" name="phone" class="text-input" international-phone-number default-country="cz" national-mode="false" ng-model="profile.phone">
 						<div class="error" ng-show="showError.phone">
 							<span ng-show="profileEditForm.phone.$error.pattern">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
 						</div>
