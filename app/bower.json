@@ -29,6 +29,7 @@
     "moment": "~2.10.6",
     "angular-ui-router": "~0.2.15",
     "autosize": "~3.0.13",
+	"ui-select": "angular-ui-select#~0.13.1",
     "jquery-color": "~2.1.2",
     "nanoscroller": "0.8.6",
     "flexslider": "~2.5.0",
