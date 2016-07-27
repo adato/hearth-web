@@ -6,9 +6,8 @@
  * @description
  */
 
-angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', '$http', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', '$q', 'Validators', 'ProfileUtils',
-	function($scope, $http, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, $q, Validators, ProfileUtils) {
-
+angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils, Interest, $q) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -130,19 +129,27 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', '$
 			$scope.showError[key] = false;
 		};
 
-		$scope.loadInterests = function(query) {
-			var result = [];
-			if (query) {
-				result = $http.get($$config.apiPath + '/interests?name=' + query);
-			} else {
-				result = $http.get($$config.apiPath + '/interests');
+		function interestsFilter(query) {
+			return function(interest) {
+				return interest.toLowerCase().indexOf(query.toLowerCase()) != -1;
 			}
+		}
 
-			return result.then(function(response) {
-				var interests = response.data;
-				return interests.filter(function(interest) {
-					return interest.term.toLowerCase().indexOf(query.toLowerCase()) != -1;
-				});
+		var interests = [];
+		$scope.loadInterests = function(query) {
+			return $q(function(resolve, reject) {
+				if (interests.length) {
+					resolve(interests.filter(interestsFilter(query)));
+				} else {
+					Interest.query({
+						name: query
+					}, function(res) {
+						interests = res.map(function(interest) {
+							return interest.term;
+						});
+						resolve(interests.filter(interestsFilter(query)));
+					});
+				}
 			});
 		};
 
