@@ -108,6 +108,7 @@ describe('hearth unauth marketplace', function() {
 
     if (type === 'mobile' || type === 'tablet') {
       if (type === 'mobile') {
+        expect(iconAdd.isDisplayed()).toBeTruthy();
         expect(createButton.isDisplayed()).toBeFalsy();
       }
       if (type === 'tablet') {
@@ -115,7 +116,7 @@ describe('hearth unauth marketplace', function() {
         expect(createButton.isDisplayed()).toBeFalsy();
       }
       iconAdd.click().then(function () {
-		browser.sleep(100);
+		browser.sleep(500);
         expect(loginModal.isDisplayed()).toBeTruthy();
         loginModalCloseButton.click();
       }).then(function () {
