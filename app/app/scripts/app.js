@@ -3,7 +3,7 @@
 angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
 		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'ngActionCable'
+		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'ngActionCable', 'rt.select2'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
@@ -77,7 +77,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$window.refsArray = getRefsArray();
 			$window.refsString = getRefsString($window.refsArray);
 
-			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class 
+			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class
 
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
