@@ -208,6 +208,11 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		$scope.country_code;
 		$scope.countryList = CountryList.list;
+		$scope.updateCountry = function(countryCode) {
+			User.edit({country: countryCode}, function(res) {
+				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
+			});
+		};
 
 		$scope.init = function() {
 			// for authorized only
