@@ -6,11 +6,17 @@
 			</span>
 		</h2>
 		<section class="change-language">
-			{{:: 'USING_HEARTH_IN_LANG' | translate }}
-			<b>{{:: 'HEARTH_IN_THIS_LANG' | translate }}</b>. {{:: 'CHOOSE_LANGUAGE' | translate }} &nbsp;
-			<select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
-				<option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
-			</select>
+			<div>
+				{{:: 'USING_HEARTH_IN_LANG' | translate }}
+				<b>{{:: 'HEARTH_IN_THIS_LANG' | translate }}</b>. {{:: 'CHOOSE_LANGUAGE' | translate }} &nbsp;
+				<select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
+					<option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
+				</select>
+			</div>
+			<div>
+				{{:: 'USING_HEARTH_FROM_COUNTRY' | translate }}
+				<select2 ng-model="country_code" s2-options="item.alpha_2_code as ('COUNTRY.' + item.alpha_2_code | translate) for item in countryList"></select2>
+			</div>
 		</section>
 		<div class="clear"></div>
 		<h2>
@@ -111,7 +117,7 @@
 					<div class="fleft large-11 small-12 medium-11">
 						<label for="oldPassLeave">{{:: 'FILL_CURRENT_PASS' | translate }}</label>
 						<input type="password" ng-focus="showError.oldPassLeave = false; profileDeleteForm.oldPassLeave.$error.notValid = false;" ng-blur="showError.oldPassLeave = true; testOldPassword(leave.pass, 'profileDeleteForm', 'oldPassLeave')" name="oldPassLeave" ng-model="leave.pass"
-						id="oldPassLeave" required />
+										id="oldPassLeave" required />
 						<div class="absolute error" ng-show="showError.oldPassLeave">
 							<span ng-show="profileDeleteForm.oldPassLeave.$error.required">{{:: 'ERR_NOT_FILLED_OLD_PASS' | translate }}</span>
 							<span ng-show="profileDeleteForm.oldPassLeave.$error.notValid">{{:: 'ERR_OLD_PASS_IS_NOT_VALID' | translate }}</span>
