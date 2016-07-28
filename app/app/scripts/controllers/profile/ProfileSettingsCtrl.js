@@ -13,7 +13,6 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 	function($scope, LanguageSwitch, $rootScope, Password, ChangePassword, $timeout, User, Notify, UnauthReload, CountryList, $filter) {
 		$scope.loaded = true;
 		$scope.lang = false; // used in view
-		$scope.country_code = [];
 		$scope.changeSubmitted = false;
 		$scope.languages = LanguageSwitch.getLanguages();
 		$scope.pass = {
@@ -206,7 +205,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		};
 
-		$scope.country_code;
+		$scope.man_country_code;
 		$scope.countryList = CountryList.list;
 		$scope.updateCountry = function(countryCode) {
 			User.edit({
