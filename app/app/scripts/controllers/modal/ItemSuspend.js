@@ -12,7 +12,9 @@ angular.module('hearth.controllers').controller('ItemSuspend', [
 		var timeout = null;
 		$scope.sending = false;
 		$scope.showErrors = false;
-		$scope.message = '';
+		$scope.data = {
+			suspendMessage: ''
+		};
 		$scope.showErrors = {
 			message: false,
 		}
@@ -29,9 +31,9 @@ angular.module('hearth.controllers').controller('ItemSuspend', [
 			$scope.closeThisDialog();
 		};
 
-		$scope.suspend = function(suspendMessage) {
+		$scope.suspend = function(data) {
 			$rootScope.pauseToggle($scope.item, {
-				message: suspendMessage
+				message: data.suspendMessage
 			}, function(res) {
 				$scope.closeThisDialog();
 			});

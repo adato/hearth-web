@@ -5,12 +5,12 @@
 		</h2>
 		<hr />
 	</header>
-	<form ng-submit="suspend(suspendMessage)" name="suspendform" novalidate class="">
+	<form ng-submit="suspend(data)" name="suspendform" novalidate class="">
 		<div class="notify-report-container"></div>
 		<div>
 			<label>{{:: 'POST.SUSPEND.ARE_YOU_SURE' | translate }}</label>
 			<textarea autofocus rows="4" autosize-textarea ng-if="userHasRight('post.suspend')" required ng-focus="showErrors.message = false" ng-blur="showErrors.message = true" ng-attr-placeholder="{{ 'POST.SUSPEND.CONNECTED_MESSAGE_PLACEHOLDER' | translate }}"
-							ng-maxlength="500" ng-model="suspendMessage" name="message" ng-keydown="escapeKey($event)" class="margin-vertical-medium"></textarea>
+							ng-maxlength="500" ng-model="data.suspendMessage" name="message" ng-keydown="escapeKey($event)" class="margin-vertical-medium"></textarea>
 			<!--<div class="moveUp error" ng-show="showErrors.message">
 				<span ng-show="suspendForm.message.$error.required">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
 				<span ng-show="suspendForm.message.$error.minlength">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
