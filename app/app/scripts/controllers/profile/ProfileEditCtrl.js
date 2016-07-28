@@ -138,18 +138,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 		var interests = [];
 		$scope.loadInterests = function(query) {
 			return $q(function(resolve, reject) {
-				if (interests.length) {
-					resolve(interests.filter(interestsFilter(query)));
-				} else {
-					Interest.query({
-						name: query
-					}, function(res) {
-						interests = res.map(function(interest) {
-							return interest.term;
-						});
-						resolve(interests.filter(interestsFilter(query)));
+				Interest.query({
+					search: query
+				}, function(res) {
+					interests = res.map(function(interest) {
+						return interest.term;
 					});
-				}
+					resolve(interests.filter(interestsFilter(query)));
+				});
 			});
 		};
 

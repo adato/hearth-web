@@ -190,11 +190,15 @@
 		text-indent: 0.01px;
 		text-overflow: '';
 	}
-	textarea {
+	textarea,
+	tags-input.textarea-height > div > .tags {
 		line-height: 1.33 !important;
-		padding: 15px;
 		min-height: 200px;
 	}
+	textarea {
+		padding: 15px;
+	}
+
 	// RESPONSIVE //
 	@media #{$small-down} {
 		h2 {
