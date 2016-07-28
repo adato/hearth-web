@@ -159,6 +159,8 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 			});
 			data.webs = webs;
 
+			data.phone = '+' + data.phone;
+
 			data.interests.forEach(function(interest) {
 				if (interest) interests.push(interest.term);
 			});
