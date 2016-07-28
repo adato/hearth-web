@@ -10,6 +10,6 @@ angular.module('hearth.services').factory('Interest', [
 	'$resource',
 
 	function($resource) {
-		return $resource($$config.apiPath + '/interests');
+		return $resource($$config.apiPath + '/interests/:search');
 	}
 ]);
