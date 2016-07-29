@@ -15,7 +15,7 @@
 			</div>
 			<div>
 				{{:: 'USING_HEARTH_FROM_COUNTRY' | translate }}
-				<select2 ng-model="man_country_code" ng-change="updateCountry(country_code)" s2-options="item.alpha_2_code as ('COUNTRY.' + item.alpha_2_code | translate) for item in countryList"></select2>
+				<select2 ng-model="man_country_code" ng-change="updateCountry(man_country_code)" s2-options="item.alpha_2_code as ('COUNTRY.' + item.alpha_2_code | translate) for item in countryList"></select2>
 			</div>
 		</section>
 		<div class="clear"></div>

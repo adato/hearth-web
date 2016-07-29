@@ -18,6 +18,7 @@ angular.module('hearth.services').factory('Auth', [
 					loggedIn: false
 				};
 				return $session.then(function(session) {
+					console.log(session);
 					if (session._id) {
 						$rootScope.user = session;
 						$rootScope.user.loggedIn = true;

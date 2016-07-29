@@ -205,12 +205,15 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 
 		};
 
-		$scope.man_country_code;
+		$scope.man_country_code = $rootScope.loggedUser.country_code;
 		$scope.countryList = CountryList.list;
 		$scope.updateCountry = function(countryCode) {
-			User.edit({
-				country: countryCode
+			User.editSettings({
+				_id: $rootScope.loggedUser._id
+			}, {
+				man_country_code: countryCode
 			}, function(res) {
+				$rootScope.loggedUser.country_code = countryCode;
 				Notify.addSingleTranslate('NOTIFY.USER_PROFILE_CHANGE_SUCCES', Notify.T_SUCCESS);
 			});
 		};
