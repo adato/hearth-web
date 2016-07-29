@@ -78,7 +78,7 @@
 									</h1>
 									<div class="clearfix" style="height:5px;" ng-if="item.title.length > 15">&nbsp;</div>
 									<span class="validity-warning" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
-									<span ng-if="item.edited_by_admin" class="error">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</span>
+									<div ng-if="item.edited_by_admin" class="error">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
 									<!-- TODO!!! add ngif and data -->
 									<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 								</div>
