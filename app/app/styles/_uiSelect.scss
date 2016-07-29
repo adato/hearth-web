@@ -80,22 +80,23 @@
 			&>span {
 				margin-right: 14px;
 			}
-			.select2-search-choice-close {
-				&:before {
-					color: #585858;
-					content: "×";
-					font-family: Arial, sans-serif;
-					font-size: 1rem;
-					font-weight: bold;
-					position: relative;
-					top: -6px;
-					right: 2px;
-				}
-				display: block;
-				position: absolute;
-				right: 3px;
-				top: 6px;
-			}
+			// this is done by select2.scss
+			// .select2-search-choice-close {
+			// 	&:before {
+			// 		color: #585858;
+			// 		content: "×";
+			// 		font-family: Arial, sans-serif;
+			// 		font-size: 1rem;
+			// 		font-weight: bold;
+			// 		position: relative;
+			// 		top: -6px;
+			// 		right: 2px;
+			// 	}
+			// 	display: block;
+			// 	position: absolute;
+			// 	right: 3px;
+			// 	top: 6px;
+			// }
 		}
 	}
 	.select2-drop {
