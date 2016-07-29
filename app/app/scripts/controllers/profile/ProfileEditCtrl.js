@@ -182,6 +182,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				data.user_languages[item.lang] = true;
 			});
 
+			data.phone = '+' + data.phone;
 			data.webs = webs;
 			// data.interests = data.interests.split(",");
 
