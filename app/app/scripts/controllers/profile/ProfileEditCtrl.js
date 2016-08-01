@@ -108,6 +108,15 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 			model[key] = url;
 		};
 
+		$scope.validatePhone = function(event) {
+			$scope.showError.phone = true;
+			var phone = event.target;
+
+			if (!$scope.profile.phone && !$scope.profileEditForm.phone.$error.internationalPhoneNumber) {
+				$(phone).val(null);
+			}
+		};
+
 		$scope.validateSocialNetworks = function() {
 			var isOk = true;
 			var isWebsOk = true;
@@ -163,7 +172,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 			});
 			data.webs = webs;
 
-			data.phone = '+' + data.phone;
+			if (data.phone) {
+				data.phone = '+' + data.phone;
+			}
 
 			data.interests.forEach(function(interest) {
 				if (interest) interests.push(interest.term);
