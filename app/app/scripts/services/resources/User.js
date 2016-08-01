@@ -26,15 +26,7 @@ angular.module('hearth.services').factory('User', [
 			getFullInfo: {
 				url: $$config.apiPath + '/profile',
 				method: 'GET',
-				transformResponse: function(data, headers) {
-					var obj = JSON.parse(data);
-					var motto = obj.motto;
-					if (motto) {
-						obj.motto = $filter('limitTo')(motto, 70);
-					}
-
-					return obj;
-				}
+				transformResponse: [ProfileUtils.single.getLocationJson]
 			},
 			getReplies: {
 				url: $$config.apiPath + '/replies',

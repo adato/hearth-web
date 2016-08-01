@@ -74,7 +74,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	 *	@param {Object} entity - the object containing a locations prop to be transformed
 	 *	@param {Boolean} fromJson - if true, extracts locations from json_data prop,
 	 *		creates and fills the json_data prop otherwise
-	 *	@param property - property on which to search for locations prop
+	 *	@param {Object} opts - {string} prop - property on which to search for locations prop
 	 *	@return {Object} transformed entity object
 	 */
 	function locationJsonHelper(entity, fromJson, opts) {
