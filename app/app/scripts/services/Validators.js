@@ -18,7 +18,7 @@ angular.module('hearth.services').service('Validators', [
 				'url': 'twitter.com\/.*'
 			},
 			'facebook': {
-				'url': 'facebook.com\/.*'
+				'url': 'fb.me|facebook.com\/.*'
 			},
 			'linkedin': {
 				'url': 'linkedin.com\/.*'
@@ -31,7 +31,6 @@ angular.module('hearth.services').service('Validators', [
 		this.match = function(e, regex) {
 			var ret = e.match(regex);
 			ret = (ret || false) && true;
-			//console.log("ret:", ret)
 			return ret;
 
 		};

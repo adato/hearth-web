@@ -74,12 +74,7 @@ angular.module('hearth.controllers').controller('ProfileCtrl', [
 			User.get({
 				_id: $stateParams.id
 			}, function(res) {
-				angular.forEach(res.locations, function(location, index) {
-					res.locations[index] = location.json_data;
-				});
-
 				res = ProfileUtils.single.copyMottoIfNecessary(res);
-
 				res.post_total = res.post_count.needs + res.post_count.offers;
 				$scope.profileLink = $rootScope.getProfileLink('User', res._id);
 				$scope.info = $scope.serializeUser(res);

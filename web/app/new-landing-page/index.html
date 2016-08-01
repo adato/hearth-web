@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang='cs'>
+<head>
+	<meta charset='utf-8' />
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name='author' content='Hearth.net' />
+
+	<meta property="og:type" content="website">
+    <meta property="og:title" content="Hearth.net">
+    <meta property="og:description" content="Prostor, kde dávat, znamená dostat mnohem víc">
+    <meta property="og:url" content="https://www.hearth.net/">
+    <meta property="og:image" content="https://www.hearth.net/app/images/facebook-sharing-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+	<title>Hearth.net</title>
+	<link rel='shortcut icon' type='image/x-icon' href='data:image/x-icon;base64,iconiconicon' />
+	<!--<link rel='stylesheet' type='text/css' href='./fonts/stylesheet.css' />-->
+	<link  rel='stylesheet' type='text/css' href='./css/components.css' />
+	<link rel='stylesheet' type='text/css' href='./css/hamburger.css' />
+	<link rel='stylesheet' type='text/css' href='./css/main.css' />
+	<link rel='stylesheet' type='text/css' href='./css/font-awesome.min.css' />
+
+	<!-- TODO - CLEAN-UP -->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Montserrat|Open+Sans|Raleway|Roboto" rel="stylesheet">
+	<!-- /TODO - CLEAN-UP -->
+
+</head>
+<body class='border-box-sized'>
+
+	<div id='fb-root'></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.async = true; js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=133986903478472";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+	<div id='q' style='background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4);padding:1.25rem;position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 90000000000'>
+		<style>
+			#q .w a{display: block; width: 150px; padding: .3rem; border-bottom: 1px solid #ddd; cursor: pointer}
+			#q .w a:last-of-type{border-bottom: none;}
+			#q .w a:hover{background-color: #eee;}
+			#q .w a.active, #q .w a.active:hover{background-color: pink; cursor: default;}
+			#q h5{margin: .3rem 0;}
+			.q-toggle {display: inline-block; width: 20px; height: 20px; line-height: 20px; text-align: center; border: 1px solid transparent; cursor: pointer;}
+			.q-toggle:hover, .q-toggle:focus{border: 1px dotted #aaa;}
+			#q.pale{opacity: .3}
+			#q.pale:hover{opacity: 1}
+		</style>
+		<style id='bodyStyles'></style>
+		<style id='headerStyles'></style>
+		<div id='s'>
+			<h5>Text</h5>
+			<div class='f w'>
+				<a tabindex='0' onclick='setFont("tahoma", 0, 0)' id='f0'>Tahoma</a>
+				<a tabindex='0' onclick='setFont("Merriweather Sans", 1, 0)' id='f1'>Merriweather</a>
+				<a tabindex='0' onclick='setFont("Montserrat", 2, 0)' id='f2'>Montserrat</a>
+				<a tabindex='0' onclick='setFont("Open Sans", 3, 0)' id='f3'>Open Sans</a>
+				<a tabindex='0' onclick='setFont("Raleway", 4, 0)' id='f4'>Raleway</a>
+				<a tabindex='0' onclick='setFont("Roboto", 5, 0)' id='f5'>Roboto</a>
+			</div>
+			<h5>Headers</h5>
+			<div class='t w'>
+				<a tabindex='0' onclick='setFont("tahoma", 0, 1)' id='t0'>Tahoma</a>
+				<a tabindex='0' onclick='setFont("Merriweather Sans", 1, 1)' id='t1'>Merriweather</a>
+				<a tabindex='0' onclick='setFont("Montserrat", 2, 1)' id='t2'>Montserrat</a>
+				<a tabindex='0' onclick='setFont("Open Sans", 3, 1)' id='t3'>Open Sans</a>
+				<a tabindex='0' onclick='setFont("Raleway", 4, 1)' id='t4'>Raleway</a>
+				<a tabindex='0' onclick='setFont("Roboto", 5, 1)' id='t5'>Roboto</a>
+			</div>
+		</div>
+		<i class='q-toggle fa fa-minus-square-o' onclick='toggleFontPanel()'></i>
+		<script>
+			/**
+			 *	@param name - font name to set
+			 *	@param id - id of the element to which to add active class
+			 *	@param type - case 0 - headings
+			 * 				case 1 - all other fonts
+			 */
+			function setFont(name, id, type) {
+				var typeId = (type === 0 ? 'f' : 't');
+				document.getElementById((typeId === 'f' ? 'bodyStyles' : 'headerStyles')).innerHTML = (typeId === 'f' ? 'body{font-family: ' + name + '}' : (name ? 'h1,h2,h3,h4,h5,h6{font-family: ' + name + ', sans-serif}' : ''));
+				var anchs = document.getElementById('q').querySelectorAll('.' + typeId + ' a');
+				for (var i = anchs.length;i--;) {
+					anchs[i].classList.remove('active');
+				}
+				document.getElementById(typeId + id).classList.add('active');
+			}
+			setFont('tahoma', 0, 0);
+			setFont('tahoma', 0, 1);
+			function toggleFontPanel() {
+				var s = document.getElementById('s');
+				var ss = s.style.display;
+				s.style.display = (ss === 'none' ? '' : 'none');
+				q.classList.toggle('pale');
+			}
+		</script>
+	</div>
+
+	<div class='header-wrapper'>
+		<div class='flex'>
+			<div class='nav-clickable position-relative flex'>
+				<button class='hamburger hamburger--spring medium-down' type='button' id='hamburger'>
+					<span class='hamburger-box'>
+						<span class='hamburger-inner'></span>
+					</span>
+				</button>
+				<div class='medium-down'>
+					<div class='flex hover-window' id='main-navigation'>
+						<ul class='margin-none padding-none'>
+							<li>
+								<a href='#target-o-co-jde' class='nav-item'>O co jde</a>
+							</li>
+							<li>
+								<a href='#target-jak-na-to' class='nav-item'>Jak na to</a>
+							</li>
+							<li>
+								<a href='#target-deje-se' class='nav-item'>Děje se</a>
+							</li>
+							<li>
+								<a href='' class='nav-item'>O Hearth</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class='nav-clickable language-wrapper medium-down'>
+				<div class='language-toggle'>
+					<div class='flag'></div>
+				</div>
+				<div class='flex hover-window language-panel'>
+					<div class='language-option flex lang-cs' id='language-cs'>
+						<div class='flag flag-cs'></div>
+						<div class=''>Česky</div>
+					</div>
+					<div class='language-option flex lang-sk' id='language-sk'>
+						<div class='flag flag-sk'></div>
+						<div class=''>Slovensky</div>
+					</div>
+					<div class='language-option flex lang-en' id='language-en'>
+						<div class='flag flag-en'></div>
+						<div class=''>English</div>
+					</div>
+				</div>
+			</div>
+			<div class='logo medium-up'></div>
+		</div>
+		<nav class='flex'>
+			<ul class='main-navigation large-only hover-window'>
+				<li>
+					<a href='#target-o-co-jde' class='nav-item has-hover-effect'>O co jde</a>
+				</li>
+				<li>
+					<a href='#target-jak-na-to' class='nav-item has-hover-effect'>Jak na to</a>
+				</li>
+				<li>
+					<a href='#target-deje-se' class='nav-item has-hover-effect'>Děje se</a>
+				</li>
+				<li>
+					<a href='' class='nav-item has-hover-effect'>O Hearth</a>
+				</li>
+			</ul>
+			<a href='/app/register' class='color-primary nav-item has-hover-effect'>
+				Registrace
+			</a>
+			<a href='/app/login' class='button nav-item alt'>
+				Přihlášení
+			</a>
+			<!--<div class='flex large-only' id='large-language-panel'>
+				<div class='language-option flex nav-item' id='language-large-cs'>
+					<div class='flag flag-cs'></div>
+				</div>
+				<div class='language-option flex nav-item' id='language-large-sk'>
+					<div class='flag flag-sk'></div>
+				</div>
+				<div class='language-option flex nav-item' id='language-large-en'>
+					<div class='flag flag-en'></div>
+				</div>
+			</div>-->
+			<div class='nav-clickable language-wrapper large-only'>
+				<div class='language-toggle'>
+					<div class='flag'></div>
+				</div>
+				<div class='flex hover-window language-panel window-align-right'>
+					<div class='language-option flex lang-cs' id='language-cs'>
+						<div class='flag flag-cs'></div>
+						<div class=''>Česky</div>
+					</div>
+					<div class='language-option flex lang-sk' id='language-sk'>
+						<div class='flag flag-sk'></div>
+						<div class=''>Slovensky</div>
+					</div>
+					<div class='language-option flex lang-en' id='language-en'>
+						<div class='flag flag-en'></div>
+						<div class=''>English</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class='jumbo-wrapper overflow-hidden' aeg-slideshow>
+		<div class='jumbo-show show-1'></div>
+		<div class='jumbo-show show-2'></div>
+		<div class='jumbo-show show-3'></div>
+		<div class='jumbo-show show-4'></div>
+		<div class='jumbo-show show-5'></div>
+		<header class='flex flex-space-between full-height position-relative'>
+			<div class='jumbo'>
+				<div class='small-only text-align-center'>
+					<i class='button-flame large'></i>
+				</div>
+				<h1><span class='shine-only'>Objevujte</span> <span class='special-underline-wrapper'><span class='shine'>štěstí</span><div class='special-underline'></div></span></h1>
+				<h2 class='subheader'>Naplňte svůj den štědrostí a poznávejte lidi na stejné vlně</h2>
+				<a href='' class='button'>
+					<i class='button-flame'></i>
+					Podívat se na tržiště
+				</a>
+				<div class='control-dots'>
+					<div class='dot'></div>
+					<div class='dot'></div>
+					<div class='dot'></div>
+				</div>
+				<div class='decorated-circle-flame background-alternate'></div>
+			</div>
+			<div class='slash background-alternate'></div>
+		</header>
+	</div>
+	<div class='section background-alternate contains-slash'>
+		<section class='overflow-hidden'>
+			<div class='flex flex-space-between balls-3 small-constrict-ball'>
+				<div class='ball ball-background-primary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<switch>
+							<foreignObject x='0' y='0' width='100' height='100'>
+								<div class='flex text-align-center full-height'>
+									<p xmlns='http://www.w3.org/1999/xhtml'>
+										<strong>Darujte</strong>,<br />co máte a<br />umíte
+									</p>
+								</div>
+							</foreignObject>
+						</switch>
+					</svg>
+				</div>
+				<div class='ball ball-background-secondary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<switch>
+							<foreignObject x='0' y='0' width='100' height='100'>
+								<div class='flex text-align-center full-height'>
+									<p xmlns='http://www.w3.org/1999/xhtml'>
+										<strong>Získejte</strong>,<br />co vám<br />chybí
+									</p>
+								</div>
+							</foreignObject>
+						</switch>
+					</svg>
+				</div>
+				<div class='ball ball-background-tertiary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<switch>
+							<foreignObject x='0' y='0' width='100' height='100'>
+								<div class='flex text-align-center full-height'>
+									<p xmlns='http://www.w3.org/1999/xhtml'>
+										<strong>Poznejte</strong><br />nové<br />přátele
+									</p>
+								</div>
+							</foreignObject>
+						</switch>
+					</svg>
+				</div>
+			</div>
+		</section>
+		<section id='target-o-co-jde'>
+			<h1>O co jde</h1>
+			<p>
+				Jsme štědrá sociální síť, kde dáváte dary a vzájemně si plníte svá přání.
+				Od legračních maličkostí až po velké věci, zkušenosti i životní moudrost.
+				Co vás baví a naplňuje, posíláte dál. A co sami potřebujete, se vám vrací
+				od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.
+			</p>
+		</section>
+		<section class='masonry-alt'>
+			<h1>Velké množství darů a přání na tržišti</h1>
+			<div class='medium-flex'>
+				<div class='flex-1 masonry-wrapper'>
+					<div class='flex masonry-item' id='image-mp-1'>
+						<div class='flex-1 flex flex-column'>
+							<a href='' class='button small'>Přijmu</a>
+							<h2>pozvání na kávu</h2>
+						</div>
+					</div>
+				</div>
+				<div class='flex-1 masonry-wrapper'>
+					<div class='flex masonry-item' id='image-mp-2'>
+						<div class='flex-1 flex flex-column'>
+							<a href='' class='button small color-secondary'>Nabízím</a>
+							<h2>recept na koláče po babičce</h2>
+						</div>
+					</div>
+				</div>
+				<div class='flex-1 masonry-wrapper'>
+					<div class='flex masonry-item' id='image-mp-3'>
+						<div class='flex-1 flex flex-column'>
+							<a href='' class='button small'>Přijmu</a>
+							<h2>pozvání na kávu</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='medium-flex'>
+				<div class='flex-1 masonry-wrapper'>
+					<div class='flex masonry-item' id='image-mp-4'>
+						<div class='flex-1 flex flex-column'>
+							<a href='' class='button small color-secondary'>Nabízím</a>
+							<h2>recept na koláče po babičce</h2>
+						</div>
+					</div>
+				</div>
+				<div class='flex-2 masonry-wrapper'>
+					<div class='flex masonry-item' id='image-mp-5'>
+						<div class='flex-1 flex flex-column'>
+							<a href='' class='button small'>Přijmu</a>
+							<h2>pozvání na kávu</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class='text-align-center'>
+				<a href='/app/' class='button alt'>
+					<i class='button-flame'></i>
+					Podívat se na tržiště
+				</a>
+			</div>
+		</section>
+		<div class='divider-main'></div>
+		<section id='target-jak-na-to'>
+			<h1>Jak na to</h1>
+			<p>
+				Je to hračka. Během pár minut si založíte profil a už jste mezi námi! Doplňte si celý profil,
+				ať jste šik a vrhněte se na tržiště, naše pulzující srdce. Zde nabízíte své dary a žádáte
+				druhé o splnění svých přání. Zajímáte se o něco? Najděte si svou komunitu a získejte inspiraci
+				od lidí, kteří jsou vám blíž. Radujte se a seznamujte, dávejte a přijímejte, děkujte a hodnoťte.
+				Ocení to všichni. A nejlepší na konec? Je to jen začátek. Směle do toho.
+			</p>
+		</section>
+		<section>
+			<div class='flex flex-space-between balls-5 small-drop-into-lines'>
+				<div class='ball ball-background-primary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<image xlink:href='./img/jnt/jnt-1.png' x='20' y='20' height='60' width='60'/>
+					</svg>
+					<div class='ball-label'>
+						Zaregistruj se
+					</div>
+				</div>
+				<div class='ball ball-background-secondary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<image xlink:href='./img/jnt/jnt-2.png' x='20' y='20' height='60' width='60'/>
+					</svg>
+					<div class='ball-label'>
+						Sdílej dary
+					</div>
+				</div>
+				<div class='ball ball-background-tertiary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<image xlink:href='./img/jnt/jnt-3.png' x='20' y='20' height='60' width='60'/>
+					</svg>
+					<div class='ball-label'>
+						Najdi dary
+					</div>
+				</div>
+				<div class='ball ball-background-primary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<image xlink:href='./img/jnt/jnt-4.png' x='20' y='20' height='60' width='60'/>
+					</svg>
+					<div class='ball-label'>
+						Vytvoř si přátele
+					</div>
+				</div>
+				<div class='ball ball-background-secondary'>
+					<svg viewBox='0 0 100 100'>
+						<circle cx='50' cy='50' r='50' />
+						<image xlink:href='./img/jnt/jnt-5.png' x='20' y='20' height='60' width='60'/>
+					</svg>
+					<div class='ball-label'>
+						Buď šťastný
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class='text-align-center'>
+				<a href='/app/register' class='button alt'>
+					Zaregistrovat se
+				</a>
+			</div>
+		</section>
+		<div class='slash'></div>
+	</div>
+	<div class='section contains-slash'>
+		<section>
+			<h1>Mají nás rádi</h1>
+			<div class='text-align-center large-quote'>“</div>
+
+
+			<div class='text-center'>
+			    <div class='flex'>
+			        <div class='max-500 flex flex-medium-column flex-align-start'>
+			            <div class='medium-flex flex-1'>
+			                <!-- Nav tabs -->
+			                <ul class='nav nav-justified' id="nav-tabs" role="tablist">
+			                	<li role="presentation" class="active">
+			                        <a href="#barta" aria-controls="barta" role="tab" data-toggle="tab">
+										<div class='position-relative text-align-center'>
+				                            <img class="img-circle" src="img/people/jiri-barta.png" />
+				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+										</div>
+										<div class='text-align-center margin-top-small large-only'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Jiří Bárta</strong></p>
+				                            <small>Nadace Víla</small>
+										</div>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="">
+			                        <a href="#panek" aria-controls="panek" role="tab" data-toggle="tab">
+										<div class='position-relative text-align-center'>
+				                            <img class="img-circle" src="img/people/simon-panek.png" />
+				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+										</div>
+										<div class='text-align-center margin-top-small large-only'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Šimon Pánek</strong></p>
+											<small>Ředitel humanitární organizace Člověk v tísni</small>
+										</div>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="">
+			                        <a href="#hajzler" aria-controls="hajzler" role="tab" data-toggle="tab">
+										<div class='position-relative text-align-center'>
+				                            <img class="img-circle" src="img/people/tomas-hajzler.png" />
+				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+										</div>
+										<div class='text-align-center margin-top-small large-only'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Tomáš Hajzler</strong></p>
+											<small>Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou</small>
+										</div>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="">
+			                        <a href="#vaclavek" aria-controls="vaclavek" role="tab" data-toggle="tab">
+										<div class='position-relative text-align-center'>
+				                            <img class="img-circle" src="img/people/petr-vaclavek.png" />
+				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+										</div>
+										<div class='text-align-center margin-top-small large-only'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Petr Václavek</strong></p>
+											<small>Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</small>
+										</div>
+			                        </a>
+			                    </li>
+			                </ul>
+			            </div>
+			            <div class='medium-flex flex-2 margin-horizontal-large flex-2' id='gesichte'>
+			                <!-- Tab panes -->
+			                <div class="tab-content" id="tabs-collapse">
+			                     <div role="tabpanel" class="tab-pane fade in active" id="barta">
+			                        <div class="tab-inner">
+										<div class='medium-down'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Jiří Bárta</strong></p>
+				                            <small>Nadace Víla</small>
+										</div>
+			                            <p class="lead">
+											Parádní nápad. Dar je radost i starost. Je projevem zájmu, příležitost
+											pomoci anebo pomoc přijmout. Pro někoho příležitost naděje, pro jiného
+											závazek pomoci. Držím vám palce a přeju, aby se díky Hearth.net
+											potkávalo co nejvíc lidí a darů ve správný čas.
+										</p>
+			                        </div>
+			                    </div>
+			                    <div role="tabpanel" class="tab-pane fade" id="panek">
+			                        <div class="tab-inner">
+										<div class='medium-down'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Šimon Pánek</strong></p>
+											<small>Ředitel humanitární organizace Člověk v tísni</small>
+										</div>
+			                            <p class="lead">
+											Zajímavá možnost jak se ve složitém a uspěchaném světě vrátit k prostému
+											aktu někomu něco darovat, pomoci mu, seznámit se s ním. Dřív to šlo v rámci
+											komunity a širšího příbuzenstva či kmene. Dnes máme Hearth.net a to je skvělé.
+										</p>
+			                        </div>
+			                    </div>
+			                    <div role="tabpanel" class="tab-pane fade" id="hajzler">
+			                        <div class="tab-inner">
+										<div class='medium-down'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Tomáš Hajzler</strong></p>
+											<small>Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou</small>
+										</div>
+			                            <p class="lead">
+											Nadchla mě vaše jednoduchost. Přestěhoval jsem se a myslím, že mi
+											Hearth.net pomůže vybudovat vztahy v novém místě. Dávání bylo a
+											bude základ každé rodiny a navíc vám přináší skvělý pocit. Dnešní
+											doba sociálních sítí k tomu ideálně nahrává.
+										</p>
+			                        </div>
+			                    </div>
+			                    <div role="tabpanel" class="tab-pane fade" id="vaclavek">
+			                        <div class="tab-inner">
+										<div class='medium-down'>
+											<p class='margin-vertical-none'><strong class="text-uppercase">Petr Václavek</strong></p>
+											<small>Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</small>
+										</div>
+			                            <p class="lead">
+											Hearth.net je skvělé místo pro každého, kdo se chce spojit se
+											světem jiným, novým a smysluplným způsobem. Dává možnost jak
+											uplatnit svůj dar-talent, a dělat tak, co nás naplňuje radostí.
+										</p>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+
+		</section>
+		<div class='slash background-alternate'></div>
+	</div>
+	<div class='section contains-slash background-alternate'>
+		<section id='target-deje-se'>
+			<h1>Právě se děje</h1>
+			<div class='medium-flex flex-align-start flex-medium-divide'>
+				<div class='flex-div flex-1 blog-block'>
+					<div class='blog-img-wrapper'>
+						<div class='blog-img' id='image-blog-1'></div>
+					</div>
+					<div class='text-muted'>4.5.2016</div>
+					<h3>Co je to štěstí? aneb Štěstí jsou malé, ale krásné střípky života</h3>
+					<p>
+						“Chci povzbudit vaši mysl a chci věřit, že i vaše štěstí se skládá z mnoha
+						takových střípků, které pro jednoho mohou být naprosto obyčejným dnem, ale
+						pro jiného jsou něčím mimořádným, něčím radostným a nevšedním. Neodkládejme
+						své štěstí na AŽ…" píše v našem blogu Zuzana, jedna z uživatelek Hearth.net
+					</p>
+					<a href='' class='display-block margin-top-medium color-primary text-emphasize'>
+						Přečíst na blogu
+					</a>
+				</div>
+				<div class='flex-div flex-1 blog-block'>
+					<div class='blog-img-wrapper'>
+						<div class='blog-img' id='image-blog-2'></div>
+					</div>
+					<div class='text-muted'>4.5.2016</div>
+					<h3>Japonec vysázel tisíce květin, aby potěšil manželku</h3>
+					<p>
+						Zahrada pokrytá jasně růžovými květy, která vznikla jako dojemný projev lásky.
+					</p>
+					<a href='' class='display-block margin-top-medium color-primary text-emphasize'>
+						Přečíst na blogu
+					</a>
+				</div>
+				<div class='flex-div flex-1 blog-block'>
+					<div class='blog-img-wrapper'>
+						<div class='blog-img' id='image-blog-3'></div>
+					</div>
+					<div class='text-muted'>1.5.2016</div>
+					<h3>Skutečná podstata štědrosti</h3>
+					<p>
+						Skutečná podstata štědrosti
+						"Štědrost a obdarovávání je jedna z nejduchovnějších věcí, kterou při hledání sebe sama můžeme učinit,"
+						píše Hanka na svém blogu bytprostestastny.cz
+					</p>
+					<a href='' class='display-block margin-top-medium color-primary text-emphasize'>
+						Přečíst na blogu
+					</a>
+				</div>
+			</div>
+		</section>
+		<div class='slash'></div>
+	</div>
+	<div class='section'>
+		<section class='medium-flex'>
+			<div class='flex-1'>
+				<div class='social-panel'>
+					<div class='fb-page'
+						data-href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko'
+						data-tabs='timeline,events,messages'
+						data-width='500'
+						data-height='400'
+						data-hide-cover='false'
+						data-show-facepile='false'
+						data-show-posts='false'></div>
+	            </div>
+	        </div>
+			<div class='flex-1'>
+				<div class='margin-vertical-medium text-align-center'>
+					<h4>Adato</h4>
+				</div>
+				<div class='social-bar flex flex-center flex-wrap'>
+					<a target='_blank' href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko' title='Hearthí Facebook fanpage'><i class='fa fa-fw fa-2x fa-facebook'></i></a>
+					<a target='_blank' href='https://plus.google.com/105519310550753411853/posts' title='Hearthí Google Plus účet'><i class='fa fa-fw fa-2x fa-google-plus'></i></a>
+					<a target='_blank' href='https://twitter.com/hearth_net' title='Hearthí Twitter účet'><i class='fa fa-fw fa-2x fa-twitter'></i></a>
+					<a target='_blank' href='https://www.youtube.com/user/hearthnetcrsr' title='Náš YouTube kanál'><i class='fa fa-fw fa-2x fa-youtube'></i></a>
+					<a target='_blank' href='//instagram.com/artofhearth' title='Účet na Instagramu'><i class='fa fa-fw fa-2x fa-instagram'></i></a>
+					<a target='_blank' href='mailto:info@hearth.net' title='Napište nám e-mail'><i class='fa fa-fw fa-2x fa-envelope'></i></a>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src='./js/smooth-scroll.js'></script>
+	<script src='./js/script.js'></script>
+</body>
+</html>

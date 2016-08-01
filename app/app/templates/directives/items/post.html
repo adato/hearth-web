@@ -1,11 +1,11 @@
-<article class="item-common item-post bubbled" id="post_{{:: item._id }}" ng-class="{inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
+<article class="item-common item-post bubbled" id="post_{{ item._id }}" ng-class="{inactive: !isActive, 'hidden-init': delayedView, 'hiddenAvatar': hideAvatar}">
 	<div class="row">
 		<section ng-if="! hideAvatar" class="column medium-2 show-for-medium-up padding-top-small">
 			<div info-box="item.author">
 				<div class="v2 user text-center">
-					<a ng-href="{{:: getProfileLink(item.author._type, item.author._id) }}">
-						<avatar class="show-post-arrows {{:: item.type }}" type="item.author._type" src="item.author.avatar.large"></avatar>
-						<div class="name">{{ item.author.name }}</div>
+					<a ng-href="{{getProfileLink(item.author._type, item.author._id)}}">
+						<avatar class="show-post-arrows {{item.type}}" type="item.author._type" src="item.author.avatar.large"></avatar>
+						<div class="name">{{item.author.name}}</div>
 					</a>
 				</div>
 			</div>
@@ -13,11 +13,10 @@
 				<karma-bar for="item.author"></karma-bar>
 			</div>
 		</section>
-
 		<div class="column small-12 medium-10 padding-none" ng-class="{'medium-push-1': hideAvatar}">
 			<div class="sharing-container ng-hide" ng-show="showSharing" ng-click="showSharing = false">
 				<div class="sharing-container-form">
-					<i class="fa touchable fa-times close" ng-click="showSharing = false"></i>
+					<a class="fa touchable fa-times close" ng-click="showSharing = false"></a>
 					<h3>{{:: 'MARKETPLACE.POST.SHARE_LINK' | translate }}</h3>
 					<div class="input-container medium-display-table">
 						<div class="medium-display-table-cell addon">
@@ -35,7 +34,7 @@
 							<a analytics-custom analytics-event="Share" analytics-category="Facebook" analytics-label="Share post on facebook" sharing-window class="fa fa-facebook" title="Facebook" ng-href="{{:: socialLinks.facebook+postAddress}}" target="_blank"></a>
 						</li>
 						<li>
-							<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" haring-window class="fa fa-google-plus" title="Google+" ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
+							<a analytics-custom analytics-event="Share" analytics-category="Google+" analytics-label="Share post on google+" sharing-window class="fa fa-google-plus" title="Google+" ng-href="{{:: socialLinks.gplus+postAddress}}" target="_blank"></a>
 						</li>
 						<li>
 							<a analytics-custom analytics-event="Share" analytics-category="Twitter" analytics-label="Share post on twitter" sharing-window class="fa fa-twitter" title="Twitter" ng-href="{{:: socialLinks.twitter+postAddress}}" target="_blank"></a>
@@ -84,7 +83,7 @@
 										<hr />
 									</li>
 									<li ng-if=':: canEditPosts'>
-										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate))}}</a>
+										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("POST.SUSPEND.LABEL" | translate) : ("AD_RESUME_LABEL" | translate))}}</a>
 									</li>
 									<!-- /admin only -->
 								</ul>

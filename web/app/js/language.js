@@ -11,16 +11,15 @@ window.jCookie = $.cookie;
 var langBrowser = window.navigator.userLanguage || window.navigator.language;
 
 // language based on url path
-var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split("/").slice(0, 1).toString();
+var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split('/').slice(0, 1).toString();
 
 function redirectToLangVersion(lang, langsAvailable) {
 	var loc = document.location.pathname.replace(/^\/|\/$/g, '');
-	var langLoc = loc.split("/").slice(0, 1).toString();
+	var langLoc = loc.split('/').slice(0, 1).toString();
 
-	if(langsAvailable.indexOf(langLoc) == -1)
+	if (langsAvailable.indexOf(langLoc) == -1) {
 		loc = langPathMap[lang]+loc;
-	else {
-
+	} else {
 		var locParts = loc.split('/');
 		if(locParts.length)
 			locParts.shift();
@@ -28,18 +27,17 @@ function redirectToLangVersion(lang, langsAvailable) {
 		loc = langPathMap[lang] + locParts.join('/');
 	}
 
-	if(loc == 'undefined') {
+	if (loc == 'undefined') {
 		loc = defaultLanguage;
 		window.jCookie('language', defaultLanguage, {path: '/', expires: 20 * 365});
 	}
 
-	console.log("New url is: ", loc);
-	window.location = loc;
+	window.location = loc + window.location.search;
 }
 
 function changeLanguage(lang) {
-	console.log('Settings language to cookies:', lang);
-	
+	// console.log('Settings language to cookies:', lang);
+
 	window.jCookie('language', lang, {path: '/', expires: 20 * 365});
 	return true;
 }
@@ -66,23 +64,23 @@ langBrowser = (langTranslationMap[langBrowser]) ? langTranslationMap[langBrowser
 if(langsAvailable.indexOf(langUrl) == -1)
 	langUrl = defaultLanguageUrl;
 
-console.log('Languages are: browser = ',langBrowser,' | url = ', langUrl, ' | cookie = ', $.cookie('language'));
+// console.log('Languages are: browser = ',langBrowser,' | url = ', langUrl, ' | cookie = ', $.cookie('language'));
 
 if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
-    console.log('Don\'t change language for crawlers');
+    // console.log('Don\'t change language for crawlers');
 } else {
     console.log('Regular visitor - checking language');
 
 	// if there is not set language in cookie yet
 	// use language from browser
 	if(!$.cookie('language')) {
-		console.log('There is no language in cookie yet');
+		// console.log('There is no language in cookie yet');
 		changeLanguage(langBrowser, $);
 	}
 
 	// if we are not on right url, redirect
 	if(langUrl != $.cookie('language')) {
-		console.log('Language in URL is not the same as value in cookies, redirecting to ', $.cookie('language'));
+		// console.log('Language in URL is not the same as value in cookies, redirecting to ', $.cookie('language'));
 		redirectToLangVersion($.cookie('language'), langsAvailable);
 	}
 }

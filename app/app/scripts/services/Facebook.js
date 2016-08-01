@@ -7,9 +7,8 @@
  */
 
 angular.module('hearth.services').service('Facebook', [
-	'$translate',
+	function() {
 
-	function($translate) {
 		var inited = false;
 
 		this.init = function() {
@@ -19,20 +18,15 @@ angular.module('hearth.services').service('Facebook', [
 					appId: $$config.fbAppId,
 					cookie: true,
 					status: true,
-					xfbml: true
+					xfbml: true,
+					version: 'v2.6'
 				});
 			}
 			inited = true;
 		};
 
-		this.inviteFriends = function() {
-			FB.ui({
-				method: 'apprequests',
-				message: $translate.instant('FACEBOOK_INVITATION_MESSAGE')
-			});
-		};
-
 		this.init();
 		return this;
+
 	}
 ]);

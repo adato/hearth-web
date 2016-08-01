@@ -24,6 +24,10 @@ angular.module('hearth.services').factory('Invitation', [
 					email: '@email'
 				},
 				errorNotify: false
+			},
+			getReferralCode: {
+				method: 'POST',
+				url: $$config.apiPath + '/invitation/referral'
 			}
 		});
 	}

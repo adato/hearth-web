@@ -6,7 +6,7 @@
  * @description Helper class for all Hearth profiles (user himself, other users, community profiles...)
  */
 
-angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', function(Karma, MottoLength) {
+angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', '$window', function(Karma, MottoLength, $window) {
 
 	var factory = {};
 
@@ -28,10 +28,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		paramObject.type = paramObject.type.toUpperCase();
 
 		// common for all types
-		// copyMottoIfNecessary(paramObject.profile);
 		fillWebs(paramObject.profile);
-		// joinInterests(paramObject.profile);
-		getLocationJson(paramObject.profile);
 
 		// type-specific
 		switch (paramObject.type) {
@@ -74,13 +71,39 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		return profile;
 	}
 
-	function getLocationJson(profile) {
-		if (profile.locations.length) {
-			for (var i = profile.locations.length; i--;) {
-				profile.locations[i] = profile.locations[i].json_data;
+	/**
+	 *	@param {Object} entity - the object containing a locations prop to be transformed
+	 *	@param {Boolean} fromJson - if true, extracts locations from json_data prop,
+	 *		creates and fills the json_data prop otherwise
+	 *	@param property - property on which to search for locations prop
+	 *	@return {Object} transformed entity object
+	 */
+	function locationJsonHelper(entity, fromJson, opts) {
+		if (fromJson && ((typeof entity).toLowerCase() === 'string')) entity = $window.JSON.parse(entity);
+		var entityDummy = [entity];
+		opts = opts || {};
+		if (opts.prop) entityDummy = entity[opts.prop];
+		for (var q = entityDummy.length; q--;) {
+			if (!(entityDummy[q].locations && entityDummy[q].locations.length)) entityDummy[q].locations = [];
+			for (var i = entityDummy[q].locations.length; i--;) {
+				entityDummy[q].locations[i] = (fromJson ? entityDummy[q].locations[i].json_data : {
+					json_data: (entityDummy[q].locations[i].address_components ? entityDummy[q].locations[i] : {
+						place_id: entityDummy[q].locations[i].place_id
+					})
+				});
 			}
 		}
-		return profile;
+		if (!fromJson && ((typeof entity).toLowerCase() === 'object')) entity = $window.JSON.stringify(entity);
+
+		return entity;
+	}
+
+	function getLocationJson(entity) {
+		return locationJsonHelper(entity, true, this);
+	}
+
+	function insertLocationJson(entity) {
+		return locationJsonHelper(entity, false, this);
 	}
 
 	function fillWebs(profile) {
@@ -89,7 +112,6 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	}
 
 	function splitInterests(profile) {
-		console.log(profile);
 		profile.interests = (profile.interests ? profile.interests.split(',') : []);
 		return profile;
 	}
@@ -109,6 +131,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	factory.transformDataForSaving = transformDataForSaving;
 	factory.single = {
 		copyMottoIfNecessary: copyMottoIfNecessary,
+		insertLocationJson: insertLocationJson,
 		fillWebs: fillWebs,
 		getLocationJson: getLocationJson,
 		joinInterests: joinInterests,

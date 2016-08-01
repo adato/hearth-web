@@ -6,7 +6,6 @@
 	</span>
 	<span ng-if="showAuthorName && item.author._type === 'User'" title="{{item.author.name}}">({{item.author.name | ellipsis:9}})</span>
 	<div class="ad-controls" ng-if="item.owner_id === loggedUser._id">
-		<i class="fa fa-pencil" title="{{'POST.EDIT.LABEL' | translate}}" ng-click="editItem(item)"></i>
 		<i class="fa" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}" title="{{'POST.RESUME.LABEL' | translate}}" ng-if="!isPostActive(item)" ng-click="pauseToggle(item)"></i>
 		<i class="fa fa-pause" title="{{'POST.SUSPEND.LABEL' | translate}}" ng-if="isPostActive(item)" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', pauseToggle, item, this)"></i>
 		<i class="fa fa-times" title="{{'POST.REMOVE.LABEL' | translate}}" ng-click="confirmBox('POST.REMOVE.LABEL', 'POST.REMOVE.ARE_YOU_SURE', deleteItem, item, this)"></i>

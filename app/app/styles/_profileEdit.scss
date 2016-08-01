@@ -9,7 +9,14 @@
 				overflow-y: scroll;
 			}
 		}
+		&.interests {
+			position: relative;
 
+			.autocomplete {
+				max-height: 240px;
+				overflow-y: scroll;
+			}
+		}
 		&.contact {
 			.contact-phone {
 				.intl-tel-input {

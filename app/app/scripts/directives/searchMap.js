@@ -11,8 +11,8 @@
  */
 
 angular.module('hearth.geo').directive('searchMap', [
-	'$rootScope', '$timeout', 'geo', '$location', 'Post',
-	function($rootScope, $timeout, geo, $location, Post) {
+	'$timeout', 'geo', '$location', 'Post', '$rootScope',
+	function($timeout, geo, $location, Post, $rootScope) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -69,12 +69,17 @@ angular.module('hearth.geo').directive('searchMap', [
 					return angular.copy($location.search());
 				};
 
-				scope.getMapBoundingBoxParams = function() {
+				/**
+				 *	@param boundingBox {LatLngBoundsLiteral} [optional]
+				 *	https://developers.google.com/maps/documentation/javascript/reference#LatLngBoundsLiteral
+				 */
+				scope.getMapBoundingBoxParams = function(boundingBox) {
+					boundingBox = boundingBox || {};
 					return {
-						'bounding_box[top_left][lat]': 85,
-						'bounding_box[top_left][lon]': -170,
-						'bounding_box[bottom_right][lat]': -85,
-						'bounding_box[bottom_right][lon]': 175,
+						'bounding_box[top_left][lat]': boundingBox.north || 85,
+						'bounding_box[top_left][lon]': boundingBox.west || -170,
+						'bounding_box[bottom_right][lat]': boundingBox.south || -85,
+						'bounding_box[bottom_right][lon]': boundingBox.east || 175,
 						offset: 0
 					};
 				};
@@ -85,38 +90,42 @@ angular.module('hearth.geo').directive('searchMap', [
 					$rootScope.$broadcast("filterApplied", params);
 				};
 
-				scope.getSearchParams = function() {
+				scope.getSearchParams = function(boundingBox) {
 					var searchParams = scope.getFilterParams();
 
 					if (typeof searchParams.distance === 'undefined') {
-						searchParams = angular.extend(searchParams, scope.getMapBoundingBoxParams());
+						searchParams = angular.extend(searchParams, scope.getMapBoundingBoxParams(boundingBox));
 					}
 
 					searchParams.map_output = 1;
 					return searchParams;
 				};
 
-				scope.search = function(location) {
-					// if we should set new location, set it also to search
-					location && location.lon && scope.setSearchParams(location);
+				scope.search = function(loc, boundingBox) {
+					// if we should set new location, set it also to (url) search
+					loc && loc.lon && scope.setSearchParams(loc);
 
 					// search only when map is shown
-					var params = scope.getSearchParams();
+					console.log(boundingBox);
+					var params = scope.getSearchParams(boundingBox);
 
-					if (params.lon && params.lat) {
-						scope.center = true;
-					}
-
-					if (params.name) {
-						$(input).val(params.name);
-					}
+					if (params.lon) scope.center = true;
 
 					Post.mapQuery(params, function(data) {
+						console.log(data);
 						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};
 
-				scope.search();
+				/**
+				 *	Event handler for map searches.
+				 *	scope.search takes one param - loc {Object}
+				 */
+				$rootScope.$on('searchRequest', function(event, boundingBox) {
+					scope.search(false, boundingBox);
+				});
+
+				// scope.search();
 				scope.autodetectMyLocation();
 				scope.$on('filterReseted', scope.search);
 				scope.$on('filterApplied', scope.search);

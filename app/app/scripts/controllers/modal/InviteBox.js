@@ -7,17 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators',
-	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators) {
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window',
+	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
+		$scope.urlTitle = '';
 		$scope.sending = false;
 
+		var token;
 		var timeoutClose = false;
+		var inviteInfo, title, description, plainDescription;
 
 		$scope.fbInvite = function() {
-			Facebook.inviteFriends();
-			return false;
+			FB.ui({
+				method: 'share',
+				href: $scope.url,
+				quote: plainDescription
+			})
 		};
 
 		$scope.showFinished = function(res) {
@@ -33,13 +39,22 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		};
 
 		$scope.init = function() {
-			var inviteInfo = OpenGraph.getDefaultInfo();
-			var title = encodeURIComponent(inviteInfo.title);
-			var description = encodeURIComponent(inviteInfo.description);
+			inviteInfo = OpenGraph.getDefaultInfo();
+			title = encodeURIComponent(inviteInfo.title);
+			description = encodeURIComponent(inviteInfo.description);
+			plainDescription = inviteInfo.description;
 
-			$scope.url = window.location.href.replace(window.location.hash, '');
-			$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;
+			// link to the landing page
+			$scope.url = $window.location.origin;
+			$scope.urlLinkedin = $scope.url + '?title=' + title + '&summary=' + description;
 			$scope.endpoints = $$config.sharingEndpoints;
+			Invitation.getReferralCode(function(res) {
+				token = res.token;
+				if ($rootScope.debug) console.log('token: ', token);
+				$scope.url += '?' + $$config.referrerCookieName + '=' + token;
+				$scope.urlTitle = '&title=' + title;
+				$scope.urlLinkedin = $scope.url + $scope.urlTitle + '&summary=' + description;
+			});
 		};
 
 		/**
@@ -80,6 +95,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		};
 
 		function transformInvitationOut(data) {
+			// console.log(JSON.parse(JSON.stringify(data)));
 			if (data.to_email) {
 				data.to_email = $.map(data.to_email, function(value, index) {
 					return value.text;
@@ -141,7 +157,8 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				var item = {
 						status: null,
 						text: null,
-						email: invitationStatusTemp[i].email
+						email: invitationStatusTemp[i].email,
+						existing: invitationStatusTemp[i].existing
 					}
 					// for (var j = responseObj.invited_emails.length; j--;) {
 					// 	if (invitationStatusTemp[i].email === responseObj.invited_emails[j]) {
@@ -203,6 +220,7 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				var arr = [];
 				for (var i = 0, l = data.to_email.length; i < l; i++) {
 					arr.push({
+						existing: getInviteeObject(data.to_email[i].text),
 						email: data.to_email[i].text
 					})
 				}
@@ -218,6 +236,22 @@ angular.module('hearth.controllers').controller('InviteBox', [
 				invitation: dataOut
 			}, handleEmailResult);
 		};
+
+		/**
+		 *	Function that finds a person detail object in the data stored in previously fetched people details
+		 *	@param email {String} - an email to which to find a name
+		 *	@return {Object} - a person object
+		 */
+		function getInviteeObject(email) {
+			var existing = {};
+			for (var i = $scope.invitationsStatus.length; i--;) {
+				if ($scope.invitationsStatus[i].email === email) {
+					existing = $scope.invitationsStatus[i].existing;
+					break;
+				}
+			}
+			return existing;
+		}
 
 		function initForm() {
 			angular.forEach($scope.showError, function(value, key) {

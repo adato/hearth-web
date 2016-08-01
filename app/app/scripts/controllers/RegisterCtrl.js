@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('RegisterCtrl', [
-	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth',
-	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth) {
+	'$scope', '$rootScope', '$stateParams', 'LanguageSwitch', 'User', 'ResponseErrors', '$analytics', 'Auth', '$location', 'Email', 'Notify', '$auth', '$window', 'RubySerializer', '$http',
+	function($scope, $rootScope, $stateParams, LanguageSwitch, User, ResponseErrors, $analytics, Auth, $location, Email, Notify, $auth, $window, RubySerializer, $http) {
 
 		$scope.user = {
 			email: '',
@@ -31,14 +31,21 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 		$scope.twitterAuthUrl = Auth.getTwitterAuthUrl('register');
 
 		$scope.oauthRegister = function(provider) {
+			// switch serializer for this call to allow unencoded brackets
+			var serializer = $http.defaults.paramSerializer;
+			$http.defaults.paramSerializer = RubySerializer;
+
 			$auth.authenticate(provider, {
 				language: preferredLanguage,
 				user_action: 'register'
 			}).then(function(response) {
-				if (response.status == 200)
+				if (response.status == 200) {
 					Auth.processLoginResponse(response.data);
-				else
+				} else {
 					$scope.loginError = true;
+				}
+				// switch serializer back only after the EP call has responded
+				$http.defaults.paramSerializer = serializer;
 			});
 		};
 
@@ -79,7 +86,14 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 			if ($scope.sending) return false;
 			$scope.sending = true;
 
-			User.add($scope.user, function() {
+			var params = {};
+			params[$$config.referrerCookieName + '[]'] = $window.refsArray;
+
+			// switch serializer for this call to allow unencoded brackets
+			var serializer = $http.defaults.paramSerializer;
+			$http.defaults.paramSerializer = RubySerializer;
+
+			User.add(params, $scope.user, function() {
 				$scope.sending = false;
 
 				//     // Notify.addSingleTranslate('NOTIFY.SIGNUP_PROCESS_SUCCESS', Notify.T_SUCCESS);
@@ -104,6 +118,9 @@ angular.module('hearth.controllers').controller('RegisterCtrl', [
 					label: 'error during registration'
 				});
 			});
+
+			// switch serializer back immediately after the EP call
+			$http.defaults.paramSerializer = serializer;
 		};
 
 		$scope.register = function(user) {

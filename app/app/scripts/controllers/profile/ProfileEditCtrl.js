@@ -6,8 +6,7 @@
  * @description
  */
 
-angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
+angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
 	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils, Interest, $q) {
 		$scope.loaded = false;
 		$scope.sending = false;
@@ -23,20 +22,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			social_networks: [],
 		};
 
-		$scope.socialNetworks = {
-			'twitter': {
-				'url': 'twitter.com\/.*'
-			},
-			'facebook': {
-				'url': 'facebook.com\/.*'
-			},
-			'linkedin': {
-				'url': 'linkedin.com\/.*'
-			},
-			'googleplus': {
-				'url': 'plus.google.com\/.*'
-			}
-		};
+		$scope.parameters = ProfileUtils.params;
 
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
 		$scope.filteredLangs = [];
@@ -55,7 +41,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				return lang.translate.toLowerCase().indexOf(query.toLowerCase()) != -1;
 			});
 		};
-		$scope.parameters = ProfileUtils.params;
 
 		$scope.init = function() {
 
@@ -64,7 +49,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			User.getFullInfo(function(res) {
 				$scope.profile = transformDataIn(res);
 				$scope.loaded = true;
-
 			}, function(res) {});
 		};
 
@@ -167,31 +151,20 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.transferDataOut = function(data) {
 			var webs = [];
+			var interests = [];
 
 			// remove empty webs
 			data.webs.forEach(function(web) {
 				if (web) webs.push(web);
 			});
-
-			data.user_languages = {};
-			angular.forEach($scope.filteredLangsUser, function(item) {
-				data.user_languages[item.lang] = true;
-			});
-
-			data.phone = '+' + data.phone;
 			data.webs = webs;
 
-			if (!data.locations.length) {
-				data.locations = [];
-			} else {
-				angular.forEach(data.locations, function(location, index) {
-					data.locations[index] = {
-						json_data: location.address_components ? location : {
-							place_id: location.place_id
-						}
-					};
-				});
-			}
+			data.phone = '+' + data.phone;
+
+			data.interests.forEach(function(interest) {
+				if (interest) interests.push(interest.term);
+			});
+			data.interests = interests;
 
 			if (!data.interests) {
 				data.interests = [];
@@ -202,7 +175,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}
 
 			return data;
-		}
+		};
 
 		$scope.validateData = function(data) {
 			var res = true;
@@ -236,7 +209,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}
 
 			return res;
-		}
+		};
 
 		$scope.update = function() {
 			var transformedData;
@@ -288,5 +261,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 		$scope.$on('initFinished', $scope.init);
 		$rootScope.initFinished && $scope.init();
+		$scope.$watch('showError', function() {
+			$scope.messageBottom = false;
+		}, true);
+
 	}
 ]);
