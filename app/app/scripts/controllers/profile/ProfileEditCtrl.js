@@ -166,6 +166,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 			});
 			data.interests = interests;
 
+			if (!data.interests) {
+				data.interests = [];
+			} else {
+				for (var i = data.interests.length;i--;) {
+					data.interests[i] = data.interests[i].term;
+				}
+			}
+
 			return data;
 		};
 
