@@ -261,3 +261,22 @@
 		color: color(6);
 	}
 }
+
+.static-page-container .moderators {
+	.avatar-like {
+		width:80px;
+		border-radius:50%; 
+		float:left;
+		margin-right:20px;
+	}
+	dd.pad-left {
+		margin-left:100px; 
+	}
+	dl.pad-left {
+		margin-left:100px; 
+	}
+	.pad-left ul {
+		margin-top:15px;
+		margin-left:30px;
+	}
+}
