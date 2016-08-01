@@ -38,8 +38,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}
 		};
 
+		/* languages supported in "languages-i-speak" section */
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
+		/* Array that will hold the $scope.languageList with translations, once they are created (=translated) */
 		$scope.filteredLangs = [];
+		/* Array that will be filled with user's languages */
 		$scope.filteredLangsUser = [];
 
 		function sortTranslations(a, b) {
@@ -75,13 +78,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				profile: data
 			});
 
+			// Fill $scope.filteredLangs With language translations
+			// 	AND add language translations to user lang-model
 			angular.forEach($scope.languageList, function(lang) {
-				if (data.user_languages[lang]) {
-					var newLang = {};
-					newLang['lang'] = lang;
-					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-					$scope.filteredLangsUser.push(newLang);
-				}
+				var newLang = {};
+				newLang['lang'] = lang;
+				newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+				$scope.filteredLangs.push(newLang);
+				if (data.user_languages[lang]) $scope.filteredLangsUser.push(newLang);
 			});
 
 			$scope.showContactMail = data.contact_email && data.contact_email != '';
