@@ -122,6 +122,11 @@ angular.module('hearth').config([
 				templateUrl: 'templates/localizationPage.html',
 				controller: 'StaticPageCtrl'
 			})
+			.state('moderators', {
+				url: '/moderators',
+				templateUrl: 'templates/localizationPage.html',
+				controller: 'StaticPageCtrl'
+			})
 			.state('components', {
 				url: '/components',
 				templateUrl: 'templates/components.html',

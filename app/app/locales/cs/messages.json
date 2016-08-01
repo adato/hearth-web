@@ -425,6 +425,7 @@
 	"TELL_WHAT": "Jednoduše řekni co: např. tutorství",
 	"MENU": {
 		"TERMS": "Podmínky použití",
+		"MODERATORS": "Správci Hearth.net",
 		"FAQ": "Časté dotazy",
 		"TAXES": "Darování a daně",
 		"SUPPORT_US": "Podpoř Hearth"
@@ -1367,7 +1368,7 @@
 		"0": "Konverzace"
 	},
 	"profileSettings": "Nastavení profilu",
-	"LANGUAGE": {
+	"LANGUAGE": {	
 		"ENGLISH": "English",
 		"CZECH": "Čeština",
 		"SLOVAK": "Slovenčina"
