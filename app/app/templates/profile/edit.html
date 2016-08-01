@@ -159,7 +159,7 @@
 						<label>
 							<i class="fa fa-phone"></i> {{:: 'MY_PHONE' | translate }}
 						</label>
-						<input type="tel" ng-focus="showError.phone = false" ng-blur="validatePhone($event)" name="phone" class="text-input phone" international-phone-number default-country="cz" national-mode="false" ng-model="profile.phone"> {{profile.phone}} {{profileEditForm.phone}}
+						<input type="tel" ng-focus="showError.phone = false" ng-blur="validatePhone($event)" name="phone" class="text-input phone" international-phone-number default-country="cz" national-mode="false" ng-model="profile.phone">
 						<div class="error" ng-show="showError.phone">
 							<span ng-show="profileEditForm.phone.$error.internationalPhoneNumber">{{:: 'ERR_NOT_VALID_PHONE' | translate }}</span>
 						</div>
