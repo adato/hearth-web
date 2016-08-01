@@ -79,6 +79,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 
 			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class
 
+			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class 
+
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
 			$authProvider.tokenName = 'api_token';
@@ -125,19 +127,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
-		}
-	]).config(['$provide',
-		function($provide) {
-			$provide.decorator("$exceptionHandler", function($delegate, $window) {
-				return function(exception, cause) {
-					if ($window.Rollbar) {
-						$window.Rollbar.error(exception, {
-							cause: cause
-						});
-					}
-					$delegate(exception, cause);
-				};
-			});
 		}
 	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
 		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {

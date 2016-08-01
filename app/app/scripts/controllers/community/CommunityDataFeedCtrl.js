@@ -291,7 +291,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			$scope.pageSegment = $stateParams.page || 'home';
 			var loadService = loadServices[$scope.pageSegment];
 
-			$scope.debug && $logger.log("Calling load service for segment ", $scope.pageSegment);
+			$scope.debug && $log.log("Calling load service for segment ", $scope.pageSegment);
 			loadService($stateParams.id, processData, processDataErr);
 
 			// refresh after new post created

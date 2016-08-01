@@ -24,8 +24,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 
 		$scope.parameters = ProfileUtils.params;
 
+		/* languages supported in "languages-i-speak" section */
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
+		/* Array that will hold the $scope.languageList with translations, once they are created (=translated) */
 		$scope.filteredLangs = [];
+		/* Array that will be filled with user's languages */
 		$scope.filteredLangsUser = [];
 
 		function sortTranslations(a, b) {
@@ -59,13 +62,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 				profile: data
 			});
 
+			// Fill $scope.filteredLangs With language translations
+			// 	AND add language translations to user lang-model
 			angular.forEach($scope.languageList, function(lang) {
-				if (data.user_languages[lang]) {
-					var newLang = {};
-					newLang['lang'] = lang;
-					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-					$scope.filteredLangsUser.push(newLang);
-				}
+				var newLang = {};
+				newLang['lang'] = lang;
+				newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+				$scope.filteredLangs.push(newLang);
+				if (data.user_languages[lang]) $scope.filteredLangsUser.push(newLang);
 			});
 
 			$scope.showContactMail = data.contact_email && data.contact_email != '';
@@ -102,6 +106,15 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 			}
 
 			model[key] = url;
+		};
+
+		$scope.validatePhone = function(event) {
+			$scope.showError.phone = true;
+			var phone = event.target;
+
+			if (!$scope.profile.phone && !$scope.profileEditForm.phone.$error.internationalPhoneNumber) {
+				$(phone).val(null);
+			}
 		};
 
 		$scope.validateSocialNetworks = function() {
@@ -159,7 +172,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 			});
 			data.webs = webs;
 
-			data.phone = '+' + data.phone;
+			if (data.phone) {
+				data.phone = '+' + data.phone;
+			}
 
 			data.interests.forEach(function(interest) {
 				if (interest) interests.push(interest.term);
@@ -169,7 +184,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 			if (!data.interests) {
 				data.interests = [];
 			} else {
-				for (var i = data.interests.length;i--;) {
+				for (var i = data.interests.length; i--;) {
 					data.interests[i] = data.interests[i].term;
 				}
 			}
