@@ -127,7 +127,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
-		}	
+		}
 	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
 		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
 			$rootScope.appInitialized = false;
