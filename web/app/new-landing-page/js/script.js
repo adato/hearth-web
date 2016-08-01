@@ -140,8 +140,8 @@
 	//	MENU CLASSES ON SCROLL
 	//
 	var header = $('.header-wrapper');
-	const CONTRACTED_CLASS = 'contracted';
-	const HEADER_SCROLL_TOP = 50;
+	var CONTRACTED_CLASS = 'contracted';
+	var HEADER_SCROLL_TOP = 50;
 	if (header && header.length) {
 		header = header[0];
 		var headerLarge = true;
@@ -166,7 +166,7 @@
 	function activateSlideshow(opts) {
 		'use strict';
 
-		const SLIDESHOW = 'aeg-slideshow';
+		var SLIDESHOW = 'aeg-slideshow';
 		var opts = opts || {};
 		var slideshows = document.querySelectorAll('[' + SLIDESHOW + ']');
 		if (slideshows.length) {
