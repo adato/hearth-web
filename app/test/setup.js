@@ -12,21 +12,21 @@ module.exports = {
 		testPassword: 'testovaci',
 		useConfig: 'local',
 		local: {
-			baseUrl: 'https://127.0.0.1:9000/app',
+			baseUrl: 'https://0.0.0.0:9000/app',
 			appPath: '/',
 			loginName: 'hearth@mailinator.com', // test user email
 			loginPassword: 'tester', 			// test user password
 			loginFullName: 'E2E tester',
 			loginTrimmedName: 'E2E teste…'
 		},
-    jenkins: {
-      baseUrl: 'https://jenkins:9000/app',
-      appPath: '/',
-      loginName: 'hearth@mailinator.com', // test user email
-      loginPassword: 'tester', 			// test user password
-      loginFullName: 'E2E tester',
-      loginTrimmedName: 'E2E teste…'
-    },
+		jenkins: {
+			baseUrl: 'https://jenkins:9000/app',
+			appPath: '/',
+			loginName: 'hearth@mailinator.com', // test user email
+			loginPassword: 'tester', 			// test user password
+			loginFullName: 'E2E tester',
+			loginTrimmedName: 'E2E teste…'
+		},
 		dev: {
 			baseUrl: 'http://dev.hearth.net/app',
 			appPath: '/',
