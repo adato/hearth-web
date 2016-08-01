@@ -154,18 +154,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		var interests = [];
 		$scope.loadInterests = function(query) {
 			return $q(function(resolve, reject) {
-				if (interests.length) {
-					resolve(interests.filter(interestsFilter(query)));
-				} else {
-					Interest.query({
-						name: query
-					}, function(res) {
-						interests = res.map(function(interest) {
-							return interest.term;
-						});
-						resolve(interests.filter(interestsFilter(query)));
+				Interest.query({
+					search: query
+				}, function(res) {
+					interests = res.map(function(interest) {
+						return interest.term;
 					});
-				}
+					resolve(interests.filter(interestsFilter(query)));
+				});
 			});
 		};
 
@@ -184,7 +180,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 
 			data.phone = '+' + data.phone;
 			data.webs = webs;
-			// data.interests = data.interests.split(",");
 
 			if (!data.locations.length) {
 				data.locations = [];
@@ -196,6 +191,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 						}
 					};
 				});
+			}
+
+			if (!data.interests) {
+				data.interests = [];
+			} else {
+				for (var i = data.interests.length;i--;) {
+					data.interests[i] = data.interests[i].term;
+				}
 			}
 
 			return data;

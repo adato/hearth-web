@@ -69,7 +69,7 @@
 				<label>
 					{{:: 'MY_INTERESTS' | translate }}
 				</label>
-				<tags-input id="interests" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
+				<tags-input id="interests" class="textarea-height" ng-model="profile.interests" name="interests" display-property="term" placeholder="{{'MY_INTERESTS_EXAMPLE' | translate }}" replace-spaces-with-dashes="false">
 					<auto-complete source="loadInterests($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="20" highlight-matched-text="true"></auto-complete>
 				</tags-input>
 			</div>
