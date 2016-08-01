@@ -42,7 +42,8 @@
     "angular-mobile-detect": "*",
     "rollbar": "~1.8.3",
     "checklist-model": "0.9.0",
-    "overlapping-marker-spiderfier": "*"
+    "overlapping-marker-spiderfier": "*",
+    "angular-actioncable": "^1.0.0"
   },
   "devDependencies": {},
   "resolutions": {

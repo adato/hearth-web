@@ -1,17 +1,12 @@
 'use strict';
 
-angular.module('hearth', [
-		'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
+angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
 		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model'
+		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'ngActionCable'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
-
-			// ============================
-			// === Location Configuration
-			// ============================
 			$locationProvider.html5Mode(true);
 		}
 	]).config([
@@ -21,19 +16,14 @@ angular.module('hearth', [
 			$compileProvider.debugInfoEnabled($$config.disableDebugInfo);
 			$httpProvider.useApplyAsync(true);
 
-			// ===============================
-			// === Loading Bar Configuration
-			// ===============================
+			// Loading Bar Configuration
 			cfpLoadingBarProvider.includeSpinner = false;
 			return cfpLoadingBarProvider.includeSpinner;
 		}
 	]).config([
 		'tmhDynamicLocaleProvider', '$translateProvider',
 		function(tmhDynamicLocaleProvider, $translateProvider) {
-
-			// ===============================
-			// === Localization
-			// ===============================
+			// Localization
 
 			// get preferred language from cookies or config
 			// console.log("Setting preffered language", preferredLanguage);
@@ -45,7 +35,6 @@ angular.module('hearth', [
 			$translateProvider.preferredLanguage(preferredLanguage);
 			$translateProvider.useSanitizeValueStrategy(null);
 
-			//  ====================== REVIEW ================
 			// $translateProvider.useStorage('SessionLanguageStorage');
 			$translateProvider.useStaticFilesLoader({
 				prefix: 'locales/',
@@ -53,29 +42,62 @@ angular.module('hearth', [
 			});
 		}
 	]).config([
-		'$httpProvider', '$translateProvider', '$authProvider',
-		function($httpProvider, $translateProvider, $authProvider) {
+		'$httpProvider', '$translateProvider', '$authProvider', '$windowProvider',
+		function($httpProvider, $translateProvider, $authProvider, $windowProvider) {
+
+			var $window = $windowProvider.$get();
+
+			function getRefsArray() {
+				function getCookie(cname) {
+					var name = cname + '=';
+					var cookies = document.cookie.split(';');
+					for (var i = 0; i < cookies.length; i++) {
+						var c = cookies[i];
+						while (c.charAt(0) === ' ') c = c.substring(1);
+						if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+					}
+					return '';
+				}
+				var refs = getCookie($$config.referrerCookieName);
+				if (refs) {
+					refs = refs.split('-');
+					if (refs.length) return refs;
+				}
+				return '';
+			}
+
+			function getRefsString(refsArray) {
+				if (refsArray && refsArray.length) {
+					var refsString = '?';
+					for (var i = refsArray.length; i--;) {
+						refsString += $$config.referrerCookieName + '[]=' + refsArray[i] + '&';
+					}
+					return refsString.slice(0, -1);
+				}
+				return '';
+			}
+			$window.refsArray = getRefsArray();
+			$window.refsString = getRefsString($window.refsArray);
 
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
 			$authProvider.tokenName = 'api_token';
+
 			$authProvider.facebook({
 				clientId: $$config.oauth.facebook,
-				url: $$config.apiPath + '/auth/facebook'
+				url: $window.encodeURI($$config.apiPath + '/auth/facebook' + $window.refsString),
 			});
 
 			$authProvider.google({
 				clientId: $$config.oauth.google,
-				url: $$config.apiPath + '/auth/google',
+				url: $window.encodeURI($$config.apiPath + '/auth/google' + $window.refsString),
 				popupOptions: {
 					width: 660,
 					height: 500
 				}
 			});
 
-			// ===============================
-			// === Configure ajax calls
-			// ===============================
+			// Configure ajax calls
 
 			// Allow CORS
 			$httpProvider.defaults.useXDomain = true;
@@ -85,6 +107,7 @@ angular.module('hearth', [
 			// Add language header
 			$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
+			$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
 			//$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
@@ -98,12 +121,12 @@ angular.module('hearth', [
 					$httpProvider.defaults.headers[type]['x-error-test'] = 1;
 				});
 
-			// // ======== Watch for unauth responses
+			// Watch for unauth responses
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 
-			// // ======== ?? wtf is this?
+			// ?? wtf is this?
 			// $httpProvider.responseInterceptors.push('TermsAgreement');
 		}
 	]).config(['$provide',
@@ -120,10 +143,13 @@ angular.module('hearth', [
 			});
 		}
 	]).run([
-		'$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter',
-		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter) {
+		'$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', 'ActionCableConfig',
+		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, ActionCableConfig) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
+
+			ActionCableConfig.wsUri = $$config.websocket;
+			//ActionCableConfig.debug = true;
 
 			/**
 			 * This will cache some files at start
@@ -251,7 +277,7 @@ angular.module('hearth', [
 				done(null);
 			}
 
-			// === Init hearth core parts
+			// Init hearth core parts
 			async.parallel({
 				language: initLanguage, // download language files
 				session: initSession, // get user session from api

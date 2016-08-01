@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils',
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils) {
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils, Interest, $q) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -145,6 +145,26 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$scope.showError[key] = false;
 		};
 
+		function interestsFilter(query) {
+			return function(interest) {
+				return interest.toLowerCase().indexOf(query.toLowerCase()) != -1;
+			}
+		}
+
+		var interests = [];
+		$scope.loadInterests = function(query) {
+			return $q(function(resolve, reject) {
+				Interest.query({
+					search: query
+				}, function(res) {
+					interests = res.map(function(interest) {
+						return interest.term;
+					});
+					resolve(interests.filter(interestsFilter(query)));
+				});
+			});
+		};
+
 		$scope.transferDataOut = function(data) {
 			var webs = [];
 
@@ -159,7 +179,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			});
 
 			data.webs = webs;
-			// data.interests = data.interests.split(",");
 
 			if (!data.locations.length) {
 				data.locations = [];

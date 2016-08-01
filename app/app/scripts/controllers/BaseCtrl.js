@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableChannel', 'ActionCableSocketWrangler',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableChannel, ActionCableSocketWrangler) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -90,7 +90,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		 */
 		$rootScope.$on("$stateChangeStart", function(event, next) {
 			// when changed route, load conversation counters
-			Auth.isLoggedIn() && Messenger.loadCounters();
+			//Auth.isLoggedIn() && Messenger.loadCounters();
 			ngDialog.close();
 
 			//close small-resolution menu
@@ -876,6 +876,20 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				'context': $state.current.name
 			});
 		};
+
+		// start message websocket
+		$rootScope.$on('onUserLogin', function(event, data) {
+			var consumer = new ActionCableChannel("MessagesChannel", {
+				token: $.cookie("authToken")
+			});
+
+			var callback = function(message) {
+				Messenger.loadCounters();
+				$rootScope.$broadcast('WSNewMessage', message);
+			};
+
+			consumer.subscribe(callback).then(function() {});
+		});
 
 		// expose rights check for use in templates
 		$rootScope.userHasRight = Rights.userHasRight;

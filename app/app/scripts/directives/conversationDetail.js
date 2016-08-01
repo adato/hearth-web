@@ -31,7 +31,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				$scope.messages = false;
 				var _messagesCount = 10; // how many messages will we load in each request except new messages
 				var _loadTimeout = 30000; // pull requests interval in ms
-				var _loadLock = false; // pull requests interval in ms
+				//var _loadLock = false; // pull requests interval in ms
 				var _scrollInited = false;
 				var _loadOlderMessagesEnd = false;
 				var _loadTimeoutPromise = false;
@@ -184,21 +184,21 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * Periodically pull new messages
 				 */
 				$scope.loadNewMessages = function() {
-					if (_loadLock) return false;
-					_loadLock = true;
+					/*if (_loadLock) return false;
+					_loadLock = true;*/
 
 					$scope.loadMessages({
 							newer: $scope.getLastMessageTime(),
 							no_read: true,
 						},
 						function(messages) {
-							_loadLock = false;
+							//_loadLock = false;
 							$scope.scheduleNewMessagesLoading();
 
 							if (messages && messages.length) {
-
-								if ($scope.hasSystemMessage(messages))
+								if ($scope.hasSystemMessage(messages)) {
 									$scope.reloadConversationInfo();
+								}
 
 								$scope.testScrollBottom();
 								$scope.updateConversationInfo(messages, messages.length);
