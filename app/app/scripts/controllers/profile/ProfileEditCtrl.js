@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils',
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils) {
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils, Interest, $q) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -38,8 +38,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}
 		};
 
+		/* languages supported in "languages-i-speak" section */
 		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
+		/* Array that will hold the $scope.languageList with translations, once they are created (=translated) */
 		$scope.filteredLangs = [];
+		/* Array that will be filled with user's languages */
 		$scope.filteredLangsUser = [];
 
 		function sortTranslations(a, b) {
@@ -75,13 +78,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				profile: data
 			});
 
+			// Fill $scope.filteredLangs With language translations
+			// 	AND add language translations to user lang-model
 			angular.forEach($scope.languageList, function(lang) {
-				if (data.user_languages[lang]) {
-					var newLang = {};
-					newLang['lang'] = lang;
-					newLang['translate'] = $translate.instant('MY_LANG.' + lang);
-					$scope.filteredLangsUser.push(newLang);
-				}
+				var newLang = {};
+				newLang['lang'] = lang;
+				newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+				$scope.filteredLangs.push(newLang);
+				if (data.user_languages[lang]) $scope.filteredLangsUser.push(newLang);
 			});
 
 			$scope.showContactMail = data.contact_email && data.contact_email != '';
@@ -145,6 +149,26 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			$scope.showError[key] = false;
 		};
 
+		function interestsFilter(query) {
+			return function(interest) {
+				return interest.toLowerCase().indexOf(query.toLowerCase()) != -1;
+			}
+		}
+
+		var interests = [];
+		$scope.loadInterests = function(query) {
+			return $q(function(resolve, reject) {
+				Interest.query({
+					name: query
+				}, function(res) {
+					interests = res.map(function(interest) {
+						return interest.term;
+					});
+					resolve(interests.filter(interestsFilter(query)));
+				});
+			});
+		};
+
 		$scope.transferDataOut = function(data) {
 			var webs = [];
 
@@ -159,7 +183,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			});
 
 			data.webs = webs;
-			// data.interests = data.interests.split(",");
 
 			if (!data.locations.length) {
 				data.locations = [];
@@ -171,6 +194,14 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 						}
 					};
 				});
+			}
+
+			if (!data.interests) {
+				data.interests = [];
+			} else {
+				for (var i = data.interests.length; i--;) {
+					data.interests[i] = data.interests[i].term;
+				}
 			}
 
 			return data;
