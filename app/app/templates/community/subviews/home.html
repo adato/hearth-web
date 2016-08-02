@@ -46,6 +46,10 @@
 				</div>
 			</div>
 		</div>
+		<div class="ads box" ng-if="!info.is_member">
+			<h3 class="iblock">{{:: 'COMMUNITY_TERMS' | translate }}</h3>
+			<p ng-bind-html="info.terms | linky:'_blank':{rel: 'nofollow'} | nl2br"></p>
+		</div>
 		<div class="ratings box home-ratings" ng-if="receivedRatings.length">
 			<h3>{{:: 'COMMUNITY_RATING_TITLE' | translate}}</h3>
 
@@ -57,10 +61,6 @@
 					</button>
 				</a>
 			</div>
-		</div>
-		<div class="ads box" ng-if="!info.is_member">
-			<h3 class="iblock">{{:: 'COMMUNITY_TERMS' | translate }}</h3>
-			<p ng-bind-html="info.terms | linky:'_blank':{rel: 'nofollow'} | nl2br"></p>
 		</div>
 		<div class="ads box">
 			<h3 class="iblock">
