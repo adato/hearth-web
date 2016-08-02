@@ -33,7 +33,7 @@ describe('user profile', function() {
 		});
 	}
 
-	function setInputField(input, value, textarea = false) {
+	function setInputField(input, value, textarea) {
 		log("setInputField (" + input + ") = " + value);
 		var el = element(by.css('#profileEditForm ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
 		el.clear();
@@ -41,7 +41,7 @@ describe('user profile', function() {
 	}
 
 
-	function assertInputField(input, value, textarea = false) {
+	function assertInputField(input, value, textarea) {
 		var el = element(by.css('#profileEditForm ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
 		el.getAttribute('value').then(function(gotvalue){
     		expect(value).toBe(gotvalue);
@@ -49,7 +49,7 @@ describe('user profile', function() {
 	}
 
 
-	function addTagToInput(input, value, downArrow = false) {
+	function addTagToInput(input, value, downArrow) {
 		log("addTagToInput (" + input + ") = " + value);
 		var el = element(by.css('#profileEditForm '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
 		el.sendKeys(value);
