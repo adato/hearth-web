@@ -25,13 +25,11 @@ describe('user profile', function() {
 		// go to profile-edit
 		browser.actions().mouseMove(element(by.css('a.logged-user-dropdown')), {x: 0, y: 0}).perform();
 		browser.sleep(500);
-		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(0).element(by.css('a.ng-binding'));
+		var topMenuLink = element.all(by.css('ul.dropdown>li')).get(1).element(by.css('a.ng-binding'));
 		topMenuLink.click().then(function () {
-			var profileEditButton = element(by.css('.button-bar a[href=profile-edit]'));
-			profileEditButton.click().then(function() {
 				browser.waitForAngular();
 				browser.sleep(500);
-			});
+
 		});
 	}
 
@@ -65,11 +63,12 @@ describe('user profile', function() {
 	function clearTagInput(input) {
 		log("clearTagInput (" + input + ")");
 		var el = element(by.css('#profileEditForm '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
-		el.click();
-		el.sendKeys(protractor.Key.BACK_SPACE);
-		el.sendKeys(protractor.Key.BACK_SPACE);
-		el.sendKeys(protractor.Key.BACK_SPACE);
-		el.sendKeys(protractor.Key.BACK_SPACE);
+		el.click().then(function () {
+			el.sendKeys(protractor.Key.BACK_SPACE);
+			el.sendKeys(protractor.Key.BACK_SPACE);
+			el.sendKeys(protractor.Key.BACK_SPACE);
+			el.sendKeys(protractor.Key.BACK_SPACE);
+		});
 	}
 
 
@@ -113,7 +112,6 @@ describe('user profile', function() {
 
 		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
 		submitButton.click().then(function() {
-			//... 
 			browser.sleep(500);
 			return true;
 		});
@@ -121,8 +119,7 @@ describe('user profile', function() {
 
 
 	it('should be able to change advanced user info', function() {	
-		//navigateToEditProfile();
-
+		browser.sleep(1000); // let it init all
 		// about and interests
 		setInputField('about', 'About_' + randomNumber, true); // textarea
 		addTagToInput('.interests #interests', 'sport');
@@ -130,11 +127,13 @@ describe('user profile', function() {
 
 		// locality
 		addTagToInput('.location-input', 'kralupy nad vltavou', true);
-		browser.sleep(500);
+		browser.sleep(200);
 		addTagToInput('.location-input', 'nadrazni 740/56', true);
-		addTagToInput('section.languages', 'česky');
-		addTagToInput('section.languages', 'německy');
-		addTagToInput('section.languages', 'anglicky');
+		browser.sleep(200);
+		// adding languages, which are localised, thus we must know our language or type language-agnostic words :)
+		addTagToInput('section.languages', 'espe'); // esperanto
+		addTagToInput('section.languages', 'rus'); // rusky or russian
+		addTagToInput('section.languages', 'portu'); // portugalsky or portugese
 
 
 		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
