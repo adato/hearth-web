@@ -8,7 +8,7 @@ describe('user profile', function() {
 	});
 
 	function log(str) {
-		console.log(str);
+		console.log("\n" + str);
 	}
 
 	function navigateToMyProfile() {
@@ -71,35 +71,11 @@ describe('user profile', function() {
 		});
 	}
 
-
-
-	it('should be able to save minimal profile info and clear the rest', function() {	
-		//navigateToEditProfile();
-
-		setInputField('my_work', '');
-		setInputField('phone', '');
-		setInputField('about', '', true); // textarea
-
-		clearTagInput('.interests #interests');
-		clearTagInput('.location-input');
-		clearTagInput('section.languages');
-
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear();
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).clear();
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).clear();
-		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).clear();
-		
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).clear();
-		element(by.css('#profileEditForm .webs a')).click();
-		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear();
-
-		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
-		submitButton.click().then(function() {
-			//... 
-			browser.sleep(500);
-			return true;
-		});
-	});
+	function assertTagInputItemCount(input, value) {
+		log("assertTagInput len(" + input + ") ?= " + value);
+		var els = element.all(by.css('#profileEditForm '+ input +' .tags>ul.tag-list>li')); // pls ensure that $input is in form of css selector
+		expect(els.count()).toBe(value);
+	}
 
 
 	it('should be able to change basic user info', function() {	
@@ -123,9 +99,12 @@ describe('user profile', function() {
 		// about and interests
 		setInputField('about', 'About_' + randomNumber, true); // textarea
 		addTagToInput('.interests #interests', 'sport');
-		addTagToInput('.interests #interests', 'penize');
+		addTagToInput('.interests #interests', 'pes');
+		addTagToInput('.interests #interests', 'jazyky');
+		addTagToInput('.interests #interests', 'cestovani');
 
 		// locality
+		clearTagInput('.location-input');
 		addTagToInput('.location-input', 'kralupy nad vltavou', true);
 		browser.sleep(200);
 		addTagToInput('.location-input', 'nadrazni 740/56', true);
@@ -176,6 +155,12 @@ describe('user profile', function() {
 		assertInputField('last_name', 'Prijmeni_' + randomNumber);
 		assertInputField('my_work', 'Job_' + randomNumber);
 		assertInputField('about', 'About_' + randomNumber, true); // textarea
+		assertInputField('phone', '+420 777 ' + randomNumber + ' ' + randomNumber);
+
+		assertTagInputItemCount('.location-input', 2); // expect tag-input length to be 2 
+		assertTagInputItemCount('.interests #interests', 4); 
+		assertTagInputItemCount('section.languages', 3);
+
 
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).getAttribute('value').then(function(gotvalue){
     		expect(gotvalue).toBe('http://facebook.com/profile' + randomNumber);
@@ -195,6 +180,35 @@ describe('user profile', function() {
 		});
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).getAttribute('value').then(function(gotvalue){
 			expect(gotvalue).toBe('http://another.profile' + randomNumber + '.com');
+		});
+	});
+
+
+
+	it('should be able to save minimal profile info and clear the rest', function() {	
+
+		setInputField('my_work', '');
+		setInputField('phone', '');
+		setInputField('about', '', true); // textarea
+
+		clearTagInput('.interests #interests');
+		clearTagInput('.location-input');
+		clearTagInput('section.languages');
+
+		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear();
+		element.all(by.css('#profileEditForm .social input[type=url]')).get(1).clear();
+		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).clear();
+		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).clear();
+		
+		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).clear();
+		element(by.css('#profileEditForm .webs a')).click();
+		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear();
+
+		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
+		submitButton.click().then(function() {
+			//... 
+			browser.sleep(500);
+			return true;
 		});
 	});
 });
