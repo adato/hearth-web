@@ -159,7 +159,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.loadInterests = function(query) {
 			return $q(function(resolve, reject) {
 				Interest.query({
-					name: query
+					search: query
 				}, function(res) {
 					interests = res.map(function(interest) {
 						return interest.term;
