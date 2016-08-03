@@ -6,7 +6,7 @@
  * @description Service comprising a list of countries
  */
 
-angular.module('hearth.services').service('CountryList', [function() {
+angular.module('hearth.services').service('CountryList', ['$translate', function($translate) {
 
 	this.list = [{
 		"name": "Afghanistan",
@@ -1254,5 +1254,9 @@ angular.module('hearth.services').service('CountryList', [function() {
 		"alpha_3_code": "ZWE",
 		"numeric_code": "716"
 	}];
+
+	for (var i = this.list.length; i--;) {
+		this.list[i].localizedName = $translate.instant('COUNTRY.' + this.list[i].alpha_2_code);
+	}
 
 }]);
