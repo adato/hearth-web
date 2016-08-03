@@ -715,6 +715,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				template: $$config.modalTemplates + 'suspendItem.html',
 				controller: 'ItemSuspend',
 				scope: scope,
+				data: params,
 				className: 'ngdialog-tutorial ngdialog-theme-default ngdialog-confirm-box',
 				closeByDocument: false,
 				showClose: false,
