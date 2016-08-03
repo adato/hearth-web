@@ -45,7 +45,7 @@ describe('hearth remove user', function() {
 			// clear input and delete account
 			delPassword.clear().then(function() {
 				delPassword.sendKeys(testPassword);
-				delTextarea.sendKeys('Deleting test account');
+				delTextarea.sendKeys('$1bf6cc4c - Deleting test account');
 				delButton.click();
 				browser.sleep(500);
 				
