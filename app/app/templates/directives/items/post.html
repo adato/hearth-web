@@ -102,7 +102,7 @@
 								</a>
 							</h1>
 							<span class="nowrap" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
-							<div ng-if="item.edited_by_admin" class="error">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
+							<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
 							<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 						</div>
 
