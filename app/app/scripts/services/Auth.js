@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Auth', [
-	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User',
-	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User) {
+	'$session', '$http', '$rootScope', '$q', 'LanguageSwitch', '$location', 'Session', 'UnauthReload', 'User', '$window',
+	function($session, $http, $rootScope, $q, LanguageSwitch, $location, Session, UnauthReload, User, $window) {
 		var TOKEN_NAME = "authToken";
 
 		return {
@@ -140,16 +140,12 @@ angular.module('hearth.services').factory('Auth', [
 				}, success, error);
 			},
 			processLoginResponse: function(data) {
-				if (data.email_token)
-					return $location.path($$config.appUrl + 'fill-email/' + data.email_token);
+				if (data.email_token) return $location.path($$config.appUrl + 'fill-email/' + data.email_token);
 
 				// when user logged, use his language configured on API
-				if (data.language)
-					LanguageSwitch.setCookie(data.language);
+				if (data.language) LanguageSwitch.setCookie(data.language);
 
-				if (data.api_token) {
-					this.setToken(data.api_token);
-				}
+				if (data.api_token) this.setToken(data.api_token);
 
 				var reloadLoc = UnauthReload.getLocation();
 				UnauthReload.clearReloadLocation();
@@ -161,7 +157,7 @@ angular.module('hearth.services').factory('Auth', [
 				var twitterSuccessUrl = $$config.appUrl + 'token-login/%{token}';
 				var userAction = (method === 'register' ? '&user_action=register' : '');
 
-				return $$config.apiPath + '/users/auth/twitter?success_url=' + encodeURIComponent(twitterSuccessUrl) + '&email_url=' + encodeURIComponent(fillEmailUrl) + userAction;
+				return $$config.apiPath + '/users/auth/twitter?success_url=' + $window.encodeURIComponent(twitterSuccessUrl) + '&email_url=' + $window.encodeURIComponent(fillEmailUrl) + userAction + '&' + $window.refsString.slice(1);
 			},
 		};
 	}

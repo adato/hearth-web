@@ -22,6 +22,7 @@ $$config = {
 	defaultCommunityAvatar: 'images/no-cm-avatar.jpg',
 	sharingEndpoints: {
 		facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
+		facebook_invite: 'https://www.facebook.com/share.php?u=',
 		gplus: 'https://plus.google.com/share?url=',
 		twitter: 'https://twitter.com/share?url=',
 		linkedin: 'http://www.linkedin.com/shareArticle?mini=true&url='
@@ -80,6 +81,11 @@ $$config = {
 		translate: 'CATEGORY_INFORMATION',
 		translateText: 'CATEGORY_INFORMATION_TEXT'
 	}],
+	//
+	// referrerCookieName:
+	// name of a cookie used for invitation referrals and
+	// url search attr used for sending referral tokens to API
+	referrerCookieName: 'referrals',
 	replyLabels: {
 		offer: 'WISH_GIFT',
 		need: 'OFFER_GIFT'

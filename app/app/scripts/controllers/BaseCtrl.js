@@ -102,8 +102,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				return $scope.resfreshWithResize();
 			}
 
-			if (!$rootScope.addressNew)
-				return $rootScope.top(0, 1);;
+			if (!$rootScope.addressNew) return $rootScope.top(0, 1);
 
 			$rootScope.addressOld = $rootScope.addressNew;
 			$rootScope.addressNew = next.originalPath;
@@ -113,10 +112,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 			// if first element in URL of old page is not same as first element in URL of new page
 			// scroll to top - (alias scroll when we come to new URL)
-			if (r1.length < 2 || r2.length < 2 || r1[1] != r2[1])
+			if (r1.length < 2 || r2.length < 2 || r1[1] != r2[1]) {
 				$rootScope.top(0, 1);
-			else
+			} else {
 				$scope.resfreshWithResize();
+			}
 		});
 
 		$rootScope.$on("initLanguageSuccess", $scope.setPageTitle);

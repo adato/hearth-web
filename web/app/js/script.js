@@ -5,21 +5,20 @@
  * =======================================================================*/
 
 // to stop XX pixels above the target
-var readabilityOffset = 80; 
+var readabilityOffset = 80;
 
 var header = $( 'header.header>div.header-content' );
 var headerHeight = header.innerHeight();
 var headerWidth = header.innerWidth();
 var viewportHeight = $(window).height();
 var viewportWidth = $(window).width();
-var viewportRatio = viewportHeight / viewportWidth;	
+var viewportRatio = viewportHeight / viewportWidth;
 var logoWidth = $( '.logo-strip>.container' ).innerWidth();
 setHeaderHeight();
 // window.onresize = setHeaderHeight;
 stickifyPanel( $( '.sticky-panel' ), '.logo-container');
 
-$(function () 
-{
+$(function () {
 	/* Enable smooth scrolling on anchors */
 	$('a[href^="#"]').bind('click.smoothscroll', function (e) {
 			// Stop classic behavior
@@ -32,7 +31,7 @@ $(function ()
 			$('html, body').stop().animate(
 			{
 				'scrollTop': $target.offset().top - readabilityOffset
-			}, 1000, 'swing', function () 
+			}, 1000, 'swing', function ()
 			{
 				window.location.hash = target;
 			});
@@ -57,14 +56,58 @@ $(function ()
 		});
 	});
 
+	//
+	// REFERRALS
+	//
+	var referrer = 'referrals';
+
+	/**
+	*	Function that gets a referrer cookie if possible and returns all tokens as an array
+	*/
+	function getReferrerArray() {
+		var c = window.cookieFactory.get(referrer);
+		c = (c ? c.split('-') : []);
+		// if referrer cookie exists but is not an array, return empty array
+		if (Object.prototype.toString.call(c) !== '[object Array]') return [];
+		return c;
+	}
+	/**
+	*	Function that saves an array of tokens into cookie
+	*	@param arr {Array}
+	*/
+	function saveReferrerArray(arr) {
+		if (!arr || (Object.prototype.toString.call(arr) !== '[object Array]')) return;
+		window.cookieFactory.set(referrer, arr.join('-'));
+	}
+	var search = window.location.search;
+
+	/**
+	 *	If the user has come from a referrer link with a token, save this token to cookie
+	 */
+	if (search) {
+		var searchItems = search.slice(1).split('&');
+		for (var i = searchItems.length;i--;) {
+			var item = searchItems[i].split('=');
+			if (item[0] === referrer) {
+				var referrerArray = getReferrerArray();
+				//only add unique referrals
+				if (referrerArray.indexOf(item[1]) === -1) {
+					referrerArray.push(item[1]);
+					return saveReferrerArray(referrerArray);
+				}
+			}
+		}
+	}
+	// /REFERRALS
+
 });
 
 function setHeaderHeight() {
 	// Set header part to fit viewport
-	var height = (( viewportHeight * window.devicePixelRatio) / headerHeight) * .9; 
+	var height = (( viewportHeight * window.devicePixelRatio) / headerHeight) * .9;
 	if (height > 1 || viewportRatio > 1) return;
 	header.css({ "transform-origin": "0% 0%", "transform": "scale(" + height + ", " + height + ")", "width": headerWidth * (1/height) + "px" });
-	//header.height(viewportHeight * window.devicePixelRatio); 
+	//header.height(viewportHeight * window.devicePixelRatio);
 	$('header.header').height(viewportHeight * window.devicePixelRatio);
 	$( '.logo-strip>.container' ).width(logoWidth * (1/height));
 	$( '.strip-btns>.container' ).width(logoWidth * (1/height));
@@ -74,7 +117,7 @@ function setHeaderHeight() {
 // Creates stickyfying behavior to the given panel
 function stickifyPanel( stickyPanel, logoClass )
 {
-	$(function() 
+	$(function()
 	{
 		var panelTopY = stickyPanel.offset().top;
 		var panelBottomY = stickyPanel.offset().top + stickyPanel.innerHeight();
@@ -117,11 +160,11 @@ function stickifyPanel( stickyPanel, logoClass )
 				stickyPanel.css('right', 0);
 
 			// Decide where to stick (top/bottom?) the panel
-			if ( viewPortTopY > panelTopY ) 
+			if ( viewPortTopY > panelTopY )
 			{
 				body.addClass('stickify-up');
 				readabilityOffset = 20 + panelHeight;
-			} else 
+			} else
 			{
 				body.removeClass('stickify-up');
 
@@ -131,7 +174,7 @@ function stickifyPanel( stickyPanel, logoClass )
 				{
 					body.addClass('stickify-down');
 				}
-				else 
+				else
 				{
 					body.removeClass('stickify-down');
 				}
@@ -146,7 +189,7 @@ function stickifyPanel( stickyPanel, logoClass )
 			{
 				logo.css({'opacity': 1 });
 			}
-			else 
+			else
 			{
 				var opacity = 1 + ( viewPortTopY - panelTopY ) / opacityOffset;
 				logo.css({'opacity': opacity });

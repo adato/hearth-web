@@ -7,17 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('InviteBox', [
-	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators',
-	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators) {
+	'$scope', '$rootScope', 'Invitation', 'OpenGraph', 'Facebook', 'Notify', 'Validators', '$window',
+	function($scope, $rootScope, Invitation, OpenGraph, Facebook, Notify, Validators, $window) {
 		$scope.showEmailForm = false;
 		$scope.url = '';
+		$scope.urlTitle = '';
 		$scope.sending = false;
 
+		var token;
 		var timeoutClose = false;
+		var inviteInfo, title, description, plainDescription;
 
 		$scope.fbInvite = function() {
-			Facebook.inviteFriends();
-			return false;
+			FB.ui({
+				method: 'share',
+				href: $scope.url,
+				quote: plainDescription
+			})
 		};
 
 		$scope.showFinished = function(res) {
@@ -33,13 +39,22 @@ angular.module('hearth.controllers').controller('InviteBox', [
 		};
 
 		$scope.init = function() {
-			var inviteInfo = OpenGraph.getDefaultInfo();
-			var title = encodeURIComponent(inviteInfo.title);
-			var description = encodeURIComponent(inviteInfo.description);
+			inviteInfo = OpenGraph.getDefaultInfo();
+			title = encodeURIComponent(inviteInfo.title);
+			description = encodeURIComponent(inviteInfo.description);
+			plainDescription = inviteInfo.description;
 
-			$scope.url = window.location.href.replace(window.location.hash, '');
-			$scope.urlLinkedin = $scope.url + '&title=' + title + '&summary=' + description;
+			// link to the landing page
+			$scope.url = $window.location.origin;
+			$scope.urlLinkedin = $scope.url + '?title=' + title + '&summary=' + description;
 			$scope.endpoints = $$config.sharingEndpoints;
+			Invitation.getReferralCode(function(res) {
+				token = res.token;
+				if ($rootScope.debug) console.log('token: ', token);
+				$scope.url += '?' + $$config.referrerCookieName + '=' + token;
+				$scope.urlTitle = '&title=' + title;
+				$scope.urlLinkedin = $scope.url + $scope.urlTitle + '&summary=' + description;
+			});
 		};
 
 		/**
