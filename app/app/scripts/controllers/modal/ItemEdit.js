@@ -158,13 +158,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 					post.locations = [];
 				}
 
-				if (post.locations.length && !post.location_unlimited) {
-					angular.forEach(post.locations, function(location, index) {
-						if (location.json_data) post.locations[index] = location.json_data;
-					});
-				}
-
-
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
 				$scope.slide.communities = !!post.related_communities.length
@@ -181,18 +174,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			data.keywords = data.keywords.map(function(obj) {
 				return obj.text;
 			});
-
-			if (data.location_unlimited || !data.locations.length) {
-				data.locations = [];
-			} else {
-				angular.forEach(data.locations, function(location, index) {
-					data.locations[index] = {
-						json_data: location.address_components ? location : {
-							place_id: location.place_id
-						}
-					};
-				});
-			}
 
 			if (data.valid_until_unlimited) {
 				data.valid_until = 'unlimited';
@@ -431,14 +412,14 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				};*/
 
 		var SPACE = 32;
-		$scope.toggleCategoryCheckbox = function(event, category) {
+		$scope.toggleCharacterCheckbox = function(event, character) {
 			var key = event.keyCode || event.charCode;
 			if (key === SPACE) {
-				var index = $scope.post.categories.indexOf(category.name);
+				var index = $scope.post.character.indexOf(character.name);
 				if (index > -1) {
-					$scope.post.categories.splice(index, 1);
+					$scope.post.character.splice(index, 1);
 				} else {
-					$scope.post.categories.push(category.name);
+					$scope.post.character.push(character.name);
 				}
 			}
 		};

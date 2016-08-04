@@ -17,10 +17,9 @@ function redirectToLangVersion(lang, langsAvailable) {
 	var loc = document.location.pathname.replace(/^\/|\/$/g, '');
 	var langLoc = loc.split('/').slice(0, 1).toString();
 
-	if(langsAvailable.indexOf(langLoc) == -1)
+	if (langsAvailable.indexOf(langLoc) == -1) {
 		loc = langPathMap[lang]+loc;
-	else {
-
+	} else {
 		var locParts = loc.split('/');
 		if(locParts.length)
 			locParts.shift();
@@ -28,7 +27,7 @@ function redirectToLangVersion(lang, langsAvailable) {
 		loc = langPathMap[lang] + locParts.join('/');
 	}
 
-	if(loc == 'undefined') {
+	if (loc == 'undefined') {
 		loc = defaultLanguage;
 		window.jCookie('language', defaultLanguage, {path: '/', expires: 20 * 365});
 	}

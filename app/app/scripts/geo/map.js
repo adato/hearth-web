@@ -11,9 +11,9 @@
  * @requires $templateCache
  */
 angular.module('hearth.geo').directive('map', [
-	'geo', '$interpolate', '$templateCache', 'Post', '$location', '$timeout',
+	'geo', '$interpolate', '$templateCache', 'Post', '$location', '$timeout', '$rootScope',
 
-	function(geo, $interpolate, $templateCache, Post, $location, $timeout) {
+	function(geo, $interpolate, $templateCache, Post, $location, $timeout, $rootScope) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -24,6 +24,7 @@ angular.module('hearth.geo').directive('map', [
 			// transclude: true,
 			link: function(scope, element) {
 				var markerCluster, oms, map,
+					retainCurrentCollectionFlag,
 					I_ID = 0,
 					I_TYPE = 1,
 					I_LOCATION = 2,
@@ -69,14 +70,14 @@ angular.module('hearth.geo').directive('map', [
 				template = $interpolate(templateSource);
 
 				scope.initMap = function() {
-					$timeout(function() {
-						if (!map) {
+					if (!map) {
+						$timeout(function() {
 							map = geo.createMap(element[0], {
 								zoom: 11
 							});
 
 							google.maps.event.trigger(map, "resize");
-							geo.focusCurrentLocation();
+							geo.focusCurrentLocation(map);
 
 							oms = new OverlappingMarkerSpiderfier(map, {
 								markersWontMove: true,
@@ -95,8 +96,17 @@ angular.module('hearth.geo').directive('map', [
 
 							//                            markerCluster.addListener('click', scope.zoomMarkerClusterer);
 							oms.addListener('click', scope.onMarkerClick);
-						}
-					});
+
+							/**
+							 *	Attach listener to idle state to refresh data.
+							 *	I am not using bounds_changed event, as it is buggy and fires multiple times per map drag.
+							 */
+							google.maps.event.addListener(map, 'idle', function() {
+								$rootScope.$emit('searchRequest', map.getBounds().toJSON());
+							});
+
+						}, 100);
+					}
 				};
 
 				scope.testPositionLimit = function(loc) {
@@ -141,11 +151,13 @@ angular.module('hearth.geo').directive('map', [
 				};
 
 				scope.onMarkerClick = function(marker) {
+
 					Post.get({
 						postId: marker.info[I_ID]
 					}, function(data) {
 						data.author.avatar.normal = data.author.avatar.normal || $$config.defaultUserAvatar;
 						map.panTo(marker.position);
+						retainCurrentCollectionFlag = true;
 
 						if (data.author._type == 'Community') {
 							data.adType = (data.type === 'need' ? 'WE_NEED' : 'WE_OFFER');
@@ -162,49 +174,49 @@ angular.module('hearth.geo').directive('map', [
 					);
 
 					return maxDist > dist / 1000; // transfer to km
-				};
+				}
 
 				scope.createPins = function(e, ads) {
-					$timeout(function() {
-						var i, j, ad, location, distanceBase, distance = false;
-						ads = ads || [];
-						markers = [];
-						markerLimitValues = [];
+					var i, j, ad, location, distanceBase, distance = false;
+					ads = ads || [];
+					markers = [];
+					markerLimitValues = [];
 
+					if (!retainCurrentCollectionFlag) {
 						markerCluster.clearMarkers();
 						oms.clearMarkers();
+					} else {
+						console.log('setting to false');
+						retainCurrentCollectionFlag = false;
+					}
 
-						if (typeof $location.search().distance != 'undefined') {
-							distance = parseInt($location.search().distance, 10);
-							distanceBase = {
-								lat: $location.search().lat,
-								lng: $location.search().lon
-							};
-						}
+					if (typeof $location.search().distance != 'undefined') {
+						distance = parseInt($location.search().distance, 10);
+						distanceBase = {
+							lat: $location.search().lat,
+							lng: $location.search().lon
+						};
+					}
 
-						for (i = 0; i < ads.length; i++) {
-							ad = ads[i];
+					for (i = 0; i < ads.length; i++) {
+						ad = ads[i];
 
-							for (j = 0; j < ad[I_LOCATION].length; j++) {
-								if (ad[I_LOCATION][j]) {
-									if (
-										(distance && !scope.isInDistance(distance, distanceBase, ad[I_LOCATION][j])) ||
-										markerLimit && scope.testPositionLimit(ad[I_LOCATION][j])
-									) {
-										continue;
-									}
-									scope.placeMarker(ad[I_LOCATION][j], ad);
+						for (j = 0; j < ad[I_LOCATION].length; j++) {
+							if (ad[I_LOCATION][j]) {
+								if (
+									(distance && !scope.isInDistance(distance, distanceBase, ad[I_LOCATION][j])) ||
+									markerLimit && scope.testPositionLimit(ad[I_LOCATION][j])
+								) {
+									continue;
 								}
+								scope.placeMarker(ad[I_LOCATION][j], ad);
 							}
 						}
+					}
 
-						if (scope.center) {
-							scope.centerZoomToAll(markers);
-						}
-
-						markerCluster.addMarkers(markers);
-						markerCluster.repaint();
-					});
+					if (scope.center) scope.centerZoomToAll(markers);
+					markerCluster.addMarkers(markers);
+					markerCluster.repaint();
 				};
 
 				/*                scope.zoomMarkerClusterer = function(cluster) {
@@ -213,7 +225,7 @@ angular.module('hearth.geo').directive('map', [
 				                };*/
 
 				scope.initMap();
-				scope.$on('showMarkersOnMap', scope.createPins);
+				scope.$on('showMarkersOnMap', scope.createPins());
 			}
 		};
 	}

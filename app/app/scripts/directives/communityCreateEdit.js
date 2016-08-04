@@ -74,18 +74,14 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					Community.get({
 						_id: id
 					}, function(data) {
+						console.log(data.interests);
+						$scope.community = prepareDataIn(data);
 
 						if (!data.locations || !data.locations.length || data.locations[0] === void 0) {
 							data.locations = [];
 						}
 
-						// if (data.locations.length) {
-						// 	angular.forEach(data.locations, function(location, index) {
-						// 		data.locations[index] = location.json_data;
-						// 	});
-						// }
-
-						$scope.community = prepareDataIn(data);
+						$scope.community = data;
 
 						if ($scope.checkOwnership($scope.community)) {
 							$scope.loaded = true;
@@ -207,20 +203,6 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 
 					$scope.sending = true;
 					$rootScope.globalLoading = true;
-
-					if (!data.locations.length) {
-						data.locations = [];
-					} else {
-						angular.forEach(data.locations, function(location, index) {
-							data.locations[index] = {
-								json_data: location.address_components ? location : {
-									place_id: location.place_id
-								}
-							};
-						});
-					}
-
-					// return console.log($scope.community);
 
 					Community[(data._id ? 'edit' : 'add')](prepareDataOut($scope.community), function(res) {
 						$rootScope.globalLoading = false;

@@ -138,46 +138,47 @@
 			font-size: 20px;
 			width: 130px;
 		}
-		// @kamil - this is wrong - delete this
-		// a {
-		// 	position: relative;
-		// 	top: 12px;
-		// 	&.close {
-		// 		/* margin-left: 20px; */
-		// 	}
-		// }
+		a {
+			position: relative;
+			top: 12px;
+			&.close {
+				/* margin-left: 20px; */
+			}
+		}
 	}
-
-	// .need-offer-selector {
-		// label {
-		// 	margin: 0;
-		// }
-		// label:first-child {
-		// 	margin-right: 20px;
-		// 	margin-bottom: 0;
-		// }
-		// input {
-		// 	margin: 0;
-		// 	margin-right: 10px;
-		// }
-	// }
+	.need-offer-selector {
+		display: inline-block;
+		margin-top: 12px;
+		margin-bottom: $ui-grid-size;
+		line-height: $ui-grid-size;
+		label {
+			margin: 0;
+		}
+		label:first-child {
+			margin-right: 20px;
+			margin-bottom: 0;
+		}
+		input {
+			margin: 0;
+			margin-right: 10px;
+		}
+	}
 	.character {
 		.headline {
 			display: block;
 		}
+		
 		.character-label {
 			margin-left: 0;
 			margin-right: 10px;
 			margin-bottom: 1rem;
 			display: inline-block;
 
-			&:last-of-type {
-				margin-right: 0;
-			}
 			input {
 				margin-right: 4px;
 				display: none;
 			}
+
 			span {
 				color: $ui-color-lighter;
 				font-weight: normal;
@@ -408,19 +409,6 @@
 			span {
 				margin-right: 5px;
 			}
-		}
-	}
-	.charsleft {
-		text-align: right;
-		margin: {
-			bottom: 0;
-			right: $global-radius;
-		}
-		font-size: 0.8em;
-	}
-	.row {
-		margin: {
-			bottom: $fontSize / 2;
 		}
 	}
 	.messageBox {

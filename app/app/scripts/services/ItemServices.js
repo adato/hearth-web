@@ -42,6 +42,7 @@ angular.module('hearth.services').factory('ItemServices', [
 			addItemToBookmarks: $rootScope.addItemToBookmarks,
 			removeReminder: Bubble.removeReminder,
 			scrollToElement: $rootScope.scrollToElement,
+			removeReminder: $rootScope.removeReminder,
 			userHasRight: $rootScope.userHasRight
 		};
 	}

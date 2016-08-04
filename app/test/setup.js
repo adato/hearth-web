@@ -122,10 +122,16 @@ module.exports = {
 		    console.log("Mail listener initialized");
 		});
 
+		mailListener.on("error", function(err){
+			console.log("Error during MailListener operation:");
+  			console.log(err);
+		});
+
 		return new Promise(function(resolve, reject) {
 		    console.log("Waiting for an email...");
 
 		    mailListener.on("mail", function(mail){
+		    	console.log("Got an email!");
 		        resolve(mail);
 		    });
 		});

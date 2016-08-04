@@ -25,7 +25,7 @@
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
 									<div class='dropdown-wrapper'>
-										<div class="display-inline-block touchable-wrapper margin-left-none" ng-if="!mine">
+										<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if="!mine">
 											<div bubble-placeholder="bookmark-reminder"></div>
 											<div bubble-placeholder="hide-post"></div>
 											<span ng-click="removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'})" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none"

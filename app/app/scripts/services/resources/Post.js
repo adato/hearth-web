@@ -7,13 +7,14 @@
  */
 
 angular.module('hearth.services').factory('Post', [
-	'$resource',
-	function($resource) {
+	'$resource', 'LocationJsonDataTransform',
+	function($resource, LocationJsonDataTransform) {
 		return $resource($$config.apiPath + '/posts/:postId', {
 			postId: '@id'
 		}, {
 			get: {
 				nointercept: true,
+				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
 			query: {
 				method: 'GET',
@@ -50,7 +51,7 @@ angular.module('hearth.services').factory('Post', [
 				method: 'GET',
 				url: $$config.apiPath + '/search/',
 				params: {
-					type: 'post'
+					type: 'post',
 				},
 				isArray: true
 			},
@@ -63,16 +64,18 @@ angular.module('hearth.services').factory('Post', [
 				errorNotify: {
 					code: 'NOTIFY.POST_EDIT_FAILED',
 					container: '.edit-post-notify-container'
-				}
-				// headers: {'Content-Type': 'multipart/form-data'}
+				},
+				transformRequest: [LocationJsonDataTransform.insertLocationJson],
+				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
 			update: {
 				method: 'PUT',
 				errorNotify: {
 					code: 'NOTIFY.POST_EDIT_FAILED',
 					container: '.edit-post-notify-container'
-				}
-				// headers: {'Content-Type': 'multipart/form-data'}
+				},
+				transformRequest: [LocationJsonDataTransform.insertLocationJson],
+				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
 			remove: {
 				method: 'DELETE',

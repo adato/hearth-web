@@ -9,6 +9,14 @@
 				overflow-y: scroll;
 			}
 		}
+		&.interests {
+			position: relative;
+
+			.autocomplete {
+				max-height: 240px;
+				overflow-y: scroll;
+			}
+		}
 	}
 	.webs {
 		.web-item {

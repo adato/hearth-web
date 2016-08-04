@@ -6,9 +6,11 @@
  * @description Helper class for all Hearth profiles (user himself, other users, community profiles...)
  */
 
-angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', function(Karma, MottoLength) {
+angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength', '$window', function(Karma, MottoLength, $window) {
 
 	var factory = {};
+
+	const MAX_MOTTO_LENGTH = MottoLength;
 
 	var PROFILE_TYPES = {
 		USER: 'user',
@@ -25,13 +27,10 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 	 */
 	function transformDataForUsage(paramObject) {
 		if (!(paramObject && paramObject.profile && paramObject.type && !!(PROFILE_TYPES[paramObject.type.toUpperCase()]))) throw new Error('Insufficient paramObject to transform input data correctly.');
-		paramObject.type = paramObject.type.toUpperCase();
+		paramObject.type = paramObject.type.toLowerCase();
 
 		// common for all types
-		// copyMottoIfNecessary(paramObject.profile);
 		fillWebs(paramObject.profile);
-		// joinInterests(paramObject.profile);
-		getLocationJson(paramObject.profile);
 
 		// type-specific
 		switch (paramObject.type) {
@@ -40,7 +39,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 				break;
 
 			case PROFILE_TYPES.COMMUNITY:
-				// nothing yet ..
+				// joinInterests(paramObject.profile);
 				break;
 		}
 
@@ -62,26 +61,16 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 		return paramObject.profile;
 	}
 
-	// SETUP
-	var MAX_MOTTO_LENGTH = MottoLength;
-
 	// FUNCTIONS
 	function copyMottoIfNecessary(profile) {
 		if (!profile.motto) {
 			profile.motto = profile.about || profile.description || '';
-			if (profile.motto.length > (MAX_MOTTO_LENGTH)) profile.motto = profile.motto.slice(0, MAX_MOTTO_LENGTH - 3) + '...';
+			if (profile.motto.length > (MottoLength)) profile.motto = profile.motto.slice(0, MottoLength - 3) + '...';
 		}
 		return profile;
 	}
 
-	function getLocationJson(profile) {
-		if (profile.locations.length) {
-			for (var i = profile.locations.length; i--;) {
-				profile.locations[i] = profile.locations[i].json_data;
-			}
-		}
-		return profile;
-	}
+
 
 	function fillWebs(profile) {
 		if (!profile.webs || !profile.webs.length) profile.webs = [''];
@@ -121,4 +110,5 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 
 	// RETURN
 	return factory;
+
 }]);
