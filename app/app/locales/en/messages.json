@@ -42,7 +42,7 @@
 			"SHARE_LINK": "Share link",
 			"UNBOOKMARK_POST": "Remove from favourites",
 			"BOOKMARK_POST": "Add to favourites",
-			"HIDE_POST": "Skrýt tento inzerát"
+			"HIDE_POST": "Hide this post"
 		},
 		"EDIT_FILTER": "Edit filter",
 		"FILTER_NOT_FOUND": "D'oh! Specified filter conditions don't match any posts.<br \/>Maybe remove some conditions?",
@@ -69,10 +69,28 @@
 	"ACTIVE_KEYWORDS_FILTER": "Only with keywords",
 	"ADD": "Add",
 	"ADD_KEYWORDS": "Add keywords, separated by commas.",
-	"AD_REMOVE_ARE_YOU_SURE": "Are you sure you want to delete this item? No one will see it again. Never ever!",
+	"POST": {
+		"REMOVE": {
+			"ARE_YOU_SURE": "Are you sure you want to delete this item? No one will see it again. Never ever!",
+			"LABEL": "Delete"
+		},
+		"SUSPEND": {
+			"LABEL": "Suspend post",
+			"ARE_YOU_SURE": "Do you want to suspend this post?",
+			"CONNECTED_MESSAGE_PLACEHOLDER": "A pokud chceš, můžeš pro uživatele připojit nějakou zprávu."
+		},
+		"RESUME": {
+			"LABEL": "Resume"
+		},
+		"EDIT": {
+			"LABEL": "Edit"
+		},
+		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
+		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed.",
+		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem"
+	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Item cannot be deleted. You'd better accept that and move on.",
 	"AD_REMOVE_DONE": "Done! Item has been successfully deleted.",
-	"AD_REMOVE_LABEL": "Delete",
 	"AD_REPLY_PLACEHOLDER": "Are you interested? Wonderful... Reply here...",
 	"AGREE_WITH_TERMS_BUTTON_LABEL": "I agree with the terms of use.",
 	"AGREE_WITH_TERMS_POPUP": "<p>I agree with the <a>terms of use<\/a>.<\/p>",
@@ -225,7 +243,8 @@
 			"ERR": {
 				"RECIPIENTS_NOT_FILLED": "Don't forget to fill in the message recipients. Like at the post office."
 			},
-			"RECIPIENT": "To:"
+			"RECIPIENT": "To:",
+			"AS_ADMIN": "Odeslat jako správce"
 		},
 		"LIST": {
 			"CONVERSATION_IS_EMPTY": "All users have left the conversation.",
@@ -847,11 +866,7 @@
 	"LOCATION_DOES_NOT_MATTER": "Location does not matter",
 	"WRITTEN_FROM_ALLOWED": "{{len}} characters used from {{maxLen}} total",
 	"AD_REPORT_CONFIRM": "Report post",
-	"AD_PAUSE_LABEL": "Suspend post",
 	"AD_ADD_LABEL": "Create post",
-	"AD_RESUME_LABEL": "Resume",
-	"AD_EDIT_LABEL": "Edit",
-	"AD_PAUSE_ARE_YOU_SURE": "Do you want to suspend this post?",
 	"AD_REPORT_ARE_YOU_SURE": "Do you want to report this post as abuse?",
 	"TELL_ME_WHAT_ARE_YOU_LOOKING_FOR": "Tell us what are you looking for...",
 	"NOTICE_EMPTY_DATA": "There are no entries here.",
@@ -938,7 +953,7 @@
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
-		"POST_HID_SUCCESFULLY": "Bezva. Skrytí inzerátu se povedlo, už se ti nebude na tržišti a ve vyhledávání zobrazovat."
+		"POST_HID_SUCCESFULLY": "Good. Ad has been hidden. You’ll no longer see it in Marketplace or search results."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
@@ -1232,10 +1247,6 @@
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Select ad",
 	"SEND_COMMUNITY_RATING": "Send rating",
 	"TOP_BAR_MESSAGES": "Messages",
-	"POST": {
-		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
-		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed."
-	},
 	"ADD_CONTENT_AS_USER": "as",
 	"REPLY": "Reply",
 	"SELECT_USERS": "Select one or more recipients",
@@ -1406,13 +1417,13 @@
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		},
 		"HIDE_POST": {
-			"TEXT": "<p><em>Tip:<\/em> Kter&yacute;koli inzer&aacute;t, kter&yacute; v&aacute;s obtěžuje a nechcete ho již vidět, můžete označit jako skryt&yacute;.<\/p>"
+			"TEXT": "<p><em>Tip:<\/em> You can mark any ad that bothers you and you no longer wish to see as hidden.<\/p>"
 		}
 	},
 	"energy_TOOLTIP": "Aktivita, myšlenka...",
 	"mass_TOOLTIP": "Věci...",
 	"information_TOOLTIP": "Znalosti, tipy...",
-	"AD_HIDE_LABEL": "Skrýt inzerát",
-	"AD_HIDE_ARE_YOU_SURE": "Po skrytí se ti tento inzerát nebude zobrazovat na tržišti ani ve vyhledávání. Na profilu daného uživatele ho i nadále uvidíš, stejně tak se budeš moct dostat na detail tohoto inzerátu.",
-	"HIDE_AD": "Skrýt inzerát"
+	"AD_HIDE_LABEL": "Hide ad",
+	"AD_HIDE_ARE_YOU_SURE": "After you hide this ad, it will no longer display in the Marketplace or search results. You will still see it in the profile of a given user and also be able to access the details of the post.",
+	"HIDE_AD": "Hide ad"
 }
