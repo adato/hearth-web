@@ -10,7 +10,7 @@ angular.module('hearth.services').factory('ProfileUtils', ['Karma', 'MottoLength
 
 	var factory = {};
 
-	const MAX_MOTTO_LENGTH = MottoLength;
+	var MAX_MOTTO_LENGTH = MottoLength;
 
 	var PROFILE_TYPES = {
 		USER: 'user',
