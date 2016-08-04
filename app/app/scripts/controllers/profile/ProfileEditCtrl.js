@@ -6,7 +6,8 @@
  * @description
  */
 
-angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
+angular.module('hearth.controllers').controller('ProfileEditCtrl', [
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
 	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils, Interest, $q) {
 		$scope.loaded = false;
 		$scope.sending = false;
@@ -176,10 +177,15 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', ['$scope', 'U
 				data.phone = '+' + data.phone;
 			}
 
-			data.interests.forEach(function(interest) {
-				if (interest) interests.push(interest.term);
-			});
-			data.interests = interests;
+			data.webs = webs;
+
+			if (!data.interests) {
+				data.interests = [];
+			} else {
+				for (var i = data.interests.length; i--;) {
+					data.interests[i] = data.interests[i].term;
+				}
+			}
 
 			if (!data.interests) {
 				data.interests = [];
