@@ -421,6 +421,15 @@ html[lang='en'] .language-panel .lang-en{
 	animation-delay: 1.2s;
 }
 
+.jumbo .dotstyle-wrapper {
+	position: absolute;
+	bottom: 140px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 @-webkit-keyframes slide {100% { width: 100%; }}
 @keyframes slide {100% { width: 100%; }}
 
