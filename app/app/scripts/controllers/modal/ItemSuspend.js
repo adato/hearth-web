@@ -2,8 +2,8 @@
 
 /**
  * @ngdoc controller
- * @name hearth.controllers.ItemEdit
- * @description
+ * @name hearth.controllers.ItemSuspend
+ * @description controller for ng-dialog when suspending an item
  */
 
 angular.module('hearth.controllers').controller('ItemSuspend', [
