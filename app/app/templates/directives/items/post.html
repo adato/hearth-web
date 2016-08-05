@@ -155,7 +155,7 @@
 										<a class="touchable" title="{{:: 'POST.RESUME.LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
 											<i class="fa fa-fw" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
 										</a>
-										<a class="touchable" title="{{:: 'POST.SUSPEND.LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('POST.SUSPEND.LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
+										<a class="touchable" title="{{:: 'POST.SUSPEND.LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', pauseToggle, item, this)">
 											<i class="fa fa-fw fa-pause"></i>
 										</a>
 										<a class="touchable" title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
