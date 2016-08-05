@@ -47,6 +47,7 @@
 	<link rel="stylesheet" type="text/css" href="/app/vendor/flexslider/flexslider.css">
 	<link rel="stylesheet" type="text/css" href="/app/vendor/fancybox/source/jquery.fancybox.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/app/vendor/nanoscroller/bin/css/nanoscroller.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/app/vendor/intl-tel-input/build/css/intlTelInput.css" media="screen" />
 	<script src="/app/vendor/jquery/dist/jquery.min.js"></script>
 	<script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script>
 </head>
@@ -98,13 +99,14 @@
 	<script src="/app/vendor/foundation/js/foundation.min.js"></script>
 	<script src="/app/vendor/foundation-datepicker/js/foundation-datepicker.js"></script>
 	<script src="/app/vendor/jquery-color/jquery.color.js"></script>
-	<script src="/app/vendor/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
 	<script src="/app/vendor/moment/min/moment.min.js"></script>
 	<script src="/app/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"></script>
 	<script src="/app/vendor/ng-slide-down/dist/ng-slide-down.min.js"></script>
 	<script src="/app/vendor/satellizer/satellizer.min.js"></script>
 	<script src="/app/vendor/SHA-1/sha1.js"></script>
+	<script src="/app/vendor/select2/select2.min.js"></script>
 	<script src="/app/vendor/ui-select/dist/select.min.js"></script>
+	<script src="/app/vendor/angular-select2/dist/angular-select2.min.js"></script>
 	<script src="/app/vendor/exif-js/exif.js"></script>
 	<script src="/app/vendor/fancybox/source/jquery.fancybox.js"></script>
 	<script src="/app/vendor/jquery.tipsy/js/jquery.tipsy.min.js"></script>
@@ -115,6 +117,11 @@
 	<script src="/app/vendor/angular-mobile-detect/dist/angular-mobile-detect.js"></script>
 	<script src="/app/vendor/checklist-model/checklist-model.js"></script>
 	<script src="/app/vendor/overlapping-marker-spiderfier/oms.js"></script>
+	<script src="/app/vendor/angular-websocket/dist/angular-websocket.js"></script>
+	<script src="/app/vendor/angular-actioncable/dist/angular-actioncable.js"></script>
+	<script src="/app/vendor/international-phone-number/releases/international-phone-number.js"></script>
+	<script src="/app/vendor/intl-tel-input/build/js/intlTelInput.js"></script>
+	<script src="/app/vendor/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
 	<!-- build:js /app/scripts/scripts.min.js -->
 	<script src="scripts/bootstrap.js"></script>
 	<script src="scripts/utils/jqueryQueryParams.js"></script>
@@ -157,6 +164,7 @@
 	<script src="scripts/services/resources/Conversations.js"></script>
 	<script src="scripts/services/transforms/LocationJsonDataTransform.js"></script>
 	<script src="scripts/services/Bubble.js"></script>
+	<script src="scripts/services/ItemAux.js"></script>
 	<script src="scripts/services/ItemServices.js"></script>
 	<script src="scripts/services/PageTitle.js"></script>
 	<script src="scripts/services/Validators.js"></script>
@@ -166,6 +174,7 @@
 	<script src="scripts/services/ApiErrorInterceptor.js"></script>
 	<script src="scripts/services/ApiMaintenanceInterceptor.js"></script>
 	<script src="scripts/services/Auth.js"></script>
+	<script src="scripts/services/CountryList.js"></script>
 	<script src="scripts/services/Errors.js"></script>
 	<script src="scripts/services/Facebook.js"></script>
 	<script src="scripts/services/UniqueFilter.js"></script>
@@ -200,6 +209,7 @@
 	<script src="scripts/services/Activities.js"></script>
 	<script src="scripts/services/MultipartForm.js"></script>
 	<script src="scripts/services/HearthCrowdfunding.js"></script>
+	<!--script src="scripts/services/Websocket.js"></script-->
 	<script src="scripts/filters/filters.js"></script>
 	<script src="scripts/directives/navigation.js"></script>
 	<script src="scripts/directives/ratingReply.js"></script>
@@ -323,6 +333,7 @@
 	<script src="scripts/controllers/modal/Tutorial.js"></script>
 	<script src="scripts/controllers/modal/InviteBox.js"></script>
 	<script src="scripts/controllers/modal/ConfirmBox.js"></script>
+	<script src="scripts/controllers/modal/ItemSuspend.js"></script>
 	<script src="scripts/constants/MottoLength.js"></script>
 	<script type="text/javascript" src="/app/scripts/tracking.js"></script>
 	<!-- endbuild -->

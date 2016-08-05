@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemDetail', [
-	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble',
-	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble) {
+	'$scope', '$stateParams', '$state', '$rootScope', 'OpenGraph', 'Post', '$timeout', 'PostReplies', 'Karma', 'UsersCommunitiesService', '$filter', 'IsEmpty', 'ProfileUtils', 'Bubble', 'ItemAux',
+	function($scope, $stateParams, $state, $rootScope, OpenGraph, Post, $timeout, PostReplies, Karma, UsersCommunitiesService, $filter, IsEmpty, ProfileUtils, Bubble, ItemAux) {
 		$scope.item = false;
 		$scope.itemDeleted = false;
 		$scope.loaded = false;
@@ -17,6 +17,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.isMine = false;
 		$scope.isEmpty = IsEmpty;
 		$scope.removeReminder = Bubble.removeReminder;
+		$scope.ItemAux = ItemAux;
 
 		// init language
 		$scope.postTypes = $$config.postTypes;

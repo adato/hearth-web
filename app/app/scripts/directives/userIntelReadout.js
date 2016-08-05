@@ -49,6 +49,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 
 				scope.typeMatch = setup[scope.type] || setup.all;
 
+
 				// this is for marketplace post detail where the description should not be too long;
 				scope.getShorterDescription = function() {
 					if (scope.entity && (scope.entity.motto || scope.entity.about)) {

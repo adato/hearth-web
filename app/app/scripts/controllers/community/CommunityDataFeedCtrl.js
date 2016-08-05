@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
-	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils',
-	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils) {
+	'$scope', '$stateParams', '$rootScope', 'Community', 'Fulltext', 'CommunityMembers', 'CommunityApplicants', 'CommunityActivityLog', 'Post', 'Notify', '$timeout', 'CommunityRatings', 'UniqueFilter', 'Activities', 'ItemServices', 'ProfileUtils', '$log',
+	function($scope, $stateParams, $rootScope, Community, Fulltext, CommunityMembers, CommunityApplicants, CommunityActivityLog, Post, Notify, $timeout, CommunityRatings, UniqueFilter, Activities, ItemServices, ProfileUtils, $log) {
 		angular.extend($scope, ItemServices);
 		$scope.activityShow = false;
 		$scope.loadingData = false;
@@ -113,7 +113,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			}, function(res, headers) {
 				var posts = [];
 				if (!res.needed || !res.offered)
-					console.error('Undefined needed/offered posts: ', res, headers)
+					$log.error('Undefined needed/offered posts: ', res, headers)
 
 				res.needed.forEach(function(item) {
 					//item.post_type = "needed";
@@ -291,7 +291,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 			$scope.pageSegment = $stateParams.page || 'home';
 			var loadService = loadServices[$scope.pageSegment];
 
-			// console.log("Calling load service for segment ", $scope.pageSegment);
+			$scope.debug && $logger.log("Calling load service for segment ", $scope.pageSegment);
 			loadService($stateParams.id, processData, processDataErr);
 
 			// refresh after new post created

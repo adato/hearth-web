@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('StaticPageCtrl', [
-	'$state', '$scope', 'ngDialog', 'Auth', 'User', 'Feedback', '$rootScope', '$sce',
-	function($state, $scope, ngDialog, Auth, User, Feedback, $rootScope, $sce) {
+	'$state', '$scope', 'ngDialog', 'Auth', 'User', 'Feedback', '$rootScope', '$sce', '$log',
+	function($state, $scope, ngDialog, Auth, User, Feedback, $rootScope, $sce, $log) {
 		$scope.loading = true;
 		$scope.pageName = $state.current.name;
 		$scope.finishLoading = function() {
@@ -97,7 +97,7 @@ angular.module('hearth.controllers').controller('StaticPageCtrl', [
 			Feedback.add($scope.feedbackData, function() {
 				done();
 			}, function() {
-				console.log('err sending feedback data');
+				$log.error('Error sending feedback data');
 			})
 		}
 

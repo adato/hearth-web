@@ -9,7 +9,7 @@
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
-		<div class='display-table-cell' ng-bind="entity.about"></div>
+		<div class='display-table-cell' ng-bind-html="entity.about | linky:'_blank':{rel: 'nofollow'} | nl2br"></div>
 	</div>
 	<div class="display-table-row" ng-if="(typeMatch.indexOf('about_shortened') > -1 && getShorterDescription())">
 		<div class="display-table-cell addon">

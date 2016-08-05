@@ -1,17 +1,12 @@
 'use strict';
 
-angular.module('hearth', [
-		'ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
+angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.router', 'angular-flexslider',
 		'ngSanitize', 'ngResource', 'pascalprecht.translate', 'hearth.services',
 		'hearth.filters', 'hearth.directives', 'ng-slide-down', 'hearth.controllers', 'hearth.constants', 'angulartics', 'angulartics.mixpanel', 'angulartics.google.analytics',
-		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model'
+		'chieffancypants.loadingBar', 'ngTagsInput', 'ipCookie', 'hearth.utils', 'hearth.geo', 'hearth.messages', 'satellizer', 'MobileDetect', 'checklist-model', 'rt.select2', 'ngActionCable', 'internationalPhoneNumber'
 	])
 	.config(['$sceProvider', '$locationProvider',
 		function($sceProvider, $locationProvider) {
-
-			// ============================
-			// === Location Configuration
-			// ============================
 			$locationProvider.html5Mode(true);
 		}
 	]).config([
@@ -21,23 +16,16 @@ angular.module('hearth', [
 			$compileProvider.debugInfoEnabled($$config.disableDebugInfo);
 			$httpProvider.useApplyAsync(true);
 
-			// ===============================
-			// === Loading Bar Configuration
-			// ===============================
+			// Loading Bar Configuration
 			cfpLoadingBarProvider.includeSpinner = false;
 			return cfpLoadingBarProvider.includeSpinner;
 		}
 	]).config([
 		'tmhDynamicLocaleProvider', '$translateProvider',
 		function(tmhDynamicLocaleProvider, $translateProvider) {
-
-			// ===============================
-			// === Localization
-			// ===============================
+			// Localization
 
 			// get preferred language from cookies or config
-			// console.log("Setting preffered language", preferredLanguage);
-
 			// configure dynamic locale - dates && pluralization && etc
 			// tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
 			tmhDynamicLocaleProvider.localeLocationPattern('//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_{{locale}}.js');
@@ -45,7 +33,6 @@ angular.module('hearth', [
 			$translateProvider.preferredLanguage(preferredLanguage);
 			$translateProvider.useSanitizeValueStrategy(null);
 
-			//  ====================== REVIEW ================
 			// $translateProvider.useStorage('SessionLanguageStorage');
 			$translateProvider.useStaticFilesLoader({
 				prefix: 'locales/',
@@ -90,6 +77,8 @@ angular.module('hearth', [
 			$window.refsArray = getRefsArray();
 			$window.refsString = getRefsString($window.refsArray);
 
+			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class
+
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
 			$authProvider.tokenName = 'api_token';
@@ -108,9 +97,7 @@ angular.module('hearth', [
 				}
 			});
 
-			// ===============================
-			// === Configure ajax calls
-			// ===============================
+			// Configure ajax calls
 
 			// Allow CORS
 			$httpProvider.defaults.useXDomain = true;
@@ -129,17 +116,14 @@ angular.module('hearth', [
 			var params = $.getUrlVars();
 			if (params['apiError'])
 				params['apiError'].split(',').forEach(function(type) {
-					console.log('Enabling api test errors for', type);
+					$log.info('Enabling api test errors for', type);
 					$httpProvider.defaults.headers[type]['x-error-test'] = 1;
 				});
 
-			// // ======== Watch for unauth responses
+			// Watch for unauth responses
 			$httpProvider.interceptors.push('HearthLoginInterceptor');
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
-
-			// // ======== ?? wtf is this?
-			// $httpProvider.responseInterceptors.push('TermsAgreement');
 		}
 	]).config(['$provide',
 		function($provide) {
@@ -154,11 +138,13 @@ angular.module('hearth', [
 				};
 			});
 		}
-	]).run([
-		'$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter',
-		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter) {
+	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
+		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
+
+			ActionCableConfig.wsUri = $$config.websocket;
+			//ActionCableConfig.debug = true;
 
 			/**
 			 * This will cache some files at start
@@ -230,7 +216,6 @@ angular.module('hearth', [
 							path: '/'
 						});
 					}
-
 					if (typeof mixpanel !== 'undefined') { // verify if mixpanel is present, prevent fail with adblock
 						if ($rootScope.loggedUser && $rootScope.loggedUser._id) {
 							mixpanel.identify($rootScope.loggedUser._id);
@@ -249,7 +234,7 @@ angular.module('hearth', [
 					$rootScope.$broadcast("initSessionSuccess", $rootScope.loggedUser);
 					done(null, $rootScope.loggedUser);
 				}, function(err) {
-					console.log(err.status, err.statusText, err.data);
+					$log.error(err.status, err.statusText, err.data);
 					Rollbar.error("HEARTH: session critical error occured", {
 						status: err.status,
 						statusText: err.statusText,
@@ -286,7 +271,7 @@ angular.module('hearth', [
 				done(null);
 			}
 
-			// === Init hearth core parts
+			// Init hearth core parts
 			async.parallel({
 				language: initLanguage, // download language files
 				session: initSession, // get user session from api
@@ -296,12 +281,6 @@ angular.module('hearth', [
 
 				$urlRouter.sync();
 				$urlRouter.listen();
-
-				//				$(document).foundation({
-				//					offcanvas: {
-				//						close_on_click: true
-				//					}
-				//				});
 
 				$rootScope.debug = !!$.cookie("debug");
 				$rootScope.initFinished = true;

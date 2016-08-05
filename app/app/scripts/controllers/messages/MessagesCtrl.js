@@ -20,9 +20,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadingBottom = false;
 
 		var _loadLimit = 20; // pull requests interval in ms
-		var _loadTimeout = 30000; // pull requests interval in ms
-		var _loadLock = false; // pull requests interval in ms
-		var _loadTimeoutPromise = false;
 
 		if (!Object.keys($scope.filter).length) {
 			$scope.filter = {
@@ -84,6 +81,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 		$scope.setCurrentConversationAsReadedSoft = function() {
 			$scope.detail.read = true;
+			$scope.conversations[0].read = true;
 		};
 
 		// $scope.setCurrentConversationAsReaded = function() {
@@ -97,34 +95,21 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.loadNewConversations = function() {
 			$scope.$broadcast('loadNewMessages');
 
-			if (!$scope.conversations.length)
+			if (!$scope.conversations.length) {
 				return $scope.loadFirstConversations();
-
-			if (_loadLock) return false;
-			_loadLock = true;
-
-			$timeout.cancel(_loadTimeoutPromise);
+			}
 
 			var conf = {
 				newer: $scope.conversations[0].last_message_time,
 				exclude_self: true
 			};
+
 			angular.extend(conf, $scope.getFilter());
 
-			Messenger.loadCounters();
 			Conversations.get(conf, function(res) {
-				// if we didnt end loading..
-				if (_loadTimeoutPromise !== -1)
-					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
-				_loadLock = false;
-
 				if (res.conversations.length) {
 					$scope.prependConversations($scope.deserialize(res.conversations));
 				}
-			}, function() {
-				_loadLock = false;
-				if (_loadTimeoutPromise !== -1)
-					_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
 			});
 		};
 
@@ -173,17 +158,17 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showConversation = function(info, index, dontMarkAsReaded, clicked) {
 			var title;
 
-			if (clicked)
+			if (clicked) {
 				$scope.markReaded(info);
+			}
 
-			if ($scope.detail && info._id == $scope.detail._id)
+			if ($scope.detail && info._id == $scope.detail._id) {
 				return false;
+			}
 
-			if (!info.read && !dontMarkAsReaded)
+			if (!info.read && !dontMarkAsReaded) {
 				$scope.markReaded(info);
-
-			// if(!info.read && dontMarkAsReaded)
-			// 	$scope.markReadedAfterActivity(info, index);
+			}
 
 			$scope.showNewMessageForm = false;
 			$scope.notFound = false;
@@ -191,13 +176,11 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 
 			// dont load counter when we click on conversation detail
 			// (and change URL)
-			Messenger.disableLoading();
 			$location.url("/messages/" + info._id + "?" + jQuery.param($location.search()));
 
 
 			// enable counters loading after URL is changed
 			$timeout(function() {
-				Messenger.enableLoading();
 				$scope.$broadcast('updateTitle');
 			});
 		};
@@ -209,23 +192,25 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			// handle conversation title
 			// if it is post reply conversation, add post type
 			if (!conversation.title && post && post.title) {
-
 				conversation.title = post.title;
 
-				if (post.author._type == 'User')
+				if (post.author._type == 'User') {
 					post.type_code = (post.type == 'offer' ? 'OFFER' : 'NEED');
-				else
+				} else {
 					post.type_code = (post.type == 'offer' ? 'WE_OFFER' : 'WE_NEED');
+				}
 
 				post.type_translate = $translate.instant(post.type_code);
 			}
 
 			if (conversation.participants.length) {
 				conversation.titlePersons = [];
+
 				// if there is no title, build it from first 3 participants (index from 0 to 2)
 				for (var i = 0; i < 2 && i < conversation.participants.length; i++) {
 					conversation.titlePersons.push(conversation.participants[i].name);
 				};
+
 				conversation.titlePersons = conversation.titlePersons.join(", ");
 			}
 
@@ -334,16 +319,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.loadFirstConversations = function() {
-			// Messenger.loadCounters();
 			$scope.loadConversations({}, function(list) {
 				var paramId = $scope.getParamId();
-				// load first conversation on init
-				if (paramId)
-					$scope.loadConversationDetail(paramId);
-				else if (list.length)
-					$scope.showConversation(list[0], 0);
 
-				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
+				// load first conversation on init
+				if (paramId) {
+					$scope.loadConversationDetail(paramId);
+				} else if (list.length) {
+					$scope.showConversation(list[0], 0);
+				}
 			});
 		};
 
@@ -367,12 +351,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			};
 
 			angular.extend(conf, $scope.getFilter());
+
 			Conversations.get(conf, function(res) {
 				$scope.addToBottom(res.conversations);
 
 				// continue in loading only if there are more conversations
-				if (res.conversations.length)
+				if (res.conversations.length) {
 					$scope.loadingBottom = false;
+				}
 
 				$timeout(function() {
 					$scope.$broadcast("scrollbarResize");
@@ -395,8 +381,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.loadingBottom = false;
 
 			$scope.loadPostConversations();
-
-			// Messenger.loadCounters();
 			$scope.loadConversations({
 				limit: _loadLimit,
 				offset: 0
@@ -404,33 +388,34 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				$scope.loaded = true;
 
 				var paramId = $scope.getParamId();
+
 				// load first conversation on init
-				if (paramId)
+				if (paramId) {
 					$scope.loadConversationDetail(paramId, true);
-				else if (list.length) {
+				} else if (list.length) {
 					// do not load on small devices. Load on user request only.
 					if (ResponsiveViewport.isSmall() || ResponsiveViewport.isMedium()) {
 						return false;
 					}
+
 					$scope.showConversation(list[0], 0, true);
 				}
-
-				_loadTimeoutPromise = $timeout($scope.loadNewConversations, _loadTimeout);
-
 			});
 		};
 
 		var changeDetail = function(ev, state, params) {
 			// load first conversation on init
-			if (params.id)
+			if (params.id) {
 				$scope.loadConversationDetail(params.id, true);
-			else if ($scope.conversations.length)
+			} else if ($scope.conversations.length) {
 				$scope.showConversation($scope.conversations[0], 0, true);
+			}
 		};
 
 		$scope.$on('$stateChangeSuccess', changeDetail);
 
 		UnauthReload.check();
+		$scope.$on('WSNewMessage', $scope.loadNewConversations);
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('conversationCreated', $scope.loadCounters);
@@ -439,11 +424,5 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);
 		$rootScope.initFinished && init();
-
-		$scope.$on('$destroy', function() {
-			// stop pulling new conversations on directive destroy
-			$timeout.cancel(_loadTimeoutPromise);
-			_loadTimeoutPromise = -1;
-		});
 	}
 ]);

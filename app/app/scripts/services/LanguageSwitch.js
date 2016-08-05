@@ -15,7 +15,6 @@ angular.module('hearth.services').service('LanguageSwitch', [
 
 		// init languages
 		this.init = function() {
-			// console.log("Language Inited");
 			$rootScope.languageInited = true;
 			$rootScope.$broadcast("languageInited");
 		};

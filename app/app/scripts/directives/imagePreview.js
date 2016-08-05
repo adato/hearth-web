@@ -96,8 +96,8 @@ angular.module('hearth.directives').directive('fileModel', ['$parse', '$rootScop
  */
 
 angular.module('hearth.directives').directive('imagePreview', [
-	'$timeout', '$parse', '$rootScope', 'ImageLib',
-	function($timeout, $parse, $rootScope, ImageLib) {
+	'$timeout', '$parse', '$rootScope', 'ImageLib', '$log',
+	function($timeout, $parse, $rootScope, ImageLib, $log) {
 		return {
 			transclude: true,
 			replace: true,
@@ -139,7 +139,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 					if (!device.android) {
 						// Since android doesn't handle file types right, do not do this check for phones
 						if (!file || !file.type) {
-							console.log("File does not have type attribute", file);
+							$log.error("File does not have type attribute", file);
 							return true;
 						}
 
@@ -224,7 +224,7 @@ angular.module('hearth.directives').directive('imagePreview', [
 						}, function(err) {
 							scope.uploading = false;
 							scope.error.uploadError = true;
-							console.log('Error: ', err);
+							$log.error('Error: ', err);
 							$('input', el).val("");
 						});
 					}, 50);
