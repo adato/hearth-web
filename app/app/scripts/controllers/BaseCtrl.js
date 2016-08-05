@@ -877,17 +877,22 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-		// start message websocket
+		/**
+		 * Create a websocket messaging channel
+		 * with token param after user is logged in
+		 */
 		$rootScope.$on('onUserLogin', function(event, data) {
 			var consumer = new ActionCableChannel("MessagesChannel", {
 				token: $.cookie("authToken")
 			});
 
+			// Callback function that will dispatch WSNewMessage event
 			var callback = function(message) {
 				Messenger.loadCounters();
 				$rootScope.$broadcast('WSNewMessage', message);
 			};
 
+			// Subscribe to the message channel
 			consumer.subscribe(callback).then(function() {});
 		});
 

@@ -30,11 +30,8 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				$scope.lockCounter = 0;
 				$scope.messages = false;
 				var _messagesCount = 10; // how many messages will we load in each request except new messages
-				var _loadTimeout = 30000; // pull requests interval in ms
-				//var _loadLock = false; // pull requests interval in ms
 				var _scrollInited = false;
 				var _loadOlderMessagesEnd = false;
-				var _loadTimeoutPromise = false;
 				var _loadingOlderMessages = false;
 
 				$scope.addMessagesToList = function(messages, append) {
@@ -49,7 +46,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					// and resize message box
 					$scope.resizeTMessagesBox();
 
-
 					// when we get less messages then requested, we hitted the end of list
 					if (!append && messages.length < _messagesCount)
 						_loadOlderMessagesEnd = true;
@@ -63,26 +59,26 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 */
 				$scope.loadMessages = function(config, done, dontMarkAsReaded) {
 					var lockCounter = $scope.lockCounter;
+
 					config = angular.extend(config || {}, {
 						id: $scope.info._id,
 						limit: _messagesCount,
 						no_read: !!dontMarkAsReaded
 					});
+
 					Conversations.getMessages(
-							config,
-							function(res) {
-								// test if we loaded data for actual conversation detail
-								// if(config.id !== $scope.info._id) return false;
-								if (lockCounter !== $scope.lockCounter) return false;
-								// TODO - figure why API is sending empty array on conversations I have no right to read
-								if (!res.messages.length) done();
+						config,
+						function(res) {
+							// test if we loaded data for actual conversation detail
+							if (lockCounter !== $scope.lockCounter) return false;
+							// TODO - figure why API is sending empty array on conversations I have no right to read
+							if (!res.messages.length) done();
 
-								// append/prepend messages
-								res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
+							// append/prepend messages
+							res.messages.length && $scope.addMessagesToList(res.messages, config.newer);
 
-								done && done(res.messages);
-							}, done)
-						//} done);
+							done && done(res.messages);
+						}, done);
 				};
 
 				/**
@@ -103,9 +99,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 */
 				$scope.afterInitLoad = function(messages) {
 					_loadingOlderMessages = false;
-
-					// start pulling new messages
-					// $scope.scheduleNewMessagesLoading();
 
 					$timeout(function() {
 						// test if we are on bottom
@@ -147,14 +140,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 					$scope.$emit("conversationUpdated", $scope.info);
 				};
 
-				/**
-				 * Schedule next pull of new messages
-				 */
-				$scope.scheduleNewMessagesLoading = function() {
-					$timeout.cancel(_loadTimeoutPromise);
-					_loadTimeoutPromise = $timeout($scope.loadNewMessages, _loadTimeout);
-				};
-
 				$scope.getLastMessageTime = function() {
 					if (!$scope.messages || !$scope.messages.length)
 						return undefined;
@@ -181,20 +166,14 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				/**
-				 * Periodically pull new messages
+				 * Load new messages on demand through websocket message channel
 				 */
 				$scope.loadNewMessages = function() {
-					/*if (_loadLock) return false;
-					_loadLock = true;*/
-
 					$scope.loadMessages({
 							newer: $scope.getLastMessageTime(),
 							no_read: true,
 						},
 						function(messages) {
-							//_loadLock = false;
-							$scope.scheduleNewMessagesLoading();
-
 							if (messages && messages.length) {
 								if ($scope.hasSystemMessage(messages)) {
 									$scope.reloadConversationInfo();
@@ -303,7 +282,7 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				/**
-				 * Load oldermessages when we scrolled to top
+				 * Load older messages when we scrolled to top
 				 */
 				$scope.loadOlderMessages = function(loadOlderMessages) {
 					if (_loadingOlderMessages || _loadOlderMessagesEnd || !$scope.messages.length) return false;
@@ -437,8 +416,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				 * and load messages
 				 */
 				$scope.init = function(info) {
-
-					$timeout.cancel(_loadTimeoutPromise);
 					$scope.lockCounter++;
 					// set initial state
 					_loadOlderMessagesEnd = false;
@@ -458,7 +435,6 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				$scope.setTitle = function() {
-
 					var title = ($scope.info.post) ? $translate.instant($scope.info.post.type_code) + ' ' + $scope.info.titleDetail : $scope.info.titleDetail;
 
 					PageTitle.setTranslate('TITLE.messages.detail', title);
@@ -467,18 +443,13 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				// resize box when needed
 				$(window).resize($scope.resizeMessagesBox);
 				$scope.$on("conversationReplyFormResized", $scope.resizeMessagesBox);
-
-
 				$scope.$watch('updateTitle', $scope.setTitle);
 				$scope.$watch('info', $scope.init);
 				$scope.$watch('info', $scope.deserializeInfo, true);
 				$scope.$on('loadNewMessages', $scope.loadNewMessages);
 				$scope.$on('conversationMessageAdded', $scope.onMessageAdded);
 				$scope.$on('$destroy', function() {
-					// stop pulling new messages on directive destroy
-					$timeout.cancel(_loadTimeoutPromise);
 					$(window).off('resize', $scope.resizeMessagesBox);
-
 				});
 			}
 		};
