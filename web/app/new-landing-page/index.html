@@ -19,6 +19,7 @@
 	<!--<link rel='stylesheet' type='text/css' href='./fonts/stylesheet.css' />-->
 	<link  rel='stylesheet' type='text/css' href='./css/components.css' />
 	<link rel='stylesheet' type='text/css' href='./css/hamburger.css' />
+	<link rel='stylesheet' type='text/css' href='./css/dots.css' />
 	<link rel='stylesheet' type='text/css' href='./css/main.css' />
 	<link rel='stylesheet' type='text/css' href='./css/font-awesome.min.css' />
 
@@ -218,10 +219,17 @@
 					<i class='button-flame'></i>
 					Podívat se na tržiště
 				</a>
-				<div class='control-dots'>
-					<div class='dot'></div>
-					<div class='dot'></div>
-					<div class='dot'></div>
+				<div class="dotstyle-wrapper">
+					<div class="dotstyle dotstyle-dotmove">
+						<ul>
+							<li class="current"><a href="#">#1</a></li>
+							<li><a href="#">#2</a></li>
+							<li><a href="#">#3</a></li>
+							<li><a href="#">#4</a></li>
+							<li><a href="#">#5</a></li>
+							<li><!-- dummy dot - has design purpose - DO NOT REMOVE --></li>
+						</ul>
+					</div>
 				</div>
 				<div class='decorated-circle-flame background-alternate'></div>
 			</div>
@@ -624,6 +632,7 @@
 		</section>
 	</div>
 	<script src='./js/smooth-scroll.js'></script>
+	<script src='./js/dots.js'></script>
 	<script src='./js/script.js'></script>
 </body>
 </html>
