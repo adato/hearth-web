@@ -149,7 +149,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$rootScope.config = $$config;
 
 			ActionCableConfig.wsUri = $$config.websocket;
-			//ActionCableConfig.debug = true;
 
 			/**
 			 * This will cache some files at start
