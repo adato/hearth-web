@@ -19,6 +19,7 @@ $$localConfig = {
 	},
 	apiPath: 'https://api.stage.hearth.net',
 	rollbar: '98de3a45eb1c44f59f35cfbfbe24bc35',
+	websocket: 'wss://api.stage.hearth.net/cable',
 	hotjar: '56501',
 	mixpanel: {
 		token: "a82628760cb44b440b5b7a927763037c"
