@@ -277,8 +277,6 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				$scope.closeThisDialog();
 			});
 
-			ProfileUtils.single.getLocationJson(data);
-
 			// emit event into whole app
 			$rootScope.$broadcast($scope.isDraft ? 'postCreated' : 'postUpdated', data);
 
