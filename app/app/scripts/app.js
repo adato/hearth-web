@@ -127,8 +127,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 		}
-	]).config(['$provide',
-		function($provide) {
+	]).config(['$provide', 'ipnConfig',
+		function($provide, ipnConfig) {
 			$provide.decorator("$exceptionHandler", function($delegate, $window) {
 				return function(exception, cause) {
 					if ($window.Rollbar) {
@@ -139,6 +139,8 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 					$delegate(exception, cause);
 				};
 			});
+
+			ipnConfig.utilsScript = 'vendor/intl-tel-input/lib/libphonenumber/build/utils.js';
 		}
 	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
 		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
