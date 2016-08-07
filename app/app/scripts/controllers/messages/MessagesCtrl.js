@@ -84,14 +84,6 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.conversations[0].read = true;
 		};
 
-		// $scope.setCurrentConversationAsReaded = function() {
-		// 	if (!$scope.detail || $scope.detail.read)
-		// 		return false;
-
-		// 	Messenger.decrUnreaded();
-		// 	$scope.detail.read = true;
-		// };
-
 		$scope.loadNewConversations = function() {
 			$scope.$broadcast('loadNewMessages');
 
@@ -415,6 +407,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('$stateChangeSuccess', changeDetail);
 
 		UnauthReload.check();
+		// After event WSNewMessage is recived call function that load new conversations
 		$scope.$on('WSNewMessage', $scope.loadNewConversations);
 		$scope.$on('conversationRemoved', $scope.removeConversationFromList);
 		$scope.$on('conversationUpdated', $scope.updateConversation);

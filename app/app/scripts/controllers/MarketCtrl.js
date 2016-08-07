@@ -53,9 +53,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		function getPostScope(post) {
 			var author = post;
-
 			if (post._type == 'Post') author = post.author;
-
 			var scope = $scope.$new(true);
 			scope.keywords = $scope.keywordsActive;
 			scope.item = post;

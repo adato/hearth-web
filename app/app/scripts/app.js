@@ -79,7 +79,7 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 
 			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class
 
-			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class 
+			var $log = angular.injector(['ng']).get('$log'); // instantiate logger class
 
 			$authProvider.loginRedirect = false;
 			$authProvider.httpInterceptor = false;
@@ -111,7 +111,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 			$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-			//$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 			$httpProvider.defaults.headers.common['X-API-VERSION'] = '1'; // hard use version of API

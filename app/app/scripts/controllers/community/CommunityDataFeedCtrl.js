@@ -166,7 +166,6 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				$scope.postsInactive = [];
 
 				res.data.forEach(function(item) {
-					ProfileUtils.single.getLocationJson(item);
 					if ($rootScope.isPostActive(item)) {
 						$scope.postsActive.push(item);
 					} else {
