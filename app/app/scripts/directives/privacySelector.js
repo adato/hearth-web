@@ -16,10 +16,18 @@ angular.module('hearth.directives').directive('privacySelector', [
 			scope: {
 				ngDisabled: '=',
 				ngModel: '=',
+				relatedModel: '@'
 			},
 			templateUrl: 'templates/directives/privacySelector.html',
-			link: function($scope) {
-				$scope.selectValues = [{
+			link: function(scope, elem, attrs) {
+
+				attrs.$observe('relatedModel', function(val) {
+					if (!val) {
+						scope.ngModel = undefined;
+					}
+				});
+
+				scope.selectValues = [{
 					title: $translate.instant('PROFILE.CONTACT.VISIBILITY_NOBODY'),
 					value: undefined
 				}, {

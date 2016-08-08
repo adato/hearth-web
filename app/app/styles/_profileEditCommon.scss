@@ -189,6 +189,10 @@
 		-moz-appearance: none;
 		text-indent: 0.01px;
 		text-overflow: '';
+
+		&:disabled {
+			background: #efefef;
+		}
 	}
 	textarea,
 	tags-input.textarea-height > div > .tags {
