@@ -77,7 +77,7 @@
 		"SUSPEND": {
 			"LABEL": "Suspend post",
 			"ARE_YOU_SURE": "Do you want to suspend this post?",
-			"CONNECTED_MESSAGE_PLACEHOLDER": "A pokud chceš, můžeš pro uživatele připojit nějakou zprávu."
+			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit."
 		},
 		"RESUME": {
 			"LABEL": "Resume"
@@ -425,7 +425,8 @@
 		"TERMS": "Terms of use",
 		"FAQ": "FAQs",
 		"TAXES": "Giving and taxes",
-		"SUPPORT_US": "Support Hearth"
+		"SUPPORT_US": "Support Hearth",
+		"MODERATORS": "Hearth.net custodians"
 	},
 	"THANKS_FOR_REPORT": "Thanks for the notice, we will check this post out.",
 	"THIS_IS_BOB": "Are you new here? Get inspired by the {{users}} people here.\r\nSee, there's nothing to it! Just say THANKS.",
@@ -1354,7 +1355,8 @@
 		"taxes": "Donations and Taxes",
 		"community_edit": "Edit community",
 		"fulltext": "Search",
-		"support-us": "Support Hearth "
+		"support-us": "Support Hearth ",
+		"moderators": "Hearth.net custodians"
 	},
 	"FULLTEXT": {
 		"FILTER": {
