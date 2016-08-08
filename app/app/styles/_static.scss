@@ -269,14 +269,19 @@
 		float:left;
 		margin-right:20px;
 	}
-	dd.pad-left {
-		margin-left:100px; 
+	@media #{$medium-up} {
+		dd.pad-left {
+			margin-left:100px; 
+		}
+		dl.pad-left {
+			margin-left:100px; 
+		}
 	}
-	dl.pad-left {
-		margin-left:100px; 
-	}
-	.pad-left ul {
+	.pad-left ul, .pad-left-none ul {
 		margin-top:15px;
 		margin-left:30px;
+	}
+	.margin-bottom-larger {
+		margin-bottom:40px;
 	}
 }
