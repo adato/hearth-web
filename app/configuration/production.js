@@ -18,7 +18,10 @@ $$localConfig = {
 	},
 	apiPath: 'https://api.hearth.net',
 	rollbar: '37749b1156e24ca986bf5a77dd74eefc',
-	websocket: 'wss://api.hearth.net/cable',
+	websocket: {
+		url: 'wss://api.hearth.net/cable',
+		debug: false
+	},
 	hotjar: '56494',
 	mixpanel: {
 		token: "6b175f45d52ad5f52b7344b9cad15a8f"
