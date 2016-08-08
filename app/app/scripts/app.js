@@ -109,7 +109,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			// $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 			$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['Accept-Language'] = preferredLanguage;
-			//$httpProvider.defaults.headers.common['Accept'] = 'application/vnd.hearth-v1+json';
 			$httpProvider.defaults.headers.common['X-API-TOKEN'] = $.cookie("authToken");
 			$httpProvider.defaults.headers.common['X-DEVICE'] = getDevice();
 			$httpProvider.defaults.headers.common['X-API-VERSION'] = '1'; // hard use version of API
@@ -148,7 +147,9 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
-			ActionCableConfig.wsUri = $$config.websocket;
+			ActionCableConfig.wsUri = $$config.websocket.url;
+			ActionCableConfig.debug = $$config.websocket.debug;
+			ActionCableConfig.autoStart = false;
 
 			/**
 			 * This will cache some files at start
@@ -197,17 +198,18 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 
 					// if is logged, check if he wanted to see some restricted page
 					if ($rootScope.loggedUser._id) {
-
 						if (!$.cookie('forceRefresh')) {
-
 							var cookies = $.cookie();
+
 							for (var cookie in cookies) {
 								$.removeCookie(cookie);
 							}
+
 							$.cookie('forceRefresh', Date.now(), {
 								expires: 30 * 12 * 20,
 								path: '/'
 							});
+
 							Auth.logout(function() {
 								location.reload("/login");
 							});
@@ -283,7 +285,6 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 				openGraph: initOpenGraph, // fill default og info
 				cacheFiles: cacheFiles, // cache some files at start
 			}, function(err, init) {
-
 				$urlRouter.sync();
 				$urlRouter.listen();
 
