@@ -167,7 +167,7 @@
 
 					<div class="large-6 small-12 medium-6 columns">
 						<label>{{:: 'PROFILE.CONTACT.WHO_CAN_SEE_IT' | translate }}</label>
-						<privacy-selector ng-model="profile.visible_attributes.phone"></privacy-selector>
+						<privacy-selector ng-model="profile.visible_attributes.phone" related-model="{{profile.phone}}" ng-disabled="!profileEditForm.phone.$viewValue || profileEditForm.phone.$error.internationalPhoneNumber"></privacy-selector>
 					</div>
 				</div>
 			</section>

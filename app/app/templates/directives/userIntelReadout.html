@@ -59,11 +59,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="display-table-row" ng-if="entity.phone && (typeMatch.indexOf('phone') > -1)">
+	<div class="display-table-row" ng-if="entity.formatted_phone && (typeMatch.indexOf('phone') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-phone"></i>
 		</div>
-		<div class="display-table-cell" ng-bind="entity.phone"></div>
+		<div class="display-table-cell" ng-bind="entity.formatted_phone"></div>
 	</div>
 	<div class="display-table-row" ng-if="entity.webs.length && entity.webs[0] && (typeMatch.indexOf('webs') > -1)">
 		<div class="display-table-cell addon">
