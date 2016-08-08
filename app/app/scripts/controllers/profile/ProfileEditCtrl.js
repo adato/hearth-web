@@ -177,8 +177,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				data.phone = '+' + data.phone;
 			}
 
-			data.webs = webs;
-
 			if (!data.interests) {
 				data.interests = [];
 			} else {
@@ -186,6 +184,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 					data.interests[i] = data.interests[i].term;
 				}
 			}
+			
+			data.user_languages = {};
+			$scope.filteredLangsUser.forEach(function (userLang) {
+				data.user_languages[userLang.lang] = true;
+			});
 
 			return data;
 		};
