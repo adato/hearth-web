@@ -153,7 +153,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.loadInterests = function(query) {
 			return $q(function(resolve, reject) {
 				Interest.query({
-					search: query
+					name: query
 				}, function(res) {
 					interests = res.map(function(interest) {
 						return interest.term;
@@ -177,8 +177,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				data.phone = '+' + data.phone;
 			}
 
-			data.webs = webs;
-
 			if (!data.interests) {
 				data.interests = [];
 			} else {
@@ -186,14 +184,11 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 					data.interests[i] = data.interests[i].term;
 				}
 			}
-
-			if (!data.interests) {
-				data.interests = [];
-			} else {
-				for (var i = data.interests.length; i--;) {
-					data.interests[i] = data.interests[i].term;
-				}
-			}
+			
+			data.user_languages = {};
+			$scope.filteredLangsUser.forEach(function (userLang) {
+				data.user_languages[userLang.lang] = true;
+			});
 
 			return data;
 		};
