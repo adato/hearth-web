@@ -26,10 +26,6 @@
 									<img ng-if="item.type === 'need'" ng-src="/app/images/arrow-receive.svg" width="20" />
 								</i>
 
-								<!-- only for testing on DEV -->
-								<span class="label round"> {{item._score}} </span>
-								<!-- only for testing on DEV -->
-
 								<i class="fa" ng-class="{'fa-user': item._type === 'User', 'fa-group': item._type === 'Community'}" ng-if="item._type != 'Post'"></i>
 								<a class="title" ng-href="{{getProfileLink(item._type, item._id)}}">
 									<span ng-switch-when="Post" ng-bind-html=":: postTypes['User'][item.type] | translate"></span>
