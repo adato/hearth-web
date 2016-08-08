@@ -184,9 +184,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 					data.interests[i] = data.interests[i].term;
 				}
 			}
-			
+
 			data.user_languages = {};
-			$scope.filteredLangsUser.forEach(function (userLang) {
+			$scope.filteredLangsUser.forEach(function(userLang) {
 				data.user_languages[userLang.lang] = true;
 			});
 
