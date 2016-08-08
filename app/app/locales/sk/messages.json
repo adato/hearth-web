@@ -77,7 +77,7 @@
 		"SUSPEND": {
 			"LABEL": "Pozastaviť inzerát",
 			"ARE_YOU_SURE": "Naozaj chcete pozastaviť tento inzerát?",
-			"CONNECTED_MESSAGE_PLACEHOLDER": "A pokud chceš, můžeš pro uživatele připojit nějakou zprávu."
+			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit."
 		},
 		"RESUME": {
 			"LABEL": "Obnoviť inzerát"
@@ -427,7 +427,8 @@
 		"TERMS": "Podmienky použitia",
 		"FAQ": "Časté otázky",
 		"TAXES": "Darovanie a dane",
-		"SUPPORT_US": "Podpor Hearth"
+		"SUPPORT_US": "Podpor Hearth",
+		"MODERATORS": "Správcovia Hearth.net"
 	},
 	"THANKS_FOR_REPORT": "Ďakujeme za podnet, tento príspevok preveríme.",
 	"THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvite i svojich priateľov do Hearth.net, do štedrej sociálnej siete!",
@@ -1386,7 +1387,8 @@
 		"taxes": "Darovanie a dane",
 		"community_edit": "Úprava komunity",
 		"fulltext": "Vyhľadávanie",
-		"support-us": "Podpor Hearth"
+		"support-us": "Podpor Hearth",
+		"moderators": "Správcovia Hearth.net"
 	},
 	"FULLTEXT": {
 		"FILTER": {
