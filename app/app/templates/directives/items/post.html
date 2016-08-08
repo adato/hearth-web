@@ -83,7 +83,7 @@
 										<hr />
 									</li>
 									<li ng-if=':: canEditPosts'>
-										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("POST.SUSPEND.LABEL" | translate) : ("AD_RESUME_LABEL" | translate))}}</a>
+										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate))}}</a>
 									</li>
 									<!-- /admin only -->
 								</ul>
@@ -102,7 +102,7 @@
 								</a>
 							</h1>
 							<span class="nowrap" ng-if="isExpiringSoon">{{:: 'POSTS.DETAIL.POST_EXPIRING_SOON' | translate }}</span>
-							<div ng-if="item.edited_by_admin" class="error">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
+							<div ng-if="item.edited_by_admin && userHasRight('post.suspend') && !isActive" class="error">{{:: 'POST.SUSPENDED_BY_ADMIN' | translate }}</div>
 							<span class="fa fa-lock" ng-if="item.is_private" title="{{:: 'VISIBLE_FOR_FRIENDS' | translate }}"></span>
 						</div>
 
@@ -155,7 +155,7 @@
 										<a class="touchable" title="{{:: 'POST.RESUME.LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
 											<i class="fa fa-fw" ng-class="{'fa-refresh': item.state == 'expired', 'fa-play': item.state == 'suspended'}"></i>
 										</a>
-										<a class="touchable" title="{{:: 'POST.SUSPEND.LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('POST.SUSPEND.LABEL', 'AD_PAUSE_ARE_YOU_SURE', pauseToggle, item, this)">
+										<a class="touchable" title="{{:: 'POST.SUSPEND.LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', pauseToggle, item, this)">
 											<i class="fa fa-fw fa-pause"></i>
 										</a>
 										<a class="touchable" title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">

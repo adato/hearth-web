@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('User', [
-	'$resource', '$filter', 'ProfileUtils',
-	function($resource, $filter, ProfileUtils) {
+	'$resource', '$filter', 'LocationJsonDataTransform',
+	function($resource, $filter, LocationJsonDataTransform) {
 		return $resource($$config.apiPath + '/users/:_id', {
 			_id: '@_id'
 		}, {
@@ -21,20 +21,12 @@ angular.module('hearth.services').factory('User', [
 			},
 			get: {
 				method: 'GET',
-				transformResponse: [ProfileUtils.single.getLocationJson]
+				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
 			getFullInfo: {
 				url: $$config.apiPath + '/profile',
 				method: 'GET',
-				transformResponse: function(data, headers) {
-					var obj = JSON.parse(data);
-					var motto = obj.motto;
-					if (motto) {
-						obj.motto = $filter('limitTo')(motto, 70);
-					}
-
-					return obj;
-				}
+				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
 			getReplies: {
 				url: $$config.apiPath + '/replies',
@@ -43,7 +35,7 @@ angular.module('hearth.services').factory('User', [
 			getPosts: {
 				url: $$config.apiPath + '/users/:user_id/posts',
 				method: 'GET',
-				// transformResponse: [ProfileUtils.single.getLocationJson.bind({
+				// transformResponse: [LocationJsonDataTransform.getLocationJson.bind({
 				// 	prop: 'data'
 				// })]
 			},
@@ -63,7 +55,7 @@ angular.module('hearth.services').factory('User', [
 				errorNotify: {
 					code: 'NOTIFY.USER_PROFILE_CHANGE_FAILED'
 				},
-				transformRequest: [ProfileUtils.single.insertLocationJson]
+				transformRequest: [LocationJsonDataTransform.insertLocationJson]
 			},
 			editSettings: {
 				method: 'PUT',
