@@ -127,13 +127,27 @@ angular.module('hearth', ['ngDialog', 'tmh.dynamicLocale', 'ui.select', 'ui.rout
 			$httpProvider.interceptors.push('ApiErrorInterceptor');
 			$httpProvider.interceptors.push('ApiMaintenanceInterceptor');
 		}
+	]).config(['$provide', 'ipnConfig',
+		function($provide, ipnConfig) {
+			$provide.decorator("$exceptionHandler", function($delegate, $window) {
+				return function(exception, cause) {
+					if ($window.Rollbar) {
+						$window.Rollbar.error(exception, {
+							cause: cause
+						});
+					}
+					$delegate(exception, cause);
+				};
+			});
+
+			ipnConfig.skipUtilScriptDownload = true;
+		}
 	]).run(['$rootScope', 'Auth', '$location', '$templateCache', '$http', '$translate', 'tmhDynamicLocale', '$locale', 'LanguageSwitch', 'OpenGraph', 'UnauthReload', '$urlRouter', '$log', 'ActionCableConfig',
 		function($rootScope, Auth, $location, $templateCache, $http, $translate, tmhDynamicLocale, $locale, LanguageSwitch, OpenGraph, UnauthReload, $urlRouter, $log, ActionCableConfig) {
 			$rootScope.appInitialized = false;
 			$rootScope.config = $$config;
 
 			ActionCableConfig.wsUri = $$config.websocket;
-			//ActionCableConfig.debug = true;
 
 			/**
 			 * This will cache some files at start

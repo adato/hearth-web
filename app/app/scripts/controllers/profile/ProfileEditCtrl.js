@@ -153,11 +153,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.loadInterests = function(query) {
 			return $q(function(resolve, reject) {
 				Interest.query({
-<<<<<<< HEAD
-					search: query
-=======
 					name: query
->>>>>>> e9481b6... [FIX] profile editation
 				}, function(res) {
 					interests = res.map(function(interest) {
 						return interest.term;
@@ -182,22 +178,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			}
 
 			data.webs = webs;
-
-			if (!data.interests) {
-				data.interests = [];
-			} else {
-				for (var i = data.interests.length; i--;) {
-					data.interests[i] = data.interests[i].term;
-				}
-			}
-
-			if (!data.interests) {
-				data.interests = [];
-			} else {
-				for (var i = data.interests.length; i--;) {
-					data.interests[i] = data.interests[i].term;
-				}
-			}
 
 			if (!data.interests) {
 				data.interests = [];
