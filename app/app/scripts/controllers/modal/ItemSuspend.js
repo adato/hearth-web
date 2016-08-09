@@ -16,7 +16,7 @@ angular.module('hearth.controllers').controller('ItemSuspend', [
 			suspendMessage: ''
 		};
 		$scope.showErrors = {
-			message: false,
+			message: false
 		}
 
 		$scope.showFinished = function() {
@@ -32,6 +32,10 @@ angular.module('hearth.controllers').controller('ItemSuspend', [
 		};
 
 		$scope.suspend = function(data) {
+
+			// validation
+			if (!data.suspendMessage) return $scope.showErrors.message = true;
+
 			$rootScope.pauseToggle($scope.item, {
 				message: data.suspendMessage
 			}, function(res) {
