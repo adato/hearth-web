@@ -225,7 +225,7 @@ angular.module('hearth.geo').directive('map', [
 				                };*/
 
 				scope.initMap();
-				scope.$on('showMarkersOnMap', scope.createPins());
+				scope.$on('showMarkersOnMap', scope.createPins);
 			}
 		};
 	}
