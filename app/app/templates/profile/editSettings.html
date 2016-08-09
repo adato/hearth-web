@@ -13,10 +13,10 @@
 					<option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
 				</select>
 			</div>
-			<div>
+			<!-- <div>
 				{{:: 'USING_HEARTH_FROM_COUNTRY' | translate }}
 				<select2 ng-model="man_country_code" ng-change="updateCountry(man_country_code)" s2-options="item.alpha_2_code as ('COUNTRY.' + item.alpha_2_code | translate) for item in countryList"></select2>
-			</div>
+			</div> -->
 		</section>
 		<div class="clear"></div>
 		<h2>
