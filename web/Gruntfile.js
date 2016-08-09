@@ -300,6 +300,7 @@ module.exports = function(grunt) {
 						'css/{,*/}*',
 						'pics/{,*/}*',
 						'vendor/{,*/}*',
+
 						// uncomment to enable
 						// 'new-landing-page/**/*'
 					]
