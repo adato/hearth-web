@@ -3,19 +3,19 @@
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
-		<div class='display-table-cell' ng-bind="entity.motto"></div>
+		<div class="display-table-cell" ng-bind="entity.motto"></div>
 	</div>
 	<div class="display-table-row" ng-if="entity.about && (typeMatch.indexOf('about') > -1)">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
-		<div class='display-table-cell' ng-bind-html="entity.about | linky:'_blank':{rel: 'nofollow'} | nl2br"></div>
+		<div class="display-table-cell" ng-bind-html="entity.about | linky:'_blank':{rel: 'nofollow'} | nl2br"></div>
 	</div>
 	<div class="display-table-row" ng-if="(typeMatch.indexOf('about_shortened') > -1 && getShorterDescription())">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-quote-right"></i>
 		</div>
-		<div class='display-table-cell' ng-bind="entity.about_shortened"></div>
+		<div class="display-table-cell" ng-bind="entity.about_shortened"></div>
 	</div>
 	<div class="display-table-row" ng-if="entity.interests.length && entity.interests[0] != '' && (typeMatch.indexOf('interests') > -1)">
 		<div class="display-table-cell addon">
@@ -27,7 +27,7 @@
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-briefcase"></i>
 		</div>
-		<div class='display-table-cell' ng-bind="entity.work"></div>
+		<div class="display-table-cell" ng-bind="entity.work"></div>
 	</div>
 	<div class="display-table-row" ng-if="entity.locations.length && entity.locations[0].short_address && (typeMatch.indexOf('locations') > -1)">
 		<div class="display-table-cell addon">
@@ -69,7 +69,7 @@
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-link"></i>
 		</div>
-		<div class='display-table-cell'>
+		<div class="display-table-cell">
 			<span ng-repeat="web in entity.webs">
 				<a target="_blank" ng-href="{{ web }}" ng-bind="web | protocolfree | ellipsis:20"></a>
 				<span ng-bind="($last ? '' : ',\u00A0')"></span>

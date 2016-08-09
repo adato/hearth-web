@@ -74,14 +74,13 @@ angular.module('hearth.directives').directive('communityCreateEdit', [
 					Community.get({
 						_id: id
 					}, function(data) {
-						console.log(data.interests);
 						$scope.community = prepareDataIn(data);
 
 						if (!data.locations || !data.locations.length || data.locations[0] === void 0) {
 							data.locations = [];
 						}
 
-						$scope.community = data;
+						// $scope.community = data;
 
 						if ($scope.checkOwnership($scope.community)) {
 							$scope.loaded = true;
