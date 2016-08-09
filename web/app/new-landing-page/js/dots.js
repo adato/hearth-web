@@ -60,7 +60,8 @@
 						dot.className += ' current';
 						current = idx;
 
-						/////////////////
+						/////////////////////////////
+						// Image slideshow addition
 						var slides = self.nav.getElementsByClassName('jumbo-show');
 						// clear opacity of all slides
 						for (var q = 0, w = slides.length;q < w;q++) {
@@ -68,12 +69,12 @@
 						}
 						// assign opacity to the correct element
 						slides[current].style.opacity = 1;
-						/////////////////
+						/////////////////////////////
 
 						if( typeof self.options.callback === 'function' ) {
 							self.options.callback( current, dot );
 						}
-					}, 25 );
+					}, 5 );
 				}
 			} );
 		} );

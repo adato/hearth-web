@@ -40,7 +40,7 @@
 	}(document, 'script', 'facebook-jssdk'));</script>
 
 	<!-- TODO - CLEAN-UP -->
-	<div id='q' style='background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4);padding:1.25rem;position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 90000000000'>
+	<div id='q' style='display: none; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4);padding:1.25rem;position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 90000000000; font-size: 16px; line-height: 1;'>
 		<style>
 			#q .w a{display: block; width: 150px; padding: .3rem; border-bottom: 1px solid #ddd; cursor: pointer}
 			#q .w a:last-of-type{border-bottom: none;}
@@ -76,29 +76,33 @@
 		</div>
 		<i class='q-toggle fa fa-minus-square-o' onclick='toggleFontPanel()'></i>
 		<script>
-			/**
-			 *	@param name - font name to set
-			 *	@param id - id of the element to which to add active class
-			 *	@param type - case 0 - headings
-			 * 				case 1 - all other fonts
-			 */
-			function setFont(name, id, type) {
-				var typeId = (type === 0 ? 'f' : 't');
-				document.getElementById((typeId === 'f' ? 'bodyStyles' : 'headerStyles')).innerHTML = (typeId === 'f' ? 'body{font-family: ' + name + '}' : (name ? 'h1,h2,h3,h4,h5,h6{font-family: ' + name + ', sans-serif}' : ''));
-				var anchs = document.getElementById('q').querySelectorAll('.' + typeId + ' a');
-				for (var i = anchs.length;i--;) {
-					anchs[i].classList.remove('active');
+			(function(){
+				return false;
+
+				/**
+				 *	@param name - font name to set
+				 *	@param id - id of the element to which to add active class
+				 *	@param type - case 0 - headings
+				 * 				case 1 - all other fonts
+				 */
+				function setFont(name, id, type) {
+					var typeId = (type === 0 ? 'f' : 't');
+					document.getElementById((typeId === 'f' ? 'bodyStyles' : 'headerStyles')).innerHTML = (typeId === 'f' ? 'body{font-family: ' + name + '}' : (name ? 'h1,h2,h3,h4,h5,h6{font-family: ' + name + ', sans-serif}' : ''));
+					var anchs = document.getElementById('q').querySelectorAll('.' + typeId + ' a');
+					for (var i = anchs.length;i--;) {
+						anchs[i].classList.remove('active');
+					}
+					document.getElementById(typeId + id).classList.add('active');
 				}
-				document.getElementById(typeId + id).classList.add('active');
-			}
-			setFont('tahoma', 0, 0);
-			setFont('tahoma', 0, 1);
-			function toggleFontPanel() {
-				var s = document.getElementById('s');
-				var ss = s.style.display;
-				s.style.display = (ss === 'none' ? '' : 'none');
-				q.classList.toggle('pale');
-			}
+				setFont('tahoma', 0, 0);
+				setFont('tahoma', 0, 1);
+				function toggleFontPanel() {
+					var s = document.getElementById('s');
+					var ss = s.style.display;
+					s.style.display = (ss === 'none' ? '' : 'none');
+					q.classList.toggle('pale');
+				}
+			})('Go Shorty!');
 		</script>
 	</div>
 	<!-- /TODO - CLEAN-UP -->
@@ -287,9 +291,11 @@
 		</section>
 		<section id='target-o-co-jde'>
 			<h1>O co jde</h1>
-			<p>
+			<p class='text-align-center'>
 				Jsme štědrá sociální síť, kde dáváte dary a vzájemně si plníte svá přání.
 				Od legračních maličkostí až po velké věci, zkušenosti i životní moudrost.
+			</p>
+			<p class='text-align-center'>
 				Co vás baví a naplňuje, posíláte dál. A co sami potřebujete, se vám vrací
 				od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.
 			</p>
@@ -357,7 +363,7 @@
 		<div class='divider-main'></div>
 		<section id='target-jak-na-to'>
 			<h1>Jak na to</h1>
-			<p>
+			<p class='text-align-center'>
 				Je to hračka. Během pár minut si založíte profil a už jste mezi námi! Doplňte si celý profil,
 				ať jste šik a vrhněte se na tržiště, naše pulzující srdce. Zde nabízíte své dary a žádáte
 				druhé o splnění svých přání. Zajímáte se o něco? Najděte si svou komunitu a získejte inspiraci

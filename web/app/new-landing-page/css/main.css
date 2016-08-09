@@ -1,5 +1,6 @@
 html{
-	font: 14px/1.35 tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;
+	/*font: 14px/1.35 tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;*/
+	font: 20px/1.25 tahoma, arial, 'Merriweather Sans', \5FAE\8F6F\96C5\9ED1, sans-serif;
 	scroll-behavior: smooth;
 }
 h1,h2,h3{
@@ -11,11 +12,14 @@ h1{
 }
 @media (min-width: 768px){
 	html{
-		font: 16px/1.5 tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;
+		font: 24px/1.25 tahoma, arial, 'Merriweather Sans', \5FAE\8F6F\96C5\9ED1, sans-serif;
 	}
 	h1{
-		font-size: 40px;
+		font-size: 48px;
 	}
+}
+p{
+	font-family: 'Raleway';
 }
 /*******************
 	COLOR
@@ -48,13 +52,15 @@ a{color: #4a4a4a}
 }
 @media (min-width: 400px){
 	.button{
-		font-size: 18px;
+		font-size: 20px;
 	}
 }
 .button.small{
 	padding: 8px 16px;
 	font-size: 12px;
 	text-transform: uppercase;
+	font-weight: normal;
+	letter-spacing: 2px;
 }
 .button.color-secondary{
 	background-color: #a7bd1d;
@@ -136,6 +142,7 @@ a.masonry-item:hover .button,
 	background-color: rgba(255,255,255,.2);
 	transition: .3s all;
 	z-index: 100;
+	font-size: 20px;
 }
 .header-wrapper.contracted{
 	background-color: #fff;
@@ -423,11 +430,16 @@ html[lang='en'] .language-panel .lang-en{
 
 .jumbo .dotstyle-wrapper {
 	position: absolute;
-	bottom: 140px;
+	bottom: 70px;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+@media (min-width: 768px){
+	.jumbo .dotstyle-wrapper {
+		bottom: 140px;
+	}
 }
 
 @-webkit-keyframes slide {100% { width: 100%; }}
@@ -580,6 +592,7 @@ a.masonry-item{
 .masonry-item h2{
 	color: #fff;
 	margin: 10px 0;
+	font-size: 24px;
 }
 .masonry-alt{
 	width: inherit !important;
