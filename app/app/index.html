@@ -50,6 +50,9 @@
 	<link rel="stylesheet" type="text/css" href="/app/vendor/intl-tel-input/build/css/intlTelInput.css" media="screen" />
 	<script src="/app/vendor/jquery/dist/jquery.min.js"></script>
 	<script src="/app/vendor/jquery.cookie/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		document.write('<meta name="action-cable-url" content="' + $$config.websocket.url + '"/>');
+	</script>
 </head>
 
 <body ng-init="init()" ng-class="[('page-'+pageName+' '+(isOfflineMode ? 'offline': ''))]" ng-keydown="escapeKey($event)">

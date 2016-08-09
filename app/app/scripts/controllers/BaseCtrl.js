@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableChannel', 'ActionCableSocketWrangler',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableChannel, ActionCableSocketWrangler) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableSocketWrangler', 'ActionCableChannel',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableSocketWrangler, ActionCableChannel) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -892,6 +892,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 				Messenger.loadCounters();
 				$rootScope.$broadcast('WSNewMessage', message);
 			};
+
+			ActionCableSocketWrangler.start();
 
 			// Subscribe to the message channel
 			consumer.subscribe(callback).then(function() {});
