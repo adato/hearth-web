@@ -50,7 +50,7 @@ angular.module('hearth.services').service('Notify', ['$translate', '$log',
 			if (container !== self.TOP && type == self.T_ERROR && !ttl) {
 				ttlCustom = -1;
 			}
-			// add icon before text			
+			// add icon before text
 			if (self.icons[type])
 				text = '<i class="fa ' + self.icons[type] + '"></i>' + text;
 
@@ -130,7 +130,7 @@ angular.module('hearth.services').service('Notify', ['$translate', '$log',
 			});
 		};
 
-		// this will take cookie and if not empty - it will show containing notification 
+		// this will take cookie and if not empty - it will show containing notification
 		this.checkRefreshMessage = function() {
 			var cookieValue = decodeURIComponent($.cookie(cookieNotifyCode));
 
@@ -182,9 +182,9 @@ angular.module('hearth.services').service('Notify', ['$translate', '$log',
 
 		this.onResourceError = function(rejection) {
 			var errorCodes = [500, 422];
-			var config = typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify;
+			var config = ( rejection.config ? ( typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify ) : {} );
 
-			// allow interceptor only for few 
+			// allow interceptor only for few
 			if (errorCodes.indexOf(rejection.status) < 0 || config === false) {
 				$log.error('Rejecting interceptor - disabled or unallowed status code', rejection.status);
 				return;
