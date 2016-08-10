@@ -123,7 +123,7 @@ angular.module('hearth').config([
 				controller: 'StaticPageCtrl'
 			})
 			.state('moderators', {
-				url: '/moderators',
+				url: '/custodians',
 				templateUrl: 'templates/localizationPage.html',
 				controller: 'StaticPageCtrl'
 			})
