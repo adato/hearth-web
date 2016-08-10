@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ItemSuspend', [
-	'$scope', '$rootScope', 'Notify', 'Post', '$timeout',
-	function($scope, $rootScope, Notify, Post, $timeout) {
+	'$scope', '$rootScope', 'Notify', 'Post', '$timeout', 'Rights',
+	function($scope, $rootScope, Notify, Post, $timeout, Rights) {
 		var timeout = null;
 		$scope.sending = false;
 		$scope.showErrors = false;

@@ -13,8 +13,6 @@
 							ng-maxlength="500" ng-model="data.suspendMessage" name="message" ng-keydown="escapeKey($event)" class="margin-vertical-medium"></textarea>
 			<div class="moveUp error" ng-show="showErrors.message">
 				<span ng-show="suspendForm.message.$error.required">{{:: 'required' | translate }}</span>
-				<!-- <span ng-show="suspendForm.message.$error.minlength">{{ 'ERR_REPORT_TEXT_MIN_LEN' | translate }}</span>
-				<span ng-show="suspendForm.message.$error.maxlength">{{ 'ERR_REPORT_TEXT_MAX_LEN' | translate }}</span> -->
 			</div>
 			<div class="display-flex flex-space-between margin-top-medium">
 				<a href="" ng-click="close()" class="">
