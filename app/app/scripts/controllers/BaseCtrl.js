@@ -713,7 +713,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			// open dialog window and inject new scope
 			var dialog = ngDialog.open({
 				template: $$config.modalTemplates + 'confirmBox.html',
-				controller: 'ItemSuspend',
+				controller: 'ConfirmBox',
 				scope: scope,
 				data: params,
 				className: 'ngdialog-tutorial ngdialog-theme-default ngdialog-confirm-box',
