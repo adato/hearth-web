@@ -14,11 +14,11 @@
 			<div class="moveUp error" ng-show="showErrors.message">
 				<span ng-show="suspendForm.message.$error.required">{{:: 'required' | translate }}</span>
 			</div>
-			<div class="display-flex flex-space-between margin-top-medium">
+			<div class="display-flex flex-reverse flex-space-between margin-top-medium">
+				<button class="primary" type="submit">{{:: 'REPORT' | translate }}</button>
 				<a href="" ng-click="close()" class="">
 					{{ 'CLOSE' | translate }}
 				</a>
-				<button class="primary" type="submit">{{:: 'REPORT' | translate }}</button>
 			</div>
 		</div>
 	</form>

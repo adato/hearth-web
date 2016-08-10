@@ -775,6 +775,8 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			var parameters = {
 				id: item._id
 			};
+			if (paramObject.message) parameters.message = paramObject.message;
+
 			// call service
 			Action(parameters, function(res) {
 				if (angular.isFunction(cb)) cb(item);
