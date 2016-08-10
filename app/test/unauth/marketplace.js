@@ -128,6 +128,7 @@ describe('hearth unauth marketplace', function() {
     if (type === 'desktop') {
       expect(iconAdd.isDisplayed()).toBeFalsy(); // on desktop, mobile icon isnt displayed
       createButton.click().then(function () {
+		browser.sleep(500);
         expect(loginModal.isDisplayed()).toBeTruthy();
         loginModalCloseButton.click();
       }).then(function () {
