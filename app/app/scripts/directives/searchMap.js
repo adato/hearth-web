@@ -106,13 +106,13 @@ angular.module('hearth.geo').directive('searchMap', [
 					loc && loc.lon && scope.setSearchParams(loc);
 
 					// search only when map is shown
-					console.log(boundingBox);
+					// console.log(boundingBox);
 					var params = scope.getSearchParams(boundingBox);
 
 					if (params.lon) scope.center = true;
 
 					Post.mapQuery(params, function(data) {
-						console.log(data);
+						// console.log(data);
 						scope.$broadcast('showMarkersOnMap', data);
 					});
 				};

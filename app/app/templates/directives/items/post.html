@@ -149,7 +149,7 @@
 							<div class="display-flex flex-wrap">
 								<div class="padding-right-large" ng-if="mine">
 									<div class="touchable-wrapper">
-										<a class="touchable" title="{{:: 'AD_EDIT_LABEL' | translate}}" ng-click="edit(item)">
+										<a class="touchable" title="{{:: 'POST.EDIT.LABEL' | translate}}" ng-click="edit(item)">
 											<i class="fa fa-fw fa-pencil"></i>
 										</a>
 										<a class="touchable" title="{{:: 'POST.RESUME.LABEL' | translate}}" ng-if="!isActive" ng-click="pauseToggle(item, 'confirm-pause-'+item._id)">
@@ -158,7 +158,7 @@
 										<a class="touchable" title="{{:: 'POST.SUSPEND.LABEL' | translate}}" ng-if="isActive" ng-click="confirmBox('POST.SUSPEND.LABEL', 'POST.SUSPEND.ARE_YOU_SURE', pauseToggle, item, this)">
 											<i class="fa fa-fw fa-pause"></i>
 										</a>
-										<a class="touchable" title="{{:: 'AD_REMOVE_LABEL' | translate}}" ng-click="confirmBox('AD_REMOVE_LABEL', 'AD_REMOVE_ARE_YOU_SURE', deleteItem, item, this)">
+										<a class="touchable" title="{{:: 'POST.REMOVE.LABEL' | translate}}" ng-click="confirmBox('POST.REMOVE.LABEL', 'POST.REMOVE.ARE_YOU_SURE', deleteItem, item, this)">
 											<i class="fa fa-fw fa-times"></i>
 										</a>
 									</div>

@@ -186,7 +186,7 @@ angular.module('hearth.geo').directive('map', [
 						markerCluster.clearMarkers();
 						oms.clearMarkers();
 					} else {
-						console.log('setting to false');
+						// console.log('setting to false');
 						retainCurrentCollectionFlag = false;
 					}
 
