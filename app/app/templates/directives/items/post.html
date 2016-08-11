@@ -56,7 +56,7 @@
 										<i class='fa fa-fw fa-chevron-down'></i>
 									</span>
 								</div>
-								<ul class="actions-dropdown text-left" id="more-actions-{{item._id}}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
+								<ul class="actions-dropdown text-left" id="more-actions-{{item._id}}" style="display:none;">
 									<li>
 										<!-- bookmark post -->
 										<a ng-if="! mine && item.is_bookmarked" ng-click="removeItemFromBookmarks(item)" test-beacon="marketplace-item-remove-bookmark">{{:: 'MARKETPLACE.POST.UNBOOKMARK_POST' | translate }}</a>
@@ -79,10 +79,10 @@
 									</li>
 
 									<!-- admin only -->
-									<li ng-if=':: canEditPosts'>
+									<li ng-if='userHasRight("post.suspend")'>
 										<hr />
 									</li>
-									<li ng-if=':: canEditPosts'>
+									<li ng-if='userHasRight("post.suspend")'>
 										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate))}}</a>
 									</li>
 									<!-- /admin only -->

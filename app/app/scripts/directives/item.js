@@ -7,9 +7,9 @@
  * @restrict E
  */
 angular.module('hearth.directives').directive('item', [
-	'$translate', '$rootScope', 'Filter', 'Karma', '$timeout', '$filter',
+	'$translate', '$rootScope', 'Filter', 'Karma', '$timeout', '$filter', 'Rights', 'ItemAux',
 
-	function($translate, $rootScope, Filter, Karma, $timeout, $filter) {
+	function($translate, $rootScope, Filter, Karma, $timeout, $filter, Rights, ItemAux) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -58,6 +58,8 @@ angular.module('hearth.directives').directive('item', [
 				scope.removeItemFromCommunity = $rootScope.removeItemFromCommunity;
 				scope.removeItemFromBookmarks = $rootScope.removeItemFromBookmarks;
 				scope.addItemToBookmarks = $rootScope.addItemToBookmarks;
+				scope.userHasRight = Rights.userHasRight;
+				scope.ItemAux = ItemAux;
 
 				/**
 				 * Init basic structure
