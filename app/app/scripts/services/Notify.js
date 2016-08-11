@@ -182,7 +182,7 @@ angular.module('hearth.services').service('Notify', ['$translate', '$log',
 
 		this.onResourceError = function(rejection) {
 			var errorCodes = [500, 422];
-			var config = ( rejection.config ? ( typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify ) : {} );
+			var config = (rejection.config ? (typeof rejection.config.errorNotify === "undefined" ? {} : rejection.config.errorNotify) : {});
 
 			// allow interceptor only for few
 			if (errorCodes.indexOf(rejection.status) < 0 || config === false) {
