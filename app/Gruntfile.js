@@ -444,7 +444,7 @@ module.exports = function(grunt) {
 				httpFontsPath: '../fonts',
 				relativeAssets: false,
 				assetCacheBuster: false,
-				bundleExec: true,
+				bundleExec: (process.platform === "win32" ? false : true),
 				raw: 'Sass::Script::Number.precision = 10\n',
 				importPath: [
 					'app/vendor/font-awesome/scss/',
