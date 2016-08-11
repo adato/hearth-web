@@ -1,7 +1,7 @@
 <article class="item-common temp-padding bubbled">
 	<div loading show="!loaded"></div>
 	<div class="row" ng-if="loaded">
-		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && item.state === "suspended") || (!itemDeleted && item === false) || (itemDeleted)'>
+		<section class="item-status-bar box small-12 margin-auto text-center" ng-if='(item && !isMine && (item.state === "suspended" && !userHasRight("post.suspend"))) || (!itemDeleted && item === false) || (itemDeleted)'>
 			<p class="margin-none" ng-show="item && !isMine && item.state === 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</p>
 			<p class="margin-none" ng-show="!itemDeleted && item === false">{{:: 'POST_NOT_FOUND' | translate }}</p>
 			<p class="margin-none" ng-show="itemDeleted">{{:: 'POST_WAS_DELETED' | translate }}</p>
@@ -9,12 +9,12 @@
 		<section ng-if="! itemDeleted && item && item.text" class="column small-12 padding-none" id="item_container_{{ item._id }}">
 			<div class='row'>
 				<div ng-if="!isActive" class="column small-12 large-8">
-					<div class='item-status-bar'>
-						<span ng-if="item.state == 'expired'">
-							<span ng-if="item.valid_until">{{:: 'POST_HAS_EXPIRED' | translate }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
-							<span ng-if="!item.valid_until">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</span>
-						</span>
-						<span ng-if="item.state == 'suspended'">{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
+					<div class='item-status-bar' ng-if="item.state == 'expired'">
+						<span ng-if="item.valid_until">{{:: 'POST_HAS_EXPIRED' | translate }} {{ item.valid_until | date:DATETIME_FORMATS.mediumDate }}</span>
+						<span ng-if="!item.valid_until">{{:: 'POST_HAS_ALREADY_EXPIRED' | translate }}</span>
+					</div>
+					<div class="item-status-bar" ng-if="(!userHasRight('post.suspend')) && item.state == 'suspended'">
+						<span>{{:: 'POST_WAS_SUSPENDED' | translate }}</span>
 					</div>
 				</div>
 				<div class="column small-12 large-8" ng-init="local.showMap = false">
@@ -24,13 +24,13 @@
 								<div class="column small-8 small-push-4 medium-4 medium-push-8 text-right nowrap">
 									<span class="color-dark-gray" title="{{item.updated_at | date:DATETIME_FORMATS.medium}}">{{item.updated_at | ago}}</span>
 
-									<div class='dropdown-wrapper'>
+									<div class="dropdown-wrapper">
 										<div class="display-inline-block touchable-wrapper margin-left-none position-relative" ng-if="!mine">
 											<div bubble-placeholder="bookmark-reminder"></div>
 											<div bubble-placeholder="hide-post"></div>
 											<span ng-click="removeReminder({event: $event, type: 'hide_post', reason: 'dropdown-arrow-click'}); removeReminder({event: $event, type: 'bookmark', reason: 'dropdown-arrow-click'})" class="action-dropdown touchable touchable-small touchable-match-line-height padding-vertical-none"
 															title="{{:: 'POSTS.DETAIL.EXPAND_MORE_INFO' | translate }}" dropdown="#more-actions-{{ item._id }}" test-beacon="marketplace-item-dropdown-toggle">
-												<i class='fa fa-fw fa-chevron-down'></i>
+												<i class="fa fa-fw fa-chevron-down"></i>
 											</span>
 										</div>
 										<ul class="actions-dropdown text-left" id="more-actions-{{ item._id }}" style="display:none;" ng-init=":: canEditPosts = userHasRight('post.suspend')">
@@ -56,11 +56,11 @@
 											</li>
 
 											<!-- admin only -->
-											<li ng-if=':: canEditPosts'>
+											<li ng-if=":: canEditPosts">
 												<hr />
 											</li>
-											<li ng-if=':: canEditPosts'>
-												<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{ (isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate)) }}</a>
+											<li ng-if=":: canEditPosts">
+												<a class="elevated-authority-function" ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{ (isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate)) }}</a>
 											</li>
 											<!-- /admin only -->
 										</ul>
