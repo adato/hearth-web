@@ -125,7 +125,7 @@ angular.module('hearth.filters', [])
 
 .filter('nl2br', function() {
 	return function(text) {
-		return text.replace(/&#10;/g, '<br/>').replace(/\n/g, '<br/>');
+		return (text ? text.replace(/&#10;/g, '<br/>').replace(/\n/g, '<br/>') : '');
 	};
 })
 

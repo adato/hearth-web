@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="ads box" ng-if="!info.is_member">
+		<div class="ads box" ng-if="!info.is_member && info.terms">
 			<h3 class="iblock">{{:: 'COMMUNITY_TERMS' | translate }}</h3>
 			<p ng-bind-html="info.terms | linky:'_blank':{rel: 'nofollow'} | nl2br"></p>
 		</div>
