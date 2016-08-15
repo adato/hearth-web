@@ -10,7 +10,7 @@
 			<li ng-if="!(loggedUser._id)" class="tab-bar log-info">
 				<a ng-class="{active: $state.includes(' login ')}" ui-sref="login" ng-click="toggleSidebar(false)">
 					<div class="inline-block fa fa-fw fa-sign-in"></div>
-					<div class="display-inline-block" translate="LOG_IN"></div>
+					<div class="display-inline-block" ng-bind-html="'LOG_IN' | translate"></div>
 				</a>
 			</li>
 			<li>
@@ -207,7 +207,7 @@
 				<div class='dropdown-container' ng-if='!(loggedUser._id)' ng-controller='LanguageChangeCtrl as languageChange'>
 					<a hover="true" class='header-item' dropdown="#language-drop">
 						<i class='fa fa-inverse flag flag-circular' ng-class='"flag-" + languageChange.currentLanguage || "fa-globe"'></i>
-						<label translate='LANGUAGE.{{:: languageChange.languageStrings[languageChange.currentLanguage] }}'></label>
+						<label ng-bind-html="'LANGUAGE.' + languageChange.languageStrings[languageChange.currentLanguage] | translate"></label>
 					</a>
 					<ul class='dropdown flag-list' id='language-drop'>
 						<li ng-if='languageChange.currentLanguage != "cs"'>
