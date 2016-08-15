@@ -154,18 +154,20 @@ angular.module('hearth.filters', [])
 		return function(input, min, max, postfix, blank) {
 			var val = parseInt(input);
 			var out = '';
+			var postfixAdded = false;
 
 			if (!postfix && postfix != '') postfix = '+';
 			if (val < min)
 				out = blank ? '' : min;
 			else if (val > max)
 				out = max + postfix;
+			postfixAdded = true;
 			else
 				out = val;
 
-			// this will check if count is null, if yes we will return original value
-			// and track error to rollbar
-			if (isNaN(out)) {
+			// this will check if count is number, if no we will return original value and track error to rollbar
+			// if postfix is added due to max value, it will not be checked (to avoid false reporting)
+			if (isNaN(out) && !postfixAdded) {
 				var err = {
 					min: min,
 					max: max,
