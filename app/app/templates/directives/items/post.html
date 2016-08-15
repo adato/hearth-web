@@ -97,7 +97,7 @@
 						<div class="column small-12 medium-7 medium-pull-5 large-8 large-pull-4">
 							<h1 class='display-inline-block margin-right-medium'>
 								<a ng-href="{{getProfileLink('Post', item._id)}}">
-									<span ng-class="'color-' + item.type" translate="{{postTypes[item.author._type][item.type]}}"></span>
+									<span ng-class="'color-' + item.type" ng-bind-html="postTypes[item.author._type][item.type] | translate"></span>
 									<span ng-bind="item.title"></span>
 								</a>
 							</h1>
