@@ -120,6 +120,8 @@
 .off-canvas-fixed {
 	transition: transform 500ms ease;
 	z-index:29999;
+	left:0;
+	right:0;
 }
 
 .move-right > .off-canvas-fixed {
