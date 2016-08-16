@@ -664,8 +664,16 @@ a.masonry-item{
 	font-size: 20px;
 	line-height: 32px;
 }
+.footer .standard-p{
+	font-size: inherit;
+	line-height: inherit;
+}
 .footer a{
+	text-decoration: none;
 	font-family: 'Raleway';
+}
+.footer a:hover{
+	text-decoration: underline;;
 }
 
 .social-bar{
