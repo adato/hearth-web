@@ -116,19 +116,25 @@ a.masonry-item:hover .button,
 /*******************
 	SECTION
 *******************/
-.section > section{
+.section > section {
 	max-width: 980px;
 	margin: 0 auto;
 	padding: 0 20px
 }
 .section + .section,
-.section > section + section{
+.section > section + section {
 	/*margin-top: 40px;*/
 	padding-top: 40px;
 }
 .section:last-of-type{
 	margin-bottom: 40px;
 }
+.section > section h1 {
+	margin-top: 56px;
+}
+/*.section > section + section h1 {
+	margin-top: 96px;
+}*/
 /*******************
 	NAV
 *******************/
@@ -358,6 +364,7 @@ html[lang='en'] .language-panel .lang-en{
 }
 .jumbo h1{
 	font-size: 35px;
+	font-weight: bold;
 }
 @media (min-width: 768px){
 	.jumbo h1{
@@ -431,7 +438,7 @@ html[lang='en'] .language-panel .lang-en{
 
 .jumbo .dotstyle-wrapper {
 	position: absolute;
-	bottom: 70px;
+	bottom: 100px;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -452,6 +459,9 @@ html[lang='en'] .language-panel .lang-en{
 .contains-slash{
 	position: relative;
 	padding-bottom: 110px;
+}
+.contains-slash + .section > section > h1{
+	margin-top: 0;
 }
 .slash{
 	position: absolute;
@@ -599,7 +609,7 @@ a.masonry-item{
 	width: inherit !important;
 	max-width: inherit !important;
 	margin: 0 !important;
-	padding: 0 !important;
+	/*padding: 0 !important;*/
 }
 /*.masonry-alt .masonry-item{
 	margin: 0 !important;
@@ -650,6 +660,14 @@ a.masonry-item{
 /*******************
 	SOCIAL
 *******************/
+.footer{
+	font-size: 20px;
+	line-height: 32px;
+}
+.footer a{
+	font-family: 'Raleway';
+}
+
 .social-bar{
 	line-height: 48px;
 }
@@ -666,11 +684,16 @@ a.masonry-item{
 /*******************
 	BLOG ADS
 *******************/
+.blog-block,
+.blog-block h3{
+	font-size: 20px;
+	line-height: 32px;
+}
 .blog-block h3{
 	margin: 0;
-	font-size: 17px;
 	text-align: left;
 	color: #444;
+	font-weight: bold;
 }
 .blog-block p{margin: 0}
 .blog-block > .blog-img-wrapper{
