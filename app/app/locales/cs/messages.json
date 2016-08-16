@@ -87,7 +87,8 @@
 		},
 		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit autora.",
 		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit typ.",
-		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem"
+		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem",
+		"LANGUAGE": "Jazyk inzerátu"
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Nejde vymazat položku. Radši se s tím smiř.",
 	"AD_REMOVE_DONE": "A je to! Položka byla úspěšně vymazána.",
