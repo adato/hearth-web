@@ -21,7 +21,9 @@ angular.module('hearth.services').factory('LanguageList', ['$translate', functio
 					name: translate(list[i])
 				};
 			}
-			return arr;
+			return arr.sort(function(a, b) {
+				return a.name.localeCompare(b.name);
+			});
 		})(languageCodesList)
 	};
 
