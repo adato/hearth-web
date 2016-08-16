@@ -126,15 +126,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.filter.query && $scope.applyFilter();
 		};
 
-		$scope.markReaded = function(info) {
-			if (info.read)
+		$scope.markReaded = function(conversation) {
+			if (conversation.read)
 				return false;
 
 			Conversations.setReaded({
-				id: info._id
+				id: conversation._id
 			}, function(res) {
 				Messenger.decrUnreaded();
-				info.read = true;
+				conversation.read = true;
 			});
 		};
 
@@ -146,29 +146,26 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.detail = null;
 		});
 
-
-		$scope.showConversation = function(info, index, dontMarkAsReaded, clicked) {
+		/* 
+		   This will fetch the conversation and mark it as read
+		*/
+		$scope.showConversation = function(conversation) {
 			var title;
 
-			if (clicked) {
-				$scope.markReaded(info);
-			}
-
-			if ($scope.detail && info._id == $scope.detail._id) {
+			if ($scope.detail && conversation._id == $scope.detail._id) {
 				return false;
 			}
 
-			if (!info.read && !dontMarkAsReaded) {
-				$scope.markReaded(info);
-			}
+			// set it as "read" when it already isnt
+			$scope.markReaded(conversation);
 
 			$scope.showNewMessageForm = false;
 			$scope.notFound = false;
-			$scope.detail = info;
+			$scope.detail = conversation;
 
 			// dont load counter when we click on conversation detail
 			// (and change URL)
-			$location.url("/messages/" + info._id + "?" + jQuery.param($location.search()));
+			$location.url("/messages/" + conversation._id + "?" + jQuery.param($location.search()));
 
 
 			// enable counters loading after URL is changed

@@ -52,7 +52,7 @@
 				<ul class="list margin-bottom-none margin-top-small">
 					<li ng-repeat="item in invitationsStatus" class="small-text-left">
 						<i ng-class="itemStatusIconVocabulary[item.status]"></i>
-						<span translate="{{item.text}}" translate-values="{email: item.email}"></span>
+						<span ng-bind-html="item.text | translate:{email: item.email}"></span>
 						<a ng-href="{{:: getProfileLink(item.existing._type, item.existing._id)}}" target="_blank">{{item.existing.name}}</a>.
 					</li>
 				</ul>
