@@ -6,17 +6,15 @@
 			</span>
 		</h2>
 		<section class="change-language">
-			<div>
+			<div class='margin-bottom-medium'>
 				{{:: 'USING_HEARTH_IN_LANG' | translate }}
 				<b>{{:: 'HEARTH_IN_THIS_LANG' | translate }}</b>. {{:: 'CHOOSE_LANGUAGE' | translate }} &nbsp;
-				<select class="language-select" ng-model="lang" ng-change="switchLang(lang)">
-					<option ng-repeat="lang in languages" value="{{lang}}" ng-selected="lang == language">{{ 'MY_LANG.'+lang | translate }}</option>
-				</select>
+				<select2 class="select-2-inline-block" ng-model="lang" ng-change="switchLang(lang)" s2-options="lang as ('MY_LANG.' + lang | translate) for lang in languages"></select2>
 			</div>
-			<!-- <div>
-				{{:: 'USING_HEARTH_FROM_COUNTRY' | translate }}
-				<select2 ng-model="man_country_code" ng-change="updateCountry(man_country_code)" s2-options="item.alpha_2_code as ('COUNTRY.' + item.alpha_2_code | translate) for item in countryList"></select2>
-			</div> -->
+			<div>
+				<span class="padding-right-small">{{:: 'USING_HEARTH_FROM_COUNTRY' | translate }}</span>
+				<select2 class="select-2-inline-block" ng-model="man_country_code" ng-change="updateCountry(man_country_code)" s2-options="item.alpha_2_code as item.localizedName for item in countryList"></select2>
+			</div>
 		</section>
 		<div class="clear"></div>
 		<h2>
