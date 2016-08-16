@@ -8,6 +8,11 @@
 
 angular.module('hearth.services').service('CountryList', ['$translate', function($translate) {
 
+	function sortComparer(a, b) {
+		return a.localizedName.localeCompare(b.localizedName);
+	};
+
+
 	this.list = [{
 		"name": "Afghanistan",
 		"alpha_2_code": "AF",
@@ -1259,4 +1264,5 @@ angular.module('hearth.services').service('CountryList', ['$translate', function
 		this.list[i].localizedName = $translate.instant('COUNTRY.' + this.list[i].alpha_2_code);
 	}
 
+	this.list.sort(sortComparer);
 }]);
