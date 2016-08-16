@@ -68,6 +68,10 @@
 			bottom: 2* $fontSize;
 		}
 
+		&.inactive {
+			opacity:0.55;
+		}
+
 		em {
 			font-weight: 700;
 			font-style: normal;
