@@ -7,8 +7,9 @@
  */
 
 angular.module('hearth.controllers').controller('ItemEdit', [
-	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils',
-	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils) {
+	'$scope', '$rootScope', 'Auth', 'Errors', '$filter', 'LanguageSwitch', 'Post', '$element', '$timeout', 'Notify', '$location', 'KeywordsService', 'ProfileUtils', 'LanguageList',
+	function($scope, $rootScope, Auth, Errors, $filter, LanguageSwitch, Post, $element, $timeout, Notify, $location, KeywordsService, ProfileUtils, LanguageList) {
+		var POST_LANGUAGE = 'postLanguage';
 		var defaultValidToTime = 30 * 24 * 60 * 60 * 1000; // add 30 days
 		// $scope.dateFormat = $rootScope.DATETIME_FORMATS.mediumDate;
 		$scope.dateFormat = modifyDateFormat($rootScope.DATETIME_FORMATS.shortDate);
@@ -21,6 +22,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 		$scope.imageUploading = false;
 		$scope.imageSizes = [];
 		$scope.character = $$config.postCharacter;
+		$scope.languageList = LanguageList.localizedList;
 
 		$scope.slide = {
 			files: false,
@@ -157,6 +159,9 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 				if (!post.locations || !post.locations.length || post.location_unlimited) {
 					post.locations = [];
 				}
+
+				var postLanguage = $.cookie(POST_LANGUAGE);
+				if (!post.language) post.language = (postLanguage ? postLanguage : $.cookie('language'));
 
 				$scope.slide.files = !!post.attachments_attributes.length;
 				$scope.slide.keywords = !!post.keywords.length;
@@ -357,6 +362,7 @@ angular.module('hearth.controllers').controller('ItemEdit', [
 			if ($scope.sending) return false;
 			$scope.sending = true;
 			$rootScope.globalLoading = true;
+			$.cookie(POST_LANGUAGE, post.language);
 
 			Post[$scope.isDraft ? 'add' : 'update'](postData, function(data) {
 

@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileEditCtrl', [
-	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', '$translate', 'Validators', 'ProfileUtils', 'Interest', '$q',
-	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, $translate, Validators, ProfileUtils, Interest, $q) {
+	'$scope', 'User', '$location', '$rootScope', '$timeout', 'Notify', 'UnauthReload', 'Auth', 'Validators', 'ProfileUtils', 'Interest', '$q', 'LanguageList',
+	function($scope, User, $location, $rootScope, $timeout, Notify, UnauthReload, Auth, Validators, ProfileUtils, Interest, $q, LanguageList) {
 		$scope.loaded = false;
 		$scope.sending = false;
 		$scope.profile = false;
@@ -26,7 +26,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 		$scope.parameters = ProfileUtils.params;
 
 		/* languages supported in "languages-i-speak" section */
-		$scope.languageList = ['cs', 'en', 'de', 'fr', 'es', 'ru', 'pt', 'ja', 'tr', 'it', 'uk', 'el', 'ro', 'eo', 'hr', 'sk', 'pl', 'bg', 'sv', 'no', 'nl', 'fi', 'tk', 'ar', 'ko', 'bo', 'zh', 'he'];
+		$scope.languageList = LanguageList.list;
 		/* Array that will hold the $scope.languageList with translations, once they are created (=translated) */
 		$scope.filteredLangs = [];
 		/* Array that will be filled with user's languages */
@@ -68,7 +68,7 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			angular.forEach($scope.languageList, function(lang) {
 				var newLang = {};
 				newLang['lang'] = lang;
-				newLang['translate'] = $translate.instant('MY_LANG.' + lang);
+				newLang['translate'] = LanguageList.translate(lang);
 				$scope.filteredLangs.push(newLang);
 				if (data.user_languages[lang]) $scope.filteredLangsUser.push(newLang);
 			});

@@ -156,6 +156,15 @@ html[dir="rtl"] .select2-container:not(.ui-select-container) .select2-choice > .
             box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
 }
 
+/* NG-DIALOG FIX */
+.select2-drop-mask {
+	z-index: 999998;
+}
+.select2-drop {
+	z-index: 999999;
+}
+/**/
+
 .select2-drop.select2-drop-above {
     margin-top: 1px;
     border-top: 1px solid #aaa;
@@ -695,7 +704,12 @@ html[dir="rtl"] .select2-container-multi:not(.ui-select-container) .select2-sear
     }
 }
 
-.select-2-inline-block{
+.select-2-inline-block {
 	display: inline-block !important;
 	width: 300px !important;
+}
+
+.select2-container.select-2-alternate .select2-choice{
+	box-shadow: none !important;
+	border: 0;
 }
