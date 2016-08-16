@@ -36,7 +36,6 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 			return a.translate.localeCompare(b.translate);
 		}
 
-		$scope.filteredLangs.sort(sortTranslations);
 
 		$scope.loadLanguages = function(query) {
 			var languages = $scope.filteredLangs;
@@ -72,6 +71,9 @@ angular.module('hearth.controllers').controller('ProfileEditCtrl', [
 				$scope.filteredLangs.push(newLang);
 				if (data.user_languages[lang]) $scope.filteredLangsUser.push(newLang);
 			});
+
+			$scope.filteredLangs.sort(sortTranslations);
+
 
 			$scope.showContactMail = data.contact_email && data.contact_email != '';
 			return data;
