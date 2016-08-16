@@ -149,15 +149,17 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		/* 
 		   This will fetch the conversation and mark it as read
 		*/
-		$scope.showConversation = function(conversation) {
+		$scope.showConversation = function(conversation, markAsRead) {
 			var title;
 
 			if ($scope.detail && conversation._id == $scope.detail._id) {
 				return false;
 			}
 
-			// set it as "read" when it already isnt
-			$scope.markReaded(conversation);
+			if (markAsRead === true) {
+				// set it as "read" when it already isnt
+				$scope.markReaded(conversation);
+			}
 
 			$scope.showNewMessageForm = false;
 			$scope.notFound = false;
@@ -246,7 +248,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if ($scope.conversations && $scope.conversations.length) {
 				for (var i = $scope.conversations.length; i--;) {
 					if ($scope.conversations[i]._id == id) {
-						return $scope.showConversation($scope.conversations[i], i, true);
+						return $scope.showConversation($scope.conversations[i], false);
 					}
 				}
 			}
@@ -258,7 +260,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				id: id
 			}, function(res) {
 				$scope.notFound = false;
-				$scope.showConversation($scope.deserializeConversation(res), -1, true);
+				$scope.showConversation($scope.deserializeConversation(res), false);
 			}, function() {
 				$scope.notFound = true;
 			});
@@ -298,7 +300,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 					return $location.url("/messages");
 				}
 				// if we should switch to the first conversation at the top
-				$scope.showConversation($scope.conversations[0], 0);
+				$scope.showConversation($scope.conversations[0], false);
 				$timeout(function() {
 					$scope.$broadcast("scrollbarResize");
 					$scope.$broadcast("classIfOverflowContentResize");
@@ -315,7 +317,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 				if (paramId) {
 					$scope.loadConversationDetail(paramId);
 				} else if (list.length) {
-					$scope.showConversation(list[0], 0);
+					$scope.showConversation(list[0], false);
 				}
 			});
 		};
@@ -387,7 +389,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 						return false;
 					}
 
-					$scope.showConversation(list[0], 0, true);
+					$scope.showConversation(list[0], false);
 				}
 			});
 		};
@@ -397,7 +399,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			if (params.id) {
 				$scope.loadConversationDetail(params.id, true);
 			} else if ($scope.conversations.length) {
-				$scope.showConversation($scope.conversations[0], 0, true);
+				$scope.showConversation($scope.conversations[0], false);
 			}
 		};
 
