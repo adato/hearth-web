@@ -302,7 +302,7 @@ module.exports = function(grunt) {
 						'vendor/{,*/}*',
 
 						// uncomment to enable
-						// 'new-landing-page/**/*'
+						'new-landing-page/**/*'
 					]
 				},{
 					cwd: '<%= yeoman.app %>/../',
