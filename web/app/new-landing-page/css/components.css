@@ -229,7 +229,11 @@ ul,li{list-style: none}
 .overflow-hidden{overflow: hidden}
 
 /* ALIGNMENT */
+.small-text-align-center{text-align: center}
 .text-align-center{text-align: center}
+@media (min-width: 992px){
+	.small-text-align-center{text-align: inherit}
+}
 /* /ALIGNMENT */
 
 /* VERTICAL-ALIGNMENT */
