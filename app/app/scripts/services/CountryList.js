@@ -159,11 +159,6 @@ angular.module('hearth.services').service('CountryList', ['$translate', function
 		"alpha_3_code": "BWA",
 		"numeric_code": "072"
 	}, {
-		"name": "Bouvet Island",
-		"alpha_2_code": "BV",
-		"alpha_3_code": "BVT",
-		"numeric_code": "074"
-	}, {
 		"name": "Brazil",
 		"alpha_2_code": "BR",
 		"alpha_3_code": "BRA",
@@ -488,11 +483,6 @@ angular.module('hearth.services').service('CountryList', ['$translate', function
 		"alpha_2_code": "HT",
 		"alpha_3_code": "HTI",
 		"numeric_code": "332"
-	}, {
-		"name": "Heard Island and McDonald Islands",
-		"alpha_2_code": "HM",
-		"alpha_3_code": "HMD",
-		"numeric_code": "334"
 	}, {
 		"name": "Holy See (the) [Vatican City State]",
 		"alpha_2_code": "VA",
