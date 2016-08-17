@@ -17,7 +17,7 @@ angular.module('hearth').config([
 
 		$stateProvider
 			.state('market', {
-				url: '/?query&type',
+				url: '/?query&type&page',
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
 			})

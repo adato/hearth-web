@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner', '$log',
-	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner, $log) {
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner', '$log', '$state',
+	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner, $log, $state) {
 		$scope.limit = 15;
 		$scope.items = [];
 		$scope.loaded = false;
@@ -77,18 +77,27 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			return scope;
 		};
 
+		var page = 0 || $state.params.page;
+
 		function addItemsToList(container, data, index, done) {
 			var posts = data.data;
 
 			// console.timeEnd("Post built");
 			if (posts.length > index) {
 				var post = posts[index];
-
 				$scope.debug && console.time("Single post (" + (index) + ") built");
 				$scope.items.push(post);
 
-				return compileTemplate(getPostScope(post), function(clone) {
+				var postScope = getPostScope(post);
+				return compileTemplate(postScope, function(clone) {
+
 					container.append(clone[0]);
+
+					// // add pagination marker
+					// if (index === 0) {
+					// 	var marker = $compile('<div pagination-marker="' + page + '"></div>')(postScope);
+					// 	clone[0].insertAdjacentHTML('beforebegin', marker);
+					// }
 
 					return $timeout(function() {
 						$('#post_' + post._id).slideDown();
