@@ -7,9 +7,12 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner', '$log', '$state',
-	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner, $log, $state) {
-		$scope.limit = 15;
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination',
+	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination) {
+
+		var postLimit = 15
+
+		$scope.limit = postLimit;
 		$scope.items = [];
 		$scope.loaded = false;
 		$scope.loading = false;
@@ -77,8 +80,6 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			return scope;
 		};
 
-		var page = 0 || $state.params.page;
-
 		function addItemsToList(container, data, index, done) {
 			var posts = data.data;
 
@@ -93,11 +94,11 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 					container.append(clone[0]);
 
-					// // add pagination marker
-					// if (index === 0) {
-					// 	var marker = $compile('<div pagination-marker="' + page + '"></div>')(postScope);
-					// 	clone[0].insertAdjacentHTML('beforebegin', marker);
-					// }
+					// add pagination marker
+					if (index === 0) {
+						var marker = $compile('<div pagination-marker="' + (InfiniteScrollPagination.getPage() + 1) + '"></div>')(postScope);
+						marker.insertBefore(clone);
+					}
 
 					return $timeout(function() {
 						$('#post_' + post._id).slideDown();
@@ -195,8 +196,14 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 			var params = angular.extend(angular.copy($location.search()), {
 				offset: $scope.items.length,
-				limit: $scope.limit
+				limit: postLimit
 			});
+			// 'minus postLimit' because we number pages from one.
+			if ($state.params.page) {
+				var o = ((postLimit * $state.params.page) - postLimit)
+				params.offset = (o > 0 ? o : 0);
+			}
+			console.log(params);
 
 			refreshTags();
 			// if there are keywords, add them to search
