@@ -74,9 +74,9 @@
 			<li>
 				<a ui-sref="terms" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('terms')}">{{:: 'MENU.TERMS' | translate}}</a>
 			</li>
-			<!-- <li>
-				<a ui-sref="moderators" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('moderators')}">{{:: 'MENU.MODERATORS' | translate}}</a>
-			</li> -->
+			<li>
+				<a ui-sref="custodians" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('custodians')}">{{:: 'MENU.CUSTODIANS' | translate}}</a>
+			</li>
 			<li>
 				<a ui-sref="faq" ng-click='toggleSidebar(false)' ng-class="{active: $state.includes('faq')}">{{:: 'MENU.FAQ' | translate}}</a>
 			</li>
@@ -286,9 +286,9 @@
 						<li>
 							<a ng-href="{{ basePath }}terms">{{ 'MENU.TERMS' | translate}}</a>
 						</li>
-						<!-- <li>
-							<a ui-sref="moderators">{{ 'MENU.MODERATORS' | translate}}</a>
-						</li> -->
+						<li>
+							<a ui-sref="custodians">{{ 'MENU.CUSTODIANS' | translate}}</a>
+						</li>
 						<li>
 							<a ng-href="{{ basePath }}faq">{{ 'MENU.FAQ' | translate}}</a>
 						</li>
