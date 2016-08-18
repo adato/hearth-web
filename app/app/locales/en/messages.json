@@ -427,7 +427,7 @@
 		"FAQ": "FAQs",
 		"TAXES": "Giving and taxes",
 		"SUPPORT_US": "Support Hearth",
-		"MODERATORS": "Hearth.net custodians"
+		"CUSTODIANS": "Hearth.net custodians"
 	},
 	"THANKS_FOR_REPORT": "Thanks for the notice, we will check this post out.",
 	"THIS_IS_BOB": "Are you new here? Get inspired by the {{users}} people here.\r\nSee, there's nothing to it! Just say THANKS.",
@@ -1357,7 +1357,7 @@
 		"community_edit": "Edit community",
 		"fulltext": "Search",
 		"support-us": "Support Hearth ",
-		"moderators": "Hearth.net custodians"
+		"custodians": "Hearth.net custodians"
 	},
 	"FULLTEXT": {
 		"FILTER": {

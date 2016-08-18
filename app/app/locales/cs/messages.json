@@ -350,7 +350,7 @@
 		"ru": "Rusky",
 		"sk": "Slovensky",
 		"sv": "Švédsky",
-		"tk": "Turmensky",
+		"tk": "Turkmensky",
 		"tr": "Turecky",
 		"uk": "Ukrajinsky",
 		"zh": "Čínsky",
@@ -429,7 +429,7 @@
 		"FAQ": "Časté dotazy",
 		"TAXES": "Darování a daně",
 		"SUPPORT_US": "Podpoř Hearth",
-		"MODERATORS": "Správci Hearth.net"
+		"CUSTODIANS": "Správci Hearth.net"
 	},
 	"THANKS_FOR_REPORT": "Děkujeme za upozornění, tento příspěvek prověříme.",
 	"THIS_IS_BOB": "Hurá, už je nás {{users}}! Pozvi i svoje přátele do Hearth.net, do štědré sociální sítě!",
@@ -1389,7 +1389,7 @@
 		"community_edit": "Úprava komunity",
 		"fulltext": "Vyhledávání",
 		"support-us": "Podpoř Hearth",
-		"moderators": "Správci Hearth.net"
+		"custodians": "Správci Hearth.net"
 	},
 	"FULLTEXT": {
 		"FILTER": {
