@@ -9,16 +9,22 @@
 angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window', '$document', 'Throttle', 'ViewportUtils', '$state',
 	function($window, $document, Throttle, ViewportUtils, $state) {
 
-		var page = parseInt($state.params.page || 0),
+		var currentPage = parseInt($state.params.page || 1),
+			pageLimitBottom = parseInt($state.params.page || 1),
+			pageCounter = currentPage,
 			pageMarkers = {};
 
 		var factory = {
-			getPage: getPage,
+			// getPage: getPage,
+			// getPageAndIncrement: getPageAndIncrement,
+			getPageAndIncrementBottom: getPageAndIncrementBottom,
+			getPageBottom: getPageBottom,
+			infiniteScrollRunner: infiniteScrollRunner,
+			init: init,
+			marketplaceInit: marketplaceInit,
 			setPage: setPage,
 			subscribe: subscribe
 		};
-
-		init(pageMarkers);
 
 		return factory;
 
@@ -48,22 +54,47 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 				}
 			}
 			// assign current page
-			console.log('should set', nearestTop, 'dist', nearestTopTemp);
+			// console.log('should set', nearestTop, 'dist', nearestTopTemp);
 			setPage(nearestTop);
 		}
 
-		function getPage() {
-			return page;
+		// function called by marketplace controller on its initiation
+		function marketplaceInit() {
+			currentPage = 1;
 		}
 
-		function init(markers) {
-			angular.element($window).bind('scroll', Throttle.go(function(event) {
-				calculateOffsetsAndSetPage(markers);
-			}, 50));
+		// aktualni stranka - pri initu 1 !! < v tuhle chvili vzdycky 1
+		// celkem stranek - pri initu z $state.params.page || 1
+
+		// return currently latest page number and increment
+		// to be used when getting new posts
+		function getPageAndIncrementBottom() {
+			var p = pageCounter;
+			pageCounter++;
+			return p;
 		}
 
+		function getPageBottom() {
+			return pageLimitBottom;
+		}
+
+		// should be run by marketplace controller
+		function init() {
+			currentPage = parseInt($state.params.page || 1),
+				pageLimitBottom = parseInt($state.params.page || 1),
+				pageCounter = currentPage,
+				pageMarkers = {};
+			angular.element($window).bind('scroll', Throttle.go(infiniteScrollRunner, 50));
+		}
+
+		function infiniteScrollRunner() {
+			calculateOffsetsAndSetPage(pageMarkers);
+		}
+
+		// set new url page
 		function setPage(pageNumber) {
-			page = pageNumber;
+			if (pageNumber < 1) return false;
+			currentPage = pageNumber;
 			$state.go('.', {
 				page: pageNumber
 			}, {
@@ -78,7 +109,6 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 				el: markerElement,
 				offset: ViewportUtils.getTopOffset(markerElement)
 			};
-			console.log('subscripbing', page, pageMarkers[page]);
 		}
 
 	}

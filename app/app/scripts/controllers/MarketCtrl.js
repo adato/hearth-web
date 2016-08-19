@@ -7,10 +7,12 @@
  */
 
 angular.module('hearth.controllers').controller('MarketCtrl', [
-	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination',
-	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination) {
+	'$scope', '$rootScope', 'Post', '$filter', '$location', '$q', '$translate', '$timeout', 'Filter', 'Notify', 'UniqueFilter', '$templateCache', '$templateRequest', '$sce', '$compile', 'ItemServices', '$stateParams', 'HearthCrowdfundingBanner', '$log', '$state', 'InfiniteScrollPagination', '$window',
+	function($scope, $rootScope, Post, $filter, $location, $q, $translate, $timeout, Filter, Notify, UniqueFilter, $templateCache, $templateRequest, $sce, $compile, ItemServices, $stateParams, HearthCrowdfundingBanner, $log, $state, InfiniteScrollPagination, $window) {
 
-		var postLimit = 15
+		var postLimit = 15;
+		var marketplaceInited = false;
+		InfiniteScrollPagination.init();
 
 		$scope.limit = postLimit;
 		$scope.items = [];
@@ -95,8 +97,8 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 					container.append(clone[0]);
 
 					// add pagination marker
-					if (index === 0) {
-						var marker = $compile('<div pagination-marker="' + (InfiniteScrollPagination.getPage() + 1) + '"></div>')(postScope);
+					if (index % postLimit === 0) {
+						var marker = $compile('<div pagination-marker="' + (InfiniteScrollPagination.getPageAndIncrementBottom()) + '"></div>')(postScope);
 						marker.insertBefore(clone);
 					}
 
@@ -156,6 +158,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 
 		$scope.retrievePosts = function(params) {
+			if (params.page) delete params.page;
 			// params.type = "community,user,post";
 			// params.query = "*";
 			params.type = itemTypes.join(',');
@@ -198,12 +201,16 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				offset: $scope.items.length,
 				limit: postLimit
 			});
-			// 'minus postLimit' because we number pages from one.
 			if ($state.params.page) {
-				var o = ((postLimit * $state.params.page) - postLimit)
-				params.offset = (o > 0 ? o : 0);
+				if (marketplaceInited) {
+					params.offset = $scope.items.length + postLimit * InfiniteScrollPagination.getPageBottom();
+				} else {
+					InfiniteScrollPagination.marketplaceInit();
+
+					params.offset = postLimit * InfiniteScrollPagination.getPageBottom() - postLimit;
+					marketplaceInited = true;
+				}
 			}
-			console.log(params);
 
 			refreshTags();
 			// if there are keywords, add them to search
@@ -287,6 +294,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.topArrowText.bottom = '';
 			$rootScope.cacheInfoBox = {};
 			$scope.debug && $log.debug('Destroy marketCtrl finished');
+			// we do not want infinit scroll running on other pages than marketplace
+			angular.element($window).unbind('scroll', InfiniteScrollPagination.infiniteScrollRunner);
+
 		});
 
 		function init() {
