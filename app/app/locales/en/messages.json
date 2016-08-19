@@ -87,7 +87,8 @@
 		},
 		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
 		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed.",
-		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem"
+		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem",
+		"LANGUAGE": "Jazyk inzerátu"
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Item cannot be deleted. You'd better accept that and move on.",
 	"AD_REMOVE_DONE": "Done! Item has been successfully deleted.",
@@ -426,7 +427,7 @@
 		"FAQ": "FAQs",
 		"TAXES": "Giving and taxes",
 		"SUPPORT_US": "Support Hearth",
-		"MODERATORS": "Hearth.net custodians"
+		"CUSTODIANS": "Hearth.net custodians"
 	},
 	"THANKS_FOR_REPORT": "Thanks for the notice, we will check this post out.",
 	"THIS_IS_BOB": "Are you new here? Get inspired by the {{users}} people here.\r\nSee, there's nothing to it! Just say THANKS.",
@@ -1356,7 +1357,7 @@
 		"community_edit": "Edit community",
 		"fulltext": "Search",
 		"support-us": "Support Hearth ",
-		"moderators": "Hearth.net custodians"
+		"custodians": "Hearth.net custodians"
 	},
 	"FULLTEXT": {
 		"FILTER": {
