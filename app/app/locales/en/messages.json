@@ -1037,7 +1037,8 @@
 		},
 		"PROFILE": {
 			"GIVEN_RATINGS": "Sent ratings",
-			"RECEIVED_RATINGS": "Recieved ratings"
+			"RECEIVED_RATINGS": "Recieved ratings",
+			"CLICK_TO_EXPAND": "Show more"
 		},
 		"X_GIVES": {
 			"one": "gift",
