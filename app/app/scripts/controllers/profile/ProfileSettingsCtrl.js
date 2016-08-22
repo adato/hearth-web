@@ -206,7 +206,7 @@ angular.module('hearth.controllers').controller('ProfileSettingsCtrl', [
 		};
 
 		$scope.man_country_code = $rootScope.loggedUser.country_code;
-		$scope.countryList = $filter('orderBy')(CountryList.list, 'localizedName');
+		$scope.countryList = CountryList.list;
 		$scope.updateCountry = function(countryCode) {
 			User.editSettings({
 				_id: $rootScope.loggedUser._id
