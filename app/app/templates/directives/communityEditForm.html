@@ -60,7 +60,7 @@
 						<label>
 							{{:: 'COMMUNITY_DESCRIPTION' | translate }}
 						</label>
-						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="500" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.description" name="description" required>
+						<input-max-length input-type="textarea" show-counter="true" min-length="0" max-length="5000" placeholder="{{::'COMMUNITY_RESTRICTIONS_PLACEHOLDER' | translate }}" model="community.description" name="description" required>
 						</input-max-length>
 						<span ng-show="communityForm.description.$error.required">{{:: 'ERR_COMMUNITY_ABOUT_NOT_FILLED' | translate }}</span>
 					</div>
