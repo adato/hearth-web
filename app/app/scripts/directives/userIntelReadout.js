@@ -8,8 +8,8 @@
  */
 
 angular.module('hearth.directives').directive('userIntelReadout', [
-	'IsEmpty', 'MottoLength',
-	function(IsEmpty, MottoLength) {
+	'IsEmpty', 'MottoLength', 'CommunityInfoMaxLength', '$filter',
+	function(IsEmpty, MottoLength, CommunityInfoMaxLength, $filter) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -19,50 +19,49 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 			templateUrl: 'templates/directives/userIntelReadout.html',
 			link: function(scope) {
 				scope.isEmpty = IsEmpty;
-				// community has a 'description' property instead of 'about'
-				var unreg = scope.$watch('entity', function(newVal, oldVal) {
-					if (newVal && newVal._type) {
-						if (scope.entity._type.toLowerCase() === 'community') {
-							scope.entity.about = scope.entity.description;
-						}
-						unreg();
-					}
-				});
 
-				var motto = 'motto',
-					about = 'about',
-					about_shortened = 'about_shortened',
-					interests = 'interests',
-					work = 'work',
-					locations = 'locations',
-					languages = 'languages',
-					email = 'email',
-					phone = 'phone',
-					webs = 'webs';
-
-				var setup = {};
-				setup.informative = [about_shortened, locations, languages, email, phone];
-				setup.infobox = setup.informative.slice(1);
-				// note that there is a motto missing which is on purpose as it is shown differently usually
-				setup.all = [about, interests, work, locations, languages, email, phone, webs];
-				setup.profile = setup.all;
-
-				scope.typeMatch = setup[scope.type] || setup.all;
-
-
-				// this is for marketplace post detail where the description should not be too long;
-				scope.getShorterDescription = function() {
-					if (scope.entity && (scope.entity.motto || scope.entity.about)) {
-						scope.entity.about_shortened = scope.entity.motto || (scope.entity.about ? (scope.entity.about.length > (MottoLength + 3) ? (scope.entity.about.substring(0, MottoLength) + '...') : scope.entity.about) : '');
-						return true;
-					} else {
-						return false;
-					}
+				var defs = {
+					motto: 'motto',
+					about: 'about',
+					about_shortened: 'about_shortened',
+					interests: 'interests',
+					work: 'work',
+					locations: 'locations',
+					languages: 'languages',
+					email: 'email',
+					phone: 'phone',
+					webs: 'webs'
 				};
+
+				var setup = {
+					'informative': [defs.about_shortened, defs.locations, defs.languages, defs.email, defs.phone],
+					'infobox': [defs.locations, defs.languages, defs.email, defs.phone], // note that there is a motto missing which is on purpose as it is shown differently usually
+					'profile': [defs.about, defs.interests, defs.work, defs.locations, defs.languages, defs.email, defs.phone, defs.webs]
+				};
+
+				scope.selectedSetup = setup[scope.type] || setup.profile;
+
 				// community has a 'description' property instead of 'about'
 				if (scope.entity._type && scope.entity._type.toLowerCase() === 'community') {
 					scope.entity.about = scope.entity.description;
+
+					// for community show shortened description...
+					if (scope.entity.about.length > CommunityInfoMaxLength) {
+						scope.entity.community_about_shortened = $filter('ellipsis')(scope.entity.about, CommunityInfoMaxLength, true);
+					}
 				}
+
+				// this is for marketplace post detail where the description should not be too long;
+				if (scope.entity.motto || scope.entity.about) {
+					scope.entity.about_shortened = scope.entity.motto || (scope.entity.about ? (scope.entity.about.length > (MottoLength + 3) ? (scope.entity.about.substring(0, MottoLength) + '…') : scope.entity.about) : '');
+				}
+
+				scope.canShow = function(itemName) {
+					if (scope.selectedSetup.indexOf(itemName) > -1 && typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName].length > 0) {
+						return true;
+					} else return false;
+				}
+
 			}
 		}
 	}
