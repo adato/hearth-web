@@ -148,9 +148,9 @@
 	}
 	.need-offer-selector {
 		display: inline-block;
-		margin-top: 12px;
-		margin-bottom: $ui-grid-size;
-		line-height: $ui-grid-size;
+		margin-top: 18px;
+		margin-bottom: 4 * $ui-small-grid-size;
+		line-height: 4 * $ui-small-grid-size;
 		label {
 			margin: 0;
 		}

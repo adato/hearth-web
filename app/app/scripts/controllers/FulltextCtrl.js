@@ -42,6 +42,7 @@ angular.module('hearth.controllers').controller('FulltextCtrl', [
 					if (item._type == 'Post') {
 						data[i].avatar = item.author.avatar;
 						data[i].item_type = item.author._type;
+						data[i].isActive = $rootScope.isPostActive(data[i]);
 					};
 				});
 

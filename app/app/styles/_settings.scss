@@ -43,7 +43,7 @@ $ui-color-disabled: #999;
 $ui-color-lighter: #999;
 $ui-input-height: 30px;
 $ui-button-height: 44px;
-$ui-input-error-color: #ff782e;
+$ui-input-error-color: darken(#ff782e,15%);
 $ui-box-shadow: 0px 0px 5px rgba(100,100,100,.5);
 
 $ui-navbar-height: 100px;

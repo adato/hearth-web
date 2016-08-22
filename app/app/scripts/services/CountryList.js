@@ -6,7 +6,12 @@
  * @description Service comprising a list of countries
  */
 
-angular.module('hearth.services').service('CountryList', [function() {
+angular.module('hearth.services').service('CountryList', ['$translate', function($translate) {
+
+	function sortComparer(a, b) {
+		return a.localizedName.localeCompare(b.localizedName);
+	};
+
 
 	this.list = [{
 		"name": "Afghanistan",
@@ -158,11 +163,6 @@ angular.module('hearth.services').service('CountryList', [function() {
 		"alpha_2_code": "BW",
 		"alpha_3_code": "BWA",
 		"numeric_code": "072"
-	}, {
-		"name": "Bouvet Island",
-		"alpha_2_code": "BV",
-		"alpha_3_code": "BVT",
-		"numeric_code": "074"
 	}, {
 		"name": "Brazil",
 		"alpha_2_code": "BR",
@@ -488,11 +488,6 @@ angular.module('hearth.services').service('CountryList', [function() {
 		"alpha_2_code": "HT",
 		"alpha_3_code": "HTI",
 		"numeric_code": "332"
-	}, {
-		"name": "Heard Island and McDonald Islands",
-		"alpha_2_code": "HM",
-		"alpha_3_code": "HMD",
-		"numeric_code": "334"
 	}, {
 		"name": "Holy See (the) [Vatican City State]",
 		"alpha_2_code": "VA",
@@ -1255,4 +1250,9 @@ angular.module('hearth.services').service('CountryList', [function() {
 		"numeric_code": "716"
 	}];
 
+	for (var i = this.list.length; i--;) {
+		this.list[i].localizedName = $translate.instant('COUNTRY.' + this.list[i].alpha_2_code);
+	}
+
+	this.list.sort(sortComparer);
 }]);

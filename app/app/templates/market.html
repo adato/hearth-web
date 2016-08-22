@@ -10,7 +10,7 @@
 		<div class="marketplace-items-container" ng-if="!items.length">
 			<div ng-show="filterIsOn" class="row">
 				<div class="large-10 small-12 medium-10 push-2 columns box text-center not-found-box">
-					<p translate class="padding-2">MARKETPLACE.FILTER_NOT_FOUND</p>
+					<p class="padding-2" ng-bind-html="'MARKETPLACE.FILTER_NOT_FOUND' | translate"></p>
 					<div class="large-6 small-6 medium-6 columns text-center">
 						<a ng-click="toggleFilter()">{{:: "MARKETPLACE.EDIT_FILTER" | translate}}</a>
 					</div>
