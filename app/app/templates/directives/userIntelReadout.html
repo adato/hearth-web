@@ -13,9 +13,9 @@
 		</div>
 		<div class="display-table-cell" ng-if="!entity.community_about_shortened" ng-bind-html="entity.about | linky:'_blank':{rel: 'nofollow'} | nl2br"></div>
 		<div class="display-table-cell" ng-if="entity.community_about_shortened">
-			<div ng-bind-html="entity.community_about_shortened | linky:'_blank':{rel: 'nofollow'}"></div>
-			<a ng-href="{{:: getProfileLink('Community', entity._id) }}">
-				{{:: COMMUNITY.PROFILE.CLICK_TO_EXPAND }}
+			<span ng-bind-html="entity.community_about_shortened | linky:'_blank':{rel: 'nofollow'}"></span>
+			<a ng-href="community/{{ entity._id }}/about" class="bold">
+				{{:: 'COMMUNITY.PROFILE.CLICK_TO_EXPAND' | translate }}
 			</a>
 		</div>
 	</div>
