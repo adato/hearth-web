@@ -203,7 +203,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			});
 			if ($state.params.page) {
 				if (marketplaceInited) {
-					params.offset = $scope.items.length + postLimit * InfiniteScrollPagination.getPageBottom();
+					params.offset = $scope.items.length + postLimit * InfiniteScrollPagination.getPageBottom() - postLimit;
 				} else {
 					InfiniteScrollPagination.marketplaceInit();
 
