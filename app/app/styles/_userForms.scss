@@ -92,6 +92,9 @@ $max-modal-window-width:32em;
 		span.close {
 			top: -3.5rem;
 			right: 0.9rem;
+			@media #{$small-only} {
+				top: -3.2rem;
+			}
 		}
 	}
 	.head,
