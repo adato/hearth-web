@@ -18,43 +18,9 @@
 	}
 
 	.messages-top {
-		// input,
-		// select {
-		// 	width: 240px;
-		// 	display: inline-block;
-		// 	background-color: white;
-		// }
 		select {
-			// width: 340px;
 			width: 300px;
-			// float: left;
 		}
-		// .search {
-		// 	.slide-show {
-		// 		float: left;
-		// 		overflow: hidden;
-		// 		max-width: 0px !important;
-		// 		transition: max-width 1s;
-		// 		&.width-auto {
-		// 			max-width: 1000px !important;;
-		// 		}
-		// 	}
-		// 	display: inline-block;
-		// 	margin-left: 30px;
-		// 	height: 30px;
-		// }
-		// button {
-		// 	width: 30px;
-		// 	height: 30px;
-		// 	font-size: 20px;
-		// 	outline: none;
-		// }
-		// @media #{$medium-up} {
-		//  .button-send,
-		// 	select.messages-filter {
-		// 		max-width: 100%
-		// 	}
-		// }
 	}
 	@media #{$medium-down} {
 		.messages-filter{
@@ -70,10 +36,8 @@
 	.conversations {
 		overflow: hidden;
 		height: 100%;
-		// padding-right: 5px;
 		position: relative;
 		flex: 1;
-		// min-width: 355px;
 		min-width: 300px;
 
 		.nano-content {
@@ -137,8 +101,11 @@
 					bottom: 2px;
 					float: right;
 				}
-				@media #{$small-only} {
-					width: 100%;
+				@media #{$large-up} {
+					max-width: 190px;
+				}
+				h2 {
+					width:90%;
 				}
 			}
 			h2 {
@@ -206,10 +173,8 @@
 	}
 	.conversation-detail-container {
 		flex: 4;
-		// width: 570px;
 		margin-bottom: $size-large;
 		padding: 20px;
-		//height: 100%;
 		& > div {
 			position: relative;
 			height: 100%;
