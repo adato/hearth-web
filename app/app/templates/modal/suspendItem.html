@@ -1,10 +1,11 @@
-<div class="padding-small">
-	<header>
+<div class="itemReport formStyle itemEdit modal">
+	<div class="head">
 		<h2>
 			{{:: 'POST.SUSPEND.LABEL' | translate}}
 		</h2>
+		<span ng-click="close()" class="close fa fa-times"></span>
 		<hr />
-	</header>
+	</div>
 	<form ng-submit="suspend(data)" name="suspendForm" novalidate>
 		<div class="notify-report-container"></div>
 		<div>
@@ -16,7 +17,7 @@
 				<span ng-show="suspendForm.message.$error.maxlength" translate='VALIDATION_MAX_LENGTH'></span>
 			</div>
 			<div class="display-flex flex-reverse flex-space-between margin-top-medium">
-				<button class="primary" type="submit">{{:: 'REPORT' | translate }}</button>
+				<button class="primary button-send fright" type="submit">{{:: 'REPORT' | translate }}</button>
 				<a href="" ng-click="close()" class="">
 					{{ 'CLOSE' | translate }}
 				</a>
