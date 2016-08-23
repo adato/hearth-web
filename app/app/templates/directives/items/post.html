@@ -121,7 +121,7 @@
 						</div>
 					</header>
 
-					<div class="item-section text-container word-break">
+					<!-- <div class="item-section text-container word-break">
 						<p class="margin-none" ng-if="item.text.length < 270 || marketplace.expanded == true" ng-bind-html="item.text | linky:'_blank' | nl2br"></p>
 						<p class="margin-none" ng-if="item.text.length >= 270 && !marketplace.expanded">
 							<span ng-bind-html="item.text_short | linky:'_blank'"></span>
@@ -129,7 +129,16 @@
 								<b ng-class="'color-' + item.type">{{:: 'MARKETPLACE.POST.CLICK_TO_EXPAND' | translate }}</b>
 							</a>
 						</p>
-					</div>
+					</div> -->
+
+					<ab-test variant="1">
+						<div style="background:red">tohle je varianta 1</div>
+					</ab-test>
+
+					<ab-test variant="2">
+						<div style="background:blue">tohle je varianta 2</div>
+					</ab-test>
+
 					<ul lemmon-slider fancybox ng-if="item.attachments_attributes.length" class="item-section">
 						<li ng-repeat="photo in item.attachments_attributes track by $index">
 							<a class="fancy" ng-href="{{ photo.large }}" rel="{{item._id}}">
