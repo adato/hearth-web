@@ -126,6 +126,11 @@ a.user{
 	}
 	.item-section{
 		margin-bottom: $size-medium;
+
+		.action-dropdown {
+			border-radius:50%;
+			background:color(4);
+		}
 	}
 
 	.item-status-bar {
