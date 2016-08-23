@@ -19,7 +19,6 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 			},
 			template: '<span><span ng-if="variant == userVariant" ng-transclude ng-click="log(\'click\');"></span></span>',
 			link: function($scope) {
-				var gotVariant;
 				$scope.userVariant = '';
 
 				var getUserVariant = function() {
@@ -59,12 +58,19 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 					});
 				}
 
-				// pokud ma uzivatel nastavenou variantu, ignorujeme ty ostatni
-				if (typeof(gotVariant = getUserVariant()) != 'undefined' && gotVariant !== null) {
-					$scope.userVariant = gotVariant;
+				// if window has no cached variant, cache it
+				if (typeof $window.userAbVariant == 'undefined') {
+					var gotVariant;
+					if (typeof(gotVariant = getUserVariant()) != 'undefined' && gotVariant !== null) {
+						$scope.userVariant = gotVariant;
+						$window.userAbVariant = gotVariant;
+					} else {
+						$scope.userVariant = getRandomVariant();
+						setUserVariant($scope.userVariant);
+						$window.userAbVariant = $scope.userVariant;
+					}
 				} else {
-					$scope.userVariant = getRandomVariant();
-					setUserVariant($scope.userVariant);
+					$scope.userVariant = $window.userAbVariant;
 				}
 			}
 		};
