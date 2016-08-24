@@ -74,7 +74,7 @@
 	}
 
 	function toggleMenu(event, w) {
-		var toggle = findParentBySelector(event.target, '.' + langToggle);
+		var toggle = event ? findParentBySelector(event.target, '.' + langToggle) : false;
 		var lp;
 		if (toggle) {
 			lp = toggle.parentNode.getElementsByClassName(langPanel);
