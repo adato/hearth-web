@@ -57,9 +57,7 @@ angular.module('hearth.directives').directive('userIntelReadout', [
 				}
 
 				scope.canShow = function(itemName) {
-					if (scope.selectedSetup.indexOf(itemName) > -1 && typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName].length > 0) {
-						return true;
-					} else return false;
+					return (scope.selectedSetup.indexOf(itemName) > -1 && typeof scope.entity[itemName] !== 'undefined' && scope.entity[itemName] !== null && scope.entity[itemName].length > 0);
 				}
 
 			}
