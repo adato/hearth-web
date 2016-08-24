@@ -1054,7 +1054,8 @@
 		},
 		"PROFILE": {
 			"GIVEN_RATINGS": "Odoslaná hodnotenie",
-			"RECEIVED_RATINGS": "Prijatá hodnotenie"
+			"RECEIVED_RATINGS": "Prijatá hodnotenie",
+			"CLICK_TO_EXPAND": "Ukázať viacej"
 		},
 		"X_GIVES": {
 			"one": "dar",

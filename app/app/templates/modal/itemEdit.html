@@ -62,6 +62,12 @@
 					<span ng-show="createAdForm.text.$error.maxlength">{{:: 'ERR_AD_TEXT_LEN' | translate }}</span>
 				</div>
 			</section>
+			<section class="position-relative" ng-if="languageList.length">
+				<label for="post-language" class="nowrap flex-div margin-bottom-small margin-right-medium">
+					<span translate='POST.LANGUAGE'></span>:
+				</label>
+				<select2 id="post-language" class="select-2-alternate flex-div flex-1 margin-bottom-small" ng-model="post.language" s2-options="item.code as item.name for item in languageList"></select2>
+			</section>
 			<section class="character position-relative">
 				<div bubble-placeholder="marketplace-item-mood"></div>
 				<label class="headline">
