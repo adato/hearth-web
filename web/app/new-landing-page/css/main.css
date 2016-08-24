@@ -438,7 +438,7 @@ html[lang='en'] .language-panel .lang-en{
 
 .jumbo .dotstyle-wrapper {
 	position: absolute;
-	bottom: 100px;
+	bottom: 100px; left: 0;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -522,14 +522,13 @@ html[lang='en'] .language-panel .lang-en{
 	color: #fff;
 }
 .balls-5 > .ball{
-	padding-bottom: 20%;
 	margin: 0 10px;
 }
+.balls-5 > .ball,
 .balls-3 > .ball{
-	padding-bottom: 30%;
+	padding-bottom: 30px;
 }
 .ball > svg{
-	position: absolute;
 	display: block;
 	width: 100%;
 }
@@ -558,7 +557,7 @@ html[lang='en'] .language-panel .lang-en{
 	.small-constrict-ball .ball:last-child{right: 10%;}
 
 	.small-drop-into-lines{flex-wrap: wrap; justify-content: center}
-	.small-drop-into-lines .ball{min-width: calc(50% - 20px); padding-bottom: calc(50% + 10px); margin: 0 10px 60px;}
+	.small-drop-into-lines .ball{min-width: calc(50% - 20px); margin: 0 10px 60px;}
 }
 /*******************
 	MASONRY
@@ -609,7 +608,8 @@ a.masonry-item{
 	width: inherit !important;
 	max-width: inherit !important;
 	margin: 0 !important;
-	/*padding: 0 !important;*/
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 /*.masonry-alt .masonry-item{
 	margin: 0 !important;

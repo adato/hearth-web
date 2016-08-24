@@ -48,8 +48,14 @@
 	var windowShown;
 	var action = true;
 	if (!(hamburger && menu)) throw new Error('all elements are required - hamburger, language-panel, main-navigation');
-	fe(ltoggle, function(el) {el.addEventListener('click', toggleMenu.bind(false, 'lang'));});
-	hamburger.addEventListener('click', toggleMenu.bind(false, 'menu'));
+	fe(ltoggle, function(el) {
+		el.addEventListener('click', function(event) {
+			toggleMenu(event, 'lang');
+		});
+	});
+	hamburger.addEventListener('click', function(event) {
+		toggleMenu(event, 'menu');
+	});
 
 	function langHandler(lp) {
 		menu.classList.remove(isActive);
@@ -67,7 +73,7 @@
 		menu.classList.toggle(isActive);
 	}
 
-	function toggleMenu(w) {
+	function toggleMenu(event, w) {
 		var toggle = findParentBySelector(event.target, '.' + langToggle);
 		var lp;
 		if (toggle) {
@@ -75,7 +81,7 @@
 			if (!(lp && lp.length)) throw new Error('".language-panel" element required as a sibling to language-toggle.');
 			lp = lp[0];
 		}
-		if(!windowShown){
+		if (!windowShown) {
 			window.addEventListener('mousedown', toggleHandler);
 		} else {
 			window.removeEventListener('mousedown', toggleHandler);
@@ -99,7 +105,7 @@
 			if ((burgerAction && menu.classList.contains('is-active')) || (ltoggleAction && lp.classList.contains('is-active'))) {
 				action = false;
 			}
-			toggleMenu(false);
+			toggleMenu({}, false);
 			window.removeEventListener('click', toggleHandler);
 		} else if (event.target.tagName === 'A') {
 			window.setTimeout(toggleMenu, 400);
