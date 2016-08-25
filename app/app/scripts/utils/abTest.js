@@ -52,7 +52,7 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 				}
 
 				$scope.log = function(what) {
-					$analytics.eventTrack('AB variant ' + what + 'ed', {
+					$analytics.eventTrack('Dropdown ' + what + 'ed (Post)', {
 						'Variant': $scope.variant,
 						'Variant Name': $scope.name,
 					});
