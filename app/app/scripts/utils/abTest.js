@@ -7,8 +7,8 @@
  * @restrict A
  */
 
-angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '$analytics',
-	function(LocalStorage, $window, $analytics) {
+angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '$analytics', 'Ab',
+	function(LocalStorage, $window, $analytics, Ab) {
 		return {
 			replace: true,
 			transclude: true,
@@ -19,15 +19,18 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 			},
 			template: '<span><span ng-if="variant == userVariant" ng-transclude ng-click="log(\'click\');"></span></span>',
 			link: function($scope) {
+
+				var DROPDOWN_VARIANT = 'ab-variant';
+
 				$scope.userVariant = '';
 
 				var getUserVariant = function() {
-					var variant = LocalStorage.get('ab-variant');
+					var variant = Ab.getItem(DROPDOWN_VARIANT);
 					return variant;
 				}
 
 				var setUserVariant = function(variant) {
-					return LocalStorage.set('ab-variant', variant);
+					Ab.setItem(DROPDOWN_VARIANT, variant)
 				}
 
 				var getRandomVariant = function() {
