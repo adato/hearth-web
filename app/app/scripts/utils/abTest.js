@@ -30,7 +30,7 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 				}
 
 				var setUserVariant = function(variant) {
-					Ab.setItem(DROPDOWN_VARIANT, variant)
+					Ab.setItem(DROPDOWN_VARIANT, variant);
 				}
 
 				var getRandomVariant = function() {
@@ -64,10 +64,12 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 				// if window has no cached variant, cache it
 				if (typeof $window.userAbVariant == 'undefined') {
 					var gotVariant;
-					if (typeof(gotVariant = getUserVariant()) != 'undefined' && gotVariant !== null) {
+					if (typeof(gotVariant = getUserVariant()) != 'undefined' && gotVariant !== null && false) {
+						console.log('found', gotVariant);
 						$scope.userVariant = gotVariant;
 						$window.userAbVariant = gotVariant;
 					} else {
+						console.log('didnotfound');
 						$scope.userVariant = getRandomVariant();
 						setUserVariant($scope.userVariant);
 						$window.userAbVariant = $scope.userVariant;
