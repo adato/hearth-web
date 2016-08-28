@@ -22,6 +22,12 @@ h1{
 p{
 	font-family: 'Raleway';
 }
+.hr {
+	height: 1px;
+	width: 100%;
+	margin: 16px 0;
+	background: #ccc;
+}
 /*******************
 	COLOR
 *******************/
@@ -169,16 +175,22 @@ a.masonry-item:hover .button,
 	background-position: center center;
 	background-size: contain;
 	background-repeat: no-repeat;
+	transition: .3s all;
+}
+.header-wrapper.contracted .logo{
+	width: 200px;
 }
 .nav-item{
 	padding: 8px;
 	font-weight: bold;
 	white-space: nowrap;
 	text-decoration: none;
+	font-size: 14px;
 }
 @media (min-width: 400px){
 	.nav-item{
 		margin: 0 4px;
+		font-size: 20px
 	}
 }
 .nav-item:hover.has-hover-effect{
@@ -217,17 +229,17 @@ a.masonry-item:hover .button,
 		display: flex !important;
 		flex-direction: column;
 		align-items: flex-start;
-		top: calc(100% + 20px); left: -15px;
+		top: calc(100% + 30px); left: -5px;
 		padding: 15px;
 		background: #fff;
-		border-radius: 30px;
-		box-shadow: 0 1px 2px rgba(0,0,0,.4);
+		border-radius: 10px;
+		box-shadow: 0 1px 8px rgba(0,0,0,.6);
 	}
 	.hover-window::before{
 		content: '';
 		position: absolute;
 		bottom: 100%;
-		left: 35px;
+		left: 25px;
 		width: 0;
 		height: 0;
 		border: solid transparent;
@@ -236,6 +248,9 @@ a.masonry-item:hover .button,
 		border-bottom-color: #fff;
 		border-width: 8px;
 		margin-left: -8px;
+	}
+	.contracted .hover-window::before{
+		left: 20px;
 	}
 	.hover-window.is-active.window-align-right{
 		left: inherit; right: -15px;
@@ -268,12 +283,12 @@ a.masonry-item:hover .button,
 		margin: 0;
 	}
 	#main-navigation li:first-child a{
-		border-top-left-radius: 15px;
-		border-top-right-radius: 15px;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
 	}
 	#main-navigation li:last-child a{
-		border-bottom-left-radius: 15px;
-		border-bottom-right-radius: 15px;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
 	}
 	#main-navigation li a:hover{
 		background: #f4f4f4;
@@ -287,18 +302,21 @@ a.masonry-item:hover .button,
 }*/
 .flag{
 	display:inline-block;
-	width: 30px;
-	height: 30px;
+	width: 30px; height: 30px;
 	vertical-align: middle;
 	border-radius: 50%;
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
+	transition: .3s all;
 }
 @media (min-width: 400px){
 	.flag{
 		width: 40px;
 		height: 40px;
+	}
+	.header-wrapper.contracted .flag{
+		width: 30px; height: 30px;
 	}
 }
 html[lang='en'] .language-toggle .flag,
@@ -325,12 +343,17 @@ html[lang='en'] .language-panel .lang-en{
 	JUMBO
 *******************/
 .jumbo-wrapper{
-	height: 90vh;
-	min-height: 340px;
+	height: 520px;
+	min-height: 520px;
 	background-color: #aaa;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center 0;
+}
+@media (min-width: 768px){
+	.jumbo-wrapper{
+		height: 90vh;
+	}
 }
 .jumbo-show{
 	position: absolute;
@@ -676,7 +699,7 @@ a.masonry-item{
 	font-family: 'Raleway';
 }
 .footer a:hover{
-	text-decoration: underline;;
+	color: #fa5800;
 }
 
 .social-bar{
@@ -774,7 +797,6 @@ a.masonry-item{
     opacity: 0;
     width: 20px;
     height: 20px;
-    padding: 2px 0 5px 5px;
     background-color: #f05f40;
     border-radius: 15px;
     color: #fff;
@@ -811,7 +833,7 @@ a.masonry-item{
 }
 .nav.nav-justified > li > a .quote > .fa { font-size: 10px; line-height: 10px;}
 @media (min-width: 400px) {
-	.nav.nav-justified > li > a .quote { width: 30px; height: 30px; right: 5px; bottom: 5px; padding: 5px 0 5px 7px; }
+	.nav.nav-justified > li > a .quote { width: 30px; height: 30px; right: 5px; bottom: 5px;}
 	.nav.nav-justified > li > a .quote > .fa { font-size: 16px; line-height: inherit;}
 
 }

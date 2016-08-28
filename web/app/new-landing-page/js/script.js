@@ -60,7 +60,7 @@
 	function langHandler(lp) {
 		menu.classList.remove(isActive);
 		hamburger.classList.remove(isActive);
-		fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
+		// fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
 
 		if (!action) return action = true;
 		if (lp) lp.classList.toggle(isActive);
