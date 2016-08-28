@@ -150,6 +150,7 @@ a.masonry-item:hover .button,
 	transition: .3s all;
 	z-index: 100;
 	font-size: 20px;
+	-webkit-backface-visibility: hidden;
 }
 .header-wrapper.contracted{
 	background-color: #fff;
@@ -325,6 +326,7 @@ html[lang='en'] .language-panel .lang-en{
 *******************/
 .jumbo-wrapper{
 	height: 90vh;
+	min-height: 340px;
 	background-color: #aaa;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -371,6 +373,7 @@ html[lang='en'] .language-panel .lang-en{
 		font-size: 60px;
 	}
 }
+.jumbo h2,
 .shine-only{
 	text-shadow: 0 2px 4px rgba(0,0,0,.4);
 }
