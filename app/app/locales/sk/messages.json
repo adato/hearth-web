@@ -59,7 +59,8 @@
 		"COMMUNITY": {
 			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
 		},
-		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě"
+		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
+		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'>od začátku<\/a>."
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to ľúto, ale stránka, ktorú hľadáte, pravdepodobne neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenájdené",

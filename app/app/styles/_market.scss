@@ -44,7 +44,7 @@ body {
 			border-radius: 4px;
 			background-color: white;
 		}
-		
+
 		&.offer {
 			border-left: $itemBorderWidth solid color(2);
 			.label {
@@ -139,7 +139,7 @@ body {
 
 @media #{$medium-up} {
 	._market {
-		
+
 		.v-m-small {
 			text-align: center;
 		}
@@ -422,5 +422,14 @@ body {
 				}
 			}
 		}
+	}
+}
+
+.not-first-page-callout{
+	margin: 0 -15px $size-medium 142px; /* 157 - 15 */
+}
+@media #{$small-only} {
+	.not-first-page-callout{
+		margin: 0 -15px $size-medium -15px;
 	}
 }
