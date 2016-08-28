@@ -365,6 +365,18 @@ a.link-secondary{
 }
 /* /LINKS */
 
+/* CALLOUT */
+.callout{
+	padding: $size-small $size-medium;
+}
+.callout.alert{
+	color: #383838;
+	border: 1px solid #fa5800;
+	border-radius: $size-small;
+	background: rgba(251, 127, 59, 0.1);
+}
+/* /CALLOUT */
+
 /* LOADING */
 .loading-in-progress{
 	font-family: FontAwesome;

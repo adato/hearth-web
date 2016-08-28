@@ -17,6 +17,7 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 		var factory = {
 			// getPage: getPage,
 			// getPageAndIncrement: getPageAndIncrement,
+			firstPageNotShown: firstPageNotShown,
 			getPageAndIncrementBottom: getPageAndIncrementBottom,
 			getPageBottom: getPageBottom,
 			infiniteScrollRunner: infiniteScrollRunner,
@@ -63,8 +64,17 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 			currentPage = 1;
 		}
 
-		// aktualni stranka - pri initu 1 !! < v tuhle chvili vzdycky 1
-		// celkem stranek - pri initu z $state.params.page || 1
+		// function that returns whether the marketplace has some
+		// pages displayed but the first one is not amongst them
+		function firstPageNotShown() {
+			// check that at least one page exists and if there is the first one
+			// however weird that sounds..
+			for (var prop in pageMarkers) {
+				if (pageMarkers.hasOwnProperty(prop) && pageMarkers[1] == void 0) return true;
+			}
+			// do not return that first is not shown if nothing is (yet) shown
+			return false;
+		}
 
 		// return currently latest page number and increment
 		// to be used when getting new posts
