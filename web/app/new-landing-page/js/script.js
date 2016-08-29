@@ -229,7 +229,7 @@
 
 	function fillProfile(profileObject) {
 		fe($(loggedSelector), function(el) {el.style.display = ''});
-		$(profileSectionSelector).innerHTML = (profile.avatar.small ? '<img class="avatar" src="' + profile.avatar.small + '" />' : '') + '<a href="/app/profile/' + profile._id + '" class="text-emphasize">' + [profile.name, profile.surname].join('\u00A0').trim() + '</a>';
+		$(profileSectionSelector).innerHTML = (profile.avatar.normal ? '<img class="avatar" src="' + profile.avatar.normal + '" />' : '') + '<a href="/app/profile/' + profile._id + '" class="text-emphasize">' + [profile.name, profile.surname].join('\u00A0').trim() + '</a>';
 	}
 
 })(window);
