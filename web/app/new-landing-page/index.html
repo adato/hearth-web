@@ -172,12 +172,17 @@
 					<a href='' class='nav-item has-hover-effect'>O Hearth</a>
 				</li>
 			</ul>
-			<a href='/app/register' class='color-primary nav-item has-hover-effect'>
-				Registrace
-			</a>
-			<a href='/app/login' class='button nav-item alt'>
-				Přihlášení
-			</a>
+			<div class='flex userNotLogged' style='display: none'>
+				<a href='/app/register' class='color-primary nav-item has-hover-effect'>
+					Registrace
+				</a>
+				<a href='/app/login' class='button nav-item alt'>
+					Přihlášení
+				</a>
+			</div>
+			<div class='flex userLogged' id='profileSection' style='display: none'>
+				<!--to be filled by profile.js-->
+			</div>
 			<!--<div class='flex large-only' id='large-language-panel'>
 				<div class='language-option flex nav-item' id='language-large-cs'>
 					<div class='flag flag-cs'></div>
@@ -683,7 +688,6 @@
 	</div>
 	<script src='./js/smooth-scroll.js'></script>
 	<script src='./js/dots.js'></script>
-	<script src='./js/profile.js'></script>
 	<script src='./js/script.js'></script>
 </body>
 </html>

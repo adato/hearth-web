@@ -480,6 +480,15 @@ html[lang='en'] .language-panel .lang-en{
 @keyframes slide {100% { width: 100%; }}
 
 /*******************
+	AVATAR
+*******************/
+.avatar {
+	width: 60px; height: 60px;
+	border-radius: 50%;
+	margin-right: 16px;
+}
+
+/*******************
 	DIVIDERS
 *******************/
 .contains-slash{

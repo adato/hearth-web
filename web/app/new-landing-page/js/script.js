@@ -36,6 +36,25 @@
 	    }
 	}
 
+	var cookieFactory = {
+		get: function(cname){
+			var name = cname + '=';
+			var cookies = document.cookie.split(';');
+			for(var i = 0;i < cookies.length;i++){
+				var c = cookies[i];
+				while(c.charAt(0) === ' ') c = c.substring(1);
+				if(c.indexOf(name) === 0) return c.substring(name.length, c.length);
+			}
+			return '';
+		},
+		set: function(cname, cvalue){
+			document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT';
+		},
+		remove: function(cname){
+			document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+		}
+	};
+
 	//
 	//	MENU AND LANGUAGE PANEL
 	//
@@ -169,5 +188,48 @@
 	[].slice.call( document.querySelectorAll( '.jumbo-wrapper' ) ).forEach( function( nav ) {
 		new DotNav( nav );
 	} );
+
+	//
+	//	PROFILE
+	//
+	var profile;
+
+	var loggedSelector = '.userLogged',
+		notLoggedSelector = '.userNotLogged',
+		profileSectionSelector = '#profileSection';
+
+	var apiToken = cookieFactory.get('authToken');
+	if (apiToken) {
+		initProfile(apiToken);
+	} else {
+		fe($(notLoggedSelector), function(el) {el.style.display = ''});
+	}
+
+	///////////////////
+
+	function initProfile(apiToken) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'https://api.dev.hearth.net/profile');
+		xhr.setRequestHeader('X-API-TOKEN', apiToken);
+		xhr.setRequestHeader('Accept', 'application/vnd.hearth-v1+json');
+		xhr.setRequestHeader('X-API-VERSION', '1');
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.onload = function() {
+		    if (xhr.status === 200) {
+		        profile = JSON.parse(xhr.responseText);
+				console.log(profile);
+				fillProfile(profile);
+		    } else {
+				fe($(notLoggedSelector), function(el) {el.style.display = ''});
+		        console.log('Profile request failed. Returned status of ' + xhr.status);
+		    }
+		};
+		xhr.send();
+	}
+
+	function fillProfile(profileObject) {
+		fe($(loggedSelector), function(el) {el.style.display = ''});
+		$(profileSectionSelector).innerHTML = (profile.avatar.small ? '<img class="avatar" src="' + profile.avatar.small + '" />' : '') + '<a href="/app/profile/' + profile._id + '" class="text-emphasize">' + [profile.name, profile.surname].join('\u00A0').trim() + '</a>';
+	}
 
 })(window);
