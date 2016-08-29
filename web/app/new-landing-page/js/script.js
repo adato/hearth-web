@@ -59,90 +59,16 @@
 	//
 	//	MENU AND LANGUAGE PANEL
 	//
-	var isActive = 'is-active';
-
-	// var langToggle = 'language-toggle',
-	// 	langPanel = 'language-panel';
-	// var hamburger = $('#hamburger');
-	// var ltoggle = $('.' + langToggle);
-	// var menu = $('#main-navigation');
-	// var windowShown;
-	// var action = true;
-	// if (!(hamburger && menu)) throw new Error('all elements are required - hamburger, language-panel, main-navigation');
-	// fe(ltoggle, function(el) {
-	// 	el.addEventListener('click', function(event) {
-	// 		toggleMenu(event, 'lang');
-	// 	});
-	// });
-	// hamburger.addEventListener('click', function(event) {
-	// 	toggleMenu(event, 'menu');
-	// });
-	//
-	// function langHandler(lp) {
-	// 	menu.classList.remove(isActive);
-	// 	hamburger.classList.remove(isActive);
-	// 	// fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
-	//
-	// 	if (!action) return action = true;
-	// 	if (lp) lp.classList.toggle(isActive);
-	// }
-	// function menuHandler() {
-	// 	fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
-	//
-	// 	if (!action) return action = true;
-	// 	hamburger.classList.toggle(isActive);
-	// 	menu.classList.toggle(isActive);
-	// }
-	//
-	// function toggleMenu(event, w) {
-	// 	var toggle = event ? findParentBySelector(event.target, '.' + langToggle) : false;
-	// 	var lp;
-	// 	if (toggle) {
-	// 		lp = toggle.parentNode.getElementsByClassName(langPanel);
-	// 		if (!(lp && lp.length)) throw new Error('".language-panel" element required as a sibling to language-toggle.');
-	// 		lp = lp[0];
-	// 	}
-	// 	if (!windowShown) {
-	// 		window.addEventListener('mousedown', toggleHandler);
-	// 	} else {
-	// 		window.removeEventListener('mousedown', toggleHandler);
-	// 	}
-	// 	if (w === 'menu') {
-	// 		menuHandler();
-	// 	} else if (w === 'lang') {
-	// 		langHandler((lp ? lp : false));
-	// 	} else {
-	// 		fe($('.' + langPanel), function(el) {el.classList.remove(isActive);});
-	// 		menu.classList.remove(isActive);
-	// 		hamburger.classList.remove(isActive);
-	// 	}
-	// 	windowShown = w;
-	// }
-	//
-	// function toggleHandler(event) {
-	// 	if (!(findParentBySelector(event.target, '.hover-window'))) {
-	// 		var burgerAction = findParentBySelector(event.target, '#hamburger');
-	// 		var ltoggleAction = findParentBySelector(event.target, '#language-toggle');
-	// 		if ((burgerAction && menu.classList.contains('is-active')) || (ltoggleAction && lp.classList.contains('is-active'))) {
-	// 			action = false;
-	// 		}
-	// 		toggleMenu({}, false);
-	// 		window.removeEventListener('click', toggleHandler);
-	// 	} else if (event.target.tagName === 'A') {
-	// 		window.setTimeout(toggleMenu, 400);
-	// 	};
-	// }
-
-	//
-	//	NEW DROPDOWN HANDLER
-	//
-	fe($('[dropdown]'), function(el) {
+	var isActive = 'is-active',
+		dropdownIdentificator = 'dropdown',
+		dropdownSelector = '[' + dropdownIdentificator + ']';
+	fe($(dropdownSelector), function(el) {
 		el.addEventListener('click', function() {
-			var target = el.getAttribute('dropdown');
+			var target = el.getAttribute(dropdownIdentificator);
 
 			// hide all other dropdowns
-			fe($('[dropdown]:not([dropdown=' + target + '])'), function(otherEl) {
-				var otherELNode = $('#' + otherEl.getAttribute('dropdown'));
+			fe($(dropdownSelector + ':not([' + dropdownIdentificator + '=' + target + '])'), function(otherEl) {
+				var otherELNode = $('#' + otherEl.getAttribute(dropdownIdentificator));
 				if (otherELNode) otherELNode.classList.remove(isActive);
 			});
 
@@ -152,7 +78,7 @@
 
 			// bind/unbind click on window
 			setTimeout(function(){
-				window[targetNode.classList.contains(isActive) ? 'addEventListener' : 'removeEventListener']('click', toggleHandler);
+				setToggleHandler(targetNode.classList.contains(isActive));
 			});
 
 			// dropdown options
@@ -166,10 +92,13 @@
 		});
 	});
 	function toggleHandler(event) {
+		var dd = findParentBySelector(event.target, dropdownSelector);
+			selector = dd ? dropdownSelector + ':not([' + dropdownIdentificator + '=' + dd.getAttribute(dropdownIdentificator) + '])' : dropdownSelector;
+
 		if (!(findParentBySelector(event.target, '.hover-window'))) {
-			// close all dropdowns
-			fe($('[dropdown]'), function(el) {
-				var elNode = $('#' + el.getAttribute('dropdown'));
+			// close (?all) dropdowns
+			fe($(selector), function(el) {
+				var elNode = $('#' + el.getAttribute(dropdownIdentificator));
 				if (elNode) elNode.classList.remove(isActive);
 
 				// dropdown options
@@ -181,6 +110,21 @@
 					} catch (e) {console.info(e);}
 				}
 			});
+			if (!dd) setToggleHandler(false);
+		}
+	}
+	var toggleHandlerAttached;
+	/**
+	 * toggle handler attacher preventing duplicate event attaching
+	 */
+	function setToggleHandler(value) {
+		if (value) {
+			if (toggleHandlerAttached) return;
+			toggleHandlerAttached = true;
+			window.addEventListener('click', toggleHandler);
+		} else {
+			window.removeEventListener('click', toggleHandler);
+			toggleHandlerAttached = false;
 		}
 	}
 

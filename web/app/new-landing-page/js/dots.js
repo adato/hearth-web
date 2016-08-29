@@ -41,6 +41,11 @@
 			defaultIntervalWrapper = null,
 			self = this;
 
+		/////////////////////////////
+		// window click handler trick var
+		var timeoutClick;
+		/////////////////////////////
+
 		dots.forEach( function( dot, idx ) {
 			dot.addEventListener( 'click', function( ev ) {
 
@@ -48,6 +53,13 @@
 				defaultIntervalWrapper = setInterval( defaultIntervalFn, defaultInterval );
 
 				ev.preventDefault();
+				/////////////////////////////
+				// required because it triggers the window click event handler
+				if (timeoutClick) {
+					ev.stopImmediatePropagation();
+					timeoutClick = false;
+				}
+				/////////////////////////////
 				if( idx !== current ) {
 					dots[ current ].className = '';
 
@@ -80,6 +92,10 @@
 		} );
 
 		function defaultIntervalFn ( forceIndex ) {
+			/////////////////////////////
+			// window click handler trick var
+			timeoutClick = true;
+			/////////////////////////////
 			dots[ ( forceIndex !== void 0 ? forceIndex : ( current != dots.length - 2 ) ? current + 1 : 0 ) ].click();
 		}
 

@@ -258,10 +258,10 @@ a.masonry-item:hover .button,
 		left: 20px;
 	}
 	.hover-window.is-active.window-align-right{
-		left: inherit; right: -15px;
+		left: inherit; right: 5px;
 	}
 	.hover-window.window-align-right::before{
-		left: inherit; right: 27px;
+		left: inherit; right: 18px;
 	}
 	.language-panel .language-option{
 		margin-bottom: 10px;
@@ -494,9 +494,15 @@ html[lang='en'] .language-panel .lang-en{
 	AVATAR
 *******************/
 .avatar {
-	width: 60px; height: 60px;
+	width: 50px; height: 50px;
 	border-radius: 50%;
 	border: 4px solid #fff;
+	transition: .3s all;
+}
+@media (min-width: 768px) {
+	.avatar {
+		width: 60px; height: 60px;
+	}
 }
 
 /*******************
