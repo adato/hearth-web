@@ -217,8 +217,7 @@
 		profileFullNameSelector = '[profile-name]',
 		profileLinkSelector = '[profile-link]';
 
-	// var apiToken = cookieFactory.get('authToken');
-	var apiToken = 'siJsDpTNyUJ7x6xVyz9A';
+	var apiToken = cookieFactory.get('authToken');
 	if (apiToken) {
 		initProfile(apiToken);
 	} else {
