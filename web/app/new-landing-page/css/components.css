@@ -241,6 +241,11 @@ li{display: block;}
 .flex-10{flex: 10;}
 .flex-11{flex: 11;}
 .flex-12{flex: 12;}
+@media (min-width: 992px){
+	.flex-large-align-center{
+		align-items: center;
+	}
+}
 /* /DISPLAY */
 
 .overflow-hidden{overflow: hidden}

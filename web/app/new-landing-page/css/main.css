@@ -1,5 +1,4 @@
 html{
-	/*font: 14px/1.35 tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;*/
 	font: 20px/1.25 tahoma, arial, 'Merriweather Sans', \5FAE\8F6F\96C5\9ED1, sans-serif;
 	scroll-behavior: smooth;
 }
@@ -13,7 +12,7 @@ h1{
 }
 @media (min-width: 768px){
 	html{
-		font: 24px/1.25 tahoma, arial, 'Merriweather Sans', \5FAE\8F6F\96C5\9ED1, sans-serif;
+		font: 20px/1.6 tahoma, arial, 'Merriweather Sans', \5FAE\8F6F\96C5\9ED1, sans-serif;
 	}
 	h1{
 		font-size: 48px;
@@ -28,6 +27,12 @@ p{
 	margin: 16px 0;
 	background: #ccc;
 }
+/*******************
+	JS HELPERS
+*******************/
+[user-not-logged], [user-logged] {display: none}
+.inited[user-not-logged], .inited[user-logged] {display: inherit}
+
 /*******************
 	COLOR
 *******************/
@@ -253,10 +258,10 @@ a.masonry-item:hover .button,
 		left: 20px;
 	}
 	.hover-window.is-active.window-align-right{
-		left: inherit; right: -15px;
+		left: inherit; right: 5px;
 	}
 	.hover-window.window-align-right::before{
-		left: inherit; right: 27px;
+		left: inherit; right: 18px;
 	}
 	.language-panel .language-option{
 		margin-bottom: 10px;
@@ -271,25 +276,31 @@ a.masonry-item:hover .button,
 	/*#main-navigation.is-active{
 		left: -5px;
 	}*/
+	.hover-window li,
 	#main-navigation li{
 		border-bottom: 1px solid #ddd;
 	}
+	.hover-window li:last-child,
 	#main-navigation li:last-child{
 		border-bottom: none;
 	}
+	.hover-window li a,
 	#main-navigation li a{
 		display: block;
 		min-width: 200px;
 		margin: 0;
 	}
+	.hover-window li:first-child a,
 	#main-navigation li:first-child a{
 		border-top-left-radius: 5px;
 		border-top-right-radius: 5px;
 	}
+	.hover-window li:last-child a,
 	#main-navigation li:last-child a{
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 	}
+	.hover-window li a:hover,
 	#main-navigation li a:hover{
 		background: #f4f4f4;
 	}
@@ -345,7 +356,7 @@ html[lang='en'] .language-panel .lang-en{
 .jumbo-wrapper{
 	height: 520px;
 	min-height: 520px;
-	background-color: #aaa;
+	background-color: #e4f8ff;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center 0;
@@ -483,9 +494,15 @@ html[lang='en'] .language-panel .lang-en{
 	AVATAR
 *******************/
 .avatar {
-	width: 60px; height: 60px;
+	width: 50px; height: 50px;
 	border-radius: 50%;
-	margin-right: 16px;
+	border: 4px solid #fff;
+	transition: .3s all;
+}
+@media (min-width: 768px) {
+	.avatar {
+		width: 60px; height: 60px;
+	}
 }
 
 /*******************
@@ -695,10 +712,10 @@ a.masonry-item{
 /*******************
 	SOCIAL
 *******************/
-.footer{
+/*.footer{
 	font-size: 20px;
 	line-height: 32px;
-}
+}*/
 .footer .standard-p{
 	font-size: inherit;
 	line-height: inherit;
@@ -709,6 +726,15 @@ a.masonry-item{
 }
 .footer a:hover{
 	color: #fa5800;
+}
+.footer .hr{
+	margin: 60px;
+	width: inherit;
+}
+@media (min-width: 768px) {
+	.footer .hr{
+		margin: 30px 0;
+	}
 }
 
 .social-bar{
@@ -850,7 +876,7 @@ a.masonry-item{
     .nav.nav-justified > li > a .quote { right: 0px; bottom: 0px; }
 }
 @media (min-width: 1200px) {
-    .nav.nav-justified > li > a .quote { right: 20px; bottom: 20px; }
+    .nav.nav-justified > li > a .quote { right: 32px; bottom: 20px; }
 }
 
 /*******************
