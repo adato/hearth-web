@@ -110,15 +110,15 @@
 	<!-- /TODO - CLEAN-UP -->
 
 	<div class='header-wrapper'>
-		<div class='flex'>
-			<div class='nav-clickable position-relative flex'>
-				<button class='hamburger hamburger--spring medium-down' type='button' id='hamburger' dropdown='main-navigation' dropdown-opts='{"applyActiveToSelf": true}'>
+		<div class='flex flex-stretch-content'>
+			<div class='nav-clickable flex position-relative'>
+				<button class='hamburger hamburger--spring medium-down' type='button' id='hamburger' dropdown='main-navigation' dropdown-opts='{"applyActiveToSelf": true}' deactivate-after-link-usage>
 					<span class='hamburger-box'>
 						<span class='hamburger-inner'></span>
 					</span>
 				</button>
 				<div class='medium-down'>
-					<div class='flex hover-window' id='main-navigation'>
+					<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
 						<ul class='margin-none padding-none'>
 							<li>
 								<a href='#target-o-co-jde' class='nav-item'>O co jde</a>
@@ -159,8 +159,8 @@
 			</div>
 			<div class='logo medium-up'></div>
 		</div>
-		<nav class='flex'>
-			<ul class='main-navigation large-only hover-window'>
+		<nav class='flex flex-stretch-content'>
+			<ul class='main-navigation large-only'>
 				<li>
 					<a href='#target-o-co-jde' class='nav-item has-hover-effect'>O co jde</a>
 				</li>
@@ -184,27 +184,39 @@
 			</div>
 			<div class='flex position-relative' user-logged id='profileSection' style='display: none'>
 				<img class='avatar' profile-image dropdown='profile-box' />
-				<div class='hover-window window-align-right' id='profile-box'>
-					<div class='text-emphasize' profile-name></div>
-					<div class='hr'></div>
-					<ul class='margin-none padding-none'>
-						<li class='nowrap'>
+				<div class='hover-window padding-none window-align-right' id='profile-box'>
+					<div class='padding-horizontal-medium padding-vertical-small text-emphasize' profile-name></div>
+					<div class='hr margin-vertical-none'></div>
+					<ul class='margin-none padding-medium sub-link-list'>
+						<li>
 							<a class='nav-item' href='/'>
-								<i class='fa fa-fw fa-fire'></i>
+								<i class='fa fa-fw fa-fire margin-right-small'></i>
 								Podívat se na tržiště
 							</a>
 						</li>
-						<li class='nowrap'>
-							<a class='nav-item' profile-link><i class='fa fa-fw fa-user'></i>Profil</a>
+						<li>
+							<a class='nav-item' profile-link>
+								<i class='fa fa-fw fa-user margin-right-small'></i>
+								Profil
+							</a>
 						</li>
-						<li class='nowrap'>
-							<a class='nav-item' href='/app/profile-edit'><i class='fa fa-fw fa-edit'></i>Upravit profil</a>
+						<li>
+							<a class='nav-item' href='/app/profile-edit'>
+								<i class='fa fa-fw fa-edit margin-right-small'></i>
+								Upravit profil
+							</a>
 						</li>
-						<li class='nowrap'>
-							<a class='nav-item' href='/app/profile-settings'><i class='fa fa-fw fa-cog'></i>Nastavení</a>
+						<li>
+							<a class='nav-item' href='/app/profile-settings'>
+								<i class='fa fa-fw fa-cog margin-right-small'></i>
+								Nastavení
+							</a>
 						</li>
-						<li class='nowrap'>
-							<a class='nav-item' href='/'><i class='fa fa-fw fa-sign-out'></i>Odhlásit se</a>
+						<li>
+							<a class='nav-item' href='/'>
+								<i class='fa fa-fw fa-sign-out margin-right-small'></i>
+								Odhlásit se
+							</a>
 						</li>
 					</ul>
 				</div>

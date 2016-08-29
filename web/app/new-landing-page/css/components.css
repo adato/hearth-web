@@ -222,8 +222,8 @@ li{display: block;}
 .flex-stretch-content{
 	-ms-align-content: stretch;
 	align-content: stretch;
-	-ms-align-items: stretch;
-	align-items: stretch;
+	/*-ms-align-items: stretch;
+	align-items: stretch;*/
 }
 .flex-wrap{
 	-ms-flex-wrap: wrap;
