@@ -7,10 +7,11 @@
  *	Bubble placeholders should look like <div bubble-placeholder="feature"></div>
  */
 
-angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth', '$analytics', '$state', '$compile', '$document', '$timeout',
-	function(User, $rootScope, Auth, $analytics, $state, $compile, $document, $timeout) {
+angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth', '$analytics', '$state', '$compile', '$document', '$timeout', 'ViewportUtils',
+	function(User, $rootScope, Auth, $analytics, $state, $compile, $document, $timeout, ViewportUtils) {
 
 		var factory = {};
+		factory.isInViewport = ViewportUtils.isInViewport;
 		factory.CLOSE_REASONS = {
 			'DOCUMENT_CLICK': 'document-click',
 			'BUBBLE_CLICK': 'bubble-click',
@@ -200,21 +201,6 @@ angular.module('hearth.services').factory('Bubble', ['User', '$rootScope', 'Auth
 				$rootScope.loggedUser.reminders.splice(paramObj.type, 1);
 			});
 		};
-
-		/**
-		 *	Function that checks whether an element is currently in the viewport
-		 *	@return Boolean
-		 */
-		factory.isInViewport = function(el) {
-			if (!el) return false;
-			var rect = el.getBoundingClientRect();
-			return (
-				rect.top >= 0 &&
-				rect.left >= 0 &&
-				rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-				rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-			);
-		}
 
 		return factory;
 
