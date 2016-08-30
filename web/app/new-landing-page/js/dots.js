@@ -100,7 +100,19 @@
 		}
 
 		defaultIntervalWrapper = setInterval( defaultIntervalFn, defaultInterval );
-		defaultIntervalFn(0);
+
+		// init
+		// assign random number and start the count from it
+		// dots.length - 1 because we have a dummy dot there
+		current = getRandomInt({min: 1, max: dots.length - 1 });
+		defaultIntervalFn( current - 1 );
+
+		function getRandomInt(opts) {
+			opts = opts || {};
+			opts.min = opts.min || 0;
+			opts.max = opts.max || 10;
+    		return Math.floor(Math.random() * (opts.max - opts.min) + opts.min);
+		}
 
 	}
 

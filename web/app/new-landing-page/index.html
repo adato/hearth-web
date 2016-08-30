@@ -3,16 +3,16 @@
 <head>
 	<meta charset='utf-8' />
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<meta name='author' content='Hearth.net' />
 
-	<meta property="og:type" content="website">
-    <meta property="og:title" content="Hearth.net">
-    <meta property="og:description" content="Prostor, kde dávat, znamená dostat mnohem víc">
-    <meta property="og:url" content="https://www.hearth.net/">
-    <meta property="og:image" content="https://www.hearth.net/app/images/facebook-sharing-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+	<meta property='og:type' content='website'>
+    <meta property='og:title' content='Hearth.net'>
+    <meta property='og:description' content='Prostor, kde dávat, znamená dostat mnohem víc'>
+    <meta property='og:url' content='https://www.hearth.net/'>
+    <meta property='og:image' content='https://www.hearth.net/app/images/facebook-sharing-image.jpg' />
+    <meta property='og:image:width' content='1200' />
+    <meta property='og:image:height' content='630' />
 
 	<title>Hearth.net</title>
 	<link rel='shortcut icon' type='image/x-icon' href='data:image/x-icon;base64,iconiconicon' />
@@ -24,7 +24,7 @@
 	<link rel='stylesheet' type='text/css' href='./css/font-awesome.min.css' />
 
 	<!-- TODO - CLEAN-UP -->
-	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Montserrat|Open+Sans|Raleway|Roboto&subset=latin-ext" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Merriweather+Sans|Montserrat|Open+Sans|Raleway|Roboto&subset=latin-ext' rel='stylesheet'>
 	<!-- /TODO - CLEAN-UP -->
 
 </head>
@@ -232,7 +232,7 @@
 			</div>
 		</nav>
 	</div>
-	<div class='jumbo-wrapper overflow-hidden' aeg-slideshow>
+	<div class='jumbo-wrapper overflow-hidden'>
 		<div class='jumbo-show show-1'></div>
 		<div class='jumbo-show show-2'></div>
 		<div class='jumbo-show show-3'></div>
@@ -248,14 +248,15 @@
 				<a href='' class='button'>
 					Vstupte
 				</a>
-				<div class="dotstyle-wrapper" style='visibility: hidden;'>
-					<div class="dotstyle dotstyle-dotmove">
+				<!-- <div class='dotstyle-wrapper' style='visibility: hidden;'> -->
+				<div class='dotstyle-wrapper'>
+					<div class='dotstyle dotstyle-dotmove'>
 						<ul>
-							<li class="current"><a href="#">#1</a></li>
-							<li><a href="#">#2</a></li>
-							<li><a href="#">#3</a></li>
-							<li><a href="#">#4</a></li>
-							<li><a href="#">#5</a></li>
+							<li class='current'><a href='#'>#1</a></li>
+							<li><a href='#'>#2</a></li>
+							<li><a href='#'>#3</a></li>
+							<li><a href='#'>#4</a></li>
+							<li><a href='#'>#5</a></li>
 							<li><!-- dummy dot - has design purpose - DO NOT REMOVE --></li>
 						</ul>
 					</div>
@@ -375,23 +376,39 @@
 				</div>
 			</div>
 		</section>
-		<section id='target-jak-na-to'>
+		<style>
+			.q p {margin-top: 3rem; position: relative}
+			.q p:first-of-type {margin-top: 2rem;}
+			.q p:first-of-type::after {content: ''}
+			.q p::after {
+				content: '\00B7 \25CF \00B7';
+				position: absolute;
+				top: -1.5rem; left: 50%;
+				font-family: Arial;
+				font-size: 1rem;
+				line-height: 2px;
+				color: #ddd;
+			}
+		</style>
+		<section id='target-jak-na-to' class='q'>
 			<h1>Jak na to</h1>
 			<p class='text-align-center'>
-				Je to hračka. Během pár minut si založíte profil a už jste mezi námi! Doplňte si celý profil,
-				ať jste šik a vrhněte se na tržiště, naše pulzující srdce. Zde nabízíte své dary a žádáte
-				druhé o splnění svých přání.
+				<strong>Darujte, co máte a umíte</strong><br />
+				Co vy považujete za samozřejmé, udělá druhému radost.<br />Co udělá druhému radost, vám dá pocit štěstí.
 			</p>
 			<p class='text-align-center'>
-				Zajímáte se o něco? Najděte si svou komunitu a získejte inspiraci
-				od lidí, kteří jsou vám blíž. Radujte se a seznamujte, dávejte a přijímejte, děkujte a hodnoťte.
-				Ocení to všichni. A nejlepší na konec? Je to jen začátek. Směle do toho.
+				<strong>Přijměte, co vám chybí</strong><br />
+				Nebojte se požádat o to, co vás potěší.<br />Díky vám zažije někdo jiný pocit štěstí z nabídnutého daru.
+			</p>
+			<p class='text-align-center'>
+				<strong>Poznejte nové přátele</strong><br />
+				Nejste v tom sami. Je nás víc, kteří věří,<br />že sdílet radost ze života je naprosto přirozené.
 			</p>
 		</section>
 		<section>
 			<div class='text-align-center'>
 				<a href='/app/register' class='button alt'>
-					Zaregistrovat se
+					Jdu do toho!
 				</a>
 			</div>
 		</section>
@@ -408,53 +425,52 @@
 			        <div class='max-500 flex flex-medium-column flex-align-start flex-large-align-center'>
 			            <div class='medium-flex flex-1'>
 			                <!-- Nav tabs -->
-			                <ul class='nav nav-justified' id="nav-tabs" role="tablist">
-			                	<li role="presentation" class="active">
-			                        <a href="#barta" aria-controls="barta" role="tab" data-toggle="tab">
+			                <ul class='nav nav-justified' id='nav-tabs' role='tablist'>
+			                	<li role='presentation' class='active'>
+			                        <a href='#barta' aria-controls='barta' role='tab' data-toggle='tab'>
 										<div class='position-relative text-align-center'>
-				                            <img class="img-circle" src="img/people/jiri-barta.png" />
-				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+				                            <img class='img-circle' src='img/people/jiri-barta.png' />
+				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
 										<div class='text-align-center margin-top-small large-only'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Jiří Bárta</strong></p>
-				                            <small class='text-muted'>Nadace Víla</small>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Jiří Bárta</strong></p>
+				                            <small class='text-muted'>Nadace Via</small>
 										</div>
 			                        </a>
 			                    </li>
-			                    <li role="presentation" class="">
-			                        <a href="#panek" aria-controls="panek" role="tab" data-toggle="tab">
+			                    <li role='presentation' class=''>
+			                        <a href='#panek' aria-controls='panek' role='tab' data-toggle='tab'>
 										<div class='position-relative text-align-center'>
-				                            <img class="img-circle" src="img/people/simon-panek.png" />
-				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+				                            <img class='img-circle' src='img/people/simon-panek.png' />
+				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
 										<div class='text-align-center margin-top-small large-only'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Šimon Pánek</strong></p>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Šimon Pánek</strong></p>
 											<small class='text-muted'>Člověk v tísni</small>
 										</div>
 			                        </a>
 			                    </li>
-			                    <li role="presentation" class="">
-			                        <a href="#hajzler" aria-controls="hajzler" role="tab" data-toggle="tab">
+			                    <li role='presentation' class=''>
+			                        <a href='#hajzler' aria-controls='hajzler' role='tab' data-toggle='tab'>
 										<div class='position-relative text-align-center'>
-				                            <img class="img-circle" src="img/people/tomas-hajzler.png" />
-				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+				                            <img class='img-circle' src='img/people/tomas-hajzler.png' />
+				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
 										<div class='text-align-center margin-top-small large-only'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Tomáš Hajzler</strong></p>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Tomáš Hajzler</strong></p>
 											<small class='text-muted'>Peoplecomm.cz</small>
 										</div>
 			                        </a>
 			                    </li>
-			                    <li role="presentation" class="">
-			                        <a href="#vaclavek" aria-controls="vaclavek" role="tab" data-toggle="tab">
+			                    <li role='presentation' class=''>
+			                        <a href='#vaclavek' aria-controls='vaclavek' role='tab' data-toggle='tab'>
 										<div class='position-relative text-align-center'>
-				                            <img class="img-circle" src="img/people/petr-vaclavek.png" />
-				                            <span class="quote"><i class="fa fa-quote-left"></i></span>
+				                            <img class='img-circle' src='img/people/petr-vaclavek.png' />
+				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
 										<div class='text-align-center margin-top-small large-only'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Petr Václavek</strong></p>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Petr Václavek</strong></p>
 											<small class='text-muted'>novebohatstvi.cz</small>
-											<!-- <small>Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</small> -->
 										</div>
 			                        </a>
 			                    </li>
@@ -462,58 +478,74 @@
 			            </div>
 			            <div class='medium-flex flex-2 margin-horizontal-large flex-2' id='gesichte'>
 			                <!-- Tab panes -->
-			                <div class="tab-content" id="tabs-collapse">
-			                     <div role="tabpanel" class="tab-pane fade in active" id="barta">
-			                        <div class="tab-inner">
+			                <div class='tab-content' id='tabs-collapse'>
+			                     <div role='tabpanel' class='tab-pane fade in active' id='barta'>
+			                        <div class='tab-inner'>
 										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Jiří Bárta</strong></p>
-				                            <small>Nadace Víla</small>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Jiří Bárta</strong></p>
+				                            <small>Nadace Via</small>
 										</div>
-			                            <p class="lead">
+			                            <p class='lead'>
 											Parádní nápad. Dar je radost i starost. Je projevem zájmu, příležitost
 											pomoci anebo pomoc přijmout. Pro někoho příležitost naděje, pro jiného
 											závazek pomoci. Držím vám palce a přeju, aby se díky Hearth.net
 											potkávalo co nejvíc lidí a darů ve správný čas.
 										</p>
+										<p class='text-align-right large-only'>
+											&mdash;&nbsp;Jiří Bárta<br />
+											<small class='text-muted'><i>Nadace Via</i></small>
+										</p>
 			                        </div>
 			                    </div>
-			                    <div role="tabpanel" class="tab-pane fade" id="panek">
-			                        <div class="tab-inner">
+			                    <div role='tabpanel' class='tab-pane fade' id='panek'>
+			                        <div class='tab-inner'>
 										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Šimon Pánek</strong></p>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Šimon Pánek</strong></p>
 											<small>Ředitel humanitární organizace Člověk v tísni</small>
 										</div>
-			                            <p class="lead">
+			                            <p class='lead'>
 											Zajímavá možnost jak se ve složitém a uspěchaném světě vrátit k prostému
 											aktu někomu něco darovat, pomoci mu, seznámit se s ním. Dřív to šlo v rámci
 											komunity a širšího příbuzenstva či kmene. Dnes máme Hearth.net a to je skvělé.
 										</p>
+										<p class='text-align-right large-only'>
+											&mdash;&nbsp;Šimon Pánek<br />
+											<small class='text-muted'><i>Ředitel humanitární organizace Člověk v tísni</i></small>
+										</p>
 			                        </div>
 			                    </div>
-			                    <div role="tabpanel" class="tab-pane fade" id="hajzler">
-			                        <div class="tab-inner">
+			                    <div role='tabpanel' class='tab-pane fade' id='hajzler'>
+			                        <div class='tab-inner'>
 										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Tomáš Hajzler</strong></p>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Tomáš Hajzler</strong></p>
 											<small>Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou</small>
 										</div>
-			                            <p class="lead">
+			                            <p class='lead'>
 											Nadchla mě vaše jednoduchost. Přestěhoval jsem se a myslím, že mi
 											Hearth.net pomůže vybudovat vztahy v novém místě. Dávání bylo a
 											bude základ každé rodiny a navíc vám přináší skvělý pocit. Dnešní
 											doba sociálních sítí k tomu ideálně nahrává.
 										</p>
+										<p class='text-align-right large-only'>
+											&mdash;&nbsp;Tomáš Hajzler<br />
+											<small class='text-muted'><i>Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou</i></small>
+										</p>
 			                        </div>
 			                    </div>
-			                    <div role="tabpanel" class="tab-pane fade" id="vaclavek">
-			                        <div class="tab-inner">
+			                    <div role='tabpanel' class='tab-pane fade' id='vaclavek'>
+			                        <div class='tab-inner'>
 										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class="text-uppercase">Petr Václavek</strong></p>
+											<p class='margin-vertical-none'><strong class='text-uppercase'>Petr Václavek</strong></p>
 											<small>Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</small>
 										</div>
-			                            <p class="lead">
+			                            <p class='lead'>
 											Hearth.net je skvělé místo pro každého, kdo se chce spojit se
 											světem jiným, novým a smysluplným způsobem. Dává možnost jak
 											uplatnit svůj dar-talent, a dělat tak, co nás naplňuje radostí.
+										</p>
+										<p class='text-align-right large-only'>
+											&mdash;&nbsp;Petr Václavek<br />
+											<small class='text-muted'><i>Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</i></small>
 										</p>
 			                        </div>
 			                    </div>
@@ -529,7 +561,7 @@
 	</div>
 	<div class='section contains-slash background-alternate'>
 		<section id='target-deje-se'>
-			<h1>Právě se děje</h1>
+			<h1>Inspirujte se</h1>
 			<div class='medium-flex flex-align-start flex-medium-divide'>
 				<div class='flex-div flex-1 blog-block'>
 					<div class='blog-img-wrapper'>
@@ -646,7 +678,7 @@
 				</div>
 			</div>
 		</section>
-		<div class="divider-main"></div>
+		<div class='divider-main'></div>
 		<section class='text-align-center'>
 			<div class='social-bar flex flex-center flex-wrap'>
 				<a target='_blank' href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko' title='Hearthí Facebook fanpage'><i class='fa fa-fw fa-2x fa-facebook'></i></a>
