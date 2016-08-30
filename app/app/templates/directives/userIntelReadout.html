@@ -13,7 +13,7 @@
 		</div>
 		<div class="display-table-cell" ng-if="!entity.community_about_shortened" ng-bind-html="entity.about | linky:'_blank':{rel: 'nofollow'} | nl2br"></div>
 		<div class="display-table-cell" ng-if="entity.community_about_shortened">
-			<span ng-bind-html="entity.community_about_shortened | linky:'_blank':{rel: 'nofollow'}"></span>
+			<span ng-bind-html="entity.community_about_shortened | linky:'_blank':{rel: 'nofollow'} | nl2br"></span>
 			<a ng-href="community/{{ entity._id }}/about" class="bold">
 				{{:: 'COMMUNITY.PROFILE.CLICK_TO_EXPAND' | translate }}
 			</a>
@@ -27,7 +27,7 @@
 		<div class="display-table-cell" ng-bind="entity.about_shortened"></div>
 	</div>
 
-	<div class="display-table-row" ng-if="canShow('interests') && entity.interests[0] != ''">
+	<div class="display-table-row" ng-if="canShow('interests') && entity.interests.length && entity.interests[0] != ''">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-smile-o"></i>
 		</div>
@@ -41,7 +41,7 @@
 		<div class="display-table-cell" ng-bind="entity.work"></div>
 	</div>
 
-	<div class="display-table-row" ng-if="canShow('locations') && entity.locations[0].short_address">
+	<div class="display-table-row" ng-if="canShow('locations') && entity.locations.length && entity.locations[0].short_address">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-map-marker"></i>
 		</div>
@@ -81,7 +81,7 @@
 		<div class="display-table-cell" ng-bind="entity.formatted_phone"></div>
 	</div>
 
-	<div class="display-table-row" ng-if="canShow('webs') && entity.webs[0]">
+	<div class="display-table-row" ng-if="canShow('webs') && entity.webs.length && entity.webs[0]">
 		<div class="display-table-cell addon">
 			<i class="fa fa-fw fa-link"></i>
 		</div>
