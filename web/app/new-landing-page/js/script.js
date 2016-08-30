@@ -240,7 +240,8 @@
 				// console.log(profile);
 				fillProfile(profile);
 		    } else {
-				fe($(notLoggedSelector), function(el) {el.style.display = ''});
+				fe($(notLoggedSelector), function(el) {el.style.display = 'inherit';el.classList.add('inited');});
+				fe($(loggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited');});
 		        console.log('Profile request failed. Returned status of ' + xhr.status);
 		    }
 		};

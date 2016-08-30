@@ -107,6 +107,11 @@ a.masonry-item:hover .button,
 .button:hover{
 	box-shadow: 0 2px 3px rgba(0,0,0,.4);
 }
+
+.button.special{
+	padding: 4px 20px;
+	border: none;
+}
 /*******************
 	TRIBAR
 *******************/
@@ -196,7 +201,7 @@ a.masonry-item:hover .button,
 @media (min-width: 400px){
 	.nav-item{
 		margin: 0 4px;
-		font-size: 20px
+		font-size: 16px
 	}
 }
 .nav-item:hover.has-hover-effect{
@@ -882,10 +887,10 @@ a.masonry-item{
 
 }
 @media (min-width: 768px) {
-    .nav.nav-justified > li > a .quote { right: 0px; bottom: 0px; }
+    .nav.nav-justified > li > a .quote { right: 0px; bottom: 2px; }
 }
 @media (min-width: 1200px) {
-    .nav.nav-justified > li > a .quote { right: 32px; bottom: 20px; }
+    .nav.nav-justified > li > a .quote { right: 10px; bottom: 10px; }
 }
 
 /*******************
