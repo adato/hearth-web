@@ -256,6 +256,8 @@ li{display: block;}
 @media (min-width: 992px){
 	.small-text-align-center{text-align: inherit}
 }
+.text-align-right{text-align: right}
+.text-align-left{text-align: left}
 /* /ALIGNMENT */
 
 /* VERTICAL-ALIGNMENT */
