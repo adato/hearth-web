@@ -121,16 +121,10 @@
 					<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
 						<ul class='margin-none padding-none'>
 							<li>
-								<a href='#target-o-co-jde' class='nav-item'>O co jde</a>
+								<a href='#target-jak-na-to' class='nav-item'>Jak na to?</a>
 							</li>
 							<li>
-								<a href='#target-jak-na-to' class='nav-item'>Jak na to</a>
-							</li>
-							<li>
-								<a href='#target-deje-se' class='nav-item'>Děje se</a>
-							</li>
-							<li>
-								<a href='' class='nav-item'>O Hearth</a>
+								<a href='#target-podpor-nas' class='nav-item'>Podpoř nás</a>
 							</li>
 						</ul>
 					</div>
@@ -162,23 +156,17 @@
 		<nav class='flex flex-stretch-content'>
 			<ul class='main-navigation large-only'>
 				<li>
-					<a href='#target-o-co-jde' class='nav-item has-hover-effect'>O co jde</a>
+					<a href='#target-jak-na-to' class='nav-item'>Jak na to?</a>
 				</li>
 				<li>
-					<a href='#target-jak-na-to' class='nav-item has-hover-effect'>Jak na to</a>
-				</li>
-				<li>
-					<a href='#target-deje-se' class='nav-item has-hover-effect'>Děje se</a>
-				</li>
-				<li>
-					<a href='' class='nav-item has-hover-effect'>O Hearth</a>
+					<a href='#target-podpor-nas' class='nav-item'>Podpoř nás</a>
 				</li>
 			</ul>
 			<div class='flex' user-not-logged style='display: none'>
 				<a href='/app/register' class='color-primary nav-item has-hover-effect'>
 					Registrace
 				</a>
-				<a href='/app/login' class='button nav-item alt'>
+				<a href='/app/login' class='button nav-item special'>
 					Přihlášení
 				</a>
 			</div>
@@ -223,10 +211,10 @@
 			</div>
 			<div user-not-logged>
 				<div class='nav-clickable language-wrapper large-only'>
-					<div class='language-toggle'>
+					<div class='language-toggle' dropdown='myBigLanguagePanel'>
 						<div class='flag'></div>
 					</div>
-					<div class='flex hover-window language-panel window-align-right'>
+					<div class='flex hover-window language-panel window-align-right' id='myBigLanguagePanel'>
 						<div class='language-option flex lang-cs' id='language-cs'>
 							<div class='flag flag-cs'></div>
 							<div class=''>Česky</div>
@@ -255,13 +243,12 @@
 				<div class='small-only text-align-center'>
 					<i class='button-flame large'></i>
 				</div>
-				<h1><span class='shine-only'>Objevujte</span> <span class='special-underline-wrapper'><span class='shine'>štěstí</span><div class='special-underline'></div></span></h1>
-				<h2 class='subheader'>Naplňte svůj den štědrostí a poznávejte lidi na stejné vlně</h2>
+				<h1>Prostor pro lidi<br />s otevřeným srdcem</h1>
+				<h2 class='subheader'>Radost dát, štěstí přijmout</h2>
 				<a href='' class='button'>
-					<i class='button-flame'></i>
-					Podívat se na tržiště
+					Vstupte
 				</a>
-				<div class="dotstyle-wrapper">
+				<div class="dotstyle-wrapper" style='visibility: hidden;'>
 					<div class="dotstyle dotstyle-dotmove">
 						<ul>
 							<li class="current"><a href="#">#1</a></li>
@@ -302,7 +289,7 @@
 							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
 									<p xmlns='http://www.w3.org/1999/xhtml'>
-										<strong>Získejte</strong>,<br />co vám<br />chybí
+										<strong>Přijměte</strong>,<br />co vám<br />chybí
 									</p>
 								</div>
 							</foreignObject>
@@ -325,16 +312,16 @@
 				</div>
 			</div>
 		</section>
-		<section id='target-o-co-jde'>
-			<h1>O co jde</h1>
+		<section>
+			<h1>Sdílejte dary a přání</h1>
 			<p class='text-align-center'>
-				Jsme štědrá sociální síť, kde dáváte dary a vzájemně si plníte svá přání.
-				Od legračních maličkostí až po velké věci, zkušenosti i životní moudrost.
+				Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých.<br />Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
 			</p>
-			<p class='text-align-center'>
-				Co vás baví a naplňuje, posíláte dál. A co sami potřebujete, se vám vrací
-				od druhých. Seznamte se s lidmi na stejné vlně a společně sdílejte radost naživo.
-			</p>
+			<div class='text-align-center'>
+				<a href='/app/' class='button alt'>
+					Vstupte
+				</a>
+			</div>
 		</section>
 		<section class='masonry-alt'>
 			<h1>Velké množství darů a přání na tržišti</h1>
@@ -388,15 +375,6 @@
 				</div>
 			</div>
 		</section>
-		<section>
-			<div class='text-align-center'>
-				<a href='/app/' class='button alt'>
-					<i class='button-flame'></i>
-					Podívat se na tržiště
-				</a>
-			</div>
-		</section>
-		<div class='divider-main'></div>
 		<section id='target-jak-na-to'>
 			<h1>Jak na to</h1>
 			<p class='text-align-center'>
@@ -409,55 +387,6 @@
 				od lidí, kteří jsou vám blíž. Radujte se a seznamujte, dávejte a přijímejte, děkujte a hodnoťte.
 				Ocení to všichni. A nejlepší na konec? Je to jen začátek. Směle do toho.
 			</p>
-		</section>
-		<section>
-			<div class='flex flex-space-between balls-5 small-drop-into-lines'>
-				<div class='ball ball-background-primary'>
-					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
-						<image xlink:href='./img/jnt/jnt-1.png' x='20' y='20' height='60' width='60'/>
-					</svg>
-					<div class='ball-label'>
-						Zaregistruj se
-					</div>
-				</div>
-				<div class='ball ball-background-secondary'>
-					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
-						<image xlink:href='./img/jnt/jnt-2.png' x='20' y='20' height='60' width='60'/>
-					</svg>
-					<div class='ball-label'>
-						Sdílej dary
-					</div>
-				</div>
-				<div class='ball ball-background-tertiary'>
-					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
-						<image xlink:href='./img/jnt/jnt-3.png' x='20' y='20' height='60' width='60'/>
-					</svg>
-					<div class='ball-label'>
-						Najdi dary
-					</div>
-				</div>
-				<div class='ball ball-background-primary'>
-					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
-						<image xlink:href='./img/jnt/jnt-4.png' x='20' y='20' height='60' width='60'/>
-					</svg>
-					<div class='ball-label'>
-						Vytvoř si přátele
-					</div>
-				</div>
-				<div class='ball ball-background-secondary'>
-					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
-						<image xlink:href='./img/jnt/jnt-5.png' x='20' y='20' height='60' width='60'/>
-					</svg>
-					<div class='ball-label'>
-						Buď šťastný
-					</div>
-				</div>
-			</div>
 		</section>
 		<section>
 			<div class='text-align-center'>
@@ -639,7 +568,8 @@
 					<h3>Skutečná podstata štědrosti</h3>
 					<p>
 						Skutečná podstata štědrosti
-						"Štědrost a obdarovávání je jedna z nejduchovnějších věcí, kterou při hledání sebe sama můžeme učinit,"
+						"Štědrost a obdarovávání je jedna z nejduchovnějších věcí, kterou při hledání
+						sebe sama můžeme učinit,"
 						píše Hanka na svém blogu bytprostestastny.cz
 					</p>
 					<a href='' class='display-block margin-top-medium color-primary'>
@@ -650,6 +580,26 @@
 		</section>
 		<div class='slash'></div>
 	</div>
+	<div class='section'>
+		<section id='target-podpor-nas'>
+			<h1>Podpoř Hearth</h1>
+			<p class='standard-p'>
+				Dělá ti Hearth radost? Poznáváš tu fajn lidi? Budeme šťastní, pokud se k nám přidáš
+				a pomůžeš dalším lidem otevřít jejich srdce. Hearth je pro všechny zdarma a bez reklam.
+			</p>
+			<div class='medium-flex flex-align-start flex-medium-divide'>
+				<p class='flex-div flex-1 blog-block'>
+					<strong>Přispěj finančně</strong>
+				</p>
+				<p class='flex-div flex-1 blog-block'>
+					<strong>Vytvářej s námi</strong>
+				</p>
+				<p class='flex-div flex-1 blog-block'>
+					<strong>Dej o nás vědět</strong>
+				</p>
+			</div>
+		</section>
+	</div>
 	<div class='section footer'>
 		<section>
 			<h1>Kontakt</h1>
@@ -658,7 +608,7 @@
 				a spustili Hearth.net – štědrou síť pro sdílení darů a zkušeností. Každý den šíříme
 				štědrost do našeho světa díky technologii. <a href='' class='color-primary'>Přidáte se?</a>
 			</p>
-			<div class='medium-flex flex-stretch-content small-text-align-center flex-medium-divide'>
+			<div class='medium-flex flex-align-start flex-stretch-content small-text-align-center flex-medium-divide'>
 				<div class='flex-div flex-1'>
 					<div class='hr'></div>
 
@@ -667,12 +617,13 @@
 						<p class='flex-1 text-muted margin-top-none margin-bottom-medium'>
 							Adato Paradigma, o.s.<br />
 							Nádražní 740/56<br />
-							PSČ 150 00, Praha
+							PSČ 150 00, Praha<br />
+							Česká republika
 						</p>
 						<div class='flex-1'>
 							<div><a href='' class='text-muted'>O nás</a></div>
-							<div><a href='' class='text-muted'>Podpoř nás</a></div>
-							<div><a href='' class='text-muted'>Podmínky použití</a></div>
+							<div><a href='' class='text-muted'>Příběh</a></div>
+							<div><a href='' class='text-muted'>Lidé v Adato</a></div>
 						</div>
 					</div>
 				</div>
@@ -682,13 +633,13 @@
 					<div class='text-emphasize margin-bottom-medium'>Hearth.net</div>
 					<div class='medium-flex flex-align-start'>
 						<div class='flex-1'>
-							<div><a href='' class='text-muted'>Příběh</a></div>
+							<div><a href='' class='text-muted'>Podpoř nás</a></div>
 							<div><a href='' class='text-muted'>Hearth správci</a></div>
-							<div><a href='' class='text-muted'>Časté dotazy</a></div>
+							<div><a href='' class='text-muted'>Spoj se s námi</a></div>
 						</div>
 						<div class='flex-1'>
-							<div><a href='' class='text-muted'>Lidé v Adato</a></div>
-							<div><a href='' class='text-muted'>Spoj se s námi</a></div>
+							<div><a href='' class='text-muted'>Podmínky použití</a></div>
+							<div><a href='' class='text-muted'>Časté dotazy</a></div>
 							<div><a href='' class='text-muted'>Datování a daně</a></div>
 						</div>
 					</div>
