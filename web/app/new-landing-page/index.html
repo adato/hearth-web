@@ -224,14 +224,11 @@
 					Vstupte
 				</a>
 				<div class='dotstyle-wrapper' style='visibility: hidden;'>
-				<!-- <div class='dotstyle-wrapper'> -->
 					<div class='dotstyle dotstyle-dotmove'>
 						<ul>
-							<li class='current'><a href='#'>#1</a></li>
-							<li><a href='#'>#2</a></li>
-							<li><a href='#'>#3</a></li>
-							<li><a href='#'>#4</a></li>
-							<li><a href='#'>#5</a></li>
+							<!--
+								HERE COME DOTS FROM JS
+							-->
 							<li><!-- dummy dot - has design purpose - DO NOT REMOVE --></li>
 						</ul>
 					</div>
@@ -291,7 +288,8 @@
 		<section>
 			<h1>Sdílejte dary a přání</h1>
 			<p class='text-align-center'>
-				Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých.<br />Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
+				Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých.<br />
+				Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
 			</p>
 			<div class='text-align-center'>
 				<a href='/app' class='button alt'>
@@ -397,142 +395,28 @@
 			<h1>Mají nás rádi</h1>
 			<div class='text-align-center large-quote'>“</div>
 
-
 			<div class='text-center'>
 			    <div class='flex'>
-			        <div class='max-500 flex flex-medium-column flex-align-start flex-large-align-center'>
+			        <div class='max-500 flex flex-medium-column flex-align-start flex-large-align-center' tabs id='gesichteWrapper'>
 			            <div class='medium-flex flex-1'>
 			                <!-- Nav tabs -->
-			                <ul class='nav nav-justified' id='nav-tabs' role='tablist'>
-			                	<li role='presentation' class='active'>
-			                        <a href='#barta' aria-controls='barta' role='tab' data-toggle='tab'>
-										<div class='position-relative text-align-center'>
-				                            <img class='img-circle' src='img/people/jiri-barta.png' />
-				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
-										</div>
-										<div class='text-align-center margin-top-small large-only text'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Jiří Bárta</strong></p>
-				                            <small class='text-muted'>Nadace Via</small>
-										</div>
-			                        </a>
-			                    </li>
-			                    <li role='presentation' class=''>
-			                        <a href='#panek' aria-controls='panek' role='tab' data-toggle='tab'>
-										<div class='position-relative text-align-center'>
-				                            <img class='img-circle' src='img/people/simon-panek.png' />
-				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
-										</div>
-										<div class='text-align-center margin-top-small large-only text'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Šimon Pánek</strong></p>
-											<small class='text-muted'>Člověk v tísni</small>
-										</div>
-			                        </a>
-			                    </li>
-			                    <li role='presentation' class=''>
-			                        <a href='#hajzler' aria-controls='hajzler' role='tab' data-toggle='tab'>
-										<div class='position-relative text-align-center'>
-				                            <img class='img-circle' src='img/people/tomas-hajzler.png' />
-				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
-										</div>
-										<div class='text-align-center margin-top-small large-only text'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Tomáš Hajzler</strong></p>
-											<small class='text-muted'>Peoplecomm.cz</small>
-										</div>
-			                        </a>
-			                    </li>
-			                    <li role='presentation' class=''>
-			                        <a href='#vaclavek' aria-controls='vaclavek' role='tab' data-toggle='tab'>
-										<div class='position-relative text-align-center'>
-				                            <img class='img-circle' src='img/people/petr-vaclavek.png' />
-				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
-										</div>
-										<div class='text-align-center margin-top-small large-only text'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Petr Václavek</strong></p>
-											<small class='text-muted'>novebohatstvi.cz</small>
-										</div>
-			                        </a>
-			                    </li>
+			                <ul class='nav nav-justified' id='nav-tabs' role='tablist' tab-headers>
+								<!--
+									HERE COME GESICHTE HEADERS FROM JS
+								-->
 			                </ul>
 			            </div>
 			            <div class='medium-flex flex-2 margin-horizontal-large flex-2' id='gesichte'>
 			                <!-- Tab panes -->
-			                <div class='tab-content' id='tabs-collapse'>
-			                     <div role='tabpanel' class='tab-pane fade in active' id='barta'>
-			                        <div class='tab-inner'>
-										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Jiří Bárta</strong></p>
-				                            <small>Nadace Via</small>
-										</div>
-			                            <p class='lead'>
-											Parádní nápad. Dar je radost i starost. Je projevem zájmu, příležitost
-											pomoci anebo pomoc přijmout. Pro někoho příležitost naděje, pro jiného
-											závazek pomoci. Držím vám palce a přeju, aby se díky Hearth.net
-											potkávalo co nejvíc lidí a darů ve správný čas.
-										</p>
-										<p class='text-align-right large-only'>
-											&mdash;&nbsp;Jiří Bárta<br />
-											<small class='text-muted'><i>Nadace Via</i></small>
-										</p>
-			                        </div>
-			                    </div>
-			                    <div role='tabpanel' class='tab-pane fade' id='panek'>
-			                        <div class='tab-inner'>
-										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Šimon Pánek</strong></p>
-											<small>Ředitel humanitární organizace Člověk v tísni</small>
-										</div>
-			                            <p class='lead'>
-											Zajímavá možnost jak se ve složitém a uspěchaném světě vrátit k prostému
-											aktu někomu něco darovat, pomoci mu, seznámit se s ním. Dřív to šlo v rámci
-											komunity a širšího příbuzenstva či kmene. Dnes máme Hearth.net a to je skvělé.
-										</p>
-										<p class='text-align-right large-only'>
-											&mdash;&nbsp;Šimon Pánek<br />
-											<small class='text-muted'><i>Ředitel humanitární organizace Člověk v tísni</i></small>
-										</p>
-			                        </div>
-			                    </div>
-			                    <div role='tabpanel' class='tab-pane fade' id='hajzler'>
-			                        <div class='tab-inner'>
-										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Tomáš Hajzler</strong></p>
-											<small>Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou</small>
-										</div>
-			                            <p class='lead'>
-											Nadchla mě vaše jednoduchost. Přestěhoval jsem se a myslím, že mi
-											Hearth.net pomůže vybudovat vztahy v novém místě. Dávání bylo a
-											bude základ každé rodiny a navíc vám přináší skvělý pocit. Dnešní
-											doba sociálních sítí k tomu ideálně nahrává.
-										</p>
-										<p class='text-align-right large-only'>
-											&mdash;&nbsp;Tomáš Hajzler<br />
-											<small class='text-muted'><i>Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou</i></small>
-										</p>
-			                        </div>
-			                    </div>
-			                    <div role='tabpanel' class='tab-pane fade' id='vaclavek'>
-			                        <div class='tab-inner'>
-										<div class='medium-down'>
-											<p class='margin-vertical-none'><strong class='text-uppercase'>Petr Václavek</strong></p>
-											<small>Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</small>
-										</div>
-			                            <p class='lead'>
-											Hearth.net je skvělé místo pro každého, kdo se chce spojit se
-											světem jiným, novým a smysluplným způsobem. Dává možnost jak
-											uplatnit svůj dar-talent, a dělat tak, co nás naplňuje radostí.
-										</p>
-										<p class='text-align-right large-only'>
-											&mdash;&nbsp;Petr Václavek<br />
-											<small class='text-muted'><i>Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz</i></small>
-										</p>
-			                        </div>
-			                    </div>
+			                <div class='tab-content' id='tabs-collapse' tab-content>
+			                    <!--
+									HERE COME GESICHTE CONTENT FROM JS
+								-->
 			                </div>
 			            </div>
 			        </div>
 			    </div>
 			</div>
-
 
 		</section>
 		<div class='slash background-alternate'></div>
