@@ -5,10 +5,18 @@ describe('user profile', function() {
 
 	beforeEach(function() {
 		navigateToEditProfile();
+		browser.sleep(1000); // let it init all
 	});
 
+	var logs = [];
+
 	function log(str) {
-		console.log("\n" + str);
+		//console.log("\n" + str);
+		logs.push(str);
+	}
+
+	function flushLogs() {
+		console.log(logs.join("\n"));
 	}
 
 	function navigateToMyProfile() {
@@ -55,19 +63,20 @@ describe('user profile', function() {
 		el.sendKeys(value);
 		browser.sleep(1000);
 		if (downArrow == true) {
-			el.sendKeys(protractor.Key.ARROW_DOWN);
+			return el.sendKeys(protractor.Key.ARROW_DOWN).sendKeys(protractor.Key.ENTER);
+		} else {
+			return el.sendKeys(protractor.Key.ENTER);
 		}
-		el.sendKeys(protractor.Key.ENTER);
+		
 	}
 
 	function clearTagInput(input) {
 		log("clearTagInput (" + input + ")");
 		var el = element(by.css('#profileEditForm '+ input +' .tags>input')); // pls ensure that $input is in form of css selector
 		el.click().then(function () {
-			el.sendKeys(protractor.Key.BACK_SPACE);
-			el.sendKeys(protractor.Key.BACK_SPACE);
-			el.sendKeys(protractor.Key.BACK_SPACE);
-			el.sendKeys(protractor.Key.BACK_SPACE);
+			for (var i = 0; i < 20; i++) {
+				el.sendKeys(protractor.Key.BACK_SPACE); // send more backspaces then we need to clear old entries
+			}
 		});
 	}
 
@@ -75,6 +84,20 @@ describe('user profile', function() {
 		log("assertTagInput len(" + input + ") ?= " + value);
 		var els = element.all(by.css('#profileEditForm '+ input +' .tags>ul.tag-list>li')); // pls ensure that $input is in form of css selector
 		expect(els.count()).toBe(value);
+	}
+
+	function clickSubmitButton(callback) {
+		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
+		submitButton.click().then(function() {
+			browser.waitForAngular();
+			browser.sleep(500);
+			
+			// there is success bar shown after submit
+			var successBar = element(by.css('#notify-top .alert-box.success'));
+			expect(successBar.isPresent()).toBeTruthy(); 
+
+			return (typeof callback == 'function' ? callback() : true);
+		});		
 	}
 
 
@@ -86,23 +109,28 @@ describe('user profile', function() {
 		setInputField('last_name', 'Prijmeni_' + randomNumber);
 		setInputField('my_work', 'Job_' + randomNumber);
 
-		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
-		submitButton.click().then(function() {
-			browser.sleep(500);
-			return true;
-		});
+		clickSubmitButton();
 	});
 
 
-	it('should be able to change advanced user info', function() {	
-		browser.sleep(1000); // let it init all
-		// about and interests
+	it('should be able to change about', function() {	
+		// about 
 		setInputField('about', 'About_' + randomNumber, true); // textarea
+
+		clickSubmitButton();
+	});
+
+	it('should be able to change interests', function () {
+		clearTagInput('.interests #interests');
 		addTagToInput('.interests #interests', 'sport');
 		addTagToInput('.interests #interests', 'pes');
 		addTagToInput('.interests #interests', 'jazyky');
 		addTagToInput('.interests #interests', 'cestovani');
 
+		clickSubmitButton();
+	});
+
+	it('should be able to change localities', function () {
 		// locality
 		clearTagInput('.location-input');
 		addTagToInput('.location-input', 'kralupy nad vltavou', true);
@@ -110,24 +138,32 @@ describe('user profile', function() {
 		addTagToInput('.location-input', 'nadrazni 740/56', true);
 		browser.sleep(200);
 		// adding languages, which are localised, thus we must know our language or type language-agnostic words :)
-		addTagToInput('section.languages', 'espe'); // esperanto
-		addTagToInput('section.languages', 'rus'); // rusky or russian
-		addTagToInput('section.languages', 'portu'); // portugalsky or portugese
 
-
-		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
-		submitButton.click().then(function() {
-			//... 
-			browser.sleep(500);
-			return true;
-		});
+		clickSubmitButton();
 	});
 
-	it('should be able to change contact and networks info', function() {	
-		//navigateToEditProfile();
+	it('should be able to change languages', function () {
+		// languages
+		clearTagInput('section.languages');
+		addTagToInput('section.languages', 'espe'); // esperanto
+		browser.sleep(200);
+		addTagToInput('section.languages', 'rus'); // rusky or russian
+		browser.sleep(200);
+		addTagToInput('section.languages', 'portu'); // portugalsky or portugese
+		browser.sleep(200);
 
+		clickSubmitButton();
+	});
+
+	it('should be able to change phone', function() {	
 		// contact
 		setInputField('phone', '+420777' + randomNumber + '' + randomNumber);
+
+		clickSubmitButton();
+	});
+
+
+	it('should be able to change networks info', function() {	
 
 		// social networks
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(0).clear().sendKeys('http://facebook.com/profile' + randomNumber);
@@ -135,22 +171,23 @@ describe('user profile', function() {
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(2).clear().sendKeys('http://linkedin.com/profile' + randomNumber);
 		element.all(by.css('#profileEditForm .social input[type=url]')).get(3).clear().sendKeys('http://plus.google.com/profile' + randomNumber);
 		
+		clickSubmitButton();
+	});
+
+
+	it('should be able to change user webs', function() {	
+
 		// webs and internets
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(0).clear().sendKeys('http://profile' + randomNumber + '.com');
 		element(by.css('#profileEditForm .webs a')).click();
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear().sendKeys('http://another.profile' + randomNumber + '.com');
 
-		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
-		submitButton.click().then(function() {
-			//... 
-			browser.sleep(500);
-			return true;
-		});
-	});
+		clickSubmitButton();
+	});	
 
 
 	it('all should be saved fine', function() {
-		//navigateToEditProfile();
+
 		assertInputField('first_name', 'Jmeno_' + randomNumber);
 		assertInputField('last_name', 'Prijmeni_' + randomNumber);
 		assertInputField('my_work', 'Job_' + randomNumber);
@@ -204,11 +241,10 @@ describe('user profile', function() {
 		element(by.css('#profileEditForm .webs a')).click();
 		element.all(by.css('#profileEditForm .webs input[type=url]')).get(1).clear();
 
-		var submitButton = element(by.css('#profileEditForm button[type=submit]'));
-		submitButton.click().then(function() {
-			//... 
-			browser.sleep(500);
-			return true;
-		});
+		clickSubmitButton();
 	});
+
+	it('should be last test in order', function () {
+		flushLogs();
+	})	
 });
