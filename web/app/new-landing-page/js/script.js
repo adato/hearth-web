@@ -22,7 +22,9 @@
 			cur = cur.parentNode;
 		}
 		return cur; //will return null if not found
-			var xhr = new XMLHttpRequest();
+	}
+	function request(method, path) {
+		var xhr = new XMLHttpRequest();
 		xhr.open(method, path);
 		xhr.setRequestHeader('X-API-TOKEN', apiToken);
 		xhr.setRequestHeader('Accept', 'application/vnd.hearth-v1+json');
@@ -334,7 +336,7 @@
 				cookieFactory.remove(authTokenIdentificator);
 				profileNotLogged();
 			} else {
-				console.error('Something went wong');
+				console.error('Something went wong logging out:', req);
 			}
 		};
 	}
@@ -344,7 +346,7 @@
 			if (el.tagName.toLowerCase() === 'a') {
 				el.setAttribute('href', 'javascript:logout()');
 			} else {
-				el.addEventListener('click', logout);
+				el.addEventListener('click', logout)
 			}
 		});
 	}

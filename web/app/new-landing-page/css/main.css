@@ -221,6 +221,7 @@ a.masonry-item:hover .button,
 .nav-clickable{
 	margin-right: 8px;
 	margin-left: 8px;
+	cursor: pointer;
 }
 @media (min-width: 400px){
 	.header-wrapper:first-child .nav-clickable{
