@@ -22,6 +22,13 @@
 			cur = cur.parentNode;
 		}
 		return cur; //will return null if not found
+			var xhr = new XMLHttpRequest();
+		xhr.open(method, path);
+		xhr.setRequestHeader('X-API-TOKEN', apiToken);
+		xhr.setRequestHeader('Accept', 'application/vnd.hearth-v1+json');
+		xhr.setRequestHeader('X-API-VERSION', '1');
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		return xhr;
 	}
 	function throttle(callback, limit) {
 	    var wait = false;
@@ -36,7 +43,6 @@
 	        }
 	    }
 	}
-
 	function shuffle(array) {
 		var currentIndex = array.length,
 			temporaryValue,
@@ -253,9 +259,9 @@
 	//
 	//	PROFILE
 	//
-	var profile;
-
-	var apiPath = 'https://api.dev.hearth.net';
+	var profile,
+		apiPath = 'https://api.dev.hearth.net',
+		authTokenIdentificator = 'authToken';
 
 	var loggedSelector = '[user-logged]',
 		notLoggedSelector = '[user-not-logged]',
@@ -264,7 +270,7 @@
 		profileFullNameSelector = '[profile-name]',
 		profileLinkSelector = '[profile-link]';
 
-	var apiToken = cookieFactory.get('authToken');
+	var apiToken = cookieFactory.get(authTokenIdentificator);
 	if (apiToken) {
 		initProfile(apiToken);
 	} else {
@@ -275,33 +281,73 @@
 	///////////////////
 
 	function initProfile(apiToken) {
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', apiPath + '/profile');
-		xhr.setRequestHeader('X-API-TOKEN', apiToken);
-		xhr.setRequestHeader('Accept', 'application/vnd.hearth-v1+json');
-		xhr.setRequestHeader('X-API-VERSION', '1');
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		xhr.onload = function() {
-		    if (xhr.status === 200) {
+		var req = request('GET', apiPath + '/profile');
+		req.onload = function() {
+		    if (req.status === 200) {
 		        profile = JSON.parse(xhr.responseText);
 				// console.log(profile);
 				fillProfile(profile);
 		    } else {
-				fe($(notLoggedSelector), function(el) {el.style.display = 'inherit';el.classList.add('inited');});
-				fe($(loggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited');});
+				profileNotLogged();
 		        console.log('Profile request failed. Returned status of ' + xhr.status);
 		    }
 		};
-		xhr.send();
+		req.send();
 	}
 
-	function fillProfile(profileObject) {
+	/**
+	 *	function that sets all elements that are for logged users to be visible and
+	 *	all those that are for not-logged only, invisible
+	 */
+	function profileLogged() {
 		fe($(loggedSelector), function(el) {el.style.display = '';el.classList.add('inited');});
 		fe($(notLoggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited');});
+	}
+	/**
+	 *	function that sets all elements that are for logged users to be invisible and
+	 *	all those that are for not-logged only, visible
+	 */
+	function profileNotLogged() {
+		fe($(notLoggedSelector), function(el) {el.style.display = '';el.classList.add('inited');});
+		fe($(loggedSelector), function(el) {el.style.display = 'none';el.classList.add('inited');});
+	}
+
+	/**
+	 *	set all profile attributes
+	 */
+	function fillProfile(profileObject) {
+		profileLogged();
 
 		fe($(profileAvatarSelector), function(el) {el.setAttribute('src', profile.avatar.normal);});
 		fe($(profileFullNameSelector), function(el) {el.innerHTML = [profile.name, profile.surname].join('\u00A0').trim();});
 		fe($(profileLinkSelector), function(el) {el.setAttribute('href', '/app/profile/' + profile._id);});
 	}
+
+	/**
+	 * contact api to remove session
+	 * on success delete auth cookie and set ui to not-logged state
+	 */
+	function logout() {
+		var req = request('POST', apiPath + '/logout');
+		req.onload = function() {
+			if (req.status === 200) {
+				cookieFactory.remove(authTokenIdentificator);
+				profileNotLogged();
+			} else {
+				console.error('Something went wong');
+			}
+		};
+	}
+	var logoutNodeIdentificator = '[logout]';
+	function initLogoutFunction() {
+		fe($(logoutNodeIdentificator), function(el) {
+			if (el.tagName.toLowerCase() === 'a') {
+				el.setAttribute('href', 'javascript:logout()');
+			} else {
+				el.addEventListener('click', logout);
+			}
+		});
+	}
+	initLogoutFunction()
 
 })(window);

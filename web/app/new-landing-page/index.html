@@ -111,50 +111,27 @@
 
 	<div class='header-wrapper'>
 		<div class='flex flex-stretch-content'>
-			<div class='nav-clickable flex position-relative'>
-				<button class='hamburger hamburger--spring medium-down' type='button' id='hamburger' dropdown='main-navigation' dropdown-opts='{"applyActiveToSelf": true}' deactivate-after-link-usage>
+			<div class='nav-clickable flex position-relative small-only'>
+				<button class='hamburger hamburger--spring flex' type='button' id='hamburger' dropdown='main-navigation' dropdown-opts='{"applyActiveToSelf": true}' deactivate-after-link-usage>
 					<span class='hamburger-box'>
 						<span class='hamburger-inner'></span>
 					</span>
 				</button>
-				<div class='medium-down'>
-					<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
-						<ul class='margin-none padding-none'>
-							<li>
-								<a href='#target-jak-na-to' class='nav-item'>Jak na to?</a>
-							</li>
-							<li>
-								<a href='#target-podpor-nas' class='nav-item'>Podpoř nás</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div user-not-logged>
-				<div class='nav-clickable language-wrapper medium-down'>
-					<div class='language-toggle' dropdown='myLittleLanugagePanel'>
-						<div class='flag'></div>
-					</div>
-					<div class='flex hover-window language-panel' id='myLittleLanugagePanel'>
-						<div class='language-option flex lang-cs' id='language-cs'>
-							<div class='flag flag-cs'></div>
-							<div class=''>Česky</div>
-						</div>
-						<div class='language-option flex lang-sk' id='language-sk'>
-							<div class='flag flag-sk'></div>
-							<div class=''>Slovensky</div>
-						</div>
-						<div class='language-option flex lang-en' id='language-en'>
-							<div class='flag flag-en'></div>
-							<div class=''>English</div>
-						</div>
-					</div>
+				<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
+					<ul class='margin-none padding-none'>
+						<li>
+							<a href='#target-jak-na-to' class='nav-item'>Jak na to?</a>
+						</li>
+						<li>
+							<a href='#target-podpor-nas' class='nav-item'>Podpoř nás</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<div class='logo medium-up'></div>
 		</div>
 		<nav class='flex flex-stretch-content'>
-			<ul class='main-navigation large-only'>
+			<ul class='main-navigation medium-up'>
 				<li>
 					<a href='#target-jak-na-to' class='nav-item'>Jak na to?</a>
 				</li>
@@ -163,11 +140,11 @@
 				</li>
 			</ul>
 			<div class='flex' user-not-logged style='display: none'>
-				<a href='/app/register' class='color-primary nav-item has-hover-effect'>
-					Registrace
-				</a>
-				<a href='/app/login' class='button nav-item special'>
+				<a href='/app/login' class='color-primary nav-item has-hover-effect'>
 					Přihlášení
+				</a>
+				<a href='/app/register' class='button nav-item special'>
+					Registrace
 				</a>
 			</div>
 			<div class='flex position-relative' user-logged id='profileSection' style='display: none'>
@@ -201,7 +178,7 @@
 							</a>
 						</li>
 						<li>
-							<a class='nav-item' href='/'>
+							<a class='nav-item' href='#' logout>
 								<i class='fa fa-fw fa-sign-out margin-right-small'></i>
 								Odhlásit se
 							</a>
@@ -210,8 +187,8 @@
 				</div>
 			</div>
 			<div user-not-logged>
-				<div class='nav-clickable language-wrapper large-only'>
-					<div class='language-toggle' dropdown='myBigLanguagePanel'>
+				<div class='nav-clickable language-wrapper'>
+					<div class='language-toggle flex' dropdown='myBigLanguagePanel'>
 						<div class='flag'></div>
 					</div>
 					<div class='flex hover-window language-panel window-align-right' id='myBigLanguagePanel'>
@@ -243,7 +220,7 @@
 				</div>
 				<h1>Prostor pro lidi<br />s otevřeným srdcem</h1>
 				<h2 class='subheader'>Radost dát, štěstí přijmout</h2>
-				<a href='' class='button'>
+				<a href='/app' class='button'>
 					Vstupte
 				</a>
 				<div class='dotstyle-wrapper' style='visibility: hidden;'>
@@ -317,7 +294,7 @@
 				Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých.<br />Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
 			</p>
 			<div class='text-align-center'>
-				<a href='/app/' class='button alt'>
+				<a href='/app' class='button alt'>
 					Vstupte
 				</a>
 			</div>
@@ -433,7 +410,7 @@
 				                            <img class='img-circle' src='img/people/jiri-barta.png' />
 				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
-										<div class='text-align-center margin-top-small large-only'>
+										<div class='text-align-center margin-top-small large-only text'>
 											<p class='margin-vertical-none'><strong class='text-uppercase'>Jiří Bárta</strong></p>
 				                            <small class='text-muted'>Nadace Via</small>
 										</div>
@@ -445,7 +422,7 @@
 				                            <img class='img-circle' src='img/people/simon-panek.png' />
 				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
-										<div class='text-align-center margin-top-small large-only'>
+										<div class='text-align-center margin-top-small large-only text'>
 											<p class='margin-vertical-none'><strong class='text-uppercase'>Šimon Pánek</strong></p>
 											<small class='text-muted'>Člověk v tísni</small>
 										</div>
@@ -457,7 +434,7 @@
 				                            <img class='img-circle' src='img/people/tomas-hajzler.png' />
 				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
-										<div class='text-align-center margin-top-small large-only'>
+										<div class='text-align-center margin-top-small large-only text'>
 											<p class='margin-vertical-none'><strong class='text-uppercase'>Tomáš Hajzler</strong></p>
 											<small class='text-muted'>Peoplecomm.cz</small>
 										</div>
@@ -469,7 +446,7 @@
 				                            <img class='img-circle' src='img/people/petr-vaclavek.png' />
 				                            <span class='quote'><i class='fa fa-quote-left'></i></span>
 										</div>
-										<div class='text-align-center margin-top-small large-only'>
+										<div class='text-align-center margin-top-small large-only text'>
 											<p class='margin-vertical-none'><strong class='text-uppercase'>Petr Václavek</strong></p>
 											<small class='text-muted'>novebohatstvi.cz</small>
 										</div>
