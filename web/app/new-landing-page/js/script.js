@@ -439,12 +439,12 @@
 		var req = request('GET', apiPath + '/profile');
 		req.onload = function() {
 		    if (req.status === 200) {
-		        profile = JSON.parse(xhr.responseText);
+		        profile = JSON.parse(req.responseText);
 				// console.log(profile);
 				fillProfile(profile);
 		    } else {
 				profileNotLogged();
-		        console.log('Profile request failed. Returned status of ' + xhr.status);
+		        console.log('Profile request failed. Returned status of ' + req.status);
 		    }
 		};
 		req.send();
