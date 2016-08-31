@@ -770,34 +770,49 @@ a.masonry-item{
 	BLOG ADS
 *******************/
 .blog-block,
-.blog-block h3{
+.blog-block h3 {
 	font-size: 20px;
 	line-height: 32px;
 }
-.blog-block h3{
+.blog-block h3 {
 	margin: 0;
 	text-align: left;
 	color: #444;
 	font-weight: bold;
 }
 .blog-block p{margin: 0}
-.blog-block > .blog-img-wrapper{
+.blog-block > .blog-img-wrapper {
 	max-width: 200px;
 	position: relative;
 	padding: 20px;
 	margin: 0 auto;
 }
-/*@media (min-width: 768px){
-	.blog-block > .blog-img-wrapper{
-		margin: 0 auto;
-	}
-}*/
-.blog-img-wrapper > .blog-img{
+.blog-img-wrapper > .blog-img {
 	background-size: cover;
 	background-repeat: no-repeat;
 	width: 100%;
 	padding-bottom: 100%;
 }
+
+/*******************
+	GESICHTE
+*******************/
+.bulletize-paragraphs > p {
+	position: relative
+}
+.bulletize-paragraphs > p:first-of-type::before {
+	content: ''
+}
+.bulletize-paragraphs > p::before {
+	content: '\25CF  \2B24  \25CF';
+	display: block;
+	margin: 32px 0;
+	font-family: Arial;
+	font-size: .5rem;
+	line-height: .5rem;
+	color: #ddd;
+}
+
 /*******************
 	GESICHTE
 *******************/
