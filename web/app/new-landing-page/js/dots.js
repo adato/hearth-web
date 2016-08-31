@@ -8,7 +8,7 @@
  * Copyright 2014, Codrops
  * http://www.codrops.com
  */
-;( function( window ) {
+;( function( window, lib ) {
 
 	'use strict';
 
@@ -101,22 +101,9 @@
 
 		defaultIntervalWrapper = setInterval( defaultIntervalFn, defaultInterval );
 
-		// init
-		// assign random number and start the count from it
-		// dots.length - 1 because we have a dummy dot there
-		current = getRandomInt({min: 1, max: dots.length - 1 });
-		defaultIntervalFn( current - 1 );
-
-		function getRandomInt(opts) {
-			opts = opts || {};
-			opts.min = opts.min || 0;
-			opts.max = opts.max || 10;
-    		return Math.floor(Math.random() * (opts.max - opts.min) + opts.min);
-		}
-
 	}
 
 	// add to global namespace
 	window.DotNav = DotNav;
 
-})( window );
+})( window, window.aeg );

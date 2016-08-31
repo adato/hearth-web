@@ -1,8 +1,8 @@
-(function(window){
+(function(window) {
 	//
 	//	COMMON
 	//
-	function $(q){
+	function $(q) {
 		return document['querySelector' + (q.slice(0,1) === '#' ? '' : 'All')](q);
 	}
 	function fe(q, fn) {
@@ -35,6 +35,33 @@
 	            }, limit);
 	        }
 	    }
+	}
+
+	function shuffle(array) {
+		var currentIndex = array.length,
+			temporaryValue,
+			randomIndex;
+
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
+
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+
+		return array;
+	}
+
+	// expose something through window.aeg
+	window.aeg = {
+		$: $,
+		fe: fe
 	}
 
 	var cookieFactory = {
@@ -199,9 +226,29 @@
 	//
 	//	SLIDESHOW
 	//
-	[].slice.call( document.querySelectorAll( '.jumbo-wrapper' ) ).forEach( function( nav ) {
-		new DotNav( nav );
-	} );
+	(function(){
+
+		var jumboWrapperSelector = '[jumbo-wrapper]',
+			jumboImages = [
+				"<div class='jumbo-show show-1'></div>",
+				"<div class='jumbo-show show-2'></div>",
+				"<div class='jumbo-show show-3'></div>",
+				"<div class='jumbo-show show-4'></div>",
+				"<div class='jumbo-show show-5'></div>"
+			];
+
+		shuffle(jumboImages);
+
+		fe($(jumboWrapperSelector), function(el) {
+			for (var i = jumboImages.length;i--;) {
+				el.insertAdjacentHTML('afterbegin', jumboImages[i]);
+			}
+		});
+
+		[].slice.call( document.querySelectorAll( '.jumbo-wrapper' ) ).forEach( function( nav ) {
+			new DotNav( nav );
+		} );
+	})();
 
 	//
 	//	PROFILE
