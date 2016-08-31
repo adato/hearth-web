@@ -391,6 +391,11 @@ $translate-size: -.5 * ($face-size-hover - $face-size);
 	}
 }
 
+.content .news-list .news-overview .tn.round img {
+	border-radius:50%;
+	float:left;
+	margin-right:20px;
+}
 
 /* ===== FOOTER ===================================== */
 
