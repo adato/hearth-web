@@ -22,7 +22,7 @@ angular.module('hearth.services').factory('Ab', ['LocalStorage', function(LocalS
 	function getItem(identificator) {
 		if (library[identificator]) {
 			return library[identificator];
-		} else if (false && LocalStorage.get(identificator)) {
+		} else if ($.cookie(identificator)) {
 			library[identificator] = $.cookie(identificator);
 			return library[identificator];
 		}
