@@ -65,11 +65,9 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 				if (typeof $window.userAbVariant == 'undefined') {
 					var gotVariant;
 					if (typeof(gotVariant = getUserVariant()) != 'undefined' && gotVariant !== null && false) {
-						console.log('found', gotVariant);
 						$scope.userVariant = gotVariant;
 						$window.userAbVariant = gotVariant;
 					} else {
-						console.log('didnotfound');
 						$scope.userVariant = getRandomVariant();
 						setUserVariant($scope.userVariant);
 						$window.userAbVariant = $scope.userVariant;
