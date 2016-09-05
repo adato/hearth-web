@@ -17,6 +17,10 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		// expose function to check whether the first page is shown or not
 		$scope.firstPageNotShown = InfiniteScrollPagination.firstPageNotShown;
 
+		$scope.pushPostParamIntoHistory = function(postId) {
+			console.log(id);
+		}
+
 		$scope.limit = postLimit;
 		$scope.items = [];
 		$scope.loaded = false;
