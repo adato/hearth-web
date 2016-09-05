@@ -8,7 +8,10 @@
 
 angular.module('hearth.services').factory('ScrollService', ['$window', '$timeout', function($window, $timeout) {
 
-	var factory {
+	var MARKETPLACE_SCROLL_TO_PARAM = 'postdetail';
+
+	var factory = {
+		MARKETPLACE_SCROLL_TO_PARAM: MARKETPLACE_SCROLL_TO_PARAM,
 		scrollToElement: scrollToElement,
 		scrollTop: scrollTop,
 		scrollToError: scrollToError

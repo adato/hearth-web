@@ -43,7 +43,7 @@ angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter
 			removeReminder: Bubble.removeReminder,
 			scrollToElement: $rootScope.scrollToElement,
 			userHasRight: $rootScope.userHasRight,
-			ItemAux: ItemAux
+			ItemAux: ItemAux,
 		};
 	}
 ]);
