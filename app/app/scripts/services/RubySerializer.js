@@ -4,6 +4,7 @@
  * @ngdoc service
  * @name hearth.services.RubySerializer
  * @description Custom serializer for ruby that does not encode URI component keys
+ *
  * @warning manual encoding is required when using this serializer
  * @notice compatible with Angular version 1.4.9
  */

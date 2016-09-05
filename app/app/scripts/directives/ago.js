@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @ngdoc service
+ * @ngdoc directive
  * @name hearth.directives.ago
  * @description This will show time from now in words and refresh it periodically
  */
@@ -24,7 +24,7 @@ angular.module('hearth.directives').directive('ago', [
 				}
 
 				scope.$watch('ago', ago); // translate time on init
-				eventListener = $rootScope.$on("hearthbeat", ago); // periodically refresh 
+				eventListener = $rootScope.$on("hearthbeat", ago); // periodically refresh
 
 				scope.$on('$destroy', function() {
 					eventListener(); // remove listener

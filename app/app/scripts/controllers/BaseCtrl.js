@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('BaseCtrl', [
-	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableSocketWrangler', 'ActionCableChannel',
-	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableSocketWrangler, ActionCableChannel) {
+	'$scope', '$locale', '$rootScope', '$location', 'Auth', 'ngDialog', '$timeout', '$interval', '$element', 'CommunityMemberships', '$window', 'Post', 'Tutorial', 'Notify', 'Messenger', 'timeAgoService', 'ApiHealthChecker', 'PageTitle', '$state', 'UserBookmarks', 'User', '$analytics', 'Rights', 'ActionCableSocketWrangler', 'ActionCableChannel', 'ScrollService',
+	function($scope, $locale, $rootScope, $location, Auth, ngDialog, $timeout, $interval, $element, CommunityMemberships, $window, Post, Tutorial, Notify, Messenger, timeAgoService, ApiHealthChecker, PageTitle, $state, UserBookmarks, User, $analytics, Rights, ActionCableSocketWrangler, ActionCableChannel, ScrollService) {
 		var timeout;
 		var itemEditOpened = false;
 		$rootScope.myCommunities = false;
@@ -41,6 +41,11 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 		$rootScope.globalLoading = false;
 		$rootScope.topArrowText = {};
 		$scope.isScrolled = false;
+
+		// expose scroll service functions
+		$rootScope.scrollToElement = ScrollService.scrollToElement;
+		$rootScope.top = ScrollService.scrollTop;
+		$rootScope.scrollToError = ScrollService.scrollToError;
 
 		/**
 		 * This will set fixed height of document for current height
@@ -189,15 +194,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$timeout(function() {
 				$("#searchBox").val(val);
 			});
-		};
-
-		/**
-		 * This will scroll up on page
-		 */
-		$rootScope.top = function(offset, delay) {
-			$('html, body').animate({
-				scrollTop: offset || 0
-			}, delay || 1000);
 		};
 
 		/**
@@ -600,7 +596,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			});
 		};
 
-
 		/**
 		 * Function will remove item from users bookmarks
 		 */
@@ -810,35 +805,13 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 							scope.openRatingReplyForm(data[i]);
 							$timeout(function() {
-								$rootScope.scrollToElement("#rating_" + id);
+								ScrollService.scrollToElement("#rating_" + id);
 								$("#rating_" + id).find('textarea').focus();
 							});
 							return;
 						}
 					}
 				}
-			});
-		};
-
-		// this will scroll to given element in given container (if not setted take body as default)
-		$rootScope.scrollToElement = function(el, cont, off) {
-			var offset = off || 200;
-			var container = cont || 'html, body';
-			var elementPos;
-
-			if (!$(el).first().length)
-				return false;
-
-			elementPos = Math.max($(el).first().offset().top - offset, 0);
-			$(container).animate({
-				scrollTop: elementPos
-			}, 'slow');
-		};
-
-		// this will scroll to given element or first error message on page
-		$rootScope.scrollToError = function(el, cont) {
-			setTimeout(function() {
-				$rootScope.scrollToElement(el || $('.error').not('.alert-box,.ng-hide'), cont);
 			});
 		};
 
