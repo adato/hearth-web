@@ -20,7 +20,7 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 			template: '<span><span ng-if="variant == userVariant" ng-transclude ng-click="log(\'click\');"></span></span>',
 			link: function($scope) {
 
-				var DROPDOWN_VARIANT = 'ab-variant';
+				var DROPDOWN_VARIANT = 'ab-variant-v2';
 
 				$scope.userVariant = '';
 
@@ -63,13 +63,11 @@ angular.module('hearth.utils').directive('abTest', ['LocalStorage', '$window', '
 
 				// if window has no cached variant, cache it
 				if (typeof $window.userAbVariant == 'undefined') {
-					var gotVariant;
-					if (typeof(gotVariant = getUserVariant()) != 'undefined' && gotVariant !== null && false) {
-						console.log('found', gotVariant);
+					var gotVariant = getUserVariant();
+					if (gotVariant !== undefined && gotVariant !== null) {
 						$scope.userVariant = gotVariant;
 						$window.userAbVariant = gotVariant;
 					} else {
-						console.log('didnotfound');
 						$scope.userVariant = getRandomVariant();
 						setUserVariant($scope.userVariant);
 						$window.userAbVariant = $scope.userVariant;
