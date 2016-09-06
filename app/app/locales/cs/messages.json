@@ -60,7 +60,7 @@
 			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
 		},
 		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
-		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'>od začátku<\/a>."
+		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>od začátku<\/strong><\/a>."
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to líto, ale stránka, kterou hledáš, pravděpodobně neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenalezeno",
@@ -259,7 +259,8 @@
 			"POST_REPLIES": "Odpovědi na dary a přání",
 			"ARCHIVE": "Archivované konverzace",
 			"USERS_POSTS": "Zprávy od uživatelů",
-			"COMMUNITIES_POSTS": "Zprávy od komunit"
+			"COMMUNITIES_POSTS": "Zprávy od komunit",
+			"POST_ADMIN": "Správcovské konverzace"
 		},
 		"DELETE_CONVERSATION": "Smazat konverzaci",
 		"LEAVE_CONVERSATION": "Opustit konverzaci",
@@ -1454,7 +1455,7 @@
 			"TEXT": "Víš, že si kterýkoli z darů nebo přání můžeš přidat mezi oblíbené, aby ses k němu později pohodlně dostal(a)?"
 		},
 		"HIDE_POST": {
-			"TEXT": "<p><em>Tip:<\/em> Kter&yacute;koli inzer&aacute;t, kter&yacute; v&aacute;s obtěžuje a nechcete ho již vidět, můžete označit jako skryt&yacute;.<\/p>"
+			"TEXT": "<p><em>Tip:<\/em> Kter&yacute;koli inzer&aacute;t, kter&yacute; tě obtěžuje a nechce&scaron; ho již vidět, může&scaron; označit jako skryt&yacute;.<\/p>"
 		}
 	},
 	"energy_TOOLTIP": "Aktivita, myšlenka...",

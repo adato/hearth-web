@@ -60,7 +60,7 @@
 			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
 		},
 		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
-		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'>od začátku<\/a>."
+		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>od začátku<\/strong><\/a>."
 	},
 	"404_NOT_FOUND_TEXT": "Je nám to ľúto, ale stránka, ktorú hľadáte, pravdepodobne neexistuje.",
 	"404_NOT_FOUND_TITLE": "404 Nenájdené",
@@ -259,7 +259,8 @@
 			"POST_REPLIES": "Odpovede na dary a priania",
 			"ARCHIVE": "Archivované konverzácie",
 			"USERS_POSTS": "Správy od používateľov",
-			"COMMUNITIES_POSTS": "Správy od komunít"
+			"COMMUNITIES_POSTS": "Správy od komunít",
+			"POST_ADMIN": "Správcovské konverzácie"
 		},
 		"DELETE_CONVERSATION": "Zmazať konverzáciu",
 		"LEAVE_CONVERSATION": "Opustiť konverzáciu",

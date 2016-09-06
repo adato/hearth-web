@@ -12,6 +12,7 @@
 		</form> -->
 		<select class="messages-filter conversation-list-width margin-bottom-small flex-div" ng-model="filter.type" ng-change="applyFilter(filter)">
 			<option value="" ng-selected="filter.type == ''">{{:: 'MESSAGES.FILTER.ALL' | translate }}</option>
+			<option value="from_admin" ng-selected="filter.type == 'from_admin'">{{:: 'MESSAGES.FILTER.POST_ADMIN' | translate }}</option>
 			<option value="as_replies" ng-selected="filter.type == 'as_replies'">{{:: 'MESSAGES.FILTER.POST_REPLIES' | translate }}</option>
 			<option value="as_replies_post:{{post._id}}" ng-repeat="post in postConversations.posts" ng-selected="filter.post_id === post._id">&ndash; {{ post.type | uppercase | translate }} {{post.title}}</option>
 			<!-- <option value="" disabled>———————————————————————</option> -->
