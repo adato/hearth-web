@@ -60,7 +60,7 @@
 			"INFO_NOT_FILLED": "Komunita o sobe zatím nevyplnila žádné infromace."
 		},
 		" SHOW_POSTS_ON_MAP": "Zobrazit inzeráty na mapě",
-		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'>od začátku<\/a>."
+		"NOT_ON_FIRST_PAGE": "Tržiště jsme načetli přibližně od místa, kde jsi skončil(a) prohlížení. Můžeš si ho ale načíst znovu <a ui-sref='{{sref}}' ui-sref-opts='{reload: true}'><strong>od začátku<\/strong><\/a>."
 	},
 	"404_NOT_FOUND_TEXT": "We are very sorry, but we couldn't find the page you requested.",
 	"404_NOT_FOUND_TITLE": "404 Not Found",
@@ -78,7 +78,8 @@
 		"SUSPEND": {
 			"LABEL": "Suspend post",
 			"ARE_YOU_SURE": "Do you want to suspend this post?",
-			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit."
+			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit.",
+			"CONNECTED_MESSAGE": "Ahoj {{author_name}},\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
 		},
 		"RESUME": {
 			"LABEL": "Resume"
@@ -259,7 +260,8 @@
 			"POST_REPLIES": "Replies to gifts and wishes",
 			"ARCHIVE": "Archived conversations",
 			"USERS_POSTS": "Messages from Users",
-			"COMMUNITIES_POSTS": "Messages from Communities"
+			"COMMUNITIES_POSTS": "Messages from Communities",
+			"POST_ADMIN": "Admin Conversations"
 		},
 		"DELETE_CONVERSATION": "Delete conversation",
 		"LEAVE_CONVERSATION": "Leave conversation",
