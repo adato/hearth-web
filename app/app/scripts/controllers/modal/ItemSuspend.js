@@ -12,14 +12,14 @@ angular.module('hearth.controllers').controller('ItemSuspend', [
 		var timeout = null;
 		$scope.sending = false;
 		$scope.showErrors = false;
-		/*$scope.postTypes = $$config.postTypes;*/
+		$scope.postTypes = $$config.postTypes;
 		var item = $scope.item;
 		var suspendMessage = $translate.instant('POST.SUSPEND.CONNECTED_MESSAGE', {
-			author_name: item.author.first_name,
-			/*post_type: $filter('translate')($scope.postTypes[item.author._type][item.type]),*/
+			author_name: item.author.first_name || item.author.name,
+			post_type: $filter('translate')($scope.postTypes[item.author._type][item.type]),
 			post_title: item.title,
 			post_url: $rootScope.appUrl + 'post/' + item._id,
-			user_name: $scope.loggedUser.name
+			user_name: $scope.loggedUser.first_name
 		});
 
 		$scope.data = {
