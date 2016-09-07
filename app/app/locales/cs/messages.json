@@ -79,7 +79,7 @@
 			"LABEL": "Pozastavit inzerát",
 			"ARE_YOU_SURE": "Doopravdy chceš pozastavit tento inzerát?",
 			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit.",
-			"CONNECTED_MESSAGE": "Ahoj {{author_name}},\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
+			"CONNECTED_MESSAGE": "Ahoj {{author_name}},\n\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_type}} {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
 		},
 		"RESUME": {
 			"LABEL": "Obnovit inzerát"
