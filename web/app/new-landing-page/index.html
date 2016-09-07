@@ -120,10 +120,10 @@
 				<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
 					<ul class='margin-none padding-none'>
 						<li>
-							<a href='#target-jak-na-to' class='nav-item'>Jak na to?</a>
+							<a href='#target-jak-na-to' class='nav-item' t='MENU.HOW_TO'>Jak na to?</a>
 						</li>
 						<li>
-							<a href='#target-podpor-nas' class='nav-item'>Podpoř nás</a>
+							<a href='#target-podpor-nas' class='nav-item' t='MENU.SUPPORT_US'>Podpoř nás</a>
 						</li>
 					</ul>
 				</div>
@@ -133,17 +133,17 @@
 		<nav class='flex flex-stretch-content'>
 			<ul class='main-navigation medium-up'>
 				<li>
-					<a href='#target-jak-na-to' class='nav-item'>Jak na to?</a>
+					<a href='#target-jak-na-to' class='nav-item' t='MENU.HOW_TO'>Jak na to?</a>
 				</li>
 				<li>
-					<a href='#target-podpor-nas' class='nav-item'>Podpoř nás</a>
+					<a href='#target-podpor-nas' class='nav-item' t='MENU.SUPPORT_US'>Podpoř nás</a>
 				</li>
 			</ul>
 			<div class='flex' user-not-logged style='display: none'>
-				<a href='/app/login' class='color-primary nav-item has-hover-effect'>
+				<a href='/app/login' class='color-primary nav-item has-hover-effect' t='MENU.LOGIN'>
 					Přihlášení
 				</a>
-				<a href='/app/register' class='button nav-item special'>
+				<a href='/app/register' class='button nav-item special' t='MENU.REGISTER'>
 					Registrace
 				</a>
 			</div>
@@ -156,31 +156,31 @@
 						<li>
 							<a class='nav-item' href='/'>
 								<i class='fa fa-fw fa-fire margin-right-small'></i>
-								Podívat se na tržiště
+								<span t='MENU.MARKETPLACE'>Podívat se na tržiště</span>
 							</a>
 						</li>
 						<li>
 							<a class='nav-item' profile-link>
 								<i class='fa fa-fw fa-user margin-right-small'></i>
-								Profil
+								<span t='MENU.PROFILE'>Profil</span>
 							</a>
 						</li>
 						<li>
 							<a class='nav-item' href='/app/profile-edit'>
 								<i class='fa fa-fw fa-edit margin-right-small'></i>
-								Upravit profil
+								<span t='MENU.EDIT_PROFILE'>Upravit profil</span>
 							</a>
 						</li>
 						<li>
 							<a class='nav-item' href='/app/profile-settings'>
 								<i class='fa fa-fw fa-cog margin-right-small'></i>
-								Nastavení
+								<span t='MENU.SETTINGS'>Nastavení</span>
 							</a>
 						</li>
 						<li>
 							<a class='nav-item' href='#' logout>
 								<i class='fa fa-fw fa-sign-out margin-right-small'></i>
-								Odhlásit se
+								<span t='MENU.LOGOUT'>Odhlásit se</span>
 							</a>
 						</li>
 					</ul>
@@ -218,9 +218,9 @@
 				<div class='small-only text-align-center'>
 					<i class='button-flame large'></i>
 				</div>
-				<h1>Prostor pro lidi<br />s otevřeným srdcem</h1>
-				<h2 class='subheader'>Radost dát, štěstí přijmout</h2>
-				<a href='/app' class='button'>
+				<h1 t='SLOGAN.SPACE_FOR_PEOPLE_WITH_OPEN_HEART'>Prostor pro lidi<br />s otevřeným srdcem</h1>
+				<h2 class='subheader' t='SLOGAN.JOY_TO_GIVE_HAPPINESS_TO_ACCEPT'>Radost dát, štěstí přijmout</h2>
+				<a href='/app' class='button' t='ENTER'>
 					Vstupte
 				</a>
 				<div class='dotstyle-wrapper' style='visibility: hidden;'>
@@ -247,7 +247,7 @@
 						<switch>
 							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
-									<p xmlns='http://www.w3.org/1999/xhtml'>
+									<p xmlns='http://www.w3.org/1999/xhtml' t='SLOGAN.GIVE_WHAT_YOU_HAVE_OR_CAN_DO'>
 										<strong>Darujte</strong>,<br />co máte a<br />umíte
 									</p>
 								</div>
@@ -261,7 +261,7 @@
 						<switch>
 							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
-									<p xmlns='http://www.w3.org/1999/xhtml'>
+									<p xmlns='http://www.w3.org/1999/xhtml' t='SLOGAN.ACCEPT_WHAT_YOU_ARE_LACKING'>
 										<strong>Přijměte</strong>,<br />co vám<br />chybí
 									</p>
 								</div>
@@ -275,7 +275,7 @@
 						<switch>
 							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
-									<p xmlns='http://www.w3.org/1999/xhtml'>
+									<p xmlns='http://www.w3.org/1999/xhtml' t='SLOGAN.MEET_NEW_FRIENDS'>
 										<strong>Poznejte</strong><br />nové<br />přátele
 									</p>
 								</div>
@@ -287,12 +287,12 @@
 		</section>
 		<section>
 			<h1>Sdílejte dary a přání</h1>
-			<p class='text-align-center'>
+			<p class='text-align-center' t='SECTION.SHARE_WISHES.WHAT_FULFILLS_US'>
 				Co nás baví a naplňuje, posíláme dál. Co sami potřebujeme, dostáváme od druhých.<br />
 				Bez peněz. Bez principu „co za to”. Jen tak, pro radost :-)
 			</p>
 			<div class='text-align-center'>
-				<a href='/app' class='button alt'>
+				<a href='/app' class='button alt' t='ENTER'>
 					Vstupte
 				</a>
 			</div>
@@ -304,7 +304,7 @@
 					<a href='' class='flex masonry-item masonry-hover-zoom' id='image-mp-1'>
 						<div class='image-target'></div>
 						<div class='flex-1 flex flex-column'>
-							<span class='button small'>Přijmu</span>
+							<span class='button small' t='GIFT.ACCEPT'>Přijmu</span>
 							<h2>pozvání na kávu</h2>
 						</div>
 					</a>
@@ -313,7 +313,7 @@
 					<a href='' class='flex masonry-item masonry-hover-zoom' id='image-mp-2'>
 						<div class='image-target'></div>
 						<div class='flex-1 flex flex-column'>
-							<span class='button small color-secondary'>Nabízím</span>
+							<span class='button small color-secondary' t='GIFT.OFFER'>Nabízím</span>
 							<h2>recept na koláče po babičce</h2>
 						</div>
 					</a>
@@ -322,7 +322,7 @@
 					<a href='' class='flex masonry-item masonry-hover-zoom' id='image-mp-3'>
 						<div class='image-target'></div>
 						<div class='flex-1 flex flex-column'>
-							<span class='button small'>Přijmu</span>
+							<span class='button small' t='GIFT.ACCEPT'>Přijmu</span>
 							<h2>pozvání na kávu</h2>
 						</div>
 					</a>
@@ -333,7 +333,7 @@
 					<a href='' class='flex masonry-item masonry-hover-zoom' id='image-mp-4'>
 						<div class='image-target'></div>
 						<div class='flex-1 flex flex-column'>
-							<span class='button small color-secondary'>Nabízím</span>
+							<span class='button small color-secondary' t='GIFT.OFFER'>Nabízím</span>
 							<h2>recept na koláče po babičce</h2>
 						</div>
 					</a>
@@ -342,7 +342,7 @@
 					<a href='' class='flex masonry-item masonry-hover-zoom' id='image-mp-5'>
 						<div class='image-target'></div>
 						<div class='flex-1 flex flex-column'>
-							<span class='button small'>Přijmu</span>
+							<span class='button small' t='GIFT.ACCEPT'>Přijmu</span>
 							<h2>pozvání na kávu</h2>
 						</div>
 					</a>
@@ -350,19 +350,19 @@
 			</div>
 		</section>
 		<section id='target-jak-na-to' class='text-align-center'>
-			<h1>Jak na to</h1>
+			<h1 t='SECTION.HOW_TO'>Jak na to</h1>
 			<div class='bulletize-paragraphs'>
-				<p>
+				<p t='SECTION.HOW_TO.GIVE_WHAT_YOU_HAVE_OR_CAN_DO'>
 					<strong>Darujte, co máte a umíte</strong><br />
 					Co vy považujete za samozřejmé, udělá druhému radost.<br />
 					Co udělá druhému radost, vám dá pocit štěstí.
 				</p>
-				<p>
+				<p t='SECTION.HOW_TO.ACCEPT_WHAT_YOU_ARE_LACKING'>
 					<strong>Přijměte, co vám chybí</strong><br />
 					Nebojte se požádat o to, co vás potěší.<br />
 					Díky vám zažije někdo jiný pocit štěstí z nabídnutého daru.
 				</p>
-				<p>
+				<p t='SECTION.HOW_TO.MEET_NEW_FRIENDS'>
 					<strong>Poznejte nové přátele</strong><br />
 					Nejste v tom sami. Je nás víc, kteří věří,<br />
 					že sdílet radost ze života je naprosto přirozené.
@@ -371,7 +371,7 @@
 		</section>
 		<section>
 			<div class='text-align-center'>
-				<a href='/app/register' class='button alt'>
+				<a href='/app/register' class='button alt' t='LETS_DO_IT'>
 					Jdu do toho!
 				</a>
 			</div>
@@ -380,7 +380,7 @@
 	</div>
 	<div class='section contains-slash'>
 		<section>
-			<h1>Mají nás rádi</h1>
+			<h1 t='SECTION.TESTIMONIALS.PEOPLE_WHO_LIKE_US'>Mají nás rádi</h1>
 			<div class='text-align-center large-quote'>“</div>
 
 			<div class='text-center'>
@@ -464,34 +464,40 @@
 	</div>
 	<div class='section'>
 		<section id='target-podpor-nas'>
-			<h1>Podpoř Hearth</h1>
-			<p class='standard-p'>
+			<h1 t='SECTION.SUPPORT_US.SUPPORT_HEARTH'>Podpoř Hearth</h1>
+			<p class='standard-p' t='SECTION.SUPPORT_US.DOES_HEARTH_GIVE_YOU_JOY'>
 				Dělá ti Hearth radost? Poznáváš tu fajn lidi? Budeme šťastní, pokud se k nám přidáš
 				a pomůžeš dalším lidem otevřít jejich srdce. Hearth je pro všechny zdarma a bez reklam.
 			</p>
 			<div class='medium-flex flex-align-start flex-medium-divide' style="margin-top: 60px;">
 				<div class='flex-div flex-1 blog-block'>
-					<p><strong>Přispěj finančně</strong></p>
-					<p>Jednorázově, opakovaně nebo pravidelně v jakékoliv výši, kterou si sám zvolíš. Dobro nelze přepočítat na koruny, přesto víme, že každý dar pro Hearth má velkou hodnotu.</p>
-					<p class='text-align-center' style="margin-top: 20px;"><a href='/app/support-us' class='display-block margin-top-medium color-primary'>Daruji pro Hearth</a></p>
+					<p><strong t='SECTION.SUPPORT_US.FINANCIALLY.HEADER'>Přispěj finančně</strong></p>
+					<p t='SECTION.SUPPORT_US.FINANCIALLY.TEXT'>Jednorázově, opakovaně nebo pravidelně v jakékoliv výši, kterou si sám zvolíš. Dobro nelze přepočítat na koruny, přesto víme, že každý dar pro Hearth má velkou hodnotu.</p>
+					<p class='text-align-center margin-top-medium'>
+						<a href='/app/support-us' class='color-primary' t='SECTION.SUPPORT_US.FINANCIALLY.LINK'>Daruji pro Hearth</a>
+					</p>
 				</div>
 				<div class='flex-div flex-1 blog-block'>
-					<p><strong>Vytvářej s námi</strong></p>
-					<p>Jestli se vyznáš v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku a chceš nám dát třeba i pár hodin svého času a zkušeností, rádi tě přivítáme do našeho týmu.</p>
-					<p class='text-align-center' style="margin-top: 20px;"><a href='/app/support-us' class='display-block margin-top-medium color-primary'>Jdu do toho</a></p>
+					<p><strong t='SECTION.SUPPORT_US.CREATIVELY.HEADER'>Vytvářej s námi</strong></p>
+					<p t='SECTION.SUPPORT_US.CREATIVELY.TEXT'>Jestli se vyznáš v těchto šifrách: Ruby, AngularJS, NoSQL MongoDB, Docker, Redis a Heroku a chceš nám dát třeba i pár hodin svého času a zkušeností, rádi tě přivítáme do našeho týmu.</p>
+					<p class='text-align-center margin-top-medium'>
+						<a href='/app/support-us' class='color-primary' t='SECTION.SUPPORT_US.CREATIVELY.LINK'>Jdu do toho</a>
+					</p>
 				</div>
 				<div class='flex-div flex-1 blog-block'>
-					<p><strong>Dej o nás vědět</strong></p>
-					<p>Pokud máš možnost představit štědrou sociální síť lidem okolo sebe a pozvat je do Hearth.net, rádi ti s tím pomůžeme. Pro začátek máme tři možnosti a vyber si, kterou začneš.</p>
-					<p class='text-align-center' style="margin-top: 20px;"><a href='/app/support-us' class='display-block margin-top-medium color-primary'>Budu šířit</a></p>
+					<p><strong t='SECTION.SUPPORT_US.ENDORSE.HEADER'>Dej o nás vědět</strong></p>
+					<p t='SECTION.SUPPORT_US.ENDORSE.TEXT'>Pokud máš možnost představit štědrou sociální síť lidem okolo sebe a pozvat je do Hearth.net, rádi ti s tím pomůžeme. Pro začátek máme tři možnosti a vyber si, kterou začneš.</p>
+					<p class='text-align-center margin-top-medium'>
+						<a href='/app/support-us' class='color-primary' t='SECTION.SUPPORT_US.ENDORSE.LINK'>Budu šířit</a>
+					</p>
 				</div>
 			</div>
 		</section>
 	</div>
 	<div class='section footer'>
 		<section>
-			<h1>Kontakt</h1>
-			<p class='standard-p'>
+			<h1 t='SECTION.CONTACT.CONTACT'>Kontakt</h1>
+			<p class='standard-p' t='SECTION.CONTACT.WE_CREATE_SPACE'>
 				Vytváříme prostor, kde jsou hodnoty jako laskavost a štědrost přirozenou součástí života. Zdarma a bez reklam pro všechny. Budeme šťastní, pokud se k nám přidáte a pomůžete dalším lidem otevřít jejich srdce. <a href='' class='color-primary'>Přidáte se?</a>
 			</p>
 			<div class='medium-flex flex-align-start flex-stretch-content small-text-align-center flex-medium-divide'>
@@ -507,9 +513,9 @@
 							Česká republika
 						</p>
 						<div class='flex-1'>
-							<div><a href='' class='text-muted'>O nás</a></div>
-							<div><a href='' class='text-muted'>Příběh</a></div>
-							<div><a href='' class='text-muted'>Lidé v Adato</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.ABOUT_US'>O nás</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.STORY'>Příběh</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.PEOPLE_IN_ADATO'>Lidé v Adato</a></div>
 						</div>
 					</div>
 				</div>
@@ -519,14 +525,14 @@
 					<div class='text-emphasize margin-bottom-medium'>Hearth.net</div>
 					<div class='medium-flex flex-align-start'>
 						<div class='flex-1'>
-							<div><a href='' class='text-muted'>Podpoř nás</a></div>
-							<div><a href='' class='text-muted'>Hearth správci</a></div>
-							<div><a href='' class='text-muted'>Spoj se s námi</a></div>
+							<div><a href='' class='text-muted' t='MENU.SUPPORT_US'>Podpoř nás</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.CUSTODIANS'>Hearth správci</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.CONNECT_WITH_US'>Spoj se s námi</a></div>
 						</div>
 						<div class='flex-1'>
-							<div><a href='' class='text-muted'>Podmínky použití</a></div>
-							<div><a href='' class='text-muted'>Časté dotazy</a></div>
-							<div><a href='' class='text-muted'>Datování a daně</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.TERMS_OF_USE'>Podmínky použití</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.FAQ'>Časté dotazy</a></div>
+							<div><a href='' class='text-muted' t='SECTION.CONTACT.GIVING_AND_TAXES'>Darování a daně</a></div>
 						</div>
 					</div>
 				</div>

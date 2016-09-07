@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Hearth.net">
+
+	<meta property="og:type" content="website">
+    <meta property="og:title" content="Hearth.net">
+    <meta property="og:description" content="Prostor, kde dávat, znamená dostat mnohem víc">
+    <meta property="og:url" content="https://www.hearth.net/">
+    <meta property="og:image" content="https://www.hearth.net/app/images/facebook-sharing-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+	<title>Hearth.net</title>
+	<link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;base64,iconiconicon">
+	<!--<link rel='stylesheet' type='text/css' href='./fonts/stylesheet.css' />-->
+	<link rel="stylesheet" type="text/css" href="./css/components.css">
+	<link rel="stylesheet" type="text/css" href="./css/hamburger.css">
+	<link rel="stylesheet" type="text/css" href="./css/dots.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+
+	<!-- TODO - CLEAN-UP -->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Montserrat|Open+Sans|Raleway|Roboto&subset=latin-ext" rel="stylesheet">
+	<!-- /TODO - CLEAN-UP -->
+
+</head>
+<body class="border-box-sized">
+
+	<!--
+	<div id='fb-root'></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.async = true; js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=133986903478472";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	-->
+
+	<!-- TODO - CLEAN-UP -->
+	<div id="q" style="display: none; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4);padding:1.25rem;position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 90000000000; font-size: 16px; line-height: 1;">
+		<style>
+			#q .w a{display: block; width: 150px; padding: .3rem; border-bottom: 1px solid #ddd; cursor: pointer}
+			#q .w a:last-of-type{border-bottom: none;}
+			#q .w a:hover{background-color: #eee;}
+			#q .w a.active, #q .w a.active:hover{background-color: pink; cursor: default;}
+			#q h5{margin: .3rem 0;}
+			.q-toggle {display: inline-block; width: 20px; height: 20px; line-height: 20px; text-align: center; border: 1px solid transparent; cursor: pointer;}
+			.q-toggle:hover, .q-toggle:focus{border: 1px dotted #aaa;}
+			#q.pale{opacity: .3}
+			#q.pale:hover{opacity: 1}
+		</style>
+		<style id="bodyStyles"></style>
+		<style id="headerStyles"></style>
+		<div id="s">
+			<h5>Text</h5>
+			<div class="f w">
+				<a tabindex="0" onclick="setFont("tahoma", 0, 0)" id="f0">Tahoma</a>
+				<a tabindex="0" onclick="setFont("Merriweather Sans", 1, 0)" id="f1">Merriweather</a>
+				<a tabindex="0" onclick="setFont("Montserrat", 2, 0)" id="f2">Montserrat</a>
+				<a tabindex="0" onclick="setFont("Open Sans", 3, 0)" id="f3">Open Sans</a>
+				<a tabindex="0" onclick="setFont("Raleway", 4, 0)" id="f4">Raleway</a>
+				<a tabindex="0" onclick="setFont("Roboto", 5, 0)" id="f5">Roboto</a>
+			</div>
+			<h5>Headers</h5>
+			<div class="t w">
+				<a tabindex="0" onclick="setFont("tahoma", 0, 1)" id="t0">Tahoma</a>
+				<a tabindex="0" onclick="setFont("Merriweather Sans", 1, 1)" id="t1">Merriweather</a>
+				<a tabindex="0" onclick="setFont("Montserrat", 2, 1)" id="t2">Montserrat</a>
+				<a tabindex="0" onclick="setFont("Open Sans", 3, 1)" id="t3">Open Sans</a>
+				<a tabindex="0" onclick="setFont("Raleway", 4, 1)" id="t4">Raleway</a>
+				<a tabindex="0" onclick="setFont("Roboto", 5, 1)" id="t5">Roboto</a>
+			</div>
+		</div>
+		<i class="q-toggle fa fa-minus-square-o" onclick="toggleFontPanel()"></i>
+		<script>
+			(function(){
+				return false;
+
+				/**
+				 *	@param name - font name to set
+				 *	@param id - id of the element to which to add active class
+				 *	@param type - case 0 - headings
+				 * 				case 1 - all other fonts
+				 */
+				function setFont(name, id, type) {
+					var typeId = (type === 0 ? 'f' : 't');
+					document.getElementById((typeId === 'f' ? 'bodyStyles' : 'headerStyles')).innerHTML = (typeId === 'f' ? 'body{font-family: ' + name + '}' : (name ? 'h1,h2,h3,h4,h5,h6{font-family: ' + name + ', sans-serif}' : ''));
+					var anchs = document.getElementById('q').querySelectorAll('.' + typeId + ' a');
+					for (var i = anchs.length;i--;) {
+						anchs[i].classList.remove('active');
+					}
+					document.getElementById(typeId + id).classList.add('active');
+				}
+				setFont('tahoma', 0, 0);
+				setFont('tahoma', 0, 1);
+				function toggleFontPanel() {
+					var s = document.getElementById('s');
+					var ss = s.style.display;
+					s.style.display = (ss === 'none' ? '' : 'none');
+					q.classList.toggle('pale');
+				}
+			})('Go Shorty!');
+		</script>
+	</div>
+	<!-- /TODO - CLEAN-UP -->
+
+	<div class="header-wrapper">
+		<div class="flex flex-stretch-content">
+			<div class="nav-clickable flex position-relative small-only">
+				<button class="hamburger hamburger--spring flex" type="button" id="hamburger" dropdown="main-navigation" dropdown-opts="{"applyActiveToSelf": true}" deactivate-after-link-usage="">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</button>
+				<div class="flex hover-window" id="main-navigation" deactivate-after-link-usage="">
+					<ul class="margin-none padding-none">
+						<li>
+							<a href="#target-jak-na-to" class="nav-item">How to</a>
+						</li>
+						<li>
+							<a href="#target-podpor-nas" class="nav-item">MENU.SUPPORT_US</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="logo medium-up"></div>
+		</div>
+		<nav class="flex flex-stretch-content">
+			<ul class="main-navigation medium-up">
+				<li>
+					<a href="#target-jak-na-to" class="nav-item">How to</a>
+				</li>
+				<li>
+					<a href="#target-podpor-nas" class="nav-item">MENU.SUPPORT_US</a>
+				</li>
+			</ul>
+			<div class="flex" user-not-logged="" style="display: none">
+				<a href="/app/login" class="color-primary nav-item has-hover-effect">MENU.LOGIN</a>
+				<a href="/app/register" class="button nav-item special">MENU.REGISTER</a>
+			</div>
+			<div class="flex position-relative" user-logged="" id="profileSection" style="display: none">
+				<img class="avatar" profile-image="" dropdown="profile-box">
+				<div class="hover-window padding-none window-align-right" id="profile-box">
+					<div class="padding-horizontal-medium padding-vertical-small text-emphasize" profile-name=""></div>
+					<div class="hr margin-vertical-none"></div>
+					<ul class="margin-none padding-medium sub-link-list">
+						<li>
+							<a class="nav-item" href="/">
+								<i class="fa fa-fw fa-fire margin-right-small"></i>
+								<span>MENU.MARKETPLACE</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" profile-link="">
+								<i class="fa fa-fw fa-user margin-right-small"></i>
+								<span>MENU.PROFILE</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="/app/profile-edit">
+								<i class="fa fa-fw fa-edit margin-right-small"></i>
+								<span>MENU.EDIT_PROFILE</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="/app/profile-settings">
+								<i class="fa fa-fw fa-cog margin-right-small"></i>
+								<span>MENU.SETTINGS</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#" logout="">
+								<i class="fa fa-fw fa-sign-out margin-right-small"></i>
+								<span>MENU.LOGOUT</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div user-not-logged="">
+				<div class="nav-clickable language-wrapper">
+					<div class="language-toggle flex" dropdown="myBigLanguagePanel">
+						<div class="flag"></div>
+					</div>
+					<div class="flex hover-window language-panel window-align-right" id="myBigLanguagePanel">
+						<div class="language-option flex lang-cs" id="language-cs">
+							<div class="flag flag-cs"></div>
+							<div class="">Česky</div>
+						</div>
+						<div class="language-option flex lang-sk" id="language-sk">
+							<div class="flag flag-sk"></div>
+							<div class="">Slovensky</div>
+						</div>
+						<div class="language-option flex lang-en" id="language-en">
+							<div class="flag flag-en"></div>
+							<div class="">English</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="jumbo-wrapper overflow-hidden" jumbo-wrapper="">
+		<!--
+			HERE COME JUMBO IMAGES FROM JS
+		-->
+		<header class="flex flex-space-between full-height position-relative">
+			<div class="jumbo">
+				<div class="small-only text-align-center">
+					<i class="button-flame large"></i>
+				</div>
+				<h1>SLOGAN.SPACE_FOR_PEOPLE_WITH_OPEN_HEART</h1>
+				<h2 class="subheader">SLOGAN.JOY_TO_GIVE_HAPPINESS_TO_ACCEPT</h2>
+				<a href="/app" class="button">ENTER</a>
+				<div class="dotstyle-wrapper" style="visibility: hidden;">
+					<div class="dotstyle dotstyle-dotmove">
+						<ul>
+							<!--
+								HERE COME DOTS FROM JS
+							-->
+							<li><!-- dummy dot - has design purpose - DO NOT REMOVE --></li>
+						</ul>
+					</div>
+				</div>
+				<div class="decorated-circle-flame background-alternate"></div>
+			</div>
+			<div class="slash background-alternate"></div>
+		</header>
+	</div>
+	<div class="section background-alternate contains-slash">
+		<section class="overflow-hidden">
+			<div class="flex flex-space-between balls-3 small-constrict-ball">
+				<div class="ball ball-background-primary">
+					<svg viewbox="0 0 100 100">
+						<circle cx="50" cy="50" r="50">
+						<switch>
+							<foreignobject x="0" y="0" width="100" height="100">
+								<div class="flex text-align-center full-height">
+									<p xmlns="http://www.w3.org/1999/xhtml">SLOGAN.GIVE_WHAT_YOU_HAVE_OR_CAN_DO</p>
+								</div>
+							</foreignobject>
+						</switch>
+					</svg>
+				</div>
+				<div class="ball ball-background-secondary">
+					<svg viewbox="0 0 100 100">
+						<circle cx="50" cy="50" r="50">
+						<switch>
+							<foreignobject x="0" y="0" width="100" height="100">
+								<div class="flex text-align-center full-height">
+									<p xmlns="http://www.w3.org/1999/xhtml">SLOGAN.ACCEPT_WHAT_YOU_ARE_LACKING</p>
+								</div>
+							</foreignobject>
+						</switch>
+					</svg>
+				</div>
+				<div class="ball ball-background-tertiary">
+					<svg viewbox="0 0 100 100">
+						<circle cx="50" cy="50" r="50">
+						<switch>
+							<foreignobject x="0" y="0" width="100" height="100">
+								<div class="flex text-align-center full-height">
+									<p xmlns="http://www.w3.org/1999/xhtml">SLOGAN.MEET_NEW_FRIENDS</p>
+								</div>
+							</foreignobject>
+						</switch>
+					</svg>
+				</div>
+			</div>
+		</section>
+		<section>
+			<h1>Sdílejte dary a přání</h1>
+			<p class="text-align-center">SECTION.SHARE_WISHES.WHAT_FULFILLS_US</p>
+			<div class="text-align-center">
+				<a href="/app" class="button alt">ENTER</a>
+			</div>
+		</section>
+		<section class="masonry-alt">
+			<h1>Možnosti jsou nepřeberné...</h1>
+			<div class="medium-flex">
+				<div class="flex-1 masonry-wrapper">
+					<a href="" class="flex masonry-item masonry-hover-zoom" id="image-mp-1">
+						<div class="image-target"></div>
+						<div class="flex-1 flex flex-column">
+							<span class="button small">GIFT.ACCEPT</span>
+							<h2>pozvání na kávu</h2>
+						</div>
+					</a>
+				</div>
+				<div class="flex-1 masonry-wrapper">
+					<a href="" class="flex masonry-item masonry-hover-zoom" id="image-mp-2">
+						<div class="image-target"></div>
+						<div class="flex-1 flex flex-column">
+							<span class="button small color-secondary">GIFT.OFFER</span>
+							<h2>recept na koláče po babičce</h2>
+						</div>
+					</a>
+				</div>
+				<div class="flex-1 masonry-wrapper">
+					<a href="" class="flex masonry-item masonry-hover-zoom" id="image-mp-3">
+						<div class="image-target"></div>
+						<div class="flex-1 flex flex-column">
+							<span class="button small">GIFT.ACCEPT</span>
+							<h2>pozvání na kávu</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="medium-flex">
+				<div class="flex-1 masonry-wrapper">
+					<a href="" class="flex masonry-item masonry-hover-zoom" id="image-mp-4">
+						<div class="image-target"></div>
+						<div class="flex-1 flex flex-column">
+							<span class="button small color-secondary">GIFT.OFFER</span>
+							<h2>recept na koláče po babičce</h2>
+						</div>
+					</a>
+				</div>
+				<div class="flex-2 masonry-wrapper">
+					<a href="" class="flex masonry-item masonry-hover-zoom" id="image-mp-5">
+						<div class="image-target"></div>
+						<div class="flex-1 flex flex-column">
+							<span class="button small">GIFT.ACCEPT</span>
+							<h2>pozvání na kávu</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+		<section id="target-jak-na-to" class="text-align-center">
+			<h1>SECTION.HOW_TO</h1>
+			<div class="bulletize-paragraphs">
+				<p>SECTION.HOW_TO.GIVE_WHAT_YOU_HAVE_OR_CAN_DO</p>
+				<p>SECTION.HOW_TO.ACCEPT_WHAT_YOU_ARE_LACKING</p>
+				<p>SECTION.HOW_TO.MEET_NEW_FRIENDS</p>
+			</div>
+		</section>
+		<section>
+			<div class="text-align-center">
+				<a href="/app/register" class="button alt">LETS_DO_IT</a>
+			</div>
+		</section>
+		<div class="slash"></div>
+	</div>
+	<div class="section contains-slash">
+		<section>
+			<h1>SECTION.TESTIMONIALS.PEOPLE_WHO_LIKE_US</h1>
+			<div class="text-align-center large-quote">“</div>
+
+			<div class="text-center">
+			    <div class="flex">
+			        <div class="max-500 flex flex-medium-column flex-align-start flex-large-align-center" tabs="" id="gesichteWrapper">
+			            <div class="medium-flex flex-1">
+			                <!-- Nav tabs -->
+			                <ul class="nav nav-justified" id="nav-tabs" role="tablist" tab-headers="">
+								<!--
+									HERE COME GESICHTE HEADERS FROM JS
+								-->
+			                </ul>
+			            </div>
+			            <div class="medium-flex flex-2 margin-horizontal-large flex-2" id="gesichte">
+			                <!-- Tab panes -->
+			                <div class="tab-content" id="tabs-collapse" tab-content="">
+			                    <!--
+									HERE COME GESICHTE CONTENT FROM JS
+								-->
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+		</section>
+		<div class="slash background-alternate"></div>
+	</div>
+	<div class="section contains-slash background-alternate">
+		<section id="target-deje-se">
+			<h1>Inspirujte se</h1>
+			<div class="medium-flex flex-align-start flex-medium-divide">
+				<div class="flex-div flex-1 blog-block">
+					<div class="blog-img-wrapper">
+						<div class="blog-img" id="image-blog-1"></div>
+					</div>
+					<div class="text-muted">4.5.2016</div>
+					<h3>Co je to štěstí? aneb Štěstí jsou malé, ale krásné střípky života</h3>
+					<p>
+						“Chci povzbudit vaši mysl a chci věřit, že i vaše štěstí se skládá z mnoha
+						takových střípků, které pro jednoho mohou být naprosto obyčejným dnem, ale
+						pro jiného jsou něčím mimořádným, něčím radostným a nevšedním. Neodkládejme
+						své štěstí na AŽ…" píše v našem blogu Zuzana, jedna z uživatelek Hearth.net
+					</p>
+					<a href="" class="display-block margin-top-medium color-primary">
+						Přečíst na blogu
+					</a>
+				</div>
+				<div class="flex-div flex-1 blog-block">
+					<div class="blog-img-wrapper">
+						<div class="blog-img" id="image-blog-2"></div>
+					</div>
+					<div class="text-muted">4.5.2016</div>
+					<h3>Japonec vysázel tisíce květin, aby potěšil manželku</h3>
+					<p>
+						Zahrada pokrytá jasně růžovými květy, která vznikla jako dojemný projev lásky.
+					</p>
+					<a href="" class="display-block margin-top-medium color-primary">
+						Přečíst na blogu
+					</a>
+				</div>
+				<div class="flex-div flex-1 blog-block">
+					<div class="blog-img-wrapper">
+						<div class="blog-img" id="image-blog-3"></div>
+					</div>
+					<div class="text-muted">1.5.2016</div>
+					<h3>Skutečná podstata štědrosti</h3>
+					<p>
+						Skutečná podstata štědrosti
+						"Štědrost a obdarovávání je jedna z nejduchovnějších věcí, kterou při hledání
+						sebe sama můžeme učinit,"
+						píše Hanka na svém blogu bytprostestastny.cz
+					</p>
+					<a href="" class="display-block margin-top-medium color-primary">
+						Přečíst na blogu
+					</a>
+				</div>
+			</div>
+		</section>
+		<div class="slash"></div>
+	</div>
+	<div class="section">
+		<section id="target-podpor-nas">
+			<h1>SECTION.SUPPORT_US.SUPPORT_HEARTH</h1>
+			<p class="standard-p">SECTION.SUPPORT_US.DOES_HEARTH_GIVE_YOU_JOY</p>
+			<div class="medium-flex flex-align-start flex-medium-divide" style="margin-top: 60px;">
+				<div class="flex-div flex-1 blog-block">
+					<p><strong>SECTION.SUPPORT_US.FINANCIALLY.HEADER</strong></p>
+					<p>SECTION.SUPPORT_US.FINANCIALLY.TEXT</p>
+					<p class="text-align-center margin-top-medium">
+						<a href="/app/support-us" class="color-primary">SECTION.SUPPORT_US.FINANCIALLY.LINK</a>
+					</p>
+				</div>
+				<div class="flex-div flex-1 blog-block">
+					<p><strong>SECTION.SUPPORT_US.CREATIVELY.HEADER</strong></p>
+					<p>SECTION.SUPPORT_US.CREATIVELY.TEXT</p>
+					<p class="text-align-center margin-top-medium">
+						<a href="/app/support-us" class="color-primary">SECTION.SUPPORT_US.CREATIVELY.LINK</a>
+					</p>
+				</div>
+				<div class="flex-div flex-1 blog-block">
+					<p><strong>SECTION.SUPPORT_US.ENDORSE.HEADER</strong></p>
+					<p>SECTION.SUPPORT_US.ENDORSE.TEXT</p>
+					<p class="text-align-center margin-top-medium">
+						<a href="/app/support-us" class="color-primary">SECTION.SUPPORT_US.ENDORSE.LINK</a>
+					</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="section footer">
+		<section>
+			<h1>SECTION.CONTACT.CONTACT</h1>
+			<p class="standard-p">SECTION.CONTACT.WE_CREATE_SPACE</p>
+			<div class="medium-flex flex-align-start flex-stretch-content small-text-align-center flex-medium-divide">
+				<div class="flex-div flex-1">
+					<div class="hr"></div>
+
+					<div class="text-emphasize margin-bottom-medium">Adato</div>
+					<div class="medium-flex flex-align-start">
+						<p class="flex-1 text-muted margin-top-none margin-bottom-medium">
+							Adato Paradigma, o.s.<br>
+							Nádražní 740/56<br>
+							PSČ 150 00, Praha<br>
+							Česká republika
+						</p>
+						<div class="flex-1">
+							<div><a href="" class="text-muted">SECTION.CONTACT.ABOUT_US</a></div>
+							<div><a href="" class="text-muted">SECTION.CONTACT.STORY</a></div>
+							<div><a href="" class="text-muted">SECTION.CONTACT.PEOPLE_IN_ADATO</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="flex-div flex-1">
+					<div class="hr"></div>
+
+					<div class="text-emphasize margin-bottom-medium">Hearth.net</div>
+					<div class="medium-flex flex-align-start">
+						<div class="flex-1">
+							<div><a href="" class="text-muted">MENU.SUPPORT_US</a></div>
+							<div><a href="" class="text-muted">SECTION.CONTACT.CUSTODIANS</a></div>
+							<div><a href="" class="text-muted">SECTION.CONTACT.CONNECT_WITH_US</a></div>
+						</div>
+						<div class="flex-1">
+							<div><a href="" class="text-muted">SECTION.CONTACT.TERMS_OF_USE</a></div>
+							<div><a href="" class="text-muted">SECTION.CONTACT.FAQ</a></div>
+							<div><a href="" class="text-muted">SECTION.CONTACT.GIVING_AND_TAXES</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="divider-main"></div>
+		<section class="text-align-center">
+			<div class="social-bar flex flex-center flex-wrap">
+				<a target="_blank" href="https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko" title="Hearthí Facebook fanpage"><i class="fa fa-fw fa-2x fa-facebook"></i></a>
+				<a target="_blank" href="https://plus.google.com/105519310550753411853/posts" title="Hearthí Google Plus účet"><i class="fa fa-fw fa-2x fa-google-plus"></i></a>
+				<a target="_blank" href="https://twitter.com/hearth_net" title="Hearthí Twitter účet"><i class="fa fa-fw fa-2x fa-twitter"></i></a>
+				<a target="_blank" href="https://www.youtube.com/user/hearthnetcrsr" title="Náš YouTube kanál"><i class="fa fa-fw fa-2x fa-youtube"></i></a>
+				<a target="_blank" href="//instagram.com/artofhearth" title="Účet na Instagramu"><i class="fa fa-fw fa-2x fa-instagram"></i></a>
+				<a target="_blank" href="mailto:info@hearth.net" title="Napište nám e-mail"><i class="fa fa-fw fa-2x fa-envelope"></i></a>
+			</div>
+			<!--
+			<div class='social-panel display-inline-block margin-top-large'>
+				<div class='fb-page'
+					data-href='https://www.facebook.com/Hearthnet.Ceska.republika.a.Slovensko'
+					data-tabs='timeline,events,messages'
+					data-width='500'
+					data-height='400'
+					data-hide-cover='false'
+					data-show-facepile='false'
+					data-show-posts='false'></div>
+			</div>
+			-->
+		</section>
+	</div>
+	<script src="./js/smooth-scroll.js"></script>
+	<script src="./js/dots.js"></script>
+	<script src="./js/script.js"></script>
+</body>
+</html>

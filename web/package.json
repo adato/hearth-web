@@ -33,6 +33,7 @@
     "grunt-image": "^1.2.1",
     "grunt-ngmin": "0.0.3",
     "grunt-rev": "0.1.0",
-    "grunt-usemin": "3.0.0"
+    "grunt-usemin": "3.0.0",
+	"grunt-i18n-static": "*"
   }
 }
