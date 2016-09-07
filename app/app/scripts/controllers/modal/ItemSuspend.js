@@ -7,13 +7,23 @@
  */
 
 angular.module('hearth.controllers').controller('ItemSuspend', [
-	'$scope', '$rootScope', 'Notify', 'Post', '$timeout', 'Rights',
-	function($scope, $rootScope, Notify, Post, $timeout, Rights) {
+	'$scope', '$rootScope', '$translate', '$filter', 'Notify', 'Post', '$timeout', 'Rights',
+	function($scope, $rootScope, $translate, $filter, Notify, Post, $timeout, Rights) {
 		var timeout = null;
 		$scope.sending = false;
 		$scope.showErrors = false;
+		/*$scope.postTypes = $$config.postTypes;*/
+		var item = $scope.item;
+		var suspendMessage = $translate.instant('POST.SUSPEND.CONNECTED_MESSAGE', {
+			author_name: item.author.first_name,
+			/*post_type: $filter('translate')($scope.postTypes[item.author._type][item.type]),*/
+			post_title: item.title,
+			post_url: $rootScope.appUrl + 'post/' + item._id,
+			user_name: $scope.loggedUser.name
+		});
+
 		$scope.data = {
-			suspendMessage: ''
+			suspendMessage: suspendMessage
 		};
 		$scope.showErrors = {
 			message: false
