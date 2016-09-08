@@ -379,7 +379,7 @@
 	transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s ease;
 }
 
-.dotstyle-tooltip li a::after { /* http: //cssarrowplease.com/ */
+.dotstyle-tooltip li a::after {
 	position: absolute;
 	left: 50%;
 	margin-left: -10px;

@@ -1,5 +1,26 @@
 {
+	"ENTER": "Enter",
+	"GIFT": {
+		"ACCEPT": "Accept",
+		"OFFER": "Offer"
+	},
+	"LETS_DO_IT": "Let's do it!",
 	"MENU": {
-		"HOW_TO": "How to"
+		"EDIT_PROFILE": "Edit profile",
+		"HOW_TO": "How to?",
+		"LOGIN": "Login",
+		"LOGOUT": "Log out",
+		"MARKETPLACE": "Take a look at the marketplace",
+		"PROFILE": "Profile",
+		"REGISTER": "Register",
+		"SETTINGS": "Settings",
+		"SUPPORT_US": "Support us"
+	},
+	"SLOGAN": {
+		"ACCEPT_WHAT_YOU_ARE_LACKING": "<strong>Accept</strong>,<br />what you are<br />lacking",
+		"GIVE_WHAT_YOU_HAVE_OR_CAN_DO": "<strong>Give</strong>,<br />what you have<br />or can do",
+		"JOY_TO_GIVE_HAPPINESS_TO_ACCEPT": "Joy to give, happiness to accept",
+		"MEET_NEW_FRIENDS": "<strong>Meet</strong><br />new<br />friends",
+		"SPACE_FOR_PEOPLE_WITH_OPEN_HEART": "Space for people<br />with open heart"
 	}
 }

@@ -1,5 +1,5 @@
 html{
-	font: 20px/1.25 tahoma, arial, 'Merriweather Sans', \5FAE\8F6F\96C5\9ED1, sans-serif;
+	font: 20px/1.25 'Merriweather Sans', tahoma, arial, \5FAE\8F6F\96C5\9ED1, sans-serif;
 	scroll-behavior: smooth;
 }
 h1,h2,h3{
@@ -14,7 +14,7 @@ h1{
 }
 @media (min-width: 768px){
 	html{
-		font: 20px/1.6 tahoma, arial, 'Merriweather Sans', \5FAE\8F6F\96C5\9ED1, sans-serif;
+		font: 20px/1.6 'Merriweather Sans', tahoma, arial, \5FAE\8F6F\96C5\9ED1, sans-serif;
 	}
 	h1{
 		font-size: 48px;

@@ -1,5 +1,19 @@
 {
+	"ENTER": "Vstupťě",
+	"GIFT": {
+		"ACCEPT": "Prijmout",
+		"OFFER": "Nabídnout"
+	},
+	"LETS_DO_IT": "Ísť do toho!",
 	"MENU": {
-		"HOW_TO": "Ako na to?"
-	}
+		"EDIT_PROFILE": "asdf",
+		"HOW_TO": "qwer",
+		"LOGIN": "zxcv",
+		"LOGOUT": "fghj",
+		"MARKETPLACE": "oiěč",
+		"PROFILE": "wefaěč",
+		"REGISTER": "Reg",
+		"SETTINGS": "Set",
+		"SUPPORT_US": "Sup dood?"
+	},
 }
