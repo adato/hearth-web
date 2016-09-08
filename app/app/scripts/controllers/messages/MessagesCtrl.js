@@ -49,7 +49,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.getFilter = function() {
 			var filter = angular.copy($location.search());
 
-			if (!!~['archived', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'].indexOf(filter.type))
+			if (!!~['archived', 'from_admin', 'as_replies', 'as_replies_post', 'from_community', 'users_posts'].indexOf(filter.type))
 				filter[filter.type] = true;
 
 			delete filter.type;
@@ -146,7 +146,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.detail = null;
 		});
 
-		/* 
+		/*
 		   This will fetch the conversation and mark it as read
 		*/
 		$scope.showConversation = function(conversation, markAsRead) {
