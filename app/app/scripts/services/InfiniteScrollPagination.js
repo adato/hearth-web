@@ -6,8 +6,8 @@
  * @description factory for keeping track of pages in infinite scroll
  */
 
-angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window', '$document', 'Throttle', 'ViewportUtils', '$state',
-	function($window, $document, Throttle, ViewportUtils, $state) {
+angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window', '$document', 'Throttle', 'ViewportUtils', '$state', '$location',
+	function($window, $document, Throttle, ViewportUtils, $state, $location) {
 
 		var currentPage = parseInt($state.params.page || 1),
 			pageLimitBottom = parseInt($state.params.page || 1),
@@ -55,7 +55,6 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 				}
 			}
 			// assign current page
-			// console.log('should set', nearestTop, 'dist', nearestTopTemp);
 			setPage(nearestTop);
 		}
 
@@ -105,11 +104,7 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 		function setPage(pageNumber) {
 			if (pageNumber < 1) return false;
 			currentPage = pageNumber;
-			$state.go('.', {
-				page: pageNumber
-			}, {
-				notify: false
-			});
+			$location.search('page', pageNumber);
 			return true;
 		}
 

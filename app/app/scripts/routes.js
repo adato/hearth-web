@@ -20,6 +20,7 @@ angular.module('hearth').config([
 				url: '/?query?type?page?postdetail',
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
+				reloadOnSearch: false
 			})
 			.state('market-old', {
 				url: '/old',
