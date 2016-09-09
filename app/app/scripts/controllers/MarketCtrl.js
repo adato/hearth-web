@@ -171,6 +171,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 
 		$scope.retrievePosts = function(params) {
 			if (params.page) delete params.page;
+
 			// params.type = "community,user,post";
 			// params.query = "*";
 			params.type = itemTypes.join(',');

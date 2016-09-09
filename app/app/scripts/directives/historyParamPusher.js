@@ -18,10 +18,7 @@ angular.module('hearth.directives').directive('historyParamPusher', ['$state', '
 				params[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] = scope.$eval(attrs.historyParamPusher);
 
 				// Set the param
-				$state.go('.', params, {
-					notify: false,
-					reload: false
-				});
+				$location.search(ScrollService.MARKETPLACE_SCROLL_TO_PARAM, params[ScrollService.MARKETPLACE_SCROLL_TO_PARAM]);
 				// After setting the param into history, go to the desired url
 				$timeout(function() {
 					window.location = attrs.href;
