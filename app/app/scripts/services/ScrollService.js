@@ -35,7 +35,7 @@ angular.module('hearth.services').factory('ScrollService', ['$window', '$timeout
 		var container = cont || 'html, body';
 		var elementPos;
 
-		// if element cannout be found, don't go any further
+		// if element cannot be found, don't go any further
 		if (!$(element).first().length) return false;
 
 		elementPos = Math.max($(element).first().offset().top - offset, 0);

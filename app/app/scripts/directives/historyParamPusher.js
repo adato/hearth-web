@@ -16,8 +16,6 @@ angular.module('hearth.directives').directive('historyParamPusher', ['$state', '
 
 				// Set the param
 				$location.search(ScrollService.MARKETPLACE_SCROLL_TO_PARAM, scope.$eval(attrs.historyParamPusher));
-				// HOTFIX - set page param as location search here also
-				if ($state.params.page) $location.search('page', $state.params.page);
 
 				// make sure it appears it properly
 				if (!$rootScope.$$phase) $rootScope.$apply();
