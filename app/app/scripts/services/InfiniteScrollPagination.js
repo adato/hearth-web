@@ -6,17 +6,18 @@
  * @description factory for keeping track of pages in infinite scroll
  */
 
-angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window', '$document', 'Throttle', 'ViewportUtils', '$state', '$location',
-	function($window, $document, Throttle, ViewportUtils, $state, $location) {
+angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window', '$document', 'Throttle', 'ViewportUtils', '$state', '$location', '$rootScope',
+	function($window, $document, Throttle, ViewportUtils, $state, $location, $rootScope) {
 
 		var currentPage = parseInt($state.params.page || 1),
 			pageLimitBottom = parseInt($state.params.page || 1),
 			pageCounter = currentPage,
-			pageMarkers = {};
+			pageMarkers = {},
+			scrollAlreadyBound,
+			q = 0;
 
 		var factory = {
-			// getPage: getPage,
-			// getPageAndIncrement: getPageAndIncrement,
+			bindScroll: bindScroll,
 			firstPageNotShown: firstPageNotShown,
 			getPageAndIncrementBottom: getPageAndIncrementBottom,
 			getPageBottom: getPageBottom,
@@ -24,7 +25,8 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 			init: init,
 			marketplaceInit: marketplaceInit,
 			setPage: setPage,
-			subscribe: subscribe
+			subscribe: subscribe,
+			unbindScroll: unbindScroll
 		};
 
 		return factory;
@@ -88,12 +90,26 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 		}
 
 		// should be run by marketplace controller
-		function init() {
-			currentPage = parseInt($state.params.page || 1),
-				pageLimitBottom = parseInt($state.params.page || 1),
-				pageCounter = currentPage,
-				pageMarkers = {};
-			angular.element($window).bind('scroll', Throttle.go(infiniteScrollRunner, 50));
+		function init(page) {
+			var pageTemp = parseInt(page || $state.params.page || 1);
+			currentPage = pageTemp;
+			pageLimitBottom = pageTemp;
+			pageCounter = currentPage;
+			pageMarkers = {};
+			setPage(page || 1);
+			bindScroll();
+		}
+
+		// function that binds scroll
+		function bindScroll() {
+			if (scrollAlreadyBound) return false;
+			angular.element($window).bind('scroll', Throttle.go(infiniteScrollRunner, 20));
+			scrollAlreadyBound = true;
+		}
+
+		function unbindScroll() {
+			angular.element($window).unbind('scroll', InfiniteScrollPagination.infiniteScrollRunner);
+			scrollAlreadyBound = void 0;
 		}
 
 		function infiniteScrollRunner() {
@@ -105,6 +121,8 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 			if (pageNumber < 1) return false;
 			currentPage = pageNumber;
 			$location.search('page', pageNumber);
+			// make sure it appears it properly
+			if (!$rootScope.$$phase) $rootScope.$apply();
 			return true;
 		}
 

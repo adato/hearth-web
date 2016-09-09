@@ -170,12 +170,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 
 		$scope.retrievePosts = function(params) {
-			if (params.page) delete params.page;
+			var paramObject = JSON.parse(JSON.stringify(params));
+			if (paramObject.page) delete paramObject.page;
 
 			// params.type = "community,user,post";
 			// params.query = "*";
-			params.type = itemTypes.join(',');
-			Post.query(params, function(data) {
+			paramObject.type = itemTypes.join(',');
+			Post.query(paramObject, function(data) {
 				$scope.loaded = true;
 				$(".loading").hide();
 
@@ -251,6 +252,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.items = [];
 
 			$('#market-item-list').html('');
+
+			InfiniteScrollPagination.init();
+
 			$scope.load();
 		}
 
@@ -308,7 +312,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$rootScope.cacheInfoBox = {};
 			$scope.debug && $log.debug('Destroy marketCtrl finished');
 			// we do not want infinit scroll running on other pages than marketplace
-			angular.element($window).unbind('scroll', InfiniteScrollPagination.infiniteScrollRunner);
+			InfiniteScrollPagination.unbindScroll();
 
 		});
 

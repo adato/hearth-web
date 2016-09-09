@@ -6,7 +6,7 @@
  * @description This will push a param into a current state before going to its hyper reference
  */
 
-angular.module('hearth.directives').directive('historyParamPusher', ['$state', 'ScrollService', '$location', '$timeout', function($state, ScrollService, $location, $timeout) {
+angular.module('hearth.directives').directive('historyParamPusher', ['$state', 'ScrollService', '$location', '$timeout', '$rootScope', function($state, ScrollService, $location, $timeout, $rootScope) {
 
 	return {
 		restrict: 'A',
@@ -14,11 +14,14 @@ angular.module('hearth.directives').directive('historyParamPusher', ['$state', '
 			el.bind('click', function(event) {
 				event.preventDefault();
 
-				var params = $state.params || {};
-				params[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] = scope.$eval(attrs.historyParamPusher);
-
 				// Set the param
-				$location.search(ScrollService.MARKETPLACE_SCROLL_TO_PARAM, params[ScrollService.MARKETPLACE_SCROLL_TO_PARAM]);
+				$location.search(ScrollService.MARKETPLACE_SCROLL_TO_PARAM, scope.$eval(attrs.historyParamPusher));
+				// HOTFIX - set page param as location search here also
+				if ($state.params.page) $location.search('page', $state.params.page);
+
+				// make sure it appears it properly
+				if (!$rootScope.$$phase) $rootScope.$apply();
+
 				// After setting the param into history, go to the desired url
 				$timeout(function() {
 					window.location = attrs.href;
