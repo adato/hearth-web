@@ -30,9 +30,19 @@ angular.module('hearth.directives').directive('filterbar', [
 					var paramString = Filter.getParams();
 					var locSearch = $location.search();
 
-					scope.filterOn = !$.isEmptyObject(locSearch);
+					scope.filterOn = anyFiltersSet(locSearch);
 					scope.searchParams = (paramString) ? '?' + paramString : '';
 				};
+
+				function anyFiltersSet(loc) {
+					var l = JSON.parse(JSON.stringify(loc));
+					delete l.page;
+					delete l.postdetail;
+					for (var prop in l) {
+						if (l.hasOwnProperty(prop)) return true;
+					}
+					return false;
+				}
 
 				scope.$on('filterClose', function() {
 					scope.filterSelected = false;

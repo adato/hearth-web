@@ -108,7 +108,7 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 		}
 
 		function unbindScroll() {
-			angular.element($window).unbind('scroll', InfiniteScrollPagination.infiniteScrollRunner);
+			angular.element($window).unbind('scroll', infiniteScrollRunner);
 			scrollAlreadyBound = void 0;
 		}
 
