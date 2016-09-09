@@ -9,8 +9,8 @@
 angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window', '$document', 'Throttle', 'ViewportUtils', '$state', '$location', '$rootScope',
 	function($window, $document, Throttle, ViewportUtils, $state, $location, $rootScope) {
 
-		var currentPage = parseInt($state.params.page || 1),
-			pageLimitBottom = parseInt($state.params.page || 1),
+		var currentPage = parseInt($location.search().page || 1),
+			pageLimitBottom = parseInt($location.search().page || 1),
 			pageCounter = currentPage,
 			pageMarkers = {},
 			scrollAlreadyBound,
@@ -91,12 +91,12 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 
 		// should be run by marketplace controller
 		function init(page) {
-			var pageTemp = parseInt(page || $state.params.page || 1);
+			var pageTemp = parseInt(page || $location.search().page || 1);
 			currentPage = pageTemp;
 			pageLimitBottom = pageTemp;
 			pageCounter = currentPage;
 			pageMarkers = {};
-			setPage(page || 1);
+			setPage(page || $location.search().page || 1);
 			bindScroll();
 		}
 
@@ -120,6 +120,7 @@ angular.module('hearth.services').factory('InfiniteScrollPagination', ['$window'
 		function setPage(pageNumber) {
 			if (pageNumber < 1) return false;
 			currentPage = pageNumber;
+
 			$location.search('page', pageNumber);
 			// make sure it appears it properly
 			if (!$rootScope.$$phase) $rootScope.$apply();

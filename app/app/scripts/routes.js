@@ -17,7 +17,7 @@ angular.module('hearth').config([
 
 		$stateProvider
 			.state('market', {
-				url: '/?query?type?page?postdetail',
+				url: '/?query&type',
 				templateUrl: 'templates/market.html',
 				controller: 'MarketCtrl',
 				reloadOnSearch: false

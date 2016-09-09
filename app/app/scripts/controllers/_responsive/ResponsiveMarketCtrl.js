@@ -165,7 +165,7 @@ angular.module('hearth.controllers').controller('ResponsiveMarketCtrl', [
 				// iterativly add loaded data to the list and then call finishLoading
 				addItemsToList($('#market-item-list'), data, 0, finishLoading);
 
-				$rootScope.$broadcast('postsLoaded');
+				$rootScope.$emit('postsLoaded');
 			});
 		};
 

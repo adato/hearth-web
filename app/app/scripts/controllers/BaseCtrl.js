@@ -316,7 +316,6 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$state.go('market', {
 				query: null,
 				type: null,
-				page: null
 			}, {
 				reload: true
 			});
