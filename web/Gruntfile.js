@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 		        localesPath: 'locales',
 				selector: '[t]',
 				allowHtml: true,
-				//removeAttr: true
+				removeAttr: true
     		}
     	}
 	});

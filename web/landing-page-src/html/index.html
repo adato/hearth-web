@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='cs'>
+<html data-attr-t lang-t='LANGUAGE_CODE'>
 <head>
 	<meta charset='utf-8' />
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
@@ -25,7 +25,7 @@
 	<div class='header-wrapper'>
 		<div class='flex flex-stretch-content'>
 			<div class='nav-clickable flex position-relative small-only'>
-				<button class='hamburger hamburger--spring flex' type='button' id='hamburger' dropdown='main-navigation' dropdown-opts='{"applyActiveToSelf": true}' deactivate-after-link-usage>
+				<button class='hamburger hamburger--spring flex' type='button' id='hamburger' dropdown='main-navigation' dropdown-opts='{applyActiveToSelf: true}' deactivate-after-link-usage>
 					<span class='hamburger-box'>
 						<span class='hamburger-inner'></span>
 					</span>
@@ -105,18 +105,24 @@
 						<div class='flag'></div>
 					</div>
 					<div class='flex hover-window language-panel window-align-right' id='myBigLanguagePanel'>
-						<div class='language-option flex lang-cs' id='language-cs'>
-							<div class='flag flag-cs'></div>
-							<div class=''>Česky</div>
-						</div>
-						<div class='language-option flex lang-sk' id='language-sk'>
-							<div class='flag flag-sk'></div>
-							<div class=''>Slovensky</div>
-						</div>
-						<div class='language-option flex lang-en' id='language-en'>
-							<div class='flag flag-en'></div>
-							<div class=''>English</div>
-						</div>
+						<li>
+							<a href='/cs' class='language-option flex lang-cs nav-item' id='language-cs'>
+								<div class='flag flag-cs display-inline-block'></div>
+								<div class='display-inline-block'>Česky</div>
+							</a>
+						</li>
+						<li>
+							<a href='/sk' class='language-option flex lang-sk nav-item' id='language-sk'>
+								<div class='flag flag-sk display-inline-block'></div>
+								<div class='display-inline-block'>Slovensky</div>
+							</a>
+						</li>
+						<li>
+							<a href='/' class='language-option flex lang-en nav-item' id='language-en'>
+								<div class='flag flag-en display-inline-block'></div>
+								<div class='display-inline-block'>English</div>
+							</a>
+						</li>
 					</div>
 				</div>
 			</div>
@@ -156,7 +162,9 @@
 			<div class='flex flex-space-between balls-3 small-constrict-ball'>
 				<div class='ball ball-background-primary'>
 					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
+						<g>
+							<circle cx='50' cy='50' r='50'></circle>
+						</g>
 						<switch>
 							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
@@ -170,7 +178,9 @@
 				</div>
 				<div class='ball ball-background-secondary'>
 					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
+						<g>
+							<circle cx='50' cy='50' r='50'></circle>
+						</g>
 						<switch>
 							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>
@@ -184,7 +194,9 @@
 				</div>
 				<div class='ball ball-background-tertiary'>
 					<svg viewBox='0 0 100 100'>
-						<circle cx='50' cy='50' r='50' />
+						<g>
+							<circle cx='50' cy='50' r='50'></circle>
+						</g>
 						<switch>
 							<foreignObject x='0' y='0' width='100' height='100'>
 								<div class='flex text-align-center full-height'>

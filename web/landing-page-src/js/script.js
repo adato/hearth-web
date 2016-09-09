@@ -120,7 +120,8 @@
 			var ddo = el.getAttribute('dropdown-opts');
 			if (ddo) {
 				try {
-					ddo = JSON.parse(ddo);
+					var temp = jsonGetter(ddo);
+					ddo = JSON.parse(temp);
 					if (ddo.applyActiveToSelf) el.classList.toggle(isActive);
 				} catch (e) {console.info(e);}
 			}
@@ -140,7 +141,8 @@
 				var ddo = el.getAttribute('dropdown-opts');
 				if (ddo) {
 					try {
-						ddo = JSON.parse(ddo);
+						var temp = jsonGetter(ddo);
+						ddo = JSON.parse(temp);
 						if (ddo.applyActiveToSelf) el.classList.remove(isActive);
 					} catch (e) {console.info(e);}
 				}
@@ -161,6 +163,14 @@
 			window.removeEventListener('click', toggleHandler);
 			toggleHandlerAttached = false;
 		}
+	}
+	/**
+	 *	tries to create a valid JSON string
+	 */
+	function jsonGetter(string) {
+		var temp1 = string.split(':');
+			temp2 = string.slice(0,1) + '"' + temp1[0].slice(1) + '":' + temp1[1];
+		return temp2;
 	}
 
 	//

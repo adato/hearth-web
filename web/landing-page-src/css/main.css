@@ -273,14 +273,10 @@ a.masonry-item:hover .button,
 	left: inherit; right: 18px;
 }
 .language-panel .language-option{
-	margin-bottom: 8px;
 	font-weight: bold;
 }
 .language-panel .language-option .flag{
 	margin-right: 8px;
-}
-.language-panel .language-option:last-child{
-	margin-bottom: 0px;
 }
 .hover-window li,
 #main-navigation li{
@@ -339,6 +335,10 @@ a.masonry-item:hover .button,
 	.flag{
 		width: 40px;
 		height: 40px;
+	}
+	.hover-window .flag {
+		width: 30px;
+		height: 30px;
 	}
 	.header-wrapper.contracted .flag{
 		width: 30px; height: 30px;
@@ -609,9 +609,9 @@ html[lang='en'] .language-panel .lang-en{
 	color:#4a4a4a;
 	margin-bottom: 8px;
 }
-.ball-background-primary > svg > circle{fill: #fa5800;}
-.ball-background-secondary > svg > circle{fill: #a7bd1d;}
-.ball-background-tertiary > svg > circle{fill: #1fb1e8;}
+.ball-background-primary > svg > g > circle{fill: #fa5800;}
+.ball-background-secondary > svg > g > circle{fill: #a7bd1d;}
+.ball-background-tertiary > svg > g > circle{fill: #1fb1e8;}
 .ball p{
 	flex: 1;
 	margin: 20px;
