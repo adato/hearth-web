@@ -43,6 +43,7 @@ describe('user profile', function() {
 
 	function setInputField(input, value, textarea) {
 		log("setInputField (" + input + ") = " + value);
+		browser.sleep(200);
 		var el = element(by.css('#profileEditForm ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
 		el.clear();
 		el.sendKeys(value);
