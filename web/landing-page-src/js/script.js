@@ -1,95 +1,17 @@
-(function(window) {
+(function(window, config) {
+
 	//
-	//	COMMON
+	//	INCLUDES
 	//
-	function $(q) {
-		return document['querySelector' + (q.slice(0,1) === '#' ? '' : 'All')](q);
-	}
-	function fe(q, fn) {
-		if (! (q && q.length)) return;
-		for (var i = 0, l = q.length; i < l; fn(q[i]), i++);
-	}
-	function collectionHas(a, b) {
-		for(var i = 0, len = a.length;i < len;i++) {
-			if(a[i] === b) return true;
-		}
-		return false;
-	}
-	function findParentBySelector(elem, selector) {
-		var all = document.querySelectorAll(selector);
-		var cur = elem;
-		while (cur && !collectionHas(all, cur)) {
-			cur = cur.parentNode;
-		}
-		return cur; //will return null if not found
-	}
-	function request(method, path) {
-		var xhr = new XMLHttpRequest();
-		xhr.open(method, path);
-		xhr.setRequestHeader('X-API-TOKEN', apiToken);
-		xhr.setRequestHeader('Accept', 'application/vnd.hearth-v1+json');
-		xhr.setRequestHeader('X-API-VERSION', '1');
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		return xhr;
-	}
-	function throttle(callback, limit) {
-	    var wait = false;
-		limit = limit || 10;
-	    return function() {
-	        if (!wait) {
-	            callback.call();
-	            wait = true;
-	            setTimeout(function() {
-	                wait = false;
-	            }, limit);
-	        }
-	    }
-	}
-	function shuffle(array) {
-		var currentIndex = array.length,
-			temporaryValue,
-			randomIndex;
+	var $ = window.aeg.$,
+		cookieFactory = window.aeg.cookieFactory,
+ 		fe = window.aeg.fe,
+ 		findParentBySelector = window.aeg.findParentBySelector,
+		request = window.aeg.request,
+		requestApi = window.aeg.requestApi,
+		shuffle = window.aeg.shuffle,
+		throttle = window.aeg.throttle;
 
-		// While there remain elements to shuffle...
-		while (0 !== currentIndex) {
-
-			// Pick a remaining element...
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
-
-			// And swap it with the current element.
-			temporaryValue = array[currentIndex];
-			array[currentIndex] = array[randomIndex];
-			array[randomIndex] = temporaryValue;
-		}
-
-		return array;
-	}
-
-	// expose something through window.aeg
-	window.aeg = {
-		$: $,
-		fe: fe
-	}
-
-	var cookieFactory = {
-		get: function(cname){
-			var name = cname + '=';
-			var cookies = document.cookie.split(';');
-			for(var i = 0;i < cookies.length;i++){
-				var c = cookies[i];
-				while(c.charAt(0) === ' ') c = c.substring(1);
-				if(c.indexOf(name) === 0) return c.substring(name.length, c.length);
-			}
-			return '';
-		},
-		set: function(cname, cvalue){
-			document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT';
-		},
-		remove: function(cname){
-			document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-		}
-	};
 
 	//
 	//	DROPDOWN
@@ -203,7 +125,7 @@
 						potkávalo co nejvíc lidí a darů ve správný čas.'
 				}, {
 					code: 'panek',
-					imgSrc: 'img/people/simon-panek.png',
+					imgSrc: '/img/people/simon-panek.png',
 					name: 'Šimon Pánek',
 					position: {
 						short: 'Člověk v tísni',
@@ -425,8 +347,8 @@
 	//	PROFILE
 	//
 	var profile,
-		apiPath = 'https://api.dev.hearth.net',
-		authTokenIdentificator = 'authToken';
+		apiPath = config.apiPath,
+		authTokenIdentificator = config.authTokenIdentificator;
 
 	var loggedSelector = '[user-logged]',
 		notLoggedSelector = '[user-not-logged]',
@@ -446,7 +368,7 @@
 	///////////////////
 
 	function initProfile(apiToken) {
-		var req = request('GET', apiPath + '/profile');
+		var req = requestApi('GET', apiPath + '/profile');
 		req.onload = function() {
 		    if (req.status === 200) {
 		        profile = JSON.parse(req.responseText);
@@ -493,7 +415,7 @@
 	 * on success delete auth cookie and set ui to not-logged state
 	 */
 	function logout() {
-		var req = request('POST', apiPath + '/logout');
+		var req = requestApi('POST', apiPath + '/logout');
 		req.onload = function() {
 			if (req.status === 200) {
 				cookieFactory.remove(authTokenIdentificator);
@@ -515,4 +437,4 @@
 	}
 	initLogoutFunction()
 
-})(window);
+})(window, window.hearthConfig);

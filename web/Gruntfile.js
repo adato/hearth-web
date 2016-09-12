@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 	cssMinFiles[landingPageDestFolder + '/css/main.css'] = [
 		landingPageSrcFolder + '/css/components.css',
 		landingPageSrcFolder + '/css/hamburger.css',
-		landingPageSrcFolder + '/css/dots.css',
+		landingPageSrcFolder + '/css/dots-navigation.css',
 		landingPageSrcFolder + '/css/main.css',
 		landingPageSrcFolder + '/css/font-awesome.min.css'
 	];
@@ -26,8 +26,13 @@ module.exports = function(grunt) {
 			},
 			dist: {
     			src: [
+					landingPageSrcFolder + '/js/config.js',
+					landingPageSrcFolder + '/js/libs.js',
+					landingPageSrcFolder + '/js/language.js',
+					landingPageSrcFolder + '/js/referrals.js',
+					landingPageSrcFolder + '/js/blogposts.js',
 					landingPageSrcFolder + '/js/smooth-scroll.js',
-					landingPageSrcFolder + '/js/dots.js',
+					landingPageSrcFolder + '/js/dots-navigation.js',
 					landingPageSrcFolder + '/js/script.js'
 				],
     			dest: landingPageDestFolder + '/js/main.js',

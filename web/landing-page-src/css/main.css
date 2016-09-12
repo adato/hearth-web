@@ -781,6 +781,11 @@ a.masonry-item{
 	font-weight: bold;
 }
 .blog-block p{margin: 0}
+
+.blog-block p img{
+	display: none !important;
+}
+
 .blog-block > .blog-img-wrapper {
 	max-width: 200px;
 	position: relative;
