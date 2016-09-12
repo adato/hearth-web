@@ -1722,5 +1722,6 @@
 		"EH": "Západní Sahara",
 		"ZW": "Zimbabwe"
 	},
-	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?"
+	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
+	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?"
 }
