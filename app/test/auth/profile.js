@@ -5,6 +5,7 @@ describe('user profile', function() {
 
 	beforeEach(function() {
 		navigateToEditProfile();
+		browser.waitForAngular();
 		browser.sleep(1000); // let it init all
 	});
 
