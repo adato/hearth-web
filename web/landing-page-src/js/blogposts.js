@@ -35,8 +35,8 @@
 		params = params || {};
 		if (!(params.posts && params.posts.length)) return false;
 
-		var postsFragment = document.createElement('div');
-		postsFragment.innerHTML = params.posts;
+		var parser = new DOMParser();
+		var postsFragment = parser.parseFromString(params.posts, 'text/xml');
 
 		var posts = postsFragment.querySelectorAll('item');
 
@@ -44,7 +44,7 @@
 
 		if (posts.length < config.blogPostLimit) params.limit = posts.length;
 		for (var i = 0;i < params.limit;i++) {
-			if (i === 0) console.log(posts[i]);
+			// if (i === 0) console.log(posts[i]);
 			appendBlogPost({post: posts[i]});
 		}
 	}
@@ -57,42 +57,18 @@
 
 		var title = params.post.querySelector('title'),
 			link = params.post.querySelector('link'),
-			text = params.post.querySelector('content\\:encoded'),
+			text = params.post.querySelector('encoded'),
 			pubDate = params.post.querySelector('pubDate');
 
-			console.log(link);
-
 		standaradizedPost.innerHTML = ""
-			+ "<div class='blog-img-wrapper'><div class='blog-img' id='image-blog-1'></div></div>"
-			+ (pubDate && pubDate.innerHTML ? "<div class='text-muted'>" + pubDate.innerHTML + "</div>" : "")
-			+ (title && title.innerHTML ? "<h3>" + title.innerHTML + "</h3>" : "")
-			+ (text && text.innerHTML ? "<p>" + text.innerHTML + "</p>" : "")
-			+ (link && link.innerHTML ? "<a href='" + link.innerHTML + "' class='display-block margin-top-medium color-primary'>Přečíst na blogu</a>" : "");
+			// + "<div class='blog-img-wrapper'><div class='blog-img' id='image-blog-1'></div></div>"
+			+ (pubDate && pubDate.innerHTML ? '<div class="text-muted">' + pubDate.innerHTML + '</div>' : '')
+			+ (title && title.innerHTML ? '<h3>' + title.innerHTML + '</h3>' : '')
+			+ (text && text.innerHTML ? '<p>' + text.innerHTML.replace('<![CDATA[', '').replace(']]>', '') + '</p>' : '')
+			+ (link && link.childNodes.length ? '<a href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
 	}
-
-	// var qqq = function(function(data) {
-	// 	var $xml = $(data);
-	// 	var cntr = 0;
-	// 	$xml.find("item").each(function() {
-	// 		cntr ++;
-	// 		var $this = $(this),
-	// 			item = {
-	// 				title: $this.find("title").text(),
-	// 				link: $this.find("link").text(),
-	// 				description: $this.find("description").text(),
-	// 				pubDate: $this.find("pubDate").text()
-	// 		};
-	// 		if (cntr > 3) return;
-	// 		var html = '<article class="news-overview"><header><h3>\
-	// 			<a title="Více z článku.." href="'+item.link+'">'+item.title+'</a></h3></header>\
-	// 			<div class="abstract"><p>'+item.description+'</p></div><div class="btns">\
-	// 			<a title="Více z článku.." class="more" href="'+item.link+'">Přečíst na blogu</a></div></article>';
-	//
-	// 		$('.news-list').append(html);
-	// 	});
-	// });
 
 	function blogPostsError(req) {
 		// TODO: hide the whole section?
