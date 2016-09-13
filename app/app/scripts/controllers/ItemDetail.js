@@ -59,7 +59,9 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 					Post.getRelated({
 						postId: $stateParams.id
 					}, function(data) {
-						$scope.showRelated = true;
+						if (data.posts && data.posts.length) {
+							$scope.showRelated = true;
+						}
 						$scope.items = data.posts;
 					});
 				}
