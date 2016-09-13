@@ -829,6 +829,7 @@ a.masonry-item{
 	}
 }
 .img-circle{ border-radius: 50%; }
+div.img-circle{ padding-bottom: 100%; background-size: cover; }
 @media (min-width: 768px){
 	/*.nav-justified>li{display:table-cell;width:1%;vertical-align: top;}*/
 	.nav-justified>li>a{margin-bottom:0}
@@ -873,7 +874,9 @@ a.masonry-item{
     color: #fff;
 }
 .nav.nav-justified > li.active > a .quote { opacity: 1; }
+.nav.nav-justified > li > a .img-circle,
 .nav.nav-justified > li > a img { box-shadow: 0 0 0 5px #f05f40; }
+.nav.nav-justified > li > a .img-circle,
 .nav.nav-justified > li > a img {
     max-width: 100%;
     opacity: .3;
@@ -882,8 +885,11 @@ a.masonry-item{
     -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+.nav.nav-justified > li.active > a .img-circle,
 .nav.nav-justified > li.active > a img,
+.nav.nav-justified > li:hover > a .img-circle,
 .nav.nav-justified > li:hover > a img,
+.nav.nav-justified > li:focus > a .img-circle,
 .nav.nav-justified > li:focus > a img {
     opacity: 1;
     -webkit-transform: scale(.9,.9);
@@ -935,3 +941,8 @@ a.masonry-item{
 #image-blog-1{background-image: url('../img/temp/blog-1.png')}
 #image-blog-2{background-image: url('../img/temp/blog-2.png')}
 #image-blog-3{background-image: url('../img/temp/blog-3.png')}
+
+#image-gesicht-barta{background-image: url('../img/people/jiri-barta.png')}
+#image-gesicht-vaclavek{background-image: url('../img/people/petr-vaclavek.png')}
+#image-gesicht-panek{background-image: url('../img/people/simon-panek.png')}
+#image-gesicht-hajzler{background-image: url('../img/people/tomas-hajzler.png')}

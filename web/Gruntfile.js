@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
 	var landingPageSrcFolder = 'landing-page-src',
-		landingPageDestFolder = 'app2';
+		landingPageDestFolder = 'dist';
 
 	var cssMinFiles = {};
 	cssMinFiles[landingPageDestFolder + '/css/main.css'] = [
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 		},
 		concat: {
 			options: {
-				separator: ';',
+				separator: '\n',
 			},
 			dist: {
     			src: [
@@ -56,6 +56,19 @@ module.exports = function(grunt) {
 	  			files: cssMinFiles
 			}
 		},
+		fetch_locales: {
+			locales: {
+				options: {
+					sourceConfig: 'configuration/development.js',
+					sourceUrl: 'https://localise.biz/api/export/locale/{langVal}.json?key=d7296261d74b45268838a561a055ee1c&filter=landing&fallback=cs_CZ',
+					destFilepath: 'locales/{langKey}.json',
+					parseFunction: function parseDefault(conf) {
+						// this will take local config for given environment and parse language codes in format: {cs: cs_CZ, ...}
+						return JSON.parse(conf.replace(/[ \t\n]/g, '').match(/languages:(\{.*?\})/)[1]);
+					}
+				}
+			}
+		},
 		i18n: {
     		dist: {
 	    		options: {
@@ -79,9 +92,15 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-fetch-locales');
 
 	// WARNING - watch out what is being cleaned !!!
 	grunt.registerTask('clean', ['clean']);
+
+	// download locales from server
+	grunt.registerTask('locales', function(target) {
+		grunt.task.run(['fetch_locales']);
+	});
 
 	// default build task
 	grunt.registerTask('default', ['i18n', 'copy', 'cssmin', 'concat:dist']);

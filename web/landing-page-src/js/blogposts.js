@@ -65,7 +65,7 @@
 			+ (pubDate && pubDate.innerHTML ? '<div class="text-muted">' + pubDate.innerHTML + '</div>' : '')
 			+ (title && title.innerHTML ? '<h3>' + title.innerHTML + '</h3>' : '')
 			+ (text && text.innerHTML ? '<p>' + text.innerHTML.replace('<![CDATA[', '').replace(']]>', '') + '</p>' : '')
-			+ (link && link.childNodes.length ? '<a href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
+			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
 	}

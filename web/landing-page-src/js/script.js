@@ -113,7 +113,8 @@
 			tabs: [
 				{
 					code: 'barta',
-					imgSrc: 'img/people/jiri-barta.png',
+					// imgSrc: 'img/people/jiri-barta.png',
+					imgId: 'image-gesicht-barta',
 					name: 'Jiří Bárta',
 					position: {
 						short: 'Nadace Via',
@@ -125,7 +126,8 @@
 						potkávalo co nejvíc lidí a darů ve správný čas.'
 				}, {
 					code: 'panek',
-					imgSrc: '/img/people/simon-panek.png',
+					// imgSrc: '/img/people/simon-panek.png',
+					imgId: 'image-gesicht-panek',
 					name: 'Šimon Pánek',
 					position: {
 						short: 'Člověk v tísni',
@@ -136,7 +138,8 @@
 						komunity a širšího příbuzenstva či kmene. Dnes máme Hearth.net a to je skvělé.'
 				}, {
 					code: 'hajzler',
-					imgSrc: 'img/people/tomas-hajzler.png',
+					// imgSrc: 'img/people/tomas-hajzler.png',
+					imgId: 'image-gesicht-hajzler',
 					name: 'Tomáš Hajzler',
 					position: {
 						short: 'Peoplecomm.cz',
@@ -148,7 +151,8 @@
 					doba sociálních sítí k tomu ideálně nahrává.'
 				}, {
 					code: 'vaclavek',
-					imgSrc: 'img/people/petr-vaclavek.png',
+					// imgSrc: 'img/people/petr-vaclavek.png',
+					imgId: 'image-gesicht-vaclavek',
 					name: 'Petr Václavek',
 					position: {
 						short: 'novebohatstvi.cz',
@@ -187,7 +191,7 @@
 					<li role='presentation' class='" + (i === 0 ? 'active' : '') + "'>\
 						<a href='#" + q.code + "' aria-controls='" + q.code + "' role='tab' data-toggle='tab'>\
 							<div class='position-relative text-align-center'>\
-								<img class='img-circle' src='" + q.imgSrc + "' />\
+								<div class='img-circle' id='" + q.imgId + "'></div>\
 								<span class='quote'><i class='fa fa-quote-left'></i></span>\
 							</div>\
 							<div class='text-align-center margin-top-small large-only text'>\
