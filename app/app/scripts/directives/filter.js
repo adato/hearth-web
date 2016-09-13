@@ -33,7 +33,13 @@ angular.module('hearth.directives').directive('filter', [
 					inactive: null,
 					keywords: [],
 					days: null,
+					<< << << < 4 c1ea43e4f394d2b4736af9c17afc614dabadfb8
 					post_language: null,
+					=== === =
+					lang: null,
+					>>> >>> > HEARTH - 884 work in progress,
+					added ui filter radios,
+					strings
 				};
 
 				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
