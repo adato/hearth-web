@@ -1374,7 +1374,13 @@
 			},
 			"BY_LOCATION": "Podle umístění",
 			"BY_ACTIVITY": "Podle aktivity",
-			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
+			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní.",
+			"BY_LANGUAGE": "By language",
+			"LANGUAGE": {
+				"ALL": "Any",
+				"MY_LANGUAGES": "Languages I speak",
+				"OTHER": "Other"
+			}
 		}
 	},
 	"ADD_ATTACHMENT": "Attach file",
