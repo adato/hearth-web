@@ -1406,7 +1406,13 @@
 			},
 			"BY_LOCATION": "Podle umístění",
 			"BY_ACTIVITY": "Podle aktivity",
-			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
+			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní.",
+			"BY_LANGUAGE": "Podle jazyka",
+			"LANGUAGE": {
+				"ALL": "Všechny",
+				"MY_LANGUAGES": "Kterými mluvím",
+				"OTHER": "Vlastní"
+			}
 		}
 	},
 	"ADD_ATTACHMENT": "Přiložit soubor",
@@ -1721,5 +1727,7 @@
 		"ZM": "Zambie",
 		"EH": "Západní Sahara",
 		"ZW": "Zimbabwe"
-	}
+	},
+	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
+	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?"
 }

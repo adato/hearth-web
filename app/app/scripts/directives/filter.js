@@ -32,7 +32,8 @@ angular.module('hearth.directives').directive('filter', [
 					distance: 25,
 					inactive: null,
 					keywords: [],
-					days: null
+					days: null,
+					lang: null,
 				};
 
 				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
