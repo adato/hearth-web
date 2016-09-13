@@ -18,6 +18,7 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 		$scope.isEmpty = IsEmpty;
 		$scope.removeReminder = Bubble.removeReminder;
 		$scope.ItemAux = ItemAux;
+		$scope.showRelated = false;
 
 		// init language
 		$scope.postTypes = $$config.postTypes;
@@ -52,6 +53,18 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				postId: $stateParams.id
 			}, function(data) {
 				$scope.item = data;
+
+				/* get related posts on suspended/deleted post */
+				if (data.state && data.state === 'suspended') {
+					Post.getRelated({
+						postId: $stateParams.id
+					}, function(data) {
+						if (data.posts && data.posts.length) {
+							$scope.showRelated = true;
+						}
+						$scope.items = data.posts;
+					});
+				}
 
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);

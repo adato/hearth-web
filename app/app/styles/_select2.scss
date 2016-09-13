@@ -706,7 +706,15 @@ html[dir="rtl"] .select2-container-multi:not(.ui-select-container) .select2-sear
 
 .select-2-inline-block {
 	display: inline-block !important;
-	width: 300px !important;
+}
+
+.select-2-width-300 {
+    width: 300px !important;
+}
+
+.select-2-max-width-250 {
+    max-width: 250px !important;
+    width:auto;
 }
 
 .select2-container.select-2-alternate .select2-choice{

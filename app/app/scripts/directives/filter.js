@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.directives').directive('filter', [
-	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService',
-	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService) {
+	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService', 'LanguageList',
+	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService, LanguageList) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -32,7 +32,8 @@ angular.module('hearth.directives').directive('filter', [
 					distance: 25,
 					inactive: null,
 					keywords: [],
-					days: null
+					days: null,
+					post_language: null,
 				};
 
 				scope.configOptionsShow = Filter.getOptionsShow($state.current.name);
@@ -122,11 +123,28 @@ angular.module('hearth.directives').directive('filter', [
 							return item.text;
 						}).join(',');
 					}
+
+					// by location
 					if (filter.lon && filter.lat && filter.name) {
 						params.lon = filter.lon;
 						params.lat = filter.lat;
 						params.name = filter.name;
 						params.distance = parseInt(filter.distance) + $$config.lengthUnit;
+					}
+
+					// by post language
+					if (filter.post_language) {
+
+						// own language (selected from ui box)
+						if (filter.post_language == 'other' && typeof filter.post_language_other != 'undefined' && filter.post_language_other != '') {
+							params.lang = filter.post_language_other;
+						}
+
+						// all languages I speak, taken from session
+						if (filter.post_language == 'my') {
+							params.lang = $rootScope.loggedUser.user_languages;
+						}
+
 					}
 					return params;
 				};
@@ -136,13 +154,31 @@ angular.module('hearth.directives').directive('filter', [
 						params.keywords = params.keywords.split(",");
 					}
 
+					var filter_post_language_other = null;
+
+					var getParamPostLanguage = function(lang_param) {
+						if (typeof lang_param == 'undefined' || lang_param == null || lang_param == '') {
+							return filterDefault.post_language;
+						} else {
+							// if it is the same as in session, check 'my'
+							if (lang_param == $rootScope.loggedUser.user_languages) {
+								return 'my';
+							} else {
+								// otherwise check 'other' and prefill select box
+								filter_post_language_other = lang_param;
+								return 'other';
+							}
+						}
+					}
+
 					var filter = {
 						query: params.query || filterDefault.query,
 						inactive: params.inactive || filterDefault.inactive,
 						type: params.type || filterDefault.type,
 						post_type: params.post_type || filterDefault.post_type,
 						days: params.days || filterDefault.days,
-						lang: params.lang,
+						post_language: getParamPostLanguage(params.lang),
+						post_language_other: filter_post_language_other,
 						r_lang: params.r_lang,
 						my_section: params.my_section,
 						energy: (params['character[]'] || '').indexOf('energy') > -1 ? true : undefined,
@@ -201,6 +237,10 @@ angular.module('hearth.directives').directive('filter', [
 					});
 				};
 
+				scope.loadLanguages = function() {
+					scope.languageList = LanguageList.localizedList;
+				}
+
 				scope.$on('filterReseted', function() {
 					$rootScope.searchQuery.query = null;
 					scope.filter = angular.copy(filterDefault);
@@ -250,6 +290,7 @@ angular.module('hearth.directives').directive('filter', [
 				scope.init = function() {
 					scope.inited = true;
 					scope.loadKeywords();
+					scope.loadLanguages();
 					scope.filterSave = Filter.isSaved();
 				};
 

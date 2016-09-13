@@ -69,6 +69,15 @@
 					</div>
 				</div>
 			</div>
+			<div ng-show="configOptionsShow.postLanguage" class="medium-display-table-row language-container">
+				<h5 class="medium-display-table-cell nowrap-addon padding-bottom-small">{{:: 'FULLTEXT.FILTER.BY_LANGUAGE' | translate }}</h5>
+				<div class="radio-container medium-display-table-cell">
+					<radio type="radio" model="filter.post_language" value="null">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
+					<radio type="radio" model="filter.post_language" value="'my'">{{:: 'FULLTEXT.FILTER.LANGUAGE.MY_LANGUAGES' | translate}}</radio>
+					<radio type="radio" model="filter.post_language" value="'other'">{{:: 'FULLTEXT.FILTER.LANGUAGE.OTHER' | translate}}</radio>
+					<select2 class="select-2-inline-block select-2-max-width-250" ng-show="filter.post_language == 'other'" ng-model="filter.post_language_other" s2-options="code.code as code.name for code in languageList"></select2>
+				</div>
+			</div>
 		</div>
 	</section>
 	<section class="footer display-flex">

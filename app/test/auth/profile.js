@@ -5,6 +5,7 @@ describe('user profile', function() {
 
 	beforeEach(function() {
 		navigateToEditProfile();
+		browser.waitForAngular();
 		browser.sleep(1000); // let it init all
 	});
 
@@ -43,6 +44,7 @@ describe('user profile', function() {
 
 	function setInputField(input, value, textarea) {
 		log("setInputField (" + input + ") = " + value);
+		browser.sleep(200);
 		var el = element(by.css('#profileEditForm ' + (textarea ? 'textarea' : 'input') + '[name='+ input +']'));
 		el.clear();
 		el.sendKeys(value);

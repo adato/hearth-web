@@ -16,6 +16,14 @@ angular.module('hearth.services').factory('Post', [
 				nointercept: true,
 				transformResponse: [LocationJsonDataTransform.getLocationJson]
 			},
+			getRelated: {
+				method: 'GET',
+				url: $$config.apiPath + '/posts/:postId/related',
+				params: {
+					limit: 5,
+					offset: 0
+				}
+			},
 			query: {
 				method: 'GET',
 				url: $$config.apiPath + '/search/',

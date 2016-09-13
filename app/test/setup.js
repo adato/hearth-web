@@ -117,7 +117,6 @@ module.exports = {
 		    // attachmentOptions: { directory: "attachments/" } // specify a download directory for attachments
 		});
 
-		mailListener.start();
 		mailListener.on("server:connected", function(){
 		    console.log("Mail listener initialized");
 		});
@@ -127,9 +126,10 @@ module.exports = {
   			console.log(err);
 		});
 
-		return new Promise(function(resolve, reject) {
-		    console.log("Waiting for an email...");
+		mailListener.start();
+	    console.log("Waiting for an email...");
 
+		return new Promise(function(resolve, reject) {
 		    mailListener.on("mail", function(mail){
 		    	console.log("Got an email!");
 		        resolve(mail);
