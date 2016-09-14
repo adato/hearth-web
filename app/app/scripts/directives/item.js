@@ -58,6 +58,8 @@ angular.module('hearth.directives').directive('item', [
 				scope.removeItemFromCommunity = $rootScope.removeItemFromCommunity;
 				scope.removeItemFromBookmarks = $rootScope.removeItemFromBookmarks;
 				scope.addItemToBookmarks = $rootScope.addItemToBookmarks;
+				scope.followItem = $rootScope.followItem;
+				scope.unfollowItem = $rootScope.unfollowItem;
 				scope.userHasRight = Rights.userHasRight;
 				scope.ItemAux = ItemAux;
 

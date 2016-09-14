@@ -94,6 +94,13 @@
 									<li ng-if='userHasRight("post.suspend") && isActive'>
 										<a class='elevated-authority-function' ng-click="(isActive ? ItemAux.confirmSuspend(item, this) : pauseToggle(item, 'confirm-pause-' + item._id))">{{(isActive ? ("POST.SUSPEND.LABEL" | translate) : ("POST.RESUME.LABEL" | translate))}}</a>
 									</li>
+									<!-- TODO: in future there will be another user privilegs then post.suspend -->
+									<li ng-if='userHasRight("post.suspend") && isActive'>
+										<a ng-if="!item.is_followed" ng-click="followItem(item)">
+											<i class="fa fa-eye"></i> {{:: "POST.FOLLOW.LABEL" | translate}}</a>
+										<a ng-if="item.is_followed" ng-click="unfollowItem(item)">
+											<i class="fa fa-eye-slash"></i> {{:: "POST.UNFOLLOW.LABEL" | translate}}</a>
+									</li>
 									<!-- /admin only -->
 								</ul>
 							</div>

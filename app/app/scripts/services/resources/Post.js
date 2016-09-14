@@ -47,6 +47,14 @@ angular.module('hearth.services').factory('Post', [
 				url: $$config.apiPath + '/posts/:postId/prolong',
 				method: 'PUT'
 			},
+			follow: {
+				url: $$config.apiPath + '/posts/:postId/follow',
+				method: 'POST'
+			},
+			unfollow: {
+				url: $$config.apiPath + '/posts/:postId/follow',
+				method: 'DELETE'
+			},
 			mapQuery: {
 				method: 'GET',
 				url: $$config.apiPath + '/search/',
