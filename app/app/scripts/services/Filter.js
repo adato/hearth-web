@@ -89,9 +89,7 @@ angular.module('hearth.services').factory('Filter', [
 				return !$.isEmptyObject($location.search());
 			},
 			apply: function(filterData, save, applySave) {
-
 				$location.search(filterData);
-
 				if (applySave && $rootScope.loggedUser._id) {
 					if (save) {
 						this.setUserFilter(filterData);
@@ -108,12 +106,12 @@ angular.module('hearth.services').factory('Filter', [
 					this.apply($rootScope.user.filter);
 				}
 			},
-			setUserFilter: function(filter) {
-				User.edit({
+			setUserFilter: function(filterObject) {
+				User.updateFilter({
 					_id: $rootScope.loggedUser._id,
-					filter: filter
+					user_filter: filterObject
 				});
-				$rootScope.user.filter = filter;
+				$rootScope.user.filter = filterObject;
 			},
 			deleteUserFilter: function() {
 				this.setUserFilter({});
