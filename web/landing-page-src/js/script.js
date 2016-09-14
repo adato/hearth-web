@@ -51,7 +51,7 @@
 		});
 	});
 	function toggleHandler(event) {
-		var dd = findParentBySelector(event.target, dropdownSelector);
+		var dd = findParentBySelector(event.target, dropdownSelector),
 			selector = dd ? dropdownSelector + ':not([' + dropdownIdentificator + '=' + dd.getAttribute(dropdownIdentificator) + '])' : dropdownSelector;
 
 		if (!(findParentBySelector(event.target, '.hover-window'))) {
