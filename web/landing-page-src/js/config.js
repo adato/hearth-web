@@ -1,4 +1,5 @@
-(function(window) {
+;(function(window) {
+	'use strict'
 
 	window.hearthConfig = {
 		apiPath: 'https://api.dev.hearth.net',

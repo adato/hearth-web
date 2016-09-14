@@ -1,4 +1,5 @@
-(function(window, config) {
+;(function(window, config) {
+	'use strict'
 
 	window.aeg = {
 		$: $,

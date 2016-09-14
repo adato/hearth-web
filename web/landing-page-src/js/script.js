@@ -1,4 +1,5 @@
 (function(window, config) {
+	'use strict'
 
 	//
 	//	INCLUDES
