@@ -21,7 +21,6 @@
 		profileLinkSelector = '[profile-link]';
 
 	var apiToken = cookieFactory.get(authTokenIdentificator);
-	console.log(apiToken, !!apiToken);
 	if (apiToken) {
 		initProfile(apiToken);
 	} else {
@@ -32,7 +31,7 @@
 	///////////////////
 
 	function initProfile(apiToken) {
-		var req = requestApi('GET', apiPath + '/profile');
+		var req = requestApi('GET', apiPath + '/profile', {token: apiToken});
 		req.onload = function() {
 			if (req.status === 200) {
 				profile = JSON.parse(req.responseText);
@@ -85,7 +84,7 @@
 				cookieFactory.remove(authTokenIdentificator);
 				profileNotLogged();
 			} else {
-				console.error('Something went wong logging out:', req);
+				console.error('Something went wong during logout:', req);
 			}
 		};
 	}
