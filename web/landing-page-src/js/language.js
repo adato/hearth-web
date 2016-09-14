@@ -67,7 +67,10 @@
 
 		// window.jCookie('language', lang, {path: '/', expires: 20 * 365});
 		window.aeg.cookieFactory.set(languageCookie, lang);
-		return (relocate ? window.location = langPathMap[lang] : true);
+		if (!relocate) return true;
+		setTimeout(function(){
+			return window.location = langPathMap[lang];
+		}, 10);
 	}
 
 	langBrowser = (langBrowser) ? langBrowser.substring(0, 2).toLowerCase() : defaultLanguage;
