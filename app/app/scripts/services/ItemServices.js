@@ -40,6 +40,8 @@ angular.module('hearth.services').factory('ItemServices', ['$rootScope', 'Filter
 			removeItemFromCommunity: $rootScope.removeItemFromCommunity,
 			removeItemFromBookmarks: $rootScope.removeItemFromBookmarks,
 			addItemToBookmarks: $rootScope.addItemToBookmarks,
+			followItem: $rootScope.followItem,
+			unfollowItem: $rootScope.unfollowItem,
 			removeReminder: Bubble.removeReminder,
 			scrollToElement: $rootScope.scrollToElement,
 			userHasRight: $rootScope.userHasRight,
