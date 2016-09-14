@@ -74,8 +74,9 @@
 	function request(method, path) {
 		return prepareRequest(method, path);
 	}
-	function requestApi(method, path) {
- 		return prepareRequest(method, path, {toApi: true});
+	function requestApi(method, path, params) {
+		params.toApi = true;
+ 		return prepareRequest(method, path, params);
  	}
 	function prepareRequest(method, path, params) {
 		params = params || {};
@@ -84,7 +85,7 @@
 		xhr.open(method, path);
 
 		if (params.toApi) {
-	 		xhr.setRequestHeader('X-API-TOKEN', config.apiToken);
+	 		xhr.setRequestHeader('X-API-TOKEN', params.token);
 	 		xhr.setRequestHeader('Accept', 'application/vnd.hearth-v1+json');
 	 		xhr.setRequestHeader('X-API-VERSION', '1');
  			xhr.setRequestHeader('Content-Type', 'application/json');
