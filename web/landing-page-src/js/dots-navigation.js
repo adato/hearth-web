@@ -9,7 +9,6 @@
  * http://www.codrops.com
  */
 ;( function( window, lib ) {
-
 	'use strict';
 
 	function extend( a, b ) {

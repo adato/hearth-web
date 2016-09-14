@@ -2,6 +2,8 @@
 *	https://github.com/sitepoint-editors/smooth-scrolling
 */
 function jump(target, options) {
+	'use strict'
+
     var
         start = window.pageYOffset,
         opt = {

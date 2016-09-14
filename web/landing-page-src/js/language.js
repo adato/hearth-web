@@ -1,5 +1,9 @@
-(function(window) {
+;(function(window) {
 	'use strict'
+
+	var defaultLanguage = 'en',
+		defaultLanguageUrl = 'en', // language version on root = /
+		languageCookie = 'language';
 
 	/**
 	 *	LANGUAGE IMPORTANCE
@@ -8,10 +12,6 @@
 	 *		2. browser language
 	 *		3. default language - EN
 	 */
-
-	var defaultLanguage = 'en';
-	var defaultLanguageUrl = 'cs'; // language version on root = /
-	var languageCookie = 'language';
 
 	// language based on browser settings
 	var langBrowser = window.navigator.userLanguage || window.navigator.language;
@@ -37,41 +37,41 @@
 			window.aeg.cookieFactory.set(languageCookie, defaultLanguage);
 		}
 
-		console.log("New url is: ", loc);
+		// console.log("New url is: ", loc);
 		window.location = loc;
 	}
 
 	function changeLanguage(lang) {
-		console.log('Settings language to cookies:', lang);
+		// console.log('Settings language to cookies:', lang);
 
 		// window.jCookie('language', lang, {path: '/', expires: 20 * 365});
 		window.aeg.cookieFactory.set(languageCookie, lang);
 		return true;
 	}
 
-	// all langs except default cs language
+	// all langs except default en language
 	// what langs can be specified in url as /lang/...
-	var langsAvailable = ['en', 'sk'];
-	var langTranslationMap = {
-		'en': 'en',
-		'cs': 'cs',
-		'sk': 'sk',
-	};
-
-	var langPathMap = {
-		'en': '/',
-		'cs': '/cs/',
-		'sk': '/sk/',
-	};
+	var langsAvailable = ['cs', 'sk'],
+		langTranslationMap = {
+			'en': 'en',
+			'cs': 'cs',
+			'sk': 'sk'
+		},
+		langPathMap = {
+			'en': '/',
+			'cs': '/cs/',
+			'sk': '/sk/'
+		};
 
 	langBrowser = (langBrowser) ? langBrowser.substring(0, 2).toLowerCase() : defaultLanguage;
 	langBrowser = (langTranslationMap[langBrowser]) ? langTranslationMap[langBrowser] : defaultLanguage;
 
+	if (langsAvailable.indexOf(langUrl) == -1) langUrl = defaultLanguageUrl;
 
-	if(langsAvailable.indexOf(langUrl) == -1)
-		langUrl = defaultLanguageUrl;
+	// ASSIGN LANG ATTRIBUTE TO HTML TAG
+	document.getElementsByTagName('html')[0].setAttribute('lang', langUrl);
 
-	console.log('Languages are: browser = ', langBrowser, ' | url = ', langUrl, ' | cookie = ', window.aeg.cookieFactory.get(languageCookie));
+	// console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', window.aeg.cookieFactory.get(languageCookie));
 
 	if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
 	    // console.log('Don\'t change language for crawlers');
@@ -81,13 +81,13 @@
 		// if there is not set language in cookie yet
 		// use language from browser
 		if (!window.aeg.cookieFactory.get(languageCookie)) {
-			console.log('There is no language in cookie yet');
+			// console.log('There is no language in cookie yet');
 			changeLanguage(langBrowser);
 		}
 
 		// if we are not on right url, redirect
 		if (langUrl != window.aeg.cookieFactory.get(languageCookie)) {
-			console.log('Language in URL is not the same as value in cookies, redirecting to ', window.aeg.cookieFactory.get(languageCookie));
+			// console.log('Language in URL is not the same as value in cookies, redirecting to ', window.aeg.cookieFactory.get(languageCookie));
 			redirectToLangVersion(window.aeg.cookieFactory.get(languageCookie), langsAvailable);
 		}
 	}
