@@ -17,9 +17,16 @@
 			</div>
 			<select class="full-width select-style" id="ratingsPostsSelect" ng-model="rating.post_id">
 				<option value="" ng-selected="true">{{:: 'USER_RATING_CHOOSE_POST_TO_JOIN' | translate }}</option>
-				<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
-					{{ 'RATING_POST_TYPES.'+ (rating.current_community._id != loggedUser._id ? "we_" : "") + post.post_type | translate }} {{:: post.title | ellipsis:40 }}
-				</option>
+				<optgroup label="{{:: 'RATING_POST_TITLE' | translate }}">
+					<option ng-repeat="post in ratingPosts" title="{{:: post.title}}" value="{{:: post._id }}">
+						{{ 'RATING_POST_TYPES.'+ (rating.current_community._id != loggedUser._id ? "we_" : "") + post.post_type | translate }} {{:: post.title | ellipsis:40 }}
+					</option>
+				</optgroup>
+				<optgroup label="{{:: 'RATING_ACTIVE_POST_TITLE' | translate }}">
+					<option ng-repeat="post in ratingActivePosts" title="{{:: post.title}}" value="{{:: post._id }}">
+						{{:: postTypes[post.author._type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.author.name}})
+					</option>
+				</optgroup>
 			</select>
 		</div>
 		<div ng-if="!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" class="padding-bottom">

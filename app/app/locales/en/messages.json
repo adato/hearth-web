@@ -1697,5 +1697,7 @@
 		"ZW": "Zimbabwe"
 	},
 	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
-	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?"
+	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
+	"RATING_POST_TITLE": "Společné inzeráty",
+	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty"
 }
