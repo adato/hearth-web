@@ -40,35 +40,35 @@
 	// language based on url path
 	var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split('/').slice(0, 1).toString();
 
-	function redirectToLangVersion(lang, langsAvailable) {
-		var loc = document.location.pathname.replace(/^\/|\/$/g, '');
-		var langLoc = loc.split('/').slice(0, 1).toString();
-
-		if (langsAvailable.indexOf(langLoc) == -1) {
-			loc = langPathMap[lang] + loc;
-		} else {
-			var locParts = loc.split('/');
-			if (locParts.length) locParts.shift();
-
-			loc = langPathMap[lang] + locParts.join('/');
-		}
-
-		if (loc == 'undefined') {
-			loc = defaultLanguage;
-			window.aeg.cookieFactory.set(languageCookie, defaultLanguage);
-		}
-
-		// console.log("New url is: ", loc);
-		window.location = loc;
-	}
+	// function redirectToLangVersion(lang, langsAvailable) {
+	// 	var loc = document.location.pathname.replace(/^\/|\/$/g, '');
+	// 	var langLoc = loc.split('/').slice(0, 1).toString();
+	//
+	// 	if (langsAvailable.indexOf(langLoc) == -1) {
+	// 		loc = langPathMap[lang] + loc;
+	// 	} else {
+	// 		var locParts = loc.split('/');
+	// 		if (locParts.length) locParts.shift();
+	//
+	// 		loc = langPathMap[lang] + locParts.join('/');
+	// 	}
+	//
+	// 	if (loc == 'undefined') {
+	// 		loc = defaultLanguage;
+	// 		window.aeg.cookieFactory.set(languageCookie, defaultLanguage);
+	// 	}
+	//
+	// 	// console.log("New url is: ", loc);
+	// 	window.location = loc;
+	// }
 
 	function changeLanguage(lang, relocate) {
-		console.log('Settings language to cookies:', lang);
+		console.log('Settings language to cookie:', lang);
 
 		// window.jCookie('language', lang, {path: '/', expires: 20 * 365});
 		window.aeg.cookieFactory.set(languageCookie, lang);
 		if (!relocate) return true;
-		setTimeout(function(){
+		setTimeout(function() {
 			return window.location = langPathMap[lang];
 		}, 10);
 	}
@@ -96,9 +96,10 @@
 		}
 
 		// if we are not on right url, redirect
-		if (langUrl != window.aeg.cookieFactory.get(languageCookie)) {
+		if (langUrl !== window.aeg.cookieFactory.get(languageCookie)) {
 			console.log('Language in URL is not the same as value in cookies, redirecting to ', window.aeg.cookieFactory.get(languageCookie));
-			redirectToLangVersion(window.aeg.cookieFactory.get(languageCookie), langsAvailable);
+			// redirectToLangVersion(window.aeg.cookieFactory.get(languageCookie), langsAvailable);
+			changeLanguage(defaultLanguage, true);
 		}
 	}
 
