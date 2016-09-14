@@ -41,12 +41,12 @@
 		window.location = loc;
 	}
 
-	function changeLanguage(lang) {
+	function changeLanguage(lang, relocate) {
 		// console.log('Settings language to cookies:', lang);
 
 		// window.jCookie('language', lang, {path: '/', expires: 20 * 365});
 		window.aeg.cookieFactory.set(languageCookie, lang);
-		return true;
+		return (relocate ? window.location(langPathMap[lang]) : true);
 	}
 
 	// all langs except default en language
@@ -69,7 +69,7 @@
 	if (langsAvailable.indexOf(langUrl) == -1) langUrl = defaultLanguageUrl;
 
 	// ASSIGN LANG ATTRIBUTE TO HTML TAG
-	document.getElementsByTagName('html')[0].setAttribute('lang', langUrl);
+	document.querySelector('html').setAttribute('lang', langUrl);
 
 	// console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', window.aeg.cookieFactory.get(languageCookie));
 
