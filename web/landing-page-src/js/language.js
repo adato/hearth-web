@@ -52,7 +52,6 @@
 	//
 	// 		loc = langPathMap[lang] + locParts.join('/');
 	// 	}
-	//
 	// 	if (loc == 'undefined') {
 	// 		loc = defaultLanguage;
 	// 		window.aeg.cookieFactory.set(languageCookie, defaultLanguage);
