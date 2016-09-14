@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('Filter', [
-	'$q', '$location', '$state', '$rootScope', 'User', 'KeywordsService', 'Post',
-	function($q, $location, $state, $rootScope, User, KeywordsService, Post) {
+	'$q', '$location', '$state', '$rootScope', 'User', 'KeywordsService', 'Post', 'FilterResource',
+	function($q, $location, $state, $rootScope, User, KeywordsService, Post, FilterResource) {
 		return {
 			_commonKeywords: [],
 			getCommonKeywords: function(cb) {
@@ -94,7 +94,7 @@ angular.module('hearth.services').factory('Filter', [
 					if (save) {
 						this.setUserFilter(filterData);
 					} else {
-						this.deleteUserFilter();
+						// this.deleteUserFilter();
 					}
 				}
 
@@ -107,8 +107,7 @@ angular.module('hearth.services').factory('Filter', [
 				}
 			},
 			setUserFilter: function(filterObject) {
-				User.updateFilter({
-					_id: $rootScope.loggedUser._id,
+				FilterResource.patch({
 					user_filter: filterObject
 				});
 				$rootScope.user.filter = filterObject;
