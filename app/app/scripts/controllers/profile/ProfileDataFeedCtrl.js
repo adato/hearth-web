@@ -119,6 +119,14 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 				});
 
 				$scope.ratingPosts = posts;
+
+				UserRatings.activePosts({
+					userId: params.user_id,
+					current_community_id: val
+				}, function(res) {
+					$scope.ratingActivePosts = res.data;
+				});
+
 				$scope.loadedRatingPosts = true;
 				$scope.loadingRatingPosts = false;
 			}, function(res) {

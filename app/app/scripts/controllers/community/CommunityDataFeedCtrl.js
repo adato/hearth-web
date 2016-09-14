@@ -126,6 +126,14 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				});
 
 				$scope.ratingPosts = posts;
+
+				CommunityRatings.activePosts({
+					_id: id,
+					current_community_id: val
+				}, function(res) {
+					$scope.ratingActivePosts = res.data;
+				});
+
 				$scope.loadedRatingPosts = true;
 				$scope.loadingRatingPosts = false;
 			}, function(res) {

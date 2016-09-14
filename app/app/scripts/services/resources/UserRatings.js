@@ -46,10 +46,18 @@ angular.module('hearth.services').factory('UserRatings', [
 			},
 			possiblePosts: {
 				url: $$config.apiPath + '/users/:userId/ratings/possible_posts',
+				method: 'GET',
 				params: {
 					'userId': '@userId'
-				},
+				}
+			},
+			activePosts: {
+				url: $$config.apiPath + '/users/:userId/posts',
 				method: 'GET',
+				params: {
+					userId: '@userId',
+					state: 'active'
+				}
 			}
 		});
 	}
