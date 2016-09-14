@@ -22,6 +22,10 @@
 	langPathMap[cs] = '/cs/';
 	langPathMap[sk] = '/sk/';
 
+	// expose changeLanguage function and variables to templates
+	window.changeLanguage = changeLanguage;
+	window.language = langTranslationMap;
+
 	/**
 	 *	LANGUAGE IMPORTANCE
 	 *
@@ -63,7 +67,7 @@
 
 		// window.jCookie('language', lang, {path: '/', expires: 20 * 365});
 		window.aeg.cookieFactory.set(languageCookie, lang);
-		return (relocate ? window.location(langPathMap[lang]) : true);
+		return (relocate ? window.location = langPathMap[lang] : true);
 	}
 
 	langBrowser = (langBrowser) ? langBrowser.substring(0, 2).toLowerCase() : defaultLanguage;
