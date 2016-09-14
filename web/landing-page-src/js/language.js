@@ -1,9 +1,26 @@
 ;(function(window) {
 	'use strict'
 
-	var defaultLanguage = 'en',
-		defaultLanguageUrl = 'en', // language version on root = /
+	var en = 'en',
+		cs = 'cs',
+		sk = 'sk'
+
+	var defaultLanguage = en,
 		languageCookie = 'language';
+
+	// all langs except default en language
+	// what langs can be specified in url as /lang/...
+	var langsAvailable = [cs, sk];
+
+	var langTranslationMap = {};
+	langTranslationMap[en] = en;
+	langTranslationMap[cs] = cs;
+	langTranslationMap[sk] = sk;
+
+	var langPathMap = {};
+	langPathMap[en] = '/';
+	langPathMap[cs] = '/cs/';
+	langPathMap[sk] = '/sk/';
 
 	/**
 	 *	LANGUAGE IMPORTANCE
@@ -49,24 +66,10 @@
 		return (relocate ? window.location(langPathMap[lang]) : true);
 	}
 
-	// all langs except default en language
-	// what langs can be specified in url as /lang/...
-	var langsAvailable = ['cs', 'sk'],
-		langTranslationMap = {
-			'en': 'en',
-			'cs': 'cs',
-			'sk': 'sk'
-		},
-		langPathMap = {
-			'en': '/',
-			'cs': '/cs/',
-			'sk': '/sk/'
-		};
-
 	langBrowser = (langBrowser) ? langBrowser.substring(0, 2).toLowerCase() : defaultLanguage;
 	langBrowser = (langTranslationMap[langBrowser]) ? langTranslationMap[langBrowser] : defaultLanguage;
 
-	if (langsAvailable.indexOf(langUrl) == -1) langUrl = defaultLanguageUrl;
+	if (langsAvailable.indexOf(langUrl) == -1) langUrl = defaultLanguage;
 
 	// ASSIGN LANG ATTRIBUTE TO HTML TAG
 	document.querySelector('html').setAttribute('lang', langUrl);
