@@ -78,7 +78,7 @@
 	// ASSIGN LANG ATTRIBUTE TO HTML TAG
 	document.querySelector('html').setAttribute('lang', langUrl);
 
-	// console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', window.aeg.cookieFactory.get(languageCookie));
+	console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', window.aeg.cookieFactory.get(languageCookie));
 
 	if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
 	    // console.log('Don\'t change language for crawlers');
