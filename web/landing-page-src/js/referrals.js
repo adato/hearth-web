@@ -25,7 +25,7 @@
 	*/
 	function saveReferrerArray(arr) {
 		if (!arr || (Object.prototype.toString.call(arr) !== '[object Array]')) return;
-		cookieFactory.set(referrer, arr.join('-'));
+		cookieFactory.set(referrer, arr.join('-'), '/');
 	}
 	var search = window.location.search;
 
