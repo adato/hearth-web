@@ -40,8 +40,8 @@
 		document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
 	}
 
-	function cookieSet(cname, cvalue) {
-		document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT';
+	function cookieSet(cname, cvalue, path) {
+		document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT' + (path ? '; path=' + path : '');
 	}
 
 	/**
