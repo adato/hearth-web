@@ -79,7 +79,7 @@
 			"LABEL": "Suspend post",
 			"ARE_YOU_SURE": "Do you want to suspend this post?",
 			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit.",
-			"CONNECTED_MESSAGE": "Ahoj {{author_name}},\n\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_type}} {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
+			"CONNECTED_MESSAGE": "Ahoj,\n\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_type}} {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
 		},
 		"RESUME": {
 			"LABEL": "Resume"
@@ -90,7 +90,13 @@
 		"AUTHOR_SELECT_IS_DISABLED": "The ad has a reply and that's why you cannot change the author.",
 		"TYPE_CHANGE_IS_DISABLED": "The ad has a reply, that's why its type cannot be changed.",
 		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem",
-		"LANGUAGE": "Jazyk inzerátu"
+		"LANGUAGE": "Jazyk inzerátu",
+		"FOLLOW": {
+			"LABEL": "Sledovat inzerát"
+		},
+		"UNFOLLOW": {
+			"LABEL": "Přestat inzerát sledovat"
+		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Item cannot be deleted. You'd better accept that and move on.",
 	"AD_REMOVE_DONE": "Done! Item has been successfully deleted.",
@@ -958,7 +964,9 @@
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
-		"POST_HID_SUCCESFULLY": "Good. Ad has been hidden. You’ll no longer see it in Marketplace or search results."
+		"POST_HID_SUCCESFULLY": "Good. Ad has been hidden. You’ll no longer see it in Marketplace or search results.",
+		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
+		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Image resolution is too low. Minimum size is {{minSize}}x{{minSize}} pixels.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "You have no ads yet. But you can add them.",
@@ -1374,7 +1382,13 @@
 			},
 			"BY_LOCATION": "Podle umístění",
 			"BY_ACTIVITY": "Podle aktivity",
-			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní."
+			"ACTIVITY": "Zobrazit i záznamy, které jsou delší dobu neaktivní.",
+			"BY_LANGUAGE": "By language",
+			"LANGUAGE": {
+				"ALL": "Any",
+				"MY_LANGUAGES": "Languages I speak",
+				"OTHER": "Other"
+			}
 		}
 	},
 	"ADD_ATTACHMENT": "Attach file",
@@ -1690,5 +1704,8 @@
 		"EH": "Western Sahara",
 		"ZW": "Zimbabwe"
 	},
-	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?"
+	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
+	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
+	"RATING_POST_TITLE": "Společné inzeráty",
+	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty"
 }

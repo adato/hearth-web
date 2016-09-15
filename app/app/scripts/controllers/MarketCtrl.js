@@ -112,7 +112,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 						// Check params for ScrollService.MARKETPLACE_SCROLL_TO_PARAM and if found a matching id with current post, scrollTo it.
 						// Timeout for the check must be set long enough for the slidedown to take its full effect.
 						$timeout(function() {
-							if ($state.params[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] === post._id) ScrollService.scrollToElement('#post_' + $state.params[ScrollService.MARKETPLACE_SCROLL_TO_PARAM], false, 90);
+							if ($location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM] === post._id) ScrollService.scrollToElement('#post_' + $location.search()[ScrollService.MARKETPLACE_SCROLL_TO_PARAM], false, 90);
 						}, 600);
 
 						$scope.debug && console.timeEnd("Single post (" + (index) + ") built");
@@ -170,11 +170,13 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 		};
 
 		$scope.retrievePosts = function(params) {
-			if (params.page) delete params.page;
+			var paramObject = JSON.parse(JSON.stringify(params));
+			if (paramObject.page) delete paramObject.page;
+
 			// params.type = "community,user,post";
 			// params.query = "*";
-			params.type = itemTypes.join(',');
-			Post.query(params, function(data) {
+			paramObject.type = itemTypes.join(',');
+			Post.query(paramObject, function(data) {
 				$scope.loaded = true;
 				$(".loading").hide();
 
@@ -189,7 +191,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				$scope.debug && console.time("Posts pushed to array and built");
 				// iterativly add loaded data to the list and then call finishLoading
 				addItemsToList($('#market-item-list'), data, 0, finishLoading.bind($scope));
-				$rootScope.$broadcast('postsLoaded');
+				$rootScope.$emit('postsLoaded');
 			}, function(err) {
 				// error handler
 				$scope.loaded = true;
@@ -213,7 +215,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 				offset: $scope.items.length,
 				limit: postLimit
 			});
-			if ($state.params.page) {
+			if ($location.search().page) {
 				if (marketplaceInited) {
 					params.offset = $scope.items.length + postLimit * InfiniteScrollPagination.getPageBottom() - postLimit;
 				} else {
@@ -250,6 +252,9 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$scope.items = [];
 
 			$('#market-item-list').html('');
+
+			InfiniteScrollPagination.init();
+
 			$scope.load();
 		}
 
@@ -307,7 +312,7 @@ angular.module('hearth.controllers').controller('MarketCtrl', [
 			$rootScope.cacheInfoBox = {};
 			$scope.debug && $log.debug('Destroy marketCtrl finished');
 			// we do not want infinit scroll running on other pages than marketplace
-			angular.element($window).unbind('scroll', InfiniteScrollPagination.infiniteScrollRunner);
+			InfiniteScrollPagination.unbindScroll();
 
 		});
 

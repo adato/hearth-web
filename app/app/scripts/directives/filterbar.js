@@ -28,17 +28,21 @@ angular.module('hearth.directives').directive('filterbar', [
 
 				scope.testFilterActive = function() {
 					var paramString = Filter.getParams();
-
-					// Assuming that everything in $location.search is a filter is wrong
-					// but we will do so nevertheless with the exception of removing known
-					// filter unrelated params from there.
 					var locSearch = $location.search();
-					delete locSearch.page;
-					delete locSearch[ScrollService.MARKETPLACE_SCROLL_TO_PARAM];
 
-					scope.filterOn = !$.isEmptyObject(locSearch);
+					scope.filterOn = anyFiltersSet(locSearch);
 					scope.searchParams = (paramString) ? '?' + paramString : '';
 				};
+
+				function anyFiltersSet(loc) {
+					var l = JSON.parse(JSON.stringify(loc));
+					delete l.page;
+					delete l.postdetail;
+					for (var prop in l) {
+						if (l.hasOwnProperty(prop)) return true;
+					}
+					return false;
+				}
 
 				scope.$on('filterClose', function() {
 					scope.filterSelected = false;
