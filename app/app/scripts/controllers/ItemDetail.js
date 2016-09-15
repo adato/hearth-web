@@ -55,16 +55,16 @@ angular.module('hearth.controllers').controller('ItemDetail', [
 				$scope.item = data;
 
 				/* get related posts on suspended/deleted post */
-				if (data.state && data.state === 'suspended') {
-					Post.getRelated({
-						postId: $stateParams.id
-					}, function(data) {
-						if (data.posts && data.posts.length) {
-							$scope.showRelated = true;
-						}
-						$scope.items = data.posts;
-					});
-				}
+				//if (data.state && data.state === 'suspended') {
+				Post.getRelated({
+					postId: $stateParams.id
+				}, function(data) {
+					if (data.posts && data.posts.length) {
+						$scope.showRelated = true;
+					}
+					$scope.items = data.posts;
+				});
+				//}
 
 				if ($rootScope.loggedUser._id && data.text)
 					UsersCommunitiesService.loadProfileInfo(data.author, $scope.fillUserInfo);
