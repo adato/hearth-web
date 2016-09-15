@@ -52,7 +52,7 @@
 
 	function init() {
 
-		// console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', window.aeg.cookieFactory.get(languageCookie));
+		console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', window.aeg.cookieFactory.get(languageCookie));
 
 		if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
 		    // console.log('Don\'t change language for crawlers');
@@ -62,14 +62,14 @@
 			// if there is not set language in cookie yet
 			// use language from browser
 			if (!window.aeg.cookieFactory.get(languageCookie)) {
-				// console.log('There is no language in cookie yet');
+				console.log('There is no language in cookie yet');
 				changeLanguage(langBrowser);
 			}
 
 			// if we are not on right url, redirect
 			var cookieLang = window.aeg.cookieFactory.get(languageCookie);
 			if (langUrl !== cookieLang) {
-				// console.log('Language in URL is not the same as value in cookies, redirecting to ', cookieLang);
+				console.log('Language in URL is not the same as value in cookies, redirecting to ', cookieLang);
 				changeLanguage(cookieLang, true);
 			}
 		}
@@ -78,6 +78,7 @@
 	function changeLanguage(lang, relocate) {
 		window.aeg.cookieFactory.set(languageCookie, lang, '/');
 		if (!relocate) return true;
+		console.log('relocating to:', langPathMap[lang], 'with cookie', window.aeg.cookieFactory.get(languageCookie));
 		window.location = langPathMap[lang];
 	}
 
