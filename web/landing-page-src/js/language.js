@@ -3,7 +3,7 @@
 
 	var en = 'en',
 		cs = 'cs',
-		sk = 'sk'
+		sk = 'sk';
 
 	var defaultLanguage = en,
 		languageCookie = 'language';
@@ -40,36 +40,14 @@
 	// language based on url path
 	var langUrl = document.location.pathname.replace(/^\/|\/$/g, '').split('/').slice(0, 1).toString();
 
-	// function redirectToLangVersion(lang, langsAvailable) {
-	// 	var loc = document.location.pathname.replace(/^\/|\/$/g, '');
-	// 	var langLoc = loc.split('/').slice(0, 1).toString();
-	//
-	// 	if (langsAvailable.indexOf(langLoc) == -1) {
-	// 		loc = langPathMap[lang] + loc;
-	// 	} else {
-	// 		var locParts = loc.split('/');
-	// 		if (locParts.length) locParts.shift();
-	//
-	// 		loc = langPathMap[lang] + locParts.join('/');
-	// 	}
-	// 	if (loc == 'undefined') {
-	// 		loc = defaultLanguage;
-	// 		window.aeg.cookieFactory.set(languageCookie, defaultLanguage);
-	// 	}
-	//
-	// 	// console.log("New url is: ", loc);
-	// 	window.location = loc;
-	// }
-
 	function changeLanguage(lang, relocate) {
-		console.log('Settings language to cookie:', lang);
+		console.log('Setting language to cookie:', lang);
 
-		// window.jCookie('language', lang, {path: '/', expires: 20 * 365});
 		window.aeg.cookieFactory.set(languageCookie, lang);
 		if (!relocate) return true;
 		setTimeout(function() {
 			return window.location = langPathMap[lang];
-		}, 10);
+		}, 100);
 	}
 
 	langBrowser = (langBrowser) ? langBrowser.substring(0, 2).toLowerCase() : defaultLanguage;
@@ -90,14 +68,13 @@
 		// if there is not set language in cookie yet
 		// use language from browser
 		if (!window.aeg.cookieFactory.get(languageCookie)) {
-			// console.log('There is no language in cookie yet');
+			console.log('There is no language in cookie yet');
 			changeLanguage(langBrowser);
 		}
 
 		// if we are not on right url, redirect
 		if (langUrl !== window.aeg.cookieFactory.get(languageCookie)) {
 			console.log('Language in URL is not the same as value in cookies, redirecting to ', window.aeg.cookieFactory.get(languageCookie));
-			// redirectToLangVersion(window.aeg.cookieFactory.get(languageCookie), langsAvailable);
 			changeLanguage(defaultLanguage, true);
 		}
 	}
