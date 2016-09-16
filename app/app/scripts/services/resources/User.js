@@ -104,6 +104,12 @@ angular.module('hearth.services').factory('User', [
 					code: 'NOTIFY.COMPLETE_TWITTER_REGISTRATION_FAILED',
 					container: '.fill-email-notify-container'
 				}
+			},
+			updateFilter: {
+				method: 'PATCH',
+				errorNotify: {
+					code: 'NOTIFY.USER_PROFILE_CHANGE_FAILED'
+				},
 			}
 
 		});
