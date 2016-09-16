@@ -3,7 +3,8 @@
 
 	var request = window.aeg.request,
 		$ = window.aeg.$,
-		fe = window.aeg.fe;
+		fe = window.aeg.fe,
+		formatDate = window.aeg.formatDate;
 
 	var posts = [],
 		postsElementWrapperSelector = '[blog-posts-wrapper]',
@@ -58,12 +59,14 @@
 
 		var title = params.post.querySelector('title'),
 			link = params.post.querySelector('link'),
-			text = params.post.querySelector('encoded'),
+			text = params.post.querySelector('description'),
 			pubDate = params.post.querySelector('pubDate');
+
+		var formattedPubDate = formatDate(new Date(pubDate.innerHTML));
 
 		standaradizedPost.innerHTML = ""
 			// + "<div class='blog-img-wrapper'><div class='blog-img' id='image-blog-1'></div></div>"
-			+ (pubDate && pubDate.innerHTML ? '<div class="text-muted">' + pubDate.innerHTML + '</div>' : '')
+			+ (formattedPubDate ? '<div class="text-muted">' + formattedPubDate + '</div>' : '')
 			+ (title && title.innerHTML ? '<h3>' + title.innerHTML + '</h3>' : '')
 			+ (text && text.innerHTML ? '<p>' + text.innerHTML.replace('<![CDATA[', '').replace(']]>', '') + '</p>' : '')
 			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
