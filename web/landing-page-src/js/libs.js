@@ -10,6 +10,7 @@
 		},
 		fe: fe,
 		findParentBySelector: findParentBySelector,
+		formatDate: formatDate,
 		request: request,
 		requestApi: requestApi,
 		shuffle: shuffle,
@@ -66,6 +67,11 @@
 			if(a[i] === b) return true;
 		}
 		return false;
+	}
+
+	function formatDate(date) {
+		if (!date || !typeof(date.getDate) === 'function') return '';
+		return date.getDate() + '.\u00A0' + (date.getMonth() + 1) + '.\u00A0' + date.getFullYear();
 	}
 
 	/**
