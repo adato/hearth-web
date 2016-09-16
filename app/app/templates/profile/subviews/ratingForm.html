@@ -22,7 +22,7 @@
 						{{ 'RATING_POST_TYPES.'+ (rating.current_community._id != loggedUser._id ? "we_" : "") + post.post_type | translate }} {{:: post.title | ellipsis:40 }}
 					</option>
 				</optgroup>
-				<optgroup label="{{:: 'RATING_ACTIVE_POST_TITLE' | translate }}">
+				<optgroup ng-if="ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_ACTIVE_POST_TITLE' | translate }}">
 					<option ng-repeat="post in ratingActivePosts" title="{{:: post.title}}" value="{{:: post._id }}">
 						{{:: postTypes[post.author._type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.author.name}})
 					</option>
