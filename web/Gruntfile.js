@@ -106,7 +106,7 @@ module.exports = function(grunt) {
 	});
 
 	// default build task
-	grunt.registerTask('build', ['i18n', 'copy', 'cssmin', 'concat:dist']);
+	grunt.registerTask('build', ['fetch_locales', 'i18n', 'copy', 'cssmin', 'concat:dist']);
 
 	grunt.registerTask('default', function() {
 		grunt.task.run('build');
