@@ -95,7 +95,7 @@
 			"LABEL": "Sledovat inzerát"
 		},
 		"UNFOLLOW": {
-			"LABEL": "Nesledovat inzerát"
+			"LABEL": "Přestat inzerát sledovat"
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Položka sa nedá vymazať. Radšej sa s tým zmierte.",

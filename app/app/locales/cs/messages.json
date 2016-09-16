@@ -95,7 +95,7 @@
 			"LABEL": "Sledovat inzerát"
 		},
 		"UNFOLLOW": {
-			"LABEL": "Nesledovat inzerát"
+			"LABEL": "Přestat inzerát sledovat"
 		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Nejde vymazat položku. Radši se s tím smiř.",
@@ -1221,7 +1221,7 @@
 	"ADD_LOCATION": "Zadej místo",
 	"LOCATIONS_ARE_EMPTY": "Doplň prázdné místo a nebo zaškrtni, že na místě nezáleží.",
 	"INSERT_LOCATION": "Vložit lokaci",
-	"USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali.",
+	"USER_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo komunity) inzerátem.",
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"RATING_POST_TYPES": {
 		"offered": "Věnoval(a) jsem",
@@ -1229,7 +1229,7 @@
 		"we_needed": "Přijali jsme",
 		"we_offered": "Věnovali jsme"
 	},
-	"RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce jste si vzájemně nereagovali na žádný inzerát. I tak ale můžeš uživatele ohodnotit. :)",
+	"RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce jste si vzájemně nereagovali na žádný inzerát, ani teď nemáte žádný aktivní inzerát. I tak ale můžeš uživatele ohodnotit. :)",
 	"RATING_COMMON_POSTS_TOP": "O jaký inzerát šlo?",
 	"RATING_TO_POST": "k inzerátu",
 	"RATING_LOADING_COMMON_POSTS": "Načítám seznam inzerátů",
@@ -1289,7 +1289,7 @@
 	"ADD_COMMUNITY_RATING": "Hodnocení komunity",
 	"COMMUNITY_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
 	"WRITE_COMMUNITY_SOME_RATING": "Napiš komunitě k hodnocení pár slov",
-	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali. ",
+	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo uživatelovým) inzerátem.",
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"SEND_COMMUNITY_RATING": "Odeslat hodnocení",
 	"TOP_BAR_MESSAGES": "Zprávy",
