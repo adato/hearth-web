@@ -91,7 +91,7 @@
 	 *	tries to create a valid JSON string
 	 */
 	function jsonGetter(string) {
-		var temp1 = string.split(':');
+		var temp1 = string.split(':'),
 			temp2 = string.slice(0,1) + '"' + temp1[0].slice(1) + '":' + temp1[1];
 		return temp2;
 	}

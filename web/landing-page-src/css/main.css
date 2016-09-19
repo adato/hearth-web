@@ -792,12 +792,15 @@ a.masonry-item{
 	padding: 20px;
 	margin: 0 auto;
 }
-.blog-img-wrapper > .blog-img {
+.blog-img-wrapper img {
+	border-radius: 50%;
+}
+/*.blog-img-wrapper > .blog-img {
 	background-size: cover;
 	background-repeat: no-repeat;
 	width: 100%;
 	padding-bottom: 100%;
-}
+}*/
 
 /*******************
 	GESICHTE
