@@ -1,5 +1,4 @@
 var testEmail = protractor.helpers.getTestEmail();
-var emailListener = protractor.helpers.getEmailListener();
 
 describe('hearth registration', function () {
 
@@ -144,8 +143,8 @@ describe('hearth registration', function () {
 			origAddress = protractor.helpers.parseLocation(url);
 
 			browser.wait(function () {
-				return emailListener;
-			}, 60000).then(function (email) {
+				return protractor.helpers.getEmailListener();;
+			}, 200000).then(function (email) {
 				var urls = protractor.helpers.getRegConfirmUrlFromText(email.html);
 				var confirmUrlParsed = protractor.helpers.parseLocation(urls[0]);
 				var confirmUrl = origAddress.protocol + '//' + origAddress.host + confirmUrlParsed.pathname + confirmUrlParsed.search;
@@ -159,5 +158,5 @@ describe('hearth registration', function () {
 			});
 
 		});
-	}, 60000); // 'should register new user' has longer timeout specified here
+	}, 200000); // 'should register new user' has longer timeout specified here
 });
