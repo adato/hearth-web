@@ -75,7 +75,11 @@
 					<radio type="radio" model="filter.post_language" value="null">{{:: 'FULLTEXT.FILTER.LANGUAGE.ALL' | translate}}</radio>
 					<radio type="radio" model="filter.post_language" value="'my'">{{:: 'FULLTEXT.FILTER.LANGUAGE.MY_LANGUAGES' | translate}}</radio>
 					<radio type="radio" model="filter.post_language" value="'other'">{{:: 'FULLTEXT.FILTER.LANGUAGE.OTHER' | translate}}</radio>
-					<select2 class="select-2-inline-block select-2-max-width-250" ng-show="filter.post_language == 'other'" ng-model="filter.post_language_other" s2-options="code.code as code.name for code in languageList"></select2>
+
+					<tags-input ng-show="filter.post_language == 'other'" ng-model="filter.post_language_other" display-property="name" key-property="code" placeholder="{{:: 'ADD_OTHER_LANG' | translate}}" replace-spaces-with-dashes="false" add-from-autocomplete-only="true">
+
+						<auto-complete source="queryLanguages($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32" highlight-matched-text="true"></auto-complete>
+					</tags-input>
 				</div>
 			</div>
 		</div>

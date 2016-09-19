@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.directives').directive('filter', [
-	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService', 'LanguageList',
-	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService, LanguageList) {
+	'$state', 'geo', '$location', 'Auth', '$timeout', 'Filter', '$rootScope', 'KeywordsService', 'LanguageList', '$translate',
+	function($state, geo, $location, Auth, $timeout, Filter, $rootScope, KeywordsService, LanguageList, $translate) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -135,15 +135,18 @@ angular.module('hearth.directives').directive('filter', [
 					// by post language
 					if (filter.post_language) {
 						// own language (selected from ui box)
-						if (filter.post_language == 'other' && typeof filter.post_language_other != 'undefined' && filter.post_language_other != '') {
-							params['lang[]'] = [filter.post_language_other];
+						if (filter.post_language == 'other' && typeof filter.post_language_other != 'undefined' && filter.post_language_other != null && filter.post_language_other.length > 0) {
+							// thou return only them code, neigh them name
+							var langs = filter.post_language_other.map(function(item) {
+								return item.code;
+							})
+							params['lang[]'] = langs;
 						}
 
 						// all languages I speak, taken from session
 						if (filter.post_language == 'my') {
 							params['lang[]'] = $rootScope.loggedUser.user_languages;
 						}
-
 					}
 					return params;
 				};
@@ -153,7 +156,7 @@ angular.module('hearth.directives').directive('filter', [
 						params.keywords = params.keywords.split(",");
 					}
 
-					var filter_post_language_other = null;
+					var filter_post_language_other = [];
 
 					var getParamPostLanguage = function(lang_param) {
 						if (typeof lang_param == 'undefined' || lang_param == null || lang_param.length == 0) {
@@ -167,7 +170,12 @@ angular.module('hearth.directives').directive('filter', [
 								return 'my';
 							} else {
 								// otherwise check 'other' and prefill select box
-								filter_post_language_other = lang_param;
+								lang_param.forEach(function(userLang) {
+									filter_post_language_other.push({
+										'code': userLang,
+										'name': $translate.instant('MY_LANG.' + userLang)
+									});
+								});
 								return 'other';
 							}
 						}
@@ -241,6 +249,16 @@ angular.module('hearth.directives').directive('filter', [
 
 				scope.loadLanguages = function() {
 					scope.languageList = LanguageList.localizedList;
+				}
+
+
+				// it queries languages for tag-input autocomplete filtering
+				scope.queryLanguages = function(query) {
+					var languages = LanguageList.localizedList;
+
+					return languages.filter(function(lang) {
+						return lang.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
+					});
 				}
 
 				scope.$on('filterReseted', function() {
