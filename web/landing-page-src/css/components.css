@@ -158,6 +158,10 @@ li{display: block;}
 }
 /* /DISPLAY */
 
+.cursor-pointer{
+	cursor: pointer;
+}
+
 .overflow-hidden{overflow: hidden}
 
 /* ALIGNMENT */
