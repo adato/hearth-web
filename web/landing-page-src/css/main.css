@@ -194,7 +194,7 @@ a.masonry-item:hover .button,
 	width: 200px;
 }
 .nav-item{
-	padding: 8px;
+	padding: 8px 12px 8px 8px;
 	font-weight: bold;
 	white-space: nowrap;
 	text-decoration: none;
@@ -574,7 +574,7 @@ html[lang='en'] .language-panel .lang-en{
 	width: 68px; height: 68px;
 	margin-left: -34px;
 	border-radius: 50%;
-	background-image: url('../img/logo-shape.png');
+	background-image: url('../img/arrow-down.png');
 	background-size: 28px 36px;
 	background-position: 20px 16px;
 	background-repeat: no-repeat;
@@ -930,18 +930,34 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 }
 
 /*******************
-	AD HOC IMAGES
+	IMAGES
 *******************/
-#image-mp-1 .image-target{background-image: url('../img/temp/mp-1.png')}
-#image-mp-2 .image-target{background-image: url('../img/temp/mp-2.png')}
-#image-mp-3 .image-target{background-image: url('../img/temp/mp-3.png')}
-#image-mp-4 .image-target{background-image: url('../img/temp/mp-4.png')}
-#image-mp-5 .image-target{background-image: url('../img/temp/mp-5.png')}
 
-#image-blog-1{background-image: url('../img/temp/blog-1.png')}
-#image-blog-2{background-image: url('../img/temp/blog-2.png')}
-#image-blog-3{background-image: url('../img/temp/blog-3.png')}
+/* MARKETPLACE IMAGES */
+#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-s.jpg')}
+#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-s.jpg')}
+#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-s.jpg')}
+#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-s.jpg')}
+#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-s.jpg')}
+#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-s.jpg')}
+@media (min-width: 768px) {
+	/*#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-m.jpg')}*/
+	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-m.jpg')}
+	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-m.jpg')}
+	/*#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-m.jpg')}*/
+	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-m.jpg')}
+	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-m.jpg')}
+}
+@media (min-width: 1200px) {
+	/*#image-mp-1 .image-target{background-image: url('../img/marketplace/knizky-l.jpg')}*/
+	#image-mp-2 .image-target{background-image: url('../img/marketplace/doprava-l.jpg')}
+	#image-mp-3 .image-target{background-image: url('../img/marketplace/grass-l.jpg')}
+	/*#image-mp-4 .image-target{background-image: url('../img/marketplace/kurzy-l.jpg')}*/
+	#image-mp-5 .image-target{background-image: url('../img/marketplace/obleceni-l.jpg')}
+	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-l.jpg')}
+}
 
+/* GESICHTE IMAGES */
 #image-gesicht-barta{background-image: url('../img/people/jiri-barta.png')}
 #image-gesicht-vaclavek{background-image: url('../img/people/petr-vaclavek.png')}
 #image-gesicht-panek{background-image: url('../img/people/simon-panek.png')}

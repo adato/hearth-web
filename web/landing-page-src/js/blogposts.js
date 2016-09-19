@@ -7,6 +7,7 @@
 		formatDate = window.aeg.formatDate;
 
 	var posts = [],
+		postsSectionWrapperSelector = '[blog-post-section-wrapper]',
 		postsElementWrapperSelector = '[blog-posts-wrapper]',
 		postsElementWrapper = $(postsElementWrapperSelector);
 
@@ -46,7 +47,6 @@
 
 		if (posts.length < config.blogPostLimit) params.limit = posts.length;
 		for (var i = 0;i < params.limit;i++) {
-			// if (i === 0) console.log(posts[i]);
 			appendBlogPost({post: posts[i]});
 		}
 	}
@@ -75,8 +75,10 @@
 	}
 
 	function blogPostsError(req) {
-		// TODO: hide the whole section?
 		console.log('Blog posts request failed.' + (req ? ' Returned status of ' + req.status : ''));
+
+		// hide the whole blog posts wrapper
+		fe($(postsSectionWrapperSelector), function(el) { el.style.display = 'none'; });
 	}
 
 })(window, window.hearthConfig);

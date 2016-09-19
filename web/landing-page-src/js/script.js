@@ -46,7 +46,7 @@
 					var temp = jsonGetter(ddo);
 					ddo = JSON.parse(temp);
 					if (ddo.applyActiveToSelf) el.classList.toggle(isActive);
-				} catch (e) {console.info(e);}
+				} catch (e) {console.info(e || '');}
 			}
 		});
 	});
@@ -67,7 +67,7 @@
 						var temp = jsonGetter(ddo);
 						ddo = JSON.parse(temp);
 						if (ddo.applyActiveToSelf) el.classList.remove(isActive);
-					} catch (e) {console.info(e);}
+					} catch (e) {console.info(e || '');}
 				}
 			});
 			if (!dd) setToggleHandler(false);

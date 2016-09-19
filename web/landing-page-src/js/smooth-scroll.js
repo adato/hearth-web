@@ -72,8 +72,9 @@ function initSmoothScrolling() {
         document.body.addEventListener('click', onClick, false);
 
         function onClick(e) {
-            if (!isInPageLink(e.target))
+            if (!isInPageLink(e.target)) {
                 return;
+			}
 
             e.stopPropagation();
             e.preventDefault();
