@@ -33,10 +33,10 @@
 				<div class='flex hover-window' id='main-navigation' deactivate-after-link-usage>
 					<ul class='margin-none padding-none'>
 						<li>
-							<a href='#target-jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
+							<a href='#jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 						</li>
 						<li>
-							<a href='#target-podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+							<a href='#podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
 						</li>
 					</ul>
 				</div>
@@ -46,10 +46,10 @@
 		<nav class='flex flex-stretch-content'>
 			<ul class='main-navigation medium-up'>
 				<li>
-					<a href='#target-jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
+					<a href='#jak-na-to' class='nav-item' t='LANDING_PAGE.MENU.HOW_TO'>Jak na to?</a>
 				</li>
 				<li>
-					<a href='#target-podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
+					<a href='#podpor-nas' class='nav-item' t='LANDING_PAGE.MENU.SUPPORT_US'>Podpoř nás</a>
 				</li>
 			</ul>
 			<div class='flex' user-not-logged style='display: none'>
@@ -152,14 +152,14 @@
 						</ul>
 					</div>
 				</div>
-				<div class='decorated-circle-flame background-alternate'></div>
+				<a href='#give-accept-meet' class='decorated-circle-flame background-alternate display-block'></a>
 			</div>
 			<div class='slash background-alternate'></div>
 		</header>
 	</div>
 	<div class='section background-alternate contains-slash'>
 		<section class='overflow-hidden'>
-			<div class='flex flex-space-between balls-3 small-constrict-ball'>
+			<div class='flex flex-space-between balls-3 small-constrict-ball' id='give-accept-meet'>
 				<div class='ball ball-background-primary'>
 					<svg viewBox='0 0 100 100'>
 						<g>
@@ -283,7 +283,7 @@
 				</div>
 			</div>
 		</section>
-		<section id='target-jak-na-to' class='text-align-center'>
+		<section id='jak-na-to' class='text-align-center'>
 			<h1 t='LANDING_PAGE.SECTION.HOW_TO.HOW_TO'>Jak na to</h1>
 			<div class='bulletize-paragraphs'>
 				<p t='LANDING_PAGE.SECTION.HOW_TO.GIVE_WHAT_YOU_HAVE_OR_CAN_DO'>
@@ -343,66 +343,19 @@
 		</section>
 		<div class='slash background-alternate'></div>
 	</div>
-	<div class='section contains-slash background-alternate'>
+	<div class='section contains-slash background-alternate' blog-post-section-wrapper>
 		<section id='target-deje-se'>
 			<h1>Inspirujte se</h1>
 			<div class='medium-flex flex-align-start flex-medium-divide' blog-posts-wrapper>
 				<!--
 					HERE COME BLOG POSTS
 				-->
-				<!--
-				<div class='flex-div flex-1 blog-block'>
-					<div class='blog-img-wrapper'>
-						<div class='blog-img' id='image-blog-1'></div>
-					</div>
-					<div class='text-muted'>4.5.2016</div>
-					<h3>Co je to štěstí? aneb Štěstí jsou malé, ale krásné střípky života</h3>
-					<p>
-						“Chci povzbudit vaši mysl a chci věřit, že i vaše štěstí se skládá z mnoha
-						takových střípků, které pro jednoho mohou být naprosto obyčejným dnem, ale
-						pro jiného jsou něčím mimořádným, něčím radostným a nevšedním. Neodkládejme
-						své štěstí na AŽ…" píše v našem blogu Zuzana, jedna z uživatelek Hearth.net
-					</p>
-					<a href='' class='display-block margin-top-medium color-primary'>
-						Přečíst na blogu
-					</a>
-				</div>
-				<div class='flex-div flex-1 blog-block'>
-					<div class='blog-img-wrapper'>
-						<div class='blog-img' id='image-blog-2'></div>
-					</div>
-					<div class='text-muted'>4.5.2016</div>
-					<h3>Japonec vysázel tisíce květin, aby potěšil manželku</h3>
-					<p>
-						Zahrada pokrytá jasně růžovými květy, která vznikla jako dojemný projev lásky.
-					</p>
-					<a href='' class='display-block margin-top-medium color-primary'>
-						Přečíst na blogu
-					</a>
-				</div>
-				<div class='flex-div flex-1 blog-block'>
-					<div class='blog-img-wrapper'>
-						<div class='blog-img' id='image-blog-3'></div>
-					</div>
-					<div class='text-muted'>1.5.2016</div>
-					<h3>Skutečná podstata štědrosti</h3>
-					<p>
-						Skutečná podstata štědrosti
-						"Štědrost a obdarovávání je jedna z nejduchovnějších věcí, kterou při hledání
-						sebe sama můžeme učinit,"
-						píše Hanka na svém blogu bytprostestastny.cz
-					</p>
-					<a href='' class='display-block margin-top-medium color-primary'>
-						Přečíst na blogu
-					</a>
-				</div>
-				-->
 			</div>
 		</section>
 		<div class='slash'></div>
 	</div>
 	<div class='section'>
-		<section id='target-podpor-nas'>
+		<section id='podpor-nas'>
 			<h1 t='LANDING_PAGE.SECTION.SUPPORT_US.SUPPORT_HEARTH'>Podpoř Hearth</h1>
 			<p class='standard-p' t='LANDING_PAGE.SECTION.SUPPORT_US.DOES_HEARTH_GIVE_YOU_JOY'>
 				Dělá ti Hearth radost? Poznáváš tu fajn lidi? Budeme šťastní, pokud se k nám přidáš
