@@ -79,7 +79,7 @@
 			"LABEL": "Pozastavit inzerát",
 			"ARE_YOU_SURE": "Doopravdy chceš pozastavit tento inzerát?",
 			"CONNECTED_MESSAGE_PLACEHOLDER": "Napiš prosím uživateli pozastavovaného inzerátu pár slov, proč jsi se inzerát rozhodl(a) pozastavit.",
-			"CONNECTED_MESSAGE": "Ahoj {{author_name}},\n\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_type}} {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
+			"CONNECTED_MESSAGE": "Ahoj,\n\nprávě jsem jako Správce obsahu Hearth.net pozastavil tvůj dar\/přání {{post_type}} {{post_title}} ({{post_url}}), protože jeho znění je v rozporu s pravidly a podmínkami Hearth.net (https:\/\/www.hearth.net\/app\/terms).\n\nProsím, uprav text svého daru\/přání, aby vyhovoval umístění na Hearth.net a znovu zveřejni, nebo pokud to není možné, dar\/přání smaž.\n\nZa komunitu Správci obsahu Hearth.net – {{user_name}}\nhttps:\/\/www.hearth.net\/app\/custodians"
 		},
 		"RESUME": {
 			"LABEL": "Obnovit inzerát"
@@ -90,7 +90,13 @@
 		"AUTHOR_SELECT_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit autora.",
 		"TYPE_CHANGE_IS_DISABLED": "Na inzerát už někdo odpověděl, a proto již nelze změnit typ.",
 		"SUSPENDED_BY_ADMIN": "Pozastaveno správcem",
-		"LANGUAGE": "Jazyk inzerátu"
+		"LANGUAGE": "Jazyk inzerátu",
+		"FOLLOW": {
+			"LABEL": "Sledovat inzerát"
+		},
+		"UNFOLLOW": {
+			"LABEL": "Přestat inzerát sledovat"
+		}
 	},
 	"AD_REMOVE_CANNOT_BE_REMOVED": "Nejde vymazat položku. Radši se s tím smiř.",
 	"AD_REMOVE_DONE": "A je to! Položka byla úspěšně vymazána.",
@@ -969,7 +975,9 @@
 		"POST_UNBOOKMARKED_SUCCESFULLY": "Inzerát byl z oblíbených odebrán... Už se nelíbil?",
 		"COMMUNITY_RATING_ADD_FAILED": "Při přidávání hodnocení došlo k chybě.",
 		"ATTACHMENT_DOWNLOAD_FAILED": "NOTIFY.ATTACHMENT_DOWNLOAD_FAILED",
-		"POST_HID_SUCCESFULLY": "Bezva. Skrytí inzerátu se povedlo, už se ti nebude na tržišti a ve vyhledávání zobrazovat."
+		"POST_HID_SUCCESFULLY": "Bezva. Skrytí inzerátu se povedlo, už se ti nebude na tržišti a ve vyhledávání zobrazovat.",
+		"POST_FOLLOWED_SUCCESFULLY": "Bezva! Sledování inzerátu bylo zapnuto.",
+		"POST_UNFOLLOWED_SUCCESFULLY": "Sledování inzerátu bylo vypnuto."
 	},
 	"ERROR_BAD_IMAGE_SIZE_PX": "Obrázek má malé rozlišení. Minimum je {{minSize}}x{{minSize}} pixelů.",
 	"YOU_HAVE_NO_ACTIVE_POSTS_YET": "Zatím zde nemáš žádné inzeráty, můžeš si je ale přidat ",
@@ -1213,7 +1221,7 @@
 	"ADD_LOCATION": "Zadej místo",
 	"LOCATIONS_ARE_EMPTY": "Doplň prázdné místo a nebo zaškrtni, že na místě nezáleží.",
 	"INSERT_LOCATION": "Vložit lokaci",
-	"USER_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali.",
+	"USER_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo komunity) inzerátem.",
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"RATING_POST_TYPES": {
 		"offered": "Věnoval(a) jsem",
@@ -1221,7 +1229,7 @@
 		"we_needed": "Přijali jsme",
 		"we_offered": "Věnovali jsme"
 	},
-	"RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce jste si vzájemně nereagovali na žádný inzerát. I tak ale můžeš uživatele ohodnotit. :)",
+	"RATING_NO_COMMON_POST_IN_3_MONTHS": "Za poslední 3 měsíce jste si vzájemně nereagovali na žádný inzerát, ani teď nemáte žádný aktivní inzerát. I tak ale můžeš uživatele ohodnotit. :)",
 	"RATING_COMMON_POSTS_TOP": "O jaký inzerát šlo?",
 	"RATING_TO_POST": "k inzerátu",
 	"RATING_LOADING_COMMON_POSTS": "Načítám seznam inzerátů",
@@ -1281,7 +1289,7 @@
 	"ADD_COMMUNITY_RATING": "Hodnocení komunity",
 	"COMMUNITY_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
 	"WRITE_COMMUNITY_SOME_RATING": "Napiš komunitě k hodnocení pár slov",
-	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": " Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali. ",
+	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo uživatelovým) inzerátem.",
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"SEND_COMMUNITY_RATING": "Odeslat hodnocení",
 	"TOP_BAR_MESSAGES": "Zprávy",

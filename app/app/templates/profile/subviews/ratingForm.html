@@ -23,13 +23,13 @@
 					</option>
 				</optgroup>
 				<optgroup ng-if="ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts" label="{{:: 'RATING_ACTIVE_POST_TITLE' | translate }}">
-					<option ng-repeat="post in ratingActivePosts" title="{{:: post.title}}" value="{{:: post._id }}">
-						{{:: postTypes[post.author._type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.author.name}})
+					<option ng-repeat="post in ratingActivePosts | orderBy: '-updated_at'" title="{{:: post.title}}" value="{{:: post._id }}">
+						{{:: postTypes[post.author._type][post.type] | translate }} {{:: post.title | ellipsis:40 }} ({{post.author.name}}) {{post.updated_at}}
 					</option>
 				</optgroup>
 			</select>
 		</div>
-		<div ng-if="!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts" class="padding-bottom">
+		<div ng-if="(!ratingPosts.length && loadedRatingPosts && !loadingRatingPosts) && (!ratingActivePosts.length && loadedRatingPosts && !loadingRatingPosts)" class="padding-bottom">
 			{{:: 'RATING_NO_COMMON_POST_IN_3_MONTHS' | translate }}
 		</div>
 		<br />
