@@ -60,18 +60,35 @@
 		var title = params.post.querySelector('title'),
 			link = params.post.querySelector('link'),
 			text = params.post.querySelector('description'),
+			textHTML = '', // variable for transfrerring xml into html
 			pubDate = params.post.querySelector('pubDate');
 
+		// strip text of CDATA
+		if (text && text.innerHTML) textHTML = text.innerHTML.replace('<![CDATA[', '').replace(']]>', '');
+
+		// try to get image from the text html (this must happen after stripping CDATA)
+		var image = document.createElement('div');
+		image.innerHTML = textHTML;
+		image = image.querySelector('[data-blogpost-thumbnail] img');
+
+		// try to format publishing date
 		var formattedPubDate = formatDate(new Date(pubDate.innerHTML));
 
 		standaradizedPost.innerHTML = ""
 			// + "<div class='blog-img-wrapper'><div class='blog-img' id='image-blog-1'></div></div>"
+			+ (image ? '<div class="blog-img-wrapper">' + getElHtml(image) + '</div>' : '')
 			+ (formattedPubDate ? '<div class="text-muted">' + formattedPubDate + '</div>' : '')
 			+ (title && title.innerHTML ? '<h3>' + title.innerHTML + '</h3>' : '')
-			+ (text && text.innerHTML ? '<p>' + text.innerHTML.replace('<![CDATA[', '').replace(']]>', '') + '</p>' : '')
+			+ (textHTML ? '<p>' + textHTML + '</p>' : '')
 			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
+	}
+
+	function getElHtml(el) {
+		var div = document.createElement('div');
+		div.appendChild(el);
+		return div.innerHTML;
 	}
 
 	function blogPostsError(req) {
