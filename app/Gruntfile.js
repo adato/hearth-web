@@ -794,6 +794,14 @@ module.exports = function(grunt) {
 					from: "\n",
 					to: ""
 				}]
+			},
+			versionNumber: {
+				src: ['.tmp/concat/config.js'],
+				overwrite: true,
+				replacements: [{
+					from: "'LOCAL_VERSION'",
+					to: "'" + process.env.BUILD_VERSION + "'"
+				}]
 			}
 		},
 
@@ -895,6 +903,7 @@ module.exports = function(grunt) {
 		'concat:scripts',
 		'concat:config',
 		'replace:tmplMinify', // minify merged templates
+		'replace:versionNumber', // update version number in code
 		'concat:tmpl', // concat templates merged to JS into scripts
 		// 'uglify:scripts',
 		'uglify:config',
