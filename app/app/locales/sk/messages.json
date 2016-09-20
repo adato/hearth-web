@@ -319,7 +319,8 @@
 			"left": "<p>Opustili ste konverzáciu.<\/p>"
 		},
 		"NEW_MESSAGE": "Poslať správu",
-		"NEW_MESSAGE_SENT": "Správa bola úspešne odoslaná. Cink."
+		"NEW_MESSAGE_SENT": "Správa bola úspešne odoslaná. Cink.",
+		"MARK_CONVERSATION_AS_UNREAD": "Označiť za neprečítanú"
 	},
 	"MESSAGES_ARCHIVE": "Archív správ",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovať",
@@ -939,7 +940,7 @@
 		"RESET_PASSWORD_SUCCESS": "Postup na zmenu hesla sme vám poslali na email.",
 		"NEW_PASS_SUCCESS": "Nové heslo bolo nastavené. Teraz sa môžete prihlásiť.",
 		"NEW_PASS_FAILED": "Nastavenie nového hesla sa nepodarilo.",
-		"ACCOUNT_ACTIVATE_SUCCESS": "Váš účet bol aktivovaný. Teraz sa môžete prihlásiť.",
+		"ACCOUNT_ACTIVATE_SUCCESS": "Váš účet bol aktivovaný. Vitajte v Hearth.net!",
 		"ACCOUNT_ACTIVATE_FAILED": "Aktivácia účtu sa nepodarila...",
 		"POST_SPAM_REPORT_FAILED": "Nahlásenie inzerátu sa nepodarilo.",
 		"POST_SPAM_REPORT_SUCCESS": "Inzerát bol nahlásený.",
@@ -1739,5 +1740,6 @@
 	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
 	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
 	"RATING_POST_TITLE": "Společné inzeráty",
-	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty"
+	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
+	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím aspoň jeden jazyk, ktorým hovoríš"
 }
