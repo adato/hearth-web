@@ -317,7 +317,8 @@
 			"left": "<p>You have left the conversation.<\/p>"
 		},
 		"NEW_MESSAGE": "Send message",
-		"NEW_MESSAGE_SENT": "You have successfully sent a message! Ping."
+		"NEW_MESSAGE_SENT": "You have successfully sent a message! Ping.",
+		"MARK_CONVERSATION_AS_UNREAD": "Mark as unread"
 	},
 	"MESSAGES_ARCHIVE": "Messages archive",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archive",
@@ -1707,5 +1708,6 @@
 	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
 	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
 	"RATING_POST_TITLE": "Společné inzeráty",
-	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty"
+	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
+	"ERR_NOT_FILLED_LANGUAGES": "Please fill in at least one language"
 }

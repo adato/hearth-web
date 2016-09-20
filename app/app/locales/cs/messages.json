@@ -319,7 +319,8 @@
 			"left": "<p>Opustil(a) jsi konverzaci.<\/p>"
 		},
 		"NEW_MESSAGE": "Poslat zprávu",
-		"NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink."
+		"NEW_MESSAGE_SENT": "Zpráva byla úspěšně odeslána. Cink.",
+		"MARK_CONVERSATION_AS_UNREAD": "Označit za nepřečtenou"
 	},
 	"MESSAGES_ARCHIVE": "Archív zpráv",
 	"MESSAGES_ARCHIVE_MESSAGE": "Archivovat",
@@ -1221,7 +1222,7 @@
 	"ADD_LOCATION": "Zadej místo",
 	"LOCATIONS_ARE_EMPTY": "Doplň prázdné místo a nebo zaškrtni, že na místě nezáleží.",
 	"INSERT_LOCATION": "Vložit lokaci",
-	"USER_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo komunity) inzerátem.",
+	"USER_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním inzerátem (tvým nebo komunity).",
 	"USER_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"RATING_POST_TYPES": {
 		"offered": "Věnoval(a) jsem",
@@ -1289,7 +1290,7 @@
 	"ADD_COMMUNITY_RATING": "Hodnocení komunity",
 	"COMMUNITY_RATING_SCORE_SELECT_TEXT": "Jak se vám spolu komunikovalo?",
 	"WRITE_COMMUNITY_SOME_RATING": "Napiš komunitě k hodnocení pár slov",
-	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním (tvým nebo uživatelovým) inzerátem.",
+	"COMMUNITY_RATING_JOIN_REALIZED_GIFT": "Hodnocení můžeš spojit s inzerátem, na který jste si v posledních 3 měsících vzájemně reagovali, nebo s jakýmkoli aktivním inzerátem (tvým nebo uživatelovým).",
 	"COMMUNITY_RATING_CHOOSE_POST_TO_JOIN": "Vyber inzerát",
 	"SEND_COMMUNITY_RATING": "Odeslat hodnocení",
 	"TOP_BAR_MESSAGES": "Zprávy",
@@ -1739,5 +1740,6 @@
 	"POSTS_RELATED_QUESTION": "Zaujme tě některý z podobných inzerátů?",
 	"ERR_TEXT_TOO_LOUD": "Víš, že text PSANÝ VELKÝMI PÍSMENY SE VĚTŠINOU NA INTERNETU POVAŽUJE ZA KŘIK a je tedy většinou neslušný?",
 	"RATING_POST_TITLE": "Společné inzeráty",
-	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty"
+	"RATING_ACTIVE_POST_TITLE": "Ostatní aktivní inzeráty",
+	"ERR_NOT_FILLED_LANGUAGES": "Vyplň prosím alespoň jeden jazyk, kterým mluvíš"
 }
