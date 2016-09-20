@@ -103,11 +103,16 @@ if ($$localConfig) {
 	for (var key in $$localConfig) $$config[key] = $$localConfig[key];
 }
 
+var $$versionNumber = 'LOCAL_VERSION';
+
 var _rollbarConfig = {
 	accessToken: $$config.rollbar,
 	captureUncaught: true,
 	payload: {
-		environment: $$config.env
+		environment: $$config.env,
+		version: $$versionNumber,
 	},
 	enable: ["0.0.0.0", '127.0.0.1', 'localhost'].indexOf(window.location.hostname) < 0
 };
+
+
