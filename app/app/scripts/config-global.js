@@ -111,3 +111,5 @@ var _rollbarConfig = {
 	},
 	enable: ["0.0.0.0", '127.0.0.1', 'localhost'].indexOf(window.location.hostname) < 0
 };
+
+$$versionNumber = 'LOCAL_VERSION';

@@ -794,6 +794,14 @@ module.exports = function(grunt) {
 					from: "\n",
 					to: ""
 				}]
+			},
+			versionNumber: {
+				src: ['.tmp/concat/config-global.js'],
+				overwrite: true,
+				replacements: [{
+					from: "'LOCAL_VERSION'",
+					to: "'blabla'"
+				}]
 			}
 		},
 
