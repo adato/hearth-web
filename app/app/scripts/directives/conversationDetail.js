@@ -269,27 +269,10 @@ angular.module('hearth.directives').directive('conversationDetail', [
 				};
 
 				$scope.setConversationAsReaded = function() {
-					if (!$scope.info || $scope.info.read)
-						return false;
-
-					$scope.info.read = true;
-					Conversations.setReaded({
-						id: $scope.info._id
-					});
-
 					$scope.$emit('currentConversationAsReaded', $scope.info);
 				};
 
 				$scope.setConversationAsUnReaded = function() {
-					if (!$scope.info || !$scope.info.read) {
-						return false;
-					}
-
-					$scope.info.read = false;
-					Conversations.setUnreaded({
-						id: $scope.info._id
-					});
-
 					$scope.$emit('currentConversationAsUnReaded', $scope.info);
 				};
 
