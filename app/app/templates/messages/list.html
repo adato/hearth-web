@@ -56,7 +56,6 @@
 									<span ng-if="item.from_admin" ng-include="'images/icons/crown.svg'" class="icon-admin"></span> {{ item.titlePersons }}
 									<span ng-if="item.participants_count > 2">{{:: 'MESSAGES.LIST.PARTICIPANTS_AND_MORE' | translate }}</span>
 								</h2>
-
 								<h2 ng-if="!item.title && !item.titlePersons">
 									{{:: 'MESSAGES.LIST.CONVERSATION_IS_EMPTY' | translate }}
 								</h2>

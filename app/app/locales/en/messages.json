@@ -929,7 +929,7 @@
 		"RESET_PASSWORD_SUCCESS": "One, two, three. We have sent you an email with a walkthrough for changing your password. ",
 		"NEW_PASS_SUCCESS": "New password has been set. You can now sign in.",
 		"NEW_PASS_FAILED": "Setting up new password has failed.",
-		"ACCOUNT_ACTIVATE_SUCCESS": "Victory! Your account has been activated. You can now sign in.",
+		"ACCOUNT_ACTIVATE_SUCCESS": "Victory! Your account has been activated. Welcome to Hearth.net!",
 		"ACCOUNT_ACTIVATE_FAILED": "Account activation has failed...",
 		"POST_SPAM_REPORT_FAILED": "Reporting ad has failed.",
 		"POST_SPAM_REPORT_SUCCESS": "Ad has been reported.",

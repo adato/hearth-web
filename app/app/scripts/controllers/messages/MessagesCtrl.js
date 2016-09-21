@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('MessagesCtrl', [
-	'$scope', '$rootScope', 'Conversations', 'UnauthReload', 'Messenger', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport',
-	function($scope, $rootScope, Conversations, UnauthReload, Messenger, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport) {
+	'$scope', '$rootScope', 'Conversations', 'UnauthReload', '$stateParams', '$location', '$timeout', 'PageTitle', '$translate', 'ResponsiveViewport',
+	function($scope, $rootScope, Conversations, UnauthReload, $stateParams, $location, $timeout, PageTitle, $translate, ResponsiveViewport) {
 
 		$scope.filter = $location.search();
 		$scope.showNewMessageForm = false;
@@ -79,9 +79,22 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.$broadcast('filterApplied', filter);
 		};
 
-		$scope.setCurrentConversationAsReadedSoft = function() {
+		$scope.setCurrentConversationAsReadedSoft = function(event, args) {
 			$scope.detail.read = true;
-			$scope.conversations[0].read = true;
+			angular.forEach($scope.conversations, function(item, index) {
+				if (item === args) {
+					item.read = true;
+				}
+			});
+		};
+
+		$scope.setCurrentConversationAsUnReadedSoft = function(event, args) {
+			$scope.detail.read = false;
+			angular.forEach($scope.conversations, function(item, index) {
+				if (item === args) {
+					item.read = false;
+				}
+			});
 		};
 
 		$scope.loadNewConversations = function() {
@@ -127,14 +140,15 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.markReaded = function(conversation) {
-			if (conversation.read)
+			/*if (conversation.read) {
 				return false;
+			}*/
 
 			Conversations.setReaded({
 				id: conversation._id
 			}, function(res) {
-				Messenger.decrUnreaded();
 				conversation.read = true;
+				//$scope.$broadcast('currentConversationAsReaded', conversation);
 			});
 		};
 
@@ -412,6 +426,7 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.$on('conversationUpdated', $scope.updateConversation);
 		$scope.$on('conversationCreated', $scope.loadCounters);
 		$scope.$on('currentConversationAsReaded', $scope.setCurrentConversationAsReadedSoft);
+		$scope.$on('currentConversationAsUnReaded', $scope.setCurrentConversationAsUnReadedSoft);
 		$scope.$on('conversationDeepUpdate', $scope.updateDeepConversation);
 		$scope.$on('filterApplied', init);
 		$scope.$on('initFinished', init);

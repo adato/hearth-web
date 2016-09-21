@@ -940,7 +940,7 @@
 		"RESET_PASSWORD_SUCCESS": "Postup na zmenu hesla sme vám poslali na email.",
 		"NEW_PASS_SUCCESS": "Nové heslo bolo nastavené. Teraz sa môžete prihlásiť.",
 		"NEW_PASS_FAILED": "Nastavenie nového hesla sa nepodarilo.",
-		"ACCOUNT_ACTIVATE_SUCCESS": "Váš účet bol aktivovaný. Teraz sa môžete prihlásiť.",
+		"ACCOUNT_ACTIVATE_SUCCESS": "Váš účet bol aktivovaný. Vitajte v Hearth.net!",
 		"ACCOUNT_ACTIVATE_FAILED": "Aktivácia účtu sa nepodarila...",
 		"POST_SPAM_REPORT_FAILED": "Nahlásenie inzerátu sa nepodarilo.",
 		"POST_SPAM_REPORT_SUCCESS": "Inzerát bol nahlásený.",
