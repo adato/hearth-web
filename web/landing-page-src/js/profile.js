@@ -18,7 +18,8 @@
 		profileSectionSelector = '#profileSection',
 		profileAvatarSelector = '[profile-image]',
 		profileFullNameSelector = '[profile-name]',
-		profileLinkSelector = '[profile-link]';
+		profileLinkSelector = '[profile-link]',
+		logoutNodeIdentificator = '[logout]';
 
 	var apiToken = cookieFactory.get(authTokenIdentificator);
 	if (apiToken) {
@@ -27,6 +28,11 @@
 		fe($(notLoggedSelector), function(el) {el.style.display = 'inherit'; el.classList.add('inited');});
 		fe($(loggedSelector), function(el) {el.style.display = 'none'; el.classList.add('inited');});
 	}
+
+	// expose logout function
+	window.logout = logout;
+
+	initLogoutFunction();
 
 	///////////////////
 
@@ -88,7 +94,6 @@
 			}
 		};
 	}
-	var logoutNodeIdentificator = '[logout]';
 	function initLogoutFunction() {
 		fe($(logoutNodeIdentificator), function(el) {
 			if (el.tagName.toLowerCase() === 'a') {
@@ -98,6 +103,5 @@
 			}
 		});
 	}
-	initLogoutFunction();
 
 })(window, window.hearthConfig);

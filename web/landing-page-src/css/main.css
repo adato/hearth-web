@@ -530,14 +530,15 @@ html[lang='en'] .language-panel .lang-en{
 	position: relative;
 	padding-bottom: 110px;
 }
-.contains-slash + .section > section > h1{
-	margin-top: 0;
-}
+/*.contains-slash + .section > section > h1{
+	margin-top: 16px;
+}*/
 .slash{
 	position: absolute;
 	bottom: -1px; left: 0;
 	width: 100%;
 	overflow: hidden;
+	margin-bottom: -20px;
 	padding-bottom: 110px;
 }
 .slash:before{
