@@ -100,6 +100,25 @@ a{color: #4a4a4a}
 	background-size: contain;
 	background-repeat: no-repeat;
 }
+.fa.hearth-flame{
+	position: relative;
+	top: 2px;
+	height: 16px;
+	background-image: url('../img/hearth-flame-alt.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.nav-item .fa.hearth-flame{
+	opacity: .8;
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+.nav-item:hover .fa.hearth-flame{
+	opacity: 1;
+	-webkit-filter: none;
+	filter: none;
+}
 .button-flame.large{
 	width: 40px; height: 40px;
 	margin-bottom: 5px;
@@ -805,9 +824,6 @@ a.masonry-item{
 	padding-bottom: 100%;
 }*/
 
-/*******************
-	GESICHTE
-*******************/
 .bulletize-paragraphs > p {
 	position: relative
 }
@@ -823,14 +839,13 @@ a.masonry-item{
 	line-height: .5rem;
 	color: #ddd;
 }
-
 /*******************
-	GESICHTE
+	FACES
 *******************/
 .max-500{ max-width: 500px; margin: 0 auto; }
 @media (min-width: 1200px){
 	.max-500{ max-width: 900px; }
-	#gesichte .tab-pane{
+	#testimonials .tab-pane{
 		text-align: center;
 	}
 }
@@ -938,7 +953,7 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 /*******************
 	LANG DEPENDENT
 *******************/
-html[lang='en'] #from-our-blog,
+html[lang='en'] [blog-post-section],
 html[lang='en'] #section-marketplace,
 html[lang='sk'] #section-marketplace {
 	display: none;
@@ -972,8 +987,8 @@ html[lang='sk'] #section-marketplace {
 	#image-mp-6 .image-target{background-image: url('../img/marketplace/preklady-l.jpg')}
 }
 
-/* GESICHTE IMAGES */
-#image-gesicht-barta{background-image: url('../img/people/jiri-barta.png')}
-#image-gesicht-vaclavek{background-image: url('../img/people/petr-vaclavek.png')}
-#image-gesicht-panek{background-image: url('../img/people/simon-panek.png')}
-#image-gesicht-hajzler{background-image: url('../img/people/tomas-hajzler.png')}
+/* TESTIMONIAL IMAGES */
+#image-testimonial-barta{background-image: url('../img/people/jiri-barta.png')}
+#image-testimonial-vaclavek{background-image: url('../img/people/petr-vaclavek.png')}
+#image-testimonial-panek{background-image: url('../img/people/simon-panek.png')}
+#image-testimonial-hajzler{background-image: url('../img/people/tomas-hajzler.png')}
