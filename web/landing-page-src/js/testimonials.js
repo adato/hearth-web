@@ -7,10 +7,10 @@
 		shuffle = window.aeg.shuffle;
 
 	//
-	//	GESICHTE
+	//	FACES
 	//
 
-	// GESICHTE VARIABLES
+	// FACES VARIABLES
 	var tabsIdentificator = '[tabs]',
 		tabHeaderWrapperIdentificator = '[tab-headers]',
 		tabHeadersIdentificator = '[tab-headers] li',
@@ -18,12 +18,12 @@
 		tabContentsPaneIdentificator = '[tab-pane]';
 
 	// DYNAMIC DATA FILL
-	var dynaGesichte = {
-		wrapperSelector: '#gesichteWrapper',
+	var dynaTestimonials = {
+		wrapperSelector: '#testimonialsWrapper',
 		tabs: [
 			{
 				code: 'barta',
-				imgId: 'image-gesicht-barta',
+				imgId: 'image-testimonial-barta',
 				name: 'Jiří Bárta',
 				position: {
 					short: 'Nadace Via',
@@ -35,7 +35,7 @@
 					potkávalo co nejvíc lidí a darů ve správný čas.'
 			}, {
 				code: 'panek',
-				imgId: 'image-gesicht-panek',
+				imgId: 'image-testimonial-panek',
 				name: 'Šimon Pánek',
 				position: {
 					short: 'Člověk v tísni',
@@ -46,7 +46,7 @@
 					komunity a širšího příbuzenstva či kmene. Dnes máme Hearth.net a to je skvělé.'
 			}, {
 				code: 'hajzler',
-				imgId: 'image-gesicht-hajzler',
+				imgId: 'image-testimonial-hajzler',
 				name: 'Tomáš Hajzler',
 				position: {
 					short: 'Peoplecomm.cz',
@@ -58,7 +58,7 @@
 				doba sociálních sítí k tomu ideálně nahrává.'
 			}, {
 				code: 'vaclavek',
-				imgId: 'image-gesicht-vaclavek',
+				imgId: 'image-testimonial-vaclavek',
 				name: 'Petr Václavek',
 				position: {
 					short: 'novebohatstvi.cz',
@@ -72,17 +72,17 @@
 	};
 
 	// shuffle the tabs
-	shuffle(dynaGesichte.tabs);
+	shuffle(dynaTestimonials.tabs);
 	// show at most 4
-	dynaGesichte.tabs = dynaGesichte.tabs.slice(0, 4);
+	dynaTestimonials.tabs = dynaTestimonials.tabs.slice(0, 4);
 
-	fillWithData(dynaGesichte);
+	fillWithData(dynaTestimonials);
 
-	function fillWithData(dynaGesichte) {
+	function fillWithData(dynaTestimonials) {
 		var headers = '',
 			contents = '';
-		for (var i = 0,l = dynaGesichte.tabs.length;i < l;i++) {
-			var q = dynaGesichte.tabs[i];
+		for (var i = 0,l = dynaTestimonials.tabs.length;i < l;i++) {
+			var q = dynaTestimonials.tabs[i];
 			headers += "\
 				<li role='presentation' class='" + (i === 0 ? 'active' : '') + "'>\
 					<a href='#" + q.code + "' aria-controls='" + q.code + "' role='tab' data-toggle='tab'>\
@@ -113,11 +113,11 @@
 				</div>\
 			";
 		}
-		$(dynaGesichte.wrapperSelector).querySelector(tabHeaderWrapperIdentificator).innerHTML = headers;
-		$(dynaGesichte.wrapperSelector).querySelector(tabContentsIdentificator).innerHTML = contents;
+		$(dynaTestimonials.wrapperSelector).querySelector(tabHeaderWrapperIdentificator).innerHTML = headers;
+		$(dynaTestimonials.wrapperSelector).querySelector(tabContentsIdentificator).innerHTML = contents;
 	}
 
-	// GESICHTE CODE
+	// TESTIMONIALS CODE
 	fe($(tabsIdentificator), function(tabs) {
 		var tabHeaders = tabs.querySelectorAll(tabHeadersIdentificator);
 		var tabContents = tabs.querySelectorAll(tabContentsPaneIdentificator);

@@ -7,7 +7,7 @@
 		formatDate = window.aeg.formatDate;
 
 	var posts = [],
-		postsSectionWrapperSelector = '[blog-post-section-wrapper]',
+		postsSectionWrapperSelector = '[blog-post-section]',
 		postsElementWrapperSelector = '[blog-posts-wrapper]',
 		postsElementWrapper = $(postsElementWrapperSelector),
 		readOnBlogTranslationSelector = '[translation-holder--read-on-our-blog]';
