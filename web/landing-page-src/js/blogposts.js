@@ -84,7 +84,7 @@
 			+ (image ? '<div class="blog-img-wrapper">' + getElHtml(image) + '</div>' : '')
 			+ (formattedPubDate ? '<div class="text-muted">' + formattedPubDate + '</div>' : '')
 			+ (title && title.innerHTML ? '<h3>' + title.innerHTML + '</h3>' : '')
-			+ (textHTML ? '<p>' + textHTML + '</p>' : '')
+			+ (textHTML ? '<div class="faux-paragraph">' + textHTML + '</div>' : '')
 			// + (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
 			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">' + readOnBlog + '</a>' : '');
 
