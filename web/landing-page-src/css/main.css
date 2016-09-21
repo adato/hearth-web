@@ -934,6 +934,15 @@ div.img-circle{ padding-bottom: 100%; background-size: cover; }
 }
 
 /*******************
+	LANG DEPENDENT
+*******************/
+html[lang='en'] #from-our-blog,
+html[lang='en'] #section-marketplace,
+html[lang='sk'] #section-marketplace {
+	display: none;
+}
+
+/*******************
 	IMAGES
 *******************/
 

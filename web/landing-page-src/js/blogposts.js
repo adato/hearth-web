@@ -9,7 +9,8 @@
 	var posts = [],
 		postsSectionWrapperSelector = '[blog-post-section-wrapper]',
 		postsElementWrapperSelector = '[blog-posts-wrapper]',
-		postsElementWrapper = $(postsElementWrapperSelector);
+		postsElementWrapper = $(postsElementWrapperSelector),
+		readOnBlogTranslationSelector = '[translation-holder--read-on-our-blog]';
 
 	// If posts element wrapper is not present on the page, kill all blog posts processing
 	if (postsElementWrapper && postsElementWrapper.length) {
@@ -74,13 +75,18 @@
 		// try to format publishing date
 		var formattedPubDate = formatDate(new Date(pubDate.innerHTML));
 
+		var readOnBlog = 'Blog',
+			readOnBlogTranslation = $(readOnBlogTranslationSelector);
+		if (readOnBlogTranslation && readOnBlogTranslation.length) readOnBlog = readOnBlogTranslation[0].getAttribute('translation');
+
 		standaradizedPost.innerHTML = ""
 			// + "<div class='blog-img-wrapper'><div class='blog-img' id='image-blog-1'></div></div>"
 			+ (image ? '<div class="blog-img-wrapper">' + getElHtml(image) + '</div>' : '')
 			+ (formattedPubDate ? '<div class="text-muted">' + formattedPubDate + '</div>' : '')
 			+ (title && title.innerHTML ? '<h3>' + title.innerHTML + '</h3>' : '')
 			+ (textHTML ? '<p>' + textHTML + '</p>' : '')
-			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
+			// + (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">Přečíst na blogu</a>' : '');
+			+ (link && link.childNodes.length ? '<a target="_blank" href="' + link.childNodes[0].nodeValue + '" class="display-block margin-top-medium color-primary">' + readOnBlog + '</a>' : '');
 
 		postsElementWrapper.appendChild(standaradizedPost);
 	}
