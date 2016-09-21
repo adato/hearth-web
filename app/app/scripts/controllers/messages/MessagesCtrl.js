@@ -79,20 +79,32 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 			$scope.$broadcast('filterApplied', filter);
 		};
 
-		$scope.setCurrentConversationAsReadedSoft = function(event, args) {
-			$scope.detail.read = true;
+		$scope.setCurrentConversationAsReadedSoft = function(event, conversation) {
+			if (!$scope.detail || $scope.detail.read) {
+				return false;
+			}
+
+			Conversations.setReaded({
+				id: conversation._id
+			});
+
 			angular.forEach($scope.conversations, function(item, index) {
-				if (item === args) {
+				if (item._id === conversation._id) {
 					item.read = true;
+					$scope.detail.read = true;
 				}
 			});
 		};
 
-		$scope.setCurrentConversationAsUnReadedSoft = function(event, args) {
-			$scope.detail.read = false;
+		$scope.setCurrentConversationAsUnReadedSoft = function(event, conversation) {
+			Conversations.setUnreaded({
+				id: conversation._id
+			});
+
 			angular.forEach($scope.conversations, function(item, index) {
-				if (item === args) {
+				if (item._id === conversation._id) {
 					item.read = false;
+					$scope.detail.read = false;
 				}
 			});
 		};
@@ -140,15 +152,14 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		};
 
 		$scope.markReaded = function(conversation) {
-			/*if (conversation.read) {
+			if (conversation.read) {
 				return false;
-			}*/
+			}
 
 			Conversations.setReaded({
 				id: conversation._id
 			}, function(res) {
 				conversation.read = true;
-				//$scope.$broadcast('currentConversationAsReaded', conversation);
 			});
 		};
 
@@ -166,13 +177,13 @@ angular.module('hearth.controllers').controller('MessagesCtrl', [
 		$scope.showConversation = function(conversation, markAsRead) {
 			var title;
 
-			if ($scope.detail && conversation._id == $scope.detail._id) {
-				return false;
-			}
-
 			if (markAsRead === true) {
 				// set it as "read" when it already isnt
 				$scope.markReaded(conversation);
+			}
+
+			if ($scope.detail && conversation._id == $scope.detail._id) {
+				return false;
 			}
 
 			$scope.showNewMessageForm = false;
