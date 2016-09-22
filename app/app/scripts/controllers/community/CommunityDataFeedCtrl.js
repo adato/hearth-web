@@ -111,19 +111,7 @@ angular.module('hearth.controllers').controller('CommunityDataFeedCtrl', [
 				_id: id,
 				current_community_id: val
 			}, function(res, headers) {
-				var posts = [];
-				if (!res.needed || !res.offered)
-					$log.error('Undefined needed/offered posts: ', res, headers)
-
-				res.needed.forEach(function(item) {
-					//item.post_type = "needed";
-					item.post_type = ((item.author._id === val) ? "needed" : "offered");
-					posts.push(item);
-				});
-				res.offered.forEach(function(item) {
-					item.post_type = ((item.author._id === val) ? "offered" : "needed");
-					posts.push(item);
-				});
+				var posts = UsersCommunitiesService.alterPossiblePosts(res, headers);
 
 				$scope.ratingPosts = posts;
 				$scope.loadedRatingPosts = true;

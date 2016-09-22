@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
-	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks',
-	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks) {
+	'$scope', '$timeout', '$location', '$rootScope', '$stateParams', 'Followers', 'Friends', 'Followees', 'User', 'CommunityMemberships', 'UserRatings', 'UsersActivityLog', 'Fulltext', 'Post', 'UniqueFilter', 'Activities', 'ItemServices', 'UserBookmarks', 'UsersCommunitiesService',
+	function($scope, $timeout, $location, $rootScope, $stateParams, Followers, Friends, Followees, User, CommunityMemberships, UserRatings, UsersActivityLog, Fulltext, Post, UniqueFilter, Activities, ItemServices, UserBookmarks, UsersCommunitiesService) {
 		angular.extend($scope, ItemServices);
 		var loadServices = {
 				'home': loadUserHome,
@@ -107,16 +107,8 @@ angular.module('hearth.controllers').controller('ProfileDataFeedCtrl', [
 			UserRatings.possiblePosts({
 				userId: params.user_id,
 				current_community_id: val
-			}, function(res) {
-				var posts = [];
-				res.needed.forEach(function(item) {
-					item.post_type = ((item.author._id === $scope.loggedUser._id) ? "needed" : "offered");
-					posts.push(item);
-				});
-				res.offered.forEach(function(item) {
-					item.post_type = ((item.author._id === $scope.loggedUser._id) ? "offered" : "needed");
-					posts.push(item);
-				});
+			}, function(res, headers) {
+				var posts = UsersCommunitiesService.alterPossiblePosts(res, headers);
 
 				$scope.ratingPosts = posts;
 				$scope.loadedRatingPosts = true;
