@@ -93,11 +93,12 @@
 				console.error('Something went wong during logout:', req);
 			}
 		};
+		req.send();
 	}
 	function initLogoutFunction() {
 		fe($(logoutNodeIdentificator), function(el) {
 			if (el.tagName.toLowerCase() === 'a') {
-				el.setAttribute('href', 'javascript:logout();return false;');
+				el.setAttribute('href', 'javascript:logout()');
 			} else {
 				el.addEventListener('click', logout)
 			}
