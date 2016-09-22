@@ -18,58 +18,47 @@
 		tabContentsPaneIdentificator = '[tab-pane]';
 
 	// DYNAMIC DATA FILL
+	var bartaSetup = getTestimonialTranslations('barta'),
+		hajzlerSetup = getTestimonialTranslations('hajzler'),
+		panekSetup = getTestimonialTranslations('panek'),
+		vaclavekSetup = getTestimonialTranslations('vaclavek');
+	bartaSetup.code = 'barta';
+	bartaSetup.imgId = 'image-testimonial-barta';
+	bartaSetup.name = 'Jiří Bárta';
+	hajzlerSetup.code = 'hajzler';
+	hajzlerSetup.imgId = 'image-testimonial-hajzler';
+	hajzlerSetup.name = 'Tomáš Hajzler';
+	panekSetup.code = 'panek';
+	panekSetup.imgId = 'image-testimonial-panek';
+	panekSetup.name = 'Šimon Pánek';
+	vaclavekSetup.code = 'vaclavek';
+	vaclavekSetup.imgId = 'image-testimonial-vaclavek';
+	vaclavekSetup.name = 'Petr Václavek';
+
 	var dynaTestimonials = {
 		wrapperSelector: '#testimonialsWrapper',
 		tabs: [
-			{
-				code: 'barta',
-				imgId: 'image-testimonial-barta',
-				name: 'Jiří Bárta',
-				position: {
-					short: 'Nadace Via',
-					long: 'Nadace Via'
-				},
-				text: 'Parádní nápad. Dar je radost i starost. Je projevem zájmu, příležitost\
-					pomoci anebo pomoc přijmout. Pro někoho příležitost naděje, pro jiného\
-					závazek pomoci. Držím vám palce a přeju, aby se díky Hearth.net\
-					potkávalo co nejvíc lidí a darů ve správný čas.'
-			}, {
-				code: 'panek',
-				imgId: 'image-testimonial-panek',
-				name: 'Šimon Pánek',
-				position: {
-					short: 'Člověk v tísni',
-					long: 'Ředitel humanitární organizace Člověk v tísni'
-				},
-				text: 'Zajímavá možnost jak se ve složitém a uspěchaném světě vrátit k prostému\
-					aktu někomu něco darovat, pomoci mu, seznámit se s ním. Dřív to šlo v rámci\
-					komunity a širšího příbuzenstva či kmene. Dnes máme Hearth.net a to je skvělé.'
-			}, {
-				code: 'hajzler',
-				imgId: 'image-testimonial-hajzler',
-				name: 'Tomáš Hajzler',
-				position: {
-					short: 'Peoplecomm.cz',
-					long: 'Zakladatel Peoplecomm.cz a člověk, co se nebojí být sám sebou'
-				},
-				text: 'Nadchla mě vaše jednoduchost. Přestěhoval jsem se a myslím, že mi\
-				Hearth.net pomůže vybudovat vztahy v novém místě. Dávání bylo a\
-				bude základ každé rodiny a navíc vám přináší skvělý pocit. Dnešní\
-				doba sociálních sítí k tomu ideálně nahrává.'
-			}, {
-				code: 'vaclavek',
-				imgId: 'image-testimonial-vaclavek',
-				name: 'Petr Václavek',
-				position: {
-					short: 'novebohatstvi.cz',
-					long: 'Člověk, který opustil vysoké posty světa reklamy, a založil spirituální blog novebohatstvi.cz'
-				},
-				text: 'Hearth.net je skvělé místo pro každého, kdo se chce spojit se\
-				světem jiným, novým a smysluplným způsobem. Dává možnost jak\
-				uplatnit svůj dar-talent, a dělat tak, co nás naplňuje radostí.'
-			}
+			bartaSetup,
+			hajzlerSetup,
+			panekSetup,
+			vaclavekSetup
 		]
 	};
+
+	/**
+	 *	Function that finds a person-id='personId' in the html and gets translated variables from it
+	 */
+	function getTestimonialTranslations(personId) {
+		var personTranslations = $('[person-id="' + personId + '"]');
+		if (personTranslations) personTranslations = {
+			position: {
+				short: personTranslations[0].getAttribute('position-short'),
+				long: personTranslations[0].getAttribute('position-long')
+			},
+			text: personTranslations[0].getAttribute('text')
+		};
+		return personTranslations || {position: ''};
+	}
 
 	// shuffle the tabs
 	shuffle(dynaTestimonials.tabs);
