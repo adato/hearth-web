@@ -16,8 +16,8 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 		}
 
 		var factory = {
-			alterPossiblePosts: alterPossiblePosts
-			loadProfileInfo: loadProfileInfo
+			alterPossiblePosts: alterPossiblePosts,
+			loadProfileInfo: loadProfileInfo,
 			query: query,
 		};
 
@@ -34,11 +34,11 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 				return $log.error('Undefined needed/offered posts: ', posts, headers)
 			}
 			var arr = [];
-			res.needed.forEach(function(item) {
+			posts.needed.forEach(function(item) {
 				item.post_type = ((item.owner_id === $scope.loggedUser._id) ? postType.needed : postType.offered);
 				arr.push(item);
 			});
-			res.offered.forEach(function(item) {
+			posts.offered.forEach(function(item) {
 				item.post_type = ((item.owner_id === $scope.loggedUser._id) ? postType.offered : postType.needed);
 				arr.push(item);
 			});
