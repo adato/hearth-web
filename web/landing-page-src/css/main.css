@@ -347,7 +347,7 @@ a.masonry-item:hover .button,
 	width: 30px; height: 30px;
 	vertical-align: middle;
 	border-radius: 50%;
-	background-position: center center;
+	/*background-position: center center;*/
 	background-size: cover;
 	background-repeat: no-repeat;
 	transition: .3s all;
@@ -592,7 +592,7 @@ html[lang='en'] .language-panel .lang-en{
 
 .decorated-circle-flame{
 	position: absolute;
-	bottom: 25px; left: 50%;
+	bottom: 5px; left: 50%;
 	width: 68px; height: 68px;
 	margin-left: -34px;
 	border-radius: 50%;
