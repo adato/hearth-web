@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     			src: [
 					landingPageSrcFolder + '/js/config.js',
 					landingPageSrcFolder + '/js/libs.js',
-					landingPageSrcFolder + '/js/language.js',
+					// landingPageSrcFolder + '/js/language.js',
 					landingPageSrcFolder + '/js/testimonials.js',
 					landingPageSrcFolder + '/js/referrals.js',
 					landingPageSrcFolder + '/js/blogposts.js',
