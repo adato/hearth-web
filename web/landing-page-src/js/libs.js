@@ -81,6 +81,7 @@
 		return prepareRequest(method, path);
 	}
 	function requestApi(method, path, params) {
+		params = params || {};
 		params.toApi = true;
  		return prepareRequest(method, path, params);
  	}

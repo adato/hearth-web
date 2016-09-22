@@ -84,7 +84,7 @@
 	 * on success delete auth cookie and set ui to not-logged state
 	 */
 	function logout() {
-		var req = requestApi('POST', apiPath + '/logout');
+		var req = requestApi('POST', apiPath + '/logout', {token: apiToken});
 		req.onload = function() {
 			if (req.status === 200) {
 				cookieFactory.remove(authTokenIdentificator);
@@ -97,7 +97,7 @@
 	function initLogoutFunction() {
 		fe($(logoutNodeIdentificator), function(el) {
 			if (el.tagName.toLowerCase() === 'a') {
-				el.setAttribute('href', 'javascript:logout()');
+				el.setAttribute('href', 'javascript:logout();return false;');
 			} else {
 				el.addEventListener('click', logout)
 			}
