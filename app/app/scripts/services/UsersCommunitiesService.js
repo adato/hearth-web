@@ -35,11 +35,11 @@ angular.module('hearth.services').factory('UsersCommunitiesService', [
 			}
 			var arr = [];
 			posts.needed.forEach(function(item) {
-				item.post_type = ((item.owner_id === $scope.loggedUser._id) ? postType.needed : postType.offered);
+				item.post_type = ((item.owner_id === $rootScope.loggedUser._id) ? postType.needed : postType.offered);
 				arr.push(item);
 			});
 			posts.offered.forEach(function(item) {
-				item.post_type = ((item.owner_id === $scope.loggedUser._id) ? postType.offered : postType.needed);
+				item.post_type = ((item.owner_id === $rootScope.loggedUser._id) ? postType.offered : postType.needed);
 				arr.push(item);
 			});
 			return arr;
