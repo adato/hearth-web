@@ -7,8 +7,8 @@
  */
 
 angular.module('hearth.services').factory('UsersCommunitiesService', [
-	'$q', 'CommunityMemberships', '$rootScope', 'User', 'Community',
-	function($q, CommunityMemberships, $rootScope, User, Community) {
+	'$q', 'CommunityMemberships', '$rootScope', 'User', 'Community', '$log',
+	function($q, CommunityMemberships, $rootScope, User, Community, $log) {
 
 		var postType = {
 			offered: 'offered',
