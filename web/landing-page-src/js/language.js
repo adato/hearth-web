@@ -1,5 +1,10 @@
+/**
+ *	NOT USED !! - MOVED DIRECTLY INTO HEAD ELEMENT TO EXECUTE BEFORE EVERYTHING ELSE
+ */
 ;(function(window) {
 	'use strict'
+
+	var cookieFactory = window.aeg.cookieFactory;
 
 	var en = 'en',
 		cs = 'cs',
@@ -52,7 +57,7 @@
 
 	function init() {
 
-		// console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', window.aeg.cookieFactory.get(languageCookie));
+		// console.log('Languages are: browser =', langBrowser, '| url =', langUrl, '| cookie =', cookieFactory.get(languageCookie));
 
 		if (/prerender|bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) {
 		    // console.log('Don\'t change language for crawlers');
@@ -61,13 +66,13 @@
 
 			// if there is not set language in cookie yet
 			// use language from browser
-			if (!window.aeg.cookieFactory.get(languageCookie)) {
+			if (!cookieFactory.get(languageCookie)) {
 				// console.log('There is no language in cookie yet');
 				changeLanguage(langBrowser);
 			}
 
 			// if we are not on right url, redirect
-			var cookieLang = window.aeg.cookieFactory.get(languageCookie);
+			var cookieLang = cookieFactory.get(languageCookie);
 			if (langUrl !== cookieLang) {
 				// console.log('Language in URL is not the same as value in cookies, redirecting to ', cookieLang);
 				changeLanguage(cookieLang, true);
@@ -76,7 +81,7 @@
 	}
 
 	function changeLanguage(lang, relocate) {
-		window.aeg.cookieFactory.set(languageCookie, lang, '/');
+		cookieFactory.set(languageCookie, lang, '/');
 		if (!relocate) return true;
 		window.location = langPathMap[lang];
 	}

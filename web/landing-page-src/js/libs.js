@@ -1,13 +1,11 @@
 ;(function(window, config) {
 	'use strict'
 
-	window.aeg = {
+	// window.aeg should be defined in <head /> because of language
+	// redirect cookie factory dependecy, so we just extend it
+	window.aeg = extend(window.aeg, {
 		$: $,
-		cookieFactory: {
-			get: cookieGet,
-			set: cookieSet,
-			remove: cookieRemove
-		},
+		extend: extend,
 		fe: fe,
 		findParentBySelector: findParentBySelector,
 		formatDate: formatDate,
@@ -15,7 +13,7 @@
 		requestApi: requestApi,
 		shuffle: shuffle,
 		throttle: throttle
-	};
+	});
 
 	////////////////////
 
@@ -26,23 +24,16 @@
 		return document['querySelector' + (q.slice(0,1) === '#' ? '' : 'All')](q);
 	}
 
-	function cookieGet(cname) {
-		var name = cname + '=';
-		var cookies = document.cookie.split(';');
-		for (var i = 0;i < cookies.length;i++) {
-			var c = cookies[i];
-			while (c.charAt(0) === ' ') c = c.substring(1);
-			if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+	/**
+	 *	Extends an object 'source' with properties of object 'target'
+	 */
+	function extend(source, target) {
+		source = source || {};
+		target = target || {};
+		for (var prop in target) {
+			if (target.hasOwnProperty(prop)) source[prop] = target[prop];
 		}
-		return '';
-	}
-
-	function cookieRemove(cname) {
-		document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-	}
-
-	function cookieSet(cname, cvalue, path) {
-		document.cookie = cname + '=' + cvalue + '; expires=Thu, 31 Jan 3131 00:00:00 GMT' + (path ? '; path=' + path : '');
+		return source;
 	}
 
 	/**
