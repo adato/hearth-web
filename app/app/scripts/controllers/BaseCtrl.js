@@ -238,19 +238,19 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			}
 		});
 
-		$scope.loadMyCommunities = function() {
-
+		function loadMyCommunities() {
 			CommunityMemberships.get({
 				user_id: $rootScope.loggedUser._id
 			}, function(res) {
 				$rootScope.myCommunities = res;
 				$rootScope.myAdminCommunities = [];
 				res.forEach(function(item) {
-
 					// create list of communities I'm admin in
-					if (item.admin == $rootScope.loggedUser._id)
-						$rootScope.myAdminCommunities.push(item);
+					if (item.admin == $rootScope.loggedUser._id) $rootScope.myAdminCommunities.push(item);
 				});
+
+				$rootScope.$emit('communities:loaded');
+				$rootScope.communitiesLoaded = true;
 			});
 		};
 
@@ -275,7 +275,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 			$rootScope.appUrl = $$config.appUrl;
 
 			if ($rootScope.loggedUser._id) {
-				$scope.loadMyCommunities();
+				loadMyCommunities();
 				$scope.checkTutorial();
 			} else {
 				// set to check tutorial after next login
@@ -288,7 +288,7 @@ angular.module('hearth.controllers').controller('BaseCtrl', [
 
 		};
 
-		$rootScope.$on('reloadCommunities', $scope.loadMyCommunities);
+		$rootScope.$on('reloadCommunities', loadMyCommunities);
 		$scope.$on('initFinished', $scope.initHearthbeat);
 		$rootScope.initFinished && $scope.initHearthbeat();
 

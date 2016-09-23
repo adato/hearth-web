@@ -45,18 +45,16 @@ angular.module('hearth.directives').directive('authorSelector', [
 				};
 
 				$scope.buildAuthorList = function() {
-					if (!$rootScope.loggedUser)
-						return false;
+					if (!$rootScope.loggedUser) return false;
 
-					if ($scope.authorList)
-						return $scope.list = $scope.authorList;
+					if ($scope.authorList) return $scope.list = $scope.authorList;
 
 					$scope.list = [$rootScope.loggedUser];
-					if ($rootScope.myAdminCommunities)
+					if ($rootScope.myAdminCommunities) {
 						for (var i = 0; i < $rootScope.myAdminCommunities.length; i++) {
-							if ($rootScope.myAdminCommunities[i]._id !== $scope.remove)
-								$scope.list.push($rootScope.myAdminCommunities[i]);
+							if ($rootScope.myAdminCommunities[i]._id !== $scope.remove) $scope.list.push($rootScope.myAdminCommunities[i]);
 						}
+					}
 
 					var index = $scope.getIndexById($scope.authorId);
 					$scope.selected._id = $scope.list[index]._id;
@@ -66,21 +64,20 @@ angular.module('hearth.directives').directive('authorSelector', [
 				};
 
 				$scope.onChange = function(id) {
-					if (id === $rootScope.loggedUser._id)
-						id = null;
+					if (id === $rootScope.loggedUser._id) id = null;
 
 					$scope.authorId = id;
 					$scope.selectedEntity = $scope.getByIndex(id);
 				};
 
 				$scope.selectAuthor = function(id) {
-					if (!id && $scope.list.length)
-						id = $scope.list[0]._id;
+					if (!id && $scope.list.length) id = $scope.list[0]._id;
 
 					$scope.selected._id = id;
 					$scope.selectedEntity = $scope.getByIndex(id);
 				};
 
+				$rootScope.$on('communities:loaded', $scope.buildAuthorList);
 
 				$scope.$watch('authorId', $scope.selectAuthor);
 				$scope.$watch('remove', $scope.buildAuthorList);
